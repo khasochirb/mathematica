@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Video Tutorials - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/first.css" />
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div style="position: absolute; left: 20px; top: 20px;">
+                <a href="javascript:history.back()" class="button alt">← Go Back</a>
+            </div>
+            <h1><a href="index.html">International Math Hub</a></h1>
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li class="current"><a href="resources.html">Resources</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </section>
+
+        <!-- Main Content -->
+        <section id="main" class="container">
+            <header style="color: white;">
+                <h2 style="color: white;">Video Tutorials</h2>
+                <p>Watch detailed explanations of complex math problems with bilingual support</p>
+            </header>
+
+            <div class="row" id="video-grid">
+                <!-- Video thumbnails will be dynamically loaded here -->
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <section id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li style="color: beige;">&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        const videos = [
+            {
+                title: "Problem 1 to 3",
+                description: "Solutions to Problem 1 to 3 from the Quiz",
+                thumbnail: "images/1-3.png",
+                videoUrl: "videos/1-3.mp4"
+            },
+            {
+                title: "Problem 4 to 12",
+                description: "Solutions to Problem 4 to 12 from the Quiz",
+                thumbnail: "images/4-12.png",
+                videoUrl: "videos/4-12.mp4"
+            },
+            {
+                title: "Problem 13 to 17",
+                description: "Solutions to Problem 13 to 17 from the Quiz",
+                thumbnail: "images/13-17.png",
+                videoUrl: "videos/13 to 17.mp4"
+            },
+            {
+                title: "Problem 18 to 21",
+                description: "Solutions to Problem 18 to 21 from the Quiz",
+                thumbnail: "images/18-21.png",
+                videoUrl: "videos/18 to 21.mp4"
+            }
+        ];
+
+        function createVideoGrid() {
+            const videoGrid = document.getElementById('video-grid');
+            
+            videos.forEach((video, index) => {
+                const videoElement = document.createElement('div');
+                videoElement.className = 'col-6 col-12-medium';
+                videoElement.innerHTML = `
+                    <section class="box">
+                        <a class="image featured" onclick="playVideo('${video.videoUrl}', '${video.title}')" style="cursor: pointer;">
+                            <img src="${video.thumbnail}" alt="${video.title}" />
+                        </a>
+                        <header>
+                            <h3 style="color: black;">${video.title}</h3>
+                        </header>
+                        <p style="color: black;">${video.description}</p>
+                    </section>
+                `;
+                videoGrid.appendChild(videoElement);
+            });
+        }
+
+        function playVideo(videoUrl, title) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            `;
+
+            const videoPlayer = document.createElement('div');
+            videoPlayer.style.cssText = `
+                width: 80%;
+                max-width: 1200px;
+                background: #000;
+                padding: 20px;
+                border-radius: 10px;
+            `;
+
+            videoPlayer.innerHTML = `
+                <h2 style="color: white; margin-bottom: 1em;">${title}</h2>
+                <video controls style="width: 100%;">
+                    <source src="${videoUrl}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            `;
+
+            modal.onclick = function(e) {
+                if (e.target === modal) {
+                    document.body.removeChild(modal);
+                }
+            };
+
+            modal.appendChild(videoPlayer);
+            document.body.appendChild(modal);
+        }
+
+        window.onload = createVideoGrid;
+    </script>
+</body>
+</html>

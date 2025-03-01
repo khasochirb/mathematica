@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .quiz-container {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .option {
+            padding: 12px 15px;
+            background-color: white;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .option:hover {
+            background-color: #f8f9fa;
+            border-color: #dee2e6;
+        }
+        .option.selected {
+            background-color: #0d6efd;
+            color: white;
+            border-color: #0d6efd;
+        }
+        #quiz-selector {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 2px solid #dee2e6;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        #submit-btn {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.2s ease;
+        }
+        #submit-btn:hover {
+            background-color: #0b5ed7;
+        }
+        #result {
+            margin-top: 25px;
+        }
+        #result > div {
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        h1 {
+            color: #212529;
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #495057;
+            font-weight: 500;
+        }
+    </style>
+    <!-- Include MathJax for LaTeX rendering -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <section id="header">
+        <div style="position: absolute; left: 20px; top: 20px;">
+            <a href="javascript:history.back()" class="button alt">← Go Back</a>
+        </div>
+        <h1><a href="index.html">International Math Hub</a></h1>
+    </section>
+    <h1>Sample Test</h1>
+    <label for="quiz-selector">Choose a Quiz:</label>
+    <select id="quiz-selector" onchange="loadQuiz()">
+        <option value="0">Easy Quiz</option>
+        <option value="1">Medium Quiz</option>
+        <option value="2">Hard Quiz</option>
+    </select>
+    <div class="quiz-container">
+        <div id="questions"></div>
+        <button id="submit-btn" onclick="submitQuiz()">Submit Quiz</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const quizzes = [
+            [
+                { question: "images/question1.png", options: ["13", "14", "14.4", "-14", "-13"], correct: 1 },
+                { question: "images/question2.png", options: ["5,200,000", "7.052 × 10^6", "4.52 × 10^5", "5.52 × 10^6", "6.5 × 10^6"], correct: 1 },
+                { question: "images/question3.png", options: ["9/25", "94/25", "196/25", "194/25", "96/25"], correct: 2 },
+                { question: "images/question4.png", options: ["15", "25", "5", "45", "225"], correct: 0 },
+                { question: "images/question5.png", options: ["2", "x²", "2x", "1", "x² + x + C"], correct: 0 },
+                { question: "images/question6.png", options: ["(-∞, 0)", "[0, +∞)", "(-∞, +∞)", "(-∞, 2)", "(2, +∞)"], correct: 1 },
+                { question: "images/question7.png", options: ["30", "32", "16", "6", "5"], correct: 4 },
+                { question: "images/question8.png", options: ["9", "81", "3", "14", "327"], correct: 2 },
+                { question: "images/question9.png", options: ["\\text{(2,1,0) \& (0,1,2}\)", "\\text{(-1,2,1) \& (-2,1,2}\)", "\\text{(1,-1,1) \& (1,-2,1}\)", "\\text{(2,-1,1) \& (4,-2,2}\)", "\\text{(0,0,1) \& (1,0,0}\)"], correct: 3 },
+                { question: "images/question10.png", options: ["25%", "20%", "125%", "100%", "75%"], correct: 0 }
+            ],
+            [
+                { question: "images/question11.png", options: ["70°", "60°", "40°", "30°", "80°"], correct: 2 },
+                { question: "images/question12.png", options: ["7", "8", "4", "12", "9"], correct: 1 },
+                { question: "images/question13.png", options: ["4", "12", "16", "24", "10"], correct: 3 },
+                { question: "images/question14.png", options: ["8", "12", "6", "7", "9"], correct: 2 },
+                { question: "images/question15.png", options: ["x² + 2x - 2 = 0", "x² - 2x + 2 = 0", "x² - 2x + 3 = 0", "x² + 2x + 2 = 0", "x² - 2x - 2 = 0"], correct: 4 },
+                { question: "images/question16.png", options: ["√2/2", "135°", "1", "-√2/2", "45°"], correct: 2 },
+                { question: "images/question17.png", options: ["2012² + 3 × 2012 + 1", "2014² + 3 × 2014 + 1", "2013² + 3 × 2013 + 1", "2011² + 3 × 2011 + 1", "2015² + 3 × 2015 + 1"], correct: 3 },
+                { question: "images/question18.png", options: ["[-2,4]", "(-∞,-2] ∪ [4,∞)", "(-∞,-4] ∪ [2,∞)", "[-4,2]", "(-∞,-2) ∪ (4,∞)"], correct: 1 },
+                { question: "images/question19.png", options: ["cos²(3x)/2 + C", "-sin(x) + C", "-sin(3x) + C", "cos²(3x)/6 + C", "sin(3x)/3 + C"], correct: 4 },
+                { question: "images/question20.png", options: ["3", "-1", "2", "0", "1"], correct: 2 }
+            ],
+            [
+                { question: "images/question21.png", options: ["8", "0", "16", "4", "6"], correct: 0 },
+                { question: "images/question22.png", options: ["-75°", "-1", "-30°", "-15°", "-1°"], correct: 3 },
+                { question: "images/question23.png", options: ["64", "16", "32", "8", "128"], correct: 0 },
+                { question: "images/question24.png", options: ["(-∞,-4] ∪ [3,∞)", "[-4,3]", "(-∞,-5] ∪ [3,∞)", "[3,4]", "[0,3]"], correct: 1 },
+                { question: "images/question25.png", options: ["6", "5", "10", "9", "3"], correct: 3 },
+                { question: "images/question26.png", options: ["1/2", "√3/2", "1/4", "2√3", "1"], correct: 0 },
+                { question: "images/question27.png", options: ["[2, 2.25)", "(-∞,2] ∪ [6,∞)", "(-∞,2] ∪ [2.25,∞)", "[2,∞)", "(2,6]"], correct: 4 },
+                { question: "images/question28.png", options: ["6 × 27! / (4! × 2! × 21!)", "324 × C_2^{27} × C_4^{27} × C_{21}^{27}", "324 × 27! / (4! × 2! × 21!)", "324 × A_2^{27} × A_4^{27} × A_{21}^{27}", "324 × P₂ × P₄ × P₂₁"], correct: 2 },
+                { question: "images/question29.png", options: ["100", "42", "84", "126", "50"], correct: 0 },
+                { question: "images/question30.png", options: ["80 - x", "160 - x", "240 + 2x", "120 - 0.5x", "240 - 2x"], correct: 4 }
+            ]
+        ];
+
+        let selectedQuiz = 0;
+        let selectedAnswers = [];  // Add this to track user selections
+
+        function loadQuiz() {
+            selectedQuiz = document.getElementById("quiz-selector").value;
+            selectedAnswers = new Array(quizzes[selectedQuiz].length).fill(-1);  // Reset answers
+            createQuiz();
+        }
+
+        function createQuiz() {
+            const questionsContainer = document.getElementById('questions');
+            questionsContainer.innerHTML = "";
+            
+            quizzes[selectedQuiz].forEach((q, questionIndex) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                
+                const img = document.createElement('img');
+                img.src = q.question;
+                img.alt = `Question ${questionIndex + 1}`;
+                img.style.maxWidth = "100%";
+                img.onerror = function() { img.style.display = 'none'; };
+                
+                questionDiv.appendChild(img);
+                
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'options';
+                q.options.forEach((option, optionIndex) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'option';
+                    optionDiv.innerHTML = `\\(${option}\\)`;
+                    optionDiv.onclick = () => selectOption(questionIndex, optionIndex);
+                    optionsDiv.appendChild(optionDiv);
+                });
+                
+                questionDiv.appendChild(optionsDiv);
+                questionsContainer.appendChild(questionDiv);
+            });
+
+            MathJax.typeset();
+        }
+
+        function selectOption(questionIndex, optionIndex) {
+            // Remove selected class from all options in the question
+            const questionOptions = document.querySelectorAll(`.question:nth-child(${questionIndex + 1}) .option`);
+            questionOptions.forEach(option => option.classList.remove('selected'));
+            
+            // Add selected class to clicked option
+            questionOptions[optionIndex].classList.add('selected');
+            
+            // Store the selected answer
+            selectedAnswers[questionIndex] = optionIndex;
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            const currentQuiz = quizzes[selectedQuiz];
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = ''; // Clear previous results
+            
+            // Calculate score and show detailed feedback
+            for (let i = 0; i < currentQuiz.length; i++) {
+                const isCorrect = selectedAnswers[i] === currentQuiz[i].correct;
+                if (isCorrect) {
+                    score++;
+                }
+                
+                // Create feedback for each question
+                const questionFeedback = document.createElement('div');
+                questionFeedback.style.marginTop = '10px';
+                questionFeedback.style.padding = '10px';
+                questionFeedback.style.borderRadius = '4px';
+                
+                if (isCorrect) {
+                    questionFeedback.style.backgroundColor = '#d4edda';
+                    questionFeedback.innerHTML = `Question ${i + 1}: Correct! ✓`;
+                } else {
+                    questionFeedback.style.backgroundColor = '#f8d7da';
+                    const correctAnswer = currentQuiz[i].options[currentQuiz[i].correct];
+                    questionFeedback.innerHTML = `Question ${i + 1}: Incorrect ✗<br>
+                        Correct answer was: \\(${correctAnswer}\\)`;
+                }
+                
+                resultDiv.appendChild(questionFeedback);
+            }
+            
+            // Add total score at the top
+            const scoreDiv = document.createElement('div');
+            scoreDiv.style.fontSize = '1.2em';
+            scoreDiv.style.fontWeight = 'bold';
+            scoreDiv.style.marginBottom = '15px';
+            scoreDiv.textContent = `Total Score: ${score} out of ${currentQuiz.length}`;
+            resultDiv.insertBefore(scoreDiv, resultDiv.firstChild);
+
+            // Add video tutorials recommendation
+            const recommendationDiv = document.createElement('div');
+            recommendationDiv.style.marginTop = '30px';
+            recommendationDiv.style.padding = '20px';
+            recommendationDiv.style.backgroundColor = '#e7f5ff';
+            recommendationDiv.style.borderRadius = '8px';
+            recommendationDiv.style.textAlign = 'center';
+
+            recommendationDiv.innerHTML = `
+                <h3 style="color: #0d6efd; margin-bottom: 15px;">Want to improve your score?</h3>
+                <p style="margin-bottom: 15px;">Watch our detailed video explanations for all quiz problems!</p>
+                <a href="vids.html" class="button" style="display: inline-block; background-color: #0d6efd; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; transition: background-color 0.2s;">
+                    Watch Video Solutions →
+                </a>
+            `;
+
+            resultDiv.appendChild(recommendationDiv);
+            
+            // Retypeset math expressions in the feedback
+            MathJax.typeset();
+        }
+
+        loadQuiz();
+    </script>
+</body>
+</html>
