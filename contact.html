@@ -52,11 +52,11 @@
                         </header>
                         <div class="row">
                             <div class="col-12">
-                                <form action="https://formsubmit.co/khas.bayarjargal@gmail.com" method="POST" style="color: #014f86;">
-                                    <!-- Optional: Redirect after submission -->
-                                    <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
-                                    <!-- Optional: Subject line for emails -->
-                                    <input type="hidden" name="_subject" value="New Contact Form Submission - International Math Hub">
+                                <form action="https://formsubmit.co/khas.bayarjargal@gmail.com" method="POST">
+                                    <!-- Honeypot -->
+                                    <input type="text" name="_honey" style="display:none">
+                                    <!-- Disable Captcha -->
+                                    <input type="hidden" name="_captcha" value="false">
                                     
                                     <div class="row gtr-50">
                                         <div class="col-6 col-12-small">
@@ -98,5 +98,37 @@
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitButton = this.querySelector('input[type="submit"]');
+            submitButton.value = 'Sending...';
+            submitButton.disabled = true;
+
+            const formData = new FormData(this);
+            
+            fetch('send_message.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Message sent successfully!');
+                    this.reset();
+                } else {
+                    alert(data.message || 'Failed to send message. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to send message. Please try emailing directly to khas.bayarjargal@gmail.com');
+            })
+            .finally(() => {
+                submitButton.value = 'Send Message';
+                submitButton.disabled = false;
+            });
+        });
+    </script>
 </body>
 </html>
