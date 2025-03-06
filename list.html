@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Mathematics Roadmap - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/first.css" />
+    <style>
+        .roadmap-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .roadmap-section {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .roadmap-section:after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            width: 2px;
+            height: 20px;
+            background: #4acaa8;
+        }
+        .roadmap-section:last-child:after {
+            display: none;
+        }
+        .roadmap-section h3 {
+            color: #3d4449;
+            border-bottom: 2px solid #4acaa8;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .roadmap-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .roadmap-section li {
+            padding: 8px 0;
+            color: #7f888f;
+            position: relative;
+            padding-left: 20px;
+        }
+        .roadmap-section li:before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #4acaa8;
+        }
+        .difficulty {
+            float: right;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            color: white;
+        }
+        .basic { background-color: #4acaa8; }
+        .intermediate { background-color: #f0ad4e; }
+        .advanced { background-color: #d9534f; }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <h1><a href="index.html">International Math Hub</a></h1>
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="container">
+            <header>
+                <h2>Mathematics Roadmap</h2>
+                <p>Your guided path to mathematical mastery</p>
+            </header>
+
+            <div class="roadmap-container">
+                <div class="roadmap-section">
+                    <h3>1. Logic & Set Theory <span class="difficulty basic">Foundation</span></h3>
+                    <ul>
+                        <li>Propositional Logic</li>
+                        <li>Predicate Logic</li>
+                        <li>Basic Set Operations</li>
+                        <li>Functions & Relations</li>
+                        <li>Counting Principles (Basic Combinatorics Introduction)</li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-section">
+                    <h3>2. Number Theory & Combinatorics <span class="difficulty intermediate">Intermediate</span></h3>
+                    <ul>
+                        <li>Divisibility, Prime Numbers, and Modular Arithmetic</li>
+                        <li>GCD, LCM, Euclidean Algorithm</li>
+                        <li>Fermat's and Euler's Theorems</li>
+                        <li>Permutations & Combinations</li>
+                        <li>Binomial Theorem</li>
+                        <li>Pigeonhole Principle</li>
+                        <li>Inclusion-Exclusion</li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-section">
+                    <h3>3. Algebra <span class="difficulty intermediate">Intermediate</span></h3>
+                    <ul>
+                        <li>Polynomials & Factorization</li>
+                        <li>Exponents & Logarithms</li>
+                        <li>Linear & Quadratic Equations</li>
+                        <li>Systems of Equations</li>
+                        <li>Sequences & Series (Arithmetic & Geometric)</li>
+                        <li>Complex Numbers (Basic Operations & Polar Form)</li>
+                        <li>Matrices & Determinants (Basics for solving equations)</li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-section">
+                    <h3>4. Inequalities & Functional Equations <span class="difficulty advanced">Advanced</span></h3>
+                    <ul>
+                        <li>Cauchy-Schwarz, AM-GM, Jensen's Inequality</li>
+                        <li>Solving Functional Equations (Algebraic and Non-Algebraic)</li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-section">
+                    <h3>5. Geometry & Trigonometry <span class="difficulty intermediate">Intermediate</span></h3>
+                    <ul>
+                        <li>Euclidean Geometry (Congruence, Similarity, Circles)</li>
+                        <li>Coordinate Geometry (Equation of Line, Distance, Midpoint, Section Formula)</li>
+                        <li>Trigonometric Identities & Equations</li>
+                        <li>Law of Sines & Cosines</li>
+                        <li>Vectors (Dot & Cross Products, 3D Coordinate Geometry)</li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-section">
+                    <h3>6. Graph Theory <span class="difficulty advanced">Advanced</span></h3>
+                    <ul>
+                        <li>Graph Representation (Adjacency Matrix/List)</li>
+                        <li>Eulerian & Hamiltonian Paths</li>
+                        <li>Trees & Spanning Trees</li>
+                        <li>Graph Traversal (DFS, BFS)</li>
+                        <li>Shortest Path Algorithms (Dijkstra, Floyd-Warshall)</li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-section">
+                    <h3>7. Calculus <span class="difficulty advanced">Advanced</span></h3>
+                    <ul>
+                        <li>Limits & Continuity</li>
+                        <li>Differentiation & Applications (Maxima, Minima, Curve Sketching)</li>
+                        <li>Integration (Definite & Indefinite)</li>
+                        <li>Differential Equations (First Order & Higher Order)</li>
+                        <li>Multivariable Calculus (Partial Derivatives, Gradient, Divergence)</li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-section">
+                    <h3>8. Probability & Statistics <span class="difficulty intermediate">Intermediate</span></h3>
+                    <ul>
+                        <li>Basic Probability Rules & Conditional Probability</li>
+                        <li>Bayes' Theorem</li>
+                        <li>Random Variables & Distributions (Binomial, Poisson, Normal)</li>
+                        <li>Expectation & Variance</li>
+                        <li>Hypothesis Testing & Confidence Intervals</li>
+                        <li>Regression & Correlation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <ul class="copyright">
+                <li>&copy; All rights reserved.</li>
+            </ul>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
