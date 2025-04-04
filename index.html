@@ -7,23 +7,32 @@
 		<meta name="description" content="A platform for mathematicians and enthusiasts to share knowledge and resources tailored for Mongolia's education system." />
 		<meta name="author" content="IntlMathHub Team" />
 		<link rel="stylesheet" href="assets/css/first.css" />
+		<link rel="stylesheet" href="assets/css/improvements.css" />
 		<style>
 			.fullscreen-section {
 				padding: 4em 0;
 				margin: 2em 0;
+				position: relative;
+				overflow: hidden;
 			}
 			.fullscreen-section header {
 				margin-bottom: 2em;
 				padding: 0 5%;
+				position: relative;
+				z-index: 2;
 			}
 			.fullscreen-section h2 {
 				margin-bottom: 0.5em;
 			}
 			.fullscreen-section .row {
 				padding: 0 5%;
+				position: relative;
+				z-index: 2;
 			}
 			.content-wrapper {
 				padding: 0 5%;
+				position: relative;
+				z-index: 2;
 			}
 			#about, #contact {
 				padding: 2em 0;
@@ -33,6 +42,16 @@
 			#contact .content-wrapper header {
 				margin-bottom: 1em;
 				padding: 0;
+			}
+		</style>
+
+		<!-- Additional styles for text visibility -->
+		<style>
+			/* Fix for the text visibility in various sections */
+			#about p, #contact p {
+				color: rgba(255, 255, 255, 0.9) !important;
+				font-size: 1.1em;
+				line-height: 1.6;
 			}
 		</style>
 	</head>
@@ -48,7 +67,7 @@
 				<nav id="nav">
 					<ul>
 						<li class="current"><a href="index.html">Home</a></li>
-						<li><a href="features.html">Features</a></li>
+						<li><a href="features.html">Mathematics Roadmap</a></li>
 						<li><a href="resources.html">Resources</a></li>
 						<li><a href="about.html">About</a></li>
 						<li><a href="contact.html">Contact</a></li>
@@ -57,58 +76,90 @@
 
 				<!-- Banner -->
 				<section id="banner">
-					<header>
-						<h2>Empowering Students Worldwide</h2>
-						<p style="color: white;">Your platform for exploring mathematics, sharing ideas, and preparing for Mongolia's General Entrance Exam.</p>
-					</header>
+					<h2>International Math Hub</h2>
+					<p>High-quality resources, personalized learning, and a supportive community for math students</p>
+					<ul class="actions special">
+						<li><a href="features.html" class="button primary">Mathematics Roadmap</a></li>
+						<li><a href="resources.html" class="button">Explore Resources</a></li>
+					</ul>
 				</section>
 			</section>
 
-			<!-- Features Section -->
-			<section id="features" class="fullscreen-section">
-				<header>
-					<h2 style="color: white">Key Features</h2>
-				</header>
-				<div class="row" style="margin-bottom: 2em;">
-					<div class="col-4 col-12-medium">
-						<section>
-							<h3 style="color: white"><a href="features.html#bilingual-resources">Bilingual Resources</a></h3>
-							<p>Access a library of materials in English and Mongolian, tailored to the General Entrance Exam.</p>
-						</section>
-					</div>
-					<div class="col-4 col-12-medium">
-						<section>
-							<h3 style="color: white"><a href="features.html#interactive-courses">Interactive Courses</a></h3>
-							<p>Explore interactive lessons with guided videos and personalized learning paths.</p>
-						</section>
-					</div>
-					<div class="col-4 col-12-medium">
-						<section>
-							<h3 style="color: white"><a href="features.html#personal-tutoring">1-on-1 Tutoring</a></h3>
-							<p>Book sessions with experienced tutors for tailored support.</p>
-						</section>
-					</div>
+			<!-- Feature section-->
+			<section class="box special features">
+				<div class="features-row">
+					<section>
+						<span class="icon solid major fa-road accent2"></span>
+						<h3>Mathematics Roadmap</h3>
+						<p>Follow a structured learning path with our comprehensive mathematics roadmap, covering essential topics from foundation to advanced levels.</p>
+						<footer>
+							<a href="features.html" class="button alt">Explore Roadmap</a>
+						</footer>
+					</section>
+					<section>
+						<span class="icon solid major fa-book accent3"></span>
+						<h3>Learning Resources</h3>
+						<p>Access video tutorials, practice tests, exam preparation materials, and more to enhance your mathematical understanding.</p>
+						<footer>
+							<a href="resources.html" class="button alt">Browse Resources</a>
+						</footer>
+					</section>
+				</div>
+				<div class="features-row">
+					<section>
+						<span class="icon solid major fa-user-graduate accent4"></span>
+						<h3>1-on-1 Tutoring</h3>
+						<p>Get personalized tutoring sessions with experienced math instructors to help you overcome challenges and excel in your studies.</p>
+						<footer>
+							<a href="tutoring.html" class="button alt">Schedule a Session</a>
+						</footer>
+					</section>
+					<section>
+						<span class="icon solid major fa-users accent5"></span>
+						<h3>Community Collaboration</h3>
+						<p>Connect with fellow students and educators, share solutions, participate in discussions, and collaborate on challenging problems.</p>
+						<footer>
+							<a href="resources.html#community-collaboration" class="button alt">Join Community</a>
+						</footer>
+					</section>
 				</div>
 			</section>
 
 			<!-- Resources Section -->
 			<section id="resources" class="fullscreen-section">
+				<div class="section-highlight"></div>
 				<header>
-					<h2 style="color: white">Resources</h2>
+					<h2 class="section-title">Resources</h2>
 				</header>
 				<div class="row">
-					<div class="col-6 col-12-medium">
+					<div class="col-4 col-12-medium">
 						<section class="box">
-							<a href="resources.html#practice-test" class="image featured"><img src="images/pic01.png" alt="Exam Resources" /></a>
-							<h3>Practice Test</h3>
-							<p style="color: black">Practice problems, mock exams, and study guides designed for success.</p>
+							<a href="features.html" class="image featured"><img src="images/pic01.png" alt="Mathematics Roadmap" /></a>
+							<h3>Mathematics Roadmap</h3>
+							<p>Explore our interactive guide to mathematical topics organized by difficulty level, from foundational to advanced concepts.</p>
+							<footer>
+								<a href="features.html" class="button alt">Explore Roadmap</a>
+							</footer>
 						</section>
 					</div>
-					<div class="col-6 col-12-medium">
+					<div class="col-4 col-12-medium">
 						<section class="box">
-							<a href="resources.html#exam-preparation" class="image featured"><img src="images/pic02.png" alt="Community" /></a>
-							<h3 >Videos and Exam Materials</h3>
-							<p style="color: black">Join discussions, share solutions, and connect with fellow learners.</p>
+							<a href="resources.html#practice-test" class="image featured"><img src="images/pic01.png" alt="Exam Resources" /></a>
+							<h3>Practice Tests</h3>
+							<p>Practice problems, mock exams, and study guides designed for success.</p>
+							<footer>
+								<a href="quizz.html" class="button alt">Take Quiz</a>
+							</footer>
+						</section>
+					</div>
+					<div class="col-4 col-12-medium">
+						<section class="box">
+							<a href="resources.html#video-tutorials" class="image featured"><img src="images/pic02.png" alt="Video Tutorials" /></a>
+							<h3>Video Tutorials</h3>
+							<p>Watch detailed explanations of complex math problems with bilingual video support.</p>
+							<footer>
+								<a href="vids.html" class="button alt">Watch Videos</a>
+							</footer>
 						</section>
 					</div>
 				</div>
@@ -116,27 +167,47 @@
 
 			<!-- About Section -->
 			<section id="about" class="fullscreen-section">
+				<div class="section-highlight"></div>
 				<div class="content-wrapper">
 					<header>
-						<h2 style="color: white">About International Math Hub</h2>
+						<h2 class="section-title">About International Math Hub</h2>
 					</header>
 					<p>
 						We are a platform dedicated to advancing mathematics education and collaboration. Our mission is to provide accessible resources for Mongolia's General Entrance Exam and create a global community of math enthusiasts.
-						<a href="about.html" style="color: white">Learn more</a>.
+						<a href="about.html" class="highlight-link">Learn more</a>.
 					</p>
 				</div>
 			</section>
 
 			<!-- Contact Section -->
 			<section id="contact" class="fullscreen-section">
+				<div class="section-highlight"></div>
 				<div class="content-wrapper">
 					<header>
-						<h2 style="color: white">Get in Touch</h2>
+						<h2 class="section-title">Get in Touch</h2>
 					</header>
 					<p>
 						Have questions or need support? Reach out to us via email or follow us on social media.
-						<a href="contact.html" style="color: white">Contact us</a>.
+						<a href="contact.html" class="highlight-link">Contact us</a>.
 					</p>
+				</div>
+			</section>
+
+			<!-- CTA section -->
+			<section id="cta">
+				<h2>Ready to start your mathematical journey?</h2>
+				<p>Explore our comprehensive resources and start learning today.</p>
+				<div class="row">
+					<div class="col-6 col-12-mobilep">
+						<ul class="actions stacked">
+							<li><a href="features.html" class="button primary fit">View Math Roadmap</a></li>
+						</ul>
+					</div>
+					<div class="col-6 col-12-mobilep">
+						<ul class="actions stacked">
+							<li><a href="tutoring.html" class="button fit">Schedule Tutoring</a></li>
+						</ul>
+					</div>
 				</div>
 			</section>
 
@@ -144,7 +215,7 @@
 			<section id="footer">
 				<div id="copyright">
 					<ul class="links">
-						<li style="color: white">&copy; International Math Hub</li>
+						<li>&copy; International Math Hub</li>
 						<!--<li>Design by HTML5 UP</li>-->
 					</ul>
 				</div>
