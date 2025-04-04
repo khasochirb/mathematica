@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sample Test</title>
+    <link rel="stylesheet" href="assets/css/first.css" />
+    <link rel="stylesheet" href="assets/css/improvements.css" />
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,6 +27,7 @@
             padding: 20px;
             background-color: #f8f9fa;
             border-radius: 8px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
         }
         .options {
             display: flex;
@@ -42,33 +45,44 @@
         }
         .option:hover {
             background-color: #f8f9fa;
-            border-color: #dee2e6;
+            border-color: #4acaa8;
+            transform: translateY(-2px);
         }
         .option.selected {
-            background-color: #0d6efd;
+            background-color: #4acaa8;
             color: white;
-            border-color: #0d6efd;
+            border-color: #4acaa8;
         }
         #quiz-selector {
-            padding: 8px 12px;
+            padding: 10px 15px;
             border-radius: 6px;
             border: 2px solid #dee2e6;
             margin-bottom: 20px;
             font-size: 1rem;
             cursor: pointer;
+            background-color: white;
+            color: #333;
+            width: 200px;
+        }
+        #quiz-selector:focus {
+            border-color: #4acaa8;
+            outline: none;
         }
         #submit-btn {
-            background-color: #0d6efd;
+            background-color: #4acaa8;
             color: white;
             border: none;
             padding: 12px 24px;
             border-radius: 6px;
             cursor: pointer;
             font-size: 1rem;
-            transition: background-color 0.2s ease;
+            transition: all 0.3s ease;
+            font-weight: 600;
         }
         #submit-btn:hover {
-            background-color: #0b5ed7;
+            background-color: #3db89a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         #result {
             margin-top: 25px;
@@ -89,6 +103,29 @@
             color: #495057;
             font-weight: 500;
         }
+        @media screen and (max-width: 736px) {
+            body {
+                padding: 15px;
+            }
+            .quiz-container {
+                padding: 15px;
+            }
+            .question {
+                padding: 15px;
+            }
+        }
+        header {
+            margin-bottom: 2em;
+        }
+        .go-back {
+            display: inline-block;
+            position: relative;
+            margin-bottom: 1em;
+        }
+        .help-text h3 {
+            color: #4acaa8;
+            margin-bottom: 15px;
+        }
     </style>
     <!-- Include MathJax for LaTeX rendering -->
     <script>
@@ -106,11 +143,20 @@
 <body>
     <!-- Header -->
     <section id="header">
-        <div style="position: absolute; left: 20px; top: 20px;">
-            <a href="javascript:history.back()" class="button alt">← Go Back</a>
+        <div class="go-back">
+            <a href="resources.html" class="button alt">← Back to Resources</a>
         </div>
         <h1><a href="index.html">International Math Hub</a></h1>
     </section>
+    <nav id="nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="features.html">Mathematics Roadmap</a></li>
+            <li class="current"><a href="resources.html">Resources</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
     <h1>Sample Test</h1>
     <label for="quiz-selector">Choose a Quiz:</label>
     <select id="quiz-selector" onchange="loadQuiz()">
@@ -267,11 +313,8 @@
             recommendationDiv.style.textAlign = 'center';
 
             recommendationDiv.innerHTML = `
-                <h3 style="color: #0d6efd; margin-bottom: 15px;">Want to improve your score?</h3>
-                <p style="margin-bottom: 15px;">Watch our detailed video explanations for all quiz problems!</p>
-                <a href="vids.html" class="button" style="display: inline-block; background-color: #0d6efd; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; transition: background-color 0.2s;">
-                    Watch Video Solutions →
-                </a>
+                <h3>Want to improve your score?</h3>
+                <p>Check out our <a href="resources.html">resources</a> or <a href="tutoring.html">schedule a tutoring session</a> for personalized help.</p>
             `;
 
             resultDiv.appendChild(recommendationDiv);
