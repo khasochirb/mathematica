@@ -1,5 +1,30 @@
 /* Improved accessibility and visual consistency */
 
+/* Remove white gap at the top of the page */
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden;
+    border-top: none !important;
+}
+
+body {
+    min-height: 100vh;
+}
+
+#page-wrapper {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    background-color: transparent;
+    border-top: none !important;
+}
+
+#header {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    border-top: none !important;
+}
+
 /* Base text colors */
 body, p, li, ul, ol {
     color: #333 !important;
@@ -511,10 +536,6 @@ body:not(.homepage) a:not(.button):hover {
     text-decoration: underline;
 }
 
-#page-wrapper {
-    background-color: transparent;
-}
-
 /* Roadmap improvements */
 .roadmap-section {
     background: white;
@@ -819,39 +840,68 @@ body:not(.homepage) a:not(.button):hover {
 
 /* Fix for the header navigation container */
 #header {
-    padding: 2.5em 0 1.5em;
+    padding: 1.5em 0 !important;
+}
+
+#header .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+#header .logo {
+    padding: 0.5em 0;
+    display: flex;
+    align-items: center;
+}
+
+#header .logo img {
+    max-height: 180px;
+    vertical-align: middle;
 }
 
 #header h1 {
-    margin-bottom: 1em;
+    display: none; /* Hide the text-based logo */
 }
 
-#nav ul li a {
-    position: relative;
-    padding: 0.5em 1em;
+#nav {
+    margin: 0;
+    display: flex;
+    align-items: center;
 }
 
-#nav ul li.current a {
-    color: #38c4c0 !important;
-    border-bottom: 2px solid #38c4c0;
+/* Responsive header adjustments */
+@media screen and (max-width: 736px) {
+    #header .header-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    #header .logo {
+        margin-bottom: 1.5em;
+    }
+    
+    #header .logo img {
+        max-height: 140px;
+    }
+    
+    #nav {
+        margin-top: 1em;
+    }
 }
 
-#nav ul li a:hover::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, #4acaa8, #2ab8de);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-    transform-origin: right;
-}
-
-#nav ul li a:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
+/* Additional padding for gradient text headings to prevent clipping */
+.section-title, #banner h2, .fullscreen-section h2, #main header h2 {
+    padding-top: 0.2em !important;
+    padding-bottom: 0.2em !important;
+    -webkit-background-clip: padding-box;
+    -webkit-background-clip: text;
+    background-clip: padding-box;
+    background-clip: text;
 }
 
 /* Fix for the Resources header that appears cut off */
@@ -871,17 +921,19 @@ h1, h2, h3, h4, h5, h6 {
     overflow: visible;
 }
 
-#header h1 {
-    padding: 0.1em 0;
-    margin-bottom: 0.7em !important;
+/* Header layout improvements for logo integration */
+#header .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
 }
 
-/* Additional padding for gradient text headings to prevent clipping */
-.section-title, #banner h2, .fullscreen-section h2, #main header h2 {
-    padding-top: 0.2em !important;
-    padding-bottom: 0.2em !important;
-    -webkit-background-clip: padding-box;
-    -webkit-background-clip: text;
-    background-clip: padding-box;
-    background-clip: text;
+#header .logo img {
+    max-height: 180px;
+    vertical-align: middle;
+}
+
+#header h1 {
+    display: none; /* Hide the text-based logo when using image logo */
 } 
