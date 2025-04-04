@@ -9,18 +9,18 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
             line-height: 1.6;
+            background-color: #fff;
+            color: #333;
         }
         .quiz-container {
             background-color: #ffffff;
             padding: 25px;
             border-radius: 10px;
-            margin-top: 20px;
+            margin: 20px auto;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            border: 1px solid #e9ecef;
         }
         .question {
             margin-bottom: 30px;
@@ -28,6 +28,7 @@
             background-color: #f8f9fa;
             border-radius: 8px;
             box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 3px solid #4acaa8;
         }
         .options {
             display: flex;
@@ -42,6 +43,7 @@
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s ease;
+            color: #333;
         }
         .option:hover {
             background-color: #f8f9fa;
@@ -49,27 +51,29 @@
             transform: translateY(-2px);
         }
         .option.selected {
-            background-color: #4acaa8;
+            background: linear-gradient(135deg, #4acaa8, #38c4c0, #2ab8de);
             color: white;
-            border-color: #4acaa8;
+            border-color: transparent;
         }
         #quiz-selector {
             padding: 10px 15px;
             border-radius: 6px;
             border: 2px solid #dee2e6;
-            margin-bottom: 20px;
+            margin: 0 auto 20px;
             font-size: 1rem;
             cursor: pointer;
             background-color: white;
             color: #333;
+            display: block;
             width: 200px;
         }
         #quiz-selector:focus {
             border-color: #4acaa8;
             outline: none;
+            box-shadow: 0 0 0 2px rgba(74, 202, 168, 0.3);
         }
         #submit-btn {
-            background-color: #4acaa8;
+            background: linear-gradient(135deg, #4acaa8, #38c4c0, #2ab8de);
             color: white;
             border: none;
             padding: 12px 24px;
@@ -78,37 +82,47 @@
             font-size: 1rem;
             transition: all 0.3s ease;
             font-weight: 600;
+            display: block;
+            margin: 20px auto;
+            min-width: 200px;
         }
         #submit-btn:hover {
-            background-color: #3db89a;
+            background: linear-gradient(135deg, #3ab89a, #31b0bb, #1fa6db);
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(74, 202, 168, 0.25);
         }
         #result {
             margin-top: 25px;
         }
         #result > div {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             padding: 15px;
             border-radius: 6px;
             transition: all 0.3s ease;
         }
         h1 {
             color: #212529;
-            margin-bottom: 1.5rem;
+            margin: 1.5rem auto;
+            text-align: center;
+            font-size: 2.5em;
+            background: linear-gradient(90deg, #4acaa8, #38c4c0, #2ab8de);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            width: 100%;
         }
         label {
             display: block;
             margin-bottom: 8px;
             color: #495057;
             font-weight: 500;
+            text-align: center;
         }
         @media screen and (max-width: 736px) {
-            body {
-                padding: 15px;
-            }
             .quiz-container {
                 padding: 15px;
+                margin: 20px 15px;
             }
             .question {
                 padding: 15px;
@@ -118,13 +132,19 @@
             margin-bottom: 2em;
         }
         .go-back {
-            display: inline-block;
+            display: block;
             position: relative;
-            margin-bottom: 1em;
+            margin: 1em auto;
+            text-align: center;
         }
         .help-text h3 {
             color: #4acaa8;
             margin-bottom: 15px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
     </style>
     <!-- Include MathJax for LaTeX rendering -->
@@ -140,35 +160,62 @@
     </script>
     <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
-<body>
+<body class="is-preload sub-page">
     <!-- Header -->
     <section id="header">
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="index.html"><img src="/images/logo.png" alt="International Math Hub Logo" style="max-height: 180px;"></a>
+            </div>
+
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html">Mathematics Roadmap</a></li>
+                    <li class="current"><a href="resources.html">Resources</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    
+    <section class="container">
         <div class="go-back">
             <a href="resources.html" class="button alt">← Back to Resources</a>
         </div>
-        <h1><a href="index.html">International Math Hub</a></h1>
+        
+        <h1>Mathematics Practice Test</h1>
+        
+        <div style="max-width: 600px; margin: 0 auto 30px; text-align: center;">
+            <p style="color: #333; margin-bottom: 25px;">
+                Test your mathematical knowledge with our interactive quizzes. Select a difficulty level and answer the questions to receive immediate feedback on your performance.
+            </p>
+            
+            <label for="quiz-selector">Choose a Difficulty Level:</label>
+            <select id="quiz-selector" onchange="loadQuiz()">
+                <option value="0">Easy Quiz</option>
+                <option value="1">Medium Quiz</option>
+                <option value="2">Hard Quiz</option>
+            </select>
+        </div>
+        
+        <div class="quiz-container">
+            <div id="questions"></div>
+            <button id="submit-btn" onclick="submitQuiz()">Submit Quiz</button>
+            <div id="result"></div>
+        </div>
     </section>
-    <nav id="nav">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="features.html">Mathematics Roadmap</a></li>
-            <li class="current"><a href="resources.html">Resources</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-    <h1>Sample Test</h1>
-    <label for="quiz-selector">Choose a Quiz:</label>
-    <select id="quiz-selector" onchange="loadQuiz()">
-        <option value="0">Easy Quiz</option>
-        <option value="1">Medium Quiz</option>
-        <option value="2">Hard Quiz</option>
-    </select>
-    <div class="quiz-container">
-        <div id="questions"></div>
-        <button id="submit-btn" onclick="submitQuiz()">Submit Quiz</button>
-        <div id="result"></div>
-    </div>
+    
+    <!-- Footer -->
+    <section id="footer">
+        <div id="copyright">
+            <ul class="links">
+                <li>&copy; International Math Hub</li>
+            </ul>
+        </div>
+    </section>
 
     <script>
         const quizzes = [
@@ -227,11 +274,30 @@
                 const questionDiv = document.createElement('div');
                 questionDiv.className = 'question';
                 
+                // Add question number
+                const questionNumber = document.createElement('h3');
+                questionNumber.style.color = "#4acaa8";
+                questionNumber.style.marginBottom = "15px";
+                questionNumber.textContent = `Question ${questionIndex + 1}`;
+                questionDiv.appendChild(questionNumber);
+                
                 const img = document.createElement('img');
                 img.src = q.question;
                 img.alt = `Question ${questionIndex + 1}`;
                 img.style.maxWidth = "100%";
-                img.onerror = function() { img.style.display = 'none'; };
+                img.style.background = "white";
+                img.style.padding = "15px";
+                img.style.borderRadius = "8px";
+                img.style.display = "block";
+                img.style.margin = "0 auto 20px";
+                img.style.border = "1px solid #e9ecef";
+                img.onerror = function() { 
+                    img.style.display = 'none';
+                    const errorMsg = document.createElement('p');
+                    errorMsg.textContent = "Question image could not be loaded. Please try again later.";
+                    errorMsg.style.color = "#495057";
+                    questionDiv.insertBefore(errorMsg, img.nextSibling);
+                };
                 
                 questionDiv.appendChild(img);
                 
@@ -240,7 +306,9 @@
                 q.options.forEach((option, optionIndex) => {
                     const optionDiv = document.createElement('div');
                     optionDiv.className = 'option';
-                    optionDiv.innerHTML = `\\(${option}\\)`;
+                    // Add option letter prefix (A, B, C, etc.)
+                    const optionText = String.fromCharCode(65 + optionIndex) + ") " + option;
+                    optionDiv.innerHTML = `\\(${optionText}\\)`;
                     optionDiv.onclick = () => selectOption(questionIndex, optionIndex);
                     optionsDiv.appendChild(optionDiv);
                 });
@@ -249,7 +317,10 @@
                 questionsContainer.appendChild(questionDiv);
             });
 
-            MathJax.typeset();
+            // Apply MathJax to render the equations
+            setTimeout(() => {
+                MathJax.typeset();
+            }, 100);
         }
 
         function selectOption(questionIndex, optionIndex) {
@@ -279,29 +350,66 @@
                 
                 // Create feedback for each question
                 const questionFeedback = document.createElement('div');
-                questionFeedback.style.marginTop = '10px';
-                questionFeedback.style.padding = '10px';
-                questionFeedback.style.borderRadius = '4px';
+                questionFeedback.style.marginTop = '15px';
+                questionFeedback.style.padding = '15px';
+                questionFeedback.style.borderRadius = '8px';
                 
                 if (isCorrect) {
                     questionFeedback.style.backgroundColor = '#d4edda';
-                    questionFeedback.innerHTML = `Question ${i + 1}: Correct! ✓`;
+                    questionFeedback.style.borderLeft = '4px solid #4acaa8';
+                    questionFeedback.innerHTML = `<strong>Question ${i + 1}:</strong> Correct! ✓`;
                 } else {
                     questionFeedback.style.backgroundColor = '#f8d7da';
+                    questionFeedback.style.borderLeft = '4px solid #dc3545';
                     const correctAnswer = currentQuiz[i].options[currentQuiz[i].correct];
-                    questionFeedback.innerHTML = `Question ${i + 1}: Incorrect ✗<br>
-                        Correct answer was: \\(${correctAnswer}\\)`;
+                    const userAnswer = selectedAnswers[i] >= 0 ? currentQuiz[i].options[selectedAnswers[i]] : "No answer selected";
+                    
+                    questionFeedback.innerHTML = `
+                        <strong>Question ${i + 1}:</strong> Incorrect ✗<br>
+                        <span style="margin-left: 15px; display: block; margin-top: 8px;">
+                            Your answer: \\(${userAnswer}\\)<br>
+                            Correct answer: \\(${correctAnswer}\\)
+                        </span>
+                    `;
                 }
                 
                 resultDiv.appendChild(questionFeedback);
             }
             
-            // Add total score at the top
+            // Add total score at the top with gradient styling
             const scoreDiv = document.createElement('div');
-            scoreDiv.style.fontSize = '1.2em';
+            scoreDiv.style.fontSize = '1.4em';
             scoreDiv.style.fontWeight = 'bold';
-            scoreDiv.style.marginBottom = '15px';
-            scoreDiv.textContent = `Total Score: ${score} out of ${currentQuiz.length}`;
+            scoreDiv.style.marginBottom = '25px';
+            scoreDiv.style.padding = '20px';
+            scoreDiv.style.borderRadius = '8px';
+            scoreDiv.style.textAlign = 'center';
+            scoreDiv.style.background = '#f8f9fa';
+            scoreDiv.style.border = '1px solid #e9ecef';
+            
+            // Calculate percentage score
+            const percentage = Math.round((score / currentQuiz.length) * 100);
+            
+            // Add appropriate feedback message based on score
+            let feedbackMessage = '';
+            if (percentage >= 90) {
+                feedbackMessage = 'Excellent work! You have a strong grasp of these mathematical concepts.';
+            } else if (percentage >= 70) {
+                feedbackMessage = 'Good job! You understand most of these concepts well.';
+            } else if (percentage >= 50) {
+                feedbackMessage = 'You\'re on the right track, but could benefit from additional practice.';
+            } else {
+                feedbackMessage = 'This area needs more focus. Consider reviewing these topics.';
+            }
+            
+            scoreDiv.innerHTML = `
+                <div style="font-size: 1.2em; margin-bottom: 10px; color: #333;">Your Score</div>
+                <div style="font-size: 2em; margin-bottom: 10px; background: linear-gradient(90deg, #4acaa8, #38c4c0, #2ab8de); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline-block;">
+                    ${score} / ${currentQuiz.length} (${percentage}%)
+                </div>
+                <div style="font-size: 0.9em; margin-top: 10px; color: #495057;">${feedbackMessage}</div>
+            `;
+            
             resultDiv.insertBefore(scoreDiv, resultDiv.firstChild);
 
             // Add video tutorials recommendation
@@ -311,16 +419,26 @@
             recommendationDiv.style.backgroundColor = '#e7f5ff';
             recommendationDiv.style.borderRadius = '8px';
             recommendationDiv.style.textAlign = 'center';
+            recommendationDiv.style.border = '1px solid #d0e6fb';
 
             recommendationDiv.innerHTML = `
-                <h3>Want to improve your score?</h3>
-                <p>Check out our <a href="resources.html">resources</a> or <a href="tutoring.html">schedule a tutoring session</a> for personalized help.</p>
+                <h3 style="color: #4acaa8; margin-bottom: 15px;">Want to improve your score?</h3>
+                <p style="color: #333; margin-bottom: 15px;">Check out our comprehensive learning resources or schedule a personalized tutoring session.</p>
+                <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                    <a href="resources.html" class="button">Explore Resources</a>
+                    <a href="tutoring.html" class="button alt">Schedule Tutoring</a>
+                </div>
             `;
 
             resultDiv.appendChild(recommendationDiv);
             
             // Retypeset math expressions in the feedback
-            MathJax.typeset();
+            setTimeout(() => {
+                MathJax.typeset();
+            }, 100);
+            
+            // Scroll to results
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
         }
 
         loadQuiz();
