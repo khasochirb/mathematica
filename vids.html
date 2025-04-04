@@ -5,19 +5,42 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/first.css" />
+    <link rel="stylesheet" href="assets/css/improvements.css" />
+    <style>
+        .go-back {
+            display: inline-block;
+            position: relative;
+            margin-bottom: 1em;
+        }
+        .video-box {
+            transition: all 0.3s ease;
+        }
+        .video-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .video-thumbnail {
+            border-radius: 6px 6px 0 0;
+            overflow: hidden;
+        }
+        .video-title {
+            color: white;
+            margin-bottom: 1em;
+        }
+    </style>
 </head>
-<body class="is-preload">
+<body class="is-preload sub-page">
     <div id="page-wrapper">
         <!-- Header -->
         <section id="header">
-            <div style="position: absolute; left: 20px; top: 20px;">
-                <a href="javascript:history.back()" class="button alt">← Go Back</a>
+            <div class="go-back">
+                <a href="resources.html" class="button alt">← Back to Resources</a>
             </div>
             <h1><a href="index.html">International Math Hub</a></h1>
             <nav id="nav">
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="features.html">Features</a></li>
+                    <li><a href="features.html">Mathematics Roadmap</a></li>
                     <li class="current"><a href="resources.html">Resources</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
@@ -26,9 +49,9 @@
         </section>
 
         <!-- Main Content -->
-        <section id="main" class="container">
-            <header style="color: white;">
-                <h2 style="color: white;">Video Tutorials</h2>
+        <section id="main" class="container sub-page-section">
+            <header>
+                <h2 class="section-title">Video Tutorials</h2>
                 <p>Watch detailed explanations of complex math problems with bilingual support</p>
             </header>
 
@@ -41,7 +64,7 @@
         <section id="footer">
             <div id="copyright">
                 <ul class="links">
-                    <li style="color: beige;">&copy; International Math Hub</li>
+                    <li>&copy; International Math Hub</li>
                 </ul>
             </div>
         </section>
@@ -91,14 +114,19 @@
                 const videoElement = document.createElement('div');
                 videoElement.className = 'col-6 col-12-medium';
                 videoElement.innerHTML = `
-                    <section class="box">
-                        <a class="image featured" onclick="playVideo('${video.videoUrl}', '${video.title}')" style="cursor: pointer;">
-                            <img src="${video.thumbnail}" alt="${video.title}" />
+                    <section class="box video-box">
+                        <a class="video-thumbnail" onclick="playVideo('${video.videoUrl}', '${video.title}')" style="cursor: pointer; display: block;">
+                            <img src="${video.thumbnail}" alt="${video.title}" style="width: 100%; height: auto;"/>
                         </a>
                         <header>
-                            <h3 style="color: black;">${video.title}</h3>
+                            <h3>${video.title}</h3>
                         </header>
-                        <p style="color: black;">${video.description}</p>
+                        <p>${video.description}</p>
+                        <footer>
+                            <a class="button" onclick="playVideo('${video.videoUrl}', '${video.title}')" style="cursor: pointer;">
+                                <i class="icon solid fa-play"></i> Watch Video
+                            </a>
+                        </footer>
                     </section>
                 `;
                 videoGrid.appendChild(videoElement);
@@ -130,7 +158,7 @@
             `;
 
             videoPlayer.innerHTML = `
-                <h2 style="color: white; margin-bottom: 1em;">${title}</h2>
+                <h2 class="video-title">${title}</h2>
                 <video controls style="width: 100%;">
                     <source src="${videoUrl}" type="video/mp4">
                     Your browser does not support the video tag.
