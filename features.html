@@ -1,23 +1,175 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Features - International Math Hub</title>
+    <title>Mathematics Roadmap - International Math Hub</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/first.css" />
-    <link rel="stylesheet" href="assets/css/auth.css" />
-<script src="assets/js/auth.js"></script>
+    <link rel="stylesheet" href="assets/css/improvements.css" />
+    <style>
+        .roadmap-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0 40px;
+            position: relative;
+        }
+        .roadmap-container:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: rgba(74, 202, 168, 0.2);
+            z-index: -1;
+        }
+        .roadmap-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+        .roadmap-section:after {
+            content: '';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            width: 3px;
+            height: 25px;
+            background: #4acaa8;
+        }
+        .roadmap-section:last-child:after {
+            display: none;
+        }
+        .roadmap-section li {
+            padding: 10px 0;
+            position: relative;
+            padding-left: 24px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+        .roadmap-section li:last-child {
+            border-bottom: none;
+        }
+        .roadmap-section li:hover {
+            transform: translateX(3px);
+            color: #3d4449;
+        }
+        .roadmap-section li:before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #4acaa8;
+            font-weight: bold;
+        }
+        .difficulty {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            color: white;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .basic { 
+            background: linear-gradient(135deg, #4acaa8, #39b897) !important;
+        }
+        .intermediate { 
+            background: linear-gradient(135deg, #f0ad4e, #df9d3e) !important;
+        }
+        .advanced { 
+            background: linear-gradient(135deg, #d9534f, #c8423e) !important;
+        }
+        
+        /* Responsive adjustments */
+        @media screen and (max-width: 736px) {
+            .roadmap-section {
+                padding: 20px;
+                margin-bottom: 30px;
+            }
+            .roadmap-section h3 {
+                font-size: 1.3em;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .difficulty {
+                margin-top: 8px;
+                font-size: 0.75em;
+            }
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        .legend .difficulty {
+            margin: 0;
+            font-size: 0.9em;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .legend .difficulty.active {
+            box-shadow: 0 0 0 2px white, 0 0 0 4px currentColor;
+        }
+        .legend .difficulty.inactive {
+            opacity: 0.6;
+        }
+        .box p {
+            margin-bottom: 1.5em;
+            text-align: center;
+            line-height: 1.7;
+        }
+        .topic-link {
+            color: inherit;
+            text-decoration: none;
+            display: block;
+            transition: color 0.2s ease;
+        }
+        .topic-link:hover {
+            color: #4acaa8;
+        }
+        .hidden {
+            display: none;
+        }
+        /* Roadmap header styling */
+        #main header {
+            text-align: center;
+            margin-bottom: 2em;
+            position: relative;
+        }
+        #main header:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #4acaa8, transparent);
+        }
+        #main header h2 {
+            display: inline-block;
+            width: auto !important;
+            white-space: nowrap;
+            margin-bottom: 0.5em;
+        }
+        #main header p {
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.9) !important;
+        }
+    </style>
 </head>
-<body class="is-preload">
+<body class="is-preload sub-page">
     <div id="page-wrapper">
-
         <!-- Header -->
         <section id="header">
             <h1><a href="index.html">International Math Hub</a></h1>
             <nav id="nav">
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li class="current"><a href="features.html">Features</a></li>
+                    <li class="current"><a href="features.html">Mathematics Roadmap</a></li>
                     <li><a href="resources.html">Resources</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
@@ -25,45 +177,182 @@
             </nav>
         </section>
 
-        <!-- Main Content -->
-        <section id="main" class="container" style="color: black;">
-            <header style="color: white;">
-                <h2 style="color: white;">Platform Features</h2>
-                <p>Explore the innovative features that make International Math Hub unique.</p>
+        <!-- Main -->
+        <section id="main" class="container sub-page-section">
+            <header>
+                <h2 class="section-title">Mathematics Roadmap</h2>
+                <p>Your guided path to mathematical mastery</p>
             </header>
 
-            <!-- Feature Sections -->
-            <div class="row">
-                <div class="col-6 col-12-medium">
-                    <section class="box">
-                        <i class="icon solid fa-book"></i>
-                        <h3 id="bilingual-resources">Bilingual Resources</h3>
-                        <p>Our platform offers a rich library of materials in English and Mongolian, ensuring accessibility for diverse learners preparing for Mongolia’s General Entrance Exam.</p>
-                    </section>
+            <div class="box">
+                <p>This comprehensive roadmap outlines the essential mathematical topics organized by subject area. Each section includes key concepts and builds toward mastery. Use this guide to plan your learning journey through mathematics.</p>
+                <div class="legend">
+                    <span class="difficulty basic active" data-filter="basic">Foundation</span> 
+                    <span class="difficulty intermediate active" data-filter="intermediate">Intermediate</span>
+                    <span class="difficulty advanced active" data-filter="advanced">Advanced</span>
+                </div>
+            </div>
+
+            <div class="roadmap-container">
+                <div class="roadmap-section" data-difficulty="intermediate" id="algebra">
+                    <h3>Algebra <span class="difficulty intermediate">Intermediate</span></h3>
+                    <ul>
+                        <li><a href="topics/algebra/polynomials-and-factorization.html" class="topic-link">Polynomials & Factorization</a></li>
+                        <li><a href="topics/algebra/exponents-and-logarithms.html" class="topic-link">Exponents & Logarithms</a></li>
+                        <li><a href="topics/algebra/linear-and-quadratic-equations.html" class="topic-link">Linear & Quadratic Equations</a></li>
+                        <li><a href="topics/algebra/systems-of-equations.html" class="topic-link">Systems of Equations</a></li>
+                    </ul>
                 </div>
 
-                <div class="col-6 col-12-medium">
-                    <section class="box">
-                        <i class="icon solid fa-chalkboard-teacher"></i>
-                        <h3 id="interactive-courses">Suitable Practice Materials</h3>
-                        <p>Engage with dynamic, interactive lessons featuring step-by-step video tutorials and hands-on practice problems to reinforce learning.</p>
-                    </section>
+                <div class="roadmap-section" data-difficulty="advanced" id="calculus">
+                    <h3>Calculus <span class="difficulty advanced">Advanced</span></h3>
+                    <ul>
+                        <li><a href="topics/calculus/limits-and-continuity.html" class="topic-link">Limits & Continuity</a></li>
+                        <li><a href="topics/calculus/differentiation.html" class="topic-link">Differentiation & Applications (Maxima, Minima, Curve Sketching)</a></li>
+                        <li><a href="topics/calculus/integration.html" class="topic-link">Integration (Definite & Indefinite)</a></li>
+                        <li><a href="topics/calculus/differential-equations.html" class="topic-link">Differential Equations (First Order & Higher Order)</a></li>
+                        <li><a href="topics/calculus/multivariable-calculus.html" class="topic-link">Multivariable Calculus (Partial Derivatives, Gradient, Divergence)</a></li>
+                    </ul>
                 </div>
 
-                <div class="col-6 col-12-medium">
-                    <section class="box">
-                        <i class="icon solid fa-user-clock"></i>
-                        <h3 id="personal-tutoring">1-on-1 Personalized Tutoring</h3>
-                        <p>Coming soon.</p>
-                    </section>
+                <div class="roadmap-section" data-difficulty="intermediate" id="combinatorics">
+                    <h3>Combinatorics <span class="difficulty intermediate">Intermediate</span></h3>
+                    <ul>
+                        <li>Permutations & Combinations</li>
+                        <li>Binomial Theorem</li>
+                        <li>Pigeonhole Principle</li>
+                        <li>Inclusion-Exclusion</li>
+                        <li>Counting Principles</li>
+                    </ul>
                 </div>
 
-                <div class="col-6 col-12-medium">
-                    <section class="box">
-                        <i class="icon solid fa-chart-line"></i>
-                        <h3 id="progress-tracking">Community Collaboration</h3>
-                        <p>Coming soon.</p>
-                    </section>
+                <div class="roadmap-section" data-difficulty="intermediate" id="complex-numbers">
+                    <h3>Complex Numbers <span class="difficulty intermediate">Intermediate</span></h3>
+                    <ul>
+                        <li>Basic Operations</li>
+                        <li>Polar Form & Argand Plane</li>
+                        <li>De Moivre's Theorem</li>
+                        <li>Complex Roots & Complex Analysis Introduction</li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-section" data-difficulty="intermediate" id="geometry">
+                    <h3>Geometry <span class="difficulty intermediate">Intermediate</span></h3>
+                    <ul>
+                        <li>Euclidean Geometry (Congruence, Similarity, Circles)</li>
+                        <li>Transformations (Rotations, Reflections, Translations)</li>
+                        <li>Areas & Volumes</li>
+                        <li>Projective Geometry Introduction</li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-section" data-difficulty="advanced" id="graph-theory">
+                    <h3>Graph Theory <span class="difficulty advanced">Advanced</span></h3>
+                    <ul>
+                        <li>Graph Representation (Adjacency Matrix/List)</li>
+                        <li>Eulerian & Hamiltonian Paths</li>
+                        <li>Trees & Spanning Trees</li>
+                        <li>Graph Traversal (DFS, BFS)</li>
+                        <li>Shortest Path Algorithms (Dijkstra, Floyd-Warshall)</li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-section" data-difficulty="advanced" id="inequalities">
+                    <h3>Inequalities <span class="difficulty advanced">Advanced</span></h3>
+                    <ul>
+                        <li>Cauchy-Schwarz Inequality</li>
+                        <li>AM-GM Inequality</li>
+                        <li>Jensen's Inequality</li>
+                        <li>Chebyshev's Inequality</li>
+                        <li>Solving Inequality Problems</li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-section" data-difficulty="basic" id="logic-and-set-theory">
+                    <h3>Logic and Set Theory <span class="difficulty basic">Foundation</span></h3>
+                    <ul>
+                        <li><a href="topics/logic-and-set-theory/propositional-logic.html" class="topic-link">Propositional Logic</a></li>
+                        <li><a href="topics/logic-and-set-theory/predicate-logic.html" class="topic-link">Predicate Logic</a></li>
+                        <li><a href="topics/logic-and-set-theory/basic-set-operations.html" class="topic-link">Basic Set Operations</a></li>
+                        <li><a href="topics/logic-and-set-theory/functions-and-relations.html" class="topic-link">Functions & Relations</a></li>
+                        <li><a href="topics/logic-and-set-theory/mathematical-proofs.html" class="topic-link">Mathematical Proofs</a></li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-section" data-difficulty="intermediate" id="matrices-and-determinants">
+                    <h3>Matrices and Determinants <span class="difficulty intermediate">Intermediate</span></h3>
+                    <ul>
+                        <li>Matrix Operations</li>
+                        <li>Determinants & Properties</li>
+                        <li>Matrix Inverse</li>
+                        <li>Linear Transformations</li>
+                        <li>Eigenvalues & Eigenvectors</li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-section" data-difficulty="intermediate" id="number-theory">
+                    <h3>Number Theory <span class="difficulty intermediate">Intermediate</span></h3>
+                    <ul>
+                        <li>Divisibility & Prime Numbers</li>
+                        <li>Modular Arithmetic</li>
+                        <li>GCD, LCM, Euclidean Algorithm</li>
+                        <li>Fermat's and Euler's Theorems</li>
+                        <li>Diophantine Equations</li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-section" data-difficulty="intermediate" id="probability">
+                    <h3>Probability <span class="difficulty intermediate">Intermediate</span></h3>
+                    <ul>
+                        <li>Basic Probability Rules</li>
+                        <li>Conditional Probability</li>
+                        <li>Bayes' Theorem</li>
+                        <li>Random Variables & Distributions</li>
+                        <li>Expectation & Variance</li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-section" data-difficulty="intermediate" id="sequences-and-series">
+                    <h3>Sequences and Series <span class="difficulty intermediate">Intermediate</span></h3>
+                    <ul>
+                        <li>Arithmetic & Geometric Sequences</li>
+                        <li>Infinite Series</li>
+                        <li>Convergence Tests</li>
+                        <li>Power Series</li>
+                        <li>Recurrence Relations</li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-section" data-difficulty="intermediate" id="statistics">
+                    <h3>Statistics <span class="difficulty intermediate">Intermediate</span></h3>
+                    <ul>
+                        <li>Descriptive Statistics</li>
+                        <li>Hypothesis Testing</li>
+                        <li>Confidence Intervals</li>
+                        <li>Regression & Correlation</li>
+                        <li>Statistical Inference</li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-section" data-difficulty="intermediate" id="trigonometry">
+                    <h3>Trigonometry <span class="difficulty intermediate">Intermediate</span></h3>
+                    <ul>
+                        <li>Trigonometric Identities & Formulas</li>
+                        <li>Trigonometric Equations</li>
+                        <li>Law of Sines & Cosines</li>
+                        <li>Inverse Trigonometric Functions</li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-section" data-difficulty="intermediate" id="vectors-and-coordinate-geometry">
+                    <h3>Vectors and Coordinate Geometry <span class="difficulty intermediate">Intermediate</span></h3>
+                    <ul>
+                        <li>Coordinate Systems</li>
+                        <li>Vector Operations (Addition, Scalar Multiplication)</li>
+                        <li>Dot & Cross Products</li>
+                        <li>Equations of Lines & Planes</li>
+                        <li>3D Coordinate Geometry</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -72,16 +361,76 @@
         <section id="footer">
             <div id="copyright">
                 <ul class="links">
-                    <li style="color: beige;">&copy; International Math Hub</li>
+                    <li>&copy; International Math Hub</li>
                     <!--<li>Design by HTML5 UP</li>-->
                 </ul>
             </div>
         </section> 
-
     </div>
 
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+    
+    <script>
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all filter buttons
+            const filterButtons = document.querySelectorAll('.legend .difficulty');
+            // Get all sections
+            const sections = document.querySelectorAll('.roadmap-section');
+            
+            // Track active filters
+            let activeFilters = {
+                'basic': true,
+                'intermediate': true,
+                'advanced': true
+            };
+            
+            // Add click event to each filter button
+            filterButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Toggle active state for this filter
+                    activeFilters[filter] = !activeFilters[filter];
+                    
+                    // Update button appearance
+                    if (activeFilters[filter]) {
+                        this.classList.add('active');
+                        this.classList.remove('inactive');
+                    } else {
+                        this.classList.remove('active');
+                        this.classList.add('inactive');
+                    }
+                    
+                    // Apply filters to sections
+                    applyFilters();
+                });
+            });
+            
+            // Function to apply the current filters
+            function applyFilters() {
+                // If no filters are active, show all sections
+                const isAnyFilterActive = Object.values(activeFilters).some(value => value);
+                
+                // Apply filtering
+                sections.forEach(function(section) {
+                    const difficulty = section.getAttribute('data-difficulty');
+                    
+                    if (!isAnyFilterActive || activeFilters[difficulty]) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
