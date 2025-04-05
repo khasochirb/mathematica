@@ -1,0 +1,391 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Counting Principles - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <style>
+        .topic-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .topic-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-left: 5px solid #4acaa8;
+        }
+        
+        .topic-header {
+            color: #3d4449;
+            border-bottom: 2px solid #4acaa8;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        
+        .math-formula {
+            background: rgba(74, 202, 168, 0.1);
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #4acaa8;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            color: #333 !important;
+        }
+        
+        .example {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 4px solid #2ab8de;
+        }
+        
+        .example-title {
+            font-weight: bold;
+            color: #4acaa8;
+            margin-bottom: 10px;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+        }
+        
+        .prev-next-btn {
+            background: linear-gradient(135deg, #4acaa8, #38c4c0, #2ab8de) !important;
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(74, 202, 168, 0.2);
+            border: none;
+        }
+        
+        .prev-next-btn:hover {
+            background: linear-gradient(135deg, #3ab89a, #31b0bb, #1fa6db) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(74, 202, 168, 0.3);
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+            color: #7f888f;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5em;
+            align-items: center;
+        }
+        
+        .breadcrumb a {
+            color: #4acaa8 !important;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .breadcrumb a:hover {
+            color: #3db897 !important;
+            text-decoration: underline;
+        }
+        
+        /* Fix for text visibility */
+        .topic-section p, 
+        .topic-section li, 
+        .topic-section ul, 
+        .topic-section ol {
+            color: #333 !important;
+        }
+        
+        .topic-section h3, 
+        .topic-section h4 {
+            color: #3d4449 !important;
+        }
+        
+        .topic-section strong {
+            color: #2d3b48 !important;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub">
+                    </a>
+                </div>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../vids.html">Video Solutions</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="container">
+            <header>
+                <h2>Counting Principles</h2>
+                <p>Advanced methods and techniques for counting</p>
+            </header>
+
+            <div class="box" style="margin-bottom: 1em;">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#combinatorics">Combinatorics</a> &raquo;
+                    <span>Counting Principles</span>
+                </nav>
+            </div>
+
+            <div class="topic-container">
+                <div class="topic-section">
+                    <h3 class="topic-header">Recurrence Relations in Counting</h3>
+                    
+                    <p>Recurrence relations are equations that express the value of a sequence at a certain index in terms of the values at previous indices. They are powerful tools for solving counting problems that exhibit recursive structure.</p>
+                    
+                    <h4>General Form and Solving Methods</h4>
+                    <p>A linear homogeneous recurrence relation of order k has the form:</p>
+                    
+                    <div class="math-formula">
+                        <p>a<sub>n</sub> = c₁a<sub>n-1</sub> + c₂a<sub>n-2</sub> + ... + c<sub>k</sub>a<sub>n-k</sub></p>
+                    </div>
+                    
+                    <p>Methods for solving recurrence relations include:</p>
+                    <ul>
+                        <li><strong>Substitution Method:</strong> Directly compute initial terms and look for patterns</li>
+                        <li><strong>Characteristic Equation Method:</strong> For linear homogeneous recurrence relations</li>
+                        <li><strong>Generating Functions:</strong> Converting the recurrence to an algebraic equation</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Fibonacci Sequence</div>
+                        <p>The Fibonacci sequence is defined by the recurrence relation:</p>
+                        <p>F<sub>n</sub> = F<sub>n-1</sub> + F<sub>n-2</sub> for n ≥ 2, with F<sub>0</sub> = 0 and F<sub>1</sub> = 1</p>
+                        <p>To solve this using the characteristic equation method:</p>
+                        <p>1. Set up the characteristic equation: r² = r + 1</p>
+                        <p>2. Solve for r: r² - r - 1 = 0</p>
+                        <p>3. Using the quadratic formula: r = (1 ± √5)/2</p>
+                        <p>4. Let φ = (1 + √5)/2 ≈ 1.618 and ψ = (1 - √5)/2 ≈ -0.618</p>
+                        <p>5. The general solution is: F<sub>n</sub> = c₁φⁿ + c₂ψⁿ</p>
+                        <p>6. Using initial conditions F<sub>0</sub> = 0 and F<sub>1</sub> = 1, we get c₁ = 1/√5 and c₂ = -1/√5</p>
+                        <p>7. Therefore: F<sub>n</sub> = (φⁿ - ψⁿ)/√5</p>
+                        <p>This is known as Binet's formula for the Fibonacci sequence.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section">
+                    <h3 class="topic-header">The Principle of Mathematical Induction in Counting</h3>
+                    
+                    <p>Mathematical induction is a method of proof that is particularly useful for verifying formulas in combinatorial counting. It consists of two steps:</p>
+                    
+                    <ol>
+                        <li><strong>Base Case:</strong> Prove the statement is true for a starting value, usually n = 1 or n = 0.</li>
+                        <li><strong>Inductive Step:</strong> Assume the statement is true for some k ≥ base case, then prove it is true for k + 1.</li>
+                    </ol>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Sum of First n Natural Numbers</div>
+                        <p>We want to prove that the sum of the first n natural numbers is given by the formula:</p>
+                        <p>1 + 2 + 3 + ... + n = n(n+1)/2</p>
+                        <p><strong>Base Case:</strong> For n = 1, the left side is 1, and the right side is 1(1+1)/2 = 1. So it's true for n = 1.</p>
+                        <p><strong>Inductive Step:</strong> Assume the formula is true for n = k, that is:</p>
+                        <p>1 + 2 + 3 + ... + k = k(k+1)/2</p>
+                        <p>Now we need to prove it for n = k+1:</p>
+                        <p>1 + 2 + 3 + ... + k + (k+1)</p>
+                        <p>= [1 + 2 + 3 + ... + k] + (k+1)</p>
+                        <p>= k(k+1)/2 + (k+1) (by our inductive hypothesis)</p>
+                        <p>= (k+1)[k/2 + 1]</p>
+                        <p>= (k+1)[k/2 + 2/2]</p>
+                        <p>= (k+1)(k+2)/2</p>
+                        <p>= (k+1)((k+1)+1)/2</p>
+                        <p>This matches our formula for n = k+1, which completes the proof.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section">
+                    <h3 class="topic-header">Generating Functions</h3>
+                    
+                    <p>Generating functions are a powerful tool in combinatorics that transform counting problems into algebraic ones. The ordinary generating function for a sequence {a₀, a₁, a₂, ...} is:</p>
+                    
+                    <div class="math-formula">
+                        <p>G(x) = a₀ + a₁x + a₂x² + a₃x³ + ...</p>
+                    </div>
+                    
+                    <h4>Common Generating Functions and Their Sequences</h4>
+                    <ul>
+                        <li><strong>1/(1-x) = 1 + x + x² + x³ + ...</strong> — Counts sequences of any length</li>
+                        <li><strong>1/(1-x)ᵏ</strong> — Counts ways to select k elements with repetition allowed</li>
+                        <li><strong>(1+x)ⁿ</strong> — Binomial expansion with coefficients (n k)</li>
+                        <li><strong>e<sup>x</sup> = 1 + x + x²/2! + x³/3! + ...</strong> — Poisson distribution</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Coin Combinations</div>
+                        <p>How many ways can you make change for $1 using pennies (1¢), nickels (5¢), dimes (10¢), and quarters (25¢)?</p>
+                        <p>We want to find the number of solutions to the equation p + 5n + 10d + 25q = 100, where p, n, d, q are non-negative integers.</p>
+                        <p>The generating function for this is:</p>
+                        <p>G(x) = (1 + x + x² + ...)(1 + x⁵ + x¹⁰ + ...)(1 + x¹⁰ + x²⁰ + ...)(1 + x²⁵ + x⁵⁰ + ...)</p>
+                        <p>This can be simplified to:</p>
+                        <p>G(x) = 1/(1-x) × 1/(1-x⁵) × 1/(1-x¹⁰) × 1/(1-x²⁵)</p>
+                        <p>The coefficient of x¹⁰⁰ in the expansion of G(x) gives us the answer.</p>
+                        <p>Using computational methods, we find this coefficient is 242, meaning there are 242 different ways to make change for $1.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Partitioning Integers</div>
+                        <p>How many ways can we write the integer 5 as a sum of positive integers, where the order doesn't matter?</p>
+                        <p>The generating function for partitions is:</p>
+                        <p>P(x) = Π<sub>k=1</sub><sup>∞</sup> 1/(1-x<sup>k</sup>)</p>
+                        <p>= (1 + x + x² + ...)(1 + x² + x⁴ + ...)(1 + x³ + x⁶ + ...)(1 + x⁴ + x⁸ + ...)...</p>
+                        <p>The coefficient of x⁵ in P(x) gives the number of partitions of 5.</p>
+                        <p>Expanding P(x) up to x⁵: 1 + x + 2x² + 3x³ + 5x⁴ + 7x⁵ + ...</p>
+                        <p>The coefficient of x⁵ is 7, which means there are 7 ways to partition 5:</p>
+                        <p>5, 4+1, 3+2, 3+1+1, 2+2+1, 2+1+1+1, 1+1+1+1+1</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section">
+                    <h3 class="topic-header">Counting with Symmetry: Burnside's Lemma</h3>
+                    
+                    <p>Burnside's Lemma is a technique for counting objects that are equivalent under a group of transformations. It's particularly useful for counting configurations where we consider certain objects as identical due to symmetry.</p>
+                    
+                    <div class="math-formula">
+                        <p>The number of distinct orbits = (1/|G|) × Σ<sub>g∈G</sub>|X<sup>g</sup>|</p>
+                        <p>where G is a group acting on a set X, and X<sup>g</sup> is the set of elements of X fixed by g.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Coloring a Square</div>
+                        <p>How many distinct ways can we color the vertices of a square using red and blue, if we consider two colorings equivalent when one can be rotated to match the other?</p>
+                        <p>The symmetry group G of the square consists of 8 elements: identity (e), rotations by 90°, 180°, and 270° (r₁, r₂, r₃), and reflections around horizontal, vertical, and two diagonal axes (f₁, f₂, f₃, f₄).</p>
+                        <p>For each group element, we count the number of colorings fixed by that element:</p>
+                        <p>- Identity (e): All 2⁴ = 16 colorings are fixed</p>
+                        <p>- Rotation by 90° (r₁): Only uniform colorings (all red or all blue) are fixed, so |X<sup>r₁</sup>| = 2</p>
+                        <p>- Rotation by 180° (r₂): Colorings where opposite vertices have the same color, so |X<sup>r₂</sup>| = 2² = 4</p>
+                        <p>- Rotation by 270° (r₃): Only uniform colorings, so |X<sup>r₃</sup>| = 2</p>
+                        <p>- For each reflection (f₁, f₂, f₃, f₄): Colorings where vertices on opposite sides of the axis of reflection have the same color, so |X<sup>f</sup>| = 2² = 4 for each reflection</p>
+                        <p>Using Burnside's Lemma:</p>
+                        <p>Number of distinct colorings = (1/8) × (16 + 2 + 4 + 2 + 4 + 4 + 4 + 4) = (1/8) × 40 = 5</p>
+                        <p>Therefore, there are 5 distinct ways to color the vertices of a square using red and blue.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section">
+                    <h3 class="topic-header">Counting with Pólya's Enumeration Theorem</h3>
+                    
+                    <p>Pólya's Enumeration Theorem extends Burnside's Lemma by not just counting the number of orbits, but also providing a method to enumerate them by their composition. It introduces the concept of the cycle index polynomial.</p>
+                    
+                    <div class="math-formula">
+                        <p>Z<sub>G</sub>(x₁, x₂, ..., x<sub>n</sub>) = (1/|G|) × Σ<sub>g∈G</sub>x₁<sup>c₁(g)</sup> × x₂<sup>c₂(g)</sup> × ... × x<sub>n</sub><sup>c<sub>n</sub>(g)</sup></p>
+                        <p>where c<sub>j</sub>(g) is the number of cycles of length j in the permutation g.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Necklace Counting</div>
+                        <p>How many distinct necklaces can be formed using 4 beads, each colored either red or blue?</p>
+                        <p>The group G is the cyclic group C₄, representing rotations of the necklace. The cycle structures are:</p>
+                        <p>- Identity (e): 4 cycles of length 1, so its term in the cycle index is x₁⁴</p>
+                        <p>- Rotation by 90° (r₁): 1 cycle of length 4, so its term is x₄</p>
+                        <p>- Rotation by 180° (r₂): 2 cycles of length 2, so its term is x₂²</p>
+                        <p>- Rotation by 270° (r₃): 1 cycle of length 4, so its term is x₄</p>
+                        <p>The cycle index polynomial is:</p>
+                        <p>Z<sub>C₄</sub>(x₁, x₂, x₄) = (1/4) × (x₁⁴ + 2x₄ + x₂²)</p>
+                        <p>To count colorings with red and blue, we substitute x<sub>i</sub> = r<sup>i</sup> + b<sup>i</sup>:</p>
+                        <p>Z<sub>C₄</sub>(r + b, r² + b², r⁴ + b⁴) = (1/4) × [(r + b)⁴ + 2(r⁴ + b⁴) + (r² + b²)²]</p>
+                        <p>Expanding and collecting terms:</p>
+                        <p>= (1/4) × [(r⁴ + 4r³b + 6r²b² + 4rb³ + b⁴) + 2(r⁴ + b⁴) + (r⁴ + 2r²b² + b⁴)]</p>
+                        <p>= (1/4) × [r⁴ + 4r³b + 6r²b² + 4rb³ + b⁴ + 2r⁴ + 2b⁴ + r⁴ + 2r²b² + b⁴]</p>
+                        <p>= (1/4) × [4r⁴ + 4r³b + 8r²b² + 4rb³ + 4b⁴]</p>
+                        <p>= r⁴ + r³b + 2r²b² + rb³ + b⁴</p>
+                        <p>The coefficient of r<sup>i</sup>b<sup>j</sup> gives the number of distinct necklaces with i red beads and j blue beads. The total number of distinct necklaces is the sum of these coefficients: 1 + 1 + 2 + 1 + 1 = 6.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section">
+                    <h3 class="topic-header">Advanced Combinatorial Identities</h3>
+                    
+                    <p>Combinatorial identities are mathematical equalities involving combinations and permutations. They can be proven using algebraic manipulation, combinatorial arguments, or generating functions.</p>
+                    
+                    <h4>Key Combinatorial Identities</h4>
+                    <div class="math-formula">
+                        <p>1. Hockey-Stick Identity: Σ<sub>k=r</sub><sup>n</sup> (k r) = (n+1 r+1)</p>
+                        <p>2. Vandermonde's Identity: Σ<sub>k=0</sub><sup>r</sup> (m k)(n r-k) = (m+n r)</p>
+                        <p>3. Binomial Theorem: (x + y)<sup>n</sup> = Σ<sub>k=0</sub><sup>n</sup> (n k) x<sup>n-k</sup>y<sup>k</sup></p>
+                        <p>4. Binomial Inverse: Σ<sub>k=0</sub><sup>n</sup> (-1)<sup>k</sup>(n k) = 0 (for n > 0)</p>
+                        <p>5. Sum of Squares: Σ<sub>k=1</sub><sup>n</sup> k² = n(n+1)(2n+1)/6</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Combinatorial Proof</div>
+                        <p>Let's prove the identity: (n k) = (n n-k)</p>
+                        <p><strong>Algebraic proof:</strong></p>
+                        <p>(n k) = n!/(k!(n-k)!) = n!/((n-k)!k!) = (n n-k)</p>
+                        <p><strong>Combinatorial proof:</strong></p>
+                        <p>The left side counts the number of ways to select k items from n items.</p>
+                        <p>The right side counts the number of ways to select n-k items from n items.</p>
+                        <p>These are equivalent because selecting k items is the same as not selecting n-k items from the total of n items.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Double Counting</div>
+                        <p>Prove the identity: n(n-1)/2 = Σ<sub>k=1</sub><sup>n-1</sup> k</p>
+                        <p><strong>Double counting proof:</strong></p>
+                        <p>Consider the number of ways to select 2 distinct elements from a set of n elements.</p>
+                        <p>By direct counting, there are (n 2) = n(n-1)/2 such ways.</p>
+                        <p>Alternatively, we can count by considering the position of the larger element:</p>
+                        <p>- If the larger element is in position 2, we can choose the smaller element in 1 way</p>
+                        <p>- If the larger element is in position 3, we can choose the smaller element in 2 ways</p>
+                        <p>- If the larger element is in position 4, we can choose the smaller element in 3 ways</p>
+                        <p>- And so on...</p>
+                        <p>- If the larger element is in position n, we can choose the smaller element in n-1 ways</p>
+                        <p>The total number of ways is 1 + 2 + 3 + ... + (n-1) = Σ<sub>k=1</sub><sup>n-1</sup> k</p>
+                        <p>Since both methods count the same set, we have n(n-1)/2 = Σ<sub>k=1</sub><sup>n-1</sup> k</p>
+                    </div>
+                    
+                    <div class="navigation">
+                        <a href="inclusion-exclusion.html" class="prev-next-btn">Previous: Inclusion-Exclusion</a>
+                        <a href="../../features.html#complex-numbers" class="prev-next-btn">Next: Complex Numbers</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

@@ -1,0 +1,337 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Exponents & Logarithms - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <style>
+        .topic-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .topic-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-left: 5px solid #4acaa8;
+        }
+        
+        .topic-header {
+            color: #3d4449;
+            border-bottom: 2px solid #4acaa8;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        
+        .math-formula {
+            background: rgba(74, 202, 168, 0.1);
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #4acaa8;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            color: #333 !important;
+        }
+        
+        .example {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 4px solid #2ab8de;
+        }
+        
+        .example-title {
+            font-weight: bold;
+            color: #4acaa8;
+            margin-bottom: 10px;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+        }
+        
+        .prev-next-btn {
+            background: linear-gradient(135deg, #4acaa8, #38c4c0, #2ab8de) !important;
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(74, 202, 168, 0.2);
+            border: none;
+        }
+        
+        .prev-next-btn:hover {
+            background: linear-gradient(135deg, #3ab89a, #31b0bb, #1fa6db) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(74, 202, 168, 0.3);
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+            color: #7f888f;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5em;
+            align-items: center;
+        }
+        
+        .breadcrumb a {
+            color: #4acaa8 !important;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .breadcrumb a:hover {
+            color: #3db897 !important;
+            text-decoration: underline;
+        }
+        
+        /* Fix for text visibility */
+        .topic-section p, 
+        .topic-section li, 
+        .topic-section ul, 
+        .topic-section ol {
+            color: #333 !important;
+        }
+        
+        .topic-section h3, 
+        .topic-section h4 {
+            color: #3d4449 !important;
+        }
+        
+        .topic-section strong {
+            color: #2d3b48 !important;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub">
+                    </a>
+                </div>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../vids.html">Video Solutions</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="container">
+            <header>
+                <h2>Exponents & Logarithms</h2>
+                <p>Understanding the principles and applications of exponential and logarithmic functions</p>
+            </header>
+
+            <div class="box" style="margin-bottom: 1em;">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#algebra">Algebra</a> &raquo;
+                    <span>Exponents & Logarithms</span>
+                </nav>
+            </div>
+
+            <div class="topic-container">
+                <div class="topic-section">
+                    <h3 class="topic-header">Exponents: Basic Principles</h3>
+                    
+                    <p>Exponents provide a concise way to express repeated multiplication. An expression like a<sup>n</sup> means that the base a is multiplied by itself n times, where n is called the exponent or power.</p>
+                    
+                    <h4>Key Properties of Exponents</h4>
+                    <ul>
+                        <li><strong>Product Rule:</strong> a<sup>m</sup> × a<sup>n</sup> = a<sup>m+n</sup></li>
+                        <li><strong>Quotient Rule:</strong> a<sup>m</sup> ÷ a<sup>n</sup> = a<sup>m-n</sup></li>
+                        <li><strong>Power Rule:</strong> (a<sup>m</sup>)<sup>n</sup> = a<sup>m×n</sup></li>
+                        <li><strong>Power of a Product:</strong> (a×b)<sup>n</sup> = a<sup>n</sup> × b<sup>n</sup></li>
+                        <li><strong>Power of a Quotient:</strong> (a÷b)<sup>n</sup> = a<sup>n</sup> ÷ b<sup>n</sup></li>
+                        <li><strong>Zero Exponent:</strong> a<sup>0</sup> = 1 (if a ≠ 0)</li>
+                        <li><strong>Negative Exponent:</strong> a<sup>-n</sup> = 1 ÷ a<sup>n</sup></li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Simplifying Expressions with Exponents</div>
+                        <p>Simplify: (3<sup>2</sup> × 3<sup>4</sup>) ÷ 3<sup>3</sup></p>
+                        <p>Using the product rule: 3<sup>2</sup> × 3<sup>4</sup> = 3<sup>2+4</sup> = 3<sup>6</sup></p>
+                        <p>Using the quotient rule: 3<sup>6</sup> ÷ 3<sup>3</sup> = 3<sup>6-3</sup> = 3<sup>3</sup> = 27</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section">
+                    <h3 class="topic-header">Logarithms: Fundamentals</h3>
+                    
+                    <p>Logarithms are the inverse operations of exponents. If a<sup>x</sup> = b, then log<sub>a</sub>(b) = x. Here, a is the base of the logarithm, b is the argument, and x is the result.</p>
+                    
+                    <h4>Common Bases for Logarithms</h4>
+                    <ul>
+                        <li><strong>Common Logarithm (base 10):</strong> Written as log(x) or log<sub>10</sub>(x)</li>
+                        <li><strong>Natural Logarithm (base e):</strong> Written as ln(x) or log<sub>e</sub>(x)</li>
+                        <li><strong>Binary Logarithm (base 2):</strong> Written as log<sub>2</sub>(x)</li>
+                    </ul>
+                    
+                    <div class="math-formula">
+                        <p>log<sub>a</sub>(b) = c means a<sup>c</sup> = b</p>
+                    </div>
+                    
+                    <h4>Key Properties of Logarithms</h4>
+                    <ul>
+                        <li><strong>Product Rule:</strong> log<sub>a</sub>(x × y) = log<sub>a</sub>(x) + log<sub>a</sub>(y)</li>
+                        <li><strong>Quotient Rule:</strong> log<sub>a</sub>(x ÷ y) = log<sub>a</sub>(x) - log<sub>a</sub>(y)</li>
+                        <li><strong>Power Rule:</strong> log<sub>a</sub>(x<sup>n</sup>) = n × log<sub>a</sub>(x)</li>
+                        <li><strong>Change of Base:</strong> log<sub>a</sub>(x) = log<sub>b</sub>(x) ÷ log<sub>b</sub>(a)</li>
+                        <li><strong>Logarithm of Base:</strong> log<sub>a</sub>(a) = 1</li>
+                        <li><strong>Logarithm of 1:</strong> log<sub>a</sub>(1) = 0</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Using Logarithm Properties</div>
+                        <p>Simplify: log(2) + log(5)</p>
+                        <p>Using the product rule: log(2) + log(5) = log(2 × 5) = log(10) = 1</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section">
+                    <h3 class="topic-header">Exponential & Logarithmic Functions</h3>
+                    
+                    <p>Exponential and logarithmic functions are essential in modeling various real-world phenomena like population growth, radioactive decay, and compound interest.</p>
+                    
+                    <h4>Exponential Functions</h4>
+                    <p>Exponential functions have the form f(x) = a × b<sup>x</sup>, where a and b are constants, and b > 0, b ≠ 1.</p>
+                    <ul>
+                        <li>If b > 1, the function increases (grows) as x increases</li>
+                        <li>If 0 < b < 1, the function decreases (decays) as x increases</li>
+                        <li>The most important exponential function is e<sup>x</sup>, where e ≈ 2.71828 (Euler's number)</li>
+                    </ul>
+                    
+                    <h4>Logarithmic Functions</h4>
+                    <p>Logarithmic functions have the form f(x) = log<sub>b</sub>(x), where b > 0, b ≠ 1.</p>
+                    <ul>
+                        <li>Domain: x > 0</li>
+                        <li>Range: all real numbers</li>
+                        <li>Logarithmic functions grow very slowly</li>
+                    </ul>
+                    
+                    <div class="math-formula">
+                        <p>The natural logarithm function ln(x) = log<sub>e</sub>(x) is the inverse of the exponential function e<sup>x</sup>.</p>
+                        <p>ln(e<sup>x</sup>) = x and e<sup>ln(x)</sup> = x</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section">
+                    <h3 class="topic-header">Solving Exponential & Logarithmic Equations</h3>
+                    
+                    <p>Solving equations involving exponents and logarithms often requires manipulation using their properties.</p>
+                    
+                    <h4>Exponential Equations</h4>
+                    <p>Common strategies:</p>
+                    <ul>
+                        <li>Express both sides as powers of the same base</li>
+                        <li>Take the logarithm of both sides</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Solving an Exponential Equation</div>
+                        <p>Solve: 2<sup>x</sup> = 8</p>
+                        <p>Since 8 = 2<sup>3</sup>, we can rewrite: 2<sup>x</sup> = 2<sup>3</sup></p>
+                        <p>Since the bases are the same, the exponents must be equal: x = 3</p>
+                        <p>Alternative approach using logarithms:</p>
+                        <p>Taking log base 10 of both sides: log(2<sup>x</sup>) = log(8)</p>
+                        <p>Using the power rule: x × log(2) = log(8)</p>
+                        <p>Solving for x: x = log(8) ÷ log(2) ≈ 3</p>
+                    </div>
+                    
+                    <h4>Logarithmic Equations</h4>
+                    <p>Common strategies:</p>
+                    <ul>
+                        <li>Combine logarithms using properties</li>
+                        <li>Convert to exponential form</li>
+                        <li>Check for extraneous solutions (values that make logarithm arguments negative or zero)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Solving a Logarithmic Equation</div>
+                        <p>Solve: log(x+3) + log(x-1) = 1</p>
+                        <p>Using the product rule: log((x+3)(x-1)) = 1</p>
+                        <p>Converting to exponential form: (x+3)(x-1) = 10<sup>1</sup> = 10</p>
+                        <p>Expanding: x<sup>2</sup> + 2x - 3 = 10</p>
+                        <p>Rearranging: x<sup>2</sup> + 2x - 13 = 0</p>
+                        <p>Using the quadratic formula: x = (-2 ± √(4+52))/2 = (-2 ± √56)/2 = (-2 ± 2√14)/2 = -1 ± √14</p>
+                        <p>Checking solutions: x = -1 + √14 ≈ 2.74 works, but x = -1 - √14 ≈ -4.74 gives negative arguments for logarithms</p>
+                        <p>Therefore, the only solution is x = -1 + √14 ≈ 2.74</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section">
+                    <h3 class="topic-header">Applications of Exponents & Logarithms</h3>
+                    
+                    <p>Exponential and logarithmic functions have numerous real-world applications:</p>
+                    <ul>
+                        <li><strong>Compound Interest:</strong> P(t) = P<sub>0</sub>(1 + r/n)<sup>nt</sup>, where P<sub>0</sub> is the principal, r is the interest rate, n is the number of times per year interest is compounded, and t is time in years</li>
+                        <li><strong>Continuous Compounding:</strong> P(t) = P<sub>0</sub>e<sup>rt</sup></li>
+                        <li><strong>Population Growth/Decay:</strong> P(t) = P<sub>0</sub>e<sup>kt</sup>, where k is the growth/decay rate constant</li>
+                        <li><strong>Radioactive Decay:</strong> N(t) = N<sub>0</sub>e<sup>-λt</sup>, where λ is the decay constant</li>
+                        <li><strong>Half-life:</strong> t<sub>1/2</sub> = ln(2)/λ</li>
+                        <li><strong>pH in Chemistry:</strong> pH = -log[H<sup>+</sup>]</li>
+                        <li><strong>Richter Scale for Earthquakes:</strong> R = log(A/A<sub>0</sub>), where A is the amplitude of the earthquake and A<sub>0</sub> is a standard reference value</li>
+                        <li><strong>Decibel Scale for Sound Intensity:</strong> dB = 10 × log(I/I<sub>0</sub>), where I is the intensity and I<sub>0</sub> is a reference intensity</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Compound Interest</div>
+                        <p>If you invest $5,000 at an annual interest rate of 4%, compounded quarterly, how much will you have after 10 years?</p>
+                        <p>Using the compound interest formula: P(t) = P<sub>0</sub>(1 + r/n)<sup>nt</sup></p>
+                        <p>P(10) = 5000(1 + 0.04/4)<sup>4×10</sup> = 5000(1.01)<sup>40</sup> ≈ $7,436.43</p>
+                    </div>
+                    
+                    <div class="navigation">
+                        <a href="polynomials-and-factorization.html" class="prev-next-btn">Previous: Polynomials & Factorization</a>
+                        <a href="linear-and-quadratic-equations.html" class="prev-next-btn">Next: Linear & Quadratic Equations</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 
