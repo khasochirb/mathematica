@@ -6,7 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/first.css" />
     <link rel="stylesheet" href="assets/css/improvements.css" />
+    <!-- Additional styles to ensure the mobile menu toggle is hidden -->
     <style>
+        /* Hide mobile menu toggle button with highest priority */
+        #titleBar, #navPanel {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        
+        /* Prevent any transforms from mobile menu */
+        body.navPanel-visible #page-wrapper,
+        body.navPanel-visible #titleBar {
+            transform: none !important;
+        }
+        
+        /* Ensure navigation is always visible */
+        #nav {
+            display: block !important;
+        }
         .roadmap-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -171,15 +190,15 @@
                     <a href="index.html"><img src="/images/logo.png" alt="International Math Hub Logo" style="max-height: 180px;"></a>
                 </div>
 
-                <nav id="nav">
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
                         <li class="current"><a href="features.html">Mathematics Roadmap</a></li>
-                        <li><a href="resources.html">Resources</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </nav>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
             </div>
         </section>
 
@@ -224,53 +243,53 @@
                 <div class="roadmap-section" data-difficulty="intermediate" id="combinatorics">
                     <h3>Combinatorics <span class="difficulty intermediate">Intermediate</span></h3>
                     <ul>
-                        <li>Permutations & Combinations</li>
-                        <li>Binomial Theorem</li>
-                        <li>Pigeonhole Principle</li>
-                        <li>Inclusion-Exclusion</li>
-                        <li>Counting Principles</li>
+                        <li><a href="topics/combinatorics/permutations-and-combinations.html" class="topic-link">Permutations & Combinations</a></li>
+                        <li><a href="topics/combinatorics/binomial-theorem.html" class="topic-link">Binomial Theorem</a></li>
+                        <li><a href="topics/combinatorics/pigeonhole-principle.html" class="topic-link">Pigeonhole Principle</a></li>
+                        <li><a href="topics/combinatorics/inclusion-exclusion.html" class="topic-link">Inclusion-Exclusion</a></li>
+                        <li><a href="topics/combinatorics/counting-principles.html" class="topic-link">Counting Principles</a></li>
                     </ul>
                 </div>
 
                 <div class="roadmap-section" data-difficulty="intermediate" id="complex-numbers">
                     <h3>Complex Numbers <span class="difficulty intermediate">Intermediate</span></h3>
                     <ul>
-                        <li>Basic Operations</li>
-                        <li>Polar Form & Argand Plane</li>
-                        <li>De Moivre's Theorem</li>
-                        <li>Complex Roots & Complex Analysis Introduction</li>
+                        <li><a href="topics/complex-numbers/basic-operations.html" class="topic-link">Basic Operations</a></li>
+                        <li><a href="topics/complex-numbers/polar-form.html" class="topic-link">Polar Form & Argand Plane</a></li>
+                        <li><a href="topics/complex-numbers/de-moivre-s-theorem.html" class="topic-link">De Moivre's Theorem</a></li>
+                        <li><a href="topics/complex-numbers/complex-roots-and-complex-analysis-introduction.html" class="topic-link">Complex Roots & Complex Analysis Introduction</a></li>
                     </ul>
                 </div>
 
                 <div class="roadmap-section" data-difficulty="intermediate" id="geometry">
                     <h3>Geometry <span class="difficulty intermediate">Intermediate</span></h3>
                     <ul>
-                        <li>Euclidean Geometry (Congruence, Similarity, Circles)</li>
-                        <li>Transformations (Rotations, Reflections, Translations)</li>
-                        <li>Areas & Volumes</li>
-                        <li>Projective Geometry Introduction</li>
+                        <li><a href="topics/geometry/euclidean-geometry.html" class="topic-link">Euclidean Geometry (Congruence, Similarity, Circles)</a></li>
+                        <li><a href="topics/geometry/transformations.html" class="topic-link">Transformations (Rotations, Reflections, Translations)</a></li>
+                        <li><a href="topics/geometry/areas-and-volumes.html" class="topic-link">Areas & Volumes</a></li>
+                        <li><a href="topics/geometry/projective-geometry-introduction.html" class="topic-link">Projective Geometry Introduction</a></li>
                     </ul>
                 </div>
 
                 <div class="roadmap-section" data-difficulty="advanced" id="graph-theory">
                     <h3>Graph Theory <span class="difficulty advanced">Advanced</span></h3>
                     <ul>
-                        <li>Graph Representation (Adjacency Matrix/List)</li>
-                        <li>Eulerian & Hamiltonian Paths</li>
-                        <li>Trees & Spanning Trees</li>
-                        <li>Graph Traversal (DFS, BFS)</li>
-                        <li>Shortest Path Algorithms (Dijkstra, Floyd-Warshall)</li>
+                        <li><a href = "topics/graph-theory/graph-representation.html" class="topic-link">Graph Representation (Adjacency Matrix/List)</a></li>
+                        <li><a href = "topics/graph-theory/eulerian-hamiltonian-paths.html" class="topic-link">Eulerian & Hamiltonian Paths</a></li>
+                        <li><a href = "topics/graph-theory/trees-and-spanning-trees.html" class="topic-link">Trees & Spanning Trees</a></li>
+                        <li><a href = "topics/graph-theory/graph-traversal.html" class="topic-link">Graph Traversal (DFS, BFS)</a></li>
+                        <li><a href = "topics/graph-theory/shortest-path-algorithms.html" class="topic-link">Shortest Path Algorithms (Dijkstra, Floyd-Warshall)</a></li> 
                     </ul>
                 </div>
 
                 <div class="roadmap-section" data-difficulty="advanced" id="inequalities">
                     <h3>Inequalities <span class="difficulty advanced">Advanced</span></h3>
                     <ul>
-                        <li>Cauchy-Schwarz Inequality</li>
-                        <li>AM-GM Inequality</li>
-                        <li>Jensen's Inequality</li>
-                        <li>Chebyshev's Inequality</li>
-                        <li>Solving Inequality Problems</li>
+                        <li><a href = "topics/inequalities/cauchy-schwarz-inequality.html" class="topic-link">Cauchy-Schwarz Inequality</a></li>
+                        <li><a href = "topics/inequalities/am-gm-inequality.html" class="topic-link">AM-GM Inequality</a></li>
+                        <li><a href = "topics/inequalities/jensen-s-inequality.html" class="topic-link">Jensen's Inequality</a></li>
+                        <li><a href = "topics/inequalities/chebyshev-s-inequality.html" class="topic-link">Chebyshev's Inequality</a></li>
+                        <li><a href = "topics/inequalities/solving-inequality-problems.html" class="topic-link">Solving Inequality Problems</a></li>
                     </ul>
                 </div>
 
@@ -288,76 +307,76 @@
                 <div class="roadmap-section" data-difficulty="intermediate" id="matrices-and-determinants">
                     <h3>Matrices and Determinants <span class="difficulty intermediate">Intermediate</span></h3>
                     <ul>
-                        <li>Matrix Operations</li>
-                        <li>Determinants & Properties</li>
-                        <li>Matrix Inverse</li>
-                        <li>Linear Transformations</li>
-                        <li>Eigenvalues & Eigenvectors</li>
+                        <li><a href = "topics/matrices-and-determinants/matrix-operations.html" class="topic-link">Matrix Operations</a></li>
+                        <li><a href = "topics/matrices-and-determinants/determinants-and-properties.html" class="topic-link">Determinants & Properties</a></li>
+                        <li><a href = "topics/matrices-and-determinants/matrix-inverse.html" class="topic-link">Matrix Inverse</a></li>
+                        <li><a href = "topics/matrices-and-determinants/linear-transformations.html" class="topic-link">Linear Transformations</a></li>
+                        <li><a href = "topics/matrices-and-determinants/eigenvalues-and-eigenvectors.html" class="topic-link">Eigenvalues & Eigenvectors</a></li>
                     </ul>
                 </div>
 
                 <div class="roadmap-section" data-difficulty="intermediate" id="number-theory">
                     <h3>Number Theory <span class="difficulty intermediate">Intermediate</span></h3>
                     <ul>
-                        <li>Divisibility & Prime Numbers</li>
-                        <li>Modular Arithmetic</li>
-                        <li>GCD, LCM, Euclidean Algorithm</li>
-                        <li>Fermat's and Euler's Theorems</li>
-                        <li>Diophantine Equations</li>
+                        <li><a href = "topics/number-theory/divisibility-and-prime-numbers.html" class="topic-link">Divisibility & Prime Numbers</a></li>
+                        <li><a href = "topics/number-theory/modular-arithmetic.html" class="topic-link">Modular Arithmetic</a></li>
+                        <li><a href = "topics/number-theory/gcd-lcm-euclidean-algorithm.html" class="topic-link">GCD, LCM, Euclidean Algorithm</a></li>
+                        <li><a href = "topics/number-theory/fermat-s-and-euler-s-theorems.html" class="topic-link">Fermat's and Euler's Theorems</a></li>
+                        <li><a href = "topics/number-theory/diophantine-equations.html" class="topic-link">Diophantine Equations</a></li>
                     </ul>
                 </div>
 
                 <div class="roadmap-section" data-difficulty="intermediate" id="probability">
                     <h3>Probability <span class="difficulty intermediate">Intermediate</span></h3>
                     <ul>
-                        <li>Basic Probability Rules</li>
-                        <li>Conditional Probability</li>
-                        <li>Bayes' Theorem</li>
-                        <li>Random Variables & Distributions</li>
-                        <li>Expectation & Variance</li>
+                        <li><a href = "topics/probability/basic-probability-rules.html" class="topic-link">Basic Probability Rules</a></li>
+                        <li><a href = "topics/probability/conditional-probability.html" class="topic-link">Conditional Probability</a></li>
+                        <li><a href = "topics/probability/bayes-theorem.html" class="topic-link">Bayes' Theorem</a></li>
+                        <li><a href = "topics/probability/random-variables-and-distributions.html" class="topic-link">Random Variables & Distributions</a></li>
+                        <li><a href = "topics/probability/expectation-and-variance.html" class="topic-link">Expectation & Variance</a></li>
                     </ul>
                 </div>
 
                 <div class="roadmap-section" data-difficulty="intermediate" id="sequences-and-series">
                     <h3>Sequences and Series <span class="difficulty intermediate">Intermediate</span></h3>
                     <ul>
-                        <li>Arithmetic & Geometric Sequences</li>
-                        <li>Infinite Series</li>
-                        <li>Convergence Tests</li>
-                        <li>Power Series</li>
-                        <li>Recurrence Relations</li>
+                        <li><a href = "topics/sequences-and-series/arithmetic-and-geometric-sequences.html" class="topic-link">Arithmetic & Geometric Sequences</a></li>
+                        <li><a href = "topics/sequences-and-series/infinite-series.html" class="topic-link">Infinite Series</a></li>
+                        <li><a href = "topics/sequences-and-series/convergence-tests.html" class="topic-link">Convergence Tests</a></li>
+                        <li><a href = "topics/sequences-and-series/power-series.html" class="topic-link">Power Series</a></li>
+                        <li><a href = "topics/sequences-and-series/recurrence-relations.html" class="topic-link">Recurrence Relations</a></li>
                     </ul>
                 </div>
 
                 <div class="roadmap-section" data-difficulty="intermediate" id="statistics">
                     <h3>Statistics <span class="difficulty intermediate">Intermediate</span></h3>
                     <ul>
-                        <li>Descriptive Statistics</li>
-                        <li>Hypothesis Testing</li>
-                        <li>Confidence Intervals</li>
-                        <li>Regression & Correlation</li>
-                        <li>Statistical Inference</li>
+                        <li><a href = "topics/statistics/descriptive-statistics.html" class="topic-link">Descriptive Statistics</a></li>
+                        <li><a href = "topics/statistics/hypothesis-testing.html" class="topic-link">Hypothesis Testing</a></li>
+                        <li><a href = "topics/statistics/confidence-intervals.html" class="topic-link">Confidence Intervals</a></li>
+                        <li><a href = "topics/statistics/regression-and-correlation.html" class="topic-link">Regression & Correlation</a></li>
+                        <li><a href = "topics/statistics/statistical-inference.html" class="topic-link">Statistical Inference</a></li>
                     </ul>
                 </div>
 
                 <div class="roadmap-section" data-difficulty="intermediate" id="trigonometry">
                     <h3>Trigonometry <span class="difficulty intermediate">Intermediate</span></h3>
                     <ul>
-                        <li>Trigonometric Identities & Formulas</li>
-                        <li>Trigonometric Equations</li>
-                        <li>Law of Sines & Cosines</li>
-                        <li>Inverse Trigonometric Functions</li>
+                        <li><a href = "topics/trigonometry/trigonometric-identities-and-formulas.html" class="topic-link">Trigonometric Identities & Formulas</a></li>
+                        <li><a href = "topics/trigonometry/trigonometric-equations.html" class="topic-link">Trigonometric Equations</a></li>
+                        <li><a href = "topics/trigonometry/law-of-sines-and-cosines.html" class="topic-link">Law of Sines & Cosines</a></li>
+                        <li><a href = "topics/trigonometry/inverse-trigonometric-functions.html" class="topic-link">Inverse Trigonometric Functions</a></li>
                     </ul>
                 </div>
 
                 <div class="roadmap-section" data-difficulty="intermediate" id="vectors-and-coordinate-geometry">
                     <h3>Vectors and Coordinate Geometry <span class="difficulty intermediate">Intermediate</span></h3>
                     <ul>
-                        <li>Coordinate Systems</li>
-                        <li>Vector Operations (Addition, Scalar Multiplication)</li>
-                        <li>Dot & Cross Products</li>
-                        <li>Equations of Lines & Planes</li>
-                        <li>3D Coordinate Geometry</li>
+                        <li><a href = "topics/vectors-and-coordinate-geometry/coordinate-systems.html" class="topic-link">Coordinate Systems</a></li>
+                        <li><a href = "topics/vectors-and-coordinate-geometry/vector-operations.html" class="topic-link">Vector Operations (Addition, Scalar Multiplication)</a></li>
+                        <li><a href = "topics/vectors-and-coordinate-geometry/dot-and-cross-products.html" class="topic-link">Dot & Cross Products</a></li>
+                        <li><a href = "topics/vectors-and-coordinate-geometry/equations-of-lines-and-planes.html" class="topic-link">Equations of Lines & Planes</a></li>
+                        <li><a href = "topics/vectors-and-coordinate-geometry/3d-coordinate-geometry.html" class="topic-link">3D Coordinate Geometry</a></li>
                     </ul>
                 </div>
             </div>
