@@ -1,0 +1,409 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Convergence Tests - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <style>
+        .topic-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .topic-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-left: 5px solid #4acaa8;
+        }
+        
+        .topic-header {
+            color: #3d4449;
+            border-bottom: 2px solid #4acaa8;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        
+        .math-formula {
+            background: rgba(74, 202, 168, 0.1);
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #4acaa8;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            color: #333 !important;
+        }
+        
+        .example {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 4px solid #2ab8de;
+        }
+        
+        .example-title {
+            font-weight: bold;
+            color: #4acaa8;
+            margin-bottom: 10px;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+        }
+        
+        .prev-next-btn {
+            background: linear-gradient(135deg, #4acaa8, #38c4c0, #2ab8de) !important;
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(74, 202, 168, 0.2);
+            border: none;
+        }
+        
+        .prev-next-btn:hover {
+            background: linear-gradient(135deg, #3ab89a, #31b0bb, #1fa6db) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(74, 202, 168, 0.3);
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+            color: #7f888f;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5em;
+            align-items: center;
+        }
+        
+        .breadcrumb a {
+            color: #4acaa8 !important;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .breadcrumb a:hover {
+            color: #3db897 !important;
+            text-decoration: underline;
+        }
+        
+        /* Fix for text visibility */
+        .topic-section p, 
+        .topic-section li, 
+        .topic-section ul, 
+        .topic-section ol {
+            color: #333 !important;
+        }
+        
+        .topic-section h3, 
+        .topic-section h4 {
+            color: #3d4449 !important;
+        }
+        
+        .topic-section strong {
+            color: #2d3b48 !important;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub">
+                    </a>
+                </div>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../vids.html">Video Solutions</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="container">
+            <header>
+                <h2>Convergence Tests</h2>
+                <p>Techniques for determining whether infinite series converge or diverge</p>
+            </header>
+
+            <div class="box" style="margin-bottom: 1em;">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#sequences-and-series">Sequences and Series</a> &raquo;
+                    <span>Convergence Tests</span>
+                </nav>
+            </div>
+
+            <div class="topic-container">
+                <div class="topic-section">
+                    <h3 class="topic-header">Introduction to Convergence Tests</h3>
+                    
+                    <p>Determining whether an infinite series converges or diverges is a fundamental problem in calculus. While some series have well-known behaviors, such as geometric series or p-series, many others require specialized tests.</p>
+                    
+                    <p>In this lesson, we'll study various tests for convergence that help us analyze different types of series. These tests provide methods to determine convergence without calculating the exact sum of the series.</p>
+                    
+                    <p>Before applying any convergence test, remember the necessary condition for convergence: if a series Σaₙ converges, then lim(n→∞) aₙ = 0. Therefore, if lim(n→∞) aₙ ≠ 0 or the limit doesn't exist, the series diverges. However, if lim(n→∞) aₙ = 0, the series may still diverge, so further testing is required.</p>
+                </div>
+                
+                <div class="topic-section">
+                    <h3 class="topic-header">Comparison Tests</h3>
+                    
+                    <h4>Direct Comparison Test</h4>
+                    <p>The direct comparison test compares a series with another series whose convergence behavior is known.</p>
+                    
+                    <p>For series with non-negative terms:</p>
+                    <ul>
+                        <li>If 0 ≤ aₙ ≤ bₙ for all n ≥ N (some positive integer) and Σbₙ converges, then Σaₙ also converges.</li>
+                        <li>If 0 ≤ bₙ ≤ aₙ for all n ≥ N and Σbₙ diverges, then Σaₙ also diverges.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 1: Direct Comparison Test</div>
+                        <p>Determine whether the series Σ(n=1 to ∞) 1/(n² + 2) converges or diverges.</p>
+                        <p>Since n² ≤ n² + 2 for all n ≥ 1, we have 1/(n² + 2) ≤ 1/n² for all n ≥ 1.</p>
+                        <p>The series Σ(1/n²) is a p-series with p = 2 > 1, so it converges.</p>
+                        <p>Therefore, by the direct comparison test, the series Σ(1/(n² + 2)) also converges.</p>
+                    </div>
+                    
+                    <h4>Limit Comparison Test</h4>
+                    <p>The limit comparison test is useful when direct comparison is difficult. For series with positive terms:</p>
+                    
+                    <p>Consider Σaₙ and Σbₙ with aₙ > 0 and bₙ > 0 for all n ≥ N. Let:</p>
+                    <div class="math-formula">
+                        L = lim(n→∞) aₙ/bₙ
+                    </div>
+                    
+                    <ul>
+                        <li>If 0 < L < ∞ (i.e., L is finite and positive), then Σaₙ and Σbₙ either both converge or both diverge.</li>
+                        <li>If L = 0 and Σbₙ converges, then Σaₙ also converges.</li>
+                        <li>If L = ∞ and Σbₙ diverges, then Σaₙ also diverges.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 2: Limit Comparison Test</div>
+                        <p>Determine whether the series Σ(n=1 to ∞) (3n²+1)/(2n⁴+5) converges or diverges.</p>
+                        <p>Let's compare with bₙ = 1/n², which is a convergent p-series (p = 2 > 1).</p>
+                        <p>L = lim(n→∞) [(3n²+1)/(2n⁴+5)] / (1/n²) = lim(n→∞) (3n²+1)n²/(2n⁴+5) = lim(n→∞) (3n⁴+n²)/(2n⁴+5)</p>
+                        <p>As n → ∞, the highest power dominates, so L = 3/2, which is finite and positive.</p>
+                        <p>Since Σ(1/n²) converges and 0 < L < ∞, the series Σ[(3n²+1)/(2n⁴+5)] also converges.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section">
+                    <h3 class="topic-header">Integral Test</h3>
+                    
+                    <p>The integral test applies to positive, continuous, and decreasing functions. If aₙ = f(n) where f is a positive, continuous, decreasing function for x ≥ N, then:</p>
+                    <ul>
+                        <li>If ∫(N to ∞) f(x) dx converges, then Σ(n=N to ∞) aₙ converges.</li>
+                        <li>If ∫(N to ∞) f(x) dx diverges, then Σ(n=N to ∞) aₙ diverges.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 3: Integral Test</div>
+                        <p>Determine whether the series Σ(n=1 to ∞) 1/(n ln n) converges or diverges.</p>
+                        <p>Let f(x) = 1/(x ln x). This function is positive, continuous, and decreasing for x > 1.</p>
+                        <p>Evaluate the integral ∫(2 to ∞) 1/(x ln x) dx:</p>
+                        <p>Let u = ln x, then du = 1/x dx, so dx = x du.</p>
+                        <p>∫(2 to ∞) 1/(x ln x) dx = ∫(ln 2 to ∞) 1/(xu) · x du = ∫(ln 2 to ∞) 1/u du = [ln|u|](ln 2 to ∞) = ln|ln x|(2 to ∞)</p>
+                        <p>= lim(t→∞) [ln(ln t) - ln(ln 2)] = ∞ - ln(ln 2) = ∞</p>
+                        <p>Since the integral diverges, the series Σ(n=2 to ∞) 1/(n ln n) also diverges.</p>
+                        <p>Therefore, the series Σ(n=1 to ∞) 1/(n ln n) diverges.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section">
+                    <h3 class="topic-header">Ratio and Root Tests</h3>
+                    
+                    <h4>Ratio Test</h4>
+                    <p>The ratio test is especially useful for series involving factorials or exponentials. For a series Σaₙ with aₙ > 0:</p>
+                    <p>Calculate:</p>
+                    <div class="math-formula">
+                        ρ = lim(n→∞) |a(n+1)/aₙ|
+                    </div>
+                    <ul>
+                        <li>If ρ < 1, the series converges absolutely.</li>
+                        <li>If ρ > 1 or ρ = ∞, the series diverges.</li>
+                        <li>If ρ = 1, the test is inconclusive.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 4: Ratio Test</div>
+                        <p>Determine whether the series Σ(n=1 to ∞) n²/2ⁿ converges or diverges.</p>
+                        <p>ρ = lim(n→∞) |a(n+1)/aₙ| = lim(n→∞) |(n+1)²/2^(n+1)| / |n²/2ⁿ|</p>
+                        <p>= lim(n→∞) (n+1)²·2ⁿ/(n²·2^(n+1)) = lim(n→∞) (n+1)²/(n²·2) = lim(n→∞) (1+1/n)²/2</p>
+                        <p>= 1/2 < 1</p>
+                        <p>Since ρ < 1, the series converges absolutely.</p>
+                    </div>
+                    
+                    <h4>Root Test</h4>
+                    <p>The root test is particularly useful for series where the terms involve powers. For a series Σaₙ:</p>
+                    <p>Calculate:</p>
+                    <div class="math-formula">
+                        ρ = lim(n→∞) |aₙ|^(1/n)
+                    </div>
+                    <ul>
+                        <li>If ρ < 1, the series converges absolutely.</li>
+                        <li>If ρ > 1 or ρ = ∞, the series diverges.</li>
+                        <li>If ρ = 1, the test is inconclusive.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 5: Root Test</div>
+                        <p>Determine whether the series Σ(n=1 to ∞) (2n/n!)^n converges or diverges.</p>
+                        <p>ρ = lim(n→∞) |(2n/n!)^n|^(1/n) = lim(n→∞) |2n/n!|</p>
+                        <p>Using Stirling's approximation for large n: n! ~ √(2πn)(n/e)ⁿ</p>
+                        <p>ρ = lim(n→∞) 2n/[√(2πn)(n/e)ⁿ] = lim(n→∞) 2n/[√(2πn)n^n·e^(-n)]</p>
+                        <p>= lim(n→∞) 2n·e^n/[√(2πn)n^n] = lim(n→∞) 2e^n/[√(2πn)n^(n-1)]</p>
+                        <p>As n → ∞, this approaches 0, so ρ = 0 < 1.</p>
+                        <p>Therefore, the series converges absolutely.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section">
+                    <h3 class="topic-header">Alternating Series Test</h3>
+                    
+                    <p>The alternating series test (also known as Leibniz's test) applies to series of the form Σ(−1)ⁿaₙ or Σ(−1)^(n+1)aₙ, where aₙ > 0.</p>
+                    
+                    <p>If:</p>
+                    <ol>
+                        <li>aₙ > a(n+1) for all n ≥ N (i.e., {aₙ} is decreasing), and</li>
+                        <li>lim(n→∞) aₙ = 0</li>
+                    </ol>
+                    <p>Then the alternating series converges.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 6: Alternating Series Test</div>
+                        <p>Determine whether the series Σ(n=1 to ∞) (−1)^(n+1)/n² converges or diverges.</p>
+                        <p>Here, aₙ = 1/n².</p>
+                        <p>1. The sequence {1/n²} is decreasing for n ≥ 1.</p>
+                        <p>2. lim(n→∞) 1/n² = 0.</p>
+                        <p>Therefore, by the alternating series test, the series converges.</p>
+                        <p>Note: The series also converges absolutely since Σ(1/n²) converges.</p>
+                    </div>
+                    
+                    <p>The alternating series test only tells us about convergence, not absolute convergence. A series may converge conditionally (when the series converges but the series of absolute values diverges).</p>
+                </div>
+                
+                <div class="topic-section">
+                    <h3 class="topic-header">Absolute and Conditional Convergence</h3>
+                    
+                    <h4>Definitions</h4>
+                    <p>For a series Σaₙ:</p>
+                    <ul>
+                        <li><strong>Absolute Convergence:</strong> The series Σ|aₙ| converges.</li>
+                        <li><strong>Conditional Convergence:</strong> The series Σaₙ converges, but Σ|aₙ| diverges.</li>
+                    </ul>
+                    
+                    <p>If a series converges absolutely, it also converges. However, a convergent series may not converge absolutely.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 7: Absolute vs. Conditional Convergence</div>
+                        <p>Consider the alternating harmonic series Σ(n=1 to ∞) (−1)^(n+1)/n = 1 - 1/2 + 1/3 - 1/4 + ...</p>
+                        <p>The series of absolute values is Σ(n=1 to ∞) |(-1)^(n+1)/n| = Σ(n=1 to ∞) 1/n, which is the harmonic series and diverges.</p>
+                        <p>However, the alternating harmonic series satisfies the conditions of the alternating series test:</p>
+                        <p>1. The sequence {1/n} is decreasing for n ≥ 1.</p>
+                        <p>2. lim(n→∞) 1/n = 0.</p>
+                        <p>Therefore, the alternating harmonic series converges, but not absolutely. It is conditionally convergent.</p>
+                    </div>
+                    
+                    <p>Absolute convergence is a stronger property than conditional convergence. Absolutely convergent series are well-behaved—their terms can be rearranged without affecting the sum.</p>
+                </div>
+                
+                <div class="topic-section">
+                    <h3 class="topic-header">Choosing the Right Test</h3>
+                    
+                    <p>Selecting the appropriate convergence test depends on the characteristics of the series. Here are some guidelines:</p>
+                    
+                    <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                        <tr style="background-color: #f5f5f5;">
+                            <th style="border: 1px solid #ddd; padding: 10px;">Type of Series</th>
+                            <th style="border: 1px solid #ddd; padding: 10px;">Recommended Test</th>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Series with factorials or exponentials</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Ratio Test</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Series with terms raised to powers</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Root Test</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Series comparable to p-series or geometric series</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Comparison Tests</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Series with terms that are rational functions of n</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Limit Comparison Test with appropriate p-series</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Series with terms defined by continuous, decreasing functions</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Integral Test</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Series with alternating signs</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Alternating Series Test</td>
+                        </tr>
+                    </table>
+                    
+                    <p>Often, multiple tests may apply to a given series. It's usually best to choose the test that makes the calculation simplest.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 8: Choosing the Right Test</div>
+                        <p>Determine whether the series Σ(n=1 to ∞) n/(3n²+1) converges or diverges.</p>
+                        <p>This series involves a rational function of n. We could use the limit comparison test with a p-series.</p>
+                        <p>As n gets large, n/(3n²+1) ≈ n/(3n²) = 1/(3n), which resembles the harmonic series 1/n with p = 1.</p>
+                        <p>Let's apply the limit comparison test with bₙ = 1/n:</p>
+                        <p>L = lim(n→∞) [n/(3n²+1)] / (1/n) = lim(n→∞) n²/(3n²+1) = 1/3</p>
+                        <p>Since L is finite and positive, and Σ(1/n) diverges, the given series also diverges.</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <a href="infinite-series.html" class="prev-next-btn">Previous: Infinite Series</a>
+                    <a href="power-series.html" class="prev-next-btn">Next: Power Series</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 
