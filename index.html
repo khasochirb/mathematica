@@ -8,6 +8,27 @@
 		<meta name="author" content="IntlMathHub Team" />
 		<link rel="stylesheet" href="assets/css/first.css" />
 		<link rel="stylesheet" href="assets/css/improvements.css" />
+		<!-- Additional styles to ensure the mobile menu toggle is hidden -->
+		<style>
+			/* Hide mobile menu toggle button with highest priority */
+			#titleBar, #navPanel {
+				display: none !important;
+				visibility: hidden !important;
+				opacity: 0 !important;
+				pointer-events: none !important;
+			}
+			
+			/* Prevent any transforms from mobile menu */
+			body.navPanel-visible #page-wrapper,
+			body.navPanel-visible #titleBar {
+				transform: none !important;
+			}
+			
+			/* Ensure navigation is always visible */
+			#nav {
+				display: block !important;
+			}
+		</style>
 		<style>
 			.fullscreen-section {
 				padding: 4em 0;
@@ -92,14 +113,7 @@
 			<!-- Feature section-->
 			<section class="box special features">
 				<div class="features-row">
-					<section>
-						<span class="icon solid major fa-road accent2"></span>
-						<h3>Mathematics Roadmap</h3>
-						<p>Follow a structured learning path with our comprehensive mathematics roadmap, covering essential topics from foundation to advanced levels.</p>
-						<footer>
-							<a href="features.html" class="button alt">Explore Roadmap</a>
-						</footer>
-					</section>
+					
 					<section>
 						<span class="icon solid major fa-book accent3"></span>
 						<h3>Learning Resources</h3>
@@ -200,7 +214,7 @@
 			<!-- CTA section -->
 			<section id="cta">
 				<h2>Ready to start your mathematical journey?</h2>
-				<p>Explore our comprehensive resources and start learning today.</p>
+				
 				<div class="row">
 					<div class="col-6 col-12-mobilep">
 						<ul class="actions stacked">
