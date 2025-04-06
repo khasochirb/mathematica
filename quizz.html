@@ -6,7 +6,26 @@
     <title>Sample Test</title>
     <link rel="stylesheet" href="assets/css/first.css" />
     <link rel="stylesheet" href="assets/css/improvements.css" />
+    <!-- Additional styles to ensure the mobile menu toggle is hidden -->
     <style>
+        /* Hide mobile menu toggle button with highest priority */
+        #titleBar, #navPanel {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        
+        /* Prevent any transforms from mobile menu */
+        body.navPanel-visible #page-wrapper,
+        body.navPanel-visible #titleBar {
+            transform: none !important;
+        }
+        
+        /* Ensure navigation is always visible */
+        #nav {
+            display: block !important;
+        }
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
@@ -221,8 +240,8 @@
         const quizzes = [
             [
                 { question: "images/question1.png", options: ["13", "14", "14.4", "-14", "-13"], correct: 1 },
-                { question: "images/question2.png", options: ["5,200,000", "7.052 × 10^6", "4.52 × 10^5", "5.52 × 10^6", "6.5 × 10^6"], correct: 1 },
-                { question: "images/question3.png", options: ["9/25", "94/25", "196/25", "194/25", "96/25"], correct: 2 },
+                { question: "images/question2.png", options: ["5,200,000", "5.2 × 10^6", "4.52 × 10^5", "5.52 × 10^6", "6.5 × 10^6"], correct: 1 },
+                { question: "images/question3.png", options: ["9/25", "94/25", "169/25", "194/25", "96/25"], correct: 2 },
                 { question: "images/question4.png", options: ["15", "25", "5", "45", "225"], correct: 0 },
                 { question: "images/question5.png", options: ["2", "x²", "2x", "1", "x² + x + C"], correct: 0 },
                 { question: "images/question6.png", options: ["(-∞, 0)", "[0, +∞)", "(-∞, +∞)", "(-∞, 2)", "(2, +∞)"], correct: 1 },
