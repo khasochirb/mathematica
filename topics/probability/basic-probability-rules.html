@@ -1,0 +1,411 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Basic Probability Rules - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <style>
+        .topic-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .topic-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-left: 5px solid #4acaa8;
+        }
+        
+        .topic-header {
+            color: #3d4449;
+            border-bottom: 2px solid #4acaa8;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        
+        .math-formula {
+            background: rgba(74, 202, 168, 0.1);
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #4acaa8;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            color: #333 !important;
+        }
+        
+        .example {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 4px solid #2ab8de;
+        }
+        
+        .example-title {
+            font-weight: bold;
+            color: #4acaa8;
+            margin-bottom: 10px;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+        }
+        
+        .prev-next-btn {
+            background: linear-gradient(135deg, #4acaa8, #38c4c0, #2ab8de) !important;
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(74, 202, 168, 0.2);
+            border: none;
+        }
+        
+        .prev-next-btn:hover {
+            background: linear-gradient(135deg, #3ab89a, #31b0bb, #1fa6db) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(74, 202, 168, 0.3);
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+            color: #7f888f;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5em;
+            align-items: center;
+        }
+        
+        .breadcrumb a {
+            color: #4acaa8 !important;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .breadcrumb a:hover {
+            color: #3db897 !important;
+            text-decoration: underline;
+        }
+        
+        /* Fix for text visibility */
+        .topic-section p, 
+        .topic-section li, 
+        .topic-section ul, 
+        .topic-section ol {
+            color: #333 !important;
+        }
+        
+        .topic-section h3, 
+        .topic-section h4 {
+            color: #3d4449 !important;
+        }
+        
+        .topic-section strong {
+            color: #2d3b48 !important;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub">
+                    </a>
+                </div>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../vids.html">Video Solutions</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="container">
+            <header>
+                <h2>Basic Probability Rules</h2>
+                <p>Fundamental principles for measuring uncertainty and analyzing random phenomena</p>
+            </header>
+
+            <div class="box" style="margin-bottom: 1em;">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#probability">Probability</a> &raquo;
+                    <span>Basic Probability Rules</span>
+                </nav>
+            </div>
+
+            <div class="topic-container">
+                <div class="topic-section">
+                    <h3 class="topic-header">Introduction to Probability</h3>
+                    
+                    <p>Probability is the branch of mathematics concerned with numerical descriptions of how likely an event is to occur or how likely a proposition is to be true. The higher the probability of an event, the more likely it is to occur.</p>
+                    
+                    <h4>Historical Development</h4>
+                    <p>The mathematical theory of probability has its roots in the attempts to analyze games of chance by Gerolamo Cardano (16th century), Pierre de Fermat and Blaise Pascal (17th century). Today, probability theory has applications in numerous fields, including statistics, physics, engineering, biology, economics, and computer science.</p>
+                    
+                    <h4>Key Terminology</h4>
+                    <ul>
+                        <li><strong>Experiment:</strong> Any procedure that can be repeated and has a well-defined set of possible outcomes.</li>
+                        <li><strong>Sample Space (Ω):</strong> The set of all possible outcomes of an experiment.</li>
+                        <li><strong>Event:</strong> A subset of the sample space, representing a collection of outcomes.</li>
+                        <li><strong>Probability:</strong> A numerical measure of the likelihood of an event, ranging from 0 (impossible) to 1 (certain).</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Coin Toss Experiment</div>
+                        <p>For a single coin toss:</p>
+                        <p>The sample space is Ω = {Heads, Tails}.</p>
+                        <p>The event "getting heads" is E = {Heads}.</p>
+                        <p>If the coin is fair, the probability of getting heads is P(E) = 0.5 or 1/2.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section">
+                    <h3 class="topic-header">Probability Axioms and Basic Properties</h3>
+                    
+                    <p>Modern probability theory is based on a set of axioms proposed by Andrey Kolmogorov in 1933. These axioms serve as the foundation for all probability calculations.</p>
+                    
+                    <h4>Kolmogorov's Axioms</h4>
+                    <p>For a probability measure P on a sample space Ω:</p>
+                    <ol>
+                        <li><strong>Non-negativity:</strong> For any event A, P(A) ≥ 0.</li>
+                        <li><strong>Normalization:</strong> The probability of the entire sample space is 1, i.e., P(Ω) = 1.</li>
+                        <li><strong>Countable Additivity:</strong> For a countable collection of pairwise disjoint events A₁, A₂, A₃, ..., the probability of their union equals the sum of their individual probabilities: P(A₁ ∪ A₂ ∪ A₃ ∪ ...) = P(A₁) + P(A₂) + P(A₃) + ...</li>
+                    </ol>
+                    
+                    <h4>Basic Properties</h4>
+                    <p>From these axioms, several useful properties can be derived:</p>
+                    <div class="math-formula">
+                        P(∅) = 0 (The probability of an impossible event is 0)<br>
+                        P(A') = 1 - P(A) (The probability of the complement of A)<br>
+                        If A ⊆ B, then P(A) ≤ P(B) (Monotonicity)<br>
+                        P(A ∪ B) = P(A) + P(B) - P(A ∩ B) (Addition rule)
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Applying Basic Properties</div>
+                        <p>In a deck of 52 cards, find the probability of drawing either a heart or a face card (J, Q, K).</p>
+                        <p>Let A = event of drawing a heart, and B = event of drawing a face card.</p>
+                        <p>P(A) = 13/52 = 1/4 (There are 13 hearts in a deck)</p>
+                        <p>P(B) = 12/52 = 3/13 (There are 12 face cards in a deck: 3 in each suit)</p>
+                        <p>P(A ∩ B) = 3/52 (There are 3 face cards that are also hearts)</p>
+                        <p>Using the addition rule: P(A ∪ B) = P(A) + P(B) - P(A ∩ B) = 1/4 + 3/13 - 3/52 = 13/52 + 12/52 - 3/52 = 22/52 = 11/26</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section">
+                    <h3 class="topic-header">Probability Calculation Methods</h3>
+                    
+                    <h4>Classical Probability (Equally Likely Outcomes)</h4>
+                    <p>When all outcomes in the sample space are equally likely, the probability of an event A is calculated as:</p>
+                    <div class="math-formula">
+                        P(A) = Number of favorable outcomes / Total number of possible outcomes
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Dice Roll</div>
+                        <p>When rolling a fair six-sided die, the probability of getting an even number is:</p>
+                        <p>P(even) = |{2, 4, 6}| / |{1, 2, 3, 4, 5, 6}| = 3/6 = 1/2</p>
+                    </div>
+                    
+                    <h4>Relative Frequency Approach</h4>
+                    <p>In this approach, probability is estimated based on observed frequency in repeated trials:</p>
+                    <div class="math-formula">
+                        P(A) ≈ Number of times A occurred / Total number of trials
+                    </div>
+                    
+                    <p>As the number of trials increases, the relative frequency tends to converge to the true probability (Law of Large Numbers).</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Relative Frequency</div>
+                        <p>In 1000 tosses of a coin, heads appeared 513 times. The estimated probability of heads is:</p>
+                        <p>P(heads) ≈ 513/1000 = 0.513</p>
+                        <p>This suggests the coin might be slightly biased toward heads, but more trials would be needed to confirm this.</p>
+                    </div>
+                    
+                    <h4>Subjective Probability</h4>
+                    <p>Subjective probability represents a personal judgment about the likelihood of an event, often used when classical or frequency approaches are not applicable.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Subjective Probability</div>
+                        <p>A meteorologist might assign a 70% probability of rain tomorrow based on current atmospheric conditions, historical data, and professional experience.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section">
+                    <h3 class="topic-header">Probability Rules and Formulas</h3>
+                    
+                    <h4>Complement Rule</h4>
+                    <p>The probability of an event not occurring is one minus the probability of the event occurring:</p>
+                    <div class="math-formula">
+                        P(A') = 1 - P(A)
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Complement Rule</div>
+                        <p>If the probability of winning a game is 0.3, the probability of not winning is:</p>
+                        <p>P(not winning) = 1 - P(winning) = 1 - 0.3 = 0.7</p>
+                    </div>
+                    
+                    <h4>Addition Rule (Union of Events)</h4>
+                    <p>For any two events A and B:</p>
+                    <div class="math-formula">
+                        P(A ∪ B) = P(A) + P(B) - P(A ∩ B)
+                    </div>
+                    <p>For mutually exclusive events (A ∩ B = ∅), this simplifies to:</p>
+                    <div class="math-formula">
+                        P(A ∪ B) = P(A) + P(B)
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Addition Rule</div>
+                        <p>In a class, 60% of students study mathematics, 40% study physics, and 25% study both. What percentage of students study either mathematics or physics?</p>
+                        <p>P(Math ∪ Physics) = P(Math) + P(Physics) - P(Math ∩ Physics) = 0.6 + 0.4 - 0.25 = 0.75</p>
+                        <p>Therefore, 75% of students study either mathematics or physics.</p>
+                    </div>
+                    
+                    <h4>Multiplication Rule (Intersection of Events)</h4>
+                    <p>For any two events A and B:</p>
+                    <div class="math-formula">
+                        P(A ∩ B) = P(A|B) × P(B) = P(B|A) × P(A)
+                    </div>
+                    <p>where P(A|B) is the conditional probability of A given B.</p>
+                    <p>For independent events, this simplifies to:</p>
+                    <div class="math-formula">
+                        P(A ∩ B) = P(A) × P(B)
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Multiplication Rule</div>
+                        <p>If two dice are rolled, what is the probability of getting a 6 on both dice?</p>
+                        <p>The events are independent, so:</p>
+                        <p>P(first die shows 6 and second die shows 6) = P(first die shows 6) × P(second die shows 6) = 1/6 × 1/6 = 1/36</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section">
+                    <h3 class="topic-header">Independence and Dependence</h3>
+                    
+                    <h4>Independent Events</h4>
+                    <p>Two events A and B are independent if the occurrence of one does not affect the probability of the other. Mathematically, events A and B are independent if and only if:</p>
+                    <div class="math-formula">
+                        P(A ∩ B) = P(A) × P(B)
+                    </div>
+                    <p>Equivalently, A and B are independent if:</p>
+                    <div class="math-formula">
+                        P(A|B) = P(A) or P(B|A) = P(B)
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Independent Events</div>
+                        <p>Consider tossing a coin twice. Let A be the event "first toss is heads" and B be the event "second toss is heads".</p>
+                        <p>P(A) = 1/2, P(B) = 1/2, and P(A ∩ B) = 1/4</p>
+                        <p>Since P(A ∩ B) = P(A) × P(B) = 1/2 × 1/2 = 1/4, events A and B are independent.</p>
+                    </div>
+                    
+                    <h4>Dependent Events</h4>
+                    <p>Events are dependent if the occurrence of one affects the probability of the other. For dependent events:</p>
+                    <div class="math-formula">
+                        P(A ∩ B) ≠ P(A) × P(B)
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Dependent Events</div>
+                        <p>Drawing cards from a deck without replacement: Let A be "first card is a heart" and B be "second card is a heart".</p>
+                        <p>P(A) = 13/52 = 1/4</p>
+                        <p>P(B|A) = 12/51 (After drawing a heart, 12 hearts remain out of 51 cards)</p>
+                        <p>P(A ∩ B) = P(A) × P(B|A) = 1/4 × 12/51 = 12/204 = 1/17</p>
+                        <p>Since P(A ∩ B) ≠ P(A) × P(B) (note that P(B) would be 1/4), events A and B are dependent.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section">
+                    <h3 class="topic-header">Counting Methods in Probability</h3>
+                    
+                    <h4>Basic Counting Principle</h4>
+                    <p>If there are m ways to perform task 1 and n ways to perform task 2, then there are m × n ways to perform both tasks in sequence.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Basic Counting Principle</div>
+                        <p>A restaurant offers 5 appetizers, 8 main courses, and 4 desserts. How many different three-course meals are possible?</p>
+                        <p>Number of possible meals = 5 × 8 × 4 = 160</p>
+                    </div>
+                    
+                    <h4>Permutations</h4>
+                    <p>A permutation is an arrangement of objects in a specific order. The number of permutations of n distinct objects is:</p>
+                    <div class="math-formula">
+                        P(n) = n! = n × (n-1) × (n-2) × ... × 2 × 1
+                    </div>
+                    <p>The number of permutations of r objects selected from n distinct objects is:</p>
+                    <div class="math-formula">
+                        P(n,r) = n! / (n-r)! = n × (n-1) × ... × (n-r+1)
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Permutations</div>
+                        <p>In how many ways can 3 people be selected from a group of 10 people to fill the positions of president, vice president, and secretary?</p>
+                        <p>P(10,3) = 10! / (10-3)! = 10! / 7! = 10 × 9 × 8 = 720</p>
+                    </div>
+                    
+                    <h4>Combinations</h4>
+                    <p>A combination is a selection of objects without regard to order. The number of ways to select r objects from n distinct objects is:</p>
+                    <div class="math-formula">
+                        C(n,r) = n! / (r! × (n-r)!) = P(n,r) / r!
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Combinations</div>
+                        <p>In how many ways can a committee of 3 people be formed from a group of 10 people?</p>
+                        <p>C(10,3) = 10! / (3! × 7!) = 10 × 9 × 8 / (3 × 2 × 1) = 720 / 6 = 120</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <a href="../../features.html#probability" class="prev-next-btn">Mathematics Roadmap</a>
+                    <a href="conditional-probability.html" class="prev-next-btn">Next: Conditional Probability</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 
