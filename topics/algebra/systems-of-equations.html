@@ -1,0 +1,261 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Systems of Equations - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Systems of Equations</h2>
+                <p>Solving multiple equations simultaneously and their applications</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#algebra">Algebra</a> &raquo;
+                    <span>Systems of Equations</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Systems of Equations</h3>
+                    
+                    <p>A system of equations consists of two or more equations with multiple variables that are to be solved simultaneously. The solution to a system is the set of values for the variables that satisfies all equations in the system.</p>
+                    
+                    <h4>Types of Systems of Equations</h4>
+                    <ul>
+                        <li><strong>Linear Systems:</strong> All equations in the system are linear (e.g., 2x + 3y = 7 and 4x - y = 5)</li>
+                        <li><strong>Nonlinear Systems:</strong> At least one equation in the system is nonlinear (e.g., x² + y² = 25 and y = x + 5)</li>
+                    </ul>
+                    
+                    <h4>Number of Solutions</h4>
+                    <p>A system of equations can have:</p>
+                    <ul>
+                        <li><strong>Exactly one solution:</strong> The equations intersect at exactly one point</li>
+                        <li><strong>Infinitely many solutions:</strong> The equations represent the same relationship (dependent equations)</li>
+                        <li><strong>No solution:</strong> The equations are contradictory (inconsistent system)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Simple Linear System</div>
+                        <p>Solve the system:</p>
+                        <p>2x + y = 5</p>
+                        <p>3x - y = 4</p>
+                        <p><strong>Using Substitution:</strong></p>
+                        <p>From the first equation: y = 5 - 2x</p>
+                        <p>Substitute into the second equation: 3x - (5 - 2x) = 4</p>
+                        <p>3x - 5 + 2x = 4</p>
+                        <p>5x - 5 = 4</p>
+                        <p>5x = 9</p>
+                        <p>x = 9/5</p>
+                        <p>Substitute back: y = 5 - 2(9/5) = 5 - 18/5 = 7/5</p>
+                        <p>Solution: (9/5, 7/5)</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Solving Linear Systems</h3>
+                    
+                    <p>There are several methods for solving systems of linear equations:</p>
+                    
+                    <h4>1. Substitution Method</h4>
+                    <ol>
+                        <li>Solve one equation for one variable in terms of the others</li>
+                        <li>Substitute this expression into the other equation(s)</li>
+                        <li>Solve the resulting equation</li>
+                        <li>Back-substitute to find the value of the other variable(s)</li>
+                    </ol>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Substitution Method</div>
+                        <p>Solve the system:</p>
+                        <p>2x + y = 7 ... (1)</p>
+                        <p>x - y = 1 ... (2)</p>
+                        <p>Step 1: Solve equation (2) for y: y = x - 1</p>
+                        <p>Step 2: Substitute into equation (1): 2x + (x - 1) = 7</p>
+                        <p>Step 3: Solve: 3x - 1 = 7, so 3x = 8, giving x = 8/3</p>
+                        <p>Step 4: Back-substitute: y = 8/3 - 1 = 5/3</p>
+                        <p>Solution: (x, y) = (8/3, 5/3)</p>
+                    </div>
+                    
+                    <h4>2. Elimination Method</h4>
+                    <ol>
+                        <li>Multiply one or both equations by constants to make the coefficients of one variable match in magnitude but opposite in sign</li>
+                        <li>Add the equations to eliminate that variable</li>
+                        <li>Solve the resulting equation for the remaining variable</li>
+                        <li>Substitute back to find the eliminated variable</li>
+                    </ol>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Elimination Method</div>
+                        <p>Solve the system:</p>
+                        <p>3x + 2y = 7 ... (1)</p>
+                        <p>5x - 2y = 3 ... (2)</p>
+                        <p>Step 1: Add equations (1) and (2): 8x = 10</p>
+                        <p>Step 2: Solve for x: x = 5/4</p>
+                        <p>Step 3: Substitute into equation (1): 3(5/4) + 2y = 7</p>
+                        <p>Step 4: Solve for y: 15/4 + 2y = 7, so 2y = 7 - 15/4 = 28/4 - 15/4 = 13/4, giving y = 13/8</p>
+                        <p>Solution: (x, y) = (5/4, 13/8)</p>
+                    </div>
+                    
+                    <h4>3. Matrix Methods</h4>
+                    <p>For larger systems, matrix methods such as Gaussian elimination, Gauss-Jordan elimination, or using matrix inverses are often more efficient. These techniques are beyond the scope of this basic introduction.</p>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Graphical Interpretation</h3>
+                    
+                    <p class="text-secondary">Geometrically, a system of equations in two variables can be visualized as the intersection of curves in the Cartesian plane:</p>
+                    
+                    <ul>
+                        <li><strong>Exactly one solution:</strong> The curves intersect at exactly one point</li>
+                        <li><strong>Infinitely many solutions:</strong> The curves coincide (same equation)</li>
+                        <li><strong>No solution:</strong> The curves never intersect (e.g., parallel lines)</li>
+                    </ul>
+                    
+                    <h4>In Three Dimensions</h4>
+                    <p>For a system with three variables, each equation represents a plane in 3D space. The solution to the system is the intersection of these planes:</p>
+                    <ul>
+                        <li>Three planes can intersect at a single point (unique solution)</li>
+                        <li>Three planes can intersect along a line (infinitely many solutions)</li>
+                        <li>Three planes can intersect at an entire plane (infinitely many solutions)</li>
+                        <li>Three planes may have no common intersection point (no solution)</li>
+                    </ul>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Solving Nonlinear Systems</h3>
+                    
+                    <p>When dealing with nonlinear systems, the techniques become more varied and sometimes more complex:</p>
+                    
+                    <h4>Common Methods</h4>
+                    <ul>
+                        <li><strong>Substitution:</strong> Similar to linear systems, but may lead to higher-degree equations</li>
+                        <li><strong>Elimination:</strong> May require algebraic manipulation before variables can be eliminated</li>
+                        <li><strong>Graphical Method:</strong> Finding intersection points of curves</li>
+                        <li><strong>Numerical Methods:</strong> For complex systems that cannot be solved algebraically</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Nonlinear System</div>
+                        <p>Solve the system:</p>
+                        <p>x² + y² = 25 ... (1)</p>
+                        <p>y = x + 5 ... (2)</p>
+                        <p>Step 1: Substitute equation (2) into equation (1): x² + (x + 5)² = 25</p>
+                        <p>Step 2: Expand: x² + x² + 10x + 25 = 25</p>
+                        <p>Step 3: Simplify: 2x² + 10x = 0</p>
+                        <p>Step 4: Factor: 2x(x + 5) = 0</p>
+                        <p>Step 5: Solve: x = 0 or x = -5</p>
+                        <p>Step 6: Substitute into equation (2):
+                            <br>If x = 0, then y = 0 + 5 = 5
+                            <br>If x = -5, then y = -5 + 5 = 0</p>
+                        <p>Solutions: (0, 5) and (-5, 0)</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications of Systems of Equations</h3>
+                    
+                    <p>Systems of equations model various real-world scenarios where multiple conditions or constraints exist simultaneously:</p>
+                    
+                    <h4>Mixture Problems</h4>
+                    <p>Problems involving mixtures of different substances or solutions at different concentrations.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Mixture Problem</div>
+                        <p>A Mongolian dairy farmer needs to mix two types of milk to create a traditional airag (fermented mare's milk) with 4% fat content. She has 100 liters of milk with 3% fat and some milk with 5% fat. How many liters of the 5% fat milk should she add to get the desired mixture?</p>
+                        <p>Let x be the liters of 5% fat milk needed.</p>
+                        <p>Total volume: 100 + x liters</p>
+                        <p>Total fat: 3(100) + 5x = 300 + 5x grams</p>
+                        <p>Desired fat content: 4%</p>
+                        <p>Equation: (300 + 5x)/(100 + x) = 4</p>
+                        <p>300 + 5x = 400 + 4x</p>
+                        <p>x = 100</p>
+                        <p>The farmer should add 100 liters of 5% fat milk to get the desired 4% fat content in the airag.</p>
+                    </div>
+                    
+                    <h4>Motion Problems</h4>
+                    <p>Problems involving speed, distance, and time relationships for moving objects.</p>
+                    
+                    <h4>Financial Applications</h4>
+                    <p>Problems involving investments with different interest rates, pricing with constraints, or cost-revenue analysis.</p>
+                    
+                    <h4>Economics</h4>
+                    <p>Supply and demand systems, market equilibrium, input-output models, and linear programming problems.</p>
+                    
+                    <h4>Engineering</h4>
+                    <p>Circuit analysis (Kirchhoff's laws), static equilibrium problems, and material balance equations.</p>
+                    
+                    <div class="navigation">
+                        <a href="linear-and-quadratic-equations.html" class="prev-next-btn">Previous: Linear & Quadratic Equations</a>
+                        <a href="../../features.html#combinatorics" class="prev-next-btn">Next: Combinatorics</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

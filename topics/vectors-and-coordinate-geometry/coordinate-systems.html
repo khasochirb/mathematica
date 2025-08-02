@@ -1,0 +1,339 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Coordinate Systems - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Coordinate Systems</h2>
+                <p class="text-secondary">Understanding mathematical frameworks for spatial representation</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#vectors-and-coordinate-geometry">Vectors and Coordinate Geometry</a> &raquo;
+                    <span>Coordinate Systems</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Coordinate Systems</h3>
+                    
+                    <p>A coordinate system is a mathematical framework that uses one or more numbers, called coordinates, to uniquely determine the position of points or other geometric elements in a space. Coordinate systems provide a systematic way to describe locations and analyze geometric relationships algebraically.</p>
+                    
+                    <p>The choice of a coordinate system depends on the geometry of the problem and can significantly simplify calculations. This page explores various coordinate systems and their applications in mathematics and physics.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Historical Context</div>
+                        <p>The Cartesian coordinate system, the most familiar coordinate system, was developed in the 17th century by René Descartes and independently by Pierre de Fermat. This system revolutionized mathematics by allowing geometric problems to be solved algebraically, leading to the development of analytic geometry.</p>
+                        <p>Other coordinate systems, like polar coordinates, were formalized later to solve specific problems more efficiently. Together, these different ways of representing space form the foundation of modern coordinate geometry.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Cartesian Coordinate System</h3>
+                    
+                    <p>The Cartesian coordinate system (also called the rectangular coordinate system) is defined by perpendicular axes intersecting at the origin. Points are located by their distance from the origin along each axis.</p>
+                    
+                    <h4>Two-Dimensional Cartesian Coordinates</h4>
+                    <p>In two dimensions, the Cartesian coordinate system consists of:</p>
+                    <ul>
+                        <li>Two perpendicular number lines (x-axis and y-axis) that intersect at the origin (0,0)</li>
+                        <li>The horizontal axis is typically the x-axis, and the vertical axis is the y-axis</li>
+                        <li>A point is represented by an ordered pair (x,y), where x and y are the distances from the origin along the respective axes</li>
+                    </ul>
+                    
+                    <h4>Three-Dimensional Cartesian Coordinates</h4>
+                    <p>In three dimensions, the Cartesian coordinate system consists of:</p>
+                    <ul>
+                        <li>Three mutually perpendicular axes (x, y, and z) that intersect at the origin (0,0,0)</li>
+                        <li>A point is represented by an ordered triple (x,y,z)</li>
+                        <li>The axes typically follow the right-hand rule: if the index finger points along the positive x-axis and the middle finger along the positive y-axis, the thumb indicates the positive z-axis</li>
+                    </ul>
+                    
+                    <h4>Distance Formula</h4>
+                    <p>The distance between two points in a Cartesian coordinate system is calculated using the Pythagorean theorem:</p>
+                    
+                    <div class="math-formula">
+                        <p><strong>2D:</strong> d = √[(x₂ - x₁)² + (y₂ - y₁)²]</p>
+                        <p><strong>3D:</strong> d = √[(x₂ - x₁)² + (y₂ - y₁)² + (z₂ - z₁)²]</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 1: Distance Between Points</div>
+                        <p>Find the distance between the points A(3,4) and B(6,8) in a 2D Cartesian coordinate system.</p>
+                        <p><strong>Solution:</strong></p>
+                        <p>Using the distance formula:</p>
+                        <p>d = √[(6 - 3)² + (8 - 4)²] = √[3² + 4²] = √[9 + 16] = √25 = 5</p>
+                        <p>The distance between points A and B is 5 units.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Polar Coordinate System</h3>
+                    
+                    <p>The polar coordinate system is a two-dimensional coordinate system where each point is determined by a distance from the origin (the pole) and an angle from a reference direction (the polar axis).</p>
+                    
+                    <h4>Components of the Polar Coordinate System</h4>
+                    <ul>
+                        <li><strong>Pole:</strong> The fixed point serving as the origin</li>
+                        <li><strong>Polar axis:</strong> A fixed direction from the pole, usually the positive x-axis</li>
+                        <li><strong>Radial coordinate (r):</strong> The distance from the pole to the point</li>
+                        <li><strong>Angular coordinate (θ):</strong> The angle between the polar axis and the line from the pole to the point, usually measured counterclockwise</li>
+                    </ul>
+                    
+                    <h4>Conversion Between Cartesian and Polar Coordinates</h4>
+                    <div class="math-formula">
+                        <p><strong>Polar to Cartesian:</strong></p>
+                        <p>x = r cos(θ)</p>
+                        <p>y = r sin(θ)</p>
+                        <br>
+                        <p><strong>Cartesian to Polar:</strong></p>
+                        <p>r = √(x² + y²)</p>
+                        <p>θ = tan⁻¹(y/x), with appropriate quadrant adjustment</p>
+                    </div>
+                    
+                    <h4>Multiple Representations in Polar Coordinates</h4>
+                    <p>A point in polar coordinates does not have a unique representation because:</p>
+                    <ul>
+                        <li>Adding 2π to the angular coordinate gives the same point: (r, θ) = (r, θ + 2π)</li>
+                        <li>Negative r values with an angle adjustment also represent the same point: (r, θ) = (-r, θ + π)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 2: Converting Between Coordinate Systems</div>
+                        <p><strong>Problem:</strong> Convert the polar coordinates (4, π/3) to Cartesian coordinates.</p>
+                        <p><strong>Solution:</strong></p>
+                        <p>Using the conversion formulas:</p>
+                        <p>x = r cos(θ) = 4 cos(π/3) = 4 × (1/2) = 2</p>
+                        <p>y = r sin(θ) = 4 sin(π/3) = 4 × (√3/2) = 2√3 ≈ 3.46</p>
+                        <p>Therefore, the Cartesian coordinates are (2, 2√3).</p>
+                        <br>
+                        <p><strong>Problem:</strong> Convert the Cartesian coordinates (3, -3) to polar coordinates.</p>
+                        <p><strong>Solution:</strong></p>
+                        <p>r = √(x² + y²) = √(3² + (-3)²) = √(9 + 9) = √18 = 3√2</p>
+                        <p>θ = tan⁻¹(y/x) = tan⁻¹(-3/3) = tan⁻¹(-1) = -π/4</p>
+                        <p>Since the point is in the fourth quadrant (x > 0, y < 0), this is the correct angle.</p>
+                        <p>Therefore, the polar coordinates are (3√2, -π/4).</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Cylindrical and Spherical Coordinate Systems</h3>
+                    
+                    <h4>Cylindrical Coordinate System</h4>
+                    <p>The cylindrical coordinate system extends polar coordinates to three dimensions by adding a height coordinate (z) perpendicular to the polar plane.</p>
+                    
+                    <p>A point in cylindrical coordinates is represented by (r, θ, z), where:</p>
+                    <ul>
+                        <li>r is the distance from the z-axis</li>
+                        <li>θ is the angle in the xy-plane from the positive x-axis</li>
+                        <li>z is the height above the xy-plane</li>
+                    </ul>
+                    
+                    <h4>Conversion Between Cartesian and Cylindrical Coordinates</h4>
+                    <div class="math-formula">
+                        <p><strong>Cylindrical to Cartesian:</strong></p>
+                        <p>x = r cos(θ)</p>
+                        <p>y = r sin(θ)</p>
+                        <p>z = z</p>
+                        <br>
+                        <p><strong>Cartesian to Cylindrical:</strong></p>
+                        <p>r = √(x² + y²)</p>
+                        <p>θ = tan⁻¹(y/x), with appropriate quadrant adjustment</p>
+                        <p>z = z</p>
+                    </div>
+                    
+                    <h4>Spherical Coordinate System</h4>
+                    <p>The spherical coordinate system represents points in three-dimensional space using three coordinates:</p>
+                    <ul>
+                        <li><strong>Radial distance (ρ):</strong> The distance from the origin to the point</li>
+                        <li><strong>Polar angle (θ):</strong> The angle in the xy-plane from the positive x-axis</li>
+                        <li><strong>Azimuthal angle (φ):</strong> The angle from the positive z-axis</li>
+                    </ul>
+                    
+                    <p>A point in spherical coordinates is represented by (ρ, θ, φ), noting that conventions may vary.</p>
+                    
+                    <h4>Conversion Between Cartesian and Spherical Coordinates</h4>
+                    <div class="math-formula">
+                        <p><strong>Spherical to Cartesian:</strong></p>
+                        <p>x = ρ sin(φ) cos(θ)</p>
+                        <p>y = ρ sin(φ) sin(θ)</p>
+                        <p>z = ρ cos(φ)</p>
+                        <br>
+                        <p><strong>Cartesian to Spherical:</strong></p>
+                        <p>ρ = √(x² + y² + z²)</p>
+                        <p>θ = tan⁻¹(y/x), with appropriate quadrant adjustment</p>
+                        <p>φ = cos⁻¹(z/ρ)</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 3: Application in 3D Geometry</div>
+                        <p>A point is located at Cartesian coordinates (4, 4, 2). Express this point in both cylindrical and spherical coordinates.</p>
+                        <p><strong>Cylindrical Coordinates:</strong></p>
+                        <p>r = √(x² + y²) = √(4² + 4²) = √32 = 4√2</p>
+                        <p>θ = tan⁻¹(y/x) = tan⁻¹(4/4) = tan⁻¹(1) = π/4</p>
+                        <p>z = 2</p>
+                        <p>Therefore, the cylindrical coordinates are (4√2, π/4, 2).</p>
+                        <br>
+                        <p><strong>Spherical Coordinates:</strong></p>
+                        <p>ρ = √(x² + y² + z²) = √(4² + 4² + 2²) = √(32 + 4) = √36 = 6</p>
+                        <p>θ = tan⁻¹(y/x) = tan⁻¹(4/4) = tan⁻¹(1) = π/4</p>
+                        <p>φ = cos⁻¹(z/ρ) = cos⁻¹(2/6) = cos⁻¹(1/3) ≈ 1.23 radians ≈ 70.53°</p>
+                        <p>Therefore, the spherical coordinates are (6, π/4, 1.23).</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Other Coordinate Systems</h3>
+                    
+                    <h4>Homogeneous Coordinates</h4>
+                    <p>Homogeneous coordinates are used in projective geometry and computer graphics. They represent points in n-dimensional space using n+1 coordinates, allowing for a unified treatment of points, lines, and transformations.</p>
+                    
+                    <p>In homogeneous coordinates, a 2D point (x, y) is represented as (wx, wy, w) for any non-zero w. The Cartesian coordinates are recovered by dividing by w.</p>
+                    
+                    <h4>Barycentric Coordinates</h4>
+                    <p>Barycentric coordinates express a point within a simplex (a triangle in 2D, a tetrahedron in 3D) as a weighted sum of its vertices.</p>
+                    
+                    <p>For a triangle with vertices A, B, and C, any point P in the plane can be represented as:</p>
+                    <div class="math-formula">
+                        P = αA + βB + γC
+                    </div>
+                    <p>where α + β + γ = 1, and P is inside the triangle when 0 ≤ α,β,γ ≤ 1.</p>
+                    
+                    <h4>Curvilinear Coordinates</h4>
+                    <p>Curvilinear coordinates are a generalization of coordinate systems where coordinate surfaces may be curved. Examples include elliptical coordinates, parabolic coordinates, and general orthogonal coordinates.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 4: Barycentric Coordinates</div>
+                        <p>Consider a triangle with vertices A(0,0), B(4,0), and C(2,3). Express the point P(2,1) in barycentric coordinates.</p>
+                        <p><strong>Solution:</strong></p>
+                        <p>We need to find α, β, and γ such that:</p>
+                        <p>P = αA + βB + γC</p>
+                        <p>(2,1) = α(0,0) + β(4,0) + γ(2,3)</p>
+                        <p>With the constraint α + β + γ = 1, we get the system:</p>
+                        <p>2 = 4β + 2γ</p>
+                        <p>1 = 3γ</p>
+                        <p>α + β + γ = 1</p>
+                        <p>Solving: γ = 1/3, β = 1/3, α = 1/3</p>
+                        <p>Therefore, P has barycentric coordinates (1/3, 1/3, 1/3), meaning it's the centroid of the triangle.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications of Coordinate Systems</h3>
+                    
+                    <h4>Computer Graphics and Computer Vision</h4>
+                    <p>Different coordinate systems are used to:</p>
+                    <ul>
+                        <li>Model and render 3D objects</li>
+                        <li>Track camera positions and orientations</li>
+                        <li>Perform transformations like translation, rotation, and scaling</li>
+                        <li>Convert between world coordinates, camera coordinates, and screen coordinates</li>
+                    </ul>
+                    
+                    <h4>Physics and Engineering</h4>
+                    <p>Specific coordinate systems simplify the analysis of physical problems:</p>
+                    <ul>
+                        <li>Spherical coordinates for gravitational and electromagnetic fields</li>
+                        <li>Cylindrical coordinates for problems with cylindrical symmetry</li>
+                        <li>Curvilinear coordinates for complex boundary conditions</li>
+                    </ul>
+                    
+                    <h4>Navigation and Geography</h4>
+                    <p class="text-secondary">Coordinate systems used in mapping and navigation include:</p>
+                    <ul>
+                        <li>Latitude and longitude (a form of spherical coordinates)</li>
+                        <li>UTM (Universal Transverse Mercator) coordinates</li>
+                        <li>Local navigation coordinates (heading, distance, altitude)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 5: Field Calculation</div>
+                        <p>The electric field of a point charge at the origin is given by:</p>
+                        <div class="math-formula">
+                            E = kq/r² r̂
+                        </div>
+                        <p>where r̂ is the unit vector in the radial direction.</p>
+                        <p>Express this field in:</p>
+                        <p><strong>a) Cartesian coordinates:</strong></p>
+                        <p>E = kq/(x² + y² + z²)^(3/2) (xi + yj + zk)</p>
+                        <p><strong>b) Spherical coordinates:</strong></p>
+                        <p>E = kq/ρ² r̂</p>
+                        <p>The spherical expression is much simpler due to the spherical symmetry of the problem, demonstrating why choosing the appropriate coordinate system is important.</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <a href="../../features.html#vectors-and-coordinate-geometry" class="prev-next-btn">Mathematics Roadmap</a>
+                    <a href="vector-operations.html" class="prev-next-btn">Next: Vector Operations</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

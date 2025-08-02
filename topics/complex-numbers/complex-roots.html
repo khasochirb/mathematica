@@ -1,0 +1,264 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Complex Roots & Complex Analysis - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Complex Roots & Complex Analysis</h2>
+                <p>An introduction to finding complex roots and the beautiful field of complex analysis</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#complex-numbers">Complex Numbers</a> &raquo;
+                    <span>Complex Roots & Complex Analysis</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Roots of Complex Numbers</h3>
+                    
+                    <p>Finding the roots of complex numbers is one of the most important applications of the polar form and De Moivre's Theorem. The nth roots of a complex number z = r cis θ are the solutions to the equation w^n = z.</p>
+                    
+                    <h4>General Formula for nth Roots</h4>
+                    <p>If z = r cis θ is a complex number in polar form, then its nth roots are given by:</p>
+                    
+                    <div class="math-formula">
+                        <p>w_k = r^(1/n) cis((θ + 2kπ)/n)</p>
+                    </div>
+                    
+                    <p>where k = 0, 1, 2, ..., n-1.</p>
+                    
+                    <p>This formula gives us exactly n distinct nth roots for any non-zero complex number.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Finding Square Roots</div>
+                        <p>Find all the square roots of z = -4.</p>
+                        <p>First, express z in polar form. Since -4 lies on the negative real axis:</p>
+                        <p>z = -4 = 4 cis(π)</p>
+                        <p>Using the formula for nth roots with n = 2:</p>
+                        <p>w_k = 4^(1/2) cis((π + 2kπ)/2) = 2 cis((π + 2kπ)/2)</p>
+                        <p>For k = 0: w₀ = 2 cis(π/2) = 2i</p>
+                        <p>For k = 1: w₁ = 2 cis(3π/2) = -2i</p>
+                        <p>Therefore, the two square roots of -4 are 2i and -2i.</p>
+                        <p>We can verify: (2i)² = 4i² = 4(-1) = -4 and (-2i)² = 4i² = -4.</p>
+                    </div>
+                    
+                    <h4>Geometric Interpretation</h4>
+                    <p class="text-secondary">Geometrically, the n distinct nth roots of a complex number lie evenly spaced on a circle centered at the origin. The radius of this circle is r^(1/n), and the arguments of the roots are spaced 2π/n radians apart starting from θ/n.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Geometric Arrangement of Roots</div>
+                        <p>Find the cube roots of 1 and describe their geometric arrangement.</p>
+                        <p>Since 1 = 1 cis(0), the cube roots are:</p>
+                        <p>w_k = 1^(1/3) cis((0 + 2kπ)/3) = cis(2kπ/3)</p>
+                        <p>For k = 0: w₀ = cis(0) = 1</p>
+                        <p>For k = 1: w₁ = cis(2π/3) = -1/2 + (√3/2)i</p>
+                        <p>For k = 2: w₂ = cis(4π/3) = -1/2 - (√3/2)i</p>
+                        <p>These three cube roots of unity are equally spaced around the unit circle, forming the vertices of an equilateral triangle. They are located at angles of 0, 2π/3, and 4π/3 radians (or 0°, 120°, and 240°).</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">The Fundamental Theorem of Algebra</h3>
+                    
+                    <p>The Fundamental Theorem of Algebra is one of the most important results in complex analysis. It states that every non-constant polynomial with complex coefficients has at least one complex root.</p>
+                    
+                    <h4>Statement and Implications</h4>
+                    <p>If P(z) = a_n z^n + a_(n-1) z^(n-1) + ... + a_1 z + a_0 is a polynomial of degree n ≥ 1 with complex coefficients, then P(z) has exactly n complex roots, counting multiplicity.</p>
+                    
+                    <p>This means that any polynomial of degree n can be factored as:</p>
+                    
+                    <div class="math-formula">
+                        <p>P(z) = a_n (z - z_1)(z - z_2)...(z - z_n)</p>
+                    </div>
+                    
+                    <p>where z_1, z_2, ..., z_n are the roots of P(z), which may not all be distinct.</p>
+                    
+                    <p>The Fundamental Theorem of Algebra highlights the "completeness" of the complex number system, in contrast to the real number system, where polynomials like x² + 1 have no roots.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Polynomial Factorization</div>
+                        <p>Find all the roots of P(z) = z⁴ - 16 and express P(z) in factored form.</p>
+                        <p>We can rewrite this as P(z) = z⁴ - 16 = z⁴ - 2⁴.</p>
+                        <p>Using the difference of powers formula: a^n - b^n = (a - b)(a^(n-1) + a^(n-2)b + ... + ab^(n-2) + b^(n-1))</p>
+                        <p>With n = 4, a = z, and b = 2:</p>
+                        <p>z⁴ - 16 = (z - 2)(z³ + 2z² + 4z + 8)</p>
+                        <p>But we also have: z⁴ - 16 = z⁴ - (2²)² = (z² - 4)(z² + 4) = (z - 2)(z + 2)(z² + 4)</p>
+                        <p>Since z² + 4 = (z - 2i)(z + 2i), we get:</p>
+                        <p>P(z) = (z - 2)(z + 2)(z - 2i)(z + 2i)</p>
+                        <p>Therefore, the four roots of P(z) are 2, -2, 2i, and -2i.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Complex Analysis</h3>
+                    
+                    <p class="text-secondary">Complex analysis is the branch of mathematics that studies functions of complex variables. It extends calculus to the complex plane and reveals beautiful and profound connections between various areas of mathematics.</p>
+                    
+                    <h4>Holomorphic Functions</h4>
+                    <p>A function f(z) of a complex variable z is called holomorphic (or analytic) at a point if it is complex differentiable in some neighborhood of that point. Holomorphic functions are the central objects of study in complex analysis.</p>
+                    
+                    <p>For a function to be complex differentiable, it must satisfy the Cauchy-Riemann equations:</p>
+                    
+                    <div class="math-formula">
+                        <p>If f(z) = u(x, y) + iv(x, y), where u and v are real-valued functions, then:</p>
+                        <p>∂u/∂x = ∂v/∂y</p>
+                        <p>∂u/∂y = -∂v/∂x</p>
+                    </div>
+                    
+                    <p>Unlike real analysis, if a complex function has a first derivative, it automatically has derivatives of all orders (it is infinitely differentiable).</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Checking Holomorphicity</div>
+                        <p>Determine if f(z) = z² is holomorphic.</p>
+                        <p>Let z = x + iy, then f(z) = z² = (x + iy)² = x² - y² + 2xyi.</p>
+                        <p>So u(x, y) = x² - y² and v(x, y) = 2xy.</p>
+                        <p>Check the Cauchy-Riemann equations:</p>
+                        <p>∂u/∂x = 2x and ∂v/∂y = 2x ✓</p>
+                        <p>∂u/∂y = -2y and -∂v/∂x = -2y ✓</p>
+                        <p>Since the Cauchy-Riemann equations are satisfied everywhere, f(z) = z² is holomorphic in the entire complex plane.</p>
+                    </div>
+                    
+                    <h4>Contour Integration</h4>
+                    <p>Contour integration is a technique in complex analysis for calculating integrals along paths in the complex plane. One of the most important results is Cauchy's Integral Formula:</p>
+                    
+                    <div class="math-formula">
+                        <p>If f(z) is holomorphic inside and on a simple closed contour C, and a is a point inside C, then:</p>
+                        <p>f(a) = (1/(2πi)) ∮_C [f(z)/(z - a)] dz</p>
+                    </div>
+                    
+                    <p>This powerful formula relates the values of a holomorphic function at a point to its values on a surrounding contour.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Residue Theorem Application</div>
+                        <p>Evaluate the integral ∮_C [1/(z² + 4)] dz, where C is the circle |z| = 3, oriented counterclockwise.</p>
+                        <p>The singularities of the integrand are at z = ±2i, both inside the contour C.</p>
+                        <p>Using the residue theorem: ∮_C f(z) dz = 2πi × (sum of residues inside C)</p>
+                        <p>For z = 2i: Res(f, 2i) = 1/(2(2i)) = 1/4i = -i/4</p>
+                        <p>For z = -2i: Res(f, -2i) = 1/(-2(-2i)) = 1/4i = -i/4</p>
+                        <p>Therefore: ∮_C [1/(z² + 4)] dz = 2πi × (-i/4 - i/4) = 2πi × (-i/2) = π</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Complex Mappings and Transformations</h3>
+                    
+                    <p class="text-secondary">Complex functions can be viewed as mappings or transformations from one complex plane to another. These mappings often have beautiful geometric interpretations.</p>
+                    
+                    <h4>Conformal Mappings</h4>
+                    <p>A holomorphic function with a non-zero derivative is called a conformal mapping because it preserves angles between curves. Conformal mappings are used extensively in physics, engineering, and applied mathematics.</p>
+                    
+                    <p>Some important examples of conformal mappings include:</p>
+                    <ul>
+                        <li>Translation: f(z) = z + a</li>
+                        <li>Rotation and scaling: f(z) = αz (where α is a complex constant)</li>
+                        <li>Inversion: f(z) = 1/z</li>
+                        <li>Möbius transformations: f(z) = (az + b)/(cz + d) (where ad - bc ≠ 0)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Conformal Mapping</div>
+                        <p>Describe the mapping f(z) = z².</p>
+                        <p>This mapping transforms:</p>
+                        <p>1. Lines through the origin into rays from the origin, with the angle doubled.</p>
+                        <p>2. Circles centered at the origin into circles centered at the origin, with the radius squared.</p>
+                        <p>For instance, the unit circle |z| = 1 is mapped to itself, but each point travels twice around.</p>
+                        <p>The upper half-plane is mapped to the entire plane minus the negative real axis.</p>
+                        <p>The mapping is conformal except at z = 0, where the derivative f'(z) = 2z vanishes.</p>
+                    </div>
+                    
+                    <h4>Applications in Physics and Engineering</h4>
+                    <p class="text-secondary">Complex analysis has numerous applications in physics and engineering:</p>
+                    <ul>
+                        <li>Fluid dynamics: The velocity potential and stream function of an ideal fluid can be represented as the real and imaginary parts of a complex function.</li>
+                        <li>Electrostatics: The electric potential and field can be described using complex functions.</li>
+                        <li>Heat flow: The temperature distribution in a region can be analyzed using complex analysis.</li>
+                        <li>Signal processing: Fourier and Laplace transforms, which are fundamental in signal processing, have elegant interpretations in the complex domain.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Flow Around a Cylinder</div>
+                        <p>The complex potential for the flow of an ideal fluid around a circular cylinder of radius a in a uniform stream with velocity U is given by:</p>
+                        <p>w(z) = U(z + a²/z)</p>
+                        <p>The streamlines of the flow correspond to the level curves of the imaginary part of w(z).</p>
+                        <p>The velocity field can be found by differentiating: dw/dz = U(1 - a²/z²)</p>
+                        <p>The stagnation points (where the velocity is zero) are at z = ±a, which correspond to the front and back of the cylinder.</p>
+                        <p>This demonstrates how complex functions can elegantly describe physical phenomena.</p>
+                    </div>
+                    
+                    <div class="navigation">
+                        <a href="de-moivres-theorem.html" class="prev-next-btn">Previous: De Moivre's Theorem</a>
+                        <a href="../../features.html#geometry" class="prev-next-btn">Next: Geometry</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

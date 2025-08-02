@@ -1,0 +1,336 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Differential Equations - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Differential Equations</h2>
+                <p>First Order and Higher Order Equations</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#calculus">Calculus</a> &raquo;
+                    <span>Differential Equations</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Differential Equations</h3>
+                    
+                    <p>A differential equation is an equation that relates a function with its derivatives. In general, a differential equation models how a quantity changes with respect to one or more variables.</p>
+                    
+                    <h4>Classification of Differential Equations</h4>
+                    <ul>
+                        <li><strong>Ordinary Differential Equations (ODEs):</strong> Contain derivatives with respect to a single independent variable</li>
+                        <li><strong>Partial Differential Equations (PDEs):</strong> Contain derivatives with respect to multiple independent variables</li>
+                    </ul>
+                    
+                    <h4>Order and Degree</h4>
+                    <ul>
+                        <li><strong>Order:</strong> The highest derivative that appears in the equation</li>
+                        <li><strong>Degree:</strong> The power to which the highest derivative is raised (when the equation is polynomial in all derivatives)</li>
+                    </ul>
+                    
+                    <h4>Linear vs. Nonlinear</h4>
+                    <p>A differential equation is <strong>linear</strong> if it can be written in the form:</p>
+                    <div class="math-formula">
+                        <p>a<sub>n</sub>(x)y<sup>(n)</sup> + a<sub>n-1</sub>(x)y<sup>(n-1)</sup> + ... + a<sub>1</sub>(x)y' + a<sub>0</sub>(x)y = f(x)</p>
+                    </div>
+                    <p>where a<sub>i</sub>(x) and f(x) are functions of the independent variable x only.</p>
+                    <p>Any equation that cannot be written in this form is <strong>nonlinear</strong>.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Classifying Differential Equations</div>
+                        <p>1. dy/dx = 2x - 3y</p>
+                        <p>   Order: 1 (first derivative only)</p>
+                        <p>   Type: Linear (can be written as dy/dx + 3y = 2x)</p>
+                        <p>2. d²y/dx² + (dy/dx)² = sin(x)</p>
+                        <p>   Order: 2 (second derivative appears)</p>
+                        <p>   Type: Nonlinear (due to the squared first derivative term)</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">First-Order Differential Equations</h3>
+                    
+                    <h4>Separable Equations</h4>
+                    <p>A first-order differential equation is separable if it can be written in the form:</p>
+                    <div class="math-formula">
+                        <p>g(y)·dy/dx = f(x)</p>
+                    </div>
+                    <p>The solution method involves separating the variables and integrating both sides:</p>
+                    <div class="math-formula">
+                        <p>∫g(y)dy = ∫f(x)dx + C</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: First-Order Differential Equation</div>
+                        <p>In traditional Mongolian airag fermentation, the rate of lactic acid production is proportional to the current amount of lactic acid bacteria present. If we let y(t) represent the amount of lactic acid bacteria at time t (in hours), and k is the growth rate constant, then:</p>
+                        <p>dy/dt = ky</p>
+                        <p>This is a separable equation. Separating variables:</p>
+                        <p>dy/y = k dt</p>
+                        <p>Integrating both sides:</p>
+                        <p>ln|y| = kt + C</p>
+                        <p>Therefore, y = Ce<sup>kt</sup></p>
+                        <p>If we know that y(0) = y₀ (initial amount of bacteria), then C = y₀, and the solution is:</p>
+                        <p>y = y₀e<sup>kt</sup></p>
+                        <p>This exponential growth model describes how the lactic acid bacteria population grows during the traditional airag fermentation process.</p>
+                    </div>
+                    
+                    <h4>Linear First-Order Equations</h4>
+                    <p>A linear first-order differential equation has the form:</p>
+                    <div class="math-formula">
+                        <p>dy/dx + P(x)y = Q(x)</p>
+                    </div>
+                    <p>The solution method involves finding an integrating factor μ(x) = e<sup>∫P(x)dx</sup> and then solving:</p>
+                    <div class="math-formula">
+                        <p>y·μ(x) = ∫Q(x)·μ(x)dx + C</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Solving a Linear First-Order Equation</div>
+                        <p>Solve dy/dx + 2y = e<sup>x</sup></p>
+                        <p>This is in the form dy/dx + P(x)y = Q(x) with P(x) = 2 and Q(x) = e<sup>x</sup></p>
+                        <p>The integrating factor is μ(x) = e<sup>∫2dx</sup> = e<sup>2x</sup></p>
+                        <p>Multiplying both sides by e<sup>2x</sup>: e<sup>2x</sup>·dy/dx + 2y·e<sup>2x</sup> = e<sup>3x</sup></p>
+                        <p>The left side is d/dx(y·e<sup>2x</sup>), so: d/dx(y·e<sup>2x</sup>) = e<sup>3x</sup></p>
+                        <p>Integrating both sides: y·e<sup>2x</sup> = ∫e<sup>3x</sup>dx = e<sup>3x</sup>/3 + C</p>
+                        <p>Solving for y: y = e<sup>-2x</sup>·(e<sup>3x</sup>/3 + C) = e<sup>x</sup>/3 + Ce<sup>-2x</sup></p>
+                    </div>
+                    
+                    <h4>Exact Equations</h4>
+                    <p>An equation of the form M(x,y)dx + N(x,y)dy = 0 is exact if there exists a function F(x,y) such that:</p>
+                    <div class="math-formula">
+                        <p>∂F/∂x = M(x,y) and ∂F/∂y = N(x,y)</p>
+                    </div>
+                    <p>The condition for exactness is: ∂M/∂y = ∂N/∂x</p>
+                    <p>The solution is F(x,y) = C, where C is a constant.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Solving an Exact Equation</div>
+                        <p>Solve (2xy + y²)dx + (x² + 2xy)dy = 0</p>
+                        <p>Let's check if this is exact:</p>
+                        <p>M(x,y) = 2xy + y² and N(x,y) = x² + 2xy</p>
+                        <p>∂M/∂y = 2x + 2y and ∂N/∂x = 2x + 2y</p>
+                        <p>Since ∂M/∂y = ∂N/∂x, the equation is exact.</p>
+                        <p>To find F(x,y), we integrate ∂F/∂x = M(x,y) with respect to x:</p>
+                        <p>F(x,y) = ∫(2xy + y²)dx = x²y + xy² + h(y)</p>
+                        <p>where h(y) is a function of y only.</p>
+                        <p>Now, ∂F/∂y = x² + 2xy + h'(y) = N(x,y) = x² + 2xy</p>
+                        <p>Therefore, h'(y) = 0, so h(y) = C₁ (a constant)</p>
+                        <p>The solution is F(x,y) = x²y + xy² + C₁ = C</p>
+                        <p>or equivalently: x²y + xy² = C (where C is a new constant)</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Second-Order Differential Equations</h3>
+                    
+                    <h4>Homogeneous Linear Equations with Constant Coefficients</h4>
+                    <p>A second-order homogeneous linear equation with constant coefficients has the form:</p>
+                    <div class="math-formula">
+                        <p>ay'' + by' + cy = 0</p>
+                    </div>
+                    <p>where a, b, and c are constants (a ≠ 0).</p>
+                    <p>The solution method involves finding the roots of the characteristic equation:</p>
+                    <div class="math-formula">
+                        <p>ar² + br + c = 0</p>
+                    </div>
+                    
+                    <p>The nature of the roots determines the form of the solution:</p>
+                    <ul>
+                        <li><strong>Two distinct real roots r₁ and r₂:</strong> y = C₁e<sup>r₁x</sup> + C₂e<sup>r₂x</sup></li>
+                        <li><strong>One repeated real root r:</strong> y = C₁e<sup>rx</sup> + C₂xe<sup>rx</sup></li>
+                        <li><strong>Complex conjugate roots α ± βi:</strong> y = e<sup>αx</sup>(C₁cos(βx) + C₂sin(βx))</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Solving a Second-Order Homogeneous Equation</div>
+                        <p>Solve y'' - 5y' + 6y = 0</p>
+                        <p>The characteristic equation is r² - 5r + 6 = 0</p>
+                        <p>Using the quadratic formula: r = (5 ± √(25 - 24))/2 = (5 ± 1)/2</p>
+                        <p>So r₁ = 3 and r₂ = 2</p>
+                        <p>The general solution is y = C₁e<sup>3x</sup> + C₂e<sup>2x</sup></p>
+                    </div>
+                    
+                    <h4>Non-homogeneous Linear Equations</h4>
+                    <p>A non-homogeneous linear equation has the form:</p>
+                    <div class="math-formula">
+                        <p>ay'' + by' + cy = g(x)</p>
+                    </div>
+                    <p>The general solution is the sum of:</p>
+                    <ul>
+                        <li>The general solution of the corresponding homogeneous equation (complementary function)</li>
+                        <li>A particular solution of the non-homogeneous equation</li>
+                    </ul>
+                    
+                    <p>Methods for finding a particular solution include:</p>
+                    <ul>
+                        <li><strong>Method of Undetermined Coefficients:</strong> Applicable when g(x) is a polynomial, exponential, sine, cosine, or a combination of these</li>
+                        <li><strong>Variation of Parameters:</strong> A more general method applicable to a wider range of g(x)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Solving a Non-homogeneous Equation</div>
+                        <p>Solve y'' - 5y' + 6y = 3e<sup>2x</sup></p>
+                        <p>The complementary function (from the previous example) is y<sub>c</sub> = C₁e<sup>3x</sup> + C₂e<sup>2x</sup></p>
+                        <p>For the particular solution, since 2 is a root of the characteristic equation, we try y<sub>p</sub> = Axe<sup>2x</sup></p>
+                        <p>Substituting into the original equation:</p>
+                        <p>y<sub>p</sub> = Axe<sup>2x</sup></p>
+                        <p>y<sub>p</sub>' = A(e<sup>2x</sup> + 2xe<sup>2x</sup>)</p>
+                        <p>y<sub>p</sub>'' = A(2e<sup>2x</sup> + 2e<sup>2x</sup> + 4xe<sup>2x</sup>) = A(4e<sup>2x</sup> + 4xe<sup>2x</sup>)</p>
+                        <p>Substituting into the original equation:</p>
+                        <p>A(4e<sup>2x</sup> + 4xe<sup>2x</sup>) - 5A(e<sup>2x</sup> + 2xe<sup>2x</sup>) + 6Axe<sup>2x</sup> = 3e<sup>2x</sup></p>
+                        <p>Simplifying: A(4e<sup>2x</sup> + 4xe<sup>2x</sup> - 5e<sup>2x</sup> - 10xe<sup>2x</sup> + 6xe<sup>2x</sup>) = 3e<sup>2x</sup></p>
+                        <p>A(4e<sup>2x</sup> - 5e<sup>2x</sup> + 4xe<sup>2x</sup> - 10xe<sup>2x</sup> + 6xe<sup>2x</sup>) = 3e<sup>2x</sup></p>
+                        <p>A(-e<sup>2x</sup>) = 3e<sup>2x</sup></p>
+                        <p>A = -3</p>
+                        <p>Therefore, y<sub>p</sub> = -3xe<sup>2x</sup></p>
+                        <p>The general solution is y = y<sub>c</sub> + y<sub>p</sub> = C₁e<sup>3x</sup> + C₂e<sup>2x</sup> - 3xe<sup>2x</sup></p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications of Differential Equations</h3>
+                    
+                    <h4>Growth and Decay Models</h4>
+                    <p>Many natural phenomena can be modeled by differential equations:</p>
+                    <ul>
+                        <li><strong>Exponential Growth:</strong> dP/dt = kP (for population, compound interest)</li>
+                        <li><strong>Exponential Decay:</strong> dN/dt = -kN (for radioactive decay, drug elimination)</li>
+                        <li><strong>Logistic Growth:</strong> dP/dt = kP(1 - P/M) (for population with limited resources)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Radioactive Decay</div>
+                        <p>Radioactive carbon-14 has a half-life of 5,730 years. If an artifact initially contained 100 grams of carbon-14, how much remains after 10,000 years?</p>
+                        <p>The differential equation for decay is dN/dt = -kN</p>
+                        <p>This has solution N(t) = N₀e<sup>-kt</sup></p>
+                        <p>To find k, we use the half-life: N₀/2 = N₀e<sup>-k·5730</sup></p>
+                        <p>1/2 = e<sup>-5730k</sup></p>
+                        <p>ln(1/2) = -5730k</p>
+                        <p>k = ln(2)/5730 ≈ 0.000121</p>
+                        <p>Now, N(10000) = 100e<sup>-0.000121·10000</sup> ≈ 100e<sup>-1.21</sup> ≈ 100 · 0.298 ≈ 29.8 grams</p>
+                    </div>
+                    
+                    <h4>Mechanical Systems</h4>
+                    <p class="text-secondary">Differential equations model various mechanical systems:</p>
+                    <ul>
+                        <li><strong>Simple Harmonic Motion:</strong> m(d²x/dt²) + kx = 0</li>
+                        <li><strong>Damped Harmonic Motion:</strong> m(d²x/dt²) + c(dx/dt) + kx = 0</li>
+                        <li><strong>Forced Harmonic Motion:</strong> m(d²x/dt²) + c(dx/dt) + kx = F₀cos(ωt)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Spring-Mass System</div>
+                        <p>A 2-kg mass is attached to a spring with spring constant k = 8 N/m. If the mass is pulled 0.5 meters from equilibrium and released, describe its motion.</p>
+                        <p>The differential equation is: 2(d²x/dt²) + 8x = 0</p>
+                        <p>or d²x/dt² + 4x = 0</p>
+                        <p>This has characteristic equation r² + 4 = 0, with roots r = ±2i</p>
+                        <p>The general solution is x(t) = C₁cos(2t) + C₂sin(2t)</p>
+                        <p>Given that x(0) = 0.5 and x'(0) = 0 (released from rest):</p>
+                        <p>x(0) = C₁ = 0.5</p>
+                        <p>x'(t) = -2C₁sin(2t) + 2C₂cos(2t)</p>
+                        <p>x'(0) = 2C₂ = 0, so C₂ = 0</p>
+                        <p>Therefore, x(t) = 0.5cos(2t), which represents simple harmonic motion with amplitude 0.5 meters and angular frequency 2 rad/s (or period π seconds).</p>
+                    </div>
+                    
+                    <h4>Electrical Circuits</h4>
+                    <p class="text-secondary">Differential equations model electrical circuits:</p>
+                    <ul>
+                        <li><strong>RC Circuit:</strong> dq/dt + (1/RC)q = E(t)/R</li>
+                        <li><strong>RLC Circuit:</strong> L(d²q/dt²) + R(dq/dt) + (1/C)q = E(t)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: RC Circuit</div>
+                        <p>In an RC circuit with R = 1000 Ω and C = 10<sup>-6</sup> F, a battery with voltage E = 12 V is connected at t = 0. Find the charge q(t) on the capacitor.</p>
+                        <p>The differential equation is: dq/dt + (1/RC)q = E/R</p>
+                        <p>dq/dt + 1000q = 12·10³</p>
+                        <p>This is a first-order linear equation with P(t) = 1000 and Q(t) = 12·10³</p>
+                        <p>The integrating factor is μ(t) = e<sup>∫1000dt</sup> = e<sup>1000t</sup></p>
+                        <p>d/dt(q·e<sup>1000t</sup>) = 12·10³·e<sup>1000t</sup></p>
+                        <p>q·e<sup>1000t</sup> = 12·10³·e<sup>1000t</sup>/1000 + C = 12·e<sup>1000t</sup> + C</p>
+                        <p>q(t) = 12 + Ce<sup>-1000t</sup></p>
+                        <p>Given that q(0) = 0: 0 = 12 + C, so C = -12</p>
+                        <p>Therefore, q(t) = 12(1 - e<sup>-1000t</sup>) μC</p>
+                        <p>This shows the capacitor charges exponentially toward its maximum charge of 12 μC.</p>
+                    </div>
+                    
+                    <div class="navigation">
+                        <a href="integration.html" class="prev-next-btn calculus-btn">Previous: Integration</a>
+                        <a href="multivariable-calculus.html" class="prev-next-btn calculus-btn">Next: Multivariable Calculus</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

@@ -1,0 +1,395 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Eulerian & Hamiltonian Paths - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Eulerian & Hamiltonian Paths</h2>
+                <p>Exploring special paths and circuits in graphs</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#graph-theory">Graph Theory</a> &raquo;
+                    <span>Eulerian & Hamiltonian Paths</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction</h3>
+                    
+                    <p>In graph theory, two classical problems involve finding special paths or circuits in graphs: the Eulerian path/circuit problem and the Hamiltonian path/circuit problem. Both problems have historical significance and numerous practical applications, but they differ fundamentally in their definitions and complexity.</p>
+                    
+                    <h4>Historical Background</h4>
+                    <p>The Eulerian path problem originated from the famous "Seven Bridges of Königsberg" problem, posed by Leonhard Euler in 1736. The city of Königsberg (now Kaliningrad, Russia) had seven bridges connecting four land masses. The question was whether one could walk through the city crossing each bridge exactly once. Euler proved this was impossible, laying the foundation for graph theory.</p>
+                    
+                    <p>The Hamiltonian path problem is named after Sir William Rowan Hamilton, who invented a puzzle called the "Icosian game" in 1857. This puzzle involved finding a path along the edges of a dodecahedron that visits each vertex exactly once and returns to the starting point.</p>
+                    
+                    <p>Despite their similar descriptions, these problems have very different computational complexities. The Eulerian path problem can be solved in linear time, while the Hamiltonian path problem is NP-complete, meaning no efficient algorithm is known for solving it in the general case.</p>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Eulerian Paths and Circuits</h3>
+                    
+                    <h4>Definitions</h4>
+                    <ul>
+                        <li><strong>Eulerian Path</strong>: A path in a graph that visits every edge exactly once.</li>
+                        <li><strong>Eulerian Circuit</strong>: An Eulerian path that starts and ends at the same vertex.</li>
+                    </ul>
+                    
+                    <h4>Conditions for Existence</h4>
+                    <p>For an <strong>undirected graph</strong>:</p>
+                    <ul>
+                        <li><strong>Eulerian Circuit</strong>: A connected graph has an Eulerian circuit if and only if every vertex has an even degree.</li>
+                        <li><strong>Eulerian Path</strong>: A connected graph has an Eulerian path if and only if at most two vertices have odd degree. If exactly two vertices have odd degree, any Eulerian path must start at one of these vertices and end at the other.</li>
+                    </ul>
+                    
+                    <p>For a <strong>directed graph</strong>:</p>
+                    <ul>
+                        <li><strong>Eulerian Circuit</strong>: A strongly connected graph has an Eulerian circuit if and only if every vertex has equal in-degree and out-degree.</li>
+                        <li><strong>Eulerian Path</strong>: A weakly connected graph has an Eulerian path if and only if:
+                            <ol>
+                                <li>At most one vertex has (out-degree) - (in-degree) = 1 (this would be the starting vertex)</li>
+                                <li>At most one vertex has (in-degree) - (out-degree) = 1 (this would be the ending vertex)</li>
+                                <li>All other vertices have equal in-degree and out-degree</li>
+                            </ol>
+                        </li>
+                    </ul>
+                    
+                    <div class="math-formula">
+                        <p>An undirected graph G has an Eulerian circuit if and only if:</p>
+                        <p>1. G is connected (ignoring isolated vertices)</p>
+                        <p>2. degree(v) is even for all vertices v in G</p>
+                        <p>An undirected graph G has an Eulerian path if and only if:</p>
+                        <p>1. G is connected (ignoring isolated vertices)</p>
+                        <p>2. At most two vertices have odd degree</p>
+                    </div>
+                    
+                    <h4>Finding Eulerian Paths and Circuits</h4>
+                    <p>There are efficient algorithms for finding Eulerian paths and circuits:</p>
+                    
+                    <p><strong>1. Hierholzer's Algorithm</strong></p>
+                    <ol>
+                        <li>Start at any vertex (for a path, start at a vertex with odd degree if one exists).</li>
+                        <li>Follow edges and delete them as you go, until you get stuck (i.e., return to the starting vertex).</li>
+                        <li>If there are unused edges, find a vertex in your current circuit that has unused edges, start a new circuit from there, and splice it into the main circuit.</li>
+                        <li>Repeat until all edges are used.</li>
+                    </ol>
+                    
+                    <p><strong>2. Fleury's Algorithm</strong></p>
+                    <ol>
+                        <li>Start at a vertex with odd degree (or any vertex if all have even degree).</li>
+                        <li>Follow edges, deleting them as you go, with the rule: only choose a bridge (an edge whose removal would disconnect the graph) if there is no alternative.</li>
+                        <li>Continue until all edges are used.</li>
+                    </ol>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Determining Eulerian Properties</div>
+                        <p>Consider the following undirected graph:</p>
+                        <p>Vertices: {A, B, C, D, E}</p>
+                        <p>Edges: {(A,B), (A,C), (B,C), (B,D), (C,D), (C,E), (D,E)}</p>
+                        <p>Let's check the degrees:</p>
+                        <p>A: degree 2 (even)</p>
+                        <p>B: degree 3 (odd)</p>
+                        <p>C: degree 4 (even)</p>
+                        <p>D: degree 3 (odd)</p>
+                        <p>E: degree 2 (even)</p>
+                        <p>Since there are exactly two vertices with odd degree (B and D), this graph has an Eulerian path but not an Eulerian circuit. Any Eulerian path must start at B and end at D (or vice versa).</p>
+                        <p>A possible Eulerian path is: B-A-C-B-D-C-E-D</p>
+                    </div>
+                    
+                    <h4>Applications of Eulerian Paths</h4>
+                    <ul>
+                        <li><strong>DNA Fragment Assembly</strong>: In genomics, DNA fragments can be represented as vertices, with edges indicating overlap. An Eulerian path through this graph can help reconstruct the original DNA sequence.</li>
+                        <li><strong>Circuit Design</strong>: In electronic circuit design, Eulerian paths help design circuits that require each connection to be traversed exactly once.</li>
+                        <li><strong>Network Routing</strong>: Efficient routing protocols in computer networks can use Eulerian path concepts to optimize traffic flow.</li>
+                        <li><strong>Chinese Postman Problem</strong>: Finding the shortest path that traverses every edge at least once—closely related to Eulerian paths.</li>
+                    </ul>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Hamiltonian Paths and Circuits</h3>
+                    
+                    <h4>Definitions</h4>
+                    <ul>
+                        <li><strong>Hamiltonian Path</strong>: A path in a graph that visits every vertex exactly once.</li>
+                        <li><strong>Hamiltonian Circuit (or Cycle)</strong>: A Hamiltonian path that starts and ends at the same vertex, forming a cycle.</li>
+                    </ul>
+                    
+                    <h4>Conditions for Existence</h4>
+                    <p>Unlike Eulerian paths, there are no simple necessary and sufficient conditions for the existence of Hamiltonian paths or circuits in general graphs. However, there are several sufficient conditions:</p>
+                    
+                    <p><strong>1. Dirac's Theorem</strong>: If G is a simple graph with n vertices (n ≥ 3), and the degree of each vertex is at least n/2, then G has a Hamiltonian circuit.</p>
+                    
+                    <p><strong>2. Ore's Theorem</strong>: If G is a simple graph with n vertices (n ≥ 3), and for every pair of non-adjacent vertices u and v, the sum of their degrees is at least n, then G has a Hamiltonian circuit.</p>
+                    
+                    <p><strong>3. Complete Graphs</strong>: Every complete graph with n vertices (n ≥ 3) has a Hamiltonian circuit.</p>
+                    
+                    <div class="math-formula">
+                        <p>Dirac's Theorem: If G is a simple graph with n vertices (n ≥ 3), and:</p>
+                        <p>degree(v) ≥ n/2 for all vertices v in G</p>
+                        <p>then G has a Hamiltonian circuit.</p>
+                        <p>Ore's Theorem: If G is a simple graph with n vertices (n ≥ 3), and:</p>
+                        <p>degree(u) + degree(v) ≥ n for all non-adjacent vertices u, v in G</p>
+                        <p>then G has a Hamiltonian circuit.</p>
+                    </div>
+                    
+                    <h4>Finding Hamiltonian Paths and Circuits</h4>
+                    <p>Since the Hamiltonian path problem is NP-complete, there is no known polynomial-time algorithm for finding Hamiltonian paths in general graphs. However, several approaches can be used:</p>
+                    
+                    <p><strong>1. Brute Force</strong>: For small graphs, try all possible permutations of vertices to check if any form a valid Hamiltonian path or circuit.</p>
+                    
+                    <p><strong>2. Backtracking</strong>: Start from a vertex and explore paths, backtracking when reaching a dead end. Optimize with pruning techniques.</p>
+                    
+                    <p><strong>3. Dynamic Programming</strong>: For moderate-sized graphs, use the Held-Karp algorithm, which solves the problem in O(n² × 2ⁿ) time.</p>
+                    
+                    <p><strong>4. Heuristic Algorithms</strong>: For large graphs, use heuristic approaches such as genetic algorithms, simulated annealing, or ant colony optimization to find approximate solutions.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Checking Hamiltonian Properties</div>
+                        <p>Consider a cycle graph with 5 vertices {A, B, C, D, E} and edges {(A,B), (B,C), (C,D), (D,E), (E,A)}:</p>
+                        <p>1. This graph already forms a Hamiltonian circuit: A-B-C-D-E-A</p>
+                        <p>2. Any path that includes all vertices but doesn't return to the start is a Hamiltonian path, e.g., A-B-C-D-E</p>
+                        <p>Now, if we add the chord (A,C), the graph still has Hamiltonian circuits, but more options exist, e.g., A-B-C-D-E-A or A-C-D-E-A.</p>
+                        <p>If we remove edge (B,C), can we still have a Hamiltonian circuit? Yes, using the chord: A-B-A-C-D-E-A (which isn't valid because we visit A twice) or A-E-D-C-A-B-A (also invalid). So, after this removal, there is no Hamiltonian circuit, though Hamiltonian paths still exist, e.g., B-A-C-D-E.</p>
+                    </div>
+                    
+                    <h4>Applications of Hamiltonian Paths</h4>
+                    <ul>
+                        <li><strong>Traveling Salesman Problem (TSP)</strong>: Finding the shortest Hamiltonian circuit in a weighted graph, crucial for logistics and route planning.</li>
+                        <li><strong>Knight's Tour</strong>: Finding a sequence of moves of a knight on a chessboard such that the knight visits every square exactly once.</li>
+                        <li><strong>Vehicle Routing</strong>: Planning routes for delivery vehicles to visit all customers efficiently.</li>
+                        <li><strong>Genome Sequencing</strong>: In bioinformatics, reconstructing the order of DNA fragments.</li>
+                        <li><strong>Circuit Design</strong>: Designing efficient electronic circuits where each component must be accessed once.</li>
+                    </ul>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Comparison and Special Cases</h3>
+                    
+                    <h4>Eulerian vs. Hamiltonian Paths</h4>
+                    <table border="1" style="width: 100%; text-align: center; margin: 20px 0; border-collapse: collapse;">
+                        <tr>
+                            <th style="padding: 8px;">Feature</th>
+                            <th style="padding: 8px;">Eulerian Paths/Circuits</th>
+                            <th style="padding: 8px;">Hamiltonian Paths/Circuits</th>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;">Visits what?</td>
+                            <td style="padding: 8px;">Every edge exactly once</td>
+                            <td style="padding: 8px;">Every vertex exactly once</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;">Existence criteria</td>
+                            <td style="padding: 8px;">Simple, based on vertex degrees</td>
+                            <td style="padding: 8px;">Complex, no simple necessary and sufficient condition</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;">Computational complexity</td>
+                            <td style="padding: 8px;">Polynomial time (O(E), where E is the number of edges)</td>
+                            <td style="padding: 8px;">NP-complete</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;">Algorithm approach</td>
+                            <td style="padding: 8px;">Direct, constructive algorithms</td>
+                            <td style="padding: 8px;">Backtracking, dynamic programming, heuristics</td>
+                        </tr>
+                    </table>
+                    
+                    <h4>Special Cases and Interesting Facts</h4>
+                    <ul>
+                        <li><strong>Complete Graphs</strong>: Every complete graph with n ≥ 3 vertices has both Eulerian and Hamiltonian circuits if n is odd. If n is even, it has Hamiltonian circuits but no Eulerian circuit.</li>
+                        <li><strong>Cycle Graphs</strong>: Every cycle graph has both an Eulerian circuit and a Hamiltonian circuit (they are identical).</li>
+                        <li><strong>Bipartite Graphs</strong>: A bipartite graph can have an Eulerian circuit only if all vertices have even degree. It can have a Hamiltonian circuit only if the two partitions have the same number of vertices.</li>
+                        <li><strong>Path Graphs</strong>: A path graph has an Eulerian path (the path itself) but no Eulerian circuit. It also has a Hamiltonian path but no Hamiltonian circuit.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Complete Graph K₅</div>
+                        <p>Consider the complete graph K₅ with 5 vertices {A, B, C, D, E} where every vertex is connected to every other vertex.</p>
+                        <p>Each vertex has degree 4 (even), so K₅ has an Eulerian circuit.</p>
+                        <p>By definition, K₅ has Hamiltonian circuits, e.g., A-B-C-D-E-A.</p>
+                        <p>K₅ has (5-1)!/2 = 12 distinct Hamiltonian circuits, considering that circuits can be traversed in either direction.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Practical Algorithms and Examples</h3>
+                    
+                    <h4>Implementing Hierholzer's Algorithm for Eulerian Circuits</h4>
+                    <p>Here's a pseudocode implementation of Hierholzer's algorithm for finding an Eulerian circuit in an undirected graph:</p>
+                    
+                    <div class="math-formula">
+                        <p>Function FindEulerianCircuit(Graph G):</p>
+                        <p>  // Check if an Eulerian circuit exists</p>
+                        <p>  if G is not connected or any vertex has odd degree:</p>
+                        <p>    return "No Eulerian circuit exists"</p>
+                        <p>  </p>
+                        <p>  // Create a copy of the graph's adjacency list</p>
+                        <p>  Let adjacency = copy of G's adjacency list</p>
+                        <p>  </p>
+                        <p>  // Start with an empty stack and an empty circuit</p>
+                        <p>  Let stack = empty stack</p>
+                        <p>  Let circuit = empty list</p>
+                        <p>  </p>
+                        <p>  // Start from any vertex</p>
+                        <p>  Let current = any vertex in G</p>
+                        <p>  stack.push(current)</p>
+                        <p>  </p>
+                        <p>  while stack is not empty:</p>
+                        <p>    if adjacency[current] is empty:</p>
+                        <p>      circuit.prepend(current)</p>
+                        <p>      current = stack.pop()</p>
+                        <p>    else:</p>
+                        <p>      Let next = any vertex in adjacency[current]</p>
+                        <p>      stack.push(current)</p>
+                        <p>      </p>
+                        <p>      // Remove the edge (current, next)</p>
+                        <p>      adjacency[current].remove(next)</p>
+                        <p>      adjacency[next].remove(current)</p>
+                        <p>      </p>
+                        <p>      current = next</p>
+                        <p>  </p>
+                        <p>  return circuit</p>
+                    </div>
+                    
+                    <h4>Backtracking for Hamiltonian Paths</h4>
+                    <p>Here's a pseudocode implementation of a backtracking algorithm for finding a Hamiltonian path:</p>
+                    
+                    <div class="math-formula">
+                        <p>Function FindHamiltonianPath(Graph G):</p>
+                        <p>  Let n = number of vertices in G</p>
+                        <p>  Let path = array of size n, initialized with -1</p>
+                        <p>  path[0] = any vertex in G  // Start from any vertex</p>
+                        <p>  </p>
+                        <p>  if HamiltonianPathUtil(G, path, 1):</p>
+                        <p>    return path</p>
+                        <p>  else:</p>
+                        <p>    return "No Hamiltonian Path exists"</p>
+                        <p>  </p>
+                        <p>Function HamiltonianPathUtil(Graph G, path, position):</p>
+                        <p>  if position == n:</p>
+                        <p>    return true  // All vertices are included</p>
+                        <p>  </p>
+                        <p>  for each vertex v in G:</p>
+                        <p>    if CanBeAdded(v, G, path, position):</p>
+                        <p>      path[position] = v</p>
+                        <p>      </p>
+                        <p>      if HamiltonianPathUtil(G, path, position+1):</p>
+                        <p>        return true</p>
+                        <p>      </p>
+                        <p>      // Backtrack</p>
+                        <p>      path[position] = -1</p>
+                        <p>  </p>
+                        <p>  return false</p>
+                        <p>  </p>
+                        <p>Function CanBeAdded(vertex v, Graph G, path, position):</p>
+                        <p>  // Check if the vertex is already in the path</p>
+                        <p>  if v exists in path:</p>
+                        <p>    return false</p>
+                        <p>  </p>
+                        <p>  // Check if there's an edge from the previous vertex to this vertex</p>
+                        <p>  if position == 0 or G has an edge from path[position-1] to v:</p>
+                        <p>    return true</p>
+                        <p>  </p>
+                        <p>  return false</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: The Traveling Salesman Problem</div>
+                        <p>The Traveling Salesman Problem (TSP) is a classic application of Hamiltonian circuits. Given a list of cities and the distances between each pair of cities, the task is to find the shortest possible route that visits each city exactly once and returns to the origin city.</p>
+                        <p>Consider a small example with 4 cities and the following distance matrix:</p>
+                        <pre><code>
+    A   B   C   D
+A   0  10  15  20
+B  10   0  35  25
+C  15  35   0  30
+D  20  25  30   0
+                        </code></pre>
+                        <p>For this small instance, we can use a brute force approach to find the optimal solution by checking all possible Hamiltonian circuits:</p>
+                        <ul>
+                            <li>A-B-C-D-A: 10 + 35 + 30 + 20 = 95</li>
+                            <li>A-B-D-C-A: 10 + 25 + 30 + 15 = 80</li>
+                            <li>A-C-B-D-A: 15 + 35 + 25 + 20 = 95</li>
+                            <li>A-C-D-B-A: 15 + 30 + 25 + 10 = 80</li>
+                            <li>A-D-B-C-A: 20 + 25 + 35 + 15 = 95</li>
+                            <li>A-D-C-B-A: 20 + 30 + 35 + 10 = 95</li>
+                        </ul>
+                        <p>The optimal solution is either A-B-D-C-A or A-C-D-B-A, both with a total distance of 80.</p>
+                    </div>
+                    
+                    <div class="navigation">
+                        <a href="graph-representation.html" class="prev-next-btn">Previous: Graph Representation</a>
+                        <a href="trees-spanning-trees.html" class="prev-next-btn">Next: Trees & Spanning Trees</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

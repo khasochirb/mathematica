@@ -1,0 +1,299 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Conditional Probability - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Conditional Probability</h2>
+                <p class="text-secondary">Understanding how the probability of an event changes when we have additional information</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#probability">Probability</a> &raquo;
+                    <span>Conditional Probability</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Conditional Probability</h3>
+                    
+                    <p class="text-secondary">Conditional probability is the probability of an event occurring given that another event has already occurred. It represents how knowledge of one event affects the likelihood of another event.</p>
+                    
+                    <h4>Definition and Notation</h4>
+                    <p>The conditional probability of event A given that event B has occurred is denoted as P(A|B) and is defined as:</p>
+                    <div class="math-formula">
+                        P(A|B) = P(A ∩ B) / P(B), where P(B) > 0
+                    </div>
+                    <p>This can be intuitively understood as restricting the sample space to only those outcomes where B occurs, and then finding the probability of A within this restricted sample space.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Rolling a Die</div>
+                        <p>Consider rolling a fair six-sided die. What is the probability of rolling an even number given that the number rolled is greater than 3?</p>
+                        <p>Let A = {rolling an even number} = {2, 4, 6}</p>
+                        <p>Let B = {rolling a number greater than 3} = {4, 5, 6}</p>
+                        <p>P(B) = 3/6 = 1/2</p>
+                        <p>A ∩ B = {4, 6} (numbers that are both even and greater than 3)</p>
+                        <p>P(A ∩ B) = 2/6 = 1/3</p>
+                        <p>Therefore, P(A|B) = P(A ∩ B) / P(B) = (1/3) / (1/2) = 2/3</p>
+                    </div>
+                    
+                    <h4>Why Conditional Probability Matters</h4>
+                    <p class="text-secondary">Conditional probability is crucial because most real-world scenarios involve making decisions based on partial information. Understanding how new information changes probabilities is essential in fields ranging from medicine (diagnostic testing) to finance (risk assessment) to artificial intelligence (Bayesian networks).</p>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Multiplication Rule and Tree Diagrams</h3>
+                    
+                    <h4>Multiplication Rule</h4>
+                    <p>The multiplication rule follows directly from the definition of conditional probability and provides a way to find the probability of the intersection of events:</p>
+                    <div class="math-formula">
+                        P(A ∩ B) = P(B) × P(A|B) = P(A) × P(B|A)
+                    </div>
+                    <p>For multiple events, this extends to:</p>
+                    <div class="math-formula">
+                        P(A ∩ B ∩ C) = P(A) × P(B|A) × P(C|A ∩ B)
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Drawing Cards</div>
+                        <p>What is the probability of drawing two aces in succession from a standard deck of 52 cards, without replacement?</p>
+                        <p>Let A₁ = {first card is an ace} and A₂ = {second card is an ace}</p>
+                        <p>P(A₁) = 4/52 = 1/13 (there are 4 aces in a deck of 52 cards)</p>
+                        <p>P(A₂|A₁) = 3/51 (after drawing one ace, 3 aces remain out of 51 cards)</p>
+                        <p>P(A₁ ∩ A₂) = P(A₁) × P(A₂|A₁) = (1/13) × (3/51) = 3/663 = 1/221</p>
+                    </div>
+                    
+                    <h4>Tree Diagrams</h4>
+                    <p>Tree diagrams provide a visual representation of sequential events and are particularly useful for calculating conditional probabilities. Each branch in the tree represents a possible outcome, and the probabilities along each path are multiplied to find the probability of that specific sequence of events.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Tree Diagram for Two Coin Tosses</div>
+                        <p>Consider tossing a fair coin twice. We can represent this with a tree diagram:</p>
+                        <p>First toss: H (0.5) or T (0.5)</p>
+                        <p>From H: Second toss H (0.5) or T (0.5)</p>
+                        <p>From T: Second toss H (0.5) or T (0.5)</p>
+                        <p>The four possible outcomes are:</p>
+                        <p>H-H: P = 0.5 × 0.5 = 0.25</p>
+                        <p>H-T: P = 0.5 × 0.5 = 0.25</p>
+                        <p>T-H: P = 0.5 × 0.5 = 0.25</p>
+                        <p>T-T: P = 0.5 × 0.5 = 0.25</p>
+                    </div>
+                    
+                    <p>Tree diagrams are especially useful for solving complex problems involving multiple stages or when the probability at each stage depends on the outcomes of previous stages.</p>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Law of Total Probability</h3>
+                    
+                    <p>The Law of Total Probability allows us to calculate the total probability of an event by considering all the ways it can occur through different mutually exclusive scenarios.</p>
+                    
+                    <h4>Statement of the Law</h4>
+                    <p>If {B₁, B₂, ..., Bₙ} is a partition of the sample space (i.e., the events are mutually exclusive and collectively exhaustive), then for any event A:</p>
+                    <div class="math-formula">
+                        P(A) = P(A|B₁)P(B₁) + P(A|B₂)P(B₂) + ... + P(A|Bₙ)P(Bₙ)
+                    </div>
+                    <p>In more compact notation:</p>
+                    <div class="math-formula">
+                        P(A) = Σᵢ P(A|Bᵢ)P(Bᵢ)
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Medical Testing</div>
+                        <p>A medical test for a disease has a 95% probability of a positive result when tested on a person with the disease (true positive) and a 10% probability of a positive result when tested on a person without the disease (false positive). Assume that 2% of the population has the disease. What is the probability of a randomly selected person testing positive?</p>
+                        
+                        <p>Let D = {person has the disease}, D' = {person does not have the disease}, and T = {test is positive}</p>
+                        <p>Given:</p>
+                        <p>P(T|D) = 0.95 (sensitivity)</p>
+                        <p>P(T|D') = 0.10 (false positive rate)</p>
+                        <p>P(D) = 0.02 (prevalence)</p>
+                        <p>P(D') = 0.98</p>
+                        
+                        <p>Using the Law of Total Probability:</p>
+                        <p>P(T) = P(T|D)P(D) + P(T|D')P(D')</p>
+                        <p>P(T) = 0.95 × 0.02 + 0.10 × 0.98</p>
+                        <p>P(T) = 0.019 + 0.098 = 0.117</p>
+                        
+                        <p>Therefore, the probability of a randomly selected person testing positive is 0.117 or 11.7%.</p>
+                    </div>
+                    
+                    <h4>Importance in Complex Problems</h4>
+                    <p>The Law of Total Probability is particularly valuable when dealing with complex scenarios where the direct computation of probabilities is difficult, but the conditional probabilities are known or easier to determine. It forms the basis for many probabilistic methods, including Bayesian statistics and decision theory.</p>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Independence of Events</h3>
+                    
+                    <h4>Definition of Independence</h4>
+                    <p>Two events A and B are independent if the occurrence of one event does not affect the probability of the other. Mathematically, A and B are independent if:</p>
+                    <div class="math-formula">
+                        P(A|B) = P(A) or equivalently, P(B|A) = P(B)
+                    </div>
+                    <p>Using the definition of conditional probability, this can also be expressed as:</p>
+                    <div class="math-formula">
+                        P(A ∩ B) = P(A) × P(B)
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Independence of Events</div>
+                        <p>Consider rolling two fair dice. Let A = {sum is 7} and B = {first die shows 3}. Are these events independent?</p>
+                        
+                        <p>P(A) = 6/36 = 1/6 (there are 6 ways to get a sum of 7 out of 36 possible outcomes)</p>
+                        <p>P(B) = 6/36 = 1/6 (the first die shows 3 in 6 of the 36 possible outcomes)</p>
+                        <p>A ∩ B = {(3,4)} (the only outcome where the first die shows 3 and the sum is 7)</p>
+                        <p>P(A ∩ B) = 1/36</p>
+                        
+                        <p>If the events were independent, we would have P(A ∩ B) = P(A) × P(B) = (1/6) × (1/6) = 1/36</p>
+                        <p>Since P(A ∩ B) = P(A) × P(B), events A and B are indeed independent.</p>
+                    </div>
+                    
+                    <h4>Conditional Independence</h4>
+                    <p>Two events A and B are conditionally independent given a third event C if:</p>
+                    <div class="math-formula">
+                        P(A ∩ B|C) = P(A|C) × P(B|C)
+                    </div>
+                    <p>It's important to note that conditional independence given C does not imply unconditional independence, and vice versa.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Conditional Independence</div>
+                        <p>Consider a study examining the relationship between smoking (S), lung cancer (L), and having a genetic marker (G). The events L and G might be dependent in the general population, but given that someone is a smoker (conditioning on S), L and G might be conditionally independent.</p>
+                        <p>If P(L ∩ G|S) = P(L|S) × P(G|S), then L and G are conditionally independent given S.</p>
+                    </div>
+                    
+                    <h4>Multiple Independent Events</h4>
+                    <p>For more than two events, independence gets more complex. A collection of events is mutually independent if every event is independent of any combination of the other events. For three events A, B, and C to be mutually independent, we need:</p>
+                    <div class="math-formula">
+                        P(A ∩ B) = P(A) × P(B)<br>
+                        P(A ∩ C) = P(A) × P(C)<br>
+                        P(B ∩ C) = P(B) × P(C)<br>
+                        P(A ∩ B ∩ C) = P(A) × P(B) × P(C)
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications of Conditional Probability</h3>
+                    
+                    <h4>Medical Diagnosis</h4>
+                    <p class="text-secondary">Conditional probability plays a crucial role in medical diagnosis, where test results need to be interpreted in the context of disease prevalence.</p>
+                    
+                    <p class="text-secondary">Key terms in medical testing:</p>
+                    <ul>
+                        <li><strong>Sensitivity:</strong> P(positive test | disease) - probability of a positive test given the person has the disease</li>
+                        <li><strong>Specificity:</strong> P(negative test | no disease) - probability of a negative test given the person does not have the disease</li>
+                        <li><strong>Positive Predictive Value (PPV):</strong> P(disease | positive test) - probability of having the disease given a positive test</li>
+                        <li><strong>Negative Predictive Value (NPV):</strong> P(no disease | negative test) - probability of not having the disease given a negative test</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Medical Diagnosis</div>
+                        <p>A diagnostic test for a rare disease has a sensitivity of 99% and a specificity of 95%. The disease affects 1 in 1000 people. If a person tests positive, what is the probability they actually have the disease?</p>
+                        
+                        <p>Let D = {person has the disease} and T = {test is positive}</p>
+                        <p>Given:</p>
+                        <p>P(T|D) = 0.99 (sensitivity)</p>
+                        <p>P(T'|D') = 0.95 (specificity), so P(T|D') = 0.05</p>
+                        <p>P(D) = 0.001 (prevalence)</p>
+                        
+                        <p>We want to find P(D|T) (the positive predictive value). Using Bayes' theorem:</p>
+                        <p>P(D|T) = [P(T|D) × P(D)] / [P(T|D) × P(D) + P(T|D') × P(D')]</p>
+                        <p>P(D|T) = [0.99 × 0.001] / [0.99 × 0.001 + 0.05 × 0.999]</p>
+                        <p>P(D|T) = 0.00099 / (0.00099 + 0.04995) = 0.00099 / 0.05094 ≈ 0.0194</p>
+                        
+                        <p>Therefore, despite the high sensitivity and specificity, the probability that a person who tests positive actually has the disease is only about 1.94%. This illustrates the "base rate fallacy" where the rarity of the condition significantly affects the predictive value of the test.</p>
+                    </div>
+                    
+                    <h4>Risk Assessment and Decision Making</h4>
+                    <p class="text-secondary">Conditional probability is fundamental to risk assessment and decision making under uncertainty. It helps us update our beliefs as new information becomes available, allowing for more informed decisions.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Insurance Risk Assessment</div>
+                        <p>An insurance company has data showing that among all drivers, 1% will have an accident in a given year. Among drivers with a speeding ticket, 5% will have an accident in a given year. If 10% of all drivers get speeding tickets, what percentage of accidents involve drivers with speeding tickets?</p>
+                        
+                        <p>Let A = {driver has an accident} and S = {driver has a speeding ticket}</p>
+                        <p>Given:</p>
+                        <p>P(A) = 0.01</p>
+                        <p>P(A|S) = 0.05</p>
+                        <p>P(S) = 0.10</p>
+                        
+                        <p>We want to find P(S|A). Using Bayes' theorem:</p>
+                        <p>P(S|A) = [P(A|S) × P(S)] / P(A)</p>
+                        <p>P(S|A) = [0.05 × 0.10] / 0.01 = 0.005 / 0.01 = 0.5</p>
+                        
+                        <p>Therefore, 50% of all accidents involve drivers with speeding tickets, although only 10% of drivers have speeding tickets.</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <a href="basic-probability-rules.html" class="prev-next-btn probability-btn">Previous: Basic Probability Rules</a>
+                    <a href="random-variables-and-distributions.html" class="prev-next-btn probability-btn">Next: Random Variables & Distributions</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

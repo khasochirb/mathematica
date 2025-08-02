@@ -1,0 +1,247 @@
+/* Topic Pages Design System - Educational Theme */
+
+/* Import the educational design system */
+@import url('educational-design-system.css');
+@import url('educational-overrides.css');
+
+/* Topic-specific styles using educational design system */
+.topic-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-6);
+}
+
+.topic-section {
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    margin-bottom: var(--space-6);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border-light);
+    transition: all var(--transition-normal);
+}
+
+.topic-section:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary-blue);
+}
+
+.topic-header {
+    color: var(--color-text-primary);
+    border-bottom: 2px solid var(--color-primary-blue);
+    padding-bottom: var(--space-3);
+    margin-bottom: var(--space-4);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-h3);
+}
+
+.math-formula {
+    background: var(--color-background-light);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--color-primary-blue);
+    margin: var(--space-4) 0;
+    font-family: 'Courier New', monospace;
+    color: var(--color-text-primary) !important;
+    font-size: var(--text-base);
+    line-height: var(--line-height-relaxed);
+}
+
+.example {
+    background: var(--color-background-light);
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    margin: var(--space-4) 0;
+    border-left: 4px solid var(--color-secondary-teal);
+}
+
+.example-title {
+    font-weight: var(--weight-semibold);
+    color: var(--color-secondary-teal);
+    margin-bottom: var(--space-3);
+    font-size: var(--text-lg);
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--space-8);
+    padding: var(--space-4) 0;
+    border-top: 1px solid var(--color-border-light);
+}
+
+.prev-next-btn {
+    background: var(--color-primary-blue) !important;
+    color: white !important;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-md);
+    text-decoration: none !important;
+    transition: all var(--transition-fast);
+    font-weight: var(--weight-medium);
+    box-shadow: var(--shadow-sm);
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.prev-next-btn:hover {
+    background: var(--color-primary-blue) !important;
+    color: white !important;
+    text-decoration: none !important;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.breadcrumb {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    align-items: center;
+    margin-bottom: var(--space-4);
+    padding: var(--space-3);
+    background: var(--color-background-light);
+    border-radius: var(--radius-md);
+}
+
+.breadcrumb a {
+    color: var(--color-primary-blue) !important;
+    text-decoration: none !important;
+    transition: color var(--transition-fast);
+    font-weight: var(--weight-medium);
+}
+
+.breadcrumb a:hover {
+    color: var(--color-primary-blue) !important;
+    text-decoration: underline !important;
+}
+
+.breadcrumb span {
+    color: var(--color-text-secondary);
+    font-weight: var(--weight-medium);
+}
+
+/* Main content styling */
+#main {
+    background: var(--color-white);
+    padding: var(--space-6) 0;
+}
+
+#main header {
+    text-align: center;
+    margin-bottom: var(--space-6);
+}
+
+#main header h2 {
+    color: var(--color-text-primary);
+    font-size: var(--text-h2);
+    font-weight: var(--weight-bold);
+    margin-bottom: var(--space-3);
+}
+
+#main header p {
+    color: var(--color-text-secondary);
+    font-size: var(--text-lg);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Box styling for topic sections */
+.box {
+    background: var(--color-white);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    margin-bottom: var(--space-4);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+}
+
+.box:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary-blue);
+}
+
+/* Typography improvements */
+.topic-section h3 {
+    color: var(--color-text-primary);
+    font-size: var(--text-h3);
+    font-weight: var(--weight-semibold);
+    margin-bottom: var(--space-3);
+}
+
+.topic-section h4 {
+    color: var(--color-text-primary);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    margin-bottom: var(--space-2);
+    margin-top: var(--space-4);
+}
+
+.topic-section p {
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-3);
+}
+
+.topic-section ul {
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-3);
+    padding-left: var(--space-4);
+}
+
+.topic-section li {
+    margin-bottom: var(--space-1);
+}
+
+.topic-section strong {
+    color: var(--color-text-primary);
+    font-weight: var(--weight-semibold);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .topic-container {
+        padding: var(--space-4);
+    }
+    
+    .topic-section {
+        padding: var(--space-4);
+        margin-bottom: var(--space-4);
+    }
+    
+    .navigation {
+        flex-direction: column;
+        gap: var(--space-3);
+        align-items: center;
+    }
+    
+    .breadcrumb {
+        font-size: var(--text-xs);
+        padding: var(--space-2);
+    }
+    
+    #main header h2 {
+        font-size: var(--text-h3);
+    }
+    
+    #main header p {
+        font-size: var(--text-base);
+    }
+}
+
+/* Hide old design system styles */
+#titleBar, #navPanel {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Ensure navigation is always visible */
+#nav {
+    display: block !important;
+} 

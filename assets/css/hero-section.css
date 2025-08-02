@@ -1,0 +1,356 @@
+/* Hero Section - Dedicated CSS File */
+/* This file contains all hero section styling to ensure proper spacing and layout */
+
+/* Hero Section Container */
+.hero-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  margin-top: 0;
+  width: 100%;
+}
+
+/* Background Elements */
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.floating-shape {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Enhanced polka dot animations */
+.shape-1 {
+  width: 80px;
+  height: 80px;
+  top: 10%;
+  left: 10%;
+  animation: float 6s ease-in-out infinite, pulse 4s ease-in-out infinite;
+}
+
+.shape-2 {
+  width: 120px;
+  height: 120px;
+  top: 20%;
+  right: 15%;
+  animation: float 8s ease-in-out infinite, pulse 5s ease-in-out infinite;
+}
+
+.shape-3 {
+  width: 60px;
+  height: 60px;
+  bottom: 20%;
+  left: 20%;
+  animation: float 7s ease-in-out infinite, pulse 3.5s ease-in-out infinite;
+}
+
+.shape-4 {
+  width: 100px;
+  height: 100px;
+  bottom: 10%;
+  right: 10%;
+  animation: float 9s ease-in-out infinite, pulse 4.5s ease-in-out infinite;
+}
+
+.shape-5 {
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  left: 5%;
+  animation: float 5s ease-in-out infinite, pulse 3s ease-in-out infinite;
+}
+
+.shape-6 {
+  width: 70px;
+  height: 70px;
+  top: 30%;
+  right: 5%;
+  animation: float 7.5s ease-in-out infinite, pulse 4.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.1);
+  }
+}
+
+
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+/* Hero Content Layout */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 5%;
+  min-height: 80vh;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Hero Text Content */
+.hero-text {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 60px 0;
+  text-align: center;
+}
+
+/* Hero Headline */
+.hero-headline {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Hero Main Title - Override educational design system */
+.hero-section .hero-main-title,
+.hero-text .hero-main-title,
+h2.hero-main-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  margin-bottom: 32px !important;
+  color: white !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  border: none !important;
+  border-bottom: none !important;
+  position: relative !important;
+}
+
+/* Remove any pseudo-elements from hero title */
+.hero-section .hero-main-title:after,
+.hero-text .hero-main-title:after,
+h2.hero-main-title:after,
+.hero-section .hero-main-title:before,
+.hero-text .hero-main-title:before,
+h2.hero-main-title:before {
+  display: none !important;
+  content: none !important;
+}
+
+/* Hero Tagline */
+.hero-tagline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 48px;
+  min-height: 60px;
+}
+
+.tagline-text {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.3rem, 2.8vw, 1.8rem);
+  font-weight: 600;
+  color: #0891B2;
+  line-height: 1.3;
+  text-align: center;
+  min-height: 2.4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tagline-text::after {
+  content: '|';
+  color: #0891B2;
+  animation: blink 1s infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Hero Subtitle */
+.hero-subtitle {
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  line-height: 1.6;
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  text-align: center;
+}
+
+/* Hero Visual Section */
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 60px 0;
+}
+
+.hero-image-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Education Illustration */
+.education-illustration {
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.15));
+  animation: float 6s ease-in-out infinite;
+}
+
+.education-illustration svg {
+  width: 100%;
+  height: auto;
+  max-width: 450px;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Learning paths animation */
+.learning-paths path {
+  animation: pathGlow 4s ease-in-out infinite;
+}
+
+@keyframes pathGlow {
+  0%, 100% {
+    opacity: 0.7;
+    stroke-width: 3;
+  }
+  50% {
+    opacity: 1;
+    stroke-width: 4;
+  }
+}
+
+/* Enhanced floating animation for the entire illustration */
+.education-illustration {
+  animation: gentleFloat 8s ease-in-out infinite;
+}
+
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.5deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 48px;
+  }
+  
+  .hero-subtitle {
+    margin: 0 auto;
+  }
+  
+  .hero-tagline {
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero-visual {
+    order: -1;
+  }
+  
+  .hero-text {
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 60px 0;
+    min-height: 70vh;
+  }
+  
+  .hero-content {
+    padding: 60px 5%;
+  }
+  
+  .hero-headline {
+    font-size: 2.5rem;
+    margin-bottom: 24px;
+  }
+  
+  .hero-section .hero-main-title,
+  .hero-text .hero-main-title,
+  h2.hero-main-title {
+    font-size: 1.8rem !important;
+    margin-bottom: 24px !important;
+  }
+  
+  .hero-tagline {
+    margin-bottom: 32px;
+    min-height: 50px;
+  }
+  
+  .tagline-text {
+    font-size: 1.3rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .floating-shape {
+    display: none;
+  }
+  
+  .education-illustration svg {
+    max-width: 350px;
+  }
+} 

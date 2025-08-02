@@ -1,0 +1,359 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Expectation &amp; Variance - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Expectation &amp; Variance</h2>
+                <p>Measuring and analyzing the central tendency and dispersion of random variables</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#probability">Probability</a> &raquo;
+                    <span>Expectation &amp; Variance</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Expected Value</h3>
+                    
+                    <p>The expected value (or expectation or mean) of a random variable is a measure of the central tendency of its probability distribution. It represents the average value we would expect to observe if we could repeat the random experiment infinitely many times.</p>
+                    
+                    <h4>Definition for Discrete Random Variables</h4>
+                    <p>For a discrete random variable X with possible values x₁, x₂, ..., xₙ and corresponding probabilities p₁, p₂, ..., pₙ, the expected value is defined as:</p>
+                    <div class="math-formula">
+                        E(X) = x₁p₁ + x₂p₂ + ... + xₙpₙ = Σ xᵢpᵢ
+                    </div>
+                    <p>In other words, the expected value is the sum of each possible value multiplied by its probability.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Expected Value of a Shagai Throw</div>
+                        <p>Consider throwing a single shagai (ankle bone). Let X be the number of sheep obtained. The possible values are 0 (not sheep) and 1 (sheep), each with a probability of 1/2.</p>
+                        <p>E(X) = 0×(1/2) + 1×(1/2) = 1/2</p>
+                        <p>The expected value of a single shagai throw is 0.5, meaning we expect to get a sheep half the time.</p>
+                    </div>
+                    
+                    <h4>Definition for Continuous Random Variables</h4>
+                    <p>For a continuous random variable X with probability density function f(x), the expected value is defined as:</p>
+                    <div class="math-formula">
+                        E(X) = ∫ x f(x) dx
+                    </div>
+                    <p>where the integral is taken over the entire range of possible values of X.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Expected Value of a Continuous Random Variable</div>
+                        <p>Let X be the distance (in meters) that a Mongolian archer's arrow lands from the center of the target. X has a uniform distribution on [0, 1].</p>
+                        <p>E(X) = ∫<sub>0</sub><sup>1</sup> x (1) dx = [x²/2]<sub>0</sub><sup>1</sup> = 1/2</p>
+                        <p>The expected value of X is 0.5 meters, meaning the average arrow lands halfway between the center and the edge of the target.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Properties of Expected Value</h3>
+                    
+                    <h4>Linearity of Expectation</h4>
+                    <p>One of the most useful properties of expected value is its linearity. For any random variables X and Y, and any constants a and b:</p>
+                    <div class="math-formula">
+                        E(aX + bY) = aE(X) + bE(Y)
+                    </div>
+                    <p>This property holds regardless of whether X and Y are independent.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Linearity of Expectation</div>
+                        <p>If X represents the number of sheep obtained when throwing a single shagai, we know E(X) = 0.5. </p>
+                        <p>Now, consider the random variable Y = 2X + 1, representing twice the number of sheep plus 1.</p>
+                        <p>Using linearity of expectation: E(Y) = E(2X + 1) = 2E(X) + 1 = 2(0.5) + 1 = 1 + 1 = 2</p>
+                        <p>So the expected value of Y is 2.</p>
+                    </div>
+                    
+                    <h4>Expected Value of a Function</h4>
+                    <p>For a function g(X) of a random variable X:</p>
+                    <div class="math-formula">
+                        For discrete random variables: E(g(X)) = Σ g(xᵢ)p(xᵢ)<br>
+                        For continuous random variables: E(g(X)) = ∫ g(x)f(x) dx
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Expected Value of a Function</div>
+                        <p>Let X be the number of sheep obtained when throwing a single shagai, and let g(X) = X².</p>
+                        <p>E(X²) = 0²×(1/2) + 1²×(1/2) = 0 + 1/2 = 1/2</p>
+                        <p>The expected value of X² is 1/2.</p>
+                    </div>
+                    
+                    <h4>Expected Value of a Product</h4>
+                    <p>For random variables X and Y:</p>
+                    <div class="math-formula">
+                        E(XY) = E(X)E(Y) if X and Y are independent<br>
+                        E(XY) ≠ E(X)E(Y) if X and Y are dependent
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Expected Value of a Product</div>
+                        <p>Let X and Y be the number of sheep obtained in two independent throws of shagai. We know E(X) = E(Y) = 0.5.</p>
+                        <p>Since X and Y are independent: E(XY) = E(X)E(Y) = 0.5 × 0.5 = 0.25</p>
+                        <p>Now, let Z be the total number of sheep in both throws (Z = X + Y). If we define W = XZ, then X and Z are dependent (since Z includes X).</p>
+                        <p>In this case, E(XZ) = E(X(X + Y)) = E(X² + XY) = E(X²) + E(XY) = 0.5 + 0.25 = 0.75</p>
+                        <p>This is different from E(X)E(Z) = 0.5 × (0.5 + 0.5) = 0.5 × 1 = 0.5</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Variance and Standard Deviation</h3>
+                    
+                    <h4>Definition of Variance</h4>
+                    <p>The variance of a random variable X, denoted Var(X) or σ², measures the spread or dispersion of the probability distribution around its expected value. It is defined as:</p>
+                    <div class="math-formula">
+                        Var(X) = E[(X - E(X))²] = E(X²) - [E(X)]²
+                    </div>
+                    <p>The second formula, Var(X) = E(X²) - [E(X)]², is often more convenient for calculations.</p>
+                    
+                    <h4>Definition of Standard Deviation</h4>
+                    <p>The standard deviation, denoted σ or SD(X), is the square root of the variance:</p>
+                    <div class="math-formula">
+                        SD(X) = σ = √Var(X)
+                    </div>
+                    <p>The standard deviation has the same units as the random variable itself, making it more interpretable than the variance for practical purposes.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Calculating Variance and Standard Deviation</div>
+                        <p>Continuing with our shagai example, we know:</p>
+                        <p>E(X) = 0.5 and E(X²) = 0.5</p>
+                        <p>Using the formula Var(X) = E(X²) - [E(X)]²:</p>
+                        <p>Var(X) = 0.5 - 0.5² = 0.5 - 0.25 = 0.25</p>
+                        <p>SD(X) = √0.25 = 0.5</p>
+                        <p>The variance of a shagai throw is 0.25, and the standard deviation is 0.5.</p>
+                    </div>
+                    
+                    <h4>Properties of Variance</h4>
+                    <p>For any random variables X and Y, and any constants a and b:</p>
+                    <div class="math-formula">
+                        Var(aX + b) = a²Var(X)<br>
+                        Var(X + Y) = Var(X) + Var(Y) + 2Cov(X, Y)<br>
+                        If X and Y are independent: Var(X + Y) = Var(X) + Var(Y)
+                    </div>
+                    <p>where Cov(X, Y) is the covariance between X and Y.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Properties of Variance</div>
+                        <p>For a random variable X representing a shagai throw, we found Var(X) = 0.25.</p>
+                        <p>For Y = 2X + 1:</p>
+                        <p>Var(Y) = Var(2X + 1) = 2²Var(X) = 4 × 0.25 = 1</p>
+                        <p>If X and Z are independent shagai throws:</p>
+                        <p>Var(X + Z) = Var(X) + Var(Z) = 0.25 + 0.25 = 0.5</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Moments and Moment-Generating Functions</h3>
+                    
+                    <h4>Moments of a Distribution</h4>
+                    <p>The kth moment of a random variable X about the origin is defined as E(X^k). The mean is the first moment (k = 1).</p>
+                    <p>The kth central moment is defined as E[(X - μ)^k], where μ = E(X). The variance is the second central moment (k = 2).</p>
+                    
+                    <h4>Moment-Generating Function</h4>
+                    <p>The moment-generating function (MGF) of a random variable X is defined as:</p>
+                    <div class="math-formula">
+                        M<sub>X</sub>(t) = E(e^{tX})
+                    </div>
+                    <p>MGFs are useful because they uniquely determine a probability distribution and can be used to derive moments:</p>
+                    <div class="math-formula">
+                        E(X^k) = d^k/dt^k [M<sub>X</sub>(t)] evaluated at t = 0
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Moment-Generating Function</div>
+                        <p>For a standard normal random variable Z with μ = 0 and σ = 1, the MGF is:</p>
+                        <p>M<sub>Z</sub>(t) = e^{t²/2}</p>
+                        <p>To find E(Z²) (the second moment), we calculate:</p>
+                        <p>d²/dt² [e^{t²/2}] = d/dt [te^{t²/2}] = e^{t²/2} + t×t×e^{t²/2} = e^{t²/2}(1 + t²)</p>
+                        <p>Evaluating at t = 0 gives E(Z²) = 1, which confirms that the variance of a standard normal distribution is 1.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Expectation and Variance for Common Distributions</h3>
+                    
+                    <h4>Discrete Distributions</h4>
+                    <table style="width:100%; border-collapse: collapse; margin: 20px 0;">
+                        <tr style="background-color: #f5f5f5;">
+                            <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Distribution</th>
+                            <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Expected Value</th>
+                            <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Variance</th>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Bernoulli(p)</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">p</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">p(1-p)</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Binomial(n, p)</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">np</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">np(1-p)</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Geometric(p)</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">1/p</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">(1-p)/p²</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Poisson(λ)</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">λ</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">λ</td>
+                        </tr>
+                    </table>
+                    
+                    <h4>Continuous Distributions</h4>
+                    <table style="width:100%; border-collapse: collapse; margin: 20px 0;">
+                        <tr style="background-color: #f5f5f5;">
+                            <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Distribution</th>
+                            <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Expected Value</th>
+                            <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Variance</th>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Uniform(a, b)</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">(a+b)/2</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">(b-a)²/12</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Normal(μ, σ²)</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">μ</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">σ²</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Exponential(λ)</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">1/λ</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">1/λ²</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Gamma(α, β)</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">αβ</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">αβ²</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Using Distribution Properties</div>
+                        <p>In a traditional Mongolian wrestling tournament with n = 10 matches and probability of winning p = 0.3:</p>
+                        <p>E(X) = np = 10 × 0.3 = 3</p>
+                        <p>Var(X) = np(1-p) = 10 × 0.3 × 0.7 = 2.1</p>
+                        <p>SD(X) = √2.1 ≈ 1.45</p>
+                        <p>On average, a wrestler can expect to win 3 matches, with a standard deviation of approximately 1.45 matches.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications of Expectation and Variance</h3>
+                    
+                    <h4>Risk and Decision Making</h4>
+                    <p>Expected value plays a crucial role in decision theory and risk assessment. When faced with multiple choices, one approach is to select the option with the highest expected value. However, this doesn't account for risk aversion or preference.</p>
+                    <p>The variance or standard deviation can be used as a measure of risk. Higher variance indicates greater uncertainty or volatility.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Investment Decision</div>
+                        <p>Consider two traditional Mongolian herding strategies:</p>
+                        <p>Strategy A: Expected return = 7%, Standard deviation = 5%</p>
+                        <p>Strategy B: Expected return = 10%, Standard deviation = 15%</p>
+                        <p>While Strategy B has a higher expected return, it also comes with significantly higher risk (higher standard deviation). A risk-averse herder might prefer Strategy A despite its lower expected return.</p>
+                    </div>
+                    
+                    <h4>Quality Control</h4>
+                    <p>In manufacturing, the mean and variance of product measurements are monitored to ensure quality. The mean should be close to the target specification, and the variance should be small to ensure consistency.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Quality Control</div>
+                        <p>A traditional Mongolian bow maker produces arrows with a target length of 80cm. Quality control measures the length of random samples and calculates:</p>
+                        <p>Mean length = 80.2cm, Standard deviation = 0.5cm</p>
+                        <p>If specifications require the length to be within 80 ± 1.5cm, we can calculate the probability of an arrow being out of specification using the normal distribution properties. With these parameters, approximately 99.7% of arrows would fall within 80.2 ± 3(0.5) = (78.7, 81.7), which meets the quality requirements.</p>
+                    </div>
+                    
+                    <h4>Statistical Inference</h4>
+                    <p>The sample mean and variance are used to estimate the population mean and variance in statistical inference.</p>
+                    <p>The Central Limit Theorem states that the distribution of sample means approaches a normal distribution as the sample size increases, regardless of the underlying population distribution.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Sampling Distribution</div>
+                        <p>A population of Mongolian horses has a mean height μ = 1.4 meters and standard deviation σ = 0.1 meters. If we take random samples of size n = 25:</p>
+                        <p>The expected value of the sample mean is E(X̄) = μ = 1.4</p>
+                        <p>The standard deviation of the sample mean (standard error) is σ/√n = 0.1/√25 = 0.1/5 = 0.02</p>
+                        <p>By the Central Limit Theorem, X̄ is approximately normally distributed: X̄ ~ N(1.4, 0.0004)</p>
+                        <p>The probability that a sample mean falls between 1.36 and 1.44 meters is:</p>
+                        <p>P(1.36 < X̄ < 1.44) = P(-2 < Z < 2) ≈ 0.9545</p>
+                        <p>So about 95.45% of sample means will fall within 2 standard errors of the population mean.</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <a href="random-variables-and-distributions.html" class="prev-next-btn probability-btn">Previous: Random Variables & Distributions</a>
+                    <a href="bayes-theorem.html" class="prev-next-btn probability-btn">Next: Bayes' Theorem</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html>

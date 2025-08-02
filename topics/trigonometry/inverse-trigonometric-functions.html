@@ -1,0 +1,366 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Inverse Trigonometric Functions - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Inverse Trigonometric Functions</h2>
+                <p class="text-secondary">Understanding and applying the arcsine, arccosine, and arctangent functions</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#trigonometry">Trigonometry</a> &raquo;
+                    <span>Inverse Trigonometric Functions</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Inverse Trigonometric Functions</h3>
+                    
+                    <p class="text-secondary">Inverse trigonometric functions allow us to find the angle that corresponds to a given trigonometric ratio. Since the standard trigonometric functions (sin, cos, tan, etc.) are not one-to-one, their inverses are not true functions unless we restrict their domains.</p>
+                    
+                    <p>The main inverse trigonometric functions are:</p>
+                    <ul>
+                        <li><strong>Arcsine (arcsin or sin<sup>-1</sup>)</strong>: The inverse of sine</li>
+                        <li><strong>Arccosine (arccos or cos<sup>-1</sup>)</strong>: The inverse of cosine</li>
+                        <li><strong>Arctangent (arctan or tan<sup>-1</sup>)</strong>: The inverse of tangent</li>
+                        <li><strong>Arccosecant (arccsc or csc<sup>-1</sup>)</strong>: The inverse of cosecant</li>
+                        <li><strong>Arcsecant (arcsec or sec<sup>-1</sup>)</strong>: The inverse of secant</li>
+                        <li><strong>Arccotangent (arccot or cot<sup>-1</sup>)</strong>: The inverse of cotangent</li>
+                    </ul>
+                    
+                    <p>The notation f<sup>-1</sup>(x) represents the inverse function, not the reciprocal 1/f(x). For example:</p>
+                    <div class="math-formula">
+                        sin<sup>-1</sup>(0.5) = π/6 (or 30°) because sin(π/6) = 0.5
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 1: Understanding Inverse Functions</div>
+                        <p>If sin(θ) = 0.8, find θ using the inverse sine function.</p>
+                        <p>θ = sin<sup>-1</sup>(0.8) ≈ 0.9273 radians ≈ 53.13°</p>
+                        <p>We can verify: sin(53.13°) ≈ 0.8</p>
+                        <p>Note that there are actually infinitely many angles whose sine is 0.8, but the inverse sine function returns only one value in its principal range.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Domain and Range Restrictions</h3>
+                    
+                    <p>Since the standard trigonometric functions are periodic, they're not one-to-one and don't have unique inverses unless we restrict their domains. The standard restrictions create the principal values for each inverse function:</p>
+                    
+                    <table class="formula-table">
+                        <tr>
+                            <th>Inverse Function</th>
+                            <th>Domain</th>
+                            <th>Range (Principal Values)</th>
+                        </tr>
+                        <tr>
+                            <td>arcsin(x) or sin<sup>-1</sup>(x)</td>
+                            <td>[-1, 1]</td>
+                            <td>[-π/2, π/2] or [-90°, 90°]</td>
+                        </tr>
+                        <tr>
+                            <td>arccos(x) or cos<sup>-1</sup>(x)</td>
+                            <td>[-1, 1]</td>
+                            <td>[0, π] or [0°, 180°]</td>
+                        </tr>
+                        <tr>
+                            <td>arctan(x) or tan<sup>-1</sup>(x)</td>
+                            <td>All real numbers</td>
+                            <td>(-π/2, π/2) or (-90°, 90°)</td>
+                        </tr>
+                        <tr>
+                            <td>arccsc(x) or csc<sup>-1</sup>(x)</td>
+                            <td>x ≤ -1 or x ≥ 1</td>
+                            <td>[-π/2, 0) ∪ (0, π/2] or [-90°, 0°) ∪ (0°, 90°]</td>
+                        </tr>
+                        <tr>
+                            <td>arcsec(x) or sec<sup>-1</sup>(x)</td>
+                            <td>x ≤ -1 or x ≥ 1</td>
+                            <td>[0, π/2) ∪ (π/2, π] or [0°, 90°) ∪ (90°, 180°]</td>
+                        </tr>
+                        <tr>
+                            <td>arccot(x) or cot<sup>-1</sup>(x)</td>
+                            <td>All real numbers</td>
+                            <td>(0, π) or (0°, 180°)</td>
+                        </tr>
+                    </table>
+                    
+                    <p>These restrictions ensure that each inverse function returns a unique value, making it a true function.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 2: Evaluating Inverse Functions</div>
+                        <p>Find the value of each expression:</p>
+                        <p>a) cos<sup>-1</sup>(-0.5)</p>
+                        <p>cos<sup>-1</sup>(-0.5) = 2π/3 ≈ 2.0944 radians ≈ 120°</p>
+                        <p>b) tan<sup>-1</sup>(1)</p>
+                        <p>tan<sup>-1</sup>(1) = π/4 = 0.7854 radians = 45°</p>
+                        <p>c) sin<sup>-1</sup>(-1)</p>
+                        <p>sin<sup>-1</sup>(-1) = -π/2 = -1.5708 radians = -90°</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Graphs of Inverse Trigonometric Functions</h3>
+                    
+                    <p>The graphs of inverse trigonometric functions can be obtained by reflecting the graphs of the original functions across the line y = x and applying the appropriate domain restrictions.</p>
+                    
+                    <h4>Arcsine Function (y = arcsin(x))</h4>
+                    <p>Domain: [-1, 1]<br>Range: [-π/2, π/2]</p>
+                    <p>The arcsine function is odd: arcsin(-x) = -arcsin(x)</p>
+                    
+                    <h4>Arccosine Function (y = arccos(x))</h4>
+                    <p>Domain: [-1, 1]<br>Range: [0, π]</p>
+                    <p>The arccosine function satisfies: arccos(-x) = π - arccos(x)</p>
+                    
+                    <h4>Arctangent Function (y = arctan(x))</h4>
+                    <p>Domain: ℝ (all real numbers)<br>Range: (-π/2, π/2)</p>
+                    <p>The arctangent function is odd: arctan(-x) = -arctan(x)</p>
+                    <p>As x → ±∞, arctan(x) → ±π/2</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 3: Graphical Analysis</div>
+                        <p>Use the graph of y = arctan(x) to find the value of arctan(2).</p>
+                        <p>From the graph, we can see that as x increases, the value of arctan(x) approaches π/2, but never reaches it.</p>
+                        <p>When x = 2, the value of arctan(x) is approximately 1.1071 radians or about 63.4°.</p>
+                        <p>This means tan(63.4°) ≈ 2, which we can verify with a calculator.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Basic Properties and Identities</h3>
+                    
+                    <p class="text-secondary">Inverse trigonometric functions satisfy several important properties and identities:</p>
+                    
+                    <h4>Composition of Functions</h4>
+                    <p>For x in the appropriate domains:</p>
+                    <div class="math-formula">
+                        sin(sin<sup>-1</sup>(x)) = x for all x in [-1, 1]<br>
+                        cos(cos<sup>-1</sup>(x)) = x for all x in [-1, 1]<br>
+                        tan(tan<sup>-1</sup>(x)) = x for all real x
+                    </div>
+                    
+                    <p>However, the composition in the other order yields an angle in the restricted range:</p>
+                    <div class="math-formula">
+                        sin<sup>-1</sup>(sin(θ)) = θ only if θ is in [-π/2, π/2]<br>
+                        cos<sup>-1</sup>(cos(θ)) = θ only if θ is in [0, π]<br>
+                        tan<sup>-1</sup>(tan(θ)) = θ only if θ is in (-π/2, π/2)
+                    </div>
+                    
+                    <h4>Derivatives of Inverse Trigonometric Functions</h4>
+                    <div class="math-formula">
+                        d/dx[sin<sup>-1</sup>(x)] = 1/√(1-x²)<br>
+                        d/dx[cos<sup>-1</sup>(x)] = -1/√(1-x²)<br>
+                        d/dx[tan<sup>-1</sup>(x)] = 1/(1+x²)
+                    </div>
+                    
+                    <h4>Relationships Between Inverse Functions</h4>
+                    <div class="math-formula">
+                        sin<sup>-1</sup>(x) + cos<sup>-1</sup>(x) = π/2<br>
+                        tan<sup>-1</sup>(x) + tan<sup>-1</sup>(1/x) = π/2 (for x > 0)<br>
+                        tan<sup>-1</sup>(x) + tan<sup>-1</sup>(y) = tan<sup>-1</sup>((x+y)/(1-xy)) (when xy < 1)
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 4: Using Inverse Trigonometric Identities</div>
+                        <p>Verify that sin<sup>-1</sup>(0.6) + cos<sup>-1</sup>(0.6) = π/2.</p>
+                        <p>sin<sup>-1</sup>(0.6) ≈ 0.6435 radians ≈ 36.87°</p>
+                        <p>cos<sup>-1</sup>(0.6) ≈ 0.9273 radians ≈ 53.13°</p>
+                        <p>sum = 0.6435 + 0.9273 = 1.5708 radians = π/2</p>
+                        <p>or in degrees: 36.87° + 53.13° = 90°</p>
+                        <p>The identity is verified.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Solving Equations with Inverse Trigonometric Functions</h3>
+                    
+                    <p class="text-secondary">Inverse trigonometric functions are useful for solving equations involving trigonometric expressions.</p>
+                    
+                    <h4>Basic Equation Forms</h4>
+                    <ul>
+                        <li>To solve sin(θ) = a, use θ = sin<sup>-1</sup>(a) + 2nπ or θ = π - sin<sup>-1</sup>(a) + 2nπ</li>
+                        <li>To solve cos(θ) = a, use θ = ±cos<sup>-1</sup>(a) + 2nπ</li>
+                        <li>To solve tan(θ) = a, use θ = tan<sup>-1</sup>(a) + nπ</li>
+                    </ul>
+                    
+                    <h4>Equations Involving Multiple Angles</h4>
+                    <p>For equations like sin(2θ) = a, first find the values of 2θ, then solve for θ.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 5: Solving Equations</div>
+                        <p>Solve the equation 2sin(x) - 1 = 0 for x in [0, 2π).</p>
+                        <p><strong>Step 1:</strong> Isolate the trigonometric function.</p>
+                        <p>2sin(x) = 1</p>
+                        <p>sin(x) = 1/2</p>
+                        <p><strong>Step 2:</strong> Apply the inverse trigonometric function.</p>
+                        <p>x = sin<sup>-1</sup>(1/2) + 2nπ or x = π - sin<sup>-1</sup>(1/2) + 2nπ</p>
+                        <p>x = π/6 + 2nπ or x = 5π/6 + 2nπ</p>
+                        <p><strong>Step 3:</strong> Find all solutions in the specified interval.</p>
+                        <p>When n = 0: x = π/6 ≈ 0.5236 and x = 5π/6 ≈ 2.6180</p>
+                        <p>When n = 1: x = π/6 + 2π ≈ 6.8068 (outside range) and x = 5π/6 + 2π ≈ 8.9012 (outside range)</p>
+                        <p>Therefore, the solutions in [0, 2π) are x = π/6 and x = 5π/6.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">The Inverse Tangent Function (arctan2)</h3>
+                    
+                    <p>In computing and many applications, a two-argument function called <code>arctan2(y, x)</code> or <code>atan2(y, x)</code> is used to find the angle from the positive x-axis to the point (x, y) in the Cartesian plane.</p>
+                    
+                    <p>Advantages of <code>arctan2(y, x)</code> over the standard <code>arctan(y/x)</code>:</p>
+                    <ul>
+                        <li>It correctly handles the case when x = 0</li>
+                        <li>It returns angles in all four quadrants (-π to π or -180° to 180°)</li>
+                        <li>It preserves the sign information that would be lost when taking the ratio y/x</li>
+                    </ul>
+                    
+                    <div class="math-formula">
+                        arctan2(y, x) = 
+                        \begin{cases} 
+                        arctan(y/x) & \text{if } x > 0 \\
+                        arctan(y/x) + \pi & \text{if } x < 0 \text{ and } y \geq 0 \\
+                        arctan(y/x) - \pi & \text{if } x < 0 \text{ and } y < 0 \\
+                        \pi/2 & \text{if } x = 0 \text{ and } y > 0 \\
+                        -\pi/2 & \text{if } x = 0 \text{ and } y < 0 \\
+                        \text{undefined} & \text{if } x = 0 \text{ and } y = 0
+                        \end{cases}
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 6: Using arctan2</div>
+                        <p>Find the angle between the positive x-axis and the line from the origin to the point (-3, 4).</p>
+                        <p>Using arctan2: θ = arctan2(4, -3)</p>
+                        <p>Since x < 0 and y > 0, we're in the second quadrant.</p>
+                        <p>First, we calculate arctan(4/(-3)) = arctan(-4/3) ≈ -0.9273 radians</p>
+                        <p>Then, we add π: arctan2(4, -3) = -0.9273 + π ≈ 2.2143 radians ≈ 126.87°</p>
+                        <p>Therefore, the angle is approximately 126.87° or 2.2143 radians.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications of Inverse Trigonometric Functions</h3>
+                    
+                    <p class="text-secondary">Inverse trigonometric functions have widespread applications in various fields:</p>
+                    
+                    <h4>Calculus and Integration</h4>
+                    <p class="text-secondary">Inverse trigonometric functions arise naturally in many integrals:</p>
+                    <div class="math-formula">
+                        ∫ 1/√(1-x²) dx = sin<sup>-1</sup>(x) + C<br>
+                        ∫ 1/(1+x²) dx = tan<sup>-1</sup>(x) + C<br>
+                        ∫ 1/(a²-x²) dx = (1/a)tan<sup>-1</sup>(x/a) + C
+                    </div>
+                    
+                    <h4>Physics</h4>
+                    <ul>
+                        <li>Determining angles in projectile motion</li>
+                        <li>Finding the angle of refraction in optics (Snell's Law)</li>
+                        <li>Calculating phase angles in alternating current circuits</li>
+                    </ul>
+                    
+                    <h4>Engineering</h4>
+                    <ul>
+                        <li>Navigation and GPS systems</li>
+                        <li>Robotics (inverse kinematics)</li>
+                        <li>Computer graphics (determining angles between vectors)</li>
+                    </ul>
+                    
+                    <h4>Signal Processing</h4>
+                    <ul>
+                        <li>Phase detection in signal analysis</li>
+                        <li>Direction finding in radar and sonar systems</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 7: Applied Problem</div>
+                        <p>A ladder 5 meters long is leaning against a vertical wall. If the bottom of the ladder is 3 meters from the wall, what angle does the ladder make with the ground?</p>
+                        <p><strong>Step 1:</strong> Sketch the problem as a right triangle.</p>
+                        <p>Let's denote the angle between the ladder and the ground as θ.</p>
+                        <p>The adjacent side (distance from wall) is 3 meters.</p>
+                        <p>The hypotenuse (ladder length) is 5 meters.</p>
+                        <p><strong>Step 2:</strong> Use trigonometric relationships to find the angle.</p>
+                        <p>cos(θ) = adjacent/hypotenuse = 3/5 = 0.6</p>
+                        <p>Therefore, θ = cos<sup>-1</sup>(0.6) ≈ 53.13°</p>
+                        <p><strong>Step 3:</strong> Verify the answer using the Pythagorean theorem.</p>
+                        <p>The height of the ladder against the wall would be:</p>
+                        <p>h = √(5² - 3²) = √(25 - 9) = √16 = 4 meters</p>
+                        <p>Using sin(θ) = opposite/hypotenuse = 4/5 = 0.8</p>
+                        <p>θ = sin<sup>-1</sup>(0.8) ≈ 53.13°, which confirms our answer.</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <a href="law-of-sines-and-cosines.html" class="prev-next-btn">Previous: Law of Sines & Cosines</a>
+                    <a href="../../features.html#trigonometry" class="prev-next-btn">Mathematics Roadmap</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

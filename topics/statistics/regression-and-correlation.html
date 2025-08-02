@@ -1,0 +1,431 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Regression and Correlation - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Regression and Correlation</h2>
+                <p class="text-secondary">Understanding relationships between variables</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#statistics">Statistics</a> &raquo;
+                    <span>Regression and Correlation</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Correlation</h3>
+                    
+                    <p>Correlation measures the strength and direction of the relationship between two variables. Unlike causation, correlation only identifies that two variables tend to move together, not that one causes the other.</p>
+                    
+                    <p class="text-secondary">Key characteristics of correlation:</p>
+                    <ul>
+                        <li>Values range from -1 to +1</li>
+                        <li>Positive correlation: variables move in the same direction</li>
+                        <li>Negative correlation: variables move in opposite directions</li>
+                        <li>Zero correlation: no linear relationship between variables</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 1: Interpreting Correlation Coefficients</div>
+                        <p>r = 0.92: Strong positive correlation (e.g., height and weight)</p>
+                        <p>r = -0.85: Strong negative correlation (e.g., study time and error rate)</p>
+                        <p>r = 0.15: Weak positive correlation (e.g., shoe size and intelligence)</p>
+                        <p>r = 0: No linear correlation (e.g., eye color and typing speed)</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Pearson Correlation Coefficient</h3>
+                    
+                    <p>The Pearson correlation coefficient (r) measures the linear relationship between two continuous variables. It is calculated as:</p>
+                    
+                    <div class="math-formula">
+                        r = Σ[(x<sub>i</sub> - x̄)(y<sub>i</sub> - ȳ)] / √[Σ(x<sub>i</sub> - x̄)² · Σ(y<sub>i</sub> - ȳ)²]
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>x<sub>i</sub> and y<sub>i</sub> are individual data points</li>
+                        <li>x̄ and ȳ are the means of x and y respectively</li>
+                    </ul>
+                    
+                    <p>The coefficient of determination, r², indicates what proportion of the variance in y is explained by x.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 2: Calculating Pearson's r</div>
+                        <p>Consider the data pairs: (2,8), (3,10), (5,12), (7,16), (8,20)</p>
+                        <p>Step 1: Calculate the means: x̄ = 5, ȳ = 13.2</p>
+                        <p>Step 2: Find deviations from means and their products:</p>
+                        <ul>
+                            <li>(2-5)(8-13.2) = (-3)(-5.2) = 15.6</li>
+                            <li>(3-5)(10-13.2) = (-2)(-3.2) = 6.4</li>
+                            <li>(5-5)(12-13.2) = (0)(-1.2) = 0</li>
+                            <li>(7-5)(16-13.2) = (2)(2.8) = 5.6</li>
+                            <li>(8-5)(20-13.2) = (3)(6.8) = 20.4</li>
+                        </ul>
+                        <p>Step 3: Sum the products: 15.6 + 6.4 + 0 + 5.6 + 20.4 = 48</p>
+                        <p>Step 4: Calculate denominators:</p>
+                        <p>Σ(x<sub>i</sub> - x̄)² = (-3)² + (-2)² + (0)² + (2)² + (3)² = 26</p>
+                        <p>Σ(y<sub>i</sub> - ȳ)² = (-5.2)² + (-3.2)² + (-1.2)² + (2.8)² + (6.8)² = 107.2</p>
+                        <p>Step 5: Calculate r = 48 / √(26 × 107.2) = 48 / 52.8 = 0.91</p>
+                        <p>This indicates a strong positive correlation.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Spearman's Rank Correlation</h3>
+                    
+                    <p>Spearman's rank correlation assesses monotonic relationships between variables. It's useful when data is ordinal or the relationship is non-linear but still monotonic.</p>
+                    
+                    <div class="math-formula">
+                        ρ = 1 - (6Σd<sub>i</sub>²) / [n(n² - 1)]
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>d<sub>i</sub> is the difference between ranks of corresponding values</li>
+                        <li>n is the number of data pairs</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 3: Spearman's Rank Correlation</div>
+                        <p>For the data: (100,85), (76,91), (82,89), (95,70), (68,65)</p>
+                        <p>First, rank both variables (1 = highest):</p>
+                        <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+                            <tr style="background-color: #f5f5f5;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">X</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Y</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">X Rank</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Y Rank</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">d</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">d²</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">100</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">85</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">1</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">2</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">-1</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">1</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">76</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">91</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">4</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">1</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">3</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">9</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">82</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">89</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">3</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">3</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">0</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">0</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">95</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">70</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">2</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">4</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">-2</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">4</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">68</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">65</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">5</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">5</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">0</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">0</td>
+                            </tr>
+                        </table>
+                        <p>Calculate ρ = 1 - (6 × 14) / [5(25 - 1)] = 1 - 84/120 = 0.3</p>
+                        <p>This indicates a weak positive monotonic relationship.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Simple Linear Regression</h3>
+                    
+                    <p>Simple linear regression models the relationship between two variables using a straight line:</p>
+                    
+                    <div class="math-formula">
+                        y = β₀ + β₁x + ε
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>y is the dependent variable (response)</li>
+                        <li>x is the independent variable (predictor)</li>
+                        <li>β₀ is the y-intercept</li>
+                        <li>β₁ is the slope (change in y for a 1-unit change in x)</li>
+                        <li>ε is the error term</li>
+                    </ul>
+                    
+                    <h4>Least Squares Method</h4>
+                    <p>The best-fitting line minimizes the sum of squared residuals (vertical distances between observed y values and predicted values). The parameters are calculated as:</p>
+                    
+                    <div class="math-formula">
+                        β₁ = Σ[(x<sub>i</sub> - x̄)(y<sub>i</sub> - ȳ)] / Σ(x<sub>i</sub> - x̄)²<br>
+                        β₀ = ȳ - β₁x̄
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 4: Simple Linear Regression</div>
+                        <p>For the dataset: (2,5), (3,7), (5,8), (7,10), (8,12)</p>
+                        <p>Calculate means: x̄ = 5, ȳ = 8.4</p>
+                        <p>For the slope β₁:</p>
+                        <p>Numerator: Σ[(x<sub>i</sub> - x̄)(y<sub>i</sub> - ȳ)] = (-3)(-3.4) + (-2)(-1.4) + (0)(-0.4) + (2)(1.6) + (3)(3.6) = 10.2 + 2.8 + 0 + 3.2 + 10.8 = 27</p>
+                        <p>Denominator: Σ(x<sub>i</sub> - x̄)² = 9 + 4 + 0 + 4 + 9 = 26</p>
+                        <p>β₁ = 27/26 = 1.04</p>
+                        <p>For the intercept: β₀ = 8.4 - (1.04 × 5) = 3.2</p>
+                        <p>Regression equation: y = 3.2 + 1.04x</p>
+                        <p>Interpretation: For each 1-unit increase in x, y increases by 1.04 units on average.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Evaluating Regression Models</h3>
+                    
+                    <h4>Residual Analysis</h4>
+                    <p>Residuals (e<sub>i</sub> = y<sub>i</sub> - ŷ<sub>i</sub>) should be:</p>
+                    <ul>
+                        <li>Normally distributed</li>
+                        <li>Independent</li>
+                        <li>Have constant variance (homoscedasticity)</li>
+                        <li>Have mean zero</li>
+                    </ul>
+                    
+                    <h4>Coefficient of Determination (R²)</h4>
+                    <p>R² measures the proportion of variation in the dependent variable explained by the model:</p>
+                    
+                    <div class="math-formula">
+                        R² = 1 - (SSE/SST) = SSR/SST
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>SSE = Σ(y<sub>i</sub> - ŷ<sub>i</sub>)² (Sum of Squared Errors)</li>
+                        <li>SST = Σ(y<sub>i</sub> - ȳ)² (Total Sum of Squares)</li>
+                        <li>SSR = Σ(ŷ<sub>i</sub> - ȳ)² (Regression Sum of Squares)</li>
+                    </ul>
+                    
+                    <p>R² ranges from 0 to 1, with higher values indicating better fit.</p>
+                    
+                    <h4>Standard Error of the Estimate</h4>
+                    <p>Measures the average distance between observed values and the regression line:</p>
+                    
+                    <div class="math-formula">
+                        S<sub>e</sub> = √[SSE/(n-2)]
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Multiple Linear Regression</h3>
+                    
+                    <p>Multiple linear regression extends simple regression to include multiple predictors:</p>
+                    
+                    <div class="math-formula">
+                        y = β₀ + β₁x₁ + β₂x₂ + ... + βₖxₖ + ε
+                    </div>
+                    
+                    <p class="text-secondary">Key considerations:</p>
+                    <ul>
+                        <li>Each coefficient represents the effect of its predictor, holding all others constant</li>
+                        <li>Multicollinearity: high correlation between predictors can cause unstable estimates</li>
+                        <li>Adjusted R²: modified R² that penalizes for adding unnecessary predictors</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 5: Multiple Regression Interpretation</div>
+                        <p>A study models house prices based on size (sq ft) and age (years):</p>
+                        <p>Price = 150,000 + 120(size) - 2,500(age)</p>
+                        <p>Interpretation:</p>
+                        <ul>
+                            <li>Base price: $150,000</li>
+                            <li>Each additional square foot adds $120 to the price, holding age constant</li>
+                            <li>Each additional year of age reduces the price by $2,500, holding size constant</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Nonlinear Regression Models</h3>
+                    
+                    <p>When relationships between variables are not linear, alternative models include:</p>
+                    
+                    <h4>Polynomial Regression</h4>
+                    <div class="math-formula">
+                        y = β₀ + β₁x + β₂x² + β₃x³ + ... + ε
+                    </div>
+                    
+                    <h4>Exponential Model</h4>
+                    <div class="math-formula">
+                        y = β₀e<sup>β₁x</sup> + ε
+                    </div>
+                    
+                    <h4>Logarithmic Model</h4>
+                    <div class="math-formula">
+                        y = β₀ + β₁ln(x) + ε
+                    </div>
+                    
+                    <h4>Power Model</h4>
+                    <div class="math-formula">
+                        y = β₀x<sup>β₁</sup> + ε
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 6: Polynomial Regression</div>
+                        <p>For data showing a curved relationship between temperature (x) and reaction rate (y), a quadratic model might be appropriate:</p>
+                        <p>y = 2.3 + 1.5x - 0.08x²</p>
+                        <p>This model captures how reaction rate initially increases with temperature but eventually decreases at high temperatures.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Logistic Regression</h3>
+                    
+                    <p>Logistic regression models the probability of a binary outcome as a function of predictor variables:</p>
+                    
+                    <div class="math-formula">
+                        ln(p/(1-p)) = β₀ + β₁x₁ + β₂x₂ + ... + βₖxₖ
+                    </div>
+                    
+                    <p>Where p is the probability of the outcome event occurring.</p>
+                    
+                    <p>The predicted probability is:</p>
+                    
+                    <div class="math-formula">
+                        p = 1 / (1 + e<sup>-(β₀ + β₁x₁ + β₂x₂ + ... + βₖxₖ)</sup>)
+                    </div>
+                    
+                    <p>Coefficients represent the change in log odds for a one-unit change in the predictor.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 7: Logistic Regression</div>
+                        <p>A medical study models the probability of heart disease (yes/no) based on age and cholesterol level:</p>
+                        <p>ln(p/(1-p)) = -9.2 + 0.08(age) + 0.02(cholesterol)</p>
+                        <p>Interpretation of coefficients:</p>
+                        <ul>
+                            <li>For each additional year of age, the log odds of heart disease increase by 0.08</li>
+                            <li>For each additional unit of cholesterol, the log odds of heart disease increase by 0.02</li>
+                        </ul>
+                        <p>In terms of odds ratios:</p>
+                        <ul>
+                            <li>Age: e<sup>0.08</sup> = 1.083, meaning the odds increase by 8.3% per year</li>
+                            <li>Cholesterol: e<sup>0.02</sup> = 1.020, meaning the odds increase by 2% per unit</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications of Regression and Correlation</h3>
+                    
+                    <h4>Prediction</h4>
+                    <p>Using regression equations to estimate the expected value of a dependent variable based on predictors.</p>
+                    
+                    <h4>Understanding Relationships</h4>
+                    <p>Quantifying the strength and direction of relationships between variables to gain insights into processes.</p>
+                    
+                    <h4>Process Optimization</h4>
+                    <p>Identifying critical factors that influence outcomes to improve processes and systems.</p>
+                    
+                    <h4>Risk Assessment</h4>
+                    <p>Identifying factors associated with increased risk of negative outcomes.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 8: Real-World Applications</div>
+                        <h5>Finance</h5>
+                        <p>Regression models predict stock returns based on market indicators and economic factors.</p>
+                        
+                        <h5>Healthcare</h5>
+                        <p>Logistic regression identifies risk factors for diseases, helping in early intervention.</p>
+                        
+                        <h5>Marketing</h5>
+                        <p>Multiple regression models customer behavior based on demographic and behavioral data.</p>
+                        
+                        <h5>Environmental Science</h5>
+                        <p>Regression models predict pollution levels based on industrial activity and weather conditions.</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <a href="confidence-intervals.html" class="prev-next-btn">Previous: Confidence Intervals</a>
+                    <a href="statistical-inference.html" class="prev-next-btn">Next: Statistical Inference</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

@@ -1,0 +1,443 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Matrix Operations - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Matrix Operations</h2>
+                <p class="text-secondary">Fundamental operations and properties of matrices in linear algebra</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#matrices-and-determinants">Matrices and Determinants</a> &raquo;
+                    <span>Matrix Operations</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Matrices</h3>
+                    
+                    <p>A matrix is a rectangular array of numbers, symbols, or expressions, arranged in rows and columns. Matrices provide a compact way to represent and manipulate systems of linear equations, linear transformations, and many other mathematical structures.</p>
+                    
+                    <h4>Basic Terminology</h4>
+                    <ul>
+                        <li><strong>Dimension:</strong> An m × n matrix has m rows and n columns.</li>
+                        <li><strong>Square Matrix:</strong> A matrix with the same number of rows and columns (m = n).</li>
+                        <li><strong>Element:</strong> Each entry in a matrix, denoted as a<sub>ij</sub>, where i represents the row and j represents the column.</li>
+                        <li><strong>Row/Column Vector:</strong> A matrix with only one row or one column.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Matrix Representation</div>
+                        <p>A 2 × 3 matrix A:</p>
+                        <div class="math-formula">
+                            A = [<br>
+                            &nbsp;&nbsp;2&nbsp;&nbsp;4&nbsp;&nbsp;6<br>
+                            &nbsp;&nbsp;1&nbsp;&nbsp;3&nbsp;&nbsp;5<br>
+                            ]
+                        </div>
+                        <p>Here, a<sub>11</sub> = 2, a<sub>12</sub> = 4, a<sub>13</sub> = 6, a<sub>21</sub> = 1, a<sub>22</sub> = 3, and a<sub>23</sub> = 5.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Matrix Addition and Subtraction</h3>
+                    
+                    <p class="text-secondary">Matrix addition and subtraction are performed element by element. Two matrices can be added or subtracted only if they have the same dimensions.</p>
+                    
+                    <h4>Matrix Addition</h4>
+                    <p>For matrices A and B of the same dimension, the sum A + B is a matrix C where c<sub>ij</sub> = a<sub>ij</sub> + b<sub>ij</sub> for all i, j.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Matrix Addition</div>
+                        <p>For:</p>
+                        <div class="math-formula">
+                            A = [<br>
+                            &nbsp;&nbsp;1&nbsp;&nbsp;2<br>
+                            &nbsp;&nbsp;3&nbsp;&nbsp;4<br>
+                            ]
+                        </div>
+                        <p>and</p>
+                        <div class="math-formula">
+                            B = [<br>
+                            &nbsp;&nbsp;5&nbsp;&nbsp;6<br>
+                            &nbsp;&nbsp;7&nbsp;&nbsp;8<br>
+                            ]
+                        </div>
+                        <p>The sum A + B is:</p>
+                        <div class="math-formula">
+                            A + B = [<br>
+                            &nbsp;&nbsp;1+5&nbsp;&nbsp;2+6<br>
+                            &nbsp;&nbsp;3+7&nbsp;&nbsp;4+8<br>
+                            ] = [<br>
+                            &nbsp;&nbsp;6&nbsp;&nbsp;8<br>
+                            &nbsp;&nbsp;10&nbsp;&nbsp;12<br>
+                            ]
+                        </div>
+                    </div>
+                    
+                    <h4>Matrix Subtraction</h4>
+                    <p>For matrices A and B of the same dimension, the difference A - B is a matrix C where c<sub>ij</sub> = a<sub>ij</sub> - b<sub>ij</sub> for all i, j.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Matrix Subtraction</div>
+                        <p>Using the same matrices A and B as above, the difference A - B is:</p>
+                        <div class="math-formula">
+                            A - B = [<br>
+                            &nbsp;&nbsp;1-5&nbsp;&nbsp;2-6<br>
+                            &nbsp;&nbsp;3-7&nbsp;&nbsp;4-8<br>
+                            ] = [<br>
+                            &nbsp;&nbsp;-4&nbsp;&nbsp;-4<br>
+                            &nbsp;&nbsp;-4&nbsp;&nbsp;-4<br>
+                            ]
+                        </div>
+                    </div>
+                    
+                    <h4>Properties of Matrix Addition</h4>
+                    <ul>
+                        <li><strong>Commutative:</strong> A + B = B + A</li>
+                        <li><strong>Associative:</strong> (A + B) + C = A + (B + C)</li>
+                        <li><strong>Identity:</strong> A + O = A, where O is the zero matrix (all elements are 0)</li>
+                        <li><strong>Additive Inverse:</strong> A + (-A) = O, where -A is the negative of A</li>
+                    </ul>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Scalar Multiplication</h3>
+                    
+                    <p>Scalar multiplication involves multiplying each element of a matrix by a scalar value (a single number).</p>
+                    
+                    <p>If k is a scalar and A is a matrix, then kA is a matrix where each element is k times the corresponding element in A: (kA)<sub>ij</sub> = k × a<sub>ij</sub>.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Scalar Multiplication</div>
+                        <p>For the scalar k = 2 and the matrix:</p>
+                        <div class="math-formula">
+                            A = [<br>
+                            &nbsp;&nbsp;1&nbsp;&nbsp;2&nbsp;&nbsp;3<br>
+                            &nbsp;&nbsp;4&nbsp;&nbsp;5&nbsp;&nbsp;6<br>
+                            ]
+                        </div>
+                        <p>The scalar product 2A is:</p>
+                        <div class="math-formula">
+                            2A = [<br>
+                            &nbsp;&nbsp;2×1&nbsp;&nbsp;2×2&nbsp;&nbsp;2×3<br>
+                            &nbsp;&nbsp;2×4&nbsp;&nbsp;2×5&nbsp;&nbsp;2×6<br>
+                            ] = [<br>
+                            &nbsp;&nbsp;2&nbsp;&nbsp;4&nbsp;&nbsp;6<br>
+                            &nbsp;&nbsp;8&nbsp;&nbsp;10&nbsp;&nbsp;12<br>
+                            ]
+                        </div>
+                    </div>
+                    
+                    <h4>Properties of Scalar Multiplication</h4>
+                    <ul>
+                        <li><strong>Distributive over Matrix Addition:</strong> k(A + B) = kA + kB</li>
+                        <li><strong>Distributive over Scalar Addition:</strong> (k + m)A = kA + mA</li>
+                        <li><strong>Associative with Scalars:</strong> k(mA) = (km)A</li>
+                        <li><strong>Identity:</strong> 1A = A</li>
+                    </ul>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Matrix Multiplication</h3>
+                    
+                    <p class="text-secondary">Matrix multiplication is a binary operation that produces a matrix from two matrices. Unlike addition, the dimensions of the matrices must be compatible, not necessarily identical.</p>
+                    
+                    <h4>Compatibility for Multiplication</h4>
+                    <p>To multiply matrix A (m × n) by matrix B (p × q), the number of columns in A must equal the number of rows in B (n = p). The resulting matrix C will have dimensions m × q.</p>
+                    
+                    <h4>Calculation of Matrix Product</h4>
+                    <p>For the product C = AB, the element c<sub>ij</sub> is calculated as the dot product of the i-th row of A and the j-th column of B:</p>
+                    <div class="math-formula">
+                        c<sub>ij</sub> = Σ(a<sub>ik</sub> × b<sub>kj</sub>) for k = 1 to n
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Matrix Multiplication</div>
+                        <p>For:</p>
+                        <div class="math-formula">
+                            A = [<br>
+                            &nbsp;&nbsp;1&nbsp;&nbsp;2<br>
+                            &nbsp;&nbsp;3&nbsp;&nbsp;4<br>
+                            ]
+                        </div>
+                        <p>and</p>
+                        <div class="math-formula">
+                            B = [<br>
+                            &nbsp;&nbsp;5&nbsp;&nbsp;6<br>
+                            &nbsp;&nbsp;7&nbsp;&nbsp;8<br>
+                            ]
+                        </div>
+                        <p>The product AB is:</p>
+                        <div class="math-formula">
+                            AB = [<br>
+                            &nbsp;&nbsp;(1×5 + 2×7)&nbsp;&nbsp;(1×6 + 2×8)<br>
+                            &nbsp;&nbsp;(3×5 + 4×7)&nbsp;&nbsp;(3×6 + 4×8)<br>
+                            ] = [<br>
+                            &nbsp;&nbsp;19&nbsp;&nbsp;22<br>
+                            &nbsp;&nbsp;43&nbsp;&nbsp;50<br>
+                            ]
+                        </div>
+                    </div>
+                    
+                    <h4>Properties of Matrix Multiplication</h4>
+                    <ul>
+                        <li><strong>Not Commutative:</strong> Generally, AB ≠ BA</li>
+                        <li><strong>Associative:</strong> (AB)C = A(BC)</li>
+                        <li><strong>Distributive over Addition:</strong> A(B + C) = AB + AC and (A + B)C = AC + BC</li>
+                        <li><strong>Identity:</strong> AI = IA = A, where I is the identity matrix</li>
+                        <li><strong>Zero Property:</strong> A × O = O × A = O, where O is the zero matrix</li>
+                    </ul>
+                    
+                    <h4>The Identity Matrix</h4>
+                    <p>The identity matrix I is a square matrix with 1s on the main diagonal and 0s elsewhere. For any matrix A, AI = IA = A (when the dimensions allow multiplication).</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Identity Matrix</div>
+                        <p>The 3 × 3 identity matrix is:</p>
+                        <div class="math-formula">
+                            I<sub>3</sub> = [<br>
+                            &nbsp;&nbsp;1&nbsp;&nbsp;0&nbsp;&nbsp;0<br>
+                            &nbsp;&nbsp;0&nbsp;&nbsp;1&nbsp;&nbsp;0<br>
+                            &nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;1<br>
+                            ]
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Special Matrices and Operations</h3>
+                    
+                    <h4>Transpose of a Matrix</h4>
+                    <p>The transpose of an m × n matrix A, denoted as A<sup>T</sup>, is an n × m matrix where rows and columns are interchanged: (A<sup>T</sup>)<sub>ij</sub> = a<sub>ji</sub>.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Matrix Transpose</div>
+                        <p>For the matrix:</p>
+                        <div class="math-formula">
+                            A = [<br>
+                            &nbsp;&nbsp;1&nbsp;&nbsp;2&nbsp;&nbsp;3<br>
+                            &nbsp;&nbsp;4&nbsp;&nbsp;5&nbsp;&nbsp;6<br>
+                            ]
+                        </div>
+                        <p>The transpose A<sup>T</sup> is:</p>
+                        <div class="math-formula">
+                            A<sup>T</sup> = [<br>
+                            &nbsp;&nbsp;1&nbsp;&nbsp;4<br>
+                            &nbsp;&nbsp;2&nbsp;&nbsp;5<br>
+                            &nbsp;&nbsp;3&nbsp;&nbsp;6<br>
+                            ]
+                        </div>
+                    </div>
+                    
+                    <h4>Properties of Transpose</h4>
+                    <ul>
+                        <li><strong>Double Transpose:</strong> (A<sup>T</sup>)<sup>T</sup> = A</li>
+                        <li><strong>Transpose of Sum:</strong> (A + B)<sup>T</sup> = A<sup>T</sup> + B<sup>T</sup></li>
+                        <li><strong>Transpose of Product:</strong> (AB)<sup>T</sup> = B<sup>T</sup>A<sup>T</sup></li>
+                        <li><strong>Transpose of Scalar Product:</strong> (kA)<sup>T</sup> = kA<sup>T</sup></li>
+                    </ul>
+                    
+                    <h4>Symmetric and Skew-Symmetric Matrices</h4>
+                    <p>A square matrix A is:</p>
+                    <ul>
+                        <li><strong>Symmetric</strong> if A = A<sup>T</sup></li>
+                        <li><strong>Skew-Symmetric</strong> if A = -A<sup>T</sup></li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Symmetric and Skew-Symmetric Matrices</div>
+                        <p>A symmetric matrix:</p>
+                        <div class="math-formula">
+                            S = [<br>
+                            &nbsp;&nbsp;1&nbsp;&nbsp;2&nbsp;&nbsp;3<br>
+                            &nbsp;&nbsp;2&nbsp;&nbsp;4&nbsp;&nbsp;5<br>
+                            &nbsp;&nbsp;3&nbsp;&nbsp;5&nbsp;&nbsp;6<br>
+                            ]
+                        </div>
+                        <p>A skew-symmetric matrix:</p>
+                        <div class="math-formula">
+                            K = [<br>
+                            &nbsp;&nbsp;0&nbsp;&nbsp;2&nbsp;&nbsp;-1<br>
+                            &nbsp;&nbsp;-2&nbsp;&nbsp;0&nbsp;&nbsp;3<br>
+                            &nbsp;&nbsp;1&nbsp;&nbsp;-3&nbsp;&nbsp;0<br>
+                            ]
+                        </div>
+                        <p>Note that in a skew-symmetric matrix, the main diagonal must consist of zeros.</p>
+                    </div>
+                    
+                    <h4>Triangular Matrices</h4>
+                    <ul>
+                        <li><strong>Upper Triangular:</strong> All elements below the main diagonal are zero.</li>
+                        <li><strong>Lower Triangular:</strong> All elements above the main diagonal are zero.</li>
+                        <li><strong>Diagonal Matrix:</strong> All elements off the main diagonal are zero.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Triangular Matrices</div>
+                        <p>Upper triangular matrix:</p>
+                        <div class="math-formula">
+                            U = [<br>
+                            &nbsp;&nbsp;1&nbsp;&nbsp;2&nbsp;&nbsp;3<br>
+                            &nbsp;&nbsp;0&nbsp;&nbsp;4&nbsp;&nbsp;5<br>
+                            &nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;6<br>
+                            ]
+                        </div>
+                        <p>Lower triangular matrix:</p>
+                        <div class="math-formula">
+                            L = [<br>
+                            &nbsp;&nbsp;1&nbsp;&nbsp;0&nbsp;&nbsp;0<br>
+                            &nbsp;&nbsp;2&nbsp;&nbsp;4&nbsp;&nbsp;0<br>
+                            &nbsp;&nbsp;3&nbsp;&nbsp;5&nbsp;&nbsp;6<br>
+                            ]
+                        </div>
+                        <p>Diagonal matrix:</p>
+                        <div class="math-formula">
+                            D = [<br>
+                            &nbsp;&nbsp;1&nbsp;&nbsp;0&nbsp;&nbsp;0<br>
+                            &nbsp;&nbsp;0&nbsp;&nbsp;4&nbsp;&nbsp;0<br>
+                            &nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;6<br>
+                            ]
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications of Matrix Operations</h3>
+                    
+                    <h4>Systems of Linear Equations</h4>
+                    <p>Matrices provide a compact way to represent and solve systems of linear equations. The system:</p>
+                    <div class="math-formula">
+                        a<sub>11</sub>x<sub>1</sub> + a<sub>12</sub>x<sub>2</sub> + ... + a<sub>1n</sub>x<sub>n</sub> = b<sub>1</sub><br>
+                        a<sub>21</sub>x<sub>1</sub> + a<sub>22</sub>x<sub>2</sub> + ... + a<sub>2n</sub>x<sub>n</sub> = b<sub>2</sub><br>
+                        ...<br>
+                        a<sub>m1</sub>x<sub>1</sub> + a<sub>m2</sub>x<sub>2</sub> + ... + a<sub>mn</sub>x<sub>n</sub> = b<sub>m</sub>
+                    </div>
+                    <p>Can be written as Ax = b, where A is the coefficient matrix, x is the variable vector, and b is the constant vector.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Matrix Representation of Linear Systems</div>
+                        <p>The system:</p>
+                        <p>2x + y = 5<br>3x - 2y = 4</p>
+                        <p>Can be written as:</p>
+                        <div class="math-formula">
+                            [<br>
+                            &nbsp;&nbsp;2&nbsp;&nbsp;1<br>
+                            &nbsp;&nbsp;3&nbsp;&nbsp;-2<br>
+                            ] [<br>
+                            &nbsp;&nbsp;x<br>
+                            &nbsp;&nbsp;y<br>
+                            ] = [<br>
+                            &nbsp;&nbsp;5<br>
+                            &nbsp;&nbsp;4<br>
+                            ]
+                        </div>
+                    </div>
+                    
+                    <h4>Graph Theory and Adjacency Matrices</h4>
+                    <p>In graph theory, matrices can represent relationships between vertices in a graph. In an adjacency matrix A for a graph with n vertices, a<sub>ij</sub> = 1 if there is an edge from vertex i to vertex j, and a<sub>ij</sub> = 0 otherwise.</p>
+                    
+                    <h4>Computer Graphics and Transformations</h4>
+                    <p>In computer graphics, matrices are used to represent and apply transformations such as scaling, rotation, and translation. These operations can be composed by multiplying their respective transformation matrices.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Rotation Matrix</div>
+                        <p>A 2D rotation by angle θ is represented by the matrix:</p>
+                        <div class="math-formula">
+                            R = [<br>
+                            &nbsp;&nbsp;cos(θ)&nbsp;&nbsp;-sin(θ)<br>
+                            &nbsp;&nbsp;sin(θ)&nbsp;&nbsp;cos(θ)<br>
+                            ]
+                        </div>
+                        <p>To rotate a point (x, y) by θ, we multiply:</p>
+                        <div class="math-formula">
+                            [<br>
+                            &nbsp;&nbsp;cos(θ)&nbsp;&nbsp;-sin(θ)<br>
+                            &nbsp;&nbsp;sin(θ)&nbsp;&nbsp;cos(θ)<br>
+                            ] [<br>
+                            &nbsp;&nbsp;x<br>
+                            &nbsp;&nbsp;y<br>
+                            ] = [<br>
+                            &nbsp;&nbsp;x·cos(θ) - y·sin(θ)<br>
+                            &nbsp;&nbsp;x·sin(θ) + y·cos(θ)<br>
+                            ]
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <span></span>
+                    <a href="determinants-and-properties.html" class="prev-next-btn">Next: Determinants & Properties</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

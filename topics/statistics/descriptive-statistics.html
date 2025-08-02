@@ -1,0 +1,412 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Descriptive Statistics - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Descriptive Statistics</h2>
+                <p>Organizing, summarizing, and presenting data</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#statistics">Statistics</a> &raquo;
+                    <span>Descriptive Statistics</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Descriptive Statistics</h3>
+                    
+                    <p class="text-secondary">Descriptive statistics involves methods for organizing, summarizing, and presenting data in a meaningful way. Unlike inferential statistics, which aims to draw conclusions about a population based on a sample, descriptive statistics focuses solely on describing the main features of the collected data.</p>
+                    
+                    <p>The main purposes of descriptive statistics are:</p>
+                    <ul>
+                        <li>To organize raw data into a meaningful form</li>
+                        <li>To summarize important characteristics of the data</li>
+                        <li>To present the data in an easily interpretable way (tables, graphs, numerical measures)</li>
+                        <li>To identify patterns, trends, and relationships within the data</li>
+                    </ul>
+                    
+                    <p class="text-secondary">Descriptive statistics can be classified into:</p>
+                    <ol>
+                        <li><strong>Measures of Central Tendency</strong>: Values that represent the center or average of the data</li>
+                        <li><strong>Measures of Dispersion</strong>: Values that describe how spread out the data is</li>
+                        <li><strong>Measures of Shape</strong>: Descriptions of the data distribution's symmetry and peakedness</li>
+                        <li><strong>Data Visualization</strong>: Graphical representations of the data</li>
+                    </ol>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Types of Data</h3>
+                    
+                    <p>Before analyzing data, it's important to understand the different types of data:</p>
+                    
+                    <h4>Qualitative (Categorical) Data</h4>
+                    <p>Data that represents characteristics or qualities that can't be measured numerically.</p>
+                    <ul>
+                        <li><strong>Nominal Data</strong>: Categories with no natural order (e.g., eye color, gender, country)</li>
+                        <li><strong>Ordinal Data</strong>: Categories with a natural order (e.g., educational level, satisfaction ratings)</li>
+                    </ul>
+                    
+                    <h4>Quantitative (Numerical) Data</h4>
+                    <p>Data that represents quantities that can be measured numerically.</p>
+                    <ul>
+                        <li><strong>Discrete Data</strong>: Values that can only take specific values, typically counts (e.g., number of children, number of cars)</li>
+                        <li><strong>Continuous Data</strong>: Values that can take any value within a range (e.g., height, weight, temperature)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 1: Identifying Data Types</div>
+                        <p>Classify each of the following variables by data type:</p>
+                        <ul>
+                            <li>Blood type (A, B, AB, O) - <strong>Nominal</strong> (categories with no natural order)</li>
+                            <li>Temperature in degrees Celsius - <strong>Continuous</strong> (can take any value within a range)</li>
+                            <li>Satisfaction rating (1-5 stars) - <strong>Ordinal</strong> (categories with a natural order)</li>
+                            <li>Number of siblings - <strong>Discrete</strong> (counts that take specific values)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Measures of Central Tendency</h3>
+                    
+                    <p>Measures of central tendency identify the center or "typical value" of a dataset, helping to summarize the data with a single value.</p>
+                    
+                    <h4>Mean (Arithmetic Average)</h4>
+                    <p>The mean is the sum of all values divided by the number of values:</p>
+                    <div class="math-formula">
+                        Mean (μ or x̄) = (x₁ + x₂ + ... + xₙ)/n = Σxᵢ/n
+                    </div>
+                    <p>The mean is sensitive to extreme values (outliers) and is most appropriate for symmetric distributions.</p>
+                    
+                    <h4>Median</h4>
+                    <p>The median is the middle value when the data is arranged in ascending or descending order:</p>
+                    <ul>
+                        <li>For odd number of observations: the value at position (n+1)/2</li>
+                        <li>For even number of observations: the average of values at positions n/2 and (n/2)+1</li>
+                    </ul>
+                    <p>The median is not affected by extreme values and is suitable for skewed distributions.</p>
+                    
+                    <h4>Mode</h4>
+                    <p>The mode is the value that occurs most frequently in the dataset. A distribution can have:</p>
+                    <ul>
+                        <li><strong>Unimodal</strong>: One mode</li>
+                        <li><strong>Bimodal</strong>: Two modes</li>
+                        <li><strong>Multimodal</strong>: More than two modes</li>
+                        <li><strong>No mode</strong>: No value appears more than once</li>
+                    </ul>
+                    <p>The mode is the only measure of central tendency applicable to nominal data.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 2: Calculating Measures of Central Tendency</div>
+                        <p>Consider the dataset: 4, 7, 2, 8, 5, 3, 12, 6, 9</p>
+                        <p><strong>Mean</strong>: (4 + 7 + 2 + 8 + 5 + 3 + 12 + 6 + 9) / 9 = 56 / 9 = 6.22</p>
+                        <p><strong>Median</strong>: First arrange in order: 2, 3, 4, 5, 6, 7, 8, 9, 12</p>
+                        <p>Since there are 9 values (odd), the median is the 5th value: 6</p>
+                        <p><strong>Mode</strong>: No value appears more than once, so there is no mode.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Measures of Dispersion</h3>
+                    
+                    <p>Measures of dispersion describe how spread out the data is around the center.</p>
+                    
+                    <h4>Range</h4>
+                    <p>The range is the difference between the maximum and minimum values:</p>
+                    <div class="math-formula">
+                        Range = Maximum value - Minimum value
+                    </div>
+                    <p>While simple to calculate, the range only considers two extreme values and ignores the distribution of values in between.</p>
+                    
+                    <h4>Interquartile Range (IQR)</h4>
+                    <p>The IQR is the range of the middle 50% of the data:</p>
+                    <div class="math-formula">
+                        IQR = Q₃ - Q₁
+                    </div>
+                    <p>Where:</p>
+                    <ul>
+                        <li>Q₁ (First quartile): 25th percentile</li>
+                        <li>Q₃ (Third quartile): 75th percentile</li>
+                    </ul>
+                    <p>The IQR is not affected by extreme values and is useful for identifying outliers.</p>
+                    
+                    <h4>Variance</h4>
+                    <p>Variance measures the average squared deviation from the mean:</p>
+                    <div class="math-formula">
+                        Population variance (σ²) = Σ(xᵢ - μ)²/N
+                    </div>
+                    <div class="math-formula">
+                        Sample variance (s²) = Σ(xᵢ - x̄)²/(n-1)
+                    </div>
+                    <p>The variance gives greater weight to values far from the mean but has the drawback of being in squared units.</p>
+                    
+                    <h4>Standard Deviation</h4>
+                    <p>The standard deviation is the square root of the variance, returning to the original units:</p>
+                    <div class="math-formula">
+                        Population standard deviation (σ) = √(σ²)
+                    </div>
+                    <div class="math-formula">
+                        Sample standard deviation (s) = √(s²)
+                    </div>
+                    <p>The standard deviation is widely used as it provides a consistent way to identify unusual values and compare different datasets.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 3: Calculating Measures of Dispersion</div>
+                        <p>Using the dataset: 4, 7, 2, 8, 5, 3, 12, 6, 9</p>
+                        <p><strong>Range</strong>: 12 - 2 = 10</p>
+                        <p><strong>Interquartile Range (IQR)</strong>:</p>
+                        <p>Arranged data: 2, 3, 4, 5, 6, 7, 8, 9, 12</p>
+                        <p>Q₁ (25th percentile): 3</p>
+                        <p>Q₃ (75th percentile): 9</p>
+                        <p>IQR = 9 - 3 = 6</p>
+                        <p><strong>Sample Variance</strong>:</p>
+                        <p>Mean (x̄) = 6.22</p>
+                        <p>Σ(xᵢ - x̄)² = (4-6.22)² + (7-6.22)² + ... + (9-6.22)² = 78.22</p>
+                        <p>s² = 78.22/(9-1) = 9.78</p>
+                        <p><strong>Sample Standard Deviation</strong>:</p>
+                        <p>s = √9.78 = 3.13</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Measures of Shape</h3>
+                    
+                    <h4>Skewness</h4>
+                    <p>Skewness measures the asymmetry of the data distribution:</p>
+                    <ul>
+                        <li><strong>Positive Skew (Right Skew)</strong>: The distribution has a longer tail on the right, with most values concentrated on the left. Mean > Median > Mode.</li>
+                        <li><strong>Zero Skew (Symmetric)</strong>: The distribution is symmetric. Mean = Median = Mode.</li>
+                        <li><strong>Negative Skew (Left Skew)</strong>: The distribution has a longer tail on the left, with most values concentrated on the right. Mean < Median < Mode.</li>
+                    </ul>
+                    
+                    <h4>Kurtosis</h4>
+                    <p>Kurtosis measures the "tailedness" or peakedness of the distribution:</p>
+                    <ul>
+                        <li><strong>Leptokurtic (Positive Kurtosis)</strong>: Distribution has heavier tails and a sharper peak than a normal distribution.</li>
+                        <li><strong>Mesokurtic (Zero Kurtosis)</strong>: Distribution has the same tailedness as a normal distribution.</li>
+                        <li><strong>Platykurtic (Negative Kurtosis)</strong>: Distribution has lighter tails and a flatter peak than a normal distribution.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 4: Interpreting Skewness and Kurtosis</div>
+                        <p>Consider these scenarios:</p>
+                        <p>1. <strong>Income Distribution</strong>: Often positively skewed because most people earn low to moderate incomes while a few earn very high incomes, pulling the mean higher than the median.</p>
+                        <p>2. <strong>Exam Scores After Intensive Preparation</strong>: May be negatively skewed because most students perform well, but a few perform poorly, pulling the mean lower than the median.</p>
+                        <p>3. <strong>Heights of Adult Humans</strong>: Approximately symmetric (zero skew) and follows a normal distribution (mesokurtic).</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Data Visualization</h3>
+                    
+                    <p>Visual representations help identify patterns and trends that might not be apparent from numerical summaries alone.</p>
+                    
+                    <h4>For Categorical Data</h4>
+                    <ul>
+                        <li><strong>Bar Chart</strong>: Displays frequencies or counts for different categories with rectangular bars.</li>
+                        <li><strong>Pie Chart</strong>: Shows the proportion of each category as a slice of a circle, suitable when representing parts of a whole.</li>
+                    </ul>
+                    
+                    <h4>For Numerical Data</h4>
+                    <ul>
+                        <li><strong>Histogram</strong>: Displays frequency distributions by dividing data into intervals (bins) and showing the count in each bin.</li>
+                        <li><strong>Box Plot (Box-and-Whisker Plot)</strong>: Shows the five-number summary (minimum, Q₁, median, Q₃, maximum) and identifies outliers.</li>
+                        <li><strong>Stem-and-Leaf Plot</strong>: Displays individual data values while showing the distribution shape.</li>
+                        <li><strong>Scatter Plot</strong>: Shows the relationship between two numerical variables.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 5: Creating a Frequency Table and Histogram</div>
+                        <p>Consider these test scores: 65, 72, 83, 90, 67, 75, 78, 88, 92, 71, 69, 84, 76, 85, 79</p>
+                        
+                        <p><strong>Frequency Table</strong>:</p>
+                        <table>
+                            <tr>
+                                <th>Interval</th>
+                                <th>Frequency</th>
+                            </tr>
+                            <tr>
+                                <td>60-69</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>70-79</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>80-89</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>90-99</td>
+                                <td>2</td>
+                            </tr>
+                        </table>
+                        
+                        <p>A histogram would visually represent this frequency table, with intervals on the x-axis and frequencies on the y-axis, showing the distribution of test scores.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Z-Scores and Percentiles</h3>
+                    
+                    <h4>Z-Scores (Standard Scores)</h4>
+                    <p>Z-scores measure how many standard deviations a data point is from the mean:</p>
+                    <div class="math-formula">
+                        Z = (X - μ) / σ
+                    </div>
+                    <p>Where:</p>
+                    <ul>
+                        <li>X is the raw score</li>
+                        <li>μ is the population mean</li>
+                        <li>σ is the population standard deviation</li>
+                    </ul>
+                    <p>Z-scores allow for standardized comparisons across different datasets. A z-score of 0 means the value equals the mean, positive z-scores are above the mean, and negative z-scores are below the mean.</p>
+                    
+                    <h4>Percentiles</h4>
+                    <p>A percentile indicates the percentage of values that fall at or below a given value:</p>
+                    <ul>
+                        <li>The 50th percentile is the median</li>
+                        <li>The 25th percentile is the first quartile (Q₁)</li>
+                        <li>The 75th percentile is the third quartile (Q₃)</li>
+                    </ul>
+                    <p>Percentiles are useful for understanding an individual's standing relative to a group.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 6: Calculating Z-Scores</div>
+                        <p>In a class where the mean test score is 75 with a standard deviation of 8:</p>
+                        <p>1. A student who scored 83 has a z-score of: (83 - 75) / 8 = 1</p>
+                        <p>This student scored 1 standard deviation above the mean.</p>
+                        <p>2. A student who scored 67 has a z-score of: (67 - 75) / 8 = -1</p>
+                        <p>This student scored 1 standard deviation below the mean.</p>
+                        <p>3. A student who scored 95 has a z-score of: (95 - 75) / 8 = 2.5</p>
+                        <p>This student scored 2.5 standard deviations above the mean, which is quite high.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications of Descriptive Statistics</h3>
+                    
+                    <p class="text-secondary">Descriptive statistics has wide-ranging applications across various fields:</p>
+                    
+                    <h4>Business and Economics</h4>
+                    <ul>
+                        <li>Analyzing sales trends and customer demographics</li>
+                        <li>Summarizing financial performance metrics</li>
+                        <li>Monitoring quality control in manufacturing</li>
+                        <li>Understanding market trends and consumer behavior</li>
+                    </ul>
+                    
+                    <h4>Social Sciences</h4>
+                    <ul>
+                        <li>Describing population demographics</li>
+                        <li>Summarizing survey responses</li>
+                        <li>Analyzing social trends and patterns</li>
+                        <li>Comparing group characteristics</li>
+                    </ul>
+                    
+                    <h4>Health and Medicine</h4>
+                    <ul>
+                        <li>Summarizing patient health metrics</li>
+                        <li>Describing disease prevalence and distribution</li>
+                        <li>Analyzing treatment outcomes</li>
+                        <li>Monitoring public health indicators</li>
+                    </ul>
+                    
+                    <h4>Education</h4>
+                    <ul>
+                        <li>Analyzing student performance</li>
+                        <li>Comparing test scores across different groups</li>
+                        <li>Evaluating program effectiveness</li>
+                        <li>Identifying areas for improvement</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 7: Real-World Application</div>
+                        <p>A retail company analyzes its sales data for the past year and finds:</p>
+                        <ul>
+                            <li>Mean daily sales: $12,500</li>
+                            <li>Median daily sales: $11,800</li>
+                            <li>Standard deviation: $3,200</li>
+                            <li>Sales distribution: Positively skewed</li>
+                        </ul>
+                        <p>Interpretation: The positive skew (mean > median) indicates there were several days with exceptionally high sales that pulled the mean upward. The standard deviation suggests moderate day-to-day variation in sales. The company might focus on understanding what factors contributed to those high-sales days and try to replicate those conditions.</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <a href="../../features.html#statistics" class="prev-next-btn">Mathematics Roadmap</a>
+                    <a href="hypothesis-testing.html" class="prev-next-btn">Next: Hypothesis Testing</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

@@ -1,0 +1,388 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Graph Traversal (DFS, BFS) - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Graph Traversal</h2>
+                <p class="text-secondary">Understanding Depth-First Search (DFS) and Breadth-First Search (BFS)</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#graph-theory">Graph Theory</a> &raquo;
+                    <span>Graph Traversal</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Graph Traversal</h3>
+                    
+                    <p class="text-secondary">Graph traversal (also known as graph search) refers to the process of visiting (checking and/or updating) each vertex in a graph. Traversal algorithms are fundamental in graph theory and have numerous applications in computer science, network analysis, and optimization problems.</p>
+                    
+                    <p>The two primary graph traversal techniques are:</p>
+                    <ul>
+                        <li><strong>Depth-First Search (DFS)</strong>: Explores as far as possible along each branch before backtracking.</li>
+                        <li><strong>Breadth-First Search (BFS)</strong>: Explores all vertices at the present depth before moving on to vertices at the next depth level.</li>
+                    </ul>
+                    
+                    <p>Both DFS and BFS are complete algorithms, meaning they will find a solution if one exists, provided the graph is finite. However, they differ in their traversal pattern, implementation, and suitability for different problems.</p>
+                    
+                    <h4>Graph Representation for Traversal</h4>
+                    <p>Before discussing the traversal algorithms, it's important to understand how graphs are represented for traversal:</p>
+                    <ul>
+                        <li><strong>Adjacency List</strong>: For each vertex, store a list of its adjacent vertices. This is efficient for sparse graphs and is commonly used for traversal algorithms.</li>
+                        <li><strong>Adjacency Matrix</strong>: Store a matrix where element [i][j] indicates if there is an edge from vertex i to vertex j. While less space-efficient for sparse graphs, it provides O(1) access to check if an edge exists.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Graph for Traversal</div>
+                        <p>Consider the following undirected graph G:</p>
+                        <pre><code>
+    A --- B
+    |     |
+    |     |
+    C --- D --- E
+          |
+          |
+          F
+                        </code></pre>
+                        <p>Adjacency List Representation:</p>
+                        <ul>
+                            <li>A: [B, C]</li>
+                            <li>B: [A, D]</li>
+                            <li>C: [A, D]</li>
+                            <li>D: [B, C, E, F]</li>
+                            <li>E: [D]</li>
+                            <li>F: [D]</li>
+                        </ul>
+                        <p>In subsequent examples, we'll use this graph to illustrate DFS and BFS traversals.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Depth-First Search (DFS)</h3>
+                    
+                    <h4>Basic Concept</h4>
+                    <p>Depth-First Search (DFS) is an algorithm for traversing or searching tree or graph data structures. The algorithm starts at the root node (selecting some arbitrary node as the root in the case of a graph) and explores as far as possible along each branch before backtracking.</p>
+                    
+                    <h4>Algorithm</h4>
+                    <p>DFS can be implemented using either recursion or an explicit stack:</p>
+                    
+                    <p><strong>Recursive Implementation:</strong></p>
+                    <div class="math-formula">
+                        <p>function DFS(G, v):</p>
+                        <p>    mark v as visited</p>
+                        <p>    process vertex v</p>
+                        <p>    for each neighbor w of v in G:</p>
+                        <p>        if w is not visited:</p>
+                        <p>            DFS(G, w)</p>
+                    </div>
+                    
+                    <p><strong>Iterative Implementation (using a stack):</strong></p>
+                    <div class="math-formula">
+                        <p>function DFS(G, start):</p>
+                        <p>    let S be a stack</p>
+                        <p>    S.push(start)</p>
+                        <p>    while S is not empty:</p>
+                        <p>        v = S.pop()</p>
+                        <p>        if v is not visited:</p>
+                        <p>            mark v as visited</p>
+                        <p>            process vertex v</p>
+                        <p>            for each neighbor w of v in G (in reverse order):</p>
+                        <p>                if w is not visited:</p>
+                        <p>                    S.push(w)</p>
+                    </div>
+                    
+                    <h4>Time and Space Complexity</h4>
+                    <ul>
+                        <li><strong>Time Complexity</strong>: O(V + E), where V is the number of vertices and E is the number of edges in the graph. This is because, in the worst case, we need to visit all vertices and explore all edges.</li>
+                        <li><strong>Space Complexity</strong>: O(V), as in the worst case, the stack (or recursion stack) may need to hold all vertices.</li>
+                    </ul>
+                    
+                    <h4>Properties of DFS</h4>
+                    <ul>
+                        <li>DFS will explore one path in the graph to its full depth before backtracking to explore other paths.</li>
+                        <li>DFS might not find the shortest path to a node.</li>
+                        <li>DFS is often preferred when we want to visit all nodes in a graph, especially if the solution is far from the root.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: DFS Traversal</div>
+                        <p>Let's perform a DFS traversal on the graph from the previous example, starting from vertex A:</p>
+                        <p><strong>Step 1:</strong> Start with A. Mark A as visited and process it. A's neighbors are B and C.</p>
+                        <p><strong>Step 2:</strong> Move to B (arbitrarily chosen). Mark B as visited and process it. B's neighbors are A (already visited) and D.</p>
+                        <p><strong>Step 3:</strong> Move to D. Mark D as visited and process it. D's neighbors are B (already visited), C, E, and F.</p>
+                        <p><strong>Step 4:</strong> Move to C. Mark C as visited and process it. C's neighbors are A (already visited) and D (already visited).</p>
+                        <p><strong>Step 5:</strong> Backtrack to D and move to E. Mark E as visited and process it. E's neighbor is D (already visited).</p>
+                        <p><strong>Step 6:</strong> Backtrack to D and move to F. Mark F as visited and process it. F's neighbor is D (already visited).</p>
+                        <p>DFS traversal order: A, B, D, C, E, F</p>
+                    </div>
+                    
+                    <h4>Applications of DFS</h4>
+                    <ul>
+                        <li><strong>Topological Sorting</strong>: Used to order the vertices of a directed acyclic graph (DAG) such that for every directed edge u → v, vertex u comes before v in the ordering.</li>
+                        <li><strong>Finding Connected Components</strong>: DFS can be used to find all connected components in an undirected graph by running DFS from each unvisited vertex.</li>
+                        <li><strong>Detecting Cycles</strong>: A graph has a cycle if, during a DFS traversal, we encounter a vertex that is already in the recursion stack.</li>
+                        <li><strong>Solving Puzzles</strong>: DFS is often used to solve puzzles with only one solution, such as mazes or the 8-puzzle problem.</li>
+                        <li><strong>Finding Paths</strong>: DFS can be used to find a path between two vertices, though it might not be the shortest path.</li>
+                    </ul>
+                    
+                    <div class="math-formula">
+                        <p>Time Complexities for Common DFS Applications:</p>
+                        <p>- Topological Sort: O(V + E)</p>
+                        <p>- Finding Connected Components: O(V + E)</p>
+                        <p>- Cycle Detection: O(V + E)</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Breadth-First Search (BFS)</h3>
+                    
+                    <h4>Basic Concept</h4>
+                    <p>Breadth-First Search (BFS) is an algorithm for traversing or searching tree or graph data structures. Unlike DFS, which explores as far as possible along a branch before backtracking, BFS explores all vertices at the present depth level before moving on to vertices at the next depth level.</p>
+                    
+                    <h4>Algorithm</h4>
+                    <p>BFS is typically implemented using a queue:</p>
+                    
+                    <div class="math-formula">
+                        <p>function BFS(G, start):</p>
+                        <p>    let Q be a queue</p>
+                        <p>    mark start as visited</p>
+                        <p>    Q.enqueue(start)</p>
+                        <p>    while Q is not empty:</p>
+                        <p>        v = Q.dequeue()</p>
+                        <p>        process vertex v</p>
+                        <p>        for each neighbor w of v in G:</p>
+                        <p>            if w is not visited:</p>
+                        <p>                mark w as visited</p>
+                        <p>                Q.enqueue(w)</p>
+                    </div>
+                    
+                    <h4>Time and Space Complexity</h4>
+                    <ul>
+                        <li><strong>Time Complexity</strong>: O(V + E), where V is the number of vertices and E is the number of edges in the graph. This is because, in the worst case, we need to visit all vertices and explore all edges.</li>
+                        <li><strong>Space Complexity</strong>: O(V), as in the worst case, the queue may need to hold all vertices.</li>
+                    </ul>
+                    
+                    <h4>Properties of BFS</h4>
+                    <ul>
+                        <li>BFS visits all vertices at the current level before moving to the next level.</li>
+                        <li>BFS will find the shortest path to a node in terms of the number of edges, making it ideal for shortest path problems in unweighted graphs.</li>
+                        <li>BFS is often preferred when the solution is likely to be close to the root or when we want to find the shortest path in an unweighted graph.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: BFS Traversal</div>
+                        <p>Let's perform a BFS traversal on the graph from the earlier example, starting from vertex A:</p>
+                        <p><strong>Step 1:</strong> Start with A. Mark A as visited, process it, and enqueue it. Queue: [A]</p>
+                        <p><strong>Step 2:</strong> Dequeue A. A's neighbors are B and C. Mark them as visited, process them, and enqueue them. Queue: [B, C]</p>
+                        <p><strong>Step 3:</strong> Dequeue B. B's neighbors are A (already visited) and D. Mark D as visited, process it, and enqueue it. Queue: [C, D]</p>
+                        <p><strong>Step 4:</strong> Dequeue C. C's neighbors are A (already visited) and D (already visited). Queue: [D]</p>
+                        <p><strong>Step 5:</strong> Dequeue D. D's neighbors are B (already visited), C (already visited), E, and F. Mark E and F as visited, process them, and enqueue them. Queue: [E, F]</p>
+                        <p><strong>Step 6:</strong> Dequeue E. E's neighbor is D (already visited). Queue: [F]</p>
+                        <p><strong>Step 7:</strong> Dequeue F. F's neighbor is D (already visited). Queue is now empty, so we're done.</p>
+                        <p>BFS traversal order: A, B, C, D, E, F</p>
+                    </div>
+                    
+                    <h4>Applications of BFS</h4>
+                    <ul>
+                        <li><strong>Shortest Path (Unweighted Graph)</strong>: BFS can find the shortest path between two vertices in an unweighted graph.</li>
+                        <li><strong>Connected Components</strong>: Like DFS, BFS can be used to find connected components in an undirected graph.</li>
+                        <li><strong>Two-Coloring</strong>: BFS can be used to determine if a graph is bipartite by coloring the graph such that no two adjacent vertices have the same color.</li>
+                        <li><strong>Network Broadcasting</strong>: In network algorithms, BFS can be used to simulate broadcasting from a source to all nodes.</li>
+                        <li><strong>Web Crawlers</strong>: BFS is often used in web crawlers to systematically explore web pages level by level.</li>
+                    </ul>
+                    
+                    <div class="math-formula">
+                        <p>Time Complexities for Common BFS Applications:</p>
+                        <p>- Shortest Path (Unweighted): O(V + E)</p>
+                        <p>- Bipartite Graph Check: O(V + E)</p>
+                        <p>- Finding Connected Components: O(V + E)</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Comparison: DFS vs. BFS</h3>
+                    
+                    <h4>Key Differences</h4>
+                    <table border="1" style="width: 100%; text-align: center; margin: 20px 0; border-collapse: collapse;">
+                        <tr>
+                            <th style="padding: 8px;">Feature</th>
+                            <th style="padding: 8px;">Depth-First Search (DFS)</th>
+                            <th style="padding: 8px;">Breadth-First Search (BFS)</th>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;">Exploration Pattern</td>
+                            <td style="padding: 8px;">Explores as far as possible along a branch before backtracking</td>
+                            <td style="padding: 8px;">Explores all vertices at the current level before moving to the next level</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;">Data Structure</td>
+                            <td style="padding: 8px;">Stack (or recursion stack)</td>
+                            <td style="padding: 8px;">Queue</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;">Space Complexity</td>
+                            <td style="padding: 8px;">O(h) where h is the height of the tree or the maximum depth in the graph</td>
+                            <td style="padding: 8px;">O(w) where w is the maximum width of the tree or graph</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;">Path Finding</td>
+                            <td style="padding: 8px;">Not guaranteed to find the shortest path</td>
+                            <td style="padding: 8px;">Guaranteed to find the shortest path in unweighted graphs</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;">Best Used For</td>
+                            <td style="padding: 8px;">Topological sorting, cycle detection, maze solving, depth-first properties</td>
+                            <td style="padding: 8px;">Shortest path problems, level-order traversal, network broadcasting</td>
+                        </tr>
+                    </table>
+                    
+                    <h4>When to Use Which?</h4>
+                    <p><strong>Use DFS when:</strong></p>
+                    <ul>
+                        <li>You need to find a path to a target and want to explore paths deeply before exploring alternatives.</li>
+                        <li>You're working with problems like topological sorting or cycle detection.</li>
+                        <li>Memory is a constraint and the graph is deep rather than wide.</li>
+                        <li>You're solving puzzles with many possible dead ends (like a maze).</li>
+                    </ul>
+                    
+                    <p><strong>Use BFS when:</strong></p>
+                    <ul>
+                        <li>You need to find the shortest path in an unweighted graph.</li>
+                        <li>You want to explore all neighbors at the current level before moving deeper.</li>
+                        <li>You're working on problems like the shortest path or level-order traversal.</li>
+                        <li>The graph is wide rather than deep.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Shortest Path Comparison</div>
+                        <p>Consider the task of finding a path from A to F in our example graph.</p>
+                        <p>Using DFS (starting from A and prioritizing alphabetical order of neighbors):</p>
+                        <ol>
+                            <li>Start at A, visit B</li>
+                            <li>From B, visit D</li>
+                            <li>From D, visit F</li>
+                        </ol>
+                        <p>Path: A → B → D → F (length 3)</p>
+                        
+                        <p>Using BFS (starting from A):</p>
+                        <ol>
+                            <li>Start at A, enqueue neighbors B and C</li>
+                            <li>Dequeue B, enqueue D (neighbor of B)</li>
+                            <li>Dequeue C, no new neighbors to enqueue</li>
+                            <li>Dequeue D, enqueue E and F (neighbors of D)</li>
+                            <li>Path to F found: A → B → D → F (length 3)</li>
+                        </ol>
+                        <p>In this case, both DFS and BFS found a path of length 3, which is the shortest path. However, this isn't always the case. If there were multiple paths to F, BFS would guarantee finding the shortest one, while DFS might find a longer path first.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Advanced Variations and Algorithms</h3>
+                    
+                    <h4>Variations of DFS</h4>
+                    <ul>
+                        <li><strong>Iterative Deepening DFS (IDDFS)</strong>: Combines the space efficiency of DFS with the breadth-first search's completeness (finding the shallowest goal).</li>
+                        <li><strong>Bidirectional DFS</strong>: Runs two simultaneous DFS searches, one from the start node and one from the goal node, aiming to meet in the middle.</li>
+                        <li><strong>Depth-Limited Search</strong>: A variant of DFS where the search is limited to a specified depth.</li>
+                    </ul>
+                    
+                    <h4>Variations of BFS</h4>
+                    <ul>
+                        <li><strong>Bidirectional BFS</strong>: Similar to bidirectional DFS but using BFS from both ends.</li>
+                        <li><strong>Uniform Cost Search (Dijkstra's Algorithm)</strong>: A generalization of BFS for weighted graphs, where the queue is replaced with a priority queue.</li>
+                        <li><strong>A* Search</strong>: An extension of Dijkstra's algorithm that uses heuristics to guide the search towards the goal.</li>
+                    </ul>
+                    
+                    <h4>Applications of Advanced Traversal Algorithms</h4>
+                    <ul>
+                        <li><strong>Dijkstra's Algorithm</strong>: Used for finding the shortest paths in a weighted graph with non-negative edge weights.</li>
+                        <li><strong>A* Search</strong>: Used in pathfinding and graph traversal to find the shortest path efficiently using heuristics.</li>
+                        <li><strong>Bellman-Ford Algorithm</strong>: Used for finding the shortest paths in a weighted graph that may contain negative edge weights.</li>
+                        <li><strong>Prim's and Kruskal's Algorithms</strong>: Used for finding the minimum spanning tree in a connected weighted graph.</li>
+                    </ul>
+                    
+                    <div class="math-formula">
+                        <p>Time Complexities for Advanced Algorithms:</p>
+                        <p>- Dijkstra's Algorithm: O(V²) or O((V+E)logV) with a binary heap</p>
+                        <p>- A* Search: O(E) in the worst case, but typically performs better with good heuristics</p>
+                        <p>- Bellman-Ford Algorithm: O(V*E)</p>
+                    </div>
+                    
+                    <div class="navigation">
+                        <a href="graph-representation.html" class="prev-next-btn graph-theory-btn">Previous: Graph Representation</a>
+                        <a href="eulerian-hamiltonian-paths.html" class="prev-next-btn graph-theory-btn">Next: Eulerian & Hamiltonian Paths</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

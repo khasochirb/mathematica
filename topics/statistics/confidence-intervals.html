@@ -1,0 +1,338 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Confidence Intervals - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Confidence Intervals</h2>
+                <p>Estimating population parameters with a range of plausible values</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#statistics">Statistics</a> &raquo;
+                    <span>Confidence Intervals</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Confidence Intervals</h3>
+                    
+                    <p>A confidence interval (CI) is a range of values that is likely to contain an unknown population parameter with a certain level of confidence. Unlike point estimates that give a single value for a parameter, confidence intervals provide a range of plausible values, reflecting the uncertainty in the estimation process.</p>
+                    
+                    <p class="text-secondary">Key components of a confidence interval include:</p>
+                    <ul>
+                        <li><strong>Point Estimate</strong>: The single best estimate of the parameter (usually at the center of the interval)</li>
+                        <li><strong>Margin of Error</strong>: The amount added and subtracted from the point estimate to create the interval</li>
+                        <li><strong>Confidence Level</strong>: The probability (typically expressed as a percentage) that the construction method produces an interval containing the true parameter value</li>
+                    </ul>
+                    
+                    <p>Common confidence levels include 90%, 95%, and 99%, with 95% being the most widely used.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 1: Interpreting a Confidence Interval</div>
+                        <p>A researcher reports that the 95% confidence interval for the mean height of adult women in a population is (163.5 cm, 166.7 cm).</p>
+                        <p><strong>Correct Interpretation</strong>: "If we were to take many random samples of the same size from this population and construct a 95% confidence interval for each sample, about 95% of these intervals would contain the true mean height of adult women in the population."</p>
+                        <p><strong>Incorrect Interpretation</strong>: "There is a 95% probability that the true mean height of adult women in the population is between 163.5 cm and 166.7 cm." (This is incorrect because the true parameter is fixed, not random.)</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Constructing Confidence Intervals</h3>
+                    
+                    <p>The general formula for a confidence interval is:</p>
+                    <div class="math-formula">
+                        Point Estimate ± (Critical Value × Standard Error)
+                    </div>
+                    
+                    <p>The components vary depending on the parameter being estimated and the distribution of the statistic.</p>
+                    
+                    <h4>Confidence Interval for a Population Mean</h4>
+                    
+                    <p>When the population standard deviation (σ) is known (rare in practice):</p>
+                    <div class="math-formula">
+                        x̄ ± z<sub>α/2</sub> × (σ/√n)
+                    </div>
+                    <p>Where:</p>
+                    <ul>
+                        <li>x̄ = sample mean</li>
+                        <li>z<sub>α/2</sub> = critical value from the standard normal distribution</li>
+                        <li>σ = population standard deviation</li>
+                        <li>n = sample size</li>
+                    </ul>
+                    
+                    <p>When σ is unknown (common in practice):</p>
+                    <div class="math-formula">
+                        x̄ ± t<sub>α/2, n-1</sub> × (s/√n)
+                    </div>
+                    <p>Where:</p>
+                    <ul>
+                        <li>s = sample standard deviation</li>
+                        <li>t<sub>α/2, n-1</sub> = critical value from the t-distribution with n-1 degrees of freedom</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 2: Confidence Interval for a Population Mean</div>
+                        <p>A random sample of 40 batteries has a mean lifetime of 215 hours with a standard deviation of 20 hours. Construct a 95% confidence interval for the mean lifetime of all batteries of this type.</p>
+                        <p>Since σ is unknown, we use the t-distribution with 40-1 = 39 degrees of freedom.</p>
+                        <p>For 95% confidence, t<sub>0.025, 39</sub> = 2.023</p>
+                        <p>CI = 215 ± 2.023 × (20/√40) = 215 ± 2.023 × 3.16 = 215 ± 6.39 = (208.61, 221.39)</p>
+                        <p>We are 95% confident that the true mean lifetime of all batteries of this type is between 208.61 and 221.39 hours.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Other Types of Confidence Intervals</h3>
+                    
+                    <h4>Confidence Interval for a Population Proportion</h4>
+                    <div class="math-formula">
+                        p̂ ± z<sub>α/2</sub> × √(p̂(1-p̂)/n)
+                    </div>
+                    <p>Where:</p>
+                    <ul>
+                        <li>p̂ = sample proportion (number of successes divided by sample size)</li>
+                        <li>n = sample size</li>
+                    </ul>
+                    <p>This formula is valid when np̂ ≥ 10 and n(1-p̂) ≥ 10.</p>
+                    
+                    <h4>Confidence Interval for the Difference Between Two Means</h4>
+                    <p>Independent samples with unknown but equal population variances:</p>
+                    <div class="math-formula">
+                        (x̄₁ - x̄₂) ± t<sub>α/2, n₁+n₂-2</sub> × s<sub>p</sub> × √(1/n₁ + 1/n₂)
+                    </div>
+                    <p>Where s<sub>p</sub> is the pooled standard deviation:</p>
+                    <div class="math-formula">
+                        s<sub>p</sub> = √[((n₁-1)s₁² + (n₂-1)s₂²)/(n₁+n₂-2)]
+                    </div>
+                    
+                    <h4>Confidence Interval for the Difference Between Two Proportions</h4>
+                    <div class="math-formula">
+                        (p̂₁ - p̂₂) ± z<sub>α/2</sub> × √[p̂₁(1-p̂₁)/n₁ + p̂₂(1-p̂₂)/n₂]
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 3: Confidence Interval for a Population Proportion</div>
+                        <p>In a random sample of 500 voters, 280 support a particular candidate. Construct a 95% confidence interval for the true proportion of voters who support this candidate.</p>
+                        <p>Sample proportion p̂ = 280/500 = 0.56</p>
+                        <p>For 95% confidence, z<sub>0.025</sub> = 1.96</p>
+                        <p>CI = 0.56 ± 1.96 × √[(0.56 × 0.44)/500] = 0.56 ± 1.96 × 0.0222 = 0.56 ± 0.0435 = (0.5165, 0.6035)</p>
+                        <p>We are 95% confident that the true proportion of voters who support the candidate is between 51.65% and 60.35%.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Factors Affecting Confidence Interval Width</h3>
+                    
+                    <p>Several factors influence the width of a confidence interval:</p>
+                    
+                    <h4>1. Confidence Level</h4>
+                    <p>Higher confidence levels lead to wider intervals. For example, a 99% confidence interval is wider than a 95% confidence interval (all else being equal).</p>
+                    
+                    <h4>2. Sample Size</h4>
+                    <p>Larger sample sizes produce narrower confidence intervals because the standard error decreases as the sample size increases.</p>
+                    
+                    <h4>3. Population Variability</h4>
+                    <p>Greater population variability (larger standard deviation) results in wider confidence intervals.</p>
+                    
+                    <h4>4. Sample Design</h4>
+                    <p>Simple random sampling typically leads to wider confidence intervals than stratified or cluster sampling (for the same sample size).</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 4: Effect of Confidence Level and Sample Size</div>
+                        <p>Consider the battery example (mean = 215 hours, s = 20 hours):</p>
+                        <p><strong>Effect of Confidence Level</strong> (n = 40):</p>
+                        <ul>
+                            <li>90% CI: 215 ± 1.685 × (20/√40) = 215 ± 5.33 = (209.67, 220.33)</li>
+                            <li>95% CI: 215 ± 2.023 × (20/√40) = 215 ± 6.39 = (208.61, 221.39)</li>
+                            <li>99% CI: 215 ± 2.708 × (20/√40) = 215 ± 8.56 = (206.44, 223.56)</li>
+                        </ul>
+                        <p><strong>Effect of Sample Size</strong> (95% confidence):</p>
+                        <ul>
+                            <li>n = 40: 215 ± 2.023 × (20/√40) = 215 ± 6.39 = (208.61, 221.39)</li>
+                            <li>n = 100: 215 ± 1.984 × (20/√100) = 215 ± 3.97 = (211.03, 218.97)</li>
+                            <li>n = 400: 215 ± 1.966 × (20/√400) = 215 ± 1.97 = (213.03, 216.97)</li>
+                        </ul>
+                        <p>The interval width decreases as sample size increases and increases as confidence level increases.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">One-Sided Confidence Intervals</h3>
+                    
+                    <p>While most confidence intervals are two-sided (with an upper and lower bound), one-sided intervals provide either a lower bound or an upper bound, but not both.</p>
+                    
+                    <h4>Lower One-Sided Confidence Interval</h4>
+                    <div class="math-formula">
+                        (Point Estimate - Critical Value × Standard Error, ∞)
+                    </div>
+                    
+                    <h4>Upper One-Sided Confidence Interval</h4>
+                    <div class="math-formula">
+                        (-∞, Point Estimate + Critical Value × Standard Error)
+                    </div>
+                    
+                    <p>One-sided intervals are useful when only one direction is of interest, such as when we want to ensure a parameter exceeds or falls below a certain threshold.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 5: One-Sided Confidence Interval</div>
+                        <p>A company claims its light bulbs last at least 1000 hours. A sample of 36 light bulbs has a mean lifetime of 1050 hours with a standard deviation of 120 hours. Construct a 95% lower confidence bound for the mean lifetime.</p>
+                        <p>For a one-sided 95% confidence interval, t<sub>0.05, 35</sub> = 1.69</p>
+                        <p>Lower bound = 1050 - 1.69 × (120/√36) = 1050 - 1.69 × 20 = 1050 - 33.8 = 1016.2 hours</p>
+                        <p>With 95% confidence, we can say that the mean lifetime of all light bulbs of this type is at least 1016.2 hours.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Bootstrap Confidence Intervals</h3>
+                    
+                    <p>Bootstrap methods provide a non-parametric approach to constructing confidence intervals without making assumptions about the underlying distribution of the data.</p>
+                    
+                    <p>The basic bootstrap procedure involves:</p>
+                    <ol>
+                        <li>Taking repeated random samples (with replacement) from the original sample</li>
+                        <li>Calculating the statistic of interest for each bootstrap sample</li>
+                        <li>Using the distribution of bootstrap statistics to construct a confidence interval</li>
+                    </ol>
+                    
+                    <h4>Common Bootstrap Confidence Interval Methods</h4>
+                    <ul>
+                        <li><strong>Percentile Method</strong>: Uses the percentiles of the bootstrap distribution</li>
+                        <li><strong>BCa (Bias-Corrected and Accelerated) Method</strong>: Adjusts for bias and skewness in the bootstrap distribution</li>
+                        <li><strong>Bootstrap-t Method</strong>: Uses studentized bootstrap statistics</li>
+                    </ul>
+                    
+                    <p>Bootstrap methods are particularly useful when:</p>
+                    <ul>
+                        <li>The sample size is small</li>
+                        <li>The sampling distribution is unknown or non-normal</li>
+                        <li>The parameter of interest is complex (e.g., median, correlation coefficient)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 6: Bootstrap Confidence Interval</div>
+                        <p>A researcher wants to estimate the median income in a small community. The sample data doesn't follow a normal distribution, making traditional methods less reliable.</p>
+                        <p>Using bootstrap methods:</p>
+                        <ol>
+                            <li>The researcher takes 1000 bootstrap samples from the original data.</li>
+                            <li>For each bootstrap sample, the median income is calculated.</li>
+                            <li>The 2.5th and 97.5th percentiles of these 1000 bootstrap medians are used as the lower and upper bounds of a 95% confidence interval.</li>
+                        </ol>
+                        <p>This approach provides a valid confidence interval without assuming normality or using complex formulas.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications of Confidence Intervals</h3>
+                    
+                    <p class="text-secondary">Confidence intervals have numerous practical applications:</p>
+                    
+                    <h4>Research and Science</h4>
+                    <ul>
+                        <li>Reporting experimental results with measures of precision</li>
+                        <li>Comparing treatments or interventions</li>
+                        <li>Meta-analysis of multiple studies</li>
+                    </ul>
+                    
+                    <h4>Business and Economics</h4>
+                    <ul>
+                        <li>Estimating market share or customer satisfaction</li>
+                        <li>Forecasting sales or revenue</li>
+                        <li>Quality control in manufacturing</li>
+                    </ul>
+                    
+                    <h4>Public Health and Medicine</h4>
+                    <ul>
+                        <li>Estimating disease prevalence</li>
+                        <li>Reporting treatment effectiveness</li>
+                        <li>Pharmaceutical trials and drug development</li>
+                    </ul>
+                    
+                    <h4>Policy and Decision Making</h4>
+                    <ul>
+                        <li>Election polling</li>
+                        <li>Environmental regulation</li>
+                        <li>Public opinion research</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 7: Practical Application of Confidence Intervals</div>
+                        <p>A polling organization reports that 52% of voters support a candidate, with a margin of error of ±3% at 95% confidence.</p>
+                        <p>This means the 95% confidence interval for the true proportion of voters supporting the candidate is (49%, 55%).</p>
+                        <p>Since this interval includes 50%, we cannot conclude with 95% confidence that the candidate has majority support. This information helps campaign strategists make informed decisions about resource allocation and messaging.</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <a href="hypothesis-testing.html" class="prev-next-btn">Previous: Hypothesis Testing</a>
+                    <a href="regression-and-correlation.html" class="prev-next-btn">Next: Regression & Correlation</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

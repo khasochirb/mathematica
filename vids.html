@@ -1,0 +1,399 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Video Tutorials - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    		<link rel="stylesheet" href="assets/css/first.css" />
+		<link rel="stylesheet" href="assets/css/improvements.css" />
+		<link rel="stylesheet" href="assets/css/educational-design-system.css" />
+		<link rel="stylesheet" href="assets/css/educational-overrides.css" />
+    <!-- Additional styles to ensure the mobile menu toggle is hidden -->
+    <style>
+        /* Hide mobile menu toggle button with highest priority */
+        #titleBar, #navPanel {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        
+        /* Prevent any transforms from mobile menu */
+        body.navPanel-visible #page-wrapper,
+        body.navPanel-visible #titleBar {
+            transform: none !important;
+        }
+        
+        /* Ensure navigation is always visible */
+        #nav {
+            display: block !important;
+        }
+    </style>
+    <style>
+        .go-back {
+            display: inline-block;
+            position: relative;
+            margin-bottom: 1em;
+        }
+        .video-box {
+            transition: all 0.3s ease;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border-top: 3px solid #4acaa8;
+        }
+        .video-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        /* Clean new design without using the original thumbnails */
+        .video-card-header {
+            background: linear-gradient(135deg, #121820, #1e2530);
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 3px solid #4acaa8;
+        }
+        .video-card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(74, 202, 168, 0.2), rgba(42, 184, 222, 0.2));
+            z-index: 1;
+        }
+        .card-title {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+        }
+        .card-subtitle {
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+            z-index: 2;
+        }
+        .problem-highlight {
+            background: linear-gradient(90deg, #4acaa8, #38c4c0, #2ab8de);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 1.1em;
+            padding: 0 5px;
+        }
+        .question-preview {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: rotate(10deg);
+            z-index: 3;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+        .video-box:hover .question-preview {
+            transform: rotate(0deg) scale(1.1);
+            opacity: 1;
+        }
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4acaa8, #38c4c0, #2ab8de);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .play-button::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 10px 0 10px 16px;
+            border-color: transparent transparent transparent white;
+            margin-left: 4px;
+        }
+        .video-box:hover .play-button {
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+        }
+        .video-box p {
+            color: #4a5a6b;
+            margin-bottom: 1.5em;
+        }
+        .video-title {
+            color: white;
+            margin-bottom: 1em;
+            font-weight: bold;
+        }
+        .video-box header h3 {
+            color: #2d3b48;
+            font-weight: 600;
+            margin-top: 0.8em;
+            margin-bottom: 0.7em;
+            font-size: 1.4em;
+            background: linear-gradient(90deg, #2d3b48, #4a5a6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .video-card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            border-left: 4px solid #4acaa8;
+        }
+        .modal-video-title {
+            color: white;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #121820, #1e2530);
+            border-radius: 5px;
+            font-size: 1.5em;
+            text-align: center;
+            border-left: 4px solid #4acaa8;
+        }
+    </style>
+</head>
+<body class="is-preload sub-page">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html"><img src="/images/logo.png" alt="International Math Hub Logo" style="max-height: 120px;"></a>
+                </div>
+
+                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="features.html">Mathematics Roadmap</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <div class="go-back">
+                <a href="resources.html" class="button alt">← Back to Resources</a>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section id="main" class="container sub-page-section">
+            <header>
+                <h2 class="section-title">Video Tutorials</h2>
+                <p>Watch detailed explanations of complex math problems with bilingual support</p>
+            </header>
+
+            <div class="box" style="margin-bottom: 40px;">
+                <h3 style="color: #4acaa8;">How to Use These Video Solutions</h3>
+                <p>These videos provide detailed explanations for all the problems in our practice quizzes. Each video covers a set of problems with step-by-step solutions and mathematical concepts.</p>
+                <p><strong>Tip:</strong> After taking a quiz, watch the corresponding video solution to understand any problems you found challenging. The videos are organized by problem numbers for easy reference.</p>
+            </div>
+
+            <div class="row" id="video-grid">
+                <!-- Video thumbnails will be dynamically loaded here -->
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <section id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        const videos = [
+            {
+                title: "Problem 1 to 3",
+                description: "Solutions to Problem 1 to 3 from the Quiz",
+                questionImage: "images/question1.png", // Use the first question image instead of the problematic thumbnail
+                videoUrl: "videos/1-3.mp4"
+            },
+            {
+                title: "Problem 4 to 12",
+                description: "Solutions to Problem 4 to 12 from the Quiz",
+                questionImage: "images/question4.png",
+                videoUrl: "videos/4-12.mp4"
+            },
+            {
+                title: "Problem 13 to 17",
+                description: "Solutions to Problem 13 to 17 from the Quiz",
+                questionImage: "images/question13.png",
+                videoUrl: "videos/13 to 17.mp4"
+            },
+            {
+                title: "Problem 18 to 21",
+                description: "Solutions to Problem 18 to 21 from the Quiz",
+                questionImage: "images/question18.png",
+                videoUrl: "videos/18 to 21.mp4"
+            }
+        ];
+
+        function createVideoGrid() {
+            const videoGrid = document.getElementById('video-grid');
+            
+            videos.forEach((video, index) => {
+                const videoElement = document.createElement('div');
+                videoElement.className = 'col-6 col-12-medium';
+                
+                // Extract the problem numbers for highlighting
+                const title = video.title;
+                const highlightedTitle = title.replace(/(Problem \d+ to \d+)/, '<span class="problem-highlight">$1</span>');
+                
+                videoElement.innerHTML = `
+                    <section class="box video-box">
+                        <div class="video-card-header" onclick="playVideo('${video.videoUrl}', '${video.title}')" style="cursor: pointer;">
+                            <h3 class="card-title">${highlightedTitle}</h3>
+                            <p class="card-subtitle">Video Solutions</p>
+                            <img src="${video.questionImage}" alt="Question Preview" class="question-preview" />
+                            <div class="play-button"></div>
+                        </div>
+                        <div style="padding: 20px;">
+                            <p>${video.description}</p>
+                            <footer>
+                                <a class="button" onclick="playVideo('${video.videoUrl}', '${video.title}')" style="cursor: pointer;">
+                                    <i class="icon solid fa-play"></i> Watch Video
+                                </a>
+                            </footer>
+                        </div>
+                    </section>
+                `;
+                videoGrid.appendChild(videoElement);
+            });
+        }
+
+        function playVideo(videoUrl, title) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                backdrop-filter: blur(5px);
+                -webkit-backdrop-filter: blur(5px);
+            `;
+
+            const videoPlayer = document.createElement('div');
+            videoPlayer.style.cssText = `
+                width: 85%;
+                max-width: 1200px;
+                background: #121820;
+                padding: 25px;
+                border-radius: 12px;
+                border: 1px solid rgba(74, 202, 168, 0.3);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            `;
+
+            // Extract problem numbers for special styling
+            const numbers = title.match(/\d+/g);
+            const formattedTitle = numbers && numbers.length >= 2 
+                ? `Solutions for <span style="color: #4acaa8; font-weight: bold;">Questions ${numbers[0]}-${numbers[1]}</span>`
+                : title;
+
+            videoPlayer.innerHTML = `
+                <div style="position: relative;">
+                    <h2 class="modal-video-title">${formattedTitle}</h2>
+                    <div style="position: relative;">
+                        <div id="loading-indicator" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center; background: rgba(0,0,0,0.6); z-index: 5; border-radius: 8px;">
+                            <div style="text-align: center; color: white;">
+                                <div style="width: 50px; height: 50px; border: 3px solid rgba(74, 202, 168, 0.3); border-radius: 50%; border-top-color: #4acaa8; animation: spin 1s linear infinite; margin: 0 auto 15px;"></div>
+                                <p>Loading video...</p>
+                            </div>
+                        </div>
+                        <video id="tutorial-video" controls style="width: 100%; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);" autoplay>
+                            <source src="${videoUrl}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button onclick="document.body.removeChild(this.closest('.modal'))" style="background: linear-gradient(135deg, #4acaa8, #38c4c0, #2ab8de); border: none; color: white; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold;">Close Video</button>
+                    </div>
+                </div>
+            `;
+
+            modal.className = 'modal';
+            modal.onclick = function(e) {
+                if (e.target === modal) {
+                    document.body.removeChild(modal);
+                }
+            };
+
+            modal.appendChild(videoPlayer);
+            document.body.appendChild(modal);
+            
+            // Add loading indicator styles
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Hide loading indicator when video starts playing
+            const video = videoPlayer.querySelector('#tutorial-video');
+            const loadingIndicator = videoPlayer.querySelector('#loading-indicator');
+            
+            video.addEventListener('canplay', function() {
+                loadingIndicator.style.display = 'none';
+            });
+        }
+
+        window.onload = createVideoGrid;
+    </script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Jensen's Inequality - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Jensen's Inequality</h2>
+                <p>A powerful inequality for convex and concave functions</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#inequalities">Inequalities</a> &raquo;
+                    <span>Jensen's Inequality</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Jensen's Inequality</h3>
+                    
+                    <p>Jensen's inequality is a cornerstone result in convex analysis that establishes a relationship between the value of a convex function applied to an average of points and the average of the function applied to each point individually. Named after the Danish mathematician Johan Ludwig Jensen, who proved it in 1906, this inequality has become fundamental in various mathematical fields.</p>
+                    
+                    <p>The inequality is particularly powerful because it unifies and generalizes many important inequalities in mathematics, including the arithmetic mean-geometric mean inequality, Hölder's inequality, and the Cauchy-Schwarz inequality. Its applications span across analysis, probability theory, information theory, and economics.</p>
+                    
+                    <h4>Convexity and Concavity</h4>
+                    <p>Before diving into Jensen's inequality, it's essential to understand convex and concave functions:</p>
+                    
+                    <p><strong>Convex Function:</strong> A function f is convex if, for any two points x and y in its domain and any t ∈ [0,1], the following holds:</p>
+                    <div class="math-formula">
+                        <p>f(tx + (1-t)y) ≤ tf(x) + (1-t)f(y)</p>
+                    </div>
+                    
+                    <p class="text-secondary">Geometrically, this means that the line segment between any two points on the graph of the function lies above or on the graph. Examples include f(x) = x², e^x, and |x|.</p>
+                    
+                    <p><strong>Concave Function:</strong> A function f is concave if (-f) is convex, meaning:</p>
+                    <div class="math-formula">
+                        <p>f(tx + (1-t)y) ≥ tf(x) + (1-t)f(y)</p>
+                    </div>
+                    
+                    <p class="text-secondary">Geometrically, the line segment between any two points on the graph lies below or on the graph. Examples include f(x) = log(x), √x, and -x².</p>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Statement of Jensen's Inequality</h3>
+                    
+                    <h4>Discrete Version</h4>
+                    <p>For a convex function f, if x₁, x₂, ..., xₙ are points in the domain of f, and λ₁, λ₂, ..., λₙ are non-negative weights that sum to 1, then:</p>
+                    
+                    <div class="math-formula">
+                        <p>f(λ₁x₁ + λ₂x₂ + ... + λₙxₙ) ≤ λ₁f(x₁) + λ₂f(x₂) + ... + λₙf(xₙ)</p>
+                    </div>
+                    
+                    <p>If f is strictly convex, equality holds if and only if x₁ = x₂ = ... = xₙ or if all but one of the λᵢ are zero.</p>
+                    
+                    <p>For a concave function, the inequality is reversed:</p>
+                    
+                    <div class="math-formula">
+                        <p>f(λ₁x₁ + λ₂x₂ + ... + λₙxₙ) ≥ λ₁f(x₁) + λ₂f(x₂) + ... + λₙf(xₙ)</p>
+                    </div>
+                    
+                    <h4>Continuous Version</h4>
+                    <p>Jensen's inequality can be extended to continuous distributions. If X is a random variable and f is a convex function, then:</p>
+                    
+                    <div class="math-formula">
+                        <p>f(E[X]) ≤ E[f(X)]</p>
+                    </div>
+                    
+                    <p>where E[X] denotes the expected value of X.</p>
+                    
+                    <p>For a concave function, the inequality is reversed:</p>
+                    
+                    <div class="math-formula">
+                        <p>f(E[X]) ≥ E[f(X)]</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Verifying Jensen's Inequality for a Simple Case</div>
+                        <p>Let's verify Jensen's inequality for the convex function f(x) = x² with points x₁ = 1 and x₂ = 3, using equal weights λ₁ = λ₂ = 0.5.</p>
+                        <p>Left side: f(λ₁x₁ + λ₂x₂) = f(0.5 × 1 + 0.5 × 3) = f(2) = 2² = 4</p>
+                        <p>Right side: λ₁f(x₁) + λ₂f(x₂) = 0.5 × 1² + 0.5 × 3² = 0.5 × 1 + 0.5 × 9 = 0.5 + 4.5 = 5</p>
+                        <p>Indeed, 4 ≤ 5, confirming that f(λ₁x₁ + λ₂x₂) ≤ λ₁f(x₁) + λ₂f(x₂) for this convex function.</p>
+                        <p>This makes intuitive sense: the average of the squared values (5) is greater than the square of the average value (4).</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Proof of Jensen's Inequality</h3>
+                    
+                    <h4>Geometric Proof for the Case n = 2</h4>
+                    <p>For two points x₁ and x₂ with weights λ₁ and λ₂ (where λ₁ + λ₂ = 1), Jensen's inequality states that:</p>
+                    <p>f(λ₁x₁ + λ₂x₂) ≤ λ₁f(x₁) + λ₂f(x₂)</p>
+                    
+                    <p>This can be proven geometrically. Let's denote x = λ₁x₁ + λ₂x₂. The point (x, f(x)) lies on the graph of f. The weighted average λ₁f(x₁) + λ₂f(x₂) corresponds to a point on the line segment connecting (x₁, f(x₁)) and (x₂, f(x₂)).</p>
+                    
+                    <p>By the definition of convexity, this line segment lies above or on the graph of f. Therefore, f(x) ≤ λ₁f(x₁) + λ₂f(x₂).</p>
+                    
+                    <h4>Proof for the General Case</h4>
+                    <p>The proof for the general case can be done by induction or using properties of convex functions:</p>
+                    
+                    <p>For a convex function f, there exists a supporting line at any point in its domain. For the point x₀ = λ₁x₁ + λ₂x₂ + ... + λₙxₙ, there exists a line l(x) = ax + b such that:</p>
+                    
+                    <ol>
+                        <li>l(x₀) = f(x₀)</li>
+                        <li>l(x) ≤ f(x) for all x in the domain of f</li>
+                    </ol>
+                    
+                    <p>Using these properties:</p>
+                    
+                    <div class="math-formula">
+                        <p>λ₁f(x₁) + λ₂f(x₂) + ... + λₙf(xₙ) ≥ λ₁l(x₁) + λ₂l(x₂) + ... + λₙl(xₙ)</p>
+                        <p>= l(λ₁x₁ + λ₂x₂ + ... + λₙxₙ) (since l is linear)</p>
+                        <p>= l(x₀) = f(x₀)</p>
+                    </div>
+                    
+                    <p>This proves that f(λ₁x₁ + λ₂x₂ + ... + λₙxₙ) ≤ λ₁f(x₁) + λ₂f(x₂) + ... + λₙf(xₙ).</p>
+                    
+                    <h4>Proof for the Continuous Case</h4>
+                    <p>The proof for the continuous case follows from the discrete case by approximating the distribution of the random variable with a discrete distribution and taking the limit.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Supporting Lines and Jensen's Inequality</div>
+                        <p>Consider the convex function f(x) = e^x. At the point x₀ = 0, the supporting line is the tangent line l(x) = x + 1.</p>
+                        <p>For points x₁ = -1 and x₂ = 1 with equal weights λ₁ = λ₂ = 0.5, we have x₀ = λ₁x₁ + λ₂x₂ = 0.</p>
+                        <p>Jensen's inequality states: f(0) ≤ 0.5f(-1) + 0.5f(1)</p>
+                        <p>i.e., e^0 ≤ 0.5e^(-1) + 0.5e^1</p>
+                        <p>or 1 ≤ 0.5(e^(-1) + e^1) ≈ 0.5(0.368 + 2.718) ≈ 1.543</p>
+                        <p>which is true, confirming Jensen's inequality.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications of Jensen's Inequality</h3>
+                    
+                    <h4>Applications in Analysis and Inequalities</h4>
+                    <p>Jensen's inequality serves as a powerful tool for proving many classical inequalities:</p>
+                    
+                    <p><strong>1. AM-GM Inequality</strong>: Using Jensen's inequality with the concave function f(x) = log(x) gives:</p>
+                    
+                    <div class="math-formula">
+                        <p>log((x₁ + x₂ + ... + xₙ)/n) ≥ (log(x₁) + log(x₂) + ... + log(xₙ))/n</p>
+                    </div>
+                    
+                    <p>Taking the exponential of both sides yields the AM-GM inequality.</p>
+                    
+                    <p><strong>2. Hölder's Inequality</strong>: For 1/p + 1/q = 1 with p > 1, Hölder's inequality states:</p>
+                    
+                    <div class="math-formula">
+                        <p>∑(aᵢbᵢ) ≤ (∑aᵢᵖ)^(1/p) · (∑bᵢᵍ)^(1/q)</p>
+                    </div>
+                    
+                    <p>This can be derived using Jensen's inequality with appropriate convex functions.</p>
+                    
+                    <p><strong>3. Cauchy-Schwarz Inequality</strong>: A special case of Hölder's inequality when p = q = 2, which can also be derived from Jensen's inequality.</p>
+                    
+                    <h4>Applications in Probability and Statistics</h4>
+                    
+                    <p><strong>1. Variance and Moments</strong>: For a random variable X, Jensen's inequality implies:</p>
+                    
+                    <div class="math-formula">
+                        <p>Var(X) = E[X²] - E[X]² ≥ 0</p>
+                    </div>
+                    
+                    <p>This follows from applying Jensen's inequality to the convex function f(x) = x².</p>
+                    
+                    <p><strong>2. Markov's and Chebyshev's Inequalities</strong>: These probability inequalities can be derived using Jensen's inequality.</p>
+                    
+                    <p><strong>3. Information Theory</strong>: In information theory, Jensen's inequality is used to prove that entropy is maximized for a uniform distribution and to establish properties of the Kullback-Leibler divergence.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Entropy Maximization</div>
+                        <p>For a discrete random variable X with n possible values and probability mass function p(x), the entropy is given by:</p>
+                        <p>H(X) = -∑p(xᵢ)log(p(xᵢ))</p>
+                        <p>Using Jensen's inequality with the concave function f(x) = -log(x), we can show that H(X) ≤ log(n), with equality when p(xᵢ) = 1/n for all i.</p>
+                        <p>This proves that a uniform distribution maximizes entropy, a fundamental result in information theory.</p>
+                    </div>
+                    
+                    <h4>Applications in Economics and Finance</h4>
+                    
+                    <p><strong>1. Utility Theory</strong>: In economics, Jensen's inequality explains risk aversion in utility theory. If a utility function is concave, then:</p>
+                    
+                    <div class="math-formula">
+                        <p>U(E[X]) ≥ E[U(X)]</p>
+                    </div>
+                    
+                    <p>This means a risk-averse individual prefers a certain payoff E[X] to a random payoff X with the same expected value.</p>
+                    
+                    <p><strong>2. Option Pricing</strong>: Jensen's inequality is used in the context of risk-neutral pricing in finance, particularly for understanding the relationship between futures and forward prices under different interest rate models.</p>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Extensions and Generalizations</h3>
+                    
+                    <h4>Extensions of Jensen's Inequality</h4>
+                    
+                    <p><strong>1. Jensen's Inequality for Multiple Functions</strong>: For convex functions f₁, f₂, ..., fₘ and a concave function g:</p>
+                    
+                    <div class="math-formula">
+                        <p>g(E[f₁(X)], E[f₂(X)], ..., E[fₘ(X)]) ≥ E[g(f₁(X), f₂(X), ..., fₘ(X))]</p>
+                    </div>
+                    
+                    <p><strong>2. Conditional Jensen's Inequality</strong>: If X and Y are random variables and f is convex:</p>
+                    
+                    <div class="math-formula">
+                        <p>f(E[X|Y]) ≤ E[f(X)|Y]</p>
+                    </div>
+                    
+                    <p><strong>3. Jensen's Inequality for Functions of Several Variables</strong>: The inequality extends to convex functions of multiple variables.</p>
+                    
+                    <h4>Related Concepts</h4>
+                    
+                    <p><strong>1. Strict Convexity and Equality Conditions</strong>: If f is strictly convex, equality in Jensen's inequality holds if and only if X is almost surely constant.</p>
+                    
+                    <p><strong>2. Jensen's Inequality and Midpoint Convexity</strong>: A function satisfying f((x+y)/2) ≤ (f(x) + f(y))/2 for all x, y (midpoint convexity) is not necessarily convex without additional assumptions like continuity.</p>
+                    
+                    <p><strong>3. Jensen's Inequality in Functional Analysis</strong>: The inequality can be extended to infinite-dimensional spaces and operator theory.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Generalized Jensen's Inequality in Information Theory</div>
+                        <p>In information theory, the data processing inequality, which states that processing data cannot increase information content, can be derived from a generalized form of Jensen's inequality.</p>
+                        <p>For random variables X → Y → Z forming a Markov chain, the mutual information satisfies:</p>
+                        <p>I(X;Z) ≤ I(X;Y)</p>
+                        <p>This shows that information is generally lost, not gained, when data is processed, a fundamental principle in communication theory and statistics.</p>
+                    </div>
+                    
+                    <div class="navigation">
+                        <a href="am-gm-inequality.html" class="prev-next-btn">Previous: AM-GM Inequality</a>
+                        <a href="chebyshev-s-inequality.html" class="prev-next-btn">Next: Chebyshev's Inequality</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

@@ -1,0 +1,554 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Math Resources & Blog - International Math Hub</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Math tips, study guides, and practice problems from International Math Hub. Expert resources to help you master mathematics." />
+		<meta name="author" content="IntlMathHub Team" />
+		<link rel="stylesheet" href="assets/css/first.css" />
+		<link rel="stylesheet" href="assets/css/improvements.css" />
+		<link rel="stylesheet" href="assets/css/educational-design-system.css" />
+		<link rel="stylesheet" href="assets/css/educational-overrides.css" />
+		<link rel="stylesheet" href="assets/css/hero-section.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+		<style>
+			/* Blog-specific styles */
+			.blog-hero {
+				background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-secondary-teal) 100%);
+				color: white;
+				padding: var(--space-8) 0;
+				text-align: center;
+			}
+			
+			.blog-hero h1 {
+				font-size: clamp(2rem, 5vw, 3.5rem);
+				margin-bottom: var(--space-4);
+			}
+			
+			.blog-hero p {
+				font-size: var(--text-lg);
+				opacity: 0.9;
+				max-width: 600px;
+				margin: 0 auto;
+			}
+			
+			.blog-filters {
+				display: flex;
+				justify-content: center;
+				gap: var(--space-3);
+				margin: var(--space-6) 0;
+				flex-wrap: wrap;
+			}
+			
+			.blog-filter {
+				padding: var(--space-2) var(--space-4);
+				border: 1px solid var(--color-border-light);
+				border-radius: var(--radius-lg);
+				background: var(--color-white);
+				color: var(--color-text-secondary);
+				cursor: pointer;
+				transition: all var(--transition-fast);
+			}
+			
+			.blog-filter.active,
+			.blog-filter:hover {
+				background: var(--color-primary-blue);
+				color: white;
+				border-color: var(--color-primary-blue);
+			}
+			
+			.blog-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+				gap: var(--space-6);
+				margin-top: var(--space-6);
+			}
+			
+			.blog-card {
+				background: var(--color-white);
+				border: 1px solid var(--color-border-light);
+				border-radius: var(--radius-xl);
+				overflow: hidden;
+				transition: all var(--transition-normal);
+				box-shadow: var(--shadow-sm);
+			}
+			
+			.blog-card:hover {
+				border-color: var(--color-primary-blue);
+				box-shadow: var(--shadow-lg);
+				transform: translateY(-2px);
+			}
+			
+			.blog-image {
+				height: 200px;
+				background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-secondary-teal) 100%);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+			}
+			
+			.blog-image svg {
+				width: 80px;
+				height: 80px;
+				color: white;
+			}
+			
+			.blog-content {
+				padding: var(--space-6);
+			}
+			
+			.blog-meta {
+				display: flex;
+				align-items: center;
+				gap: var(--space-3);
+				margin-bottom: var(--space-3);
+				font-size: 14px;
+				color: var(--color-text-secondary);
+			}
+			
+			.blog-category {
+				background: var(--color-background-light);
+				padding: var(--space-1) var(--space-2);
+				border-radius: var(--radius-md);
+				font-weight: var(--weight-medium);
+			}
+			
+			.blog-card h3 {
+				color: var(--color-text-primary);
+				font-size: var(--text-h3);
+				font-weight: var(--weight-semibold);
+				margin-bottom: var(--space-3);
+				line-height: 1.3;
+			}
+			
+			.blog-card p {
+				color: var(--color-text-secondary);
+				line-height: var(--line-height-relaxed);
+				margin-bottom: var(--space-4);
+			}
+			
+			.blog-read-more {
+				color: var(--color-primary-blue);
+				font-weight: var(--weight-medium);
+				text-decoration: none;
+				display: inline-flex;
+				align-items: center;
+				gap: var(--space-1);
+				transition: all var(--transition-fast);
+			}
+			
+			.blog-read-more:hover {
+				color: var(--color-primary-blue);
+				text-decoration: none;
+				gap: var(--space-2);
+			}
+			
+			.study-guide-section {
+				background: var(--color-background-light);
+				padding: var(--space-8) 0;
+				margin: var(--space-8) 0;
+			}
+			
+			.guide-card {
+				background: var(--color-white);
+				border: 1px solid var(--color-border-light);
+				border-radius: var(--radius-xl);
+				padding: var(--space-6);
+				transition: all var(--transition-normal);
+				box-shadow: var(--shadow-sm);
+				height: 100%;
+			}
+			
+			.guide-card:hover {
+				border-color: var(--color-primary-blue);
+				box-shadow: var(--shadow-lg);
+				transform: translateY(-2px);
+			}
+			
+			.guide-icon {
+				width: 60px;
+				height: 60px;
+				border-radius: 50%;
+				background: var(--color-background-light);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-bottom: var(--space-4);
+			}
+			
+			.guide-card h3 {
+				color: var(--color-text-primary);
+				font-size: var(--text-h3);
+				font-weight: var(--weight-semibold);
+				margin-bottom: var(--space-3);
+			}
+			
+			.guide-card p {
+				color: var(--color-text-secondary);
+				line-height: var(--line-height-relaxed);
+				margin-bottom: var(--space-4);
+			}
+			
+			.guide-download {
+				background: var(--color-primary-blue);
+				color: white;
+				padding: var(--space-2) var(--space-4);
+				border-radius: var(--radius-md);
+				text-decoration: none;
+				display: inline-flex;
+				align-items: center;
+				gap: var(--space-2);
+				font-weight: var(--weight-medium);
+				transition: all var(--transition-fast);
+			}
+			
+			.guide-download:hover {
+				background: var(--color-primary-blue);
+				color: white;
+				text-decoration: none;
+				transform: translateY(-1px);
+			}
+			
+			@media (max-width: 768px) {
+				.blog-filters {
+					flex-direction: column;
+					align-items: center;
+				}
+				
+				.blog-grid {
+					grid-template-columns: 1fr;
+					gap: var(--space-4);
+				}
+				
+				.blog-content {
+					padding: var(--space-4);
+				}
+			}
+		</style>
+	</head>
+	<body class="homepage is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<section id="header">
+				<div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+					<!-- Logo -->
+					<div class="logo">
+						<a href="index.html"><img src="/images/logo.png" alt="International Math Hub Logo" style="max-height: 120px;"></a>
+					</div>
+
+					<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="features.html">Mathematics Roadmap</a></li>
+							<li><a href="resources.html">Resources</a></li>
+							<li class="current"><a href="blog.html">Blog</a></li>
+							<li><a href="about.html">About</a></li>
+							<li><a href="contact.html">Contact</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+			<!-- Blog Hero Section -->
+			<section class="blog-hero">
+				<div class="edu-container">
+					<h1>Math Resources & Study Guides</h1>
+					<p>Expert tips, comprehensive study guides, and practice problems to help you master mathematics at every level.</p>
+				</div>
+			</section>
+
+			<!-- Blog Filters -->
+			<section class="edu-section">
+				<div class="edu-container">
+					<div class="blog-filters">
+						<div class="blog-filter active" data-filter="all">All Articles</div>
+						<div class="blog-filter" data-filter="tips">Math Tips</div>
+						<div class="blog-filter" data-filter="guides">Study Guides</div>
+						<div class="blog-filter" data-filter="practice">Practice Problems</div>
+						<div class="blog-filter" data-filter="strategies">Learning Strategies</div>
+					</div>
+					
+					<div class="blog-grid">
+						<article class="blog-card" data-category="tips">
+							<div class="blog-image">
+								<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" fill="none"/>
+								</svg>
+							</div>
+							<div class="blog-content">
+								<div class="blog-meta">
+									<span class="blog-category">Math Tips</span>
+									<span>5 min read</span>
+								</div>
+								<h3>5 Essential Tips for Mastering Algebra</h3>
+								<p>Discover proven strategies to understand algebraic concepts, solve equations efficiently, and build a strong foundation for advanced mathematics.</p>
+								<a href="#" class="blog-read-more">Read More →</a>
+							</div>
+						</article>
+						
+						<article class="blog-card" data-category="guides">
+							<div class="blog-image">
+								<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" fill="currentColor"/>
+								</svg>
+							</div>
+							<div class="blog-content">
+								<div class="blog-meta">
+									<span class="blog-category">Study Guide</span>
+									<span>10 min read</span>
+								</div>
+								<h3>Complete Calculus Study Guide</h3>
+								<p>A comprehensive guide covering limits, derivatives, integrals, and applications. Perfect for students preparing for calculus exams.</p>
+								<a href="#" class="blog-read-more">Read More →</a>
+							</div>
+						</article>
+						
+						<article class="blog-card" data-category="practice">
+							<div class="blog-image">
+								<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+									<path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="2" fill="none"/>
+								</svg>
+							</div>
+							<div class="blog-content">
+								<div class="blog-meta">
+									<span class="blog-category">Practice Problems</span>
+									<span>15 min read</span>
+								</div>
+								<h3>Geometry Practice Problems with Solutions</h3>
+								<p>Work through 20 carefully selected geometry problems covering angles, triangles, circles, and area calculations with detailed solutions.</p>
+								<a href="#" class="blog-read-more">Read More →</a>
+							</div>
+						</article>
+						
+						<article class="blog-card" data-category="strategies">
+							<div class="blog-image">
+								<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" fill="none"/>
+								</svg>
+							</div>
+							<div class="blog-content">
+								<div class="blog-meta">
+									<span class="blog-category">Learning Strategies</span>
+									<span>8 min read</span>
+								</div>
+								<h3>How to Build Math Confidence</h3>
+								<p>Learn practical techniques to overcome math anxiety, develop a growth mindset, and build lasting confidence in your mathematical abilities.</p>
+								<a href="#" class="blog-read-more">Read More →</a>
+							</div>
+						</article>
+						
+						<article class="blog-card" data-category="tips">
+							<div class="blog-image">
+								<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" fill="currentColor"/>
+								</svg>
+							</div>
+							<div class="blog-content">
+								<div class="blog-meta">
+									<span class="blog-category">Math Tips</span>
+									<span>6 min read</span>
+								</div>
+								<h3>Mental Math Techniques for Faster Calculation</h3>
+								<p>Master mental math shortcuts and techniques to solve problems quickly and accurately without relying on calculators.</p>
+								<a href="#" class="blog-read-more">Read More →</a>
+							</div>
+						</article>
+						
+						<article class="blog-card" data-category="guides">
+							<div class="blog-image">
+								<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+									<path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="2" fill="none"/>
+								</svg>
+							</div>
+							<div class="blog-content">
+								<div class="blog-meta">
+									<span class="blog-category">Study Guide</span>
+									<span>12 min read</span>
+								</div>
+								<h3>Statistics Fundamentals: A Complete Guide</h3>
+								<p>From basic concepts to hypothesis testing, this guide covers everything you need to know about statistics for academic success.</p>
+								<a href="#" class="blog-read-more">Read More →</a>
+							</div>
+						</article>
+					</div>
+				</div>
+			</section>
+
+			<!-- Study Guides Section -->
+			<section class="study-guide-section">
+				<div class="edu-container">
+					<header class="text-center mb-6">
+						<h2>Downloadable Study Guides</h2>
+						<p class="text-secondary">Comprehensive study materials to help you excel in your math studies</p>
+					</header>
+					
+					<div class="edu-grid edu-grid-3">
+						<div class="guide-card">
+							<div class="guide-icon">
+								<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" fill="var(--color-primary-blue)"/>
+								</svg>
+							</div>
+							<h3>Algebra Fundamentals</h3>
+							<p>Complete guide covering linear equations, quadratic functions, polynomials, and systems of equations with practice problems.</p>
+							<a href="#" class="guide-download">
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" fill="none"/>
+								</svg>
+								Download PDF
+							</a>
+						</div>
+						
+						<div class="guide-card">
+							<div class="guide-icon">
+								<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="12" cy="12" r="10" stroke="var(--color-secondary-teal)" stroke-width="2" fill="none"/>
+									<path d="M8 12l3 3 5-5" stroke="var(--color-secondary-teal)" stroke-width="2" fill="none"/>
+								</svg>
+							</div>
+							<h3>Geometry Mastery</h3>
+							<p>Comprehensive coverage of Euclidean geometry, area calculations, volume formulas, and geometric transformations.</p>
+							<a href="#" class="guide-download">
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" fill="none"/>
+								</svg>
+								Download PDF
+							</a>
+						</div>
+						
+						<div class="guide-card">
+							<div class="guide-icon">
+								<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="var(--color-accent-orange)" stroke-width="2" fill="none"/>
+								</svg>
+							</div>
+							<h3>Calculus Essentials</h3>
+							<p>Step-by-step guide through limits, derivatives, integrals, and applications with real-world examples and practice problems.</p>
+							<a href="#" class="guide-download">
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" fill="none"/>
+								</svg>
+								Download PDF
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Footer -->
+			<section id="footer">
+				<div class="footer-content">
+					<div class="footer-section">
+						<div class="footer-brand">
+							<h3>International Math Hub</h3>
+							<p>Empowering Mongolian students with world-class mathematics education. Expert tutors, personalized learning, and comprehensive resources for every grade level.</p>
+						</div>
+					</div>
+					
+					<div class="footer-section">
+						<h4>Services</h4>
+						<ul>
+							<li><a href="tutoring.html">Online Tutoring</a></li>
+							<li><a href="resources.html">Study Resources</a></li>
+							<li><a href="quizz.html">Practice Tests</a></li>
+							<li><a href="vids.html">Video Tutorials</a></li>
+						</ul>
+					</div>
+					
+					<div class="footer-section">
+						<h4>Topics</h4>
+						<ul>
+							<li><a href="topics/algebra/linear-and-quadratic-equations.html">Algebra</a></li>
+							<li><a href="topics/calculus/differentiation.html">Calculus</a></li>
+							<li><a href="topics/geometry/euclidean-geometry.html">Geometry</a></li>
+							<li><a href="topics/statistics/descriptive-statistics.html">Statistics</a></li>
+						</ul>
+					</div>
+					
+					<div class="footer-section">
+						<h4>Support</h4>
+						<ul>
+							<li><a href="contact.html">Contact Us</a></li>
+							<li><a href="about.html">About</a></li>
+							<li><a href="blog.html">Blog</a></li>
+							<li><a href="features.html">Features</a></li>
+						</ul>
+					</div>
+					
+					<div class="footer-section">
+						<h4>Connect</h4>
+						<div class="social-links">
+							<a href="#" class="social-link" title="Facebook">
+								<i class="fab fa-facebook-f"></i>
+							</a>
+							<a href="#" class="social-link" title="YouTube">
+								<i class="fab fa-youtube"></i>
+							</a>
+							<a href="#" class="social-link" title="Twitter">
+								<i class="fab fa-twitter"></i>
+							</a>
+							<a href="#" class="social-link" title="Instagram">
+								<i class="fab fa-instagram"></i>
+							</a>
+							<a href="#" class="social-link" title="LinkedIn">
+								<i class="fab fa-linkedin-in"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+				
+				<div class="footer-bottom">
+					<div class="footer-bottom-content">
+						<div class="footer-legal">
+							<ul>
+								<li><a href="#">Terms of Service</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+								<li><a href="#">Cookie Policy</a></li>
+							</ul>
+						</div>
+						<div class="footer-copyright">
+							<p>&copy; 2025 International Math Hub. All rights reserved.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/main.js"></script>
+		
+		<script>
+			// Blog Filter Functionality
+			document.addEventListener('DOMContentLoaded', function() {
+				const filters = document.querySelectorAll('.blog-filter');
+				const articles = document.querySelectorAll('.blog-card');
+				
+				filters.forEach(filter => {
+					filter.addEventListener('click', function() {
+						// Remove active class from all filters
+						filters.forEach(f => f.classList.remove('active'));
+						// Add active class to clicked filter
+						this.classList.add('active');
+						
+						const category = this.getAttribute('data-filter');
+						
+						articles.forEach(article => {
+							if (category === 'all' || article.getAttribute('data-category') === category) {
+								article.style.display = 'block';
+							} else {
+								article.style.display = 'none';
+							}
+						});
+					});
+				});
+			});
+		</script>
+	</body>
+</html> 

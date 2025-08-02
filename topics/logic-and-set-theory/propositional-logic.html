@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Propositional Logic - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Propositional Logic</h2>
+                <p>Foundation of mathematical reasoning</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#logic-and-set-theory">Logic and Set Theory</a> &raquo;
+                    <span>Propositional Logic</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Propositional Logic</h3>
+                    
+                    <p class="text-secondary">Propositional logic is the study of propositions, statements that are either true or false but not both. It forms the foundation of mathematical reasoning and provides the basic building blocks for constructing valid arguments.</p>
+                    
+                    <p>In propositional logic, we use variables (often p, q, r, ...) to represent simple propositions, and we combine them using logical connectives to form compound propositions.</p>
+                    
+                    <h4>Basic Logical Connectives</h4>
+                    <ul>
+                        <li><strong>Negation (¬):</strong> The statement "not p" is true when p is false, and false when p is true.</li>
+                        <li><strong>Conjunction (∧):</strong> The statement "p and q" is true only when both p and q are true.</li>
+                        <li><strong>Disjunction (∨):</strong> The statement "p or q" is true when at least one of p or q is true.</li>
+                        <li><strong>Implication (→):</strong> The statement "if p then q" is false only when p is true and q is false.</li>
+                        <li><strong>Biconditional (↔):</strong> The statement "p if and only if q" is true when p and q have the same truth value.</li>
+                    </ul>
+                    
+                    <div class="math-formula">
+                        <p>Truth table for implication p → q:</p>
+                        <table>
+                            <tr>
+                                <th>p</th>
+                                <th>q</th>
+                                <th>p → q</th>
+                            </tr>
+                            <tr>
+                                <td>T</td>
+                                <td>T</td>
+                                <td>T</td>
+                            </tr>
+                            <tr>
+                                <td>T</td>
+                                <td>F</td>
+                                <td>F</td>
+                            </tr>
+                            <tr>
+                                <td>F</td>
+                                <td>T</td>
+                                <td>T</td>
+                            </tr>
+                            <tr>
+                                <td>F</td>
+                                <td>F</td>
+                                <td>T</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Logical Connectives in Mongolian Context</div>
+                        <p>Let p represent "It is snowing in Ulaanbaatar" and q represent "The Naadam festival is in July".</p>
+                        <p>Then:</p>
+                        <ul>
+                            <li>¬p means "It is not snowing in Ulaanbaatar"</li>
+                            <li>p ∧ q means "It is snowing in Ulaanbaatar AND the Naadam festival is in July"</li>
+                            <li>p ∨ q means "It is snowing in Ulaanbaatar OR the Naadam festival is in July"</li>
+                            <li>p → q means "If it is snowing in Ulaanbaatar, then the Naadam festival is in July"</li>
+                            <li>p ↔ q means "It is snowing in Ulaanbaatar IF AND ONLY IF the Naadam festival is in July"</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Logical Equivalences and Tautologies</h3>
+                    
+                    <p>Two propositional formulas are <strong>logically equivalent</strong> if they have the same truth value for all possible assignments of truth values to their variables.</p>
+                    
+                    <p>A <strong>tautology</strong> is a formula that is true for all possible truth value assignments.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: De Morgan's Laws</div>
+                        <p>De Morgan's laws are important logical equivalences:</p>
+                        <ul>
+                            <li>¬(p ∧ q) ≡ (¬p) ∨ (¬q)</li>
+                            <li>¬(p ∨ q) ≡ (¬p) ∧ (¬q)</li>
+                        </ul>
+                        <p>These laws describe how negation distributes over conjunction and disjunction.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: De Morgan's Laws in Mongolian Context</div>
+                        <p>Let p represent "The archer hits the target" and q represent "The wrestler wins the match".</p>
+                        <p>Then:</p>
+                        <ul>
+                            <li>¬(p ∧ q) means "It is not the case that the archer hits the target AND the wrestler wins the match"</li>
+                            <li>This is equivalent to (¬p) ∨ (¬q): "The archer does not hit the target OR the wrestler does not win the match"</li>
+                            <li>¬(p ∨ q) means "It is not the case that the archer hits the target OR the wrestler wins the match"</li>
+                            <li>This is equivalent to (¬p) ∧ (¬q): "The archer does not hit the target AND the wrestler does not win the match"</li>
+                        </ul>
+                    </div>
+                    
+                    <p>Some important tautologies include:</p>
+                    <ul>
+                        <li>Law of Excluded Middle: p ∨ ¬p</li>
+                        <li>Law of Non-Contradiction: ¬(p ∧ ¬p)</li>
+                        <li>Double Negation: ¬¬p ↔ p</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Tautologies in Mongolian Context</div>
+                        <p>Let p represent "The ger is assembled correctly".</p>
+                        <p>Then:</p>
+                        <ul>
+                            <li>p ∨ ¬p means "The ger is assembled correctly OR the ger is not assembled correctly" (always true)</li>
+                            <li>¬(p ∧ ¬p) means "It is not the case that the ger is assembled correctly AND the ger is not assembled correctly" (always true)</li>
+                            <li>¬¬p ↔ p means "It is not the case that the ger is not assembled correctly IF AND ONLY IF the ger is assembled correctly" (always true)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications and Further Reading</h3>
+                    
+                    <p class="text-secondary">Propositional logic is fundamental to many areas of mathematics and computer science:</p>
+                    <ul>
+                        <li>Mathematical proofs and formal verification</li>
+                        <li>Boolean algebra and digital circuit design</li>
+                        <li>Computer programming and algorithm design</li>
+                        <li>Database query languages</li>
+                    </ul>
+                    
+                    <p>To deepen your understanding of propositional logic, you may want to explore:</p>
+                    <ul>
+                        <li>Truth tables and logical equivalence</li>
+                        <li>Formal proof systems (natural deduction, sequent calculus)</li>
+                        <li>Boolean algebra and normal forms</li>
+                        <li>Predicate logic, which extends propositional logic</li>
+                    </ul>
+                    
+                    <div class="navigation">
+                        <a href="../../features.html" class="prev-next-btn">Back to Roadmap</a>
+                        <a href="predicate-logic.html" class="prev-next-btn">Next: Predicate Logic</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

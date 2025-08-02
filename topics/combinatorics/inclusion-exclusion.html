@@ -1,0 +1,274 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Inclusion-Exclusion Principle - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Inclusion-Exclusion Principle</h2>
+                <p>A powerful counting technique for overlapping sets</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#combinatorics">Combinatorics</a> &raquo;
+                    <span>Inclusion-Exclusion Principle</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Inclusion-Exclusion</h3>
+                    
+                    <p>The principle of inclusion-exclusion (PIE) is a counting technique that allows us to find the cardinality (size) of the union of multiple sets, especially when these sets overlap. This technique is essential in combinatorial problems where simple addition would lead to over-counting.</p>
+                    
+                    <h4>The Two-Set Case</h4>
+                    <p>For two sets A and B, the number of elements in their union is:</p>
+                    
+                    <div class="math-formula">
+                        <p>|A ∪ B| = |A| + |B| - |A ∩ B|</p>
+                    </div>
+                    
+                    <p>This formula makes intuitive sense: we add the sizes of both sets, but since elements in the intersection are counted twice, we subtract the size of the intersection once.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Two Sets</div>
+                        <p>In a school, 120 students study mathematics and 80 students study physics. If 40 students study both subjects, how many students study at least one of these subjects?</p>
+                        <p>Let M be the set of students studying mathematics and P be the set of students studying physics.</p>
+                        <p>|M ∪ P| = |M| + |P| - |M ∩ P|</p>
+                        <p>= 120 + 80 - 40</p>
+                        <p>= 160</p>
+                        <p>Therefore, 160 students study at least one of these subjects.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Three-Set Inclusion-Exclusion</h3>
+                    
+                    <p>For three sets A, B, and C, the formula extends to:</p>
+                    
+                    <div class="math-formula">
+                        <p>|A ∪ B ∪ C| = |A| + |B| + |C| - |A ∩ B| - |A ∩ C| - |B ∩ C| + |A ∩ B ∩ C|</p>
+                    </div>
+                    
+                    <p>Notice the pattern: we add the sizes of individual sets, subtract the sizes of all pairwise intersections, and then add back the size of the triple intersection.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Three Sets</div>
+                        <p>In a community, 200 people practice archery, 150 practice horse riding, and 100 practice wrestling. If 50 people practice all three activities, 70 practice both archery and horse riding, 40 practice both archery and wrestling, and 30 practice both horse riding and wrestling, how many people practice at least one of these activities?</p>
+                        <p>Let A be the set of people practicing archery, H be the set of people practicing horse riding, and W be the set of people practicing wrestling.</p>
+                        <p>|A ∪ H ∪ W| = |A| + |H| + |W| - |A ∩ H| - |A ∩ W| - |H ∩ W| + |A ∩ H ∩ W|</p>
+                        <p>= 200 + 150 + 100 - 70 - 40 - 30 + 50</p>
+                        <p>= 360</p>
+                        <p>Therefore, 360 people practice at least one of these activities.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">General Inclusion-Exclusion Principle</h3>
+                    
+                    <p>For n sets A₁, A₂, ..., Aₙ, the general formula is:</p>
+                    
+                    <div class="math-formula">
+                        <p>|A₁ ∪ A₂ ∪ ... ∪ Aₙ| = Σ|Aᵢ| - Σ|Aᵢ ∩ Aⱼ| + Σ|Aᵢ ∩ Aⱼ ∩ Aₖ| - ... + (-1)ⁿ⁺¹|A₁ ∩ A₂ ∩ ... ∩ Aₙ|</p>
+                    </div>
+                    
+                    <p>where the summations are over all possible subsets of the indices with the specified size.</p>
+                    
+                    <p>The formula alternates between addition and subtraction with each level of intersection:</p>
+                    <ul>
+                        <li>Add the sizes of individual sets</li>
+                        <li>Subtract the sizes of all pairwise intersections</li>
+                        <li>Add the sizes of all triple intersections</li>
+                        <li>Subtract the sizes of all quadruple intersections</li>
+                        <li>And so on, with the sign alternating as (-1)ⁱ⁺¹ for i-fold intersections</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: General Case</div>
+                        <p>How many positive integers between 1 and 1000 are divisible by 2, 3, 5, or 7? This can be used to calculate the number of traditional Mongolian decorative patterns that can be created using these numbers.</p>
+                        <p>Let A₁ be the set of numbers divisible by 2, A₂ be the set of numbers divisible by 3, A₃ be the set of numbers divisible by 5, and A₄ be the set of numbers divisible by 7.</p>
+                        <p>|A₁ ∪ A₂ ∪ A₃ ∪ A₄| = Σ|Aᵢ| - Σ|Aᵢ ∩ Aⱼ| + Σ|Aᵢ ∩ Aⱼ ∩ Aₖ| - |A₁ ∩ A₂ ∩ A₃ ∩ A₄|</p>
+                        <p>= (500 + 333 + 200 + 142) - (166 + 100 + 71 + 66 + 47 + 28) + (33 + 23 + 14 + 9) - 4</p>
+                        <p>= 1175 - 478 + 79 - 4</p>
+                        <p>= 772</p>
+                        <p>Therefore, there are 772 numbers between 1 and 1000 that are divisible by 2, 3, 5, or 7.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Complementary Counting</h3>
+                    
+                    <p>Sometimes, it's easier to count the complement of what we're looking for (the elements that don't have the desired property) and then subtract from the total.</p>
+                    
+                    <div class="math-formula">
+                        <p>|A₁ ∪ A₂ ∪ ... ∪ Aₙ| = |U| - |U - (A₁ ∪ A₂ ∪ ... ∪ Aₙ)|</p>
+                        <p>where U is the universal set.</p>
+                    </div>
+                    
+                    <p>Using De Morgan's laws:</p>
+                    
+                    <div class="math-formula">
+                        <p>|U - (A₁ ∪ A₂ ∪ ... ∪ Aₙ)| = |(U - A₁) ∩ (U - A₂) ∩ ... ∩ (U - Aₙ)|</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Complementary Counting</div>
+                        <p>How many positive integers between 1 and 1000 are not divisible by 2, 3, or 5? This can be used to find the number of unique musical rhythms that don't follow these patterns.</p>
+                        <p>Let A₁ be the set of numbers divisible by 2, A₂ be the set of numbers divisible by 3, and A₃ be the set of numbers divisible by 5.</p>
+                        <p>We want to find |(A₁ ∪ A₂ ∪ A₃)'| = 1000 - |A₁ ∪ A₂ ∪ A₃|</p>
+                        <p>|A₁ ∪ A₂ ∪ A₃| = |A₁| + |A₂| + |A₃| - |A₁ ∩ A₂| - |A₁ ∩ A₃| - |A₂ ∩ A₃| + |A₁ ∩ A₂ ∩ A₃|</p>
+                        <p>= (500 + 333 + 200) - (166 + 100 + 66) + 33</p>
+                        <p>= 1033 - 332 + 33</p>
+                        <p>= 734</p>
+                        <p>Therefore, |(A₁ ∪ A₂ ∪ A₃)'| = 1000 - 734 = 266</p>
+                        <p>There are 266 numbers between 1 and 1000 that are not divisible by 2, 3, or 5.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Derangements: A Classic Application</h3>
+                    
+                    <p>A <strong>derangement</strong> is a permutation where no element appears in its original position. Calculating the number of derangements is a classic application of the inclusion-exclusion principle.</p>
+                    
+                    <h4>Counting Derangements</h4>
+                    <p>Let Dₙ be the number of derangements of n elements. Using the inclusion-exclusion principle:</p>
+                    
+                    <div class="math-formula">
+                        <p>Dₙ = n! × Σᵏ₌₀ⁿ (-1)ᵏ/k!</p>
+                        <p>or equivalently,</p>
+                        <p>Dₙ = n! × (1 - 1/1! + 1/2! - 1/3! + ... + (-1)ⁿ/n!)</p>
+                    </div>
+                    
+                    <p>For large n, Dₙ ≈ n!/e, where e is the base of the natural logarithm.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Derangements</div>
+                        <p>In a hat ceremony, 5 people's hats are mixed up. What is the probability that no one gets their own hat back?</p>
+                        <p>The number of derangements of n objects is given by:</p>
+                        <p>D(n) = n! × (1 - 1/1! + 1/2! - 1/3! + ... + (-1)ⁿ/n!)</p>
+                        <p>For n = 5:</p>
+                        <p>D(5) = 5! × (1 - 1/1! + 1/2! - 1/3! + 1/4! - 1/5!)</p>
+                        <p>= 120 × (1 - 1 + 1/2 - 1/6 + 1/24 - 1/120)</p>
+                        <p>= 120 × (0.366666...)</p>
+                        <p>= 44</p>
+                        <p>The total number of possible arrangements is 5! = 120</p>
+                        <p>Therefore, the probability is 44/120 ≈ 0.367 or 36.7%</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Advanced Applications</h3>
+                    
+                    <h4>1. Euler's Totient Function</h4>
+                    <p class="text-secondary">Euler's totient function φ(n) counts the positive integers up to n that are coprime to n (i.e., their greatest common divisor with n is 1). This function can be calculated using the inclusion-exclusion principle.</p>
+                    
+                    <div class="math-formula">
+                        <p>φ(n) = n × Π(1 - 1/p)</p>
+                        <p>where the product is over all distinct prime divisors p of n.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Calculating Euler's Totient Function</div>
+                        <p>Find φ(36).</p>
+                        <p>The prime factorization of 36 is 2² × 3².</p>
+                        <p>Using the inclusion-exclusion principle:</p>
+                        <p>φ(36) = 36 × (1 - 1/2) × (1 - 1/3)</p>
+                        <p>= 36 × (1/2) × (2/3)</p>
+                        <p>= 36 × (1/3) = 12</p>
+                        <p>Therefore, there are 12 numbers from 1 to 36 that are coprime to 36.</p>
+                        <p>These numbers are: 1, 5, 7, 11, 13, 17, 19, 23, 25, 29, 31, and 35.</p>
+                    </div>
+                    
+                    <h4>2. Stirling Numbers of the Second Kind</h4>
+                    <p>Stirling numbers of the second kind, denoted S(n,k), count the number of ways to partition a set of n labeled objects into k non-empty subsets. These can be expressed using the inclusion-exclusion principle:</p>
+                    
+                    <div class="math-formula">
+                        <p>S(n,k) = (1/k!) × Σⱼ₌₀ᵏ (-1)ʲ × (k j) × (k-j)ⁿ</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Stirling Numbers of the Second Kind</div>
+                        <p>Calculate S(4,2), the number of ways to partition 4 labeled objects into 2 non-empty subsets.</p>
+                        <p>Using the formula with n = 4 and k = 2:</p>
+                        <p>S(4,2) = (1/2!) × [(-1)⁰ × (2 0) × 2⁴ + (-1)¹ × (2 1) × 1⁴ + (-1)² × (2 2) × 0⁴]</p>
+                        <p>= (1/2) × [1 × 1 × 16 - 1 × 2 × 1 + 1 × 1 × 0]</p>
+                        <p>= (1/2) × [16 - 2 + 0]</p>
+                        <p>= (1/2) × 14 = 7</p>
+                        <p>Therefore, there are 7 ways to partition 4 labeled objects into 2 non-empty subsets:</p>
+                        <p>{1,2,3}{4}, {1,2,4}{3}, {1,3,4}{2}, {2,3,4}{1}, {1,2}{3,4}, {1,3}{2,4}, {1,4}{2,3}</p>
+                    </div>
+                    
+                    <div class="navigation">
+                        <a href="pigeonhole-principle.html" class="prev-next-btn combinatorics-btn">Previous: Pigeonhole Principle</a>
+                        <a href="../../features.html#complex-numbers" class="prev-next-btn combinatorics-btn">Next: Complex Numbers</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

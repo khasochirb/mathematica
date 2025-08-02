@@ -1,0 +1,429 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Mathematics Roadmap - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    		<link rel="stylesheet" href="assets/css/first.css" />
+		<link rel="stylesheet" href="assets/css/improvements.css" />
+		<link rel="stylesheet" href="assets/css/educational-design-system.css" />
+		<link rel="stylesheet" href="assets/css/educational-overrides.css" />
+		<link rel="stylesheet" href="assets/css/hero-section.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- Additional styles to ensure the mobile menu toggle is hidden -->
+    <style>
+        /* Hide mobile menu toggle button with highest priority */
+        #titleBar, #navPanel {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        
+        /* Prevent any transforms from mobile menu */
+        body.navPanel-visible #page-wrapper,
+        body.navPanel-visible #titleBar {
+            transform: none !important;
+        }
+        
+        /* Ensure navigation is always visible */
+        #nav {
+            display: block !important;
+        }
+    </style>
+</head>
+<body class="is-preload sub-page">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html"><img src="/images/logo.png" alt="International Math Hub Logo" style="max-height: 120px;"></a>
+                </div>
+
+                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="current"><a href="features.html">Mathematics Roadmap</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                    <h2>Mathematics Roadmap</h2>
+                    <p class="text-secondary">Your guided path to mathematical mastery</p>
+                </header>
+
+                <div class="edu-card text-center mb-6">
+                    <p>This comprehensive roadmap outlines the essential mathematical topics organized by subject area. Each section includes key concepts and builds toward mastery. Use this guide to plan your learning journey through mathematics.</p>
+                    <div class="difficulty-filter">
+                        <span class="difficulty-badge basic active" data-filter="basic">Foundation</span> 
+                        <span class="difficulty-badge intermediate active" data-filter="intermediate">Intermediate</span>
+                        <span class="difficulty-badge advanced active" data-filter="advanced">Advanced</span>
+                    </div>
+                </div>
+
+                <div class="roadmap-grid">
+                <div class="roadmap-card" data-difficulty="intermediate" id="algebra">
+                    <div class="roadmap-header">
+                        <h3>Algebra</h3>
+                        <span class="difficulty-badge intermediate">Intermediate</span>
+                    </div>
+                    <ul class="topic-list">
+                        <li><a href="topics/algebra/polynomials-and-factorization.html" class="topic-link">Polynomials & Factorization</a></li>
+                        <li><a href="topics/algebra/exponents-and-logarithms.html" class="topic-link">Exponents & Logarithms</a></li>
+                        <li><a href="topics/algebra/linear-and-quadratic-equations.html" class="topic-link">Linear & Quadratic Equations</a></li>
+                        <li><a href="topics/algebra/systems-of-equations.html" class="topic-link">Systems of Equations</a></li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-card" data-difficulty="advanced" id="calculus">
+                    <div class="roadmap-header">
+                        <h3>Calculus</h3>
+                        <span class="difficulty-badge advanced">Advanced</span>
+                    </div>
+                    <ul class="topic-list">
+                        <li><a href="topics/calculus/limits-and-continuity.html" class="topic-link">Limits & Continuity</a></li>
+                        <li><a href="topics/calculus/differentiation.html" class="topic-link">Differentiation & Applications (Maxima, Minima, Curve Sketching)</a></li>
+                        <li><a href="topics/calculus/integration.html" class="topic-link">Integration (Definite & Indefinite)</a></li>
+                        <li><a href="topics/calculus/differential-equations.html" class="topic-link">Differential Equations (First Order & Higher Order)</a></li>
+                        <li><a href="topics/calculus/multivariable-calculus.html" class="topic-link">Multivariable Calculus (Partial Derivatives, Gradient, Divergence)</a></li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-card" data-difficulty="intermediate" id="combinatorics">
+                    <div class="roadmap-header">
+                        <h3>Combinatorics</h3>
+                        <span class="difficulty-badge intermediate">Intermediate</span>
+                    </div>
+                    <ul class="topic-list">
+                        <li><a href="topics/combinatorics/permutations-and-combinations.html" class="topic-link">Permutations & Combinations</a></li>
+                        <li><a href="topics/combinatorics/binomial-theorem.html" class="topic-link">Binomial Theorem</a></li>
+                        <li><a href="topics/combinatorics/pigeonhole-principle.html" class="topic-link">Pigeonhole Principle</a></li>
+                        <li><a href="topics/combinatorics/inclusion-exclusion.html" class="topic-link">Inclusion-Exclusion</a></li>
+                        <li><a href="topics/combinatorics/counting-principles.html" class="topic-link">Counting Principles</a></li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-card" data-difficulty="intermediate" id="complex-numbers">
+                    <div class="roadmap-header">
+                        <h3>Complex Numbers</h3>
+                        <span class="difficulty-badge intermediate">Intermediate</span>
+                    </div>
+                    <ul class="topic-list">
+                        <li><a href="topics/complex-numbers/basic-operations.html" class="topic-link">Basic Operations</a></li>
+                        <li><a href="topics/complex-numbers/polar-form.html" class="topic-link">Polar Form & Argand Plane</a></li>
+                        <li><a href="topics/complex-numbers/de-moivre-s-theorem.html" class="topic-link">De Moivre's Theorem</a></li>
+                        <li><a href="topics/complex-numbers/complex-roots-and-complex-analysis-introduction.html" class="topic-link">Complex Roots & Complex Analysis Introduction</a></li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-card" data-difficulty="intermediate" id="geometry">
+                    <div class="roadmap-header">
+                        <h3>Geometry</h3>
+                        <span class="difficulty-badge intermediate">Intermediate</span>
+                    </div>
+                    <ul class="topic-list">
+                        <li><a href="topics/geometry/euclidean-geometry.html" class="topic-link">Euclidean Geometry (Congruence, Similarity, Circles)</a></li>
+                        <li><a href="topics/geometry/transformations.html" class="topic-link">Transformations (Rotations, Reflections, Translations)</a></li>
+                        <li><a href="topics/geometry/areas-and-volumes.html" class="topic-link">Areas & Volumes</a></li>
+                        <li><a href="topics/geometry/projective-geometry-introduction.html" class="topic-link">Projective Geometry Introduction</a></li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-card" data-difficulty="advanced" id="graph-theory">
+                    <div class="roadmap-header">
+                        <h3>Graph Theory</h3>
+                        <span class="difficulty-badge advanced">Advanced</span>
+                    </div>
+                    <ul class="topic-list">
+                        <li><a href = "topics/graph-theory/graph-representation.html" class="topic-link">Graph Representation (Adjacency Matrix/List)</a></li>
+                        <li><a href = "topics/graph-theory/eulerian-hamiltonian-paths.html" class="topic-link">Eulerian & Hamiltonian Paths</a></li>
+                        <li><a href = "topics/graph-theory/trees-and-spanning-trees.html" class="topic-link">Trees & Spanning Trees</a></li>
+                        <li><a href = "topics/graph-theory/graph-traversal.html" class="topic-link">Graph Traversal (DFS, BFS)</a></li>
+                        <li><a href = "topics/graph-theory/shortest-path-algorithms.html" class="topic-link">Shortest Path Algorithms (Dijkstra, Floyd-Warshall)</a></li> 
+                    </ul>
+                </div>
+
+                <div class="roadmap-card" data-difficulty="advanced" id="inequalities">
+                    <div class="roadmap-header">
+                        <h3>Inequalities</h3>
+                        <span class="difficulty-badge advanced">Advanced</span>
+                    </div>
+                    <ul class="topic-list">
+                        <li><a href = "topics/inequalities/cauchy-schwarz-inequality.html" class="topic-link">Cauchy-Schwarz Inequality</a></li>
+                        <li><a href = "topics/inequalities/am-gm-inequality.html" class="topic-link">AM-GM Inequality</a></li>
+                        <li><a href = "topics/inequalities/jensen-s-inequality.html" class="topic-link">Jensen's Inequality</a></li>
+                        <li><a href = "topics/inequalities/chebyshev-s-inequality.html" class="topic-link">Chebyshev's Inequality</a></li>
+                        <li><a href = "topics/inequalities/solving-inequality-problems.html" class="topic-link">Solving Inequality Problems</a></li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-card" data-difficulty="basic" id="logic-and-set-theory">
+                    <div class="roadmap-header">
+                        <h3>Logic and Set Theory</h3>
+                        <span class="difficulty-badge basic">Foundation</span>
+                    </div>
+                    <ul class="topic-list">
+                        <li><a href="topics/logic-and-set-theory/propositional-logic.html" class="topic-link">Propositional Logic</a></li>
+                        <li><a href="topics/logic-and-set-theory/predicate-logic.html" class="topic-link">Predicate Logic</a></li>
+                        <li><a href="topics/logic-and-set-theory/basic-set-operations.html" class="topic-link">Basic Set Operations</a></li>
+                        <li><a href="topics/logic-and-set-theory/functions-and-relations.html" class="topic-link">Functions & Relations</a></li>
+                        <li><a href="topics/logic-and-set-theory/mathematical-proofs.html" class="topic-link">Mathematical Proofs</a></li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-card" data-difficulty="intermediate" id="matrices-and-determinants">
+                    <div class="roadmap-header">
+                        <h3>Matrices and Determinants</h3>
+                        <span class="difficulty-badge intermediate">Intermediate</span>
+                    </div>
+                    <ul class="topic-list">
+                        <li><a href = "topics/matrices-and-determinants/matrix-operations.html" class="topic-link">Matrix Operations</a></li>
+                        <li><a href = "topics/matrices-and-determinants/determinants-and-properties.html" class="topic-link">Determinants & Properties</a></li>
+                        <li><a href = "topics/matrices-and-determinants/matrix-inverse.html" class="topic-link">Matrix Inverse</a></li>
+                        <li><a href = "topics/matrices-and-determinants/linear-transformations.html" class="topic-link">Linear Transformations</a></li>
+                        <li><a href = "topics/matrices-and-determinants/eigenvalues-and-eigenvectors.html" class="topic-link">Eigenvalues & Eigenvectors</a></li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-card" data-difficulty="intermediate" id="number-theory">
+                    <div class="roadmap-header">
+                        <h3>Number Theory</h3>
+                        <span class="difficulty-badge intermediate">Intermediate</span>
+                    </div>
+                    <ul class="topic-list">
+                        <li><a href = "topics/number-theory/divisibility-and-prime-numbers.html" class="topic-link">Divisibility & Prime Numbers</a></li>
+                        <li><a href = "topics/number-theory/modular-arithmetic.html" class="topic-link">Modular Arithmetic</a></li>
+                        <li><a href = "topics/number-theory/gcd-lcm-euclidean-algorithm.html" class="topic-link">GCD, LCM, Euclidean Algorithm</a></li>
+                        <li><a href = "topics/number-theory/fermat-s-and-euler-s-theorems.html" class="topic-link">Fermat's and Euler's Theorems</a></li>
+                        <li><a href = "topics/number-theory/diophantine-equations.html" class="topic-link">Diophantine Equations</a></li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-card" data-difficulty="intermediate" id="probability">
+                    <div class="roadmap-header">
+                        <h3>Probability</h3>
+                        <span class="difficulty-badge intermediate">Intermediate</span>
+                    </div>
+                    <ul class="topic-list">
+                        <li><a href = "topics/probability/basic-probability-rules.html" class="topic-link">Basic Probability Rules</a></li>
+                        <li><a href = "topics/probability/conditional-probability.html" class="topic-link">Conditional Probability</a></li>
+                        <li><a href = "topics/probability/bayes-theorem.html" class="topic-link">Bayes' Theorem</a></li>
+                        <li><a href = "topics/probability/random-variables-and-distributions.html" class="topic-link">Random Variables & Distributions</a></li>
+                        <li><a href = "topics/probability/expectation-and-variance.html" class="topic-link">Expectation & Variance</a></li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-card" data-difficulty="intermediate" id="sequences-and-series">
+                    <div class="roadmap-header">
+                        <h3>Sequences and Series</h3>
+                        <span class="difficulty-badge intermediate">Intermediate</span>
+                    </div>
+                    <ul class="topic-list">
+                        <li><a href = "topics/sequences-and-series/arithmetic-and-geometric-sequences.html" class="topic-link">Arithmetic & Geometric Sequences</a></li>
+                        <li><a href = "topics/sequences-and-series/infinite-series.html" class="topic-link">Infinite Series</a></li>
+                        <li><a href = "topics/sequences-and-series/convergence-tests.html" class="topic-link">Convergence Tests</a></li>
+                        <li><a href = "topics/sequences-and-series/power-series.html" class="topic-link">Power Series</a></li>
+                        <li><a href = "topics/sequences-and-series/recurrence-relations.html" class="topic-link">Recurrence Relations</a></li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-card" data-difficulty="intermediate" id="statistics">
+                    <div class="roadmap-header">
+                        <h3>Statistics</h3>
+                        <span class="difficulty-badge intermediate">Intermediate</span>
+                    </div>
+                    <ul class="topic-list">
+                        <li><a href = "topics/statistics/descriptive-statistics.html" class="topic-link">Descriptive Statistics</a></li>
+                        <li><a href = "topics/statistics/hypothesis-testing.html" class="topic-link">Hypothesis Testing</a></li>
+                        <li><a href = "topics/statistics/confidence-intervals.html" class="topic-link">Confidence Intervals</a></li>
+                        <li><a href = "topics/statistics/regression-and-correlation.html" class="topic-link">Regression & Correlation</a></li>
+                        <li><a href = "topics/statistics/statistical-inference.html" class="topic-link">Statistical Inference</a></li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-card" data-difficulty="intermediate" id="trigonometry">
+                    <div class="roadmap-header">
+                        <h3>Trigonometry</h3>
+                        <span class="difficulty-badge intermediate">Intermediate</span>
+                    </div>
+                    <ul class="topic-list">
+                        <li><a href = "topics/trigonometry/trigonometric-identities-and-formulas.html" class="topic-link">Trigonometric Identities & Formulas</a></li>
+                        <li><a href = "topics/trigonometry/trigonometric-equations.html" class="topic-link">Trigonometric Equations</a></li>
+                        <li><a href = "topics/trigonometry/law-of-sines-and-cosines.html" class="topic-link">Law of Sines & Cosines</a></li>
+                        <li><a href = "topics/trigonometry/inverse-trigonometric-functions.html" class="topic-link">Inverse Trigonometric Functions</a></li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-card" data-difficulty="intermediate" id="vectors-and-coordinate-geometry">
+                    <div class="roadmap-header">
+                        <h3>Vectors and Coordinate Geometry</h3>
+                        <span class="difficulty-badge intermediate">Intermediate</span>
+                    </div>
+                    <ul class="topic-list">
+                        <li><a href = "topics/vectors-and-coordinate-geometry/coordinate-systems.html" class="topic-link">Coordinate Systems</a></li>
+                        <li><a href = "topics/vectors-and-coordinate-geometry/vector-operations.html" class="topic-link">Vector Operations (Addition, Scalar Multiplication)</a></li>
+                        <li><a href = "topics/vectors-and-coordinate-geometry/dot-and-cross-products.html" class="topic-link">Dot & Cross Products</a></li>
+                        <li><a href = "topics/vectors-and-coordinate-geometry/equations-of-lines-and-planes.html" class="topic-link">Equations of Lines & Planes</a></li>
+                        <li><a href = "topics/vectors-and-coordinate-geometry/3d-coordinate-geometry.html" class="topic-link">3D Coordinate Geometry</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <section id="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <h3>International Math Hub</h3>
+                        <p>Empowering Mongolian students with world-class mathematics education. Expert tutors, personalized learning, and comprehensive resources for every grade level.</p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="tutoring.html">Online Tutoring</a></li>
+                        <li><a href="resources.html">Study Resources</a></li>
+                        <li><a href="quizz.html">Practice Tests</a></li>
+                        <li><a href="vids.html">Video Tutorials</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Topics</h4>
+                    <ul>
+                        <li><a href="topics/algebra/linear-and-quadratic-equations.html">Algebra</a></li>
+                        <li><a href="topics/calculus/differentiation.html">Calculus</a></li>
+                        <li><a href="topics/geometry/euclidean-geometry.html">Geometry</a></li>
+                        <li><a href="topics/statistics/descriptive-statistics.html">Statistics</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="features.html">Features</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="footer-legal">
+                        <ul>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Cookie Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-copyright">
+                        <p>&copy; 2025 International Math Hub. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </section> 
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    
+    <script>
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all filter buttons
+            const filterButtons = document.querySelectorAll('.difficulty-filter .difficulty-badge');
+            // Get all sections
+            const sections = document.querySelectorAll('.roadmap-card');
+            
+            // Track active filters
+            let activeFilters = {
+                'basic': true,
+                'intermediate': true,
+                'advanced': true
+            };
+            
+            // Add click event to each filter button
+            filterButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Toggle active state for this filter
+                    activeFilters[filter] = !activeFilters[filter];
+                    
+                    // Update button appearance
+                    if (activeFilters[filter]) {
+                        this.classList.add('active');
+                        this.classList.remove('inactive');
+                    } else {
+                        this.classList.remove('active');
+                        this.classList.add('inactive');
+                    }
+                    
+                    // Apply filters to sections
+                    applyFilters();
+                });
+            });
+            
+            // Function to apply the current filters
+            function applyFilters() {
+                // If no filters are active, show all sections
+                const isAnyFilterActive = Object.values(activeFilters).some(value => value);
+                
+                // Apply filtering
+                sections.forEach(function(section) {
+                    const difficulty = section.getAttribute('data-difficulty');
+                    
+                    if (!isAnyFilterActive || activeFilters[difficulty]) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

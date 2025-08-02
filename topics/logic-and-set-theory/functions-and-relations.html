@@ -1,0 +1,279 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Functions & Relations - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Functions & Relations</h2>
+                <p>Exploring the connections between sets through relations and functions</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#logic-and-set-theory">Logic and Set Theory</a> &raquo;
+                    <span>Functions & Relations</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Relations</h3>
+                    
+                    <p>In mathematics, a relation between two sets is a collection of ordered pairs containing one object from each set. If the ordered pair (x, y) belongs to a relation R, we write xRy or (x, y) ∈ R. Relations generalize the concept of connections or associations between objects and provide a formal foundation for analyzing various mathematical and real-world relationships.</p>
+                    
+                    <h4>Binary Relations</h4>
+                    <p>A binary relation R from set A to set B is a subset of the Cartesian product A × B. In other words, it is a collection of ordered pairs (a, b) where a ∈ A and b ∈ B.</p>
+                    
+                    <p><strong>Special Types of Relations:</strong></p>
+                    <ul>
+                        <li><strong>Reflexive Relation:</strong> For all a ∈ A, (a, a) ∈ R. Every element is related to itself.</li>
+                        <li><strong>Symmetric Relation:</strong> For all a, b ∈ A, if (a, b) ∈ R, then (b, a) ∈ R. If a is related to b, then b is related to a.</li>
+                        <li><strong>Antisymmetric Relation:</strong> For all a, b ∈ A, if (a, b) ∈ R and (b, a) ∈ R, then a = b. If a and b are mutually related, they must be the same element.</li>
+                        <li><strong>Transitive Relation:</strong> For all a, b, c ∈ A, if (a, b) ∈ R and (b, c) ∈ R, then (a, c) ∈ R. If a is related to b and b is related to c, then a is related to c.</li>
+                    </ul>
+                    
+                    <h4>Equivalence Relations</h4>
+                    <p>An equivalence relation is a binary relation that is reflexive, symmetric, and transitive. Equivalence relations define ways to partition a set into distinct, non-overlapping subsets called equivalence classes.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Modular Arithmetic as an Equivalence Relation</div>
+                        <p>Consider the relation R on the set of integers Z defined by:</p>
+                        <p>a R b if and only if a ≡ b (mod 3) (or equivalently, if a - b is divisible by 3)</p>
+                        <p>This relation is:</p>
+                        <p><strong>Reflexive:</strong> For any integer a, a - a = 0 is divisible by 3, so a R a.</p>
+                        <p><strong>Symmetric:</strong> If a R b, then a - b is divisible by 3. This means b - a = -(a - b) is also divisible by 3, so b R a.</p>
+                        <p><strong>Transitive:</strong> If a R b and b R c, then a - b and b - c are both divisible by 3. Their sum (a - b) + (b - c) = a - c is also divisible by 3, so a R c.</p>
+                        <p>Since R is reflexive, symmetric, and transitive, it's an equivalence relation. It partitions Z into three equivalence classes: {3k}, {3k + 1}, and {3k + 2} for all integers k.</p>
+                    </div>
+                    
+                    <h4>Partial Orders</h4>
+                    <p>A partial order is a binary relation that is reflexive, antisymmetric, and transitive. Partial orders represent ranking or hierarchical relationships where not all elements are comparable.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Subset Relation as a Partial Order</div>
+                        <p>Consider the subset relation ⊆ on the power set P(S) of some set S. This relation is:</p>
+                        <p><strong>Reflexive:</strong> Every set is a subset of itself, so A ⊆ A for all A ∈ P(S).</p>
+                        <p><strong>Antisymmetric:</strong> If A ⊆ B and B ⊆ A, then A = B.</p>
+                        <p><strong>Transitive:</strong> If A ⊆ B and B ⊆ C, then A ⊆ C.</p>
+                        <p>Since ⊆ is reflexive, antisymmetric, and transitive, it's a partial order on P(S).</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Functions as Special Relations</h3>
+                    
+                    <p>A function is a special type of relation that assigns to each element of a set, exactly one element of another set (or the same set). More formally, a function f from a set A to a set B, denoted f: A → B, is a relation from A to B where every element in A is related to exactly one element in B.</p>
+                    
+                    <h4>Key Function Terminology</h4>
+                    <ul>
+                        <li><strong>Domain:</strong> The set A of all input values for the function.</li>
+                        <li><strong>Codomain:</strong> The set B that contains all possible output values of the function.</li>
+                        <li><strong>Range:</strong> The subset of B that consists of all actual output values of the function. The range is always a subset of the codomain.</li>
+                        <li><strong>Image:</strong> For an element a ∈ A, the image f(a) is the element in B that a maps to.</li>
+                        <li><strong>Preimage:</strong> For an element b ∈ B, the preimage f⁻¹(b) is the set of all elements in A that map to b.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Analyzing a Simple Function</div>
+                        <p>Let f: R → R be defined by f(x) = x².</p>
+                        <p><strong>Domain:</strong> R (all real numbers)</p>
+                        <p><strong>Codomain:</strong> R (all real numbers)</p>
+                        <p><strong>Range:</strong> [0, ∞) (non-negative real numbers), which is a proper subset of the codomain</p>
+                        <p><strong>Image of 3:</strong> f(3) = 3² = 9</p>
+                        <p><strong>Preimage of 4:</strong> f⁻¹(4) = {-2, 2} (both -2 and 2 map to 4)</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Properties of Functions</h3>
+                    
+                    <h4>Injective (One-to-One) Functions</h4>
+                    <p>A function f: A → B is injective if distinct elements in A map to distinct elements in B. Formally, for all a₁, a₂ ∈ A, if a₁ ≠ a₂, then f(a₁) ≠ f(a₂). Equivalently, if f(a₁) = f(a₂), then a₁ = a₂.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Testing Injectivity</div>
+                        <p>Let's analyze if these functions are injective:</p>
+                        <p>1. f(x) = 2x + 3 from R to R</p>
+                        <p>If f(a) = f(b), then 2a + 3 = 2b + 3, which implies a = b. So f is injective.</p>
+                        <p>2. g(x) = x² from R to R</p>
+                        <p>g(-2) = 4 and g(2) = 4, but -2 ≠ 2. So g is not injective.</p>
+                        <p>3. h(x) = x² from [0, ∞) to R</p>
+                        <p>If h(a) = h(b) for a, b ≥ 0, then a² = b², which implies a = b. So h is injective.</p>
+                    </div>
+                    
+                    <h4>Surjective (Onto) Functions</h4>
+                    <p>A function f: A → B is surjective if every element in B is the image of at least one element in A. Formally, for all b ∈ B, there exists a ∈ A such that f(a) = b.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Testing Surjectivity</div>
+                        <p>Let's analyze if these functions are surjective:</p>
+                        <p>1. f(x) = 2x + 3 from R to R</p>
+                        <p>For any y ∈ R, we can find x = (y - 3)/2 such that f(x) = y. So f is surjective.</p>
+                        <p>2. g(x) = x² from R to R</p>
+                        <p>No x ∈ R can map to -1 ∈ R, since x² ≥ 0 for all x. So g is not surjective.</p>
+                        <p>3. h(x) = x² from R to [0, ∞)</p>
+                        <p>For any y ∈ [0, ∞), we can find x = √y such that h(x) = y. So h is surjective.</p>
+                    </div>
+                    
+                    <h4>Bijective Functions</h4>
+                    <p>A function is bijective if it is both injective and surjective. In a bijective function, each element of the codomain is paired with exactly one element of the domain. Bijective functions establish a one-to-one correspondence between the elements of two sets.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Bijective Function</div>
+                        <p>The function f(x) = 2x + 3 from R to R is bijective because:</p>
+                        <p>- It's injective: If f(a) = f(b), then 2a + 3 = 2b + 3, which implies a = b.</p>
+                        <p>- It's surjective: For any y ∈ R, x = (y - 3)/2 satisfies f(x) = y.</p>
+                        <p>The function g(x) = x² from [0, ∞) to [0, ∞) is also bijective because:</p>
+                        <p>- It's injective: If g(a) = g(b) for a, b ≥ 0, then a² = b², which implies a = b.</p>
+                        <p>- It's surjective: For any y ∈ [0, ∞), x = √y satisfies g(x) = y.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Function Composition and Inverse Functions</h3>
+                    
+                    <h4>Function Composition</h4>
+                    <p>Given functions f: A → B and g: B → C, the composition of g and f, denoted g ∘ f: A → C, is defined by (g ∘ f)(a) = g(f(a)) for all a ∈ A.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Function Composition</div>
+                        <p>Let f(x) = x² + 1 and g(x) = 3x - 2. Then:</p>
+                        <p>(g ∘ f)(x) = g(f(x)) = g(x² + 1) = 3(x² + 1) - 2 = 3x² + 3 - 2 = 3x² + 1</p>
+                        <p>(f ∘ g)(x) = f(g(x)) = f(3x - 2) = (3x - 2)² + 1 = 9x² - 12x + 4 + 1 = 9x² - 12x + 5</p>
+                        <p>Note that g ∘ f ≠ f ∘ g, showing that function composition is generally not commutative.</p>
+                    </div>
+                    
+                    <h4>Inverse Functions</h4>
+                    <p>A function f: A → B has an inverse if and only if it is bijective. The inverse function, denoted f⁻¹: B → A, is defined by f⁻¹(b) = a if and only if f(a) = b.</p>
+                    
+                    <p>Properties of inverse functions:</p>
+                    <ul>
+                        <li>f⁻¹(f(a)) = a for all a ∈ A</li>
+                        <li>f(f⁻¹(b)) = b for all b ∈ B</li>
+                        <li>f⁻¹ ∘ f = Id<sub>A</sub> (the identity function on A)</li>
+                        <li>f ∘ f⁻¹ = Id<sub>B</sub> (the identity function on B)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Finding Inverse Functions</div>
+                        <p>Let's find the inverse of f(x) = 2x + 3.</p>
+                        <p>Step 1: Let y = 2x + 3</p>
+                        <p>Step 2: Solve for x. x = (y - 3)/2</p>
+                        <p>Step 3: Swap x and y. f⁻¹(x) = (x - 3)/2</p>
+                        <p>To verify: (f⁻¹ ∘ f)(x) = f⁻¹(2x + 3) = ((2x + 3) - 3)/2 = 2x/2 = x</p>
+                        <p>And: (f ∘ f⁻¹)(x) = f((x - 3)/2) = 2((x - 3)/2) + 3 = (x - 3) + 3 = x</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications of Relations and Functions</h3>
+                    
+                    <h4>Applications in Mathematics</h4>
+                    <ul>
+                        <li><strong>Group Theory:</strong> Functions establish homomorphisms between algebraic structures.</li>
+                        <li><strong>Topology:</strong> Continuous functions preserve the structure of topological spaces.</li>
+                        <li><strong>Analysis:</strong> Functions are used to model rates of change, areas, and volumes.</li>
+                        <li><strong>Graph Theory:</strong> Relations are represented as edges in graphs.</li>
+                    </ul>
+                    
+                    <h4>Applications in Computer Science</h4>
+                    <ul>
+                        <li><strong>Database Theory:</strong> Relations are the foundation of relational databases.</li>
+                        <li><strong>Algorithm Analysis:</strong> Functions describe the growth rate of algorithms.</li>
+                        <li><strong>Programming:</strong> Functions map inputs to outputs in a deterministic way.</li>
+                        <li><strong>Automata Theory:</strong> Transition functions define the behavior of finite state machines.</li>
+                    </ul>
+                    
+                    <h4>Applications in Real-World Modeling</h4>
+                    <ul>
+                        <li><strong>Physics:</strong> Functions model relationships between physical quantities.</li>
+                        <li><strong>Economics:</strong> Functions describe supply, demand, and utility.</li>
+                        <li><strong>Social Networks:</strong> Relations represent connections between individuals.</li>
+                        <li><strong>Genetics:</strong> Functions map genotypes to phenotypes.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Economic Modeling with Functions</div>
+                        <p>Consider a simple economic model where the demand for a product depends on its price. Let's define the demand function D(p) that gives the quantity demanded at price p.</p>
+                        <p>D(p) = 1000 - 5p for p ∈ [0, 200]</p>
+                        <p>This function has:</p>
+                        <p>- Domain: [0, 200] (the set of possible prices)</p>
+                        <p>- Range: [0, 1000] (the set of possible demand quantities)</p>
+                        <p>- At p = $50, D(50) = 1000 - 5(50) = 750 units are demanded</p>
+                        <p>- If we observe a demand of 600 units, we can find the corresponding price by solving 600 = 1000 - 5p, which gives p = $80</p>
+                    </div>
+                    
+                    <div class="navigation">
+                        <a href="basic-set-operations.html" class="prev-next-btn">Previous: Basic Set Operations</a>
+                        <a href="mathematical-proofs.html" class="prev-next-btn">Next: Mathematical Proofs</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

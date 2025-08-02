@@ -1,0 +1,1154 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>International Math Hub</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="A platform for mathematicians and enthusiasts to share knowledge and resources tailored for Mongolia's education system." />
+		<meta name="author" content="IntlMathHub Team" />
+		<link rel="stylesheet" href="assets/css/first.css" />
+		<link rel="stylesheet" href="assets/css/improvements.css" />
+		<link rel="stylesheet" href="assets/css/educational-design-system.css" />
+		<link rel="stylesheet" href="assets/css/educational-overrides.css" />
+		<link rel="stylesheet" href="assets/css/hero-section.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+		<!-- Additional styles to ensure the mobile menu toggle is hidden -->
+		<style>
+			/* Hide mobile menu toggle button with highest priority */
+			#titleBar, #navPanel {
+				display: none !important;
+				visibility: hidden !important;
+				opacity: 0 !important;
+				pointer-events: none !important;
+			}
+			
+			/* Prevent any transforms from mobile menu */
+			body.navPanel-visible #page-wrapper,
+			body.navPanel-visible #titleBar {
+				transform: none !important;
+			}
+			
+			/* Ensure navigation is always visible */
+			#nav {
+				display: block !important;
+			}
+		</style>
+		<style>
+			.fullscreen-section {
+				padding: 4em 0;
+				margin: 2em 0;
+				position: relative;
+				overflow: hidden;
+			}
+			.fullscreen-section header {
+				margin-bottom: 2em;
+				padding: 0 5%;
+				position: relative;
+				z-index: 2;
+			}
+			.fullscreen-section h2 {
+				margin-bottom: 0.5em;
+			}
+			.fullscreen-section .row {
+				padding: 0 5%;
+				position: relative;
+				z-index: 2;
+			}
+			.content-wrapper {
+				padding: 0 5%;
+				position: relative;
+				z-index: 2;
+			}
+			#about, #contact {
+				padding: 2em 0;
+				margin: 0;
+			}
+			#about .content-wrapper header, 
+			#contact .content-wrapper header {
+				margin-bottom: 1em;
+				padding: 0;
+			}
+		</style>
+
+		<!-- Additional styles for text visibility -->
+		<style>
+			/* Fix for the text visibility in various sections */
+			#about p, #contact p {
+				color: rgba(255, 255, 255, 0.9) !important;
+				font-size: 1.1em;
+				line-height: 1.6;
+			}
+		</style>
+	</head>
+	<body class="homepage is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<section id="header">
+				<div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+					<!-- Logo -->
+					<div class="logo">
+						<a href="index.html"><img src="/images/logo.png" alt="International Math Hub Logo" style="max-height: 120px;"></a>
+					</div>
+
+					<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li class="current"><a href="index.html">Home</a></li>
+							<li><a href="features.html">Mathematics Roadmap</a></li>
+							<li><a href="resources.html">Resources</a></li>
+							<li><a href="blog.html">Blog</a></li>
+							<li><a href="about.html">About</a></li>
+							<li><a href="contact.html">Contact</a></li>
+						</ul>
+					</nav>
+				</div>
+
+				<!-- Hero Section -->
+				<section id="banner" class="hero-section">
+					<!-- Background Elements -->
+					<div class="hero-background">
+						<div class="floating-shape shape-1"></div>
+						<div class="floating-shape shape-2"></div>
+						<div class="floating-shape shape-3"></div>
+						<div class="floating-shape shape-4"></div>
+						<div class="floating-shape shape-5"></div>
+						<div class="floating-shape shape-6"></div>
+					</div>
+					
+					<div class="edu-container hero-content">
+						<div class="hero-text">
+							<h1 class="hero-headline">World Class Education for Mongolians</h1>
+							<h2 class="hero-main-title">Empowering Mongolian Students</h2>
+							<div class="hero-tagline">
+								<span class="tagline-text" id="rotating-text">Helping Your Child Succeed—Wherever You Live</span>
+							</div>
+							<p class="hero-subtitle">Our mission is to provide exceptional mathematics education that empowers Mongolian students to excel academically and build a strong foundation for their future success in an increasingly competitive global landscape.</p>
+						</div>
+						
+						<div class="hero-visual">
+							<div class="hero-image-container">
+								<div class="education-illustration">
+									<svg width="450" height="350" viewBox="0 0 450 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<!-- Background elements -->
+										<defs>
+											<linearGradient id="heroGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+												<stop offset="0%" style="stop-color:#1E40AF;stop-opacity:0.1"/>
+												<stop offset="100%" style="stop-color:#0891B2;stop-opacity:0.1"/>
+											</linearGradient>
+											<linearGradient id="heroGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+												<stop offset="0%" style="stop-color:#1E40AF"/>
+												<stop offset="100%" style="stop-color:#0891B2"/>
+											</linearGradient>
+											<linearGradient id="heroGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+												<stop offset="0%" style="stop-color:#F97316;stop-opacity:0.8"/>
+												<stop offset="100%" style="stop-color:#0891B2;stop-opacity:0.8"/>
+											</linearGradient>
+										</defs>
+										
+										<!-- Main learning circle -->
+										<circle cx="225" cy="175" r="140" fill="url(#heroGradient1)" stroke="rgba(30, 64, 175, 0.2)" stroke-width="2"/>
+										
+										<!-- Central hub representing IMH -->
+										<g transform="translate(225, 175)">
+											<!-- Central circle -->
+											<circle cx="0" cy="0" r="35" fill="url(#heroGradient2)" stroke="white" stroke-width="3">
+												<animate attributeName="r" values="35;37;35" dur="3s" repeatCount="indefinite"/>
+												<animate attributeName="stroke-width" values="3;4;3" dur="2.5s" repeatCount="indefinite"/>
+											</circle>
+											<text x="0" y="8" text-anchor="middle" fill="white" font-size="18" font-weight="bold" font-family="Arial, sans-serif">IMH</text>
+											
+											<!-- Learning paths radiating outward -->
+											<g class="learning-paths">
+												<!-- Path 1: Mathematics -->
+												<path d="M0 -35 L0 -80" stroke="#1E40AF" stroke-width="3" opacity="0.7">
+													<animate attributeName="stroke-width" values="3;4;3" dur="3s" repeatCount="indefinite"/>
+													<animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite"/>
+												</path>
+												<circle cx="0" cy="-90" r="12" fill="url(#heroGradient3)">
+													<animate attributeName="r" values="12;14;12" dur="2s" repeatCount="indefinite"/>
+												</circle>
+												<text x="0" y="-85" text-anchor="middle" fill="white" font-size="12" font-weight="bold">∑</text>
+												
+												<!-- Path 2: Science -->
+												<path d="M35 0 L80 0" stroke="#0891B2" stroke-width="3" opacity="0.7">
+													<animate attributeName="stroke-width" values="3;4;3" dur="3.5s" repeatCount="indefinite"/>
+													<animate attributeName="opacity" values="0.7;1;0.7" dur="3.5s" repeatCount="indefinite"/>
+												</path>
+												<circle cx="90" cy="0" r="12" fill="url(#heroGradient3)">
+													<animate attributeName="r" values="12;14;12" dur="2.5s" repeatCount="indefinite"/>
+												</circle>
+												<text x="90" y="5" text-anchor="middle" fill="white" font-size="12" font-weight="bold">π</text>
+												
+												<!-- Path 3: Technology -->
+												<path d="M0 35 L0 80" stroke="#F97316" stroke-width="3" opacity="0.7">
+													<animate attributeName="stroke-width" values="3;4;3" dur="4s" repeatCount="indefinite"/>
+													<animate attributeName="opacity" values="0.7;1;0.7" dur="4s" repeatCount="indefinite"/>
+												</path>
+												<circle cx="0" cy="90" r="12" fill="url(#heroGradient3)">
+													<animate attributeName="r" values="12;14;12" dur="3s" repeatCount="indefinite"/>
+												</circle>
+												<text x="0" y="95" text-anchor="middle" fill="white" font-size="12" font-weight="bold">∫</text>
+												
+												<!-- Path 4: Engineering -->
+												<path d="M-35 0 L-80 0" stroke="#0891B2" stroke-width="3" opacity="0.7">
+													<animate attributeName="stroke-width" values="3;4;3" dur="3.2s" repeatCount="indefinite"/>
+													<animate attributeName="opacity" values="0.7;1;0.7" dur="3.2s" repeatCount="indefinite"/>
+												</path>
+												<circle cx="-90" cy="0" r="12" fill="url(#heroGradient3)">
+													<animate attributeName="r" values="12;14;12" dur="2.8s" repeatCount="indefinite"/>
+												</circle>
+												<text x="-90" y="5" text-anchor="middle" fill="white" font-size="12" font-weight="bold">∞</text>
+											</g>
+											
+											<!-- Floating knowledge particles -->
+											<g class="particles">
+												<circle cx="-50" cy="-60" r="3" fill="#1E40AF" opacity="0.6">
+													<animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
+													<animate attributeName="cy" values="-60;-65;-60" dur="4s" repeatCount="indefinite"/>
+													<animate attributeName="cx" values="-50;-45;-50" dur="6s" repeatCount="indefinite"/>
+												</circle>
+												<circle cx="60" cy="-40" r="2" fill="#0891B2" opacity="0.8">
+													<animate attributeName="opacity" values="0.8;1;0.8" dur="2.5s" repeatCount="indefinite"/>
+													<animate attributeName="cy" values="-40;-35;-40" dur="3.5s" repeatCount="indefinite"/>
+													<animate attributeName="cx" values="60;65;60" dur="5s" repeatCount="indefinite"/>
+												</circle>
+												<circle cx="40" cy="70" r="2.5" fill="#F97316" opacity="0.7">
+													<animate attributeName="opacity" values="0.7;1;0.7" dur="3.5s" repeatCount="indefinite"/>
+													<animate attributeName="cy" values="70;75;70" dur="4.5s" repeatCount="indefinite"/>
+													<animate attributeName="cx" values="40;35;40" dur="7s" repeatCount="indefinite"/>
+												</circle>
+												<circle cx="-70" cy="30" r="2" fill="#0891B2" opacity="0.6">
+													<animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+													<animate attributeName="cy" values="30;25;30" dur="3s" repeatCount="indefinite"/>
+													<animate attributeName="cx" values="-70;-75;-70" dur="5.5s" repeatCount="indefinite"/>
+												</circle>
+												<circle cx="30" cy="-80" r="2.5" fill="#F97316" opacity="0.7">
+													<animate attributeName="opacity" values="0.7;1;0.7" dur="2.8s" repeatCount="indefinite"/>
+													<animate attributeName="cy" values="-80;-85;-80" dur="4.2s" repeatCount="indefinite"/>
+													<animate attributeName="cx" values="30;25;30" dur="6.5s" repeatCount="indefinite"/>
+												</circle>
+												<circle cx="-30" cy="80" r="2" fill="#1E40AF" opacity="0.6">
+													<animate attributeName="opacity" values="0.6;1;0.6" dur="3.2s" repeatCount="indefinite"/>
+													<animate attributeName="cy" values="80;85;80" dur="3.8s" repeatCount="indefinite"/>
+													<animate attributeName="cx" values="-30;-25;-30" dur="5.8s" repeatCount="indefinite"/>
+												</circle>
+											</g>
+										</g>
+										
+										<!-- Success indicators -->
+										<g transform="translate(225, 175)">
+											<!-- Achievement rings -->
+											<circle cx="0" cy="0" r="110" stroke="rgba(30, 64, 175, 0.3)" stroke-width="1" fill="none" stroke-dasharray="5,5">
+												<animate attributeName="stroke-dashoffset" values="0;10" dur="4s" repeatCount="indefinite"/>
+											</circle>
+											<circle cx="0" cy="0" r="95" stroke="rgba(8, 145, 178, 0.3)" stroke-width="1" fill="none" stroke-dasharray="5,5">
+												<animate attributeName="stroke-dashoffset" values="10;0" dur="3s" repeatCount="indefinite"/>
+											</circle>
+										</g>
+									</svg>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</section>
+
+			<!-- Grade Levels Section -->
+			<section class="edu-section">
+				<div class="edu-container">
+					<header class="text-center mb-6">
+						<h2>Math tutoring for every age group & grade level</h2>
+						<p class="text-secondary" style="max-width: 600px; margin: 0 auto; text-align: center;">It is our belief at International Math Hub that everyone can learn. We offer world-class online tutoring services for students from 2nd grade through adulthood.</p>
+					</header>
+					
+					<div class="grade-levels">
+						<div class="grade-filter" id="gradeToggle">
+							<span>Age Groups & Grade Levels</span>
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="toggle-icon">
+								<path d="M7 10l5 5 5-5z" fill="currentColor"/>
+							</svg>
+						</div>
+						
+						<div class="edu-grid edu-grid-4" id="gradeGrid">
+							<a href="https://forms.gle/YOUR_FORM_ID_HERE?entry.123456789=2nd%20Grade" class="grade-card" target="_blank">
+								<h4>2nd Grade Math Tutors</h4>
+							</a>
+							<a href="https://forms.gle/YOUR_FORM_ID_HERE?entry.123456789=3rd%20Grade" class="grade-card" target="_blank">
+								<h4>3rd Grade Math Tutors</h4>
+							</a>
+							<a href="https://forms.gle/YOUR_FORM_ID_HERE?entry.123456789=4th%20Grade" class="grade-card" target="_blank">
+								<h4>4th Grade Math Tutors</h4>
+							</a>
+							<a href="https://forms.gle/YOUR_FORM_ID_HERE?entry.123456789=5th%20Grade" class="grade-card" target="_blank">
+								<h4>5th Grade Math Tutors</h4>
+							</a>
+							<a href="https://forms.gle/YOUR_FORM_ID_HERE?entry.123456789=6th%20Grade" class="grade-card" target="_blank">
+								<h4>6th Grade Math Tutors</h4>
+							</a>
+							<a href="https://forms.gle/YOUR_FORM_ID_HERE?entry.123456789=7th%20Grade" class="grade-card" target="_blank">
+								<h4>7th Grade Math Tutors</h4>
+							</a>
+							<a href="https://forms.gle/YOUR_FORM_ID_HERE?entry.123456789=8th%20Grade" class="grade-card" target="_blank">
+								<h4>8th Grade Math Tutors</h4>
+							</a>
+							<a href="https://forms.gle/YOUR_FORM_ID_HERE?entry.123456789=High%20School" class="grade-card" target="_blank">
+								<h4>High School Math</h4>
+							</a>
+							<a href="https://forms.gle/YOUR_FORM_ID_HERE?entry.123456789=College" class="grade-card" target="_blank">
+								<h4>College Math</h4>
+							</a>
+							<a href="https://forms.gle/YOUR_FORM_ID_HERE?entry.123456789=Elementary" class="grade-card" target="_blank">
+								<h4>Elementary Math</h4>
+							</a>
+							<a href="https://forms.gle/YOUR_FORM_ID_HERE?entry.123456789=Adults" class="grade-card" target="_blank">
+								<h4>Adults</h4>
+							</a>
+							<a href="https://forms.gle/YOUR_FORM_ID_HERE?entry.123456789=Kids" class="grade-card" target="_blank">
+								<h4>Math Tutors for Kids</h4>
+							</a>
+						</div>
+					</div>
+				</div>
+					</section>
+
+			<!-- Benefits Section -->
+			<section class="edu-section" style="background: var(--color-background-light);">
+				<div class="edu-container">
+					<header class="text-center mb-6">
+						<h2>Top benefits of working with a private Math tutor</h2>
+					</header>
+					
+					<div class="benefits-list">
+						<div class="benefit-item">
+							<span class="benefit-number">1.</span>
+							<span class="benefit-text">Learn Math at Any Level</span>
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/>
+							</svg>
+						</div>
+						<div class="benefit-item">
+							<span class="benefit-number">2.</span>
+							<span class="benefit-text">World-Class Mathematics Instruction</span>
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/>
+							</svg>
+						</div>
+						<div class="benefit-item">
+							<span class="benefit-number">3.</span>
+							<span class="benefit-text">Better Grades</span>
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/>
+							</svg>
+						</div>
+						<div class="benefit-item">
+							<span class="benefit-number">4.</span>
+							<span class="benefit-text">Improved Study Skills</span>
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/>
+							</svg>
+						</div>
+						<div class="benefit-item">
+							<span class="benefit-number">5.</span>
+							<span class="benefit-text">Simplify Learning</span>
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/>
+							</svg>
+						</div>
+						<div class="benefit-item">
+							<span class="benefit-number">6.</span>
+							<span class="benefit-text">Personal Attention</span>
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/>
+							</svg>
+						</div>
+						<div class="benefit-item">
+							<span class="benefit-number">7.</span>
+							<span class="benefit-text">Gain Confidence</span>
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/>
+							</svg>
+						</div>
+						<div class="benefit-item">
+							<span class="benefit-number">8.</span>
+							<span class="benefit-text">Build a Foundation for Success</span>
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/>
+							</svg>
+						</div>
+					</div>
+				</div>
+					</section>
+
+			<!-- Math Subjects Section -->
+			<section class="edu-section">
+				<div class="edu-container">
+					<header class="text-center mb-6">
+						<h2>What math subject does your child need help with?</h2>
+						<p class="text-secondary" style="max-width: 600px; margin: 0 auto; text-align: center;">With advanced degrees in mathematics from top schools around the country including the Ivy League, our team of accomplished tutors is ready to help your child today with any of these subjects.</p>
+					</header>
+					
+					<div class="edu-grid edu-grid-5">
+						<a href="features.html#algebra" class="subject-card">
+							<div class="subject-icon">
+								<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" fill="var(--color-primary-blue)"/>
+								</svg>
+							</div>
+							<h4>Algebra</h4>
+							<p class="text-secondary">Linear equations, quadratic functions, polynomials, and systems of equations.</p>
+						</a>
+						<a href="features.html#calculus" class="subject-card">
+							<div class="subject-icon">
+								<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="var(--color-primary-blue)" stroke-width="2" fill="none"/>
+								</svg>
+							</div>
+							<h4>Calculus</h4>
+							<p class="text-secondary">Limits, differentiation, integration, and differential equations.</p>
+						</a>
+						<a href="features.html#geometry" class="subject-card">
+							<div class="subject-icon">
+								<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="12" cy="12" r="10" stroke="var(--color-primary-blue)" stroke-width="2" fill="none"/>
+									<path d="M8 12l3 3 5-5" stroke="var(--color-primary-blue)" stroke-width="2" fill="none"/>
+								</svg>
+							</div>
+							<h4>Geometry</h4>
+							<p class="text-secondary">Euclidean geometry, areas, volumes, and geometric transformations.</p>
+						</a>
+						<a href="features.html#statistics" class="subject-card">
+							<div class="subject-icon">
+								<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" fill="var(--color-primary-blue)"/>
+								</svg>
+							</div>
+							<h4>Statistics</h4>
+							<p class="text-secondary">Descriptive statistics, hypothesis testing, and regression analysis.</p>
+						</a>
+						<a href="features.html#probability" class="subject-card">
+							<div class="subject-icon">
+								<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="var(--color-primary-blue)" stroke-width="2" fill="none"/>
+								</svg>
+							</div>
+							<h4>Probability</h4>
+							<p class="text-secondary">Basic probability rules, conditional probability, and Bayes' theorem.</p>
+						</a>
+						<a href="features.html#trigonometry" class="subject-card">
+							<div class="subject-icon">
+								<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="var(--color-primary-blue)" stroke-width="2" fill="none"/>
+								</svg>
+							</div>
+							<h4>Trigonometry</h4>
+							<p class="text-secondary">Trigonometric functions, identities, and the unit circle.</p>
+						</a>
+						<a href="features.html#number-theory" class="subject-card">
+							<div class="subject-icon">
+								<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" fill="var(--color-primary-blue)"/>
+								</svg>
+							</div>
+							<h4>Number Theory</h4>
+							<p class="text-secondary">Prime numbers, modular arithmetic, and Diophantine equations.</p>
+						</a>
+						<a href="features.html#combinatorics" class="subject-card">
+							<div class="subject-icon">
+								<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="var(--color-primary-blue)" stroke-width="2" fill="none"/>
+								</svg>
+							</div>
+							<h4>Combinatorics</h4>
+							<p class="text-secondary">Counting principles, permutations, combinations, and the binomial theorem.</p>
+						</a>
+						<a href="features.html#matrices" class="subject-card">
+							<div class="subject-icon">
+								<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" fill="var(--color-primary-blue)"/>
+								</svg>
+							</div>
+							<h4>Matrices</h4>
+							<p class="text-secondary">Matrix operations, determinants, eigenvalues, and linear transformations.</p>
+						</a>
+						<a href="features.html#sequences" class="subject-card">
+							<div class="subject-icon">
+								<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="var(--color-primary-blue)" stroke-width="2" fill="none"/>
+								</svg>
+							</div>
+							<h4>Sequences & Series</h4>
+							<p class="text-secondary">Arithmetic and geometric sequences, infinite series, and convergence tests.</p>
+						</a>
+						<a href="features.html#complex-numbers" class="subject-card">
+							<div class="subject-icon">
+								<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" fill="var(--color-primary-blue)"/>
+								</svg>
+							</div>
+							<h4>Complex Numbers</h4>
+							<p class="text-secondary">Complex arithmetic, polar form, and De Moivre's theorem.</p>
+						</a>
+						<a href="features.html#inequalities" class="subject-card">
+							<div class="subject-icon">
+								<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="var(--color-primary-blue)" stroke-width="2" fill="none"/>
+								</svg>
+							</div>
+							<h4>Inequalities</h4>
+							<p class="text-secondary">AM-GM inequality, Cauchy-Schwarz, and solving inequality problems.</p>
+						</a>
+						<a href="features.html#graph-theory" class="subject-card">
+							<div class="subject-icon">
+								<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" fill="var(--color-primary-blue)"/>
+								</svg>
+							</div>
+							<h4>Graph Theory</h4>
+							<p class="text-secondary">Graph representation, traversal algorithms, and path problems.</p>
+						</a>
+						<a href="features.html#logic" class="subject-card">
+							<div class="subject-icon">
+								<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="var(--color-primary-blue)" stroke-width="2" fill="none"/>
+								</svg>
+							</div>
+							<h4>Logic & Set Theory</h4>
+							<p class="text-secondary">Mathematical proofs, propositional logic, and set operations.</p>
+						</a>
+						<a href="features.html#vectors" class="subject-card">
+							<div class="subject-icon">
+								<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" fill="var(--color-primary-blue)"/>
+								</svg>
+							</div>
+							<h4>Vectors & Coordinate Geometry</h4>
+							<p class="text-secondary">Vector operations, dot and cross products, and 3D coordinate geometry.</p>
+						</a>
+					</div>
+				</div>
+					</section>
+
+			<!-- Benefits of Working with IMH Section -->
+			<section class="edu-section" style="background: var(--color-background-light);">
+				<div class="edu-container">
+					<header class="text-center mb-6">
+						<h2>The <span style="color: var(--color-primary-blue);">benefits</span> of working with International Math Hub</h2>
+					</header>
+					
+					<div class="edu-grid edu-grid-3">
+						<div class="benefit-card">
+							<h3>Better grades</h3>
+							<p class="text-secondary">It's no secret that tutoring pretty much always helps improve grades in the long term. We also focus on short-term improvements to show quick improvement if college applications are around the corner.</p>
+						</div>
+						<div class="benefit-card">
+							<h3>Improved retention</h3>
+							<p class="text-secondary">We focus on understanding the principles behind the math, so the actual algebra, factorization, you name it, becomes the easy part. This helps promote a much more lasting understanding that underpins all future math subjects.</p>
+						</div>
+						<div class="benefit-card">
+							<h3>Foundation for success</h3>
+							<p class="text-secondary">When a child gets the bigger picture, it's easier to see how it all fits together. That means that they perform better in the near term and are set up for future success since they're starting farther along than their peers.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Testimonials Section -->
+			<section class="edu-section">
+				<div class="edu-container">
+					<header class="text-center mb-6">
+						<h2>Success Stories from Our Students</h2>
+						<p class="text-secondary">Hear from students and parents who have transformed their math journey with us</p>
+					</header>
+					
+					<div class="edu-grid edu-grid-3">
+						<div class="testimonial-card">
+							<div class="testimonial-content">
+								<p>"My daughter went from struggling with algebra to getting A's consistently. The personalized approach made all the difference!"</p>
+							</div>
+							<div class="testimonial-author">
+								<div class="author-avatar">
+									<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<circle cx="12" cy="8" r="5" fill="var(--color-primary-blue)"/>
+										<path d="M20 21c0-2.76-2.24-5-5-5H9c-2.76 0-5 2.24-5 5" stroke="var(--color-primary-blue)" stroke-width="2" fill="none"/>
+									</svg>
+								</div>
+								<div class="author-info">
+									<h4>Sarah Johnson</h4>
+									<p class="text-secondary">Parent of 9th Grade Student</p>
+								</div>
+							</div>
+						</div>
+						
+						<div class="testimonial-card">
+							<div class="testimonial-content">
+								<p>"The tutors at IMH helped me understand calculus concepts that seemed impossible. Now I'm confident in my math skills!"</p>
+							</div>
+							<div class="testimonial-author">
+								<div class="author-avatar">
+									<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<circle cx="12" cy="8" r="5" fill="var(--color-secondary-teal)"/>
+										<path d="M20 21c0-2.76-2.24-5-5-5H9c-2.76 0-5 2.24-5 5" stroke="var(--color-secondary-teal)" stroke-width="2" fill="none"/>
+									</svg>
+								</div>
+								<div class="author-info">
+									<h4>Michael Chen</h4>
+									<p class="text-secondary">12th Grade Student</p>
+								</div>
+							</div>
+						</div>
+						
+						<div class="testimonial-card">
+							<div class="testimonial-content">
+								<p>"As a parent, I was worried about my son's math struggles. IMH's approach built his confidence and improved his grades significantly."</p>
+							</div>
+							<div class="testimonial-author">
+								<div class="author-avatar">
+									<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<circle cx="12" cy="8" r="5" fill="var(--color-accent-orange)"/>
+										<path d="M20 21c0-2.76-2.24-5-5-5H9c-2.76 0-5 2.24-5 5" stroke="var(--color-accent-orange)" stroke-width="2" fill="none"/>
+									</svg>
+								</div>
+								<div class="author-info">
+									<h4>David Rodriguez</h4>
+									<p class="text-secondary">Parent of 7th Grade Student</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Instructor Profiles Section -->
+			<section class="edu-section" style="background: var(--color-background-light);">
+				<div class="edu-container">
+					<header class="text-center mb-6">
+						<h2>Meet Our Expert Tutors</h2>
+						<p class="text-secondary">Learn from qualified instructors with advanced degrees and years of teaching experience</p>
+					</header>
+					
+					<div class="edu-grid edu-grid-4">
+						<div class="instructor-card">
+							<div class="instructor-avatar">
+								<svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="12" cy="8" r="5" fill="var(--color-primary-blue)"/>
+									<path d="M20 21c0-2.76-2.24-5-5-5H9c-2.76 0-5 2.24-5 5" stroke="var(--color-primary-blue)" stroke-width="2" fill="none"/>
+								</svg>
+							</div>
+							<h3>Dr. Emily Zhang</h3>
+							<p class="instructor-title">PhD Mathematics, MIT</p>
+							<p class="text-secondary">Specializes in calculus and advanced mathematics. 8+ years of teaching experience.</p>
+						</div>
+						
+						<div class="instructor-card">
+							<div class="instructor-avatar">
+								<svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="12" cy="8" r="5" fill="var(--color-secondary-teal)"/>
+									<path d="M20 21c0-2.76-2.24-5-5-5H9c-2.76 0-5 2.24-5 5" stroke="var(--color-secondary-teal)" stroke-width="2" fill="none"/>
+								</svg>
+							</div>
+							<h3>Prof. James Wilson</h3>
+							<p class="instructor-title">MSc Applied Mathematics, Stanford</p>
+							<p class="text-secondary">Expert in algebra and geometry. Passionate about making math accessible to all students.</p>
+						</div>
+						
+						<div class="instructor-card">
+							<div class="instructor-avatar">
+								<svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="12" cy="8" r="5" fill="var(--color-accent-orange)"/>
+									<path d="M20 21c0-2.76-2.24-5-5-5H9c-2.76 0-5 2.24-5 5" stroke="var(--color-accent-orange)" stroke-width="2" fill="none"/>
+								</svg>
+							</div>
+							<h3>Dr. Maria Garcia</h3>
+							<p class="instructor-title">PhD Statistics, UC Berkeley</p>
+							<p class="text-secondary">Specializes in statistics and probability. Helps students build strong analytical skills.</p>
+						</div>
+						
+						<div class="instructor-card">
+							<div class="instructor-avatar">
+								<svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="12" cy="8" r="5" fill="var(--color-primary-blue)"/>
+									<path d="M20 21c0-2.76-2.24-5-5-5H9c-2.76 0-5 2.24-5 5" stroke="var(--color-primary-blue)" stroke-width="2" fill="none"/>
+								</svg>
+							</div>
+							<h3>Prof. Alex Thompson</h3>
+							<p class="instructor-title">MSc Mathematics Education, Harvard</p>
+							<p class="text-secondary">Expert in elementary and middle school math. Creates engaging learning experiences.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Pricing Plans Section -->
+			<section class="edu-section">
+				<div class="edu-container">
+					<header class="text-center mb-6">
+						<h2>Transparent Pricing Plans</h2>
+						<p class="text-secondary">Choose the plan that best fits your learning needs and budget</p>
+					</header>
+					
+					<div class="edu-grid edu-grid-3">
+						<div class="pricing-card">
+							<div class="pricing-header">
+								<h3>Starter</h3>
+								<div class="price">
+									<span class="currency">$</span>
+									<span class="amount">25</span>
+									<span class="period">/hour</span>
+								</div>
+							</div>
+							<ul class="pricing-features">
+								<li>1-on-1 tutoring sessions</li>
+								<li>Flexible scheduling</li>
+								<li>Homework help</li>
+								<li>Progress tracking</li>
+							</ul>
+							<div class="pricing-action">
+								<a href="contact.html" class="btn-secondary">Get Started</a>
+							</div>
+						</div>
+						
+						<div class="pricing-card featured">
+							<div class="pricing-header">
+								<h3>Popular</h3>
+								<div class="price">
+									<span class="currency">$</span>
+									<span class="amount">20</span>
+									<span class="period">/hour</span>
+								</div>
+								<div class="discount">Save 20%</div>
+							</div>
+							<ul class="pricing-features">
+								<li>Everything in Starter</li>
+								<li>Weekly sessions (4/month)</li>
+								<li>Study materials included</li>
+								<li>Practice tests</li>
+								<li>Parent progress reports</li>
+							</ul>
+							<div class="pricing-action">
+								<a href="contact.html" class="btn-primary">Choose Popular</a>
+							</div>
+						</div>
+						
+						<div class="pricing-card">
+							<div class="pricing-header">
+								<h3>Premium</h3>
+								<div class="price">
+									<span class="currency">$</span>
+									<span class="amount">18</span>
+									<span class="period">/hour</span>
+								</div>
+								<div class="discount">Save 28%</div>
+							</div>
+							<ul class="pricing-features">
+								<li>Everything in Popular</li>
+								<li>Daily sessions (20/month)</li>
+								<li>Custom learning plan</li>
+								<li>Exam preparation</li>
+								<li>24/7 support</li>
+								<li>Guaranteed improvement</li>
+							</ul>
+							<div class="pricing-action">
+								<a href="contact.html" class="btn-secondary">Choose Premium</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- FAQ Section -->
+			<section class="edu-section" style="background: var(--color-background-light);">
+				<div class="edu-container">
+					<header class="text-center mb-6">
+						<h2>Frequently Asked Questions</h2>
+						<p class="text-secondary">Get answers to common questions about our tutoring services</p>
+					</header>
+					
+					<div class="faq-container">
+						<div class="faq-item">
+							<div class="faq-question" onclick="toggleFAQ(this)">
+								<h3>How do I schedule a tutoring session?</h3>
+								<svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M7 10l5 5 5-5z" fill="currentColor"/>
+								</svg>
+							</div>
+							<div class="faq-answer">
+								<p>You can schedule a session by contacting us through our contact form, calling us directly, or using our online booking system. We offer flexible scheduling to accommodate your needs.</p>
+							</div>
+						</div>
+						
+						<div class="faq-item">
+							<div class="faq-question" onclick="toggleFAQ(this)">
+								<h3>What qualifications do your tutors have?</h3>
+								<svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M7 10l5 5 5-5z" fill="currentColor"/>
+								</svg>
+							</div>
+							<div class="faq-answer">
+								<p>All our tutors hold advanced degrees in mathematics or related fields from top universities. They have extensive teaching experience and undergo regular training to ensure the highest quality instruction.</p>
+							</div>
+						</div>
+						
+						<div class="faq-item">
+							<div class="faq-question" onclick="toggleFAQ(this)">
+								<h3>Do you offer online tutoring?</h3>
+								<svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M7 10l5 5 5-5z" fill="currentColor"/>
+								</svg>
+							</div>
+							<div class="faq-answer">
+								<p>Yes, we offer both online and in-person tutoring sessions. Our online platform provides the same high-quality instruction with the convenience of learning from anywhere.</p>
+							</div>
+						</div>
+						
+						<div class="faq-item">
+							<div class="faq-question" onclick="toggleFAQ(this)">
+								<h3>What subjects do you cover?</h3>
+								<svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M7 10l5 5 5-5z" fill="currentColor"/>
+								</svg>
+							</div>
+							<div class="faq-answer">
+								<p>We cover all mathematics subjects from elementary school through college level, including algebra, geometry, calculus, statistics, trigonometry, and more specialized topics.</p>
+							</div>
+						</div>
+						
+						<div class="faq-item">
+							<div class="faq-question" onclick="toggleFAQ(this)">
+								<h3>How do you track student progress?</h3>
+								<svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M7 10l5 5 5-5z" fill="currentColor"/>
+								</svg>
+							</div>
+							<div class="faq-answer">
+								<p>We use comprehensive progress tracking that includes regular assessments, homework completion rates, test scores, and detailed reports shared with both students and parents.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Resources Section -->
+			<section id="resources" class="fullscreen-section">
+				<div class="section-highlight"></div>
+				<header>
+					<h2 class="section-title">Resources</h2>
+				</header>
+				<div class="row">
+					<div class="col-4 col-12-medium">
+						<section class="box edu-card">
+							<div class="image featured" style="background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%); height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; border-radius: 12px;">
+								<svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" fill="white"/>
+								</svg>
+							</div>
+							<h3>Mathematics Roadmap</h3>
+							<p>Explore our interactive guide to mathematical topics organized by difficulty level, from foundational to advanced concepts.</p>
+							<footer>
+								<a href="features.html" class="button alt btn-primary">Explore Roadmap</a>
+							</footer>
+						</section>
+					</div>
+					<div class="col-4 col-12-medium">
+						<section class="box edu-card">
+							<div class="image featured" style="background: linear-gradient(135deg, #0891B2 0%, #06B6D4 100%); height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; border-radius: 12px;">
+								<svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 2 2h8c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-5 2h2v3l-1-.75L9 7V4zm3 13H8v-2h4v2zm2-4H8v-2h6v2zm0-4H8V7h6v2z" fill="white"/>
+								</svg>
+							</div>
+							<h3>Practice Tests</h3>
+							<p>Practice problems, mock exams, and study guides designed for success.</p>
+							<footer>
+								<a href="quizz.html" class="button alt btn-teal">Take Quiz</a>
+							</footer>
+						</section>
+					</div>
+					<div class="col-4 col-12-medium">
+						<section class="box edu-card">
+							<div class="image featured" style="background: linear-gradient(135deg, #F97316 0%, #FB923C 100%); height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; border-radius: 12px;">
+								<svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zM14 13h-3v3H9v-3H6v-2h3V8h2v3h3v2z" fill="white"/>
+								</svg>
+							</div>
+							<h3>Video Tutorials</h3>
+							<p>Watch detailed explanations of complex math problems with bilingual video support.</p>
+							<footer>
+								<a href="vids.html" class="button alt" style="background-color: var(--color-accent-orange) !important; color: white !important;">Watch Videos</a>
+							</footer>
+						</section>
+					</div>
+				</div>
+			</section>
+
+			<!-- About Section -->
+			<section id="about" class="fullscreen-section">
+				<div class="section-highlight"></div>
+				<div class="content-wrapper">
+					<header>
+						<h2 class="section-title">About International Math Hub</h2>
+					</header>
+					<p>
+						We are a platform dedicated to advancing mathematics education and collaboration. Our mission is to provide accessible resources for Mongolia's General Entrance Exam and create a global community of math enthusiasts.
+						<a href="about.html" class="highlight-link">Learn more</a>.
+					</p>
+				</div>
+			</section>
+
+			<!-- Contact Section -->
+			<section id="contact" class="fullscreen-section">
+				<div class="section-highlight"></div>
+				<div class="content-wrapper">
+					<header>
+						<h2 class="section-title">Get in Touch</h2>
+					</header>
+					<p>
+						Have questions or need support? Reach out to us via email or follow us on social media.
+						<a href="contact.html" class="highlight-link">Contact us</a>.
+					</p>
+				</div>
+			</section>
+
+			<!-- CTA section -->
+			<section class="edu-section text-center" style="background: var(--color-background-light);">
+				<div class="edu-container">
+				<h2>Ready to start your mathematical journey?</h2>
+					<div class="edu-grid edu-grid-2" style="max-width: 600px; margin: var(--space-6) auto 0 auto;">
+						<a href="features.html" class="btn-primary">View Math Roadmap</a>
+						<a href="tutoring.html" class="btn-teal">Schedule Tutoring</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- Footer -->
+			<section id="footer">
+				<div class="footer-content">
+					<div class="footer-section">
+						<div class="footer-brand">
+							<h3>International Math Hub</h3>
+							<p>Empowering Mongolian students with world-class mathematics education. Expert tutors, personalized learning, and comprehensive resources for every grade level.</p>
+						</div>
+					</div>
+					
+					<div class="footer-section">
+						<h4>Services</h4>
+						<ul>
+							<li><a href="tutoring.html">Online Tutoring</a></li>
+							<li><a href="resources.html">Study Resources</a></li>
+							<li><a href="quizz.html">Practice Tests</a></li>
+							<li><a href="vids.html">Video Tutorials</a></li>
+						</ul>
+					</div>
+					
+					<div class="footer-section">
+						<h4>Topics</h4>
+						<ul>
+							<li><a href="topics/algebra/linear-and-quadratic-equations.html">Algebra</a></li>
+							<li><a href="topics/calculus/differentiation.html">Calculus</a></li>
+							<li><a href="topics/geometry/euclidean-geometry.html">Geometry</a></li>
+							<li><a href="topics/statistics/descriptive-statistics.html">Statistics</a></li>
+						</ul>
+					</div>
+					
+					<div class="footer-section">
+						<h4>Support</h4>
+						<ul>
+							<li><a href="contact.html">Contact Us</a></li>
+							<li><a href="about.html">About</a></li>
+							<li><a href="blog.html">Blog</a></li>
+							<li><a href="features.html">Features</a></li>
+						</ul>
+					</div>
+					
+					<div class="footer-section">
+						<h4>Connect</h4>
+						<div class="social-links">
+							<a href="#" class="social-link" title="Facebook">
+								<i class="fab fa-facebook-f"></i>
+							</a>
+							<a href="#" class="social-link" title="YouTube">
+								<i class="fab fa-youtube"></i>
+							</a>
+							<a href="#" class="social-link" title="Twitter">
+								<i class="fab fa-twitter"></i>
+							</a>
+							<a href="#" class="social-link" title="Instagram">
+								<i class="fab fa-instagram"></i>
+							</a>
+							<a href="#" class="social-link" title="LinkedIn">
+								<i class="fab fa-linkedin-in"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+				
+				<div class="footer-bottom">
+					<div class="footer-bottom-content">
+						<div class="footer-legal">
+							<ul>
+								<li><a href="#">Terms of Service</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+								<li><a href="#">Cookie Policy</a></li>
+							</ul>
+						</div>
+						<div class="footer-copyright">
+							<p>&copy; 2025 International Math Hub. All rights reserved.</p>
+						</div>
+					</div>
+				</div>
+			</section> 
+		</div> 
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/main.js"></script>
+		
+		<script>
+			// Grade Levels Toggle Functionality
+			document.addEventListener('DOMContentLoaded', function() {
+				const gradeToggle = document.getElementById('gradeToggle');
+				const gradeGrid = document.getElementById('gradeGrid');
+				
+				console.log('Grade toggle element:', gradeToggle);
+				console.log('Grade grid element:', gradeGrid);
+				
+				if (gradeToggle && gradeGrid) {
+					gradeToggle.addEventListener('click', function(e) {
+						e.preventDefault();
+						e.stopPropagation();
+						
+						console.log('Grade toggle clicked!');
+						
+						const isHidden = !gradeGrid.classList.contains('show');
+						
+						if (isHidden) {
+							// Show the grid
+							gradeGrid.classList.add('show');
+							gradeToggle.classList.add('expanded');
+							console.log('Showing grid');
+						} else {
+							// Hide the grid
+							gradeGrid.classList.remove('show');
+							gradeToggle.classList.remove('expanded');
+							console.log('Hiding grid');
+						}
+					});
+					
+					console.log('Event listener attached successfully');
+				} else {
+					console.log('Could not find grade toggle or grid elements');
+				}
+			});
+
+			// Typewriter Animation
+			document.addEventListener('DOMContentLoaded', function() {
+				const typewriterText = document.getElementById('rotating-text');
+				const texts = [
+					'Helping Your Child Succeed—Wherever You Live',
+					'From Confused to Confident—with Tutors Who Understand',
+					'Expert Math Tutors for Mongolian Students',
+					'Boosting Confidence, One Concept at a Time',
+					'Igniting Curiosity Through Quality Teaching',
+					'Inspiring the Next Generation of Thinkers'
+				];
+				
+				let currentIndex = 0;
+				let currentText = '';
+				let isDeleting = false;
+				let typeSpeed = 100;
+				let deleteSpeed = 50;
+				let pauseTime = 2000;
+				
+				function typeWriter() {
+					const fullText = texts[currentIndex];
+					
+					if (isDeleting) {
+						// Delete characters
+						currentText = fullText.substring(0, currentText.length - 1);
+						typewriterText.textContent = currentText;
+						
+						if (currentText === '') {
+							isDeleting = false;
+							currentIndex = (currentIndex + 1) % texts.length;
+							setTimeout(typeWriter, 500);
+							return;
+						}
+						
+						setTimeout(typeWriter, deleteSpeed);
+					} else {
+						// Type characters
+						currentText = fullText.substring(0, currentText.length + 1);
+						typewriterText.textContent = currentText;
+						
+						if (currentText === fullText) {
+							// Pause at the end of typing
+							setTimeout(() => {
+								isDeleting = true;
+								typeWriter();
+							}, pauseTime);
+							return;
+						}
+						
+						setTimeout(typeWriter, typeSpeed);
+					}
+				}
+				
+				// Start the typewriter effect after 1 second
+				setTimeout(typeWriter, 1000);
+			});
+
+			// FAQ Toggle Functionality
+			function toggleFAQ(element) {
+				const faqItem = element.parentElement;
+				const isActive = faqItem.classList.contains('active');
+				
+				// Close all FAQ items
+				document.querySelectorAll('.faq-item').forEach(item => {
+					item.classList.remove('active');
+				});
+				
+				// Open clicked item if it wasn't active
+				if (!isActive) {
+					faqItem.classList.add('active');
+				}
+			}
+
+			// Animated Counter for Statistics
+			function animateCounter(element, target, duration = 2000) {
+				let start = 0;
+				const increment = target / (duration / 16);
+				
+				function updateCounter() {
+					start += increment;
+					if (start < target) {
+						element.textContent = Math.floor(start) + '+';
+						requestAnimationFrame(updateCounter);
+					} else {
+						element.textContent = target + '+';
+					}
+				}
+				
+				updateCounter();
+			}
+
+			// Initialize counters when page loads
+			document.addEventListener('DOMContentLoaded', function() {
+				const counters = document.querySelectorAll('.trust-number');
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							const counter = entry.target;
+							const text = counter.textContent;
+							const number = parseInt(text.replace(/[^\d]/g, ''));
+							animateCounter(counter, number);
+							observer.unobserve(counter);
+						}
+					});
+				});
+				
+				counters.forEach(counter => observer.observe(counter));
+			});
+		</script>
+	</body>
+</html>
+
+

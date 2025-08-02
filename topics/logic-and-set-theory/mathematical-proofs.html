@@ -1,0 +1,316 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Mathematical Proofs - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Mathematical Proofs</h2>
+                <p class="text-secondary">Understanding the art and science of rigorous mathematical reasoning</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#logic-and-set-theory">Logic and Set Theory</a> &raquo;
+                    <span>Mathematical Proofs</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Mathematical Proofs</h3>
+                    
+                    <p>A mathematical proof is a rigorous argument that demonstrates the truth of a mathematical statement. Proofs are the foundation of mathematical knowledge, providing certainty about mathematical truths and insights into the structure of mathematical theories.</p>
+                    
+                    <p>Unlike in other sciences where theories are validated through experimental evidence, mathematics relies on logical deduction from axioms and previously established results. This deductive approach gives mathematics its unique character of absolute certainty.</p>
+                    
+                    <h4>The Structure of a Proof</h4>
+                    <p>A typical proof consists of:</p>
+                    <ul>
+                        <li><strong>Statement:</strong> The proposition to be proven, often in the form of "if P, then Q" (implication).</li>
+                        <li><strong>Given Information:</strong> The assumptions or conditions that are known to be true.</li>
+                        <li><strong>Chain of Reasoning:</strong> Logical steps connecting the given information to the conclusion.</li>
+                        <li><strong>Conclusion:</strong> The final result that confirms the statement is true.</li>
+                    </ul>
+                    
+                    <h4>Proof and Mathematical Rigor</h4>
+                    <p class="text-secondary">Mathematical rigor refers to the precision and thoroughness required in proofs. A rigorous proof:</p>
+                    <ul>
+                        <li>Starts from clearly stated assumptions</li>
+                        <li>Follows logically valid steps</li>
+                        <li>Considers all possible cases</li>
+                        <li>Makes no unstated assumptions</li>
+                        <li>Contains no logical fallacies</li>
+                    </ul>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Basic Methods of Proof</h3>
+                    
+                    <h4>Direct Proof</h4>
+                    <p>A direct proof starts with the hypotheses and, through a sequence of logical deductions, arrives at the conclusion. This method is often used to prove statements of the form "if P, then Q."</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Direct Proof</div>
+                        <p><strong>Theorem:</strong> If n is an even integer, then n² is even.</p>
+                        <p><strong>Proof:</strong></p>
+                        <p>1. Since n is even, we can write n = 2k for some integer k.</p>
+                        <p>2. Then n² = (2k)² = 4k² = 2(2k²).</p>
+                        <p>3. Since 2k² is an integer, n² = 2(2k²) is even by definition.</p>
+                        <p>4. Therefore, if n is even, then n² is even.</p>
+                    </div>
+                    
+                    <h4>Proof by Contraposition</h4>
+                    <p>A proof by contraposition uses the logical equivalence between "if P, then Q" and "if not Q, then not P." Instead of proving the original statement, we prove its contrapositive.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Proof by Contraposition</div>
+                        <p><strong>Theorem:</strong> If n² is odd, then n is odd.</p>
+                        <p><strong>Proof:</strong></p>
+                        <p>We'll prove the contrapositive: "If n is not odd (i.e., n is even), then n² is not odd (i.e., n² is even)."</p>
+                        <p>1. Assume n is even, so n = 2k for some integer k.</p>
+                        <p>2. Then n² = (2k)² = 4k² = 2(2k²).</p>
+                        <p>3. Since 2k² is an integer, n² = 2(2k²) is even.</p>
+                        <p>4. Therefore, if n is even, then n² is even (or equivalently, if n² is odd, then n is odd).</p>
+                    </div>
+                    
+                    <h4>Proof by Contradiction</h4>
+                    <p>A proof by contradiction assumes the statement to be proven is false, and shows that this assumption leads to a logical contradiction. This implies the statement must be true.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Proof by Contradiction</div>
+                        <p><strong>Theorem:</strong> √2 is irrational.</p>
+                        <p><strong>Proof:</strong></p>
+                        <p>1. Assume, for contradiction, that √2 is rational.</p>
+                        <p>2. Then √2 = a/b for some integers a and b (b ≠ 0) with no common factors.</p>
+                        <p>3. Squaring both sides: 2 = a²/b²</p>
+                        <p>4. Multiplying both sides by b²: 2b² = a²</p>
+                        <p>5. Since the left side is even, a² must be even, which means a must be even (we showed earlier that if n² is even, then n is even).</p>
+                        <p>6. So a = 2k for some integer k.</p>
+                        <p>7. Substituting: 2b² = (2k)² = 4k²</p>
+                        <p>8. Therefore, b² = 2k²</p>
+                        <p>9. By the same reasoning, b² is even, so b is even.</p>
+                        <p>10. But this contradicts our assumption that a and b have no common factors (since they're both even).</p>
+                        <p>11. Therefore, our assumption that √2 is rational must be false, so √2 is irrational.</p>
+                    </div>
+                    
+                    <h4>Proof by Induction</h4>
+                    <p class="text-secondary">Mathematical induction is used to prove that a statement is true for all natural numbers or integers starting from some base case. It involves two steps:</p>
+                    <ol>
+                        <li><strong>Base Case:</strong> Prove the statement is true for the smallest value (often n = 1 or n = 0).</li>
+                        <li><strong>Inductive Step:</strong> Assume the statement is true for some arbitrary k, and prove it's true for k+1.</li>
+                    </ol>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Proof by Induction</div>
+                        <p><strong>Theorem:</strong> For all natural numbers n, 1 + 2 + 3 + ... + n = n(n+1)/2.</p>
+                        <p><strong>Base Case (n = 1):</strong></p>
+                        <p>Left side: 1</p>
+                        <p>Right side: 1(1+1)/2 = 1</p>
+                        <p>The formula holds for n = 1.</p>
+                        <p><strong>Inductive Step:</strong></p>
+                        <p>Assume the formula holds for n = k: 1 + 2 + ... + k = k(k+1)/2</p>
+                        <p>We need to prove it holds for n = k+1: 1 + 2 + ... + k + (k+1) = (k+1)(k+2)/2</p>
+                        <p>Starting with the left side:</p>
+                        <p>1 + 2 + ... + k + (k+1) = [1 + 2 + ... + k] + (k+1) = k(k+1)/2 + (k+1)</p>
+                        <p>= (k+1)[k/2 + 1] = (k+1)[k/2 + 2/2] = (k+1)(k+2)/2</p>
+                        <p>This equals the right side, so the formula holds for n = k+1.</p>
+                        <p>By the principle of mathematical induction, the formula holds for all natural numbers n.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Advanced Proof Techniques</h3>
+                    
+                    <h4>Proof by Cases</h4>
+                    <p>A proof by cases divides the problem into several exhaustive cases and proves each case separately. This technique is useful when different scenarios require different approaches.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Proof by Cases</div>
+                        <p><strong>Theorem:</strong> For any integer n, the value of n² - n + 41 is prime for n = 1, 2, ..., 40.</p>
+                        <p><strong>Proof:</strong></p>
+                        <p>We need to check each case n = 1, 2, ..., 40 separately:</p>
+                        <p>For n = 1: 1² - 1 + 41 = 41, which is prime.</p>
+                        <p>For n = 2: 2² - 2 + 41 = 43, which is prime.</p>
+                        <p>...</p>
+                        <p>For n = 40: 40² - 40 + 41 = 1601, which is prime.</p>
+                        <p>Note: We could verify each case explicitly or use computational tools.</p>
+                    </div>
+                    
+                    <h4>Proof by Counterexample</h4>
+                    <p>A proof by counterexample disproves a universal statement ("For all x, P(x)") by finding a specific example where the statement is false.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Proof by Counterexample</div>
+                        <p><strong>Statement:</strong> For all integers n, the polynomial n² - n + 41 always produces a prime number.</p>
+                        <p><strong>Counterexample:</strong></p>
+                        <p>Let's try n = 41:</p>
+                        <p>41² - 41 + 41 = 1681 = 41²</p>
+                        <p>Since 1681 = 41² is not prime, the statement is false.</p>
+                    </div>
+                    
+                    <h4>Existence and Uniqueness Proofs</h4>
+                    <p>Some theorems assert the existence or uniqueness of a mathematical object. These proofs often require special approaches:</p>
+                    <ul>
+                        <li><strong>Existence Proof:</strong> Show that at least one object with the required properties exists.</li>
+                        <li><strong>Uniqueness Proof:</strong> Show that there cannot be more than one such object.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Existence and Uniqueness Proof</div>
+                        <p><strong>Theorem:</strong> For any real numbers a, b, and c, where a ≠ 0, the quadratic equation ax² + bx + c = 0 has exactly one solution if and only if b² = 4ac.</p>
+                        <p><strong>Proof:</strong></p>
+                        <p><strong>Existence:</strong> Using the quadratic formula, x = (-b ± √(b² - 4ac))/(2a)</p>
+                        <p>When b² = 4ac, the discriminant is zero, so x = -b/(2a)</p>
+                        <p>Since a ≠ 0, this solution exists.</p>
+                        <p><strong>Uniqueness:</strong> When b² = 4ac, the two solutions given by the quadratic formula x = (-b ± √(b² - 4ac))/(2a) coincide as x = -b/(2a).</p>
+                        <p>Conversely, if there is exactly one solution, then the discriminant must be zero (b² - 4ac = 0), which means b² = 4ac.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Common Proof Strategies and Hints</h3>
+                    
+                    <h4>Working Backward</h4>
+                    <p>Sometimes it's helpful to start from the conclusion and work backward to the given conditions. This can provide insights into the forward proof path.</p>
+                    
+                    <h4>Introducing Auxiliary Elements</h4>
+                    <p>Creating additional constructions, variables, or objects can simplify complex proofs.</p>
+                    
+                    <h4>Proof by Minimum Counterexample</h4>
+                    <p>When trying to prove a statement for all natural numbers, assume there's a counterexample and consider the smallest one. This often leads to a contradiction.</p>
+                    
+                    <h4>Proof by Symmetry or Invariance</h4>
+                    <p>Identifying symmetries or invariant properties can simplify proofs by reducing the number of cases to consider.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Using Symmetry</div>
+                        <p><strong>Theorem:</strong> In a triangle, if two sides are equal, then the angles opposite these sides are equal.</p>
+                        <p><strong>Proof:</strong></p>
+                        <p>Consider a triangle ABC where AB = AC.</p>
+                        <p>The line from A to the midpoint of BC creates two triangles.</p>
+                        <p>By the properties of congruent triangles (Side-Side-Side congruence), these two triangles are congruent.</p>
+                        <p>Therefore, the angles opposite the equal sides must be equal: ∠B = ∠C.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Fallacies and Common Errors in Proofs</h3>
+                    
+                    <h4>Circular Reasoning (Begging the Question)</h4>
+                    <p>This fallacy occurs when the conclusion is assumed, directly or indirectly, in the premises of the argument.</p>
+                    
+                    <h4>Affirming the Consequent</h4>
+                    <p>The logical fallacy of concluding P from "P implies Q" and Q. For example: "If it rains, the ground is wet. The ground is wet, so it must have rained."</p>
+                    
+                    <h4>Misapplying Proof Techniques</h4>
+                    <p>Using a proof technique inappropriately, such as using induction without proving the base case.</p>
+                    
+                    <h4>Overlooking Special Cases</h4>
+                    <p>Failing to consider all possible scenarios, especially edge cases or degenerate cases.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Spotting a Fallacy</div>
+                        <p><strong>Flawed "Proof":</strong> All horses are the same color.</p>
+                        <p><strong>Proposed Induction Proof:</strong></p>
+                        <p>Base case (n = 1): In a set of 1 horse, all horses are the same color. (True)</p>
+                        <p>Inductive step: Assume that in any set of k horses, all horses are the same color.</p>
+                        <p>Consider a set of k+1 horses. Remove one horse to get a set of k horses, which all have the same color by the inductive hypothesis.</p>
+                        <p>Now reinsert the removed horse and remove a different horse. The resulting set of k horses again all have the same color.</p>
+                        <p>Therefore, all k+1 horses must have the same color.</p>
+                        <p><strong>The Flaw:</strong> The induction breaks down at the step from n = 1 to n = 2. With two horses, removing one and then the other doesn't provide a common set to establish the same color.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Writing and Reading Proofs</h3>
+                    
+                    <h4>Elements of a Well-Written Proof</h4>
+                    <ul>
+                        <li><strong>Clarity:</strong> Each step should be clearly stated and justified.</li>
+                        <li><strong>Organization:</strong> The proof should follow a logical structure.</li>
+                        <li><strong>Economy:</strong> Include necessary details, but avoid excessive verbosity.</li>
+                        <li><strong>Motivation:</strong> When appropriate, explain the intuition behind key steps.</li>
+                    </ul>
+                    
+                    <h4>Reading and Understanding Proofs</h4>
+                    <ul>
+                        <li><strong>Active Reading:</strong> Try to anticipate the next step or fill in missing details.</li>
+                        <li><strong>Identify Structure:</strong> Recognize the proof technique being used.</li>
+                        <li><strong>Focus on Transitions:</strong> Pay attention to how different parts of the proof connect.</li>
+                        <li><strong>Check Completeness:</strong> Ensure all cases are covered and all claims are justified.</li>
+                    </ul>
+                    
+                    <div class="navigation">
+                        <a href="functions-and-relations.html" class="prev-next-btn">Previous: Functions & Relations</a>
+                        <span></span> <!-- No next link since this is the last topic -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

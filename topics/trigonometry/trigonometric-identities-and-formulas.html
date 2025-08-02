@@ -1,0 +1,411 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Trigonometric Identities & Formulas - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Trigonometric Identities & Formulas</h2>
+                <p>The essential relationships between trigonometric functions</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#trigonometry">Trigonometry</a> &raquo;
+                    <span>Trigonometric Identities & Formulas</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Basic Trigonometric Functions</h3>
+                    
+                    <p class="text-secondary">Trigonometric functions are defined in terms of the coordinates of a point on the unit circle or as ratios of the sides of a right triangle. For an angle θ in standard position:</p>
+                    
+                    <div class="math-formula">
+                        sin(θ) = opposite / hypotenuse<br>
+                        cos(θ) = adjacent / hypotenuse<br>
+                        tan(θ) = opposite / adjacent = sin(θ) / cos(θ)<br>
+                        csc(θ) = 1 / sin(θ)<br>
+                        sec(θ) = 1 / cos(θ)<br>
+                        cot(θ) = 1 / tan(θ) = cos(θ) / sin(θ)
+                    </div>
+                    
+                    <p>On the unit circle, for a point (x, y) corresponding to angle θ:</p>
+                    <div class="math-formula">
+                        sin(θ) = y<br>
+                        cos(θ) = x<br>
+                        tan(θ) = y / x (when x ≠ 0)
+                    </div>
+                    
+                    <p>The domains and ranges of these functions are important to understand:</p>
+                    <ul>
+                        <li><strong>sin(θ)</strong>: Domain: all real numbers; Range: [-1, 1]</li>
+                        <li><strong>cos(θ)</strong>: Domain: all real numbers; Range: [-1, 1]</li>
+                        <li><strong>tan(θ)</strong>: Domain: all real numbers except θ = π/2 + nπ; Range: all real numbers</li>
+                        <li><strong>csc(θ)</strong>: Domain: all real numbers except θ = nπ; Range: (-∞, -1] ∪ [1, ∞)</li>
+                        <li><strong>sec(θ)</strong>: Domain: all real numbers except θ = π/2 + nπ; Range: (-∞, -1] ∪ [1, ∞)</li>
+                        <li><strong>cot(θ)</strong>: Domain: all real numbers except θ = nπ; Range: all real numbers</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 1: Evaluating Trigonometric Functions</div>
+                        <p>Find the values of all six trigonometric functions for θ = π/4.</p>
+                        <p>For θ = π/4, the point on the unit circle is (√2/2, √2/2).</p>
+                        <p>sin(π/4) = √2/2 ≈ 0.7071</p>
+                        <p>cos(π/4) = √2/2 ≈ 0.7071</p>
+                        <p>tan(π/4) = sin(π/4) / cos(π/4) = (√2/2) / (√2/2) = 1</p>
+                        <p>csc(π/4) = 1 / sin(π/4) = 1 / (√2/2) = √2 ≈ 1.4142</p>
+                        <p>sec(π/4) = 1 / cos(π/4) = 1 / (√2/2) = √2 ≈ 1.4142</p>
+                        <p>cot(π/4) = 1 / tan(π/4) = 1 / 1 = 1</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Fundamental Trigonometric Identities</h3>
+                    
+                    <p class="text-secondary">Trigonometric identities are equations involving trigonometric functions that are true for all values in the functions' domains. These fundamental identities form the basis for solving trigonometric problems.</p>
+                    
+                    <h4>Pythagorean Identities</h4>
+                    <div class="math-formula">
+                        sin²(θ) + cos²(θ) = 1<br>
+                        tan²(θ) + 1 = sec²(θ)<br>
+                        1 + cot²(θ) = csc²(θ)
+                    </div>
+                    
+                    <h4>Reciprocal Identities</h4>
+                    <div class="math-formula">
+                        sin(θ) = 1 / csc(θ)<br>
+                        cos(θ) = 1 / sec(θ)<br>
+                        tan(θ) = 1 / cot(θ)
+                    </div>
+                    
+                    <h4>Quotient Identities</h4>
+                    <div class="math-formula">
+                        tan(θ) = sin(θ) / cos(θ)<br>
+                        cot(θ) = cos(θ) / sin(θ)
+                    </div>
+                    
+                    <h4>Negative Angle Identities</h4>
+                    <div class="math-formula">
+                        sin(-θ) = -sin(θ)<br>
+                        cos(-θ) = cos(θ)<br>
+                        tan(-θ) = -tan(θ)<br>
+                        csc(-θ) = -csc(θ)<br>
+                        sec(-θ) = sec(θ)<br>
+                        cot(-θ) = -cot(θ)
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 2: Using Fundamental Identities</div>
+                        <p>If sin(θ) = 3/5 and θ is in the first quadrant, find cos(θ), tan(θ), and all other trigonometric functions.</p>
+                        <p>Using the Pythagorean identity sin²(θ) + cos²(θ) = 1:</p>
+                        <p>cos²(θ) = 1 - sin²(θ) = 1 - (3/5)² = 1 - 9/25 = 16/25</p>
+                        <p>Since θ is in the first quadrant, cos(θ) is positive, so cos(θ) = 4/5</p>
+                        <p>tan(θ) = sin(θ) / cos(θ) = (3/5) / (4/5) = 3/4</p>
+                        <p>csc(θ) = 1 / sin(θ) = 1 / (3/5) = 5/3</p>
+                        <p>sec(θ) = 1 / cos(θ) = 1 / (4/5) = 5/4</p>
+                        <p>cot(θ) = 1 / tan(θ) = 1 / (3/4) = 4/3</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Addition and Subtraction Formulas</h3>
+                    
+                    <p>These formulas allow us to find the trigonometric values of sums and differences of angles.</p>
+                    
+                    <h4>Sine Addition and Subtraction Formulas</h4>
+                    <div class="math-formula">
+                        sin(α + β) = sin(α)cos(β) + cos(α)sin(β)<br>
+                        sin(α - β) = sin(α)cos(β) - cos(α)sin(β)
+                    </div>
+                    
+                    <h4>Cosine Addition and Subtraction Formulas</h4>
+                    <div class="math-formula">
+                        cos(α + β) = cos(α)cos(β) - sin(α)sin(β)<br>
+                        cos(α - β) = cos(α)cos(β) + sin(α)sin(β)
+                    </div>
+                    
+                    <h4>Tangent Addition and Subtraction Formulas</h4>
+                    <div class="math-formula">
+                        tan(α + β) = [tan(α) + tan(β)] / [1 - tan(α)tan(β)]<br>
+                        tan(α - β) = [tan(α) - tan(β)] / [1 + tan(α)tan(β)]
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 3: Using Addition Formulas</div>
+                        <p>Find the exact value of sin(75°) using the addition formula.</p>
+                        <p>We can express 75° as 45° + 30°, both of which have known trigonometric values.</p>
+                        <p>Using the addition formula for sine:</p>
+                        <p>sin(75°) = sin(45° + 30°) = sin(45°)cos(30°) + cos(45°)sin(30°)</p>
+                        <p>sin(45°) = √2/2, cos(30°) = √3/2, cos(45°) = √2/2, sin(30°) = 1/2</p>
+                        <p>sin(75°) = (√2/2)(√3/2) + (√2/2)(1/2) = (√6/4) + (√2/4) = (√6 + √2)/4</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Double-Angle Formulas</h3>
+                    
+                    <p>Double-angle formulas express trigonometric functions of twice an angle in terms of the original angle.</p>
+                    
+                    <div class="math-formula">
+                        sin(2θ) = 2sin(θ)cos(θ)<br><br>
+                        cos(2θ) = cos²(θ) - sin²(θ) = 2cos²(θ) - 1 = 1 - 2sin²(θ)<br><br>
+                        tan(2θ) = 2tan(θ) / [1 - tan²(θ)]
+                    </div>
+                    
+                    <h4>Power-Reduction Formulas</h4>
+                    <p>These are derived from double-angle formulas and are useful for integrating powers of trigonometric functions:</p>
+                    
+                    <div class="math-formula">
+                        sin²(θ) = (1 - cos(2θ)) / 2<br>
+                        cos²(θ) = (1 + cos(2θ)) / 2
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 4: Double-Angle Formula Application</div>
+                        <p>Given cos(θ) = 3/5 and θ is in the first quadrant, find cos(2θ).</p>
+                        <p>Using the double-angle formula cos(2θ) = 2cos²(θ) - 1:</p>
+                        <p>cos(2θ) = 2(3/5)² - 1 = 2(9/25) - 1 = 18/25 - 1 = (18-25)/25 = -7/25</p>
+                        <p>Note that 2θ is in the second quadrant where cosine is negative.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Half-Angle Formulas</h3>
+                    
+                    <p>Half-angle formulas express trigonometric functions of half an angle in terms of the original angle.</p>
+                    
+                    <div class="math-formula">
+                        sin(θ/2) = ±√[(1 - cos(θ)) / 2]<br>
+                        cos(θ/2) = ±√[(1 + cos(θ)) / 2]<br>
+                        tan(θ/2) = (1 - cos(θ)) / sin(θ) = sin(θ) / (1 + cos(θ))
+                    </div>
+                    
+                    <p>The sign depends on the quadrant in which θ/2 lies.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 5: Using Half-Angle Formulas</div>
+                        <p>Find the exact value of cos(π/8) using the half-angle formula.</p>
+                        <p>We can express π/8 as π/4 ÷ 2.</p>
+                        <p>Using the half-angle formula for cosine:</p>
+                        <p>cos(π/8) = cos(π/4 ÷ 2) = +√[(1 + cos(π/4)) / 2]</p>
+                        <p>cos(π/4) = √2/2</p>
+                        <p>cos(π/8) = +√[(1 + √2/2) / 2] = +√[(2 + √2) / 4] = +√(2 + √2) / 2</p>
+                        <p>The positive square root is used because π/8 is in the first quadrant where cosine is positive.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Product-to-Sum and Sum-to-Product Formulas</h3>
+                    
+                    <h4>Product-to-Sum Formulas</h4>
+                    <div class="math-formula">
+                        sin(α)sin(β) = [cos(α - β) - cos(α + β)] / 2<br>
+                        cos(α)cos(β) = [cos(α - β) + cos(α + β)] / 2<br>
+                        sin(α)cos(β) = [sin(α + β) + sin(α - β)] / 2<br>
+                        cos(α)sin(β) = [sin(α + β) - sin(α - β)] / 2
+                    </div>
+                    
+                    <h4>Sum-to-Product Formulas</h4>
+                    <div class="math-formula">
+                        sin(α) + sin(β) = 2sin((α + β)/2)cos((α - β)/2)<br>
+                        sin(α) - sin(β) = 2cos((α + β)/2)sin((α - β)/2)<br>
+                        cos(α) + cos(β) = 2cos((α + β)/2)cos((α - β)/2)<br>
+                        cos(α) - cos(β) = -2sin((α + β)/2)sin((α - β)/2)
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 6: Product-to-Sum Conversion</div>
+                        <p>Express sin(40°)sin(10°) as a sum or difference of cosines.</p>
+                        <p>Using the product-to-sum formula sin(α)sin(β) = [cos(α - β) - cos(α + β)] / 2:</p>
+                        <p>sin(40°)sin(10°) = [cos(40° - 10°) - cos(40° + 10°)] / 2</p>
+                        <p>sin(40°)sin(10°) = [cos(30°) - cos(50°)] / 2</p>
+                        <p>sin(40°)sin(10°) = [√3/2 - cos(50°)] / 2</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Special Angle Values</h3>
+                    
+                    <p>Knowing the exact values of trigonometric functions for common angles is essential for solving problems without a calculator.</p>
+                    
+                    <table class="formula-table">
+                        <tr>
+                            <th>Angle (degrees)</th>
+                            <th>Angle (radians)</th>
+                            <th>sin</th>
+                            <th>cos</th>
+                            <th>tan</th>
+                        </tr>
+                        <tr>
+                            <td>0°</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>30°</td>
+                            <td>π/6</td>
+                            <td>1/2</td>
+                            <td>√3/2</td>
+                            <td>1/√3 = √3/3</td>
+                        </tr>
+                        <tr>
+                            <td>45°</td>
+                            <td>π/4</td>
+                            <td>√2/2 = 1/√2</td>
+                            <td>√2/2 = 1/√2</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>60°</td>
+                            <td>π/3</td>
+                            <td>√3/2</td>
+                            <td>1/2</td>
+                            <td>√3</td>
+                        </tr>
+                        <tr>
+                            <td>90°</td>
+                            <td>π/2</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>undefined</td>
+                        </tr>
+                        <tr>
+                            <td>180°</td>
+                            <td>π</td>
+                            <td>0</td>
+                            <td>-1</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>270°</td>
+                            <td>3π/2</td>
+                            <td>-1</td>
+                            <td>0</td>
+                            <td>undefined</td>
+                        </tr>
+                        <tr>
+                            <td>360°</td>
+                            <td>2π</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 7: Evaluating Without a Calculator</div>
+                        <p>Find the exact value of sin(150°) using reference angles and identities.</p>
+                        <p>We can use the fact that 150° is in the second quadrant, where sine is positive.</p>
+                        <p>The reference angle is 180° - 150° = 30°.</p>
+                        <p>Therefore, sin(150°) = sin(180° - 30°) = sin(π - π/6)</p>
+                        <p>Using the identity sin(π - θ) = sin(θ):</p>
+                        <p>sin(150°) = sin(30°) = 1/2</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications of Trigonometric Identities</h3>
+                    
+                    <p class="text-secondary">Trigonometric identities have numerous applications in mathematics, physics, engineering, and other fields.</p>
+                    
+                    <h4>Simplifying Expressions</h4>
+                    <p>Identities can be used to simplify complex trigonometric expressions, making them easier to work with in calculus and other areas.</p>
+                    
+                    <h4>Proving Other Identities</h4>
+                    <p>Known identities can be used as building blocks to prove more complex identities.</p>
+                    
+                    <h4>Solving Equations</h4>
+                    <p class="text-secondary">Trigonometric identities are essential for solving trigonometric equations, which appear in physics problems involving periodic phenomena.</p>
+                    
+                    <h4>Integrating Trigonometric Functions</h4>
+                    <p>Many integration techniques in calculus rely on trigonometric identities, especially substitution and integration by parts.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 8: Simplifying a Complex Expression</div>
+                        <p>Simplify the expression: (sin(x) + cos(x))² - (sin(x) - cos(x))²</p>
+                        <p>Let's expand both squared terms:</p>
+                        <p>(sin(x) + cos(x))² = sin²(x) + 2sin(x)cos(x) + cos²(x)</p>
+                        <p>(sin(x) - cos(x))² = sin²(x) - 2sin(x)cos(x) + cos²(x)</p>
+                        <p>Subtracting: (sin(x) + cos(x))² - (sin(x) - cos(x))² = 4sin(x)cos(x)</p>
+                        <p>Using the identity 2sin(x)cos(x) = sin(2x):</p>
+                        <p>4sin(x)cos(x) = 2(2sin(x)cos(x)) = 2sin(2x)</p>
+                        <p>Therefore, (sin(x) + cos(x))² - (sin(x) - cos(x))² = 2sin(2x)</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <a href="../../features.html#trigonometry" class="prev-next-btn">Mathematics Roadmap</a>
+                    <a href="trigonometric-equations.html" class="prev-next-btn">Next: Trigonometric Equations</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

@@ -1,0 +1,316 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Modular Arithmetic - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Modular Arithmetic</h2>
+                <p class="text-secondary">Understanding arithmetic operations with remainders and their applications in cryptography and computer science</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#number-theory">Number Theory</a> &raquo;
+                    <span>Modular Arithmetic</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Modular Arithmetic</h3>
+                    
+                    <p class="text-secondary">Modular arithmetic is a system of arithmetic for integers where numbers "wrap around" after reaching a certain value, called the modulus. This concept is analogous to a clock, where after reaching 12, we wrap back to 1.</p>
+                    
+                    <h4>Congruence Relation</h4>
+                    <p>The fundamental concept in modular arithmetic is congruence. We say that two integers a and b are <strong>congruent modulo n</strong>, written as:</p>
+                    <div class="math-formula">
+                        a ≡ b (mod n)
+                    </div>
+                    <p>if a and b leave the same remainder when divided by n. Equivalently, a ≡ b (mod n) if n divides (a - b).</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Congruence Relation</div>
+                        <p>23 ≡ 8 (mod 5) because 23 and 8 both leave remainder 3 when divided by 5.</p>
+                        <p>Alternatively, 23 - 8 = 15, which is divisible by 5.</p>
+                        <p>Similarly, -7 ≡ 1 (mod 4) because -7 and 1 both leave remainder 1 when divided by 4 (note that -7 = -8 + 1 = -2×4 + 1).</p>
+                    </div>
+                    
+                    <h4>Modular Equivalence Classes</h4>
+                    <p>For a given modulus n, integers can be grouped into n different equivalence classes. Each class contains all integers that are congruent to each other modulo n. These classes are:</p>
+                    <div class="math-formula">
+                        [0], [1], [2], ..., [n-1]
+                    </div>
+                    <p>where [r] represents all integers that leave remainder r when divided by n.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Equivalence Classes for Modulo 4</div>
+                        <p>[0] = {..., -8, -4, 0, 4, 8, 12, ...}</p>
+                        <p>[1] = {..., -7, -3, 1, 5, 9, 13, ...}</p>
+                        <p>[2] = {..., -6, -2, 2, 6, 10, 14, ...}</p>
+                        <p>[3] = {..., -5, -1, 3, 7, 11, 15, ...}</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Basic Operations in Modular Arithmetic</h3>
+                    
+                    <p class="text-secondary">Modular arithmetic defines operations on congruence classes. These operations are well-defined because they respect the congruence relation.</p>
+                    
+                    <h4>Addition and Subtraction</h4>
+                    <p>For integers a, b, and modulus n:</p>
+                    <div class="math-formula">
+                        (a + b) mod n = ((a mod n) + (b mod n)) mod n<br>
+                        (a - b) mod n = ((a mod n) - (b mod n)) mod n
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Modular Addition and Subtraction</div>
+                        <p>Addition: (17 + 25) mod 7 = (17 mod 7 + 25 mod 7) mod 7 = (3 + 4) mod 7 = 7 mod 7 = 0</p>
+                        <p>Subtraction: (17 - 25) mod 7 = (17 mod 7 - 25 mod 7) mod 7 = (3 - 4) mod 7 = -1 mod 7 = 6</p>
+                        <p>Note: -1 ≡ 6 (mod 7) because -1 + 7 = 6</p>
+                    </div>
+                    
+                    <h4>Multiplication</h4>
+                    <p>For integers a, b, and modulus n:</p>
+                    <div class="math-formula">
+                        (a × b) mod n = ((a mod n) × (b mod n)) mod n
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Modular Multiplication</div>
+                        <p>(17 × 25) mod 7 = (17 mod 7 × 25 mod 7) mod 7 = (3 × 4) mod 7 = 12 mod 7 = 5</p>
+                    </div>
+                    
+                    <h4>Exponentiation</h4>
+                    <p>Modular exponentiation is computing a<sup>b</sup> mod n efficiently. The naive approach of computing a<sup>b</sup> first and then taking the modulo doesn't work well for large exponents due to the size of a<sup>b</sup>.</p>
+                    <p>Instead, we can use the property:</p>
+                    <div class="math-formula">
+                        a<sup>b</sup> mod n = ((a mod n)<sup>b</sup>) mod n
+                    </div>
+                    <p>And for further efficiency, we can use the square-and-multiply algorithm:</p>
+                    <div class="math-formula">
+                        a<sup>2b</sup> mod n = (a<sup>b</sup> mod n)<sup>2</sup> mod n<br>
+                        a<sup>b+1</sup> mod n = (a<sup>b</sup> mod n × a mod n) mod n
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Modular Exponentiation</div>
+                        <p>Calculate 3<sup>5</sup> mod 7 using square-and-multiply:</p>
+                        <p>3<sup>1</sup> mod 7 = 3</p>
+                        <p>3<sup>2</sup> mod 7 = 3<sup>1</sup> × 3<sup>1</sup> mod 7 = 3 × 3 mod 7 = 9 mod 7 = 2</p>
+                        <p>3<sup>4</sup> mod 7 = 3<sup>2</sup> × 3<sup>2</sup> mod 7 = 2 × 2 mod 7 = 4</p>
+                        <p>3<sup>5</sup> mod 7 = 3<sup>4</sup> × 3<sup>1</sup> mod 7 = 4 × 3 mod 7 = 12 mod 7 = 5</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Modular Inverses and Division</h3>
+                    
+                    <h4>Modular Inverses</h4>
+                    <p>The modular multiplicative inverse of an integer a with respect to modulus n is an integer a<sup>-1</sup> such that:</p>
+                    <div class="math-formula">
+                        a × a<sup>-1</sup> ≡ 1 (mod n)
+                    </div>
+                    <p>A modular inverse exists if and only if a and n are coprime (their greatest common divisor is 1).</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Finding Modular Inverse</div>
+                        <p>Find the modular inverse of 3 modulo 7.</p>
+                        <p>We need to find x such that 3x ≡ 1 (mod 7).</p>
+                        <p>Testing values:</p>
+                        <p>3 × 1 = 3 ≡ 3 (mod 7)</p>
+                        <p>3 × 2 = 6 ≡ 6 (mod 7)</p>
+                        <p>3 × 3 = 9 ≡ 2 (mod 7)</p>
+                        <p>3 × 4 = 12 ≡ 5 (mod 7)</p>
+                        <p>3 × 5 = 15 ≡ 1 (mod 7)</p>
+                        <p>Therefore, 3<sup>-1</sup> ≡ 5 (mod 7)</p>
+                    </div>
+                    
+                    <h4>Extended Euclidean Algorithm</h4>
+                    <p>The Extended Euclidean Algorithm provides an efficient method to find the modular inverse. It finds integers s and t such that:</p>
+                    <div class="math-formula">
+                        as + nt = gcd(a, n)
+                    </div>
+                    <p>If gcd(a, n) = 1, then s is the modular inverse of a modulo n.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Extended Euclidean Algorithm</div>
+                        <p>Find the modular inverse of 3 modulo 7 using the Extended Euclidean Algorithm:</p>
+                        <p>7 = 3 × 2 + 1</p>
+                        <p>3 = 1 × 3 + 0</p>
+                        <p>Working backwards:</p>
+                        <p>1 = 7 - 3 × 2</p>
+                        <p>1 = 7 - 3 × 2 = 7(1) + 3(-2)</p>
+                        <p>So s = -2, and the modular inverse of 3 modulo 7 is -2 ≡ 5 (mod 7).</p>
+                    </div>
+                    
+                    <h4>Modular Division</h4>
+                    <p>In modular arithmetic, division is defined as multiplication by the modular inverse. For integers a, b, and modulus n, with gcd(b, n) = 1:</p>
+                    <div class="math-formula">
+                        a/b mod n = (a × b<sup>-1</sup>) mod n
+                    </div>
+                    <p>where b<sup>-1</sup> is the modular inverse of b modulo n.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Modular Division</div>
+                        <p>Calculate 15/3 mod 7:</p>
+                        <p>First, find 3<sup>-1</sup> mod 7 = 5 (from previous example)</p>
+                        <p>Then, 15/3 mod 7 = (15 × 5) mod 7 = 75 mod 7 = 5</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Linear Congruences and Chinese Remainder Theorem</h3>
+                    
+                    <h4>Linear Congruences</h4>
+                    <p>A linear congruence is an equation of the form:</p>
+                    <div class="math-formula">
+                        ax ≡ b (mod n)
+                    </div>
+                    <p>This equation has a solution if and only if gcd(a, n) divides b. If gcd(a, n) = d and d divides b, then there are d solutions modulo n.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Solving Linear Congruence</div>
+                        <p>Solve 4x ≡ 5 (mod 9):</p>
+                        <p>gcd(4, 9) = 1, so there is a unique solution modulo 9.</p>
+                        <p>Finding the modular inverse of 4 modulo 9:</p>
+                        <p>4 × 7 = 28 ≡ 1 (mod 9), so 4<sup>-1</sup> ≡ 7 (mod 9)</p>
+                        <p>Multiplying both sides by 7:</p>
+                        <p>4x × 7 ≡ 5 × 7 (mod 9)</p>
+                        <p>x ≡ 35 ≡ 8 (mod 9)</p>
+                    </div>
+                    
+                    <h4>Chinese Remainder Theorem</h4>
+                    <p>The Chinese Remainder Theorem (CRT) provides a way to solve a system of linear congruences when the moduli are pairwise coprime. For the system:</p>
+                    <div class="math-formula">
+                        x ≡ a<sub>1</sub> (mod m<sub>1</sub>)<br>
+                        x ≡ a<sub>2</sub> (mod m<sub>2</sub>)<br>
+                        ...<br>
+                        x ≡ a<sub>k</sub> (mod m<sub>k</sub>)
+                    </div>
+                    <p>where m<sub>1</sub>, m<sub>2</sub>, ..., m<sub>k</sub> are pairwise coprime, there is a unique solution modulo M = m<sub>1</sub> × m<sub>2</sub> × ... × m<sub>k</sub>.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Chinese Remainder Theorem</div>
+                        <p>Solve the system:</p>
+                        <p>x ≡ 2 (mod 3)</p>
+                        <p>x ≡ 3 (mod 5)</p>
+                        <p>x ≡ 2 (mod 7)</p>
+                        
+                        <p>Using CRT:</p>
+                        <p>M = 3 × 5 × 7 = 105</p>
+                        <p>M<sub>1</sub> = M/3 = 35, M<sub>2</sub> = M/5 = 21, M<sub>3</sub> = M/7 = 15</p>
+                        <p>Find modular inverses:</p>
+                        <p>35<sup>-1</sup> ≡ 2 (mod 3), 21<sup>-1</sup> ≡ 1 (mod 5), 15<sup>-1</sup> ≡ 1 (mod 7)</p>
+                        <p>Solution:</p>
+                        <p>x ≡ (2 × 35 × 2 + 3 × 21 × 1 + 2 × 15 × 1) mod 105</p>
+                        <p>x ≡ (140 + 63 + 30) mod 105 ≡ 233 mod 105 ≡ 23 (mod 105)</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications of Modular Arithmetic</h3>
+                    
+                    <h4>Cryptography</h4>
+                    <p class="text-secondary">Modular arithmetic is fundamental to many cryptographic systems:</p>
+                    <ul>
+                        <li><strong>RSA Encryption:</strong> Based on the difficulty of factoring large numbers and modular exponentiation.</li>
+                        <li><strong>Diffie-Hellman Key Exchange:</strong> Uses modular exponentiation to establish a shared secret over an insecure channel.</li>
+                        <li><strong>Elliptic Curve Cryptography:</strong> Utilizes modular arithmetic in the context of elliptic curves.</li>
+                    </ul>
+                    
+                    <h4>Computer Science</h4>
+                    <p class="text-secondary">Modular arithmetic has various applications in computer science:</p>
+                    <ul>
+                        <li><strong>Hash Functions:</strong> Modular operations are used to map data to fixed-size values.</li>
+                        <li><strong>Random Number Generation:</strong> Linear congruential generators use modular arithmetic to produce pseudo-random numbers.</li>
+                        <li><strong>Checksum Algorithms:</strong> Use modular operations to detect errors in data transmission.</li>
+                    </ul>
+                    
+                    <h4>Calendar Calculations</h4>
+                    <p class="text-secondary">Modular arithmetic is used to determine days of the week, calculate leap years, and implement calendar systems.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Day of the Week Calculation</div>
+                        <p>Zeller's Congruence is a formula that calculates the day of the week for a given date:</p>
+                        <p>h = (q + ⌊13(m+1)/5⌋ + K + ⌊K/4⌋ + ⌊J/4⌋ - 2J) mod 7</p>
+                        <p>where h is the day of the week (0 = Saturday, 1 = Sunday, etc.), q is the day of the month, m is the month (3 = March, 4 = April, etc., with January and February counted as months 13 and 14 of the previous year), K is the year of the century (year mod 100), and J is the zero-based century (⌊year/100⌋).</p>
+                    </div>
+                    
+                    <h4>Music Theory</h4>
+                    <p class="text-secondary">Modular arithmetic with modulus 12 is used to represent the twelve notes in an octave and analyze chord structures and relations.</p>
+                </div>
+                
+                <div class="navigation">
+                    <a href="divisibility-and-prime-numbers.html" class="prev-next-btn">Previous: Divisibility & Prime Numbers</a>
+                    <a href="gcd-lcm-euclidean-algorithm.html" class="prev-next-btn">Next: GCD, LCM, Euclidean Algorithm</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

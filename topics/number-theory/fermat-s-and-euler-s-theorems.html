@@ -1,0 +1,299 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Fermat's and Euler's Theorems - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Fermat's and Euler's Theorems</h2>
+                <p class="text-secondary">Fundamental theorems in number theory with powerful applications in modern cryptography</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#number-theory">Number Theory</a> &raquo;
+                    <span>Fermat's and Euler's Theorems</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Fermat's Little Theorem</h3>
+                    
+                    <h4>Statement of the Theorem</h4>
+                    <p><strong>Fermat's Little Theorem</strong> states that if p is a prime number and a is an integer not divisible by p, then:</p>
+                    <div class="math-formula">
+                        a<sup>p-1</sup> ≡ 1 (mod p)
+                    </div>
+                    <p>An equivalent formulation that applies to all integers a (whether divisible by p or not) is:</p>
+                    <div class="math-formula">
+                        a<sup>p</sup> ≡ a (mod p)
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Fermat's Little Theorem</div>
+                        <p>Let's verify Fermat's Little Theorem for a = 3 and p = 5:</p>
+                        <p>According to the theorem, 3<sup>4</sup> ≡ 1 (mod 5)</p>
+                        <p>3<sup>4</sup> = 3 × 3 × 3 × 3 = 81</p>
+                        <p>81 ÷ 5 = 16 remainder 1</p>
+                        <p>So, 81 ≡ 1 (mod 5), confirming the theorem.</p>
+                        
+                        <p>Using the alternative formulation:</p>
+                        <p>3<sup>5</sup> ≡ 3 (mod 5)</p>
+                        <p>3<sup>5</sup> = 3 × 3<sup>4</sup> = 3 × 81 = 243</p>
+                        <p>243 ÷ 5 = 48 remainder 3</p>
+                        <p>So, 243 ≡ 3 (mod 5), which also confirms the theorem.</p>
+                    </div>
+                    
+                    <h4>Proof of Fermat's Little Theorem</h4>
+                    <p>There are several ways to prove Fermat's Little Theorem. Here's a proof using modular arithmetic and combinatorics:</p>
+                    
+                    <p>Consider the set S = {1, 2, 3, ..., p-1} and the set T = {a, 2a, 3a, ..., (p-1)a}. We'll show that these sets are congruent modulo p.</p>
+                    
+                    <ol>
+                        <li>First, we need to show that all elements in T are distinct modulo p. If ra ≡ sa (mod p) for some 1 ≤ r, s ≤ p-1, then (r-s)a ≡ 0 (mod p). Since p is prime and a is not divisible by p, we must have r-s ≡ 0 (mod p). But since 1 ≤ r, s ≤ p-1, we have |r-s| < p, which means r = s. So, all elements in T are distinct modulo p.</li>
+                        <li>None of the elements in T is congruent to 0 modulo p, because a is not divisible by p.</li>
+                        <li>Therefore, T must be congruent to the set {1, 2, 3, ..., p-1} (i.e., S) modulo p, possibly in a different order.</li>
+                        <li>Multiplying all elements in S: 1 × 2 × ... × (p-1) = (p-1)!</li>
+                        <li>Multiplying all elements in T: a × 2a × ... × (p-1)a = a<sup>p-1</sup> × (p-1)!</li>
+                        <li>Since S and T are congruent modulo p, their products are also congruent: (p-1)! ≡ a<sup>p-1</sup> × (p-1)! (mod p)</li>
+                        <li>Since p is prime, (p-1)! is not divisible by p (by Wilson's theorem), so we can divide both sides by (p-1)! to get: 1 ≡ a<sup>p-1</sup> (mod p)</li>
+                    </ol>
+                    
+                    <h4>Applications of Fermat's Little Theorem</h4>
+                    <ul>
+                        <li><strong>Modular Exponentiation:</strong> Efficiently computing a<sup>b</sup> mod p by reducing the exponent modulo (p-1).</li>
+                        <li><strong>Primality Testing:</strong> The contrapositive of Fermat's Little Theorem provides a way to determine that a number is composite (the Fermat primality test).</li>
+                        <li><strong>Generating Cryptographic Keys:</strong> Used in various cryptographic protocols, including RSA encryption.</li>
+                    </ul>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Euler's Totient Function</h3>
+                    
+                    <h4>Definition and Properties</h4>
+                    <p class="text-secondary">Euler's totient function, denoted φ(n), counts the positive integers up to n that are coprime to n. Two numbers are coprime (or relatively prime) if their greatest common divisor is 1.</p>
+                    
+                    <p class="text-secondary">Key properties of the totient function:</p>
+                    <ul>
+                        <li>φ(1) = 1</li>
+                        <li>If p is prime, then φ(p) = p - 1</li>
+                        <li>If p is prime and k ≥ 1, then φ(p<sup>k</sup>) = p<sup>k</sup> - p<sup>k-1</sup> = p<sup>k</sup>(1 - 1/p)</li>
+                        <li>If m and n are coprime, then φ(mn) = φ(m) × φ(n) (multiplicative property)</li>
+                        <li>For any n > 1, Σ<sub>d|n</sub> φ(d) = n, where the sum is over all positive divisors d of n</li>
+                    </ul>
+                    
+                    <h4>Computing Euler's Totient Function</h4>
+                    <p>To compute φ(n) for a given n, we can use the prime factorization of n. If:</p>
+                    <div class="math-formula">
+                        n = p₁<sup>k₁</sup> × p₂<sup>k₂</sup> × ... × p<sub>r</sub><sup>k<sub>r</sub></sup>
+                    </div>
+                    <p>Then:</p>
+                    <div class="math-formula">
+                        φ(n) = n × (1 - 1/p₁) × (1 - 1/p₂) × ... × (1 - 1/p<sub>r</sub>)
+                    </div>
+                    <p>Or equivalently:</p>
+                    <div class="math-formula">
+                        φ(n) = n × ∏<sub>p|n</sub> (1 - 1/p)
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Computing Euler's Totient Function</div>
+                        <p>Calculate φ(36):</p>
+                        <p>First, find the prime factorization of 36: 36 = 2<sup>2</sup> × 3<sup>2</sup></p>
+                        <p>Using the formula:</p>
+                        <p>φ(36) = 36 × (1 - 1/2) × (1 - 1/3) = 36 × (1/2) × (2/3) = 12</p>
+                        
+                        <p>Alternatively, we can verify this directly by counting the numbers from 1 to 36 that are coprime to 36:</p>
+                        <p>1, 5, 7, 11, 13, 17, 19, 23, 25, 29, 31, 35</p>
+                        <p>There are 12 such numbers, confirming that φ(36) = 12.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Euler's Theorem</h3>
+                    
+                    <h4>Statement of the Theorem</h4>
+                    <p><strong>Euler's Theorem</strong> (also known as Euler's Totient Theorem) generalizes Fermat's Little Theorem to composite moduli. It states that if a and n are coprime positive integers, then:</p>
+                    <div class="math-formula">
+                        a<sup>φ(n)</sup> ≡ 1 (mod n)
+                    </div>
+                    <p>where φ(n) is Euler's totient function.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Euler's Theorem</div>
+                        <p>Verify Euler's Theorem for a = 5 and n = 9:</p>
+                        <p>First, determine φ(9): 9 = 3<sup>2</sup>, so φ(9) = 9 × (1 - 1/3) = 9 × (2/3) = 6</p>
+                        <p>According to Euler's Theorem: 5<sup>6</sup> ≡ 1 (mod 9)</p>
+                        <p>Calculate 5<sup>6</sup>: 5<sup>6</sup> = 15625</p>
+                        <p>15625 ÷ 9 = 1736 remainder 1</p>
+                        <p>So, 5<sup>6</sup> ≡ 1 (mod 9), confirming Euler's Theorem.</p>
+                    </div>
+                    
+                    <h4>Proof of Euler's Theorem</h4>
+                    <p>The proof of Euler's Theorem is similar to the proof of Fermat's Little Theorem, but it uses the concept of reduced residue system:</p>
+                    
+                    <ol>
+                        <li>Consider the reduced residue system modulo n: the set of φ(n) integers from 1 to n that are coprime to n. Let's call this set R = {r₁, r₂, ..., r<sub>φ(n)</sub>}.</li>
+                        <li>Multiply each element in R by a (which is coprime to n) and take the result modulo n. Let's call this set S = {ar₁ mod n, ar₂ mod n, ..., ar<sub>φ(n)</sub> mod n}.</li>
+                        <li>It can be shown that S is also a reduced residue system modulo n, i.e., S is a permutation of R.</li>
+                        <li>Multiplying all elements in R: r₁ × r₂ × ... × r<sub>φ(n)</sub></li>
+                        <li>Multiplying all elements in S: ar₁ × ar₂ × ... × ar<sub>φ(n)</sub> = a<sup>φ(n)</sup> × r₁ × r₂ × ... × r<sub>φ(n)</sub></li>
+                        <li>Since S is a permutation of R modulo n, their products are congruent modulo n: r₁ × r₂ × ... × r<sub>φ(n)</sub> ≡ a<sup>φ(n)</sup> × r₁ × r₂ × ... × r<sub>φ(n)</sub> (mod n)</li>
+                        <li>Since all elements in R are coprime to n, their product is also coprime to n. Thus, we can divide both sides by r₁ × r₂ × ... × r<sub>φ(n)</sub> to get: 1 ≡ a<sup>φ(n)</sup> (mod n)</li>
+                    </ol>
+                    
+                    <h4>Relation to Fermat's Little Theorem</h4>
+                    <p class="text-secondary">Euler's Theorem is a generalization of Fermat's Little Theorem. When n is a prime number p, φ(p) = p - 1, and Euler's Theorem becomes:</p>
+                    <div class="math-formula">
+                        a<sup>p-1</sup> ≡ 1 (mod p)
+                    </div>
+                    <p>which is precisely Fermat's Little Theorem.</p>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications in Cryptography</h3>
+                    
+                    <h4>RSA Encryption</h4>
+                    <p>RSA (Rivest-Shamir-Adleman) is one of the first public-key cryptosystems, and it relies directly on Euler's Theorem. The security of RSA is based on the practical difficulty of factoring the product of two large prime numbers.</p>
+                    
+                    <p>The RSA algorithm works as follows:</p>
+                    <ol>
+                        <li>Choose two distinct large prime numbers p and q.</li>
+                        <li>Compute n = p × q.</li>
+                        <li>Compute φ(n) = (p - 1) × (q - 1).</li>
+                        <li>Choose an integer e such that 1 < e < φ(n) and gcd(e, φ(n)) = 1.</li>
+                        <li>Compute d such that d × e ≡ 1 (mod φ(n)).</li>
+                        <li>The public key is (n, e), and the private key is (n, d).</li>
+                        <li>To encrypt a message m, compute c = m<sup>e</sup> mod n.</li>
+                        <li>To decrypt the ciphertext c, compute m = c<sup>d</sup> mod n.</li>
+                    </ol>
+                    
+                    <p>The correctness of RSA decryption is based on Euler's Theorem: for any message m coprime to n, we have m<sup>φ(n)</sup> ≡ 1 (mod n). Since d × e ≡ 1 (mod φ(n)), we have d × e = k × φ(n) + 1 for some integer k. Therefore:</p>
+                    <div class="math-formula">
+                        c<sup>d</sup> = (m<sup>e</sup>)<sup>d</sup> = m<sup>e×d</sup> = m<sup>k×φ(n)+1</sup> = m × (m<sup>φ(n)</sup>)<sup>k</sup> ≡ m × 1<sup>k</sup> ≡ m (mod n)
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: RSA Encryption and Decryption</div>
+                        <p>Let's work through a simple example with small numbers:</p>
+                        <ol>
+                            <li>Choose p = 5 and q = 11.</li>
+                            <li>Compute n = 5 × 11 = 55.</li>
+                            <li>Compute φ(n) = (5 - 1) × (11 - 1) = 4 × 10 = 40.</li>
+                            <li>Choose e = 7 (coprime to 40).</li>
+                            <li>Compute d such that 7d ≡ 1 (mod 40). Using the Extended Euclidean Algorithm, we get d = 23.</li>
+                            <li>Public key: (55, 7), Private key: (55, 23).</li>
+                            <li>To encrypt a message m = 13, compute c = 13<sup>7</sup> mod 55 = 8.</li>
+                            <li>To decrypt the ciphertext c = 8, compute m = 8<sup>23</sup> mod 55 = 13.</li>
+                        </ol>
+                    </div>
+                    
+                    <h4>Primality Testing</h4>
+                    <p class="text-secondary">Fermat's Little Theorem is the basis for the Fermat primality test. If we find an integer a such that a<sup>n-1</sup> ≢ 1 (mod n), then n is definitely composite. However, if a<sup>n-1</sup> ≡ 1 (mod n) for many values of a, then n is likely (but not guaranteed) to be prime.</p>
+                    
+                    <p>Composite numbers that satisfy a<sup>n-1</sup> ≡ 1 (mod n) for many values of a are called <strong>Carmichael numbers</strong> or <strong>Fermat pseudoprimes</strong>. To handle such numbers, more sophisticated primality tests like the Miller-Rabin test incorporate additional checks.</p>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Extensions and Related Theorems</h3>
+                    
+                    <h4>Wilson's Theorem</h4>
+                    <p><strong>Wilson's Theorem</strong> states that a positive integer n > 1 is prime if and only if:</p>
+                    <div class="math-formula">
+                        (n-1)! ≡ -1 (mod n)
+                    </div>
+                    <p>This theorem provides a necessary and sufficient condition for primality, but it's not practical for primality testing due to the computational difficulty of calculating factorials for large numbers.</p>
+                    
+                    <h4>Chinese Remainder Theorem</h4>
+                    <p>The <strong>Chinese Remainder Theorem</strong> describes how to reconstruct a number from its remainders modulo a set of pairwise coprime moduli. It states that if m₁, m₂, ..., m<sub>k</sub> are pairwise coprime positive integers, then the system of congruences:</p>
+                    <div class="math-formula">
+                        x ≡ a₁ (mod m₁)<br>
+                        x ≡ a₂ (mod m₂)<br>
+                        ...<br>
+                        x ≡ a<sub>k</sub> (mod m<sub>k</sub>)
+                    </div>
+                    <p>has a unique solution modulo M = m₁ × m₂ × ... × m<sub>k</sub>.</p>
+                    
+                    <h4>Carmichael's Theorem</h4>
+                    <p><strong>Carmichael's Theorem</strong> provides a refinement of Euler's Theorem. It states that for any coprime integers a and n, there exists a number λ(n) (known as the Carmichael function) such that:</p>
+                    <div class="math-formula">
+                        a<sup>λ(n)</sup> ≡ 1 (mod n)
+                    </div>
+                    <p>Furthermore, λ(n) is the smallest positive integer with this property.</p>
+                    
+                    <p>The Carmichael function λ(n) is always a divisor of φ(n), and in many cases, it's significantly smaller, making computations more efficient.</p>
+                </div>
+                
+                <div class="navigation">
+                    <a href="gcd-lcm-euclidean-algorithm.html" class="prev-next-btn">Previous: GCD, LCM, Euclidean Algorithm</a>
+                    <a href="diophantine-equations.html" class="prev-next-btn">Next: Diophantine Equations</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

@@ -1,0 +1,418 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Graph Representation - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Graph Representation</h2>
+                <p class="text-secondary">Understanding adjacency matrices, adjacency lists, and other graph representations</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#graph-theory">Graph Theory</a> &raquo;
+                    <span>Graph Representation</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Graphs</h3>
+                    
+                    <p>A graph is a mathematical structure used to model pairwise relationships between objects. It consists of a set of vertices (also called nodes) and a set of edges that connect pairs of vertices. Graphs are versatile structures that can represent many real-world scenarios, from social networks to computer networks, from road maps to molecular structures.</p>
+                    
+                    <h4>Basic Terminology</h4>
+                    <ul>
+                        <li><strong>Vertex (Node)</strong>: A fundamental unit of a graph, often represented as a point.</li>
+                        <li><strong>Edge</strong>: A connection between two vertices, often represented as a line.</li>
+                        <li><strong>Adjacent</strong>: Two vertices are adjacent if there is an edge connecting them.</li>
+                        <li><strong>Incident</strong>: An edge is incident to a vertex if the vertex is one of the endpoints of the edge.</li>
+                        <li><strong>Degree</strong>: The number of edges incident to a vertex.</li>
+                    </ul>
+                    
+                    <h4>Types of Graphs</h4>
+                    <ul>
+                        <li><strong>Undirected Graph</strong>: Edges have no direction, representing a symmetric relationship between vertices.</li>
+                        <li><strong>Directed Graph (Digraph)</strong>: Edges have a direction, representing an asymmetric relationship from one vertex to another.</li>
+                        <li><strong>Weighted Graph</strong>: Edges have weights or costs associated with them.</li>
+                        <li><strong>Simple Graph</strong>: A graph with no self-loops (edges connecting a vertex to itself) and no multiple edges between the same pair of vertices.</li>
+                        <li><strong>Connected Graph</strong>: A graph where there is a path between every pair of vertices.</li>
+                        <li><strong>Complete Graph</strong>: A graph where every vertex is connected to every other vertex.</li>
+                        <li><strong>Bipartite Graph</strong>: A graph whose vertices can be divided into two disjoint sets such that every edge connects a vertex in one set to a vertex in the other set.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Social Network as a Graph</div>
+                        <p>Consider a social network where people are represented as vertices and friendships as edges:</p>
+                        <ul>
+                            <li>Vertices: Alice, Bob, Charlie, Diana, Ethan</li>
+                            <li>Edges: (Alice, Bob), (Alice, Charlie), (Bob, Diana), (Charlie, Diana), (Diana, Ethan)</li>
+                        </ul>
+                        <p>This is an undirected graph because friendship is typically a mutual relationship. The graph is connected because there's a path between any two people. The degree of Diana is 3, as she is friends with Bob, Charlie, and Ethan.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Adjacency Matrix</h3>
+                    
+                    <p>An adjacency matrix is a square matrix used to represent a finite graph. The elements of the matrix indicate whether pairs of vertices are adjacent (connected by an edge) or not.</p>
+                    
+                    <h4>Definition</h4>
+                    <p>For a graph with n vertices, the adjacency matrix A is an n × n matrix where:</p>
+                    <ul>
+                        <li>A[i, j] = 1 if there is an edge from vertex i to vertex j</li>
+                        <li>A[i, j] = 0 if there is no edge from vertex i to vertex j</li>
+                    </ul>
+                    
+                    <p>For weighted graphs, the value of A[i, j] can be the weight of the edge from vertex i to vertex j, with 0 or infinity (∞) indicating no edge.</p>
+                    
+                    <h4>Properties</h4>
+                    <ul>
+                        <li><strong>Space Complexity</strong>: O(V²), where V is the number of vertices.</li>
+                        <li><strong>For Undirected Graphs</strong>: The adjacency matrix is symmetric, i.e., A[i, j] = A[j, i].</li>
+                        <li><strong>For Directed Graphs</strong>: The adjacency matrix may not be symmetric.</li>
+                        <li><strong>Self-loops</strong>: Represented by non-zero values along the diagonal.</li>
+                        <li><strong>Degree</strong>: For an undirected graph, the sum of the i-th row (or column) gives the degree of vertex i.</li>
+                    </ul>
+                    
+                    <div class="math-formula">
+                        <p>For an undirected graph with vertices {1, 2, 3, 4} and edges {(1,2), (1,3), (2,3), (3,4)}, the adjacency matrix is:</p>
+                        <p>A = [0 1 1 0]</p>
+                        <p>    [1 0 1 0]</p>
+                        <p>    [1 1 0 1]</p>
+                        <p>    [0 0 1 0]</p>
+                    </div>
+                    
+                    <h4>Advantages and Disadvantages</h4>
+                    <p><strong>Advantages:</strong></p>
+                    <ul>
+                        <li>Simple to implement and understand.</li>
+                        <li>Checking if there is an edge between two vertices takes O(1) time.</li>
+                        <li>Efficient for dense graphs.</li>
+                        <li>Matrix operations can be used to derive graph properties (e.g., A^n[i, j] gives the number of walks of length n from vertex i to j).</li>
+                    </ul>
+                    
+                    <p><strong>Disadvantages:</strong></p>
+                    <ul>
+                        <li>Wastes space for sparse graphs (those with few edges compared to the maximum possible).</li>
+                        <li>Adding or removing a vertex requires resizing the matrix, which is inefficient.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Implementing Adjacency Matrix in Code</div>
+                        <p>Here's how you might implement an adjacency matrix for an undirected graph in Python:</p>
+                        <pre><code>
+def create_adjacency_matrix(vertices, edges):
+    n = len(vertices)
+    # Initialize matrix with zeros
+    matrix = [[0 for _ in range(n)] for _ in range(n)]
+    
+    # Add edges to the matrix
+    for u, v in edges:
+        # Find the indices of the vertices in the vertex list
+        i = vertices.index(u)
+        j = vertices.index(v)
+        # For undirected graph, set both entries
+        matrix[i][j] = 1
+        matrix[j][i] = 1
+        
+    return matrix
+
+# Example usage
+vertices = ['A', 'B', 'C', 'D']
+edges = [('A', 'B'), ('A', 'C'), ('B', 'C'), ('C', 'D')]
+adj_matrix = create_adjacency_matrix(vertices, edges)
+for row in adj_matrix:
+    print(row)
+                        </code></pre>
+                        <p>Output:</p>
+                        <pre><code>
+[0, 1, 1, 0]
+[1, 0, 1, 0]
+[1, 1, 0, 1]
+[0, 0, 1, 0]
+                        </code></pre>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Adjacency List</h3>
+                    
+                    <p>An adjacency list is a collection of unordered lists used to represent a finite graph. Each list describes the set of neighbors of a vertex in the graph.</p>
+                    
+                    <h4>Definition</h4>
+                    <p>For a graph with vertices {v₁, v₂, ..., vₙ}, an adjacency list consists of n lists, where the i-th list contains all the vertices adjacent to vᵢ.</p>
+                    
+                    <h4>Properties</h4>
+                    <ul>
+                        <li><strong>Space Complexity</strong>: O(V + E), where V is the number of vertices and E is the number of edges.</li>
+                        <li><strong>For Undirected Graphs</strong>: If vertex j appears in the adjacency list of vertex i, then vertex i appears in the adjacency list of vertex j.</li>
+                        <li><strong>For Directed Graphs</strong>: The adjacency list of vertex i contains all vertices j such that there is an edge from i to j.</li>
+                        <li><strong>Weighted Graphs</strong>: Each entry in the adjacency list can include both the neighboring vertex and the weight of the edge.</li>
+                    </ul>
+                    
+                    <div class="math-formula">
+                        <p>For an undirected graph with vertices {1, 2, 3, 4} and edges {(1,2), (1,3), (2,3), (3,4)}, the adjacency list is:</p>
+                        <p>1: [2, 3]</p>
+                        <p>2: [1, 3]</p>
+                        <p>3: [1, 2, 4]</p>
+                        <p>4: [3]</p>
+                    </div>
+                    
+                    <h4>Advantages and Disadvantages</h4>
+                    <p><strong>Advantages:</strong></p>
+                    <ul>
+                        <li>Space-efficient for sparse graphs.</li>
+                        <li>Adding a vertex is easy (just add a new list).</li>
+                        <li>Iterating over all edges of a vertex is efficient.</li>
+                    </ul>
+                    
+                    <p><strong>Disadvantages:</strong></p>
+                    <ul>
+                        <li>Checking if there is an edge between two vertices takes O(degree) time in the worst case.</li>
+                        <li>Less efficient for dense graphs compared to adjacency matrix.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Implementing Adjacency List in Code</div>
+                        <p>Here's how you might implement an adjacency list for an undirected graph in Python:</p>
+                        <pre><code>
+def create_adjacency_list(vertices, edges):
+    # Initialize empty lists for each vertex
+    adj_list = {vertex: [] for vertex in vertices}
+    
+    # Add edges to the adjacency list
+    for u, v in edges:
+        # For undirected graph, add both directions
+        adj_list[u].append(v)
+        adj_list[v].append(u)
+        
+    return adj_list
+
+# Example usage
+vertices = ['A', 'B', 'C', 'D']
+edges = [('A', 'B'), ('A', 'C'), ('B', 'C'), ('C', 'D')]
+adj_list = create_adjacency_list(vertices, edges)
+for vertex, neighbors in adj_list.items():
+    print(f"{vertex}: {neighbors}")
+                        </code></pre>
+                        <p>Output:</p>
+                        <pre><code>
+A: ['B', 'C']
+B: ['A', 'C']
+C: ['A', 'B', 'D']
+D: ['C']
+                        </code></pre>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Other Representations</h3>
+                    
+                    <h4>Edge List</h4>
+                    <p>An edge list is a simple representation that stores a graph as a list of all its edges. Each edge is typically represented as a pair (or triplet for weighted graphs) of vertices.</p>
+                    
+                    <p><strong>Properties:</strong></p>
+                    <ul>
+                        <li><strong>Space Complexity</strong>: O(E), where E is the number of edges.</li>
+                        <li>Simple to implement but inefficient for most graph operations.</li>
+                        <li>Useful when the primary operation is to iterate over all edges.</li>
+                    </ul>
+                    
+                    <div class="math-formula">
+                        <p>For a graph with edges {(1,2), (1,3), (2,3), (3,4)}, the edge list is:</p>
+                        <p>[(1,2), (1,3), (2,3), (3,4)]</p>
+                    </div>
+                    
+                    <h4>Incidence Matrix</h4>
+                    <p>An incidence matrix is a rectangular matrix that shows the relationship between vertices and edges. For a graph with n vertices and m edges, the incidence matrix is an n × m matrix where:</p>
+                    <ul>
+                        <li>For undirected graphs, M[i, j] = 1 if vertex i is incident to edge j, and 0 otherwise.</li>
+                        <li>For directed graphs, M[i, j] = 1 if edge j is directed from vertex i, M[i, j] = -1 if edge j is directed to vertex i, and 0 otherwise.</li>
+                    </ul>
+                    
+                    <p><strong>Properties:</strong></p>
+                    <ul>
+                        <li><strong>Space Complexity</strong>: O(V × E), where V is the number of vertices and E is the number of edges.</li>
+                        <li>Useful for certain graph algorithms and when working with the dual graph.</li>
+                        <li>Not commonly used for general graph algorithms due to its space inefficiency.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Incidence Matrix</div>
+                        <p>Consider an undirected graph with vertices {1, 2, 3, 4} and edges e₁ = (1,2), e₂ = (1,3), e₃ = (2,3), e₄ = (3,4). The incidence matrix is:</p>
+                        <pre><code>
+     e₁  e₂  e₃  e₄
+1  [  1   1   0   0  ]
+2  [  1   0   1   0  ]
+3  [  0   1   1   1  ]
+4  [  0   0   0   1  ]
+                        </code></pre>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Choosing the Right Representation</h3>
+                    
+                    <p>The choice of graph representation depends on the specific requirements of your problem and the operations you need to perform frequently.</p>
+                    
+                    <h4>Use Adjacency Matrix When:</h4>
+                    <ul>
+                        <li>The graph is dense (many edges).</li>
+                        <li>You need to check quickly if there is an edge between any two vertices.</li>
+                        <li>You need to perform matrix operations on the graph.</li>
+                        <li>The graph is static (not changing frequently).</li>
+                    </ul>
+                    
+                    <h4>Use Adjacency List When:</h4>
+                    <ul>
+                        <li>The graph is sparse (few edges compared to the maximum possible).</li>
+                        <li>You need to iterate over all edges efficiently.</li>
+                        <li>You need to add or remove vertices frequently.</li>
+                        <li>Memory efficiency is important.</li>
+                    </ul>
+                    
+                    <h4>Use Edge List When:</h4>
+                    <ul>
+                        <li>You need a simple representation.</li>
+                        <li>The primary operation is to iterate over all edges.</li>
+                        <li>Space efficiency is critical, and you don't need fast access to specific edges.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Space Complexity Comparison</div>
+                        <p>Consider a graph with 1000 vertices and 2000 edges:</p>
+                        <ul>
+                            <li><strong>Adjacency Matrix</strong>: Requires 1000² = 1,000,000 entries.</li>
+                            <li><strong>Adjacency List</strong>: Requires 1000 + 2 × 2000 = 5,000 entries (assuming each edge is stored in two adjacency lists for an undirected graph).</li>
+                            <li><strong>Edge List</strong>: Requires 2 × 2000 = 4,000 entries (assuming each edge is stored as a pair of vertices).</li>
+                        </ul>
+                        <p>For this sparse graph, adjacency list and edge list are much more space-efficient than adjacency matrix.</p>
+                    </div>
+                    
+                    <h4>Time Complexity Comparison</h4>
+                    <table border="1" style="width: 100%; text-align: center; margin: 20px 0; border-collapse: collapse;">
+                        <tr>
+                            <th style="padding: 8px;">Operation</th>
+                            <th style="padding: 8px;">Adjacency Matrix</th>
+                            <th style="padding: 8px;">Adjacency List</th>
+                            <th style="padding: 8px;">Edge List</th>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;">Add Edge</td>
+                            <td style="padding: 8px;">O(1)</td>
+                            <td style="padding: 8px;">O(1)</td>
+                            <td style="padding: 8px;">O(1)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;">Remove Edge</td>
+                            <td style="padding: 8px;">O(1)</td>
+                            <td style="padding: 8px;">O(degree)</td>
+                            <td style="padding: 8px;">O(E)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;">Check if Edge Exists</td>
+                            <td style="padding: 8px;">O(1)</td>
+                            <td style="padding: 8px;">O(degree)</td>
+                            <td style="padding: 8px;">O(E)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;">Find All Neighbors</td>
+                            <td style="padding: 8px;">O(V)</td>
+                            <td style="padding: 8px;">O(degree)</td>
+                            <td style="padding: 8px;">O(E)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;">Add Vertex</td>
+                            <td style="padding: 8px;">O(V²)</td>
+                            <td style="padding: 8px;">O(1)</td>
+                            <td style="padding: 8px;">O(1)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;">Remove Vertex</td>
+                            <td style="padding: 8px;">O(V²)</td>
+                            <td style="padding: 8px;">O(V + E)</td>
+                            <td style="padding: 8px;">O(E)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;">Memory Usage</td>
+                            <td style="padding: 8px;">O(V²)</td>
+                            <td style="padding: 8px;">O(V + E)</td>
+                            <td style="padding: 8px;">O(E)</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="navigation">
+                        <a href="../../features.html#graph-theory" class="prev-next-btn graph-theory-btn">Back to Roadmap</a>
+                        <a href="graph-traversal.html" class="prev-next-btn graph-theory-btn">Next: Graph Traversal</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

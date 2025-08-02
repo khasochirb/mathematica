@@ -1,0 +1,366 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Trees & Spanning Trees - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Trees & Spanning Trees</h2>
+                <p class="text-secondary">Understanding tree structures and their applications in graph theory</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#graph-theory">Graph Theory</a> &raquo;
+                    <span>Trees & Spanning Trees</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Trees</h3>
+                    
+                    <p>A tree is a special type of graph that has numerous applications across various fields, including computer science, network design, biology, and linguistics. Trees are fundamentally important in graph theory and algorithm design due to their unique properties that make them both simple to understand and powerful to use.</p>
+                    
+                    <h4>Definition of a Tree</h4>
+                    <p>A tree is an undirected graph that satisfies any of the following equivalent conditions:</p>
+                    <ul>
+                        <li>It is connected and has no cycles.</li>
+                        <li>It is acyclic, and adding any edge creates exactly one cycle.</li>
+                        <li>It is connected, and removing any edge creates exactly two disconnected components.</li>
+                        <li>There is exactly one simple path between any two vertices.</li>
+                        <li>It is connected and has exactly n-1 edges, where n is the number of vertices.</li>
+                    </ul>
+                    
+                    <h4>Basic Terminology</h4>
+                    <ul>
+                        <li><strong>Root</strong>: In a rooted tree, a designated vertex from which the tree is viewed.</li>
+                        <li><strong>Parent</strong>: The vertex connected to a given vertex on the path toward the root.</li>
+                        <li><strong>Child</strong>: A vertex connected to a given vertex on the path away from the root.</li>
+                        <li><strong>Siblings</strong>: Vertices that share the same parent.</li>
+                        <li><strong>Ancestor</strong>: Any vertex on the path from a given vertex to the root.</li>
+                        <li><strong>Descendant</strong>: Any vertex for which a given vertex is an ancestor.</li>
+                        <li><strong>Leaf</strong>: A vertex with no children (degree 1 in the tree).</li>
+                        <li><strong>Internal Vertex</strong>: A non-leaf vertex.</li>
+                        <li><strong>Level</strong>: The number of edges on the path from a vertex to the root.</li>
+                        <li><strong>Height</strong>: The maximum level of any vertex in the tree.</li>
+                        <li><strong>Subtree</strong>: A tree formed by a vertex and all its descendants.</li>
+                    </ul>
+                    
+                    <div class="math-formula">
+                        <p>Properties of a tree with n vertices:</p>
+                        <p>1. It has exactly n-1 edges.</p>
+                        <p>2. It has no cycles.</p>
+                        <p>3. It is connected.</p>
+                        <p>4. There is exactly one path between any two vertices.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Identifying Trees</div>
+                        <p>Consider the following graphs:</p>
+                        <p><strong>Graph 1</strong>: Vertices {A, B, C, D} with edges {(A,B), (B,C), (C,D)}</p>
+                        <p><strong>Graph 2</strong>: Vertices {A, B, C, D} with edges {(A,B), (B,C), (C,D), (D,A)}</p>
+                        <p><strong>Graph 3</strong>: Vertices {A, B, C, D, E} with edges {(A,B), (A,C), (B,D), (C,E)}</p>
+                        <p><strong>Analysis</strong>:</p>
+                        <ul>
+                            <li>Graph 1 has 4 vertices and 3 edges (= 4-1). It is connected and has no cycles. Therefore, Graph 1 is a tree.</li>
+                            <li>Graph 2 has 4 vertices and 4 edges (> 4-1). It contains a cycle (A-B-C-D-A). Therefore, Graph 2 is not a tree.</li>
+                            <li>Graph 3 has 5 vertices and 4 edges (= 5-1). It is connected and has no cycles. Therefore, Graph 3 is a tree.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Types of Trees</h3>
+                    
+                    <h4>1. Rooted Trees</h4>
+                    <p>A rooted tree is a tree where one vertex has been designated as the root. Once a root is defined, a parent-child relationship is established between adjacent vertices. Rooted trees can be further categorized based on constraints on the number of children or the organization of nodes:</p>
+                    <ul>
+                        <li><strong>Binary Tree</strong>: A rooted tree where each node has at most two children, typically referred to as the left child and the right child.</li>
+                        <li><strong>Full Binary Tree</strong>: A binary tree where every node has either 0 or 2 children.</li>
+                        <li><strong>Complete Binary Tree</strong>: A binary tree where all levels are completely filled except possibly the lowest level, which is filled from left to right.</li>
+                        <li><strong>Perfect Binary Tree</strong>: A binary tree where all internal nodes have exactly two children and all leaf nodes are at the same level.</li>
+                        <li><strong>Balanced Tree</strong>: A tree where the height of the left and right subtrees of any node differ by at most a specified amount (usually 1).</li>
+                        <li><strong>B-Tree</strong>: A self-balancing tree with more than two children per node, designed to work efficiently on disk storage.</li>
+                    </ul>
+                    
+                    <h4>2. Free Trees</h4>
+                    <p>A free tree is a tree without a designated root. Any vertex can be considered as the root, changing the parent-child relationships accordingly.</p>
+                    
+                    <h4>3. Ordered Trees</h4>
+                    <p>An ordered tree is a rooted tree in which the children of each node are ordered, typically from left to right.</p>
+                    
+                    <h4>4. Labeled Trees</h4>
+                    <p>A labeled tree is a tree in which each vertex is assigned a unique label or value.</p>
+                    
+                    <div class="math-formula">
+                        <p>Cayley's Formula:</p>
+                        <p>The number of different labeled trees with n vertices is n^(n-2).</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Binary Search Tree</div>
+                        <p>A binary search tree (BST) is a binary tree where for each node:</p>
+                        <ul>
+                            <li>All nodes in the left subtree have values less than the node's value.</li>
+                            <li>All nodes in the right subtree have values greater than the node's value.</li>
+                        </ul>
+                        <p>Consider the following binary search tree:</p>
+                        <pre><code>
+        8
+       / \
+      3   10
+     / \    \
+    1   6    14
+       / \   /
+      4   7 13
+                        </code></pre>
+                        <p>This is a valid BST because:</p>
+                        <ul>
+                            <li>For node 8: All nodes in the left subtree (3, 1, 6, 4, 7) have values less than 8, and all nodes in the right subtree (10, 14, 13) have values greater than 8.</li>
+                            <li>For node 3: All nodes in the left subtree (1) have values less than 3, and all nodes in the right subtree (6, 4, 7) have values greater than 3.</li>
+                            <li>And so on for all other nodes.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Spanning Trees</h3>
+                    
+                    <h4>Definition and Properties</h4>
+                    <p>A spanning tree of a connected, undirected graph G is a tree that includes all the vertices of G with the minimum possible number of edges. In other words, a spanning tree is a subgraph of G that is a tree and spans (includes) all vertices of G.</p>
+                    
+                    <p class="text-secondary">Key properties of a spanning tree T of a graph G with n vertices:</p>
+                    <ul>
+                        <li>T contains all n vertices of G.</li>
+                        <li>T contains exactly n-1 edges of G.</li>
+                        <li>T is connected and acyclic (it's a tree).</li>
+                        <li>Removing any edge from T disconnects it (every edge is a bridge).</li>
+                        <li>Adding any edge from G (that's not in T) creates exactly one cycle.</li>
+                    </ul>
+                    
+                    <h4>Number of Spanning Trees</h4>
+                    <p>A connected graph with cycles will have multiple spanning trees. The number of spanning trees depends on the structure of the graph:</p>
+                    <ul>
+                        <li>For a complete graph with n vertices, the number of spanning trees is n^(n-2) (Cayley's formula).</li>
+                        <li>For a general graph, the number of spanning trees can be calculated using the Matrix-Tree Theorem, which involves computing the determinant of a modified version of the Laplacian matrix of the graph.</li>
+                    </ul>
+                    
+                    <div class="math-formula">
+                        <p class="text-secondary">Matrix-Tree Theorem:</p>
+                        <p>The number of spanning trees of a graph G is equal to any cofactor of the Laplacian matrix of G.</p>
+                        <p>The Laplacian matrix L of a graph G is defined as L = D - A, where D is the degree matrix and A is the adjacency matrix of G.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Finding All Spanning Trees</div>
+                        <p>Consider the following graph G:</p>
+                        <p>Vertices: {A, B, C, D}</p>
+                        <p>Edges: {(A,B), (A,C), (A,D), (B,C), (C,D)}</p>
+                        
+                        <p>Let's enumerate all possible spanning trees of G:</p>
+                        <ol>
+                            <li>Edges {(A,B), (A,C), (A,D)}</li>
+                            <li>Edges {(A,B), (A,C), (C,D)}</li>
+                            <li>Edges {(A,B), (A,D), (C,D)}</li>
+                            <li>Edges {(A,B), (B,C), (A,D)}</li>
+                            <li>Edges {(A,B), (B,C), (C,D)}</li>
+                            <li>Edges {(A,C), (A,D), (B,C)}</li>
+                            <li>Edges {(A,C), (C,D), (B,C)}</li>
+                            <li>Edges {(A,D), (C,D), (B,C)}</li>
+                        </ol>
+                        
+                        <p>Thus, graph G has 8 different spanning trees.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Minimum Spanning Trees</h3>
+                    
+                    <h4>Definition</h4>
+                    <p>In a weighted undirected graph, a minimum spanning tree (MST) is a spanning tree whose sum of edge weights is minimized. In other words, an MST is a subset of the edges that forms a tree that includes every vertex, where the total weight of all the edges in the tree is minimized.</p>
+                    
+                    <p>If all edge weights are distinct, the MST is unique. Otherwise, there may be multiple MSTs with the same total weight.</p>
+                    
+                    <h4>Algorithms for Finding MSTs</h4>
+                    <p>Several algorithms exist for finding MSTs efficiently:</p>
+                    
+                    <p><strong>1. Kruskal's Algorithm</strong></p>
+                    <ol>
+                        <li>Sort all edges in non-decreasing order of their weight.</li>
+                        <li>Initialize an empty MST.</li>
+                        <li>Iterate through the sorted edges. For each edge:
+                            <ul>
+                                <li>If including this edge doesn't create a cycle in the MST, add it to the MST.</li>
+                                <li>Otherwise, discard this edge.</li>
+                            </ul>
+                        </li>
+                        <li>Continue until the MST has n-1 edges (where n is the number of vertices).</li>
+                    </ol>
+                    
+                    <p><strong>2. Prim's Algorithm</strong></p>
+                    <ol>
+                        <li>Initialize a tree with a single vertex, chosen arbitrarily from the graph.</li>
+                        <li>Grow the tree by one edge at a time: of the edges that connect the tree to vertices not yet in the tree, find the minimum-weight edge, and add it to the tree.</li>
+                        <li>Repeat until the tree spans all vertices.</li>
+                    </ol>
+                    
+                    <div class="math-formula">
+                        <p>Time Complexity:</p>
+                        <p>- Kruskal's Algorithm: O(E log E) or O(E log V), where E is the number of edges and V is the number of vertices.</p>
+                        <p>- Prim's Algorithm: O(E log V) with binary heap, or O(V²) with array implementation.</p>
+                    </div>
+                    
+                    <h4>Properties of MST</h4>
+                    <ul>
+                        <li><strong>Cut Property</strong>: For any cut in the graph, if the edge with the minimum weight across the cut is not in the MST, then we can add it to the MST and remove another edge from the created cycle to obtain a spanning tree with smaller weight.</li>
+                        <li><strong>Cycle Property</strong>: For any cycle in the graph, if the edge with the maximum weight in the cycle is unique, then this edge cannot be in the MST.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Finding MST using Kruskal's Algorithm</div>
+                        <p>Consider the following weighted graph G:</p>
+                        <p>Vertices: {A, B, C, D, E}</p>
+                        <p>Edges: {(A,B,2), (A,C,3), (B,C,1), (B,D,4), (C,D,5), (C,E,6), (D,E,7)}</p>
+                        <p>where (u,v,w) represents an edge from u to v with weight w.</p>
+                        
+                        <p><strong>Step 1:</strong> Sort the edges by weight: {(B,C,1), (A,B,2), (A,C,3), (B,D,4), (C,D,5), (C,E,6), (D,E,7)}</p>
+                        <p><strong>Step 2:</strong> Initialize MST as empty.</p>
+                        <p><strong>Step 3:</strong> Process edges in order:</p>
+                        <ul>
+                            <li>Add (B,C,1) to MST. MST = {(B,C)}</li>
+                            <li>Add (A,B,2) to MST. MST = {(B,C), (A,B)}</li>
+                            <li>Add (A,C,3) would create a cycle (A-B-C-A), so skip it.</li>
+                            <li>Add (B,D,4) to MST. MST = {(B,C), (A,B), (B,D)}</li>
+                            <li>Add (C,D,5) would create a cycle (B-C-D-B), so skip it.</li>
+                            <li>Add (C,E,6) to MST. MST = {(B,C), (A,B), (B,D), (C,E)}</li>
+                            <li>MST now has 4 edges (= 5-1), so we're done.</li>
+                        </ul>
+                        
+                        <p>The resulting MST has edges {(B,C), (A,B), (B,D), (C,E)} with a total weight of 1 + 2 + 4 + 6 = 13.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications of Trees and Spanning Trees</h3>
+                    
+                    <h4>Applications of Trees</h4>
+                    <ul>
+                        <li><strong>Hierarchical Representation</strong>: File systems, organization charts, family trees, and taxonomies.</li>
+                        <li><strong>Data Structures</strong>: Binary search trees, AVL trees, red-black trees, and B-trees for efficient data storage and retrieval.</li>
+                        <li><strong>Syntax Trees</strong>: Used in compilers to represent the structure of program code.</li>
+                        <li><strong>Decision Trees</strong>: Used in machine learning for classification and regression tasks.</li>
+                        <li><strong>Game Trees</strong>: Used in artificial intelligence to represent possible moves in games like chess or tic-tac-toe.</li>
+                    </ul>
+                    
+                    <h4>Applications of Spanning Trees</h4>
+                    <ul>
+                        <li><strong>Network Design</strong>: Designing efficient communication networks with minimum cost.</li>
+                        <li><strong>Cluster Analysis</strong>: Used in data mining to cluster similar data points.</li>
+                        <li><strong>Circuit Analysis</strong>: Finding equations for currents in an electrical circuit.</li>
+                        <li><strong>Image Segmentation</strong>: Used in computer vision to segment images into regions of interest.</li>
+                    </ul>
+                    
+                    <h4>Applications of Minimum Spanning Trees</h4>
+                    <ul>
+                        <li><strong>Network Design</strong>: Designing telecommunication networks, road networks, or electrical grids with minimum cost.</li>
+                        <li><strong>Clustering</strong>: In data mining, MSTs can be used for clustering by removing the longest edges.</li>
+                        <li><strong>Approximation Algorithms</strong>: MSTs are used in approximation algorithms for NP-hard problems like the Traveling Salesman Problem.</li>
+                        <li><strong>Image Segmentation</strong>: In computer vision, MSTs can help segment images based on pixel similarity.</li>
+                        <li><strong>Network Routing</strong>: Optimizing routing protocols in computer networks.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Network Design Application</div>
+                        <p>Suppose a telecommunications company wants to connect 5 cities {A, B, C, D, E} with fiber optic cables. The cost of laying cable between each pair of cities (in millions of dollars) is as follows:</p>
+                        <ul>
+                            <li>A to B: 10</li>
+                            <li>A to C: 15</li>
+                            <li>A to D: 20</li>
+                            <li>A to E: 25</li>
+                            <li>B to C: 8</li>
+                            <li>B to D: 12</li>
+                            <li>B to E: 18</li>
+                            <li>C to D: 9</li>
+                            <li>C to E: 14</li>
+                            <li>D to E: 11</li>
+                        </ul>
+                        
+                        <p>To minimize the total cost while ensuring all cities are connected, the company should find the MST of this graph.</p>
+                        
+                        <p>Using Kruskal's or Prim's algorithm, the MST consists of the edges {(B,C,8), (C,D,9), (D,E,11), (B,A,10)}, with a total cost of 38 million dollars.</p>
+                    </div>
+                    
+                    <div class="navigation">
+                        <a href="eulerian-hamiltonian-paths.html" class="prev-next-btn">Previous: Eulerian & Hamiltonian Paths</a>
+                        <a href="graph-traversal.html" class="prev-next-btn">Next: Graph Traversal</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

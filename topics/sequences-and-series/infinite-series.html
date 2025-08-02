@@ -1,0 +1,338 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Infinite Series - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Infinite Series</h2>
+                <p>Exploring the sum of infinitely many terms and their convergence properties</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#sequences-and-series">Sequences and Series</a> &raquo;
+                    <span>Infinite Series</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Infinite Series</h3>
+                    
+                    <p>An infinite series is the sum of infinitely many terms that follow a specific pattern. It is denoted by:</p>
+                    <div class="math-formula">
+                        Σ(n=1 to ∞) aₙ = a₁ + a₂ + a₃ + ... + aₙ + ...
+                    </div>
+                    
+                    <p>where {aₙ} is a sequence and the symbol Σ (sigma) represents summation. The infinite series is defined as the limit of the sequence of partial sums:</p>
+                    <div class="math-formula">
+                        S<sub>n</sub> = Σ(k=1 to n) aₖ = a₁ + a₂ + a₃ + ... + aₙ
+                    </div>
+                    <div class="math-formula">
+                        S = Σ(n=1 to ∞) aₙ = lim(n→∞) S<sub>n</sub>
+                    </div>
+                    
+                    <p>If the limit of the sequence of partial sums exists and is finite, we say the series <strong>converges</strong> to that value. If the limit doesn't exist or is infinite, we say the series <strong>diverges</strong>.</p>
+                    
+                    <p class="text-secondary">Understanding the behavior of infinite series is crucial in calculus, physics, and many other fields of mathematics and science. In this lesson, we'll explore the concept of convergence and divergence of series and examine different types of infinite series and their properties.</p>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Convergence and Divergence</h3>
+                    
+                    <h4>Definitions and Basic Properties</h4>
+                    <p>For an infinite series Σ aₙ, we define the sequence of partial sums {S<sub>n</sub>} as:</p>
+                    <div class="math-formula">
+                        S<sub>n</sub> = a₁ + a₂ + a₃ + ... + aₙ
+                    </div>
+                    
+                    <p>Based on the behavior of this sequence, we classify series as follows:</p>
+                    <ul>
+                        <li><strong>Convergent Series:</strong> If the sequence of partial sums {S<sub>n</sub>} converges to a finite limit S, then the series is said to converge to S. We write: Σ(n=1 to ∞) aₙ = S</li>
+                        <li><strong>Divergent Series:</strong> If the sequence of partial sums {S<sub>n</sub>} does not converge to a finite limit, then the series is said to diverge.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 1: Geometric Series</div>
+                        <p>Consider the geometric series Σ(n=0 to ∞) r<sup>n</sup> = 1 + r + r<sup>2</sup> + r<sup>3</sup> + ...</p>
+                        <p>For |r| < 1, this series converges to 1/(1-r).</p>
+                        <p>For |r| ≥ 1, this series diverges.</p>
+                        <p>For instance, if r = 1/2, we have Σ(n=0 to ∞) (1/2)<sup>n</sup> = 1 + 1/2 + 1/4 + 1/8 + ... = 2.</p>
+                        <p>But if r = 2, we have Σ(n=0 to ∞) 2<sup>n</sup> = 1 + 2 + 4 + 8 + ..., which clearly grows without bound and thus diverges.</p>
+                    </div>
+                    
+                    <h4>Necessary Condition for Convergence</h4>
+                    <p>If a series Σ aₙ converges, then the sequence {aₙ} must converge to 0. In other words:</p>
+                    <div class="math-formula">
+                        If Σ(n=1 to ∞) aₙ converges, then lim(n→∞) aₙ = 0
+                    </div>
+                    
+                    <p>This provides a useful test for divergence: if lim(n→∞) aₙ ≠ 0 or doesn't exist, then the series Σ aₙ diverges.</p>
+                    
+                    <p>However, the converse is not true. If lim(n→∞) aₙ = 0, the series may still diverge. A classic example is the harmonic series:</p>
+                    <div class="math-formula">
+                        Σ(n=1 to ∞) 1/n = 1 + 1/2 + 1/3 + 1/4 + ...
+                    </div>
+                    <p>Even though lim(n→∞) 1/n = 0, the harmonic series diverges.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 2: Testing for Divergence</div>
+                        <p>Consider the series Σ(n=1 to ∞) n/(n+1).</p>
+                        <p>We examine lim(n→∞) n/(n+1):</p>
+                        <p>lim(n→∞) n/(n+1) = lim(n→∞) 1/(1+1/n) = 1</p>
+                        <p>Since the limit of the terms is not 0, the series must diverge.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Special Series</h3>
+                    
+                    <h4>p-Series</h4>
+                    <p>A p-series is a series of the form:</p>
+                    <div class="math-formula">
+                        Σ(n=1 to ∞) 1/n<sup>p</sup>
+                    </div>
+                    <p>where p is a constant. The convergence of a p-series depends on the value of p:</p>
+                    <ul>
+                        <li>If p > 1, the series converges</li>
+                        <li>If p ≤ 1, the series diverges</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 3: p-Series Examples</div>
+                        <p>The series Σ(n=1 to ∞) 1/n<sup>2</sup> is a p-series with p = 2 > 1, so it converges. In fact, it converges to π<sup>2</sup>/6 ≈ 1.645.</p>
+                        <p>The series Σ(n=1 to ∞) 1/n is a p-series with p = 1, so it diverges. This is the harmonic series mentioned earlier.</p>
+                        <p>The series Σ(n=1 to ∞) 1/√n is a p-series with p = 1/2 < 1, so it diverges.</p>
+                    </div>
+                    
+                    <h4>Telescoping Series</h4>
+                    <p>A telescoping series has terms that can be expressed as the difference of two consecutive terms of a sequence, causing most terms to cancel out when the partial sums are computed.</p>
+                    <p>If aₙ = bₙ - bₙ₊₁, then:</p>
+                    <div class="math-formula">
+                        Σ(n=1 to N) aₙ = Σ(n=1 to N) (bₙ - bₙ₊₁) = b₁ - b<sub>N+1</sub>
+                    </div>
+                    <p>For the infinite series to converge, we need lim(n→∞) bₙ to exist. In that case:</p>
+                    <div class="math-formula">
+                        Σ(n=1 to ∞) (bₙ - bₙ₊₁) = b₁ - lim(n→∞) bₙ
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 4: Telescoping Series</div>
+                        <p>Consider the series Σ(n=1 to ∞) (1/n - 1/(n+1)).</p>
+                        <p>We can rewrite each term: 1/n - 1/(n+1) = (n+1 - n)/(n(n+1)) = 1/(n(n+1))</p>
+                        <p>But we also notice that 1/n - 1/(n+1) is exactly of the form bₙ - bₙ₊₁ with bₙ = 1/n.</p>
+                        <p>So the partial sum S<sub>N</sub> = Σ(n=1 to N) (1/n - 1/(n+1)) = 1/1 - 1/(N+1) = 1 - 1/(N+1)</p>
+                        <p>As N→∞, we get Σ(n=1 to ∞) (1/n - 1/(n+1)) = 1 - 0 = 1</p>
+                    </div>
+                    
+                    <h4>Alternating Series</h4>
+                    <p>An alternating series has terms that alternate in sign. It can be expressed as:</p>
+                    <div class="math-formula">
+                        Σ(n=1 to ∞) (-1)<sup>n+1</sup>a<sub>n</sub> = a₁ - a₂ + a₃ - a₄ + ...
+                    </div>
+                    <p>or</p>
+                    <div class="math-formula">
+                        Σ(n=1 to ∞) (-1)<sup>n</sup>a<sub>n</sub> = -a₁ + a₂ - a₃ + a₄ - ...
+                    </div>
+                    <p>where a<sub>n</sub> > 0 for all n.</p>
+                    
+                    <p>The Alternating Series Test states that if {a<sub>n</sub>} is a decreasing sequence with lim(n→∞) a<sub>n</sub> = 0, then the alternating series Σ(n=1 to ∞) (-1)<sup>n+1</sup>a<sub>n</sub> converges.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 5: Alternating Series</div>
+                        <p>Consider the alternating harmonic series Σ(n=1 to ∞) (-1)<sup>n+1</sup>/n = 1 - 1/2 + 1/3 - 1/4 + ...</p>
+                        <p>Here, a<sub>n</sub> = 1/n is decreasing and lim(n→∞) 1/n = 0, so by the Alternating Series Test, this series converges.</p>
+                        <p>In fact, this series converges to ln(2) ≈ 0.693.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Operations on Series</h3>
+                    
+                    <h4>Algebraic Operations</h4>
+                    <p>If Σ aₙ and Σ bₙ are convergent series with sums A and B respectively, then:</p>
+                    <ul>
+                        <li><strong>Addition:</strong> Σ (aₙ + bₙ) = A + B</li>
+                        <li><strong>Subtraction:</strong> Σ (aₙ - bₙ) = A - B</li>
+                        <li><strong>Scalar Multiplication:</strong> Σ (c·aₙ) = c·A for any constant c</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 6: Operations on Series</div>
+                        <p>We know that Σ(n=0 to ∞) (1/2)<sup>n</sup> = 2 and Σ(n=0 to ∞) (1/3)<sup>n</sup> = 3/2.</p>
+                        <p>Therefore:</p>
+                        <p>Σ(n=0 to ∞) ((1/2)<sup>n</sup> + (1/3)<sup>n</sup>) = 2 + 3/2 = 7/2</p>
+                        <p>Σ(n=0 to ∞) (2·(1/2)<sup>n</sup>) = 2·2 = 4</p>
+                    </div>
+                    
+                    <h4>Reindexing</h4>
+                    <p>Changing the index of summation doesn't affect the convergence or value of the series, provided appropriate adjustments are made. For instance:</p>
+                    <div class="math-formula">
+                        Σ(n=1 to ∞) aₙ = Σ(n=0 to ∞) a<sub>n+1</sub> = Σ(n=k to ∞) a<sub>n-k+1</sub>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 7: Reindexing</div>
+                        <p>Consider the series Σ(n=1 to ∞) 1/2<sup>n</sup> = 1/2 + 1/4 + 1/8 + ...</p>
+                        <p>We can reindex this to start from n=0:</p>
+                        <p>Σ(n=0 to ∞) 1/2<sup>n+1</sup> = 1/2 + 1/4 + 1/8 + ...</p>
+                        <p>Or, we can factor out 1/2:</p>
+                        <p>Σ(n=1 to ∞) 1/2<sup>n</sup> = (1/2) · Σ(n=1 to ∞) 1/2<sup>n-1</sup> = (1/2) · Σ(n=0 to ∞) 1/2<sup>n</sup> = (1/2) · 2 = 1</p>
+                    </div>
+                    
+                    <h4>Multiplication of Series (Cauchy Product)</h4>
+                    <p>The product of two series is more complex and involves a special operation called the Cauchy product:</p>
+                    <div class="math-formula">
+                        (Σ aₙ) · (Σ bₙ) = Σ c<sub>n</sub>
+                    </div>
+                    <p>where c<sub>n</sub> = a₀b<sub>n</sub> + a₁b<sub>n-1</sub> + ... + a<sub>n</sub>b₀ = Σ(k=0 to n) a<sub>k</sub>b<sub>n-k</sub></p>
+                    
+                    <p>If both series Σ aₙ and Σ bₙ are absolutely convergent, then their Cauchy product Σ c<sub>n</sub> converges to the product of their sums.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 8: Cauchy Product</div>
+                        <p>Consider the product of two geometric series:</p>
+                        <p>(1 + x + x<sup>2</sup> + ...) · (1 + y + y<sup>2</sup> + ...) = ?</p>
+                        <p>Using the formula for the sum of a geometric series:</p>
+                        <p>(1 + x + x<sup>2</sup> + ...) = 1/(1-x) for |x| < 1</p>
+                        <p>(1 + y + y<sup>2</sup> + ...) = 1/(1-y) for |y| < 1</p>
+                        <p>The product is (1/(1-x)) · (1/(1-y)) = 1/((1-x)(1-y))</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications of Infinite Series</h3>
+                    
+                    <h4>Taylor Series</h4>
+                    <p>One of the most important applications of infinite series is in representing functions as power series, specifically Taylor series:</p>
+                    <div class="math-formula">
+                        f(x) = f(a) + f'(a)(x-a)/1! + f''(a)(x-a)<sup>2</sup>/2! + f'''(a)(x-a)<sup>3</sup>/3! + ...
+                    </div>
+                    <p>Or more concisely:</p>
+                    <div class="math-formula">
+                        f(x) = Σ(n=0 to ∞) f<sup>(n)</sup>(a)(x-a)<sup>n</sup>/n!
+                    </div>
+                    <p>When a = 0, we get the Maclaurin series:</p>
+                    <div class="math-formula">
+                        f(x) = Σ(n=0 to ∞) f<sup>(n)</sup>(0)x<sup>n</sup>/n!
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 9: Maclaurin Series</div>
+                        <p>The Maclaurin series for e<sup>x</sup> is:</p>
+                        <p>e<sup>x</sup> = 1 + x + x<sup>2</sup>/2! + x<sup>3</sup>/3! + ... = Σ(n=0 to ∞) x<sup>n</sup>/n!</p>
+                        <p>The Maclaurin series for sin(x) is:</p>
+                        <p>sin(x) = x - x<sup>3</sup>/3! + x<sup>5</sup>/5! - ... = Σ(n=0 to ∞) (-1)<sup>n</sup>x<sup>2n+1</sup>/(2n+1)!</p>
+                    </div>
+                    
+                    <h4>Decimal Representations</h4>
+                    <p class="text-secondary">Infinite series are used to represent decimal numbers. For instance, a decimal number like 0.123123123... can be represented as:</p>
+                    <div class="math-formula">
+                        0.123123... = 123/10<sup>3</sup> · (1 + 1/10<sup>3</sup> + 1/10<sup>6</sup> + ...)
+                    </div>
+                    <p>This is a geometric series with first term a = 123/10<sup>3</sup> and common ratio r = 1/10<sup>3</sup>, so:</p>
+                    <div class="math-formula">
+                        0.123123... = (123/10<sup>3</sup>) / (1 - 1/10<sup>3</sup>) = 123/999 = 41/333
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 10: Decimal Representation</div>
+                        <p>Express 0.999... as a fraction.</p>
+                        <p>We can write 0.999... = 9/10 + 9/100 + 9/1000 + ...</p>
+                        <p>This is a geometric series with a = 9/10 and r = 1/10.</p>
+                        <p>Σ(n=1 to ∞) 9/10 · (1/10)<sup>n-1</sup> = (9/10)/(1-1/10) = (9/10)/(9/10) = 1</p>
+                        <p>Therefore, 0.999... = 1.</p>
+                    </div>
+                    
+                    <h4>Physics and Engineering</h4>
+                    <p class="text-secondary">Infinite series are frequently used in physics and engineering for approximating solutions to complex problems:</p>
+                    <ul>
+                        <li><strong>Fourier Series:</strong> Represents periodic functions as a sum of sines and cosines</li>
+                        <li><strong>Perturbation Theory:</strong> Approximates solutions to problems by adding small corrections</li>
+                        <li><strong>Circuit Analysis:</strong> Models the behavior of electrical circuits with reactive components</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 11: Physics Application</div>
+                        <p>In quantum mechanics, the energy levels of a harmonic oscillator are given by:</p>
+                        <p>E<sub>n</sub> = ħω(n + 1/2) for n = 0, 1, 2, ...</p>
+                        <p>The partition function, which is used to calculate thermodynamic quantities, is:</p>
+                        <p>Z = Σ(n=0 to ∞) e<sup>-E<sub>n</sub>/kT</sup> = e<sup>-ħω/2kT</sup> · Σ(n=0 to ∞) (e<sup>-ħω/kT</sup>)<sup>n</sup></p>
+                        <p>This is a geometric series with r = e<sup>-ħω/kT</sup>, which converges for all temperatures T > 0:</p>
+                        <p>Z = e<sup>-ħω/2kT</sup> / (1 - e<sup>-ħω/kT</sup>)</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <a href="arithmetic-and-geometric-sequences.html" class="prev-next-btn">Previous: Arithmetic & Geometric Sequences</a>
+                    <a href="convergence-tests.html" class="prev-next-btn">Next: Convergence Tests</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

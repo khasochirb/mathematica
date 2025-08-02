@@ -1,0 +1,1007 @@
+/* Improved accessibility and visual consistency */
+
+/* Remove white gap at the top of the page */
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden;
+    border-top: none !important;
+}
+
+body {
+    min-height: 100vh;
+}
+
+#page-wrapper {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    background-color: transparent;
+    border-top: none !important;
+}
+
+#header {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    border-top: none !important;
+}
+
+/* Base text colors */
+body, p, li, ul, ol {
+    color: #333 !important;
+}
+
+/* Box styling improvements */
+.box {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.box h3 {
+    color: #3d4449 !important;
+    border-bottom: 2px solid #4acaa8;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+}
+
+.box p {
+    color: #333 !important;
+}
+
+/* Remove grey backgrounds and improve contrast */
+#header, #banner, #main header, #footer, .fullscreen-section {
+    background-color: #121820 !important; /* Darker, richer background */
+}
+
+/* Gradient text effects for headings */
+#banner h2, #main header h2, .fullscreen-section h2, .section-title {
+    background: linear-gradient(90deg, #4acaa8, #38c4c0, #2ab8de);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    font-weight: 700;
+    text-shadow: none !important;
+    margin-bottom: 0.5em;
+}
+
+/* Make regular text in dark sections more visible */
+#main header p, #banner p, .fullscreen-section p, #cta p {
+    color: rgba(255, 255, 255, 0.95) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    font-weight: 400;
+}
+
+#footer .copyright .links li {
+    color: #ffffff !important;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    font-size: 1.1em;
+    letter-spacing: 0.05em;
+}
+
+/* Copyright section specific styling */
+#copyright {
+    margin: 2em 0;
+    padding: 1em 0;
+    position: relative;
+}
+
+#copyright ul.links {
+    background: rgba(74, 202, 168, 0.15) !important;
+    border: 1px solid rgba(74, 202, 168, 0.3);
+    border-radius: 6px;
+    padding: 1em 2em;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#copyright ul.links li {
+    color: #ffffff !important;
+    font-weight: 600;
+    font-size: 1.1em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Button improvements - Futuristic Style with Enhanced Gradient */
+.button {
+    background: linear-gradient(135deg, #4acaa8, #38c4c0, #2ab8de) !important;
+    color: white !important;
+    border: none !important;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(74, 202, 168, 0.25), 0 0 0 0 rgba(74, 202, 168, 0);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    border-radius: 4px;
+}
+
+.button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.6s ease;
+}
+
+.button:hover {
+    background: linear-gradient(135deg, #3ab89a, #31b0bb, #1fa6db) !important;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 15px rgba(74, 202, 168, 0.35), 0 0 20px 5px rgba(42, 184, 222, 0.1);
+}
+
+.button:hover:before {
+    left: 100%;
+}
+
+.button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(74, 202, 168, 0.3);
+}
+
+.button.alt {
+    background: transparent !important;
+    color: #4acaa8 !important;
+    border: 2px solid rgba(74, 202, 168, 0.7) !important;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.button.alt:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(135deg, #4acaa8, #38c4c0, #2ab8de);
+    transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+    z-index: -1;
+    opacity: 0.9;
+}
+
+.button.alt:hover {
+    color: white !important;
+    border-color: transparent !important;
+    box-shadow: 0 6px 15px rgba(74, 202, 168, 0.2), 0 0 20px 5px rgba(42, 184, 222, 0.1);
+}
+
+.button.alt:hover:before {
+    width: 100%;
+}
+
+.button.disabled, 
+.button.disabled:hover {
+    background-color: #ccc !important;
+    border-color: #ccc !important;
+    color: #666 !important;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Enhanced CTA section */
+#cta {
+    background: linear-gradient(135deg, #121820, #1e2530) !important;
+    border-top: 3px solid #4acaa8;
+    border-bottom: 3px solid #4acaa8;
+    text-align: center;
+    padding: 4em 0;
+    position: relative;
+    overflow: hidden;
+}
+
+#cta:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='rgba(74, 202, 168, 0.05)' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.15;
+}
+
+#cta .row {
+    position: relative;
+    z-index: 2;
+}
+
+/* Enhanced CTA buttons for more impact */
+#cta .button.primary.fit {
+    background: linear-gradient(135deg, #4acaa8, #38c4c0, #2ab8de) !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(74, 202, 168, 0.3), 0 0 0 0 rgba(74, 202, 168, 0);
+    position: relative;
+    overflow: hidden;
+}
+
+#cta .button.primary.fit:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: all 0.6s ease;
+}
+
+#cta .button.primary.fit:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(74, 202, 168, 0.35), 0 0 30px 5px rgba(42, 184, 222, 0.15);
+    background: linear-gradient(135deg, #3ab89a, #31b0bb, #1fa6db) !important;
+}
+
+#cta .button.primary.fit:hover:before {
+    left: 100%;
+}
+
+#cta .button.fit {
+    background: rgba(20, 29, 37, 0.3) !important;
+    color: white !important;
+    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#cta .button.fit:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(74, 202, 168, 0.2), rgba(42, 184, 222, 0.2));
+    transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+    z-index: -1;
+}
+
+#cta .button.fit:hover {
+    border-color: rgba(42, 184, 222, 0.6) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2), 0 0 20px rgba(42, 184, 222, 0.2);
+    transform: translateY(-3px) scale(1.02);
+}
+
+#cta .button.fit:hover:before {
+    width: 100%;
+}
+
+/* Back button styling for sub-pages */
+.go-back {
+    margin: 1.5em 0;
+}
+
+.go-back .button {
+    background: linear-gradient(135deg, #4acaa8, #38c4c0, #2ab8de) !important;
+    color: white !important;
+    font-weight: 600;
+    border-radius: 30px;
+    padding: 0.7em 1.5em;
+    box-shadow: 0 4px 10px rgba(74, 202, 168, 0.2), 0 0 10px rgba(42, 184, 222, 0);
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.go-back .button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.6s ease;
+}
+
+.go-back .button:hover {
+    background: linear-gradient(135deg, #3ab89a, #31b0bb, #1fa6db) !important;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 15px rgba(74, 202, 168, 0.25), 0 0 20px rgba(42, 184, 222, 0.15);
+}
+
+.go-back .button:hover:before {
+    left: 100%;
+}
+
+/* Navigation enhancements */
+#nav ul li a {
+    color: white !important;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    transition: color 0.3s ease;
+    position: relative;
+    border-bottom: 2px solid transparent !important;
+}
+
+#nav ul li a:hover {
+    color: #38c4c0 !important;
+    border-bottom: 2px solid transparent !important;
+}
+
+#nav ul li.current a {
+    color: #38c4c0 !important;
+    border-bottom: 2px solid #38c4c0 !important;
+}
+
+/* Responsive improvements */
+@media screen and (max-width: 736px) {
+    .box {
+        padding: 1.25em !important;
+    }
+    
+    #banner h2, #main header h2, .fullscreen-section h2 {
+        font-size: 1.75em !important;
+    }
+    
+    #banner p, #main header p, .fullscreen-section p {
+        font-size: 1em !important;
+    }
+    
+    .box h3 {
+        font-size: 1.2em !important;
+    }
+    
+    .features-row {
+        margin-bottom: 1.5em !important;
+    }
+}
+
+/* Feature section improvements */
+.box.special.features {
+    background: transparent !important;
+    box-shadow: none;
+}
+
+.features-row {
+    margin-bottom: 2em;
+}
+
+.features-row section {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 2em;
+    transition: all 0.3s ease;
+    border-top: 4px solid #4acaa8;
+}
+
+.features-row section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.features-row h3 {
+    font-size: 1.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.7em;
+    color: #3d4449 !important;
+    font-weight: 600;
+}
+
+.icon.solid.major {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+    display: block;
+}
+
+/* Form improvements */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+    background-color: white !important;
+    color: #333 !important;
+    border: 1px solid #ddd !important;
+}
+
+/* Icons */
+.icon.major.accent2 {
+    background: linear-gradient(135deg, #4acaa8, #6be5c3);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+}
+
+.icon.major.accent3 {
+    background: linear-gradient(135deg, #4a89ca, #6ba5e5);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+}
+
+.icon.major.accent4 {
+    background: linear-gradient(135deg, #9a4acb, #b56ae5);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+}
+
+.icon.major.accent5 {
+    background: linear-gradient(135deg, #ca4a71, #e56b92);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+}
+
+/* Highlight link for light text on dark background */
+.highlight-link {
+    color: #4acaa8 !important;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.highlight-link:hover {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+
+/* Add subtle page background pattern */
+/* Light background only for homepage */
+body.homepage {
+    background-color: #f9f9f9;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f0f0f0' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Dark background for all subpages */
+body:not(.homepage) {
+    background-color: #121820;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231a2028' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Ensure consistent dark styling for subpages */
+body:not(.homepage) #main, 
+body:not(.homepage) .main, 
+body:not(.homepage) #content,
+body:not(.homepage) .content,
+body:not(.homepage) #wrapper,
+body:not(.homepage) .wrapper {
+    background-color: #121820 !important;
+}
+
+/* Ensure text is visible on dark backgrounds in subpages */
+body:not(.homepage) p:not(.box p),
+body:not(.homepage) .container p:not(.box p) {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Enhanced footer styling for subpages */
+body:not(.homepage) #footer {
+    background: linear-gradient(to bottom, #121820, #1a2028) !important;
+    border-top: 1px solid rgba(74, 202, 168, 0.3);
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+}
+
+body:not(.homepage) #footer .copyright {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+body:not(.homepage) #footer .copyright a {
+    color: rgba(74, 202, 168, 0.9) !important;
+}
+
+/* Enhance topic pages styling for dark theme */
+body:not(.homepage) .example {
+    background: rgba(42, 184, 222, 0.1) !important;
+    border-left: 4px solid rgba(42, 184, 222, 0.7);
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+body:not(.homepage) .example-title {
+    color: #4acaa8 !important;
+}
+
+body:not(.homepage) .math-formula {
+    background: rgba(74, 202, 168, 0.15) !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+body:not(.homepage) .topic-section {
+    background: #1a2028 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-left: 5px solid #4acaa8;
+}
+
+body:not(.homepage) .topic-header {
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Enhance text elements on topic pages */
+body:not(.homepage) .topic-section p,
+body:not(.homepage) .topic-section li,
+body:not(.homepage) .topic-section ul,
+body:not(.homepage) .topic-section ol {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+body:not(.homepage) .topic-section h4 {
+    color: #4acaa8 !important;
+    margin-top: 1.5em;
+    margin-bottom: 0.7em;
+}
+
+body:not(.homepage) .topic-section strong {
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-weight: 600;
+}
+
+/* Make sure anchor text links are visible */
+body:not(.homepage) a:not(.button) {
+    color: #4acaa8 !important;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+body:not(.homepage) a:not(.button):hover {
+    color: #6be5c3 !important;
+    text-decoration: underline;
+}
+
+/* Roadmap improvements */
+.roadmap-section {
+    background: white;
+    border-radius: 8px;
+    padding: 25px 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-left: 5px solid #4acaa8;
+}
+
+.roadmap-section h3 {
+    color: #3d4449 !important;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    font-weight: 600;
+    background: linear-gradient(90deg, #3d4449, #5a6476);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.roadmap-section li {
+    color: #636970 !important;
+}
+
+.difficulty {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    color: white !important;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Add subtle dividers between sections */
+.fullscreen-section:not(:last-child) {
+    position: relative;
+}
+
+.fullscreen-section:not(:last-child):after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(74, 202, 168, 0.3), transparent);
+}
+
+/* Section highlights and backgrounds */
+.section-highlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(74, 202, 168, 0.05), rgba(0, 0, 0, 0));
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Enhanced gradient text for better visibility - FIX FOR CUT-OFF TITLES */
+#banner h2, #main header h2, .fullscreen-section h2, .section-title, #cta h2 {
+    font-size: 2.5em;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-bottom: 0.7em;
+    position: relative;
+    background: linear-gradient(90deg, #4acaa8, #38c4c0, #2ab8de);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    text-shadow: none !important;
+    display: inline-block;
+    width: auto;
+    overflow: visible;
+    padding: 0.1em 0.2em;
+    line-height: 1.3;
+    -webkit-text-stroke: 0.2px transparent;
+    text-rendering: geometricPrecision;
+}
+
+/* Underline removed for all h2 titles as requested */
+
+/* Fix for the About/Contact section titles in index.html */
+#about h2, #contact h2, #resources h2 {
+    width: auto !important;
+    margin-bottom: 0.7em;
+    padding: 0.1em 0.2em;
+    overflow: visible;
+    display: inline-block;
+    line-height: 1.3;
+    -webkit-text-stroke: 0.2px transparent;
+    text-rendering: geometricPrecision;
+}
+
+/* Additional fixes for the Resources heading */
+#resources h2 {
+    font-size: 2.5em;
+}
+
+/* Fix for headings that may still appear cut off on certain devices */
+.fullscreen-section header {
+    padding-top: 0.2em !important;
+    padding-bottom: 0.2em !important;
+    overflow: visible;
+}
+
+/* Improved sub-page styling */
+.sub-page .box {
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border-top: 4px solid #4acaa8;
+    overflow: hidden;
+}
+
+.sub-page .box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.sub-page .box h3 {
+    font-size: 1.6em;
+    margin-bottom: 1em;
+    color: #2d3b48 !important;
+    font-weight: 600;
+    background: linear-gradient(90deg, #2d3b48, #4a5a6b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    border-bottom: 2px solid #4acaa8;
+    padding-bottom: 0.7em;
+    line-height: 1.3;
+    -webkit-text-stroke: 0.2px transparent;
+    text-rendering: geometricPrecision;
+}
+
+.sub-page .box p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: #4a5a6b !important;
+    margin-bottom: 1.5em;
+}
+
+/* Improved styling for the roadmap section titles */
+.roadmap-section h3 {
+    font-size: 1.8em; 
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    background: linear-gradient(90deg, #3d4449, #5a6476);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    line-height: 1.3;
+    padding-top: 0.1em;
+    -webkit-text-stroke: 0.2px transparent;
+    text-rendering: geometricPrecision;
+}
+
+/* Adjust padding for better spacing in sub-pages */
+.sub-page-section {
+    padding: 3em 0;
+}
+
+.sub-page-section header {
+    margin-bottom: 2.5em;
+}
+
+/* Better mobile responsiveness for titles */
+@media screen and (max-width: 736px) {
+    #banner h2, #main header h2, .fullscreen-section h2, .section-title, #cta h2, #about h2, #contact h2, #resources h2 {
+        font-size: 1.8em;
+        padding: 0.1em 0.3em;
+        width: auto;
+        overflow: visible;
+        line-height: 1.3;
+    }
+    
+    .roadmap-section h3 {
+        font-size: 1.4em;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        line-height: 1.3;
+        padding-top: 0.1em;
+    }
+    
+    .difficulty {
+        margin-top: 5px;
+    }
+}
+
+/* Video grid improvements */
+.video-box {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border-top: 3px solid #4acaa8;
+}
+
+.video-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.video-box header h3 {
+    font-size: 1.4em;
+    color: #2d3b48;
+    margin-top: 0.8em;
+    margin-bottom: 0.6em;
+    background: linear-gradient(90deg, #2d3b48, #4a5a6b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+}
+
+.video-box p {
+    color: #4a5a6b !important;
+    line-height: 1.5;
+    margin-bottom: 1.5em;
+}
+
+.video-thumbnail {
+    position: relative;
+    overflow: hidden;
+}
+
+.video-thumbnail img {
+    transition: transform 0.5s ease;
+}
+
+.video-box:hover .video-thumbnail img {
+    transform: scale(1.05);
+}
+
+.video-thumbnail::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(74, 202, 168, 0.9);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.video-thumbnail::before {
+    content: '▶';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 24px;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.video-box:hover .video-thumbnail::after,
+.video-box:hover .video-thumbnail::before {
+    opacity: 1;
+}
+
+/* Resources page title fix */
+#resources .section-title {
+    width: auto;
+    display: inline-block;
+    padding: 0 5px;
+}
+
+/* Fix for the header navigation container */
+#header {
+    padding: 1.5em 0 !important;
+}
+
+#header .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+#header .logo {
+    padding: 0.5em 0;
+    display: flex;
+    align-items: center;
+}
+
+#header .logo img {
+    max-height: 180px;
+    vertical-align: middle;
+}
+
+#header h1 {
+    display: none; /* Hide the text-based logo */
+}
+
+#nav {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Responsive header adjustments */
+@media screen and (max-width: 736px) {
+    #header .header-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    #header .logo {
+        margin-bottom: 1.5em;
+    }
+    
+    #header .logo img {
+        max-height: 140px;
+    }
+    
+    #nav {
+        margin-top: 1em;
+    }
+}
+
+/* Additional padding for gradient text headings to prevent clipping */
+.section-title, #banner h2, .fullscreen-section h2, #main header h2 {
+    padding-top: 0.2em !important;
+    padding-bottom: 0.2em !important;
+    -webkit-background-clip: padding-box;
+    -webkit-background-clip: text;
+    background-clip: padding-box;
+    background-clip: text;
+}
+
+/* Fix for the Resources header that appears cut off */
+#resources h2 {
+    width: auto !important;
+    margin-bottom: 0.7em;
+    padding: 0 5px;
+    overflow: visible;
+    display: inline-block;
+}
+
+/* Fix for all heading renderings to prevent cut-off letters */
+h1, h2, h3, h4, h5, h6 {
+    padding: 0.05em 0;
+    margin: 0.05em 0;
+    text-rendering: optimizeLegibility;
+    overflow: visible;
+}
+
+/* Header layout improvements for logo integration */
+#header .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+}
+
+#header .logo img {
+    max-height: 180px;
+    vertical-align: middle;
+}
+
+#header h1 {
+    display: none; /* Hide the text-based logo when using image logo */
+}
+
+/* Hide mobile menu toggle button */
+#titleBar {
+    display: none !important;
+}
+
+#navPanel {
+    display: none !important;
+}
+
+body.navPanel-visible #page-wrapper {
+    transform: none !important;
+}
+
+body.navPanel-visible #titleBar {
+    transform: none !important;
+}
+
+/* Ensure navigation is always visible */
+#nav {
+    display: block !important;
+}
+
+/* Make text in resource cards more visible */
+#resources .box {
+    background-color: rgba(255, 255, 255, 0.07) !important;
+    border: 1px solid rgba(74, 202, 168, 0.2);
+}
+
+#resources .box h3 {
+    color: #ffffff !important;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    border-bottom: 2px solid rgba(74, 202, 168, 0.5);
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+}
+
+#resources .box p {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-weight: 400;
+    font-size: 1.05em;
+    line-height: 1.6;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+#cta p {
+    color: #ffffff !important;
+    font-weight: 500;
+    font-size: 1.2em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2em;
+    letter-spacing: 0.02em;
+    background: rgba(74, 202, 168, 0.1);
+    display: inline-block;
+    padding: 0.8em 1.5em;
+    border-radius: 6px;
+    border: 1px solid rgba(74, 202, 168, 0.3);
+} 
+
+/* Center text in edu-container */
+.edu-container {
+  text-align: center;
+} 

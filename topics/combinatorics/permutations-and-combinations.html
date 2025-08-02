@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Permutations & Combinations - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Permutations & Combinations</h2>
+                <p>The fundamental principles of counting and arranging objects</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#combinatorics">Combinatorics</a> &raquo;
+                    <span>Permutations & Combinations</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">The Fundamental Counting Principle</h3>
+                    
+                    <p>The Fundamental Counting Principle (also known as the multiplication principle) forms the basis of combinatorial counting. It states that if one event can occur in m ways, and a second event can occur in n ways, then the number of ways both events can occur is m × n.</p>
+                    
+                    <div class="math-formula">
+                        <p>If task 1 can be done in n₁ ways, task 2 in n₂ ways, ..., and task k in nₖ ways, then the sequence of tasks can be performed in n₁ × n₂ × ... × nₖ different ways.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Applying the Fundamental Counting Principle</div>
+                        <p>A restaurant offers 4 appetizers, 6 main courses, and 3 desserts. How many different three-course meals can be created?</p>
+                        <p>Using the Fundamental Counting Principle:</p>
+                        <p>Number of possible meals = Number of appetizers × Number of main courses × Number of desserts</p>
+                        <p>Number of possible meals = 4 × 6 × 3 = 72</p>
+                        <p>Therefore, 72 different three-course meals can be created.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Permutations</h3>
+                    
+                    <p>A <strong>permutation</strong> is an arrangement of objects in a specific order. The number of ways to arrange n distinct objects is n! (n factorial).</p>
+                    
+                    <div class="math-formula">
+                        <p>n! = n × (n-1) × (n-2) × ... × 3 × 2 × 1</p>
+                        <p>By convention, 0! = 1</p>
+                    </div>
+                    
+                    <h4>Permutations of n Objects Taken r at a Time</h4>
+                    <p>The number of ways to arrange r objects selected from n distinct objects, where order matters, is denoted by P(n,r) or nPr.</p>
+                    
+                    <div class="math-formula">
+                        <p>P(n,r) = nPr = n!/(n-r)!</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Calculating Permutations</div>
+                        <p>In how many ways can we arrange 3 books on a shelf if we have 7 different books?</p>
+                        <p>This is a permutation problem where we need to find P(7,3):</p>
+                        <p>P(7,3) = 7!/(7-3)! = 7!/4!</p>
+                        <p>P(7,3) = (7 × 6 × 5 × 4!)/(4!) = 7 × 6 × 5 = 210</p>
+                        <p>Therefore, there are 210 different ways to arrange 3 books from a collection of 7 books.</p>
+                    </div>
+                    
+                    <h4>Permutations with Repetition</h4>
+                    <p>If we have n objects, where there are n₁ objects of type 1, n₂ objects of type 2, ..., nₖ objects of type k, then the number of distinct permutations is:</p>
+                    
+                    <div class="math-formula">
+                        <p>Number of permutations = n!/(n₁! × n₂! × ... × nₖ!)</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Permutations with Repetition</div>
+                        <p>How many different arrangements can be made from the letters of the word "MONGOLIA"?</p>
+                        <p>The word "MONGOLIA" has 8 letters, with:</p>
+                        <p>- 1 'M'<br>- 1 'I'<br>- 2 'O's<br>- 1 'N'<br>- 1 'G'<br>- 1 'L'<br>- 1 'A'</p>
+                        <p>Using the formula for permutations with repetition:</p>
+                        <p>Number of permutations = 8!/(1! × 1! × 2! × 1! × 1! × 1! × 1!)</p>
+                        <p>Number of permutations = 8!/(1 × 1 × 2 × 1 × 1 × 1 × 1)</p>
+                        <p>Number of permutations = 40,320/2 = 20,160</p>
+                        <p>Therefore, there are 20,160 different arrangements of the letters in "MONGOLIA".</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Combinations</h3>
+                    
+                    <p>A <strong>combination</strong> is a selection of objects where the order does not matter. The number of ways to select r objects from n distinct objects is denoted by C(n,r) or nCr, also written as (n r) or "n choose r".</p>
+                    
+                    <div class="math-formula">
+                        <p>C(n,r) = nCr = (n r) = n!/[r!(n-r)!]</p>
+                    </div>
+                    
+                    <h4>Properties of Combinations</h4>
+                    <ul>
+                        <li>C(n,0) = C(n,n) = 1</li>
+                        <li>C(n,r) = C(n,n-r)</li>
+                        <li>C(n,r) + C(n,r-1) = C(n+1,r)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Calculating Combinations</div>
+                        <p>A traditional Mongolian wrestling tournament needs to select 4 wrestlers from a group of 9 competitors to represent their province. How many different teams are possible?</p>
+                        <p>This is a combination problem since the order of the team members doesn't matter. We need to find C(9,4):</p>
+                        <p>C(9,4) = 9!/[4!(9-4)!] = 9!/(4! × 5!)</p>
+                        <p>C(9,4) = (9 × 8 × 7 × 6 × 5!)/(4 × 3 × 2 × 1 × 5!)</p>
+                        <p>C(9,4) = (9 × 8 × 7 × 6)/(4 × 3 × 2 × 1) = 3,024/24 = 126</p>
+                        <p>Therefore, 126 different wrestling teams can be formed.</p>
+                    </div>
+                    
+                    <h4>Combinations with Repetition</h4>
+                    <p>The number of ways to select r objects from n distinct objects, where repetition is allowed, is given by:</p>
+                    
+                    <div class="math-formula">
+                        <p>C(n+r-1,r) = (n+r-1)!/(r! × (n-1)!)</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Combinations with Repetition</div>
+                        <p>A Mongolian dairy farmer has 5 different types of dairy products (airag, tarag, aaruul, byaslag, and eezgii). How many ways can they select 8 items for a traditional feast if they can choose multiple of the same type?</p>
+                        <p>This is a combination with repetition allowed. We need to find C(5+8-1,8) = C(12,8):</p>
+                        <p>C(12,8) = 12!/[8!(12-8)!] = 12!/(8! × 4!)</p>
+                        <p>C(12,8) = (12 × 11 × 10 × 9 × 8!)/(8! × 4 × 3 × 2 × 1)</p>
+                        <p>C(12,8) = (12 × 11 × 10 × 9)/(4 × 3 × 2 × 1) = 11,880/24 = 495</p>
+                        <p>Therefore, there are 495 different ways to select 8 dairy products from 5 types.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Distinguishing Permutations from Combinations</h3>
+                    
+                    <p class="text-secondary">Understanding when to use permutations versus combinations is crucial in solving counting problems:</p>
+                    
+                    <ul>
+                        <li><strong>Use permutations when:</strong>
+                            <ul>
+                                <li>Order matters (e.g., arranging books on a shelf, ranking competitors)</li>
+                                <li>The problem involves sequences, arrangements, or ordered selections</li>
+                                <li>Words like "arrange," "order," "sequence," or "ranking" appear in the problem</li>
+                            </ul>
+                        </li>
+                        <li><strong>Use combinations when:</strong>
+                            <ul>
+                                <li>Order doesn't matter (e.g., selecting a committee, choosing items)</li>
+                                <li>The problem involves groups, teams, or unordered selections</li>
+                                <li>Words like "select," "choose," "committee," or "group" appear in the problem</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Distinguishing Between Permutations and Combinations</div>
+                        <p>Consider these two scenarios:</p>
+                        <p>1. How many ways can 3 archers from a group of 25 be selected to receive gold, silver, and bronze medals in a traditional Mongolian archery competition?</p>
+                        <p>2. How many ways can 3 archers from a group of 25 be selected to form a team?</p>
+                        <p>For scenario 1, the order matters because each archer receives a specific medal. This is a permutation: P(25,3) = 25!/(25-3)! = 25!/22! = 25 × 24 × 23 = 13,800.</p>
+                        <p>For scenario 2, the order doesn't matter because the team members are all equal. This is a combination: C(25,3) = 25!/[3!(25-3)!] = 25!/(3! × 22!) = (25 × 24 × 23)/(3 × 2 × 1) = 13,800/6 = 2,300.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications in Problem Solving</h3>
+                    
+                    <h4>1. Combinatorial Probability</h4>
+                    <p>Permutations and combinations are essential in calculating probabilities for many random experiments.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Probability Using Combinations</div>
+                        <p>In a card game using 52 cards, what is the probability of being dealt a hand of 5 cards that contains exactly 2 aces?</p>
+                        <p>Total number of 5-card hands = C(52,5)</p>
+                        <p>Number of hands with exactly 2 aces = C(4,2) × C(48,3)</p>
+                        <p>C(4,2) = 6 (ways to choose 2 aces from 4 aces)</p>
+                        <p>C(48,3) = 17,296 (ways to choose 3 non-aces from 48 non-aces)</p>
+                        <p>Number of hands with exactly 2 aces = 6 × 17,296 = 103,776</p>
+                        <p>C(52,5) = 2,598,960</p>
+                        <p>Probability = 103,776/2,598,960 ≈ 0.0399 or about 4%</p>
+                    </div>
+                    
+                    <h4>2. Counting Problems</h4>
+                    <p>Many real-world problems involve counting the number of possible arrangements or selections.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: License Plate Problem</div>
+                        <p>A license plate consists of 3 letters followed by 4 digits. How many different license plates are possible if:</p>
+                        <p>a) Repetition is allowed for both letters and digits</p>
+                        <p>b) Repetition is not allowed for letters but allowed for digits</p>
+                        <p>a) With repetition allowed:</p>
+                        <p>Number of ways to choose 3 letters with repetition allowed = 26³ = 17,576</p>
+                        <p>Number of ways to choose 4 digits with repetition allowed = 10⁴ = 10,000</p>
+                        <p>Total number of possible license plates = 17,576 × 10,000 = 175,760,000</p>
+                        <p>b) With no repetition for letters but repetition allowed for digits:</p>
+                        <p>Number of ways to choose 3 letters with no repetition = P(26,3) = 26 × 25 × 24 = 15,600</p>
+                        <p>Number of ways to choose 4 digits with repetition allowed = 10⁴ = 10,000</p>
+                        <p>Total number of possible license plates = 15,600 × 10,000 = 156,000,000</p>
+                    </div>
+                    
+                    <div class="navigation">
+                        <a href="../../features.html#combinatorics" class="prev-next-btn combinatorics-btn">Back to Roadmap</a>
+                        <a href="counting-principles.html" class="prev-next-btn combinatorics-btn">Next: Counting Principles</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

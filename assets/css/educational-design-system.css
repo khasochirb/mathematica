@@ -1,0 +1,615 @@
+/* 
+ * Educational Design System - International Math Hub
+ * Clean, professional design for educational platform
+ */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Color Scheme */
+  --color-white: #FFFFFF;
+  --color-primary-blue: #1E40AF;      /* Deep blue for headers and primary CTAs */
+  --color-secondary-teal: #0891B2;    /* Teal for accents and secondary buttons */
+  --color-text-primary: #1F2937;      /* Dark gray for primary text */
+  --color-text-secondary: #6B7280;    /* Medium gray for secondary text */
+  --color-accent-orange: #F97316;     /* Orange for highlights only */
+  --color-background-light: #F9FAFB;  /* Light gray for footer */
+  --color-border-light: #E5E7EB;      /* Light border color */
+  --color-shadow: rgba(0, 0, 0, 0.1); /* Subtle shadow */
+
+  /* Interactive States */
+  --color-primary-blue-hover: #1D4ED8;
+  --color-primary-blue-active: #1E3A8A;
+  --color-secondary-teal-hover: #0E7490;
+  --color-secondary-teal-active: #155E75;
+  --color-orange-hover: #EA580C;
+
+  /* Typography */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-secondary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Font Sizes */
+  --text-h1: 48px;
+  --text-h2: 36px;
+  --text-h3: 24px;
+  --text-body: 16px;
+  --text-secondary: 14px;
+  
+  /* Font Weights */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.6;
+
+  /* Spacing System (8px base) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-10: 80px;
+  
+  /* Layout */
+  --max-width: 1200px;
+  --section-spacing: 80px;
+  --container-padding: 24px;
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 250ms ease-in-out;
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary) !important;
+  font-size: var(--text-body) !important;
+  font-weight: var(--weight-regular) !important;
+  line-height: var(--line-height-normal) !important;
+  color: var(--color-text-primary) !important;
+  background-color: var(--color-white) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Typography - Different colors for different contexts */
+h1, h2, h3, h4, h5, h6 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  margin: 0 0 var(--space-3) 0 !important;
+  line-height: var(--line-height-tight) !important;
+}
+
+/* Default dark blue color for headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-primary-blue, #1E40AF) !important;
+}
+
+/* White headings only for dark background sections */
+.hero-section h1, .hero-section h2, .hero-section h3,
+.fullscreen-section h1, .fullscreen-section h2, .fullscreen-section h3,
+#banner h1, #banner h2, #banner h3 {
+  color: white !important;
+}
+
+/* Dark headings for navigation and header areas */
+#header h1, #header h2, #header h3,
+#nav h1, #nav h2, #nav h3 {
+  color: var(--color-text-primary) !important;
+}
+
+h1 {
+  font-size: var(--text-h1) !important;
+  font-weight: var(--weight-bold) !important;
+}
+
+h2 {
+  font-size: var(--text-h2) !important;
+  font-weight: var(--weight-semibold) !important;
+}
+
+h3 {
+  font-size: var(--text-h3) !important;
+  font-weight: var(--weight-semibold) !important;
+  color: var(--color-text-primary) !important;
+}
+
+p {
+  color: var(--color-text-primary) !important;
+  margin: 0 0 var(--space-2) 0 !important;
+  line-height: var(--line-height-relaxed) !important;
+}
+
+.text-secondary {
+  color: var(--color-text-secondary) !important;
+  font-size: var(--text-secondary) !important;
+}
+
+/* Container */
+.edu-container {
+  max-width: var(--max-width) !important;
+  margin: 0 auto !important;
+  padding: 0 var(--container-padding) !important;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--color-primary-blue) !important;
+  color: var(--color-white) !important;
+  border: none !important;
+  padding: 12px 24px !important;
+  border-radius: var(--radius-md) !important;
+  font-size: var(--text-body) !important;
+  font-weight: var(--weight-medium) !important;
+  font-family: var(--font-primary) !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all var(--transition-fast) !important;
+  min-height: 48px !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-blue-hover) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.btn-primary:active {
+  background-color: var(--color-primary-blue-active) !important;
+  transform: translateY(0) !important;
+}
+
+.btn-secondary {
+  background-color: var(--color-white) !important;
+  color: var(--color-primary-blue) !important;
+  border: 2px solid var(--color-primary-blue) !important;
+  padding: 10px 22px !important;
+  border-radius: var(--radius-md) !important;
+  font-size: var(--text-body) !important;
+  font-weight: var(--weight-medium) !important;
+  font-family: var(--font-primary) !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all var(--transition-fast) !important;
+  min-height: 48px !important;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-primary-blue) !important;
+  color: var(--color-white) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.btn-teal {
+  background-color: var(--color-secondary-teal) !important;
+  color: var(--color-white) !important;
+  border: none !important;
+  padding: 12px 24px !important;
+  border-radius: var(--radius-md) !important;
+  font-size: var(--text-body) !important;
+  font-weight: var(--weight-medium) !important;
+  font-family: var(--font-primary) !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all var(--transition-fast) !important;
+  min-height: 48px !important;
+}
+
+.btn-teal:hover {
+  background-color: var(--color-secondary-teal-hover) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* Cards */
+.edu-card {
+  background: var(--color-white) !important;
+  border: 1px solid var(--color-border-light) !important;
+  border-radius: var(--radius-xl) !important;
+  padding: var(--space-4) !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: all var(--transition-normal) !important;
+}
+
+.edu-card:hover {
+  box-shadow: var(--shadow-lg) !important;
+  transform: translateY(-2px) !important;
+}
+
+.edu-card h3 {
+  margin-bottom: var(--space-2) !important;
+}
+
+.edu-card p {
+  color: var(--color-text-secondary) !important;
+  margin-bottom: var(--space-3) !important;
+}
+
+/* Resources section cards - improved spacing and styling */
+#resources .edu-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  padding: var(--space-6) !important;
+}
+
+#resources .edu-card .image.featured {
+  margin-bottom: var(--space-6) !important;
+  border-radius: var(--radius-lg) !important;
+}
+
+#resources .edu-card h3 {
+  margin-top: 0 !important;
+  margin-bottom: var(--space-4) !important;
+  font-size: var(--text-h3) !important;
+  font-weight: var(--weight-semibold) !important;
+  color: white !important;
+}
+
+#resources .edu-card p {
+  margin-bottom: var(--space-6) !important;
+  color: white !important;
+  line-height: 1.6 !important;
+  flex-grow: 1 !important;
+}
+
+#resources .edu-card footer {
+  margin-top: auto !important;
+}
+
+#resources .edu-card .button {
+  width: 100% !important;
+  justify-content: center !important;
+  padding: var(--space-3) var(--space-4) !important;
+  border-radius: var(--radius-md) !important;
+  font-weight: var(--weight-medium) !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  transition: all var(--transition-fast) !important;
+}
+
+/* Fix button colors and borders - make Explore Roadmap and Take Quiz white */
+#resources .edu-card .btn-primary {
+  background-color: white !important;
+  color: var(--color-primary-blue, #1E40AF) !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+#resources .edu-card .btn-teal {
+  background-color: white !important;
+  color: var(--color-primary-blue, #1E40AF) !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+#resources .edu-card .button[style*="background-color: var(--color-accent-orange)"] {
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* About and Contact Page Styles - Dark Theme Consistency */
+.about-page .edu-card,
+.contact-page .edu-card {
+  background: var(--color-primary-blue, #1E40AF) !important;
+  color: white !important;
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.about-page .edu-card h3,
+.contact-page .edu-card h3 {
+  color: white !important;
+  font-weight: var(--weight-semibold) !important;
+  margin-bottom: 1rem !important;
+}
+
+.about-page .edu-card p,
+.contact-page .edu-card p {
+  color: rgba(255, 255, 255, 0.9) !important;
+  line-height: 1.6 !important;
+}
+
+.about-page .edu-card ul li,
+.contact-page .edu-card ul li {
+  color: rgba(255, 255, 255, 0.9) !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.about-page .edu-card ul li strong,
+.contact-page .edu-card ul li strong {
+  color: white !important;
+  font-weight: var(--weight-semibold) !important;
+}
+
+.about-page .edu-card ul li a,
+.contact-page .edu-card ul li a {
+  color: var(--color-accent-orange, #F97316) !important;
+  text-decoration: none !important;
+  transition: color var(--transition-fast) !important;
+}
+
+.about-page .edu-card ul li a:hover,
+.contact-page .edu-card ul li a:hover {
+  color: white !important;
+}
+
+/* Contact form styling */
+.contact-page .edu-card input,
+.contact-page .edu-card textarea {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  border-radius: var(--radius-md) !important;
+  padding: 0.75rem 1rem !important;
+}
+
+.contact-page .edu-card input::placeholder,
+.contact-page .edu-card textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.contact-page .edu-card input:focus,
+.contact-page .edu-card textarea:focus {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: var(--color-accent-orange, #F97316) !important;
+  outline: none !important;
+}
+
+.contact-page .edu-card .button {
+  background: var(--color-accent-orange, #F97316) !important;
+  color: white !important;
+  border: none !important;
+  padding: 0.75rem 2rem !important;
+  border-radius: var(--radius-md) !important;
+  font-weight: var(--weight-medium) !important;
+  transition: all var(--transition-fast) !important;
+}
+
+.contact-page .edu-card .button:hover {
+  background: var(--color-accent-orange-dark, #EA580C) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Footer Styles */
+#footer {
+  background: var(--color-primary-blue, #1E40AF) !important;
+  color: white !important;
+  padding: 3rem 0 1rem 0 !important;
+  margin-top: 4rem !important;
+}
+
+.footer-content {
+  display: grid !important;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr !important;
+  gap: 2rem !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 5% !important;
+}
+
+.footer-section h3,
+.footer-section h4 {
+  color: white !important;
+  margin-bottom: 1rem !important;
+  font-weight: var(--weight-semibold) !important;
+}
+
+.footer-section h3 {
+  font-size: 1.5rem !important;
+}
+
+.footer-section h4 {
+  font-size: 1.1rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.footer-section p {
+  color: rgba(255, 255, 255, 0.8) !important;
+  line-height: 1.6 !important;
+  margin-bottom: 1rem !important;
+}
+
+.footer-section ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.5rem !important;
+}
+
+.footer-section ul li a {
+  color: rgba(255, 255, 255, 0.8) !important;
+  text-decoration: none !important;
+  transition: color var(--transition-fast) !important;
+}
+
+.footer-section ul li a:hover {
+  color: white !important;
+}
+
+.social-links {
+  display: flex !important;
+  gap: 1rem !important;
+  margin-top: 0.5rem !important;
+}
+
+.social-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 40px !important;
+  height: 40px !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+  border-radius: 50% !important;
+  text-decoration: none !important;
+  transition: all var(--transition-fast) !important;
+}
+
+.social-link:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-2px) !important;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  margin-top: 2rem !important;
+  padding-top: 1rem !important;
+}
+
+.footer-bottom-content {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 5% !important;
+}
+
+.footer-legal ul {
+  display: flex !important;
+  gap: 2rem !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.footer-legal ul li a {
+  color: rgba(255, 255, 255, 0.7) !important;
+  text-decoration: none !important;
+  font-size: 0.9rem !important;
+  transition: color var(--transition-fast) !important;
+}
+
+.footer-legal ul li a:hover {
+  color: white !important;
+}
+
+.footer-copyright p {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 0.9rem !important;
+  margin: 0 !important;
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  
+  .footer-bottom-content {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    text-align: center !important;
+  }
+  
+  .footer-legal ul {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    text-align: center !important;
+  }
+}
+
+#resources .edu-card .button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* Section Spacing */
+.edu-section {
+  padding: var(--section-spacing) 0 !important;
+}
+
+.edu-section:first-child {
+  padding-top: var(--space-6) !important;
+}
+
+/* Grid System */
+.edu-grid {
+  display: grid !important;
+  gap: var(--space-4) !important;
+}
+
+.edu-grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+}
+
+.edu-grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+}
+
+.edu-grid-4 {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+}
+
+/* Utilities */
+.text-center {
+  text-align: center !important;
+}
+
+.mb-2 { margin-bottom: var(--space-2) !important; }
+.mb-3 { margin-bottom: var(--space-3) !important; }
+.mb-4 { margin-bottom: var(--space-4) !important; }
+.mb-6 { margin-bottom: var(--space-6) !important; }
+
+.mt-2 { margin-top: var(--space-2) !important; }
+.mt-3 { margin-top: var(--space-3) !important; }
+.mt-4 { margin-top: var(--space-4) !important; }
+.mt-6 { margin-top: var(--space-6) !important; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  :root {
+    --text-h1: 36px;
+    --text-h2: 28px;
+    --text-h3: 20px;
+    --container-padding: 16px;
+    --section-spacing: 60px;
+  }
+  
+  .edu-grid-2,
+  .edu-grid-3,
+  .edu-grid-4 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .btn-primary,
+  .btn-secondary,
+  .btn-teal {
+    width: 100% !important;
+    margin-bottom: var(--space-2) !important;
+  }
+} 

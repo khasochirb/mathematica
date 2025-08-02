@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>1-on-1 Tutoring - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    		<link rel="stylesheet" href="assets/css/first.css" />
+		<link rel="stylesheet" href="assets/css/improvements.css" />
+		<link rel="stylesheet" href="assets/css/educational-design-system.css" />
+		<link rel="stylesheet" href="assets/css/educational-overrides.css" />
+    <!-- Additional styles to ensure the mobile menu toggle is hidden -->
+    <style>
+        /* Hide mobile menu toggle button with highest priority */
+        #titleBar, #navPanel {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        
+        /* Prevent any transforms from mobile menu */
+        body.navPanel-visible #page-wrapper,
+        body.navPanel-visible #titleBar {
+            transform: none !important;
+        }
+        
+        /* Ensure navigation is always visible */
+        #nav {
+            display: block !important;
+        }
+        .tutoring-info {
+            margin-bottom: 2em;
+        }
+        .tutoring-benefits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5em;
+            margin-bottom: 2em;
+        }
+        .benefit-item {
+            flex: 1 1 300px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5em;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .benefit-item h4 {
+            color: #3d4449;
+            margin-bottom: 0.7em;
+            border-bottom: 2px solid #4acaa8;
+            padding-bottom: 0.5em;
+        }
+        .calendly-container {
+            background: white;
+            border-radius: 8px;
+            padding: 2em;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html"><img src="/images/logo.png" alt="International Math Hub Logo" style="max-height: 120px;"></a>
+                </div>
+
+                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="features.html">Mathematics Roadmap</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section id="main" class="container">
+            <header>
+                <h2>1-on-1 Personalized Tutoring</h2>
+                <p>Get tailored math support from experienced tutors</p>
+            </header>
+
+            <div class="box">
+                <div class="tutoring-info">
+                    <h3>Why Choose 1-on-1 Tutoring?</h3>
+                    <p>Our personalized tutoring sessions are designed to help you overcome specific challenges in mathematics, prepare for exams, or deepen your understanding of complex topics. Work directly with experienced tutors who can adapt to your learning style and pace.</p>
+                </div>
+
+                <div class="tutoring-benefits">
+                    <div class="benefit-item">
+                        <h4>Personalized Attention</h4>
+                        <p>Get direct feedback and guidance tailored to your specific needs and learning style.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4>Targeted Help</h4>
+                        <p>Focus on the exact topics and concepts where you need the most assistance.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4>Flexible Scheduling</h4>
+                        <p>Book sessions at times that work best for your schedule.</p>
+                    </div>
+                </div>
+
+                <h3>How It Works</h3>
+                <ol>
+                    <li>Schedule a 30-minute session using the calendar below</li>
+                    <li>Share your specific questions or topics in advance</li>
+                    <li>Meet online with your tutor at the scheduled time</li>
+                    <li>Receive personalized instruction and guidance</li>
+                </ol>
+
+                <div class="calendly-container">
+                    <h3 style="text-align: center;">Schedule Your Session</h3>
+                    <!-- Calendly inline widget begin -->
+                    <div class="calendly-inline-widget" style="min-width:320px;height:700px;" data-url="https://calendly.com/khas-bayarjargal/30min?background_color=f5f5f5&text_color=333333&primary_color=4acaa8"></div>
+                    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                    <!-- Calendly inline widget end -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <section id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html> 

@@ -1,0 +1,289 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Basic Operations with Complex Numbers - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Basic Operations with Complex Numbers</h2>
+                <p class="text-secondary">Understanding the fundamental operations and properties of complex numbers</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#complex-numbers">Complex Numbers</a> &raquo;
+                    <span>Basic Operations</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Complex Numbers</h3>
+                    
+                    <p class="text-secondary">Complex numbers extend the real number system by introducing the imaginary unit <strong>i</strong>, where i² = -1. A complex number is expressed in the form a + bi, where a and b are real numbers:</p>
+                    <ul>
+                        <li><strong>a</strong> is called the real part of the complex number</li>
+                        <li><strong>b</strong> is called the imaginary part of the complex number</li>
+                        <li><strong>i</strong> is the imaginary unit</li>
+                    </ul>
+                    
+                    <p class="text-secondary">Complex numbers arise naturally in mathematics when solving equations such as x² = -1, which has no solution in the real number system. With complex numbers, we expand our mathematical toolkit to solve problems that would otherwise be impossible.</p>
+                    
+                    <h4>The Complex Plane</h4>
+                    <p class="text-secondary">Complex numbers can be represented geometrically on the complex plane (also called the Argand plane), where:</p>
+                    <ul>
+                        <li>The horizontal axis represents the real part</li>
+                        <li>The vertical axis represents the imaginary part</li>
+                    </ul>
+                    
+                    <p>Each complex number z = a + bi corresponds to the point (a, b) on this plane.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Visualizing Complex Numbers</div>
+                        <p>The complex number z = 3 + 4i is represented as the point (3, 4) on the complex plane.</p>
+                        <p>Similarly, z = -2 - 3i corresponds to the point (-2, -3).</p>
+                        <p>Pure real numbers like z = 5 lie on the real axis at (5, 0).</p>
+                        <p>Pure imaginary numbers like z = 2i lie on the imaginary axis at (0, 2).</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Equality and Basic Properties</h3>
+                    
+                    <p>Two complex numbers are equal if and only if their real parts are equal and their imaginary parts are equal:</p>
+                    
+                    <div class="math-formula">
+                        <p>a + bi = c + di if and only if a = c and b = d</p>
+                    </div>
+                    
+                    <h4>Complex Conjugate</h4>
+                    <p>The complex conjugate of a complex number z = a + bi, denoted by z̄ (z-bar), is defined as:</p>
+                    
+                    <div class="math-formula">
+                        <p>z̄ = a - bi</p>
+                    </div>
+                    
+                    <p>Properties of complex conjugates:</p>
+                    <ul>
+                        <li>z + z̄ = 2a (twice the real part)</li>
+                        <li>z - z̄ = 2bi (twice the imaginary part)</li>
+                        <li>z · z̄ = a² + b² (the square of the absolute value of z)</li>
+                        <li>(z̄) = z (the conjugate of the conjugate is the original number)</li>
+                        <li>z + w = z̄ + w̄ (conjugate of a sum equals sum of conjugates)</li>
+                        <li>z · w = z̄ · w̄ (conjugate of a product equals product of conjugates)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Complex Conjugates</div>
+                        <p>Let z = 3 - 2i. Find z̄ and compute z + z̄, z - z̄, and z · z̄.</p>
+                        <p>The complex conjugate of z = 3 - 2i is z̄ = 3 + 2i.</p>
+                        <p>z + z̄ = (3 - 2i) + (3 + 2i) = 6 (twice the real part)</p>
+                        <p>z - z̄ = (3 - 2i) - (3 + 2i) = -4i (twice the imaginary part)</p>
+                        <p>z · z̄ = (3 - 2i)(3 + 2i) = 9 + 6i - 6i - 4i² = 9 + 4 = 13 (the square of the absolute value of z)</p>
+                    </div>
+                    
+                    <h4>Absolute Value (Modulus)</h4>
+                    <p>The absolute value or modulus of a complex number z = a + bi, denoted by |z|, is defined as:</p>
+                    
+                    <div class="math-formula">
+                        <p>|z| = √(a² + b²)</p>
+                    </div>
+                    
+                    <p>The absolute value represents the distance from the origin to the point z in the complex plane.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Absolute Value</div>
+                        <p>Find the absolute value of z = 3 + 4i.</p>
+                        <p>|z| = √(3² + 4²) = √(9 + 16) = √25 = 5</p>
+                        <p>This means the distance from the origin to the point (3, 4) on the complex plane is 5 units, which is consistent with the Pythagorean theorem.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Basic Arithmetic Operations</h3>
+                    
+                    <h4>Addition and Subtraction</h4>
+                    <p>To add or subtract complex numbers, we add or subtract their real and imaginary parts separately:</p>
+                    
+                    <div class="math-formula">
+                        <p>(a + bi) + (c + di) = (a + c) + (b + d)i</p>
+                        <p>(a + bi) - (c + di) = (a - c) + (b - d)i</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Addition and Subtraction</div>
+                        <p>Let z₁ = 2 + 3i and z₂ = 4 - 5i.</p>
+                        <p>z₁ + z₂ = (2 + 3i) + (4 - 5i) = (2 + 4) + (3 - 5)i = 6 - 2i</p>
+                        <p>z₁ - z₂ = (2 + 3i) - (4 - 5i) = (2 - 4) + (3 - (-5))i = -2 + 8i</p>
+                    </div>
+                    
+                    <h4>Multiplication</h4>
+                    <p>To multiply complex numbers, we use the distributive property and remember that i² = -1:</p>
+                    
+                    <div class="math-formula">
+                        <p>(a + bi)(c + di) = ac + adi + bci + bdi²</p>
+                        <p>= ac + adi + bci - bd</p>
+                        <p>= (ac - bd) + (ad + bc)i</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Multiplication</div>
+                        <p>Multiply z₁ = 2 + 3i and z₂ = 4 - 5i.</p>
+                        <p>(2 + 3i)(4 - 5i) = 2(4 - 5i) + 3i(4 - 5i)</p>
+                        <p>= 8 - 10i + 12i - 15i²</p>
+                        <p>= 8 - 10i + 12i - 15(-1)</p>
+                        <p>= 8 - 10i + 12i + 15</p>
+                        <p>= (8 + 15) + (-10 + 12)i</p>
+                        <p>= 23 + 2i</p>
+                    </div>
+                    
+                    <h4>Division</h4>
+                    <p>Division of complex numbers is accomplished by multiplying both the numerator and denominator by the complex conjugate of the denominator, which gives us a real number in the denominator:</p>
+                    
+                    <div class="math-formula">
+                        <p>(a + bi)/(c + di) = [(a + bi)(c - di)]/[(c + di)(c - di)]</p>
+                        <p>= [(ac + bd) + (bc - ad)i]/(c² + d²)</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Division</div>
+                        <p>Divide z₁ = 2 + 3i by z₂ = 4 - 5i.</p>
+                        <p>(2 + 3i)/(4 - 5i) = [(2 + 3i)(4 + 5i)]/[(4 - 5i)(4 + 5i)]</p>
+                        <p>= [(2)(4) + (2)(5i) + (3i)(4) + (3i)(5i)]/[16 + 25]</p>
+                        <p>= [8 + 10i + 12i + 15i²]/41</p>
+                        <p>= [8 + 22i + 15(-1)]/41</p>
+                        <p>= [8 - 15 + 22i]/41</p>
+                        <p>= [-7 + 22i]/41</p>
+                        <p>= -7/41 + (22/41)i</p>
+                        <p>≈ -0.171 + 0.537i</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Powers of the Imaginary Unit</h3>
+                    
+                    <p>Since i² = -1, we can determine the pattern of powers of i:</p>
+                    
+                    <div class="math-formula">
+                        <p>i¹ = i</p>
+                        <p>i² = -1</p>
+                        <p>i³ = i² · i = -1 · i = -i</p>
+                        <p>i⁴ = i³ · i = -i · i = -i² = -(-1) = 1</p>
+                        <p>i⁵ = i⁴ · i = 1 · i = i</p>
+                    </div>
+                    
+                    <p>This pattern repeats with a cycle of 4, so for any integer n:</p>
+                    
+                    <div class="math-formula">
+                        <p>i^n has the same value as i^(n mod 4)</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Powers of i</div>
+                        <p>Calculate i²³.</p>
+                        <p>We need to find the remainder when 23 is divided by 4:</p>
+                        <p>23 ÷ 4 = 5 with remainder 3</p>
+                        <p>So i²³ = i³ = -i</p>
+                        <p>Calculate i¹⁰⁰.</p>
+                        <p>100 ÷ 4 = 25 with remainder 0</p>
+                        <p>So i¹⁰⁰ = i⁰ = 1</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Solving Equations with Complex Numbers</h3>
+                    
+                    <p class="text-secondary">Complex numbers enable us to solve equations that have no real solutions. In particular, every polynomial equation of degree n has exactly n solutions in the complex number system (counting multiplicity). This is known as the Fundamental Theorem of Algebra.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Solving Quadratic Equations</div>
+                        <p>Solve the equation x² + 4 = 0.</p>
+                        <p>Rearranging: x² = -4</p>
+                        <p>Taking the square root of both sides: x = ±√(-4) = ±√4 · √(-1) = ±2i</p>
+                        <p>Therefore, the solutions are x = 2i and x = -2i.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Complex Roots of a Polynomial</div>
+                        <p>Find all solutions to the equation x³ - 8 = 0.</p>
+                        <p>Rearranging: x³ = 8</p>
+                        <p>Taking the cube root: x = ∛8 = 2</p>
+                        <p>However, a cubic equation must have three solutions. The other two solutions are complex:</p>
+                        <p>x = 2(cos(120°) + i·sin(120°)) = 2(-1/2 + i·√3/2) = -1 + i·√3</p>
+                        <p>x = 2(cos(240°) + i·sin(240°)) = 2(-1/2 - i·√3/2) = -1 - i·√3</p>
+                        <p>Verifying: (-1 + i·√3)³ = -8, and (-1 - i·√3)³ = -8.</p>
+                    </div>
+                    
+                    <div class="navigation">
+                        <a href="../../features.html#combinatorics" class="prev-next-btn">Previous: Combinatorics</a>
+                        <a href="polar-form.html" class="prev-next-btn">Next: Polar Form & Argand Plane</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

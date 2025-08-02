@@ -1,0 +1,366 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Transformations in Geometry - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Transformations in Geometry</h2>
+                <p class="text-secondary">Understanding rotations, reflections, translations, and their applications</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#geometry">Geometry</a> &raquo;
+                    <span>Transformations</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Geometric Transformations</h3>
+                    
+                    <p class="text-secondary">Geometric transformations are operations that change the position, size, or orientation of a geometric figure while preserving certain properties. These transformations are fundamental to understanding symmetry, congruence, and similarity, and they have applications in computer graphics, physics, engineering, and various branches of mathematics.</p>
+                    
+                    <h4>Types of Transformations</h4>
+                    <p class="text-secondary">Transformations can be classified into different categories based on the properties they preserve:</p>
+                    <ul>
+                        <li><strong>Isometries (or Rigid Transformations)</strong>: Preserve distance and angle measures, resulting in congruent figures (e.g., translations, rotations, reflections)</li>
+                        <li><strong>Similarity Transformations</strong>: Preserve angle measures but not necessarily distances, resulting in similar figures (e.g., dilations combined with isometries)</li>
+                        <li><strong>Affine Transformations</strong>: Preserve parallelism but not necessarily angles or distances</li>
+                        <li><strong>Projective Transformations</strong>: Preserve collinearity (points on a line remain on a line) but not necessarily parallelism</li>
+                    </ul>
+                    
+                    <p>In this page, we will focus primarily on isometries (rigid transformations) and dilations, which are the most commonly studied in basic geometry.</p>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Translations</h3>
+                    
+                    <p>A translation is a transformation that moves every point of a figure the same distance in the same direction. It can be thought of as "sliding" the figure without rotating or reflecting it.</p>
+                    
+                    <h4>Properties of Translations</h4>
+                    <ul>
+                        <li>Preserves distance (the distance between any two points remains the same)</li>
+                        <li>Preserves angle measures</li>
+                        <li>Preserves orientation (clockwise arrangements remain clockwise)</li>
+                        <li>Results in congruent figures</li>
+                    </ul>
+                    
+                    <h4>Mathematical Representation</h4>
+                    <p>In coordinate geometry, a translation by a vector (h, k) transforms a point (x, y) to (x + h, y + k).</p>
+                    
+                    <div class="math-formula">
+                        <p>Translation by vector (h, k):</p>
+                        <p>(x, y) → (x + h, y + k)</p>
+                    </div>
+                    
+                    <p>In matrix form, this can be written as:</p>
+                    
+                    <div class="math-formula">
+                        <p>[x'] = [x] + [h]</p>
+                        <p>[y']   [y]   [k]</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Translation of a Traditional Ger Pattern</div>
+                        <p>Consider a traditional Mongolian ger door pattern with vertices A(1, 2), B(3, 2), and C(2, 4).</p>
+                        <p>To translate this pattern by the vector (3, −1) to create a repeating design on the ger's wall, we add 3 to each x-coordinate and subtract 1 from each y-coordinate:</p>
+                        <p>A(1, 2) → A'(1 + 3, 2 − 1) = A'(4, 1)</p>
+                        <p>B(3, 2) → B'(3 + 3, 2 − 1) = B'(6, 1)</p>
+                        <p>C(2, 4) → C'(2 + 3, 4 − 1) = C'(5, 3)</p>
+                        <p>The translated pattern A'B'C' maintains the same shape, size, and orientation as the original pattern ABC, creating a beautiful repeating design typical in Mongolian ger decorations.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Rotations</h3>
+                    
+                    <p>A rotation is a transformation that turns a figure around a fixed point, called the center of rotation, through a specified angle.</p>
+                    
+                    <h4>Properties of Rotations</h4>
+                    <ul>
+                        <li>Preserves distance (the distance between any two points remains the same)</li>
+                        <li>Preserves angle measures</li>
+                        <li>Preserves orientation (clockwise arrangements remain clockwise)</li>
+                        <li>Results in congruent figures</li>
+                        <li>The center of rotation remains fixed (does not move)</li>
+                    </ul>
+                    
+                    <h4>Mathematical Representation</h4>
+                    <p>For a rotation around the origin by an angle θ (counterclockwise), the coordinates transform as follows:</p>
+                    
+                    <div class="math-formula">
+                        <p>Rotation by angle θ around the origin:</p>
+                        <p>(x, y) → (x cos θ − y sin θ, x sin θ + y cos θ)</p>
+                    </div>
+                    
+                    <p>In matrix form:</p>
+                    
+                    <div class="math-formula">
+                        <p>[x'] = [cos θ  −sin θ] [x]</p>
+                        <p>[y']   [sin θ   cos θ] [y]</p>
+                    </div>
+                    
+                    <p>For a rotation around a point (a, b) other than the origin:</p>
+                    <ol>
+                        <li>Translate the center of rotation to the origin: (x, y) → (x − a, y − b)</li>
+                        <li>Rotate around the origin</li>
+                        <li>Translate back: (x', y') → (x' + a, y' + b)</li>
+                    </ol>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Rotation of a Traditional Mongolian Symbol</div>
+                        <p>Rotate the point P(3, 2) of a traditional Mongolian soyombo symbol by 90° counterclockwise around the origin.</p>
+                        <p>Using the rotation formula with θ = 90°:</p>
+                        <p>x' = x cos 90° − y sin 90° = 3 × 0 − 2 × 1 = −2</p>
+                        <p>y' = x sin 90° + y cos 90° = 3 × 1 + 2 × 0 = 3</p>
+                        <p>Therefore, P(3, 2) rotates to P'(−2, 3).</p>
+                        <p>We can verify that the distance from the origin is preserved: √(3² + 2²) = √(13) = √((−2)² + 3²).</p>
+                        <p>This rotation is similar to how the soyombo symbol appears on the Mongolian flag, maintaining its proportions while rotating.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Reflections</h3>
+                    
+                    <p>A reflection is a transformation that flips a figure across a line, called the line of reflection or mirror line. It creates a mirror image of the original figure.</p>
+                    
+                    <h4>Properties of Reflections</h4>
+                    <ul>
+                        <li>Preserves distance (the distance between any two points remains the same)</li>
+                        <li>Preserves angle measures</li>
+                        <li>Reverses orientation (clockwise arrangements become counterclockwise)</li>
+                        <li>Results in congruent figures</li>
+                        <li>Points on the line of reflection remain fixed</li>
+                        <li>The line of reflection is the perpendicular bisector of the line segment joining a point and its reflection</li>
+                    </ul>
+                    
+                    <h4>Mathematical Representation</h4>
+                    <p>For reflection across the x-axis:</p>
+                    
+                    <div class="math-formula">
+                        <p>(x, y) → (x, −y)</p>
+                    </div>
+                    
+                    <p>For reflection across the y-axis:</p>
+                    
+                    <div class="math-formula">
+                        <p>(x, y) → (−x, y)</p>
+                    </div>
+                    
+                    <p>For reflection across the line y = x:</p>
+                    
+                    <div class="math-formula">
+                        <p>(x, y) → (y, x)</p>
+                    </div>
+                    
+                    <p>For reflection across a general line y = mx + b, the transformation is more complex and involves projecting the point onto the line and then extending an equal distance on the other side.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Reflection of a Traditional Mongolian Ornament</div>
+                        <p>Reflect a traditional Mongolian knot pattern ABC with vertices A(1, 3), B(4, 5), and C(2, 6) across the x-axis to create a symmetrical design.</p>
+                        <p>For reflection across the x-axis, we negate the y-coordinates:</p>
+                        <p>A(1, 3) → A'(1, −3)</p>
+                        <p>B(4, 5) → B'(4, −5)</p>
+                        <p>C(2, 6) → C'(2, −6)</p>
+                        <p>The reflected pattern A'B'C' has the same shape and size as ABC, but its orientation is reversed, creating a balanced symmetrical design commonly found in Mongolian traditional art.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Dilations (Scaling)</h3>
+                    
+                    <p>A dilation is a transformation that changes the size of a figure without changing its shape. It either enlarges or reduces the figure by a scale factor from a fixed point called the center of dilation.</p>
+                    
+                    <h4>Properties of Dilations</h4>
+                    <ul>
+                        <li>Preserves angle measures</li>
+                        <li>Preserves orientation</li>
+                        <li>Multiplies all distances by the scale factor</li>
+                        <li>Results in similar but not necessarily congruent figures</li>
+                    </ul>
+                    
+                    <h4>Mathematical Representation</h4>
+                    <p>For a dilation from the origin with scale factor k:</p>
+                    
+                    <div class="math-formula">
+                        <p>(x, y) → (kx, ky)</p>
+                    </div>
+                    
+                    <p>For a dilation from a point (a, b) with scale factor k:</p>
+                    <ol>
+                        <li>Translate the center of dilation to the origin: (x, y) → (x − a, y − b)</li>
+                        <li>Apply the dilation: (x − a, y − b) → (k(x − a), k(y − b))</li>
+                        <li>Translate back: (k(x − a), k(y − b)) → (k(x − a) + a, k(y − b) + b)</li>
+                        <li>Simplify: (x, y) → (a + k(x − a), b + k(y − b))</li>
+                    </ol>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Dilation of a Ger Door Frame</div>
+                        <p>Dilate a traditional Mongolian ger door frame PQRS with vertices P(1, 1), Q(5, 1), R(5, 3), and S(1, 3) by a factor of 2 from the origin to create a larger entrance.</p>
+                        <p>For dilation from the origin with scale factor k = 2, we multiply each coordinate by 2:</p>
+                        <p>P(1, 1) → P'(2 × 1, 2 × 1) = P'(2, 2)</p>
+                        <p>Q(5, 1) → Q'(2 × 5, 2 × 1) = Q'(10, 2)</p>
+                        <p>R(5, 3) → R'(2 × 5, 2 × 3) = R'(10, 6)</p>
+                        <p>S(1, 3) → S'(2 × 1, 2 × 3) = S'(2, 6)</p>
+                        <p>The dilated door frame P'Q'R'S' has the same proportions as PQRS but is twice as large in all dimensions, maintaining the traditional ger's architectural style while accommodating larger entrances.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Composite Transformations</h3>
+                    
+                    <p>A composite transformation is a sequence of two or more transformations applied one after another. The order in which transformations are applied matters, as the result may differ depending on the sequence.</p>
+                    
+                    <h4>Properties of Composite Transformations</h4>
+                    <ul>
+                        <li>The composition of two or more isometries is an isometry</li>
+                        <li>The composition of two or more similarity transformations is a similarity transformation</li>
+                        <li>Non-commutativity: In general, A followed by B doesn't give the same result as B followed by A</li>
+                    </ul>
+                    
+                    <h4>Common Composite Transformations</h4>
+                    <p>Some important composite transformations include:</p>
+                    <ul>
+                        <li><strong>Glide Reflection</strong>: A reflection followed by a translation parallel to the line of reflection</li>
+                        <li><strong>Half-turn</strong>: A rotation by 180°, equivalent to a composition of two reflections across perpendicular lines</li>
+                        <li><strong>Rotation</strong>: Can be viewed as a composition of two reflections across intersecting lines (the angle of rotation is twice the angle between the lines)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Composite Transformation of a Traditional Pattern</div>
+                        <p>Apply a rotation of 90° counterclockwise about the origin followed by a translation of (2, 3) to a point P(1, 2) of a traditional Mongolian geometric pattern.</p>
+                        <p>First, rotate P(1, 2) by 90° counterclockwise about the origin:</p>
+                        <p>x' = 1 cos 90° − 2 sin 90° = 0 − 2 = −2</p>
+                        <p>y' = 1 sin 90° + 2 cos 90° = 1 + 0 = 1</p>
+                        <p>So P rotates to P'(−2, 1).</p>
+                        <p>Next, translate P'(−2, 1) by (2, 3):</p>
+                        <p>x'' = −2 + 2 = 0</p>
+                        <p>y'' = 1 + 3 = 4</p>
+                        <p>Therefore, the final position is P''(0, 4).</p>
+                        <p>This transformation sequence is similar to how traditional Mongolian artisans create complex repeating patterns in their decorative arts.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications of Transformations</h3>
+                    
+                    <h4>Symmetry</h4>
+                    <p class="text-secondary">Transformations are essential for describing and understanding symmetry in geometric figures:</p>
+                    <ul>
+                        <li><strong>Reflection Symmetry (Line Symmetry)</strong>: A figure has reflection symmetry if it remains unchanged after reflection across a line</li>
+                        <li><strong>Rotational Symmetry</strong>: A figure has rotational symmetry if it remains unchanged after rotation by a certain angle around a point</li>
+                        <li><strong>Translation Symmetry</strong>: Common in patterns and tilings, where the pattern remains unchanged after translation</li>
+                    </ul>
+                    
+                    <h4>Computer Graphics</h4>
+                    <p class="text-secondary">Transformations are fundamental in computer graphics for manipulating objects on screen:</p>
+                    <ul>
+                        <li>Moving, rotating, and scaling objects</li>
+                        <li>Animation effects and transitions</li>
+                        <li>3D rendering and projection</li>
+                        <li>Creating visual effects in games and simulations</li>
+                    </ul>
+                    
+                    <h4>Architecture and Art</h4>
+                    <p class="text-secondary">Transformations have been used in architecture and art throughout history:</p>
+                    <ul>
+                        <li>Creating repeating patterns in Islamic art and architecture</li>
+                        <li>Tessellations in floor and wall designs</li>
+                        <li>Perspective transformations in Renaissance art</li>
+                        <li>Symmetrical designs in building facades</li>
+                    </ul>
+                    
+                    <h4>Physics and Engineering</h4>
+                    <p class="text-secondary">Transformations have important applications in physics and engineering:</p>
+                    <ul>
+                        <li>Coordinate transformations between reference frames</li>
+                        <li>Transformation of electrical circuit elements</li>
+                        <li>Mechanical linkages and mechanisms</li>
+                        <li>Robotics and kinematics</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Symmetry in Traditional Mongolian Patterns</div>
+                        <p>A traditional Mongolian geometric pattern has multiple types of symmetry:</p>
+                        <p>It has 6 lines of reflection symmetry (through each vertex and the midpoint of the opposite side), similar to the patterns found in traditional Mongolian textiles.</p>
+                        <p>It has rotational symmetry of order 6, meaning it looks the same after rotation by multiples of 60°, like the repeating patterns in Mongolian traditional art.</p>
+                        <p>These symmetry properties can be described using the transformations we've discussed.</p>
+                        <p>The symmetry group of the pattern, denoted D₆, consists of 12 symmetry operations: 6 rotations and 6 reflections, creating the intricate designs found in Mongolian cultural artifacts.</p>
+                    </div>
+                    
+                    <div class="navigation">
+                        <a href="euclidean-geometry.html" class="prev-next-btn geometry-btn">Previous: Euclidean Geometry</a>
+                        <a href="areas-and-volumes.html" class="prev-next-btn geometry-btn">Next: Areas & Volumes</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

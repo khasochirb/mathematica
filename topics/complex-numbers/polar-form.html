@@ -1,0 +1,327 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Polar Form & Argand Plane - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Polar Form & Argand Plane</h2>
+                <p>Exploring complex numbers through geometric representation</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#complex-numbers">Complex Numbers</a> &raquo;
+                    <span>Polar Form & Argand Plane</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">The Argand Plane</h3>
+                    
+                    <p>The Argand plane (also called the complex plane) is a geometric representation of complex numbers as points on a two-dimensional coordinate system, where:</p>
+                    <ul>
+                        <li>The horizontal axis represents the real part of the complex number</li>
+                        <li>The vertical axis represents the imaginary part of the complex number</li>
+                    </ul>
+                    
+                    <p>Each complex number z = a + bi is represented as the point (a, b) on this plane. This representation allows us to visualize complex numbers and understand their geometric properties.</p>
+                    
+                    <h4>Geometric Interpretation</h4>
+                    <p>In the Argand plane:</p>
+                    <ul>
+                        <li>The distance from the origin to the point (a, b) is the modulus or absolute value |z| = √(a² + b²)</li>
+                        <li>The angle formed by the positive real axis and the line segment from the origin to the point (a, b) is the argument of z, denoted by arg(z)</li>
+                        <li>Addition of complex numbers corresponds to vector addition in the plane</li>
+                        <li>Multiplication by a complex number corresponds to a rotation and scaling in the plane</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Geometric Representation</div>
+                        <p>Consider the complex number z = 3 + 4i.</p>
+                        <p>On the Argand plane, this is represented as the point (3, 4).</p>
+                        <p>The modulus is |z| = √(3² + 4²) = √(9 + 16) = √25 = 5.</p>
+                        <p>The argument is arg(z) = tan⁻¹(4/3) ≈ 53.13°.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Polar Form of Complex Numbers</h3>
+                    
+                    <p>Every complex number can be written in polar form, which emphasizes its geometric properties in the Argand plane.</p>
+                    
+                    <h4>Converting from Rectangular to Polar Form</h4>
+                    <p>For a complex number z = a + bi in rectangular form, the polar form is:</p>
+                    
+                    <div class="math-formula">
+                        <p>z = r(cos θ + i sin θ) = r cis θ</p>
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>r = |z| = √(a² + b²) is the modulus or absolute value</li>
+                        <li>θ = arg(z) is the argument or angle, typically given in radians</li>
+                        <li>"cis" is shorthand for "cos + i sin"</li>
+                    </ul>
+                    
+                    <p>The argument θ can be calculated as:</p>
+                    
+                    <div class="math-formula">
+                        <p>θ = arg(z) = tan⁻¹(b/a)</p>
+                    </div>
+                    
+                    <p>However, care must be taken with the above formula to account for the quadrant in which the point (a, b) lies:</p>
+                    <ul>
+                        <li>If a > 0, b > 0 (first quadrant): θ = tan⁻¹(b/a)</li>
+                        <li>If a < 0 (second or third quadrant): θ = tan⁻¹(b/a) + π</li>
+                        <li>If a > 0, b < 0 (fourth quadrant): θ = tan⁻¹(b/a) + 2π</li>
+                        <li>If a = 0, b > 0: θ = π/2</li>
+                        <li>If a = 0, b < 0: θ = 3π/2</li>
+                        <li>If a = 0, b = 0: θ is undefined (z = 0)</li>
+                    </ul>
+                    
+                    <p>Many programming languages provide an atan2(y, x) function that correctly handles all these cases.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Converting to Polar Form</div>
+                        <p>Express z = -3 + 4i in polar form.</p>
+                        <p>First, calculate the modulus: r = |z| = √((-3)² + 4²) = √(9 + 16) = √25 = 5.</p>
+                        <p>Next, calculate the argument: θ = tan⁻¹(4/(-3)).</p>
+                        <p>Since a < 0 and b > 0 (second quadrant), we add π to the result:</p>
+                        <p>θ = tan⁻¹(-4/3) + π ≈ -53.13° + 180° ≈ 126.87° ≈ 2.214 radians.</p>
+                        <p>Therefore, in polar form: z = 5(cos(2.214) + i sin(2.214)) = 5 cis(2.214).</p>
+                    </div>
+                    
+                    <h4>Converting from Polar to Rectangular Form</h4>
+                    <p>If we have a complex number z = r cis θ in polar form, we can convert it to rectangular form using:</p>
+                    
+                    <div class="math-formula">
+                        <p>z = r(cos θ + i sin θ) = r cos θ + i r sin θ</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Converting to Rectangular Form</div>
+                        <p>Express z = 6 cis(π/3) in rectangular form.</p>
+                        <p>We have r = 6 and θ = π/3 (60°).</p>
+                        <p>The real part is a = r cos θ = 6 cos(π/3) = 6 × (1/2) = 3.</p>
+                        <p>The imaginary part is b = r sin θ = 6 sin(π/3) = 6 × (√3/2) = 3√3.</p>
+                        <p>Therefore, in rectangular form: z = 3 + 3√3i.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Operations in Polar Form</h3>
+                    
+                    <p>The polar form of complex numbers is particularly useful for multiplication, division, powers, and roots.</p>
+                    
+                    <h4>Multiplication in Polar Form</h4>
+                    <p>To multiply two complex numbers in polar form:</p>
+                    
+                    <div class="math-formula">
+                        <p>z₁ = r₁ cis θ₁</p>
+                        <p>z₂ = r₂ cis θ₂</p>
+                        <p>z₁ × z₂ = r₁r₂ cis(θ₁ + θ₂)</p>
+                    </div>
+                    
+                    <p>This shows that when multiplying complex numbers:</p>
+                    <ul>
+                        <li>The moduli are multiplied: r = r₁ × r₂</li>
+                        <li>The arguments are added: θ = θ₁ + θ₂</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Multiplication in Polar Form</div>
+                        <p>Multiply z₁ = 2 cis(π/4) and z₂ = 3 cis(π/6).</p>
+                        <p>Using the formula for multiplication in polar form:</p>
+                        <p>z₁ × z₂ = 2 × 3 cis(π/4 + π/6) = 6 cis(5π/12)</p>
+                        <p>Converting back to rectangular form:</p>
+                        <p>6 cis(5π/12) = 6 cos(5π/12) + 6i sin(5π/12) ≈ 3.83 + 4.63i</p>
+                    </div>
+                    
+                    <h4>Division in Polar Form</h4>
+                    <p>To divide two complex numbers in polar form:</p>
+                    
+                    <div class="math-formula">
+                        <p>z₁ = r₁ cis θ₁</p>
+                        <p>z₂ = r₂ cis θ₂</p>
+                        <p>z₁ ÷ z₂ = (r₁/r₂) cis(θ₁ - θ₂)</p>
+                    </div>
+                    
+                    <p>This shows that when dividing complex numbers:</p>
+                    <ul>
+                        <li>The moduli are divided: r = r₁ ÷ r₂</li>
+                        <li>The arguments are subtracted: θ = θ₁ - θ₂</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Division in Polar Form</div>
+                        <p>Divide z₁ = 8 cis(2π/3) by z₂ = 2 cis(π/6).</p>
+                        <p>Using the formula for division in polar form:</p>
+                        <p>z₁ ÷ z₂ = (8/2) cis(2π/3 - π/6) = 4 cis(π/2) = 4 cis(90°)</p>
+                        <p>Converting back to rectangular form:</p>
+                        <p>4 cis(90°) = 4 cos(90°) + 4i sin(90°) = 0 + 4i = 4i</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Exponential Form</h3>
+                    
+                    <p>Another representation of complex numbers is the exponential form, based on Euler's formula:</p>
+                    
+                    <div class="math-formula">
+                        <p>e^(iθ) = cos θ + i sin θ</p>
+                    </div>
+                    
+                    <p>Using this formula, a complex number in polar form can be written as:</p>
+                    
+                    <div class="math-formula">
+                        <p>z = r(cos θ + i sin θ) = r·e^(iθ)</p>
+                    </div>
+                    
+                    <p>This exponential form is particularly useful for powers and roots of complex numbers.</p>
+                    
+                    <h4>Euler's Identity</h4>
+                    <p>One of the most famous results in mathematics is Euler's identity, which is obtained by setting θ = π in Euler's formula:</p>
+                    
+                    <div class="math-formula">
+                        <p>e^(iπ) + 1 = 0</p>
+                    </div>
+                    
+                    <p>This elegant equation connects five fundamental mathematical constants: e, i, π, 1, and 0, each appearing exactly once.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Using Exponential Form</div>
+                        <p>Express z = 5 cis(π/3) in exponential form.</p>
+                        <p>Using Euler's formula:</p>
+                        <p>z = 5 cis(π/3) = 5(cos(π/3) + i sin(π/3)) = 5·e^(iπ/3)</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Complex Vectors and Transformations</h3>
+                    
+                    <p>The Argand plane allows us to interpret complex numbers as vectors and complex operations as geometric transformations.</p>
+                    
+                    <h4>Complex Numbers as Vectors</h4>
+                    <p>A complex number z = a + bi can be interpreted as the vector (a, b) in the Cartesian plane:</p>
+                    <ul>
+                        <li>Addition of complex numbers corresponds to vector addition (head-to-tail rule)</li>
+                        <li>Multiplication by a real number corresponds to scaling the vector</li>
+                    </ul>
+                    
+                    <h4>Geometric Interpretation of Multiplication</h4>
+                    <p>When a complex number z is multiplied by another complex number w:</p>
+                    <ul>
+                        <li>The modulus of z is scaled by the modulus of w: |zw| = |z|·|w|</li>
+                        <li>The argument of z is rotated by the argument of w: arg(zw) = arg(z) + arg(w)</li>
+                    </ul>
+                    
+                    <p>Special cases:</p>
+                    <ul>
+                        <li>Multiplication by i rotates a complex number 90° counterclockwise</li>
+                        <li>Multiplication by -1 rotates a complex number 180°</li>
+                        <li>Multiplication by -i rotates a complex number 270° counterclockwise (or 90° clockwise)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Geometric Interpretation</div>
+                        <p>Consider z = 3 + 4i with |z| = 5 and arg(z) ≈ 53.13°.</p>
+                        <p>When multiplied by i:</p>
+                        <p>i·z = i(3 + 4i) = 3i + 4i² = 3i - 4 = -4 + 3i</p>
+                        <p>The new complex number has the same modulus |i·z| = 5, but its argument has increased by 90°: arg(i·z) ≈ 143.13°.</p>
+                        <p>This confirms that multiplication by i corresponds to a 90° counterclockwise rotation.</p>
+                    </div>
+                    
+                    <h4>Loci in the Complex Plane</h4>
+                    <p>Many geometric loci can be described elegantly using complex numbers:</p>
+                    <ul>
+                        <li>|z| = r represents a circle of radius r centered at the origin</li>
+                        <li>|z - z₀| = r represents a circle of radius r centered at z₀</li>
+                        <li>|z - z₁| = |z - z₂| represents the perpendicular bisector of the line segment joining z₁ and z₂</li>
+                        <li>arg(z - z₀) = θ represents a ray from z₀ at angle θ</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Loci in the Complex Plane</div>
+                        <p>Describe the locus of points z such that |z - (1 + i)| = 2.</p>
+                        <p>This represents a circle of radius 2 centered at the point 1 + i in the complex plane.</p>
+                        <p>In terms of the real and imaginary parts z = x + yi, the equation becomes:</p>
+                        <p>√((x - 1)² + (y - 1)²) = 2</p>
+                        <p>or equivalently: (x - 1)² + (y - 1)² = 4</p>
+                        <p>This is the equation of a circle with center (1, 1) and radius 2.</p>
+                    </div>
+                    
+                    <div class="navigation">
+                        <a href="basic-operations.html" class="prev-next-btn">Previous: Basic Operations</a>
+                        <a href="de-moivres-theorem.html" class="prev-next-btn">Next: De Moivre's Theorem</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

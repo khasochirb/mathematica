@@ -1,0 +1,289 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Pigeonhole Principle - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Pigeonhole Principle</h2>
+                <p>A powerful tool for proving the existence of patterns</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#combinatorics">Combinatorics</a> &raquo;
+                    <span>Pigeonhole Principle</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Basic Pigeonhole Principle</h3>
+                    
+                    <p>The Pigeonhole Principle, also known as the Dirichlet box principle, is a simple yet powerful mathematical concept used to prove the existence of certain patterns or properties without directly constructing them.</p>
+                    
+                    <h4>Statement of the Principle</h4>
+                    <p>The basic form of the pigeonhole principle states:</p>
+                    
+                    <div class="math-formula">
+                        <p>If n pigeons are placed into m pigeonholes, and n > m, then at least one pigeonhole must contain more than one pigeon.</p>
+                    </div>
+                    
+                    <p>More precisely, at least one pigeonhole must contain at least ⌈n/m⌉ pigeons, where ⌈x⌉ represents the ceiling function (the smallest integer greater than or equal to x).</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Basic Pigeonhole Principle</div>
+                        <p>In a traditional Mongolian wrestling tournament with 13 wrestlers, at least 2 wrestlers must have the same number of wins (assuming each wrestler has at least one win).</p>
+                        <p>Proof:</p>
+                        <p>If each wrestler has at least one win, the number of wins for each wrestler must be between 1 and 12 (since there are 13 wrestlers, a wrestler can't have more wins than there are other wrestlers).</p>
+                        <p>We have 13 wrestlers (pigeons) and 12 possible numbers of wins (pigeonholes: 1 through 12).</p>
+                        <p>By the pigeonhole principle, at least 2 wrestlers must have the same number of wins.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Socks in a Drawer</div>
+                        <p>A drawer contains 10 blue socks and 10 black socks that have been mixed up. How many socks must you take out (in the dark) to guarantee getting a matching pair?</p>
+                        <p>There are 2 colors (pigeonholes), and we need to ensure we have at least 2 socks of the same color. By the pigeonhole principle, we need to take at least 2 + 1 = 3 socks to guarantee a matching pair.</p>
+                        <p>With 3 socks, even in the worst case (1 blue sock and 1 black sock initially), the third sock must match one of the first two.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Generalized Pigeonhole Principle</h3>
+                    
+                    <p>The generalized pigeonhole principle extends the basic principle to situations where we want to guarantee a certain number of items in a single category.</p>
+                    
+                    <div class="math-formula">
+                        <p>If n pigeons are placed into m pigeonholes, then at least one pigeonhole must contain at least ⌈n/m⌉ pigeons.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Generalized Pigeonhole Principle</div>
+                        <p>In an archery competition, if 25 archers shoot at targets with 4 different scoring zones, at least 7 archers must hit the same scoring zone.</p>
+                        <p>Proof:</p>
+                        <p>We have 25 archers (pigeons) and 4 scoring zones (pigeonholes).</p>
+                        <p>By the generalized pigeonhole principle, at least ⌈25/4⌉ = 7 archers must hit the same scoring zone.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Students and Grades</div>
+                        <p>In a class of 50 students, grades are given as A, B, C, D, or F. Prove that at least 10 students must receive the same grade.</p>
+                        <p>Here, we have 50 students (pigeons) and 5 possible grades (pigeonholes).</p>
+                        <p>By the generalized pigeonhole principle, at least one grade must be given to at least ⌈50/5⌉ = 10 students.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Selecting Numbers</div>
+                        <p>From the set {1, 2, 3, ..., 20}, what is the minimum number of integers you need to select to guarantee that at least 3 of them have the same remainder when divided by 6?</p>
+                        <p>When dividing by 6, there are 6 possible remainders: 0, 1, 2, 3, 4, and 5 (pigeonholes).</p>
+                        <p>To guarantee that at least 3 numbers have the same remainder, we need to select enough numbers so that at least one remainder appears 3 times.</p>
+                        <p>By the generalized principle, we need at least 6(3-1) + 1 = 13 numbers.</p>
+                        <p>Why? In the worst case, we could select 2 numbers from each of the 6 remainder classes, giving us 12 numbers with no three having the same remainder. The 13th number must fall into one of the 6 remainder classes, giving us 3 numbers with the same remainder.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Strong Form of the Pigeonhole Principle</h3>
+                    
+                    <p>The strong form of the pigeonhole principle deals with situations where we have multiple constraints or want to ensure multiple items share properties.</p>
+                    
+                    <div class="math-formula">
+                        <p>If n items are placed into m categories, and n > mk, then at least one category must contain at least k+1 items.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Strong Form</div>
+                        <p>In a horse racing competition, if 10 horses race in 3 heats, there must be a heat where at least 4 horses participate.</p>
+                        <p>Proof:</p>
+                        <p>If we distribute 10 horses among 3 heats, and no heat has 4 or more horses, then each heat has at most 3 horses.</p>
+                        <p>This would mean there are at most 3 × 3 = 9 horses total, which contradicts the fact that we have 10 horses.</p>
+                        <p>Therefore, at least one heat must have 4 or more horses.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Subset Sum Problem</div>
+                        <p>Given any set of n integers, prove that there exists a non-empty subset whose sum is divisible by n.</p>
+                        <p>Consider the partial sums: s₁ = a₁, s₂ = a₁ + a₂, ..., sₙ = a₁ + a₂ + ... + aₙ.</p>
+                        <p>By the pigeonhole principle, among these n sums, at least two must have the same remainder when divided by n (since there are only n possible remainders: 0, 1, 2, ..., n-1).</p>
+                        <p>If sᵢ and sⱼ have the same remainder (with i < j), then sⱼ - sᵢ = aᵢ₊₁ + ... + aⱼ is divisible by n.</p>
+                        <p>Therefore, the subset {aᵢ₊₁, ..., aⱼ} has a sum divisible by n.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Points in a Plane</div>
+                        <p>Prove that among any 5 points in a unit square, there must be 2 points that are at most √2/2 ≈ 0.707 units apart.</p>
+                        <p>Divide the unit square into 4 equal subsquares, each with side length 1/2.</p>
+                        <p>By the pigeonhole principle, when 5 points are placed into 4 subsquares, at least one subsquare must contain at least 2 points.</p>
+                        <p>The maximum distance between any two points in a square of side length 1/2 is the diagonal, which is (1/2)·√2 = √2/2.</p>
+                        <p>Therefore, the two points in the same subsquare are at most √2/2 units apart.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications in Mathematics</h3>
+                    
+                    <h4>Number Theory</h4>
+                    <p>The pigeonhole principle is often used in number theory to prove the existence of certain numbers with specific properties.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Decimal Representation</div>
+                        <p>Prove that a fraction a/b, where a and b are coprime positive integers, has a repeating decimal expansion if and only if b has a prime factorization containing only 2s and 5s.</p>
+                        <p>When computing a/b as a decimal, we continually multiply the remainder by 10 and take the integer part as the next digit.</p>
+                        <p>Since the remainder is always between 0 and b-1, there are only b possible remainders.</p>
+                        <p>By the pigeonhole principle, if we calculate more than b digits, we must encounter the same remainder twice, which causes the decimal expansion to repeat from that point.</p>
+                        <p>The only fractions that don't produce a repeating decimal are those where b is a divisor of some power of 10, which means b can only have prime factors of 2 and 5.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Number Theory Application</div>
+                        <p>In a musical performance, if 8 musicians play notes from a scale of 7 notes, at least 2 musicians must play the same note at some point.</p>
+                        <p>Proof:</p>
+                        <p>Consider the sequence of notes played by each musician as a sequence of integers from 1 to 7.</p>
+                        <p>If we look at the first 8 notes played (one from each musician), we have 8 integers (pigeons) and 7 possible values (pigeonholes).</p>
+                        <p>By the pigeonhole principle, at least 2 musicians must play the same note.</p>
+                    </div>
+                    
+                    <h4>Ramsey Theory</h4>
+                    <p>The pigeonhole principle is fundamental to Ramsey theory, which studies the conditions under which order must appear in disordered structures.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Friendship Theorem</div>
+                        <p>In a party of 6 people, prove that there must be either 3 mutual strangers or 3 mutual acquaintances.</p>
+                        <p>Represent people as vertices and relationships as edges in a graph, where an edge can be either "acquaintance" (blue) or "stranger" (red).</p>
+                        <p>Consider any person at the party. There are 5 other people, each with a relationship to our selected person.</p>
+                        <p>By the pigeonhole principle, at least 3 of these relationships must be of the same type (either all "acquaintance" or all "stranger").</p>
+                        <p>Let's assume 3 people are acquaintances of our selected person. If any 2 of these 3 people are acquaintances of each other, then together with our selected person, they form a group of 3 mutual acquaintances.</p>
+                        <p>If none of these 3 people are acquaintances of each other, then they form a group of 3 mutual strangers.</p>
+                        <p>A similar argument works if 3 people are strangers to our selected person.</p>
+                        <p>Therefore, there must exist either 3 mutual acquaintances or 3 mutual strangers.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications in Computer Science</h3>
+                    
+                    <h4>Algorithm Analysis</h4>
+                    <p>The pigeonhole principle is used in the analysis of algorithms, particularly for proving lower bounds on algorithm complexity.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Algorithm Analysis</div>
+                        <p>In a card game, if a player draws 5 cards from a deck of 52 cards, they must have at least 2 cards of the same suit.</p>
+                        <p>Proof:</p>
+                        <p>There are 4 suits in a deck (pigeonholes) and 5 cards drawn (pigeons).</p>
+                        <p>By the pigeonhole principle, at least ⌈5/4⌉ = 2 cards must be of the same suit.</p>
+                        <p>This is a fundamental result used in analyzing card game algorithms and probabilities.</p>
+                    </div>
+                    
+                    <h4>Hashing</h4>
+                    <p>The pigeonhole principle explains why collisions are inevitable in hash functions when the input domain is larger than the output range.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Hash Collisions</div>
+                        <p>A hash function maps arbitrary-sized inputs to fixed-size outputs. If the input space exceeds the output space, show that collisions must exist.</p>
+                        <p>Let's say we have a hash function h that maps inputs from a set S to outputs in a set T, where |S| > |T|.</p>
+                        <p>By the pigeonhole principle, if we hash more than |T| distinct inputs, at least two inputs must hash to the same output value.</p>
+                        <p>This is why all practical hash functions have collisions, and why hash table implementations must handle collisions.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">The Pigeonhole Principle in Everyday Life</h3>
+                    
+                    <p>The pigeonhole principle appears in many common situations, often where we need to prove something must happen without specifying exactly when or how.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Identical Hairs</div>
+                        <p>The average human head has about 100,000 hairs, while hair colors are typically classified into a few dozen shades. By the pigeonhole principle, many hairs on a person's head must be of identical color.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Calendar Events</div>
+                        <p>If a person schedules 366 different events over the course of a year, prove that at least 2 events must occur on the same day.</p>
+                        <p>Even in a leap year, there are at most 366 days. With 366 events and 366 days, each day could contain exactly one event.</p>
+                        <p>However, with 367 events, by the pigeonhole principle, at least one day must contain at least 2 events.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Matching Birthdays</div>
+                        <p>In a room of 23 people, what is the probability that at least 2 people share the same birthday (ignoring leap years)?</p>
+                        <p>This is not directly a pigeonhole principle problem since we have 23 people and 365 days, but it illustrates how the principle applies to probability.</p>
+                        <p>The probability that all 23 people have different birthdays is:
+                        <br>P(all different) = (365/365) × (364/365) × ... × (343/365) ≈ 0.493</p>
+                        <p>Therefore, the probability that at least 2 people share a birthday is:
+                        <br>P(at least one match) = 1 - P(all different) ≈ 1 - 0.493 = 0.507 or about 50.7%</p>
+                        <p>This result is surprisingly high, which shows the power of the pigeonhole principle in real-world scenarios.</p>
+                    </div>
+                    
+                    <div class="navigation">
+                        <a href="binomial-theorem.html" class="prev-next-btn combinatorics-btn">Previous: Binomial Theorem</a>
+                        <a href="inclusion-exclusion.html" class="prev-next-btn combinatorics-btn">Next: Inclusion-Exclusion</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

@@ -1,0 +1,403 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Equations of Lines & Planes - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Equations of Lines & Planes</h2>
+                <p class="text-secondary">Understanding the mathematical representation of lines and planes in space</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#vectors-and-coordinate-geometry">Vectors and Coordinate Geometry</a> &raquo;
+                    <span>Equations of Lines & Planes</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Lines and Planes</h3>
+                    
+                    <p>Lines and planes are fundamental geometric objects that can be described algebraically using equations. These equations allow us to analyze their properties, determine their positions in space, and calculate their intersections. Understanding the various forms of these equations is essential for solving problems in three-dimensional geometry, computer graphics, robotics, and many scientific fields.</p>
+                    
+                    <p>This page explores the different ways to represent lines and planes mathematically, with a focus on vector equations and parametric representations.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Historical Context</div>
+                        <p>The study of lines and planes has ancient origins, but the modern algebraic treatment emerged with René Descartes's development of coordinate geometry in the 17th century. The vector approach to representing lines and planes became prominent in the 19th and early 20th centuries, particularly through the work of mathematicians like Hermann Grassmann, William Rowan Hamilton, and Josiah Willard Gibbs. This vector approach has proven especially powerful for dealing with objects in three-dimensional space and beyond.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Lines in Two-Dimensional Space</h3>
+                    
+                    <h4>Different Forms of Line Equations in 2D</h4>
+                    
+                    <p>A line in two-dimensional space can be represented in several ways:</p>
+                    
+                    <h4>1. Slope-Intercept Form</h4>
+                    <div class="math-formula">
+                        y = mx + b
+                    </div>
+                    <p>where m is the slope of the line and b is the y-intercept.</p>
+                    
+                    <h4>2. Point-Slope Form</h4>
+                    <div class="math-formula">
+                        y - y₁ = m(x - x₁)
+                    </div>
+                    <p>where (x₁, y₁) is a point on the line and m is the slope.</p>
+                    
+                    <h4>3. Two-Point Form</h4>
+                    <div class="math-formula">
+                        y - y₁ = ((y₂ - y₁)/(x₂ - x₁))(x - x₁)
+                    </div>
+                    <p>where (x₁, y₁) and (x₂, y₂) are two distinct points on the line.</p>
+                    
+                    <h4>4. General Form (Standard Form)</h4>
+                    <div class="math-formula">
+                        Ax + By + C = 0
+                    </div>
+                    <p>where A, B, and C are constants and A and B are not both zero.</p>
+                    
+                    <h4>5. Intercept Form</h4>
+                    <div class="math-formula">
+                        x/a + y/b = 1
+                    </div>
+                    <p>where a is the x-intercept and b is the y-intercept.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 1: Converting Between Line Representations</div>
+                        <p>Consider a line passing through the points (1, 3) and (4, 9).</p>
+                        <p><strong>Find the line equation in:</strong></p>
+                        <p>a) Two-point form:</p>
+                        <p>y - 3 = ((9 - 3)/(4 - 1))(x - 1)</p>
+                        <p>y - 3 = (6/3)(x - 1)</p>
+                        <p>y - 3 = 2(x - 1)</p>
+                        <p>y - 3 = 2x - 2</p>
+                        <p>y = 2x + 1</p>
+                        <p>b) General form:</p>
+                        <p>From y = 2x + 1, we get:</p>
+                        <p>2x - y + 1 = 0</p>
+                        <p>c) Intercept form:</p>
+                        <p>If y = 0: 0 = 2x + 1, so x = -1/2</p>
+                        <p>If x = 0: y = 2(0) + 1 = 1</p>
+                        <p>Therefore: x/(-1/2) + y/1 = 1</p>
+                        <p>-2x + y = 1</p>
+                        <p>Or: x/(-1/2) + y/1 = 1</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Lines in Three-Dimensional Space</h3>
+                    
+                    <p>In three-dimensional space, a line cannot be represented by a single equation. Instead, we use either parametric equations or vector equations.</p>
+                    
+                    <h4>1. Parametric Equations of a Line</h4>
+                    <div class="math-formula">
+                        x = x₀ + at<br>
+                        y = y₀ + bt<br>
+                        z = z₀ + ct
+                    </div>
+                    <p>where (x₀, y₀, z₀) is a point on the line, (a, b, c) is a direction vector of the line, and t is the parameter.</p>
+                    
+                    <h4>2. Vector Equation of a Line</h4>
+                    <div class="math-formula">
+                        r = r₀ + tv
+                    </div>
+                    <p>where r₀ is the position vector of a point on the line, v is a direction vector of the line, and t is the parameter.</p>
+                    
+                    <h4>3. Symmetric Equations of a Line</h4>
+                    <div class="math-formula">
+                        (x - x₀)/a = (y - y₀)/b = (z - z₀)/c
+                    </div>
+                    <p>where (x₀, y₀, z₀) is a point on the line and (a, b, c) is a direction vector of the line.</p>
+                    
+                    <h4>4. Line as the Intersection of Two Planes</h4>
+                    <p>A line in 3D space can also be represented as the intersection of two planes:</p>
+                    <div class="math-formula">
+                        A₁x + B₁y + C₁z + D₁ = 0<br>
+                        A₂x + B₂y + C₂z + D₂ = 0
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 2: Representing a 3D Line</div>
+                        <p>Find the vector, parametric, and symmetric equations of the line passing through the points P(1, 2, 3) and Q(4, 0, 5).</p>
+                        <p><strong>Solution:</strong></p>
+                        <p>First, we find the direction vector PQ:</p>
+                        <p>PQ = Q - P = (4, 0, 5) - (1, 2, 3) = (3, -2, 2)</p>
+                        <p><strong>Vector equation:</strong></p>
+                        <p>r = (1, 2, 3) + t(3, -2, 2)</p>
+                        <p><strong>Parametric equations:</strong></p>
+                        <p>x = 1 + 3t</p>
+                        <p>y = 2 - 2t</p>
+                        <p>z = 3 + 2t</p>
+                        <p><strong>Symmetric equations:</strong></p>
+                        <p>(x - 1)/3 = (y - 2)/(-2) = (z - 3)/2</p>
+                        <p>or: (x - 1)/3 = -(y - 2)/2 = (z - 3)/2</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Planes in Three-Dimensional Space</h3>
+                    
+                    <h4>1. General Form of a Plane Equation</h4>
+                    <div class="math-formula">
+                        Ax + By + Cz + D = 0
+                    </div>
+                    <p>where A, B, C, and D are constants, and (A, B, C) is the normal vector to the plane.</p>
+                    
+                    <h4>2. Vector Equation of a Plane</h4>
+                    <div class="math-formula">
+                        n·(r - r₀) = 0
+                    </div>
+                    <p>where n is the normal vector to the plane, r₀ is the position vector of a point on the plane, and r is the position vector of any point on the plane.</p>
+                    
+                    <h4>3. Intercept Form of a Plane</h4>
+                    <div class="math-formula">
+                        x/a + y/b + z/c = 1
+                    </div>
+                    <p>where a, b, and c are the x, y, and z-intercepts of the plane, respectively.</p>
+                    
+                    <h4>4. Point-Normal Form of a Plane</h4>
+                    <div class="math-formula">
+                        A(x - x₀) + B(y - y₀) + C(z - z₀) = 0
+                    </div>
+                    <p>where (x₀, y₀, z₀) is a point on the plane and (A, B, C) is the normal vector to the plane.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 3: Finding the Equation of a Plane</div>
+                        <p>Find the equation of the plane passing through the point P(2, -1, 3) with normal vector n = (4, 5, -2).</p>
+                        <p><strong>Solution:</strong></p>
+                        <p>Using the point-normal form:</p>
+                        <p>4(x - 2) + 5(y - (-1)) + (-2)(z - 3) = 0</p>
+                        <p>4x - 8 + 5y + 5 - 2z + 6 = 0</p>
+                        <p>4x + 5y - 2z + 3 = 0</p>
+                        <p>This is the equation of the plane in general form with A = 4, B = 5, C = -2, and D = 3.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Distances and Angles</h3>
+                    
+                    <h4>Distance from a Point to a Line</h4>
+                    
+                    <p><strong>In 2D:</strong> If a line has the equation Ax + By + C = 0 and the point is (x₀, y₀), then the distance is:</p>
+                    <div class="math-formula">
+                        d = |Ax₀ + By₀ + C| / √(A² + B²)
+                    </div>
+                    
+                    <p><strong>In 3D:</strong> If a line passes through point P₀ with direction vector v, and the point is P, then the distance is:</p>
+                    <div class="math-formula">
+                        d = |P₀P × v| / |v|
+                    </div>
+                    <p>where × denotes the cross product.</p>
+                    
+                    <h4>Distance from a Point to a Plane</h4>
+                    <p>If a plane has the equation Ax + By + Cz + D = 0 and the point is (x₀, y₀, z₀), then the distance is:</p>
+                    <div class="math-formula">
+                        d = |Ax₀ + By₀ + Cz₀ + D| / √(A² + B² + C²)
+                    </div>
+                    
+                    <h4>Angle Between Two Lines</h4>
+                    <p>If v₁ and v₂ are the direction vectors of the lines, then the angle between them is:</p>
+                    <div class="math-formula">
+                        cos(θ) = |v₁·v₂| / (|v₁||v₂|)
+                    </div>
+                    
+                    <h4>Angle Between Two Planes</h4>
+                    <p>If n₁ and n₂ are the normal vectors of the planes, then the angle between them is:</p>
+                    <div class="math-formula">
+                        cos(θ) = |n₁·n₂| / (|n₁||n₂|)
+                    </div>
+                    
+                    <h4>Angle Between a Line and a Plane</h4>
+                    <p>If v is the direction vector of the line and n is the normal vector of the plane, then the angle between them is:</p>
+                    <div class="math-formula">
+                        sin(θ) = |v·n| / (|v||n|)
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 4: Distance Calculations</div>
+                        <p>Find the distance from the point P(3, 1, 2) to the plane 2x - y + 2z - 4 = 0.</p>
+                        <p><strong>Solution:</strong></p>
+                        <p>Using the formula for the distance from a point to a plane:</p>
+                        <p>d = |A(x₀) + B(y₀) + C(z₀) + D| / √(A² + B² + C²)</p>
+                        <p>d = |2(3) - 1(1) + 2(2) - 4| / √(2² + (-1)² + 2²)</p>
+                        <p>d = |6 - 1 + 4 - 4| / √(4 + 1 + 4)</p>
+                        <p>d = |5| / √9 = 5/3 ≈ 1.67 units</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Intersection of Lines and Planes</h3>
+                    
+                    <h4>Intersection of Two Lines in 2D</h4>
+                    <p>For two lines with equations A₁x + B₁y + C₁ = 0 and A₂x + B₂y + C₂ = 0, the intersection point is found by solving the system of these two equations.</p>
+                    
+                    <h4>Intersection of a Line and a Plane</h4>
+                    <p>If a line has parametric equations:</p>
+                    <div class="math-formula">
+                        x = x₀ + at<br>
+                        y = y₀ + bt<br>
+                        z = z₀ + ct
+                    </div>
+                    <p>And a plane has the equation Ax + By + Cz + D = 0, then to find the intersection:</p>
+                    <ol>
+                        <li>Substitute the parametric equations into the plane equation</li>
+                        <li>Solve for parameter t</li>
+                        <li>Substitute t back into the parametric equations to find the intersection point</li>
+                    </ol>
+                    
+                    <h4>Intersection of Two Planes</h4>
+                    <p>The intersection of two planes is a line. If the planes have equations:</p>
+                    <div class="math-formula">
+                        A₁x + B₁y + C₁z + D₁ = 0<br>
+                        A₂x + B₂y + C₂z + D₂ = 0
+                    </div>
+                    <p>The direction vector of the line of intersection is the cross product of the normal vectors:</p>
+                    <div class="math-formula">
+                        v = (A₁, B₁, C₁) × (A₂, B₂, C₂)
+                    </div>
+                    <p>To find a point on the line, we solve the system of equations together with an additional constraint (e.g., setting one of the coordinates to zero).</p>
+                    
+                    <h4>Intersection of Three Planes</h4>
+                    <p>The intersection of three planes is typically a point, found by solving the system of three equations. However, if the planes are not independent, they might intersect in a line or even a plane, or they might not have a common intersection at all.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 5: Finding the Intersection of a Line and a Plane</div>
+                        <p>Find the intersection of the line r = (1, 2, 3) + t(2, 0, 1) with the plane 2x + 3y - z + 4 = 0.</p>
+                        <p><strong>Solution:</strong></p>
+                        <p>The parametric equations of the line are:</p>
+                        <p>x = 1 + 2t</p>
+                        <p>y = 2</p>
+                        <p>z = 3 + t</p>
+                        <p>Substituting into the plane equation:</p>
+                        <p>2(1 + 2t) + 3(2) - (3 + t) + 4 = 0</p>
+                        <p>2 + 4t + 6 - 3 - t + 4 = 0</p>
+                        <p>9 + 3t = 0</p>
+                        <p>t = -3</p>
+                        <p>Now we substitute t = -3 back into the parametric equations:</p>
+                        <p>x = 1 + 2(-3) = 1 - 6 = -5</p>
+                        <p>y = 2</p>
+                        <p>z = 3 + (-3) = 0</p>
+                        <p>Therefore, the intersection point is (-5, 2, 0).</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications of Lines and Planes</h3>
+                    
+                    <h4>Computer Graphics and Computer Vision</h4>
+                    <ul>
+                        <li>Ray tracing for rendering three-dimensional scenes</li>
+                        <li>Camera calibration and stereo vision</li>
+                        <li>Object detection and recognition</li>
+                    </ul>
+                    
+                    <h4>Robotics</h4>
+                    <ul>
+                        <li>Path planning and collision detection</li>
+                        <li>Robotic arm movement along specified trajectories</li>
+                        <li>3D mapping and navigation</li>
+                    </ul>
+                    
+                    <h4>Physics and Engineering</h4>
+                    <ul>
+                        <li>Describing motion of objects along straight paths</li>
+                        <li>Defining boundaries and surfaces in structural analysis</li>
+                        <li>Analyzing reflections and refractions of light</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 6: Reflection of a Ray</div>
+                        <p>A light ray with direction vector v = (1, -1, 2) hits a reflective surface with normal vector n = (0, 0, 1). Find the direction vector of the reflected ray.</p>
+                        <p><strong>Solution:</strong></p>
+                        <p>We need to normalize both vectors:</p>
+                        <p>|v| = √(1² + (-1)² + 2²) = √(1 + 1 + 4) = √6</p>
+                        <p>v̂ = v/|v| = (1, -1, 2)/√6 ≈ (0.41, -0.41, 0.82)</p>
+                        <p>|n| = √(0² + 0² + 1²) = 1</p>
+                        <p>n̂ = n/|n| = (0, 0, 1)</p>
+                        <p>The reflected ray direction is given by:</p>
+                        <p>r = v̂ - 2(v̂·n̂)n̂</p>
+                        <p>v̂·n̂ = (0.41 × 0) + (-0.41 × 0) + (0.82 × 1) = 0.82</p>
+                        <p>r = (0.41, -0.41, 0.82) - 2(0.82)(0, 0, 1)</p>
+                        <p>r = (0.41, -0.41, 0.82) - (0, 0, 1.64)</p>
+                        <p>r = (0.41, -0.41, -0.82)</p>
+                        <p>Therefore, the direction vector of the reflected ray is approximately (0.41, -0.41, -0.82), which has the same x and y components as the incident ray but the opposite z component.</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <a href="dot-and-cross-products.html" class="prev-next-btn">Previous: Dot & Cross Products</a>
+                    <a href="3d-coordinate-geometry.html" class="prev-next-btn">Next: 3D Coordinate Geometry</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

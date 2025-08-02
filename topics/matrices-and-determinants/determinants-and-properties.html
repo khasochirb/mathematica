@@ -1,0 +1,365 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Determinants & Properties - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Determinants & Properties</h2>
+                <p class="text-secondary">Understanding determinants and their fundamental properties in linear algebra</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#matrices-and-determinants">Matrices and Determinants</a> &raquo;
+                    <span>Determinants & Properties</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Determinants</h3>
+                    
+                    <p>The determinant is a scalar value that can be computed from a square matrix. It provides valuable information about the matrix and has numerous applications in linear algebra and beyond. Determinants help us understand whether a matrix is invertible, find the area or volume of geometric transformations, and solve systems of linear equations.</p>
+                    
+                    <h4>Notation and Basic Concept</h4>
+                    <p>For a square matrix A, the determinant is denoted as det(A) or |A|. The determinant encodes information about how the linear transformation represented by the matrix changes volume.</p>
+                    
+                    <p class="text-secondary">Key concepts about determinants:</p>
+                    <ul>
+                        <li>Determinants are defined only for square matrices.</li>
+                        <li>The determinant of a matrix is zero if and only if the matrix is singular (not invertible).</li>
+                        <li>The determinant of a product equals the product of the determinants: det(AB) = det(A) × det(B).</li>
+                        <li>The determinant of the transpose equals the determinant of the original matrix: det(A<sup>T</sup>) = det(A).</li>
+                    </ul>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Calculating Determinants</h3>
+                    
+                    <h4>Determinant of a 2×2 Matrix</h4>
+                    <p>For a 2×2 matrix A = [[a, b], [c, d]], the determinant is calculated as:</p>
+                    <div class="math-formula">
+                        det(A) = ad - bc
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Determinant of a 2×2 Matrix</div>
+                        <p>For the matrix:</p>
+                        <div class="math-formula">
+                            A = [<br>
+                            &nbsp;&nbsp;3&nbsp;&nbsp;5<br>
+                            &nbsp;&nbsp;2&nbsp;&nbsp;4<br>
+                            ]
+                        </div>
+                        <p>The determinant is:</p>
+                        <div class="math-formula">
+                            det(A) = 3×4 - 5×2 = 12 - 10 = 2
+                        </div>
+                    </div>
+                    
+                    <h4>Determinant of a 3×3 Matrix</h4>
+                    <p>For a 3×3 matrix, the determinant can be calculated using various methods, including the Sarrus rule or expansion by cofactors.</p>
+                    
+                    <p>Using the Sarrus rule:</p>
+                    <div class="math-formula">
+                        For A = [[a, b, c], [d, e, f], [g, h, i]]<br>
+                        det(A) = a(ei - fh) - b(di - fg) + c(dh - eg)
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Determinant of a 3×3 Matrix</div>
+                        <p>For the matrix:</p>
+                        <div class="math-formula">
+                            A = [<br>
+                            &nbsp;&nbsp;2&nbsp;&nbsp;1&nbsp;&nbsp;3<br>
+                            &nbsp;&nbsp;4&nbsp;&nbsp;2&nbsp;&nbsp;1<br>
+                            &nbsp;&nbsp;0&nbsp;&nbsp;3&nbsp;&nbsp;5<br>
+                            ]
+                        </div>
+                        <p>The determinant is:</p>
+                        <div class="math-formula">
+                            det(A) = 2(2×5 - 1×3) - 1(4×5 - 1×0) + 3(4×3 - 2×0)<br>
+                            = 2(10 - 3) - 1(20 - 0) + 3(12 - 0)<br>
+                            = 2(7) - 1(20) + 3(12)<br>
+                            = 14 - 20 + 36<br>
+                            = 30
+                        </div>
+                    </div>
+                    
+                    <h4>Determinant of Larger Matrices</h4>
+                    <p>For matrices of size n×n where n > 3, the determinant is typically calculated by expansion along a row or column, using cofactors. The formula for expanding along the first row is:</p>
+                    <div class="math-formula">
+                        det(A) = a<sub>11</sub>C<sub>11</sub> + a<sub>12</sub>C<sub>12</sub> + ... + a<sub>1n</sub>C<sub>1n</sub>
+                    </div>
+                    <p>where C<sub>ij</sub> is the cofactor of element a<sub>ij</sub>, defined as:</p>
+                    <div class="math-formula">
+                        C<sub>ij</sub> = (-1)<sup>i+j</sup> × M<sub>ij</sub>
+                    </div>
+                    <p>and M<sub>ij</sub> is the minor of a<sub>ij</sub>, which is the determinant of the (n-1)×(n-1) matrix obtained by deleting the i-th row and j-th column of A.</p>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Properties of Determinants</h3>
+                    
+                    <h4>Basic Properties</h4>
+                    <ol>
+                        <li><strong>Determinant of the Identity Matrix:</strong> det(I) = 1</li>
+                        <li><strong>Determinant of Transpose:</strong> det(A<sup>T</sup>) = det(A)</li>
+                        <li><strong>Determinant of Product:</strong> det(AB) = det(A) × det(B)</li>
+                        <li><strong>Determinant of Scalar Multiplication:</strong> det(kA) = k<sup>n</sup> × det(A), where A is an n×n matrix</li>
+                        <li><strong>Determinant of Inverse:</strong> det(A<sup>-1</sup>) = 1/det(A) for any invertible matrix A</li>
+                    </ol>
+                    
+                    <h4>Effect of Row/Column Operations</h4>
+                    <ol>
+                        <li><strong>Row/Column Swap:</strong> If A' is obtained from A by swapping two rows or two columns, then det(A') = -det(A)</li>
+                        <li><strong>Row/Column Scaling:</strong> If A' is obtained from A by multiplying a row or column by a scalar k, then det(A') = k × det(A)</li>
+                        <li><strong>Row/Column Addition:</strong> If A' is obtained from A by adding a multiple of one row/column to another, then det(A') = det(A)</li>
+                    </ol>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Effect of Row Operations</div>
+                        <p>For the matrix:</p>
+                        <div class="math-formula">
+                            A = [<br>
+                            &nbsp;&nbsp;2&nbsp;&nbsp;1<br>
+                            &nbsp;&nbsp;3&nbsp;&nbsp;4<br>
+                            ]
+                        </div>
+                        <p>det(A) = 2×4 - 1×3 = 8 - 3 = 5</p>
+                        
+                        <p>1. <strong>Row Swap:</strong> Swapping the two rows of A:</p>
+                        <div class="math-formula">
+                            A' = [<br>
+                            &nbsp;&nbsp;3&nbsp;&nbsp;4<br>
+                            &nbsp;&nbsp;2&nbsp;&nbsp;1<br>
+                            ]
+                        </div>
+                        <p>det(A') = 3×1 - 4×2 = 3 - 8 = -5 = -det(A)</p>
+                        
+                        <p>2. <strong>Row Scaling:</strong> Multiplying the first row of A by 2:</p>
+                        <div class="math-formula">
+                            A'' = [<br>
+                            &nbsp;&nbsp;4&nbsp;&nbsp;2<br>
+                            &nbsp;&nbsp;3&nbsp;&nbsp;4<br>
+                            ]
+                        </div>
+                        <p>det(A'') = 4×4 - 2×3 = 16 - 6 = 10 = 2×det(A)</p>
+                    </div>
+                    
+                    <h4>Special Cases and Properties</h4>
+                    <ul>
+                        <li><strong>Singular Matrix:</strong> A matrix is singular (not invertible) if and only if its determinant is zero.</li>
+                        <li><strong>Triangular Matrices:</strong> The determinant of a triangular matrix (upper or lower) equals the product of its diagonal entries.</li>
+                        <li><strong>Similar Matrices:</strong> If matrices A and B are similar (i.e., B = P<sup>-1</sup>AP for some invertible matrix P), then det(A) = det(B).</li>
+                        <li><strong>Block Matrices:</strong> For a block diagonal matrix, the determinant equals the product of the determinants of the diagonal blocks.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Determinant of a Triangular Matrix</div>
+                        <p>For the upper triangular matrix:</p>
+                        <div class="math-formula">
+                            U = [<br>
+                            &nbsp;&nbsp;3&nbsp;&nbsp;1&nbsp;&nbsp;4<br>
+                            &nbsp;&nbsp;0&nbsp;&nbsp;2&nbsp;&nbsp;5<br>
+                            &nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;6<br>
+                            ]
+                        </div>
+                        <p>The determinant is simply the product of the diagonal entries:</p>
+                        <div class="math-formula">
+                            det(U) = 3 × 2 × 6 = 36
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Geometric Interpretation of Determinants</h3>
+                    
+                    <h4>Area and Volume</h4>
+                    <p>The absolute value of the determinant of a matrix represents a scaling factor for areas (2×2 matrices) or volumes (3×3 matrices) under the transformation represented by the matrix.</p>
+                    <ul>
+                        <li>For a 2×2 matrix, |det(A)| gives the area of the parallelogram formed by the transformed unit vectors.</li>
+                        <li>For a 3×3 matrix, |det(A)| gives the volume of the parallelepiped formed by the transformed unit vectors.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Area Interpretation</div>
+                        <p>Consider the 2×2 matrix:</p>
+                        <div class="math-formula">
+                            A = [<br>
+                            &nbsp;&nbsp;3&nbsp;&nbsp;1<br>
+                            &nbsp;&nbsp;2&nbsp;&nbsp;4<br>
+                            ]
+                        </div>
+                        <p>The determinant is det(A) = 3×4 - 1×2 = 12 - 2 = 10</p>
+                        <p>This means that the area of the parallelogram formed by the vectors (3,2) and (1,4) is 10 square units, which is 10 times the area of the unit square formed by the standard basis vectors.</p>
+                    </div>
+                    
+                    <h4>Orientation</h4>
+                    <p>The sign of the determinant indicates whether the orientation of space is preserved or reversed by the transformation:</p>
+                    <ul>
+                        <li>If det(A) > 0, the orientation is preserved.</li>
+                        <li>If det(A) < 0, the orientation is reversed.</li>
+                        <li>If det(A) = 0, the transformation collapses space to a lower dimension.</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Orientation</div>
+                        <p>For the matrix:</p>
+                        <div class="math-formula">
+                            A = [<br>
+                            &nbsp;&nbsp;0&nbsp;&nbsp;1<br>
+                            &nbsp;&nbsp;1&nbsp;&nbsp;0<br>
+                            ]
+                        </div>
+                        <p>det(A) = 0×0 - 1×1 = -1</p>
+                        <p>The negative determinant indicates that this transformation (which swaps the x and y coordinates) reverses orientation.</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications of Determinants</h3>
+                    
+                    <h4>Solving Systems of Linear Equations: Cramer's Rule</h4>
+                    <p>Cramer's rule provides a formula for the solution of a system of linear equations in terms of determinants. For a system Ax = b, where A is an n×n invertible matrix, the solution is given by:</p>
+                    <div class="math-formula">
+                        x<sub>i</sub> = det(A<sub>i</sub>)/det(A)
+                    </div>
+                    <p>where A<sub>i</sub> is the matrix formed by replacing the i-th column of A with the column vector b.</p>
+                    
+                    <div class="example">
+                        <div class="example-title">Example: Cramer's Rule</div>
+                        <p>Consider the system:</p>
+                        <p>2x + y = 5<br>3x + 4y = 11</p>
+                        <p>In matrix form, this is:</p>
+                        <div class="math-formula">
+                            [<br>
+                            &nbsp;&nbsp;2&nbsp;&nbsp;1<br>
+                            &nbsp;&nbsp;3&nbsp;&nbsp;4<br>
+                            ] [<br>
+                            &nbsp;&nbsp;x<br>
+                            &nbsp;&nbsp;y<br>
+                            ] = [<br>
+                            &nbsp;&nbsp;5<br>
+                            &nbsp;&nbsp;11<br>
+                            ]
+                        </div>
+                        <p class="text-secondary">Matrix A = [[2, 1], [3, 4]], so det(A) = 2×4 - 1×3 = 5</p>
+                        <p>For x, replace the first column with b:</p>
+                        <div class="math-formula">
+                            A<sub>1</sub> = [<br>
+                            &nbsp;&nbsp;5&nbsp;&nbsp;1<br>
+                            &nbsp;&nbsp;11&nbsp;&nbsp;4<br>
+                            ]
+                        </div>
+                        <p>det(A<sub>1</sub>) = 5×4 - 1×11 = 20 - 11 = 9</p>
+                        <p>Thus, x = det(A<sub>1</sub>)/det(A) = 9/5</p>
+                        
+                        <p>For y, replace the second column with b:</p>
+                        <div class="math-formula">
+                            A<sub>2</sub> = [<br>
+                            &nbsp;&nbsp;2&nbsp;&nbsp;5<br>
+                            &nbsp;&nbsp;3&nbsp;&nbsp;11<br>
+                            ]
+                        </div>
+                        <p>det(A<sub>2</sub>) = 2×11 - 5×3 = 22 - 15 = 7</p>
+                        <p>Thus, y = det(A<sub>2</sub>)/det(A) = 7/5</p>
+                        
+                        <p>The solution is x = 9/5 and y = 7/5.</p>
+                    </div>
+                    
+                    <h4>Finding the Inverse of a Matrix</h4>
+                    <p>The inverse of a square matrix A can be expressed using the adjugate matrix and the determinant:</p>
+                    <div class="math-formula">
+                        A<sup>-1</sup> = adj(A)/det(A)
+                    </div>
+                    <p>where adj(A) is the adjugate matrix, whose (i,j)-entry is the cofactor of the (j,i)-entry of A.</p>
+                    
+                    <h4>Eigenvalues and Characteristic Polynomial</h4>
+                    <p>The eigenvalues of a matrix A are the roots of its characteristic polynomial, which is defined as:</p>
+                    <div class="math-formula">
+                        p(λ) = det(A - λI)
+                    </div>
+                    <p>where I is the identity matrix of the same size as A.</p>
+                    
+                    <h4>Change of Variables in Multiple Integrals</h4>
+                    <p>When performing a change of variables in multiple integrals, the Jacobian determinant appears as a scaling factor:</p>
+                    <div class="math-formula">
+                        ∫∫ f(x,y) dx dy = ∫∫ f(g(u,v), h(u,v)) |J| du dv
+                    </div>
+                    <p>where J is the Jacobian matrix of the transformation, and |J| is its determinant.</p>
+                </div>
+                
+                <div class="navigation">
+                    <a href="matrix-operations.html" class="prev-next-btn">Previous: Matrix Operations</a>
+                    <a href="matrix-inverse.html" class="prev-next-btn">Next: Matrix Inverse</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 

@@ -1,0 +1,322 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Trigonometric Equations - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/first.css" />
+    <link rel="stylesheet" href="../../assets/css/improvements.css" />
+    <link rel="stylesheet" href="../../assets/css/topic-pages.css" />
+    <style>
+        /* Topic-specific overrides */
+        body {
+            background: var(--color-background-light) !important;
+        }
+        
+        /* Ensure proper spacing */
+        .topic-container {
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="International Math Hub" style="max-height: 120px;">
+                    </a>
+                </div>
+                                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../features.html">Mathematics Roadmap</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../blog.html">Blog</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <header class="text-center mb-6">
+                <h2>Trigonometric Equations</h2>
+                <p>Solving equations involving trigonometric functions</p>
+            </header>
+
+            <div class="edu-card">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a> &raquo;
+                    <a href="../../resources.html">Resources</a> &raquo;
+                    <a href="../../features.html">Mathematics Roadmap</a> &raquo;
+                    <a href="../../features.html#trigonometry">Trigonometry</a> &raquo;
+                    <span>Trigonometric Equations</span>
+                </nav>
+            </div>
+
+                            </div>
+                <div class="topic-container">
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Introduction to Trigonometric Equations</h3>
+                    
+                    <p class="text-secondary">Trigonometric equations contain trigonometric functions and require us to find all values of the variable that satisfy the equation. These equations typically have infinitely many solutions due to the periodic nature of trigonometric functions.</p>
+                    
+                    <p>The key to solving trigonometric equations is to:</p>
+                    <ol>
+                        <li>Simplify the equation using algebraic and trigonometric identities</li>
+                        <li>Isolate the trigonometric function</li>
+                        <li>Find the principal solutions (those in the interval [0, 2π) or [0°, 360°))</li>
+                        <li>Use the periodic nature of trigonometric functions to find the general solution</li>
+                    </ol>
+                    
+                    <p>The general solutions typically include terms with 2πn (or 360°n) for integer values of n, reflecting the periodicity of the functions:</p>
+                    <ul>
+                        <li>sin, csc: period = 2π (or 360°)</li>
+                        <li>cos, sec: period = 2π (or 360°)</li>
+                        <li>tan, cot: period = π (or 180°)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 1: Basic Trigonometric Equation</div>
+                        <p>Solve the equation: sin(x) = 1/2</p>
+                        <p><strong>Step 1:</strong> Find the principal solutions in [0, 2π).</p>
+                        <p>sin(x) = 1/2 means x = π/6 or x = 5π/6 (30° or 150°)</p>
+                        <p><strong>Step 2:</strong> Find the general solution by adding multiples of the period (2π).</p>
+                        <p>x = π/6 + 2πn or x = 5π/6 + 2πn, where n is any integer</p>
+                        <p>In degrees: x = 30° + 360°n or x = 150° + 360°n</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Linear Trigonometric Equations</h3>
+                    
+                    <p>Linear trigonometric equations involve a single trigonometric function, often in the form <code>a·trig(x) + b = 0</code>, where a and b are constants.</p>
+                    
+                    <h4>Basic Form: trig(x) = c</h4>
+                    
+                    <p>The solutions depend on the value of c and the specific trigonometric function:</p>
+                    
+                    <div class="math-formula">
+                        sin(x) = c   (when -1 ≤ c ≤ 1)<br>
+                        • x = sin<sup>-1</sup>(c) + 2πn<br>
+                        • x = π - sin<sup>-1</sup>(c) + 2πn<br><br>
+                        
+                        cos(x) = c   (when -1 ≤ c ≤ 1)<br>
+                        • x = cos<sup>-1</sup>(c) + 2πn<br>
+                        • x = -cos<sup>-1</sup>(c) + 2πn<br><br>
+                        
+                        tan(x) = c   (any real c)<br>
+                        • x = tan<sup>-1</sup>(c) + πn
+                    </div>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 2: Linear Trigonometric Equation</div>
+                        <p>Solve for all solutions of 2cos(x) + 1 = 0 in the interval [0, 2π).</p>
+                        <p><strong>Step 1:</strong> Isolate the trigonometric function.</p>
+                        <p>2cos(x) = -1</p>
+                        <p>cos(x) = -1/2</p>
+                        <p><strong>Step 2:</strong> Find all values where cos(x) = -1/2 in [0, 2π).</p>
+                        <p>The reference angle is cos<sup>-1</sup>(1/2) = π/3 (or 60°)</p>
+                        <p>Since cos(x) is negative, x is in the second or third quadrant.</p>
+                        <p>x = π - π/3 = 2π/3 ≈ 2.09 (or 120°)</p>
+                        <p>x = π + π/3 = 4π/3 ≈ 4.19 (or 240°)</p>
+                        <p><strong>Step 3:</strong> Express the general solution.</p>
+                        <p>x = 2π/3 + 2πn or x = 4π/3 + 2πn, where n is any integer</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Equations Using Fundamental Identities</h3>
+                    
+                    <p>Many trigonometric equations can be solved by applying fundamental identities to simplify the expression.</p>
+                    
+                    <h4>Common Approaches:</h4>
+                    <ul>
+                        <li><strong>Pythagorean Identities:</strong> sin²(x) + cos²(x) = 1, 1 + tan²(x) = sec²(x), 1 + cot²(x) = csc²(x)</li>
+                        <li><strong>Double-Angle Formulas:</strong> sin(2x) = 2sin(x)cos(x), cos(2x) = cos²(x) - sin²(x)</li>
+                        <li><strong>Half-Angle Formulas:</strong> sin²(x/2) = (1 - cos(x))/2, cos²(x/2) = (1 + cos(x))/2</li>
+                        <li><strong>Factoring:</strong> sin(x) - sin(y) = 2sin((x-y)/2)cos((x+y)/2)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 3: Using Identities</div>
+                        <p>Solve the equation: sin²(x) - cos²(x) = 1</p>
+                        <p><strong>Step 1:</strong> Apply an appropriate identity.</p>
+                        <p>Using sin²(x) + cos²(x) = 1, we can rewrite sin²(x) = 1 - cos²(x)</p>
+                        <p>Therefore: (1 - cos²(x)) - cos²(x) = 1</p>
+                        <p>1 - 2cos²(x) = 1</p>
+                        <p>-2cos²(x) = 0</p>
+                        <p>cos²(x) = 0</p>
+                        <p><strong>Step 2:</strong> Solve the simplified equation.</p>
+                        <p>cos(x) = 0 occurs at x = π/2 and x = 3π/2 in [0, 2π)</p>
+                        <p><strong>Step 3:</strong> Express the general solution.</p>
+                        <p>x = π/2 + πn, where n is any integer</p>
+                        <p>In degrees: x = 90° + 180°n</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Quadratic Trigonometric Equations</h3>
+                    
+                    <p>Quadratic trigonometric equations involve a squared trigonometric function or two different functions, often in the form <code>a·trig²(x) + b·trig(x) + c = 0</code>.</p>
+                    
+                    <h4>Solution Approaches:</h4>
+                    <ol>
+                        <li><strong>Factoring:</strong> Rewrite as a product of two expressions</li>
+                        <li><strong>Quadratic Formula:</strong> Use the standard quadratic formula</li>
+                        <li><strong>Substitution:</strong> Set u = trig(x) to convert to a standard quadratic equation</li>
+                        <li><strong>Pythagorean Identities:</strong> Replace one function with another using identities</li>
+                    </ol>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 4: Quadratic in Sine</div>
+                        <p>Solve: 2sin²(x) - 3sin(x) + 1 = 0</p>
+                        <p><strong>Step 1:</strong> Use substitution u = sin(x) to convert to a standard quadratic.</p>
+                        <p>2u² - 3u + 1 = 0</p>
+                        <p><strong>Step 2:</strong> Solve using the quadratic formula or factoring.</p>
+                        <p>Factoring: (2u - 1)(u - 1) = 0</p>
+                        <p>u = 1/2 or u = 1</p>
+                        <p><strong>Step 3:</strong> Substitute back to get sin(x).</p>
+                        <p>sin(x) = 1/2 or sin(x) = 1</p>
+                        <p><strong>Step 4:</strong> Solve each simple equation.</p>
+                        <p>For sin(x) = 1/2: x = π/6 + 2πn or x = 5π/6 + 2πn</p>
+                        <p>For sin(x) = 1: x = π/2 + 2πn</p>
+                        <p><strong>Step 5:</strong> Combine all solutions.</p>
+                        <p>x = π/6 + 2πn or x = 5π/6 + 2πn or x = π/2 + 2πn</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Multiple-Angle Equations</h3>
+                    
+                    <p>Multiple-angle equations involve functions like sin(nx), cos(nx), or tan(nx) where n is an integer greater than 1.</p>
+                    
+                    <h4>Solution Approaches:</h4>
+                    <ol>
+                        <li><strong>Directly solve:</strong> Find principal solutions for the multiple angle</li>
+                        <li><strong>Expand:</strong> Use multiple-angle formulas to rewrite in terms of the original angle</li>
+                        <li><strong>Substitution:</strong> Let u = nx to simplify, then convert back to x</li>
+                    </ol>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 5: Double-Angle Equation</div>
+                        <p>Solve: sin(2x) = cos(x) for x in [0, 2π)</p>
+                        <p><strong>Step 1:</strong> Use a multiple-angle formula.</p>
+                        <p>sin(2x) = 2sin(x)cos(x)</p>
+                        <p><strong>Step 2:</strong> Set up the equation.</p>
+                        <p>2sin(x)cos(x) = cos(x)</p>
+                        <p>cos(x)(2sin(x) - 1) = 0</p>
+                        <p><strong>Step 3:</strong> Solve each factor.</p>
+                        <p>cos(x) = 0 or 2sin(x) - 1 = 0</p>
+                        <p>cos(x) = 0 ⟹ x = π/2 or x = 3π/2</p>
+                        <p>sin(x) = 1/2 ⟹ x = π/6 or x = 5π/6</p>
+                        <p><strong>Step 4:</strong> Check each solution in the original equation.</p>
+                        <p>For x = π/6: sin(2π/6) = sin(π/3) = √3/2, cos(π/6) = √3/2 ✓</p>
+                        <p>For x = π/2: sin(2π/2) = sin(π) = 0, cos(π/2) = 0 ✓</p>
+                        <p>For x = 5π/6: sin(2×5π/6) = sin(5π/3) = -√3/2, cos(5π/6) = -√3/2 ✓</p>
+                        <p>For x = 3π/2: sin(2×3π/2) = sin(3π) = 0, cos(3π/2) = 0 ✓</p>
+                        <p><strong>Step 5:</strong> List all solutions in [0, 2π).</p>
+                        <p>x = π/6, π/2, 5π/6, 3π/2</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Trigonometric Equations with Multiple Functions</h3>
+                    
+                    <p>These equations involve different trigonometric functions, often requiring the use of identities to convert everything to a single function.</p>
+                    
+                    <h4>Common Approaches:</h4>
+                    <ol>
+                        <li><strong>Express in terms of one function:</strong> Use quotient identities like tan(x) = sin(x)/cos(x)</li>
+                        <li><strong>Pythagorean identities:</strong> Replace functions with their equivalents</li>
+                        <li><strong>Angle addition formulas:</strong> If the equation involves functions of different angles</li>
+                    </ol>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 6: Mixed Functions</div>
+                        <p>Solve: sin(x) + cos(x) = 1 for x in [0, 2π)</p>
+                        <p><strong>Step 1:</strong> Square both sides to use a Pythagorean identity.</p>
+                        <p>(sin(x) + cos(x))² = 1²</p>
+                        <p>sin²(x) + 2sin(x)cos(x) + cos²(x) = 1</p>
+                        <p><strong>Step 2:</strong> Apply the Pythagorean identity sin²(x) + cos²(x) = 1.</p>
+                        <p>1 + 2sin(x)cos(x) = 1</p>
+                        <p>2sin(x)cos(x) = 0</p>
+                        <p><strong>Step 3:</strong> Solve the simplified equation.</p>
+                        <p>sin(x) = 0 or cos(x) = 0</p>
+                        <p>sin(x) = 0 ⟹ x = 0, π, 2π</p>
+                        <p>cos(x) = 0 ⟹ x = π/2, 3π/2</p>
+                        <p><strong>Step 4:</strong> Check each solution in the original equation.</p>
+                        <p>For x = 0: sin(0) + cos(0) = 0 + 1 = 1 ✓</p>
+                        <p>For x = π/2: sin(π/2) + cos(π/2) = 1 + 0 = 1 ✓</p>
+                        <p>For x = π: sin(π) + cos(π) = 0 + (-1) = -1 ✗</p>
+                        <p>For x = 3π/2: sin(3π/2) + cos(3π/2) = -1 + 0 = -1 ✗</p>
+                        <p>For x = 2π: sin(2π) + cos(2π) = 0 + 1 = 1 ✓</p>
+                        <p><strong>Step 5:</strong> List valid solutions in [0, 2π).</p>
+                        <p>x = 0, π/2, 2π</p>
+                        <p>Note: Since 2π = 0 in terms of angle measurement, the solutions are x = 0, π/2</p>
+                        <p>Alternative approach: Divide by √2 and use substitution u = sin(x) + cos(x), v = sin(x) - cos(x)</p>
+                    </div>
+                </div>
+                
+                <div class="topic-section edu-card">
+                    <h3 class="topic-header">Applications of Trigonometric Equations</h3>
+                    
+                    <p class="text-secondary">Trigonometric equations have applications in many fields including physics, engineering, music, and medicine.</p>
+                    
+                    <h4>Key Applications:</h4>
+                    <ul>
+                        <li><strong>Wave Motion:</strong> Sound waves, light waves, water waves</li>
+                        <li><strong>Oscillatory Motion:</strong> Pendulums, springs, AC circuits</li>
+                        <li><strong>Periodic Phenomena:</strong> Tides, planetary motion, seasonal variations</li>
+                        <li><strong>Signal Processing:</strong> Fourier analysis, filters, communications</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <div class="example-title">Example 7: Applied Problem</div>
+                        <p>A weight hanging from a spring oscillates up and down. Its height h (in cm) above its equilibrium position at time t (in seconds) is given by h = 5cos(2t). At what time(s) during the first 2 seconds will the weight be 2.5 cm above the equilibrium position?</p>
+                        <p><strong>Step 1:</strong> Set up the equation.</p>
+                        <p>5cos(2t) = 2.5</p>
+                        <p>cos(2t) = 1/2</p>
+                        <p><strong>Step 2:</strong> Solve the equation for 2t.</p>
+                        <p>2t = ±π/3 + 2πn</p>
+                        <p><strong>Step 3:</strong> Solve for t with positive values (time cannot be negative).</p>
+                        <p>t = π/6 + πn or t = -π/6 + πn (where n is an integer)</p>
+                        <p>For t in [0, 2], we get: t = π/6 ≈ 0.52 seconds, t = 7π/6 ≈ 3.67 seconds</p>
+                        <p>Since 3.67 > 2, only t ≈ 0.52 seconds is in our time range</p>
+                        <p><strong>Answer:</strong> The weight will be 2.5 cm above the equilibrium position at approximately 0.52 seconds during the first 2 seconds.</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <a href="trigonometric-identities-and-formulas.html" class="prev-next-btn">Previous: Trigonometric Identities & Formulas</a>
+                    <a href="law-of-sines-and-cosines.html" class="prev-next-btn">Next: Law of Sines & Cosines</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; International Math Hub</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html> 
