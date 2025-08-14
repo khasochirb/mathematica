@@ -222,6 +222,16 @@ h2.hero-main-title:before {
   padding: 60px 0;
 }
 
+.mongolian-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 28px;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.8);
+  margin-right: 24px;
+  letter-spacing: 2px;
+}
+
 .hero-image-container {
   position: relative;
   width: 100%;
@@ -399,6 +409,7 @@ h2.hero-main-title:before {
   .hero-visual {
     order: -1;
   }
+  .mongolian-vertical { display: none; }
   
   .hero-text {
     align-items: center;
