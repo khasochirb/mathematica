@@ -1,0 +1,945 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Company - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="Learn about International Math Hub's mission, team, career opportunities, and how to get in touch with us." />
+    <meta name="author" content="IntlMathHub Team" />
+    <link rel="stylesheet" href="assets/css/first.css" />
+    <link rel="stylesheet" href="assets/css/improvements.css" />
+    <link rel="stylesheet" href="assets/css/educational-design-system.css" />
+    <link rel="stylesheet" href="assets/css/educational-overrides.css" />
+    <link rel="stylesheet" href="assets/css/hero-section.css" />
+    <link rel="stylesheet" href="assets/css/dropdown-nav.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- Additional styles to ensure the mobile menu toggle is hidden -->
+    <style>
+        /* Hide mobile menu toggle button with highest priority */
+        #titleBar, #navPanel {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        
+        /* Prevent any transforms from mobile menu */
+        body.navPanel-visible #page-wrapper,
+        body.navPanel-visible #titleBar {
+            transform: none !important;
+        }
+        
+        /* Ensure navigation is always visible */
+        #nav {
+            display: block !important;
+        }
+    </style>
+    
+    <!-- Custom styles for Company page -->
+    <style>
+        .company-hero {
+            background: #1e40af;
+            color: white;
+            padding: 6em 0 4em;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .company-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .company-hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 0.5em;
+            position: relative;
+            z-index: 2;
+            color: white !important;
+            text-align: center !important;
+        }
+        
+        .company-hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 2em;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+            color: white !important;
+            text-align: center !important;
+        }
+        
+        /* Additional CSS rules to ensure white color and centering for hero section */
+        .company-hero * {
+            color: white !important;
+            text-align: center !important;
+        }
+        
+        .company-hero h1, .company-hero h2, .company-hero h3, .company-hero h4, .company-hero h5, .company-hero h6 {
+            color: white !important;
+            text-align: center !important;
+        }
+        
+        .company-hero p, .company-hero span, .company-hero div {
+            color: white !important;
+            text-align: center !important;
+        }
+        
+        body .company-hero * {
+            color: white !important;
+            text-align: center !important;
+        }
+        
+        html body .company-hero * {
+            color: white !important;
+            text-align: center !important;
+        }
+        
+        .company-hero h1[style], .company-hero p[style] {
+            color: white !important;
+            text-align: center !important;
+        }
+        
+        .company-hero *:not(.icon):not(.cta-button) {
+            color: white !important;
+        }
+        
+        .company-hero {
+            isolation: isolate;
+        }
+        
+        .company-hero .edu-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .company-sections {
+            padding: 4em 0;
+        }
+        
+
+        
+        /* Beautiful card styles matching Exam Prep and Grades pages */
+        .mission-section {
+            margin-bottom: 4em;
+        }
+        
+        .mission-content-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3em;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e5e7eb;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+
+        
+        .mission-content-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .mission-content-card .icon {
+            font-size: 4em;
+            color: #1e40af !important;
+            margin-bottom: 1.5em;
+            text-align: center;
+        }
+        
+        .mission-content-card h3 {
+            color: #1e40af !important;
+            font-size: 2.2em;
+            margin-bottom: 1em;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .mission-content-card p {
+            color: #374151 !important;
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 1.5em;
+            text-align: center;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5em;
+            margin: 3em 0;
+        }
+        
+        .value-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3em;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e5e7eb;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+
+        
+        .value-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .value-card .icon {
+            font-size: 4em;
+            color: #1e40af !important;
+            margin-bottom: 1.5em;
+            text-align: center;
+        }
+        
+        .value-card h4 {
+            color: #1e40af !important;
+            font-size: 1.8em;
+            margin-bottom: 1em;
+            text-align: center;
+        }
+        
+        .value-card p {
+            color: #374151 !important;
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 1.5em;
+            text-align: center;
+        }
+        
+        .careers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5em;
+            margin: 3em 0;
+        }
+        
+        .career-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3em;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e5e7eb;
+            position: relative;
+            overflow: hidden;
+        }
+        
+
+        
+        .career-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .career-card .icon {
+            font-size: 4em;
+            color: #1e40af !important;
+            margin-bottom: 1.5em;
+            text-align: center;
+        }
+        
+        .career-card h4 {
+            color: #1e40af !important;
+            font-size: 1.8em;
+            margin-bottom: 1em;
+            text-align: center;
+        }
+        
+        .career-card p {
+            color: #374151 !important;
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 1.5em;
+            text-align: center;
+        }
+        
+        .career-card .requirements {
+            background: #f8fafc;
+            padding: 1.5em;
+            border-radius: 15px;
+            margin-bottom: 2em;
+        }
+        
+        .career-card .requirements h5 {
+            color: #1e40af !important;
+            margin-bottom: 1em;
+            font-size: 1.2em;
+        }
+        
+        .career-card .requirements ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .career-card .requirements li {
+            color: #374151 !important;
+            padding: 0.5em 0;
+            border-bottom: 1px solid #e5e7eb;
+            position: relative;
+            padding-left: 1.5em;
+        }
+        
+        .career-card .requirements li:last-child {
+            border-bottom: none;
+        }
+        
+        .career-card .requirements li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #1e40af;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .career-card .cta-button {
+            display: inline-block;
+            background: #1e40af;
+            color: white !important;
+            padding: 1.2em 2.5em;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 1.1em;
+        }
+        
+        .career-card .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(30, 64, 175, 0.3);
+        }
+
+        .team-section {
+            background: transparent;
+            padding: 5em 0;
+            margin: 5em 0;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2em;
+            margin-top: 3em;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 15px;
+            padding: 2em;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+        
+        .team-member .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #1e40af;
+            margin: 0 auto 1.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3em;
+            font-weight: bold;
+        }
+        
+        .team-member h4 {
+            color: #1e40af;
+            margin-bottom: 0.5em;
+            font-size: 1.3em;
+        }
+        
+        .team-member .role {
+            color: #0891b2;
+            font-weight: 600;
+            margin-bottom: 1em;
+        }
+        
+        .team-member p {
+            color: #374151 !important;
+            line-height: 1.6;
+        }
+        
+        .careers-section {
+            background: transparent;
+            padding: 5em 0;
+        }
+        
+        .careers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2em;
+            margin-top: 3em;
+        }
+        
+
+        
+        .contact-section {
+            background: transparent;
+            color: white;
+            padding: 5em 0;
+            margin: 5em 0;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2em;
+            margin-top: 3em;
+        }
+        
+        .contact-item {
+            text-align: center;
+            padding: 2em;
+        }
+        
+        .contact-item .icon {
+            font-size: 3em;
+            margin-bottom: 1em;
+            opacity: 0.9;
+        }
+        
+        .contact-item h4 {
+            margin-bottom: 1em;
+            font-size: 1.3em;
+        }
+        
+        .contact-item p, .contact-item a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            line-height: 1.6;
+        }
+        
+        .contact-item a:hover {
+            color: white;
+        }
+        
+        .values-section {
+            background: transparent;
+            padding: 5em 0;
+        }
+        
+        /* Additional CSS rules to ensure proper text colors for all cards */
+        body .value-card p,
+        body .career-card p,
+        body .career-card .requirements li,
+        body .team-member p {
+            color: #374151 !important;
+        }
+        
+        html body .value-card p,
+        html body .career-card p,
+        html body .career-card .requirements li,
+        html body .team-member p {
+            color: #374151 !important;
+        }
+        
+        @media (max-width: 768px) {
+            .company-hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .section-card {
+                padding: 2em;
+            }
+            
+            .team-grid, .careers-grid, .contact-grid, .values-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body class="is-preload company-page">
+    <div id="page-wrapper">
+
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between;">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html"><img src="/images/logo.png" alt="International Math Hub Logo" style="max-height: 60px;"></a>
+                </div>
+
+                <!-- Main Navigation -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        
+                        <!-- Subjects Dropdown -->
+                        <li class="has-dropdown">
+                            <a href="features.html">Subjects</a>
+                            <div class="dropdown subjects-dropdown">
+                                <div class="subjects-container">
+                                    <div class="subjects-grid">
+                                    <a href="topics/algebra/linear-and-quadratic-equations.html" class="subject-item">
+                                        <i class="fas fa-calculator"></i>
+                                        <span>Algebra</span>
+                                    </a>
+                                    <a href="topics/geometry/euclidean-geometry.html" class="subject-item">
+                                        <i class="fas fa-shapes"></i>
+                                        <span>Geometry</span>
+                                    </a>
+                                    <a href="topics/calculus/differentiation.html" class="subject-item">
+                                        <i class="fas fa-chart-line"></i>
+                                        <span>Calculus</span>
+                                    </a>
+                                    <a href="topics/trigonometry/trigonometric-identities-and-formulas.html" class="subject-item">
+                                        <i class="fas fa-wave-square"></i>
+                                        <span>Trigonometry</span>
+                                    </a>
+                                    <a href="topics/statistics/descriptive-statistics.html" class="subject-item">
+                                        <i class="fas fa-chart-bar"></i>
+                                        <span>Statistics</span>
+                                    </a>
+                                    <a href="topics/complex-numbers/basic-operations.html" class="subject-item">
+                                        <i class="fas fa-infinity"></i>
+                                        <span>Complex Numbers</span>
+                                    </a>
+                                    <a href="topics/matrices-and-determinants/matrix-operations.html" class="subject-item">
+                                        <i class="fas fa-th"></i>
+                                        <span>Matrices</span>
+                                    </a>
+                                    <a href="topics/number-theory/divisibility-and-prime-numbers.html" class="subject-item">
+                                        <i class="fas fa-hashtag"></i>
+                                        <span>Number Theory</span>
+                                    </a>
+                                    <a href="topics/probability/basic-probability-rules.html" class="subject-item">
+                                        <i class="fas fa-dice"></i>
+                                        <span>Probability</span>
+                                    </a>
+                                    <a href="topics/sequences-and-series/arithmetic-and-geometric-sequences.html" class="subject-item">
+                                        <i class="fas fa-list-ol"></i>
+                                        <span>Sequences & Series</span>
+                                    </a>
+                                    <a href="topics/graph-theory/graph-representation.html" class="subject-item">
+                                        <i class="fas fa-project-diagram"></i>
+                                        <span>Graph Theory</span>
+                                    </a>
+                                    <a href="topics/combinatorics/counting-principles.html" class="subject-item">
+                                        <i class="fas fa-cubes"></i>
+                                        <span>Combinatorics</span>
+                                    </a>
+                                    <a href="topics/inequalities/am-gm-inequality.html" class="subject-item">
+                                        <i class="fas fa-not-equal"></i>
+                                        <span>Inequalities</span>
+                                    </a>
+                                    <a href="topics/logic-and-set-theory/basic-set-operations.html" class="subject-item">
+                                        <i class="fas fa-circle-notch"></i>
+                                        <span>Logic & Set Theory</span>
+                                    </a>
+                                    <a href="topics/vectors-and-coordinate-geometry/vector-operations.html" class="subject-item">
+                                        <i class="fas fa-arrows-alt"></i>
+                                        <span>Vectors</span>
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Exam Prep Dropdown -->
+                        <li class="has-dropdown">
+                            <a href="exam-prep.html">Exam Prep</a>
+                            <div class="dropdown">
+                                <div class="dropdown-grid">
+                                    <a href="quizz.html" class="dropdown-item">
+                                        <i class="fas fa-clipboard-check"></i>
+                                        <span>Practice Tests</span>
+                                    </a>
+                                    <a href="exam-prep.html#solutions" class="dropdown-item">
+                                        <i class="fas fa-lightbulb"></i>
+                                        <span>Test Solutions</span>
+                                    </a>
+                                    <a href="exam-prep.html#sat" class="dropdown-item">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <span>SAT Math</span>
+                                    </a>
+                                    <a href="tutoring.html" class="dropdown-item">
+                                        <i class="fas fa-user-graduate"></i>
+                                        <span>1-on-1 Tutoring</span>
+                                    </a>
+                                    <a href="exam-prep.html#olympiad" class="dropdown-item">
+                                        <i class="fas fa-trophy"></i>
+                                        <span>Math Olympiad</span>
+                                    </a>
+                                    <a href="exam-prep.html#ap" class="dropdown-item">
+                                        <i class="fas fa-medal"></i>
+                                        <span>AP Calculus</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Grades Dropdown -->
+                        <li class="has-dropdown">
+                            <a href="grades.html">Grades</a>
+                            <div class="dropdown">
+                                <div class="dropdown-grid">
+                                    <a href="grades.html#elementary" class="dropdown-item">
+                                        <i class="fas fa-child"></i>
+                                        <span>Elementary School</span>
+                                    </a>
+                                    <a href="grades.html#middle" class="dropdown-item">
+                                        <i class="fas fa-school"></i>
+                                        <span>Middle School</span>
+                                    </a>
+                                    <a href="grades.html#high" class="dropdown-item">
+                                        <i class="fas fa-university"></i>
+                                        <span>High School</span>
+                                    </a>
+                                    <a href="grades.html#college" class="dropdown-item">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <span>College</span>
+                                    </a>
+                                    <a href="grades.html#adult" class="dropdown-item">
+                                        <i class="fas fa-user-tie"></i>
+                                        <span>Adult Learning</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Company Dropdown -->
+                        <li class="has-dropdown current">
+                            <a href="company.html">Company</a>
+                            <div class="dropdown">
+                                <div class="dropdown-grid">
+                                    <a href="company.html#about" class="dropdown-item">
+                                        <i class="fas fa-info-circle"></i>
+                                        <span>About</span>
+                                    </a>
+                                    <a href="company.html#careers" class="dropdown-item">
+                                        <i class="fas fa-briefcase"></i>
+                                        <span>Careers</span>
+                                    </a>
+                                    <a href="company.html#contact" class="dropdown-item">
+                                        <i class="fas fa-envelope"></i>
+                                        <span>Contact</span>
+                                    </a>
+                                    <a href="company.html#team" class="dropdown-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>Our Team</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Blog Button -->
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Call-to-Action Buttons -->
+                <div class="nav-cta-container">
+                    <a href="tel:+14153367764" class="nav-phone">
+                        <i class="fas fa-phone"></i>
+                        +1 (415) 336-7764
+                    </a>
+                    <a href="tutoring.html" class="nav-cta-btn">Find Your Tutor</a>
+                    <a href="contact.html" class="nav-login">Log In</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hero Section -->
+        <section class="company-hero">
+            <div class="edu-container">
+                <h1 style="color: white !important; text-align: center !important; font-size: 3.5em; margin-bottom: 0.5em;">About Our Company</h1>
+                <p style="color: white !important; text-align: center !important; font-size: 1.3em; max-width: 800px; margin: 0 auto 2em; line-height: 1.6;">International Math Hub is dedicated to revolutionizing mathematics education for Mongolian students worldwide. We combine cutting-edge technology with proven pedagogical methods to create an unparalleled learning experience.</p>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <!-- About Section -->
+                <div class="company-sections">
+                    <section class="mission-section" id="about">
+                        <header class="text-center mb-6">
+                            <h2 style="color: white !important;">Our Mission</h2>
+                            <p style="color: #e5e7eb !important;">Empowering Mongolian students with world-class mathematics education</p>
+                        </header>
+                        
+                        <div class="mission-content-card">
+                            <div class="icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <h3>Our Commitment</h3>
+                            <p style="color: #374151 !important;">We are committed to empowering Mongolian students with world-class mathematics education, regardless of their geographical location. Our platform provides comprehensive resources, personalized tutoring, and innovative learning tools to help students excel academically and build a strong foundation for their future success.</p>
+                            <p style="color: #374151 !important;">Founded with the vision of bridging educational gaps and providing equal opportunities for all Mongolian students, we believe that quality mathematics education should be accessible to everyone, anywhere in the world.</p>
+                        </div>
+                    </section>
+
+                    <!-- Values Section -->
+                    <section class="values-section">
+                        <header class="text-center mb-6">
+                            <h2 style="color: white !important;">Our Core Values</h2>
+                            <p style="color: #e5e7eb !important;">The principles that guide everything we do</p>
+                        </header>
+                        
+                        <div class="values-grid">
+                            <div class="value-card">
+                                <div class="icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h4>Excellence</h4>
+                                <p style="color: #374151 !important;">We strive for excellence in every aspect of our educational services, from content quality to user experience.</p>
+                            </div>
+                            
+                            <div class="value-card">
+                                <div class="icon">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <h4>Passion</h4>
+                                <p style="color: #374151 !important;">Our love for mathematics and education drives us to create the best possible learning experience for our students.</p>
+                            </div>
+                            
+                            <div class="value-card">
+                                <div class="icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <h4>Innovation</h4>
+                                <p style="color: #374151 !important;">We continuously innovate and adapt our methods to meet the evolving needs of modern education.</p>
+                            </div>
+                            
+                            <div class="value-card">
+                                <div class="icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h4>Community</h4>
+                                <p style="color: #374151 !important;">We believe in building a supportive community where students, educators, and parents can collaborate and grow together.</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Careers Section -->
+                                    <section class="careers-section" id="careers">
+                        <div class="edu-container">
+                            <header class="text-center mb-6">
+                                <h2 style="color: white !important;">Join Our Team</h2>
+                                <p style="color: #e5e7eb !important;">Help us shape the future of mathematics education</p>
+                            </header>
+                        
+                        <div class="careers-grid">
+                            <div class="career-card">
+                                <div class="icon">
+                                    <i class="fas fa-edit"></i>
+                                </div>
+                                <h4>Mathematics Content Developer</h4>
+                                <p style="color: #374151 !important;">Create engaging and comprehensive mathematics content for students of all levels, from elementary to advanced topics.</p>
+                                <div class="requirements">
+                                    <h5>Requirements:</h5>
+                                    <ul>
+                                        <li style="color: #374151 !important;">Advanced degree in Mathematics or related field</li>
+                                        <li style="color: #374151 !important;">Experience in curriculum development</li>
+                                        <li style="color: #374151 !important;">Strong communication skills</li>
+                                        <li style="color: #374151 !important;">Passion for education</li>
+                                    </ul>
+                                </div>
+                                <a href="contact.html" class="cta-button">Apply Now</a>
+                            </div>
+                            
+                            <div class="career-card">
+                                <div class="icon">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                </div>
+                                <h4>Online Mathematics Tutor</h4>
+                                <p style="color: #374151 !important;">Provide personalized one-on-one tutoring sessions to help students master mathematical concepts and improve their skills.</p>
+                                <div class="requirements">
+                                    <h5>Requirements:</h5>
+                                    <ul>
+                                        <li style="color: #374151 !important;">Bachelor's degree in Mathematics or Education</li>
+                                        <li style="color: #374151 !important;">Teaching experience preferred</li>
+                                        <li style="color: #374151 !important;">Excellent communication skills</li>
+                                        <li style="color: #374151 !important;">Patience and enthusiasm</li>
+                                    </ul>
+                                </div>
+                                <a href="contact.html" class="cta-button">Apply Now</a>
+                            </div>
+                            
+                            <div class="career-card">
+                                <div class="icon">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                <h4>Educational Technology Specialist</h4>
+                                <p style="color: #374151 !important;">Develop and maintain our digital learning platform, ensuring optimal user experience and functionality.</p>
+                                <div class="requirements">
+                                    <h5>Requirements:</h5>
+                                    <ul>
+                                        <li style="color: #374151 !important;">Degree in Computer Science or related field</li>
+                                        <li style="color: #374151 !important;">Experience with web development</li>
+                                        <li style="color: #374151 !important;">Knowledge of educational technology</li>
+                                        <li style="color: #374151 !important;">Problem-solving skills</li>
+                                    </ul>
+                                </div>
+                                <a href="contact.html" class="cta-button">Apply Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Team Section -->
+                <section class="team-section" id="team">
+                    <div class="edu-container">
+                        <header class="text-center mb-6">
+                            <h2 style="color: white !important;">Meet Our Team</h2>
+                            <p style="color: #e5e7eb !important;">The passionate educators and professionals behind International Math Hub</p>
+                        </header>
+                        
+                        <div class="team-grid">
+                            <div class="team-member">
+                                <div class="avatar">K</div>
+                                <h4>Khas-Ochir Bayarjargal</h4>
+                                <div class="role">Founder & CEO</div>
+                                <p style="color: #374151 !important;">Mathematician with 5 years of experience teaching mathematics. Passionate about making quality math education accessible to all students.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact Section -->
+                <section class="contact-section" id="contact">
+                    <div class="edu-container">
+                        <header class="text-center mb-6">
+                            <h2 style="color: white !important;">Get In Touch</h2>
+                            <p style="color: #e5e7eb !important;">We'd love to hear from you</p>
+                        </header>
+                        
+                        <div class="contact-grid">
+                            <div class="contact-item">
+                                <div class="icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <h4>Phone</h4>
+                                <p><a href="tel:+14153367764">+1 (415) 336-7764</a></p>
+                                <p>Monday - Friday, 9 AM - 6 PM PST</p>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <h4>Email</h4>
+                                <p><a href="mailto:imathhub@gmail.com">imathhub@gmail.com</a></p>
+                                <p>We respond within 24 hours</p>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <h4>Location</h4>
+                                <p>San Francisco, CA</p>
+                                <p>United States</p>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="icon">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <h4>Live Chat</h4>
+                                <p>Available on our website</p>
+                                <p>24/7 support for urgent matters</p>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-6">
+                            <a href="contact.html" class="cta-button" style="display: inline-block; background: #1e40af; color: white !important; padding: 1.2em 2.5em; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; text-align: center; font-size: 1.1em;">Contact Us</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <section id="footer">
+            <div class="edu-container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>International Math Hub</h3>
+                        <p>Empowering Mongolian students with world-class mathematics education.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="features.html">Subjects</a></li>
+                            <li><a href="exam-prep.html">Exam Prep</a></li>
+                            <li><a href="tutoring.html">Tutoring</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="company.html#about">About</a></li>
+                            <li><a href="company.html#careers">Careers</a></li>
+                            <li><a href="company.html#team">Our Team</a></li>
+                            <li><a href="company.html#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="vids.html">Videos</a></li>
+                            <li><a href="quizz.html">Practice Tests</a></li>
+                            <li><a href="tutoring.html">Tutoring</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2024 International Math Hub. All rights reserved.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

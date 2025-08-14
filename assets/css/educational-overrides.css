@@ -160,9 +160,10 @@ body {
 }
 
 #nav ul li.current a {
-  background: var(--color-primary-blue) !important;
-  color: white !important;
+  background: transparent !important; /* no filled pill */
+  color: #1E40AF !important; /* blue text indicates active */
   font-weight: var(--weight-semibold) !important;
+  border-bottom: 0 !important;
 }
 
 /* Remove old navigation styling - now using unified system above */

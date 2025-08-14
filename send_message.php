@@ -2,7 +2,7 @@
 header('Content-Type: application/json');
 
 // Configuration for email
-$to_email = "khas.bayarjargal@gmail.com";
+$to_email = "imathhub@gmail.com";
 $subject = "New Contact Form Submission - International Math Hub";
 
 // Get form data

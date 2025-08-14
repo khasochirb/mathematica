@@ -226,7 +226,7 @@ h2.hero-main-title:before {
   position: relative;
   width: 100%;
   max-width: 500px;
-  min-height: 400px;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -243,7 +243,7 @@ h2.hero-main-title:before {
 .education-illustration svg {
   width: 100%;
   height: auto;
-  max-width: 450px;
+  max-width: 500px;
 }
 
 @keyframes float {
@@ -282,6 +282,100 @@ h2.hero-main-title:before {
   }
   50% {
     transform: translateY(-8px) rotate(0.5deg);
+  }
+}
+
+/* Mathematical constellation animations */
+.math-constellation {
+  animation: constellationGlow 10s ease-in-out infinite;
+}
+
+@keyframes constellationGlow {
+  0%, 100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+/* Formula nodes enhanced animations */
+.formula-node {
+  animation: nodeFloat 6s ease-in-out infinite;
+}
+
+.formula-node:nth-child(1) { animation-delay: 0s; }
+.formula-node:nth-child(2) { animation-delay: 1s; }
+.formula-node:nth-child(3) { animation-delay: 2s; }
+.formula-node:nth-child(4) { animation-delay: 3s; }
+.formula-node:nth-child(5) { animation-delay: 1.5s; }
+.formula-node:nth-child(6) { animation-delay: 2.5s; }
+
+@keyframes nodeFloat {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, -5px);
+  }
+}
+
+/* Central hub enhanced glow */
+.central-hub {
+  animation: centralPulse 4s ease-in-out infinite;
+}
+
+@keyframes centralPulse {
+  0%, 100% {
+    transform: translate(250px, 200px) scale(1);
+  }
+  50% {
+    transform: translate(250px, 200px) scale(1.02);
+  }
+}
+
+/* Orbiting elements enhancement */
+.orbiting-elements {
+  animation: orbitGlow 3s ease-in-out infinite;
+}
+
+@keyframes orbitGlow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Particle system enhancement */
+.particle-system {
+  animation: particleShimmer 8s ease-in-out infinite;
+}
+
+@keyframes particleShimmer {
+  0%, 100% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.7;
+  }
+  75% {
+    opacity: 0.9;
+  }
+}
+
+/* Success rings enhancement */
+.success-rings {
+  animation: ringsExpand 6s ease-in-out infinite;
+}
+
+@keyframes ringsExpand {
+  0%, 100% {
+    transform: translate(250px, 200px) scale(1);
+  }
+  50% {
+    transform: translate(250px, 200px) scale(1.03);
   }
 }
 
@@ -351,6 +445,16 @@ h2.hero-main-title:before {
   }
   
   .education-illustration svg {
-    max-width: 350px;
+    max-width: 380px;
+  }
+  
+  /* Optimize animations for mobile */
+  .formula-node text {
+    font-size: 8px !important;
+  }
+  
+  .orbiting-elements,
+  .particle-system {
+    opacity: 0.8;
   }
 } 

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="assets/css/educational-design-system.css" />
     <link rel="stylesheet" href="assets/css/educational-overrides.css" />
     <link rel="stylesheet" href="assets/css/hero-section.css" />
+		<link rel="stylesheet" href="assets/css/dropdown-nav.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <!-- Additional styles to ensure the mobile menu toggle is hidden -->
     <style>
@@ -35,86 +36,492 @@
         }
     </style>
     <script src="assets/js/auth.js"></script>
+    
+    <!-- Custom CSS for Contact Page -->
+    <style>
+        /* Contact Hero Section */
+        .contact-hero {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            padding: 6em 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .contact-hero .edu-container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Contact Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5em;
+            margin: 4em 0;
+        }
+        
+        /* Contact Cards */
+        .contact-card {
+            background: white !important;
+            border-radius: 20px;
+            padding: 2.5em;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e5e7eb;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #7c3aed, #1e40af);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .contact-card .contact-icon {
+            font-size: 3.5em;
+            color: #7c3aed !important;
+            margin-bottom: 1.5em;
+        }
+        
+        .contact-card h3 {
+            color: #1e40af !important;
+            font-size: 1.8em;
+            margin-bottom: 1em;
+            font-weight: 600;
+        }
+        
+        .contact-card .contact-detail {
+            color: #374151 !important;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+        }
+        
+        .contact-card .contact-info {
+            color: #6b7280 !important;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+        
+        /* Contact Form Section */
+        .contact-form-section {
+            margin: 4em 0;
+        }
+        
+        .contact-form-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3em;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 1px solid #e5e7eb;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #7c3aed, #1e40af);
+        }
+        
+        .contact-form-card h2 {
+            color: #1e40af;
+            font-size: 2.5em;
+            margin-bottom: 1.5em;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        /* Form Styling */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5em;
+            margin-bottom: 1.5em;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5em;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1em;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #7c3aed;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #7c3aed 0%, #1e40af 100%);
+            color: white;
+            padding: 1.2em 2.5em;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(124, 58, 237, 0.3);
+        }
+        
+        /* Additional CSS rules to ensure proper text colors for contact cards */
+        body .contact-card {
+            background: white !important;
+        }
+        
+        body .contact-card h3 {
+            color: #1e40af !important;
+        }
+        
+        body .contact-card .contact-detail {
+            color: #374151 !important;
+        }
+        
+        body .contact-card .contact-info {
+            color: #6b7280 !important;
+        }
+        
+        html body .contact-card {
+            background: white !important;
+        }
+        
+        html body .contact-card h3 {
+            color: #1e40af !important;
+        }
+        
+        html body .contact-card .contact-detail {
+            color: #374151 !important;
+        }
+        
+        html body .contact-card .contact-info {
+            color: #6b7280 !important;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body class="is-preload contact-page">
     <div id="page-wrapper">
 
         <!-- Header -->
-        <section id="header">
-            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between;">
                 <!-- Logo -->
                 <div class="logo">
-                    <a href="index.html"><img src="/images/logo.png" alt="International Math Hub Logo" style="max-height: 120px;"></a>
+                    <a href="index.html"><img src="/images/logo.png" alt="International Math Hub Logo" style="max-height: 60px;"></a>
                 </div>
 
-                <!-- Nav -->
+                <!-- Main Navigation -->
                 <nav id="nav">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="features.html">Mathematics Roadmap</a></li>
-                        <li><a href="resources.html">Resources</a></li>
+                        <li class=""><a href="index.html">Home</a></li>
+                        
+                        <!-- Subjects Dropdown -->
+                        <li class="has-dropdown">
+                            <a href="features.html">Subjects</a>
+                            <div class="dropdown subjects-dropdown">
+                                <div class="subjects-container">
+                                    <div class="subjects-grid">
+                                    <a href="topics/algebra/linear-and-quadratic-equations.html" class="subject-item">
+                                        <i class="fas fa-calculator"></i>
+                                        <span>Algebra</span>
+                                    </a>
+                                    <a href="topics/geometry/euclidean-geometry.html" class="subject-item">
+                                        <i class="fas fa-shapes"></i>
+                                        <span>Geometry</span>
+                                    </a>
+                                    <a href="topics/calculus/differentiation.html" class="subject-item">
+                                        <i class="fas fa-chart-line"></i>
+                                        <span>Calculus</span>
+                                    </a>
+                                    <a href="topics/trigonometry/trigonometric-identities-and-formulas.html" class="subject-item">
+                                        <i class="fas fa-wave-square"></i>
+                                        <span>Trigonometry</span>
+                                    </a>
+                                    <a href="topics/statistics/descriptive-statistics.html" class="subject-item">
+                                        <i class="fas fa-chart-bar"></i>
+                                        <span>Statistics</span>
+                                    </a>
+                                    <a href="topics/complex-numbers/basic-operations.html" class="subject-item">
+                                        <i class="fas fa-infinity"></i>
+                                        <span>Complex Numbers</span>
+                                    </a>
+                                    <a href="topics/matrices-and-determinants/matrix-operations.html" class="subject-item">
+                                        <i class="fas fa-th"></i>
+                                        <span>Matrices</span>
+                                    </a>
+                                    <a href="topics/number-theory/divisibility-and-prime-numbers.html" class="subject-item">
+                                        <i class="fas fa-hashtag"></i>
+                                        <span>Number Theory</span>
+                                    </a>
+                                    <a href="topics/probability/basic-probability-rules.html" class="subject-item">
+                                        <i class="fas fa-dice"></i>
+                                        <span>Probability</span>
+                                    </a>
+                                    <a href="topics/sequences-and-series/arithmetic-and-geometric-sequences.html" class="subject-item">
+                                        <i class="fas fa-list-ol"></i>
+                                        <span>Sequences & Series</span>
+                                    </a>
+                                    <a href="topics/graph-theory/graph-representation.html" class="subject-item">
+                                        <i class="fas fa-project-diagram"></i>
+                                        <span>Graph Theory</span>
+                                    </a>
+                                    <a href="topics/combinatorics/counting-principles.html" class="subject-item">
+                                        <i class="fas fa-cubes"></i>
+                                        <span>Combinatorics</span>
+                                    </a>
+                                    <a href="topics/inequalities/am-gm-inequality.html" class="subject-item">
+                                        <i class="fas fa-not-equal"></i>
+                                        <span>Inequalities</span>
+                                    </a>
+                                    <a href="topics/logic-and-set-theory/basic-set-operations.html" class="subject-item">
+                                        <i class="fas fa-circle-notch"></i>
+                                        <span>Logic & Set Theory</span>
+                                    </a>
+                                    <a href="topics/vectors-and-coordinate-geometry/vector-operations.html" class="subject-item">
+                                        <i class="fas fa-arrows-alt"></i>
+                                        <span>Vectors</span>
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Exam Prep Dropdown -->
+                        <li class="has-dropdown">
+                            <a href="exam-prep.html">Exam Prep</a>
+                            <div class="dropdown">
+                                <div class="dropdown-grid">
+                                    <a href="quizz.html" class="dropdown-item">
+                                        <i class="fas fa-clipboard-check"></i>
+                                        <span>Practice Tests</span>
+                                    </a>
+                                    <a href="exam-prep.html#solutions" class="dropdown-item">
+                                        <i class="fas fa-lightbulb"></i>
+                                        <span>Test Solutions</span>
+                                    </a>
+                                    <a href="exam-prep.html#sat" class="dropdown-item">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <span>SAT Math</span>
+                                    </a>
+                                    <a href="tutoring.html" class="dropdown-item">
+                                        <i class="fas fa-user-graduate"></i>
+                                        <span>1-on-1 Tutoring</span>
+                                    </a>
+                                    <a href="exam-prep.html#olympiad" class="dropdown-item">
+                                        <i class="fas fa-trophy"></i>
+                                        <span>Math Olympiad</span>
+                                    </a>
+                                    <a href="exam-prep.html#ap" class="dropdown-item">
+                                        <i class="fas fa-medal"></i>
+                                        <span>AP Calculus</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Grades Dropdown -->
+                        <li class="has-dropdown">
+                            <a href="grades.html">Grades</a>
+                            <div class="dropdown">
+                                <div class="dropdown-grid">
+                                    <a href="grades.html#elementary" class="dropdown-item">
+                                        <i class="fas fa-child"></i>
+                                        <span>Elementary School</span>
+                                    </a>
+                                    <a href="grades.html#middle" class="dropdown-item">
+                                        <i class="fas fa-school"></i>
+                                        <span>Middle School</span>
+                                    </a>
+                                    <a href="grades.html#high" class="dropdown-item">
+                                        <i class="fas fa-university"></i>
+                                        <span>High School</span>
+                                    </a>
+                                    <a href="grades.html#college" class="dropdown-item">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <span>College</span>
+                                    </a>
+                                    <a href="grades.html#adult" class="dropdown-item">
+                                        <i class="fas fa-user-tie"></i>
+                                        <span>Adult Learning</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Company Dropdown -->
+                        <li class="has-dropdown">
+                            <a href="company.html">Company</a>
+                            <div class="dropdown">
+                                <div class="dropdown-grid">
+                                    <a href="company.html#about" class="dropdown-item">
+                                        <i class="fas fa-info-circle"></i>
+                                        <span>About</span>
+                                    </a>
+                                    <a href="company.html#careers" class="dropdown-item">
+                                        <i class="fas fa-briefcase"></i>
+                                        <span>Careers</span>
+                                    </a>
+                                    <a href="contact.html" class="dropdown-item">
+                                        <i class="fas fa-envelope"></i>
+                                        <span>Contact</span>
+                                    </a>
+                                    <a href="company.html#team" class="dropdown-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>Our Team</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Blog Button -->
                         <li><a href="blog.html">Blog</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li class="current"><a href="contact.html">Contact</a></li>
                     </ul>
                 </nav>
+
+                <!-- Call-to-Action Buttons -->
+                <div class="nav-cta-container">
+                    <a href="tel:+14153367764" class="nav-phone">
+                        <i class="fas fa-phone"></i>
+                        +1 (415) 336-7764
+                    </a>
+                    <a href="tutoring.html" class="nav-cta-btn">Find Your Tutor</a>
+                    <a href="contact.html" class="nav-login">Log In</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hero Section -->
+        <section class="contact-hero">
+            <div class="edu-container">
+                <h1 style="color: white !important; text-align: center !important; font-size: 3.5em; margin-bottom: 0.5em;">Get In Touch</h1>
+                <p style="color: rgba(255,255,255,0.9) !important; text-align: center !important; font-size: 1.3em; max-width: 800px; margin-left: auto !important; margin-right: auto !important; margin-bottom: 2em; line-height: 1.6;">We'd love to hear from you! Reach out to us using any of the contact methods below.</p>
             </div>
         </section>
 
         <!-- Main Content -->
-        <section id="main" class="container">
+        <section id="main" class="edu-section">
             <div class="edu-container">
-                <div class="edu-section">
-                    <header class="text-center">
-                        <h2 class="hero-main-title">Contact Us</h2>
-                        <p class="text-secondary">We'd love to hear from you! Reach out to us using the details below.</p>
-                    </header>
+                <!-- Contact Information Grid -->
+                <div class="contact-grid">
 
-                    <!-- Contact Details -->
-                    <div class="row">
-                        <div class="col-12">
-                            <section class="edu-card">
-                                <h3>Get in Touch</h3>
-                                <ul class="contact">
-                                    <li><strong>Phone:</strong> <a href="tel:+14153367764">+1 415-336-7764</a></li>
-                                    <li><strong>Email:</strong> <a href="mailto:khas.bayarjargal@gmail.com">khas.bayarjargal@gmail.com</a></li>
-                                    <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/khasochir/" target="_blank">linkedin.com/in/khasochir</a></li>
-                                </ul>
-                            </section>
+                    <!-- Phone Section -->
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
                         </div>
+                        <h3>Phone</h3>
+                        <p class="contact-detail" style="color: #374151 !important;">+1 (415) 336-7764</p>
+                        <p class="contact-info" style="color: #6b7280 !important;">Monday - Friday, 9 AM - 6 PM PST</p>
+                    </div>
 
-                        <div class="col-12">
-                            <section class="edu-card">
-                                <header>
-                                    <h3>Send Us a Message!</h3>
-                                </header>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <form action="https://formsubmit.co/khas.bayarjargal@gmail.com" method="POST">
-                                            <!-- Honeypot -->
-                                            <input type="text" name="_honey" style="display:none">
-                                            <!-- Disable Captcha -->
-                                            <input type="hidden" name="_captcha" value="false">
-                                            
-                                                                                    <div class="row gtr-50">
-                                            <div class="col-6 col-12-small">
-                                                <input type="text" name="name" id="name" placeholder="Name" required />
-                                            </div>
-                                            <div class="col-6 col-12-small">
-                                                <input type="email" name="email" id="email" placeholder="Email" required />
-                                            </div>
-                                            <div class="col-12">
-                                                <textarea name="message" id="message" placeholder="Message" rows="4" required></textarea>
-                                            </div>
-                                                <div class="col-12">
-                                                    <input type="submit" class="button" value="Send Message" />
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                    <!-- Email Section -->
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email</h3>
+                        <p class="contact-detail" style="color: #374151 !important;">imathhub@gmail.com</p>
+                        <p class="contact-info" style="color: #6b7280 !important;">We respond within 24 hours</p>
+                    </div>
+
+                    <!-- Location Section -->
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Location</h3>
+                        <p class="contact-detail" style="color: #374151 !important;">San Francisco, CA</p>
+                        <p class="contact-info" style="color: #6b7280 !important;">United States</p>
+                    </div>
+
+                    <!-- Live Chat Section -->
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>Live Chat</h3>
+                        <p class="contact-detail" style="color: #374151 !important;">Available on our website</p>
+                        <p class="contact-info" style="color: #6b7280 !important;">24/7 support for urgent matters</p>
+                    </div>
+                </div>
+
+                <!-- Contact Form Section -->
+                <div class="contact-form-section">
+                    <div class="contact-form-card">
+                        <h2>Send Us a Message</h2>
+                        <form action="https://formsubmit.co/imathhub@gmail.com" method="POST">
+                            <!-- Honeypot -->
+                            <input type="text" name="_honey" style="display:none">
+                            <!-- Disable Captcha -->
+                            <input type="hidden" name="_captcha" value="false">
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" name="name" id="name" placeholder="Name" required />
                                 </div>
-                            </section>
-                        </div>
+                                <div class="form-group">
+                                    <input type="email" name="email" id="email" placeholder="Email" required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="message" id="message" placeholder="Message" rows="4" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="submit-btn">Send Message</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -134,7 +541,7 @@
                     <h4>Services</h4>
                     <ul>
                         <li><a href="tutoring.html">Online Tutoring</a></li>
-                        <li><a href="resources.html">Study Resources</a></li>
+                                                    <li><a href="exam-prep.html">Learning Resources</a></li>
                         <li><a href="quizz.html">Practice Tests</a></li>
                         <li><a href="vids.html">Video Tutorials</a></li>
                     </ul>
@@ -154,7 +561,7 @@
                     <h4>Support</h4>
                     <ul>
                         <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="about.html">About</a></li>
+                        <li><a href="company.html">About</a></li>
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="features.html">Features</a></li>
                     </ul>
@@ -227,7 +634,7 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Failed to send message. Please try emailing directly to khas.bayarjargal@gmail.com');
+                alert('Failed to send message. Please try emailing directly to imathhub@gmail.com');
             })
             .finally(() => {
                 submitButton.value = 'Send Message';

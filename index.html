@@ -11,16 +11,12 @@
 		<link rel="stylesheet" href="assets/css/educational-design-system.css" />
 		<link rel="stylesheet" href="assets/css/educational-overrides.css" />
 		<link rel="stylesheet" href="assets/css/hero-section.css" />
+		<link rel="stylesheet" href="assets/css/dropdown-nav.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-		<!-- Additional styles to ensure the mobile menu toggle is hidden -->
+        <!-- Remove legacy mobile menu system; allow our new toggle -->
 		<style>
-			/* Hide mobile menu toggle button with highest priority */
-			#titleBar, #navPanel {
-				display: none !important;
-				visibility: hidden !important;
-				opacity: 0 !important;
-				pointer-events: none !important;
-			}
+            /* Hide legacy components only */
+            #titleBar, #navPanel { display: none !important; }
 			
 			/* Prevent any transforms from mobile menu */
 			body.navPanel-visible #page-wrapper,
@@ -28,10 +24,7 @@
 				transform: none !important;
 			}
 			
-			/* Ensure navigation is always visible */
-			#nav {
-				display: block !important;
-			}
+            /* Allow nav to be controlled by mobile toggle CSS */
 		</style>
 		<style>
 			.fullscreen-section {
@@ -78,6 +71,59 @@
 				font-size: 1.1em;
 				line-height: 1.6;
 			}
+			
+			/* Benefits toggle functionality */
+			.benefit-item {
+				cursor: pointer;
+				transition: background-color 0.2s ease;
+				display: flex;
+				align-items: flex-start;
+				justify-content: space-between;
+				position: relative;
+			}
+			
+			.benefit-item:hover {
+				background-color: rgba(0, 0, 0, 0.02);
+			}
+			
+			.benefit-content {
+				flex: 1;
+				margin-right: 16px;
+			}
+			
+			.benefit-text {
+				display: block;
+				margin-bottom: 0;
+			}
+			
+			.benefit-description {
+				display: none;
+				margin-top: 12px;
+				color: var(--color-text-secondary);
+				font-size: 0.95em;
+				line-height: 1.5;
+				opacity: 0;
+				transition: all 0.3s ease;
+				max-height: 0;
+				overflow: hidden;
+			}
+			
+			.benefit-item.expanded .benefit-description {
+				display: block;
+				opacity: 1;
+				max-height: 200px;
+			}
+			
+			.benefit-toggle-icon {
+				transition: transform 0.3s ease;
+				cursor: pointer;
+				flex-shrink: 0;
+				margin-top: 2px;
+			}
+			
+			.benefit-item.expanded .benefit-toggle-icon {
+				transform: rotate(180deg);
+			}
 		</style>
 	</head>
 	<body class="homepage is-preload">
@@ -85,23 +131,188 @@
 
 			<!-- Header -->
 			<section id="header">
-				<div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+				<div class="header-container" style="display: flex; align-items: center; justify-content: space-between;">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="index.html"><img src="/images/logo.png" alt="International Math Hub Logo" style="max-height: 120px;"></a>
+						<a href="index.html"><img src="/images/logo.png" alt="International Math Hub Logo" style="max-height: 60px;"></a>
 					</div>
 
-					<!-- Nav -->
+					<!-- Main Navigation -->
 					<nav id="nav">
 						<ul>
 							<li class="current"><a href="index.html">Home</a></li>
-							<li><a href="features.html">Mathematics Roadmap</a></li>
-							<li><a href="resources.html">Resources</a></li>
+							
+							<!-- Subjects Dropdown -->
+							<li class="has-dropdown">
+								<a href="features.html">Subjects</a>
+								<div class="dropdown subjects-dropdown">
+									<div class="subjects-container">
+										<div class="subjects-grid">
+										<a href="topics/algebra/linear-and-quadratic-equations.html" class="subject-item">
+											<i class="fas fa-calculator"></i>
+											<span>Algebra</span>
+										</a>
+										<a href="topics/geometry/euclidean-geometry.html" class="subject-item">
+											<i class="fas fa-shapes"></i>
+											<span>Geometry</span>
+										</a>
+										<a href="topics/calculus/differentiation.html" class="subject-item">
+											<i class="fas fa-chart-line"></i>
+											<span>Calculus</span>
+										</a>
+										<a href="topics/trigonometry/trigonometric-identities-and-formulas.html" class="subject-item">
+											<i class="fas fa-wave-square"></i>
+											<span>Trigonometry</span>
+										</a>
+										<a href="topics/statistics/descriptive-statistics.html" class="subject-item">
+											<i class="fas fa-chart-bar"></i>
+											<span>Statistics</span>
+										</a>
+										<a href="topics/complex-numbers/basic-operations.html" class="subject-item">
+											<i class="fas fa-infinity"></i>
+											<span>Complex Numbers</span>
+										</a>
+										<a href="topics/matrices-and-determinants/matrix-operations.html" class="subject-item">
+											<i class="fas fa-th"></i>
+											<span>Matrices</span>
+										</a>
+										<a href="topics/number-theory/divisibility-and-prime-numbers.html" class="subject-item">
+											<i class="fas fa-hashtag"></i>
+											<span>Number Theory</span>
+										</a>
+										<a href="topics/probability/basic-probability-rules.html" class="subject-item">
+											<i class="fas fa-dice"></i>
+											<span>Probability</span>
+										</a>
+										<a href="topics/sequences-and-series/arithmetic-and-geometric-sequences.html" class="subject-item">
+											<i class="fas fa-list-ol"></i>
+											<span>Sequences & Series</span>
+										</a>
+										<a href="topics/graph-theory/graph-representation.html" class="subject-item">
+											<i class="fas fa-project-diagram"></i>
+											<span>Graph Theory</span>
+										</a>
+										<a href="topics/combinatorics/counting-principles.html" class="subject-item">
+											<i class="fas fa-cubes"></i>
+											<span>Combinatorics</span>
+										</a>
+										<a href="topics/inequalities/am-gm-inequality.html" class="subject-item">
+											<i class="fas fa-not-equal"></i>
+											<span>Inequalities</span>
+										</a>
+										<a href="topics/logic-and-set-theory/basic-set-operations.html" class="subject-item">
+											<i class="fas fa-circle-notch"></i>
+											<span>Logic & Set Theory</span>
+										</a>
+										<a href="topics/vectors-and-coordinate-geometry/vector-operations.html" class="subject-item">
+											<i class="fas fa-arrows-alt"></i>
+											<span>Vectors</span>
+										</a>
+									</div>
+								</div>
+							</li>
+
+							<!-- Exam Prep Dropdown -->
+							<li class="has-dropdown">
+								<a href="exam-prep.html">Exam Prep</a>
+								<div class="dropdown">
+									<div class="dropdown-grid">
+										<a href="quizz.html" class="dropdown-item">
+											<i class="fas fa-clipboard-check"></i>
+											<span>Practice Tests</span>
+										</a>
+										                                    <a href="exam-prep.html#solutions" class="dropdown-item">
+                                        <i class="fas fa-lightbulb"></i>
+                                        <span>Test Solutions</span>
+                                    </a>
+                                    <a href="exam-prep.html#sat" class="dropdown-item">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <span>SAT Math</span>
+                                    </a>
+                                    <a href="tutoring.html" class="dropdown-item">
+                                        <i class="fas fa-user-graduate"></i>
+                                        <span>1-on-1 Tutoring</span>
+                                    </a>
+                                    <a href="exam-prep.html#olympiad" class="dropdown-item">
+                                        <i class="fas fa-trophy"></i>
+                                        <span>Math Olympiad</span>
+                                    </a>
+                                    <a href="exam-prep.html#ap" class="dropdown-item">
+                                        <i class="fas fa-medal"></i>
+                                        <span>AP Calculus</span>
+                                    </a>
+									</div>
+								</div>
+							</li>
+
+							<!-- Grades Dropdown -->
+							<li class="has-dropdown">
+								<a href="grades.html">Grades</a>
+								<div class="dropdown">
+									<div class="dropdown-grid">
+										                                    <a href="grades.html#elementary" class="dropdown-item">
+                                        <i class="fas fa-child"></i>
+                                        <span>Elementary School</span>
+                                    </a>
+                                    <a href="grades.html#middle" class="dropdown-item">
+                                        <i class="fas fa-school"></i>
+                                        <span>Middle School</span>
+                                    </a>
+                                    <a href="grades.html#high" class="dropdown-item">
+                                        <i class="fas fa-university"></i>
+                                        <span>High School</span>
+                                    </a>
+                                    <a href="grades.html#college" class="dropdown-item">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <span>College</span>
+                                    </a>
+                                    <a href="grades.html#adult" class="dropdown-item">
+                                        <i class="fas fa-user-tie"></i>
+                                        <span>Adult Learning</span>
+                                    </a>
+									</div>
+								</div>
+							</li>
+
+							<!-- Company Dropdown -->
+							<li class="has-dropdown">
+								<a href="company.html">Company</a>
+								<div class="dropdown">
+									<div class="dropdown-grid">
+										<a href="company.html#about" class="dropdown-item">
+											<i class="fas fa-info-circle"></i>
+											<span>About</span>
+										</a>
+										<a href="company.html#careers" class="dropdown-item">
+											<i class="fas fa-briefcase"></i>
+											<span>Careers</span>
+										</a>
+										<a href="company.html#contact" class="dropdown-item">
+											<i class="fas fa-envelope"></i>
+											<span>Contact</span>
+										</a>
+										<a href="company.html#team" class="dropdown-item">
+											<i class="fas fa-users"></i>
+											<span>Our Team</span>
+										</a>
+									</div>
+								</div>
+							</li>
+
+							<!-- Blog Button -->
 							<li><a href="blog.html">Blog</a></li>
-							<li><a href="about.html">About</a></li>
-							<li><a href="contact.html">Contact</a></li>
 						</ul>
 					</nav>
+
+					<!-- Call-to-Action Buttons -->
+					<div class="nav-cta-container">
+						                    <a href="tel:+14153367764" class="nav-phone">
+                        <i class="fas fa-phone"></i>
+                        +1 (415) 336-7764
+                    </a>
+						<a href="tutoring.html" class="nav-cta-btn">Find Your Tutor</a>
+						<a href="contact.html" class="nav-login">Log In</a>
+					</div>
 				</div>
 
 				<!-- Hero Section -->
@@ -123,127 +334,235 @@
 							<div class="hero-tagline">
 								<span class="tagline-text" id="rotating-text">Helping Your Child Succeed—Wherever You Live</span>
 							</div>
-							<p class="hero-subtitle">Our mission is to provide exceptional mathematics education that empowers Mongolian students to excel academically and build a strong foundation for their future success in an increasingly competitive global landscape.</p>
+						<p class="hero-subtitle">High-quality math and science education for Mongolian students around the world—aligned with AP, IB, and US state curricula—while strengthening cultural connection through Mongolian‑context problems and stories.</p>
 						</div>
 						
 						<div class="hero-visual">
-							<div class="hero-image-container">
-								<div class="education-illustration">
-									<svg width="450" height="350" viewBox="0 0 450 350" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<!-- Background elements -->
+						<div class="hero-image-container">
+							<img src="images/children.png" alt="Children learning" style="width:100%; max-width:500px; height:auto; border-radius: 12px; box-shadow: 0 15px 40px rgba(0,0,0,0.15);" />
+							<div class="education-illustration" style="display:none;">
+									<svg width="500" height="400" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<defs>
-											<linearGradient id="heroGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-												<stop offset="0%" style="stop-color:#1E40AF;stop-opacity:0.1"/>
-												<stop offset="100%" style="stop-color:#0891B2;stop-opacity:0.1"/>
+											<!-- Enhanced gradients -->
+											<linearGradient id="goldenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+												<stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.9"/>
+												<stop offset="50%" style="stop-color:#FFA500;stop-opacity:0.7"/>
+												<stop offset="100%" style="stop-color:#FF6B35;stop-opacity:0.8"/>
 											</linearGradient>
-											<linearGradient id="heroGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+											<linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
 												<stop offset="0%" style="stop-color:#1E40AF"/>
 												<stop offset="100%" style="stop-color:#0891B2"/>
 											</linearGradient>
-											<linearGradient id="heroGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
-												<stop offset="0%" style="stop-color:#F97316;stop-opacity:0.8"/>
-												<stop offset="100%" style="stop-color:#0891B2;stop-opacity:0.8"/>
-											</linearGradient>
+											<radialGradient id="centralGlow" cx="50%" cy="50%" r="50%">
+												<stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.8"/>
+												<stop offset="70%" style="stop-color:#1E40AF;stop-opacity:0.4"/>
+												<stop offset="100%" style="stop-color:#0891B2;stop-opacity:0.1"/>
+											</radialGradient>
+											<filter id="glow">
+												<feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+												<feMerge> 
+													<feMergeNode in="coloredBlur"/>
+													<feMergeNode in="SourceGraphic"/>
+												</feMerge>
+											</filter>
+											<filter id="shadow">
+												<feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+											</filter>
 										</defs>
 										
-										<!-- Main learning circle -->
-										<circle cx="225" cy="175" r="140" fill="url(#heroGradient1)" stroke="rgba(30, 64, 175, 0.2)" stroke-width="2"/>
-										
-										<!-- Central hub representing IMH -->
-										<g transform="translate(225, 175)">
-											<!-- Central circle -->
-											<circle cx="0" cy="0" r="35" fill="url(#heroGradient2)" stroke="white" stroke-width="3">
-												<animate attributeName="r" values="35;37;35" dur="3s" repeatCount="indefinite"/>
-												<animate attributeName="stroke-width" values="3;4;3" dur="2.5s" repeatCount="indefinite"/>
+										<!-- Background mathematical constellation -->
+										<g class="math-constellation" opacity="0.15">
+											<!-- Golden ratio spiral -->
+											<path d="M250 200 Q270 180 290 200 Q290 220 270 240 Q250 240 230 220 Q230 200 250 200" 
+											      stroke="#FFD700" stroke-width="2" fill="none">
+												<animate attributeName="stroke-opacity" values="0.3;0.8;0.3" dur="4s" repeatCount="indefinite"/>
+											</path>
+											<path d="M250 200 Q290 160 330 200 Q330 260 290 300 Q230 300 170 260 Q170 200 230 140 Q290 140 350 200" 
+											      stroke="#FFD700" stroke-width="1.5" fill="none">
+												<animate attributeName="stroke-opacity" values="0.2;0.6;0.2" dur="6s" repeatCount="indefinite"/>
+											</path>
+										</g>
+
+										<!-- Central mathematical hub -->
+										<g transform="translate(250, 200)" class="central-hub">
+											<!-- Glowing core -->
+											<circle cx="0" cy="0" r="60" fill="url(#centralGlow)" filter="url(#glow)">
+												<animate attributeName="r" values="58;65;58" dur="4s" repeatCount="indefinite"/>
 											</circle>
-											<text x="0" y="8" text-anchor="middle" fill="white" font-size="18" font-weight="bold" font-family="Arial, sans-serif">IMH</text>
 											
-											<!-- Learning paths radiating outward -->
-											<g class="learning-paths">
-												<!-- Path 1: Mathematics -->
-												<path d="M0 -35 L0 -80" stroke="#1E40AF" stroke-width="3" opacity="0.7">
-													<animate attributeName="stroke-width" values="3;4;3" dur="3s" repeatCount="indefinite"/>
-													<animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite"/>
-												</path>
-												<circle cx="0" cy="-90" r="12" fill="url(#heroGradient3)">
-													<animate attributeName="r" values="12;14;12" dur="2s" repeatCount="indefinite"/>
-												</circle>
-												<text x="0" y="-85" text-anchor="middle" fill="white" font-size="12" font-weight="bold">∑</text>
-												
-												<!-- Path 2: Science -->
-												<path d="M35 0 L80 0" stroke="#0891B2" stroke-width="3" opacity="0.7">
-													<animate attributeName="stroke-width" values="3;4;3" dur="3.5s" repeatCount="indefinite"/>
-													<animate attributeName="opacity" values="0.7;1;0.7" dur="3.5s" repeatCount="indefinite"/>
-												</path>
-												<circle cx="90" cy="0" r="12" fill="url(#heroGradient3)">
-													<animate attributeName="r" values="12;14;12" dur="2.5s" repeatCount="indefinite"/>
-												</circle>
-												<text x="90" y="5" text-anchor="middle" fill="white" font-size="12" font-weight="bold">π</text>
-												
-												<!-- Path 3: Technology -->
-												<path d="M0 35 L0 80" stroke="#F97316" stroke-width="3" opacity="0.7">
-													<animate attributeName="stroke-width" values="3;4;3" dur="4s" repeatCount="indefinite"/>
-													<animate attributeName="opacity" values="0.7;1;0.7" dur="4s" repeatCount="indefinite"/>
-												</path>
-												<circle cx="0" cy="90" r="12" fill="url(#heroGradient3)">
-													<animate attributeName="r" values="12;14;12" dur="3s" repeatCount="indefinite"/>
-												</circle>
-												<text x="0" y="95" text-anchor="middle" fill="white" font-size="12" font-weight="bold">∫</text>
-												
-												<!-- Path 4: Engineering -->
-												<path d="M-35 0 L-80 0" stroke="#0891B2" stroke-width="3" opacity="0.7">
-													<animate attributeName="stroke-width" values="3;4;3" dur="3.2s" repeatCount="indefinite"/>
-													<animate attributeName="opacity" values="0.7;1;0.7" dur="3.2s" repeatCount="indefinite"/>
-												</path>
-												<circle cx="-90" cy="0" r="12" fill="url(#heroGradient3)">
-													<animate attributeName="r" values="12;14;12" dur="2.8s" repeatCount="indefinite"/>
-												</circle>
-												<text x="-90" y="5" text-anchor="middle" fill="white" font-size="12" font-weight="bold">∞</text>
+											<!-- Rotating geometric framework -->
+											<g class="rotating-framework">
+												<animateTransform attributeName="transform" 
+													type="rotate" values="0;360" dur="20s" repeatCount="indefinite"/>
+												<!-- Pentagon base -->
+												<polygon points="0,-40 38,-12 23,32 -23,32 -38,-12" 
+												         stroke="#FFD700" stroke-width="2" fill="none" opacity="0.6"/>
+												<!-- Hexagon -->
+												<polygon points="0,-30 26,-15 26,15 0,30 -26,15 -26,-15" 
+												         stroke="#1E40AF" stroke-width="1.5" fill="none" opacity="0.4"/>
 											</g>
 											
-											<!-- Floating knowledge particles -->
-											<g class="particles">
-												<circle cx="-50" cy="-60" r="3" fill="#1E40AF" opacity="0.6">
-													<animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
-													<animate attributeName="cy" values="-60;-65;-60" dur="4s" repeatCount="indefinite"/>
-													<animate attributeName="cx" values="-50;-45;-50" dur="6s" repeatCount="indefinite"/>
+											<!-- Central logo -->
+											<circle cx="0" cy="0" r="25" fill="url(#blueGradient)" stroke="#FFD700" stroke-width="3" filter="url(#shadow)">
+												<animate attributeName="stroke-width" values="3;5;3" dur="3s" repeatCount="indefinite"/>
+											</circle>
+											<text x="0" y="8" text-anchor="middle" fill="white" font-size="16" font-weight="bold" font-family="'Poppins', sans-serif">IMH</text>
+										</g>
+
+										<!-- Mathematical formulas constellation -->
+										<g class="formula-constellation">
+											<!-- Euler's Identity -->
+											<g transform="translate(120, 100)" class="formula-node">
+												<circle cx="0" cy="0" r="35" fill="url(#goldenGradient)" opacity="0.8" filter="url(#glow)">
+													<animate attributeName="r" values="33;38;33" dur="3s" repeatCount="indefinite"/>
 												</circle>
-												<circle cx="60" cy="-40" r="2" fill="#0891B2" opacity="0.8">
-													<animate attributeName="opacity" values="0.8;1;0.8" dur="2.5s" repeatCount="indefinite"/>
-													<animate attributeName="cy" values="-40;-35;-40" dur="3.5s" repeatCount="indefinite"/>
-													<animate attributeName="cx" values="60;65;60" dur="5s" repeatCount="indefinite"/>
+												<text x="0" y="-8" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="'Times New Roman', serif">e^(iπ)+1=0</text>
+												<text x="0" y="8" text-anchor="middle" fill="white" font-size="8" font-family="'Times New Roman', serif">Euler's Identity</text>
+												
+												<!-- Connection to center -->
+												<path d="M25 20 Q160 120 225 175" stroke="#FFD700" stroke-width="2" opacity="0.6" fill="none">
+													<animate attributeName="stroke-dasharray" values="0,200;100,100;200,0" dur="4s" repeatCount="indefinite"/>
+												</path>
+											</g>
+
+											<!-- Pythagorean Theorem -->
+											<g transform="translate(380, 120)" class="formula-node">
+												<circle cx="0" cy="0" r="35" fill="url(#goldenGradient)" opacity="0.8" filter="url(#glow)">
+													<animate attributeName="r" values="33;38;33" dur="3.2s" repeatCount="indefinite"/>
 												</circle>
-												<circle cx="40" cy="70" r="2.5" fill="#F97316" opacity="0.7">
-													<animate attributeName="opacity" values="0.7;1;0.7" dur="3.5s" repeatCount="indefinite"/>
-													<animate attributeName="cy" values="70;75;70" dur="4.5s" repeatCount="indefinite"/>
-													<animate attributeName="cx" values="40;35;40" dur="7s" repeatCount="indefinite"/>
+												<text x="0" y="-8" text-anchor="middle" fill="white" font-size="11" font-weight="bold" font-family="'Times New Roman', serif">a²+b²=c²</text>
+												<text x="0" y="8" text-anchor="middle" fill="white" font-size="8" font-family="'Times New Roman', serif">Pythagorean</text>
+												
+												<!-- Connection to center -->
+												<path d="M-25 20 Q340 120 275 175" stroke="#0891B2" stroke-width="2" opacity="0.6" fill="none">
+													<animate attributeName="stroke-dasharray" values="0,200;100,100;200,0" dur="4.5s" repeatCount="indefinite"/>
+												</path>
+											</g>
+
+											<!-- Calculus - Fundamental Theorem -->
+											<g transform="translate(140, 320)" class="formula-node">
+												<circle cx="0" cy="0" r="35" fill="url(#goldenGradient)" opacity="0.8" filter="url(#glow)">
+													<animate attributeName="r" values="33;38;33" dur="3.8s" repeatCount="indefinite"/>
 												</circle>
-												<circle cx="-70" cy="30" r="2" fill="#0891B2" opacity="0.6">
-													<animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
-													<animate attributeName="cy" values="30;25;30" dur="3s" repeatCount="indefinite"/>
-													<animate attributeName="cx" values="-70;-75;-70" dur="5.5s" repeatCount="indefinite"/>
+												<text x="0" y="-8" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="'Times New Roman', serif">∫f'(x)dx=f(x)</text>
+												<text x="0" y="8" text-anchor="middle" fill="white" font-size="8" font-family="'Times New Roman', serif">Calculus</text>
+												
+												<!-- Connection to center -->
+												<path d="M25 -20 Q160 280 225 225" stroke="#F97316" stroke-width="2" opacity="0.6" fill="none">
+													<animate attributeName="stroke-dasharray" values="0,200;100,100;200,0" dur="3.5s" repeatCount="indefinite"/>
+												</path>
+											</g>
+
+											<!-- Golden Ratio -->
+											<g transform="translate(360, 300)" class="formula-node">
+												<circle cx="0" cy="0" r="35" fill="url(#goldenGradient)" opacity="0.8" filter="url(#glow)">
+													<animate attributeName="r" values="33;38;33" dur="2.8s" repeatCount="indefinite"/>
 												</circle>
-												<circle cx="30" cy="-80" r="2.5" fill="#F97316" opacity="0.7">
-													<animate attributeName="opacity" values="0.7;1;0.7" dur="2.8s" repeatCount="indefinite"/>
-													<animate attributeName="cy" values="-80;-85;-80" dur="4.2s" repeatCount="indefinite"/>
-													<animate attributeName="cx" values="30;25;30" dur="6.5s" repeatCount="indefinite"/>
+												<text x="0" y="-8" text-anchor="middle" fill="white" font-size="11" font-weight="bold" font-family="'Times New Roman', serif">φ = (1+√5)/2</text>
+												<text x="0" y="8" text-anchor="middle" fill="white" font-size="8" font-family="'Times New Roman', serif">Golden Ratio</text>
+												
+												<!-- Connection to center -->
+												<path d="M-25 -20 Q340 280 275 225" stroke="#FFD700" stroke-width="2" opacity="0.6" fill="none">
+													<animate attributeName="stroke-dasharray" values="0,200;100,100;200,0" dur="4.2s" repeatCount="indefinite"/>
+												</path>
+											</g>
+
+											<!-- Statistics - Normal Distribution -->
+											<g transform="translate(80, 220)" class="formula-node">
+												<circle cx="0" cy="0" r="30" fill="url(#goldenGradient)" opacity="0.8" filter="url(#glow)">
+													<animate attributeName="r" values="28;33;28" dur="3.3s" repeatCount="indefinite"/>
 												</circle>
-												<circle cx="-30" cy="80" r="2" fill="#1E40AF" opacity="0.6">
-													<animate attributeName="opacity" values="0.6;1;0.6" dur="3.2s" repeatCount="indefinite"/>
-													<animate attributeName="cy" values="80;85;80" dur="3.8s" repeatCount="indefinite"/>
-													<animate attributeName="cx" values="-30;-25;-30" dur="5.8s" repeatCount="indefinite"/>
+												<text x="0" y="-5" text-anchor="middle" fill="white" font-size="9" font-weight="bold" font-family="'Times New Roman', serif">f(x)=e^(-x²/2)</text>
+												<text x="0" y="8" text-anchor="middle" fill="white" font-size="7" font-family="'Times New Roman', serif">Normal Dist.</text>
+												
+												<!-- Connection to center -->
+												<path d="M22 -10 Q150 180 220 185" stroke="#0891B2" stroke-width="2" opacity="0.6" fill="none">
+													<animate attributeName="stroke-dasharray" values="0,200;100,100;200,0" dur="3.8s" repeatCount="indefinite"/>
+												</path>
+											</g>
+
+											<!-- Prime Numbers -->
+											<g transform="translate(420, 220)" class="formula-node">
+												<circle cx="0" cy="0" r="30" fill="url(#goldenGradient)" opacity="0.8" filter="url(#glow)">
+													<animate attributeName="r" values="28;33;28" dur="2.5s" repeatCount="indefinite"/>
 												</circle>
+												<text x="0" y="-5" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="'Times New Roman', serif">2,3,5,7,11...</text>
+												<text x="0" y="8" text-anchor="middle" fill="white" font-size="7" font-family="'Times New Roman', serif">Primes</text>
+												
+												<!-- Connection to center -->
+												<path d="M-22 -10 Q350 180 280 185" stroke="#1E40AF" stroke-width="2" opacity="0.6" fill="none">
+													<animate attributeName="stroke-dasharray" values="0,200;100,100;200,0" dur="4.8s" repeatCount="indefinite"/>
+												</path>
 											</g>
 										</g>
-										
-										<!-- Success indicators -->
-										<g transform="translate(225, 175)">
-											<!-- Achievement rings -->
-											<circle cx="0" cy="0" r="110" stroke="rgba(30, 64, 175, 0.3)" stroke-width="1" fill="none" stroke-dasharray="5,5">
-												<animate attributeName="stroke-dashoffset" values="0;10" dur="4s" repeatCount="indefinite"/>
+
+										<!-- Orbiting elements -->
+										<g class="orbiting-elements">
+											<!-- Mathematical symbols orbiting the center -->
+											<g transform="translate(250, 200)">
+												<g class="orbit-1">
+													<animateTransform attributeName="transform" 
+														type="rotate" values="0;360" dur="15s" repeatCount="indefinite"/>
+													<circle cx="90" cy="0" r="8" fill="#FFD700" opacity="0.8">
+														<animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite"/>
+													</circle>
+													<text x="90" y="5" text-anchor="middle" fill="white" font-size="10" font-weight="bold">∑</text>
+												</g>
+												
+												<g class="orbit-2">
+													<animateTransform attributeName="transform" 
+														type="rotate" values="360;0" dur="12s" repeatCount="indefinite"/>
+													<circle cx="110" cy="0" r="8" fill="#0891B2" opacity="0.8">
+														<animate attributeName="r" values="6;10;6" dur="2.2s" repeatCount="indefinite"/>
+													</circle>
+													<text x="110" y="5" text-anchor="middle" fill="white" font-size="10" font-weight="bold">∫</text>
+												</g>
+												
+												<g class="orbit-3">
+													<animateTransform attributeName="transform" 
+														type="rotate" values="0;360" dur="18s" repeatCount="indefinite"/>
+													<circle cx="130" cy="0" r="8" fill="#F97316" opacity="0.8">
+														<animate attributeName="r" values="6;10;6" dur="1.8s" repeatCount="indefinite"/>
+													</circle>
+													<text x="130" y="5" text-anchor="middle" fill="white" font-size="10" font-weight="bold">π</text>
+												</g>
+											</g>
+										</g>
+
+										<!-- Particle system -->
+										<g class="particle-system">
+											<!-- Enhanced mathematical particles -->
+											<circle cx="50" cy="50" r="2" fill="#FFD700" opacity="0.6">
+												<animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
+												<animate attributeName="cy" values="50;40;50" dur="4s" repeatCount="indefinite"/>
+												<animate attributeName="cx" values="50;60;50" dur="6s" repeatCount="indefinite"/>
 											</circle>
-											<circle cx="0" cy="0" r="95" stroke="rgba(8, 145, 178, 0.3)" stroke-width="1" fill="none" stroke-dasharray="5,5">
-												<animate attributeName="stroke-dashoffset" values="10;0" dur="3s" repeatCount="indefinite"/>
+											<circle cx="450" cy="80" r="1.5" fill="#0891B2" opacity="0.8">
+												<animate attributeName="opacity" values="0.8;1;0.8" dur="2.5s" repeatCount="indefinite"/>
+												<animate attributeName="cy" values="80;70;80" dur="3.5s" repeatCount="indefinite"/>
+												<animate attributeName="cx" values="450;440;450" dur="5s" repeatCount="indefinite"/>
+											</circle>
+											<circle cx="70" cy="350" r="2.5" fill="#F97316" opacity="0.7">
+												<animate attributeName="opacity" values="0.7;1;0.7" dur="3.5s" repeatCount="indefinite"/>
+												<animate attributeName="cy" values="350;360;350" dur="4.5s" repeatCount="indefinite"/>
+												<animate attributeName="cx" values="70;60;70" dur="7s" repeatCount="indefinite"/>
+											</circle>
+											<circle cx="430" cy="320" r="2" fill="#1E40AF" opacity="0.6">
+												<animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+												<animate attributeName="cy" values="320;310;320" dur="3s" repeatCount="indefinite"/>
+												<animate attributeName="cx" values="430;420;430" dur="5.5s" repeatCount="indefinite"/>
+											</circle>
+										</g>
+
+										<!-- Success rings -->
+										<g transform="translate(250, 200)" class="success-rings">
+											<circle cx="0" cy="0" r="140" stroke="rgba(255, 215, 0, 0.3)" stroke-width="2" fill="none" stroke-dasharray="10,5">
+												<animate attributeName="stroke-dashoffset" values="0;15" dur="6s" repeatCount="indefinite"/>
+												<animate attributeName="r" values="138;142;138" dur="4s" repeatCount="indefinite"/>
+											</circle>
+											<circle cx="0" cy="0" r="120" stroke="rgba(30, 64, 175, 0.3)" stroke-width="1.5" fill="none" stroke-dasharray="8,4">
+												<animate attributeName="stroke-dashoffset" values="15;0" dur="4s" repeatCount="indefinite"/>
+												<animate attributeName="r" values="118;122;118" dur="3s" repeatCount="indefinite"/>
 											</circle>
 										</g>
 									</svg>
@@ -253,6 +572,93 @@
 					</div>
 				</section>
 			</section>
+
+			<!-- Mission for Mongolians Abroad -->
+			<section class="edu-section" style="background: #0b1220;">
+				<div class="edu-container">
+					<header class="text-center mb-6" style="color: #fff;">
+						<h2>To the Future of Mongolians Living Abroad</h2>
+						<p class="text-secondary" style="max-width: 760px; margin: 0 auto; color: rgba(255,255,255,0.9) !important;">Many Mongolian children grow up in the United States and across the world. They remain proudly Mongolian—and deserve to be well‑educated, confident, and connected to their heritage. We tailor lessons to what students already study (AP, California Middle School Math, IB, and more), boost grades, and build genuine curiosity and confidence.</p>
+					</header>
+					<div class="edu-grid edu-grid-3">
+						<div class="edu-card">
+							<h3>Curriculum‑Aligned</h3>
+							<p class="text-secondary">Personalized lessons mapped to AP, IB, and US state standards so students improve where it matters—classroom performance and exams.</p>
+						</div>
+						<div class="edu-card">
+							<h3>Personal & Flexible</h3>
+							<p class="text-secondary">One‑on‑one instruction, flexible scheduling across time zones, and goals tailored to each learner's needs.</p>
+						</div>
+						<div class="edu-card">
+							<h3>Culture‑Integrated</h3>
+							<p class="text-secondary">We weave Mongolian history and everyday life into problems so learning is meaningful and identity‑affirming.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Testimonials Section (moved here as requested) -->
+            <section class="edu-section">
+                <div class="edu-container">
+                    <header class="text-center mb-6">
+                        <h2>Success Stories from Our Students</h2>
+                        <p class="text-secondary">Real words from Mongolian families learning with us online</p>
+                    </header>
+                    
+                    <div class="edu-grid edu-grid-3">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"My daughter was struggling to understand mathematics, having a hard time with homework, and wasn't confident going to math class. Now she finishes her homework without problems and is getting straight A's."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="8" r="5" fill="var(--color-primary-blue)"/>
+                                        <path d="M20 21c0-2.76-2.24-5-5-5H9c-2.76 0-5 2.24-5 5" stroke="var(--color-primary-blue)" stroke-width="2" fill="none"/>
+                                    </svg>
+                                </div>
+                                <div class="author-info">
+                                    <h4>Misheel's Parent</h4>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"She didn't like mathematics at all, but now the first homework she wants to finish is math. She's always excited to join tutoring sessions—I'm so glad she enjoys math now."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="8" r="5" fill="var(--color-secondary-teal)"/>
+                                        <path d="M20 21c0-2.76-2.24-5-5-5H9c-2.76 0-5 2.24-5 5" stroke="var(--color-secondary-teal)" stroke-width="2" fill="none"/>
+                                    </svg>
+                                </div>
+                                <div class="author-info">
+                                    <h4>Ari's Parent</h4>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>"Our son is very curious. He enjoys tutoring because it puts him ahead in class—he loves going to school already knowing the material and coming back with interesting questions for the tutor."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="8" r="5" fill="var(--color-accent-orange)"/>
+                                        <path d="M20 21c0-2.76-2.24-5-5-5H9c-2.76 0-5 2.24-5 5" stroke="var(--color-accent-orange)" stroke-width="2" fill="none"/>
+                                    </svg>
+                                </div>
+                                <div class="author-info">
+                                    <h4>Subedei's Parent</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
 			<!-- Grade Levels Section -->
 			<section class="edu-section">
@@ -309,76 +715,100 @@
 							</a>
 						</div>
 					</div>
-				</div>
-					</section>
+                </div>
+                    </section>
 
-			<!-- Benefits Section -->
+            			<!-- Benefits Section -->
 			<section class="edu-section" style="background: var(--color-background-light);">
 				<div class="edu-container">
 					<header class="text-center mb-6">
-						<h2>Top benefits of working with a private Math tutor</h2>
+						<h2>Top Benefits of Working With Us</h2>
 					</header>
 					
 					<div class="benefits-list">
-						<div class="benefit-item">
+						<div class="benefit-item" onclick="toggleBenefit(this)">
 							<span class="benefit-number">1.</span>
-							<span class="benefit-text">Learn Math at Any Level</span>
-							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/>
+							<div class="benefit-content">
+								<span class="benefit-text">Learn Math at Any Level, Anywhere</span>
+								<p class="benefit-description">From primary school basics to advanced AP, IB, or high school math—we adapt to your child's current curriculum, no matter where in the world they live.</p>
+							</div>
+							<svg class="benefit-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M7 10l5 5 5-5z" fill="currentColor"/>
 							</svg>
 						</div>
-						<div class="benefit-item">
+						<div class="benefit-item" onclick="toggleBenefit(this)">
 							<span class="benefit-number">2.</span>
-							<span class="benefit-text">World-Class Mathematics Instruction</span>
-							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/>
+							<div class="benefit-content">
+								<span class="benefit-text">Internationally Aligned, Culturally Enriched</span>
+								<p class="benefit-description">We teach to the highest global academic standards while incorporating Mongolian culture into lessons, making learning both rigorous and personally meaningful.</p>
+							</div>
+							<svg class="benefit-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M7 10l5 5 5-5z" fill="currentColor"/>
 							</svg>
 						</div>
-						<div class="benefit-item">
+						<div class="benefit-item" onclick="toggleBenefit(this)">
 							<span class="benefit-number">3.</span>
-							<span class="benefit-text">Better Grades</span>
-							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/>
+							<div class="benefit-content">
+								<span class="benefit-text">Better Grades Across All Curricula</span>
+								<p class="benefit-description">Whether it's AP, IB, California, or other systems, our targeted approach helps students understand the material deeply and perform better on tests and assignments.</p>
+							</div>
+							<svg class="benefit-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M7 10l5 5 5-5z" fill="currentColor"/>
 							</svg>
 						</div>
-						<div class="benefit-item">
+						<div class="benefit-item" onclick="toggleBenefit(this)">
 							<span class="benefit-number">4.</span>
-							<span class="benefit-text">Improved Study Skills</span>
-							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/>
+							<div class="benefit-content">
+								<span class="benefit-text">Improved Study Habits for Global Learners</span>
+								<p class="benefit-description">We guide students to develop strong, adaptable study skills they can use in any school environment, now and in the future.</p>
+							</div>
+							<svg class="benefit-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M7 10l5 5 5-5z" fill="currentColor"/>
 							</svg>
 						</div>
-						<div class="benefit-item">
+						<div class="benefit-item" onclick="toggleBenefit(this)">
 							<span class="benefit-number">5.</span>
-							<span class="benefit-text">Simplify Learning</span>
-							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/>
+							<div class="benefit-content">
+								<span class="benefit-text">Simplifying Complex Math Concepts</span>
+								<p class="benefit-description">We break down challenging topics into clear, easy-to-follow explanations, using examples that connect to both daily life and Mongolian traditions.</p>
+							</div>
+							<svg class="benefit-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M7 10l5 5 5-5z" fill="currentColor"/>
 							</svg>
 						</div>
-						<div class="benefit-item">
+						<div class="benefit-item" onclick="toggleBenefit(this)">
 							<span class="benefit-number">6.</span>
-							<span class="benefit-text">Personal Attention</span>
-							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/>
+							<div class="benefit-content">
+								<span class="benefit-text">Personalized, Flexible Lessons</span>
+								<p class="benefit-description">Every session is one-on-one and tailored to your child's needs, schedule, and pace—no rushed lessons, no one-size-fits-all approach.</p>
+							</div>
+							<svg class="benefit-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M7 10l5 5 5-5z" fill="currentColor"/>
 							</svg>
 						</div>
-						<div class="benefit-item">
+						<div class="benefit-item" onclick="toggleBenefit(this)">
 							<span class="benefit-number">7.</span>
-							<span class="benefit-text">Gain Confidence</span>
-							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/>
+							<div class="benefit-content">
+								<span class="benefit-text">Confidence That Lasts Beyond Math</span>
+								<p class="benefit-description">As students master each concept, they gain not only math skills but also the self-assurance to tackle any academic challenge.</p>
+							</div>
+							<svg class="benefit-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M7 10l5 5 5-5z" fill="currentColor"/>
 							</svg>
 						</div>
-						<div class="benefit-item">
+						<div class="benefit-item" onclick="toggleBenefit(this)">
 							<span class="benefit-number">8.</span>
-							<span class="benefit-text">Build a Foundation for Success</span>
-							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/>
+							<div class="benefit-content">
+								<span class="benefit-text">A Strong Academic and Cultural Foundation</span>
+								<p class="benefit-description">We don't just prepare students for school success—we also help them stay rooted in their Mongolian identity while thriving in an international setting.</p>
+							</div>
+							<svg class="benefit-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M7 10l5 5 5-5z" fill="currentColor"/>
 							</svg>
 						</div>
 					</div>
 				</div>
-					</section>
+			</section>
 
 			<!-- Math Subjects Section -->
 			<section class="edu-section">
@@ -529,232 +959,14 @@
 				</div>
 					</section>
 
-			<!-- Benefits of Working with IMH Section -->
-			<section class="edu-section" style="background: var(--color-background-light);">
-				<div class="edu-container">
-					<header class="text-center mb-6">
-						<h2>The <span style="color: var(--color-primary-blue);">benefits</span> of working with International Math Hub</h2>
-					</header>
-					
-					<div class="edu-grid edu-grid-3">
-						<div class="benefit-card">
-							<h3>Better grades</h3>
-							<p class="text-secondary">It's no secret that tutoring pretty much always helps improve grades in the long term. We also focus on short-term improvements to show quick improvement if college applications are around the corner.</p>
-						</div>
-						<div class="benefit-card">
-							<h3>Improved retention</h3>
-							<p class="text-secondary">We focus on understanding the principles behind the math, so the actual algebra, factorization, you name it, becomes the easy part. This helps promote a much more lasting understanding that underpins all future math subjects.</p>
-						</div>
-						<div class="benefit-card">
-							<h3>Foundation for success</h3>
-							<p class="text-secondary">When a child gets the bigger picture, it's easier to see how it all fits together. That means that they perform better in the near term and are set up for future success since they're starting farther along than their peers.</p>
-						</div>
-					</div>
-				</div>
-			</section>
 
-			<!-- Testimonials Section -->
-			<section class="edu-section">
-				<div class="edu-container">
-					<header class="text-center mb-6">
-						<h2>Success Stories from Our Students</h2>
-						<p class="text-secondary">Hear from students and parents who have transformed their math journey with us</p>
-					</header>
-					
-					<div class="edu-grid edu-grid-3">
-						<div class="testimonial-card">
-							<div class="testimonial-content">
-								<p>"My daughter went from struggling with algebra to getting A's consistently. The personalized approach made all the difference!"</p>
-							</div>
-							<div class="testimonial-author">
-								<div class="author-avatar">
-									<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="12" cy="8" r="5" fill="var(--color-primary-blue)"/>
-										<path d="M20 21c0-2.76-2.24-5-5-5H9c-2.76 0-5 2.24-5 5" stroke="var(--color-primary-blue)" stroke-width="2" fill="none"/>
-									</svg>
-								</div>
-								<div class="author-info">
-									<h4>Sarah Johnson</h4>
-									<p class="text-secondary">Parent of 9th Grade Student</p>
-								</div>
-							</div>
-						</div>
-						
-						<div class="testimonial-card">
-							<div class="testimonial-content">
-								<p>"The tutors at IMH helped me understand calculus concepts that seemed impossible. Now I'm confident in my math skills!"</p>
-							</div>
-							<div class="testimonial-author">
-								<div class="author-avatar">
-									<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="12" cy="8" r="5" fill="var(--color-secondary-teal)"/>
-										<path d="M20 21c0-2.76-2.24-5-5-5H9c-2.76 0-5 2.24-5 5" stroke="var(--color-secondary-teal)" stroke-width="2" fill="none"/>
-									</svg>
-								</div>
-								<div class="author-info">
-									<h4>Michael Chen</h4>
-									<p class="text-secondary">12th Grade Student</p>
-								</div>
-							</div>
-						</div>
-						
-						<div class="testimonial-card">
-							<div class="testimonial-content">
-								<p>"As a parent, I was worried about my son's math struggles. IMH's approach built his confidence and improved his grades significantly."</p>
-							</div>
-							<div class="testimonial-author">
-								<div class="author-avatar">
-									<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="12" cy="8" r="5" fill="var(--color-accent-orange)"/>
-										<path d="M20 21c0-2.76-2.24-5-5-5H9c-2.76 0-5 2.24-5 5" stroke="var(--color-accent-orange)" stroke-width="2" fill="none"/>
-									</svg>
-								</div>
-								<div class="author-info">
-									<h4>David Rodriguez</h4>
-									<p class="text-secondary">Parent of 7th Grade Student</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+
+			<!-- Removed duplicate Testimonials Section -->
 
 			<!-- Instructor Profiles Section -->
-			<section class="edu-section" style="background: var(--color-background-light);">
-				<div class="edu-container">
-					<header class="text-center mb-6">
-						<h2>Meet Our Expert Tutors</h2>
-						<p class="text-secondary">Learn from qualified instructors with advanced degrees and years of teaching experience</p>
-					</header>
-					
-					<div class="edu-grid edu-grid-4">
-						<div class="instructor-card">
-							<div class="instructor-avatar">
-								<svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="12" cy="8" r="5" fill="var(--color-primary-blue)"/>
-									<path d="M20 21c0-2.76-2.24-5-5-5H9c-2.76 0-5 2.24-5 5" stroke="var(--color-primary-blue)" stroke-width="2" fill="none"/>
-								</svg>
-							</div>
-							<h3>Dr. Emily Zhang</h3>
-							<p class="instructor-title">PhD Mathematics, MIT</p>
-							<p class="text-secondary">Specializes in calculus and advanced mathematics. 8+ years of teaching experience.</p>
-						</div>
-						
-						<div class="instructor-card">
-							<div class="instructor-avatar">
-								<svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="12" cy="8" r="5" fill="var(--color-secondary-teal)"/>
-									<path d="M20 21c0-2.76-2.24-5-5-5H9c-2.76 0-5 2.24-5 5" stroke="var(--color-secondary-teal)" stroke-width="2" fill="none"/>
-								</svg>
-							</div>
-							<h3>Prof. James Wilson</h3>
-							<p class="instructor-title">MSc Applied Mathematics, Stanford</p>
-							<p class="text-secondary">Expert in algebra and geometry. Passionate about making math accessible to all students.</p>
-						</div>
-						
-						<div class="instructor-card">
-							<div class="instructor-avatar">
-								<svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="12" cy="8" r="5" fill="var(--color-accent-orange)"/>
-									<path d="M20 21c0-2.76-2.24-5-5-5H9c-2.76 0-5 2.24-5 5" stroke="var(--color-accent-orange)" stroke-width="2" fill="none"/>
-								</svg>
-							</div>
-							<h3>Dr. Maria Garcia</h3>
-							<p class="instructor-title">PhD Statistics, UC Berkeley</p>
-							<p class="text-secondary">Specializes in statistics and probability. Helps students build strong analytical skills.</p>
-						</div>
-						
-						<div class="instructor-card">
-							<div class="instructor-avatar">
-								<svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="12" cy="8" r="5" fill="var(--color-primary-blue)"/>
-									<path d="M20 21c0-2.76-2.24-5-5-5H9c-2.76 0-5 2.24-5 5" stroke="var(--color-primary-blue)" stroke-width="2" fill="none"/>
-								</svg>
-							</div>
-							<h3>Prof. Alex Thompson</h3>
-							<p class="instructor-title">MSc Mathematics Education, Harvard</p>
-							<p class="text-secondary">Expert in elementary and middle school math. Creates engaging learning experiences.</p>
-						</div>
-					</div>
-				</div>
-			</section>
+			<!-- Removed Meet Our Expert Tutors section as requested -->
 
-			<!-- Pricing Plans Section -->
-			<section class="edu-section">
-				<div class="edu-container">
-					<header class="text-center mb-6">
-						<h2>Transparent Pricing Plans</h2>
-						<p class="text-secondary">Choose the plan that best fits your learning needs and budget</p>
-					</header>
-					
-					<div class="edu-grid edu-grid-3">
-						<div class="pricing-card">
-							<div class="pricing-header">
-								<h3>Starter</h3>
-								<div class="price">
-									<span class="currency">$</span>
-									<span class="amount">25</span>
-									<span class="period">/hour</span>
-								</div>
-							</div>
-							<ul class="pricing-features">
-								<li>1-on-1 tutoring sessions</li>
-								<li>Flexible scheduling</li>
-								<li>Homework help</li>
-								<li>Progress tracking</li>
-							</ul>
-							<div class="pricing-action">
-								<a href="contact.html" class="btn-secondary">Get Started</a>
-							</div>
-						</div>
-						
-						<div class="pricing-card featured">
-							<div class="pricing-header">
-								<h3>Popular</h3>
-								<div class="price">
-									<span class="currency">$</span>
-									<span class="amount">20</span>
-									<span class="period">/hour</span>
-								</div>
-								<div class="discount">Save 20%</div>
-							</div>
-							<ul class="pricing-features">
-								<li>Everything in Starter</li>
-								<li>Weekly sessions (4/month)</li>
-								<li>Study materials included</li>
-								<li>Practice tests</li>
-								<li>Parent progress reports</li>
-							</ul>
-							<div class="pricing-action">
-								<a href="contact.html" class="btn-primary">Choose Popular</a>
-							</div>
-						</div>
-						
-						<div class="pricing-card">
-							<div class="pricing-header">
-								<h3>Premium</h3>
-								<div class="price">
-									<span class="currency">$</span>
-									<span class="amount">18</span>
-									<span class="period">/hour</span>
-								</div>
-								<div class="discount">Save 28%</div>
-							</div>
-							<ul class="pricing-features">
-								<li>Everything in Popular</li>
-								<li>Daily sessions (20/month)</li>
-								<li>Custom learning plan</li>
-								<li>Exam preparation</li>
-								<li>24/7 support</li>
-								<li>Guaranteed improvement</li>
-							</ul>
-							<div class="pricing-action">
-								<a href="contact.html" class="btn-secondary">Choose Premium</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+			<!-- Removed Pricing Plans Section as requested -->
 
 			<!-- FAQ Section -->
 			<section class="edu-section" style="background: var(--color-background-light);">
@@ -791,13 +1003,13 @@
 						
 						<div class="faq-item">
 							<div class="faq-question" onclick="toggleFAQ(this)">
-								<h3>Do you offer online tutoring?</h3>
+								<h3>How do you incorporate Mongolian culture into lessons?</h3>
 								<svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M7 10l5 5 5-5z" fill="currentColor"/>
 								</svg>
 							</div>
 							<div class="faq-answer">
-								<p>Yes, we offer both online and in-person tutoring sessions. Our online platform provides the same high-quality instruction with the convenience of learning from anywhere.</p>
+								<p>We weave Mongolian culture into math problems and examples—like using ger geometry for circle problems, shagai (ankle bones) for probability, or herding scenarios for algebra. This makes learning more meaningful and helps students stay connected to their heritage.</p>
 							</div>
 						</div>
 						
@@ -810,6 +1022,18 @@
 							</div>
 							<div class="faq-answer">
 								<p>We cover all mathematics subjects from elementary school through college level, including algebra, geometry, calculus, statistics, trigonometry, and more specialized topics.</p>
+							</div>
+						</div>
+						
+						<div class="faq-item">
+							<div class="faq-question" onclick="toggleFAQ(this)">
+								<h3>Do you offer in-person tutoring?</h3>
+								<svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M7 10l5 5 5-5z" fill="currentColor"/>
+								</svg>
+							</div>
+							<div class="faq-answer">
+								<p>We do not offer in-person tutoring for now. All our sessions are conducted online, which allows us to serve Mongolian students worldwide with flexible scheduling across different time zones.</p>
 							</div>
 						</div>
 						
@@ -880,6 +1104,30 @@
 				</div>
 			</section>
 
+			<!-- Culturally Relevant Problem Examples -->
+			<section class="edu-section">
+				<div class="edu-container">
+					<header class="text-center mb-6">
+						<h2>Math, Rooted in Mongolian Life</h2>
+						<p class="text-secondary" style="max-width: 760px; margin: 0 auto;">We enrich core skills with examples drawn from Mongolian culture so concepts feel relevant and memorable.</p>
+					</header>
+					<div class="edu-grid edu-grid-3">
+						<div class="edu-card">
+							<h3>Geometry: The Ger</h3>
+							<p class="text-secondary">A traditional ger has radius 5 m, and the door is 1 m wide. Approximate the busluur (crossbeam) length across the doorway. Students apply circle geometry and chords in context.</p>
+						</div>
+						<div class="edu-card">
+							<h3>Probability: Shagai</h3>
+							<p class="text-secondary">If four ankle bones are tossed, what is the probability all four show distinct animals? Learners analyze outcomes and independence using a familiar game.</p>
+						</div>
+						<div class="edu-card">
+							<h3>Algebra: Herd Planning</h3>
+							<p class="text-secondary">A herder increases goats by 12% and sheep by 8% year‑over‑year. Build a model to project totals and feed usage—connecting linear and exponential reasoning.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
 			<!-- About Section -->
 			<section id="about" class="fullscreen-section">
 				<div class="section-highlight"></div>
@@ -888,8 +1136,7 @@
 						<h2 class="section-title">About International Math Hub</h2>
 					</header>
 					<p>
-						We are a platform dedicated to advancing mathematics education and collaboration. Our mission is to provide accessible resources for Mongolia's General Entrance Exam and create a global community of math enthusiasts.
-						<a href="about.html" class="highlight-link">Learn more</a>.
+						We serve Mongolian students worldwide with rigorous, caring instruction. Our tutors adapt lessons to the curriculum students already follow—AP, California middle school standards, IB, or other international programs—so they earn better grades, deepen curiosity, and build confidence. We also incorporate Mongolian culture into examples and projects to help students stay connected to their roots wherever they live. <a href="about.html" class="highlight-link">Learn more</a>.
 					</p>
 				</div>
 			</section>
@@ -933,7 +1180,7 @@
 						<h4>Services</h4>
 						<ul>
 							<li><a href="tutoring.html">Online Tutoring</a></li>
-							<li><a href="resources.html">Study Resources</a></li>
+							                            <li><a href="exam-prep.html">Learning Resources</a></li>
 							<li><a href="quizz.html">Practice Tests</a></li>
 							<li><a href="vids.html">Video Tutorials</a></li>
 						</ul>
@@ -1109,6 +1356,21 @@
 				// Open clicked item if it wasn't active
 				if (!isActive) {
 					faqItem.classList.add('active');
+				}
+			}
+			
+			// Benefits Toggle Functionality
+			function toggleBenefit(element) {
+				const isExpanded = element.classList.contains('expanded');
+				
+				// Close all other benefits
+				document.querySelectorAll('.benefit-item').forEach(item => {
+					item.classList.remove('expanded');
+				});
+				
+				// Toggle current benefit
+				if (!isExpanded) {
+					element.classList.add('expanded');
 				}
 			}
 

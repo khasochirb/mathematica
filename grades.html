@@ -1,0 +1,912 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Grades - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="Mathematics education resources tailored for all grade levels from elementary school to college and adult learning." />
+    <meta name="author" content="IntlMathHub Team" />
+    <link rel="stylesheet" href="assets/css/first.css" />
+    <link rel="stylesheet" href="assets/css/improvements.css" />
+    <link rel="stylesheet" href="assets/css/educational-design-system.css" />
+    <link rel="stylesheet" href="assets/css/educational-overrides.css" />
+    <link rel="stylesheet" href="assets/css/hero-section.css" />
+    <link rel="stylesheet" href="assets/css/dropdown-nav.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- Additional styles to ensure the mobile menu toggle is hidden -->
+    <style>
+        /* Hide mobile menu toggle button with highest priority */
+        #titleBar, #navPanel {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        
+        /* Prevent any transforms from mobile menu */
+        body.navPanel-visible #page-wrapper,
+        body.navPanel-visible #titleBar {
+            transform: none !important;
+        }
+        
+        /* Ensure navigation is always visible */
+        #nav {
+            display: block !important;
+        }
+    </style>
+    
+    <!-- Custom styles for Grades page -->
+    <style>
+        .grades-hero {
+            background: linear-gradient(135deg, #0891b2 0%, #1e40af 100%);
+            color: white;
+            padding: 6em 0 4em;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .grades-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .grades-hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 0.5em;
+            position: relative;
+            z-index: 2;
+            color: white !important;
+            text-align: center !important;
+        }
+        
+        .grades-hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 2em;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+            color: white !important;
+            text-align: center !important;
+        }
+        
+        /* Additional CSS rules to ensure white color and centering for hero section */
+        .grades-hero * {
+            color: white !important;
+            text-align: center !important;
+        }
+        
+        .grades-hero h1, .grades-hero h2, .grades-hero h3, .grades-hero h4, .grades-hero h5, .grades-hero h6 {
+            color: white !important;
+            text-align: center !important;
+        }
+        
+        .grades-hero p, .grades-hero span, .grades-hero div {
+            color: white !important;
+            text-align: center !important;
+        }
+        
+        body .grades-hero * {
+            color: white !important;
+            text-align: center !important;
+        }
+        
+        html body .grades-hero * {
+            color: white !important;
+            text-align: center !important;
+        }
+        
+        .grades-hero h1[style], .grades-hero p[style] {
+            color: white !important;
+            text-align: center !important;
+        }
+        
+        .grades-hero *:not(.icon):not(.cta-button) {
+            color: white !important;
+        }
+        
+        .grades-hero {
+            isolation: isolate;
+        }
+        
+        .grades-hero .edu-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .grade-levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5em;
+            margin: 4em 0;
+        }
+        
+        .grade-level-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3em;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e5e7eb;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .grade-level-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #0891b2, #1e40af);
+        }
+        
+        .grade-level-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .grade-level-card .icon {
+            font-size: 4em;
+            color: #0891b2;
+            margin-bottom: 1.5em;
+            text-align: center;
+        }
+        
+        .grade-level-card h3 {
+            color: #1e40af;
+            font-size: 2.2em;
+            margin-bottom: 1em;
+            text-align: center;
+        }
+        
+        .grade-level-card .age-range {
+            background: linear-gradient(135deg, #0891b2, #1e40af);
+            color: white;
+            padding: 0.5em 1.5em;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1.5em;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .grade-level-card .description {
+            color: #6b7280;
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 2em;
+            text-align: center;
+        }
+        
+        .grade-level-card .topics {
+            background: #f8fafc;
+            padding: 1.5em;
+            border-radius: 15px;
+            margin-bottom: 2em;
+        }
+        
+        .grade-level-card .topics h4 {
+            color: #1e40af;
+            margin-bottom: 1em;
+            font-size: 1.2em;
+        }
+        
+        .grade-level-card .topics ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .grade-level-card .topics li {
+            color: #6b7280;
+            padding: 0.5em 0;
+            border-bottom: 1px solid #e5e7eb;
+            position: relative;
+            padding-left: 1.5em;
+        }
+        
+        .grade-level-card .topics li:last-child {
+            border-bottom: none;
+        }
+        
+        .grade-level-card .topics li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #0891b2;
+            font-weight: bold;
+        }
+        
+        .grade-level-card .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #0891b2 0%, #1e40af 100%);
+            color: white !important;
+            padding: 1.2em 2.5em;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 1.1em;
+        }
+        
+        .grade-level-card .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(8, 145, 178, 0.3);
+        }
+        
+        /* Additional CSS rules to ensure white button text */
+        .grade-level-card .cta-button, .grade-level-card .cta-button * {
+            color: white !important;
+        }
+        
+        body .grade-level-card .cta-button {
+            color: white !important;
+        }
+        
+        html body .grade-level-card .cta-button {
+            color: white !important;
+        }
+        
+        /* Ensure proper text colors for all grade level card elements */
+        .grade-level-card h3 {
+            color: #1e40af !important;
+            font-size: 2.2em;
+            margin-bottom: 1em;
+            text-align: center;
+        }
+        
+        .grade-level-card .age-range {
+            background: linear-gradient(135deg, #0891b2, #1e40af);
+            color: white !important;
+            padding: 0.5em 1.5em;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1.5em;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .grade-level-card .description {
+            color: #6b7280 !important;
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 2em;
+            text-align: center;
+        }
+        
+        .grade-level-card .topics h4 {
+            color: #1e40af !important;
+            margin-bottom: 1em;
+            font-size: 1.2em;
+        }
+        
+        .grade-level-card .topics li {
+            color: #6b7280 !important;
+            padding: 0.5em 0;
+            border-bottom: 1px solid #e5e7eb;
+            position: relative;
+            padding-left: 1.5em;
+        }
+        
+        .grade-level-card .icon {
+            font-size: 4em;
+            color: #0891b2 !important;
+            margin-bottom: 1.5em;
+            text-align: center;
+        }
+        
+        /* Maximum specificity to override any conflicting styles */
+        body .grade-level-card h3,
+        body .grade-level-card .description,
+        body .grade-level-card .topics h4,
+        body .grade-level-card .topics li,
+        body .grade-level-card .icon {
+            color: inherit !important;
+        }
+        
+        html body .grade-level-card h3,
+        html body .grade-level-card .description,
+        html body .grade-level-card .topics h4,
+        html body .grade-level-card .topics li,
+        html body .grade-level-card .icon {
+            color: inherit !important;
+        }
+        
+        .learning-path-section {
+            background: transparent;
+            padding: 5em 0;
+            margin: 5em 0;
+        }
+        
+        .learning-path-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2em;
+        }
+        
+        .learning-path-header {
+            text-align: center;
+            margin-bottom: 4em;
+        }
+        
+        .learning-path-header h2 {
+            color: white !important;
+            font-size: 2.5em;
+            margin-bottom: 1em;
+        }
+        
+        .learning-path-header p {
+            color: #e5e7eb !important;
+            font-size: 1.2em;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .path-timeline {
+            position: relative;
+            padding: 2em 0;
+        }
+        
+        .path-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #0891b2, #1e40af);
+            transform: translateX(-50%);
+        }
+        
+        .path-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3em;
+            position: relative;
+        }
+        
+        .path-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .path-step .step-content {
+            flex: 1;
+            background: white;
+            padding: 2em;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .path-step:nth-child(odd) .step-content {
+            margin-right: 3em;
+        }
+        
+        .path-step:nth-child(even) .step-content {
+            margin-left: 3em;
+        }
+        
+        .path-step .step-marker {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0891b2, #1e40af);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .path-step .step-content h4 {
+            color: #1e40af !important;
+            font-size: 1.4em;
+            margin-bottom: 1em;
+        }
+        
+        .path-step .step-content p {
+            color: #374151 !important;
+            line-height: 1.6;
+        }
+        
+        /* Additional CSS rules to ensure proper text colors */
+        .path-step .step-content h4 {
+            color: #1e40af !important;
+        }
+        
+        .path-step .step-content p {
+            color: #374151 !important;
+        }
+        
+        body .path-step .step-content h4 {
+            color: #1e40af !important;
+        }
+        
+        body .path-step .step-content p {
+            color: #374151 !important;
+        }
+        
+        html body .path-step .step-content h4 {
+            color: #1e40af !important;
+        }
+        
+        html body .path-step .step-content p {
+            color: #374151 !important;
+        }
+        
+
+        
+        @media (max-width: 768px) {
+            .grades-hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .grade-levels-grid {
+                grid-template-columns: 1fr;
+                gap: 2em;
+            }
+            
+            .grade-level-card {
+                padding: 2em;
+            }
+            
+            .path-timeline::before {
+                left: 30px;
+            }
+            
+            .path-step {
+                flex-direction: column !important;
+                align-items: flex-start;
+            }
+            
+            .path-step .step-content {
+                margin: 1em 0 0 0 !important;
+                width: 100%;
+            }
+            
+            .path-step .step-marker {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+<body class="is-preload grades-page">
+    <div id="page-wrapper">
+
+        <!-- Header -->
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between;">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html"><img src="/images/logo.png" alt="International Math Hub Logo" style="max-height: 60px;"></a>
+                </div>
+
+                <!-- Main Navigation -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        
+                        <!-- Subjects Dropdown -->
+                        <li class="has-dropdown">
+                            <a href="features.html">Subjects</a>
+                            <div class="dropdown subjects-dropdown">
+                                <div class="subjects-container">
+                                    <div class="subjects-grid">
+                                    <a href="topics/algebra/linear-and-quadratic-equations.html" class="subject-item">
+                                        <i class="fas fa-calculator"></i>
+                                        <span>Algebra</span>
+                                    </a>
+                                    <a href="topics/geometry/euclidean-geometry.html" class="subject-item">
+                                        <i class="fas fa-shapes"></i>
+                                        <span>Geometry</span>
+                                    </a>
+                                    <a href="topics/calculus/differentiation.html" class="subject-item">
+                                        <i class="fas fa-chart-line"></i>
+                                        <span>Calculus</span>
+                                    </a>
+                                    <a href="topics/trigonometry/trigonometric-identities-and-formulas.html" class="subject-item">
+                                        <i class="fas fa-wave-square"></i>
+                                        <span>Trigonometry</span>
+                                    </a>
+                                    <a href="topics/statistics/descriptive-statistics.html" class="subject-item">
+                                        <i class="fas fa-chart-bar"></i>
+                                        <span>Statistics</span>
+                                    </a>
+                                    <a href="topics/complex-numbers/basic-operations.html" class="subject-item">
+                                        <i class="fas fa-infinity"></i>
+                                        <span>Complex Numbers</span>
+                                    </a>
+                                    <a href="topics/matrices-and-determinants/matrix-operations.html" class="subject-item">
+                                        <i class="fas fa-th"></i>
+                                        <span>Matrices</span>
+                                    </a>
+                                    <a href="topics/number-theory/divisibility-and-prime-numbers.html" class="subject-item">
+                                        <i class="fas fa-hashtag"></i>
+                                        <span>Number Theory</span>
+                                    </a>
+                                    <a href="topics/probability/basic-probability-rules.html" class="subject-item">
+                                        <i class="fas fa-dice"></i>
+                                        <span>Probability</span>
+                                    </a>
+                                    <a href="topics/sequences-and-series/arithmetic-and-geometric-sequences.html" class="subject-item">
+                                        <i class="fas fa-list-ol"></i>
+                                        <span>Sequences & Series</span>
+                                    </a>
+                                    <a href="topics/graph-theory/graph-representation.html" class="subject-item">
+                                        <i class="fas fa-project-diagram"></i>
+                                        <span>Graph Theory</span>
+                                    </a>
+                                    <a href="topics/combinatorics/counting-principles.html" class="subject-item">
+                                        <i class="fas fa-cubes"></i>
+                                        <span>Combinatorics</span>
+                                    </a>
+                                    <a href="topics/inequalities/am-gm-inequality.html" class="subject-item">
+                                        <i class="fas fa-not-equal"></i>
+                                        <span>Inequalities</span>
+                                    </a>
+                                    <a href="topics/logic-and-set-theory/basic-set-operations.html" class="subject-item">
+                                        <i class="fas fa-circle-notch"></i>
+                                        <span>Logic & Set Theory</span>
+                                    </a>
+                                    <a href="topics/vectors-and-coordinate-geometry/vector-operations.html" class="subject-item">
+                                        <i class="fas fa-arrows-alt"></i>
+                                        <span>Vectors</span>
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Exam Prep Dropdown -->
+                        <li class="has-dropdown">
+                            <a href="exam-prep.html">Exam Prep</a>
+                            <div class="dropdown">
+                                <div class="dropdown-grid">
+                                    <a href="quizz.html" class="dropdown-item">
+                                        <i class="fas fa-clipboard-check"></i>
+                                        <span>Practice Tests</span>
+                                    </a>
+                                    <a href="exam-prep.html#solutions" class="dropdown-item">
+                                        <i class="fas fa-lightbulb"></i>
+                                        <span>Test Solutions</span>
+                                    </a>
+                                    <a href="exam-prep.html#sat" class="dropdown-item">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <span>SAT Math</span>
+                                    </a>
+                                    <a href="tutoring.html" class="dropdown-item">
+                                        <i class="fas fa-user-graduate"></i>
+                                        <span>1-on-1 Tutoring</span>
+                                    </a>
+                                    <a href="exam-prep.html#olympiad" class="dropdown-item">
+                                        <i class="fas fa-trophy"></i>
+                                        <span>Math Olympiad</span>
+                                    </a>
+                                    <a href="exam-prep.html#ap" class="dropdown-item">
+                                        <i class="fas fa-medal"></i>
+                                        <span>AP Calculus</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Grades Dropdown -->
+                        <li class="has-dropdown current">
+                            <a href="grades.html">Grades</a>
+                            <div class="dropdown">
+                                <div class="dropdown-grid">
+                                    <a href="grades.html#elementary" class="dropdown-item">
+                                        <i class="fas fa-child"></i>
+                                        <span>Elementary School</span>
+                                    </a>
+                                    <a href="grades.html#middle" class="dropdown-item">
+                                        <i class="fas fa-school"></i>
+                                        <span>Middle School</span>
+                                    </a>
+                                    <a href="grades.html#high" class="dropdown-item">
+                                        <i class="fas fa-university"></i>
+                                        <span>High School</span>
+                                    </a>
+                                    <a href="grades.html#college" class="dropdown-item">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <span>College</span>
+                                    </a>
+                                    <a href="grades.html#adult" class="dropdown-item">
+                                        <i class="fas fa-user-tie"></i>
+                                        <span>Adult Learning</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Company Dropdown -->
+                        <li class="has-dropdown">
+                            <a href="company.html">Company</a>
+                            <div class="dropdown">
+                                <div class="dropdown-grid">
+                                    <a href="about.html" class="dropdown-item">
+                                        <i class="fas fa-info-circle"></i>
+                                        <span>About</span>
+                                    </a>
+                                    <a href="company.html#careers" class="dropdown-item">
+                                        <i class="fas fa-briefcase"></i>
+                                        <span>Careers</span>
+                                    </a>
+                                    <a href="contact.html" class="dropdown-item">
+                                        <i class="fas fa-envelope"></i>
+                                        <span>Contact</span>
+                                    </a>
+                                    <a href="company.html#team" class="dropdown-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>Our Team</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Blog Button -->
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Call-to-Action Buttons -->
+                <div class="nav-cta-container">
+                    <a href="tel:+14153367764" class="nav-phone">
+                        <i class="fas fa-phone"></i>
+                        +1 (415) 336-7764
+                    </a>
+                    <a href="tutoring.html" class="nav-cta-btn">Find Your Tutor</a>
+                    <a href="contact.html" class="nav-login">Log In</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hero Section -->
+        <section class="grades-hero">
+            <div class="edu-container">
+                <h1 style="color: white !important; text-align: center !important; font-size: 3.5em; margin-bottom: 0.5em;">Mathematics for Every Age</h1>
+                <p style="color: white !important; text-align: center !important; font-size: 1.3em; max-width: 800px; margin: 0 auto 2em; line-height: 1.6;">Tailored mathematics education designed for students at every stage of their learning journey. From foundational concepts in elementary school to advanced topics in college, we provide age-appropriate resources that build confidence and mastery.</p>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+                <!-- Grade Levels Grid -->
+                <div class="grade-levels-grid">
+                    <div class="grade-level-card">
+                        <div class="icon" style="color: #0891b2 !important;">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <h3 style="color: #1e40af !important;">Elementary School</h3>
+                        <div class="age-range" style="color: white !important;">Ages 5-11</div>
+                        <p class="description" style="color: #6b7280 !important;">Building strong mathematical foundations through interactive learning, visual aids, and hands-on activities. We focus on developing number sense, basic operations, and problem-solving skills in a fun and engaging way.</p>
+                        <div class="topics">
+                            <h4 style="color: #1e40af !important;">Key Topics Covered:</h4>
+                            <ul>
+                                <li style="color: #6b7280 !important;">Number recognition and counting</li>
+                                <li style="color: #6b7280 !important;">Basic addition, subtraction, multiplication, division</li>
+                                <li style="color: #6b7280 !important;">Fractions and decimals</li>
+                                <li style="color: #6b7280 !important;">Geometry and spatial reasoning</li>
+                                <li style="color: #6b7280 !important;">Patterns and sequences</li>
+                                <li style="color: #6b7280 !important;">Word problems and critical thinking</li>
+                            </ul>
+                        </div>
+                        <a href="exam-prep.html#elementary" class="cta-button" style="color: white !important;">Explore Elementary Resources</a>
+                    </div>
+
+                    <div class="grade-level-card">
+                        <div class="icon" style="color: #0891b2 !important;">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <h3 style="color: #1e40af !important;">Middle School</h3>
+                        <div class="age-range" style="color: white !important;">Ages 11-14</div>
+                        <p class="description" style="color: #6b7280 !important;">Transitioning from concrete to abstract mathematical thinking. Students develop algebraic reasoning, geometric concepts, and mathematical modeling skills while building confidence in problem-solving.</p>
+                        <div class="topics">
+                            <h4 style="color: #1e40af !important;">Key Topics Covered:</h4>
+                            <ul>
+                                <li style="color: #6b7280 !important;">Pre-algebra and basic algebra</li>
+                                <li style="color: #6b7280 !important;">Ratios, proportions, and percentages</li>
+                                <li style="color: #6b7280 !important;">Geometry and measurement</li>
+                                <li style="color: #6b7280 !important;">Statistics and probability</li>
+                                <li style="color: #6b7280 !important;">Number theory and patterns</li>
+                                <li style="color: #6b7280 !important;">Mathematical reasoning and proof</li>
+                            </ul>
+                        </div>
+                        <a href="exam-prep.html#middle" class="cta-button" style="color: white !important;">Explore Middle School Resources</a>
+                    </div>
+
+                    <div class="grade-level-card">
+                        <div class="icon" style="color: #0891b2 !important;">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h3 style="color: #1e40af !important;">High School</h3>
+                        <div class="age-range" style="color: white !important;">Ages 14-18</div>
+                        <p class="description" style="color: #6b7280 !important;">Advanced mathematical concepts preparing students for college and beyond. Focus on algebraic fluency, geometric reasoning, and mathematical modeling with real-world applications.</p>
+                        <div class="topics">
+                            <h4 style="color: #1e40af !important;">Key Topics Covered:</h4>
+                            <ul>
+                                <li style="color: #6b7280 !important;">Algebra I, II, and advanced algebra</li>
+                                <li style="color: #6b7280 !important;">Geometry and trigonometry</li>
+                                <li style="color: #6b7280 !important;">Pre-calculus and calculus foundations</li>
+                                <li style="color: #6b7280 !important;">Statistics and data analysis</li>
+                                <li style="color: #6b7280 !important;">Mathematical modeling</li>
+                                <li style="color: #6b7280 !important;">College entrance exam preparation</li>
+                            </ul>
+                        </div>
+                        <a href="exam-prep.html#high" class="cta-button" style="color: white !important;">Explore High School Resources</a>
+                    </div>
+
+                    <div class="grade-level-card">
+                        <div class="icon" style="color: #0891b2 !important;">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 style="color: #1e40af !important;">College</h3>
+                        <div class="age-range" style="color: white !important;">Ages 18+</div>
+                        <p class="description" style="color: #6b7280 !important;">Higher-level mathematics for university students pursuing STEM fields. Advanced topics in calculus, linear algebra, discrete mathematics, and mathematical analysis with rigorous theoretical foundations.</p>
+                        <div class="topics">
+                            <h4 style="color: #1e40af !important;">Key Topics Covered:</h4>
+                            <ul>
+                                <li style="color: #6b7280 !important;">Calculus (single and multivariable)</li>
+                                <li style="color: #6b7280 !important;">Linear algebra and matrices</li>
+                                <li style="color: #6b7280 !important;">Discrete mathematics</li>
+                                <li style="color: #6b7280 !important;">Differential equations</li>
+                                <li style="color: #6b7280 !important;">Real analysis and abstract algebra</li>
+                                <li style="color: #6b7280 !important;">Mathematical proof and logic</li>
+                            </ul>
+                        </div>
+                        <a href="exam-prep.html#college" class="cta-button" style="color: white !important;">Explore College Resources</a>
+                    </div>
+
+                    <div class="grade-level-card">
+                        <div class="icon" style="color: #0891b2 !important;">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3 style="color: #1e40af !important;">Adult Learning</h3>
+                        <div class="age-range" style="color: white !important;">All Ages</div>
+                        <p class="description" style="color: #6b7280 !important;">Mathematics education for adults seeking to refresh skills, change careers, or pursue personal interests. Flexible learning options designed for busy schedules and diverse learning needs.</p>
+                        <div class="topics">
+                            <h4 style="color: #1e40af !important;">Key Topics Covered:</h4>
+                            <ul>
+                                <li style="color: #6b7280 !important;">Basic math refresher courses</li>
+                                <li style="color: #6b7280 !important;">Business mathematics</li>
+                                <li style="color: #6b7280 !important;">Financial literacy and math</li>
+                                <li style="color: #6b7280 !important;">Computer science mathematics</li>
+                                <li style="color: #6b7280 !important;">Mathematical thinking and logic</li>
+                                <li style="color: #6b7280 !important;">Personal interest topics</li>
+                            </ul>
+                        </div>
+                        <a href="exam-prep.html#adult" class="cta-button" style="color: white !important;">Explore Adult Learning Resources</a>
+                    </div>
+                </div>
+
+                <!-- Learning Path Section -->
+                <section class="learning-path-section">
+                    <div class="learning-path-container">
+                        <div class="learning-path-header">
+                            <h2 style="color: white !important;">Your Learning Journey</h2>
+                            <p style="color: #e5e7eb !important;">Mathematics is a cumulative subject where each concept builds upon previous knowledge. Our structured learning paths ensure students develop strong foundations and progress systematically through increasingly complex topics.</p>
+                        </div>
+                        
+                        <div class="path-timeline">
+                            <div class="path-step">
+                                <div class="step-content">
+                                    <h4 style="color: #1e40af !important;">Foundation Building (Elementary)</h4>
+                                    <p style="color: #374151 !important;">Establish core number sense, basic operations, and mathematical thinking patterns through hands-on learning and visual representations.</p>
+                                </div>
+                                <div class="step-marker">1</div>
+                            </div>
+                            
+                            <div class="path-step">
+                                <div class="step-content">
+                                    <h4 style="color: #1e40af !important;">Concept Development (Middle School)</h4>
+                                    <p style="color: #374151 !important;">Transition to abstract thinking, develop algebraic reasoning, and explore geometric concepts while building problem-solving confidence.</p>
+                                </div>
+                                <div class="step-marker">2</div>
+                            </div>
+                            
+                            <div class="path-step">
+                                <div class="step-content">
+                                    <h4 style="color: #1e40af !important;">Advanced Applications (High School)</h4>
+                                    <p style="color: #374151 !important;">Master complex mathematical concepts, develop modeling skills, and prepare for college-level mathematics and standardized tests.</p>
+                                </div>
+                                <div class="step-marker">3</div>
+                            </div>
+                            
+                            <div class="path-step">
+                                <div class="step-content">
+                                    <h4 style="color: #1e40af !important;">Specialized Study (College)</h4>
+                                    <p style="color: #374151 !important;">Explore advanced mathematical theory, develop rigorous proof skills, and specialize in areas relevant to your academic and career goals.</p>
+                                </div>
+                                <div class="step-marker">4</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <section id="footer">
+            <div class="edu-container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>International Math Hub</h3>
+                        <p>Empowering Mongolian students with world-class mathematics education.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="features.html">Subjects</a></li>
+                            <li><a href="exam-prep.html">Exam Prep</a></li>
+                            <li><a href="tutoring.html">Tutoring</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="vids.html">Videos</a></li>
+                            <li><a href="exam-prep.html">Learning Resources</a></li>
+                            <li><a href="quizz.html">Practice Tests</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Contact</h4>
+                        <p><i class="fas fa-phone"></i> +1 (415) 336-7764</p>
+                        <p><i class="fas fa-envelope"></i> imathhub@gmail.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> San Francisco, CA</p>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2024 International Math Hub. All rights reserved.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

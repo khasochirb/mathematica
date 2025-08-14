@@ -8,26 +8,19 @@
 		<link rel="stylesheet" href="assets/css/improvements.css" />
 		<link rel="stylesheet" href="assets/css/educational-design-system.css" />
 		<link rel="stylesheet" href="assets/css/educational-overrides.css" />
-    <!-- Additional styles to ensure the mobile menu toggle is hidden -->
+		<link rel="stylesheet" href="assets/css/dropdown-nav.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- Page-specific styles -->
     <style>
-        /* Hide mobile menu toggle button with highest priority */
-        #titleBar, #navPanel {
-            display: none !important;
-            visibility: hidden !important;
-            opacity: 0 !important;
-            pointer-events: none !important;
-        }
-        
-        /* Prevent any transforms from mobile menu */
-        body.navPanel-visible #page-wrapper,
-        body.navPanel-visible #titleBar {
-            transform: none !important;
-        }
-        
-        /* Ensure navigation is always visible */
-        #nav {
-            display: block !important;
-        }
+        /* Hide legacy mobile components only */
+        #titleBar, #navPanel { display: none !important; }
+
+        /* Hero */
+        .tutoring-hero { position: relative; background: linear-gradient(135deg,#1E40AF,#3B82F6); color:#fff; padding:4rem 0; text-align:center; overflow:hidden; }
+        .tutoring-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.06) 28%, rgba(255,255,255,0) 60%); }
+        .tutoring-hero .edu-container { position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+        .tutoring-hero h1 { color:#fff !important; font-size:clamp(2rem,5vw,3rem); margin:0 0 .5rem 0; }
+        .tutoring-hero p { color:#e5e7eb !important; max-width:800px; margin:0 auto; }
         .tutoring-info {
             margin-bottom: 2em;
         }
@@ -37,57 +30,212 @@
             gap: 1.5em;
             margin-bottom: 2em;
         }
-        .benefit-item {
-            flex: 1 1 300px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 1.5em;
-            border-radius: 6px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .benefit-item h4 {
-            color: #3d4449;
-            margin-bottom: 0.7em;
-            border-bottom: 2px solid #4acaa8;
-            padding-bottom: 0.5em;
-        }
-        .calendly-container {
-            background: white;
-            border-radius: 8px;
-            padding: 2em;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
+        .benefit-item { flex:1 1 300px; background:#fff; padding:1.5em; border-radius:12px; border:1px solid #e5e7eb; box-shadow:0 10px 25px rgba(0,0,0,0.06); }
+        .benefit-item h4 { color:#1e40af; margin-bottom:0.7em; }
+        .calendly-container { background:#fff; border-radius:12px; padding:2em; box-shadow:0 10px 25px rgba(0,0,0,0.06); border:1px solid #e5e7eb; }
     </style>
 </head>
 <body class="is-preload">
     <div id="page-wrapper">
         <!-- Header -->
-        <section id="header">
-            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 0 5%;">
+                <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between;">
                 <!-- Logo -->
                 <div class="logo">
-                    <a href="index.html"><img src="/images/logo.png" alt="International Math Hub Logo" style="max-height: 120px;"></a>
+                    <a href="index.html"><img src="/images/logo.png" alt="International Math Hub Logo" style="max-height: 60px;"></a>
                 </div>
 
-                <!-- Nav -->
+                <!-- Main Navigation -->
                 <nav id="nav">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="features.html">Mathematics Roadmap</a></li>
-                        <li><a href="resources.html">Resources</a></li>
+                        <li class=""><a href="index.html">Home</a></li>
+                        
+                        <!-- Subjects Dropdown -->
+                        <li class="has-dropdown">
+                            <a href="features.html">Subjects</a>
+                            <div class="dropdown subjects-dropdown">
+                                <div class="subjects-container">
+                                    <div class="subjects-grid">
+                                    <a href="topics/algebra/linear-and-quadratic-equations.html" class="subject-item">
+                                        <i class="fas fa-calculator"></i>
+                                        <span>Algebra</span>
+                                    </a>
+                                    <a href="topics/geometry/euclidean-geometry.html" class="subject-item">
+                                        <i class="fas fa-shapes"></i>
+                                        <span>Geometry</span>
+                                    </a>
+                                    <a href="topics/calculus/differentiation.html" class="subject-item">
+                                        <i class="fas fa-chart-line"></i>
+                                        <span>Calculus</span>
+                                    </a>
+                                    <a href="topics/trigonometry/trigonometric-identities-and-formulas.html" class="subject-item">
+                                        <i class="fas fa-wave-square"></i>
+                                        <span>Trigonometry</span>
+                                    </a>
+                                    <a href="topics/statistics/descriptive-statistics.html" class="subject-item">
+                                        <i class="fas fa-chart-bar"></i>
+                                        <span>Statistics</span>
+                                    </a>
+                                    <a href="topics/complex-numbers/basic-operations.html" class="subject-item">
+                                        <i class="fas fa-infinity"></i>
+                                        <span>Complex Numbers</span>
+                                    </a>
+                                    <a href="topics/matrices-and-determinants/matrix-operations.html" class="subject-item">
+                                        <i class="fas fa-th"></i>
+                                        <span>Matrices</span>
+                                    </a>
+                                    <a href="topics/number-theory/divisibility-and-prime-numbers.html" class="subject-item">
+                                        <i class="fas fa-hashtag"></i>
+                                        <span>Number Theory</span>
+                                    </a>
+                                    <a href="topics/probability/basic-probability-rules.html" class="subject-item">
+                                        <i class="fas fa-dice"></i>
+                                        <span>Probability</span>
+                                    </a>
+                                    <a href="topics/sequences-and-series/arithmetic-and-geometric-sequences.html" class="subject-item">
+                                        <i class="fas fa-list-ol"></i>
+                                        <span>Sequences & Series</span>
+                                    </a>
+                                    <a href="topics/graph-theory/graph-representation.html" class="subject-item">
+                                        <i class="fas fa-project-diagram"></i>
+                                        <span>Graph Theory</span>
+                                    </a>
+                                    <a href="topics/combinatorics/counting-principles.html" class="subject-item">
+                                        <i class="fas fa-cubes"></i>
+                                        <span>Combinatorics</span>
+                                    </a>
+                                    <a href="topics/inequalities/am-gm-inequality.html" class="subject-item">
+                                        <i class="fas fa-not-equal"></i>
+                                        <span>Inequalities</span>
+                                    </a>
+                                    <a href="topics/logic-and-set-theory/basic-set-operations.html" class="subject-item">
+                                        <i class="fas fa-circle-notch"></i>
+                                        <span>Logic & Set Theory</span>
+                                    </a>
+                                    <a href="topics/vectors-and-coordinate-geometry/vector-operations.html" class="subject-item">
+                                        <i class="fas fa-arrows-alt"></i>
+                                        <span>Vectors</span>
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Exam Prep Dropdown -->
+                        <li class="has-dropdown">
+                            <a href="exam-prep.html">Exam Prep</a>
+                            <div class="dropdown">
+                                <div class="dropdown-grid">
+                                    <a href="quizz.html" class="dropdown-item">
+                                        <i class="fas fa-clipboard-check"></i>
+                                        <span>Practice Tests</span>
+                                    </a>
+                                    <a href="exam-prep.html#solutions" class="dropdown-item">
+                                        <i class="fas fa-lightbulb"></i>
+                                        <span>Test Solutions</span>
+                                    </a>
+                                    <a href="exam-prep.html#sat" class="dropdown-item">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <span>SAT Math</span>
+                                    </a>
+                                    <a href="tutoring.html" class="dropdown-item">
+                                        <i class="fas fa-user-graduate"></i>
+                                        <span>1-on-1 Tutoring</span>
+                                    </a>
+                                    <a href="exam-prep.html#olympiad" class="dropdown-item">
+                                        <i class="fas fa-trophy"></i>
+                                        <span>Math Olympiad</span>
+                                    </a>
+                                    <a href="exam-prep.html#ap" class="dropdown-item">
+                                        <i class="fas fa-medal"></i>
+                                        <span>AP Calculus</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Grades Dropdown -->
+                        <li class="has-dropdown">
+                            <a href="grades.html">Grades</a>
+                            <div class="dropdown">
+                                <div class="dropdown-grid">
+                                    <a href="grades.html#elementary" class="dropdown-item">
+                                        <i class="fas fa-child"></i>
+                                        <span>Elementary School</span>
+                                    </a>
+                                    <a href="grades.html#middle" class="dropdown-item">
+                                        <i class="fas fa-school"></i>
+                                        <span>Middle School</span>
+                                    </a>
+                                    <a href="grades.html#high" class="dropdown-item">
+                                        <i class="fas fa-university"></i>
+                                        <span>High School</span>
+                                    </a>
+                                    <a href="grades.html#college" class="dropdown-item">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <span>College</span>
+                                    </a>
+                                    <a href="grades.html#adult" class="dropdown-item">
+                                        <i class="fas fa-user-tie"></i>
+                                        <span>Adult Learning</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Company Dropdown -->
+                        <li class="has-dropdown">
+                            <a href="company.html">Company</a>
+                            <div class="dropdown">
+                                <div class="dropdown-grid">
+                                    <a href="about.html" class="dropdown-item">
+                                        <i class="fas fa-info-circle"></i>
+                                        <span>About</span>
+                                    </a>
+                                    <a href="company.html#careers" class="dropdown-item">
+                                        <i class="fas fa-briefcase"></i>
+                                        <span>Careers</span>
+                                    </a>
+                                    <a href="contact.html" class="dropdown-item">
+                                        <i class="fas fa-envelope"></i>
+                                        <span>Contact</span>
+                                    </a>
+                                    <a href="company.html#team" class="dropdown-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>Our Team</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Blog Button -->
                         <li><a href="blog.html">Blog</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </nav>
+
+                <!-- Call-to-Action Buttons -->
+                <div class="nav-cta-container">
+                    <a href="tel:+14153367764" class="nav-phone">
+                        <i class="fas fa-phone"></i>
+                        +1 (415) 336-7764
+                    </a>
+                    <a href="tutoring.html" class="nav-cta-btn">Find Your Tutor</a>
+                    <a href="contact.html" class="nav-login">Log In</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hero -->
+        <section class="tutoring-hero">
+            <div class="edu-container">
+                <h1>1-on-1 Personalized Tutoring</h1>
+                <p>Get tailored math support from experienced tutors</p>
             </div>
         </section>
 
         <!-- Main Content -->
-        <section id="main" class="container">
-            <header>
-                <h2>1-on-1 Personalized Tutoring</h2>
-                <p>Get tailored math support from experienced tutors</p>
-            </header>
+        <section id="main" class="edu-section">
+            <div class="edu-container">
 
             <div class="box">
                 <div class="tutoring-info">
@@ -130,10 +278,69 @@
 
         <!-- Footer -->
         <section id="footer">
-            <div id="copyright">
-                <ul class="links">
-                    <li>&copy; International Math Hub</li>
-                </ul>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <h3>International Math Hub</h3>
+                        <p>Empowering Mongolian students with world-class mathematics education. Expert tutors, personalized learning, and comprehensive resources for every grade level.</p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="tutoring.html">Online Tutoring</a></li>
+                        <li><a href="exam-prep.html">Learning Resources</a></li>
+                        <li><a href="quizz.html">Practice Tests</a></li>
+                        <li><a href="vids.html">Video Tutorials</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Topics</h4>
+                    <ul>
+                        <li><a href="topics/algebra/linear-and-quadratic-equations.html">Algebra</a></li>
+                        <li><a href="topics/calculus/differentiation.html">Calculus</a></li>
+                        <li><a href="topics/geometry/euclidean-geometry.html">Geometry</a></li>
+                        <li><a href="topics/statistics/descriptive-statistics.html">Statistics</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="features.html">Features</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="footer-legal">
+                        <ul>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Cookie Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-copyright">
+                        <p>&copy; 2025 International Math Hub. All rights reserved.</p>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
