@@ -67,36 +67,77 @@
   background: transparent; /* remove pill/underline styles */
 }
 
-/* Pseudo caret disabled; use real button caret */
+/* Dropdown arrow for parent items */
 #nav > ul > li.has-dropdown > a::after {
-  content: none !important;
+  content: '▼';
+  font-size: 0.6rem;
+  margin-left: 0.4rem;
+  transition: transform 0.2s ease;
+  opacity: 0.6;
+  color: #6B7280;
 }
 
-/* Real caret button visible on all sizes */
-button.nav-caret {
-  display: inline-flex !important;
-  width: 18px;
-  height: 18px;
-  padding: 0;
-  border: 0;
-  background: transparent !important;
-  color: #9CA3AF;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: color 0.15s ease, transform 0.2s ease;
+/* Hide caret by default (shown only on mobile) */
+button.nav-caret { display: none; }
+/* Override any global button styling that might bleed into caret */
+button.nav-caret,
+button.nav-caret:focus,
+button.nav-caret:hover {
+  all: unset;
+  display: none;
 }
-button.nav-caret:hover { color: #1E40AF; }
-#nav > ul > li.has-dropdown > button.nav-caret svg { width: 14px; height: 14px; transition: transform 0.2s ease; }
-#nav > ul > li.has-dropdown.is-open > button.nav-caret svg,
-#nav > ul > li.has-dropdown.mobile-open > button.nav-caret svg { transform: rotate(180deg); }
 
-/* Ensure proper layout for dropdown items */
-#nav > ul > li.has-dropdown { position: relative; display: flex; align-items: center; gap: 0.5rem; }
-#nav > ul > li.has-dropdown > a { flex: 1 1 auto; }
+/* Mobile caret button styling */
+@media (max-width: 1024px) {
+  #nav > ul > li.has-dropdown { position: relative; display: flex; align-items: center; gap: 0.5rem; }
+  #nav > ul > li.has-dropdown > a { flex: 1 1 auto; }
+  #nav > ul > li.has-dropdown > a::after { display: none; }
+  #nav > ul > li.has-dropdown > button.nav-caret {
+    position: static;
+    width: 24px !important;
+    height: 24px !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 4px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #6B7280 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer;
+    transition: none !important;
+  }
+  /* Minimal caret icon */
+  #nav > ul > li.has-dropdown > button.nav-caret::before {
+    content: '\25BC'; /* small down triangle */
+    font-size: 10px !important;
+    line-height: 1 !important;
+    color: #6B7280 !important;
+    display: block !important;
+  }
+  /* Remove inner <i> icon if present to avoid large font rendering */
+  #nav > ul > li.has-dropdown > button.nav-caret i { display: none !important; }
+  #nav > ul > li.has-dropdown > button.nav-caret:hover {
+    background: transparent !important;
+    color: #374151 !important;
+    transform: none !important;
+  }
+  /* Lock caret against global hover transforms */
+  #nav .nav-caret, #nav .nav-caret:hover, #nav .nav-caret:active { transform: none !important; }
+  #nav > ul > li.has-dropdown > button.nav-caret i {
+    font-size: 12px !important;
+    line-height: 1 !important;
+    color: inherit !important;
+  }
+}
 
-/* Show dropdown when manually opened (desktop) */
-#nav > ul > li.has-dropdown.is-open .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+#nav > ul > li.has-dropdown:hover > a::after {
+  transform: rotate(180deg);
+  color: #4F46E5;
+  opacity: 1;
+}
 
 /* Dropdown menus - Clean modern style */
 .dropdown {
