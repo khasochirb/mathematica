@@ -185,7 +185,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 caret.className = 'nav-caret';
                 caret.type = 'button';
                 caret.setAttribute('aria-label', 'Expand menu');
-                caret.innerHTML = '<i class="fas fa-chevron-down" aria-hidden="true"></i>';
+                // Inline SVG chevron to avoid icon font dependency
+                caret.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>';
                 item.appendChild(caret);
             }
 
