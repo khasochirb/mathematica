@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     ensureTogglePresence();
 
-    // Touch-friendly dropdowns: link navigates; caret toggles
+    // Touch-friendly dropdowns: link navigates; caret toggles (mobile only)
     function setupMobileDropdowns() {
         const dropdownItems = document.querySelectorAll('#nav > ul > li.has-dropdown');
         dropdownItems.forEach(item => {
@@ -185,8 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 caret.className = 'nav-caret';
                 caret.type = 'button';
                 caret.setAttribute('aria-label', 'Expand menu');
-                // Inline SVG chevron to avoid icon font dependency
-                caret.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>';
+                caret.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
                 item.appendChild(caret);
             }
 
@@ -194,15 +193,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
                 e.stopPropagation();
                 const isOpen = item.classList.contains('mobile-open');
-                // Close others, toggle current
                 document.querySelectorAll('#nav > ul > li.has-dropdown').forEach(i => i.classList.remove('mobile-open'));
                 item.classList.toggle('mobile-open', !isOpen);
             };
         });
     }
 
-    // Always set up dropdown carets on all screen sizes
-    setupMobileDropdowns();
+    // Initialize: desktop uses hover; mobile uses caret buttons
+    if (window.innerWidth <= 1024) setupMobileDropdowns();
 
     // Close dropdowns when clicking outside
     document.addEventListener('click', function(e) {
@@ -216,8 +214,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const nav = document.getElementById('nav');
         if (!nav) return;
         ensureTogglePresence();
-        // Re-ensure carets and keep state sane across resizes
-        setupMobileDropdowns();
+        // Ensure carets only on mobile
+        document.querySelectorAll('#nav > ul > li.has-dropdown > button.nav-caret').forEach(btn => btn.remove());
+        if (window.innerWidth <= 1024) setupMobileDropdowns();
         document.querySelectorAll('#nav > ul > li.has-dropdown').forEach(item => item.classList.remove('mobile-open'));
         nav.classList.remove('mobile-open');
         const toggleBtn = document.querySelector('.mobile-menu-toggle');

@@ -67,32 +67,18 @@
   background: transparent; /* remove pill/underline styles */
 }
 
-/* Dropdown arrow for parent items */
+/* Pseudo caret on all sizes */
 #nav > ul > li.has-dropdown > a::after {
-  content: '▼';
-  font-size: 0.6rem;
+  content: '▾';
+  font-size: 0.75rem;
   margin-left: 0.4rem;
-  transition: transform 0.2s ease;
-  opacity: 0.6;
-  color: #6B7280;
+  transition: transform 0.2s ease, color 0.2s ease;
+  opacity: 0.7;
+  color: #9CA3AF;
 }
 
-/* Show caret buttons on all screen sizes */
-button.nav-caret { 
-  display: inline-flex !important; 
-  position: static;
-  width: 18px;
-  height: 18px;
-  padding: 0;
-  border: none;
-  border-radius: 0;
-  background: transparent !important;
-  color: #9CA3AF;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: color 0.15s ease;
-}
+/* Minimal caret button only for mobile toggle */
+button.nav-caret { display: none !important; }
 
 /* Ensure proper layout for dropdown items */
 #nav > ul > li.has-dropdown { 
