@@ -77,36 +77,52 @@
   color: #6B7280;
 }
 
-/* Hide caret by default (shown only on mobile) */
-button.nav-caret { display: none; }
+/* Show caret buttons on all screen sizes */
+button.nav-caret { 
+  display: inline-flex !important; 
+  position: static;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 3px;
+  background: #F3F4F6 !important;
+  color: #6B7280;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
 
-/* Mobile caret button styling */
-@media (max-width: 1024px) {
-  #nav > ul > li.has-dropdown { position: relative; display: flex; align-items: center; gap: 0.5rem; }
-  #nav > ul > li.has-dropdown > a { flex: 1 1 auto; }
-  #nav > ul > li.has-dropdown > a::after { display: none; }
-  #nav > ul > li.has-dropdown > button.nav-caret {
-    position: static;
-    width: 24px;
-    height: 24px;
-    border: none;
-    border-radius: 4px;
-    background: transparent;
-    color: #6B7280;
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.15s ease, border-color 0.15s ease;
-  }
-  #nav > ul > li.has-dropdown > button.nav-caret:hover {
-    background: transparent;
-    color: #374151;
-    transform: none !important;
-  }
-  /* Lock caret against global hover transforms */
-  #nav .nav-caret, #nav .nav-caret:hover, #nav .nav-caret:active { transform: none !important; }
-  #nav > ul > li.has-dropdown > button.nav-caret i { font-size: 12px; line-height: 1; }
+/* Ensure proper layout for dropdown items */
+#nav > ul > li.has-dropdown { 
+  position: relative; 
+  display: flex; 
+  align-items: center; 
+  gap: 0.5rem; 
+}
+
+#nav > ul > li.has-dropdown > a { 
+  flex: 1 1 auto; 
+}
+
+#nav > ul > li.has-dropdown > a::after { 
+  display: none; 
+}
+
+#nav > ul > li.has-dropdown > button.nav-caret:hover {
+  background: #E5E7EB !important;
+  color: #374151;
+  transform: none !important;
+}
+
+/* Lock caret against global hover transforms */
+#nav .nav-caret, #nav .nav-caret:hover, #nav .nav-caret:active { 
+  transform: none !important; 
+}
+
+#nav > ul > li.has-dropdown > button.nav-caret i { 
+  font-size: 11px; 
+  line-height: 1; 
 }
 
 #nav > ul > li.has-dropdown:hover > a::after {

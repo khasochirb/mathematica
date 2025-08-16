@@ -200,7 +200,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    if (window.innerWidth <= 1024) setupMobileDropdowns();
+    // Always set up dropdown carets on all screen sizes
+    setupMobileDropdowns();
 
     // Close dropdowns when clicking outside
     document.addEventListener('click', function(e) {
@@ -214,13 +215,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const nav = document.getElementById('nav');
         if (!nav) return;
         ensureTogglePresence();
-        if (window.innerWidth <= 1024) {
-            setupMobileDropdowns();
-        } else {
-            document.querySelectorAll('#nav > ul > li.has-dropdown').forEach(item => item.classList.remove('mobile-open'));
-            nav.classList.remove('mobile-open');
-            const toggleBtn = document.querySelector('.mobile-menu-toggle');
-            if (toggleBtn) toggleBtn.classList.remove('active');
-        }
+        // Re-ensure carets and keep state sane across resizes
+        setupMobileDropdowns();
+        document.querySelectorAll('#nav > ul > li.has-dropdown').forEach(item => item.classList.remove('mobile-open'));
+        nav.classList.remove('mobile-open');
+        const toggleBtn = document.querySelector('.mobile-menu-toggle');
+        if (toggleBtn) toggleBtn.classList.remove('active');
     });
 });
