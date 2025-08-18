@@ -1,0 +1,537 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Math Courses - International Math Hub</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="Browse International Math Hub's math courses by grade and level. Elementary, middle, high school, college, and adult learning topics." />
+    <meta name="author" content="IntlMathHub Team" />
+    <link rel="stylesheet" href="assets/css/first.css" />
+    <link rel="stylesheet" href="assets/css/improvements.css" />
+    <link rel="stylesheet" href="assets/css/educational-design-system.css" />
+    <link rel="stylesheet" href="assets/css/educational-overrides.css" />
+    <link rel="stylesheet" href="assets/css/hero-section.css" />
+    <link rel="stylesheet" href="assets/css/dropdown-nav.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        #titleBar, #navPanel { display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; }
+        body.navPanel-visible #page-wrapper, body.navPanel-visible #titleBar { transform: none !important; }
+        #nav { display: block !important; }
+
+        .courses-hero {
+            background: linear-gradient(135deg, #0891b2 0%, #1e40af 100%);
+            color: white;
+            padding: 6em 0 4em;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+        .courses-hero * { color: white !important; text-align: center !important; }
+        .courses-hero h1 { font-size: 3.2em; margin-bottom: 0.4em; }
+        .courses-hero p { font-size: 1.2em; max-width: 900px; margin: 0 auto; }
+
+        .level-nav { margin: 2em auto 0; display: flex; gap: 0.8em; flex-wrap: wrap; justify-content: center; }
+        .level-pill { background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.35); padding: 0.6em 1.1em; border-radius: 999px; text-decoration: none; font-weight: 600; }
+        .level-pill:hover { background: rgba(255,255,255,0.25); }
+
+        .courses-section { padding: 4em 0; }
+        .section-header { display: flex; align-items: center; justify-content: space-between; gap: 1em; margin-bottom: 1.5em; }
+        .section-header h2 { margin: 0; color: #1e40af; }
+        .show-all { font-size: 0.95em; color: #0891b2; text-decoration: none; font-weight: 600; }
+
+        .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5em; }
+        .course-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 16px; padding: 1.5em; box-shadow: 0 10px 25px rgba(0,0,0,0.06); }
+        .course-card h3 { color: #1e40af; margin: 0 0 0.3em 0; }
+        .course-meta { display: flex; gap: 0.6em; flex-wrap: wrap; margin: 0.3em 0 0.8em; }
+        .pill { background: #f1f5f9; color: #0f172a; border: 1px solid #e2e8f0; border-radius: 999px; padding: 0.25em 0.7em; font-size: 0.85em; font-weight: 600; }
+        .course-desc { color: #475569; margin-bottom: 0.8em; }
+        .topic-list { list-style: none; padding: 0; margin: 0; }
+        .topic-list li { padding: 0.35em 0 0.35em 1.2em; border-bottom: 1px solid #eef2f7; color: #374151; position: relative; }
+        .topic-list li:last-child { border-bottom: none; }
+        .topic-list li::before { content: "✓"; position: absolute; left: 0; color: #0891b2; font-weight: 700; }
+
+        @media (max-width: 768px) {
+            .courses-hero h1 { font-size: 2.2em; }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function applyHashFilter() {
+                const hash = window.location.hash.replace('#','');
+                const sections = document.querySelectorAll('[data-level-section]');
+                if (!hash) { sections.forEach(s => s.style.display = 'block'); return; }
+                const allowed = new Set(['elementary','middle','high','college','adult']);
+                if (!allowed.has(hash)) { sections.forEach(s => s.style.display = 'block'); return; }
+                sections.forEach(s => { s.style.display = s.id === hash ? 'block' : 'none'; });
+            }
+            applyHashFilter();
+            window.addEventListener('hashchange', applyHashFilter);
+            document.querySelectorAll('.show-all').forEach(a => a.addEventListener('click', function(e){
+                e.preventDefault(); history.pushState('', document.title, window.location.pathname); window.dispatchEvent(new HashChangeEvent('hashchange'));
+            }));
+        });
+    </script>
+</head>
+<body class="is-preload courses-page">
+    <div id="page-wrapper">
+        <section id="header">
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between;">
+                <div class="logo">
+                    <a href="index.html"><img src="/images/logo.png" alt="International Math Hub Logo" style="max-height: 60px;"></a>
+                </div>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="has-dropdown">
+                            <a href="exam-prep.html">Exam Prep</a>
+                            <div class="dropdown">
+                                <div class="dropdown-grid">
+                                    <a href="exam-prep.html#sat" class="dropdown-item"><i class="fas fa-graduation-cap"></i><span>SAT Math</span></a>
+                                    <a href="exam-prep.html#act" class="dropdown-item"><i class="fas fa-check-circle"></i><span>ACT Math</span></a>
+                                    <a href="exam-prep.html#psat" class="dropdown-item"><i class="fas fa-clipboard-check"></i><span>PSAT/NMSQT</span></a>
+                                    <a href="exam-prep.html#gre" class="dropdown-item"><i class="fas fa-chart-line"></i><span>GRE Quant</span></a>
+                                    <a href="exam-prep.html#gmat" class="dropdown-item"><i class="fas fa-briefcase"></i><span>GMAT Quant</span></a>
+                                    <a href="exam-prep.html#ib" class="dropdown-item"><i class="fas fa-globe"></i><span>IB Math</span></a>
+                                    <a href="exam-prep.html#igcse" class="dropdown-item"><i class="fas fa-book"></i><span>IGCSE/GCSE Math</span></a>
+                                    <a href="exam-prep.html#olympiad" class="dropdown-item"><i class="fas fa-trophy"></i><span>Math Olympiad</span></a>
+                                    <a href="exam-prep.html#ap" class="dropdown-item"><i class="fas fa-medal"></i><span>AP Prep</span></a>
+                                    <a href="tutoring.html" class="dropdown-item"><i class="fas fa-user-graduate"></i><span>1-on-1 Tutoring</span></a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="has-dropdown current"><a href="grades.html">Grades</a></li>
+                        <li class="has-dropdown"><a href="company.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </nav>
+                <div class="nav-cta-container">
+                    <a href="tel:+14153367764" class="nav-phone"><i class="fas fa-phone"></i> +1 (415) 336-7764</a>
+                    <a href="tutoring.html" class="nav-cta-btn">Find Your Tutor</a>
+                    <a href="contact.html" class="nav-login">Log In</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="courses-hero">
+            <div class="edu-container">
+                <h1>Math Courses by Grade and Level</h1>
+                <p>We teach comprehensive, high‑quality math courses across elementary, middle, high school, college, and adult learning. Explore topics covered in each grade and course.</p>
+                <div class="level-nav">
+                    <a href="#elementary" class="level-pill">Elementary</a>
+                    <a href="#middle" class="level-pill">Middle School</a>
+                    <a href="#high" class="level-pill">High School</a>
+                    <a href="#college" class="level-pill">College</a>
+                    <a href="#adult" class="level-pill">Adult Learning</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="main" class="edu-section">
+            <div class="edu-container">
+
+                <!-- Elementary -->
+                <div id="elementary" data-level-section class="courses-section">
+                    <div class="section-header">
+                        <h2>Elementary School</h2>
+                        <a href="#" class="show-all">Show all sections</a>
+                    </div>
+                    <div class="course-grid">
+                        <div class="course-card">
+                            <h3>Grade 1</h3>
+                            <div class="course-meta"><span class="pill">Ages ~6–7</span><span class="pill">Foundations</span></div>
+                            <p class="course-desc">Fluency with addition/subtraction within 20, place value, measurement, time, and shapes.</p>
+                            <ul class="topic-list">
+                                <li>Addition and subtraction within 20; word problems</li>
+                                <li>Place value to 120; tens and ones</li>
+                                <li>Comparing two‑digit numbers</li>
+                                <li>Length measurement; picture/bar graphs</li>
+                                <li>Time to the hour and half‑hour; coins</li>
+                                <li>2D/3D shapes; halves and fourths</li>
+                            </ul>
+                        </div>
+                        <div class="course-card">
+                            <h3>Grade 2</h3>
+                            <div class="course-meta"><span class="pill">Ages ~7–8</span><span class="pill">Fluency</span></div>
+                            <p class="course-desc">Strategies for multi‑digit addition/subtraction, foundations of multiplication, and data.</p>
+                            <ul class="topic-list">
+                                <li>Addition/subtraction within 100 and 1000</li>
+                                <li>Place value to 1000; skip counting</li>
+                                <li>Equal groups and arrays (pre‑multiplication)</li>
+                                <li>Standard units of length; line plots</li>
+                                <li>Time to five minutes; money problems</li>
+                                <li>Polygons; partitioning shapes into equal parts</li>
+                            </ul>
+                        </div>
+                        <div class="course-card">
+                            <h3>Grade 3</h3>
+                            <div class="course-meta"><span class="pill">Ages ~8–9</span><span class="pill">Core</span></div>
+                            <p class="course-desc">Multiplication/division facts, area/perimeter, and fractions as numbers.</p>
+                            <ul class="topic-list">
+                                <li>Multiplication and division; properties and strategies</li>
+                                <li>Area and perimeter; arrays; unit squares</li>
+                                <li>Fractions: unit fractions; equivalence and comparison</li>
+                                <li>Measurement (mass, volume); elapsed time</li>
+                                <li>Scaled picture/bar graphs</li>
+                                <li>Geometry: quadrilaterals; right angles</li>
+                            </ul>
+                        </div>
+                        <div class="course-card">
+                            <h3>Grade 4</h3>
+                            <div class="course-meta"><span class="pill">Ages ~9–10</span><span class="pill">Core</span></div>
+                            <p class="course-desc">Multi‑digit multiplication/division, fractions, decimals, and angles.</p>
+                            <ul class="topic-list">
+                                <li>Multi‑digit multiplication; long division with remainders</li>
+                                <li>Factors and multiples; prime/composite</li>
+                                <li>Fractions: equivalence; add/sub with like denominators; fraction × whole</li>
+                                <li>Decimals (tenths, hundredths); fraction‑decimal connections</li>
+                                <li>Measurement and conversions; angle measure</li>
+                                <li>Geometry: lines, rays, symmetry; classifying shapes</li>
+                            </ul>
+                        </div>
+                        <div class="course-card">
+                            <h3>Grade 5</h3>
+                            <div class="course-meta"><span class="pill">Ages ~10–11</span><span class="pill">Mastery</span></div>
+                            <p class="course-desc">Advanced fraction/decimal operations, volume, and coordinate plane.</p>
+                            <ul class="topic-list">
+                                <li>Add/subtract fractions (unlike denominators); multiply/divide unit fractions</li>
+                                <li>Decimals to thousandths; add/sub/multiply/divide decimals</li>
+                                <li>Volume; line plots with fractional data</li>
+                                <li>Coordinate plane (Q1); numerical expressions and patterns</li>
+                                <li>Classifying 2D figures; triangles/quadrilaterals</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Middle School -->
+                <div id="middle" data-level-section class="courses-section">
+                    <div class="section-header">
+                        <h2>Middle School</h2>
+                        <a href="#" class="show-all">Show all sections</a>
+                    </div>
+                    <div class="course-grid">
+                        <div class="course-card">
+                            <h3>Grade 6</h3>
+                            <div class="course-meta"><span class="pill">Ratios/Percent</span><span class="pill">Decimals & Fractions</span></div>
+                            <p class="course-desc">Ratios and rates, operations with decimals/fractions, negative numbers, and area/volume.</p>
+                            <ul class="topic-list">
+                                <li>Ratios, unit rate, percent (intro)</li>
+                                <li>Divide fractions by fractions; decimal operations</li>
+                                <li>Negative numbers; ordering rational numbers</li>
+                                <li>Expressions and one‑step equations/inequalities</li>
+                                <li>Area, surface area, and volume of prisms</li>
+                                <li>Statistics: distributions; center and variability</li>
+                            </ul>
+                        </div>
+                        <div class="course-card">
+                            <h3>Grade 7</h3>
+                            <div class="course-meta"><span class="pill">Proportionality</span><span class="pill">Probability</span></div>
+                            <p class="course-desc">Proportional relationships, signed numbers, two‑step equations, geometry, and probability.</p>
+                            <ul class="topic-list">
+                                <li>Proportional relationships; percent problems (tax, discount)</li>
+                                <li>Operations with rational numbers (signed)</li>
+                                <li>Linear expressions; equivalent forms</li>
+                                <li>Two‑step equations and inequalities</li>
+                                <li>Geometry: angle relationships; circles; area/surface area/volume</li>
+                                <li>Simple and compound probability; sampling</li>
+                            </ul>
+                        </div>
+                        <div class="course-card">
+                            <h3>Grade 8</h3>
+                            <div class="course-meta"><span class="pill">Linear Algebra</span><span class="pill">Pythagorean</span></div>
+                            <p class="course-desc">Linear equations and systems, functions, exponents, and the Pythagorean theorem.</p>
+                            <ul class="topic-list">
+                                <li>Linear equations; slope and slope‑intercept form</li>
+                                <li>Systems of linear equations</li>
+                                <li>Functions: definitions, tables, graphs</li>
+                                <li>Integer exponents; scientific notation</li>
+                                <li>Transformations; congruence and similarity</li>
+                                <li>Pythagorean theorem; distance on the coordinate plane</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- High School -->
+                <div id="high" data-level-section class="courses-section">
+                    <div class="section-header">
+                        <h2>High School</h2>
+                        <a href="#" class="show-all">Show all sections</a>
+                    </div>
+                    <div class="course-grid">
+                        <div class="course-card">
+                            <h3>Pre‑Algebra (Bridge)</h3>
+                            <div class="course-meta"><span class="pill">Readiness</span></div>
+                            <p class="course-desc">Solid foundation for Algebra 1: number fluency, proportional reasoning, and expressions.</p>
+                            <ul class="topic-list">
+                                <li>Arithmetic fluency; factors/multiples; GCF/LCM</li>
+                                <li>Integers and rational numbers; absolute value</li>
+                                <li>Ratios, proportions, and percent applications</li>
+                                <li>Expressions, equations, and inequalities</li>
+                                <li>Coordinate plane; graphing linear relationships</li>
+                                <li>Exponents, roots, radicals; scientific notation</li>
+                            </ul>
+                        </div>
+                        <div class="course-card">
+                            <h3>Algebra 1</h3>
+                            <div class="course-meta"><span class="pill">Core HS</span></div>
+                            <p class="course-desc">We teach a complete Algebra 1 course with high quality instruction and practice.</p>
+                            <ul class="topic-list">
+                                <li>Expressions, equations, and inequalities</li>
+                                <li>Linear equations and graphs; slope; forms of a line</li>
+                                <li>Systems of linear equations and inequalities</li>
+                                <li>Functions and relations; domain/range; function notation</li>
+                                <li>Exponents and exponential functions; growth/decay</li>
+                                <li>Polynomials: operations and factoring</li>
+                                <li>Quadratics: forms, graphing, solving (factoring, completing the square, quadratic formula)</li>
+                                <li>Radicals and irrational numbers; simple rational expressions</li>
+                                <li>Data analysis: scatter plots, lines of best fit; sequences</li>
+                            </ul>
+                        </div>
+                        <div class="course-card">
+                            <h3>Geometry</h3>
+                            <div class="course-meta"><span class="pill">Proofs & Trig</span></div>
+                            <p class="course-desc">Transformations, congruence/similarity, triangle properties, and right‑triangle trigonometry.</p>
+                            <ul class="topic-list">
+                                <li>Transformations; congruence and similarity</li>
+                                <li>Triangle properties; triangle congruence; proofs</li>
+                                <li>Right triangles and trigonometry (sin, cos, tan)</li>
+                                <li>Circles: arcs, chords, tangents; angle/segment relationships</li>
+                                <li>Coordinate geometry: distance, midpoint, equations of circles</li>
+                                <li>Perimeter, area, surface area, and volume</li>
+                                <li>Constructions; logic and proof structure</li>
+                            </ul>
+                        </div>
+                        <div class="course-card">
+                            <h3>Algebra 2</h3>
+                            <div class="course-meta"><span class="pill">Advanced Algebra</span></div>
+                            <p class="course-desc">Polynomial, rational, exponential/logarithmic functions, and sequences/series.</p>
+                            <ul class="topic-list">
+                                <li>Polynomial arithmetic; factoring; complex numbers</li>
+                                <li>Quadratic functions and transformations</li>
+                                <li>Polynomial functions (zeros; Remainder/Factor Theorems)</li>
+                                <li>Rational exponents and radicals; radical equations</li>
+                                <li>Exponential and logarithmic functions; properties/applications</li>
+                                <li>Rational functions (asymptotes; discontinuities)</li>
+                                <li>Sequences and series (arithmetic, geometric; sigma)</li>
+                                <li>Probability and statistics (binomial, normal models)</li>
+                            </ul>
+                        </div>
+                        <div class="course-card">
+                            <h3>Trigonometry</h3>
+                            <div class="course-meta"><span class="pill">Functions & Identities</span></div>
+                            <p class="course-desc">Unit circle, trig functions/graphs, identities, equations, and applications.</p>
+                            <ul class="topic-list">
+                                <li>Angle measure (degrees/radians); arc length</li>
+                                <li>Unit circle; definitions of sin/cos/tan and reciprocals</li>
+                                <li>Graphs and transformations of trig functions</li>
+                                <li>Trig identities; solving trig equations</li>
+                                <li>Inverse trig functions</li>
+                                <li>Law of Sines and Cosines; applications</li>
+                            </ul>
+                        </div>
+                        <div class="course-card">
+                            <h3>Precalculus</h3>
+                            <div class="course-meta"><span class="pill">College Prep</span></div>
+                            <p class="course-desc">Function families, advanced trigonometry, vectors/parametrics, and conics.</p>
+                            <ul class="topic-list">
+                                <li>Polynomial, rational, exponential, and logarithmic functions</li>
+                                <li>Advanced trigonometry; identities and equations</li>
+                                <li>Vectors and parametric equations</li>
+                                <li>Polar coordinates and graphs; conic sections</li>
+                                <li>Matrices and systems; determinants (optional)</li>
+                                <li>Sequences and series; binomial theorem</li>
+                                <li>Limits and continuity (intro)</li>
+                            </ul>
+                        </div>
+                        <div class="course-card">
+                            <h3>Calculus (AB/BC)</h3>
+                            <div class="course-meta"><span class="pill">AP/College</span></div>
+                            <p class="course-desc">Differential and integral calculus, plus series and parametric/polar for BC.</p>
+                            <ul class="topic-list">
+                                <li>Limits and continuity; derivatives and applications</li>
+                                <li>Definite/indefinite integrals; Fundamental Theorem</li>
+                                <li>Differential equations; exponential growth/decay</li>
+                                <li>Area and volume (solids of revolution)</li>
+                                <li>Series and convergence tests; Taylor/Maclaurin (BC)</li>
+                                <li>Parametric and polar calculus; improper integrals (BC)</li>
+                            </ul>
+                        </div>
+                        <div class="course-card">
+                            <h3>Statistics and Probability</h3>
+                            <div class="course-meta"><span class="pill">AP/College</span></div>
+                            <p class="course-desc">Data analysis, probability models, and statistical inference.</p>
+                            <ul class="topic-list">
+                                <li>Exploring data; z‑scores; normal model</li>
+                                <li>Sampling and experimental design</li>
+                                <li>Probability rules; random variables</li>
+                                <li>Binomial, geometric, normal, t distributions</li>
+                                <li>Confidence intervals and hypothesis tests</li>
+                                <li>Chi‑square tests; regression inference</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- College -->
+                <div id="college" data-level-section class="courses-section">
+                    <div class="section-header">
+                        <h2>College</h2>
+                        <a href="#" class="show-all">Show all sections</a>
+                    </div>
+                    <div class="course-grid">
+                        <div class="course-card">
+                            <h3>Calculus (Single & Multivariable)</h3>
+                            <div class="course-meta"><span class="pill">STEM Core</span></div>
+                            <p class="course-desc">Rigorous calculus sequence with proofs and applications.</p>
+                            <ul class="topic-list">
+                                <li>Limits, continuity, differentiation, and integration</li>
+                                <li>Sequences/series; power/Taylor series</li>
+                                <li>Parametric/polar; vectors and partial derivatives</li>
+                                <li>Multiple integrals; vector calculus (Green/Stokes)</li>
+                            </ul>
+                        </div>
+                        <div class="course-card">
+                            <h3>Linear Algebra</h3>
+                            <div class="course-meta"><span class="pill">Matrices & Vector Spaces</span></div>
+                            <p class="course-desc">Matrix methods and theoretical vector space foundations.</p>
+                            <ul class="topic-list">
+                                <li>Systems and matrices; inverses; determinants</li>
+                                <li>Vector spaces; bases; dimension</li>
+                                <li>Eigenvalues/eigenvectors; diagonalization</li>
+                                <li>Orthogonality; least squares; SVD (intro)</li>
+                            </ul>
+                        </div>
+                        <div class="course-card">
+                            <h3>Discrete Mathematics</h3>
+                            <div class="course-meta"><span class="pill">CS Foundations</span></div>
+                            <p class="course-desc">Logic, combinatorics, graphs, and proof techniques for CS and math.</p>
+                            <ul class="topic-list">
+                                <li>Logic and proofs; sets and functions</li>
+                                <li>Counting; permutations/combinations; recursion</li>
+                                <li>Graphs and trees; algorithms (intro)</li>
+                                <li>Number theory; modular arithmetic</li>
+                            </ul>
+                        </div>
+                        <div class="course-card">
+                            <h3>Differential Equations</h3>
+                            <div class="course-meta"><span class="pill">Modeling</span></div>
+                            <p class="course-desc">First‑order and linear systems with applications in science/engineering.</p>
+                            <ul class="topic-list">
+                                <li>First‑order ODEs; existence/uniqueness; direction fields</li>
+                                <li>Linear ODEs; Laplace transforms</li>
+                                <li>Systems; eigenanalysis; phase plane</li>
+                                <li>Fourier series; PDEs (intro)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Adult Learning -->
+                <div id="adult" data-level-section class="courses-section">
+                    <div class="section-header">
+                        <h2>Adult Learning</h2>
+                        <a href="#" class="show-all">Show all sections</a>
+                    </div>
+                    <div class="course-grid">
+                        <div class="course-card">
+                            <h3>Math Refreshers</h3>
+                            <div class="course-meta"><span class="pill">Flexible</span></div>
+                            <p class="course-desc">Customized refreshers covering arithmetic to algebra and geometry basics.</p>
+                            <ul class="topic-list">
+                                <li>Whole numbers, fractions, decimals, and percent</li>
+                                <li>Ratios, proportions, and equations</li>
+                                <li>Geometry essentials; measurement and units</li>
+                                <li>Data literacy; graphs and summaries</li>
+                            </ul>
+                        </div>
+                        <div class="course-card">
+                            <h3>Business & Financial Math</h3>
+                            <div class="course-meta"><span class="pill">Practical</span></div>
+                            <p class="course-desc">Everyday quantitative skills for work and personal finance.</p>
+                            <ul class="topic-list">
+                                <li>Spreadsheets and data tables</li>
+                                <li>Interest, loans, and investment growth</li>
+                                <li>Rates, indices, and inflation</li>
+                                <li>Decision making with data</li>
+                            </ul>
+                        </div>
+                        <div class="course-card">
+                            <h3>Math for CS</h3>
+                            <div class="course-meta"><span class="pill">Tech Track</span></div>
+                            <p class="course-desc">Essential math for computing and data science.</p>
+                            <ul class="topic-list">
+                                <li>Discrete math (logic, sets, combinatorics)</li>
+                                <li>Linear algebra for ML</li>
+                                <li>Probability and statistics</li>
+                                <li>Optimization (intro)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <h3>International Math Hub</h3>
+                        <p>Empowering Mongolian students with world-class mathematics education. Expert tutors and personalized learning for every grade level.</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="tutoring.html">Online Tutoring</a></li>
+                        <li><a href="exam-prep.html">Learning Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="footer-legal">
+                        <ul>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Cookie Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-copyright">
+                        <p>&copy; 2025 International Math Hub. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
+
+

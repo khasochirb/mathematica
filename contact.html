@@ -274,14 +274,33 @@
                             <a href="exam-prep.html">Exam Prep</a>
                             <div class="dropdown">
                                 <div class="dropdown-grid">
-
                                     <a href="exam-prep.html#sat" class="dropdown-item">
                                         <i class="fas fa-graduation-cap"></i>
                                         <span>SAT Math</span>
                                     </a>
-                                    <a href="tutoring.html" class="dropdown-item">
-                                        <i class="fas fa-user-graduate"></i>
-                                        <span>1-on-1 Tutoring</span>
+                                    <a href="exam-prep.html#act" class="dropdown-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>ACT Math</span>
+                                    </a>
+                                    <a href="exam-prep.html#psat" class="dropdown-item">
+                                        <i class="fas fa-clipboard-check"></i>
+                                        <span>PSAT/NMSQT</span>
+                                    </a>
+                                    <a href="exam-prep.html#gre" class="dropdown-item">
+                                        <i class="fas fa-chart-line"></i>
+                                        <span>GRE Quant</span>
+                                    </a>
+                                    <a href="exam-prep.html#gmat" class="dropdown-item">
+                                        <i class="fas fa-briefcase"></i>
+                                        <span>GMAT Quant</span>
+                                    </a>
+                                    <a href="exam-prep.html#ib" class="dropdown-item">
+                                        <i class="fas fa-globe"></i>
+                                        <span>IB Math</span>
+                                    </a>
+                                    <a href="exam-prep.html#igcse" class="dropdown-item">
+                                        <i class="fas fa-book"></i>
+                                        <span>IGCSE/GCSE Math</span>
                                     </a>
                                     <a href="exam-prep.html#olympiad" class="dropdown-item">
                                         <i class="fas fa-trophy"></i>
@@ -289,11 +308,17 @@
                                     </a>
                                     <a href="exam-prep.html#ap" class="dropdown-item">
                                         <i class="fas fa-medal"></i>
-                                        <span>AP Calculus</span>
+                                        <span>AP Prep</span>
+                                    </a>
+                                    <a href="tutoring.html" class="dropdown-item">
+                                        <i class="fas fa-user-graduate"></i>
+                                        <span>1-on-1 Tutoring</span>
                                     </a>
                                 </div>
                             </div>
                         </li>
+
+                        <li><a href="contact.html">Contact</a></li>
 
                         <!-- Grades Dropdown -->
                         <li class="has-dropdown">
@@ -324,9 +349,9 @@
                             </div>
                         </li>
 
-                        <!-- Company Dropdown -->
+                        <!-- About Us Dropdown -->
                         <li class="has-dropdown">
-                            <a href="company.html">Company</a>
+                            <a href="company.html">About Us</a>
                             <div class="dropdown">
                                 <div class="dropdown-grid">
                                     <a href="company.html#about" class="dropdown-item">
@@ -425,7 +450,7 @@
                 <div class="contact-form-section">
                     <div class="contact-form-card">
                         <h2>Send Us a Message</h2>
-                        <form action="https://formsubmit.co/imathhub@gmail.com" method="POST">
+                        <form id="contactForm" action="https://formsubmit.co/imathhub@gmail.com" method="POST">
                             <!-- Honeypot -->
                             <input type="text" name="_honey" style="display:none">
                             <!-- Disable Captcha -->
@@ -526,36 +551,28 @@
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const submitButton = this.querySelector('input[type="submit"]');
-            submitButton.value = 'Sending...';
-            submitButton.disabled = true;
-
-            const formData = new FormData(this);
-            
-            fetch('send_message.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Message sent successfully!');
-                    this.reset();
-                } else {
-                    alert(data.message || 'Failed to send message. Please try again.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Failed to send message. Please try emailing directly to imathhub@gmail.com');
-            })
-            .finally(() => {
-                submitButton.value = 'Send Message';
-                submitButton.disabled = false;
-            });
-        });
+        (function(){
+            // Prefill message from ?interest=
+            const params = new URLSearchParams(window.location.search);
+            const interest = params.get('interest');
+            const interestMap = {
+                sat: 'SAT Math',
+                act: 'ACT Math',
+                psat: 'PSAT/NMSQT',
+                olympiad: 'Math Olympiad',
+                ap: 'AP (Calculus/Stats)',
+                gre: 'GRE Quant',
+                gmat: 'GMAT Quant',
+                ib: 'IB Math',
+                igcse: 'IGCSE/GCSE Math'
+            };
+            const friendly = interestMap[interest];
+            const messageEl = document.getElementById('message');
+            if (friendly && messageEl) {
+                const intro = `Hello, I’m interested in ${friendly} prep. Please contact me with details.`;
+                if (!messageEl.value) messageEl.value = intro;
+            }
+        })();
     </script>
 </body>
 </html>
