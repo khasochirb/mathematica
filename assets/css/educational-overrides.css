@@ -433,6 +433,48 @@ body {
   margin: 0 auto var(--space-4) auto !important;
 }
 
+/* ===== Unified styling for policy pages (terms, privacy, cookies) ===== */
+.policy {
+  max-width: 940px !important;
+  margin: 0 auto !important;
+  padding: 2rem 1rem 3rem !important;
+  background: #ffffff !important;
+}
+
+.policy, .policy * {
+  color: #111827 !important; /* near-black */
+  text-shadow: none !important;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.policy header {
+  text-align: center !important;
+  margin-bottom: 2rem !important;
+}
+
+.policy header h1, .policy h1 {
+  color: #1e40af !important;
+  font-weight: 700 !important;
+}
+
+.policy .prose {
+  text-align: left !important;
+  line-height: 1.75 !important;
+  font-size: 1rem !important;
+}
+
+.policy .prose h2, .policy .prose h3, .policy .prose h4 {
+  color: #1e40af !important;
+  font-weight: 600 !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: .5rem !important;
+}
+
+.policy .prose p { margin: .5rem 0 1rem !important; }
+.policy .prose ul, .policy .prose ol { list-style: disc !important; padding-left: 1.25rem !important; margin: .25rem 0 1rem !important; }
+.policy .prose li { margin: .35rem 0 !important; }
+.policy .prose a { color: #1e40af !important; text-decoration: underline !important; }
+
 #intro .middle:before,
 #intro .middle:after {
   display: none !important;
