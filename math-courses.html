@@ -29,7 +29,7 @@
         }
         .courses-hero * { color: white !important; text-align: center !important; }
         .courses-hero h1 { font-size: 3.2em; margin-bottom: 0.4em; }
-        .courses-hero p { font-size: 1.2em; max-width: 900px; margin: 0 auto; }
+        .courses-hero p { font-size: 1.2em; max-width: 900px; margin: 0 auto !important; display: block; text-align: center !important; }
 
         .level-nav { margin: 2em auto 0; display: flex; gap: 0.8em; flex-wrap: wrap; justify-content: center; }
         .level-pill { background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.35); padding: 0.6em 1.1em; border-radius: 999px; text-decoration: none; font-weight: 600; }
@@ -51,7 +51,9 @@
         .topic-list li:last-child { border-bottom: none; }
         .topic-list li::before { content: "✓"; position: absolute; left: 0; color: #0891b2; font-weight: 700; }
 
-        /* Force readable dark text for all content outside the hero */
+        /* Page/content backgrounds and readable text outside hero */
+        body.courses-page { background: #ffffff !important; }
+        body.courses-page #main { background: #ffffff !important; }
         body.courses-page #main,
         body.courses-page #main * {
             color: #1f2937 !important;
