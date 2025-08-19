@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     document.addEventListener('DOMContentLoaded', function() {
         var prefix = getPrefixForFavicon();
-        ensureFavicon(prefix + 'images/logo.png');
+        ensureFavicon(prefix + 'images/mongol.png');
     });
 })();
 
