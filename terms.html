@@ -10,97 +10,19 @@
     <link rel="stylesheet" href="assets/css/educational-overrides.css" />
     <link rel="stylesheet" href="assets/css/dropdown-nav.css" />
     <style>
-        /* Nuclear option: Override everything with maximum specificity */
-        body.is-preload,
-        body.is-preload *,
-        .edu-section,
-        .edu-section *,
-        .policy,
-        .policy * {
-            background: #ffffff !important;
-            color: #1f2937 !important;
-            font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-            text-shadow: none !important;
-        }
-        
-        .policy {
-            max-width: 940px !important;
-            margin: 0 auto !important;
-            padding: 2rem 1rem 3rem !important;
-        }
-        
-        .policy header {
-            text-align: center !important;
-            margin-bottom: 2rem !important;
-        }
-        
-        .policy h1,
-        .policy header h1 {
-            color: #1e40af !important;
-            font-size: 2.5rem !important;
-            font-weight: 700 !important;
-            margin-bottom: 0.5rem !important;
-        }
-        
-        .policy .text-secondary {
-            color: #6b7280 !important;
-            font-size: 1rem !important;
-            font-weight: 400 !important;
-            margin: 0 !important;
-        }
-        
-        .prose {
-            text-align: left !important;
-            line-height: 1.7 !important;
-            font-size: 1rem !important;
-        }
-        
-        .prose h2,
-        .prose h3,
-        .prose h4 {
-            color: #1e40af !important;
-            font-weight: 600 !important;
-            margin-top: 2rem !important;
-            margin-bottom: 0.75rem !important;
-        }
-        
-        .prose h3 {
-            font-size: 1.25rem !important;
-        }
-        
-        .prose p {
-            margin: 0.75rem 0 1rem 0 !important;
-            line-height: 1.7 !important;
-            font-size: 1rem !important;
-        }
-        
-        .prose ul,
-        .prose ol {
-            list-style: disc !important;
-            padding-left: 1.5rem !important;
-            margin: 0.75rem 0 1rem 0 !important;
-        }
-        
-        .prose li {
-            margin: 0.5rem 0 !important;
-            line-height: 1.7 !important;
-            font-size: 1rem !important;
-        }
-        
-        .prose a {
-            color: #1e40af !important;
-            text-decoration: underline !important;
-            font-weight: 500 !important;
-        }
-        
-        .prose a:hover {
-            color: #1d4ed8 !important;
-        }
-        
-        .prose strong,
-        .prose b {
-            font-weight: 600 !important;
-        }
+        /* Page layout & contrast */
+        body { background:#ffffff !important; }
+        .policy { max-width:940px; margin:0 auto; padding:2rem 1rem 3rem; }
+        .policy * { color:#111827 !important; text-shadow:none !important; }
+        .policy header { text-align:center !important; margin-bottom:2rem !important; }
+        .policy header h1 { color:#1e40af !important; font-size:2.25rem !important; font-weight:700 !important; margin:0 0 .5rem 0 !important; }
+        .policy .text-secondary { color:#6b7280 !important; }
+        .prose { text-align:left !important; line-height:1.75; font-size:1rem; }
+        .prose h2, .prose h3, .prose h4 { color:#1e40af !important; margin-top:1.5rem; margin-bottom:.5rem; font-weight:600; }
+        .prose p { margin:.5rem 0 1rem; }
+        .prose ul, .prose ol { list-style:disc; padding-left:1.25rem; margin:.25rem 0 1rem; }
+        .prose li { margin:.35rem 0; }
+        .prose a { color:#1e40af !important; text-decoration:underline; }
     </style>
 </head>
 <body class="is-preload">
