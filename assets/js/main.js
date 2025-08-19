@@ -413,7 +413,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function setLang(lang) {
         try { localStorage.setItem('imathhub_lang', lang); } catch (e) {}
         document.documentElement.setAttribute('lang', lang);
-        setTranslateLanguage(lang);
+        // Use curated translations for accuracy
         applyTranslations();
     }
 
@@ -486,8 +486,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function applyTranslations() {
         var lang = getLang();
         document.documentElement.setAttribute('lang', lang);
-        // If Mongolian is selected, defer to Google Translate to translate full content
-        if (lang === 'mn') return;
+        // Curated dictionary-based translations for higher accuracy
         translateNav();
         translateFooter();
         translatePolicyHeaders();
@@ -564,70 +563,8 @@ document.addEventListener('DOMContentLoaded', function() {
         container.appendChild(wrap);
     }
 
-    // --- Google Translate integration for full-page translation ---
-    function setCookie(name, value, days, domain) {
-        var expires = '';
-        if (days) {
-            var date = new Date();
-            date.setTime(date.getTime() + (days*24*60*60*1000));
-            expires = '; expires=' + date.toUTCString();
-        }
-        var cookieDomain = domain ? '; domain=' + domain : '';
-        document.cookie = name + '=' + (value || '') + expires + '; path=/' + cookieDomain;
-    }
-
-    function getCookie(name) {
-        var nameEQ = name + '=';
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-        }
-        return null;
-    }
-
-    function injectGoogleTranslate() {
-        if (window.google && window.google.translate) return; // already loaded
-        var container = document.getElementById('google_translate_element_container');
-        if (!container) {
-            container = document.createElement('div');
-            container.id = 'google_translate_element_container';
-            container.style.display = 'none';
-            document.body.appendChild(container);
-        }
-        window.googleTranslateElementInit = function() {
-            new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,mn', autoDisplay: false }, 'google_translate_element_container');
-        };
-        var s = document.createElement('script');
-        s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-        s.async = true;
-        document.body.appendChild(s);
-    }
-
-    function setTranslateLanguage(lang) {
-        // Google Translate cookie toggling
-        var pair = (lang === 'mn') ? '/en/mn' : '/mn/en';
-        // Set for current domain and root domain
-        var host = window.location.hostname;
-        var parts = host.split('.');
-        var rootDomain = parts.length > 2 ? ('.' + parts.slice(-2).join('.')) : ('.' + host);
-        setCookie('googtrans', pair, 365);
-        setCookie('googtrans', pair, 365, rootDomain);
-        // If translate is loaded, try to re-apply without reload; else reload as fallback
-        if (window.google && window.google.translate) {
-            try { window.location.reload(); } catch (e) { /* noop */ }
-        }
-    }
-
     document.addEventListener('DOMContentLoaded', function() {
         injectLangSwitcher();
-        injectGoogleTranslate();
-        // Initialize switcher from cookie if present
-        var gt = getCookie('googtrans') || '';
-        if (gt.indexOf('/en/mn') !== -1) {
-            try { localStorage.setItem('imathhub_lang', 'mn'); } catch (e) {}
-        }
         // Defer to ensure footer has been injected
         setTimeout(applyTranslations, 0);
     });
