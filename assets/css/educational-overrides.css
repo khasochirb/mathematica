@@ -261,11 +261,9 @@ body {
   border-bottom: none !important;
 }
 
+/* Disable hover movement on benefit items (keep static) */
 .benefit-item:hover {
   background: var(--color-background-light) !important;
-  margin: 0 calc(-1 * var(--space-4)) !important;
-  padding: var(--space-4) !important;
-  border-radius: var(--radius-md) !important;
 }
 
 .benefit-number {
@@ -392,10 +390,7 @@ body {
     padding: var(--space-3) 0 !important;
   }
   
-  .benefit-item:hover {
-    margin: 0 calc(-1 * var(--space-3)) !important;
-    padding: var(--space-3) !important;
-  }
+  .benefit-item:hover { }
   
   .subject-card {
     padding: var(--space-3) !important;
