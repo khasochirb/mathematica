@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function buildFooterHTML(prefix) {
-        return '\n            <div class="footer-content">\n                <div class="footer-section">\n                    <div class="footer-brand">\n                        <h3>International Math Hub</h3>\n                        <p>Empowering Mongolian students with world-class mathematics education. Expert tutors, personalized learning, and comprehensive resources for every grade level.</p>\n                    </div>\n                </div>\n                <div class="footer-section">\n                    <h4>Services</h4>\n                    <ul>\n                        <li><a href="' + prefix + 'tutoring.html">Online Tutoring</a></li>\n                        <li><a href="' + prefix + 'exam-prep.html">Learning Resources</a></li>\n                    </ul>\n                </div>\n                <div class="footer-section">\n                    <h4>Support</h4>\n                    <ul>\n                        <li><a href="' + prefix + 'contact.html">Contact Us</a></li>\n                        <li><a href="mailto:imathhub@gmail.com">Email Us</a></li>\n                        <li><a href="' + prefix + 'company.html">About</a></li>\n                        <li><a href="' + prefix + 'blog.html">Blog</a></li>\n\n                    </ul>\n                </div>\n                <div class="footer-section">\n                    <h4>Connect</h4>\n                    <div class="social-links">\n                        <a href="mailto:imathhub@gmail.com" class="social-link" title="Email"><i class="fas fa-envelope"></i></a>\n                        <a href="https://www.facebook.com/mongolpotential" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>\n                        <a href="https://www.youtube.com/@InternationalMathematicsHub" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>\n                        <a href="https://x.com/mongolmath" class="social-link" title="X"><i class="fab fa-twitter"></i></a>\n                        <a href="https://www.instagram.com/mongolpotential" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>\n                    </div>\n                </div>\n            </div>\n            <div class="footer-bottom">\n                <div class="footer-bottom-content">\n                    <div class="footer-legal">\n                        <ul>\n                            <li><a href="' + prefix + 'terms.html">Terms of Service</a></li>\n                            <li><a href="' + prefix + 'privacy.html">Privacy Policy</a></li>\n                            <li><a href="' + prefix + 'cookies.html">Cookie Policy</a></li>\n                        </ul>\n                    </div>\n                    <div class="footer-copyright">\n                        <p>&copy; 2025 International Math Hub. All rights reserved.</p>\n                    </div>\n                </div>\n            </div>\n        ';
+        return '\n            <div class="footer-content">\n                <div class="footer-section">\n                    <div class="footer-brand">\n                        <h3>Mongol Potential</h3>\n                        <p>Empowering Mongolian students with world-class mathematics education. Expert tutors, personalized learning, and comprehensive resources for every grade level.</p>\n                    </div>\n                </div>\n                <div class="footer-section">\n                    <h4>Services</h4>\n                    <ul>\n                        <li><a href="' + prefix + 'tutoring.html">Online Tutoring</a></li>\n                        <li><a href="' + prefix + 'exam-prep.html">Learning Resources</a></li>\n                    </ul>\n                </div>\n                <div class="footer-section">\n                    <h4>Support</h4>\n                    <ul>\n                        <li><a href="' + prefix + 'contact.html">Contact Us</a></li>\n                        <li><a href="mailto:imathhub@gmail.com">Email Us</a></li>\n                        <li><a href="' + prefix + 'company.html">About</a></li>\n                        <li><a href="' + prefix + 'blog.html">Blog</a></li>\n\n                    </ul>\n                </div>\n                <div class="footer-section">\n                    <h4>Connect</h4>\n                    <div class="social-links">\n                        <a href="mailto:imathhub@gmail.com" class="social-link" title="Email"><i class="fas fa-envelope"></i></a>\n                        <a href="https://www.facebook.com/mongolpotential" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>\n                        <a href="https://www.youtube.com/@InternationalMathematicsHub" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>\n                        <a href="https://x.com/mongolmath" class="social-link" title="X"><i class="fab fa-twitter"></i></a>\n                        <a href="https://www.instagram.com/mongolpotential" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>\n                    </div>\n                </div>\n            </div>\n            <div class="footer-bottom">\n                <div class="footer-bottom-content">\n                    <div class="footer-legal">\n                        <ul>\n                            <li><a href="' + prefix + 'terms.html">Terms of Service</a></li>\n                            <li><a href="' + prefix + 'privacy.html">Privacy Policy</a></li>\n                            <li><a href="' + prefix + 'cookies.html">Cookie Policy</a></li>\n                        </ul>\n                    </div>\n                    <div class="footer-copyright">\n                        <p>&copy; 2025 Mongol Potential. All rights reserved.</p>\n                    </div>\n                </div>\n            </div>\n        ';
     }
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -103,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!footer) return;
         var prefix = getPrefix();
         footer.innerHTML = buildFooterHTML(prefix);
+        try { window.dispatchEvent(new CustomEvent('footer:ready')); } catch (e) {}
     });
 })();
 
@@ -224,3 +225,297 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Lightweight i18n (EN/MN) with language switcher
+(function enableI18n() {
+    var I18N = {
+        en: {
+            'nav.home': 'Home',
+            'nav.examPrep': 'Exam Prep',
+            'nav.grades': 'Grades',
+            'nav.about': 'About Us',
+            'nav.contact': 'Contact',
+            'nav.blog': 'Blog',
+
+            'footer.brand': 'Empowering Mongolian students with world-class mathematics education. Expert tutors, personalized learning, and comprehensive resources for every grade level.',
+            'footer.services': 'Services',
+            'footer.support': 'Support',
+            'footer.connect': 'Connect',
+            'footer.onlineTutoring': 'Online Tutoring',
+            'footer.learningResources': 'Learning Resources',
+            'footer.contactUs': 'Contact Us',
+            'footer.emailUs': 'Email Us',
+            'footer.about': 'About',
+            'footer.blog': 'Blog',
+            'footer.terms': 'Terms of Service',
+            'footer.privacy': 'Privacy Policy',
+            'footer.cookies': 'Cookie Policy',
+            'footer.copyright': '© 2025 Mongol Potential. All rights reserved.',
+
+            'policy.terms': 'Terms & Conditions',
+            'policy.privacy': 'Privacy Policy',
+            'policy.cookies': 'Cookie Policy',
+            'policy.lastUpdated': 'Last updated:'
+        },
+        mn: {
+            'nav.home': 'Нүүр',
+            'nav.examPrep': 'Шалгалтын бэлтгэл',
+            'nav.grades': 'Ангиуд',
+            'nav.about': 'Бидний тухай',
+            'nav.contact': 'Холбоо барих',
+            'nav.blog': 'Блог',
+
+            'footer.brand': 'Дэлхийн түвшний математик боловсролыг Монголын сурагчдад хүргэнэ. Шилдэг багш нар, хувийн сургалт, бүх ангийн түвшинд зориулсан иж бүрэн нөөц.',
+            'footer.services': 'Үйлчилгээ',
+            'footer.support': 'Тусламж',
+            'footer.connect': 'Холбогдох',
+            'footer.onlineTutoring': 'Онлайн давтлага',
+            'footer.learningResources': 'Сургалтын нөөц',
+            'footer.contactUs': 'Бидэнтэй холбоо барих',
+            'footer.emailUs': 'И-мэйл илгээх',
+            'footer.about': 'Тухай',
+            'footer.blog': 'Блог',
+            'footer.terms': 'Үйлчилгээний нөхцөл',
+            'footer.privacy': 'Нууцлалын бодлого',
+            'footer.cookies': 'Күүки бодлого',
+            'footer.copyright': '© 2025 Mongol Potential. Бүх эрх хамгаалагдсан.',
+
+            'policy.terms': 'Үйлчилгээний нөхцөл',
+            'policy.privacy': 'Нууцлалын бодлого',
+            'policy.cookies': 'Күүки бодлого',
+            'policy.lastUpdated': 'Сүүлийн шинэчлэл:'
+        }
+    };
+
+    function getLang() {
+        try {
+            var saved = localStorage.getItem('imathhub_lang');
+            if (saved) return saved;
+        } catch (e) {}
+        // default: English
+        return 'en';
+    }
+
+    function setLang(lang) {
+        try { localStorage.setItem('imathhub_lang', lang); } catch (e) {}
+        document.documentElement.setAttribute('lang', lang);
+        setTranslateLanguage(lang);
+        applyTranslations();
+    }
+
+    function t(key) {
+        var lang = getLang();
+        var dict = I18N[lang] || I18N.en;
+        return dict[key] || I18N.en[key] || key;
+    }
+
+    function translateNav() {
+        var nav = document.querySelector('#nav');
+        if (!nav) return;
+        nav.querySelectorAll(':scope > ul > li > a').forEach(function(a) {
+            var href = (a.getAttribute('href') || '').toLowerCase();
+            if (href.endsWith('index.html')) a.textContent = t('nav.home');
+            else if (href.endsWith('exam-prep.html')) a.textContent = t('nav.examPrep');
+            else if (href.endsWith('grades.html')) a.textContent = t('nav.grades');
+            else if (href.endsWith('company.html')) a.textContent = t('nav.about');
+            else if (href.endsWith('contact.html')) a.textContent = t('nav.contact');
+            else if (href.endsWith('blog.html')) a.textContent = t('nav.blog');
+        });
+    }
+
+    function translateFooter() {
+        var footer = document.querySelector('#footer');
+        if (!footer) return;
+        // Headings
+        footer.querySelectorAll('.footer-section h4').forEach(function(h4) {
+            var txt = (h4.textContent || '').trim().toLowerCase();
+            if (txt === 'services') h4.textContent = t('footer.services');
+            else if (txt === 'support') h4.textContent = t('footer.support');
+            else if (txt === 'connect') h4.textContent = t('footer.connect');
+        });
+        var brand = footer.querySelector('.footer-brand p');
+        if (brand) brand.textContent = t('footer.brand');
+
+        // Links by href
+        footer.querySelectorAll('a').forEach(function(a) {
+            var href = (a.getAttribute('href') || '').toLowerCase();
+            if (href.indexOf('tutoring.html') !== -1) a.textContent = t('footer.onlineTutoring');
+            else if (href.indexOf('exam-prep.html') !== -1) a.textContent = t('footer.learningResources');
+            else if (href.indexOf('contact.html') !== -1) a.textContent = t('footer.contactUs');
+            else if (href.indexOf('company.html') !== -1) a.textContent = t('footer.about');
+            else if (href.indexOf('blog.html') !== -1) a.textContent = t('footer.blog');
+            else if (href.indexOf('terms.html') !== -1) a.textContent = t('footer.terms');
+            else if (href.indexOf('privacy.html') !== -1) a.textContent = t('footer.privacy');
+            else if (href.indexOf('cookies.html') !== -1) a.textContent = t('footer.cookies');
+        });
+
+        var cr = footer.querySelector('.footer-bottom .footer-copyright p');
+        if (cr) cr.textContent = t('footer.copyright');
+    }
+
+    function translatePolicyHeaders() {
+        var h1 = document.querySelector('.policy header h1');
+        if (h1) {
+            var txt = (h1.textContent || '').trim().toLowerCase();
+            if (txt.indexOf('terms') !== -1) h1.textContent = t('policy.terms');
+            else if (txt.indexOf('privacy') !== -1) h1.textContent = t('policy.privacy');
+            else if (txt.indexOf('cookie') !== -1) h1.textContent = t('policy.cookies');
+        }
+        var upd = document.querySelector('.policy header .text-secondary');
+        if (upd) {
+            var val = upd.textContent || '';
+            var datePart = val.replace(/^[^:]*:/, '').trim();
+            upd.textContent = t('policy.lastUpdated') + ' ' + datePart;
+        }
+    }
+
+    function applyTranslations() {
+        var lang = getLang();
+        document.documentElement.setAttribute('lang', lang);
+        // If Mongolian is selected, defer to Google Translate to translate full content
+        if (lang === 'mn') return;
+        translateNav();
+        translateFooter();
+        translatePolicyHeaders();
+    }
+
+    function injectLangSwitcher() {
+        var container = document.querySelector('#header .header-container');
+        if (!container) return;
+        if (document.querySelector('.lang-switcher')) return;
+
+        // Inject minimal styles for visibility on white header
+        if (!document.getElementById('lang-switcher-styles')) {
+            var st = document.createElement('style');
+            st.id = 'lang-switcher-styles';
+            st.textContent = '\n.lang-switcher{position:relative;margin-left:12px;}\n.lang-btn{display:flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #E5E7EB;border-radius:8px;background:#ffffff;color:#1f2937;cursor:pointer;font-weight:600;}\n.lang-btn i{color:#1f2937;}\n.lang-menu{position:absolute;right:0;top:110%;background:#ffffff;border:1px solid #E5E7EB;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,0.08);padding:6px;display:none;z-index:1000;min-width:140px;}\n.lang-menu.open{display:block;}\n.lang-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:6px;color:#1f2937;cursor:pointer;white-space:nowrap;}\n.lang-item:hover{background:#F3F4F6;}\n.lang-flag{font-size:16px;line-height:1;}\n@media (max-width: 480px){.lang-btn{padding:6px 8px}}\n';
+            document.head.appendChild(st);
+        }
+
+        var wrap = document.createElement('div');
+        wrap.className = 'lang-switcher';
+
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'lang-btn';
+        btn.setAttribute('aria-haspopup', 'menu');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.innerHTML = '<i class="fas fa-globe" aria-hidden="true"></i><span class="lang-label"></span>';
+
+        var menu = document.createElement('div');
+        menu.className = 'lang-menu';
+        menu.setAttribute('role', 'menu');
+        menu.innerHTML = '\n            <div class="lang-item" data-lang="en" role="menuitem"><span class="lang-flag">🇺🇸</span><span>English</span></div>\n            <div class="lang-item" data-lang="mn" role="menuitem"><span class="lang-flag">🇲🇳</span><span>Монгол</span></div>\n        ';
+
+        function updateLabel() {
+            var current = getLang();
+            var label = btn.querySelector('.lang-label');
+            label.textContent = current === 'mn' ? 'MN' : 'EN';
+        }
+
+        btn.addEventListener('click', function(e){
+            e.preventDefault();
+            var isOpen = menu.classList.contains('open');
+            menu.classList.toggle('open', !isOpen);
+            btn.setAttribute('aria-expanded', String(!isOpen));
+        });
+
+        menu.addEventListener('click', function(e){
+            var item = e.target.closest('.lang-item');
+            if (!item) return;
+            var lang = item.getAttribute('data-lang');
+            setLang(lang);
+            updateLabel();
+            menu.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+        });
+
+        document.addEventListener('click', function(e){
+            if (!wrap.contains(e.target)) {
+                menu.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        document.addEventListener('keydown', function(e){
+            if (e.key === 'Escape') {
+                menu.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        updateLabel();
+        wrap.appendChild(btn);
+        wrap.appendChild(menu);
+        container.appendChild(wrap);
+    }
+
+    // --- Google Translate integration for full-page translation ---
+    function setCookie(name, value, days, domain) {
+        var expires = '';
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = '; expires=' + date.toUTCString();
+        }
+        var cookieDomain = domain ? '; domain=' + domain : '';
+        document.cookie = name + '=' + (value || '') + expires + '; path=/' + cookieDomain;
+    }
+
+    function getCookie(name) {
+        var nameEQ = name + '=';
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    function injectGoogleTranslate() {
+        if (window.google && window.google.translate) return; // already loaded
+        var container = document.getElementById('google_translate_element_container');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'google_translate_element_container';
+            container.style.display = 'none';
+            document.body.appendChild(container);
+        }
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,mn', autoDisplay: false }, 'google_translate_element_container');
+        };
+        var s = document.createElement('script');
+        s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        s.async = true;
+        document.body.appendChild(s);
+    }
+
+    function setTranslateLanguage(lang) {
+        // Google Translate cookie toggling
+        var pair = (lang === 'mn') ? '/en/mn' : '/mn/en';
+        // Set for current domain and root domain
+        var host = window.location.hostname;
+        var parts = host.split('.');
+        var rootDomain = parts.length > 2 ? ('.' + parts.slice(-2).join('.')) : ('.' + host);
+        setCookie('googtrans', pair, 365);
+        setCookie('googtrans', pair, 365, rootDomain);
+        // If translate is loaded, try to re-apply without reload; else reload as fallback
+        if (window.google && window.google.translate) {
+            try { window.location.reload(); } catch (e) { /* noop */ }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        injectLangSwitcher();
+        injectGoogleTranslate();
+        // Initialize switcher from cookie if present
+        var gt = getCookie('googtrans') || '';
+        if (gt.indexOf('/en/mn') !== -1) {
+            try { localStorage.setItem('imathhub_lang', 'mn'); } catch (e) {}
+        }
+        // Defer to ensure footer has been injected
+        setTimeout(applyTranslations, 0);
+    });
+    window.addEventListener('footer:ready', applyTranslations);
+})();
