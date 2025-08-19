@@ -51,6 +51,19 @@
         .topic-list li:last-child { border-bottom: none; }
         .topic-list li::before { content: "✓"; position: absolute; left: 0; color: #0891b2; font-weight: 700; }
 
+        /* Force readable dark text for all content outside the hero */
+        body.courses-page #main,
+        body.courses-page #main *,
+        body.courses-page .edu-container,
+        body.courses-page .edu-container * {
+            color: #1f2937 !important;
+            text-shadow: none !important;
+        }
+        body.courses-page .course-card h3,
+        body.courses-page .section-header h2 { color: #1e40af !important; }
+        body.courses-page .course-desc { color: #475569 !important; }
+        body.courses-page .topic-list li { color: #374151 !important; }
+
         @media (max-width: 768px) {
             .courses-hero h1 { font-size: 2.2em; }
         }
