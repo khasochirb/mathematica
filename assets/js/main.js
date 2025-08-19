@@ -107,6 +107,120 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 })();
 
+// Unified navigation injection for ALL pages
+(function injectUnifiedNav() {
+    function buildNavHTML() {
+        return '\n<ul>\n' +
+        '    <li><a href="index.html">Home</a></li>\n' +
+        '    <li class="has-dropdown">\n' +
+        '        <a href="exam-prep.html">Exam Prep</a>\n' +
+        '        <div class="dropdown">\n' +
+        '            <div class="dropdown-grid">\n' +
+        '                <a href="exam-prep.html#sat" class="dropdown-item">\n' +
+        '                    <i class="fas fa-graduation-cap"></i>\n' +
+        '                    <span>SAT Math</span>\n' +
+        '                </a>\n' +
+        '                <a href="exam-prep.html#act" class="dropdown-item">\n' +
+        '                    <i class="fas fa-check-circle"></i>\n' +
+        '                    <span>ACT Math</span>\n' +
+        '                </a>\n' +
+        '                <a href="exam-prep.html#psat" class="dropdown-item">\n' +
+        '                    <i class="fas fa-clipboard-check"></i>\n' +
+        '                    <span>PSAT/NMSQT</span>\n' +
+        '                </a>\n' +
+        '                <a href="exam-prep.html#gre" class="dropdown-item">\n' +
+        '                    <i class="fas fa-chart-line"></i>\n' +
+        '                    <span>GRE Quant</span>\n' +
+        '                </a>\n' +
+        '                <a href="exam-prep.html#gmat" class="dropdown-item">\n' +
+        '                    <i class="fas fa-briefcase"></i>\n' +
+        '                    <span>GMAT Quant</span>\n' +
+        '                </a>\n' +
+        '                <a href="exam-prep.html#ib" class="dropdown-item">\n' +
+        '                    <i class="fas fa-globe"></i>\n' +
+        '                    <span>IB Math</span>\n' +
+        '                </a>\n' +
+        '                <a href="exam-prep.html#igcse" class="dropdown-item">\n' +
+        '                    <i class="fas fa-book"></i>\n' +
+        '                    <span>IGCSE/GCSE Math</span>\n' +
+        '                </a>\n' +
+        '                <a href="exam-prep.html#olympiad" class="dropdown-item">\n' +
+        '                    <i class="fas fa-trophy"></i>\n' +
+        '                    <span>Math Olympiad</span>\n' +
+        '                </a>\n' +
+        '                <a href="exam-prep.html#ap" class="dropdown-item">\n' +
+        '                    <i class="fas fa-medal"></i>\n' +
+        '                    <span>AP Prep</span>\n' +
+        '                </a>\n' +
+        '                <a href="tutoring.html" class="dropdown-item">\n' +
+        '                    <i class="fas fa-user-graduate"></i>\n' +
+        '                    <span>1-on-1 Tutoring</span>\n' +
+        '                </a>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '    </li>\n' +
+        '    <li class="has-dropdown">\n' +
+        '        <a href="grades.html">Grades</a>\n' +
+        '        <div class="dropdown">\n' +
+        '            <div class="dropdown-grid">\n' +
+        '                <a href="grades.html#elementary" class="dropdown-item">\n' +
+        '                    <i class="fas fa-child"></i>\n' +
+        '                    <span>Elementary School</span>\n' +
+        '                </a>\n' +
+        '                <a href="grades.html#middle" class="dropdown-item">\n' +
+        '                    <i class="fas fa-school"></i>\n' +
+        '                    <span>Middle School</span>\n' +
+        '                </a>\n' +
+        '                <a href="grades.html#high" class="dropdown-item">\n' +
+        '                    <i class="fas fa-university"></i>\n' +
+        '                    <span>High School</span>\n' +
+        '                </a>\n' +
+        '                <a href="grades.html#college" class="dropdown-item">\n' +
+        '                    <i class="fas fa-graduation-cap"></i>\n' +
+        '                    <span>College</span>\n' +
+        '                </a>\n' +
+        '                <a href="grades.html#adult" class="dropdown-item">\n' +
+        '                    <i class="fas fa-user-tie"></i>\n' +
+        '                    <span>Adult Learning</span>\n' +
+        '                </a>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '    </li>\n' +
+        '    <li class="has-dropdown">\n' +
+        '        <a href="company.html">About Us</a>\n' +
+        '        <div class="dropdown">\n' +
+        '            <div class="dropdown-grid">\n' +
+        '                <a href="company.html#about" class="dropdown-item">\n' +
+        '                    <i class="fas fa-info-circle"></i>\n' +
+        '                    <span>About</span>\n' +
+        '                </a>\n' +
+        '                <a href="company.html#careers" class="dropdown-item">\n' +
+        '                    <i class="fas fa-briefcase"></i>\n' +
+        '                    <span>Careers</span>\n' +
+        '                </a>\n' +
+        '                <a href="contact.html" class="dropdown-item">\n' +
+        '                    <i class="fas fa-envelope"></i>\n' +
+        '                    <span>Contact</span>\n' +
+        '                </a>\n' +
+        '                <a href="company.html#team" class="dropdown-item">\n' +
+        '                    <i class="fas fa-users"></i>\n' +
+        '                    <span>Our Team</span>\n' +
+        '                </a>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '    </li>\n' +
+        '    <li><a href="contact.html">Contact</a></li>\n' +
+        '    <li><a href="blog.html">Blog</a></li>\n' +
+        '</ul>\n';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var nav = document.querySelector('#nav');
+        if (!nav) return;
+        nav.innerHTML = buildNavHTML();
+    });
+})();
+
 // Favicon setup for all pages
 (function injectFavicon() {
     function getPrefixForFavicon() {
