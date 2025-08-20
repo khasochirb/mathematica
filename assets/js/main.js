@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     document.addEventListener('DOMContentLoaded', function() {
         var prefix = getPrefixForFavicon();
-        ensureFavicon(prefix + 'images/mongol.png');
+        ensureFavicon(prefix + 'images/mp.png');
     });
 })();
 
@@ -302,16 +302,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 caret.setAttribute('aria-label', 'Expand menu');
                 caret.innerHTML = '<i class="fas fa-chevron-down" aria-hidden="true"></i>';
                 item.appendChild(caret);
+                
+                // Add click handler only once when creating the button
+                caret.onclick = function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const isOpen = item.classList.contains('mobile-open');
+                    // Close others, toggle current
+                    document.querySelectorAll('#nav > ul > li.has-dropdown').forEach(i => i.classList.remove('mobile-open'));
+                    item.classList.toggle('mobile-open', !isOpen);
+                };
             }
-
-            caret.onclick = function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                const isOpen = item.classList.contains('mobile-open');
-                // Close others, toggle current
-                document.querySelectorAll('#nav > ul > li.has-dropdown').forEach(i => i.classList.remove('mobile-open'));
-                item.classList.toggle('mobile-open', !isOpen);
-            };
         });
     }
 
@@ -332,7 +333,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if (window.innerWidth <= 1024) {
             setupMobileDropdowns();
         } else {
-            document.querySelectorAll('#nav > ul > li.has-dropdown').forEach(item => item.classList.remove('mobile-open'));
+            // Clean up mobile elements when switching back to desktop
+            document.querySelectorAll('#nav > ul > li.has-dropdown').forEach(item => {
+                item.classList.remove('mobile-open');
+                // Remove mobile caret buttons
+                const caret = item.querySelector(':scope > button.nav-caret');
+                if (caret) {
+                    caret.remove();
+                }
+            });
             nav.classList.remove('mobile-open');
             const toggleBtn = document.querySelector('.mobile-menu-toggle');
             if (toggleBtn) toggleBtn.classList.remove('active');
@@ -369,7 +378,14 @@ document.addEventListener('DOMContentLoaded', function() {
             'policy.terms': 'Terms & Conditions',
             'policy.privacy': 'Privacy Policy',
             'policy.cookies': 'Cookie Policy',
-            'policy.lastUpdated': 'Last updated:'
+            'policy.lastUpdated': 'Last updated:',
+
+            // Homepage
+            'home.hero.title': 'Helping Mongol minds reach their potential',
+            'home.hero.subtitle': 'High-quality math and science education for Mongolian students around the world—aligned with AP, IB, and US state curricula—while strengthening cultural connection through Mongolian‑context problems and stories.',
+            'home.hero.cta': 'Helping Your Child Succeed—Wherever You Live',
+            'home.cta.title': 'Ready to start your mathematical journey?',
+            'home.cta.button': 'Reach Out to Us'
         },
         mn: {
             'nav.home': 'Нүүр',
@@ -379,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'nav.contact': 'Холбоо барих',
             'nav.blog': 'Блог',
 
-            'footer.brand': 'Helping Mongol minds reach their full potential. Personalized tutoring and comprehensive resources.',
+            'footer.brand': 'Монгол оюун уханы чадамжийг нээж, хувийн хөтөлбөртэй давтлага болон иж бүрэн нөөцөөр дэмжинэ.',
             'footer.services': 'Үйлчилгээ',
             'footer.support': 'Тусламж',
             'footer.connect': 'Холбогдох',
@@ -397,14 +413,26 @@ document.addEventListener('DOMContentLoaded', function() {
             'policy.terms': 'Үйлчилгээний нөхцөл',
             'policy.privacy': 'Нууцлалын бодлого',
             'policy.cookies': 'Күүки бодлого',
-            'policy.lastUpdated': 'Сүүлийн шинэчлэл:'
+            'policy.lastUpdated': 'Сүүлийн шинэчлэл:',
+
+            // Homepage
+            'home.hero.title': 'Монгол оюун уханы чадамжийг нээхэд тусална',
+            'home.hero.subtitle': 'Дэлхийн хаана ч байгаа монгол сурагчдад зориулсан чанартай математик, шинжлэх ухааны боловсрол — AP, IB болон АНУ-ын муж улсын хөтөлбөрүүдтэй уялдуулж, монгол соёлын агуулгатай бодлого, өгүүллээр холбогдоно.',
+            'home.hero.cta': 'Та хаана амьдарч байсан ч бид таны хүүхдэд амжилтад хүрэхэд нь тусална',
+            'home.cta.title': 'Таны математикийн аяллыг эхлүүлэхэд бэлэн үү?',
+            'home.cta.button': 'Бидэнтэй холбогдох'
         }
     };
 
     function getLang() {
         try {
-            var saved = localStorage.getItem('imathhub_lang');
-            if (saved) return saved;
+            // Detect from URL first: *.mn.html → Mongolian
+            var path = (window.location && window.location.pathname) || '';
+            if (/\.mn\.html(?:$|\?)/.test(path)) return 'mn';
+            // For English pages, always return English regardless of localStorage
+            // Only check localStorage for explicit language switching
+            // var saved = localStorage.getItem('imathhub_lang');
+            // if (saved) return saved;
         } catch (e) {}
         // default: English
         return 'en';
@@ -490,77 +518,51 @@ document.addEventListener('DOMContentLoaded', function() {
         translateNav();
         translateFooter();
         translatePolicyHeaders();
+        // NEW: generic data-i18n support
+        translateDataI18n();
+        // NEW: rewrite links to language-specific pages when available
+        adjustLinksForLanguage();
     }
 
-    function injectLangSwitcher() {
-        var container = document.querySelector('#header .header-container');
-        if (!container) return;
-        if (document.querySelector('.lang-switcher')) return;
-
-        // Inject minimal styles for visibility on white header
-        if (!document.getElementById('lang-switcher-styles')) {
-            var st = document.createElement('style');
-            st.id = 'lang-switcher-styles';
-            st.textContent = '\n.lang-switcher{position:relative;margin-left:12px;}\n.lang-btn{display:flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #E5E7EB;border-radius:8px;background:#ffffff;color:#1f2937;cursor:pointer;font-weight:600;}\n.lang-btn i{color:#1f2937;}\n.lang-menu{position:absolute;right:0;top:110%;background:#ffffff;border:1px solid #E5E7EB;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,0.08);padding:6px;display:none;z-index:1000;min-width:140px;}\n.lang-menu.open{display:block;}\n.lang-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:6px;color:#1f2937;cursor:pointer;white-space:nowrap;}\n.lang-item:hover{background:#F3F4F6;}\n.lang-flag{font-size:16px;line-height:1;}\n@media (max-width: 480px){.lang-btn{padding:6px 8px}}\n';
-            document.head.appendChild(st);
+    // Rewrite nav/footer links to .mn.html when language is Mongolian and page exists in our supported set
+    function adjustLinksForLanguage() {
+        var lang = getLang();
+        var suffix = lang === 'mn' ? '.mn' : '';
+        var supported = new Set(['index','grades','exam-prep']); // extend as more mn pages are added
+        function mapHref(href) {
+            if (!href) return href;
+            // only local links
+            if (/^https?:\/\//i.test(href) || href.startsWith('mailto:') ) return href;
+            var m = href.match(/^(.*?)(index|grades|exam-prep)(\.html)(#.*)?$/);
+            if (!m) return href;
+            var prefix = m[1] || '';
+            var name = m[2];
+            var hash = m[4] || '';
+            if (suffix === '.mn' && supported.has(name)) return prefix + name + '.mn.html' + hash;
+            // language back to EN
+            return prefix + name + '.html' + hash;
         }
+        document.querySelectorAll('a').forEach(function(a){
+            a.setAttribute('href', mapHref(a.getAttribute('href')));
+        });
+    }
 
-        var wrap = document.createElement('div');
-        wrap.className = 'lang-switcher';
-
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'lang-btn';
-        btn.setAttribute('aria-haspopup', 'menu');
-        btn.setAttribute('aria-expanded', 'false');
-        btn.innerHTML = '<i class="fas fa-globe" aria-hidden="true"></i><span class="lang-label"></span>';
-
-        var menu = document.createElement('div');
-        menu.className = 'lang-menu';
-        menu.setAttribute('role', 'menu');
-        menu.innerHTML = '\n            <div class="lang-item" data-lang="en" role="menuitem"><span class="lang-flag">🇺🇸</span><span>English</span></div>\n            <div class="lang-item" data-lang="mn" role="menuitem"><span class="lang-flag">🇲🇳</span><span>Монгол</span></div>\n        ';
-
-        function updateLabel() {
-            var current = getLang();
-            var label = btn.querySelector('.lang-label');
-            label.textContent = current === 'mn' ? 'MN' : 'EN';
+    function redirectForLanguage(lang) {
+        var loc = window.location;
+        var path = loc.pathname.split('/');
+        var file = path.pop() || 'index.html';
+        var base = file.replace(/\.mn\.html$/, '').replace(/\.html$/, '');
+        var dir = path.join('/') + '/';
+        var target = (lang === 'mn') ? (base + '.mn.html') : (base + '.html');
+        // If switching to MN and page not supported, fall back to index.mn.html
+        var supported = new Set(['index','grades','exam-prep']);
+        if (lang === 'mn' && !supported.has(base)) target = 'index.mn.html';
+        if (lang !== 'mn' && base === 'index') target = 'index.html';
+        try {
+            window.location.href = dir + target;
+        } catch (e) {
+            window.location.assign(dir + target);
         }
-
-        btn.addEventListener('click', function(e){
-            e.preventDefault();
-            var isOpen = menu.classList.contains('open');
-            menu.classList.toggle('open', !isOpen);
-            btn.setAttribute('aria-expanded', String(!isOpen));
-        });
-
-        menu.addEventListener('click', function(e){
-            var item = e.target.closest('.lang-item');
-            if (!item) return;
-            var lang = item.getAttribute('data-lang');
-            setLang(lang);
-            updateLabel();
-            menu.classList.remove('open');
-            btn.setAttribute('aria-expanded', 'false');
-        });
-
-        document.addEventListener('click', function(e){
-            if (!wrap.contains(e.target)) {
-                menu.classList.remove('open');
-                btn.setAttribute('aria-expanded', 'false');
-            }
-        });
-
-        document.addEventListener('keydown', function(e){
-            if (e.key === 'Escape') {
-                menu.classList.remove('open');
-                btn.setAttribute('aria-expanded', 'false');
-            }
-        });
-
-        updateLabel();
-        wrap.appendChild(btn);
-        wrap.appendChild(menu);
-        container.appendChild(wrap);
     }
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -569,4 +571,39 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(applyTranslations, 0);
     });
     window.addEventListener('footer:ready', applyTranslations);
+})();
+
+// Typewriter for Mongolian homepage (index.mn.html)
+(function initMnTypewriter(){
+  document.addEventListener('DOMContentLoaded', function(){
+    var isMnHome = /index\.mn\.html(?:$|\?)/.test(location.pathname);
+    if (!isMnHome) return; // avoid clashing with inline script on English page
+    var el = document.getElementById('rotating-text');
+    if (!el) return;
+    var texts = [
+      'Та хаана амьдарч байсан ч бид таны хүүхдэд амжилтад хүрэхэд нь тусална',
+      'Тодорхойгүйгээс итгэлтэй рүү — ойлгуулж чаддаг багштай',
+      'Монгол сурагчдад зориулсан мэргэжлийн математикийн давтлага',
+      'Итгэлийг алхам алхмаар нэмэгдүүлнэ',
+      'Чанартай хичээлээр сониуч занг асаая',
+      'Ирээдүйн сэтгэгчдийг урамшуулна'
+    ];
+    var currentIndex = 0, currentText = '', isDeleting = false;
+    var typeSpeed = 100, deleteSpeed = 50, pauseTime = 2000;
+    function type(){
+      var full = texts[currentIndex];
+      if (isDeleting){
+        currentText = full.substring(0, currentText.length - 1);
+        el.textContent = currentText;
+        if (currentText === ''){ isDeleting = false; currentIndex = (currentIndex + 1) % texts.length; setTimeout(type, 500); return; }
+        setTimeout(type, deleteSpeed);
+      } else {
+        currentText = full.substring(0, currentText.length + 1);
+        el.textContent = currentText;
+        if (currentText === full){ setTimeout(function(){ isDeleting = true; type(); }, pauseTime); return; }
+        setTimeout(type, typeSpeed);
+      }
+    }
+    setTimeout(type, 800);
+  });
 })();

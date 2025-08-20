@@ -43,7 +43,7 @@ update_file() {
         print "            <div class=\"header-container\" style=\"display: flex; align-items: center; justify-content: space-between;\">";
         print "                <!-- Logo -->";
         print "                <div class=\"logo\">";
-        print "                    <a href=\"../../index.html\"><img src=\"../../images/mongol.png\" alt=\"International Math Hub Logo\" style=\"max-height: 60px;\"></a>";
+        print "                    <a href=\"../../index.html\"><img src=\"../../images/mp.png\" alt=\"International Math Hub Logo\" style=\"max-height: 60px;\"></a>";
         print "                </div>";
         print "";
         print "                <!-- Main Navigation -->";
