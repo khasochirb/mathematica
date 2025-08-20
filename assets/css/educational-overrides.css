@@ -17,11 +17,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* White headings ONLY for hero section and dark background sections */
+/* Allow white headings only on hero/dark backgrounds, NEVER inside policy pages */
 .hero-section h1, .hero-section h2, .hero-section h3, .hero-section h4, .hero-section h5, .hero-section h6,
 #banner h1, #banner h2, #banner h3, #banner h4, #banner h5, #banner h6,
 .fullscreen-section h1, .fullscreen-section h2, .fullscreen-section h3, .fullscreen-section h4, .fullscreen-section h5, .fullscreen-section h6 {
   color: white !important;
 }
+.policy h1, .policy h2, .policy h3, .policy h4, .policy h5, .policy h6 { color:#1e40af !important; }
+body .policy p, body .policy li, body .policy .text-secondary { color:#111827 !important; }
+/* Undo global center on policy content */
+.policy p, .policy li { text-align:left !important; margin-left:0 !important; margin-right:0 !important; }
 
 /* Ensure headers are perfectly centered */
 .edu-section header,
@@ -447,6 +452,14 @@ body {
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
+/* Belt-and-suspenders color reset for headings and body text inside policies */
+body .policy h1, body .policy h2, body .policy h3, body .policy h4, body .policy h5, body .policy h6 {
+  color: #1e40af !important;
+}
+body .policy p, body .policy li, body .policy .text-secondary {
+  color: #111827 !important;
+}
+
 .policy header {
   text-align: center !important;
   margin-bottom: 2rem !important;
@@ -457,7 +470,7 @@ body {
   font-weight: 700 !important;
 }
 
-.policy .prose {
+.policy .prose { 
   text-align: left !important;
   line-height: 1.75 !important;
   font-size: 1rem !important;
@@ -470,7 +483,8 @@ body {
   margin-bottom: .5rem !important;
 }
 
-.policy .prose p { margin: .5rem 0 1rem !important; }
+.policy .text-secondary { color:#6b7280 !important; }
+.policy .prose p { margin: .5rem 0 1rem !important; color:#111827 !important; }
 .policy .prose ul, .policy .prose ol { list-style: disc !important; padding-left: 1.25rem !important; margin: .25rem 0 1rem !important; }
 .policy .prose li { margin: .35rem 0 !important; }
 .policy .prose a { color: #1e40af !important; text-decoration: underline !important; }

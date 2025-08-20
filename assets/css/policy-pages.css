@@ -1,0 +1,89 @@
+/* 
+ * Policy Pages CSS - Complete Rewrite
+ * ONLY goal: Make all text black except headings (blue)
+ */
+
+/* STEP 1: Reset everything to black with maximum CSS specificity */
+html,
+html *,
+html body,
+html body *,
+html body div,
+html body div *,
+html body section,
+html body section *,
+html body p,
+html body span,
+html body li,
+html body ul,
+html body ol,
+html body strong,
+html body em,
+html body small,
+html body .text-secondary,
+html body .prose,
+html body .prose *,
+html body .prose p,
+html body .prose li,
+html body .prose span,
+html body .prose strong,
+html body .policy,
+html body .policy *,
+html body .policy p,
+html body .policy li,
+html body .policy span,
+html body .policy .text-secondary,
+html body .edu-section,
+html body .edu-section *,
+html body .edu-section p,
+html body .edu-section .text-secondary,
+html body .edu-container,
+html body .edu-container *,
+html body .edu-container p,
+html body .edu-container li {
+    color: #111827 !important;
+    text-shadow: none !important;
+}
+
+/* STEP 2: Override any pseudo-elements */
+html body *::before,
+html body *::after {
+    color: #111827 !important;
+}
+
+/* STEP 3: Target specific classes that might be problematic */
+html body .text-secondary,
+html body p.text-secondary,
+html body span.text-secondary,
+html body div.text-secondary {
+    color: #111827 !important;
+}
+
+/* STEP 4: Keep headings blue */
+html body h1,
+html body h2,
+html body h3,
+html body h4,
+html body h5,
+html body h6 {
+    color: #1e40af !important;
+}
+
+/* STEP 5: Links stay blue */
+html body a {
+    color: #1e40af !important;
+}
+
+/* STEP 6: Nuclear option for any remaining elements */
+[class*="text"],
+[class*="prose"],
+[class*="policy"],
+[class*="secondary"] {
+    color: #111827 !important;
+}
+
+/* STEP 7: Body text override */
+body {
+    color: #111827 !important;
+    background: #ffffff !important;
+}
