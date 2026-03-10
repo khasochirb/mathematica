@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X, ChevronDown, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -41,6 +42,7 @@ interface DropdownMenuProps {
 
 function DropdownMenu({ label, href, items }: DropdownMenuProps) {
   const [open, setOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const ref = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
@@ -53,18 +55,31 @@ function DropdownMenu({ label, href, items }: DropdownMenuProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  function handleMouseEnter() {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpen(true);
+  }
+
+  function handleMouseLeave() {
+    closeTimer.current = setTimeout(() => setOpen(false), 120);
+  }
+
   return (
-    <li ref={ref} className="relative" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
+    <li ref={ref} className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <Link
         href={href}
-        className="flex items-center gap-1 text-gray-700 hover:text-primary-600 font-medium text-sm transition-colors py-2"
+        className="flex items-center gap-1 text-gray-700 hover:text-primary-600 font-medium text-sm transition-colors py-2 px-3 rounded-lg hover:bg-gray-50"
         onClick={() => setOpen(false)}
       >
         {label}
-        <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", open && "rotate-180")} />
+        <ChevronDown className={cn("h-3.5 w-3.5 transition-transform duration-200", open && "rotate-180")} />
       </Link>
       {open && (
-        <div className="dropdown-enter absolute top-full left-0 mt-1 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
+        <div
+          className="dropdown-enter absolute top-full left-0 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           {items.map((item) => (
             <Link
               key={item.href}
@@ -114,9 +129,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center">
-              <span className="text-white font-bold text-sm">MP</span>
-            </div>
+            <Image src="/images/mp.png" alt="Mongol Potential" width={44} height={44} className="rounded-lg" />
             <span className="font-bold text-gray-900 text-lg hidden sm:block">Mongol Potential</span>
           </Link>
 
@@ -146,7 +159,6 @@ export default function Header() {
 
           {/* Right side */}
           <div className="hidden lg:flex items-center gap-3">
-            {/* Language toggle */}
             <button
               onClick={toggleLang}
               className="text-xs font-semibold text-gray-500 hover:text-primary-600 border border-gray-200 rounded-md px-2 py-1 transition-colors"
@@ -155,9 +167,9 @@ export default function Header() {
               {lang === "en" ? "MN" : "EN"}
             </button>
 
-            <a href="tel:+14153367764" className="flex items-center gap-1.5 text-sm text-gray-600 hover:text-primary-600 transition-colors">
+            <a href="tel:+14159818165" className="flex items-center gap-1.5 text-sm text-gray-600 hover:text-primary-600 transition-colors">
               <Phone className="h-3.5 w-3.5" />
-              <span className="hidden xl:block">+1 (415) 336-7764</span>
+              <span className="hidden xl:block">+1 (415) 981-8165</span>
             </a>
 
             <Link href="/sign-in" className="text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors">

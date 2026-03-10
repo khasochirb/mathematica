@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Heart, Lightbulb, Globe, Target } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -41,9 +42,35 @@ const values = [
 const team = [
   {
     name: "Khas-Ochir Bayarjargal",
-    role: "Founder & Head Tutor",
-    bio: "Math enthusiast and educator passionate about bringing world-class education to Mongolian students everywhere. Based in San Francisco.",
-    initials: "KB",
+    role: "Founder",
+    photo: "/images/khas.png",
+    bio: "Mathematician with 5+ years of teaching experience. Passionate about mathematical discovery and leading engaging problem-solving discussions.",
+    links: [{ label: "polyato.com", href: "https://polyato.com/" }],
+    achievements: [
+      "International Math Olympiads — 2× gold, 1× bronze medal",
+      "National Math Olympiad — 1× silver, 1× bronze medal",
+    ],
+  },
+  {
+    name: "Bilegjargal Altangerel",
+    role: "Co-Founder · Physics & Mathematics Specialist",
+    photo: "/images/billy.png",
+    bio: "Physics and mathematics specialist with 6+ years of teaching experience, dedicated to making science clear, practical, and inspiring for every learner.",
+    links: [{ label: "cervyn.com", href: "https://cervyn.com/" }],
+    achievements: [
+      "National Math Olympiad — 1× silver medal, 1× bronze medal",
+      "National Physics Olympiad — 2× bronze medal",
+    ],
+  },
+  {
+    name: "Chinguun Ganbaatar",
+    role: "Co-Founder · AI Engineer · CS & Math Tutor",
+    photo: "/images/chinguun.png",
+    bio: "Computer science and mathematics tutor with a portfolio of hands-on projects. Avid reader who helps students build strong STEM foundations through practical, project-based learning.",
+    links: [{ label: "GitHub", href: "https://github.com/chinguun101" }],
+    achievements: [
+      "International Math Olympiads — 1× gold medal, 1× silver medal, 1× bronze medal",
+    ],
   },
 ];
 
@@ -114,18 +141,47 @@ export default function AboutPage() {
       <section id="team" className="section bg-white">
         <div className="container-lg">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">Our team</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">Meet our team</h2>
             <p className="text-gray-500">The educators behind Mongol Potential</p>
           </div>
-          <div className="flex justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {team.map((member) => (
-              <div key={member.name} className="card text-center max-w-sm w-full hover:shadow-md transition-shadow">
-                <div className="w-20 h-20 rounded-full bg-primary-600 text-white font-bold text-2xl flex items-center justify-center mx-auto mb-4">
-                  {member.initials}
+              <div key={member.name} className="card text-center hover:shadow-md transition-shadow flex flex-col">
+                <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 bg-primary-100">
+                  <Image
+                    src={member.photo}
+                    alt={member.name}
+                    width={96}
+                    height={96}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="font-bold text-gray-900 text-lg mb-0.5">{member.name}</h3>
-                <p className="text-primary-600 text-sm font-medium mb-3">{member.role}</p>
-                <p className="text-gray-500 text-sm leading-relaxed">{member.bio}</p>
+                <p className="text-primary-600 text-xs font-medium mb-3 leading-snug">{member.role}</p>
+                <p className="text-gray-500 text-sm leading-relaxed mb-3">{member.bio}</p>
+                {member.achievements.length > 0 && (
+                  <ul className="text-left text-xs text-gray-500 space-y-1 mb-3 border-t border-gray-50 pt-3">
+                    {member.achievements.map((a) => (
+                      <li key={a} className="flex items-start gap-1.5">
+                        <span className="text-yellow-500 flex-shrink-0">🏅</span>
+                        {a}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <div className="mt-auto flex justify-center gap-3">
+                  {member.links.map((l) => (
+                    <a
+                      key={l.href}
+                      href={l.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-primary-600 hover:underline"
+                    >
+                      {l.label} →
+                    </a>
+                  ))}
+                </div>
               </div>
             ))}
           </div>

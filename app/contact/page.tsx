@@ -44,8 +44,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-medium text-gray-900 text-sm">Phone</p>
-                    <a href="tel:+14153367764" className="text-primary-600 hover:underline text-sm">
-                      +1 (415) 336-7764
+                    <a href="tel:+14159818165" className="text-primary-600 hover:underline text-sm">
+                      +1 (415) 981-8165
                     </a>
                   </div>
                 </div>
@@ -56,10 +56,10 @@ export default function ContactPage() {
                   <div>
                     <p className="font-medium text-gray-900 text-sm">Email</p>
                     <a
-                      href="mailto:hello@mongolpotential.com"
+                      href="mailto:imathhub@gmail.com"
                       className="text-primary-600 hover:underline text-sm"
                     >
-                      hello@mongolpotential.com
+                      imathhub@gmail.com
                     </a>
                   </div>
                 </div>
