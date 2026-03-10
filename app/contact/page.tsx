@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
+import { T } from "@/components/T";
+import { useLang } from "@/lib/lang-context";
 
 export default function ContactPage() {
+  const { lang } = useLang();
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -11,7 +14,6 @@ export default function ContactPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    // Simulate submission - replace with actual API call
     await new Promise((r) => setTimeout(r, 1000));
     setSubmitted(true);
     setLoading(false);
@@ -22,11 +24,17 @@ export default function ContactPage() {
       {/* Hero */}
       <section className="bg-gradient-to-br from-primary-800 to-primary-600 text-white pt-32 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="badge bg-white/15 text-white mx-auto mb-4">Get in Touch</div>
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4">We'd love to hear from you</h1>
+          <div className="badge bg-white/15 text-white mx-auto mb-4">
+            <T en="Get in Touch" mn="Холбоо барих" />
+          </div>
+          <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+            <T en="We'd love to hear from you" mn="Таны мессежийг хүлээн авахад баяртай байна" />
+          </h1>
           <p className="text-blue-100 text-lg max-w-xl mx-auto">
-            Whether you're ready to start tutoring or just have a question, reach out—we respond
-            within 24 hours.
+            <T
+              en="Whether you're ready to start tutoring or just have a question, reach out—we respond within 24 hours."
+              mn="Хичээл эхлэхэд бэлэн эсвэл зүгээр асуулт байгаа бол холбогдоорой—24 цагийн дотор хариулна."
+            />
           </p>
         </div>
       </section>
@@ -36,14 +44,18 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Contact info */}
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Contact information</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <T en="Contact information" mn="Холбоо барих мэдээлэл" />
+              </h2>
               <div className="space-y-5">
                 <div className="flex items-start gap-3">
                   <div className="p-2.5 bg-primary-50 rounded-lg">
                     <Phone className="h-5 w-5 text-primary-600" />
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900 text-sm">Phone</p>
+                    <p className="font-medium text-gray-900 text-sm">
+                      <T en="Phone" mn="Утас" />
+                    </p>
                     <a href="tel:+14159818165" className="text-primary-600 hover:underline text-sm">
                       +1 (415) 981-8165
                     </a>
@@ -54,11 +66,10 @@ export default function ContactPage() {
                     <Mail className="h-5 w-5 text-primary-600" />
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900 text-sm">Email</p>
-                    <a
-                      href="mailto:imathhub@gmail.com"
-                      className="text-primary-600 hover:underline text-sm"
-                    >
+                    <p className="font-medium text-gray-900 text-sm">
+                      <T en="Email" mn="Имэйл" />
+                    </p>
+                    <a href="mailto:imathhub@gmail.com" className="text-primary-600 hover:underline text-sm">
                       imathhub@gmail.com
                     </a>
                   </div>
@@ -68,18 +79,26 @@ export default function ContactPage() {
                     <MapPin className="h-5 w-5 text-primary-600" />
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900 text-sm">Location</p>
+                    <p className="font-medium text-gray-900 text-sm">
+                      <T en="Location" mn="Байршил" />
+                    </p>
                     <p className="text-gray-500 text-sm">San Francisco, CA</p>
-                    <p className="text-gray-400 text-xs mt-0.5">Tutoring online, worldwide</p>
+                    <p className="text-gray-400 text-xs mt-0.5">
+                      <T en="Tutoring online, worldwide" mn="Онлайн хичээл, дэлхий даяар" />
+                    </p>
                   </div>
                 </div>
               </div>
 
               <div className="mt-8 p-5 bg-primary-50 rounded-2xl border border-primary-100">
-                <p className="font-semibold text-primary-800 text-sm mb-1">Response time</p>
+                <p className="font-semibold text-primary-800 text-sm mb-1">
+                  <T en="Response time" mn="Хариу өгөх хугацаа" />
+                </p>
                 <p className="text-primary-700 text-sm">
-                  We typically respond within a few hours during business days (Pacific Time). For
-                  urgent inquiries, please call us directly.
+                  <T
+                    en="We typically respond within a few hours during business days (Pacific Time). For urgent inquiries, please call us directly."
+                    mn="Ажлын өдрүүдэд (Номхон далайн цагийн бүс) хэдэн цагийн дотор хариулдаг. Яаралтай асуудал бол шууд залгаарай."
+                  />
                 </p>
               </div>
             </div>
@@ -91,27 +110,36 @@ export default function ContactPage() {
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
                     <CheckCircle className="h-8 w-8 text-accent-green" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Message sent!</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    <T en="Message sent!" mn="Мессеж илгээгдлээ!" />
+                  </h3>
                   <p className="text-gray-500">
-                    Thank you for reaching out. We'll get back to you within 24 hours.
+                    <T
+                      en="Thank you for reaching out. We'll get back to you within 24 hours."
+                      mn="Холбогдсонд баярлалаа. 24 цагийн дотор хариу илгээнэ."
+                    />
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1.5">Name *</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                        <T en="Name *" mn="Нэр *" />
+                      </label>
                       <input
                         type="text"
                         required
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
-                        placeholder="Your full name"
+                        placeholder={lang === "mn" ? "Таны бүтэн нэр" : "Your full name"}
                         className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-shadow"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1.5">Email *</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                        <T en="Email *" mn="Имэйл *" />
+                      </label>
                       <input
                         type="email"
                         required
@@ -123,28 +151,36 @@ export default function ContactPage() {
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Subject</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                      <T en="Subject" mn="Сэдэв" />
+                    </label>
                     <select
                       value={form.subject}
                       onChange={(e) => setForm({ ...form, subject: e.target.value })}
                       className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
                     >
-                      <option value="">Select a topic...</option>
-                      <option>1-on-1 Tutoring Inquiry</option>
-                      <option>Exam Prep Question</option>
-                      <option>Scheduling & Availability</option>
-                      <option>Pricing Information</option>
-                      <option>Other</option>
+                      <option value="">{lang === "mn" ? "Сэдэв сонгох..." : "Select a topic..."}</option>
+                      <option>{lang === "mn" ? "1:1 Хичээлийн асуулга" : "1-on-1 Tutoring Inquiry"}</option>
+                      <option>{lang === "mn" ? "Шалгалтын бэлтгэлийн асуулт" : "Exam Prep Question"}</option>
+                      <option>{lang === "mn" ? "Хуваарь ба боломжийн асуулт" : "Scheduling & Availability"}</option>
+                      <option>{lang === "mn" ? "Үнийн мэдээлэл" : "Pricing Information"}</option>
+                      <option>{lang === "mn" ? "Бусад" : "Other"}</option>
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Message *</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                      <T en="Message *" mn="Мессеж *" />
+                    </label>
                     <textarea
                       required
                       rows={5}
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      placeholder="Tell us about your student, their grade level, and what you're hoping to achieve..."
+                      placeholder={
+                        lang === "mn"
+                          ? "Оюутны тухай, ангийн түвшин, хүрэхийг хүсэж буй зорилгоо бичнэ үү..."
+                          : "Tell us about your student, their grade level, and what you're hoping to achieve..."
+                      }
                       className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
                     />
                   </div>
@@ -154,10 +190,10 @@ export default function ContactPage() {
                     className="btn-primary w-full sm:w-auto px-8 py-3"
                   >
                     {loading ? (
-                      "Sending..."
+                      <T en="Sending..." mn="Илгээж байна..." />
                     ) : (
                       <>
-                        Send Message
+                        <T en="Send Message" mn="Мессеж илгээх" />
                         <Send className="ml-2 h-4 w-4" />
                       </>
                     )}

@@ -5,42 +5,45 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, ChevronDown, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLang } from "@/lib/lang-context";
 
 const examPrepItems = [
-  { label: "SAT Math", href: "/exam-prep#sat" },
-  { label: "ACT Math", href: "/exam-prep#act" },
-  { label: "PSAT / NMSQT", href: "/exam-prep#psat" },
-  { label: "GRE Quant", href: "/exam-prep#gre" },
-  { label: "GMAT Quant", href: "/exam-prep#gmat" },
-  { label: "IB Math", href: "/exam-prep#ib" },
-  { label: "IGCSE / GCSE", href: "/exam-prep#igcse" },
-  { label: "Math Olympiad", href: "/exam-prep#olympiad" },
-  { label: "AP Prep", href: "/exam-prep#ap" },
-  { label: "1-on-1 Tutoring", href: "/tutoring" },
+  { en: "SAT Math", mn: "SAT Математик", href: "/exam-prep#sat" },
+  { en: "ACT Math", mn: "ACT Математик", href: "/exam-prep#act" },
+  { en: "PSAT / NMSQT", mn: "PSAT / NMSQT", href: "/exam-prep#psat" },
+  { en: "GRE Quant", mn: "GRE Тоон хэсэг", href: "/exam-prep#gre" },
+  { en: "GMAT Quant", mn: "GMAT Тоон хэсэг", href: "/exam-prep#gmat" },
+  { en: "IB Math", mn: "IB Математик", href: "/exam-prep#ib" },
+  { en: "IGCSE / GCSE", mn: "IGCSE / GCSE", href: "/exam-prep#igcse" },
+  { en: "Math Olympiad", mn: "Математикийн олимпиад", href: "/exam-prep#olympiad" },
+  { en: "AP Prep", mn: "AP бэлтгэл", href: "/exam-prep#ap" },
+  { en: "1-on-1 Tutoring", mn: "1:1 Хувийн хичээл", href: "/tutoring" },
 ];
 
 const gradeItems = [
-  { label: "Elementary School", href: "/courses#elementary" },
-  { label: "Middle School", href: "/courses#middle" },
-  { label: "High School", href: "/courses#high" },
-  { label: "College", href: "/courses#college" },
-  { label: "Adult Learning", href: "/courses#adult" },
+  { en: "Elementary School", mn: "Бага сургууль", href: "/courses#elementary" },
+  { en: "Middle School", mn: "Дунд сургууль", href: "/courses#middle" },
+  { en: "High School", mn: "Ахлах сургууль", href: "/courses#high" },
+  { en: "College", mn: "Их сургууль", href: "/courses#college" },
+  { en: "Adult Learning", mn: "Насанд хүрэгчдийн боловсрол", href: "/courses#adult" },
 ];
 
 const aboutItems = [
-  { label: "About Us", href: "/about#about" },
-  { label: "Our Team", href: "/about#team" },
-  { label: "Careers", href: "/about#careers" },
-  { label: "Contact", href: "/contact" },
+  { en: "About Us", mn: "Бидний тухай", href: "/about#about" },
+  { en: "Our Team", mn: "Манай баг", href: "/about#team" },
+  { en: "Careers", mn: "Ажлын байр", href: "/about#careers" },
+  { en: "Contact", mn: "Холбоо барих", href: "/contact" },
 ];
 
 interface DropdownMenuProps {
-  label: string;
+  en: string;
+  mn: string;
   href: string;
-  items: { label: string; href: string }[];
+  items: { en: string; mn: string; href: string }[];
 }
 
-function DropdownMenu({ label, href, items }: DropdownMenuProps) {
+function DropdownMenu({ en, mn, href, items }: DropdownMenuProps) {
+  const { lang } = useLang();
   const [open, setOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const ref = useRef<HTMLLIElement>(null);
@@ -63,6 +66,8 @@ function DropdownMenu({ label, href, items }: DropdownMenuProps) {
   function handleMouseLeave() {
     closeTimer.current = setTimeout(() => setOpen(false), 120);
   }
+
+  const label = lang === "mn" ? mn : en;
 
   return (
     <li ref={ref} className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
@@ -87,7 +92,7 @@ function DropdownMenu({ label, href, items }: DropdownMenuProps) {
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 transition-colors"
               onClick={() => setOpen(false)}
             >
-              {item.label}
+              {lang === "mn" ? item.mn : item.en}
             </Link>
           ))}
         </div>
@@ -97,14 +102,9 @@ function DropdownMenu({ label, href, items }: DropdownMenuProps) {
 }
 
 export default function Header() {
+  const { lang, setLang } = useLang();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [lang, setLang] = useState<"en" | "mn">("en");
-
-  useEffect(() => {
-    const saved = localStorage.getItem("mp_lang") as "en" | "mn" | null;
-    if (saved) setLang(saved);
-  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -112,11 +112,17 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  function toggleLang() {
-    const next = lang === "en" ? "mn" : "en";
-    setLang(next);
-    localStorage.setItem("mp_lang", next);
-  }
+  const nav = {
+    home:      lang === "mn" ? "Нүүр" : "Home",
+    blog:      lang === "mn" ? "Блог" : "Blog",
+    practice:  lang === "mn" ? "Дасгал хийх" : "Practice",
+    login:     lang === "mn" ? "Нэвтрэх" : "Log In",
+    findTutor: lang === "mn" ? "Багш хайх" : "Find Your Tutor",
+    examPrep:  lang === "mn" ? "Шалгалтын бэлтгэл" : "Exam Prep",
+    grades:    lang === "mn" ? "Ангиуд" : "Grades",
+    about:     lang === "mn" ? "Бидний тухай" : "About Us",
+    contact:   lang === "mn" ? "Холбоо барих" : "Contact",
+  };
 
   return (
     <header
@@ -138,20 +144,20 @@ export default function Header() {
             <ul className="flex items-center gap-1">
               <li>
                 <Link href="/" className="text-gray-700 hover:text-primary-600 font-medium text-sm px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors">
-                  Home
+                  {nav.home}
                 </Link>
               </li>
-              <DropdownMenu label="Exam Prep" href="/exam-prep" items={examPrepItems} />
-              <DropdownMenu label="Grades" href="/courses" items={gradeItems} />
-              <DropdownMenu label="About Us" href="/about" items={aboutItems} />
+              <DropdownMenu en="Exam Prep" mn="Шалгалтын бэлтгэл" href="/exam-prep" items={examPrepItems} />
+              <DropdownMenu en="Grades" mn="Ангиуд" href="/courses" items={gradeItems} />
+              <DropdownMenu en="About Us" mn="Бидний тухай" href="/about" items={aboutItems} />
               <li>
                 <Link href="/blog" className="text-gray-700 hover:text-primary-600 font-medium text-sm px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors">
-                  Blog
+                  {nav.blog}
                 </Link>
               </li>
               <li>
                 <Link href="/practice" className="text-gray-700 hover:text-primary-600 font-medium text-sm px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors">
-                  Practice
+                  {nav.practice}
                 </Link>
               </li>
             </ul>
@@ -160,7 +166,7 @@ export default function Header() {
           {/* Right side */}
           <div className="hidden lg:flex items-center gap-3">
             <button
-              onClick={toggleLang}
+              onClick={() => setLang(lang === "en" ? "mn" : "en")}
               className="text-xs font-semibold text-gray-500 hover:text-primary-600 border border-gray-200 rounded-md px-2 py-1 transition-colors"
               aria-label="Toggle language"
             >
@@ -173,11 +179,11 @@ export default function Header() {
             </a>
 
             <Link href="/sign-in" className="text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors">
-              Log In
+              {nav.login}
             </Link>
 
             <Link href="/tutoring" className="btn-primary text-sm py-2 px-4">
-              Find Your Tutor
+              {nav.findTutor}
             </Link>
           </div>
 
@@ -197,13 +203,13 @@ export default function Header() {
         <div className="lg:hidden bg-white border-t border-gray-100 shadow-lg">
           <nav className="max-w-7xl mx-auto px-4 py-4 space-y-1">
             {[
-              { label: "Home", href: "/" },
-              { label: "Exam Prep", href: "/exam-prep" },
-              { label: "Grades", href: "/courses" },
-              { label: "About Us", href: "/about" },
-              { label: "Blog", href: "/blog" },
-              { label: "Practice", href: "/practice" },
-              { label: "Contact", href: "/contact" },
+              { label: nav.home, href: "/" },
+              { label: nav.examPrep, href: "/exam-prep" },
+              { label: nav.grades, href: "/courses" },
+              { label: nav.about, href: "/about" },
+              { label: nav.blog, href: "/blog" },
+              { label: nav.practice, href: "/practice" },
+              { label: nav.contact, href: "/contact" },
             ].map((item) => (
               <Link
                 key={item.href}
@@ -215,11 +221,17 @@ export default function Header() {
               </Link>
             ))}
             <div className="pt-2 border-t border-gray-100 flex gap-3 px-4">
+              <button
+                onClick={() => setLang(lang === "en" ? "mn" : "en")}
+                className="text-sm font-semibold text-gray-500 border border-gray-200 rounded-lg px-3 py-2.5 flex-shrink-0"
+              >
+                {lang === "en" ? "MN" : "EN"}
+              </button>
               <Link href="/sign-in" className="btn-secondary text-sm flex-1 text-center" onClick={() => setMobileOpen(false)}>
-                Log In
+                {nav.login}
               </Link>
               <Link href="/tutoring" className="btn-primary text-sm flex-1 text-center" onClick={() => setMobileOpen(false)}>
-                Find Tutor
+                {lang === "mn" ? "Багш хайх" : "Find Tutor"}
               </Link>
             </div>
           </nav>

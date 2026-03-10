@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+"use client";
+
 import Link from "next/link";
 import {
   BookOpen,
@@ -11,93 +12,75 @@ import {
   Flame,
   BarChart3,
 } from "lucide-react";
-
-export const metadata: Metadata = {
-  title: "Mongol Potential | World Class Math Education",
-  description:
-    "High-quality math education for Mongolian students worldwide—aligned with AP, IB, and US curricula.",
-};
+import { T } from "@/components/T";
+import { useLang } from "@/lib/lang-context";
 
 const features = [
   {
     icon: BookOpen,
-    title: "Curriculum-Aligned",
-    description:
-      "Personalized lessons mapped to AP, IB, and US state standards so students improve where it matters—classroom performance and exams.",
+    en: { title: "Curriculum-Aligned", description: "Personalized lessons mapped to AP, IB, and US state standards so students improve where it matters—classroom performance and exams." },
+    mn: { title: "Хөтөлбөртэй нийцсэн", description: "AP, IB болон АНУ-ын стандартад нийцсэн хувийн хичээлүүд—ангийн гүйцэтгэл болон шалгалтанд дэвшил гаргана." },
     color: "text-primary-600",
     bg: "bg-primary-50",
   },
   {
     icon: Globe,
-    title: "Personal & Flexible",
-    description:
-      "One-on-one instruction, flexible scheduling across time zones, and goals tailored to each learner's needs.",
+    en: { title: "Personal & Flexible", description: "One-on-one instruction, flexible scheduling across time zones, and goals tailored to each learner's needs." },
+    mn: { title: "Хувийн ба уян хатан", description: "Нэг-нэгтэйгээ суралцах, цагийн бүсийг харгалзан уян хуваарь, хүн бүрийн хэрэгцээнд тохирсон зорилго." },
     color: "text-accent-green",
     bg: "bg-green-50",
   },
   {
     icon: Star,
-    title: "Culture-Integrated",
-    description:
-      "We weave Mongolian history and everyday life into problems so learning is meaningful and identity-affirming.",
+    en: { title: "Culture-Integrated", description: "We weave Mongolian history and everyday life into problems so learning is meaningful and identity-affirming." },
+    mn: { title: "Соёлтой холбосон", description: "Монгол түүх, өдөр тутмын амьдралыг бодлогуудад нэгтгэж, суралцахыг утга учиртай, бахархалтай болгоно." },
     color: "text-accent-amber",
     bg: "bg-amber-50",
   },
 ];
 
-const examTypes = [
-  "SAT Math",
-  "ACT Math",
-  "AP Calculus",
-  "IB Math",
-  "Math Olympiad",
-  "GRE Quant",
-  "GMAT Quant",
-  "PSAT / NMSQT",
+const mathlyFeatures = [
+  { icon: Brain, en: { label: "Adaptive Problems", desc: "AI adjusts difficulty to your level" }, mn: { label: "Дасан зохицох бодлогууд", desc: "AI таны түвшинд тохирсон хүндрэл тохируулна" } },
+  { icon: Flame, en: { label: "Daily Streaks", desc: "Build consistent practice habits" }, mn: { label: "Өдөр тутмын дараалал", desc: "Тогтмол дадлагын дадал бий болго" } },
+  { icon: BarChart3, en: { label: "Progress Tracking", desc: "See your growth over time" }, mn: { label: "Дэвшлийн хяналт", desc: "Цаг хугацааны явцад өөрийн өсөлтийг харна" } },
+  { icon: Trophy, en: { label: "Achievements", desc: "Earn rewards as you improve" }, mn: { label: "Амжилтууд", desc: "Дэвшихийн хэрээр шагнал авна" } },
 ];
 
 const grades = [
-  { label: "Elementary", range: "Grades 2–5", href: "/courses#elementary" },
-  { label: "Middle School", range: "Grades 6–8", href: "/courses#middle" },
-  { label: "High School", range: "Grades 9–12", href: "/courses#high" },
-  { label: "College", range: "Undergraduate", href: "/courses#college" },
-  { label: "Adult Learning", range: "All ages", href: "/courses#adult" },
+  { en: { label: "Elementary", range: "Grades 2–5" }, mn: { label: "Бага сургууль", range: "2–5-р анги" }, href: "/courses#elementary" },
+  { en: { label: "Middle School", range: "Grades 6–8" }, mn: { label: "Дунд сургууль", range: "6–8-р анги" }, href: "/courses#middle" },
+  { en: { label: "High School", range: "Grades 9–12" }, mn: { label: "Ахлах сургууль", range: "9–12-р анги" }, href: "/courses#high" },
+  { en: { label: "College", range: "Undergraduate" }, mn: { label: "Их сургууль", range: "Бакалавр" }, href: "/courses#college" },
+  { en: { label: "Adult Learning", range: "All ages" }, mn: { label: "Насанд хүрэгчид", range: "Бүх нас" }, href: "/courses#adult" },
 ];
 
 const testimonials = [
   {
-    quote:
-      "My daughter was struggling with math and wasn't confident going to class. Now she finishes her homework without problems.",
-    author: "Misheel's Mom",
+    en: { quote: "My daughter was struggling with math and wasn't confident going to class. Now she finishes her homework without problems.", author: "Misheel's Mom" },
+    mn: { quote: "Охин маань математикт хэцүүдэж байсан бөгөөд ангид итгэлтэй явдаггүй байсан. Одоо гэрийн даалгаврыг асуудалгүй дуусгадаг болсон.", author: "Мишээлийн ээж" },
     color: "border-primary-200",
   },
   {
-    quote:
-      "She didn't like mathematics at all, but now the first homework she wants to finish is math. She's always excited to join tutoring sessions.",
-    author: "Ari's Mom",
+    en: { quote: "She didn't like mathematics at all, but now the first homework she wants to finish is math. She's always excited to join tutoring sessions.", author: "Ari's Mom" },
+    mn: { quote: "Математикийг огт дургүй байсан, харин одоо хамгийн түрүүнд математикийн гэрийн даалгавраа хийдэг болсон. Хичээлдээ үргэлж тэсэн ядан яардаг.", author: "Арийн ээж" },
     color: "border-green-200",
   },
   {
-    quote:
-      "Our son loves going to school already knowing the material and coming back with interesting questions for the tutor.",
-    author: "Subedei's Mom",
+    en: { quote: "Our son loves going to school already knowing the material and coming back with interesting questions for the tutor.", author: "Subedei's Mom" },
+    mn: { quote: "Хүү маань сургуульд материалаа мэдэж очиж, багшид сонирхолтой асуултуудтай эргэж ирдэгт дуртай болсон.", author: "Субэдэйн ээж" },
     color: "border-amber-200",
   },
 ];
 
-const mathlyFeatures = [
-  { icon: Brain, label: "Adaptive Problems", desc: "AI adjusts difficulty to your level" },
-  { icon: Flame, label: "Daily Streaks", desc: "Build consistent practice habits" },
-  { icon: BarChart3, label: "Progress Tracking", desc: "See your growth over time" },
-  { icon: Trophy, label: "Achievements", desc: "Earn rewards as you improve" },
-];
+const examTypes = ["SAT Math", "ACT Math", "AP Calculus", "IB Math", "Math Olympiad", "GRE Quant", "GMAT Quant", "PSAT / NMSQT"];
 
 export default function HomePage() {
+  const { lang } = useLang();
+
   return (
     <>
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white pt-32 pb-24 overflow-hidden">
-        {/* Background decoration */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-white/5 blur-3xl" />
           <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-primary-500/20 blur-3xl" />
@@ -108,38 +91,45 @@ export default function HomePage() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 text-sm mb-6">
               <span className="text-yellow-300">✦</span>
-              <span>World Class Education for Mongolians</span>
+              <span><T en="World Class Education for Mongolians" mn="Монголчуудад зориулсан дэлхийн түвшний боловсрол" /></span>
             </div>
 
             <h1 className="text-5xl sm:text-6xl font-bold leading-tight mb-6">
-              Helping Mongol minds{" "}
-              <span className="text-yellow-300">reach their potential</span>
+              <T en="Helping Mongol minds" mn="Монгол оюун ухааныг" />{" "}
+              <span className="text-yellow-300">
+                <T en="reach their potential" mn="боломжоо нээхэд тусалж байна" />
+              </span>
             </h1>
 
             <p className="text-xl text-blue-100 leading-relaxed mb-10 max-w-2xl">
-              High-quality math and science education for Mongolian students around the world—aligned
-              with AP, IB, and US state curricula, while strengthening cultural connection through
-              Mongolian-context problems and stories.
+              <T
+                en="High-quality math and science education for Mongolian students around the world—aligned with AP, IB, and US state curricula, while strengthening cultural connection through Mongolian-context problems and stories."
+                mn="Дэлхийн өнцөг булан бүрт байгаа Монгол оюутнуудад зориулсан өндөр чанарын математик, шинжлэх ухааны боловсрол—AP, IB болон АНУ-ын хөтөлбөртэй нийцсэн, Монгол орчны бодлогоор соёлын холбоосыг бэхжүүлсэн."
+              />
             </p>
 
             <div className="flex flex-wrap gap-4">
               <Link href="/tutoring" className="btn-white text-base px-8 py-3.5">
-                Find Your Tutor
+                <T en="Find Your Tutor" mn="Багшаа олох" />
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
               <Link
                 href="/practice"
                 className="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors text-base"
               >
-                Try Practice Free
+                <T en="Try Practice Free" mn="Үнэгүй дадлага хийх" />
               </Link>
             </div>
 
             <div className="mt-10 flex flex-wrap gap-6 text-sm text-blue-200">
-              {["No commitment required", "Flexible scheduling", "Bilingual tutors"].map((item) => (
-                <span key={item} className="flex items-center gap-1.5">
+              {[
+                { en: "No commitment required", mn: "Үүрэг хүлээхгүй" },
+                { en: "Flexible scheduling", mn: "Уян хуваарь" },
+                { en: "Bilingual tutors", mn: "Хоёр хэлтэй багш нар" },
+              ].map((item) => (
+                <span key={item.en} className="flex items-center gap-1.5">
                   <CheckCircle className="h-4 w-4 text-green-400" />
-                  {item}
+                  {lang === "mn" ? item.mn : item.en}
                 </span>
               ))}
             </div>
@@ -152,25 +142,27 @@ export default function HomePage() {
         <div className="container-lg">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              To the Future of Mongolians Living Abroad
+              <T en="To the Future of Mongolians Living Abroad" mn="Гадаадад амьдарч буй Монголчуудын ирээдүйд" />
             </h2>
             <p className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed">
-              Many Mongolian children grow up in the United States and across the world. They remain
-              proudly Mongolian—and deserve to be well-educated, confident, and connected to their
-              heritage.
+              <T
+                en="Many Mongolian children grow up in the United States and across the world. They remain proudly Mongolian—and deserve to be well-educated, confident, and connected to their heritage."
+                mn="Олон Монгол хүүхэд АНУ болон дэлхийн өнцөг булан бүрт өсч торниж байна. Тэд бахархалтайгаар Монгол хэвээрээ—мөн сайн боловсролтой, итгэлтэй, өвлийн соёлтойгоо холбогдсон байх эрхтэй."
+              />
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {features.map((f) => {
               const Icon = f.icon;
+              const content = lang === "mn" ? f.mn : f.en;
               return (
-                <div key={f.title} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors">
+                <div key={f.en.title} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors">
                   <div className={`inline-flex p-3 rounded-xl ${f.bg} mb-4`}>
                     <Icon className={`h-6 w-6 ${f.color}`} />
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">{f.title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{f.description}</p>
+                  <h3 className="text-lg font-semibold text-white mb-2">{content.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{content.description}</p>
                 </div>
               );
             })}
@@ -184,28 +176,30 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <div className="badge bg-primary-100 text-primary-700 mb-4">
-                New: AI-Powered Practice
+                <T en="New: AI-Powered Practice" mn="Шинэ: AI-д суурилсан дадлага" />
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-5">
-                Practice math with adaptive AI
+                <T en="Practice math with adaptive AI" mn="Дасан зохицох AI-тай математик дадла" />
               </h2>
               <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                Our Mathly practice platform adapts to your level, giving you problems that challenge
-                you just the right amount. Get AI-powered hints, track your streaks, and earn
-                achievements as you improve.
+                <T
+                  en="Our Mathly practice platform adapts to your level, giving you problems that challenge you just the right amount. Get AI-powered hints, track your streaks, and earn achievements as you improve."
+                  mn="Mathly дадлагын платформ таны түвшинд дасан зохицож, яг хангалттай хэмжээгээр танд сорилт болсон бодлогуудыг өгдөг. AI-ийн зөвлөмж авч, дараалалаа хянаж, дэвшихийн хэрээр амжилтаа цуглуул."
+                />
               </p>
 
               <div className="grid grid-cols-2 gap-4 mb-8">
                 {mathlyFeatures.map((f) => {
                   const Icon = f.icon;
+                  const content = lang === "mn" ? f.mn : f.en;
                   return (
-                    <div key={f.label} className="flex items-start gap-3">
+                    <div key={f.en.label} className="flex items-start gap-3">
                       <div className="p-2 bg-primary-100 rounded-lg flex-shrink-0">
                         <Icon className="h-4 w-4 text-primary-600" />
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900 text-sm">{f.label}</p>
-                        <p className="text-gray-500 text-xs">{f.desc}</p>
+                        <p className="font-semibold text-gray-900 text-sm">{content.label}</p>
+                        <p className="text-gray-500 text-xs">{content.desc}</p>
                       </div>
                     </div>
                   );
@@ -213,7 +207,7 @@ export default function HomePage() {
               </div>
 
               <Link href="/practice" className="btn-primary text-base px-8 py-3.5">
-                Start Practicing Free
+                <T en="Start Practicing Free" mn="Үнэгүй дадлага эхлэх" />
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </div>
@@ -224,7 +218,9 @@ export default function HomePage() {
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <p className="text-xs text-gray-500 font-medium">ALGEBRA • LEVEL 3</p>
-                    <p className="font-semibold text-gray-900 text-sm mt-0.5">Problem 4 of 10</p>
+                    <p className="font-semibold text-gray-900 text-sm mt-0.5">
+                      <T en="Problem 4 of 10" mn="4-р бодлого / 10-аас" />
+                    </p>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-orange-500 font-bold text-sm">🔥 7</span>
@@ -253,9 +249,10 @@ export default function HomePage() {
                     </button>
                   ))}
                 </div>
-                <button className="w-full btn-primary py-2.5 text-sm">Submit Answer</button>
+                <button className="w-full btn-primary py-2.5 text-sm">
+                  <T en="Submit Answer" mn="Хариулт илгээх" />
+                </button>
               </div>
-              {/* XP badge */}
               <div className="absolute -top-4 -right-4 bg-yellow-400 text-yellow-900 rounded-full px-3 py-1 text-xs font-bold shadow-lg">
                 +15 XP
               </div>
@@ -269,10 +266,13 @@ export default function HomePage() {
         <div className="container-lg">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Exam preparation you can trust
+              <T en="Exam preparation you can trust" mn="Найдаж болох шалгалтын бэлтгэл" />
             </h2>
             <p className="text-gray-500 max-w-xl mx-auto">
-              Expert preparation for the exams that matter most to Mongolian students studying abroad.
+              <T
+                en="Expert preparation for the exams that matter most to Mongolian students studying abroad."
+                mn="Гадаадад суралцаж буй Монгол оюутнуудад хамгийн чухал шалгалтуудад мэргэжлийн бэлтгэл."
+              />
             </p>
           </div>
           <div className="flex flex-wrap justify-center gap-3 mb-10">
@@ -288,7 +288,7 @@ export default function HomePage() {
           </div>
           <div className="text-center">
             <Link href="/exam-prep" className="btn-primary text-base">
-              View All Exam Programs
+              <T en="View All Exam Programs" mn="Бүх шалгалтын хөтөлбөрийг харах" />
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </div>
@@ -300,26 +300,31 @@ export default function HomePage() {
         <div className="container-lg">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Math tutoring for every age group
+              <T en="Math tutoring for every age group" mn="Бүх насны бүлэгт зориулсан математикийн хичээл" />
             </h2>
             <p className="text-gray-500 max-w-lg mx-auto">
-              We believe everyone can learn. We offer world-class online tutoring from 2nd grade
-              through adulthood.
+              <T
+                en="We believe everyone can learn. We offer world-class online tutoring from 2nd grade through adulthood."
+                mn="Бид хүн бүр суралцах чадвартай гэдэгт итгэдэг. 2-р ангиас насанд хүрэгч хүртэл дэлхийн түвшний онлайн хичээл санал болгодог."
+              />
             </p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-            {grades.map((g) => (
-              <Link
-                key={g.label}
-                href={g.href}
-                className="card hover:border-primary-200 hover:shadow-md text-center group"
-              >
-                <p className="font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">
-                  {g.label}
-                </p>
-                <p className="text-gray-400 text-xs mt-1">{g.range}</p>
-              </Link>
-            ))}
+            {grades.map((g) => {
+              const content = lang === "mn" ? g.mn : g.en;
+              return (
+                <Link
+                  key={g.href}
+                  href={g.href}
+                  className="card hover:border-primary-200 hover:shadow-md text-center group"
+                >
+                  <p className="font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">
+                    {content.label}
+                  </p>
+                  <p className="text-gray-400 text-xs mt-1">{content.range}</p>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -329,20 +334,25 @@ export default function HomePage() {
         <div className="container-lg">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Success stories from our students
+              <T en="Success stories from our students" mn="Манай оюутнуудын амжилтын түүхүүд" />
             </h2>
-            <p className="text-gray-500">Real words from Mongolian families learning with us online</p>
+            <p className="text-gray-500">
+              <T en="Real words from Mongolian families learning with us online" mn="Бидэнтэй онлайн суралцаж буй Монгол гэр бүлүүдийн жинхэнэ үгс" />
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((t) => (
-              <div
-                key={t.author}
-                className={`card border-l-4 ${t.color} hover:shadow-md`}
-              >
-                <p className="text-gray-600 leading-relaxed mb-4 text-sm">"{t.quote}"</p>
-                <p className="font-semibold text-gray-900 text-sm">— {t.author}</p>
-              </div>
-            ))}
+            {testimonials.map((t) => {
+              const content = lang === "mn" ? t.mn : t.en;
+              return (
+                <div
+                  key={t.en.author}
+                  className={`card border-l-4 ${t.color} hover:shadow-md`}
+                >
+                  <p className="text-gray-600 leading-relaxed mb-4 text-sm">"{content.quote}"</p>
+                  <p className="font-semibold text-gray-900 text-sm">— {content.author}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -351,22 +361,24 @@ export default function HomePage() {
       <section className="section bg-primary-600">
         <div className="container-lg text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Ready to reach your potential?
+            <T en="Ready to reach your potential?" mn="Боломжоо нээхэд бэлэн үү?" />
           </h2>
           <p className="text-blue-100 text-lg mb-8 max-w-xl mx-auto">
-            Join hundreds of Mongolian students worldwide who are building confidence and excelling in
-            math.
+            <T
+              en="Join hundreds of Mongolian students worldwide who are building confidence and excelling in math."
+              mn="Математикт итгэлтэй болж, амжилтанд хүрч буй дэлхий даяарх зуун гаруй Монгол оюутантай нэгд."
+            />
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/tutoring" className="btn-white text-base px-8 py-3.5">
-              Find Your Tutor
+              <T en="Find Your Tutor" mn="Багшаа олох" />
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
             <Link
               href="/practice"
               className="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-white/40 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors text-base"
             >
-              Try Practice Free
+              <T en="Try Practice Free" mn="Үнэгүй дадлага хийх" />
             </Link>
           </div>
         </div>
