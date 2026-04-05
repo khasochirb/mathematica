@@ -45,20 +45,23 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="bg-navy-DEFAULT text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <footer className="relative bg-surface-950 text-white overflow-hidden">
+      {/* Subtle glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-gradient-to-r from-transparent via-primary-500/40 to-transparent" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-4">
+            <Link href="/" className="flex items-center gap-2.5 mb-4 group">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/images/mp.png" alt="Mongol Potential" className="h-10 w-10 rounded-lg" />
-              <span className="font-bold text-white text-lg">Mongol Potential</span>
+              <span className="font-display font-bold text-white text-lg group-hover:text-primary-300 transition-colors">Mongol Potential</span>
             </Link>
-            <p className="text-gray-400 text-sm leading-relaxed mb-4">
+            <p className="text-gray-500 text-sm leading-relaxed mb-4">
               World-class math education for Mongolian students everywhere—aligned with AP, IB, and US curricula.
             </p>
-            <div className="space-y-1 mb-5">
+            <div className="space-y-1.5 mb-5">
               <a href="tel:+14159818165" className="block text-primary-400 hover:text-primary-300 text-sm transition-colors">
                 +1 (415) 981-8165
               </a>
@@ -75,7 +78,7 @@ export default function Footer() {
                   target={s.href !== "#" ? "_blank" : undefined}
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary-600 transition-colors"
+                  className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-gray-500 hover:text-primary-300 hover:bg-primary-500/10 hover:border-primary-400/20 transition-all duration-300"
                 >
                   <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d={s.svg} />
@@ -88,7 +91,7 @@ export default function Footer() {
           {/* Links */}
           {Object.entries(links).map(([category, items]) => (
             <div key={category}>
-              <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">
+              <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">
                 {category}
               </h3>
               <ul className="space-y-3">
@@ -96,7 +99,7 @@ export default function Footer() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-gray-400 hover:text-white text-sm transition-colors"
+                      className="text-gray-500 hover:text-primary-300 text-sm transition-colors"
                     >
                       {item.label}
                     </Link>
@@ -107,11 +110,11 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} Mongol Potential. All rights reserved.
+        <div className="mt-12 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-gray-600 text-sm">
+            &copy; {new Date().getFullYear()} Mongol Potential. All rights reserved.
           </p>
-          <p className="text-gray-600 text-xs">ᠮᠣᠩᠭᠣᠯ ᠫᠣᠲ᠋ᠧᠨᠼᠢᠶᠠᠯ</p>
+          <p className="text-gray-700 text-xs font-display">ᠮᠣᠩᠭᠣᠯ ᠫᠣᠲ᠋ᠧᠨᠼᠢᠶᠠᠯ</p>
         </div>
       </div>
     </footer>

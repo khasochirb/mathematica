@@ -73,7 +73,7 @@ function DropdownMenu({ en, mn, href, items }: DropdownMenuProps) {
     <li ref={ref} className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <Link
         href={href}
-        className="flex items-center gap-1 text-gray-700 hover:text-primary-600 font-medium text-sm transition-colors py-2 px-3 rounded-lg hover:bg-gray-50"
+        className="flex items-center gap-1 text-gray-300 hover:text-white font-medium text-sm transition-colors py-2 px-3 rounded-lg hover:bg-white/5"
         onClick={() => setOpen(false)}
       >
         {label}
@@ -81,7 +81,7 @@ function DropdownMenu({ en, mn, href, items }: DropdownMenuProps) {
       </Link>
       {open && (
         <div
-          className="dropdown-enter absolute top-full left-0 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50"
+          className="dropdown-enter absolute top-full left-0 w-52 bg-surface-800/95 backdrop-blur-xl rounded-xl shadow-2xl shadow-black/40 border border-white/10 py-2 z-50"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
@@ -89,7 +89,7 @@ function DropdownMenu({ en, mn, href, items }: DropdownMenuProps) {
             <Link
               key={item.href}
               href={item.href}
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 transition-colors"
+              className="block px-4 py-2 text-sm text-gray-400 hover:bg-primary-500/10 hover:text-primary-300 transition-colors"
               onClick={() => setOpen(false)}
             >
               {lang === "mn" ? item.mn : item.en}
@@ -128,22 +128,26 @@ export default function Header() {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled ? "bg-white shadow-sm border-b border-gray-100" : "bg-white/95 backdrop-blur-sm"
+        scrolled
+          ? "bg-surface-900/90 backdrop-blur-xl shadow-lg shadow-black/20 border-b border-white/5"
+          : "bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-            <Image src="/images/mp.png" alt="Mongol Potential" width={44} height={44} className="rounded-lg" />
-            <span className="font-bold text-gray-900 text-lg hidden sm:block">Mongol Potential</span>
+          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group">
+            <Image src="/images/mp.png" alt="Mongol Potential" width={40} height={40} className="rounded-lg" />
+            <span className="font-display font-bold text-white text-lg hidden sm:block group-hover:text-primary-300 transition-colors">
+              Mongol Potential
+            </span>
           </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-1">
-            <ul className="flex items-center gap-1">
+            <ul className="flex items-center gap-0.5">
               <li>
-                <Link href="/" className="text-gray-700 hover:text-primary-600 font-medium text-sm px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+                <Link href="/" className="text-gray-300 hover:text-white font-medium text-sm px-3 py-2 rounded-lg hover:bg-white/5 transition-colors">
                   {nav.home}
                 </Link>
               </li>
@@ -151,12 +155,12 @@ export default function Header() {
               <DropdownMenu en="Grades" mn="Ангиуд" href="/courses" items={gradeItems} />
               <DropdownMenu en="About Us" mn="Бидний тухай" href="/about" items={aboutItems} />
               <li>
-                <Link href="/blog" className="text-gray-700 hover:text-primary-600 font-medium text-sm px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+                <Link href="/blog" className="text-gray-300 hover:text-white font-medium text-sm px-3 py-2 rounded-lg hover:bg-white/5 transition-colors">
                   {nav.blog}
                 </Link>
               </li>
               <li>
-                <Link href="/practice" className="text-gray-700 hover:text-primary-600 font-medium text-sm px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+                <Link href="/practice" className="text-gray-300 hover:text-white font-medium text-sm px-3 py-2 rounded-lg hover:bg-white/5 transition-colors">
                   {nav.practice}
                 </Link>
               </li>
@@ -167,29 +171,29 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-3">
             <button
               onClick={() => setLang(lang === "en" ? "mn" : "en")}
-              className="text-xs font-semibold text-gray-500 hover:text-primary-600 border border-gray-200 rounded-md px-2 py-1 transition-colors"
+              className="text-xs font-semibold text-gray-400 hover:text-primary-300 border border-white/10 rounded-lg px-2.5 py-1.5 transition-colors hover:border-primary-400/30 hover:bg-primary-500/5"
               aria-label="Toggle language"
             >
               {lang === "en" ? "MN" : "EN"}
             </button>
 
-            <a href="tel:+14159818165" className="flex items-center gap-1.5 text-sm text-gray-600 hover:text-primary-600 transition-colors">
+            <a href="tel:+14159818165" className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-primary-300 transition-colors">
               <Phone className="h-3.5 w-3.5" />
               <span className="hidden xl:block">+1 (415) 981-8165</span>
             </a>
 
-            <Link href="/sign-in" className="text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors">
+            <Link href="/sign-in" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
               {nav.login}
             </Link>
 
-            <Link href="/tutoring" className="btn-primary text-sm py-2 px-4">
+            <Link href="/tutoring" className="btn-primary text-sm py-2 px-5">
               {nav.findTutor}
             </Link>
           </div>
 
           {/* Mobile menu button */}
           <button
-            className="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+            className="lg:hidden p-2 rounded-lg text-gray-300 hover:bg-white/5 transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
@@ -200,7 +204,7 @@ export default function Header() {
 
       {/* Mobile Nav */}
       {mobileOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-100 shadow-lg">
+        <div className="lg:hidden bg-surface-800/95 backdrop-blur-xl border-t border-white/5">
           <nav className="max-w-7xl mx-auto px-4 py-4 space-y-1">
             {[
               { label: nav.home, href: "/" },
@@ -214,16 +218,16 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="block px-4 py-2.5 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg font-medium transition-colors"
+                className="block px-4 py-2.5 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg font-medium transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
-            <div className="pt-2 border-t border-gray-100 flex gap-3 px-4">
+            <div className="pt-3 border-t border-white/5 flex gap-3 px-4">
               <button
                 onClick={() => setLang(lang === "en" ? "mn" : "en")}
-                className="text-sm font-semibold text-gray-500 border border-gray-200 rounded-lg px-3 py-2.5 flex-shrink-0"
+                className="text-sm font-semibold text-gray-400 border border-white/10 rounded-lg px-3 py-2.5 flex-shrink-0"
               >
                 {lang === "en" ? "MN" : "EN"}
               </button>
