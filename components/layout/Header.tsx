@@ -3,9 +3,10 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ChevronDown, Phone } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, LogOut, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLang } from "@/lib/lang-context";
+import { useAuth } from "@/lib/auth-context";
 
 const examPrepItems = [
   { en: "SAT Math", mn: "SAT Математик", href: "/exam-prep#sat" },
@@ -103,6 +104,7 @@ function DropdownMenu({ en, mn, href, items }: DropdownMenuProps) {
 
 export default function Header() {
   const { lang, setLang } = useLang();
+  const { user, logout } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -182,13 +184,32 @@ export default function Header() {
               <span className="hidden xl:block">+1 (415) 981-8165</span>
             </a>
 
-            <Link href="/sign-in" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
-              {nav.login}
-            </Link>
-
-            <Link href="/tutoring" className="btn-primary text-sm py-2 px-5">
-              {nav.findTutor}
-            </Link>
+            {user ? (
+              <>
+                <Link href="/practice" className="flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors">
+                  <div className="w-7 h-7 rounded-lg bg-primary-500/20 border border-primary-400/20 flex items-center justify-center">
+                    <User className="h-3.5 w-3.5 text-primary-300" />
+                  </div>
+                  <span className="font-medium hidden xl:block">{user.displayName.split(" ")[0]}</span>
+                </Link>
+                <button
+                  onClick={logout}
+                  className="text-sm text-gray-400 hover:text-red-400 transition-colors p-1.5 rounded-lg hover:bg-white/5"
+                  aria-label="Log out"
+                >
+                  <LogOut className="h-4 w-4" />
+                </button>
+              </>
+            ) : (
+              <>
+                <Link href="/sign-in" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+                  {nav.login}
+                </Link>
+                <Link href="/tutoring" className="btn-primary text-sm py-2 px-5">
+                  {nav.findTutor}
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -231,12 +252,28 @@ export default function Header() {
               >
                 {lang === "en" ? "MN" : "EN"}
               </button>
-              <Link href="/sign-in" className="btn-secondary text-sm flex-1 text-center" onClick={() => setMobileOpen(false)}>
-                {nav.login}
-              </Link>
-              <Link href="/tutoring" className="btn-primary text-sm flex-1 text-center" onClick={() => setMobileOpen(false)}>
-                {lang === "mn" ? "Багш хайх" : "Find Tutor"}
-              </Link>
+              {user ? (
+                <>
+                  <Link href="/practice" className="btn-primary text-sm flex-1 text-center" onClick={() => setMobileOpen(false)}>
+                    {nav.practice}
+                  </Link>
+                  <button
+                    onClick={() => { logout(); setMobileOpen(false); }}
+                    className="btn-secondary text-sm flex-1 text-center"
+                  >
+                    {lang === "mn" ? "Гарах" : "Log Out"}
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link href="/sign-in" className="btn-secondary text-sm flex-1 text-center" onClick={() => setMobileOpen(false)}>
+                    {nav.login}
+                  </Link>
+                  <Link href="/tutoring" className="btn-primary text-sm flex-1 text-center" onClick={() => setMobileOpen(false)}>
+                    {lang === "mn" ? "Багш хайх" : "Find Tutor"}
+                  </Link>
+                </>
+              )}
             </div>
           </nav>
         </div>

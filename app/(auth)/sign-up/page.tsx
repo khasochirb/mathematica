@@ -6,9 +6,11 @@ import { useRouter } from "next/navigation";
 import { Eye, EyeOff, Sparkles } from "lucide-react";
 import Image from "next/image";
 import { api, setToken } from "@/lib/api";
+import { useAuth } from "@/lib/auth-context";
 
 export default function SignUpPage() {
   const router = useRouter();
+  const { refresh } = useAuth();
   const [form, setForm] = useState({
     displayName: "",
     username: "",
@@ -26,6 +28,7 @@ export default function SignUpPage() {
     try {
       const res = await api.auth.register(form);
       setToken(res.accessToken);
+      await refresh();
       router.push("/practice");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not create account. Please try again.");

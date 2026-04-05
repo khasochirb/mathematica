@@ -6,9 +6,11 @@ import { useRouter } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
 import Image from "next/image";
 import { api, setToken } from "@/lib/api";
+import { useAuth } from "@/lib/auth-context";
 
 export default function SignInPage() {
   const router = useRouter();
+  const { refresh } = useAuth();
   const [form, setForm] = useState({ email: "", password: "" });
   const [showPw, setShowPw] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -21,6 +23,7 @@ export default function SignInPage() {
     try {
       const res = await api.auth.login(form);
       setToken(res.accessToken);
+      await refresh();
       router.push("/practice");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Invalid email or password.");
