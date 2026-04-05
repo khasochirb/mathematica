@@ -80,12 +80,6 @@ const testimonials = [
 
 const examTypes = ["SAT Math", "ACT Math", "AP Calculus", "IB Math", "Math Olympiad", "GRE Quant", "GMAT Quant", "PSAT / NMSQT"];
 
-const stats = [
-  { en: { value: "500+", label: "Students Worldwide" }, mn: { value: "500+", label: "Дэлхий даяарх суралцагч" } },
-  { en: { value: "95%", label: "Score Improvement" }, mn: { value: "95%", label: "Оноо сайжирсан" } },
-  { en: { value: "20+", label: "Expert Tutors" }, mn: { value: "20+", label: "Мэргэжлийн багш" } },
-  { en: { value: "12+", label: "Countries Reached" }, mn: { value: "12+", label: "Улс хамрагдсан" } },
-];
 
 export default function HomePage() {
   const { lang } = useLang();
@@ -153,26 +147,6 @@ export default function HomePage() {
                 </span>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── STATS ─── */}
-      <section className="relative bg-surface-950 border-y border-white/[0.04]">
-        <div className="absolute inset-0 glow-center" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((s) => {
-              const content = lang === "mn" ? s.mn : s.en;
-              return (
-                <div key={s.en.label} className="text-center">
-                  <p className="font-display text-4xl sm:text-5xl font-bold gradient-text mb-2">
-                    {content.value}
-                  </p>
-                  <p className="text-gray-500 text-sm">{content.label}</p>
-                </div>
-              );
-            })}
           </div>
         </div>
       </section>
