@@ -121,6 +121,26 @@ export default function PracticePage() {
           </div>
         </div>
 
+        {/* ESH Practice Banner */}
+        <Link href="/practice/esh" className="block mb-8 card-glass border-glow p-6 group hover:border-primary-400/30 transition-all">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-gradient-to-br from-primary-500/20 to-accent-cyan/20 border border-primary-400/15 rounded-2xl">
+                <Calculator className="h-7 w-7 text-primary-400" />
+              </div>
+              <div>
+                <h2 className="font-display text-lg font-bold text-white group-hover:text-primary-300 transition-colors">
+                  ЭЕШ Математик
+                </h2>
+                <p className="text-gray-400 text-sm mt-0.5">
+                  216 бодлого · 6 тест · Сэдвээр ангилсан · Үзүүлэлт хянах
+                </p>
+              </div>
+            </div>
+            <ArrowRight className="h-5 w-5 text-gray-600 group-hover:text-primary-400 transition-colors" />
+          </div>
+        </Link>
+
         {/* Quick actions */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           <Link href="/progress" className="card-glass-glow group">
