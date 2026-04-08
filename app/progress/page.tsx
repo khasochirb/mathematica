@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Flame, Star, Trophy, BarChart3, ArrowRight, Target } from "lucide-react";
+import { Flame, Star, Trophy, BarChart3, ArrowRight, Target, Lock } from "lucide-react";
 import { api, type TopicProgress, type StreakData, type AchievementWithStatus } from "@/lib/api";
 import { useAuth } from "@/lib/auth-context";
 import { cn } from "@/lib/utils";
@@ -23,22 +23,33 @@ export default function ProgressPage() {
   const [progress, setProgress] = useState<TopicProgress[]>([]);
   const [streak, setStreak] = useState<StreakData | null>(null);
   const [achievements, setAchievements] = useState<AchievementWithStatus[]>([]);
+  const [subStatus, setSubStatus] = useState<{ isSubscribed: boolean } | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function load() {
       if (!user) { setLoading(false); return; }
       try {
-        const [prog, streakData, achData] = await Promise.all([
-          api.progress.all(),
+        const [streakData, achData, subData] = await Promise.all([
           api.streaks.get(),
           api.achievements.all(),
+          api.subscription.status(),
         ]);
-        setProgress(prog);
         setStreak(streakData);
         setAchievements(achData);
+        setSubStatus(subData);
+
+        // Topic progress is subscriber-only — fetch if subscribed
+        if (subData.isSubscribed) {
+          try {
+            const prog = await api.progress.all();
+            setProgress(prog);
+          } catch {
+            // ignore if fails
+          }
+        }
       } catch {
-        // stub endpoints return defaults
+        // fallback
       } finally {
         setLoading(false);
       }
@@ -120,8 +131,18 @@ export default function ProgressPage() {
           </div>
         </div>
 
-        {/* Topic progress */}
-        {progress.length > 0 && (
+        {/* Topic progress — subscriber only */}
+        {!subStatus?.isSubscribed ? (
+          <div className="card-glass text-center py-10 mb-8">
+            <Lock className="h-8 w-8 text-gray-600 mx-auto mb-3" />
+            <p className="text-gray-400 text-sm mb-4">
+              Сэдвийн дэлгэрэнгүй шинжилгээ харахын тулд элс
+            </p>
+            <Link href="/upgrade" className="btn-primary">
+              Элсэх — 19,900 ₮/сар
+            </Link>
+          </div>
+        ) : progress.length > 0 ? (
           <div className="card-glass p-0 mb-8 overflow-hidden">
             <div className="flex items-center justify-between p-5 border-b border-white/[0.06]">
               <h2 className="font-display font-bold text-white">Topic Mastery</h2>
@@ -165,7 +186,7 @@ export default function ProgressPage() {
               ))}
             </div>
           </div>
-        )}
+        ) : null}
 
         {/* Achievements */}
         {achievements.length > 0 && (

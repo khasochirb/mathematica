@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase";
 import { getAuthUser } from "@/lib/server-auth";
+import { isSubscribed, getDailyCount, incrementDailyCount, FREE_DAILY_LIMIT } from "@/lib/subscription";
 
 function checkAnswer(
   userAnswer: string,
@@ -51,6 +52,18 @@ export async function POST(req: NextRequest) {
 
   if (!sessionId || !problemId || userAnswer === undefined || !timeTakenMs) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+  }
+
+  // Free tier daily limit check
+  const subscribed = await isSubscribed(user.id);
+  if (!subscribed) {
+    const dailyCount = await getDailyCount(user.id);
+    if (dailyCount >= FREE_DAILY_LIMIT) {
+      return NextResponse.json(
+        { error: "DAILY_LIMIT_REACHED", limit: FREE_DAILY_LIMIT },
+        { status: 402 }
+      );
+    }
   }
 
   const admin = createAdminClient();
@@ -201,6 +214,11 @@ export async function POST(req: NextRequest) {
         .update({ session_xp: session.session_xp + xpDelta })
         .eq("id", sessionId);
     }
+  }
+
+  // Increment daily count for free users
+  if (!subscribed) {
+    await incrementDailyCount(user.id);
   }
 
   return NextResponse.json({

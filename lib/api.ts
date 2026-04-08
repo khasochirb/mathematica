@@ -79,6 +79,20 @@ export const api = {
   achievements: {
     all: () => apiCall<AchievementWithStatus[]>("/api/achievements"),
   },
+  subscription: {
+    status: () =>
+      apiCall<{
+        isSubscribed: boolean;
+        dailyProblemsUsed: number;
+        dailyProblemsLimit: number;
+        remainingToday: number | null;
+      }>("/api/subscription/status"),
+    activate: (body: { months: number; paymentRef?: string }) =>
+      apiCall<{ success: boolean; expiresAt: string }>(
+        "/api/subscription/activate",
+        { method: "POST", body: JSON.stringify(body) }
+      ),
+  },
 };
 
 // ─── Types ────────────────────────────────────────────────────────

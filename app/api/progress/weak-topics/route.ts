@@ -1,11 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase";
 import { getAuthUser } from "@/lib/server-auth";
+import { isSubscribed } from "@/lib/subscription";
 
 export async function GET(req: NextRequest) {
   const user = await getAuthUser(req);
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const subscribed = await isSubscribed(user.id);
+  if (!subscribed) {
+    return NextResponse.json(
+      { error: "SUBSCRIPTION_REQUIRED" },
+      { status: 402 }
+    );
   }
 
   const admin = createAdminClient();
