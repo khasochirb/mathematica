@@ -4,7 +4,7 @@ const links = {
   Programs: [
     { label: "Exam Prep", href: "/exam-prep" },
     { label: "1-on-1 Tutoring", href: "/tutoring" },
-    { label: "Grade Levels", href: "/courses" },
+    { label: "Study by Topic", href: "/courses" },
     { label: "Math Practice", href: "/practice" },
   ],
   Company: [
@@ -59,7 +59,7 @@ export default function Footer() {
               <span className="font-display font-bold text-white text-lg group-hover:text-primary-300 transition-colors">Mongol Potential</span>
             </Link>
             <p className="text-gray-500 text-sm leading-relaxed mb-4">
-              World-class math education for Mongolian students everywhere—aligned with AP, IB, and US curricula.
+              ЭЕШ exam prep and world-class math education for Mongolian students everywhere.
             </p>
             <div className="space-y-1.5 mb-5">
               <a href="tel:+14159818165" className="block text-primary-400 hover:text-primary-300 text-sm transition-colors">

@@ -24,22 +24,22 @@ import { useLang } from "@/lib/lang-context";
 const features = [
   {
     icon: BookOpen,
-    en: { title: "Curriculum-Aligned", description: "Personalized lessons mapped to AP, IB, and US state standards so students improve where it matters—classroom performance and exams." },
-    mn: { title: "Хөтөлбөртэй нийцсэн", description: "AP, IB болон АНУ-ын стандартад нийцсэн хувийн хичээлүүд—ангийн гүйцэтгэл болон шалгалтанд дэвшил гаргана." },
+    en: { title: "ЭЕШ & International Exams", description: "Structured prep for Mongolia's ЭЕШ entrance exam plus AP, IB, and SAT—covering every exam Mongolian students face." },
+    mn: { title: "ЭЕШ ба олон улсын шалгалт", description: "Монголын ЭЕШ элсэлтийн шалгалт, мөн AP, IB, SAT зэрэг Монгол сурагчдын өгдөг бүх шалгалтын бүтэцтэй бэлтгэл." },
     gradient: "from-primary-500 to-primary-400",
     iconColor: "text-primary-400",
   },
   {
     icon: Globe,
-    en: { title: "Personal & Flexible", description: "One-on-one instruction, flexible scheduling across time zones, and goals tailored to each learner's needs." },
-    mn: { title: "Хувийн ба уян хатан", description: "Нэг-нэгтэйгээ суралцах, цагийн бүсийг харгалзан уян хуваарь, хүн бүрийн хэрэгцээнд тохирсон зорилго." },
+    en: { title: "Personal & Flexible", description: "One-on-one tutoring, AI-powered self-study, flexible scheduling across time zones—goals tailored to each learner." },
+    mn: { title: "Хувийн ба уян хатан", description: "Нэг-нэгтэй хичээл, AI-д суурилсан бие даасан суралцах, цагийн бүсийг харгалзсан уян хуваарь—хүн бүрийн зорилгод тохирсон." },
     gradient: "from-accent-cyan to-cyan-400",
     iconColor: "text-accent-cyan",
   },
   {
     icon: Star,
-    en: { title: "Culture-Integrated", description: "We weave Mongolian history and everyday life into problems so learning is meaningful and identity-affirming." },
-    mn: { title: "Соёлтой холбосон", description: "Монгол түүх, өдөр тутмын амьдралыг бодлогуудад нэгтгэж, суралцахыг утга учиртай, бахархалтай болгоно." },
+    en: { title: "Made for Mongolians", description: "Problems rooted in Mongolian context, culture, and curriculum—whether you're in Ulaanbaatar or abroad, learning feels relevant." },
+    mn: { title: "Монголчуудад зориулсан", description: "Монгол орчин, соёл, хөтөлбөрт суурилсан бодлогууд—Улаанбаатарт ч, гадаадад ч суралцах нь утга учиртай байна." },
     gradient: "from-accent-gold to-amber-400",
     iconColor: "text-accent-gold",
   },
@@ -53,11 +53,11 @@ const mathlyFeatures = [
 ];
 
 const grades = [
-  { en: { label: "Elementary", range: "Grades 2–5" }, mn: { label: "Бага сургууль", range: "2–5-р анги" }, href: "/courses#elementary", icon: Sparkles },
-  { en: { label: "Middle School", range: "Grades 6–8" }, mn: { label: "Дунд сургууль", range: "6–8-р анги" }, href: "/courses#middle", icon: Target },
-  { en: { label: "High School", range: "Grades 9–12" }, mn: { label: "Ахлах сургууль", range: "9–12-р анги" }, href: "/courses#high", icon: Zap },
-  { en: { label: "College", range: "Undergraduate" }, mn: { label: "Их сургууль", range: "Бакалавр" }, href: "/courses#college", icon: GraduationCap },
-  { en: { label: "Adult Learning", range: "All ages" }, mn: { label: "Насанд хүрэгчид", range: "Бүх нас" }, href: "/courses#adult", icon: TrendingUp },
+  { en: { label: "Algebra", range: "~25% of exam" }, mn: { label: "Алгебр", range: "Шалгалтын ~25%" }, href: "/courses#algebra", icon: Sparkles },
+  { en: { label: "Functions", range: "~20% of exam" }, mn: { label: "Функц", range: "Шалгалтын ~20%" }, href: "/courses#functions", icon: TrendingUp },
+  { en: { label: "Geometry", range: "~20% of exam" }, mn: { label: "Геометр", range: "Шалгалтын ~20%" }, href: "/courses#geometry", icon: Target },
+  { en: { label: "Trigonometry", range: "~10% of exam" }, mn: { label: "Тригонометр", range: "Шалгалтын ~10%" }, href: "/courses#trigonometry", icon: Zap },
+  { en: { label: "Calculus", range: "~10% of exam" }, mn: { label: "Анализ", range: "Шалгалтын ~10%" }, href: "/courses#calculus", icon: GraduationCap },
 ];
 
 const testimonials = [
@@ -78,7 +78,7 @@ const testimonials = [
   },
 ];
 
-const examTypes = ["SAT Math", "ACT Math", "AP Calculus", "IB Math", "Math Olympiad", "GRE Quant", "GMAT Quant", "PSAT / NMSQT"];
+const examTypes = ["ЭЕШ Математик", "SAT Math", "ACT Math", "AP Calculus", "IB Math", "Math Olympiad", "GRE Quant", "PSAT / NMSQT"];
 
 
 export default function HomePage() {
@@ -107,39 +107,39 @@ export default function HomePage() {
             <div className="badge-glow mb-6">
               <Sparkles className="h-3.5 w-3.5 mr-1.5 text-primary-400" />
               <span className="text-sm">
-                <T en="World Class Education for Mongolians" mn="Монголчуудад зориулсан дэлхийн түвшний боловсрол" />
+                <T en="ЭЕШ Prep & Math Education for All Mongolians" mn="ЭЕШ бэлтгэл ба бүх Монголчуудад зориулсан математик" />
               </span>
             </div>
 
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 tracking-tight">
-              <T en="Helping Mongol minds" mn="Монгол оюун ухааныг" />{" "}
+              <T en="High-quality math for" mn="Бүх Монгол сурагчдад" />{" "}
               <span className="gradient-text">
-                <T en="reach their potential" mn="боломжоо нээхэд тусалж байна" />
+                <T en="every Mongolian student" mn="өндөр чанартай математик" />
               </span>
             </h1>
 
             <p className="text-lg sm:text-xl text-gray-400 leading-relaxed mb-10 max-w-2xl">
               <T
-                en="High-quality math and science education for Mongolian students around the world—aligned with AP, IB, and US state curricula, while strengthening cultural connection through Mongolian-context problems and stories."
-                mn="Дэлхийн өнцөг булан бүрт байгаа Монгол оюутнуудад зориулсан өндөр чанарын математик, шинжлэх ухааны боловсрол—AP, IB болон АНУ-ын хөтөлбөртэй нийцсэн, Монгол орчны бодлогоор соёлын холбоосыг бэхжүүлсэн."
+                en="Ace the ЭЕШ with thousands of practice problems, or get one-on-one tutoring for AP, IB, SAT, and more. Built by Mongolians, for Mongolians—wherever you study."
+                mn="Мянга мянган дадлагын бодлогоор ЭЕШ-д бэлтгэ, эсвэл AP, IB, SAT зэрэг шалгалтанд нэг-нэгтэй хичээл ав. Монголчуудаас Монголчуудад—хаана ч сурч байсан."
               />
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <Link href="/tutoring" className="btn-primary text-base px-8 py-3.5">
-                <T en="Find Your Tutor" mn="Багшаа олох" />
+              <Link href="/practice/esh" className="btn-primary text-base px-8 py-3.5">
+                <T en="Start ЭЕШ Prep" mn="ЭЕШ бэлтгэл эхлэх" />
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
-              <Link href="/practice" className="btn-secondary text-base px-8 py-3.5">
-                <T en="Try Practice Free" mn="Үнэгүй дадлага хийх" />
+              <Link href="/tutoring" className="btn-secondary text-base px-8 py-3.5">
+                <T en="Find a Tutor" mn="Багшаа олох" />
               </Link>
             </div>
 
             <div className="mt-10 flex flex-wrap gap-6 text-sm text-gray-500">
               {[
-                { en: "No commitment required", mn: "Үүрэг хүлээхгүй" },
-                { en: "Flexible scheduling", mn: "Уян хуваарь" },
-                { en: "Bilingual tutors", mn: "Хоёр хэлтэй багш нар" },
+                { en: "Free ЭЕШ practice problems", mn: "Үнэгүй ЭЕШ дадлагын бодлогууд" },
+                { en: "1-on-1 tutoring available", mn: "Нэг-нэгтэй хичээл боломжтой" },
+                { en: "Works anywhere in the world", mn: "Дэлхийн хаанаас ч ажилладаг" },
               ].map((item) => (
                 <span key={item.en} className="flex items-center gap-1.5">
                   <CheckCircle className="h-4 w-4 text-accent-emerald" />
@@ -160,15 +160,15 @@ export default function HomePage() {
               <T en="Our Mission" mn="Бидний зорилго" />
             </div>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5">
-              <T en="To the Future of Mongolians" mn="Монголчуудын ирээдүйд" />{" "}
+              <T en="Empowering Mongolian students" mn="Монгол сурагчдыг чадавхжуулж" />{" "}
               <span className="gradient-text-warm">
-                <T en="Living Abroad" mn="гадаадад амьдарч буй" />
+                <T en="everywhere" mn="хаана ч байсан" />
               </span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
               <T
-                en="Many Mongolian children grow up in the United States and across the world. They remain proudly Mongolian—and deserve to be well-educated, confident, and connected to their heritage."
-                mn="Олон Монгол хүүхэд АНУ болон дэлхийн өнцөг булан бүрт өсч торниж байна. Тэд бахархалтайгаар Монгол хэвээрээ—мөн сайн боловсролтой, итгэлтэй, өвлийн соёлтойгоо холбогдсон байх эрхтэй."
+                en="Whether you're preparing for the ЭЕШ in Ulaanbaatar, studying at an international school, or growing up abroad—every Mongolian student deserves world-class math education and the confidence to succeed."
+                mn="Улаанбаатарт ЭЕШ-д бэлтгэж байгаа ч, олон улсын сургуульд суралцаж байгаа ч, гадаадад өсч байгаа ч—Монгол сурагч бүр дэлхийн түвшний математикийн боловсрол, амжилтанд хүрэх итгэлийг авах эрхтэй."
               />
             </p>
           </div>
@@ -306,15 +306,15 @@ export default function HomePage() {
               <T en="Test Preparation" mn="Шалгалтын бэлтгэл" />
             </div>
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-4">
-              <T en="Exam preparation " mn="Найдаж болох " />
+              <T en="ЭЕШ and exam prep " mn="ЭЕШ болон шалгалтын бэлтгэл " />
               <span className="gradient-text">
-                <T en="you can trust" mn="шалгалтын бэлтгэл" />
+                <T en="you can trust" mn="найдаж болохуйц" />
               </span>
             </h2>
             <p className="text-gray-400 max-w-xl mx-auto">
               <T
-                en="Expert preparation for the exams that matter most to Mongolian students studying abroad."
-                mn="Гадаадад суралцаж буй Монгол оюутнуудад хамгийн чухал шалгалтуудад мэргэжлийн бэлтгэл."
+                en="Thousands of real ЭЕШ-style problems with step-by-step solutions, plus expert prep for SAT, AP, IB, and other international exams."
+                mn="Мянга мянган жинхэнэ ЭЕШ маягийн бодлогууд алхам алхмаар бодолттой, мөн SAT, AP, IB зэрэг олон улсын шалгалтын мэргэжлийн бэлтгэл."
               />
             </p>
           </div>
@@ -344,15 +344,15 @@ export default function HomePage() {
         <div className="container-lg relative">
           <div className="text-center mb-12">
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-4">
-              <T en="Math tutoring for " mn="Бүх насны бүлэгт зориулсан " />
+              <T en="Practice by " mn="Сэдвээр " />
               <span className="gradient-text">
-                <T en="every age group" mn="математикийн хичээл" />
+                <T en="topic" mn="дадлага хийх" />
               </span>
             </h2>
             <p className="text-gray-400 max-w-lg mx-auto">
               <T
-                en="We believe everyone can learn. We offer world-class online tutoring from 2nd grade through adulthood."
-                mn="Бид хүн бүр суралцах чадвартай гэдэгт итгэдэг. 2-р ангиас насанд хүрэгч хүртэл дэлхийн түвшний онлайн хичээл санал болгодог."
+                en="The ЭЕШ math exam covers these core areas. Pick any topic and start practicing right away."
+                mn="ЭЕШ математикийн шалгалт эдгээр үндсэн чиглэлүүдийг хамардаг. Аль ч сэдвийг сонгоод шууд дадлага хий."
               />
             </p>
           </div>
@@ -396,7 +396,7 @@ export default function HomePage() {
               </span>
             </h2>
             <p className="text-gray-400">
-              <T en="Real words from Mongolian families learning with us online" mn="Бидэнтэй онлайн суралцаж буй Монгол гэр бүлүүдийн жинхэнэ үгс" />
+              <T en="Real words from Mongolian families using our tutoring service" mn="Манай хичээлийн үйлчилгээг ашиглаж буй Монгол гэр бүлүүдийн жинхэнэ үгс" />
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -436,17 +436,17 @@ export default function HomePage() {
           </h2>
           <p className="text-gray-400 text-lg mb-10 max-w-xl mx-auto">
             <T
-              en="Join hundreds of Mongolian students worldwide who are building confidence and excelling in math."
-              mn="Математикт итгэлтэй болж, амжилтанд хүрч буй дэлхий даяарх зуун гаруй Монгол оюутантай нэгд."
+              en="Join thousands of Mongolian students who are mastering math—from ЭЕШ prep to international exams and beyond."
+              mn="Математикийг эзэмшиж буй мянга мянган Монгол сурагчидтай нэгдээрэй—ЭЕШ бэлтгэлээс олон улсын шалгалт хүртэл."
             />
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/tutoring" className="btn-white text-base px-8 py-3.5">
-              <T en="Find Your Tutor" mn="Багшаа олох" />
+            <Link href="/practice/esh" className="btn-white text-base px-8 py-3.5">
+              <T en="Start ЭЕШ Prep" mn="ЭЕШ бэлтгэл эхлэх" />
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
-            <Link href="/practice" className="btn-secondary text-base px-8 py-3.5">
-              <T en="Try Practice Free" mn="Үнэгүй дадлага хийх" />
+            <Link href="/tutoring" className="btn-secondary text-base px-8 py-3.5">
+              <T en="Find a Tutor" mn="Багшаа олох" />
             </Link>
           </div>
         </div>

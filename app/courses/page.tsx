@@ -5,201 +5,358 @@ import { ArrowRight } from "lucide-react";
 import { T } from "@/components/T";
 import { useLang } from "@/lib/lang-context";
 
-const levels = [
+/*
+ * ЭЕШ math topics with subtopics.
+ * Each topic card links to /practice/esh with a topic query param.
+ * TODO: wire up topic query param filtering once practice/esh supports ?topic=<slug>
+ */
+const topics = [
   {
-    id: "elementary",
-    emoji: "🧒",
+    slug: "algebra",
+    icon: "📐",
     en: {
-      label: "Elementary School",
-      range: "Grades 2–5 · Ages 7–11",
-      description: "We build strong foundations in arithmetic, number sense, and early problem-solving. Our approach makes math fun and culturally relevant, using Mongolian stories and everyday contexts to spark curiosity.",
-      topics: ["Number sense & place value", "Addition, subtraction, multiplication, division", "Fractions and decimals", "Basic geometry and measurement", "Word problems and logical reasoning"],
-      coverLabel: "Topics we cover",
+      name: "Algebra",
+      desc: "The foundation of ЭЕШ math — equations, inequalities, and polynomials make up the largest share of the exam.",
+      subtopics: [
+        "Linear equations & inequalities",
+        "Quadratic equations",
+        "Systems of equations",
+        "Polynomials & factoring",
+        "Absolute value equations",
+        "Rational expressions",
+      ],
     },
     mn: {
-      label: "Бага сургууль",
-      range: "2–5-р анги · 7–11 нас",
-      description: "Арифметик, тоон ойлголт, эрт дэс бодлого шийдэхэд хүчтэй суурь тавьдаг. Монгол үлгэр, өдөр тутмын орчин ашиглан математикийг хөгжилтэй, соёлтой холбоотой болгоно.",
-      topics: ["Тооны мэдрэмж ба байрны утга", "Нэмэх, хасах, үржих, хуваах", "Бутархай ба аравтын бутархай", "Үндсэн геометр ба хэмжилт", "Текст бодлого, логик үндэслэл"],
-      coverLabel: "Хамрагдах сэдвүүд",
+      name: "Алгебр",
+      desc: "ЭЕШ математикийн суурь — тэгшитгэл, тэнцэтгэл биш, олон гишүүнт нь шалгалтын хамгийн их хувийг эзэлдэг.",
+      subtopics: [
+        "Шугаман тэгшитгэл ба тэнцэтгэл биш",
+        "Квадрат тэгшитгэл",
+        "Тэгшитгэлийн систем",
+        "Олон гишүүнт ба задлан шинжлэх",
+        "Абсолют утгын тэгшитгэл",
+        "Рациональ илэрхийлэл",
+      ],
     },
+    weight: "~25%",
+    color: "from-blue-500 to-blue-400",
   },
   {
-    id: "middle",
-    emoji: "🏫",
+    slug: "functions",
+    icon: "📈",
     en: {
-      label: "Middle School",
-      range: "Grades 6–8 · Ages 11–14",
-      description: "The years when students either gain confidence in math or lose it. We ensure students develop algebraic thinking, master ratios and proportions, and are fully prepared for high school mathematics.",
-      topics: ["Pre-Algebra and introductory Algebra", "Ratios, rates, and proportional reasoning", "Geometry and the coordinate plane", "Statistics and probability", "MATHCOUNTS / AMC 8 competition prep"],
-      coverLabel: "Topics we cover",
+      name: "Functions & Graphs",
+      desc: "Understanding how functions behave and how to read their graphs is tested in nearly every ЭЕШ section.",
+      subtopics: [
+        "Linear & quadratic functions",
+        "Exponential & logarithmic functions",
+        "Domain, range, and inverses",
+        "Function composition",
+        "Graph transformations",
+        "Piecewise functions",
+      ],
     },
     mn: {
-      label: "Дунд сургууль",
-      range: "6–8-р анги · 11–14 нас",
-      description: "Оюутнууд математикт итгэлтэй болох эсвэл итгэлгүй болох жилүүд. Алгебрийн сэтгэлгээг хөгжүүлж, харьцаа, пропорцийг эзэмшиж, ахлах сургуулийн математикт бүрэн бэлэн болгоно.",
-      topics: ["Алгебрын өмнөх, алгебрын эхэн", "Харьцаа, хурд, пропорциональ үндэслэл", "Геометр ба координатын хавтгай", "Статистик ба магадлал", "MATHCOUNTS / AMC 8 тэмцээний бэлтгэл"],
-      coverLabel: "Хамрагдах сэдвүүд",
+      name: "Функц ба график",
+      desc: "Функцийн шинж чанар, графикийг уншиж ойлгохыг ЭЕШ-ийн бараг бүх хэсэгт шалгадаг.",
+      subtopics: [
+        "Шугаман ба квадрат функц",
+        "Экспоненциал ба логарифм функц",
+        "Тодорхойлогдох муж, утгын муж, урвуу",
+        "Функцийн давхар",
+        "Графикийн хувиргалт",
+        "Хэсэгчилсэн функц",
+      ],
     },
+    weight: "~20%",
+    color: "from-emerald-500 to-emerald-400",
   },
   {
-    id: "high",
-    emoji: "🎓",
+    slug: "geometry",
+    icon: "📏",
     en: {
-      label: "High School",
-      range: "Grades 9–12 · Ages 14–18",
-      description: "We support students through the full high school math sequence and beyond—including advanced courses and test preparation. Our tutors help students excel in class and on standardized exams.",
-      topics: ["Algebra I & II", "Geometry", "Pre-Calculus and Trigonometry", "AP Calculus AB / BC", "AP Statistics", "SAT, ACT, and PSAT prep"],
-      coverLabel: "Topics we cover",
+      name: "Geometry",
+      desc: "Plane and solid geometry — triangles, circles, areas, volumes, and coordinate geometry problems.",
+      subtopics: [
+        "Triangles (properties, similarity, congruence)",
+        "Circles (chords, tangents, arcs)",
+        "Area and perimeter",
+        "Volume and surface area",
+        "Coordinate geometry",
+        "Vectors in the plane",
+      ],
     },
     mn: {
-      label: "Ахлах сургууль",
-      range: "9–12-р анги · 14–18 нас",
-      description: "Ахлах сургуулийн математикийн бүрэн дарааллыг дэмжиж, дэвшилтэт хичээл, шалгалтын бэлтгэлийг хамарна. Манай багш нар ангид болон стандарт шалгалтад амжилттай байхад тусалдаг.",
-      topics: ["Алгебр I ба II", "Геометр", "Урьдcalculus ба тригонометр", "AP Calculus AB / BC", "AP Статистик", "SAT, ACT, PSAT бэлтгэл"],
-      coverLabel: "Хамрагдах сэдвүүд",
+      name: "Геометр",
+      desc: "Хавтгай ба огторгуйн геометр — гурвалжин, тойрог, талбай, эзэлхүүн, координатын геометрийн бодлогууд.",
+      subtopics: [
+        "Гурвалжин (шинж чанар, ижил төстэй, тэнцүү)",
+        "Тойрог (хөвч, шүргэгч, нум)",
+        "Талбай ба периметр",
+        "Эзэлхүүн ба гадаргуугийн талбай",
+        "Координатын геометр",
+        "Хавтгай дахь вектор",
+      ],
     },
+    weight: "~20%",
+    color: "from-violet-500 to-violet-400",
   },
   {
-    id: "college",
-    emoji: "🏛️",
+    slug: "trigonometry",
+    icon: "🔺",
     en: {
-      label: "College",
-      range: "Undergraduate · Ages 18+",
-      description: "College-level math can be demanding. We help undergraduates navigate calculus sequences, linear algebra, differential equations, and proof-based courses with confidence.",
-      topics: ["Calculus I, II, III", "Linear Algebra", "Differential Equations", "Discrete Mathematics", "Statistics and Probability", "GRE / GMAT Quantitative prep"],
-      coverLabel: "Topics we cover",
+      name: "Trigonometry",
+      desc: "Trigonometric identities, equations, and their applications are a consistent part of the exam.",
+      subtopics: [
+        "Trigonometric ratios & unit circle",
+        "Trig identities (sum, double angle, etc.)",
+        "Trigonometric equations",
+        "Inverse trigonometric functions",
+        "Law of sines & cosines",
+        "Applications (triangles, angles)",
+      ],
     },
     mn: {
-      label: "Их сургууль",
-      range: "Бакалавр · 18+ нас",
-      description: "Их сургуулийн математик хүнд байж болно. Calculus, шугаман алгебр, дифференциал тэгшитгэл, баталгаанд суурилсан хичээлүүдийг итгэлтэйгээр давахад тусалдаг.",
-      topics: ["Calculus I, II, III", "Шугаман алгебр", "Дифференциал тэгшитгэл", "Дискрет математик", "Статистик ба магадлал", "GRE / GMAT тоон хэсгийн бэлтгэл"],
-      coverLabel: "Хамрагдах сэдвүүд",
+      name: "Тригонометр",
+      desc: "Тригонометрийн адилтгал, тэгшитгэл, тэдгээрийн хэрэглээ шалгалтанд тогтмол ордог.",
+      subtopics: [
+        "Тригонометрийн харьцаа ба нэгж тойрог",
+        "Триг адилтгалууд (нийлбэр, давхар өнцөг г.м.)",
+        "Тригонометрийн тэгшитгэл",
+        "Урвуу тригонометрийн функц",
+        "Синусын ба косинусын теорем",
+        "Хэрэглээ (гурвалжин, өнцөг)",
+      ],
     },
+    weight: "~10%",
+    color: "from-orange-500 to-orange-400",
   },
   {
-    id: "adult",
-    emoji: "👔",
+    slug: "calculus",
+    icon: "∫",
     en: {
-      label: "Adult Learning",
-      range: "All ages · Professional & personal goals",
-      description: "It's never too late to learn math. Whether you're returning to school, preparing for a professional exam, or simply want to fill gaps from years ago, we meet you exactly where you are.",
-      topics: ["Foundational arithmetic and algebra review", "GED Math preparation", "GRE / GMAT prep for career transitions", "Statistics for data and business", "Personalized curriculum for any goal"],
-      coverLabel: "Topics we cover",
+      name: "Calculus",
+      desc: "Limits, derivatives, and integrals — the most challenging section, heavily tested in Part 2.",
+      subtopics: [
+        "Limits & continuity",
+        "Derivatives (rules, chain rule)",
+        "Applications of derivatives",
+        "Definite & indefinite integrals",
+        "Applications of integrals (area, volume)",
+      ],
     },
     mn: {
-      label: "Насанд хүрэгчид",
-      range: "Бүх нас · Мэргэжлийн ба хувийн зорилго",
-      description: "Математик сурахад хэзээ ч хожимдохгүй. Сургуульдаа буцаж байгаа эсэхийг үл хамааран, мэргэжлийн шалгалтанд бэлдэж байгаа эсвэл жилийн өмнөх хоцрогдлоо нөхөхийг хүсч байгаа бол бидэн байнаа.",
-      topics: ["Үндсэн арифметик ба алгебрын давталт", "GED математикийн бэлтгэл", "Карьераа өөрчлөхөд GRE / GMAT бэлтгэл", "Өгөгдөл, бизнест зориулсан статистик", "Аливаа зорилгод тохирсон хувийн хөтөлбөр"],
-      coverLabel: "Хамрагдах сэдвүүд",
+      name: "Анализ",
+      desc: "Хязгаар, уламжлал, интеграл — хамгийн хэцүү хэсэг, 2-р хэсэгт ихээр шалгадаг.",
+      subtopics: [
+        "Хязгаар ба тасралтгүй байдал",
+        "Уламжлал (дүрмүүд, гинжин дүрэм)",
+        "Уламжлалын хэрэглээ",
+        "Тодорхой ба тодорхойгүй интеграл",
+        "Интегралын хэрэглээ (талбай, эзэлхүүн)",
+      ],
     },
+    weight: "~10%",
+    color: "from-red-500 to-red-400",
+  },
+  {
+    slug: "probability",
+    icon: "🎲",
+    en: {
+      name: "Probability & Statistics",
+      desc: "Combinatorics, probability theory, and descriptive statistics appear in both Part 1 and Part 2.",
+      subtopics: [
+        "Counting principles & permutations",
+        "Combinations",
+        "Basic probability",
+        "Conditional probability",
+        "Mean, median, mode, variance",
+        "Data interpretation",
+      ],
+    },
+    mn: {
+      name: "Магадлал ба статистик",
+      desc: "Комбинаторик, магадлалын онол, тодорхойлох статистик 1-р ба 2-р хэсэгт аль алинд нь ордог.",
+      subtopics: [
+        "Тоолох зарчим ба сэлгэмэл",
+        "Хослол",
+        "Үндсэн магадлал",
+        "Нөхцөлт магадлал",
+        "Дундаж, медиан, моод, дисперс",
+        "Өгөгдлийн тайлбар",
+      ],
+    },
+    weight: "~10%",
+    color: "from-pink-500 to-pink-400",
+  },
+  {
+    slug: "sequences",
+    icon: "🔢",
+    en: {
+      name: "Sequences & Series",
+      desc: "Arithmetic and geometric progressions, their sums, and limits of sequences.",
+      subtopics: [
+        "Arithmetic sequences & series",
+        "Geometric sequences & series",
+        "Sum formulas",
+        "Limits of sequences",
+        "Recursive sequences",
+      ],
+    },
+    mn: {
+      name: "Дараалал ба цуваа",
+      desc: "Арифметик ба геометрийн прогресс, тэдгээрийн нийлбэр, дарааллын хязгаар.",
+      subtopics: [
+        "Арифметик дараалал ба цуваа",
+        "Геометрийн дараалал ба цуваа",
+        "Нийлбэрийн томъёо",
+        "Дарааллын хязгаар",
+        "Рекурсив дараалал",
+      ],
+    },
+    weight: "~5%",
+    color: "from-cyan-500 to-cyan-400",
+  },
+  {
+    slug: "logarithms",
+    icon: "📊",
+    en: {
+      name: "Logarithms",
+      desc: "Logarithmic properties, equations, and their connection to exponential functions.",
+      subtopics: [
+        "Logarithmic properties",
+        "Logarithmic equations",
+        "Change of base",
+        "Natural logarithm",
+        "Exponential-logarithmic relationships",
+      ],
+    },
+    mn: {
+      name: "Логарифм",
+      desc: "Логарифмын шинж чанар, тэгшитгэл, экспоненциал функцтэй холбоос.",
+      subtopics: [
+        "Логарифмын шинж чанар",
+        "Логарифмын тэгшитгэл",
+        "Суурь солих",
+        "Натурал логарифм",
+        "Экспоненциал-логарифмын хамаарал",
+      ],
+    },
+    weight: "~5%",
+    color: "from-amber-500 to-amber-400",
   },
 ];
 
-export default function CoursesPage() {
+export default function TopicsPage() {
   const { lang } = useLang();
 
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-primary-800 to-primary-600 text-white pt-32 pb-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="badge bg-white/15 text-white mx-auto mb-4">
-            <T en="Grade Levels" mn="Ангийн түвшин" />
+      <section className="relative bg-surface-900 text-white pt-28 pb-20 overflow-hidden">
+        <div className="absolute inset-0 bg-grid animate-grid-fade" />
+        <div className="absolute inset-0 glow-top-right" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+          <div className="badge-glow mb-4 mx-auto w-fit">
+            <T en="ЭЕШ Math Topics" mn="ЭЕШ математикийн сэдвүүд" />
           </div>
-          <h1 className="text-4xl sm:text-5xl font-bold mb-5">
-            <T en="Math tutoring for every age group" mn="Бүх насны бүлэгт зориулсан математикийн хичээл" />
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold mb-5">
+            <T en="Study by " mn="Сэдвээр " />
+            <span className="gradient-text">
+              <T en="topic" mn="суралцах" />
+            </span>
           </h1>
-          <p className="text-blue-100 text-lg max-w-xl mx-auto">
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
             <T
-              en="We believe everyone can learn. World-class online tutoring from 2nd grade through adulthood."
-              mn="Бид хүн бүр суралцах чадвартай гэдэгт итгэдэг. 2-р ангиас насанд хүрэгч хүртэл дэлхийн түвшний онлайн хичээл."
+              en="Every topic covered in the ЭЕШ math exam, organized by subject area. Pick a topic to start practicing."
+              mn="ЭЕШ математикийн шалгалтанд хамрагдах бүх сэдвүүд, чиглэлээр ангилсан. Сэдвээ сонгоод дадлагаа эхлээрэй."
             />
           </p>
         </div>
       </section>
 
-      {/* Jump links */}
-      <div className="sticky top-16 z-40 bg-white border-b border-gray-100 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex gap-1 overflow-x-auto py-3 no-scrollbar">
-            {levels.map((l) => {
-              const content = lang === "mn" ? l.mn : l.en;
+      {/* Topic cards */}
+      <section className="section-dark">
+        <div className="absolute inset-0 bg-grid opacity-30" />
+        <div className="container-lg relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {topics.map((topic) => {
+              const content = lang === "mn" ? topic.mn : topic.en;
               return (
-                <a
-                  key={l.id}
-                  href={`#${l.id}`}
-                  className="flex-shrink-0 px-4 py-1.5 rounded-full text-sm font-medium text-gray-600 hover:text-primary-600 hover:bg-primary-50 transition-colors whitespace-nowrap"
+                <div
+                  key={topic.slug}
+                  id={topic.slug}
+                  className="card-glass-glow border-glow group flex flex-col"
                 >
-                  {l.emoji} {content.label}
-                </a>
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className={`text-3xl`}>{topic.icon}</div>
+                      <div>
+                        <h3 className="text-lg font-display font-bold text-white group-hover:text-primary-300 transition-colors">
+                          {content.name}
+                        </h3>
+                        <span className="text-xs font-semibold text-primary-400">{topic.weight} <T en="of the exam" mn="шалгалтаас" /></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="text-gray-400 text-sm leading-relaxed mb-4">{content.desc}</p>
+
+                  <div className="flex-1">
+                    <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                      <T en="Subtopics" mn="Дэд сэдвүүд" />
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 mb-5">
+                      {content.subtopics.map((sub) => (
+                        <span
+                          key={sub}
+                          className="px-2.5 py-1 bg-white/[0.04] border border-white/[0.08] rounded-lg text-xs text-gray-400"
+                        >
+                          {sub}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* TODO: add ?topic=slug query param once practice/esh supports topic filtering from URL */}
+                  <Link
+                    href="/practice/esh"
+                    className="btn-secondary text-sm py-2.5 text-center w-full"
+                  >
+                    <T en={`Practice ${content.name}`} mn={`${content.name} дадлага`} />
+                    <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                  </Link>
+                </div>
               );
             })}
           </div>
         </div>
-      </div>
-
-      {/* Level sections */}
-      <div className="bg-white">
-        {levels.map((level, idx) => {
-          const content = lang === "mn" ? level.mn : level.en;
-          return (
-            <section
-              key={level.id}
-              id={level.id}
-              className={`section ${idx % 2 === 0 ? "bg-white" : "bg-gray-50"}`}
-            >
-              <div className="container-lg">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                  <div className={idx % 2 !== 0 ? "lg:order-2" : ""}>
-                    <div className="text-5xl mb-4">{level.emoji}</div>
-                    <div className="badge bg-primary-100 text-primary-700 mb-3">{content.range}</div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-4">{content.label}</h2>
-                    <p className="text-gray-600 leading-relaxed mb-6">{content.description}</p>
-                    <Link href="/contact" className="btn-primary">
-                      <T en="Get Started" mn="Эхлэх" />
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </div>
-
-                  <div className={idx % 2 !== 0 ? "lg:order-1" : ""}>
-                    <div className="card bg-gray-50 border-gray-100">
-                      <h3 className="font-semibold text-gray-900 mb-4">{content.coverLabel}</h3>
-                      <ul className="space-y-2.5">
-                        {content.topics.map((t) => (
-                          <li key={t} className="flex items-center gap-2.5 text-sm text-gray-700">
-                            <span className="w-1.5 h-1.5 rounded-full bg-primary-500 flex-shrink-0" />
-                            {t}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-          );
-        })}
-      </div>
+      </section>
 
       {/* CTA */}
-      <section className="section bg-primary-600">
-        <div className="container-lg text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            <T en="Not sure which program fits?" mn="Ямар хөтөлбөр тохирохыг мэдэхгүй байна уу?" />
+      <section className="section relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-950 via-primary-900 to-surface-900" />
+        <div className="absolute inset-0 bg-grid opacity-30" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary-500/[0.12] blur-[120px] rounded-full" />
+        <div className="container-lg text-center relative">
+          <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-5">
+            <T en="Not sure where to start?" mn="Хаанаас эхлэхээ мэдэхгүй байна уу?" />
           </h2>
-          <p className="text-blue-100 mb-8">
+          <p className="text-gray-400 text-lg mb-10 max-w-xl mx-auto">
             <T
-              en="Contact us and we'll recommend the right level and approach for your student."
-              mn="Бидэнтэй холбогдоорой, оюутандаа тохирсон түвшин, арга барилыг зөвлөж өгнө."
+              en="Try all topics and our system will identify your weak areas. Focus your time where it matters most."
+              mn="Бүх сэдвийг туршаад манай систем сул талуудыг тань тодорхойлно. Хамгийн чухал газартаа цагаа зарцуул."
             />
           </p>
-          <Link href="/contact" className="btn-white text-base px-8 py-3.5">
-            <T en="Talk to Us" mn="Бидэнтэй ярилцах" />
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/practice/esh" className="btn-white text-base px-8 py-3.5">
+              <T en="Start All Topics" mn="Бүх сэдвийг эхлэх" />
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+            <Link href="/exam-prep" className="btn-secondary text-base px-8 py-3.5">
+              <T en="Exam Overview" mn="Шалгалтын тойм" />
+            </Link>
+          </div>
         </div>
       </section>
     </>

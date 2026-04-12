@@ -9,24 +9,22 @@ import { useLang } from "@/lib/lang-context";
 import { useAuth } from "@/lib/auth-context";
 
 const examPrepItems = [
-  { en: "SAT Math", mn: "SAT Математик", href: "/exam-prep#sat" },
-  { en: "ACT Math", mn: "ACT Математик", href: "/exam-prep#act" },
-  { en: "PSAT / NMSQT", mn: "PSAT / NMSQT", href: "/exam-prep#psat" },
-  { en: "GRE Quant", mn: "GRE Тоон хэсэг", href: "/exam-prep#gre" },
-  { en: "GMAT Quant", mn: "GMAT Тоон хэсэг", href: "/exam-prep#gmat" },
-  { en: "IB Math", mn: "IB Математик", href: "/exam-prep#ib" },
-  { en: "IGCSE / GCSE", mn: "IGCSE / GCSE", href: "/exam-prep#igcse" },
-  { en: "Math Olympiad", mn: "Математикийн олимпиад", href: "/exam-prep#olympiad" },
-  { en: "AP Prep", mn: "AP бэлтгэл", href: "/exam-prep#ap" },
+  { en: "ЭЕШ Overview", mn: "ЭЕШ тойм", href: "/exam-prep" },
+  { en: "ЭЕШ Math Practice", mn: "ЭЕШ математик дадлага", href: "/practice/esh" },
+  { en: "Study by Topic", mn: "Сэдвээр суралцах", href: "/courses" },
+  { en: "SAT / ACT / AP", mn: "SAT / ACT / AP", href: "/tutoring" },
   { en: "1-on-1 Tutoring", mn: "1:1 Хувийн хичээл", href: "/tutoring" },
 ];
 
-const gradeItems = [
-  { en: "Elementary School", mn: "Бага сургууль", href: "/courses#elementary" },
-  { en: "Middle School", mn: "Дунд сургууль", href: "/courses#middle" },
-  { en: "High School", mn: "Ахлах сургууль", href: "/courses#high" },
-  { en: "College", mn: "Их сургууль", href: "/courses#college" },
-  { en: "Adult Learning", mn: "Насанд хүрэгчдийн боловсрол", href: "/courses#adult" },
+const topicItems = [
+  { en: "Algebra", mn: "Алгебр", href: "/courses#algebra" },
+  { en: "Functions & Graphs", mn: "Функц ба график", href: "/courses#functions" },
+  { en: "Geometry", mn: "Геометр", href: "/courses#geometry" },
+  { en: "Trigonometry", mn: "Тригонометр", href: "/courses#trigonometry" },
+  { en: "Calculus", mn: "Анализ", href: "/courses#calculus" },
+  { en: "Probability & Stats", mn: "Магадлал ба статистик", href: "/courses#probability" },
+  { en: "Sequences", mn: "Дараалал", href: "/courses#sequences" },
+  { en: "Logarithms", mn: "Логарифм", href: "/courses#logarithms" },
 ];
 
 const aboutItems = [
@@ -121,7 +119,7 @@ export default function Header() {
     login:     lang === "mn" ? "Нэвтрэх" : "Log In",
     findTutor: lang === "mn" ? "Багш хайх" : "Find Your Tutor",
     examPrep:  lang === "mn" ? "Шалгалтын бэлтгэл" : "Exam Prep",
-    grades:    lang === "mn" ? "Ангиуд" : "Grades",
+    topics:    lang === "mn" ? "Сэдвүүд" : "Topics",
     about:     lang === "mn" ? "Бидний тухай" : "About Us",
     contact:   lang === "mn" ? "Холбоо барих" : "Contact",
   };
@@ -154,7 +152,7 @@ export default function Header() {
                 </Link>
               </li>
               <DropdownMenu en="Exam Prep" mn="Шалгалтын бэлтгэл" href="/exam-prep" items={examPrepItems} />
-              <DropdownMenu en="Grades" mn="Ангиуд" href="/courses" items={gradeItems} />
+              <DropdownMenu en="Topics" mn="Сэдвүүд" href="/courses" items={topicItems} />
               <DropdownMenu en="About Us" mn="Бидний тухай" href="/about" items={aboutItems} />
               <li>
                 <Link href="/blog" className="text-gray-300 hover:text-white font-medium text-sm px-3 py-2 rounded-lg hover:bg-white/5 transition-colors">
@@ -230,7 +228,7 @@ export default function Header() {
             {[
               { label: nav.home, href: "/" },
               { label: nav.examPrep, href: "/exam-prep" },
-              { label: nav.grades, href: "/courses" },
+              { label: nav.topics, href: "/courses" },
               { label: nav.about, href: "/about" },
               { label: nav.blog, href: "/blog" },
               { label: nav.practice, href: "/practice" },
