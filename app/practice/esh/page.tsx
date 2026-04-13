@@ -13,6 +13,14 @@ import test2aData from "@/data/questions/test2a.json";
 import test2bData from "@/data/questions/test2b.json";
 import test3aData from "@/data/questions/test3a.json";
 import test3bData from "@/data/questions/test3b.json";
+import test4aData from "@/data/questions/test4a.json";
+import test4bData from "@/data/questions/test4b.json";
+import test5aData from "@/data/questions/test5a.json";
+import test5bData from "@/data/questions/test5b.json";
+import test6aData from "@/data/questions/test6a.json";
+import test6bData from "@/data/questions/test6b.json";
+import test7aData from "@/data/questions/test7a.json";
+import test7bData from "@/data/questions/test7b.json";
 
 const ALL_TESTS = [
   { key: "1A", label: "Тест 1А", data: test1aData },
@@ -21,6 +29,14 @@ const ALL_TESTS = [
   { key: "2B", label: "Тест 2Б", data: test2bData },
   { key: "3A", label: "Тест 3А", data: test3aData },
   { key: "3B", label: "Тест 3Б", data: test3bData },
+  { key: "4A", label: "Тест 4А", data: test4aData },
+  { key: "4B", label: "Тест 4Б", data: test4bData },
+  { key: "5A", label: "Тест 5А", data: test5aData },
+  { key: "5B", label: "Тест 5Б", data: test5bData },
+  { key: "6A", label: "Тест 6А", data: test6aData },
+  { key: "6B", label: "Тест 6Б", data: test6bData },
+  { key: "7A", label: "Тест 7А", data: test7aData },
+  { key: "7B", label: "Тест 7Б", data: test7bData },
 ];
 
 const TOPICS = [
