@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { NextRequest, NextResponse } from "next/server";
 import { getAuthUser } from "@/lib/server-auth";
 import { isSubscribed, getDailyCount, FREE_DAILY_LIMIT } from "@/lib/subscription";
