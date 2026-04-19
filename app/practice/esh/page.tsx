@@ -8,14 +8,15 @@ import {
   Target,
   BookOpen,
   BarChart3,
-  Trophy,
-  Flag,
   ChevronRight,
-  Flame,
-  Zap,
+  Archive,
 } from "lucide-react";
 import useESHProgress from "@/lib/use-esh-progress";
-import { getAllTests, getAllQuestions } from "@/lib/esh-questions";
+import {
+  getAllTests,
+  getAllQuestions,
+  getPreviousYearTests,
+} from "@/lib/esh-questions";
 
 export default function ESHHubPage() {
   const [mounted, setMounted] = useState(false);
@@ -25,84 +26,187 @@ export default function ESHHubPage() {
 
   const allTests = getAllTests();
   const totalQuestions = getAllQuestions().length;
+  const previousYearTests = getPreviousYearTests();
+
+  const sections = [
+    {
+      href: "/practice/esh/test",
+      eyebrow: "01 · ШАЛГАЛТ",
+      title: "Дадлага шалгалт",
+      desc: "Шалгалтын горимд цагтай бодоорой",
+      icon: FileText,
+      meta: (
+        <>
+          <span className="mono tabular">{allTests.length} тест</span>
+          {mounted && progress.totalTestsTaken > 0 && (
+            <>
+              <span style={{ color: "var(--fg-3)" }}>·</span>
+              <span className="mono tabular" style={{ color: "var(--accent)" }}>
+                {progress.totalTestsTaken} бодсон
+              </span>
+            </>
+          )}
+        </>
+      ),
+    },
+    {
+      href: "/practice/esh/practice",
+      eyebrow: "02 · БОДЛОГО",
+      title: "Дадлага бодлого",
+      desc: "Сэдвээр дадлага хийж, сул талаа сайжруул",
+      icon: Target,
+      meta: (
+        <>
+          <span className="mono tabular">{totalQuestions} бодлого</span>
+          {mounted && progress.weakTopics.length > 0 && (
+            <>
+              <span style={{ color: "var(--fg-3)" }}>·</span>
+              <span className="mono tabular" style={{ color: "var(--warn)" }}>
+                {progress.weakTopics.length} сул сэдэв
+              </span>
+            </>
+          )}
+        </>
+      ),
+    },
+    {
+      href: "/practice/esh/learn",
+      eyebrow: "03 · СУРАЛЦАХ",
+      title: "Суралцах",
+      desc: "Сэдвээр унших материал, томьёо, видео хичээл",
+      icon: BookOpen,
+      meta: <span className="mono tabular">10 сэдэв</span>,
+    },
+    {
+      href: "/practice/esh/progress",
+      eyebrow: "04 · ПРОГРЕСС",
+      title: "Прогресс",
+      desc: "Оноогоо хяна, ахицаа хар",
+      icon: BarChart3,
+      meta:
+        mounted && progress.totalTestsTaken > 0 ? (
+          <span className="mono tabular">{progress.averageAccuracy}% дундаж</span>
+        ) : (
+          <span style={{ color: "var(--fg-3)" }}>Мэдээлэл байхгүй</span>
+        ),
+    },
+    {
+      href: "/practice/esh/previous-years",
+      eyebrow: "05 · ӨМНӨХ ЖИЛҮҮД",
+      title: "Өмнөх жилийн шалгалтууд",
+      desc: "2024, 2025 оны бодит ЭЕШ — нэвтэрсэн хэрэглэгчдэд үнэгүй",
+      icon: Archive,
+      meta: (
+        <>
+          <span className="mono tabular">{previousYearTests.length} тест</span>
+          <span style={{ color: "var(--fg-3)" }}>·</span>
+          <span className="mono tabular" style={{ color: "var(--accent)" }}>
+            Үнэгүй
+          </span>
+        </>
+      ),
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-surface-900 pt-20 relative">
-      <div className="absolute inset-0 bg-grid opacity-30" />
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
+    <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
-        <div className="flex items-center gap-3 mb-8">
-          <Link
-            href="/practice"
-            className="p-2 rounded-xl bg-white/[0.05] border border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.1] transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-          </Link>
-          <div className="flex-1">
-            <h1 className="font-display text-xl font-bold text-white">
-              ЭЕШ Математик
-            </h1>
-            <p className="text-sm text-gray-500">
-              {allTests.length} тест, {totalQuestions} бодлого
-            </p>
+        <div
+          className="flex items-end justify-between gap-3 mb-10 pb-6"
+          style={{ borderBottom: "1px solid var(--line)" }}
+        >
+          <div className="flex items-end gap-4">
+            <Link
+              href="/practice"
+              className="btn btn-ghost"
+              style={{ padding: "8px 10px" }}
+              aria-label="Back"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </Link>
+            <div>
+              <div className="eyebrow mb-1.5">ЭЕШ Математик</div>
+              <h1
+                className="serif"
+                style={{
+                  fontWeight: 400,
+                  fontSize: "clamp(32px, 4vw, 44px)",
+                  letterSpacing: "-0.03em",
+                  lineHeight: 1,
+                  color: "var(--fg)",
+                }}
+              >
+                Математикийн дадлага
+              </h1>
+              <p className="mono mt-2 text-[12px]" style={{ color: "var(--fg-2)" }}>
+                <span className="tabular">{allTests.length}</span> тест ·{" "}
+                <span className="tabular">{totalQuestions}</span> бодлого
+              </p>
+            </div>
           </div>
           {mounted && progress.totalTestsTaken > 0 && (
             <div className="text-right">
-              <span
-                className={`text-2xl font-bold ${
-                  progress.averageAccuracy >= 80
-                    ? "text-emerald-400"
-                    : progress.averageAccuracy >= 50
-                      ? "text-yellow-400"
-                      : "text-red-400"
-                }`}
+              <div className="eyebrow">ДУНДАЖ</div>
+              <div
+                className="serif tabular"
+                style={{
+                  fontSize: 44,
+                  letterSpacing: "-0.03em",
+                  lineHeight: 1,
+                  color:
+                    progress.averageAccuracy >= 80
+                      ? "var(--accent)"
+                      : progress.averageAccuracy >= 50
+                        ? "var(--warn)"
+                        : "var(--danger)",
+                  marginTop: 4,
+                }}
               >
                 {progress.averageAccuracy}%
-              </span>
-              <p className="text-xs text-gray-500">дундаж оноо</p>
+              </div>
             </div>
           )}
         </div>
 
-        {/* Quick stats (only if user has data) */}
+        {/* Quick stats */}
         {mounted && progress.totalTestsTaken > 0 && (
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
-            <div className="card-glass p-4 text-center">
-              <FileText className="w-5 h-5 text-primary-400 mx-auto mb-1.5" />
-              <p className="text-lg font-bold text-white">
-                {progress.totalTestsTaken}
-              </p>
-              <p className="text-[11px] text-gray-500">Тест бодсон</p>
-            </div>
-            <div className="card-glass p-4 text-center">
-              <Zap className="w-5 h-5 text-yellow-400 mx-auto mb-1.5" />
-              <p className="text-lg font-bold text-white">
-                {progress.totalQuestionsAnswered}
-              </p>
-              <p className="text-[11px] text-gray-500">Бодлого бодсон</p>
-            </div>
-            <div className="card-glass p-4 text-center">
-              <Flame className="w-5 h-5 text-orange-400 mx-auto mb-1.5" />
-              <p className="text-lg font-bold text-white">
-                {progress.weeklyActivity.thisWeek}
-              </p>
-              <p className="text-[11px] text-gray-500">Энэ долоо хоногт</p>
-            </div>
-            <div className="card-glass p-4 text-center">
-              <Flag className="w-5 h-5 text-orange-400 mx-auto mb-1.5" />
-              <p className="text-lg font-bold text-white">
-                {progress.flaggedCount}
-              </p>
-              <p className="text-[11px] text-gray-500">Тэмдэглэсэн</p>
-            </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-px mb-10" style={{ background: "var(--line)" }}>
+            {[
+              { lbl: "Тест бодсон", v: progress.totalTestsTaken },
+              { lbl: "Бодлого бодсон", v: progress.totalQuestionsAnswered },
+              { lbl: "Энэ долоо хоногт", v: progress.weeklyActivity.thisWeek },
+              { lbl: "Тэмдэглэсэн", v: progress.flaggedCount },
+            ].map((s) => (
+              <div
+                key={s.lbl}
+                className="p-5"
+                style={{ background: "var(--bg)" }}
+              >
+                <div className="eyebrow">{s.lbl}</div>
+                <div
+                  className="serif tabular mt-2"
+                  style={{ fontSize: 28, letterSpacing: "-0.02em", color: "var(--fg)" }}
+                >
+                  {s.v}
+                </div>
+              </div>
+            ))}
           </div>
         )}
 
         {/* Recommendation banner */}
         {mounted && progress.practiceRecommendation && (
-          <div className="card-glass p-4 mb-8 border-primary-400/10">
-            <p className="text-sm text-gray-300">
-              <span className="text-primary-400 font-medium">Зөвлөгөө: </span>
+          <div
+            className="mb-10 p-5 flex gap-3 items-start"
+            style={{
+              background: "var(--accent-wash)",
+              border: "1px solid var(--accent-line)",
+              borderRadius: 12,
+            }}
+          >
+            <span className="badge-edit badge-accent">ЗӨВЛӨГӨӨ</span>
+            <p className="serif text-[15px] leading-snug" style={{ color: "var(--fg-1)" }}>
               {progress.practiceRecommendation}
             </p>
           </div>
@@ -110,153 +214,114 @@ export default function ESHHubPage() {
 
         {/* Section cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {/* Practice Tests */}
-          <Link
-            href="/practice/esh/test"
-            className="card-glass p-6 hover:border-primary-400/30 hover:bg-white/[0.03] transition-all group"
-          >
-            <div className="flex items-start justify-between mb-3">
-              <div className="w-11 h-11 rounded-xl bg-primary-500/15 flex items-center justify-center">
-                <FileText className="w-5 h-5 text-primary-400" />
-              </div>
-              <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-primary-400 transition-colors" />
-            </div>
-            <h2 className="font-display text-lg font-bold text-white group-hover:text-primary-300 transition-colors mb-1">
-              Дадлага шалгалт
-            </h2>
-            <p className="text-sm text-gray-500 mb-3">
-              Шалгалтын горимд цагтай бодоорой
-            </p>
-            <div className="flex items-center gap-3 text-xs text-gray-600">
-              <span>{allTests.length} тест</span>
-              {mounted && progress.totalTestsTaken > 0 && (
-                <>
-                  <span>·</span>
-                  <span className="flex items-center gap-1">
-                    <Trophy className="w-3 h-3 text-yellow-500" />
-                    {progress.totalTestsTaken} бодсон
-                  </span>
-                </>
-              )}
-            </div>
-          </Link>
-
-          {/* Practice Problems */}
-          <Link
-            href="/practice/esh/practice"
-            className="card-glass p-6 hover:border-emerald-400/30 hover:bg-white/[0.03] transition-all group"
-          >
-            <div className="flex items-start justify-between mb-3">
-              <div className="w-11 h-11 rounded-xl bg-emerald-500/15 flex items-center justify-center">
-                <Target className="w-5 h-5 text-emerald-400" />
-              </div>
-              <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-emerald-400 transition-colors" />
-            </div>
-            <h2 className="font-display text-lg font-bold text-white group-hover:text-emerald-300 transition-colors mb-1">
-              Дадлага бодлого
-            </h2>
-            <p className="text-sm text-gray-500 mb-3">
-              Сэдвээр дадлага хийж, сул талаа сайжруул
-            </p>
-            <div className="flex items-center gap-3 text-xs text-gray-600">
-              <span>{totalQuestions} бодлого</span>
-              {mounted && progress.weakTopics.length > 0 && (
-                <>
-                  <span>·</span>
-                  <span className="text-orange-400">
-                    {progress.weakTopics.length} сул сэдэв
-                  </span>
-                </>
-              )}
-            </div>
-          </Link>
-
-          {/* Learn */}
-          <Link
-            href="/practice/esh/learn"
-            className="card-glass p-6 hover:border-cyan-400/30 hover:bg-white/[0.03] transition-all group"
-          >
-            <div className="flex items-start justify-between mb-3">
-              <div className="w-11 h-11 rounded-xl bg-cyan-500/15 flex items-center justify-center">
-                <BookOpen className="w-5 h-5 text-cyan-400" />
-              </div>
-              <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-cyan-400 transition-colors" />
-            </div>
-            <h2 className="font-display text-lg font-bold text-white group-hover:text-cyan-300 transition-colors mb-1">
-              Суралцах
-            </h2>
-            <p className="text-sm text-gray-500 mb-3">
-              Сэдвээр унших материал, томьёо, видео хичээл
-            </p>
-            <div className="flex items-center gap-3 text-xs text-gray-600">
-              <span>10 сэдэв</span>
-            </div>
-          </Link>
-
-          {/* Progress */}
-          <Link
-            href="/practice/esh/progress"
-            className="card-glass p-6 hover:border-yellow-400/30 hover:bg-white/[0.03] transition-all group"
-          >
-            <div className="flex items-start justify-between mb-3">
-              <div className="w-11 h-11 rounded-xl bg-yellow-500/15 flex items-center justify-center">
-                <BarChart3 className="w-5 h-5 text-yellow-400" />
-              </div>
-              <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-yellow-400 transition-colors" />
-            </div>
-            <h2 className="font-display text-lg font-bold text-white group-hover:text-yellow-300 transition-colors mb-1">
-              Прогресс
-            </h2>
-            <p className="text-sm text-gray-500 mb-3">
-              Оноогоо хяна, ахицаа хар
-            </p>
-            <div className="flex items-center gap-3 text-xs text-gray-600">
-              {mounted && progress.totalTestsTaken > 0 ? (
-                <span>{progress.averageAccuracy}% дундаж</span>
-              ) : (
-                <span>Мэдээлэл байхгүй</span>
-              )}
-            </div>
-          </Link>
+          {sections.map((s) => {
+            const Icon = s.icon;
+            return (
+              <Link key={s.href} href={s.href} className="card-edit p-6 group block">
+                <div className="flex items-start justify-between mb-4">
+                  <div
+                    className="w-10 h-10 rounded-md flex items-center justify-center"
+                    style={{
+                      background: "var(--bg-2)",
+                      border: "1px solid var(--line)",
+                      color: "var(--accent)",
+                    }}
+                  >
+                    <Icon className="w-4 h-4" />
+                  </div>
+                  <ChevronRight
+                    className="w-4 h-4 transition-transform group-hover:translate-x-0.5"
+                    style={{ color: "var(--fg-3)" }}
+                  />
+                </div>
+                <div className="eyebrow mb-2">{s.eyebrow}</div>
+                <h2
+                  className="serif mb-1.5"
+                  style={{
+                    fontWeight: 400,
+                    fontSize: 24,
+                    letterSpacing: "-0.02em",
+                    color: "var(--fg)",
+                  }}
+                >
+                  {s.title}
+                </h2>
+                <p className="text-[13px] mb-4" style={{ color: "var(--fg-2)" }}>
+                  {s.desc}
+                </p>
+                <div
+                  className="flex items-center gap-2 text-[12px] pt-3"
+                  style={{ borderTop: "1px solid var(--line)", color: "var(--fg-2)" }}
+                >
+                  {s.meta}
+                </div>
+              </Link>
+            );
+          })}
         </div>
 
         {/* Recent test results */}
         {mounted && progress.completedSessions.length > 0 && (
-          <div className="mt-8">
-            <h2 className="font-display text-base font-bold text-white mb-4">
-              Сүүлийн шалгалтууд
-            </h2>
-            <div className="space-y-2">
-              {progress.completedSessions.slice(0, 5).map((s) => (
+          <div className="mt-12">
+            <div className="eyebrow mb-4">Сүүлийн шалгалтууд</div>
+            <div
+              style={{
+                border: "1px solid var(--line)",
+                borderRadius: 12,
+                overflow: "hidden",
+              }}
+            >
+              {progress.completedSessions.slice(0, 5).map((s, i) => (
                 <Link
                   key={s.id}
                   href={`/practice/esh/test/${s.testKey.toLowerCase()}/results?session=${s.id}`}
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.05] transition-all"
+                  className="flex items-center gap-4 px-5 py-3.5 transition-colors hover:opacity-90"
+                  style={{
+                    background: "var(--bg-1)",
+                    borderTop: i === 0 ? "none" : "1px solid var(--line)",
+                  }}
                 >
-                  <span className="w-8 h-8 rounded-lg bg-primary-500/15 flex items-center justify-center text-xs font-bold text-primary-300">
+                  <span
+                    className="badge-edit"
+                    style={{
+                      minWidth: 44,
+                      justifyContent: "center",
+                      color: "var(--accent)",
+                      borderColor: "var(--accent-line)",
+                      background: "var(--accent-wash)",
+                    }}
+                  >
                     {s.testKey}
                   </span>
-                  <div className="flex-1">
-                    <span className="text-sm text-gray-300">
+                  <div className="flex-1 min-w-0">
+                    <div className="text-[14px]" style={{ color: "var(--fg)" }}>
                       Тест {s.testKey}
-                    </span>
-                    <span className="text-xs text-gray-600 ml-2">
-                      {s.completedAt &&
-                        new Date(s.completedAt).toLocaleDateString("mn-MN")}
-                    </span>
+                    </div>
+                    {s.completedAt && (
+                      <div
+                        className="mono tabular text-[11px] mt-0.5"
+                        style={{ color: "var(--fg-3)" }}
+                      >
+                        {new Date(s.completedAt).toLocaleDateString("mn-MN")}
+                      </div>
+                    )}
                   </div>
                   <span
-                    className={`text-sm font-bold ${
-                      (s.score?.accuracy || 0) >= 80
-                        ? "text-emerald-400"
-                        : (s.score?.accuracy || 0) >= 50
-                          ? "text-yellow-400"
-                          : "text-red-400"
-                    }`}
+                    className="serif tabular"
+                    style={{
+                      fontSize: 18,
+                      letterSpacing: "-0.01em",
+                      color:
+                        (s.score?.accuracy || 0) >= 80
+                          ? "var(--accent)"
+                          : (s.score?.accuracy || 0) >= 50
+                            ? "var(--warn)"
+                            : "var(--danger)",
+                    }}
                   >
                     {s.score?.accuracy || 0}%
                   </span>
-                  <ChevronRight className="w-4 h-4 text-gray-600" />
+                  <ChevronRight className="w-4 h-4" style={{ color: "var(--fg-3)" }} />
                 </Link>
               ))}
             </div>

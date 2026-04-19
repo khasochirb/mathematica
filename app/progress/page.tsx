@@ -2,20 +2,19 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Flame, Star, Trophy, BarChart3, ArrowRight, Target, Lock } from "lucide-react";
+import { BarChart3, ArrowRight, Target, Lock } from "lucide-react";
 import { api, type TopicProgress, type StreakData, type AchievementWithStatus } from "@/lib/api";
 import { useAuth } from "@/lib/auth-context";
-import { cn } from "@/lib/utils";
 
 const iconMap: Record<string, string> = {
-  first_problem: "🎯",
-  streak_3: "🔥",
-  streak_7: "🌟",
-  streak_30: "💫",
-  perfect_session: "✨",
-  speed_demon: "⚡",
-  century: "💯",
-  default: "🏆",
+  first_problem: "→",
+  streak_3: "△",
+  streak_7: "◇",
+  streak_30: "◯",
+  perfect_session: "✦",
+  speed_demon: "⟶",
+  century: "100",
+  default: "✓",
 };
 
 export default function ProgressPage() {
@@ -39,7 +38,6 @@ export default function ProgressPage() {
         setAchievements(achData);
         setSubStatus(subData);
 
-        // Topic progress is subscriber-only — fetch if subscribed
         if (subData.isSubscribed) {
           try {
             const prog = await api.progress.all();
@@ -59,23 +57,33 @@ export default function ProgressPage() {
 
   if (authLoading || loading) {
     return (
-      <div className="min-h-screen bg-surface-900 flex items-center justify-center pt-16">
-        <div className="w-8 h-8 border-2 border-primary-500 border-t-transparent rounded-full animate-spin" />
+      <div className="min-h-screen flex items-center justify-center pt-20" style={{ background: "var(--bg)" }}>
+        <div
+          className="w-8 h-8 border-2 rounded-full animate-spin"
+          style={{ borderColor: "var(--accent)", borderTopColor: "transparent" }}
+        />
       </div>
     );
   }
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-surface-900 flex items-center justify-center pt-16 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="text-center max-w-sm relative">
-          <BarChart3 className="h-12 w-12 text-gray-600 mx-auto mb-4" />
-          <h2 className="font-display text-xl font-bold text-white mb-2">Sign in to see your progress</h2>
-          <p className="text-gray-400 text-sm mb-6">
+      <div className="min-h-screen flex items-center justify-center pt-20 px-4" style={{ background: "var(--bg)" }}>
+        <div className="text-center max-w-sm">
+          <div
+            className="w-14 h-14 rounded-md flex items-center justify-center mx-auto mb-5"
+            style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
+          >
+            <BarChart3 className="h-6 w-6" />
+          </div>
+          <div className="eyebrow mb-2">Authentication required</div>
+          <h2 className="serif" style={{ fontWeight: 400, fontSize: 28, letterSpacing: "-0.02em", color: "var(--fg)" }}>
+            Sign in to see your <em className="serif-italic" style={{ color: "var(--accent)" }}>progress</em>.
+          </h2>
+          <p className="text-[14px] mt-3 mb-6" style={{ color: "var(--fg-2)" }}>
             Track your topic mastery, streaks, and achievements.
           </p>
-          <Link href="/sign-in" className="btn-primary">Log In</Link>
+          <Link href="/sign-in" className="btn btn-primary">Log in</Link>
         </div>
       </div>
     );
@@ -87,136 +95,156 @@ export default function ProgressPage() {
 
   const earnedCount = achievements.filter((a) => a.earned).length;
 
+  const overviewStats = [
+    { value: `Lv.${user.globalLevel}`, label: "Current level" },
+    { value: user.globalXp.toLocaleString(), label: "Total XP" },
+    ...(streak
+      ? [
+          { value: String(streak.currentStreak), label: "Day streak" },
+          { value: String(streak.totalActiveDays), label: "Days active" },
+        ]
+      : []),
+  ];
+
   return (
-    <div className="min-h-screen bg-surface-900 pt-20 relative">
-      <div className="absolute inset-0 bg-grid opacity-30" />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
-        <h1 className="font-display text-2xl font-bold text-white mb-8">Your Progress</h1>
+    <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-12">
+        <div className="eyebrow mb-3">Account · Progress</div>
+        <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(40px, 6vw, 64px)", letterSpacing: "-0.04em", lineHeight: 0.98, color: "var(--fg)" }}>
+          Your <em className="serif-italic" style={{ color: "var(--accent)" }}>progress</em>.
+        </h1>
 
-        {/* Overview cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-          <div className="card-glass text-center">
-            <p className="font-display text-2xl font-bold gradient-text">Lv. {user.globalLevel}</p>
-            <p className="text-gray-500 text-xs mt-1">Current Level</p>
-          </div>
-          <div className="card-glass text-center">
-            <p className="font-display text-2xl font-bold text-accent-gold">{user.globalXp.toLocaleString()}</p>
-            <p className="text-gray-500 text-xs mt-1">Total XP</p>
-          </div>
-          {streak && (
-            <>
-              <div className="card-glass text-center">
-                <p className="font-display text-2xl font-bold text-orange-400">{streak.currentStreak}</p>
-                <p className="text-gray-500 text-xs mt-1">Day Streak</p>
+        {/* Overview */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8">
+          {overviewStats.map((s, i) => (
+            <div key={s.label} className="card-edit p-5">
+              <div className="mono text-[10px] mb-1" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+                {String(i + 1).padStart(2, "0")}
               </div>
-              <div className="card-glass text-center">
-                <p className="font-display text-2xl font-bold text-gray-300">{streak.totalActiveDays}</p>
-                <p className="text-gray-500 text-xs mt-1">Days Active</p>
-              </div>
-            </>
-          )}
+              <p className="serif tabular" style={{ fontSize: 30, color: "var(--accent)", letterSpacing: "-0.02em" }}>
+                {s.value}
+              </p>
+              <p className="mono text-[10px] mt-1 uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+                {s.label}
+              </p>
+            </div>
+          ))}
         </div>
 
-        {/* XP progress bar */}
-        <div className="card-glass mb-8">
+        {/* XP bar */}
+        <div className="card-edit p-5 mt-6">
           <div className="flex items-center justify-between mb-2">
-            <span className="font-semibold text-gray-200 text-sm">Level {user.globalLevel}</span>
-            <span className="text-gray-500 text-xs">{xpPercent}% to Level {user.globalLevel + 1}</span>
+            <span className="mono text-[11px] uppercase" style={{ color: "var(--fg-2)", letterSpacing: "0.06em" }}>
+              Level {user.globalLevel}
+            </span>
+            <span className="mono tabular text-[11px]" style={{ color: "var(--fg-3)" }}>
+              {xpPercent}% → Lv. {user.globalLevel + 1}
+            </span>
           </div>
-          <div className="h-3 bg-white/[0.06] rounded-full overflow-hidden">
-            <div
-              className="h-full bg-gradient-to-r from-primary-500 to-accent-cyan rounded-full transition-all"
-              style={{ width: `${xpPercent}%` }}
-            />
+          <div className="h-[3px] rounded-full overflow-hidden" style={{ background: "var(--bg-2)" }}>
+            <div className="h-full rounded-full transition-all" style={{ width: `${xpPercent}%`, background: "var(--accent)" }} />
           </div>
         </div>
 
-        {/* Topic progress — subscriber only */}
+        {/* Topic mastery */}
         {!subStatus?.isSubscribed ? (
-          <div className="card-glass text-center py-10 mb-8">
-            <Lock className="h-8 w-8 text-gray-600 mx-auto mb-3" />
-            <p className="text-gray-400 text-sm mb-4">
-              Сэдвийн дэлгэрэнгүй шинжилгээ харахын тулд элс
+          <div className="card-edit p-10 text-center mt-8">
+            <div
+              className="w-12 h-12 rounded-md flex items-center justify-center mx-auto mb-3"
+              style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
+            >
+              <Lock className="h-5 w-5" />
+            </div>
+            <div className="eyebrow mb-2">Subscriber · Locked</div>
+            <h3 className="serif" style={{ fontWeight: 400, fontSize: 22, color: "var(--fg)" }}>
+              Сэдвийн дэлгэрэнгүй <em className="serif-italic" style={{ color: "var(--accent)" }}>шинжилгээ</em>
+            </h3>
+            <p className="text-[13px] mt-3 mb-5" style={{ color: "var(--fg-2)" }}>
+              Topic-level breakdown unlocks with subscription.
             </p>
-            <Link href="/upgrade" className="btn-primary">
+            <Link href="/upgrade" className="btn btn-primary">
               Элсэх — 19,900 ₮/сар
             </Link>
           </div>
         ) : progress.length > 0 ? (
-          <div className="card-glass p-0 mb-8 overflow-hidden">
-            <div className="flex items-center justify-between p-5 border-b border-white/[0.06]">
-              <h2 className="font-display font-bold text-white">Topic Mastery</h2>
-              <Link href="/practice" className="text-sm text-primary-400 hover:text-primary-300 flex items-center gap-1 transition-colors">
-                Practice <ArrowRight className="h-3.5 w-3.5" />
+          <div className="mt-8">
+            <div className="flex items-center justify-between mb-4">
+              <div className="eyebrow">Topic mastery</div>
+              <Link href="/practice" className="mono text-[11px] uppercase flex items-center gap-1" style={{ color: "var(--accent)", letterSpacing: "0.06em" }}>
+                Practice <ArrowRight className="h-3 w-3" />
               </Link>
             </div>
-            <div className="divide-y divide-white/[0.04]">
-              {progress.map((p) => (
-                <div key={p.topicId} className="flex items-center gap-4 px-5 py-3.5">
-                  <div className="flex-1">
-                    <p className="font-medium text-gray-200 text-sm">{p.topic.name}</p>
-                    <p className="text-gray-500 text-xs mt-0.5">{p.totalAttempts} attempts</p>
-                  </div>
-                  <div className="w-24">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs text-gray-500">Accuracy</span>
-                      <span className="text-xs font-semibold text-gray-300">
-                        {Math.round(p.recentAccuracy * 100)}%
-                      </span>
+            <div className="card-edit p-0 overflow-hidden">
+              {progress.map((p, i) => {
+                const acc = Math.round(p.recentAccuracy * 100);
+                const accColor = p.recentAccuracy >= 0.8 ? "var(--accent)" : p.recentAccuracy >= 0.5 ? "var(--warn)" : "var(--danger)";
+                return (
+                  <div
+                    key={p.topicId}
+                    className="flex items-center gap-4 px-5 py-4"
+                    style={{ borderBottom: i < progress.length - 1 ? "1px solid var(--line)" : "none" }}
+                  >
+                    <div className="flex-1 min-w-0">
+                      <p className="serif" style={{ fontWeight: 400, fontSize: 16, color: "var(--fg)" }}>{p.topic.name}</p>
+                      <p className="mono text-[10px] mt-0.5 uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
+                        {p.totalAttempts} attempts
+                      </p>
                     </div>
-                    <div className="h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
-                      <div
-                        className={cn(
-                          "h-full rounded-full",
-                          p.recentAccuracy >= 0.8
-                            ? "bg-accent-emerald"
-                            : p.recentAccuracy >= 0.5
-                            ? "bg-accent-gold"
-                            : "bg-red-400"
-                        )}
-                        style={{ width: `${Math.round(p.recentAccuracy * 100)}%` }}
-                      />
+                    <div className="w-28">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>Accuracy</span>
+                        <span className="mono tabular text-[11px]" style={{ color: "var(--fg-2)" }}>{acc}%</span>
+                      </div>
+                      <div className="h-[3px] rounded-full overflow-hidden" style={{ background: "var(--bg-2)" }}>
+                        <div className="h-full rounded-full" style={{ width: `${acc}%`, background: accColor }} />
+                      </div>
+                    </div>
+                    <div className="text-right w-16">
+                      <p className="serif tabular" style={{ fontSize: 16, color: "var(--accent)" }}>Lv.{p.topicLevel}</p>
+                      <p className="mono tabular text-[10px]" style={{ color: "var(--fg-3)" }}>{p.topicXp} XP</p>
                     </div>
                   </div>
-                  <div className="text-right w-16">
-                    <p className="text-xs font-semibold text-accent-gold">Lv.{p.topicLevel}</p>
-                    <p className="text-xs text-gray-500">{p.topicXp} XP</p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         ) : null}
 
         {/* Achievements */}
         {achievements.length > 0 && (
-          <div id="achievements" className="card-glass p-0 overflow-hidden">
-            <div className="flex items-center justify-between p-5 border-b border-white/[0.06]">
-              <h2 className="font-display font-bold text-white">Achievements</h2>
-              <span className="text-sm text-gray-500">{earnedCount} / {achievements.length}</span>
+          <div id="achievements" className="mt-10">
+            <div className="flex items-center justify-between mb-4">
+              <div className="eyebrow">Achievements</div>
+              <span className="mono tabular text-[11px]" style={{ color: "var(--fg-3)" }}>
+                {earnedCount} / {achievements.length}
+              </span>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {achievements.map((a) => (
                 <div
                   key={a.id}
-                  className={cn(
-                    "flex items-center gap-3 p-3 rounded-xl border transition-colors",
-                    a.earned
-                      ? "border-accent-gold/20 bg-accent-gold/5"
-                      : "border-white/[0.06] bg-white/[0.02] opacity-50"
-                  )}
+                  className="card-edit p-4 flex items-center gap-3"
+                  style={a.earned ? { background: "var(--accent-wash)", borderColor: "var(--accent-line)" } : { opacity: 0.55 }}
                 >
-                  <div className="text-2xl w-10 text-center flex-shrink-0">
+                  <div
+                    className="w-10 h-10 rounded-md flex items-center justify-center flex-shrink-0 mono"
+                    style={{
+                      background: a.earned ? "var(--bg-1)" : "var(--bg-2)",
+                      border: `1px solid ${a.earned ? "var(--accent-line)" : "var(--line)"}`,
+                      color: a.earned ? "var(--accent)" : "var(--fg-3)",
+                      fontSize: 13,
+                    }}
+                  >
                     {iconMap[a.iconKey] ?? iconMap.default}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-gray-200 text-sm truncate">{a.name}</p>
-                    <p className="text-gray-500 text-xs truncate">{a.description}</p>
+                    <p className="serif truncate" style={{ fontWeight: 400, fontSize: 15, color: "var(--fg)" }}>{a.name}</p>
+                    <p className="text-[12px] truncate" style={{ color: "var(--fg-3)" }}>{a.description}</p>
                   </div>
                   <div className="text-right flex-shrink-0">
-                    <p className="text-xs font-bold text-accent-gold">+{a.xpReward} XP</p>
+                    <p className="mono tabular text-[11px]" style={{ color: a.earned ? "var(--accent)" : "var(--fg-3)" }}>+{a.xpReward}</p>
                     {a.earned && a.earnedAt && (
-                      <p className="text-xs text-gray-500">
+                      <p className="mono text-[10px]" style={{ color: "var(--fg-3)" }}>
                         {new Date(a.earnedAt).toLocaleDateString()}
                       </p>
                     )}
@@ -227,16 +255,18 @@ export default function ProgressPage() {
           </div>
         )}
 
-        {/* Empty state */}
-        {progress.length === 0 && (
+        {/* Empty */}
+        {progress.length === 0 && subStatus?.isSubscribed && (
           <div className="text-center py-16">
-            <Target className="h-12 w-12 text-gray-700 mx-auto mb-4" />
-            <h3 className="font-display font-semibold text-gray-300 mb-2">No practice sessions yet</h3>
-            <p className="text-gray-500 text-sm mb-6">
+            <Target className="h-10 w-10 mx-auto mb-4" style={{ color: "var(--fg-3)" }} />
+            <h3 className="serif" style={{ fontWeight: 400, fontSize: 22, color: "var(--fg)" }}>
+              No practice sessions <em className="serif-italic" style={{ color: "var(--accent)" }}>yet</em>.
+            </h3>
+            <p className="text-[14px] mt-3 mb-6" style={{ color: "var(--fg-2)" }}>
               Complete a practice session to see your topic progress here.
             </p>
-            <Link href="/practice" className="btn-primary">
-              Start Practicing
+            <Link href="/practice" className="btn btn-primary">
+              Start practicing
             </Link>
           </div>
         )}

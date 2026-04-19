@@ -14,44 +14,43 @@ import {
   FileText,
   Flame,
 } from "lucide-react";
-import { T } from "@/components/T";
 import { useLang } from "@/lib/lang-context";
 
 const mathTopics = [
   {
     en: { name: "Algebra", detail: "Equations, inequalities, polynomials, systems of equations" },
     mn: { name: "Алгебр", detail: "Тэгшитгэл, тэнцэтгэл биш, олон гишүүнт, тэгшитгэлийн систем" },
-    weight: "~25%",
+    weight: 25,
   },
   {
     en: { name: "Functions & Graphs", detail: "Linear, quadratic, exponential, logarithmic, trigonometric functions" },
     mn: { name: "Функц ба график", detail: "Шугаман, квадрат, экспоненциал, логарифм, тригонометрийн функцууд" },
-    weight: "~20%",
+    weight: 20,
   },
   {
     en: { name: "Geometry", detail: "Triangles, circles, areas, volumes, coordinate geometry" },
     mn: { name: "Геометр", detail: "Гурвалжин, тойрог, талбай, эзэлхүүн, координатын геометр" },
-    weight: "~20%",
+    weight: 20,
   },
   {
     en: { name: "Trigonometry", detail: "Identities, equations, inverse functions, applications" },
     mn: { name: "Тригонометр", detail: "Адилтгалууд, тэгшитгэл, урвуу функц, хэрэглээ" },
-    weight: "~10%",
+    weight: 10,
   },
   {
     en: { name: "Calculus", detail: "Limits, derivatives, integrals, applications" },
     mn: { name: "Анализ", detail: "Хязгаар, уламжлал, интеграл, хэрэглээ" },
-    weight: "~10%",
+    weight: 10,
   },
   {
     en: { name: "Probability & Statistics", detail: "Combinatorics, probability, descriptive statistics" },
     mn: { name: "Магадлал ба статистик", detail: "Комбинаторик, магадлал, тодорхойлох статистик" },
-    weight: "~10%",
+    weight: 10,
   },
   {
     en: { name: "Sequences & Series", detail: "Arithmetic, geometric progressions, limits of sequences" },
     mn: { name: "Дараалал ба цуваа", detail: "Арифметик, геометрийн прогресс, дарааллын хязгаар" },
-    weight: "~5%",
+    weight: 5,
   },
 ];
 
@@ -97,296 +96,321 @@ const resources = [
 
 export default function ExamPrepPage() {
   const { lang } = useLang();
+  const t = (en: string, mn: string) => (lang === "mn" ? mn : en);
 
   return (
-    <>
+    <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
       {/* Hero */}
-      <section className="relative bg-surface-900 text-white pt-28 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-grid animate-grid-fade" />
-        <div className="absolute inset-0 glow-top-right" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-          <div className="badge-glow mb-4 mx-auto w-fit">
-            <GraduationCap className="h-3.5 w-3.5 mr-1.5 text-primary-400" />
-            <T en="ЭЕШ Exam Prep" mn="ЭЕШ шалгалтын бэлтгэл" />
-          </div>
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold mb-5">
-            <T en="Master the " mn="ЭЕШ Математикийг " />
-            <span className="gradient-text">
-              <T en="ЭЕШ Math exam" mn="эзэмш" />
-            </span>
-          </h1>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed mb-10">
-            <T
-              en="The ЭЕШ (Элсэлтийн Ерөнхий Шалгалт) is Mongolia's national university entrance exam. Our platform gives you thousands of real-format practice problems, topic breakdowns, and performance tracking to help you score your best."
-              mn="ЭЕШ (Элсэлтийн Ерөнхий Шалгалт) бол Монголын их, дээд сургуулийн элсэлтийн шалгалт. Манай платформ танд жинхэнэ форматын мянга мянган дадлагын бодлого, сэдвийн задаргаа, гүйцэтгэлийн хяналтыг өгч, хамгийн өндөр оноо авахад тусална."
-            />
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10">
+        <div className="eyebrow mb-3">{t("ЭЕШ Exam Prep · Overview", "ЭЕШ Шалгалтын бэлтгэл · Тойм")}</div>
+        <h1
+          className="serif"
+          style={{
+            fontWeight: 400,
+            fontSize: "clamp(48px, 7vw, 88px)",
+            letterSpacing: "-0.04em",
+            lineHeight: 0.96,
+            color: "var(--fg)",
+          }}
+        >
+          {t("Master the ЭЕШ ", "ЭЕШ Математикийг ")}
+          <em className="serif-italic" style={{ color: "var(--accent)" }}>
+            {t("math exam", "эзэмш")}
+          </em>
+          .
+        </h1>
+        <p className="serif mt-5 max-w-2xl" style={{ fontSize: 18, lineHeight: 1.5, color: "var(--fg-1)" }}>
+          {t(
+            "The ЭЕШ (Элсэлтийн Ерөнхий Шалгалт) is Mongolia's national university entrance exam. Real-format problems, topic breakdowns, and performance tracking — built to score your best.",
+            "ЭЕШ (Элсэлтийн Ерөнхий Шалгалт) бол Монголын их, дээд сургуулийн элсэлтийн шалгалт. Жинхэнэ форматын бодлого, сэдвийн задаргаа, гүйцэтгэлийн хяналт — хамгийн өндөр оноо авахад зориулсан.",
+          )}
+        </p>
+        <div className="flex flex-wrap gap-2 mt-7">
+          <Link href="/practice/esh" className="btn btn-primary">
+            {t("Start practicing now", "Одоо дадлага эхлэх")}
+            <ArrowRight className="ml-1 h-3.5 w-3.5" />
+          </Link>
+          <Link href="#math-topics" className="btn btn-line">
+            {t("See math topics", "Математикийн сэдвүүдийг харах")}
+          </Link>
+        </div>
+      </section>
+
+      {/* Exam structure */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12" style={{ borderTop: "1px solid var(--line)" }}>
+        <div className="mb-8">
+          <div className="eyebrow mb-3">{t("01 · Exam structure", "01 · Шалгалтын бүтэц")}</div>
+          <h2 className="serif" style={{ fontWeight: 400, fontSize: "clamp(32px, 4.5vw, 52px)", letterSpacing: "-0.03em", color: "var(--fg)" }}>
+            {t("What is the ", "ЭЕШ ")}
+            <em className="serif-italic" style={{ color: "var(--accent)" }}>{t("ЭЕШ", "гэж")}</em>
+            {t("?", " юу вэ?")}
+          </h2>
+          <p className="serif mt-4 max-w-2xl" style={{ fontSize: 16, lineHeight: 1.55, color: "var(--fg-1)" }}>
+            {t(
+              "Taken by all Mongolian high school graduates seeking university admission. Administered annually each May.",
+              "Их, дээд сургуульд элсэхийг хүссэн бүх Монгол ахлах сургуулийн төгсөгчдөд зориулагдсан. Жил бүрийн 5-р сард зохион байгуулдаг.",
+            )}
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/practice/esh" className="btn-primary text-base px-8 py-3.5">
-              <T en="Start Practicing Now" mn="Одоо дадлага эхлэх" />
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-            <Link href="#math-topics" className="btn-secondary text-base px-8 py-3.5">
-              <T en="See Math Topics" mn="Математикийн сэдвүүдийг харах" />
-            </Link>
-          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            {
+              icon: FileText,
+              en: { title: "Format", desc: "Part 1: 30 multiple-choice (A–E). Part 2: 10 open-ended problems with written solutions." },
+              mn: { title: "Формат", desc: "1-р хэсэг: 30 сонгох (А–Е). 2-р хэсэг: 10 нээлттэй бодлого, бичгээр бодолтоо харуулна." },
+            },
+            {
+              icon: Clock,
+              en: { title: "Duration", desc: "3 hours total. Part 1 and Part 2 in one continuous sitting." },
+              mn: { title: "Хугацаа", desc: "Нийт 3 цаг. 1-р ба 2-р хэсгийг нэг удаа тасралтгүй бичнэ." },
+            },
+            {
+              icon: BarChart3,
+              en: { title: "Scoring", desc: "Total: 800. Part 1: ~400 (each ~13). Part 2: ~400 (partial credit)." },
+              mn: { title: "Оноо", desc: "Нийт: 800. 1-р хэсэг: ~400 (зөв бүр ~13). 2-р хэсэг: ~400 (хэсэгчилсэн)." },
+            },
+            {
+              icon: Target,
+              en: { title: "Subjects", desc: "One subject per student. Math is required by most STEM and economics programs." },
+              mn: { title: "Хичээл", desc: "Сурагчид нэг хичээл сонгоно. Математик STEM, эдийн засгийн ихэнх хөтөлбөрт шаардлагатай." },
+            },
+          ].map((card, i) => {
+            const Icon = card.icon;
+            const content = lang === "mn" ? card.mn : card.en;
+            return (
+              <div key={card.en.title} className="card-edit p-5">
+                <div className="flex items-start justify-between mb-3">
+                  <div
+                    className="w-9 h-9 rounded-md flex items-center justify-center"
+                    style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--accent)" }}
+                  >
+                    <Icon className="h-4 w-4" />
+                  </div>
+                  <span className="mono text-[10px]" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <h3 className="serif" style={{ fontWeight: 400, fontSize: 20, letterSpacing: "-0.02em", color: "var(--fg)" }}>
+                  {content.title}
+                </h3>
+                <p className="text-[13px] mt-2 leading-relaxed" style={{ color: "var(--fg-2)" }}>
+                  {content.desc}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </section>
 
-      {/* Exam structure overview */}
-      <section className="section-dark">
-        <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="container-lg relative">
-          <div className="text-center mb-12">
-            <div className="badge-glow mb-4 mx-auto w-fit">
-              <FileText className="h-3.5 w-3.5 mr-1.5 text-primary-400" />
-              <T en="Exam Overview" mn="Шалгалтын тойм" />
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-4">
-              <T en="What is the ЭЕШ?" mn="ЭЕШ гэж юу вэ?" />
-            </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              <T
-                en="The Элсэлтийн Ерөнхий Шалгалт (General Entrance Exam) is taken by all Mongolian high school graduates who want to attend university. It is administered annually in May."
-                mn="Элсэлтийн Ерөнхий Шалгалт нь их, дээд сургуульд элсэхийг хүссэн бүх Монгол ахлах сургуулийн төгсөгчдөд зориулагдсан. Жил бүрийн 5-р сард зохион байгуулдаг."
-              />
-            </p>
-          </div>
+      {/* Math topics */}
+      <section id="math-topics" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12" style={{ borderTop: "1px solid var(--line)" }}>
+        <div className="mb-8">
+          <div className="eyebrow mb-3">{t("02 · Topic weights", "02 · Сэдвийн жин")}</div>
+          <h2 className="serif" style={{ fontWeight: 400, fontSize: "clamp(32px, 4.5vw, 52px)", letterSpacing: "-0.03em", color: "var(--fg)" }}>
+            {t("What the math exam ", "Математикийн шалгалт ")}
+            <em className="serif-italic" style={{ color: "var(--accent)" }}>{t("actually covers", "юу хамардаг вэ")}</em>
+            {t(".", "")}
+          </h2>
+          <p className="serif mt-4 max-w-2xl" style={{ fontSize: 16, lineHeight: 1.55, color: "var(--fg-1)" }}>
+            {t(
+              "Tests grades 10–12 material. Approximate weight per area, by historical exam analysis.",
+              "10–12-р ангийн материалаас. Шалгалтын түүхэн анализаас гарсан ойролцоо жин.",
+            )}
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: FileText,
-                en: { title: "Format", desc: "Part 1: 30 multiple-choice questions (A–E). Part 2: 10 open-ended problems with written solutions." },
-                mn: { title: "Формат", desc: "1-р хэсэг: 30 сонгох бодлого (А–Е). 2-р хэсэг: 10 нээлттэй бодлого, бичгээр бодолтоо харуулна." },
-              },
-              {
-                icon: Clock,
-                en: { title: "Duration", desc: "3 hours total. Part 1 and Part 2 are written in one continuous sitting." },
-                mn: { title: "Хугацаа", desc: "Нийт 3 цаг. 1-р ба 2-р хэсгийг нэг удаа тасралтгүй бичнэ." },
-              },
-              {
-                icon: BarChart3,
-                en: { title: "Scoring", desc: "Total: 800 points. Part 1: ~400 pts (each correct = ~13 pts). Part 2: ~400 pts (partial credit given)." },
-                mn: { title: "Оноо", desc: "Нийт: 800 оноо. 1-р хэсэг: ~400 оноо (зөв бүр ~13 оноо). 2-р хэсэг: ~400 оноо (хэсэгчлэн оноо өгнө)." },
-              },
-              {
-                icon: Target,
-                en: { title: "Subjects", desc: "Students choose one exam subject. Math is the most popular, required by most STEM and economics programs." },
-                mn: { title: "Хичээл", desc: "Сурагчид нэг хичээлийг сонгоно. Математик хамгийн түгээмэл, STEM болон эдийн засгийн ихэнх хөтөлбөрт шаардлагатай." },
-              },
-            ].map((card) => {
-              const Icon = card.icon;
-              const content = lang === "mn" ? card.mn : card.en;
-              return (
-                <div key={card.en.title} className="card-glass-glow border-glow">
-                  <div className="inline-flex p-3 rounded-xl bg-primary-500/10 mb-4">
-                    <Icon className="h-6 w-6 text-primary-400" />
+        <div className="card-edit p-2 max-w-3xl">
+          {mathTopics.map((topic, i) => {
+            const content = lang === "mn" ? topic.mn : topic.en;
+            return (
+              <div
+                key={topic.en.name}
+                className="p-4"
+                style={{ borderBottom: i < mathTopics.length - 1 ? "1px solid var(--line)" : "none" }}
+              >
+                <div className="flex items-baseline justify-between mb-2 gap-4">
+                  <div className="flex items-baseline gap-3 min-w-0">
+                    <span className="mono text-[10px]" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="serif" style={{ fontWeight: 400, fontSize: 18, letterSpacing: "-0.01em", color: "var(--fg)" }}>
+                      {content.name}
+                    </h3>
                   </div>
-                  <h3 className="text-lg font-display font-semibold text-white mb-2">{content.title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{content.desc}</p>
+                  <div className="serif tabular flex items-baseline gap-1 flex-shrink-0">
+                    <span style={{ fontSize: 22, color: "var(--accent)", letterSpacing: "-0.02em" }}>{topic.weight}</span>
+                    <span className="mono text-[10px]" style={{ color: "var(--fg-3)" }}>%</span>
+                  </div>
                 </div>
-              );
-            })}
-          </div>
+                <p className="text-[13px] mb-3" style={{ color: "var(--fg-2)" }}>{content.detail}</p>
+                <div className="h-[3px] rounded-full overflow-hidden" style={{ background: "var(--bg-2)" }}>
+                  <div className="h-full rounded-full" style={{ width: `${topic.weight * 4}%`, background: "var(--accent)" }} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="mt-6 max-w-3xl">
+          <p className="text-[13px]" style={{ color: "var(--fg-3)" }}>
+            {t(
+              "Difficulty curve: Part 1 ramps easy → medium → hard (Q1–10, 11–20, 21–30). Part 2 is uniformly challenging and requires written solutions.",
+              "Хүндрэлийн муруй: 1-р хэсэг хялбар → дунд → хэцүү (1–10, 11–20, 21–30). 2-р хэсэг бүгд хэцүү, бичгэн бодолт шаарддаг.",
+            )}
+          </p>
+          <Link href="/courses" className="btn btn-line mt-5">
+            {t("Study by topic", "Сэдвээр суралцах")}
+            <ArrowRight className="ml-1 h-3.5 w-3.5" />
+          </Link>
         </div>
       </section>
 
-      {/* Math section breakdown */}
-      <section id="math-topics" className="section-darker">
-        <div className="absolute inset-0 glow-bottom-left" />
-        <div className="container-lg relative">
-          <div className="text-center mb-12">
-            <div className="badge-glow mb-4 mx-auto w-fit">
-              <Calculator className="h-3.5 w-3.5 mr-1.5 text-accent-cyan" />
-              <T en="Math Section" mn="Математикийн хэсэг" />
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-4">
-              <T en="What the math exam " mn="Математикийн шалгалт юу " />
-              <span className="gradient-text">
-                <T en="actually covers" mn="хамардаг вэ" />
-              </span>
-            </h2>
-            <p className="text-gray-400 max-w-xl mx-auto">
-              <T
-                en="The ЭЕШ math exam tests 10–12th grade topics. Here's the approximate weight of each area."
-                mn="ЭЕШ математикийн шалгалт нь 10–12-р ангийн сэдвүүдийг шалгадаг. Сэдэв тус бүрийн ойролцоо жин."
-              />
-            </p>
-          </div>
-
-          <div className="max-w-3xl mx-auto space-y-3">
-            {mathTopics.map((topic) => {
-              const content = lang === "mn" ? topic.mn : topic.en;
-              const pct = parseInt(topic.weight.replace(/[^0-9]/g, ""));
-              return (
-                <div key={topic.en.name} className="card-glass">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-display font-semibold text-gray-200">{content.name}</h3>
-                    <span className="text-sm font-bold text-primary-400">{topic.weight}</span>
-                  </div>
-                  <p className="text-gray-500 text-sm mb-3">{content.detail}</p>
-                  <div className="h-2 bg-white/[0.06] rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-primary-500 to-accent-cyan rounded-full"
-                      style={{ width: `${pct}%` }}
-                    />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="text-center mt-8">
-            <p className="text-gray-500 text-sm mb-4">
-              <T
-                en="Difficulty curve: Part 1 questions go from easy (Q1–10) to medium (Q11–20) to hard (Q21–30). Part 2 problems are all challenging and require full written solutions."
-                mn="Хүндрэлийн муруй: 1-р хэсгийн бодлогууд хялбар (1–10) → дунд (11–20) → хэцүү (21–30). 2-р хэсгийн бодлогууд бүгд хэцүү, бичгэн бодолт шаарддаг."
-              />
-            </p>
-            <Link href="/courses" className="btn-glow text-base px-8 py-3.5">
-              <T en="Study by Topic" mn="Сэдвээр суралцах" />
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </div>
+      {/* Timeline */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12" style={{ borderTop: "1px solid var(--line)" }}>
+        <div className="mb-8">
+          <div className="eyebrow mb-3">{t("03 · Study timeline", "03 · Суралцах хуваарь")}</div>
+          <h2 className="serif" style={{ fontWeight: 400, fontSize: "clamp(32px, 4.5vw, 52px)", letterSpacing: "-0.03em", color: "var(--fg)" }}>
+            {t("An eight-month ", "Найман сарын ")}
+            <em className="serif-italic" style={{ color: "var(--accent)" }}>{t("plan", "төлөвлөгөө")}</em>
+            .
+          </h2>
+          <p className="serif mt-4 max-w-2xl" style={{ fontSize: 16, lineHeight: 1.55, color: "var(--fg-1)" }}>
+            {t(
+              "A typical pacing for a 12th grader preparing for the May ЭЕШ.",
+              "5-р сарын ЭЕШ-д бэлтгэж буй 12-р ангийн сурагчийн ердийн төлөвлөгөө.",
+            )}
+          </p>
         </div>
-      </section>
 
-      {/* Study timeline */}
-      <section className="section-dark">
-        <div className="absolute inset-0 glow-top-right" />
-        <div className="container-lg relative">
-          <div className="text-center mb-12">
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-4">
-              <T en="Recommended study " mn="Санал болгох суралцах " />
-              <span className="gradient-text-warm">
-                <T en="timeline" mn="хуваарь" />
-              </span>
-            </h2>
-            <p className="text-gray-400 max-w-xl mx-auto">
-              <T
-                en="A typical 8-month plan for a 12th grader preparing for the May ЭЕШ."
-                mn="5-р сарын ЭЕШ-д бэлтгэж буй 12-р ангийн сурагчийн ердийн 8 сарын төлөвлөгөө."
-              />
-            </p>
-          </div>
-
-          <div className="max-w-2xl mx-auto">
-            {timeline.map((item, i) => {
-              const content = lang === "mn" ? item.mn : item.en;
-              const isLast = i === timeline.length - 1;
-              return (
-                <div key={item.en.month} className="flex gap-4">
-                  <div className="flex flex-col items-center">
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${isLast ? "bg-accent-gold/20 border border-accent-gold/30" : "bg-primary-500/15 border border-primary-400/20"}`}>
-                      <span className="text-sm font-bold text-primary-300">{i + 1}</span>
-                    </div>
-                    {!isLast && <div className="w-px h-full bg-white/[0.08] my-1" />}
+        <div className="max-w-2xl">
+          {timeline.map((item, i) => {
+            const content = lang === "mn" ? item.mn : item.en;
+            const isLast = i === timeline.length - 1;
+            return (
+              <div key={item.en.month} className="flex gap-4">
+                <div className="flex flex-col items-center">
+                  <div
+                    className="w-10 h-10 rounded-md flex items-center justify-center flex-shrink-0 mono tabular text-[13px]"
+                    style={{
+                      background: isLast ? "var(--accent-wash)" : "var(--bg-2)",
+                      border: `1px solid ${isLast ? "var(--accent-line)" : "var(--line)"}`,
+                      color: isLast ? "var(--accent)" : "var(--fg-2)",
+                    }}
+                  >
+                    {String(i + 1).padStart(2, "0")}
                   </div>
-                  <div className="pb-8">
-                    <p className="font-display font-semibold text-white text-sm">{content.month}</p>
-                    <p className="text-gray-400 text-sm mt-1">{content.task}</p>
-                  </div>
+                  {!isLast && <div className="w-px flex-1 my-1" style={{ background: "var(--line)" }} />}
                 </div>
-              );
-            })}
-          </div>
+                <div className="pb-8">
+                  <p className="serif" style={{ fontWeight: 400, fontSize: 18, color: "var(--fg)" }}>{content.month}</p>
+                  <p className="text-[14px] mt-1" style={{ color: "var(--fg-2)" }}>{content.task}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
 
       {/* Resources */}
-      <section className="section-darker">
-        <div className="absolute inset-0 bg-grid opacity-30" />
-        <div className="container-lg relative">
-          <div className="text-center mb-12">
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-4">
-              <T en="Recommended " mn="Санал болгох " />
-              <span className="gradient-text">
-                <T en="study resources" mn="нөөцүүд" />
-              </span>
-            </h2>
-            <p className="text-gray-400 max-w-xl mx-auto">
-              <T
-                en="Free external resources to supplement your ЭЕШ practice. These are the best free math learning tools on the internet."
-                mn="ЭЕШ дадлагаа нөхөх үнэгүй гадны нөөцүүд. Интернетийн шилдэг үнэгүй математик суралцах хэрэгслүүд."
-              />
-            </p>
-          </div>
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12" style={{ borderTop: "1px solid var(--line)" }}>
+        <div className="mb-8">
+          <div className="eyebrow mb-3">{t("04 · External resources", "04 · Гадны нөөц")}</div>
+          <h2 className="serif" style={{ fontWeight: 400, fontSize: "clamp(32px, 4.5vw, 52px)", letterSpacing: "-0.03em", color: "var(--fg)" }}>
+            {t("Recommended ", "Санал болгох ")}
+            <em className="serif-italic" style={{ color: "var(--accent)" }}>{t("study tools", "хэрэгслүүд")}</em>
+            .
+          </h2>
+          <p className="serif mt-4 max-w-2xl" style={{ fontSize: 16, lineHeight: 1.55, color: "var(--fg-1)" }}>
+            {t(
+              "Free external resources to supplement your ЭЕШ practice — the best free math learning tools on the internet.",
+              "ЭЕШ дадлагаа нөхөх үнэгүй гадны нөөцүүд — интернетийн шилдэг үнэгүй математик хэрэгслүүд.",
+            )}
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-            {resources.map((r) => {
-              const Icon = r.icon;
-              const content = lang === "mn" ? r.mn : r.en;
-              return (
-                <a
-                  key={r.url}
-                  href={r.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="card-glass-glow group flex items-start gap-3"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {resources.map((r) => {
+            const Icon = r.icon;
+            const content = lang === "mn" ? r.mn : r.en;
+            return (
+              <a
+                key={r.url}
+                href={r.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card-edit p-5 flex items-start gap-3 group"
+              >
+                <div
+                  className="w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0"
+                  style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
                 >
-                  <div className="p-2 bg-primary-500/10 border border-primary-400/10 rounded-lg flex-shrink-0 group-hover:bg-primary-500/20 transition-colors">
-                    <Icon className="h-4 w-4 text-primary-400" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-gray-200 text-sm group-hover:text-primary-300 transition-colors flex items-center gap-1.5">
-                      {content.name}
-                      <ExternalLink className="h-3 w-3 text-gray-600 flex-shrink-0" />
-                    </p>
-                    <p className="text-gray-500 text-xs mt-0.5 leading-relaxed">{content.desc}</p>
-                  </div>
-                </a>
-              );
-            })}
-          </div>
+                  <Icon className="h-4 w-4" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="serif flex items-center gap-1.5" style={{ fontWeight: 400, fontSize: 16, color: "var(--fg)" }}>
+                    <span className="truncate">{content.name}</span>
+                    <ExternalLink className="h-3 w-3 flex-shrink-0" style={{ color: "var(--fg-3)" }} />
+                  </p>
+                  <p className="text-[12px] mt-1 leading-relaxed" style={{ color: "var(--fg-2)" }}>{content.desc}</p>
+                </div>
+              </a>
+            );
+          })}
         </div>
       </section>
 
-      {/* International exams note */}
-      <section className="section-dark">
-        <div className="container-lg relative">
-          <div className="card-glass max-w-3xl mx-auto text-center">
-            <h3 className="font-display text-xl font-bold text-white mb-3">
-              <T en="Studying abroad? We also prep for international exams" mn="Гадаадад суралцаж байна уу? Олон улсын шалгалтанд ч бэлтгэдэг" />
-            </h3>
-            <p className="text-gray-400 text-sm mb-6 max-w-xl mx-auto">
-              <T
-                en="If you're a Mongolian student preparing for SAT, ACT, AP Calculus, IB Math, or competition math, we offer 1-on-1 tutoring with bilingual instructors."
-                mn="Хэрэв та SAT, ACT, AP Calculus, IB Math, эсвэл олимпиадын математикт бэлтгэж байгаа Монгол сурагч бол бид хоёр хэлтэй багш нартай 1-1 хичээл санал болгодог."
-              />
-            </p>
-            <Link href="/tutoring" className="btn-secondary text-sm px-6 py-2.5">
-              <T en="Learn About Tutoring" mn="Хичээлийн тухай" />
-              <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
-            </Link>
-          </div>
+      {/* International */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12" style={{ borderTop: "1px solid var(--line)" }}>
+        <div className="card-edit p-8 sm:p-10 max-w-3xl mx-auto text-center">
+          <div className="eyebrow mb-3">{t("Beyond the ЭЕШ", "ЭЕШ-аас гадна")}</div>
+          <h3 className="serif" style={{ fontWeight: 400, fontSize: "clamp(24px, 3vw, 32px)", letterSpacing: "-0.02em", color: "var(--fg)" }}>
+            {t("Studying abroad? We prep ", "Гадаадад суралцаж байна уу? Олон улсын ")}
+            <em className="serif-italic" style={{ color: "var(--accent)" }}>{t("international exams", "шалгалтанд ч")}</em>
+            {t(" too.", " бэлтгэдэг.")}
+          </h3>
+          <p className="text-[14px] mt-3 max-w-xl mx-auto" style={{ color: "var(--fg-2)" }}>
+            {t(
+              "SAT, ACT, AP Calculus, IB Math — native problem coverage of every curriculum, in Mongolian or English.",
+              "SAT, ACT, AP Calculus, IB Math — хөтөлбөр бүрд зориулсан бодлогын сан, Монгол эсвэл Англи хэлээр.",
+            )}
+          </p>
+          <Link href="/courses" className="btn btn-line mt-5 inline-flex">
+            {t("Browse curricula", "Хөтөлбөр үзэх")}
+            <ArrowRight className="ml-1 h-3.5 w-3.5" />
+          </Link>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="section relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-950 via-primary-900 to-surface-900" />
-        <div className="absolute inset-0 bg-grid opacity-30" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary-500/[0.12] blur-[120px] rounded-full" />
-        <div className="container-lg text-center relative">
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5">
-            <T en="Start your ЭЕШ prep " mn="ЭЕШ бэлтгэлээ " />
-            <span className="gradient-text">
-              <T en="today" mn="өнөөдөр эхлэ" />
-            </span>
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14" style={{ borderTop: "1px solid var(--line)" }}>
+        <div
+          className="card-edit p-12 text-center"
+          style={{ background: "var(--accent-wash)", borderColor: "var(--accent-line)" }}
+        >
+          <div className="eyebrow mb-3">{t("Begin", "Эхлэх")}</div>
+          <h2 className="serif" style={{ fontWeight: 400, fontSize: "clamp(32px, 4.5vw, 52px)", letterSpacing: "-0.03em", color: "var(--fg)" }}>
+            {t("Start your ЭЕШ prep ", "ЭЕШ бэлтгэлээ ")}
+            <em className="serif-italic" style={{ color: "var(--accent)" }}>{t("today", "өнөөдөр")}</em>
+            .
           </h2>
-          <p className="text-gray-400 text-lg mb-10 max-w-xl mx-auto">
-            <T
-              en="Practice with real ЭЕШ-format problems, track your progress by topic, and focus on your weak areas."
-              mn="Жинхэнэ ЭЕШ форматын бодлогуудаар дадлага хийж, сэдвээр дэвшлээ хянаж, сул талуудад анхаар."
-            />
+          <p className="text-[15px] mt-4 max-w-xl mx-auto" style={{ color: "var(--fg-1)" }}>
+            {t(
+              "Real ЭЕШ-format problems, topic-level progress, and a focus on your weak spots.",
+              "Жинхэнэ ЭЕШ форматын бодлого, сэдвээр дэвшил, сул талд анхаарал.",
+            )}
           </p>
-          <Link href="/practice/esh" className="btn-white text-base px-8 py-3.5">
-            <T en="Start Practicing Free" mn="Үнэгүй дадлага эхлэх" />
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
+          <div className="flex flex-wrap justify-center gap-2 mt-7">
+            <Link href="/practice/esh" className="btn btn-primary">
+              {t("Start practicing free", "Үнэгүй дадлага эхлэх")}
+              <ArrowRight className="ml-1 h-3.5 w-3.5" />
+            </Link>
+            <Link href="/courses" className="btn btn-line">
+              {t("Browse topics", "Сэдвүүдийг үзэх")}
+            </Link>
+          </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

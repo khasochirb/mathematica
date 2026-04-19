@@ -5,18 +5,14 @@ import { useParams, useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   ArrowLeft,
-  Trophy,
-  Clock,
   Target,
   Flag,
   ChevronDown,
   ChevronUp,
   RotateCcw,
   BookOpen,
-  BarChart3,
   CheckCircle2,
   XCircle,
-  Minus,
 } from "lucide-react";
 import QuestionCard from "@/components/esh/QuestionCard";
 import TopicBreakdownChart from "@/components/esh/TopicBreakdownChart";
@@ -28,8 +24,8 @@ function formatDuration(ms: number): string {
   const totalSeconds = Math.floor(ms / 1000);
   const hours = Math.floor(totalSeconds / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);
-  if (hours > 0) return `${hours} цаг ${minutes} мин`;
-  return `${minutes} мин`;
+  if (hours > 0) return `${hours}ц ${minutes}м`;
+  return `${minutes}м`;
 }
 
 type ViewFilter = "all" | "correct" | "incorrect" | "skipped" | "flagged";
@@ -43,28 +39,21 @@ export default function TestResultsPage() {
 
   const testSession = useTestSession();
   const [mounted, setMounted] = useState(false);
-  const [expandedQuestions, setExpandedQuestions] = useState<Set<number>>(
-    new Set(),
-  );
+  const [expandedQuestions, setExpandedQuestions] = useState<Set<number>>(new Set());
   const [viewFilter, setViewFilter] = useState<ViewFilter>("all");
 
   useEffect(() => setMounted(true), []);
 
   const session = mounted ? testSession.getSession(sessionId) : undefined;
   const testInfo = getTestInfo(testKey);
-  const questions: Question[] = useMemo(
-    () => getTestQuestions(testKey),
-    [testKey],
-  );
+  const questions: Question[] = useMemo(() => getTestQuestions(testKey), [testKey]);
 
-  // Redirect if no valid completed session
   useEffect(() => {
     if (mounted && (!session || session.status !== "completed")) {
       router.replace("/practice/esh/test");
     }
   }, [mounted, session, router]);
 
-  // Compute topic stats
   const topicStats = useMemo(() => {
     if (!session) return [];
     const map: Record<string, { correct: number; total: number }> = {};
@@ -86,7 +75,6 @@ export default function TestResultsPage() {
     .filter((s) => s.accuracy < 50)
     .sort((a, b) => a.accuracy - b.accuracy);
 
-  // Filtered questions
   const filteredQuestions = useMemo(() => {
     if (!session) return [];
     return questions.filter((q) => {
@@ -96,16 +84,11 @@ export default function TestResultsPage() {
       const isFlagged = session.flagged.includes(q.questionNumber);
 
       switch (viewFilter) {
-        case "correct":
-          return isCorrect;
-        case "incorrect":
-          return !isSkipped && !isCorrect;
-        case "skipped":
-          return isSkipped;
-        case "flagged":
-          return isFlagged;
-        default:
-          return true;
+        case "correct": return isCorrect;
+        case "incorrect": return !isSkipped && !isCorrect;
+        case "skipped": return isSkipped;
+        case "flagged": return isFlagged;
+        default: return true;
       }
     });
   }, [session, questions, viewFilter]);
@@ -121,46 +104,39 @@ export default function TestResultsPage() {
 
   if (!mounted || !session || session.status !== "completed" || !session.score) {
     return (
-      <div className="min-h-screen bg-surface-900 pt-20 flex items-center justify-center">
-        <div className="text-gray-500">Ачааллаж байна...</div>
+      <div className="min-h-screen pt-20 flex items-center justify-center" style={{ background: "var(--bg)" }}>
+        <p className="mono text-[12px]" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>АЧААЛЛАЖ БАЙНА...</p>
       </div>
     );
   }
 
   const score = session.score;
-  const duration = session.completedAt
-    ? session.completedAt - session.startedAt
-    : 0;
+  const duration = session.completedAt ? session.completedAt - session.startedAt : 0;
+  const scoreColor = score.accuracy >= 80 ? "var(--accent)" : score.accuracy >= 50 ? "var(--warn)" : "var(--danger)";
 
   const filterButtons: { key: ViewFilter; label: string; count: number }[] = [
     { key: "all", label: "Бүгд", count: questions.length },
     { key: "correct", label: "Зөв", count: score.correct },
     { key: "incorrect", label: "Буруу", count: score.incorrect },
     { key: "skipped", label: "Хариулаагүй", count: score.skipped },
-    {
-      key: "flagged",
-      label: "Тэмдэглэсэн",
-      count: session.flagged.length,
-    },
+    { key: "flagged", label: "Тэмдэглэсэн", count: session.flagged.length },
   ];
 
   return (
-    <div className="min-h-screen bg-surface-900 pt-20 relative">
-      <div className="absolute inset-0 bg-grid opacity-30" />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
+    <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-12">
         {/* Header */}
-        <div className="flex items-center gap-3 mb-8">
+        <div className="flex items-center gap-3 mb-6">
           <Link
             href="/practice/esh/test"
-            className="p-2 rounded-xl bg-white/[0.05] border border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.1] transition-colors"
+            className="p-2 rounded-md transition-colors"
+            style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
           <div>
-            <h1 className="font-display text-xl font-bold text-white">
-              {testInfo?.label || testKey} — Үр дүн
-            </h1>
-            <p className="text-sm text-gray-500">
+            <div className="eyebrow">{testInfo?.label || testKey} · Үр дүн</div>
+            <p className="mono text-[10px] mt-0.5 uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
               {new Date(session.completedAt!).toLocaleDateString("mn-MN", {
                 year: "numeric",
                 month: "long",
@@ -171,119 +147,96 @@ export default function TestResultsPage() {
         </div>
 
         {/* Score banner */}
-        <div className="card-glass p-6 mb-6">
-          <div className="flex flex-col sm:flex-row items-center gap-6">
-            {/* Big score */}
+        <div className="card-edit p-8 mb-6">
+          <div className="flex flex-col sm:flex-row items-center gap-8">
             <div className="text-center">
+              <div className="eyebrow mb-2">Оноо</div>
               <div
-                className={`text-5xl font-bold font-display ${
-                  score.accuracy >= 80
-                    ? "text-emerald-400"
-                    : score.accuracy >= 50
-                      ? "text-yellow-400"
-                      : "text-red-400"
-                }`}
+                className="serif tabular"
+                style={{ fontSize: "clamp(72px, 12vw, 120px)", color: scoreColor, letterSpacing: "-0.04em", lineHeight: 1 }}
               >
-                {score.accuracy}%
+                {score.accuracy}<span className="mono text-[24px]" style={{ color: "var(--fg-3)" }}>%</span>
               </div>
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="mono text-[11px] mt-2 uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
                 {score.correct}/{score.total} зөв
               </p>
             </div>
 
-            {/* Stats grid */}
             <div className="flex-1 grid grid-cols-2 sm:grid-cols-4 gap-3 w-full">
-              <div className="text-center p-3 bg-emerald-500/10 border border-emerald-400/15 rounded-xl">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 mx-auto mb-1" />
-                <p className="text-lg font-bold text-emerald-300">{score.correct}</p>
-                <p className="text-[11px] text-gray-500">Зөв</p>
-              </div>
-              <div className="text-center p-3 bg-red-500/10 border border-red-400/15 rounded-xl">
-                <XCircle className="w-4 h-4 text-red-400 mx-auto mb-1" />
-                <p className="text-lg font-bold text-red-300">{score.incorrect}</p>
-                <p className="text-[11px] text-gray-500">Буруу</p>
-              </div>
-              <div className="text-center p-3 bg-gray-500/10 border border-gray-400/15 rounded-xl">
-                <Minus className="w-4 h-4 text-gray-400 mx-auto mb-1" />
-                <p className="text-lg font-bold text-gray-300">{score.skipped}</p>
-                <p className="text-[11px] text-gray-500">Хариулаагүй</p>
-              </div>
-              <div className="text-center p-3 bg-white/[0.04] border border-white/[0.08] rounded-xl">
-                <Clock className="w-4 h-4 text-gray-400 mx-auto mb-1" />
-                <p className="text-lg font-bold text-gray-300">
-                  {formatDuration(duration)}
-                </p>
-                <p className="text-[11px] text-gray-500">Хугацаа</p>
-              </div>
+              {[
+                { value: score.correct, label: "Зөв", color: "var(--accent)" },
+                { value: score.incorrect, label: "Буруу", color: "var(--danger)" },
+                { value: score.skipped, label: "Хариулаагүй", color: "var(--fg-2)" },
+                { value: formatDuration(duration), label: "Хугацаа", color: "var(--fg-2)" },
+              ].map((s) => (
+                <div
+                  key={s.label}
+                  className="text-center p-3 rounded-md"
+                  style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}
+                >
+                  <p className="serif tabular" style={{ fontSize: 22, color: s.color, letterSpacing: "-0.02em" }}>
+                    {s.value}
+                  </p>
+                  <p className="mono text-[10px] mt-0.5 uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
+                    {s.label}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
         {/* Topic breakdown */}
-        <div className="card-glass p-6 mb-6">
-          <h2 className="font-display text-base font-bold text-white mb-4 flex items-center gap-2">
-            <BarChart3 className="w-5 h-5 text-primary-400" />
-            Сэдвийн задаргаа
-          </h2>
+        <div className="card-edit p-5 mb-4">
+          <div className="eyebrow mb-4">Сэдвийн задаргаа</div>
           <TopicBreakdownChart stats={topicStats} />
         </div>
 
-        {/* Weak topics recommendations */}
+        {/* Weak topics */}
         {weakTopics.length > 0 && (
-          <div className="card-glass p-5 mb-6 border-orange-400/15">
+          <div
+            className="card-edit p-5 mb-4"
+            style={{ background: "color-mix(in oklch, var(--warn) 6%, transparent)", borderColor: "color-mix(in oklch, var(--warn) 25%, transparent)" }}
+          >
             <div className="flex items-start gap-3">
-              <Target className="w-5 h-5 text-orange-400 shrink-0 mt-0.5" />
-              <div>
-                <h3 className="text-sm font-semibold text-orange-300 mb-1">
-                  Анхаарах сэдвүүд
-                </h3>
-                <p className="text-sm text-gray-400">
-                  {weakTopics
-                    .map(
-                      (s) =>
-                        `${TOPIC_LABELS[s.topic] || s.topic} (${s.accuracy}%)`,
-                    )
-                    .join(", ")}
+              <Target className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "var(--warn)" }} />
+              <div className="flex-1">
+                <div className="eyebrow mb-1" style={{ color: "var(--warn)" }}>Анхаарах сэдвүүд</div>
+                <p className="text-[13px]" style={{ color: "var(--fg-1)" }}>
+                  {weakTopics.map((s) => `${TOPIC_LABELS[s.topic] || s.topic} (${s.accuracy}%)`).join(" · ")}
                 </p>
                 <Link
                   href="/practice/esh/practice"
-                  className="inline-flex items-center gap-1.5 text-sm text-primary-400 hover:text-primary-300 font-medium mt-2 transition-colors"
+                  className="mono text-[11px] uppercase mt-3 inline-flex items-center gap-1.5"
+                  style={{ color: "var(--accent)", letterSpacing: "0.06em" }}
                 >
-                  <BookOpen className="w-4 h-4" />
-                  Эдгээр сэдвээр дадлага хийх
+                  <BookOpen className="w-3 h-3" />
+                  Дадлага хийх
                 </Link>
               </div>
             </div>
           </div>
         )}
 
-        {/* Flagged questions summary */}
+        {/* Flagged */}
         {session.flagged.length > 0 && (
-          <div className="card-glass p-5 mb-6 border-orange-400/10">
+          <div className="card-edit p-5 mb-4">
             <div className="flex items-start gap-3">
-              <Flag className="w-5 h-5 text-orange-400 shrink-0 mt-0.5" />
-              <div>
-                <h3 className="text-sm font-semibold text-orange-300 mb-1">
-                  Тэмдэглэсэн бодлогууд ({session.flagged.length})
-                </h3>
-                <p className="text-sm text-gray-400">
+              <Flag className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "var(--warn)" }} />
+              <div className="flex-1">
+                <div className="eyebrow mb-1">Тэмдэглэсэн · {session.flagged.length}</div>
+                <p className="text-[13px]" style={{ color: "var(--fg-2)" }}>
                   {(() => {
                     const flaggedTopics: Record<string, number> = {};
                     for (const qNum of session.flagged) {
                       const q = questions.find((x) => x.questionNumber === qNum);
-                      if (q) {
-                        flaggedTopics[q.topic] =
-                          (flaggedTopics[q.topic] || 0) + 1;
-                      }
+                      if (q) flaggedTopics[q.topic] = (flaggedTopics[q.topic] || 0) + 1;
                     }
                     const total = session.flagged.length;
                     return Object.entries(flaggedTopics)
                       .sort(([, a], [, b]) => b - a)
-                      .map(
-                        ([topic, count]) =>
-                          `${TOPIC_LABELS[topic] || topic} ${Math.round((count / total) * 100)}%`,
-                      )
-                      .join(", ");
+                      .map(([topic, count]) => `${TOPIC_LABELS[topic] || topic} ${Math.round((count / total) * 100)}%`)
+                      .join(" · ");
                   })()}
                 </p>
               </div>
@@ -291,60 +244,52 @@ export default function TestResultsPage() {
           </div>
         )}
 
-        {/* Action buttons */}
-        <div className="flex flex-wrap gap-3 mb-8">
+        {/* Actions */}
+        <div className="flex flex-wrap gap-2 mb-8">
           <button
             onClick={() => {
               const id = testSession.startSession(testKey);
-              router.push(
-                `/practice/esh/test/${testKey.toLowerCase()}?session=${id}`,
-              );
+              router.push(`/practice/esh/test/${testKey.toLowerCase()}?session=${id}`);
             }}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-400 bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.1] transition-colors"
+            className="btn btn-line"
           >
-            <RotateCcw className="w-4 h-4" />
+            <RotateCcw className="mr-1 w-3.5 h-3.5" />
             Дахин бодох
           </button>
-          <Link
-            href="/practice/esh/practice"
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-400 bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.1] transition-colors"
-          >
-            <Target className="w-4 h-4" />
-            Сул сэдвээр дадлага хийх
+          <Link href="/practice/esh/practice" className="btn btn-line">
+            <Target className="mr-1 w-3.5 h-3.5" />
+            Сул сэдвээр дадлага
           </Link>
-          <Link
-            href="/practice/esh"
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-400 bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.1] transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Нүүр хуудас
+          <Link href="/practice/esh" className="btn btn-ghost">
+            <ArrowLeft className="mr-1 w-3.5 h-3.5" />
+            Нүүр
           </Link>
         </div>
 
-        {/* Question-by-question review */}
-        <div className="card-glass p-6">
-          <h2 className="font-display text-base font-bold text-white mb-4">
-            Бодлогуудын задаргаа
-          </h2>
+        {/* Question review */}
+        <div className="card-edit p-5">
+          <div className="eyebrow mb-4">Бодлогуудын задаргаа</div>
 
-          {/* Filter tabs */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            {filterButtons.map((f) => (
-              <button
-                key={f.key}
-                onClick={() => setViewFilter(f.key)}
-                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
-                  viewFilter === f.key
-                    ? "bg-primary-500/20 text-primary-300 border-primary-400/30"
-                    : "bg-white/[0.04] text-gray-500 border-white/[0.08] hover:bg-white/[0.08] hover:text-gray-300"
-                }`}
-              >
-                {f.label} ({f.count})
-              </button>
-            ))}
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {filterButtons.map((f) => {
+              const isActive = viewFilter === f.key;
+              return (
+                <button
+                  key={f.key}
+                  onClick={() => setViewFilter(f.key)}
+                  className="badge-edit transition-all"
+                  style={
+                    isActive
+                      ? { background: "var(--accent-wash)", borderColor: "var(--accent-line)", color: "var(--accent)" }
+                      : { background: "var(--bg-2)" }
+                  }
+                >
+                  {f.label} <span className="mono tabular ml-1" style={{ opacity: 0.7 }}>{f.count}</span>
+                </button>
+              );
+            })}
           </div>
 
-          {/* Question list */}
           <div className="space-y-2">
             {filteredQuestions.map((q) => {
               const answer = session.answers[q.questionNumber];
@@ -355,38 +300,43 @@ export default function TestResultsPage() {
 
               return (
                 <div key={q.questionNumber}>
-                  {/* Compact row */}
                   <button
                     onClick={() => toggleExpand(q.questionNumber)}
-                    className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.05] transition-all text-left"
+                    className="w-full flex items-center gap-3 px-4 py-3 rounded-md transition-all text-left"
+                    style={{
+                      background: "var(--bg-2)",
+                      border: "1px solid var(--line)",
+                    }}
                   >
-                    <span className="w-7 h-7 rounded-full bg-white/[0.08] flex items-center justify-center text-xs font-bold text-gray-400 shrink-0">
+                    <span
+                      className="mono tabular w-7 h-7 rounded flex items-center justify-center text-[11px] shrink-0"
+                      style={{
+                        background: "var(--bg-1)",
+                        border: "1px solid var(--line)",
+                        color: "var(--fg-2)",
+                      }}
+                    >
                       {q.questionNumber}
                     </span>
-                    <span className="flex-1 text-sm text-gray-400 truncate">
+                    <span className="flex-1 text-[13px] truncate" style={{ color: "var(--fg-2)" }}>
                       {TOPIC_LABELS[q.topic] || q.topic}
                       {q.subtopic && ` · ${q.subtopic}`}
                     </span>
-                    {isFlagged && (
-                      <Flag className="w-3.5 h-3.5 text-orange-400 shrink-0" />
-                    )}
+                    {isFlagged && <Flag className="w-3.5 h-3.5 shrink-0" style={{ color: "var(--warn)" }} />}
                     {isSkipped ? (
-                      <span className="text-xs text-gray-500 font-medium px-2 py-0.5 rounded-full bg-gray-500/10">
-                        —
-                      </span>
+                      <span className="mono text-[11px]" style={{ color: "var(--fg-3)" }}>—</span>
                     ) : isCorrect ? (
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: "var(--accent)" }} />
                     ) : (
-                      <XCircle className="w-4 h-4 text-red-400 shrink-0" />
+                      <XCircle className="w-4 h-4 shrink-0" style={{ color: "var(--danger)" }} />
                     )}
                     {isExpanded ? (
-                      <ChevronUp className="w-4 h-4 text-gray-500" />
+                      <ChevronUp className="w-4 h-4" style={{ color: "var(--fg-3)" }} />
                     ) : (
-                      <ChevronDown className="w-4 h-4 text-gray-500" />
+                      <ChevronDown className="w-4 h-4" style={{ color: "var(--fg-3)" }} />
                     )}
                   </button>
 
-                  {/* Expanded: full question review */}
                   {isExpanded && (
                     <div className="mt-2 mb-2">
                       <QuestionCard
@@ -403,8 +353,10 @@ export default function TestResultsPage() {
           </div>
 
           {filteredQuestions.length === 0 && (
-            <div className="text-center py-8 text-gray-500 text-sm">
-              Энэ шүүлтүүрт бодлого олдсонгүй.
+            <div className="text-center py-8">
+              <p className="mono text-[11px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
+                Энэ шүүлтүүрт бодлого олдсонгүй
+              </p>
             </div>
           )}
         </div>

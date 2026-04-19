@@ -2,11 +2,32 @@
 
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
-import { T } from "@/components/T";
 import { useLang } from "@/lib/lang-context";
+
+const inputStyle: React.CSSProperties = {
+  width: "100%",
+  padding: "10px 12px",
+  fontSize: 14,
+  background: "var(--bg-1)",
+  border: "1px solid var(--line)",
+  borderRadius: 8,
+  color: "var(--fg)",
+  outline: "none",
+};
+
+const labelStyle: React.CSSProperties = {
+  display: "block",
+  fontSize: 11,
+  color: "var(--fg-3)",
+  letterSpacing: "0.08em",
+  textTransform: "uppercase",
+  marginBottom: 6,
+  fontFamily: "var(--font-mono), ui-monospace, monospace",
+};
 
 export default function ContactPage() {
   const { lang } = useLang();
+  const t = (en: string, mn: string) => (lang === "mn" ? mn : en);
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -20,190 +41,186 @@ export default function ContactPage() {
   }
 
   return (
-    <>
-      {/* Hero */}
-      <section className="bg-gradient-to-br from-primary-800 to-primary-600 text-white pt-32 pb-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="badge bg-white/15 text-white mx-auto mb-4">
-            <T en="Get in Touch" mn="Холбоо барих" />
-          </div>
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-            <T en="We'd love to hear from you" mn="Таны мессежийг хүлээн авахад баяртай байна" />
-          </h1>
-          <p className="text-blue-100 text-lg max-w-xl mx-auto">
-            <T
-              en="Whether you're ready to start tutoring or just have a question, reach out—we respond within 24 hours."
-              mn="Хичээл эхлэхэд бэлэн эсвэл зүгээр асуулт байгаа бол холбогдоорой—24 цагийн дотор хариулна."
-            />
-          </p>
-        </div>
+    <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10">
+        <div className="eyebrow mb-3">{t("Get in touch · Contact", "Холбоо барих")}</div>
+        <h1
+          className="serif"
+          style={{
+            fontWeight: 400,
+            fontSize: "clamp(40px, 6vw, 72px)",
+            letterSpacing: "-0.04em",
+            lineHeight: 0.98,
+            color: "var(--fg)",
+          }}
+        >
+          {t("We'd love to ", "Таны мессежийг ")}
+          <em className="serif-italic" style={{ color: "var(--accent)" }}>
+            {t("hear", "хүлээн")}
+          </em>
+          {t(" from you.", " авна.")}
+        </h1>
+        <p className="serif mt-5 max-w-2xl" style={{ fontSize: 17, lineHeight: 1.55, color: "var(--fg-1)" }}>
+          {t(
+            "Whether you're ready to start tutoring or just have a question, reach out — we respond within 24 hours.",
+            "Хичээл эхлэхэд бэлэн эсвэл зүгээр асуулт байгаа бол холбогдоорой — 24 цагийн дотор хариулна.",
+          )}
+        </p>
       </section>
 
-      <section className="section bg-white">
-        <div className="container-lg">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Contact info */}
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                <T en="Contact information" mn="Холбоо барих мэдээлэл" />
-              </h2>
-              <div className="space-y-5">
-                <div className="flex items-start gap-3">
-                  <div className="p-2.5 bg-primary-50 rounded-lg">
-                    <Phone className="h-5 w-5 text-primary-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-gray-900 text-sm">
-                      <T en="Phone" mn="Утас" />
-                    </p>
-                    <a href="tel:+14159818165" className="text-primary-600 hover:underline text-sm">
-                      +1 (415) 981-8165
-                    </a>
-                  </div>
+      <section
+        className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12"
+        style={{ borderTop: "1px solid var(--line)" }}
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+          {/* Contact info */}
+          <aside className="lg:col-span-1 space-y-5">
+            <div className="eyebrow">{t("Channels · Direct", "Холбоо · Шууд")}</div>
+            {[
+              { icon: Phone, label: t("Phone", "Утас"), value: "+1 (415) 981-8165", href: "tel:+14159818165" },
+              { icon: Mail, label: t("Email", "Имэйл"), value: "imathhub@gmail.com", href: "mailto:imathhub@gmail.com" },
+            ].map(({ icon: Icon, label, value, href }) => (
+              <a key={label} href={href} className="card-edit p-4 flex items-start gap-3 group">
+                <div
+                  className="w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0"
+                  style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--accent)" }}
+                >
+                  <Icon className="h-4 w-4" />
                 </div>
-                <div className="flex items-start gap-3">
-                  <div className="p-2.5 bg-primary-50 rounded-lg">
-                    <Mail className="h-5 w-5 text-primary-600" />
+                <div>
+                  <div className="mono text-[10px]" style={{ color: "var(--fg-3)", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                    {label}
                   </div>
-                  <div>
-                    <p className="font-medium text-gray-900 text-sm">
-                      <T en="Email" mn="Имэйл" />
-                    </p>
-                    <a href="mailto:imathhub@gmail.com" className="text-primary-600 hover:underline text-sm">
-                      imathhub@gmail.com
-                    </a>
-                  </div>
+                  <div className="mono tabular text-[13px] mt-0.5" style={{ color: "var(--fg)" }}>{value}</div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <div className="p-2.5 bg-primary-50 rounded-lg">
-                    <MapPin className="h-5 w-5 text-primary-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-gray-900 text-sm">
-                      <T en="Location" mn="Байршил" />
-                    </p>
-                    <p className="text-gray-500 text-sm">San Francisco, CA</p>
-                    <p className="text-gray-400 text-xs mt-0.5">
-                      <T en="Tutoring online, worldwide" mn="Онлайн хичээл, дэлхий даяар" />
-                    </p>
-                  </div>
-                </div>
-              </div>
+              </a>
+            ))}
 
-              <div className="mt-8 p-5 bg-primary-50 rounded-2xl border border-primary-100">
-                <p className="font-semibold text-primary-800 text-sm mb-1">
-                  <T en="Response time" mn="Хариу өгөх хугацаа" />
-                </p>
-                <p className="text-primary-700 text-sm">
-                  <T
-                    en="We typically respond within a few hours during business days (Pacific Time). For urgent inquiries, please call us directly."
-                    mn="Ажлын өдрүүдэд (Номхон далайн цагийн бүс) хэдэн цагийн дотор хариулдаг. Яаралтай асуудал бол шууд залгаарай."
-                  />
-                </p>
+            <div className="card-edit p-4 flex items-start gap-3">
+              <div
+                className="w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0"
+                style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
+              >
+                <MapPin className="h-4 w-4" />
+              </div>
+              <div>
+                <div className="mono text-[10px]" style={{ color: "var(--fg-3)", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                  {t("Location", "Байршил")}
+                </div>
+                <div className="text-[13px] mt-0.5" style={{ color: "var(--fg)" }}>San Francisco, CA</div>
+                <div className="mono text-[11px] mt-0.5" style={{ color: "var(--fg-3)" }}>
+                  {t("Online · worldwide", "Онлайн · дэлхий даяар")}
+                </div>
               </div>
             </div>
 
-            {/* Form */}
-            <div className="lg:col-span-2">
-              {submitted ? (
-                <div className="flex flex-col items-center justify-center h-full py-16 text-center">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                    <CheckCircle className="h-8 w-8 text-accent-green" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                    <T en="Message sent!" mn="Мессеж илгээгдлээ!" />
-                  </h3>
-                  <p className="text-gray-500">
-                    <T
-                      en="Thank you for reaching out. We'll get back to you within 24 hours."
-                      mn="Холбогдсонд баярлалаа. 24 цагийн дотор хариу илгээнэ."
-                    />
-                  </p>
+            <div
+              className="card-edit p-4"
+              style={{ background: "var(--accent-wash)", borderColor: "var(--accent-line)" }}
+            >
+              <div className="eyebrow mb-2" style={{ color: "var(--accent)" }}>
+                {t("Response · SLA", "Хариу · SLA")}
+              </div>
+              <p className="serif text-[14px] leading-snug" style={{ color: "var(--fg)" }}>
+                {t(
+                  "We typically respond within a few hours during business days (PT). Urgent? Call directly.",
+                  "Ажлын өдрүүдэд хэдэн цагт хариулдаг. Яаралтай бол шууд залгаарай.",
+                )}
+              </p>
+            </div>
+          </aside>
+
+          {/* Form */}
+          <div className="lg:col-span-2">
+            {submitted ? (
+              <div className="card-edit p-12 text-center">
+                <div
+                  className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
+                  style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--accent)" }}
+                >
+                  <CheckCircle className="h-6 w-6" />
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                        <T en="Name *" mn="Нэр *" />
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={form.name}
-                        onChange={(e) => setForm({ ...form, name: e.target.value })}
-                        placeholder={lang === "mn" ? "Таны бүтэн нэр" : "Your full name"}
-                        className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-shadow"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                        <T en="Email *" mn="Имэйл *" />
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        value={form.email}
-                        onChange={(e) => setForm({ ...form, email: e.target.value })}
-                        placeholder="you@example.com"
-                        className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-shadow"
-                      />
-                    </div>
-                  </div>
+                <div className="eyebrow mb-2">{t("Status", "Төлөв")}</div>
+                <h3 className="serif" style={{ fontWeight: 400, fontSize: 32, letterSpacing: "-0.02em", color: "var(--fg)" }}>
+                  {t("Message sent.", "Мессеж илгээгдлээ.")}
+                </h3>
+                <p className="text-[14px] mt-3" style={{ color: "var(--fg-2)" }}>
+                  {t("Thank you. We'll respond within 24 hours.", "Холбогдсонд баярлалаа. 24 цагийн дотор хариу илгээнэ.")}
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="card-edit p-6 sm:p-8 space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                      <T en="Subject" mn="Сэдэв" />
-                    </label>
-                    <select
-                      value={form.subject}
-                      onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                      className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
-                    >
-                      <option value="">{lang === "mn" ? "Сэдэв сонгох..." : "Select a topic..."}</option>
-                      <option>{lang === "mn" ? "1:1 Хичээлийн асуулга" : "1-on-1 Tutoring Inquiry"}</option>
-                      <option>{lang === "mn" ? "Шалгалтын бэлтгэлийн асуулт" : "Exam Prep Question"}</option>
-                      <option>{lang === "mn" ? "Хуваарь ба боломжийн асуулт" : "Scheduling & Availability"}</option>
-                      <option>{lang === "mn" ? "Үнийн мэдээлэл" : "Pricing Information"}</option>
-                      <option>{lang === "mn" ? "Бусад" : "Other"}</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                      <T en="Message *" mn="Мессеж *" />
-                    </label>
-                    <textarea
+                    <label style={labelStyle}>{t("Name *", "Нэр *")}</label>
+                    <input
+                      type="text"
                       required
-                      rows={5}
-                      value={form.message}
-                      onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      placeholder={
-                        lang === "mn"
-                          ? "Оюутны тухай, ангийн түвшин, хүрэхийг хүсэж буй зорилгоо бичнэ үү..."
-                          : "Tell us about your student, their grade level, and what you're hoping to achieve..."
-                      }
-                      className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      placeholder={t("Your full name", "Таны бүтэн нэр")}
+                      style={inputStyle}
                     />
                   </div>
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="btn-primary w-full sm:w-auto px-8 py-3"
+                  <div>
+                    <label style={labelStyle}>{t("Email *", "Имэйл *")}</label>
+                    <input
+                      type="email"
+                      required
+                      value={form.email}
+                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      placeholder="you@example.com"
+                      style={inputStyle}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label style={labelStyle}>{t("Subject", "Сэдэв")}</label>
+                  <select
+                    value={form.subject}
+                    onChange={(e) => setForm({ ...form, subject: e.target.value })}
+                    style={inputStyle}
                   >
-                    {loading ? (
-                      <T en="Sending..." mn="Илгээж байна..." />
-                    ) : (
-                      <>
-                        <T en="Send Message" mn="Мессеж илгээх" />
-                        <Send className="ml-2 h-4 w-4" />
-                      </>
+                    <option value="">{t("Select a topic...", "Сэдэв сонгох...")}</option>
+                    <option>{t("1-on-1 Tutoring Inquiry", "1:1 Хичээлийн асуулга")}</option>
+                    <option>{t("Exam Prep Question", "Шалгалтын бэлтгэлийн асуулт")}</option>
+                    <option>{t("Scheduling & Availability", "Хуваарь ба боломжийн асуулт")}</option>
+                    <option>{t("Pricing Information", "Үнийн мэдээлэл")}</option>
+                    <option>{t("Other", "Бусад")}</option>
+                  </select>
+                </div>
+                <div>
+                  <label style={labelStyle}>{t("Message *", "Мессеж *")}</label>
+                  <textarea
+                    required
+                    rows={5}
+                    value={form.message}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    placeholder={t(
+                      "Tell us about your student, their grade level, and what you're hoping to achieve...",
+                      "Оюутны тухай, ангийн түвшин, хүрэхийг хүсэж буй зорилгоо бичнэ үү...",
                     )}
-                  </button>
-                </form>
-              )}
-            </div>
+                    style={{ ...inputStyle, resize: "none" }}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="btn btn-primary"
+                  style={{ padding: "11px 18px", opacity: loading ? 0.6 : 1 }}
+                >
+                  {loading ? t("Sending...", "Илгээж байна...") : (
+                    <>
+                      {t("Send Message", "Мессеж илгээх")}
+                      <Send className="ml-1 h-3.5 w-3.5" />
+                    </>
+                  )}
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

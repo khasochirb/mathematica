@@ -48,105 +48,214 @@ interface ReviewModeProps extends QuestionCardBaseProps {
 
 type QuestionCardProps = InstantModeProps | TestModeProps | ReviewModeProps;
 
-const difficultyConfig = [
-  {},
-  {
-    label: "Хөнгөн",
-    cls: "bg-emerald-500/10 text-emerald-400 border-emerald-400/20",
-  },
-  {
-    label: "Дунд",
-    cls: "bg-yellow-500/10 text-yellow-400 border-yellow-400/20",
-  },
-  {
-    label: "Хүнд",
-    cls: "bg-red-500/10 text-red-400 border-red-400/20",
-  },
-];
+const difficultyConfig: Record<number, { label: string; token: "accent" | "warn" | "danger" }> = {
+  1: { label: "Хөнгөн", token: "accent" },
+  2: { label: "Дунд", token: "warn" },
+  3: { label: "Хүнд", token: "danger" },
+};
+
+function diffStyle(token: "accent" | "warn" | "danger") {
+  if (token === "accent") {
+    return {
+      background: "var(--accent-wash)",
+      borderColor: "var(--accent-line)",
+      color: "var(--accent)",
+    };
+  }
+  return {
+    background: `color-mix(in oklch, var(--${token}) 12%, transparent)`,
+    borderColor: `color-mix(in oklch, var(--${token}) 30%, transparent)`,
+    color: `var(--${token})`,
+  };
+}
+
+function QuestionHeader({
+  questionNumber,
+  topic,
+  subtopic,
+  difficulty,
+  rightSlot,
+}: {
+  questionNumber: number;
+  topic: string;
+  subtopic?: string;
+  difficulty: number;
+  rightSlot?: React.ReactNode;
+}) {
+  const diff = difficultyConfig[difficulty];
+  return (
+    <div className="flex items-center justify-between mb-4 gap-2">
+      <div className="flex items-center gap-2.5 flex-wrap">
+        <span
+          className="mono tabular w-7 h-7 rounded-full flex items-center justify-center text-[12px]"
+          style={{
+            background: "var(--accent-wash)",
+            border: "1px solid var(--accent-line)",
+            color: "var(--accent)",
+          }}
+        >
+          {questionNumber}
+        </span>
+        <span
+          className="mono text-[10px] uppercase px-2 py-1 rounded-full"
+          style={{
+            background: "var(--bg-2)",
+            border: "1px solid var(--line)",
+            color: "var(--fg-2)",
+            letterSpacing: "0.06em",
+          }}
+        >
+          {TOPIC_LABELS[topic] || topic}
+        </span>
+        {subtopic && (
+          <span
+            className="mono text-[10px]"
+            style={{ color: "var(--fg-3)", letterSpacing: "0.04em" }}
+          >
+            {subtopic}
+          </span>
+        )}
+      </div>
+      <div className="flex items-center gap-2 shrink-0">
+        {diff && (
+          <span
+            className="mono text-[10px] uppercase px-2 py-1 rounded-full border"
+            style={{ ...diffStyle(diff.token), letterSpacing: "0.06em" }}
+          >
+            {diff.label}
+          </span>
+        )}
+        {rightSlot}
+      </div>
+    </div>
+  );
+}
+
+function letterCircleStyle(state: "default" | "selected" | "correct" | "wrong") {
+  switch (state) {
+    case "correct":
+      return {
+        background: "var(--accent)",
+        borderColor: "var(--accent)",
+        color: "var(--accent-ink)",
+      };
+    case "wrong":
+      return {
+        background: "var(--danger)",
+        borderColor: "var(--danger)",
+        color: "var(--bg)",
+      };
+    case "selected":
+      return {
+        background: "var(--accent)",
+        borderColor: "var(--accent)",
+        color: "var(--accent-ink)",
+      };
+    default:
+      return {
+        background: "transparent",
+        borderColor: "var(--line-strong)",
+        color: "var(--fg-2)",
+      };
+  }
+}
+
+function optionContainerStyle(state: "default" | "selected" | "correct" | "wrong" | "muted") {
+  switch (state) {
+    case "correct":
+      return {
+        background: "var(--accent-wash)",
+        borderColor: "var(--accent-line)",
+      };
+    case "wrong":
+      return {
+        background: "color-mix(in oklch, var(--danger) 8%, transparent)",
+        borderColor: "color-mix(in oklch, var(--danger) 35%, transparent)",
+      };
+    case "selected":
+      return {
+        background: "var(--accent-wash)",
+        borderColor: "var(--accent-line)",
+      };
+    case "muted":
+      return {
+        background: "transparent",
+        borderColor: "var(--line)",
+        opacity: 0.5,
+      };
+    default:
+      return {
+        background: "var(--bg-1)",
+        borderColor: "var(--line)",
+      };
+  }
+}
 
 export default function QuestionCard(props: QuestionCardProps) {
   const { question, highlight } = props;
   const mode = props.mode || "instant";
 
-  // Instant mode local state
   const [localSelected, setLocalSelected] = useState<string | null>(null);
   const [showSolution, setShowSolution] = useState(false);
-
-  const diff = difficultyConfig[question.difficulty] || {};
 
   if (mode === "test") {
     const { selectedAnswer, onSelectAnswer, isFlagged, onToggleFlag, questionIndex } =
       props as TestModeProps;
 
     return (
-      <div className="card-glass p-5 mb-4 transition-all">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2.5">
-            <span className="bg-primary-500/20 text-primary-300 text-sm font-bold rounded-full w-8 h-8 flex items-center justify-center border border-primary-400/20">
-              {questionIndex ?? question.questionNumber}
-            </span>
-            <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-primary-500/10 text-primary-300 border border-primary-400/15">
-              {TOPIC_LABELS[question.topic] || question.topic}
-            </span>
-            {question.subtopic && (
-              <span className="text-xs text-gray-500">{question.subtopic}</span>
-            )}
-          </div>
-          <div className="flex items-center gap-2">
-            {"label" in diff && (
-              <span
-                className={`text-xs font-medium px-2 py-1 rounded-full border ${(diff as any).cls}`}
-              >
-                {(diff as any).label}
-              </span>
-            )}
-            {onToggleFlag && (
+      <div className="card-edit p-5 mb-4">
+        <QuestionHeader
+          questionNumber={questionIndex ?? question.questionNumber}
+          topic={question.topic}
+          subtopic={question.subtopic}
+          difficulty={question.difficulty}
+          rightSlot={
+            onToggleFlag && (
               <button
                 onClick={onToggleFlag}
-                className={`p-1.5 rounded-lg transition-all ${
+                className="p-1.5 rounded-md transition-colors"
+                style={
                   isFlagged
-                    ? "bg-orange-500/20 text-orange-400 border border-orange-400/30"
-                    : "text-gray-500 hover:text-orange-400 hover:bg-orange-500/10 border border-transparent"
-                }`}
+                    ? {
+                        background: "color-mix(in oklch, var(--warn) 14%, transparent)",
+                        border: "1px solid color-mix(in oklch, var(--warn) 30%, transparent)",
+                        color: "var(--warn)",
+                      }
+                    : {
+                        border: "1px solid transparent",
+                        color: "var(--fg-3)",
+                      }
+                }
                 title="Тэмдэглэх"
               >
                 <Flag className="w-4 h-4" fill={isFlagged ? "currentColor" : "none"} />
               </button>
-            )}
-          </div>
-        </div>
+            )
+          }
+        />
 
-        {/* Question body */}
-        <div className="text-gray-200 text-[15px] leading-relaxed mb-5">
+        <div className="q-math text-[15px] leading-relaxed mb-5" style={{ color: "var(--fg)" }}>
           <MathText text={question.body} />
         </div>
 
-        {/* Options - test mode: no reveal */}
         {question.options && (
           <div className="space-y-2">
             {Object.entries(question.options).map(([letter, text]) => {
               const isSelected = selectedAnswer === letter;
-              const optionCls = isSelected
-                ? "border-primary-400/50 bg-primary-500/15"
-                : "border-white/[0.08] hover:border-primary-400/40 hover:bg-primary-500/5";
-
               return (
                 <button
                   key={letter}
                   onClick={() => onSelectAnswer?.(letter)}
-                  className={`w-full text-left px-4 py-3 rounded-xl border transition-all flex items-center gap-3 ${optionCls}`}
+                  className="w-full text-left px-4 py-3 rounded-md border transition-colors flex items-center gap-3"
+                  style={optionContainerStyle(isSelected ? "selected" : "default")}
                 >
                   <span
-                    className={`w-7 h-7 rounded-full border flex items-center justify-center text-sm font-bold shrink-0 ${
-                      isSelected
-                        ? "border-primary-400 bg-primary-500 text-white"
-                        : "border-gray-600 text-gray-400"
-                    }`}
+                    className="mono w-7 h-7 rounded-full border flex items-center justify-center text-[12px] shrink-0"
+                    style={letterCircleStyle(isSelected ? "selected" : "default")}
                   >
                     {letter}
                   </span>
-                  <span className="text-gray-300 text-sm">
+                  <span className="text-[14px]" style={{ color: "var(--fg-1)" }}>
                     <MathText text={text} />
                   </span>
                 </button>
@@ -165,72 +274,64 @@ export default function QuestionCard(props: QuestionCardProps) {
 
     return (
       <div
-        className={`card-glass p-5 mb-4 transition-all ${
-          isFlagged ? "border-orange-400/30" : ""
-        }`}
+        className="card-edit p-5 mb-4"
+        style={
+          isFlagged
+            ? { borderColor: "color-mix(in oklch, var(--warn) 35%, transparent)" }
+            : undefined
+        }
       >
-        {/* Header */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2.5">
-            <span className="bg-primary-500/20 text-primary-300 text-sm font-bold rounded-full w-8 h-8 flex items-center justify-center border border-primary-400/20">
-              {question.questionNumber}
-            </span>
-            <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-primary-500/10 text-primary-300 border border-primary-400/15">
-              {TOPIC_LABELS[question.topic] || question.topic}
-            </span>
-            {question.subtopic && (
-              <span className="text-xs text-gray-500">{question.subtopic}</span>
-            )}
-          </div>
-          <div className="flex items-center gap-2">
-            {"label" in diff && (
+        <QuestionHeader
+          questionNumber={question.questionNumber}
+          topic={question.topic}
+          subtopic={question.subtopic}
+          difficulty={question.difficulty}
+          rightSlot={
+            isFlagged && (
               <span
-                className={`text-xs font-medium px-2 py-1 rounded-full border ${(diff as any).cls}`}
+                className="p-1.5 rounded-md"
+                style={{
+                  background: "color-mix(in oklch, var(--warn) 14%, transparent)",
+                  border: "1px solid color-mix(in oklch, var(--warn) 30%, transparent)",
+                  color: "var(--warn)",
+                }}
               >
-                {(diff as any).label}
-              </span>
-            )}
-            {isFlagged && (
-              <span className="p-1.5 rounded-lg bg-orange-500/20 text-orange-400 border border-orange-400/30">
                 <Flag className="w-4 h-4" fill="currentColor" />
               </span>
-            )}
-          </div>
-        </div>
+            )
+          }
+        />
 
-        {/* Question body */}
-        <div className="text-gray-200 text-[15px] leading-relaxed mb-5">
+        <div className="q-math text-[15px] leading-relaxed mb-5" style={{ color: "var(--fg)" }}>
           <MathText text={question.body} />
         </div>
 
-        {/* Options - review mode: show correct/incorrect */}
         {question.options && (
           <div className="space-y-2 mb-4">
             {Object.entries(question.options).map(([letter, text]) => {
-              let optionCls = "border-white/[0.05] opacity-40";
+              let containerState: "correct" | "wrong" | "muted" = "muted";
+              let circleState: "correct" | "wrong" | "default" = "default";
               if (letter === question.answer) {
-                optionCls = "border-emerald-400/50 bg-emerald-500/10";
+                containerState = "correct";
+                circleState = "correct";
               } else if (letter === selectedAnswer && !isCorrect) {
-                optionCls = "border-red-400/50 bg-red-500/10";
+                containerState = "wrong";
+                circleState = "wrong";
               }
 
               return (
                 <div
                   key={letter}
-                  className={`w-full text-left px-4 py-3 rounded-xl border transition-all flex items-center gap-3 ${optionCls}`}
+                  className="w-full text-left px-4 py-3 rounded-md border flex items-center gap-3"
+                  style={optionContainerStyle(containerState)}
                 >
                   <span
-                    className={`w-7 h-7 rounded-full border flex items-center justify-center text-sm font-bold shrink-0 ${
-                      letter === question.answer
-                        ? "border-emerald-400 bg-emerald-500 text-white"
-                        : letter === selectedAnswer && !isCorrect
-                          ? "border-red-400 bg-red-500 text-white"
-                          : "border-gray-600 text-gray-400"
-                    }`}
+                    className="mono w-7 h-7 rounded-full border flex items-center justify-center text-[12px] shrink-0"
+                    style={letterCircleStyle(circleState)}
                   >
                     {letter}
                   </span>
-                  <span className="text-gray-300 text-sm">
+                  <span className="text-[14px]" style={{ color: "var(--fg-1)" }}>
                     <MathText text={text} />
                   </span>
                 </div>
@@ -239,28 +340,41 @@ export default function QuestionCard(props: QuestionCardProps) {
           </div>
         )}
 
-        {/* Result indicator */}
         <div
-          className={`p-3 rounded-xl border ${
+          className="p-3 rounded-md border"
+          style={
             !wasAnswered
-              ? "bg-gray-500/10 border-gray-400/20"
+              ? {
+                  background: "var(--bg-2)",
+                  borderColor: "var(--line)",
+                }
               : isCorrect
-                ? "bg-emerald-500/10 border-emerald-400/20"
-                : "bg-red-500/10 border-red-400/20"
-          }`}
+                ? {
+                    background: "var(--accent-wash)",
+                    borderColor: "var(--accent-line)",
+                  }
+                : {
+                    background: "color-mix(in oklch, var(--danger) 8%, transparent)",
+                    borderColor: "color-mix(in oklch, var(--danger) 35%, transparent)",
+                  }
+          }
         >
           <div className="flex items-center gap-2">
             {!wasAnswered ? (
-              <span className="text-sm text-gray-400">Хариулаагүй</span>
+              <span className="mono text-[11px] uppercase" style={{ color: "var(--fg-2)", letterSpacing: "0.06em" }}>
+                Хариулаагүй
+              </span>
             ) : isCorrect ? (
               <>
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm font-medium text-emerald-300">Зөв</span>
+                <CheckCircle2 className="w-4 h-4" style={{ color: "var(--accent)" }} />
+                <span className="mono text-[11px] uppercase" style={{ color: "var(--accent)", letterSpacing: "0.06em" }}>
+                  Зөв
+                </span>
               </>
             ) : (
               <>
-                <XCircle className="w-4 h-4 text-red-400" />
-                <span className="text-sm font-medium text-red-300">
+                <XCircle className="w-4 h-4" style={{ color: "var(--danger)" }} />
+                <span className="mono text-[11px] uppercase" style={{ color: "var(--danger)", letterSpacing: "0.06em" }}>
                   Буруу — Зөв хариу: {question.answer}
                 </span>
               </>
@@ -268,25 +382,28 @@ export default function QuestionCard(props: QuestionCardProps) {
           </div>
         </div>
 
-        {/* Solution */}
         {question.solution && (
           <div className="mt-3">
             <button
               onClick={() => setShowSolution(!showSolution)}
-              className="flex items-center gap-1 text-sm text-primary-400 hover:text-primary-300 font-medium transition-colors"
+              className="mono text-[11px] uppercase inline-flex items-center gap-1 transition-colors"
+              style={{ color: "var(--accent)", letterSpacing: "0.06em" }}
             >
               {showSolution ? (
                 <>
-                  <ChevronUp className="w-4 h-4" /> Бодолтыг нуух
+                  <ChevronUp className="w-3.5 h-3.5" /> Бодолтыг нуух
                 </>
               ) : (
                 <>
-                  <ChevronDown className="w-4 h-4" /> Бодолтыг харах
+                  <ChevronDown className="w-3.5 h-3.5" /> Бодолтыг харах
                 </>
               )}
             </button>
             {showSolution && (
-              <div className="mt-2 text-sm text-gray-400 leading-relaxed">
+              <div
+                className="mt-2 q-math text-[14px] leading-relaxed"
+                style={{ color: "var(--fg-1)" }}
+              >
                 <MathText text={question.solution} />
               </div>
             )}
@@ -296,7 +413,7 @@ export default function QuestionCard(props: QuestionCardProps) {
     );
   }
 
-  // Instant mode (original behavior)
+  // Instant mode
   const { onAnswer } = props as InstantModeProps;
   const selected = localSelected;
   const isCorrect = selected === question.answer;
@@ -320,59 +437,55 @@ export default function QuestionCard(props: QuestionCardProps) {
 
   return (
     <div
-      className={`card-glass p-5 mb-4 transition-all ${
-        highlight ? "border-orange-400/30 shadow-orange-500/5" : ""
-      }`}
+      className="card-edit p-5 mb-4"
+      style={
+        highlight
+          ? { borderColor: "color-mix(in oklch, var(--warn) 35%, transparent)" }
+          : undefined
+      }
     >
       {highlight && (
         <div className="mb-3">
-          <span className="text-xs font-medium px-2 py-1 rounded-full bg-orange-500/10 text-orange-400 border border-orange-400/20">
+          <span
+            className="mono text-[10px] uppercase px-2 py-1 rounded-full border"
+            style={{
+              background: "color-mix(in oklch, var(--warn) 12%, transparent)",
+              borderColor: "color-mix(in oklch, var(--warn) 30%, transparent)",
+              color: "var(--warn)",
+              letterSpacing: "0.06em",
+            }}
+          >
             Сайжруулах сэдэв
           </span>
         </div>
       )}
 
-      {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2.5">
-          <span className="bg-primary-500/20 text-primary-300 text-sm font-bold rounded-full w-8 h-8 flex items-center justify-center border border-primary-400/20">
-            {question.questionNumber}
-          </span>
-          <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-primary-500/10 text-primary-300 border border-primary-400/15">
-            {TOPIC_LABELS[question.topic] || question.topic}
-          </span>
-          {question.subtopic && (
-            <span className="text-xs text-gray-500">{question.subtopic}</span>
-          )}
-        </div>
-        {"label" in diff && (
-          <span
-            className={`text-xs font-medium px-2 py-1 rounded-full border ${(diff as any).cls}`}
-          >
-            {(diff as any).label}
-          </span>
-        )}
-      </div>
+      <QuestionHeader
+        questionNumber={question.questionNumber}
+        topic={question.topic}
+        subtopic={question.subtopic}
+        difficulty={question.difficulty}
+      />
 
-      {/* Question body */}
-      <div className="text-gray-200 text-[15px] leading-relaxed mb-5">
+      <div className="q-math text-[15px] leading-relaxed mb-5" style={{ color: "var(--fg)" }}>
         <MathText text={question.body} />
       </div>
 
-      {/* Options */}
       {question.options && (
         <div className="space-y-2 mb-4">
           {Object.entries(question.options).map(([letter, text]) => {
-            let optionCls =
-              "border-white/[0.08] hover:border-primary-400/40 hover:bg-primary-500/5";
+            let containerState: "default" | "correct" | "wrong" | "muted" = "default";
+            let circleState: "default" | "correct" | "wrong" = "default";
 
             if (selected) {
               if (letter === question.answer) {
-                optionCls = "border-emerald-400/50 bg-emerald-500/10";
+                containerState = "correct";
+                circleState = "correct";
               } else if (letter === selected && !isCorrect) {
-                optionCls = "border-red-400/50 bg-red-500/10";
+                containerState = "wrong";
+                circleState = "wrong";
               } else {
-                optionCls = "border-white/[0.05] opacity-40";
+                containerState = "muted";
               }
             }
 
@@ -381,20 +494,19 @@ export default function QuestionCard(props: QuestionCardProps) {
                 key={letter}
                 onClick={() => handleSelect(letter)}
                 disabled={!!selected}
-                className={`w-full text-left px-4 py-3 rounded-xl border transition-all flex items-center gap-3 ${optionCls}`}
+                className="w-full text-left px-4 py-3 rounded-md border transition-colors flex items-center gap-3"
+                style={{
+                  ...optionContainerStyle(containerState),
+                  cursor: selected ? "default" : "pointer",
+                }}
               >
                 <span
-                  className={`w-7 h-7 rounded-full border flex items-center justify-center text-sm font-bold shrink-0 ${
-                    selected && letter === question.answer
-                      ? "border-emerald-400 bg-emerald-500 text-white"
-                      : selected && letter === selected && !isCorrect
-                        ? "border-red-400 bg-red-500 text-white"
-                        : "border-gray-600 text-gray-400"
-                  }`}
+                  className="mono w-7 h-7 rounded-full border flex items-center justify-center text-[12px] shrink-0"
+                  style={letterCircleStyle(circleState)}
                 >
                   {letter}
                 </span>
-                <span className="text-gray-300 text-sm">
+                <span className="text-[14px]" style={{ color: "var(--fg-1)" }}>
                   <MathText text={text} />
                 </span>
               </button>
@@ -403,25 +515,33 @@ export default function QuestionCard(props: QuestionCardProps) {
         </div>
       )}
 
-      {/* Result */}
       {selected && hasAnswer && (
         <div
-          className={`mt-4 p-4 rounded-xl border ${
+          className="mt-4 p-4 rounded-md border"
+          style={
             isCorrect
-              ? "bg-emerald-500/10 border-emerald-400/20"
-              : "bg-red-500/10 border-red-400/20"
-          }`}
+              ? {
+                  background: "var(--accent-wash)",
+                  borderColor: "var(--accent-line)",
+                }
+              : {
+                  background: "color-mix(in oklch, var(--danger) 8%, transparent)",
+                  borderColor: "color-mix(in oklch, var(--danger) 35%, transparent)",
+                }
+          }
         >
           <div className="flex items-center gap-2">
             {isCorrect ? (
-              <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+              <CheckCircle2 className="w-5 h-5" style={{ color: "var(--accent)" }} />
             ) : (
-              <XCircle className="w-5 h-5 text-red-400" />
+              <XCircle className="w-5 h-5" style={{ color: "var(--danger)" }} />
             )}
             <p
-              className={`font-semibold text-sm ${
-                isCorrect ? "text-emerald-300" : "text-red-300"
-              }`}
+              className="mono text-[11px] uppercase"
+              style={{
+                color: isCorrect ? "var(--accent)" : "var(--danger)",
+                letterSpacing: "0.06em",
+              }}
             >
               {isCorrect ? "Зөв байна!" : `Буруу. Зөв хариу: ${question.answer}`}
             </p>
@@ -431,20 +551,24 @@ export default function QuestionCard(props: QuestionCardProps) {
             <div className="mt-3">
               <button
                 onClick={() => setShowSolution(!showSolution)}
-                className="flex items-center gap-1 text-sm text-primary-400 hover:text-primary-300 font-medium transition-colors"
+                className="mono text-[11px] uppercase inline-flex items-center gap-1"
+                style={{ color: "var(--accent)", letterSpacing: "0.06em" }}
               >
                 {showSolution ? (
                   <>
-                    <ChevronUp className="w-4 h-4" /> Бодолтыг нуух
+                    <ChevronUp className="w-3.5 h-3.5" /> Бодолтыг нуух
                   </>
                 ) : (
                   <>
-                    <ChevronDown className="w-4 h-4" /> Бодолтыг харах
+                    <ChevronDown className="w-3.5 h-3.5" /> Бодолтыг харах
                   </>
                 )}
               </button>
               {showSolution && (
-                <div className="mt-2 text-sm text-gray-400 leading-relaxed">
+                <div
+                  className="mt-2 q-math text-[14px] leading-relaxed"
+                  style={{ color: "var(--fg-1)" }}
+                >
                   <MathText text={question.solution} />
                 </div>
               )}
@@ -453,16 +577,16 @@ export default function QuestionCard(props: QuestionCardProps) {
         </div>
       )}
 
-      {/* Reset */}
       {selected && (
         <button
           onClick={() => {
             setLocalSelected(null);
             setShowSolution(false);
           }}
-          className="mt-3 flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-300 transition-colors"
+          className="mt-3 mono text-[11px] uppercase inline-flex items-center gap-1.5 transition-colors"
+          style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}
         >
-          <RotateCcw className="w-3.5 h-3.5" /> Дахин бодох
+          <RotateCcw className="w-3 h-3" /> Дахин бодох
         </button>
       )}
     </div>

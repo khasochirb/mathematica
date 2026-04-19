@@ -3,10 +3,32 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Eye, EyeOff, Sparkles } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 import Image from "next/image";
 import { api, setToken } from "@/lib/api";
 import { useAuth } from "@/lib/auth-context";
+
+const inputStyle: React.CSSProperties = {
+  width: "100%",
+  padding: "10px 12px",
+  fontSize: 14,
+  background: "var(--bg-1)",
+  border: "1px solid var(--line)",
+  borderRadius: 8,
+  color: "var(--fg)",
+  outline: "none",
+  transition: "border-color .15s var(--ease), background .15s var(--ease)",
+};
+
+const labelStyle: React.CSSProperties = {
+  display: "block",
+  fontSize: 11,
+  color: "var(--fg-3)",
+  letterSpacing: "0.08em",
+  textTransform: "uppercase",
+  marginBottom: 6,
+  fontFamily: "var(--font-mono), ui-monospace, monospace",
+};
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -38,42 +60,61 @@ export default function SignUpPage() {
   }
 
   return (
-    <div className="min-h-screen bg-surface-900 flex items-center justify-center px-4 pt-16 relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 bg-grid opacity-50" />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary-500/[0.07] blur-[120px] rounded-full pointer-events-none" />
+    <div
+      className="min-h-screen flex items-center justify-center px-4 pt-20 pb-12 relative overflow-hidden"
+      style={{ background: "var(--bg)" }}
+    >
+      <div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[460px] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(closest-side, color-mix(in oklch, var(--accent) 14%, transparent), transparent 70%)",
+          filter: "blur(40px)",
+        }}
+      />
 
       <div className="w-full max-w-md relative">
-        {/* Logo */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2.5 group">
-            <Image src="/images/mp.png" alt="Mongol Potential" width={40} height={40} className="rounded-lg" />
-            <span className="font-display font-bold text-white text-xl group-hover:text-primary-300 transition-colors">
+            <span className="inline-block w-2 h-2 rounded-sm" style={{ background: "var(--accent)" }} />
+            <Image src="/images/mp.png" alt="Mongol Potential" width={32} height={32} className="rounded-md" />
+            <span className="font-semibold text-[15px] tracking-tight" style={{ color: "var(--fg)" }}>
               Mongol Potential
             </span>
           </Link>
         </div>
 
-        <div className="card-glass border-glow p-8">
+        <div className="card-edit p-8">
           <div className="mb-6">
-            <div className="badge-glow mb-3 w-fit">
-              <Sparkles className="h-3.5 w-3.5 mr-1.5 text-primary-400" />
-              <span className="text-sm">Free to join</span>
-            </div>
-            <h1 className="font-display text-2xl font-bold text-white mb-1">Create your account</h1>
-            <p className="text-gray-400 text-sm">Start practicing math for free today.</p>
+            <span className="badge-edit badge-accent mb-3 inline-flex">Free to join</span>
+            <h1
+              className="serif mt-3"
+              style={{ fontWeight: 400, fontSize: 32, letterSpacing: "-0.02em", color: "var(--fg)" }}
+            >
+              Create your <em className="serif-italic" style={{ color: "var(--accent)" }}>account</em>.
+            </h1>
+            <p className="mt-1.5 text-[13px]" style={{ color: "var(--fg-2)" }}>
+              Start practicing math for free today.
+            </p>
           </div>
 
           {error && (
-            <div className="mb-5 p-3 bg-red-500/10 border border-red-400/20 rounded-xl text-red-400 text-sm">
+            <div
+              className="mb-5 p-3 rounded-md text-[13px]"
+              style={{
+                background: "rgba(239, 68, 68, 0.10)",
+                border: "1px solid rgba(239, 68, 68, 0.30)",
+                color: "var(--danger)",
+              }}
+            >
               {error}
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-1.5">Full name</label>
+                <label style={labelStyle}>Full name</label>
                 <input
                   type="text"
                   required
@@ -81,34 +122,34 @@ export default function SignUpPage() {
                   value={form.displayName}
                   onChange={(e) => setForm({ ...form, displayName: e.target.value })}
                   placeholder="Bolor-Erdene"
-                  className="w-full px-4 py-2.5 bg-white/[0.04] border border-white/[0.08] rounded-xl text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-400/30 transition-colors"
+                  style={inputStyle}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-1.5">Username</label>
+                <label style={labelStyle}>Username</label>
                 <input
                   type="text"
                   required
                   value={form.username}
                   onChange={(e) => setForm({ ...form, username: e.target.value.toLowerCase().replace(/\s/g, "") })}
                   placeholder="bolorer"
-                  className="w-full px-4 py-2.5 bg-white/[0.04] border border-white/[0.08] rounded-xl text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-400/30 transition-colors"
+                  style={inputStyle}
                 />
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Email</label>
+              <label style={labelStyle}>Email</label>
               <input
                 type="email"
                 required
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 placeholder="you@example.com"
-                className="w-full px-4 py-2.5 bg-white/[0.04] border border-white/[0.08] rounded-xl text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-400/30 transition-colors"
+                style={inputStyle}
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Password</label>
+              <label style={labelStyle}>Password</label>
               <div className="relative">
                 <input
                   type={showPw ? "text" : "password"}
@@ -117,12 +158,14 @@ export default function SignUpPage() {
                   value={form.password}
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
                   placeholder="At least 8 characters"
-                  className="w-full px-4 py-2.5 pr-10 bg-white/[0.04] border border-white/[0.08] rounded-xl text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-400/30 transition-colors"
+                  style={{ ...inputStyle, paddingRight: 40 }}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPw(!showPw)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 transition-colors"
+                  style={{ color: "var(--fg-3)" }}
+                  aria-label={showPw ? "Hide password" : "Show password"}
                 >
                   {showPw ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
@@ -131,25 +174,31 @@ export default function SignUpPage() {
             <button
               type="submit"
               disabled={loading}
-              className="btn-primary w-full py-3 mt-2"
+              className="btn btn-primary w-full"
+              style={{ padding: "11px 14px", opacity: loading ? 0.6 : 1 }}
             >
               {loading ? "Creating account..." : "Create Account"}
             </button>
           </form>
 
-          <p className="mt-5 text-center text-sm text-gray-500">
+          <p className="mt-6 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
             Already have an account?{" "}
-            <Link href="/sign-in" className="text-primary-400 font-medium hover:text-primary-300 transition-colors">
+            <Link href="/sign-in" style={{ color: "var(--accent)" }}>
               Log in
             </Link>
           </p>
         </div>
 
-        <p className="mt-4 text-center text-xs text-gray-600">
+        <p className="mt-4 text-center mono text-[11px]" style={{ color: "var(--fg-3)", letterSpacing: "0.04em" }}>
           By signing up, you agree to our{" "}
-          <Link href="/terms" className="text-gray-500 hover:text-gray-400 underline transition-colors">Terms</Link>{" "}
+          <Link href="/terms" className="underline" style={{ color: "var(--fg-2)" }}>
+            Terms
+          </Link>{" "}
           and{" "}
-          <Link href="/privacy" className="text-gray-500 hover:text-gray-400 underline transition-colors">Privacy Policy</Link>.
+          <Link href="/privacy" className="underline" style={{ color: "var(--fg-2)" }}>
+            Privacy
+          </Link>
+          .
         </p>
       </div>
     </div>

@@ -4,16 +4,9 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
-  BarChart3,
-  Trophy,
-  Target,
-  Zap,
-  Flame,
   Flag,
-  TrendingUp,
-  TrendingDown,
+  Target,
   Trash2,
-  FileText,
 } from "lucide-react";
 import TopicBreakdownChart from "@/components/esh/TopicBreakdownChart";
 import useESHProgress from "@/lib/use-esh-progress";
@@ -41,8 +34,8 @@ export default function ProgressPage() {
 
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-surface-900 pt-20 flex items-center justify-center">
-        <div className="text-gray-500">Ачааллаж байна...</div>
+      <div className="min-h-screen pt-20 flex items-center justify-center" style={{ background: "var(--bg)" }}>
+        <p className="mono text-[12px]" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>АЧААЛЛАЖ БАЙНА...</p>
       </div>
     );
   }
@@ -54,175 +47,145 @@ export default function ProgressPage() {
     accuracy: t.accuracy,
   }));
 
+  const overviewStats = [
+    { value: `${progress.averageAccuracy}%`, label: "Дундаж оноо" },
+    { value: String(progress.totalTestsTaken), label: "Тест бодсон" },
+    { value: String(progress.totalQuestionsAnswered), label: "Бодлого бодсон" },
+    { value: String(progress.weeklyActivity.thisWeek), label: "Энэ долоо хоногт" },
+  ];
+
   return (
-    <div className="min-h-screen bg-surface-900 pt-20 relative">
-      <div className="absolute inset-0 bg-grid opacity-30" />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
+    <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-12">
         {/* Header */}
-        <div className="flex items-center gap-3 mb-8">
+        <div className="flex items-center gap-3 mb-6">
           <Link
             href="/practice/esh"
-            className="p-2 rounded-xl bg-white/[0.05] border border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.1] transition-colors"
+            className="p-2 rounded-md transition-colors"
+            style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="flex-1">
-            <h1 className="font-display text-xl font-bold text-white">
-              Прогресс
-            </h1>
-            <p className="text-sm text-gray-500">
-              Таны сурсан бүхнийг хянах
-            </p>
-          </div>
+          <div className="eyebrow flex-1">ЭЕШ · Прогресс</div>
           <button
             onClick={() => setShowClearConfirm(true)}
-            className="flex items-center gap-1 text-xs text-gray-500 hover:text-red-400 transition-colors"
+            className="flex items-center gap-1 mono text-[10px] uppercase transition-colors"
+            style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}
           >
-            <Trash2 className="w-3.5 h-3.5" /> Арилгах
+            <Trash2 className="w-3 h-3" /> Арилгах
           </button>
         </div>
 
+        <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(40px, 6vw, 64px)", letterSpacing: "-0.04em", lineHeight: 0.98, color: "var(--fg)" }}>
+          Таны <em className="serif-italic" style={{ color: "var(--accent)" }}>прогресс</em>.
+        </h1>
+
         {progress.totalTestsTaken === 0 && progress.totalQuestionsAnswered === 0 ? (
-          <div className="card-glass p-12 text-center">
-            <BarChart3 className="w-12 h-12 text-gray-600 mx-auto mb-4" />
-            <h2 className="font-display text-lg font-bold text-white mb-2">
-              Мэдээлэл байхгүй байна
+          <div className="card-edit p-12 text-center mt-8">
+            <div className="eyebrow mb-3">Хоосон</div>
+            <h2 className="serif" style={{ fontWeight: 400, fontSize: 26, letterSpacing: "-0.02em", color: "var(--fg)" }}>
+              Мэдээлэл <em className="serif-italic" style={{ color: "var(--accent)" }}>байхгүй</em>.
             </h2>
-            <p className="text-sm text-gray-500 mb-6">
+            <p className="text-[14px] mt-3 mb-6" style={{ color: "var(--fg-2)" }}>
               Тест бодож эсвэл дадлага хийж эхлэхэд таны прогресс энд харагдана.
             </p>
-            <div className="flex gap-3 justify-center">
-              <Link
-                href="/practice/esh/test"
-                className="btn-primary text-sm px-6 py-2.5"
-              >
+            <div className="flex gap-2 justify-center">
+              <Link href="/practice/esh/test" className="btn btn-primary">
                 Тест бодох
               </Link>
-              <Link
-                href="/practice/esh/practice"
-                className="px-6 py-2.5 rounded-xl text-sm font-medium text-gray-400 bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.1] transition-colors"
-              >
+              <Link href="/practice/esh/practice" className="btn btn-line">
                 Дадлага хийх
               </Link>
             </div>
           </div>
         ) : (
-          <div className="space-y-6">
-            {/* Overview stats */}
+          <div className="space-y-6 mt-8">
+            {/* Overview */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              <div className="card-glass p-4 text-center">
-                <Trophy className="w-5 h-5 text-yellow-400 mx-auto mb-1.5" />
-                <p className="text-2xl font-bold text-white">
-                  {progress.averageAccuracy}%
-                </p>
-                <p className="text-[11px] text-gray-500">Дундаж оноо</p>
-              </div>
-              <div className="card-glass p-4 text-center">
-                <FileText className="w-5 h-5 text-primary-400 mx-auto mb-1.5" />
-                <p className="text-2xl font-bold text-white">
-                  {progress.totalTestsTaken}
-                </p>
-                <p className="text-[11px] text-gray-500">Тест бодсон</p>
-              </div>
-              <div className="card-glass p-4 text-center">
-                <Zap className="w-5 h-5 text-yellow-400 mx-auto mb-1.5" />
-                <p className="text-2xl font-bold text-white">
-                  {progress.totalQuestionsAnswered}
-                </p>
-                <p className="text-[11px] text-gray-500">Бодлого бодсон</p>
-              </div>
-              <div className="card-glass p-4 text-center">
-                <Flame className="w-5 h-5 text-orange-400 mx-auto mb-1.5" />
-                <p className="text-2xl font-bold text-white">
-                  {progress.weeklyActivity.thisWeek}
-                </p>
-                <p className="text-[11px] text-gray-500">Энэ долоо хоногт</p>
-              </div>
+              {overviewStats.map((s, i) => (
+                <div key={s.label} className="card-edit p-5">
+                  <div className="mono text-[10px] mb-1" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <p className="serif tabular" style={{ fontSize: 26, color: "var(--accent)", letterSpacing: "-0.02em" }}>
+                    {s.value}
+                  </p>
+                  <p className="mono text-[10px] mt-1 uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+                    {s.label}
+                  </p>
+                </div>
+              ))}
             </div>
 
-            {/* Score trend */}
+            {/* Score history */}
             {progress.scoreHistory.length > 0 && (
-              <div className="card-glass p-6">
-                <h2 className="font-display text-base font-bold text-white mb-4 flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5 text-primary-400" />
-                  Шалгалтын оноо
-                </h2>
-                <div className="space-y-3">
-                  {progress.scoreHistory.map((entry, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center gap-3 px-3 py-2.5 bg-white/[0.03] rounded-xl"
-                    >
-                      <span className="w-8 h-8 rounded-lg bg-primary-500/15 flex items-center justify-center text-xs font-bold text-primary-300">
-                        {entry.testKey}
-                      </span>
-                      <div className="flex-1">
-                        <div className="h-2 bg-white/[0.06] rounded-full overflow-hidden">
-                          <div
-                            className={`h-full rounded-full transition-all ${
-                              entry.accuracy >= 80
-                                ? "bg-emerald-500"
-                                : entry.accuracy >= 50
-                                  ? "bg-yellow-500"
-                                  : "bg-red-500"
-                            }`}
-                            style={{ width: `${entry.accuracy}%` }}
-                          />
-                        </div>
-                      </div>
-                      <span
-                        className={`text-sm font-bold w-12 text-right ${
-                          entry.accuracy >= 80
-                            ? "text-emerald-400"
-                            : entry.accuracy >= 50
-                              ? "text-yellow-400"
-                              : "text-red-400"
-                        }`}
+              <div className="card-edit p-5">
+                <div className="eyebrow mb-4">Шалгалтын оноо</div>
+                <div className="space-y-2">
+                  {progress.scoreHistory.map((entry, i) => {
+                    const color = entry.accuracy >= 80 ? "var(--accent)" : entry.accuracy >= 50 ? "var(--warn)" : "var(--danger)";
+                    return (
+                      <div
+                        key={i}
+                        className="flex items-center gap-3 px-3 py-2.5 rounded-md"
+                        style={{ background: "var(--bg-2)" }}
                       >
-                        {entry.accuracy}%
-                      </span>
-                      <span className="text-xs text-gray-600 w-20 text-right">
-                        {new Date(entry.date).toLocaleDateString("mn-MN", {
-                          month: "short",
-                          day: "numeric",
-                        })}
-                      </span>
-                    </div>
-                  ))}
+                        <span
+                          className="mono tabular w-9 h-7 rounded flex items-center justify-center text-[11px]"
+                          style={{
+                            background: "var(--bg-1)",
+                            border: "1px solid var(--line)",
+                            color: "var(--fg)",
+                            letterSpacing: "0.04em",
+                          }}
+                        >
+                          {entry.testKey}
+                        </span>
+                        <div className="flex-1">
+                          <div className="h-[3px] rounded-full overflow-hidden" style={{ background: "var(--bg-1)" }}>
+                            <div className="h-full rounded-full transition-all" style={{ width: `${entry.accuracy}%`, background: color }} />
+                          </div>
+                        </div>
+                        <span className="serif tabular w-12 text-right" style={{ fontSize: 16, color }}>
+                          {entry.accuracy}%
+                        </span>
+                        <span className="mono text-[10px] w-16 text-right" style={{ color: "var(--fg-3)" }}>
+                          {new Date(entry.date).toLocaleDateString("mn-MN", { month: "short", day: "numeric" })}
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             )}
 
             {/* Topic mastery */}
             {topicStats.length > 0 && (
-              <div className="card-glass p-6">
-                <h2 className="font-display text-base font-bold text-white mb-4 flex items-center gap-2">
-                  <BarChart3 className="w-5 h-5 text-primary-400" />
-                  Сэдвийн эзэмшилт
-                </h2>
+              <div className="card-edit p-5">
+                <div className="eyebrow mb-4">Сэдвийн эзэмшилт</div>
                 <TopicBreakdownChart stats={topicStats} />
               </div>
             )}
 
             {/* Weak topics */}
             {progress.weakTopics.length > 0 && (
-              <div className="card-glass p-5 border-orange-400/10">
+              <div
+                className="card-edit p-5"
+                style={{ background: "color-mix(in oklch, var(--warn) 6%, transparent)", borderColor: "color-mix(in oklch, var(--warn) 25%, transparent)" }}
+              >
                 <div className="flex items-start gap-3">
-                  <Target className="w-5 h-5 text-orange-400 shrink-0 mt-0.5" />
-                  <div>
-                    <h3 className="text-sm font-semibold text-orange-300 mb-1">
-                      Анхаарах сэдвүүд
-                    </h3>
-                    <p className="text-sm text-gray-400">
-                      {progress.weakTopics
-                        .map((t) => TOPIC_LABELS[t] || t)
-                        .join(", ")}
+                  <Target className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "var(--warn)" }} />
+                  <div className="flex-1">
+                    <div className="eyebrow mb-1" style={{ color: "var(--warn)" }}>Анхаарах сэдвүүд</div>
+                    <p className="text-[13px]" style={{ color: "var(--fg-1)" }}>
+                      {progress.weakTopics.map((t) => TOPIC_LABELS[t] || t).join(" · ")}
                     </p>
                     <Link
                       href="/practice/esh/practice"
-                      className="inline-flex items-center gap-1 text-sm text-primary-400 hover:text-primary-300 font-medium mt-2 transition-colors"
+                      className="mono text-[11px] uppercase mt-3 inline-flex items-center gap-1"
+                      style={{ color: "var(--accent)", letterSpacing: "0.06em" }}
                     >
-                      <Target className="w-3.5 h-3.5" />
+                      <Target className="w-3 h-3" />
                       Дадлага хийх
                     </Link>
                   </div>
@@ -230,23 +193,22 @@ export default function ProgressPage() {
               </div>
             )}
 
-            {/* Flagged questions */}
+            {/* Flagged */}
             {progress.flaggedCount > 0 && (
-              <div className="card-glass p-5 border-orange-400/10">
+              <div className="card-edit p-5">
                 <div className="flex items-start gap-3">
-                  <Flag className="w-5 h-5 text-orange-400 shrink-0 mt-0.5" />
-                  <div>
-                    <h3 className="text-sm font-semibold text-orange-300 mb-1">
-                      Тэмдэглэсэн бодлогууд ({progress.flaggedCount})
-                    </h3>
-                    <p className="text-sm text-gray-400">
+                  <Flag className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "var(--warn)" }} />
+                  <div className="flex-1">
+                    <div className="eyebrow mb-1">Тэмдэглэсэн · {progress.flaggedCount}</div>
+                    <p className="text-[13px]" style={{ color: "var(--fg-2)" }}>
                       Эдгээр бодлогуудыг давтан шийдвэрлэхийг зөвлөж байна.
                     </p>
                     <Link
                       href="/practice/esh/practice"
-                      className="inline-flex items-center gap-1 text-sm text-primary-400 hover:text-primary-300 font-medium mt-2 transition-colors"
+                      className="mono text-[11px] uppercase mt-3 inline-flex items-center gap-1"
+                      style={{ color: "var(--accent)", letterSpacing: "0.06em" }}
                     >
-                      <Flag className="w-3.5 h-3.5" />
+                      <Flag className="w-3 h-3" />
                       Тэмдэглэсэн бодлого бодох
                     </Link>
                   </div>
@@ -255,17 +217,21 @@ export default function ProgressPage() {
             )}
 
             {/* Recommendation */}
-            <div className="card-glass p-5 border-primary-400/10">
-              <p className="text-sm text-gray-300">
-                <span className="text-primary-400 font-medium">Зөвлөгөө: </span>
+            <div
+              className="card-edit p-5"
+              style={{ background: "var(--accent-wash)", borderColor: "var(--accent-line)" }}
+            >
+              <div className="eyebrow mb-2" style={{ color: "var(--accent)" }}>Зөвлөгөө</div>
+              <p className="serif" style={{ fontSize: 16, lineHeight: 1.5, color: "var(--fg)" }}>
                 {progress.practiceRecommendation}
               </p>
               {progress.suggestedNextTest && (
                 <Link
-                  href={`/practice/esh/test`}
-                  className="inline-flex items-center gap-1 text-sm text-primary-400 hover:text-primary-300 font-medium mt-2 transition-colors"
+                  href="/practice/esh/test"
+                  className="mono text-[11px] uppercase mt-3 inline-flex items-center gap-1"
+                  style={{ color: "var(--accent)", letterSpacing: "0.06em" }}
                 >
-                  Тест {progress.suggestedNextTest} бодох
+                  Тест {progress.suggestedNextTest} бодох →
                 </Link>
               )}
             </div>
@@ -275,25 +241,30 @@ export default function ProgressPage() {
 
       {/* Clear confirmation modal */}
       {showClearConfirm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-          <div className="card-glass p-6 max-w-sm w-full">
-            <h3 className="font-display font-bold text-white mb-2">
-              Бүх мэдээлэл арилгах уу?
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center px-4"
+          style={{ background: "color-mix(in oklch, var(--bg) 70%, black 30% / 60%)", backdropFilter: "blur(8px)" }}
+        >
+          <div className="card-edit p-6 max-w-sm w-full" style={{ background: "var(--bg-1)" }}>
+            <div className="eyebrow mb-2">Баталгаажуулах</div>
+            <h3 className="serif" style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--fg)" }}>
+              Бүх мэдээлэл <em className="serif-italic" style={{ color: "var(--danger)" }}>арилгах</em> уу?
             </h3>
-            <p className="text-sm text-gray-400 mb-6">
-              Шалгалтын түүх, дадлагын мэдээлэл, тэмдэглэсэн бодлогууд бүгд
-              арилна. Энэ үйлдлийг буцаах боломжгүй.
+            <p className="text-[13px] mt-3 mb-6" style={{ color: "var(--fg-2)" }}>
+              Шалгалтын түүх, дадлагын мэдээлэл, тэмдэглэсэн бодлогууд бүгд арилна. Энэ үйлдлийг буцаах боломжгүй.
             </p>
-            <div className="flex gap-3">
-              <button
-                onClick={() => setShowClearConfirm(false)}
-                className="flex-1 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-400 bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.1] transition-colors"
-              >
+            <div className="flex gap-2">
+              <button onClick={() => setShowClearConfirm(false)} className="btn btn-line flex-1">
                 Болих
               </button>
               <button
                 onClick={handleClearAll}
-                className="flex-1 px-4 py-2.5 rounded-xl text-sm font-medium text-white bg-red-500/20 border border-red-400/30 hover:bg-red-500/30 transition-colors"
+                className="btn flex-1"
+                style={{
+                  background: "color-mix(in oklch, var(--danger) 18%, transparent)",
+                  border: "1px solid color-mix(in oklch, var(--danger) 35%, transparent)",
+                  color: "var(--danger)",
+                }}
               >
                 Арилгах
               </button>

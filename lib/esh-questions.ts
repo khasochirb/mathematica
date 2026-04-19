@@ -12,6 +12,14 @@ import test6aData from "@/data/questions/test6a.json";
 import test6bData from "@/data/questions/test6b.json";
 import test7aData from "@/data/questions/test7a.json";
 import test7bData from "@/data/questions/test7b.json";
+import test2024aData from "@/data/questions/2024a.json";
+import test2024bData from "@/data/questions/2024b.json";
+import test2024cData from "@/data/questions/2024c.json";
+import test2024dData from "@/data/questions/2024d.json";
+import test2025aData from "@/data/questions/2025a.json";
+import test2025bData from "@/data/questions/2025b.json";
+import test2025cData from "@/data/questions/2025c.json";
+import test2025dData from "@/data/questions/2025d.json";
 
 export interface Question {
   source: string;
@@ -51,6 +59,17 @@ const TESTS: TestInfo[] = [
   { key: "7B", label: "Тест 7Б", data: test7bData as Question[] },
 ];
 
+const PREVIOUS_YEAR_TESTS: TestInfo[] = [
+  { key: "2024A", label: "ЭЕШ 2024 · Хувилбар А", data: test2024aData as Question[] },
+  { key: "2024B", label: "ЭЕШ 2024 · Хувилбар Б", data: test2024bData as Question[] },
+  { key: "2024C", label: "ЭЕШ 2024 · Хувилбар В", data: test2024cData as Question[] },
+  { key: "2024D", label: "ЭЕШ 2024 · Хувилбар Г", data: test2024dData as Question[] },
+  { key: "2025A", label: "ЭЕШ 2025 · Хувилбар А", data: test2025aData as Question[] },
+  { key: "2025B", label: "ЭЕШ 2025 · Хувилбар Б", data: test2025bData as Question[] },
+  { key: "2025C", label: "ЭЕШ 2025 · Хувилбар В", data: test2025cData as Question[] },
+  { key: "2025D", label: "ЭЕШ 2025 · Хувилбар Г", data: test2025dData as Question[] },
+];
+
 export const TOPIC_LABELS: Record<string, string> = {
   algebra: "Алгебр",
   geometry: "Геометр",
@@ -82,8 +101,14 @@ export function getAllTests(): TestInfo[] {
   return TESTS;
 }
 
+export function getPreviousYearTests(): TestInfo[] {
+  return PREVIOUS_YEAR_TESTS;
+}
+
+const ALL_TESTS_LOOKUP: TestInfo[] = [...TESTS, ...PREVIOUS_YEAR_TESTS];
+
 export function getTestInfo(testKey: string): TestInfo | undefined {
-  return TESTS.find((t) => t.key === testKey.toUpperCase());
+  return ALL_TESTS_LOOKUP.find((t) => t.key === testKey.toUpperCase());
 }
 
 export function getTestQuestions(testKey: string): Question[] {

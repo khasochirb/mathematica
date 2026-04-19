@@ -7,7 +7,6 @@ import {
   ArrowLeft,
   Clock,
   FileText,
-  Trophy,
   Play,
   RotateCcw,
   AlertCircle,
@@ -35,7 +34,6 @@ export default function TestSelectionPage() {
   };
 
   const handleStart = (testKey: string) => {
-    // Abandon any existing active session for this test
     const existing = session.getActiveSessionForTest(testKey);
     if (existing) session.abandonSession(existing.id);
 
@@ -52,25 +50,51 @@ export default function TestSelectionPage() {
     }
   };
 
+  const scoreColor = (n: number) =>
+    n >= 80 ? "var(--accent)" : n >= 50 ? "var(--warn)" : "var(--danger)";
+
   return (
-    <div className="min-h-screen bg-surface-900 pt-20 relative">
-      <div className="absolute inset-0 bg-grid opacity-30" />
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
+    <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
-        <div className="flex items-center gap-3 mb-8">
+        <div
+          className="flex items-end gap-4 mb-10 pb-6"
+          style={{ borderBottom: "1px solid var(--line)" }}
+        >
           <Link
             href="/practice/esh"
-            className="p-2 rounded-xl bg-white/[0.05] border border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.1] transition-colors"
+            className="btn btn-ghost"
+            style={{ padding: "8px 10px" }}
+            aria-label="Back"
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
           <div>
-            <h1 className="font-display text-xl font-bold text-white">
+            <div className="eyebrow mb-1.5">01 · Шалгалт</div>
+            <h1
+              className="serif"
+              style={{
+                fontWeight: 400,
+                fontSize: "clamp(32px, 4vw, 44px)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1,
+                color: "var(--fg)",
+              }}
+            >
               Дадлага шалгалт
             </h1>
-            <p className="text-sm text-gray-500">
+            <p className="text-[13px] mt-2" style={{ color: "var(--fg-2)" }}>
               Тест сонгоод шалгалтын горимд бодоорой
             </p>
+          </div>
+          <div className="ml-auto text-right">
+            <div className="eyebrow">НИЙТ</div>
+            <div
+              className="serif tabular mt-1"
+              style={{ fontSize: 32, letterSpacing: "-0.02em", color: "var(--fg)" }}
+            >
+              {tests.length}
+            </div>
           </div>
         </div>
 
@@ -90,50 +114,72 @@ export default function TestSelectionPage() {
               <button
                 key={test.key}
                 onClick={() => handleTestClick(test.key)}
-                className="card-glass p-5 text-left hover:border-primary-400/30 hover:bg-white/[0.03] transition-all group"
+                className="card-edit p-5 text-left group"
               >
-                <div className="flex items-start justify-between mb-3">
+                <div className="flex items-start justify-between mb-4">
                   <div>
-                    <h3 className="font-display font-bold text-white group-hover:text-primary-300 transition-colors">
+                    <div className="eyebrow mb-1.5" style={{ color: "var(--accent)" }}>
+                      {test.key}
+                    </div>
+                    <h3
+                      className="serif"
+                      style={{
+                        fontWeight: 400,
+                        fontSize: 22,
+                        letterSpacing: "-0.02em",
+                        color: "var(--fg)",
+                        lineHeight: 1.1,
+                      }}
+                    >
                       {test.label}
                     </h3>
-                    <div className="flex items-center gap-2 mt-1 text-xs text-gray-500">
-                      <FileText className="w-3.5 h-3.5" />
-                      <span>{test.data.length} бодлого</span>
-                      <Clock className="w-3.5 h-3.5 ml-1" />
-                      <span>100 мин</span>
+                    <div
+                      className="flex items-center gap-2 mt-2 mono text-[11px]"
+                      style={{ color: "var(--fg-3)" }}
+                    >
+                      <FileText className="w-3 h-3" />
+                      <span className="tabular">{test.data.length} бодлого</span>
+                      <span>·</span>
+                      <Clock className="w-3 h-3" />
+                      <span className="tabular">100 мин</span>
                     </div>
                   </div>
                   {active ? (
-                    <span className="text-xs font-medium px-2 py-1 rounded-full bg-yellow-500/15 text-yellow-400 border border-yellow-400/20">
-                      Үргэлжлүүлэх
-                    </span>
+                    <span className="badge-edit badge-warn">Үргэлжлүүлэх</span>
                   ) : (
-                    <Play className="w-5 h-5 text-gray-600 group-hover:text-primary-400 transition-colors" />
+                    <Play
+                      className="w-5 h-5 transition-colors"
+                      style={{ color: "var(--fg-3)" }}
+                    />
                   )}
                 </div>
 
                 {mounted && best !== null && (
-                  <div className="flex items-center gap-3 mt-3 pt-3 border-t border-white/[0.06]">
-                    <div className="flex items-center gap-1.5">
-                      <Trophy className="w-3.5 h-3.5 text-yellow-500" />
-                      <span
-                        className={`text-sm font-bold ${
-                          best >= 80
-                            ? "text-emerald-400"
-                            : best >= 50
-                              ? "text-yellow-400"
-                              : "text-red-400"
-                        }`}
-                      >
-                        {best}%
-                      </span>
-                    </div>
-                    <span className="text-xs text-gray-600">
+                  <div
+                    className="flex items-center gap-3 mt-4 pt-3"
+                    style={{ borderTop: "1px solid var(--line)" }}
+                  >
+                    <span
+                      className="serif tabular"
+                      style={{
+                        fontSize: 20,
+                        letterSpacing: "-0.01em",
+                        color: scoreColor(best),
+                      }}
+                    >
+                      {best}%
+                    </span>
+                    <span
+                      className="mono tabular text-[11px]"
+                      style={{ color: "var(--fg-3)" }}
+                    >
                       {attemptCount} удаа бодсон
                     </span>
                     {latest?.completedAt && (
-                      <span className="text-xs text-gray-600 ml-auto">
+                      <span
+                        className="mono tabular text-[11px] ml-auto"
+                        style={{ color: "var(--fg-3)" }}
+                      >
                         {new Date(latest.completedAt).toLocaleDateString("mn-MN")}
                       </span>
                     )}
@@ -141,8 +187,11 @@ export default function TestSelectionPage() {
                 )}
 
                 {mounted && best === null && (
-                  <div className="mt-3 pt-3 border-t border-white/[0.06]">
-                    <span className="text-xs text-gray-600">Бодоогүй</span>
+                  <div
+                    className="mt-4 pt-3 mono text-[11px]"
+                    style={{ borderTop: "1px solid var(--line)", color: "var(--fg-3)" }}
+                  >
+                    Бодоогүй
                   </div>
                 )}
               </button>
@@ -153,42 +202,59 @@ export default function TestSelectionPage() {
 
       {/* Start confirmation modal */}
       {showStartModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-          <div className="card-glass p-6 max-w-sm w-full">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-primary-500/20 flex items-center justify-center">
-                <Play className="w-5 h-5 text-primary-400" />
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center px-4"
+          style={{ background: "rgba(0,0,0,0.65)", backdropFilter: "blur(8px)" }}
+        >
+          <div className="card-edit p-6 max-w-sm w-full">
+            <div className="flex items-center gap-3 mb-5">
+              <div
+                className="w-10 h-10 rounded-md flex items-center justify-center"
+                style={{
+                  background: "var(--accent-wash)",
+                  border: "1px solid var(--accent-line)",
+                  color: "var(--accent)",
+                }}
+              >
+                <Play className="w-4 h-4" />
               </div>
               <div>
-                <h3 className="font-display font-bold text-white">
+                <div className="eyebrow">Шалгалт эхлүүлэх</div>
+                <h3
+                  className="serif mt-0.5"
+                  style={{
+                    fontWeight: 400,
+                    fontSize: 20,
+                    letterSpacing: "-0.02em",
+                    color: "var(--fg)",
+                  }}
+                >
                   {getAllTests().find((t) => t.key === showStartModal)?.label}
                 </h3>
-                <p className="text-xs text-gray-500">Шалгалт эхлүүлэх</p>
               </div>
             </div>
 
-            <div className="space-y-2 mb-6 text-sm text-gray-400">
+            <div className="space-y-2 mb-6 text-[13px]" style={{ color: "var(--fg-1)" }}>
               <div className="flex items-center gap-2">
-                <FileText className="w-4 h-4 text-gray-500" />
-                <span>
-                  {getAllTests().find((t) => t.key === showStartModal)?.data.length}{" "}
-                  бодлого
+                <FileText className="w-3.5 h-3.5" style={{ color: "var(--fg-3)" }} />
+                <span className="mono tabular">
+                  {getAllTests().find((t) => t.key === showStartModal)?.data.length} бодлого
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-gray-500" />
-                <span>100 минийн хугацаатай</span>
+                <Clock className="w-3.5 h-3.5" style={{ color: "var(--fg-3)" }} />
+                <span className="mono tabular">100 минийн хугацаатай</span>
               </div>
               <div className="flex items-center gap-2">
-                <AlertCircle className="w-4 h-4 text-gray-500" />
+                <AlertCircle className="w-3.5 h-3.5" style={{ color: "var(--fg-3)" }} />
                 <span>Хариулт шалгалт дуусмагц харагдана</span>
               </div>
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex gap-2">
               <button
                 onClick={() => setShowStartModal(null)}
-                className="flex-1 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-400 bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.1] transition-colors"
+                className="btn btn-line flex-1"
               >
                 Буцах
               </button>
@@ -197,7 +263,7 @@ export default function TestSelectionPage() {
                   handleStart(showStartModal);
                   setShowStartModal(null);
                 }}
-                className="flex-1 btn-primary text-sm py-2.5"
+                className="btn btn-primary flex-1"
               >
                 Эхлэх
               </button>
@@ -208,34 +274,50 @@ export default function TestSelectionPage() {
 
       {/* Resume modal */}
       {showResumeModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-          <div className="card-glass p-6 max-w-sm w-full">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center px-4"
+          style={{ background: "rgba(0,0,0,0.65)", backdropFilter: "blur(8px)" }}
+        >
+          <div className="card-edit p-6 max-w-sm w-full">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-yellow-500/20 flex items-center justify-center">
-                <RotateCcw className="w-5 h-5 text-yellow-400" />
+              <div
+                className="w-10 h-10 rounded-md flex items-center justify-center"
+                style={{
+                  background: "rgba(245, 158, 11, 0.10)",
+                  border: "1px solid rgba(245, 158, 11, 0.32)",
+                  color: "var(--warn)",
+                }}
+              >
+                <RotateCcw className="w-4 h-4" />
               </div>
               <div>
-                <h3 className="font-display font-bold text-white">
-                  Дуусаагүй шалгалт байна
-                </h3>
-                <p className="text-xs text-gray-500">
+                <div className="eyebrow">Дуусаагүй шалгалт</div>
+                <h3
+                  className="serif mt-0.5"
+                  style={{
+                    fontWeight: 400,
+                    fontSize: 20,
+                    letterSpacing: "-0.02em",
+                    color: "var(--fg)",
+                  }}
+                >
                   {getAllTests().find((t) => t.key === showResumeModal)?.label}
-                </p>
+                </h3>
               </div>
             </div>
 
-            <p className="text-sm text-gray-400 mb-6">
-              Та өмнө нь энэ шалгалтыг эхлүүлсэн байна. Үргэлжлүүлэх үү эсвэл
-              шинээр эхлэх үү?
+            <p className="text-[13px] mb-6" style={{ color: "var(--fg-1)" }}>
+              Та өмнө нь энэ шалгалтыг эхлүүлсэн байна. Үргэлжлүүлэх үү эсвэл шинээр
+              эхлэх үү?
             </p>
 
-            <div className="flex gap-3">
+            <div className="flex gap-2">
               <button
                 onClick={() => {
                   handleStart(showResumeModal);
                   setShowResumeModal(null);
                 }}
-                className="flex-1 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-400 bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.1] transition-colors"
+                className="btn btn-line flex-1"
               >
                 Шинээр эхлэх
               </button>
@@ -244,7 +326,7 @@ export default function TestSelectionPage() {
                   handleResume(showResumeModal);
                   setShowResumeModal(null);
                 }}
-                className="flex-1 btn-primary text-sm py-2.5"
+                className="btn btn-primary flex-1"
               >
                 Үргэлжлүүлэх
               </button>

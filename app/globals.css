@@ -6,6 +6,59 @@
   :root {
     --font-inter: "Inter", sans-serif;
     --font-space-grotesk: "Space Grotesk", sans-serif;
+
+    /* Dark (default) — Globe loader OKLCH palette */
+    --bg: oklch(0.16 0.005 240);
+    --bg-1: oklch(0.185 0.006 240);
+    --bg-2: oklch(0.21 0.007 240);
+    --bg-3: oklch(0.24 0.008 240);
+    --line: oklch(0.28 0.008 240);
+    --line-strong: oklch(0.34 0.01 240);
+    --line-2: oklch(0.34 0.01 240);
+
+    --fg: oklch(0.96 0.004 85);
+    --fg-1: oklch(0.82 0.006 85);
+    --fg-2: oklch(0.62 0.008 85);
+    --fg-3: oklch(0.46 0.008 85);
+
+    --accent-h: 245;
+    --accent: oklch(0.82 0.17 var(--accent-h));
+    --accent-dim: oklch(0.68 0.14 var(--accent-h));
+    --accent-line: oklch(0.82 0.17 var(--accent-h) / 0.30);
+    --accent-wash: oklch(0.82 0.17 var(--accent-h) / 0.08);
+    --accent-ink: oklch(0.18 0.05 var(--accent-h));
+
+    --warn: oklch(0.82 0.14 75);
+    --danger: oklch(0.72 0.17 25);
+    --info: oklch(0.78 0.10 240);
+
+    --r-1: 4px;
+    --r-2: 8px;
+    --r-3: 12px;
+    --r-4: 18px;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  /* Light theme — applied via <html data-theme="light"> */
+  [data-theme="light"] {
+    --bg: oklch(0.985 0.003 85);
+    --bg-1: oklch(0.965 0.004 85);
+    --bg-2: oklch(0.94 0.005 85);
+    --bg-3: oklch(0.91 0.006 85);
+    --line: oklch(0.88 0.006 85);
+    --line-strong: oklch(0.82 0.008 85);
+    --line-2: oklch(0.82 0.008 85);
+
+    --fg: oklch(0.2 0.008 240);
+    --fg-1: oklch(0.32 0.008 240);
+    --fg-2: oklch(0.48 0.008 240);
+    --fg-3: oklch(0.62 0.008 240);
+
+    --accent: oklch(0.58 0.18 var(--accent-h));
+    --accent-dim: oklch(0.48 0.16 var(--accent-h));
+    --accent-line: oklch(0.58 0.18 var(--accent-h) / 0.35);
+    --accent-wash: oklch(0.58 0.18 var(--accent-h) / 0.09);
+    --accent-ink: oklch(0.98 0.02 var(--accent-h));
   }
 
   html {
@@ -13,7 +66,10 @@
   }
 
   body {
-    @apply bg-surface-900 text-gray-100 antialiased;
+    background: var(--bg);
+    color: var(--fg);
+    @apply antialiased;
+    transition: background-color .25s var(--ease), color .25s var(--ease);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -180,4 +236,123 @@
   );
   background-size: 200% 100%;
   animation: shimmer 3s linear infinite;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Editorial design primitives — additive layer used by the new
+   pages (Dashboard / Analytics / AI Tutor) and refreshed surfaces.
+   ───────────────────────────────────────────────────────────── */
+.serif {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.serif-italic {
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+}
+.mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-feature-settings: "ss01", "ss02";
+}
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+.eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--fg-3);
+}
+
+/* Editorial buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--fg-1);
+  transition: background .15s var(--ease), border-color .15s var(--ease), color .15s var(--ease);
+  cursor: pointer;
+}
+.btn:hover { background: var(--bg-1); border-color: var(--line-strong); }
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+.btn-primary:hover { background: var(--accent-dim); border-color: var(--accent-dim); color: var(--accent-ink); }
+.btn-line {
+  border-color: var(--line-strong);
+  color: var(--fg);
+}
+.btn-ghost {
+  border-color: transparent;
+  color: var(--fg-2);
+}
+.btn-ghost:hover { color: var(--fg); background: var(--bg-1); }
+
+/* Editorial badges */
+.badge-edit {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 99px;
+  border: 1px solid var(--line);
+  background: var(--bg-1);
+  color: var(--fg-2);
+}
+.badge-accent { color: var(--accent); border-color: var(--accent-line); background: var(--accent-wash); }
+.badge-warn   { color: var(--warn);   border-color: rgba(245, 158, 11, 0.32); background: rgba(245, 158, 11, 0.10); }
+.badge-danger { color: var(--danger); border-color: rgba(239, 68, 68, 0.32);  background: rgba(239, 68, 68, 0.10); }
+
+/* Editorial card */
+.card-edit {
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  transition: border-color .2s var(--ease), background .2s var(--ease);
+}
+.card-edit:hover { border-color: var(--line-strong); }
+
+/* Live pulse */
+.live-dot { display: inline-flex; align-items: center; gap: 6px; }
+.live-dot::before {
+  content: "";
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 99px;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 var(--accent);
+  animation: livePulse 1.6s var(--ease) infinite;
+}
+@keyframes livePulse {
+  0%   { box-shadow: 0 0 0 0   color-mix(in oklch, var(--accent) 50%, transparent); }
+  70%  { box-shadow: 0 0 0 10px transparent; }
+  100% { box-shadow: 0 0 0 0   transparent; }
+}
+
+/* Math problem text container */
+.q-math {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--fg);
+}
+.q-math .var {
+  font-style: italic;
+  color: var(--accent);
 }

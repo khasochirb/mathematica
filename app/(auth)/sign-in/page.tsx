@@ -8,6 +8,18 @@ import Image from "next/image";
 import { api, setToken } from "@/lib/api";
 import { useAuth } from "@/lib/auth-context";
 
+const inputStyle: React.CSSProperties = {
+  width: "100%",
+  padding: "10px 12px",
+  fontSize: 14,
+  background: "var(--bg-1)",
+  border: "1px solid var(--line)",
+  borderRadius: 8,
+  color: "var(--fg)",
+  outline: "none",
+  transition: "border-color .15s var(--ease), background .15s var(--ease)",
+};
+
 export default function SignInPage() {
   const router = useRouter();
   const { refresh } = useAuth();
@@ -33,37 +45,65 @@ export default function SignInPage() {
   }
 
   return (
-    <div className="min-h-screen bg-surface-900 flex items-center justify-center px-4 pt-16 relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 bg-grid opacity-50" />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary-500/[0.07] blur-[120px] rounded-full pointer-events-none" />
+    <div
+      className="min-h-screen flex items-center justify-center px-4 pt-20 pb-12 relative overflow-hidden"
+      style={{ background: "var(--bg)" }}
+    >
+      <div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[460px] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(closest-side, color-mix(in oklch, var(--accent) 14%, transparent), transparent 70%)",
+          filter: "blur(40px)",
+        }}
+      />
 
       <div className="w-full max-w-md relative">
-        {/* Logo */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2.5 group">
-            <Image src="/images/mp.png" alt="Mongol Potential" width={40} height={40} className="rounded-lg" />
-            <span className="font-display font-bold text-white text-xl group-hover:text-primary-300 transition-colors">
+            <span className="inline-block w-2 h-2 rounded-sm" style={{ background: "var(--accent)" }} />
+            <Image src="/images/mp.png" alt="Mongol Potential" width={32} height={32} className="rounded-md" />
+            <span className="font-semibold text-[15px] tracking-tight" style={{ color: "var(--fg)" }}>
               Mongol Potential
             </span>
           </Link>
         </div>
 
-        <div className="card-glass border-glow p-8">
+        <div className="card-edit p-8">
           <div className="mb-6">
-            <h1 className="font-display text-2xl font-bold text-white mb-1">Welcome back</h1>
-            <p className="text-gray-400 text-sm">Log in to your account to continue practicing.</p>
+            <div className="eyebrow mb-2">Account · Sign In</div>
+            <h1
+              className="serif"
+              style={{ fontWeight: 400, fontSize: 32, letterSpacing: "-0.02em", color: "var(--fg)" }}
+            >
+              Welcome <em className="serif-italic" style={{ color: "var(--accent)" }}>back</em>.
+            </h1>
+            <p className="mt-1.5 text-[13px]" style={{ color: "var(--fg-2)" }}>
+              Log in to your account to continue practicing.
+            </p>
           </div>
 
           {error && (
-            <div className="mb-5 p-3 bg-red-500/10 border border-red-400/20 rounded-xl text-red-400 text-sm">
+            <div
+              className="mb-5 p-3 rounded-md text-[13px]"
+              style={{
+                background: "rgba(239, 68, 68, 0.10)",
+                border: "1px solid rgba(239, 68, 68, 0.30)",
+                color: "var(--danger)",
+              }}
+            >
               {error}
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Email</label>
+              <label
+                className="block mono text-[11px] mb-1.5"
+                style={{ color: "var(--fg-3)", letterSpacing: "0.08em", textTransform: "uppercase" }}
+              >
+                Email
+              </label>
               <input
                 type="email"
                 required
@@ -71,11 +111,16 @@ export default function SignInPage() {
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 placeholder="you@example.com"
-                className="w-full px-4 py-2.5 bg-white/[0.04] border border-white/[0.08] rounded-xl text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-400/30 transition-colors"
+                style={inputStyle}
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Password</label>
+              <label
+                className="block mono text-[11px] mb-1.5"
+                style={{ color: "var(--fg-3)", letterSpacing: "0.08em", textTransform: "uppercase" }}
+              >
+                Password
+              </label>
               <div className="relative">
                 <input
                   type={showPw ? "text" : "password"}
@@ -83,12 +128,14 @@ export default function SignInPage() {
                   value={form.password}
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
                   placeholder="Your password"
-                  className="w-full px-4 py-2.5 pr-10 bg-white/[0.04] border border-white/[0.08] rounded-xl text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-400/30 transition-colors"
+                  style={{ ...inputStyle, paddingRight: 40 }}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPw(!showPw)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 transition-colors"
+                  style={{ color: "var(--fg-3)" }}
+                  aria-label={showPw ? "Hide password" : "Show password"}
                 >
                   {showPw ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
@@ -97,15 +144,16 @@ export default function SignInPage() {
             <button
               type="submit"
               disabled={loading}
-              className="btn-primary w-full py-3 mt-2"
+              className="btn btn-primary w-full"
+              style={{ padding: "11px 14px", opacity: loading ? 0.6 : 1 }}
             >
               {loading ? "Logging in..." : "Log In"}
             </button>
           </form>
 
-          <p className="mt-5 text-center text-sm text-gray-500">
+          <p className="mt-6 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
             Don&apos;t have an account?{" "}
-            <Link href="/sign-up" className="text-primary-400 font-medium hover:text-primary-300 transition-colors">
+            <Link href="/sign-up" style={{ color: "var(--accent)" }}>
               Sign up free
             </Link>
           </p>

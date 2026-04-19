@@ -22,7 +22,6 @@ import {
   getAllQuestions,
   getQuestionsByTopic,
   getQuestionBySource,
-  getSimilarQuestions,
   TOPICS,
   TOPIC_LABELS,
 } from "@/lib/esh-questions";
@@ -83,7 +82,6 @@ export default function PracticePage() {
           break;
       }
 
-      // Filter out already correctly answered (for weak/mixed modes)
       if (selectedMode === "weak" || selectedMode === "mixed") {
         const correctSources = new Set(
           perf.attempts
@@ -96,7 +94,7 @@ export default function PracticePage() {
 
       return shuffleArray(pool).slice(0, 10);
     },
-    [allQuestions, weakTopics, flaggedHook.flagged, perf.attempts],
+    [allQuestions, weakTopics, flaggedHook.flagged, perf.attempts, perf],
   );
 
   const handleStart = () => {
@@ -131,7 +129,6 @@ export default function PracticePage() {
       [questionSource]: { selected, correct, isCorrect },
     }));
 
-    // Auto-advance after a short delay
     setTimeout(() => {
       if (currentIndex < practiceQuestions.length - 1) {
         setCurrentIndex((i) => i + 1);
@@ -142,9 +139,7 @@ export default function PracticePage() {
   };
 
   const correctCount = Object.values(results).filter((r) => r.isCorrect).length;
-  const totalAnswered = Object.keys(results).length;
 
-  // Compute topic stats for results
   const practiceTopicStats = useMemo(() => {
     const map: Record<string, { correct: number; total: number }> = {};
     for (const q of practiceQuestions) {
@@ -166,134 +161,91 @@ export default function PracticePage() {
     label: string;
     desc: string;
     icon: typeof Target;
-    color: string;
   }[] = [
-    {
-      key: "weak",
-      label: "Сул сэдвээр",
-      desc: "Сул сэдвүүдийн бодлогууд",
-      icon: Target,
-      color: "text-orange-400 bg-orange-500/15",
-    },
-    {
-      key: "topic",
-      label: "Сэдвээр",
-      desc: "Нэг сэдвийн бодлогууд",
-      icon: BookOpen,
-      color: "text-primary-400 bg-primary-500/15",
-    },
-    {
-      key: "flagged",
-      label: "Тэмдэглэсэн",
-      desc: `${flaggedHook.getUnresolvedCount()} бодлого`,
-      icon: Flag,
-      color: "text-orange-400 bg-orange-500/15",
-    },
-    {
-      key: "mixed",
-      label: "Холимог",
-      desc: "Бүх сэдвээс санамсаргүй",
-      icon: Shuffle,
-      color: "text-cyan-400 bg-cyan-500/15",
-    },
+    { key: "weak", label: "Сул сэдвээр", desc: "Сул сэдвүүдийн бодлогууд", icon: Target },
+    { key: "topic", label: "Сэдвээр", desc: "Нэг сэдвийн бодлогууд", icon: BookOpen },
+    { key: "flagged", label: "Тэмдэглэсэн", desc: `${flaggedHook.getUnresolvedCount()} бодлого`, icon: Flag },
+    { key: "mixed", label: "Холимог", desc: "Бүх сэдвээс санамсаргүй", icon: Shuffle },
   ];
 
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-surface-900 pt-20 flex items-center justify-center">
-        <div className="text-gray-500">Ачааллаж байна...</div>
+      <div className="min-h-screen pt-20 flex items-center justify-center" style={{ background: "var(--bg)" }}>
+        <p className="mono text-[12px]" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
+          АЧААЛЛАЖ БАЙНА...
+        </p>
       </div>
     );
   }
 
-  // RESULTS STATE
+  // RESULTS
   if (state === "results") {
+    const pct = Math.round((correctCount / practiceQuestions.length) * 100);
+    const pctColor = pct >= 80 ? "var(--accent)" : pct >= 50 ? "var(--warn)" : "var(--danger)";
     return (
-      <div className="min-h-screen bg-surface-900 pt-20 relative">
-        <div className="absolute inset-0 bg-grid opacity-30" />
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
-          <div className="text-center mb-8">
+      <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-12">
+          <div className="text-center mb-10">
+            <div className="eyebrow mb-3">Дадлага · Үр дүн</div>
             <div
-              className={`text-5xl font-bold font-display mb-2 ${
-                correctCount / practiceQuestions.length >= 0.8
-                  ? "text-emerald-400"
-                  : correctCount / practiceQuestions.length >= 0.5
-                    ? "text-yellow-400"
-                    : "text-red-400"
-              }`}
+              className="serif tabular"
+              style={{ fontSize: "clamp(64px, 10vw, 110px)", color: pctColor, letterSpacing: "-0.04em", lineHeight: 1 }}
             >
-              {correctCount}/{practiceQuestions.length}
+              {correctCount}<span style={{ color: "var(--fg-3)" }}>/{practiceQuestions.length}</span>
             </div>
-            <p className="text-gray-500">
-              {Math.round((correctCount / practiceQuestions.length) * 100)}% зөв
+            <p className="mono text-[12px] mt-3 uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+              {pct}% зөв
             </p>
           </div>
 
-          {/* Topic breakdown */}
           {practiceTopicStats.length > 0 && (
-            <div className="card-glass p-5 mb-6">
-              <h3 className="font-display text-sm font-bold text-white mb-3">
-                Сэдвийн задаргаа
-              </h3>
+            <div className="card-edit p-5 mb-4">
+              <div className="eyebrow mb-3">Сэдвийн задаргаа</div>
               <TopicBreakdownChart stats={practiceTopicStats} />
             </div>
           )}
 
-          {/* Question summary */}
-          <div className="card-glass p-5 mb-6">
-            <h3 className="font-display text-sm font-bold text-white mb-3">
-              Бодлогууд
-            </h3>
-            <div className="space-y-2">
-              {practiceQuestions.map((q, i) => {
-                const r = results[q.source];
-                return (
-                  <div
-                    key={q.source}
-                    className="flex items-center gap-3 px-3 py-2 rounded-lg bg-white/[0.03]"
-                  >
-                    <span className="text-xs font-bold text-gray-500 w-5">
-                      {i + 1}
-                    </span>
-                    <span className="text-sm text-gray-400 flex-1 truncate">
-                      {TOPIC_LABELS[q.topic] || q.topic}
-                    </span>
-                    {r?.isCorrect ? (
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                    ) : r ? (
-                      <XCircle className="w-4 h-4 text-red-400" />
-                    ) : (
-                      <span className="text-xs text-gray-600">—</span>
-                    )}
-                  </div>
-                );
-              })}
+          <div className="card-edit p-2 mb-6">
+            <div className="px-4 py-3" style={{ borderBottom: "1px solid var(--line)" }}>
+              <div className="eyebrow">Бодлогууд</div>
             </div>
+            {practiceQuestions.map((q, i) => {
+              const r = results[q.source];
+              return (
+                <div
+                  key={q.source}
+                  className="flex items-center gap-3 px-4 py-2.5"
+                  style={{ borderBottom: i < practiceQuestions.length - 1 ? "1px solid var(--line)" : "none" }}
+                >
+                  <span className="mono tabular text-[11px] w-6" style={{ color: "var(--fg-3)" }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-[13px] flex-1 truncate" style={{ color: "var(--fg-2)" }}>
+                    {TOPIC_LABELS[q.topic] || q.topic}
+                  </span>
+                  {r?.isCorrect ? (
+                    <CheckCircle2 className="w-4 h-4" style={{ color: "var(--accent)" }} />
+                  ) : r ? (
+                    <XCircle className="w-4 h-4" style={{ color: "var(--danger)" }} />
+                  ) : (
+                    <span className="mono text-[11px]" style={{ color: "var(--fg-3)" }}>—</span>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
-          {/* Actions */}
-          <div className="flex flex-wrap gap-3">
-            <button
-              onClick={() => {
-                handleStart();
-              }}
-              className="flex items-center gap-2 btn-primary text-sm px-5 py-2.5"
-            >
-              <RotateCcw className="w-4 h-4" />
-              Дахин дадлага хийх
+          <div className="flex flex-wrap gap-2">
+            <button onClick={handleStart} className="btn btn-primary">
+              <RotateCcw className="mr-1 w-3.5 h-3.5" />
+              Дахин дадлага
             </button>
-            <button
-              onClick={() => setState("setup")}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-400 bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.1] transition-colors"
-            >
+            <button onClick={() => setState("setup")} className="btn btn-line">
               Горим сонгох
             </button>
-            <Link
-              href="/practice/esh"
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-400 bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.1] transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Нүүр хуудас
+            <Link href="/practice/esh" className="btn btn-ghost">
+              <ArrowLeft className="mr-1 w-3.5 h-3.5" />
+              Нүүр
             </Link>
           </div>
         </div>
@@ -301,31 +253,28 @@ export default function PracticePage() {
     );
   }
 
-  // ACTIVE STATE
+  // ACTIVE
   if (state === "active") {
     const currentQ = practiceQuestions[currentIndex];
     const isLast = currentIndex === practiceQuestions.length - 1;
     const answered = currentQ.source in results;
+    const progressPct = ((currentIndex + (answered ? 1 : 0)) / practiceQuestions.length) * 100;
 
     return (
-      <div className="min-h-screen bg-surface-900 pt-20 relative">
-        <div className="absolute inset-0 bg-grid opacity-30" />
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
-          {/* Progress */}
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-sm text-gray-500">
-              {currentIndex + 1} / {practiceQuestions.length}
+      <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12">
+          <div className="flex items-center justify-between mb-3">
+            <span className="mono text-[11px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
+              {String(currentIndex + 1).padStart(2, "0")} / {String(practiceQuestions.length).padStart(2, "0")}
             </span>
-            <span className="text-sm text-gray-500">
+            <span className="mono text-[11px] uppercase" style={{ color: "var(--accent)", letterSpacing: "0.06em" }}>
               {correctCount} зөв
             </span>
           </div>
-          <div className="h-1 bg-white/[0.06] rounded-full mb-6 overflow-hidden">
+          <div className="h-[3px] rounded-full mb-6 overflow-hidden" style={{ background: "var(--bg-2)" }}>
             <div
-              className="h-full bg-primary-500/60 transition-all duration-300 rounded-full"
-              style={{
-                width: `${((currentIndex + (answered ? 1 : 0)) / practiceQuestions.length) * 100}%`,
-              }}
+              className="h-full transition-all duration-300 rounded-full"
+              style={{ width: `${progressPct}%`, background: "var(--accent)" }}
             />
           </div>
 
@@ -336,34 +285,28 @@ export default function PracticePage() {
             onAnswer={handleAnswer}
           />
 
-          {/* Navigation for skipping */}
           <div className="flex justify-between mt-4">
             <button
               onClick={() => {
                 if (currentIndex > 0) setCurrentIndex((i) => i - 1);
               }}
               disabled={currentIndex === 0}
-              className={`text-sm px-4 py-2 rounded-xl transition-all ${
-                currentIndex === 0
-                  ? "text-gray-600 cursor-not-allowed"
-                  : "text-gray-400 hover:text-white"
-              }`}
+              className="mono text-[11px] uppercase px-4 py-2 transition-colors disabled:opacity-30"
+              style={{ color: "var(--fg-2)", letterSpacing: "0.06em" }}
             >
-              Өмнөх
+              ← Өмнөх
             </button>
             {answered && !isLast && (
               <button
                 onClick={() => setCurrentIndex((i) => i + 1)}
-                className="text-sm text-primary-400 hover:text-primary-300 flex items-center gap-1"
+                className="mono text-[11px] uppercase px-4 py-2 flex items-center gap-1"
+                style={{ color: "var(--accent)", letterSpacing: "0.06em" }}
               >
-                Дараах <ChevronRight className="w-4 h-4" />
+                Дараах <ChevronRight className="w-3.5 h-3.5" />
               </button>
             )}
             {answered && isLast && (
-              <button
-                onClick={() => setState("results")}
-                className="btn-primary text-sm px-5 py-2"
-              >
+              <button onClick={() => setState("results")} className="btn btn-primary">
                 Үр дүн харах
               </button>
             )}
@@ -373,32 +316,32 @@ export default function PracticePage() {
     );
   }
 
-  // SETUP STATE
+  // SETUP
   return (
-    <div className="min-h-screen bg-surface-900 pt-20 relative">
-      <div className="absolute inset-0 bg-grid opacity-30" />
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
+    <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-12">
         {/* Header */}
-        <div className="flex items-center gap-3 mb-8">
+        <div className="flex items-center gap-3 mb-6">
           <Link
             href="/practice/esh"
-            className="p-2 rounded-xl bg-white/[0.05] border border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.1] transition-colors"
+            className="p-2 rounded-md transition-colors"
+            style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div>
-            <h1 className="font-display text-xl font-bold text-white">
-              Дадлага бодлого
-            </h1>
-            <p className="text-sm text-gray-500">
-              Горим сонгоод 10 бодлого бод
-            </p>
-          </div>
+          <div className="eyebrow">ЭЕШ · Дадлага</div>
         </div>
 
+        <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(40px, 6vw, 64px)", letterSpacing: "-0.04em", lineHeight: 0.98, color: "var(--fg)" }}>
+          10 бодлогын <em className="serif-italic" style={{ color: "var(--accent)" }}>дадлага</em>.
+        </h1>
+        <p className="serif mt-4 max-w-2xl" style={{ fontSize: 17, lineHeight: 1.55, color: "var(--fg-1)" }}>
+          Горим сонгоод эхлээрэй.
+        </p>
+
         {/* Mode selection */}
-        <div className="space-y-3 mb-6">
-          {modes.map((m) => {
+        <div className="space-y-2 mt-8 mb-6">
+          {modes.map((m, i) => {
             const Icon = m.icon;
             const isSelected = mode === m.key;
             const isDisabled =
@@ -410,73 +353,84 @@ export default function PracticePage() {
                 key={m.key}
                 onClick={() => !isDisabled && setMode(m.key)}
                 disabled={isDisabled}
-                className={`w-full flex items-center gap-4 p-4 rounded-xl border transition-all text-left ${
+                className="card-edit w-full flex items-center gap-4 p-4 text-left transition-all"
+                style={
                   isDisabled
-                    ? "opacity-40 cursor-not-allowed border-white/[0.05]"
+                    ? { opacity: 0.4, cursor: "not-allowed" }
                     : isSelected
-                      ? "bg-white/[0.06] border-primary-400/30"
-                      : "bg-white/[0.02] border-white/[0.08] hover:bg-white/[0.05]"
-                }`}
+                    ? { background: "var(--accent-wash)", borderColor: "var(--accent-line)" }
+                    : {}
+                }
               >
-                <div
-                  className={`w-10 h-10 rounded-xl flex items-center justify-center ${m.color}`}
+                <span
+                  className="mono tabular text-[10px] flex-shrink-0"
+                  style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}
                 >
-                  <Icon className="w-5 h-5" />
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div
+                  className="w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0"
+                  style={{
+                    background: isSelected ? "var(--bg-1)" : "var(--bg-2)",
+                    border: `1px solid ${isSelected ? "var(--accent-line)" : "var(--line)"}`,
+                    color: isSelected ? "var(--accent)" : "var(--fg-2)",
+                  }}
+                >
+                  <Icon className="w-4 h-4" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-white">{m.label}</p>
-                  <p className="text-xs text-gray-500">{m.desc}</p>
+                  <p className="serif" style={{ fontWeight: 400, fontSize: 16, color: "var(--fg)" }}>{m.label}</p>
+                  <p className="text-[12px]" style={{ color: "var(--fg-3)" }}>{m.desc}</p>
                 </div>
                 {isSelected && (
-                  <div className="w-5 h-5 rounded-full bg-primary-500 flex items-center justify-center">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-white" />
-                  </div>
+                  <CheckCircle2 className="w-4 h-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
                 )}
               </button>
             );
           })}
         </div>
 
-        {/* Topic filter (for "topic" mode) */}
+        {/* Topic filter */}
         {mode === "topic" && (
           <div className="mb-6">
-            <p className="text-sm text-gray-400 mb-3">Сэдэв сонгох:</p>
-            <div className="flex flex-wrap gap-2">
-              {TOPICS.map((t) => (
-                <button
-                  key={t.value}
-                  onClick={() =>
-                    setTopicFilter(topicFilter === t.value ? "" : t.value)
-                  }
-                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
-                    topicFilter === t.value
-                      ? "bg-primary-500/20 text-primary-300 border-primary-400/30"
-                      : "bg-white/[0.04] text-gray-500 border-white/[0.08] hover:bg-white/[0.08] hover:text-gray-300"
-                  }`}
-                >
-                  {t.label}
-                </button>
-              ))}
+            <div className="eyebrow mb-3">Сэдэв сонгох</div>
+            <div className="flex flex-wrap gap-1.5">
+              {TOPICS.map((t) => {
+                const isActive = topicFilter === t.value;
+                return (
+                  <button
+                    key={t.value}
+                    onClick={() => setTopicFilter(isActive ? "" : t.value)}
+                    className="badge-edit transition-all"
+                    style={
+                      isActive
+                        ? { background: "var(--accent-wash)", borderColor: "var(--accent-line)", color: "var(--accent)" }
+                        : { background: "var(--bg-2)" }
+                    }
+                  >
+                    {t.label}
+                  </button>
+                );
+              })}
             </div>
           </div>
         )}
 
         {/* Weak topics info */}
         {mode === "weak" && weakTopics.length > 0 && (
-          <div className="card-glass p-4 mb-6 border-orange-400/10">
-            <p className="text-sm text-gray-400">
-              <span className="text-orange-400 font-medium">Сул сэдвүүд: </span>
-              {weakTopics.map((t) => TOPIC_LABELS[t] || t).join(", ")}
+          <div
+            className="card-edit p-4 mb-6"
+            style={{ background: "color-mix(in oklch, var(--warn) 6%, transparent)", borderColor: "color-mix(in oklch, var(--warn) 25%, transparent)" }}
+          >
+            <div className="eyebrow mb-2" style={{ color: "var(--warn)" }}>Сул сэдвүүд</div>
+            <p className="text-[13px]" style={{ color: "var(--fg-1)" }}>
+              {weakTopics.map((t) => TOPIC_LABELS[t] || t).join(" · ")}
             </p>
           </div>
         )}
 
-        {/* Start button */}
-        <button
-          onClick={handleStart}
-          className="w-full btn-primary text-sm py-3 flex items-center justify-center gap-2"
-        >
-          <Play className="w-4 h-4" />
+        <button onClick={handleStart} className="btn btn-primary w-full">
+          <Play className="mr-1 w-3.5 h-3.5" />
           Эхлэх
         </button>
       </div>

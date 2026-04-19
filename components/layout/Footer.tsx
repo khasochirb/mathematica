@@ -1,11 +1,14 @@
+"use client";
+
 import Link from "next/link";
 
 const links = {
   Programs: [
     { label: "Exam Prep", href: "/exam-prep" },
-    { label: "1-on-1 Tutoring", href: "/tutoring" },
+    { label: "Previous Year Tests", href: "/practice/esh/previous-years" },
     { label: "Study by Topic", href: "/courses" },
     { label: "Math Practice", href: "/practice" },
+    { label: "AI Tutor", href: "/ai" },
   ],
   Company: [
     { label: "About Us", href: "/about" },
@@ -45,27 +48,57 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-surface-950 text-white overflow-hidden">
-      {/* Subtle glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-gradient-to-r from-transparent via-primary-500/40 to-transparent" />
+    <footer
+      className="relative overflow-hidden"
+      style={{ background: "var(--bg)", borderTop: "1px solid var(--line)" }}
+    >
+      {/* Top hairline */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent 0%, var(--accent-line) 50%, transparent 100%)",
+        }}
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2.5 mb-4 group">
+              <span
+                className="inline-block w-2 h-2 rounded-sm"
+                style={{ background: "var(--accent)" }}
+              />
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/mp.png" alt="Mongol Potential" className="h-10 w-10 rounded-lg" />
-              <span className="font-display font-bold text-white text-lg group-hover:text-primary-300 transition-colors">Mongol Potential</span>
+              <img src="/images/mp.png" alt="Mongol Potential" className="h-8 w-8 rounded-md" />
+              <span
+                className="font-semibold text-[15px] tracking-tight"
+                style={{ color: "var(--fg)" }}
+              >
+                Mongol Potential
+              </span>
             </Link>
-            <p className="text-gray-500 text-sm leading-relaxed mb-4">
+            <p
+              className="text-sm leading-relaxed mb-5"
+              style={{ color: "var(--fg-2)" }}
+            >
               ЭЕШ exam prep and world-class math education for Mongolian students everywhere.
             </p>
-            <div className="space-y-1.5 mb-5">
-              <a href="tel:+14159818165" className="block text-primary-400 hover:text-primary-300 text-sm transition-colors">
+            <div className="space-y-2 mb-6">
+              <div className="eyebrow">Contact</div>
+              <a
+                href="tel:+14159818165"
+                className="block mono tabular text-sm transition-colors"
+                style={{ color: "var(--accent)" }}
+              >
                 +1 (415) 981-8165
               </a>
-              <a href="mailto:imathhub@gmail.com" className="block text-primary-400 hover:text-primary-300 text-sm transition-colors">
+              <a
+                href="mailto:imathhub@gmail.com"
+                className="block text-sm transition-colors"
+                style={{ color: "var(--fg-1)" }}
+              >
                 imathhub@gmail.com
               </a>
             </div>
@@ -78,7 +111,22 @@ export default function Footer() {
                   target={s.href !== "#" ? "_blank" : undefined}
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-gray-500 hover:text-primary-300 hover:bg-primary-500/10 hover:border-primary-400/20 transition-all duration-300"
+                  className="w-9 h-9 rounded-md flex items-center justify-center transition-all"
+                  style={{
+                    background: "var(--bg-1)",
+                    border: "1px solid var(--line)",
+                    color: "var(--fg-2)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = "var(--accent)";
+                    e.currentTarget.style.borderColor = "var(--accent-line)";
+                    e.currentTarget.style.background = "var(--accent-wash)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "var(--fg-2)";
+                    e.currentTarget.style.borderColor = "var(--line)";
+                    e.currentTarget.style.background = "var(--bg-1)";
+                  }}
                 >
                   <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d={s.svg} />
@@ -91,15 +139,14 @@ export default function Footer() {
           {/* Links */}
           {Object.entries(links).map(([category, items]) => (
             <div key={category}>
-              <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">
-                {category}
-              </h3>
+              <div className="eyebrow mb-4">{category}</div>
               <ul className="space-y-3">
                 {items.map((item) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-gray-500 hover:text-primary-300 text-sm transition-colors"
+                      className="text-sm transition-colors"
+                      style={{ color: "var(--fg-1)" }}
                     >
                       {item.label}
                     </Link>
@@ -110,11 +157,16 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-gray-600 text-sm">
+        <div
+          className="mt-14 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4"
+          style={{ borderTop: "1px solid var(--line)" }}
+        >
+          <p className="mono text-xs" style={{ color: "var(--fg-3)" }}>
             &copy; {new Date().getFullYear()} Mongol Potential. All rights reserved.
           </p>
-          <p className="text-gray-700 text-xs font-display">ᠮᠣᠩᠭᠣᠯ ᠫᠣᠲ᠋ᠧᠨᠼᠢᠶᠠᠯ</p>
+          <p className="serif text-xs" style={{ color: "var(--fg-3)" }}>
+            ᠮᠣᠩᠭᠣᠯ ᠫᠣᠲ᠋ᠧᠨᠼᠢᠶᠠᠯ
+          </p>
         </div>
       </div>
     </footer>

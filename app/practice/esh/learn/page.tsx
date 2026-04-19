@@ -1,76 +1,83 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, BookOpen, ChevronRight } from "lucide-react";
-import { TOPICS, TOPIC_LABELS } from "@/lib/esh-questions";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { TOPICS } from "@/lib/esh-questions";
 import topicsData from "@/data/learn/topics.json";
-
-const topicColors: Record<string, string> = {
-  algebra: "bg-primary-500/15 text-primary-400",
-  geometry: "bg-emerald-500/15 text-emerald-400",
-  trigonometry: "bg-cyan-500/15 text-cyan-400",
-  functions: "bg-yellow-500/15 text-yellow-400",
-  logarithms: "bg-purple-500/15 text-purple-400",
-  sequences: "bg-orange-500/15 text-orange-400",
-  probability: "bg-pink-500/15 text-pink-400",
-  combinatorics: "bg-red-500/15 text-red-400",
-  calculus: "bg-blue-500/15 text-blue-400",
-  statistics: "bg-teal-500/15 text-teal-400",
-};
 
 export default function LearnPage() {
   return (
-    <div className="min-h-screen bg-surface-900 pt-20 relative">
-      <div className="absolute inset-0 bg-grid opacity-30" />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
+    <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-12">
         {/* Header */}
-        <div className="flex items-center gap-3 mb-8">
+        <div className="flex items-center gap-3 mb-6">
           <Link
             href="/practice/esh"
-            className="p-2 rounded-xl bg-white/[0.05] border border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.1] transition-colors"
+            className="p-2 rounded-md transition-colors"
+            style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div>
-            <h1 className="font-display text-xl font-bold text-white">
-              Суралцах
-            </h1>
-            <p className="text-sm text-gray-500">
-              Сэдвээр томьёо, зөвлөгөө, видео хичээл
-            </p>
-          </div>
+          <div className="eyebrow">ЭЕШ · Суралцах</div>
         </div>
 
+        <h1
+          className="serif"
+          style={{
+            fontWeight: 400,
+            fontSize: "clamp(40px, 6vw, 64px)",
+            letterSpacing: "-0.04em",
+            lineHeight: 0.98,
+            color: "var(--fg)",
+          }}
+        >
+          Сэдвээр <em className="serif-italic" style={{ color: "var(--accent)" }}>суралцах</em>.
+        </h1>
+        <p className="serif mt-4 max-w-2xl" style={{ fontSize: 17, lineHeight: 1.55, color: "var(--fg-1)" }}>
+          Томьёо, зөвлөгөө, видео хичээл — сэдэв тус бүрээр.
+        </p>
+
         {/* Topic grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {TOPICS.map((topic) => {
-            const data = (topicsData as any)[topic.value];
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-10">
+          {TOPICS.map((topic, i) => {
+            const data = (topicsData as Record<string, { title: string; overview: string; formulas: unknown[]; tips: unknown[] }>)[topic.value];
             if (!data) return null;
-            const colorCls = topicColors[topic.value] || "bg-primary-500/15 text-primary-400";
 
             return (
               <Link
                 key={topic.value}
                 href={`/practice/esh/learn/${topic.value}`}
-                className="card-glass p-5 hover:border-white/[0.15] hover:bg-white/[0.03] transition-all group"
+                className="card-edit p-5 group"
               >
                 <div className="flex items-start justify-between mb-3">
-                  <div
-                    className={`w-10 h-10 rounded-xl flex items-center justify-center ${colorCls}`}
-                  >
-                    <BookOpen className="w-5 h-5" />
+                  <div className="mono text-[10px]" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+                    {String(i + 1).padStart(2, "0")} · СЭДЭВ
                   </div>
-                  <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-gray-400 transition-colors" />
+                  <ArrowRight className="w-4 h-4" style={{ color: "var(--fg-3)" }} />
                 </div>
-                <h3 className="font-display font-bold text-white mb-1">
+                <h3 className="serif" style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--fg)" }}>
                   {data.title}
                 </h3>
-                <p className="text-sm text-gray-500 line-clamp-2 mb-3">
+                <p className="text-[13px] mt-2 line-clamp-2" style={{ color: "var(--fg-2)" }}>
                   {data.overview}
                 </p>
-                <div className="flex items-center gap-3 text-xs text-gray-600">
-                  <span>{data.formulas.length} томьёо</span>
-                  <span>{data.tips.length} зөвлөгөө</span>
+                <div className="flex items-center gap-4 mt-4">
+                  <div className="flex items-baseline gap-1">
+                    <span className="serif tabular" style={{ fontSize: 18, color: "var(--accent)", letterSpacing: "-0.02em" }}>
+                      {data.formulas.length}
+                    </span>
+                    <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
+                      томьёо
+                    </span>
+                  </div>
+                  <div className="flex items-baseline gap-1">
+                    <span className="serif tabular" style={{ fontSize: 18, color: "var(--accent)", letterSpacing: "-0.02em" }}>
+                      {data.tips.length}
+                    </span>
+                    <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
+                      зөвлөгөө
+                    </span>
+                  </div>
                 </div>
               </Link>
             );

@@ -44,10 +44,13 @@ export default function PracticePage() {
 
   if (authLoading || loading) {
     return (
-      <div className="min-h-screen bg-surface-900 flex items-center justify-center pt-16">
+      <div className="min-h-screen flex items-center justify-center pt-20" style={{ background: "var(--bg)" }}>
         <div className="text-center">
-          <div className="w-8 h-8 border-2 border-primary-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-gray-500 text-sm">Loading...</p>
+          <div
+            className="w-8 h-8 border-2 rounded-full animate-spin mx-auto mb-4"
+            style={{ borderColor: "var(--accent)", borderTopColor: "transparent" }}
+          />
+          <p className="mono text-[12px]" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>LOADING...</p>
         </div>
       </div>
     );
@@ -55,23 +58,34 @@ export default function PracticePage() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-surface-900 flex items-center justify-center pt-16 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="absolute inset-0 glow-center" />
+      <div className="min-h-screen flex items-center justify-center pt-20 px-4 relative overflow-hidden" style={{ background: "var(--bg)" }}>
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[460px] pointer-events-none"
+          style={{
+            background: "radial-gradient(closest-side, color-mix(in oklch, var(--accent) 12%, transparent), transparent 70%)",
+            filter: "blur(40px)",
+          }}
+        />
         <div className="text-center max-w-sm relative">
-          <div className="w-16 h-16 bg-primary-500/10 border border-primary-400/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <Lock className="h-8 w-8 text-primary-400" />
+          <div
+            className="w-14 h-14 rounded-md flex items-center justify-center mx-auto mb-5"
+            style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--accent)" }}
+          >
+            <Lock className="h-6 w-6" />
           </div>
-          <h2 className="font-display text-xl font-bold text-white mb-2">Sign in to practice</h2>
-          <p className="text-gray-400 text-sm mb-6">
+          <div className="eyebrow mb-2">Authentication required</div>
+          <h2 className="serif" style={{ fontWeight: 400, fontSize: 32, letterSpacing: "-0.02em", color: "var(--fg)" }}>
+            Sign in to <em className="serif-italic" style={{ color: "var(--accent)" }}>practice</em>.
+          </h2>
+          <p className="text-[14px] mt-3 mb-6" style={{ color: "var(--fg-2)" }}>
             Create a free account to access adaptive math practice, track your progress, and earn achievements.
           </p>
-          <div className="flex flex-col gap-3">
-            <Link href="/sign-up" className="btn-primary w-full text-center py-3">
-              Create Free Account
+          <div className="flex flex-col gap-2">
+            <Link href="/sign-up" className="btn btn-primary w-full">
+              Create free account
             </Link>
-            <Link href="/sign-in" className="btn-secondary w-full text-center py-3">
-              Log In
+            <Link href="/sign-in" className="btn btn-line w-full">
+              Log in
             </Link>
           </div>
         </div>
@@ -79,149 +93,178 @@ export default function PracticePage() {
     );
   }
 
+  const xpPct = Math.round((user.xpCurrentLevel / user.xpNextLevel) * 100);
+
   return (
-    <div className="min-h-screen bg-surface-900 pt-20 relative">
-      <div className="absolute inset-0 bg-grid opacity-30" />
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
-        {/* User stats */}
-        <div className="card-glass border-glow p-6 mb-8">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div>
-              <h1 className="font-display text-xl font-bold text-white">
-                Welcome back, {user.displayName.split(" ")[0]}!
-              </h1>
-              <p className="text-gray-400 text-sm mt-0.5">Ready to practice today?</p>
-            </div>
-            <div className="flex items-center gap-3">
+    <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-12">
+        {/* Header */}
+        <div className="eyebrow mb-3">Practice · Home</div>
+        <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(40px, 6vw, 64px)", letterSpacing: "-0.04em", lineHeight: 0.98, color: "var(--fg)" }}>
+          Welcome back,{" "}
+          <em className="serif-italic" style={{ color: "var(--accent)" }}>
+            {user.displayName.split(" ")[0]}
+          </em>
+          .
+        </h1>
+        <p className="serif mt-4 max-w-2xl" style={{ fontSize: 17, lineHeight: 1.55, color: "var(--fg-1)" }}>
+          Ready to practice today?
+        </p>
+
+        {/* Stats strip */}
+        <div className="card-edit p-5 mt-8">
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+            <div className="flex items-center gap-6">
               {streak && (
-                <div className="flex items-center gap-1.5 bg-orange-500/10 border border-orange-400/15 px-3 py-1.5 rounded-xl">
-                  <Flame className="h-4 w-4 text-orange-400" />
-                  <span className="font-bold text-orange-300 text-sm">{streak.currentStreak}</span>
-                  <span className="text-orange-400/70 text-xs">day streak</span>
+                <div className="flex items-baseline gap-2">
+                  <Flame className="h-4 w-4" style={{ color: "var(--warn)" }} />
+                  <span className="serif tabular" style={{ fontSize: 26, color: "var(--fg)", letterSpacing: "-0.02em" }}>
+                    {streak.currentStreak}
+                  </span>
+                  <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+                    day streak
+                  </span>
                 </div>
               )}
-              <div className="flex items-center gap-1.5 bg-accent-gold/10 border border-accent-gold/15 px-3 py-1.5 rounded-xl">
-                <Star className="h-4 w-4 text-accent-gold" />
-                <span className="font-bold text-yellow-300 text-sm">{user.globalXp.toLocaleString()} XP</span>
+              <div className="flex items-baseline gap-2">
+                <Star className="h-4 w-4" style={{ color: "var(--accent)" }} />
+                <span className="serif tabular" style={{ fontSize: 26, color: "var(--fg)", letterSpacing: "-0.02em" }}>
+                  {user.globalXp.toLocaleString()}
+                </span>
+                <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+                  XP
+                </span>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <Trophy className="h-4 w-4" style={{ color: "var(--fg-2)" }} />
+                <span className="serif tabular" style={{ fontSize: 26, color: "var(--fg)", letterSpacing: "-0.02em" }}>
+                  {user.globalLevel}
+                </span>
+                <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+                  level
+                </span>
               </div>
             </div>
           </div>
-          {/* Level progress */}
-          <div className="mt-4">
-            <div className="flex items-center justify-between mb-1.5">
-              <span className="text-xs text-gray-500">Level {user.globalLevel}</span>
-              <span className="text-xs text-gray-500">Level {user.globalLevel + 1}</span>
-            </div>
-            <div className="h-2 bg-white/[0.06] rounded-full overflow-hidden">
-              <div
-                className="h-full bg-gradient-to-r from-primary-500 to-accent-cyan rounded-full transition-all"
-                style={{ width: `${Math.round((user.xpCurrentLevel / user.xpNextLevel) * 100)}%` }}
-              />
-            </div>
+          <div className="flex items-center justify-between mb-1.5">
+            <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+              Level {user.globalLevel}
+            </span>
+            <span className="mono tabular text-[10px]" style={{ color: "var(--fg-3)" }}>
+              {xpPct}%
+            </span>
+            <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+              Level {user.globalLevel + 1}
+            </span>
+          </div>
+          <div className="h-[3px] rounded-full overflow-hidden" style={{ background: "var(--bg-2)" }}>
+            <div className="h-full rounded-full transition-all" style={{ width: `${xpPct}%`, background: "var(--accent)" }} />
           </div>
         </div>
 
-        {/* ESH Practice Banner */}
-        <Link href="/practice/esh" className="block mb-8 card-glass border-glow p-6 group hover:border-primary-400/30 transition-all">
-          <div className="flex items-center justify-between">
+        {/* ESH banner */}
+        <Link
+          href="/practice/esh"
+          className="block mt-6 card-edit p-6 group"
+          style={{ background: "var(--accent-wash)", borderColor: "var(--accent-line)" }}
+        >
+          <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-4">
-              <div className="p-3 bg-gradient-to-br from-primary-500/20 to-accent-cyan/20 border border-primary-400/15 rounded-2xl">
-                <Calculator className="h-7 w-7 text-primary-400" />
+              <div
+                className="w-12 h-12 rounded-md flex items-center justify-center flex-shrink-0"
+                style={{ background: "var(--bg-1)", border: "1px solid var(--accent-line)", color: "var(--accent)" }}
+              >
+                <Calculator className="h-5 w-5" />
               </div>
               <div>
-                <h2 className="font-display text-lg font-bold text-white group-hover:text-primary-300 transition-colors">
+                <div className="eyebrow mb-1" style={{ color: "var(--accent)" }}>Featured · ЭЕШ</div>
+                <h2 className="serif" style={{ fontWeight: 400, fontSize: 24, letterSpacing: "-0.02em", color: "var(--fg)" }}>
                   ЭЕШ Математик
                 </h2>
-                <p className="text-gray-400 text-sm mt-0.5">
-                  216 бодлого · 6 тест · Сэдвээр ангилсан · Үзүүлэлт хянах
+                <p className="mono text-[11px] mt-1" style={{ color: "var(--fg-2)", letterSpacing: "0.04em" }}>
+                  216 БОДЛОГО · 6 ТЕСТ · СЭДВЭЭР АНГИЛСАН
                 </p>
               </div>
             </div>
-            <ArrowRight className="h-5 w-5 text-gray-600 group-hover:text-primary-400 transition-colors" />
+            <ArrowRight className="h-5 w-5 flex-shrink-0" style={{ color: "var(--fg-3)" }} />
           </div>
         </Link>
 
         {/* Quick actions */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-          <Link href="/progress" className="card-glass-glow group">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-primary-500/10 border border-primary-400/10 rounded-xl group-hover:bg-primary-500/20 transition-colors">
-                <BarChart3 className="h-5 w-5 text-primary-400" />
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
+          {[
+            { href: "/progress", icon: BarChart3, title: "View progress", desc: "Track your growth" },
+            { href: "/progress#achievements", icon: Trophy, title: "Achievements", desc: "Earn badges" },
+            { href: "/practice/esh/previous-years", icon: Flame, title: "Previous year tests", desc: "2024–2025 ЭЕШ, free" },
+          ].map(({ href, icon: Icon, title, desc }) => (
+            <Link key={href} href={href} className="card-edit p-4 flex items-center gap-3 group">
+              <div
+                className="w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0"
+                style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
+              >
+                <Icon className="h-4 w-4" />
               </div>
               <div>
-                <p className="font-semibold text-gray-200 text-sm group-hover:text-primary-300 transition-colors">View Progress</p>
-                <p className="text-gray-500 text-xs">Track your growth</p>
+                <p className="serif" style={{ fontWeight: 400, fontSize: 15, color: "var(--fg)" }}>{title}</p>
+                <p className="text-[12px]" style={{ color: "var(--fg-3)" }}>{desc}</p>
               </div>
-            </div>
-          </Link>
-          <Link href="/progress#achievements" className="card-glass-glow group">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-accent-gold/10 border border-accent-gold/10 rounded-xl group-hover:bg-accent-gold/20 transition-colors">
-                <Trophy className="h-5 w-5 text-accent-gold" />
-              </div>
-              <div>
-                <p className="font-semibold text-gray-200 text-sm group-hover:text-yellow-300 transition-colors">Achievements</p>
-                <p className="text-gray-500 text-xs">Earn badges</p>
-              </div>
-            </div>
-          </Link>
-          <Link href="/tutoring" className="card-glass-glow group">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-accent-emerald/10 border border-accent-emerald/10 rounded-xl group-hover:bg-accent-emerald/20 transition-colors">
-                <Flame className="h-5 w-5 text-accent-emerald" />
-              </div>
-              <div>
-                <p className="font-semibold text-gray-200 text-sm group-hover:text-accent-emerald transition-colors">Book a Tutor</p>
-                <p className="text-gray-500 text-xs">1-on-1 sessions</p>
-              </div>
-            </div>
-          </Link>
+            </Link>
+          ))}
         </div>
 
         {/* Topics */}
-        <div>
-          <h2 className="font-display text-lg font-bold text-white mb-4">Choose a topic</h2>
+        <div className="mt-10">
+          <div className="eyebrow mb-3">Topics · Choose</div>
+          <h2 className="serif mb-5" style={{ fontWeight: 400, fontSize: 32, letterSpacing: "-0.02em", color: "var(--fg)" }}>
+            Pick a <em className="serif-italic" style={{ color: "var(--accent)" }}>topic</em>.
+          </h2>
           {topics.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {topics.map((topic) => (
+              {topics.map((topic, i) => (
                 <button
                   key={topic.id}
                   onClick={() => router.push(`/practice/session?topicId=${topic.id}`)}
-                  className="card-glass-glow text-left group w-full"
+                  className="card-edit p-5 text-left group w-full"
                 >
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <h3 className="font-semibold text-gray-200 group-hover:text-primary-300 transition-colors text-sm mb-1">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <div className="mono text-[10px] mb-1.5" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+                        {String(i + 1).padStart(2, "0")}
+                      </div>
+                      <h3 className="serif" style={{ fontWeight: 400, fontSize: 18, letterSpacing: "-0.01em", color: "var(--fg)" }}>
                         {topic.name}
                       </h3>
                       {topic.children && topic.children.length > 0 && (
-                        <p className="text-gray-500 text-xs">{topic.children.length} subtopics</p>
+                        <p className="text-[12px] mt-1" style={{ color: "var(--fg-3)" }}>{topic.children.length} subtopics</p>
                       )}
                     </div>
-                    <ArrowRight className="h-4 w-4 text-gray-600 group-hover:text-primary-400 flex-shrink-0 mt-0.5 transition-colors" />
+                    <ArrowRight className="h-4 w-4 flex-shrink-0 mt-1" style={{ color: "var(--fg-3)" }} />
                   </div>
                 </button>
               ))}
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {defaultTopics.map((topic) => {
+              {defaultTopics.map((topic, i) => {
                 const Icon = topic.icon;
                 return (
-                  <div
-                    key={topic.id}
-                    className="card-glass group"
-                  >
+                  <div key={topic.id} className="card-edit p-5">
                     <div className="flex items-start gap-3">
-                      <div className="p-2 bg-primary-500/10 border border-primary-400/10 rounded-xl flex-shrink-0">
-                        <Icon className="h-5 w-5 text-primary-400" />
+                      <div
+                        className="w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0"
+                        style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
+                      >
+                        <Icon className="h-4 w-4" />
                       </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-200 text-sm mb-0.5">
+                      <div className="min-w-0">
+                        <div className="mono text-[10px] mb-1" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+                          {String(i + 1).padStart(2, "0")}
+                        </div>
+                        <h3 className="serif" style={{ fontWeight: 400, fontSize: 17, color: "var(--fg)" }}>
                           {topic.name}
                         </h3>
-                        <p className="text-gray-500 text-xs">{topic.description}</p>
-                        <span className="inline-block mt-2 text-xs text-primary-400/70 bg-primary-500/5 border border-primary-400/10 px-2 py-0.5 rounded-full">
+                        <p className="text-[12px] mt-0.5" style={{ color: "var(--fg-3)" }}>{topic.description}</p>
+                        <span className="badge-edit mt-2 inline-block" style={{ background: "var(--bg-2)" }}>
                           Coming soon
                         </span>
                       </div>

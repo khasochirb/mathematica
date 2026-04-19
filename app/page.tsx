@@ -1,456 +1,983 @@
 "use client";
 
 import Link from "next/link";
-import {
-  BookOpen,
-  Trophy,
-  Globe,
-  Star,
-  ArrowRight,
-  CheckCircle,
-  Brain,
-  Flame,
-  BarChart3,
-  Sparkles,
-  Zap,
-  Target,
-  GraduationCap,
-  Users,
-  TrendingUp,
-} from "lucide-react";
-import { T } from "@/components/T";
+import { useMemo } from "react";
 import { useLang } from "@/lib/lang-context";
 
-const features = [
-  {
-    icon: BookOpen,
-    en: { title: "ЭЕШ & International Exams", description: "Structured prep for Mongolia's ЭЕШ entrance exam plus AP, IB, and SAT—covering every exam Mongolian students face." },
-    mn: { title: "ЭЕШ ба олон улсын шалгалт", description: "Монголын ЭЕШ элсэлтийн шалгалт, мөн AP, IB, SAT зэрэг Монгол сурагчдын өгдөг бүх шалгалтын бүтэцтэй бэлтгэл." },
-    gradient: "from-primary-500 to-primary-400",
-    iconColor: "text-primary-400",
+const i18n = {
+  hero_eyebrow: { en: "Analytics-first exam prep", mn: "Сул талд төвлөрсөн бэлтгэл" },
+  hero_sub: {
+    en: "We grade every problem, not just every test. Get a personalized study plan that closes the gap between where you are and where ЭЕШ wants you.",
+    mn: "Бид зөвхөн тестийг биш, бодлого бүрийг шинжилнэ. Та одоо хаана байгаа болон ЭЕШ-ийн шалгуурын хооронд буй зайг хэмжиж, хувийн төлөвлөгөөг танд өгнө.",
   },
-  {
-    icon: Globe,
-    en: { title: "Personal & Flexible", description: "One-on-one tutoring, AI-powered self-study, flexible scheduling across time zones—goals tailored to each learner." },
-    mn: { title: "Хувийн ба уян хатан", description: "Нэг-нэгтэй хичээл, AI-д суурилсан бие даасан суралцах, цагийн бүсийг харгалзсан уян хуваарь—хүн бүрийн зорилгод тохирсон." },
-    gradient: "from-accent-cyan to-cyan-400",
-    iconColor: "text-accent-cyan",
+  hero_cta: { en: "Take a diagnostic", mn: "Шалгалт өгөх" },
+  hero_cta2: { en: "See a sample report", mn: "Жишээ тайлан үзэх" },
+  trust: { en: "Trusted by students preparing for", mn: "Сурагчдын сонгодог" },
+  learners: { en: "test problems in our library", mn: "номын сан дахь бодлого" },
+  mistakes: { en: "real ЭЕШ questions, 2024–2025", mn: "ЭЕШ-ийн жинхэнэ бодлого, 2024–2025" },
+  avg_lift: { en: "AI-generated practice problems", mn: "AI-аар үүсгэсэн дадлага бодлого" },
+  feat_1_eye: { en: "Diagnostic", mn: "Шалгалт" },
+  feat_1_t: { en: "One test. A complete picture.", mn: "Нэг тест. Бүрэн дүр зураг." },
+  feat_1_s: {
+    en: "Every question you answer is tagged to a sub-topic, a cognitive skill, and an expected difficulty. We surface where you're losing points — not just that you lost them.",
+    mn: "Та хариулсан бодлого болгон дэд сэдэв, танин мэдэхүйн ур чадвар, хүндрэлийн түвшинтэй холбогдоно. Та зөвхөн оноо алдсан биш, хаана алдсанаа харна.",
   },
-  {
-    icon: Star,
-    en: { title: "Made for Mongolians", description: "Problems rooted in Mongolian context, culture, and curriculum—whether you're in Ulaanbaatar or abroad, learning feels relevant." },
-    mn: { title: "Монголчуудад зориулсан", description: "Монгол орчин, соёл, хөтөлбөрт суурилсан бодлогууд—Улаанбаатарт ч, гадаадад ч суралцах нь утга учиртай байна." },
-    gradient: "from-accent-gold to-amber-400",
-    iconColor: "text-accent-gold",
+  feat_1_li1: { en: "Official ЭЕШ tests, extracted & retagged to 84 sub-topics", mn: "ЭЕШ-ийн жинхэнэ тестүүд, 84 дэд сэдэвт ангилсан" },
+  feat_1_li2: { en: "Skill breakdown: computation, concept, application, trap avoidance", mn: "Ур чадвар: тооцоолол, ойлголт, хэрэглээ, занга" },
+  feat_1_li3: { en: "Time-per-question flagged against 95th-percentile pacing", mn: "Бодлого тус бүрийн цаг 95-р хувилийн хурдтай харьцуулна" },
+  feat_2_eye: { en: "Score prediction", mn: "Оноо таамаглал" },
+  feat_2_t: { en: "ЭЕШ score, before exam day.", mn: "Шалгалтаас өмнө ЭЕШ-ийн оноо." },
+  feat_2_s: {
+    en: "Our model translates your practice performance into an estimated ЭЕШ score with a 2σ confidence band. Watch it tighten as you study.",
+    mn: "Бидний загвар таны дадлагын үр дүнг ЭЕШ-ийн таамагласан онооны 2σ итгэлийн зурвас болгон хөрвүүлнэ. Суралцах тусам нарийсах болно.",
   },
-];
+  feat_3_eye: { en: "AI problem generator", mn: "AI бодлого үүсгэгч" },
+  feat_3_t: { en: "Infinite practice, on the topics that matter.", mn: "Хэрэгтэй сэдвээр хязгааргүй дадлага." },
+  feat_3_s: {
+    en: "Generate 3–5 new problems on any weak topic, with step-by-step solutions explained at a fifth-grader level. Upload your own work for step-by-step feedback.",
+    mn: "Сул сэдэв тус бүр дээр 3–5 шинэ бодлого үүсгэж, 5-р ангийн түвшинд алхам алхмаар тайлбарлана. Өөрийн ажлаа байршуулж тусгай эргэх холбоо аваарай.",
+  },
+  pricing_eye: { en: "Pricing", mn: "Үнэ" },
+  pricing_h: { en: "Built for students.", mn: "Сурагчдад зориулсан." },
+  pricing_sub: {
+    en: "Free diagnostic always included. Upgrade for the full analytics + AI tutor experience.",
+    mn: "Үнэгүй шалгалт үргэлж нээлттэй. Бүрэн шинжилгээ + AI багш авахын тулд төлбөртэй болоорой.",
+  },
+  diaspora_eye: { en: "Diaspora & international curriculum", mn: "Гадаад болон олон улсын хөтөлбөр" },
+  diaspora_h: { en: "From Ulaanbaatar to anywhere.", mn: "Улаанбаатараас хаа сайгүй." },
+  diaspora_s: {
+    en: "Native support for SAT Math, AP Calculus AB/BC, IB Math HL/SL — with instruction in Mongolian or English.",
+    mn: "SAT Math, AP Calculus AB/BC, IB Math HL/SL-ийн уугуул дэмжлэг — заавар нь Монгол эсвэл Англи хэлээр.",
+  },
+  cta_t: { en: "Built by Mongolians, for Mongolians — wherever they are.", mn: "Монголчуудаар, Монголчуудад зориулж — хаана ч байсан." },
+  cta_s: { en: "Free diagnostic. Upgrade any time.", mn: "Үнэгүй шалгалт. Хэзээ ч төлбөртэй болгож болно." },
+};
 
-const mathlyFeatures = [
-  { icon: Brain, en: { label: "Adaptive Problems", desc: "AI adjusts difficulty to your level" }, mn: { label: "Дасан зохицох бодлогууд", desc: "AI таны түвшинд тохирсон хүндрэл тохируулна" } },
-  { icon: Flame, en: { label: "Daily Streaks", desc: "Build consistent practice habits" }, mn: { label: "Өдөр тутмын дараалал", desc: "Тогтмол дадлагын дадал бий болго" } },
-  { icon: BarChart3, en: { label: "Progress Tracking", desc: "See your growth over time" }, mn: { label: "Дэвшлийн хяналт", desc: "Цаг хугацааны явцад өөрийн өсөлтийг харна" } },
-  { icon: Trophy, en: { label: "Achievements", desc: "Earn rewards as you improve" }, mn: { label: "Амжилтууд", desc: "Дэвшихийн хэрээр шагнал авна" } },
-];
+function Heatmap() {
+  const cells = useMemo(() => {
+    const rows = 6;
+    const cols = 14;
+    const seed = [0.9, 0.85, 0.9, 0.7, 0.8, 0.3, 0.2, 0.4, 0.75, 0.85, 0.9, 0.4, 0.55, 0.92];
+    const out: { color: string; alpha: number }[] = [];
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        let v = seed[c] + (Math.sin(r * 3 + c) + 1) * 0.12 - 0.15;
+        v = Math.max(0.08, Math.min(0.97, v));
+        let color: string;
+        let alpha: number;
+        if (v < 0.5) {
+          color = "var(--warn)";
+          alpha = 0.3 + (0.5 - v) * 1.4;
+        } else if (v < 0.65) {
+          color = "var(--bg-3)";
+          alpha = 1;
+        } else {
+          color = "var(--accent)";
+          alpha = 0.35 + (v - 0.65) * 1.6;
+        }
+        out.push({ color, alpha });
+      }
+    }
+    return out;
+  }, []);
 
-const grades = [
-  { en: { label: "Algebra", range: "~25% of exam" }, mn: { label: "Алгебр", range: "Шалгалтын ~25%" }, href: "/courses#algebra", icon: Sparkles },
-  { en: { label: "Functions", range: "~20% of exam" }, mn: { label: "Функц", range: "Шалгалтын ~20%" }, href: "/courses#functions", icon: TrendingUp },
-  { en: { label: "Geometry", range: "~20% of exam" }, mn: { label: "Геометр", range: "Шалгалтын ~20%" }, href: "/courses#geometry", icon: Target },
-  { en: { label: "Trigonometry", range: "~10% of exam" }, mn: { label: "Тригонометр", range: "Шалгалтын ~10%" }, href: "/courses#trigonometry", icon: Zap },
-  { en: { label: "Calculus", range: "~10% of exam" }, mn: { label: "Анализ", range: "Шалгалтын ~10%" }, href: "/courses#calculus", icon: GraduationCap },
-];
-
-const testimonials = [
-  {
-    en: { quote: "My daughter was struggling with math and wasn't confident going to class. Now she finishes her homework without problems.", author: "Misheel's Mom" },
-    mn: { quote: "Охин маань математикт хэцүүдэж байсан бөгөөд ангид итгэлтэй явдаггүй байсан. Одоо гэрийн даалгаврыг асуудалгүй дуусгадаг болсон.", author: "Мишээлийн ээж" },
-    accent: "primary",
-  },
-  {
-    en: { quote: "She didn't like mathematics at all, but now the first homework she wants to finish is math. She's always excited to join tutoring sessions.", author: "Ari's Mom" },
-    mn: { quote: "Математикийг огт дургүй байсан, харин одоо хамгийн түрүүнд математикийн гэрийн даалгавраа хийдэг болсон. Хичээлдээ үргэлж тэсэн ядан яардаг.", author: "Арийн ээж" },
-    accent: "cyan",
-  },
-  {
-    en: { quote: "Our son loves going to school already knowing the material and coming back with interesting questions for the tutor.", author: "Subedei's Mom" },
-    mn: { quote: "Хүү маань сургуульд материалаа мэдэж очиж, багшид сонирхолтой асуултуудтай эргэж ирдэгт дуртай болсон.", author: "Субэдэйн ээж" },
-    accent: "gold",
-  },
-];
-
-const examTypes = ["ЭЕШ Математик", "SAT Math", "ACT Math", "AP Calculus", "IB Math", "Math Olympiad", "GRE Quant", "PSAT / NMSQT"];
-
+  return (
+    <div className="grid gap-[3px] mt-2" style={{ gridTemplateColumns: "repeat(14, 1fr)" }}>
+      {cells.map((c, i) => (
+        <span
+          key={i}
+          style={{
+            aspectRatio: "1",
+            background: c.color,
+            opacity: c.alpha,
+            borderRadius: 2,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
 
 export default function HomePage() {
   const { lang } = useLang();
+  const t = (key: keyof typeof i18n) => i18n[key][lang === "mn" ? "mn" : "en"];
+
+  const heroHeadline =
+    lang === "mn" ? (
+      <>
+        Юуг заавал <em className="serif-italic" style={{ color: "var(--accent)" }}>судлах</em> ёстойгоо мэд.
+      </>
+    ) : (
+      <>
+        Know exactly what to <em className="serif-italic" style={{ color: "var(--accent)" }}>study</em> next.
+      </>
+    );
 
   return (
-    <>
-      {/* ─── HERO ─── */}
-      <section className="relative bg-surface-900 text-white pt-28 pb-28 overflow-hidden">
-        {/* Background effects */}
-        <div className="absolute inset-0 bg-grid animate-grid-fade" />
-        <div className="absolute inset-0 glow-top-right" />
-        <div className="absolute inset-0 glow-bottom-left" />
-        <div className="absolute top-20 left-[10%] w-72 h-72 rounded-full bg-primary-500/[0.07] blur-[100px] animate-float" />
-        <div className="absolute bottom-20 right-[15%] w-64 h-64 rounded-full bg-accent-cyan/[0.06] blur-[80px] animate-float-delayed" />
-        <div className="mongolian-vertical">ᠮᠣᠩᠭᠣᠯ ᠫᠣᠲ᠋ᠧᠨᠼᠢᠶᠠᠯ ᠠᠻᠠᠳ᠋ᠧᠮᠢ</div>
+    <div style={{ background: "var(--bg)", color: "var(--fg)" }}>
+      {/* HERO */}
+      <section
+        className="grid gap-15 items-end pt-24 pb-20 px-10"
+        style={{
+          gridTemplateColumns: "1.1fr 1fr",
+          gap: 60,
+          minHeight: "78vh",
+          borderBottom: "1px solid var(--line)",
+          background:
+            "radial-gradient(ellipse 900px 400px at 15% 90%, var(--accent-wash), transparent 70%), var(--bg)",
+        }}
+      >
+        <div>
+          <div className="eyebrow mb-6">{t("hero_eyebrow")}</div>
+          <h1
+            className="serif"
+            style={{
+              fontSize: "clamp(56px, 6vw, 104px)",
+              fontWeight: 400,
+              letterSpacing: "-0.04em",
+              lineHeight: 0.96,
+              margin: 0,
+            }}
+          >
+            {heroHeadline}
+          </h1>
+          <p
+            className="mt-7 mb-7"
+            style={{ color: "var(--fg-1)", fontSize: 17, maxWidth: "50ch" }}
+          >
+            {t("hero_sub")}
+          </p>
+          <div className="flex gap-3">
+            <Link href="/practice" className="btn btn-primary">
+              {t("hero_cta")}
+            </Link>
+            <Link href="/analytics" className="btn btn-line">
+              {t("hero_cta2")}
+            </Link>
+          </div>
+          <div
+            className="mono mt-5"
+            style={{ fontSize: 12, color: "var(--fg-3)", maxWidth: "40ch", letterSpacing: "0.02em" }}
+          >
+            {lang === "mn"
+              ? "ЭЕШ · SAT Math · AP Calculus · IB Math"
+              : "ЭЕШ · SAT Math · AP Calculus · IB Math"}
+          </div>
+        </div>
 
-        {/* Decorative geometric elements */}
-        <div className="absolute top-32 right-[20%] w-px h-32 bg-gradient-to-b from-primary-500/30 to-transparent hidden lg:block" />
-        <div className="absolute top-48 right-[20%] w-16 h-px bg-gradient-to-r from-primary-500/30 to-transparent hidden lg:block" />
-        <div className="absolute bottom-40 left-[8%] w-3 h-3 rounded-full border border-accent-cyan/30 hidden lg:block animate-glow-pulse" />
-        <div className="absolute top-40 left-[30%] w-2 h-2 rounded-full bg-primary-400/30 hidden lg:block" />
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <div className="badge-glow mb-6">
-              <Sparkles className="h-3.5 w-3.5 mr-1.5 text-primary-400" />
-              <span className="text-sm">
-                <T en="ЭЕШ Prep & Math Education for All Mongolians" mn="ЭЕШ бэлтгэл ба бүх Монголчуудад зориулсан математик" />
-              </span>
+        <aside className="flex flex-col justify-end gap-3.5 self-stretch">
+          {/* Sample report card */}
+          <div
+            className="mono"
+            style={{
+              background: "var(--bg-1)",
+              border: "1px solid var(--line)",
+              borderRadius: 14,
+              padding: 20,
+              fontSize: 12,
+            }}
+          >
+            <div
+              className="flex items-center justify-between mb-4 uppercase"
+              style={{ color: "var(--fg-2)", letterSpacing: "0.1em", fontSize: 10 }}
+            >
+              <span>Sample report · Erdene B.</span>
+              <span>· ЭЕШ</span>
             </div>
-
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 tracking-tight">
-              <T en="High-quality math for" mn="Бүх Монгол сурагчдад" />{" "}
-              <span className="gradient-text">
-                <T en="every Mongolian student" mn="өндөр чанартай математик" />
-              </span>
-            </h1>
-
-            <p className="text-lg sm:text-xl text-gray-400 leading-relaxed mb-10 max-w-2xl">
-              <T
-                en="Ace the ЭЕШ with thousands of practice problems, or get one-on-one tutoring for AP, IB, SAT, and more. Built by Mongolians, for Mongolians—wherever you study."
-                mn="Мянга мянган дадлагын бодлогоор ЭЕШ-д бэлтгэ, эсвэл AP, IB, SAT зэрэг шалгалтанд нэг-нэгтэй хичээл ав. Монголчуудаас Монголчуудад—хаана ч сурч байсан."
-              />
-            </p>
-
-            <div className="flex flex-wrap gap-4">
-              <Link href="/practice/esh" className="btn-primary text-base px-8 py-3.5">
-                <T en="Start ЭЕШ Prep" mn="ЭЕШ бэлтгэл эхлэх" />
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-              <Link href="/tutoring" className="btn-secondary text-base px-8 py-3.5">
-                <T en="Find a Tutor" mn="Багшаа олох" />
-              </Link>
+            <div className="flex items-end justify-between gap-5">
+              <div>
+                <p
+                  className="serif"
+                  style={{
+                    fontSize: 72,
+                    letterSpacing: "-0.03em",
+                    lineHeight: 1,
+                    color: "var(--fg)",
+                    margin: 0,
+                  }}
+                >
+                  742
+                  <sup
+                    className="mono"
+                    style={{ fontSize: 20, color: "var(--fg-3)", marginLeft: 4, verticalAlign: "top" }}
+                  >
+                    /800
+                  </sup>
+                </p>
+                <div
+                  className="uppercase mt-1.5"
+                  style={{ color: "var(--fg-2)", fontSize: 11, letterSpacing: "0.1em" }}
+                >
+                  Predicted ЭЕШ · ±18
+                </div>
+              </div>
+              <svg viewBox="0 0 160 60" width="160" height="60" preserveAspectRatio="none" style={{ opacity: 0.85 }}>
+                <defs>
+                  <linearGradient id="spark" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stopColor="var(--accent)" stopOpacity="0.35" />
+                    <stop offset="1" stopColor="var(--accent)" stopOpacity="0" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M0,50 L20,44 L40,46 L60,38 L80,30 L100,32 L120,22 L140,16 L160,10 L160,60 L0,60 Z"
+                  fill="url(#spark)"
+                />
+                <path
+                  d="M0,50 L20,44 L40,46 L60,38 L80,30 L100,32 L120,22 L140,16 L160,10"
+                  fill="none"
+                  stroke="var(--accent)"
+                  strokeWidth="1.5"
+                />
+              </svg>
             </div>
-
-            <div className="mt-10 flex flex-wrap gap-6 text-sm text-gray-500">
+            <div className="mt-5 pt-3.5" style={{ borderTop: "1px solid var(--line)" }}>
               {[
-                { en: "Free ЭЕШ practice problems", mn: "Үнэгүй ЭЕШ дадлагын бодлогууд" },
-                { en: "1-on-1 tutoring available", mn: "Нэг-нэгтэй хичээл боломжтой" },
-                { en: "Works anywhere in the world", mn: "Дэлхийн хаанаас ч ажилладаг" },
-              ].map((item) => (
-                <span key={item.en} className="flex items-center gap-1.5">
-                  <CheckCircle className="h-4 w-4 text-accent-emerald" />
-                  <span className="text-gray-400">{lang === "mn" ? item.mn : item.en}</span>
-                </span>
+                { name: "Functions & Graphs", pct: 92, weak: false },
+                { name: "Trigonometry", pct: 84, weak: false },
+                { name: "Integration · definite", pct: 41, weak: true },
+                { name: "Sequences · limits", pct: 38, weak: true },
+                { name: "Probability", pct: 72, weak: false },
+              ].map((r, i) => (
+                <div
+                  key={r.name}
+                  className="grid items-center gap-3 py-2.5"
+                  style={{
+                    gridTemplateColumns: "1fr 80px 40px",
+                    fontSize: 12,
+                    borderTop: i === 0 ? "none" : "1px solid var(--line)",
+                  }}
+                >
+                  <span style={{ color: "var(--fg-1)" }}>{r.name}</span>
+                  <span
+                    style={{
+                      height: 4,
+                      background: "var(--bg-3)",
+                      borderRadius: 99,
+                      overflow: "hidden",
+                      position: "relative",
+                    }}
+                  >
+                    <span
+                      style={{
+                        display: "block",
+                        height: "100%",
+                        width: `${r.pct}%`,
+                        background: r.weak ? "var(--warn)" : "var(--accent)",
+                        borderRadius: 99,
+                      }}
+                    />
+                  </span>
+                  <span className="tabular text-right" style={{ color: "var(--fg-2)" }}>
+                    {r.pct}%
+                  </span>
+                </div>
               ))}
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* ─── MISSION / FEATURES ─── */}
-      <section className="section-dark">
-        <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="container-lg relative">
-          <div className="text-center mb-16">
-            <div className="badge-glow mb-4 mx-auto w-fit">
-              <T en="Our Mission" mn="Бидний зорилго" />
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5">
-              <T en="Empowering Mongolian students" mn="Монгол сурагчдыг чадавхжуулж" />{" "}
-              <span className="gradient-text-warm">
-                <T en="everywhere" mn="хаана ч байсан" />
-              </span>
-            </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
-              <T
-                en="Whether you're preparing for the ЭЕШ in Ulaanbaatar, studying at an international school, or growing up abroad—every Mongolian student deserves world-class math education and the confidence to succeed."
-                mn="Улаанбаатарт ЭЕШ-д бэлтгэж байгаа ч, олон улсын сургуульд суралцаж байгаа ч, гадаадад өсч байгаа ч—Монгол сурагч бүр дэлхийн түвшний математикийн боловсрол, амжилтанд хүрэх итгэлийг авах эрхтэй."
-              />
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {features.map((f) => {
-              const Icon = f.icon;
-              const content = lang === "mn" ? f.mn : f.en;
-              return (
-                <div key={f.en.title} className="card-glass-glow group border-glow">
-                  <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${f.gradient} bg-opacity-10 mb-5`}>
-                    <Icon className="h-6 w-6 text-white" />
-                  </div>
-                  <h3 className="text-lg font-display font-semibold text-white mb-3 group-hover:text-primary-300 transition-colors">
-                    {content.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{content.description}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── AI PRACTICE PLATFORM ─── */}
-      <section className="section-darker">
-        <div className="absolute inset-0 glow-bottom-left" />
-        <div className="container-lg relative">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div
+            className="flex items-center justify-between mono"
+            style={{
+              background: "var(--bg-1)",
+              border: "1px solid var(--line)",
+              borderRadius: 14,
+              padding: 20,
+              fontSize: 12,
+            }}
+          >
             <div>
-              <div className="badge-glow mb-4">
-                <Zap className="h-3.5 w-3.5 mr-1.5 text-accent-cyan" />
-                <T en="AI-Powered Practice" mn="AI-д суурилсан дадлага" />
-              </div>
-              <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-5">
-                <T en="Practice math with " mn="Дасан зохицох " />
-                <span className="gradient-text">
-                  <T en="adaptive AI" mn="AI-тай математик дадла" />
-                </span>
-              </h2>
-              <p className="text-gray-400 text-lg leading-relaxed mb-8">
-                <T
-                  en="Our Mathly practice platform adapts to your level, giving you problems that challenge you just the right amount. Get AI-powered hints, track your streaks, and earn achievements as you improve."
-                  mn="Mathly дадлагын платформ таны түвшинд дасан зохицож, яг хангалттай хэмжээгээр танд сорилт болсон бодлогуудыг өгдөг. AI-ийн зөвлөмж авч, дараалалаа хянаж, дэвшихийн хэрээр амжилтаа цуглуул."
-                />
-              </p>
-
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                {mathlyFeatures.map((f) => {
-                  const Icon = f.icon;
-                  const content = lang === "mn" ? f.mn : f.en;
-                  return (
-                    <div key={f.en.label} className="flex items-start gap-3 group">
-                      <div className="p-2 bg-primary-500/10 border border-primary-400/10 rounded-lg flex-shrink-0 group-hover:bg-primary-500/20 transition-colors">
-                        <Icon className="h-4 w-4 text-primary-400" />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-gray-200 text-sm">{content.label}</p>
-                        <p className="text-gray-500 text-xs">{content.desc}</p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              <Link href="/practice" className="btn-glow text-base px-8 py-3.5">
-                <T en="Start Practicing Free" mn="Үнэгүй дадлага эхлэх" />
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </div>
-
-            {/* Practice card preview */}
-            <div className="relative">
-              <div className="card-glass border-glow p-0 overflow-hidden">
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <p className="text-xs text-gray-500 font-medium tracking-wider">ALGEBRA &middot; LEVEL 3</p>
-                      <p className="font-semibold text-gray-200 text-sm mt-0.5">
-                        <T en="Problem 4 of 10" mn="4-р бодлого / 10-аас" />
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-orange-400 font-bold text-sm flex items-center gap-1">
-                        <Flame className="h-3.5 w-3.5" /> 7
-                      </span>
-                      <span className="text-primary-400 font-bold text-sm flex items-center gap-1">
-                        <Star className="h-3.5 w-3.5" /> 420 XP
-                      </span>
-                    </div>
-                  </div>
-                  <div className="h-1.5 bg-white/[0.06] rounded-full mb-6">
-                    <div className="h-full w-2/5 bg-gradient-to-r from-primary-500 to-accent-cyan rounded-full" />
-                  </div>
-                  <div className="bg-white/[0.04] border border-white/[0.06] rounded-xl p-4 mb-4">
-                    <p className="text-gray-200 font-medium text-sm leading-relaxed">
-                      If 3x + 7 = 22, what is the value of 6x − 4?
-                    </p>
-                  </div>
-                  <div className="grid grid-cols-2 gap-2 mb-4">
-                    {["A. 20", "B. 26", "C. 30", "D. 34"].map((opt, i) => (
-                      <button
-                        key={opt}
-                        className={`px-3 py-2.5 rounded-xl text-sm font-medium border transition-all text-left ${
-                          i === 1
-                            ? "bg-primary-500/20 text-primary-300 border-primary-400/30"
-                            : "border-white/[0.08] text-gray-400 hover:border-primary-400/20 hover:bg-primary-500/5"
-                        }`}
-                      >
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-                  <button className="w-full btn-primary py-2.5 text-sm">
-                    <T en="Submit Answer" mn="Хариулт илгээх" />
-                  </button>
-                </div>
-              </div>
-              {/* Floating XP badge */}
-              <div className="absolute -top-3 -right-3 bg-gradient-to-r from-accent-gold to-orange-400 text-white rounded-xl px-3 py-1.5 text-xs font-bold shadow-lg shadow-accent-gold/30">
-                +15 XP
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── EXAM PREP ─── */}
-      <section className="section-dark">
-        <div className="absolute inset-0 glow-top-right" />
-        <div className="container-lg relative">
-          <div className="text-center mb-12">
-            <div className="badge-glow mb-4 mx-auto w-fit">
-              <GraduationCap className="h-3.5 w-3.5 mr-1.5 text-primary-400" />
-              <T en="Test Preparation" mn="Шалгалтын бэлтгэл" />
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-4">
-              <T en="ЭЕШ and exam prep " mn="ЭЕШ болон шалгалтын бэлтгэл " />
-              <span className="gradient-text">
-                <T en="you can trust" mn="найдаж болохуйц" />
-              </span>
-            </h2>
-            <p className="text-gray-400 max-w-xl mx-auto">
-              <T
-                en="Thousands of real ЭЕШ-style problems with step-by-step solutions, plus expert prep for SAT, AP, IB, and other international exams."
-                mn="Мянга мянган жинхэнэ ЭЕШ маягийн бодлогууд алхам алхмаар бодолттой, мөн SAT, AP, IB зэрэг олон улсын шалгалтын мэргэжлийн бэлтгэл."
-              />
-            </p>
-          </div>
-          <div className="flex flex-wrap justify-center gap-3 mb-10">
-            {examTypes.map((exam) => (
-              <Link
-                key={exam}
-                href="/exam-prep"
-                className="px-5 py-2.5 bg-primary-500/10 text-primary-300 border border-primary-400/15 rounded-xl text-sm font-medium hover:bg-primary-500/20 hover:border-primary-400/30 transition-all duration-300"
+              <div
+                className="uppercase"
+                style={{ color: "var(--fg-2)", fontSize: 11, letterSpacing: "0.1em" }}
               >
-                {exam}
-              </Link>
-            ))}
-          </div>
-          <div className="text-center">
-            <Link href="/exam-prep" className="btn-primary text-base">
-              <T en="View All Exam Programs" mn="Бүх шалгалтын хөтөлбөрийг харах" />
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── GRADE LEVELS ─── */}
-      <section className="section-darker">
-        <div className="absolute inset-0 bg-grid opacity-30" />
-        <div className="container-lg relative">
-          <div className="text-center mb-12">
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-4">
-              <T en="Practice by " mn="Сэдвээр " />
-              <span className="gradient-text">
-                <T en="topic" mn="дадлага хийх" />
-              </span>
-            </h2>
-            <p className="text-gray-400 max-w-lg mx-auto">
-              <T
-                en="The ЭЕШ math exam covers these core areas. Pick any topic and start practicing right away."
-                mn="ЭЕШ математикийн шалгалт эдгээр үндсэн чиглэлүүдийг хамардаг. Аль ч сэдвийг сонгоод шууд дадлага хий."
-              />
-            </p>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-            {grades.map((g) => {
-              const content = lang === "mn" ? g.mn : g.en;
-              const Icon = g.icon;
-              return (
-                <Link
-                  key={g.href}
-                  href={g.href}
-                  className="card-glass-glow text-center group"
-                >
-                  <div className="inline-flex p-2.5 rounded-xl bg-primary-500/10 mb-3 group-hover:bg-primary-500/20 transition-colors">
-                    <Icon className="h-5 w-5 text-primary-400" />
-                  </div>
-                  <p className="font-display font-semibold text-gray-200 group-hover:text-primary-300 transition-colors">
-                    {content.label}
-                  </p>
-                  <p className="text-gray-500 text-xs mt-1">{content.range}</p>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── TESTIMONIALS ─── */}
-      <section className="section-dark">
-        <div className="absolute inset-0 glow-bottom-left" />
-        <div className="container-lg relative">
-          <div className="text-center mb-12">
-            <div className="badge-glow mb-4 mx-auto w-fit">
-              <Users className="h-3.5 w-3.5 mr-1.5 text-primary-400" />
-              <T en="Testimonials" mn="Санал сэтгэгдэл" />
+                Next up
+              </div>
+              <div
+                className="serif mt-1"
+                style={{ fontSize: 22, color: "var(--fg)", letterSpacing: "-0.01em" }}
+              >
+                {lang === "mn"
+                  ? "Тодорхой интегралын 5 бодлого"
+                  : "5 problems on definite integration"}
+              </div>
             </div>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-4">
-              <T en="Success stories from " mn="Манай оюутнуудын " />
-              <span className="gradient-text">
-                <T en="our students" mn="амжилтын түүхүүд" />
+            <span className="badge-edit badge-accent live-dot">AI · ready</span>
+          </div>
+        </aside>
+      </section>
+
+      {/* EXAM STRIP */}
+      <div
+        className="flex items-center justify-between flex-wrap gap-4 mono uppercase"
+        style={{
+          padding: "24px 40px",
+          borderTop: "1px solid var(--line)",
+          borderBottom: "1px solid var(--line)",
+          color: "var(--fg-3)",
+          fontSize: 12,
+          letterSpacing: "0.12em",
+          background: "var(--bg-1)",
+        }}
+      >
+        <span style={{ color: "var(--fg-2)" }}>{t("trust")}</span>
+        <span style={{ color: "var(--fg-1)" }}>ЭЕШ</span>
+        <span>·</span>
+        <span style={{ color: "var(--fg-1)" }}>SAT Math</span>
+        <span>·</span>
+        <span style={{ color: "var(--fg-1)" }}>AP Calculus AB</span>
+        <span>·</span>
+        <span style={{ color: "var(--fg-1)" }}>AP Calculus BC</span>
+        <span>·</span>
+        <span style={{ color: "var(--fg-1)" }}>IB Math HL</span>
+        <span>·</span>
+        <span style={{ color: "var(--fg-1)" }}>IB Math SL</span>
+      </div>
+
+      {/* STATS */}
+      <section
+        className="grid"
+        style={{
+          gridTemplateColumns: "repeat(3, 1fr)",
+          borderBottom: "1px solid var(--line)",
+        }}
+      >
+        {[
+          { big: "2,000", unit: "+", lbl: t("learners") },
+          { big: "800", unit: "", lbl: t("mistakes") },
+          { big: "10,000", unit: "+", lbl: t("avg_lift") },
+        ].map((s, i) => (
+          <div
+            key={s.lbl}
+            style={{
+              padding: "64px 40px",
+              borderRight: i < 2 ? "1px solid var(--line)" : undefined,
+            }}
+          >
+            <div
+              className="serif tabular"
+              style={{
+                fontSize: 88,
+                letterSpacing: "-0.04em",
+                lineHeight: 0.95,
+                fontWeight: 400,
+                color: "var(--fg)",
+              }}
+            >
+              {s.big}
+              <span
+                className="mono"
+                style={{ fontSize: 28, color: "var(--fg-3)", marginLeft: 6, verticalAlign: "top" }}
+              >
+                {s.unit}
               </span>
-            </h2>
-            <p className="text-gray-400">
-              <T en="Real words from Mongolian families using our tutoring service" mn="Манай хичээлийн үйлчилгээг ашиглаж буй Монгол гэр бүлүүдийн жинхэнэ үгс" />
-            </p>
+            </div>
+            <div
+              className="mono uppercase mt-4"
+              style={{ color: "var(--fg-2)", fontSize: 13, letterSpacing: "0.1em" }}
+            >
+              {s.lbl}
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((t) => {
-              const content = lang === "mn" ? t.mn : t.en;
-              const borderColor =
-                t.accent === "primary" ? "border-l-primary-500/60" :
-                t.accent === "cyan" ? "border-l-accent-cyan/60" :
-                "border-l-accent-gold/60";
-              return (
-                <div
-                  key={t.en.author}
-                  className={`card-glass border-l-2 ${borderColor}`}
-                >
-                  <p className="text-gray-300 leading-relaxed mb-5 text-sm italic">&ldquo;{content.quote}&rdquo;</p>
-                  <p className="font-display font-semibold text-gray-200 text-sm">&mdash; {content.author}</p>
+        ))}
+      </section>
+
+      {/* FEAT 1: DIAGNOSTIC */}
+      <FeatSection
+        eyebrow={t("feat_1_eye")}
+        title={t("feat_1_t")}
+        body={t("feat_1_s")}
+        bullets={[t("feat_1_li1"), t("feat_1_li2"), t("feat_1_li3")]}
+        viz={
+          <>
+            <div className="flex justify-between items-baseline">
+              <div className="serif" style={{ fontSize: 24, letterSpacing: "-0.02em" }}>
+                Topic heatmap
+              </div>
+              <div
+                className="mono"
+                style={{ fontSize: 11, color: "var(--fg-2)", letterSpacing: "0.08em" }}
+              >
+                84 SUB-TOPICS · ЭЕШ 2024
+              </div>
+            </div>
+            <Heatmap />
+            <div
+              className="flex justify-between items-center mt-4 mono"
+              style={{ fontSize: 11, color: "var(--fg-2)" }}
+            >
+              <span>Weak</span>
+              <div className="flex gap-[3px]">
+                <span style={{ width: 14, height: 14, background: "var(--warn)", opacity: 0.95 }} />
+                <span style={{ width: 14, height: 14, background: "var(--warn)", opacity: 0.7 }} />
+                <span style={{ width: 14, height: 14, background: "var(--bg-3)" }} />
+                <span style={{ width: 14, height: 14, background: "var(--accent)", opacity: 0.55 }} />
+                <span style={{ width: 14, height: 14, background: "var(--accent)", opacity: 0.9 }} />
+              </div>
+              <span>Strong</span>
+            </div>
+            <div
+              className="mt-auto pt-4 grid gap-3.5"
+              style={{
+                borderTop: "1px solid var(--line)",
+                gridTemplateColumns: "1fr 1fr 1fr",
+                fontSize: 12,
+              }}
+            >
+              {[
+                { lbl: "TIME/Q", val: "1:42", color: "var(--fg)" },
+                { lbl: "ACCURACY", val: "78", suffix: "%", color: "var(--fg)" },
+                { lbl: "PERCENTILE", val: "P84", color: "var(--accent)" },
+              ].map((s) => (
+                <div key={s.lbl}>
+                  <div className="mono" style={{ color: "var(--fg-2)" }}>{s.lbl}</div>
+                  <div
+                    className="serif"
+                    style={{ fontSize: 28, letterSpacing: "-0.02em", color: s.color }}
+                  >
+                    {s.val}
+                    {s.suffix && (
+                      <span
+                        className="mono"
+                        style={{ fontSize: 14, color: "var(--fg-2)" }}
+                      >
+                        {s.suffix}
+                      </span>
+                    )}
+                  </div>
                 </div>
-              );
-            })}
+              ))}
+            </div>
+          </>
+        }
+      />
+
+      {/* FEAT 2: SCORE PREDICTION */}
+      <FeatSection
+        reverse
+        eyebrow={t("feat_2_eye")}
+        title={t("feat_2_t")}
+        body={t("feat_2_s")}
+        bullets={[
+          lang === "mn" ? "12 жилийн ЭЕШ-ийн үр дүнгээр шалгасан" : "Calibrated on 12 years of ЭЕШ outcomes",
+          lang === "mn" ? "Дадлагын тест бүрийн дараа шинэчлэгдэнэ" : "Updates after every practice test",
+          lang === "mn" ? "Багштаа хичээл төлөвлөхөөр илгээх" : "Exports to your tutor for session planning",
+        ]}
+        viz={
+          <>
+            <div className="flex justify-between items-baseline">
+              <div className="serif" style={{ fontSize: 24, letterSpacing: "-0.02em" }}>
+                Projected ЭЕШ · 8 weeks
+              </div>
+              <span className="badge-edit badge-accent live-dot">tracking</span>
+            </div>
+            <svg viewBox="0 0 560 280" width="100%" height="280" style={{ marginTop: 8 }}>
+              <defs>
+                <linearGradient id="band" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0" stopColor="var(--accent)" stopOpacity="0.25" />
+                  <stop offset="1" stopColor="var(--accent)" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+              <g stroke="var(--line)" strokeWidth="1">
+                <line x1="0" y1="60" x2="560" y2="60" />
+                <line x1="0" y1="120" x2="560" y2="120" />
+                <line x1="0" y1="180" x2="560" y2="180" />
+                <line x1="0" y1="240" x2="560" y2="240" />
+              </g>
+              <g fontFamily="var(--font-mono)" fontSize="10" fill="var(--fg-3)">
+                <text x="6" y="56">800</text>
+                <text x="6" y="116">720</text>
+                <text x="6" y="176">640</text>
+                <text x="6" y="236">560</text>
+              </g>
+              <path
+                d="M40,210 C120,200 180,180 240,160 C300,140 360,118 420,100 C480,84 540,70 540,70 L540,110 C480,124 420,140 360,156 C300,172 240,188 180,200 C120,212 60,222 40,230 Z"
+                fill="url(#band)"
+              />
+              <path
+                d="M40,220 C120,200 180,180 240,160 C300,140 360,118 420,100 C480,82 520,68 540,60"
+                fill="none"
+                stroke="var(--accent)"
+                strokeWidth="2"
+              />
+              <g fill="var(--fg)">
+                <circle cx="40" cy="222" r="3" />
+                <circle cx="140" cy="200" r="3" />
+                <circle cx="240" cy="168" r="3" />
+                <circle cx="340" cy="132" r="3" />
+                <circle cx="440" cy="96" r="3" />
+              </g>
+              <line
+                x1="0"
+                y1="70"
+                x2="560"
+                y2="70"
+                stroke="var(--accent)"
+                strokeDasharray="3 4"
+                strokeWidth="1"
+                opacity="0.7"
+              />
+              <text
+                x="540"
+                y="66"
+                fontFamily="var(--font-mono)"
+                fontSize="10"
+                fill="var(--accent)"
+                textAnchor="end"
+              >
+                TARGET 780
+              </text>
+              <g fontFamily="var(--font-mono)" fontSize="10" fill="var(--fg-3)">
+                <text x="40" y="270">W1</text>
+                <text x="140" y="270">W3</text>
+                <text x="240" y="270">W5</text>
+                <text x="340" y="270">W7</text>
+                <text x="440" y="270">NOW</text>
+                <text x="530" y="270" textAnchor="end">EXAM</text>
+              </g>
+            </svg>
+          </>
+        }
+      />
+
+      {/* FEAT 3: AI GENERATOR */}
+      <FeatSection
+        eyebrow={t("feat_3_eye")}
+        title={t("feat_3_t")}
+        body={t("feat_3_s")}
+        bullets={[
+          lang === "mn"
+            ? "Бодит ЭЕШ-ийн загвараас үүсгэсэн, сэдвээр хязгаарласан үүсгэлт"
+            : "Topic-constrained generation, seeded from real ЭЕШ patterns",
+          lang === "mn"
+            ? "Гарын бодолтоо зургаар оруулж, алхам бүрд эргэх холбоо аваарай"
+            : "Photograph handwritten solutions for per-step feedback",
+          lang === "mn"
+            ? "Тайлбар нь Монгол эсвэл Англи хэлээр"
+            : "Explanations in Mongolian or English",
+        ]}
+        vizPadding={false}
+        viz={
+          <>
+            <div
+              className="flex justify-between items-center"
+              style={{ padding: "24px 28px", borderBottom: "1px solid var(--line)" }}
+            >
+              <div className="serif" style={{ fontSize: 22, letterSpacing: "-0.02em" }}>
+                Definite integration
+              </div>
+              <span className="badge-edit badge-accent live-dot">LIVE</span>
+            </div>
+            <div
+              className="flex flex-col gap-3.5"
+              style={{ padding: "24px 28px", fontSize: 14 }}
+            >
+              <div
+                className="mono uppercase"
+                style={{ color: "var(--fg-2)", fontSize: 11, letterSpacing: "0.08em" }}
+              >
+                PROBLEM 02 / 05
+              </div>
+              <div
+                className="serif"
+                style={{ fontSize: 22, letterSpacing: "-0.02em", lineHeight: 1.3 }}
+              >
+                {lang === "mn" ? "Хэрвээ" : "If"}{" "}
+                <span className="mono" style={{ color: "var(--accent)", fontSize: 18 }}>
+                  f(x) = 2x·cos(x²)
+                </span>
+                ,{" "}
+                <span className="mono" style={{ fontSize: 18 }}>
+                  ∫₀^√π f(x)dx
+                </span>
+                {lang === "mn" ? "-ийг ол." : " — find."}
+              </div>
+              <div
+                className="mono uppercase"
+                style={{
+                  borderTop: "1px solid var(--line)",
+                  paddingTop: 16,
+                  fontSize: 12,
+                  color: "var(--fg-2)",
+                  letterSpacing: "0.08em",
+                }}
+              >
+                Step-by-step (5th-grade level)
+              </div>
+              {[
+                { n: "01", t: "Notice 2x is the derivative of x². Substitute u = x²." },
+                { n: "02", t: "du = 2x dx, so ∫cos(u) du from 0 to π." },
+                { n: "03", t: <>= sin(π) − sin(0) = <span className="mono" style={{ color: "var(--accent)" }}>0</span>.</> },
+              ].map((s) => (
+                <div
+                  key={s.n}
+                  className="grid gap-3"
+                  style={{ gridTemplateColumns: "24px 1fr" }}
+                >
+                  <div className="mono" style={{ color: "var(--accent)", fontSize: 11 }}>
+                    {s.n}
+                  </div>
+                  <div style={{ color: "var(--fg-1)" }}>{s.t}</div>
+                </div>
+              ))}
+              <div className="flex gap-2.5 mt-2">
+                <button className="btn btn-line" style={{ fontSize: 12, padding: "7px 12px" }}>
+                  Explain differently
+                </button>
+                <button className="btn btn-line" style={{ fontSize: 12, padding: "7px 12px" }}>
+                  Upload my solution
+                </button>
+                <Link
+                  href="/ai"
+                  className="btn btn-line ml-auto"
+                  style={{ fontSize: 12, padding: "7px 12px" }}
+                >
+                  Next problem →
+                </Link>
+              </div>
+            </div>
+          </>
+        }
+      />
+
+      {/* PRICING */}
+      <section
+        style={{ padding: "120px 40px", borderBottom: "1px solid var(--line)" }}
+      >
+        <div className="flex justify-between items-end gap-6 flex-wrap">
+          <div>
+            <div className="eyebrow">{t("pricing_eye")}</div>
+            <h2
+              className="serif"
+              style={{
+                fontWeight: 400,
+                fontSize: "clamp(40px, 5vw, 56px)",
+                letterSpacing: "-0.04em",
+                margin: "10px 0 0",
+              }}
+            >
+              {t("pricing_h")}
+            </h2>
           </div>
+          <div style={{ color: "var(--fg-2)", maxWidth: "34ch" }}>{t("pricing_sub")}</div>
+        </div>
+
+        <div
+          className="grid mt-12 gap-4"
+          style={{ gridTemplateColumns: "repeat(3, 1fr)" }}
+        >
+          {[
+            {
+              tier: "Free",
+              price: "₮0",
+              unit: "/ forever",
+              sub: "Get a baseline. No card required.",
+              items: [
+                "1 full diagnostic test",
+                "Topic-level weakness report",
+                "Practice mode (limited bank)",
+                "Community support",
+              ],
+              cta: { label: "Start free", href: "/sign-up", primary: false },
+              highlight: false,
+            },
+            {
+              tier: "Potential · monthly",
+              price: "₮20,000",
+              unit: "/ month",
+              sub: "≈ $5.60 · everything, billed monthly.",
+              items: [
+                "Unlimited practice & analytics",
+                "AI-generated problem sets",
+                "ЭЕШ score prediction",
+                "Priority tutor matching",
+              ],
+              cta: { label: "Upgrade", href: "/upgrade", primary: true },
+              highlight: true,
+            },
+            {
+              tier: "3-month bundle",
+              price: "₮30,000",
+              unit: "/ 3 months",
+              sub: "≈ $8.40 · save 50% committing to a season.",
+              items: [
+                "All Potential features",
+                "Exam countdown study plan",
+                "Weekly progress email",
+                "Transferable to a friend",
+              ],
+              cta: { label: "Choose bundle", href: "/upgrade", primary: false },
+              highlight: false,
+            },
+          ].map((p) => (
+            <div
+              key={p.tier}
+              className="flex flex-col"
+              style={{
+                background: p.highlight ? "var(--bg)" : "var(--bg-1)",
+                border: `1px solid ${p.highlight ? "var(--accent-line)" : "var(--line)"}`,
+                outline: p.highlight ? "1px solid var(--accent-line)" : undefined,
+                outlineOffset: p.highlight ? -1 : undefined,
+                borderRadius: 18,
+                padding: 28,
+                minHeight: 360,
+              }}
+            >
+              <div
+                className="mono uppercase"
+                style={{
+                  fontSize: 11,
+                  letterSpacing: "0.12em",
+                  color: p.highlight ? "var(--accent)" : "var(--fg-2)",
+                }}
+              >
+                {p.tier}
+              </div>
+              <div
+                className="serif"
+                style={{
+                  fontSize: 64,
+                  letterSpacing: "-0.04em",
+                  lineHeight: 1,
+                  margin: "18px 0 4px",
+                  fontWeight: 400,
+                }}
+              >
+                {p.price}
+                <span
+                  className="mono"
+                  style={{ fontSize: 16, color: "var(--fg-2)", marginLeft: 6 }}
+                >
+                  {p.unit}
+                </span>
+              </div>
+              <div style={{ color: "var(--fg-2)", fontSize: 13 }}>{p.sub}</div>
+              <ul
+                className="mt-6"
+                style={{ listStyle: "none", padding: 0, borderTop: "1px solid var(--line)" }}
+              >
+                {p.items.map((it) => (
+                  <li
+                    key={it}
+                    className="flex gap-2.5 py-2.5"
+                    style={{
+                      borderBottom: "1px solid var(--line)",
+                      fontSize: 13,
+                      color: "var(--fg-1)",
+                    }}
+                  >
+                    <span className="mono" style={{ color: "var(--accent)" }}>+</span>
+                    <span>{it}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href={p.cta.href}
+                className={p.cta.primary ? "btn btn-primary" : "btn btn-line"}
+                style={{ marginTop: "auto" }}
+              >
+                {p.cta.label}
+              </Link>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* ─── CTA ─── */}
-      <section className="section relative overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-950 via-primary-900 to-surface-900" />
-        <div className="absolute inset-0 bg-grid opacity-30" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary-500/[0.12] blur-[120px] rounded-full" />
-
-        <div className="container-lg text-center relative">
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5">
-            <T en="Ready to " mn="Боломжоо нээхэд " />
-            <span className="gradient-text">
-              <T en="reach your potential?" mn="бэлэн үү?" />
-            </span>
-          </h2>
-          <p className="text-gray-400 text-lg mb-10 max-w-xl mx-auto">
-            <T
-              en="Join thousands of Mongolian students who are mastering math—from ЭЕШ prep to international exams and beyond."
-              mn="Математикийг эзэмшиж буй мянга мянган Монгол сурагчидтай нэгдээрэй—ЭЕШ бэлтгэлээс олон улсын шалгалт хүртэл."
-            />
+      {/* DIASPORA */}
+      <section
+        className="grid gap-20 items-start"
+        style={{ gridTemplateColumns: "1fr 1fr", padding: "80px 40px" }}
+      >
+        <div>
+          <div className="eyebrow">{t("diaspora_eye")}</div>
+          <h3
+            className="serif mt-3"
+            style={{
+              fontWeight: 400,
+              fontSize: 44,
+              letterSpacing: "-0.03em",
+              margin: "12px 0 0",
+            }}
+          >
+            {t("diaspora_h")}
+          </h3>
+          <p style={{ color: "var(--fg-1)", marginTop: 16, maxWidth: "44ch" }}>
+            {t("diaspora_s")}
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/practice/esh" className="btn-white text-base px-8 py-3.5">
-              <T en="Start ЭЕШ Prep" mn="ЭЕШ бэлтгэл эхлэх" />
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-            <Link href="/tutoring" className="btn-secondary text-base px-8 py-3.5">
-              <T en="Find a Tutor" mn="Багшаа олох" />
-            </Link>
-          </div>
+        </div>
+        <div
+          className="grid"
+          style={{
+            gridTemplateColumns: "repeat(2, 1fr)",
+            border: "1px solid var(--line)",
+            borderRadius: 14,
+            overflow: "hidden",
+          }}
+        >
+          {[
+            { region: "ULAANBAATAR", n: "1,842", note: "students · ЭЕШ focus" },
+            { region: "NORTH AMERICA", n: "486", note: "students · SAT + AP" },
+            { region: "EUROPE", n: "312", note: "students · IB HL/SL" },
+            { region: "ASIA-PACIFIC", n: "207", note: "students · Mixed" },
+          ].map((r, i) => (
+            <div
+              key={r.region}
+              style={{
+                padding: 24,
+                borderRight: i % 2 === 0 ? "1px solid var(--line)" : undefined,
+                borderBottom: i < 2 ? "1px solid var(--line)" : undefined,
+              }}
+            >
+              <div
+                className="mono uppercase"
+                style={{ fontSize: 10, letterSpacing: "0.1em", color: "var(--fg-3)" }}
+              >
+                {r.region}
+              </div>
+              <div
+                className="serif tabular"
+                style={{ fontSize: 32, letterSpacing: "-0.03em", marginTop: 6 }}
+              >
+                {r.n}
+              </div>
+              <div style={{ color: "var(--fg-2)", fontSize: 13, marginTop: 4 }}>
+                {r.note}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
-    </>
+
+      {/* BIG CTA */}
+      <section
+        className="text-center"
+        style={{
+          padding: "140px 40px",
+          background:
+            "radial-gradient(ellipse 900px 400px at 50% 100%, var(--accent-wash), transparent 70%), var(--bg)",
+        }}
+      >
+        <h2
+          className="serif"
+          style={{
+            fontWeight: 400,
+            fontSize: "clamp(48px, 5vw, 88px)",
+            letterSpacing: "-0.04em",
+            lineHeight: 0.98,
+            margin: "0 auto",
+            maxWidth: "16ch",
+          }}
+        >
+          {t("cta_t")}
+        </h2>
+        <p style={{ color: "var(--fg-2)", margin: "24px 0 36px", fontSize: 16 }}>
+          {t("cta_s")}
+        </p>
+        <div className="flex gap-3 justify-center">
+          <Link href="/practice" className="btn btn-primary">
+            {t("hero_cta")}
+          </Link>
+          <Link href="/analytics" className="btn btn-line">
+            {t("hero_cta2")}
+          </Link>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function FeatSection({
+  reverse,
+  eyebrow,
+  title,
+  body,
+  bullets,
+  viz,
+  vizPadding = true,
+}: {
+  reverse?: boolean;
+  eyebrow: string;
+  title: string;
+  body: string;
+  bullets: string[];
+  viz: React.ReactNode;
+  vizPadding?: boolean;
+}) {
+  return (
+    <section
+      className="grid items-center"
+      style={{
+        gridTemplateColumns: reverse ? "1.1fr 1fr" : "1fr 1.1fr",
+        gap: 80,
+        padding: "120px 40px",
+        borderBottom: "1px solid var(--line)",
+      }}
+    >
+      <div style={{ order: reverse ? 2 : 1 }}>
+        <div className="eyebrow">{eyebrow}</div>
+        <h3
+          className="serif"
+          style={{
+            fontSize: 44,
+            letterSpacing: "-0.03em",
+            margin: "14px 0 18px",
+            fontWeight: 400,
+          }}
+        >
+          {title}
+        </h3>
+        <p style={{ color: "var(--fg-1)", fontSize: 16, maxWidth: "44ch" }}>{body}</p>
+        <ul
+          style={{
+            margin: "24px 0 0",
+            padding: 0,
+            listStyle: "none",
+            borderTop: "1px solid var(--line)",
+          }}
+        >
+          {bullets.map((b, i) => (
+            <li
+              key={i}
+              className="grid gap-3 py-3.5"
+              style={{
+                borderBottom: "1px solid var(--line)",
+                gridTemplateColumns: "24px 1fr",
+                fontSize: 14,
+                color: "var(--fg-1)",
+                alignItems: "start",
+              }}
+            >
+              <span
+                className="mono uppercase"
+                style={{
+                  color: "var(--accent)",
+                  fontSize: 10,
+                  letterSpacing: "0.1em",
+                  paddingTop: 2,
+                }}
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span>{b}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div
+        className="flex flex-col gap-4"
+        style={{
+          order: reverse ? 1 : 2,
+          position: "relative",
+          padding: vizPadding ? 32 : 0,
+          background: "var(--bg-1)",
+          border: "1px solid var(--line)",
+          borderRadius: 18,
+          minHeight: 480,
+          overflow: vizPadding ? "visible" : "hidden",
+        }}
+      >
+        {viz}
+      </div>
+    </section>
   );
 }

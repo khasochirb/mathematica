@@ -2,363 +2,250 @@
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { T } from "@/components/T";
 import { useLang } from "@/lib/lang-context";
 
-/*
- * ЭЕШ math topics with subtopics.
- * Each topic card links to /practice/esh with a topic query param.
- * TODO: wire up topic query param filtering once practice/esh supports ?topic=<slug>
- */
 const topics = [
   {
     slug: "algebra",
-    icon: "📐",
+    weight: 25,
     en: {
       name: "Algebra",
       desc: "The foundation of ЭЕШ math — equations, inequalities, and polynomials make up the largest share of the exam.",
-      subtopics: [
-        "Linear equations & inequalities",
-        "Quadratic equations",
-        "Systems of equations",
-        "Polynomials & factoring",
-        "Absolute value equations",
-        "Rational expressions",
-      ],
+      subtopics: ["Linear equations & inequalities", "Quadratic equations", "Systems of equations", "Polynomials & factoring", "Absolute value equations", "Rational expressions"],
     },
     mn: {
       name: "Алгебр",
       desc: "ЭЕШ математикийн суурь — тэгшитгэл, тэнцэтгэл биш, олон гишүүнт нь шалгалтын хамгийн их хувийг эзэлдэг.",
-      subtopics: [
-        "Шугаман тэгшитгэл ба тэнцэтгэл биш",
-        "Квадрат тэгшитгэл",
-        "Тэгшитгэлийн систем",
-        "Олон гишүүнт ба задлан шинжлэх",
-        "Абсолют утгын тэгшитгэл",
-        "Рациональ илэрхийлэл",
-      ],
+      subtopics: ["Шугаман тэгшитгэл", "Квадрат тэгшитгэл", "Тэгшитгэлийн систем", "Олон гишүүнт", "Абсолют утга", "Рациональ илэрхийлэл"],
     },
-    weight: "~25%",
-    color: "from-blue-500 to-blue-400",
   },
   {
     slug: "functions",
-    icon: "📈",
+    weight: 20,
     en: {
       name: "Functions & Graphs",
       desc: "Understanding how functions behave and how to read their graphs is tested in nearly every ЭЕШ section.",
-      subtopics: [
-        "Linear & quadratic functions",
-        "Exponential & logarithmic functions",
-        "Domain, range, and inverses",
-        "Function composition",
-        "Graph transformations",
-        "Piecewise functions",
-      ],
+      subtopics: ["Linear & quadratic functions", "Exponential & logarithmic", "Domain, range, inverses", "Function composition", "Graph transformations", "Piecewise functions"],
     },
     mn: {
       name: "Функц ба график",
       desc: "Функцийн шинж чанар, графикийг уншиж ойлгохыг ЭЕШ-ийн бараг бүх хэсэгт шалгадаг.",
-      subtopics: [
-        "Шугаман ба квадрат функц",
-        "Экспоненциал ба логарифм функц",
-        "Тодорхойлогдох муж, утгын муж, урвуу",
-        "Функцийн давхар",
-        "Графикийн хувиргалт",
-        "Хэсэгчилсэн функц",
-      ],
+      subtopics: ["Шугаман ба квадрат", "Экспоненциал ба логарифм", "Тодорхойлогдох муж", "Функцийн давхар", "Графикийн хувиргалт", "Хэсэгчилсэн функц"],
     },
-    weight: "~20%",
-    color: "from-emerald-500 to-emerald-400",
   },
   {
     slug: "geometry",
-    icon: "📏",
+    weight: 20,
     en: {
       name: "Geometry",
       desc: "Plane and solid geometry — triangles, circles, areas, volumes, and coordinate geometry problems.",
-      subtopics: [
-        "Triangles (properties, similarity, congruence)",
-        "Circles (chords, tangents, arcs)",
-        "Area and perimeter",
-        "Volume and surface area",
-        "Coordinate geometry",
-        "Vectors in the plane",
-      ],
+      subtopics: ["Triangles", "Circles", "Area and perimeter", "Volume and surface area", "Coordinate geometry", "Vectors in the plane"],
     },
     mn: {
       name: "Геометр",
-      desc: "Хавтгай ба огторгуйн геометр — гурвалжин, тойрог, талбай, эзэлхүүн, координатын геометрийн бодлогууд.",
-      subtopics: [
-        "Гурвалжин (шинж чанар, ижил төстэй, тэнцүү)",
-        "Тойрог (хөвч, шүргэгч, нум)",
-        "Талбай ба периметр",
-        "Эзэлхүүн ба гадаргуугийн талбай",
-        "Координатын геометр",
-        "Хавтгай дахь вектор",
-      ],
+      desc: "Хавтгай ба огторгуйн геометр — гурвалжин, тойрог, талбай, эзэлхүүн, координатын геометр.",
+      subtopics: ["Гурвалжин", "Тойрог", "Талбай ба периметр", "Эзэлхүүн", "Координатын геометр", "Вектор"],
     },
-    weight: "~20%",
-    color: "from-violet-500 to-violet-400",
   },
   {
     slug: "trigonometry",
-    icon: "🔺",
+    weight: 10,
     en: {
       name: "Trigonometry",
       desc: "Trigonometric identities, equations, and their applications are a consistent part of the exam.",
-      subtopics: [
-        "Trigonometric ratios & unit circle",
-        "Trig identities (sum, double angle, etc.)",
-        "Trigonometric equations",
-        "Inverse trigonometric functions",
-        "Law of sines & cosines",
-        "Applications (triangles, angles)",
-      ],
+      subtopics: ["Trig ratios & unit circle", "Identities (sum, double angle)", "Trig equations", "Inverse trig functions", "Law of sines & cosines", "Applications"],
     },
     mn: {
       name: "Тригонометр",
       desc: "Тригонометрийн адилтгал, тэгшитгэл, тэдгээрийн хэрэглээ шалгалтанд тогтмол ордог.",
-      subtopics: [
-        "Тригонометрийн харьцаа ба нэгж тойрог",
-        "Триг адилтгалууд (нийлбэр, давхар өнцөг г.м.)",
-        "Тригонометрийн тэгшитгэл",
-        "Урвуу тригонометрийн функц",
-        "Синусын ба косинусын теорем",
-        "Хэрэглээ (гурвалжин, өнцөг)",
-      ],
+      subtopics: ["Харьцаа ба нэгж тойрог", "Адилтгалууд", "Тэгшитгэл", "Урвуу функц", "Синус, косинус теорем", "Хэрэглээ"],
     },
-    weight: "~10%",
-    color: "from-orange-500 to-orange-400",
   },
   {
     slug: "calculus",
-    icon: "∫",
+    weight: 10,
     en: {
       name: "Calculus",
       desc: "Limits, derivatives, and integrals — the most challenging section, heavily tested in Part 2.",
-      subtopics: [
-        "Limits & continuity",
-        "Derivatives (rules, chain rule)",
-        "Applications of derivatives",
-        "Definite & indefinite integrals",
-        "Applications of integrals (area, volume)",
-      ],
+      subtopics: ["Limits & continuity", "Derivatives", "Applications of derivatives", "Definite & indefinite integrals", "Applications of integrals"],
     },
     mn: {
       name: "Анализ",
       desc: "Хязгаар, уламжлал, интеграл — хамгийн хэцүү хэсэг, 2-р хэсэгт ихээр шалгадаг.",
-      subtopics: [
-        "Хязгаар ба тасралтгүй байдал",
-        "Уламжлал (дүрмүүд, гинжин дүрэм)",
-        "Уламжлалын хэрэглээ",
-        "Тодорхой ба тодорхойгүй интеграл",
-        "Интегралын хэрэглээ (талбай, эзэлхүүн)",
-      ],
+      subtopics: ["Хязгаар", "Уламжлал", "Уламжлалын хэрэглээ", "Интеграл", "Интегралын хэрэглээ"],
     },
-    weight: "~10%",
-    color: "from-red-500 to-red-400",
   },
   {
     slug: "probability",
-    icon: "🎲",
+    weight: 10,
     en: {
       name: "Probability & Statistics",
       desc: "Combinatorics, probability theory, and descriptive statistics appear in both Part 1 and Part 2.",
-      subtopics: [
-        "Counting principles & permutations",
-        "Combinations",
-        "Basic probability",
-        "Conditional probability",
-        "Mean, median, mode, variance",
-        "Data interpretation",
-      ],
+      subtopics: ["Counting & permutations", "Combinations", "Basic probability", "Conditional probability", "Mean, median, mode, variance", "Data interpretation"],
     },
     mn: {
       name: "Магадлал ба статистик",
-      desc: "Комбинаторик, магадлалын онол, тодорхойлох статистик 1-р ба 2-р хэсэгт аль алинд нь ордог.",
-      subtopics: [
-        "Тоолох зарчим ба сэлгэмэл",
-        "Хослол",
-        "Үндсэн магадлал",
-        "Нөхцөлт магадлал",
-        "Дундаж, медиан, моод, дисперс",
-        "Өгөгдлийн тайлбар",
-      ],
+      desc: "Комбинаторик, магадлалын онол, статистик 1-р, 2-р хэсэгт ордог.",
+      subtopics: ["Тоолох зарчим", "Хослол", "Үндсэн магадлал", "Нөхцөлт магадлал", "Дундаж, медиан", "Өгөгдлийн тайлбар"],
     },
-    weight: "~10%",
-    color: "from-pink-500 to-pink-400",
   },
   {
     slug: "sequences",
-    icon: "🔢",
+    weight: 5,
     en: {
       name: "Sequences & Series",
       desc: "Arithmetic and geometric progressions, their sums, and limits of sequences.",
-      subtopics: [
-        "Arithmetic sequences & series",
-        "Geometric sequences & series",
-        "Sum formulas",
-        "Limits of sequences",
-        "Recursive sequences",
-      ],
+      subtopics: ["Arithmetic sequences", "Geometric sequences", "Sum formulas", "Limits of sequences", "Recursive sequences"],
     },
     mn: {
       name: "Дараалал ба цуваа",
-      desc: "Арифметик ба геометрийн прогресс, тэдгээрийн нийлбэр, дарааллын хязгаар.",
-      subtopics: [
-        "Арифметик дараалал ба цуваа",
-        "Геометрийн дараалал ба цуваа",
-        "Нийлбэрийн томъёо",
-        "Дарааллын хязгаар",
-        "Рекурсив дараалал",
-      ],
+      desc: "Арифметик, геометрийн прогресс, нийлбэр, дарааллын хязгаар.",
+      subtopics: ["Арифметик дараалал", "Геометрийн дараалал", "Нийлбэрийн томъёо", "Хязгаар", "Рекурсив дараалал"],
     },
-    weight: "~5%",
-    color: "from-cyan-500 to-cyan-400",
   },
   {
     slug: "logarithms",
-    icon: "📊",
+    weight: 5,
     en: {
       name: "Logarithms",
       desc: "Logarithmic properties, equations, and their connection to exponential functions.",
-      subtopics: [
-        "Logarithmic properties",
-        "Logarithmic equations",
-        "Change of base",
-        "Natural logarithm",
-        "Exponential-logarithmic relationships",
-      ],
+      subtopics: ["Properties", "Equations", "Change of base", "Natural logarithm", "Exponential-log relationships"],
     },
     mn: {
       name: "Логарифм",
       desc: "Логарифмын шинж чанар, тэгшитгэл, экспоненциал функцтэй холбоос.",
-      subtopics: [
-        "Логарифмын шинж чанар",
-        "Логарифмын тэгшитгэл",
-        "Суурь солих",
-        "Натурал логарифм",
-        "Экспоненциал-логарифмын хамаарал",
-      ],
+      subtopics: ["Шинж чанар", "Тэгшитгэл", "Суурь солих", "Натурал логарифм", "Экспоненциал-логарифмын хамаарал"],
     },
-    weight: "~5%",
-    color: "from-amber-500 to-amber-400",
   },
 ];
 
 export default function TopicsPage() {
   const { lang } = useLang();
+  const t = (en: string, mn: string) => (lang === "mn" ? mn : en);
 
   return (
-    <>
+    <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
       {/* Hero */}
-      <section className="relative bg-surface-900 text-white pt-28 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-grid animate-grid-fade" />
-        <div className="absolute inset-0 glow-top-right" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-          <div className="badge-glow mb-4 mx-auto w-fit">
-            <T en="ЭЕШ Math Topics" mn="ЭЕШ математикийн сэдвүүд" />
-          </div>
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold mb-5">
-            <T en="Study by " mn="Сэдвээр " />
-            <span className="gradient-text">
-              <T en="topic" mn="суралцах" />
-            </span>
-          </h1>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
-            <T
-              en="Every topic covered in the ЭЕШ math exam, organized by subject area. Pick a topic to start practicing."
-              mn="ЭЕШ математикийн шалгалтанд хамрагдах бүх сэдвүүд, чиглэлээр ангилсан. Сэдвээ сонгоод дадлагаа эхлээрэй."
-            />
-          </p>
-        </div>
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10">
+        <div className="eyebrow mb-3">{t("ЭЕШ Topics · Math", "ЭЕШ Сэдвүүд · Математик")}</div>
+        <h1
+          className="serif"
+          style={{
+            fontWeight: 400,
+            fontSize: "clamp(48px, 7vw, 88px)",
+            letterSpacing: "-0.04em",
+            lineHeight: 0.96,
+            color: "var(--fg)",
+          }}
+        >
+          {t("Study by ", "Сэдвээр ")}
+          <em className="serif-italic" style={{ color: "var(--accent)" }}>
+            {t("topic", "суралцах")}
+          </em>
+          .
+        </h1>
+        <p className="serif mt-5 max-w-2xl" style={{ fontSize: 18, lineHeight: 1.5, color: "var(--fg-1)" }}>
+          {t(
+            "Every topic covered in the ЭЕШ math exam, organized by subject area. Pick a topic to start practicing.",
+            "ЭЕШ математикийн шалгалтад хамрагдах бүх сэдвүүд, чиглэлээр ангилсан. Сэдвээ сонгоод дадлагаа эхлээрэй.",
+          )}
+        </p>
       </section>
 
       {/* Topic cards */}
-      <section className="section-dark">
-        <div className="absolute inset-0 bg-grid opacity-30" />
-        <div className="container-lg relative">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {topics.map((topic) => {
-              const content = lang === "mn" ? topic.mn : topic.en;
-              return (
-                <div
-                  key={topic.slug}
-                  id={topic.slug}
-                  className="card-glass-glow border-glow group flex flex-col"
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className={`text-3xl`}>{topic.icon}</div>
-                      <div>
-                        <h3 className="text-lg font-display font-bold text-white group-hover:text-primary-300 transition-colors">
-                          {content.name}
-                        </h3>
-                        <span className="text-xs font-semibold text-primary-400">{topic.weight} <T en="of the exam" mn="шалгалтаас" /></span>
-                      </div>
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10" style={{ borderTop: "1px solid var(--line)" }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {topics.map((topic, idx) => {
+            const content = lang === "mn" ? topic.mn : topic.en;
+            return (
+              <div key={topic.slug} id={topic.slug} className="card-edit p-6 flex flex-col group">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <div className="eyebrow mb-1.5" style={{ color: "var(--accent)" }}>
+                      {String(idx + 1).padStart(2, "0")} · {t("Weight", "Жин")} ~{topic.weight}%
                     </div>
+                    <h3
+                      className="serif"
+                      style={{ fontWeight: 400, fontSize: 26, letterSpacing: "-0.02em", color: "var(--fg)" }}
+                    >
+                      {content.name}
+                    </h3>
                   </div>
-
-                  <p className="text-gray-400 text-sm leading-relaxed mb-4">{content.desc}</p>
-
-                  <div className="flex-1">
-                    <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                      <T en="Subtopics" mn="Дэд сэдвүүд" />
-                    </p>
-                    <div className="flex flex-wrap gap-1.5 mb-5">
-                      {content.subtopics.map((sub) => (
-                        <span
-                          key={sub}
-                          className="px-2.5 py-1 bg-white/[0.04] border border-white/[0.08] rounded-lg text-xs text-gray-400"
-                        >
-                          {sub}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* TODO: add ?topic=slug query param once practice/esh supports topic filtering from URL */}
-                  <Link
-                    href="/practice/esh"
-                    className="btn-secondary text-sm py-2.5 text-center w-full"
+                  <div
+                    className="serif tabular flex items-baseline gap-1"
+                    style={{ color: "var(--fg-3)" }}
                   >
-                    <T en={`Practice ${content.name}`} mn={`${content.name} дадлага`} />
-                    <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
-                  </Link>
+                    <span style={{ fontSize: 32, color: "var(--accent)", letterSpacing: "-0.03em" }}>
+                      {topic.weight}
+                    </span>
+                    <span className="mono text-[10px]" style={{ letterSpacing: "0.06em" }}>%</span>
+                  </div>
                 </div>
-              );
-            })}
-          </div>
+
+                <p className="text-[14px] leading-relaxed mb-4" style={{ color: "var(--fg-2)" }}>
+                  {content.desc}
+                </p>
+
+                <div className="flex-1">
+                  <div className="eyebrow mb-2.5">{t("Subtopics", "Дэд сэдвүүд")}</div>
+                  <div className="flex flex-wrap gap-1.5 mb-5">
+                    {content.subtopics.map((sub) => (
+                      <span
+                        key={sub}
+                        className="badge-edit"
+                        style={{ background: "var(--bg-2)" }}
+                      >
+                        {sub}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <Link href="/practice/esh" className="btn btn-line w-full">
+                  {t("Practice ", "Дадлага · ")}
+                  {content.name}
+                  <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                </Link>
+              </div>
+            );
+          })}
         </div>
       </section>
 
       {/* CTA */}
-      <section className="section relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-950 via-primary-900 to-surface-900" />
-        <div className="absolute inset-0 bg-grid opacity-30" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary-500/[0.12] blur-[120px] rounded-full" />
-        <div className="container-lg text-center relative">
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-5">
-            <T en="Not sure where to start?" mn="Хаанаас эхлэхээ мэдэхгүй байна уу?" />
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14" style={{ borderTop: "1px solid var(--line)" }}>
+        <div
+          className="card-edit p-12 text-center"
+          style={{ background: "var(--accent-wash)", borderColor: "var(--accent-line)" }}
+        >
+          <div className="eyebrow mb-3">{t("Not sure?", "Эргэлзэж байна уу?")}</div>
+          <h2
+            className="serif"
+            style={{ fontWeight: 400, fontSize: "clamp(32px, 4.5vw, 52px)", letterSpacing: "-0.03em", color: "var(--fg)" }}
+          >
+            {t("Where to ", "Хаанаас ")}
+            <em className="serif-italic" style={{ color: "var(--accent)" }}>
+              {t("start", "эхлэх")}
+            </em>
+            ?
           </h2>
-          <p className="text-gray-400 text-lg mb-10 max-w-xl mx-auto">
-            <T
-              en="Try all topics and our system will identify your weak areas. Focus your time where it matters most."
-              mn="Бүх сэдвийг туршаад манай систем сул талуудыг тань тодорхойлно. Хамгийн чухал газартаа цагаа зарцуул."
-            />
+          <p className="text-[15px] mt-4 max-w-xl mx-auto" style={{ color: "var(--fg-1)" }}>
+            {t(
+              "Try all topics and our system will identify your weak areas. Focus your time where it matters most.",
+              "Бүх сэдвийг туршаад манай систем сул талуудыг танижуулна. Хамгийн чухал газартаа цагаа зарцуул.",
+            )}
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/practice/esh" className="btn-white text-base px-8 py-3.5">
-              <T en="Start All Topics" mn="Бүх сэдвийг эхлэх" />
-              <ArrowRight className="ml-2 h-4 w-4" />
+          <div className="flex flex-wrap justify-center gap-2 mt-7">
+            <Link href="/practice/esh" className="btn btn-primary">
+              {t("Start all topics", "Бүх сэдвийг эхлэх")}
+              <ArrowRight className="ml-1 h-3.5 w-3.5" />
             </Link>
-            <Link href="/exam-prep" className="btn-secondary text-base px-8 py-3.5">
-              <T en="Exam Overview" mn="Шалгалтын тойм" />
+            <Link href="/exam-prep" className="btn btn-line">
+              {t("Exam overview", "Шалгалтын тойм")}
             </Link>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
