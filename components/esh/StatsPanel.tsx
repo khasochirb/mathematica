@@ -44,8 +44,14 @@ export default function StatsPanel({ overall, topicStats, onClear }: StatsPanelP
         </div>
 
         <div className="grid grid-cols-3 gap-4 mb-6">
-          <div className="text-center p-4 bg-primary-500/10 border border-primary-400/15 rounded-xl">
-            <p className="text-2xl font-bold text-primary-300">{overall.total}</p>
+          <div
+            className="text-center p-4 rounded-xl"
+            style={{
+              background: "color-mix(in oklch, var(--accent) 10%, transparent)",
+              border: "1px solid color-mix(in oklch, var(--accent) 15%, transparent)",
+            }}
+          >
+            <p className="text-2xl font-bold" style={{ color: "var(--accent)" }}>{overall.total}</p>
             <p className="text-xs text-gray-500 mt-1">Нийт</p>
           </div>
           <div className="text-center p-4 bg-emerald-500/10 border border-emerald-400/15 rounded-xl">
