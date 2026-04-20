@@ -26,6 +26,12 @@ export async function GET(req: NextRequest) {
 
   const globalXp = profile?.global_xp ?? 0;
 
+  const isSubscribed = (() => {
+    if (!profile?.is_subscribed) return false;
+    if (!profile.subscription_expires_at) return true;
+    return new Date(profile.subscription_expires_at) > new Date();
+  })();
+
   return NextResponse.json({
     data: {
       id: user.id,
@@ -37,6 +43,7 @@ export async function GET(req: NextRequest) {
       globalXp,
       xpCurrentLevel: globalXp % 1000,
       xpNextLevel: 1000,
+      isSubscribed,
     },
   });
 }

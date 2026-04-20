@@ -1,314 +1,257 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { ArrowRight, BarChart3, Calculator, Sparkles, Target } from "lucide-react";
 import usePerformance from "@/lib/use-performance";
+import useTestSession from "@/lib/use-test-session";
 import { useAuth } from "@/lib/auth-context";
-
-const STREAK_DAYS = [0, 0, 1, 2, 2, 3, 1, 0, 0, 2, 3, 3, 4, 2, 0, 2, 3, 4, 3, 4, 4, 3, 3, 4, 4, 3, 4, 4];
-
-const PLAN = [
-  { t: "Warm-up drill · mixed algebra", minutes: 8, done: true },
-  { t: "AI problems · definite integration · 5 qs", minutes: 14, done: false },
-  { t: "Mini-lesson · sequences & limits", minutes: 8, done: false },
-  { t: "Timed mixed-calc drill · 15 qs", minutes: 15, done: false },
-];
 
 export default function DashboardPage() {
   const perf = usePerformance();
+  const ts = useTestSession();
   const { user } = useAuth();
-  const overall = perf.getOverallStats();
-  const weakTopics = perf.getWeakTopics();
-  const topicStats = perf.getTopicStats();
-  const [plan, setPlan] = useState(PLAN);
 
-  const completed = plan.filter((p) => p.done).length;
-  const minutesLeft = plan.filter((p) => !p.done).reduce((s, p) => s + p.minutes, 0);
-  const predicted = overall.total > 0 ? Math.min(800, Math.round(560 + (overall.accuracy / 100) * 240)) : 742;
-  const daysToExam = 57;
-  const streakDays = 12;
-  const firstName = user?.displayName?.split(" ")[0] || "Эрдэнэ";
+  const overall = perf.getOverallStats();
+  const topicStats = perf.getTopicStats();
+  const completed = ts.getCompletedSessions();
+
+  const hasData = overall.total > 0 || completed.length > 0;
+  const firstName = user?.displayName?.split(" ")[0] ?? "";
+
+  const latestSession = completed[0];
+  const latestPct = latestSession?.score?.accuracy ?? null;
+  const weakTopics = topicStats.filter((t) => t.accuracy < 70 && t.total >= 3);
+  const weakest = weakTopics.sort((a, b) => a.accuracy - b.accuracy)[0];
 
   return (
     <div className="min-h-screen pt-16" style={{ background: "var(--bg)" }}>
-      <div className="max-w-7xl mx-auto px-6 md:px-10 py-10 md:py-12">
-        {/* Welcome row */}
-        <section
-          className="grid gap-10 items-end pb-7"
-          style={{ gridTemplateColumns: "minmax(0, 1.2fr) minmax(0, 1fr)", borderBottom: "1px solid var(--line)" }}
-        >
-          <div>
-            <div className="eyebrow">Welcome back · {firstName}</div>
-            <h1
-              className="serif"
-              style={{
-                fontWeight: 400,
-                fontSize: "clamp(48px, 6vw, 72px)",
-                letterSpacing: "-0.04em",
-                lineHeight: 0.96,
-                margin: "8px 0 0",
-                color: "var(--fg)",
-              }}
-            >
-              Сайн уу, <em className="serif-italic" style={{ color: "var(--accent)" }}>{firstName}</em>.
-            </h1>
-            <p className="mt-3 text-[15px]" style={{ color: "var(--fg-2)" }}>
-              ЭЕШ хүртэл {daysToExam} өдөр. Та{" "}
-              <strong style={{ color: "var(--accent)" }}>{streakDays} өдрийн турш</strong> тасралтгүй бэлдэж байна.
-            </p>
-          </div>
-
-          {/* Countdown grid */}
-          <div
-            className="card-edit overflow-hidden"
-            style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", borderRadius: 14 }}
+      <div className="max-w-5xl mx-auto px-6 md:px-10 py-10 md:py-12">
+        {/* Welcome */}
+        <section className="pb-7" style={{ borderBottom: "1px solid var(--line)" }}>
+          <div className="eyebrow">Dashboard{firstName && ` · ${firstName}`}</div>
+          <h1
+            className="serif"
+            style={{
+              fontWeight: 400,
+              fontSize: "clamp(40px, 5.5vw, 64px)",
+              letterSpacing: "-0.04em",
+              lineHeight: 0.98,
+              margin: "8px 0 0",
+              color: "var(--fg)",
+            }}
           >
-            {[
-              { big: daysToExam, lbl: "days to exam", color: "var(--fg)" },
-              { big: predicted, lbl: "projected", color: "var(--accent)" },
-              { big: streakDays, lbl: "day streak", color: "var(--fg)" },
-              { big: weakTopics.length || 6, lbl: "weak topics", color: "var(--fg)" },
-            ].map((it, i) => (
-              <div
-                key={it.lbl}
-                className="px-5 py-5 text-center"
-                style={{ borderRight: i < 3 ? "1px solid var(--line)" : "none" }}
-              >
-                <div className="serif tabular" style={{ fontSize: 36, lineHeight: 1, letterSpacing: "-0.03em", color: it.color }}>
-                  {it.big}
-                </div>
-                <div className="eyebrow mt-1.5" style={{ fontSize: 10 }}>
-                  {it.lbl}
-                </div>
-              </div>
-            ))}
-          </div>
+            Сайн уу, <em className="serif-italic" style={{ color: "var(--accent)" }}>{firstName || "найз"}</em>.
+          </h1>
+          <p className="mt-3 text-[15px]" style={{ color: "var(--fg-2)" }}>
+            {hasData
+              ? "Ахиц амжилтаа доор харна уу."
+              : "Дадлага эхлэхэд таны үзүүлэлт энд гарна."}
+          </p>
+          <p className="mono mt-2" style={{ fontSize: 11, color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+            ON THIS DEVICE · ACCOUNT SYNC COMING SOON
+          </p>
         </section>
 
-        {/* Two-column body */}
-        <section
-          className="grid gap-5 mt-7"
-          style={{ gridTemplateColumns: "minmax(0, 1.6fr) minmax(0, 1fr)" }}
-        >
-          {/* LEFT */}
-          <div className="grid gap-5">
-            {/* Today's plan */}
-            <div className="card-edit p-6 md:p-7 flex flex-col">
-              <div className="eyebrow">
-                Today · {new Date().toLocaleDateString("en-US", { month: "short", day: "numeric" })}
-              </div>
-              <h3 className="serif mt-2 mb-2" style={{ fontWeight: 400, fontSize: 28, letterSpacing: "-0.02em", color: "var(--fg)" }}>
-                Your 45-minute plan
-              </h3>
-              <p className="text-sm" style={{ color: "var(--fg-1)" }}>
-                Focused on the two topics moving your score most. Swap or skip anything.
-              </p>
-              <ul className="list-none p-0 mt-5">
-                {plan.map((p, i) => (
-                  <li
-                    key={p.t}
-                    className="grid items-center gap-3.5 py-3.5"
-                    style={{
-                      gridTemplateColumns: "32px 1fr auto",
-                      borderTop: i === 0 ? "none" : "1px solid var(--line)",
-                      fontSize: 14,
-                    }}
-                  >
-                    <button
-                      onClick={() => setPlan((arr) => arr.map((x, j) => (j === i ? { ...x, done: !x.done } : x)))}
-                      className="flex items-center justify-center"
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 4,
-                        border: `1px solid ${p.done ? "var(--accent)" : "var(--line-strong)"}`,
-                        background: p.done ? "var(--accent)" : "transparent",
-                        color: p.done ? "var(--accent-ink)" : "transparent",
-                        fontSize: 14,
-                        cursor: "pointer",
-                      }}
-                    >
-                      ✓
-                    </button>
-                    <div style={{ color: p.done ? "var(--fg-3)" : "var(--fg)", textDecoration: p.done ? "line-through" : "none" }}>
-                      {p.t}
-                    </div>
-                    <div className="mono" style={{ fontSize: 11, color: p.done ? "var(--accent)" : "var(--fg-3)", letterSpacing: "0.06em" }}>
-                      {p.minutes} MIN
-                    </div>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-5 flex justify-between items-center">
-                <span className="eyebrow">
-                  {completed} OF {plan.length} COMPLETE · {minutesLeft} MIN LEFT
-                </span>
-                <Link href="/ai" className="btn btn-primary">Continue plan →</Link>
-              </div>
-            </div>
-
-            {/* Streak */}
-            <div className="card-edit p-6 md:p-7">
-              <div className="eyebrow">Practice streak · last 28 days</div>
-              <h3 className="serif mt-2" style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--fg)" }}>
-                {streakDays} days in a row.
-              </h3>
-              <div
-                className="mt-4 grid gap-1"
-                style={{ gridTemplateColumns: "repeat(28, 1fr)" }}
-              >
-                {STREAK_DAYS.map((v, i) => (
-                  <span
-                    key={i}
-                    style={{
-                      aspectRatio: "1",
-                      borderRadius: 2,
-                      background: v === 0 ? "var(--bg-3)" : "var(--accent)",
-                      opacity: v === 0 ? 1 : 0.2 + v * 0.2,
-                    }}
-                  />
-                ))}
-              </div>
-              <div className="mt-3 mono flex justify-between items-center" style={{ fontSize: 11, color: "var(--fg-3)" }}>
-                <span>LESS</span>
-                <div className="flex gap-0.5">
-                  <span style={{ width: 12, height: 12, background: "var(--bg-3)" }} />
-                  <span style={{ width: 12, height: 12, background: "var(--accent)", opacity: 0.35 }} />
-                  <span style={{ width: 12, height: 12, background: "var(--accent)", opacity: 0.6 }} />
-                  <span style={{ width: 12, height: 12, background: "var(--accent)", opacity: 0.85 }} />
-                  <span style={{ width: 12, height: 12, background: "var(--accent)" }} />
-                </div>
-                <span>MORE</span>
-              </div>
-            </div>
-
-            {/* Quick links */}
-            <div className="grid gap-3" style={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
-              {[
-                { to: "/practice", eye: "Practice", t: "Take a test →" },
-                { to: "/analytics", eye: "Analytics", t: "Full report →" },
-                { to: "/ai", eye: "AI tutor", t: "Generate problems →" },
-              ].map((l) => (
-                <Link
-                  key={l.to}
-                  href={l.to}
-                  className="card-edit p-5 block"
-                  style={{ textDecoration: "none" }}
-                >
-                  <div className="eyebrow">{l.eye}</div>
-                  <div className="serif mt-1" style={{ fontSize: 20, letterSpacing: "-0.02em", color: "var(--fg)" }}>
-                    {l.t}
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* RIGHT */}
-          <div className="grid gap-5">
-            {/* Focus card */}
+        {!hasData ? (
+          // Empty state
+          <section className="mt-10 card-edit p-10 text-center">
             <div
-              className="card-edit p-6 md:p-7 flex flex-col"
-              style={{ background: "var(--accent-wash)", borderColor: "var(--accent-line)" }}
+              className="w-14 h-14 rounded-md flex items-center justify-center mx-auto mb-5"
+              style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--accent)" }}
             >
-              <div className="eyebrow" style={{ color: "var(--accent)" }}>This week · focus</div>
-              <h3
-                className="serif mt-2 mb-2"
-                style={{ fontWeight: 400, fontSize: 28, letterSpacing: "-0.02em", color: "var(--accent)" }}
-              >
-                Close the integration gap.
-              </h3>
-              <p className="text-sm" style={{ color: "var(--fg-1)" }}>
-                You&apos;re losing ~24 points to definite integration and limits. Moving these to 65% lifts your projection to{" "}
-                <strong>{Math.min(800, predicted + 26)}</strong>.
-              </p>
-              <div className="mt-5 grid gap-2">
-                {(topicStats.length > 0
-                  ? topicStats.slice(0, 2)
-                  : [
-                      { topic: "integration", label: "Definite integration", accuracy: 38 },
-                      { topic: "sequences", label: "Sequences · limits", accuracy: 41 },
-                    ]
-                ).map((s) => (
-                  <div
-                    key={s.topic}
-                    className="flex justify-between items-center px-3 py-3 rounded-lg text-sm"
-                    style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}
-                  >
-                    <span style={{ color: "var(--fg-1)" }}>{s.label}</span>
-                    <span className="mono" style={{ color: "var(--warn)" }}>{s.accuracy}%</span>
-                  </div>
-                ))}
-              </div>
-              <Link href="/ai" className="btn btn-primary mt-4 self-start">Drill now →</Link>
+              <Calculator className="h-6 w-6" />
             </div>
+            <h2 className="serif" style={{ fontWeight: 400, fontSize: 28, letterSpacing: "-0.02em", color: "var(--fg)" }}>
+              Эхний шалгалтаа <em className="serif-italic" style={{ color: "var(--accent)" }}>өгье</em>.
+            </h2>
+            <p className="text-[14px] mt-3 max-w-md mx-auto" style={{ color: "var(--fg-2)" }}>
+              Шалгалт өгсний дараа сэдэв тус бүрийн ахиц, сул талууд, зөвлөмж энд гарч ирнэ.
+            </p>
+            <div className="flex flex-wrap justify-center gap-2 mt-6">
+              <Link href="/practice/esh" className="btn btn-primary">
+                ЭЕШ дадлага эхлэх
+                <ArrowRight className="ml-1 h-3.5 w-3.5" />
+              </Link>
+              <Link href="/practice/esh/previous-years" className="btn btn-line">
+                Өмнөх жилийн шалгалт
+              </Link>
+            </div>
+          </section>
+        ) : (
+          <>
+            {/* Stats grid */}
+            <section
+              className="grid gap-4 mt-8"
+              style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}
+            >
+              <div className="card-edit p-5">
+                <div className="eyebrow">Total problems</div>
+                <div className="serif tabular mt-2" style={{ fontSize: 40, letterSpacing: "-0.03em", lineHeight: 1, color: "var(--fg)" }}>
+                  {overall.total}
+                </div>
+              </div>
+              <div className="card-edit p-5">
+                <div className="eyebrow">Accuracy</div>
+                <div className="serif tabular mt-2" style={{ fontSize: 40, letterSpacing: "-0.03em", lineHeight: 1, color: "var(--accent)" }}>
+                  {overall.accuracy}
+                  <span className="mono ml-1" style={{ fontSize: 14, color: "var(--fg-3)" }}>%</span>
+                </div>
+              </div>
+              <div className="card-edit p-5">
+                <div className="eyebrow">Tests completed</div>
+                <div className="serif tabular mt-2" style={{ fontSize: 40, letterSpacing: "-0.03em", lineHeight: 1, color: "var(--fg)" }}>
+                  {completed.length}
+                </div>
+              </div>
+              {latestPct !== null && (
+                <div className="card-edit p-5">
+                  <div className="eyebrow">Latest test</div>
+                  <div className="serif tabular mt-2" style={{ fontSize: 40, letterSpacing: "-0.03em", lineHeight: 1, color: "var(--fg)" }}>
+                    {latestPct}
+                    <span className="mono ml-1" style={{ fontSize: 14, color: "var(--fg-3)" }}>%</span>
+                  </div>
+                </div>
+              )}
+            </section>
 
-            {/* Tutor */}
-            <div className="card-edit p-6 md:p-7">
-              <div className="eyebrow">Upcoming · tutor</div>
-              <div className="mt-3 flex gap-3 items-center">
+            {/* Focus row */}
+            <section className="grid gap-4 mt-5" style={{ gridTemplateColumns: "minmax(0, 1.4fr) minmax(0, 1fr)" }}>
+              {/* Weakest topic */}
+              {weakest ? (
                 <div
-                  className="serif"
-                  style={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: 99,
-                    background: "var(--bg-3)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: 18,
-                    color: "var(--fg)",
-                  }}
+                  className="card-edit p-6"
+                  style={{ background: "var(--accent-wash)", borderColor: "var(--accent-line)" }}
                 >
-                  ДЭ
+                  <div className="eyebrow" style={{ color: "var(--accent)" }}>Focus · weakest topic</div>
+                  <h3
+                    className="serif mt-2"
+                    style={{ fontWeight: 400, fontSize: 26, letterSpacing: "-0.02em", color: "var(--fg)" }}
+                  >
+                    {weakest.label}
+                  </h3>
+                  <p className="text-[14px] mt-2" style={{ color: "var(--fg-1)" }}>
+                    Одоогийн үнэн зөв: <strong style={{ color: "var(--warn)" }}>{weakest.accuracy}%</strong>{" "}
+                    ({weakest.correct}/{weakest.total}). Энэ сэдэв дээр илүү дасгал хийвэл оноо огцом нэмэгдэнэ.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-5">
+                    <Link href={`/practice/esh/learn/${weakest.topic}`} className="btn btn-primary">
+                      Суралцах
+                      <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                    </Link>
+                    <Link href="/practice/esh" className="btn btn-line">
+                      Шалгалт өгөх
+                    </Link>
+                  </div>
+                </div>
+              ) : (
+                <div className="card-edit p-6">
+                  <div className="eyebrow">Practice</div>
+                  <h3
+                    className="serif mt-2"
+                    style={{ fontWeight: 400, fontSize: 26, letterSpacing: "-0.02em", color: "var(--fg)" }}
+                  >
+                    Сайн явж байна.
+                  </h3>
+                  <p className="text-[14px] mt-2" style={{ color: "var(--fg-1)" }}>
+                    Одоогоор ямар нэг сэдэв тодорхой сул гэж гарсангүй. Илүү шалгалт өгч баталгаажуулцгаая.
+                  </p>
+                  <Link href="/practice/esh" className="btn btn-primary mt-5 self-start">
+                    Шалгалт өгөх
+                    <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                  </Link>
+                </div>
+              )}
+
+              {/* Analytics link */}
+              <Link href="/analytics" className="card-edit p-6 group" style={{ textDecoration: "none" }}>
+                <div className="flex items-center gap-2 mb-2">
+                  <BarChart3 className="h-4 w-4" style={{ color: "var(--fg-2)" }} />
+                  <div className="eyebrow">Detailed analytics</div>
+                </div>
+                <h3
+                  className="serif mt-2"
+                  style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--fg)" }}
+                >
+                  Бүрэн тайлан →
+                </h3>
+                <p className="text-[13px] mt-2" style={{ color: "var(--fg-2)" }}>
+                  Сэдвийн задаргаа, шалгалтын түүх, алдсан бодлогууд.
+                </p>
+              </Link>
+            </section>
+
+            {/* Topic strip */}
+            {topicStats.length > 0 && (
+              <section className="card-edit p-6 mt-5">
+                <div className="flex items-center gap-2 mb-4">
+                  <Target className="h-4 w-4" style={{ color: "var(--fg-2)" }} />
+                  <div className="eyebrow">Top topics</div>
+                </div>
+                <div className="space-y-3">
+                  {topicStats.slice(0, 5).map((t) => (
+                    <div key={t.topic}>
+                      <div className="flex items-baseline justify-between mb-1.5 text-sm">
+                        <span style={{ color: "var(--fg-1)" }}>{t.label}</span>
+                        <span className="mono tabular" style={{ color: "var(--fg-3)", fontSize: 12 }}>
+                          {t.correct}/{t.total} · {t.accuracy}%
+                        </span>
+                      </div>
+                      <div className="h-[3px] rounded-full overflow-hidden" style={{ background: "var(--bg-2)" }}>
+                        <div
+                          className="h-full rounded-full"
+                          style={{
+                            width: `${t.accuracy}%`,
+                            background: t.accuracy >= 80 ? "var(--accent)" : t.accuracy >= 50 ? "var(--warn)" : "var(--danger)",
+                          }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Quick actions */}
+            <section className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-5">
+              <Link href="/practice/esh" className="card-edit p-5 flex items-center gap-3 group">
+                <div
+                  className="w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0"
+                  style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
+                >
+                  <Calculator className="h-4 w-4" />
                 </div>
                 <div>
-                  <div className="serif" style={{ fontSize: 22, letterSpacing: "-0.02em", color: "var(--fg)" }}>Д. Энхжаргал</div>
-                  <div className="eyebrow mt-0.5">FRI · MAR 28 · 19:00 UB</div>
+                  <p className="serif" style={{ fontWeight: 400, fontSize: 15, color: "var(--fg)" }}>ЭЕШ дадлага</p>
+                  <p className="text-[12px]" style={{ color: "var(--fg-3)" }}>Шалгалт өгөх</p>
                 </div>
-              </div>
-              <p className="serif mt-4" style={{ fontSize: 14, color: "var(--fg-1)", lineHeight: 1.55 }}>
-                &ldquo;Let&apos;s do u-substitution patterns — I&apos;ll bring 6 problems calibrated to your gap.&rdquo;
-              </p>
-              <div className="flex gap-2 mt-3">
-                <button className="btn btn-line" style={{ fontSize: 12, padding: "7px 12px" }}>Reschedule</button>
-                <button className="btn btn-ghost" style={{ fontSize: 12, padding: "7px 12px" }}>Message</button>
-              </div>
-            </div>
-
-            {/* Latest report preview */}
-            <Link href="/analytics" className="card-edit p-6 md:p-7 block" style={{ textDecoration: "none" }}>
-              <div className="eyebrow">Latest report · Week 8</div>
-              <div className="flex justify-between items-baseline mt-2">
-                <div className="serif" style={{ fontSize: 56, letterSpacing: "-0.04em", lineHeight: 1, color: "var(--fg)" }}>
-                  {predicted}
-                  <span className="mono ml-1" style={{ fontSize: 16, color: "var(--fg-3)" }}>/800</span>
+              </Link>
+              <Link href="/practice/esh/learn" className="card-edit p-5 flex items-center gap-3 group">
+                <div
+                  className="w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0"
+                  style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
+                >
+                  <Sparkles className="h-4 w-4" />
                 </div>
-                <div className="mono" style={{ fontSize: 11, color: "var(--accent)" }}>▲ +62 PTS</div>
-              </div>
-              <svg viewBox="0 0 300 60" preserveAspectRatio="none" width="100%" height="60" style={{ marginTop: 12 }}>
-                <defs>
-                  <linearGradient id="hg" x1="0" x2="0" y1="0" y2="1">
-                    <stop offset="0" stopColor="var(--accent)" stopOpacity={0.3} />
-                    <stop offset="1" stopColor="var(--accent)" stopOpacity={0} />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M0,48 C40,44 80,38 120,32 C160,26 200,20 240,14 C260,11 290,6 300,4 L300,60 L0,60 Z"
-                  fill="url(#hg)"
-                />
-                <path
-                  d="M0,48 C40,44 80,38 120,32 C160,26 200,20 240,14 C260,11 290,6 300,4"
-                  fill="none"
-                  stroke="var(--accent)"
-                  strokeWidth={1.5}
-                />
-              </svg>
-              <div className="eyebrow mt-2.5">VIEW FULL REPORT →</div>
-            </Link>
-          </div>
-        </section>
+                <div>
+                  <p className="serif" style={{ fontWeight: 400, fontSize: 15, color: "var(--fg)" }}>Сэдвээр суралцах</p>
+                  <p className="text-[12px]" style={{ color: "var(--fg-3)" }}>Томьёо, зөвлөгөө</p>
+                </div>
+              </Link>
+              <Link href="/analytics" className="card-edit p-5 flex items-center gap-3 group">
+                <div
+                  className="w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0"
+                  style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
+                >
+                  <BarChart3 className="h-4 w-4" />
+                </div>
+                <div>
+                  <p className="serif" style={{ fontWeight: 400, fontSize: 15, color: "var(--fg)" }}>Бүрэн тайлан</p>
+                  <p className="text-[12px]" style={{ color: "var(--fg-3)" }}>Дэлгэрэнгүй анализ</p>
+                </div>
+              </Link>
+            </section>
+          </>
+        )}
       </div>
     </div>
   );

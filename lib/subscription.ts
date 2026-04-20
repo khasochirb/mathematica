@@ -1,6 +1,8 @@
 import { createAdminClient } from "./supabase";
 
-export const FREE_DAILY_LIMIT = 10;
+// Reserved for future AI-generated problem gating. Not currently enforced —
+// past-paper content is free with no cap.
+export const FREE_DAILY_AI_LIMIT = 10;
 
 /** Check if user is an active subscriber */
 export async function isSubscribed(userId: string): Promise<boolean> {

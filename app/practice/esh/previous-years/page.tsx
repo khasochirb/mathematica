@@ -108,7 +108,7 @@ export default function PreviousYearsPage() {
               className="text-[14px] mt-4 mb-6"
               style={{ color: "var(--fg-2)" }}
             >
-              2024, 2025 оны ЭЕШ-ийн бодит даалгавруудыг бүтэн 4 хувилбараар нь
+              2021–2025 оны ЭЕШ-ийн бодит даалгавруудыг бүтэн 4 хувилбараар нь
               үзэхийн тулд нэвтэрнэ үү. Бүртгүүлэх нь үнэгүй.
             </p>
             <div className="flex gap-2 justify-center">
@@ -156,7 +156,7 @@ export default function PreviousYearsPage() {
               <em className="serif-italic">бодит шалгалтууд</em>
             </h1>
             <p className="text-[13px] mt-2" style={{ color: "var(--fg-2)" }}>
-              2024 ба 2025 оны ЭЕШ-ийн дөрвөн хувилбар тус бүр · бүх хэрэглэгчид
+              2021–2025 оны ЭЕШ-ийн дөрвөн хувилбар тус бүр · бүх хэрэглэгчид
               үнэгүй
             </p>
           </div>

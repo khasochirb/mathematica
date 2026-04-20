@@ -3,10 +3,17 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { api, type User, clearToken } from "./api";
 
-type AuthUser = User & { xpCurrentLevel: number; xpNextLevel: number };
+type AuthUser = User & {
+  xpCurrentLevel: number;
+  xpNextLevel: number;
+  isSubscribed: boolean;
+};
 
 interface AuthState {
   user: AuthUser | null;
+  isAuthenticated: boolean;
+  isSubscribed: boolean;
+  isLoading: boolean;
   loading: boolean;
   logout: () => void;
   refresh: () => Promise<void>;
@@ -14,6 +21,9 @@ interface AuthState {
 
 const AuthContext = createContext<AuthState>({
   user: null,
+  isAuthenticated: false,
+  isSubscribed: false,
+  isLoading: true,
   loading: true,
   logout: () => {},
   refresh: async () => {},
@@ -45,7 +55,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, loading, logout, refresh }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        isAuthenticated: !!user,
+        isSubscribed: !!user?.isSubscribed,
+        isLoading: loading,
+        loading,
+        logout,
+        refresh,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

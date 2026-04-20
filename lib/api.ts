@@ -44,7 +44,10 @@ export const api = {
         method: "POST",
         body: JSON.stringify(body),
       }),
-    me: () => apiCall<User & { xpCurrentLevel: number; xpNextLevel: number }>("/api/auth/me"),
+    me: () =>
+      apiCall<User & { xpCurrentLevel: number; xpNextLevel: number; isSubscribed: boolean }>(
+        "/api/auth/me",
+      ),
   },
   topics: {
     list: () => apiCall<TopicTree[]>("/api/topics"),
@@ -92,6 +95,20 @@ export const api = {
         "/api/subscription/activate",
         { method: "POST", body: JSON.stringify(body) }
       ),
+  },
+  waitlist: {
+    join: (body: { email: string; source: string; interestedExams?: string[] }) =>
+      apiCall<{ success: boolean }>("/api/waitlist", {
+        method: "POST",
+        body: JSON.stringify(body),
+      }),
+  },
+  events: {
+    track: (body: { name: string; properties?: Record<string, unknown> }) =>
+      apiCall<{ success: boolean }>("/api/events", {
+        method: "POST",
+        body: JSON.stringify(body),
+      }).catch(() => ({ success: false })),
   },
 };
 

@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import { LangProvider } from "@/lib/lang-context";
 import { AuthProvider } from "@/lib/auth-context";
 import { ThemeProvider } from "@/lib/theme-context";
+import { UpgradeModalProvider } from "@/lib/upgrade-modal-context";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -70,9 +71,11 @@ export default function RootLayout({
         <ThemeProvider>
           <LangProvider>
             <AuthProvider>
-              <Header />
-              <main>{children}</main>
-              <Footer />
+              <UpgradeModalProvider>
+                <Header />
+                <main>{children}</main>
+                <Footer />
+              </UpgradeModalProvider>
             </AuthProvider>
           </LangProvider>
         </ThemeProvider>

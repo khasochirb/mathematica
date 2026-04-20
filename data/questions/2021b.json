@@ -1,0 +1,722 @@
+[
+  {
+    "source": "Test-2021B-Q1",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 1,
+    "type": "MCQ",
+    "topic": "arithmetic",
+    "subtopic": "rounding",
+    "difficulty": 1,
+    "body": "7.3 тоогийг бүхлээр тоймлоорой.",
+    "options": {
+      "A": "$7$",
+      "B": "$8$",
+      "C": "$10$",
+      "D": "$5$",
+      "E": "$0$"
+    },
+    "answer": "A",
+    "solution": "7.3 rounds down to 7"
+  },
+  {
+    "source": "Test-2021B-Q2",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 2,
+    "type": "MCQ",
+    "topic": "arithmetic",
+    "subtopic": "scientific_notation",
+    "difficulty": 1,
+    "body": "341000 тоогийг стандарт хэлбэрт бичээрэй.",
+    "options": {
+      "A": "$0.341 \\cdot 10^6$",
+      "B": "$341 \\cdot 10^3$",
+      "C": "$34.1 \\cdot 10^4$",
+      "D": "$3.41 \\cdot 10^5$",
+      "E": "$3.41 \\cdot 10^4$"
+    },
+    "answer": "D",
+    "solution": "3.41×10^5 is the only form with 1≤coeff<10"
+  },
+  {
+    "source": "Test-2021B-Q3",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 3,
+    "type": "MCQ",
+    "topic": "arithmetic",
+    "subtopic": "repeating_decimal",
+    "difficulty": 1,
+    "body": "$0.2(6)$ үет аравтын бутархайг энгийн бутархайд шилжүүлээрэй.",
+    "options": {
+      "A": "$\\dfrac{13}{45}$",
+      "B": "$\\dfrac{4}{15}$",
+      "C": "$\\dfrac{8}{3}$",
+      "D": "$\\dfrac{26}{99}$",
+      "E": "$\\dfrac{8}{33}$"
+    },
+    "answer": "B",
+    "solution": "Let x=0.2666...; 100x-10x=24; x=24/90=4/15"
+  },
+  {
+    "source": "Test-2021B-Q4",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 4,
+    "type": "MCQ",
+    "topic": "probability",
+    "subtopic": "complementary_event",
+    "difficulty": 1,
+    "body": "$P(A)=\\dfrac{3}{4}$ бол $A$ үзэгдлийн эсрэг үзэгдлийн магадлалыг олоорой.",
+    "options": {
+      "A": "$\\dfrac{4}{3}$",
+      "B": "$-\\dfrac{3}{4}$",
+      "C": "$1$",
+      "D": "$0$",
+      "E": "$\\dfrac{1}{4}$"
+    },
+    "answer": "E",
+    "solution": "P(A')=1-3/4=1/4"
+  },
+  {
+    "source": "Test-2021B-Q5",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 5,
+    "type": "MCQ",
+    "topic": "algebra",
+    "subtopic": "radical_exponent",
+    "difficulty": 1,
+    "body": "$5^{\\frac{2}{3}}$ зэргийг язгуур хэрэглэн бичээрэй.",
+    "options": {
+      "A": "$\\sqrt{5}$",
+      "B": "$\\sqrt{125}$",
+      "C": "$\\sqrt[3]{5}$",
+      "D": "$\\sqrt[3]{25}$",
+      "E": "$\\sqrt[3]{125}$"
+    },
+    "answer": "D",
+    "solution": "5^(2/3)=(5^2)^(1/3)=∛25"
+  },
+  {
+    "source": "Test-2021B-Q6",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 6,
+    "type": "MCQ",
+    "topic": "functions",
+    "subtopic": "linear_function",
+    "difficulty": 1,
+    "body": "$f(x)=2x+a$ функцийн график дээр $M(-1,\\ 3)$ цэг оршдог бол $a$ тоог олоорой.",
+    "options": {
+      "A": "$2$",
+      "B": "$-7$",
+      "C": "$5$",
+      "D": "$3$",
+      "E": "$1$"
+    },
+    "answer": "C",
+    "solution": "f(-1)=-2+a=3 → a=5"
+  },
+  {
+    "source": "Test-2021B-Q7",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 7,
+    "type": "MCQ",
+    "topic": "geometry",
+    "subtopic": "distance_formula",
+    "difficulty": 1,
+    "body": "$M(-3,\\ 3\\sqrt{2})$ цэгээс координатын эх хүртэлх зайг олоорой.",
+    "options": {
+      "A": "$3$",
+      "B": "$3\\sqrt{3}$",
+      "C": "$3\\sqrt{2}$",
+      "D": "$3\\sqrt{5}$",
+      "E": "$-3+3\\sqrt{2}$"
+    },
+    "answer": "B",
+    "solution": "√(9+18)=√27=3√3"
+  },
+  {
+    "source": "Test-2021B-Q8",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 8,
+    "type": "MCQ",
+    "topic": "algebra",
+    "subtopic": "matrix_operations",
+    "difficulty": 1,
+    "body": "$A=\\begin{pmatrix}1 \\\\ 3\\end{pmatrix}$, $B=\\begin{pmatrix}-2 & 1 \\\\ 4 & 6\\end{pmatrix}$ матрицуудын хувьд аль үйлдлийг гүйцэтгэж болох вэ?",
+    "options": {
+      "A": "$B-A$",
+      "B": "$A\\cdot B$",
+      "C": "$A+B$",
+      "D": "$B\\cdot A$",
+      "E": "$A^2$"
+    },
+    "answer": "D",
+    "solution": "B(2×2)·A(2×1) is defined; others require matching dimensions"
+  },
+  {
+    "source": "Test-2021B-Q9",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 9,
+    "type": "MCQ",
+    "topic": "trigonometry",
+    "subtopic": "trig_identity",
+    "difficulty": 1,
+    "body": "$\\cos\\alpha=-\\dfrac{3}{4}$, $(180^\\circ < \\alpha < 270^\\circ)$ бол $\\sin\\alpha$-ийн утгыг олоорой.",
+    "options": {
+      "A": "$\\dfrac{5}{4}$",
+      "B": "$\\dfrac{\\sqrt{7}}{4}$",
+      "C": "$-\\dfrac{1}{4}$",
+      "D": "$\\dfrac{3}{4}$",
+      "E": "$-\\dfrac{\\sqrt{7}}{4}$"
+    },
+    "answer": "E",
+    "solution": "sin²α=1-9/16=7/16; 3rd quadrant → sinα=-√7/4"
+  },
+  {
+    "source": "Test-2021B-Q10",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 10,
+    "type": "MCQ",
+    "topic": "calculus",
+    "subtopic": "derivative",
+    "difficulty": 1,
+    "body": "$f(x)=\\dfrac{4}{\\sqrt{x}}$ функцийн хувьд $f'(9)$-ийн утгыг олоорой.",
+    "options": {
+      "A": "$-\\dfrac{2}{27}$",
+      "B": "$-\\dfrac{2}{9}$",
+      "C": "$-\\dfrac{2}{3}$",
+      "D": "$24$",
+      "E": "$6$"
+    },
+    "answer": "A",
+    "solution": "f=4x^(-1/2); f'=-2x^(-3/2); f'(9)=-2/27"
+  },
+  {
+    "source": "Test-2021B-Q11",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 11,
+    "type": "MCQ",
+    "topic": "arithmetic",
+    "subtopic": "number_comparison",
+    "difficulty": 1,
+    "body": "$1,\\ 1.8,\\ \\dfrac{7}{4},\\ \\dfrac{\\pi}{2}$ тоонуудаас $\\sqrt{3}$-аас их байх бүх тоог ялган бичээрэй.",
+    "options": {
+      "A": "$1.8,\\ \\dfrac{\\pi}{2}$",
+      "B": "$\\dfrac{7}{4}$",
+      "C": "$\\dfrac{\\pi}{2}$",
+      "D": "$1.8,\\ \\dfrac{7}{4}$",
+      "E": "$\\dfrac{7}{4},\\ 1$"
+    },
+    "answer": "D",
+    "solution": "√3≈1.732; 1.8>1.732✓; 7/4=1.75>1.732✓; π/2≈1.571✗; 1✗"
+  },
+  {
+    "source": "Test-2021B-Q12",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 12,
+    "type": "MCQ",
+    "topic": "statistics",
+    "subtopic": "interquartile_range",
+    "difficulty": 1,
+    "body": "Есөн сурагчийн математикийн шалгалтын оноо 62, 62, 56, 83, 78, 51, 100, 85, 70 байв. Сурагчдын онооны квартиль хоорондын далайцыг олоорой.",
+    "options": {
+      "A": "$21$",
+      "B": "$49$",
+      "C": "$25$",
+      "D": "$62$",
+      "E": "$70$"
+    },
+    "answer": "C",
+    "solution": "Sorted: 51,56,62,62,70,78,83,85,100; Q1=59, Q3=84; IQR=25"
+  },
+  {
+    "source": "Test-2021B-Q13",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 13,
+    "type": "MCQ",
+    "topic": "algebra",
+    "subtopic": "absolute_value_simplification",
+    "difficulty": 1,
+    "body": "$-1 < a < 3$ үед $\\sqrt{(a+1)^2}+\\sqrt{a^2-6a+9}$ илэрхийллийг хялбарчлаарай.",
+    "options": {
+      "A": "$2a-2$",
+      "B": "$4$",
+      "C": "$2-2a$",
+      "D": "$-4$",
+      "E": "$5$"
+    },
+    "answer": "B",
+    "solution": "|a+1|+|a-3|=(a+1)+(3-a)=4"
+  },
+  {
+    "source": "Test-2021B-Q14",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 14,
+    "type": "MCQ",
+    "topic": "algebra",
+    "subtopic": "matrix_inverse",
+    "difficulty": 1,
+    "body": "$M=\\begin{pmatrix}10 & 6 \\\\ 3 & 2\\end{pmatrix}$ бол $M^{-1}$ матрицыг олоорой.",
+    "options": {
+      "A": "$\\begin{pmatrix}1 & 3 \\\\ -1.5 & -5\\end{pmatrix}$",
+      "B": "$\\begin{pmatrix}-5 & 1.5 \\\\ 3 & -1\\end{pmatrix}$",
+      "C": "$\\begin{pmatrix}10 & 3 \\\\ 6 & 2\\end{pmatrix}$",
+      "D": "$\\begin{pmatrix}2 & -6 \\\\ -3 & 10\\end{pmatrix}$",
+      "E": "$\\begin{pmatrix}1 & -3 \\\\ -1.5 & 5\\end{pmatrix}$"
+    },
+    "answer": "E",
+    "solution": "det=20-18=2; M⁻¹=(1/2)[[2,-6],[-3,10]]=[[1,-3],[-1.5,5]]"
+  },
+  {
+    "source": "Test-2021B-Q15",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 15,
+    "type": "MCQ",
+    "topic": "algebra",
+    "subtopic": "exponential_system",
+    "difficulty": 1,
+    "body": "$\\begin{cases}x+y=1 \\\\ 3^{x-1}=9^y\\end{cases}$ системийн тэгшитгэлээс $x-y$-ийг олоорой.",
+    "options": {
+      "A": "$5$",
+      "B": "$1;\\ 3$",
+      "C": "$-1$",
+      "D": "$1$",
+      "E": "$3$"
+    },
+    "answer": "D",
+    "solution": "3^(x-1)=3^(2y)→x-1=2y; x+y=1→y=0,x=1; x-y=1"
+  },
+  {
+    "source": "Test-2021B-Q16",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 16,
+    "type": "MCQ",
+    "topic": "functions",
+    "subtopic": "range",
+    "difficulty": 1,
+    "body": "$y=x^2-6x+7$, $(2\\leq x\\leq 5)$ функцийн утгын мужийг олоорой.",
+    "options": {
+      "A": "$-2\\leq y\\leq 2$",
+      "B": "$-1\\leq y\\leq 2$",
+      "C": "$2\\leq y\\leq 5$",
+      "D": "$y\\geq -2$",
+      "E": "$-2\\leq y\\leq -1$"
+    },
+    "answer": "A",
+    "solution": "y=(x-3)²-2; min at x=3: y=-2; at x=2: y=-1; max at x=5: y=2"
+  },
+  {
+    "source": "Test-2021B-Q17",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 17,
+    "type": "MCQ",
+    "topic": "algebra",
+    "subtopic": "polynomial_remainder",
+    "difficulty": 1,
+    "body": "$P(x)=x^3+x^2-3x-5$ олон гишүүнтийг $Q(x)=x+2$ олон гишүүнтэд хуваахад гарах үлдэгдлийг олоорой.",
+    "options": {
+      "A": "$5$",
+      "B": "$1$",
+      "C": "$-3$",
+      "D": "$-7$",
+      "E": "$-5$"
+    },
+    "answer": "C",
+    "solution": "P(-2)=-8+4+6-5=-3"
+  },
+  {
+    "source": "Test-2021B-Q18",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 18,
+    "type": "MCQ",
+    "topic": "set_theory",
+    "subtopic": "inclusion_exclusion",
+    "difficulty": 1,
+    "body": "$A,\\ B$ олонлогуудын хувьд $|A|=8$, $|A\\cap B|=3$, $|A\\cup B|=14$ бол $|B|$-ийг олоорой.",
+    "options": {
+      "A": "$8$",
+      "B": "$3$",
+      "C": "$19$",
+      "D": "$9$",
+      "E": "$6$"
+    },
+    "answer": "D",
+    "solution": "|B|=14-8+3=9"
+  },
+  {
+    "source": "Test-2021B-Q19",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 19,
+    "type": "MCQ",
+    "topic": "combinatorics",
+    "subtopic": "stars_and_bars",
+    "difficulty": 1,
+    "body": "$x+y+z=8$ тэгшитгэл хэдэн натурал шийдтэй вэ?",
+    "options": {
+      "A": "$18$",
+      "B": "$45$",
+      "C": "$5$",
+      "D": "$20$",
+      "E": "$21$"
+    },
+    "answer": "E",
+    "solution": "Positive integers: C(7,2)=21"
+  },
+  {
+    "source": "Test-2021B-Q20",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 20,
+    "type": "MCQ",
+    "topic": "geometry",
+    "subtopic": "cone_sector_angle",
+    "difficulty": 1,
+    "body": "Конусын байгуулагч нь 8 нэгж, суурийн радиус нь 6 нэгж урттай байв. Энэ конусын хажуу гадаргуугийн дэлгээс болох секторын өнцгийг олоорой.",
+    "options": {
+      "A": "$270^\\circ$",
+      "B": "$90^\\circ$",
+      "C": "$480^\\circ$",
+      "D": "$240^\\circ$",
+      "E": "$\\arccos\\left(-\\dfrac{1}{8}\\right)$"
+    },
+    "answer": "A",
+    "solution": "θ=(r/l)×360°=(6/8)×360°=270°"
+  },
+  {
+    "source": "Test-2021B-Q21",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 21,
+    "type": "MCQ",
+    "topic": "algebra",
+    "subtopic": "polynomial_roots",
+    "difficulty": 1,
+    "body": "$-2,\\ 2,\\ 1$ тоонууд язгуур нь болох гурван зэргийн олон гишүүнт аль нь вэ?",
+    "options": {
+      "A": "$x^3-2x^2-x+2$",
+      "B": "$x^3+x^2-4x+4$",
+      "C": "$x^3+3x^2-4x-12$",
+      "D": "$x^3-x^2-4x+4$",
+      "E": "$x^3+x^2+4x-4$"
+    },
+    "answer": "D",
+    "solution": "(x+2)(x-2)(x-1)=(x²-4)(x-1)=x³-x²-4x+4"
+  },
+  {
+    "source": "Test-2021B-Q22",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 22,
+    "type": "MCQ",
+    "topic": "algebra",
+    "subtopic": "absolute_value_equation",
+    "difficulty": 1,
+    "body": "$|2x-1|+|x+5|=10$ тэгшитгэлийн шийдийг олоорой.",
+    "options": {
+      "A": "$\\left\\{-4,\\ -\\dfrac{14}{3}\\right\\}$",
+      "B": "$\\left\\{-4,\\ 2,\\ -\\dfrac{14}{3}\\right\\}$",
+      "C": "$\\{-4,\\ 2\\}$",
+      "D": "$\\left\\{2,\\ -\\dfrac{14}{3}\\right\\}$",
+      "E": "$\\{2\\}$"
+    },
+    "answer": "C",
+    "solution": "Cases: x≥1/2→x=2✓; -5≤x<1/2→x=-4✓; x<-5→x=-14/3≈-4.67 not in range"
+  },
+  {
+    "source": "Test-2021B-Q23",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 23,
+    "type": "MCQ",
+    "topic": "calculus",
+    "subtopic": "antiderivative",
+    "difficulty": 1,
+    "body": "$\\dfrac{dy}{dx}=4x-3$ ба $P(-1;\\ 1)$ цэгийг дайрах муруйг олоорой.",
+    "options": {
+      "A": "$y=2x^2-1$",
+      "B": "$y=2x^2-3x-4$",
+      "C": "$y=4x^2-3x-6$",
+      "D": "$y=2x^2-3x+2$",
+      "E": "$y=4x^2-3x$"
+    },
+    "answer": "B",
+    "solution": "y=2x²-3x+C; P(-1,1): 1=2+3+C→C=-4; y=2x²-3x-4"
+  },
+  {
+    "source": "Test-2021B-Q24",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 24,
+    "type": "MCQ",
+    "topic": "calculus",
+    "subtopic": "normal_line",
+    "difficulty": 1,
+    "body": "$f(x)=x^2-4x+5$ функцийн $x=1$ цэгт татсан нормаль шулууны тэгшитгэлийг бичээрэй.",
+    "options": {
+      "A": "$y=-2x+4$",
+      "B": "$y=\\dfrac{1}{2}x+\\dfrac{3}{2}$",
+      "C": "$y=-\\dfrac{1}{2}x+\\dfrac{5}{2}$",
+      "D": "$y=2x$",
+      "E": "$y=2x-4$"
+    },
+    "answer": "B",
+    "solution": "f(1)=2; f'(x)=2x-4; f'(1)=-2; normal slope=1/2; y-2=(1/2)(x-1)→y=x/2+3/2"
+  },
+  {
+    "source": "Test-2021B-Q25",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 25,
+    "type": "MCQ",
+    "topic": "vectors",
+    "subtopic": "section_formula",
+    "difficulty": 1,
+    "body": "$OAB$ гурвалжны $AB$ тал дээр $AC:CB=3:1$ байх $C$ цэг авав. $\\overrightarrow{OA}=\\vec{a}$, $\\overrightarrow{OB}=\\vec{b}$ бол $\\overrightarrow{OC}$-ийг $\\vec{a},\\ \\vec{b}$-ээр илэрхийлэх.",
+    "options": {
+      "A": "$\\dfrac{\\vec{b}+3\\vec{a}}{4}$",
+      "B": "$\\dfrac{3\\vec{b}-\\vec{a}}{4}$",
+      "C": "$\\dfrac{-\\vec{b}+5\\vec{a}}{4}$",
+      "D": "$\\dfrac{3\\vec{b}+\\vec{a}}{4}$",
+      "E": "$\\dfrac{\\vec{b}-\\vec{a}}{4}$"
+    },
+    "answer": "D",
+    "solution": "C=(1/4)A+(3/4)B; OC=(a⃗+3b⃗)/4"
+  },
+  {
+    "source": "Test-2021B-Q26",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 26,
+    "type": "MCQ",
+    "topic": "statistics",
+    "subtopic": "mean",
+    "difficulty": 1,
+    "body": "$n$ ширхэг элементтэй өгөгдлийн арифметик дундаж $12.5$ ба $\\sum(x-10)=35$ бол $n$-ийн утгыг олоорой.",
+    "options": {
+      "A": "$3$",
+      "B": "$4$",
+      "C": "$2$",
+      "D": "$15$",
+      "E": "$14$"
+    },
+    "answer": "E",
+    "solution": "Σx-10n=35; 12.5n-10n=35; 2.5n=35; n=14"
+  },
+  {
+    "source": "Test-2021B-Q27",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 27,
+    "type": "MCQ",
+    "topic": "algebra",
+    "subtopic": "rational_expression",
+    "difficulty": 1,
+    "body": "$\\left(\\dfrac{1}{x-1}+\\dfrac{x^2-3x}{x^2-1}\\right)\\div\\dfrac{2x-2}{x^2-x-2}$ илэрхийллийг хялбарчлаарай.",
+    "options": {
+      "A": "$\\dfrac{x+2}{2}$",
+      "B": "$\\dfrac{(x-1)(x+2)}{2(x+1)}$",
+      "C": "$\\dfrac{(x-1)(x-2)}{2(x+1)}$",
+      "D": "$\\dfrac{x-2}{2}$",
+      "E": "$\\dfrac{x+1}{2}$"
+    },
+    "answer": "D",
+    "solution": "[x+1+x(x-3)]/[(x-1)(x+1)]=(x-1)²/[(x-1)(x+1)]=(x-1)/(x+1); ×(x-2)(x+1)/[2(x-1)]=(x-2)/2"
+  },
+  {
+    "source": "Test-2021B-Q28",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 28,
+    "type": "MCQ",
+    "topic": "arithmetic",
+    "subtopic": "mixture_problem",
+    "difficulty": 1,
+    "body": "Зэс ба төмрийн 40 кг хайлшинд 10 кг төмөр нэмэхэд зэсийн эзлэх хувь нь 12 хувиар багассан бол хайлшинд хэдэн килограмм зэс байсан бэ?",
+    "options": {
+      "A": "$24$ кг",
+      "B": "$16$ кг",
+      "C": "$25$ кг",
+      "D": "$28$ кг",
+      "E": "$36$ кг"
+    },
+    "answer": "A",
+    "solution": "c/40-c/50=0.12; c/200=0.12; c=24"
+  },
+  {
+    "source": "Test-2021B-Q29",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 29,
+    "type": "MCQ",
+    "topic": "geometry",
+    "subtopic": "transformation_matrix",
+    "difficulty": 1,
+    "body": "Зурагт өгөгдсөн $A$ дүрсийг $B$ дүрсэд хувиргажээ. Хувиргалтын матрицыг олоорой.",
+    "options": {
+      "A": "$\\begin{pmatrix}0 & -1 \\\\ -1 & 0\\end{pmatrix}$",
+      "B": "$\\begin{pmatrix}0 & -1 \\\\ 1 & 0\\end{pmatrix}$",
+      "C": "$\\begin{pmatrix}1 & 0 \\\\ 0 & -1\\end{pmatrix}$",
+      "D": "$\\begin{pmatrix}0 & 1 \\\\ -1 & 0\\end{pmatrix}$",
+      "E": "$\\begin{pmatrix}-1 & 0 \\\\ 0 & 1\\end{pmatrix}$"
+    },
+    "answer": "D",
+    "solution": "90° clockwise rotation matrix [[0,1],[-1,0]]"
+  },
+  {
+    "source": "Test-2021B-Q30",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 30,
+    "type": "MCQ",
+    "topic": "algebra",
+    "subtopic": "arithmetic_progression",
+    "difficulty": 1,
+    "body": "Арифметик прогрессийн эхний гишүүн нь 51 ба ялгавар нь $-4$ байв. Эхний $n$ гишүүний нийлбэрийн хамгийн их утгыг олоорой.",
+    "options": {
+      "A": "$344$",
+      "B": "$350$",
+      "C": "$352$",
+      "D": "$348$",
+      "E": "$351$"
+    },
+    "answer": "E",
+    "solution": "aₙ>0 while n≤13; S₁₃=13/2·(102-48)=13·27=351"
+  },
+  {
+    "source": "Test-2021B-Q31",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 31,
+    "type": "MCQ",
+    "topic": "vectors",
+    "subtopic": "parallel_vectors",
+    "difficulty": 1,
+    "body": "$\\vec{a}=(-2,p,-3p)$, $\\vec{b}=(4,p+3,3+p)$, $\\vec{c}=(2,p-2,q)$ байв. $\\vec{b}-\\vec{a}$ вектор $\\vec{c}$ вектортой параллель бол $p,\\ q$-ийн утгыг олоорой.",
+    "options": {
+      "A": "$p=3,\\ q=45$",
+      "B": "$p=11,\\ q=135$",
+      "C": "$p=3,\\ q=5$",
+      "D": "$p=3,\\ q=48$",
+      "E": "$p=2,\\ q=-1$"
+    },
+    "answer": "C",
+    "solution": "b⃗-a⃗=(6,3,3+4p); 6/2=3→p-2=1→p=3; q=(3+12)/3=5"
+  },
+  {
+    "source": "Test-2021B-Q32",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 32,
+    "type": "MCQ",
+    "topic": "calculus",
+    "subtopic": "definite_integral_absolute_value",
+    "difficulty": 1,
+    "body": "$\\displaystyle\\int_1^4 |x-3|\\,dx$ тодорхой интегралыг бодоорой.",
+    "options": {
+      "A": "$\\dfrac{3}{2}$",
+      "B": "$\\dfrac{5}{2}$",
+      "C": "$-\\dfrac{3}{2}$",
+      "D": "$1$",
+      "E": "$3$"
+    },
+    "answer": "B",
+    "solution": "∫₁³(3-x)dx+∫₃⁴(x-3)dx=2+1/2=5/2"
+  },
+  {
+    "source": "Test-2021B-Q33",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 33,
+    "type": "MCQ",
+    "topic": "geometry",
+    "subtopic": "right_triangle_inscribed_circle",
+    "difficulty": 1,
+    "body": "2 радиустай тойрогт багтсан тэгш өнцөгт гурвалжны периметр $4+2\\sqrt{5}$ бол гурвалжны талбайг олоорой.",
+    "options": {
+      "A": "$4$",
+      "B": "$2$",
+      "C": "$9$",
+      "D": "$1$",
+      "E": "$5+2\\sqrt{5}$"
+    },
+    "answer": "D",
+    "solution": "Hyp=2R=4; a+b=2√5; a²+b²=16; ab=2; Area=ab/2=1"
+  },
+  {
+    "source": "Test-2021B-Q34",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 34,
+    "type": "MCQ",
+    "topic": "geometry",
+    "subtopic": "prism_volume_ratio",
+    "difficulty": 1,
+    "body": "Зурагт өгөгдсөн кубийн $A_1B_1$ ба $D_1C_1$ ирмэгүүд дээр харгалзан $N,\\ M$ цэгүүдийг $A_1N:NB_1=2:3$, $D_1M:MC_1=2:3$ байхаар авчээ. Кубийг $MNBC$ хавтгайгаар огтлоход үүссэн $BB_1NCC_1M$ ба $BANA_1DCMD_1$ призмүүдийн эзлэхүүний харьцааг олоорой.",
+    "options": {
+      "A": "$3:7$",
+      "B": "$2:3$",
+      "C": "$3:10$",
+      "D": "$7:10$",
+      "E": "$1:4$"
+    },
+    "answer": "A",
+    "solution": "N,M at 2/5 from A₁,D₁; triangle area=3/10; ratio=3/10:7/10=3:7"
+  },
+  {
+    "source": "Test-2021B-Q35",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 35,
+    "type": "MCQ",
+    "topic": "geometry",
+    "subtopic": "reflection_over_line",
+    "difficulty": 1,
+    "body": "$A(6,2)$ цэгийг $y=3x-1$ шулуунд тэгш хэмээр хувиргахад үүсэх цэгийн координатыг олоорой.",
+    "options": {
+      "A": "$(2,\\ 6)$",
+      "B": "$\\left(-3,\\ \\dfrac{9}{2}\\right)$",
+      "C": "$(-4,\\ 2)$",
+      "D": "$\\left(-\\dfrac{7}{2},\\ \\dfrac{7}{2}\\right)$",
+      "E": "$(-3,\\ 5)$"
+    },
+    "answer": "E",
+    "solution": "Line: 3x-y-1=0; t=-3/2; foot=(3/2,7/2); reflection=(-3,5)"
+  },
+  {
+    "source": "Test-2021B-Q36",
+    "testNumber": 2021,
+    "testVariant": "B",
+    "questionNumber": 36,
+    "type": "MCQ",
+    "topic": "algebra",
+    "subtopic": "quadratic_inequality_parameter",
+    "difficulty": 1,
+    "body": "$x^2+2ax+a+2>0$ тэнцэтгэл биш бүх бодит тоо $x$-ийн хувьд үнэн байх $a$ тооны утгын мужийг олоорой.",
+    "options": {
+      "A": "$-2 < a < 1$",
+      "B": "$a < -2,\\ a > 1$",
+      "C": "$a < -1,\\ a > 2$",
+      "D": "$-1 < a < 2$",
+      "E": "$a > -2$"
+    },
+    "answer": "D",
+    "solution": "D<0: 4a²-4(a+2)<0→a²-a-2<0→(a-2)(a+1)<0→-1<a<2"
+  }
+]

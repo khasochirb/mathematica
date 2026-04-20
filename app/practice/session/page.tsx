@@ -66,11 +66,8 @@ function SessionContent() {
       setQuestionCount((c) => c + 1);
       if (res.isCorrect) setCorrectCount((c) => c + 1);
       setTotalXp((x) => x + Math.max(0, res.xpDelta));
-    } catch (err: unknown) {
-      if (err instanceof Error && err.message?.includes("DAILY_LIMIT_REACHED")) {
-        router.push("/upgrade");
-        return;
-      }
+    } catch {
+      // swallow — submit button will re-enable so the user can retry
     } finally {
       setSubmitting(false);
     }

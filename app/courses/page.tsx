@@ -186,9 +186,9 @@ export default function TopicsPage() {
                   {content.desc}
                 </p>
 
-                <div className="flex-1">
+                <div>
                   <div className="eyebrow mb-2.5">{t("Subtopics", "Дэд сэдвүүд")}</div>
-                  <div className="flex flex-wrap gap-1.5 mb-5">
+                  <div className="flex flex-wrap gap-1.5">
                     {content.subtopics.map((sub) => (
                       <span
                         key={sub}
@@ -200,12 +200,6 @@ export default function TopicsPage() {
                     ))}
                   </div>
                 </div>
-
-                <Link href="/practice/esh" className="btn btn-line w-full">
-                  {t("Practice ", "Дадлага · ")}
-                  {content.name}
-                  <ArrowRight className="ml-1 h-3.5 w-3.5" />
-                </Link>
               </div>
             );
           })}

@@ -67,7 +67,7 @@ function ResultContent() {
             Practice again
             <RotateCcw className="ml-1 h-3.5 w-3.5" />
           </Link>
-          <Link href="/progress" className="btn btn-line w-full">
+          <Link href="/dashboard" className="btn btn-line w-full">
             View progress
             <ArrowRight className="ml-1 h-3.5 w-3.5" />
           </Link>

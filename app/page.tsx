@@ -627,7 +627,7 @@ export default function HomePage() {
                   Upload my solution
                 </button>
                 <Link
-                  href="/ai"
+                  href="/practice"
                   className="btn btn-line ml-auto"
                   style={{ fontSize: 12, padding: "7px 12px" }}
                 >

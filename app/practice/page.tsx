@@ -1,48 +1,25 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { ArrowRight, Flame, Star, Trophy, BarChart3, Lock, BookOpen, Calculator, Sigma, Pi, Percent, Binary } from "lucide-react";
-import { api, type TopicTree, type StreakData } from "@/lib/api";
+import {
+  ArrowRight,
+  Calculator,
+  Flame,
+  Sparkles,
+  BookOpen,
+  BarChart3,
+  Lock,
+} from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
-
-const defaultTopics = [
-  { id: "algebra", name: "Algebra", icon: Sigma, description: "Equations, expressions & functions" },
-  { id: "geometry", name: "Geometry", icon: Pi, description: "Shapes, angles & proofs" },
-  { id: "arithmetic", name: "Arithmetic", icon: Calculator, description: "Numbers & operations" },
-  { id: "statistics", name: "Statistics & Probability", icon: Percent, description: "Data analysis & chance" },
-  { id: "number-theory", name: "Number Theory", icon: Binary, description: "Primes, divisibility & patterns" },
-  { id: "word-problems", name: "Word Problems", icon: BookOpen, description: "Real-world applications" },
-];
+import usePerformance from "@/lib/use-performance";
+import { TOPICS } from "@/lib/esh-questions";
+import topicsData from "@/data/learn/topics.json";
 
 export default function PracticePage() {
-  const router = useRouter();
   const { user, loading: authLoading } = useAuth();
-  const [topics, setTopics] = useState<TopicTree[]>([]);
-  const [streak, setStreak] = useState<StreakData | null>(null);
-  const [loading, setLoading] = useState(true);
+  const perf = usePerformance();
 
-  useEffect(() => {
-    async function load() {
-      if (!user) { setLoading(false); return; }
-      try {
-        const [topicsData, streakData] = await Promise.all([
-          api.topics.list(),
-          api.streaks.get(),
-        ]);
-        setTopics(topicsData);
-        setStreak(streakData);
-      } catch {
-        // stub endpoints return defaults
-      } finally {
-        setLoading(false);
-      }
-    }
-    if (!authLoading) load();
-  }, [user, authLoading]);
-
-  if (authLoading || loading) {
+  if (authLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center pt-20" style={{ background: "var(--bg)" }}>
         <div className="text-center">
@@ -78,14 +55,14 @@ export default function PracticePage() {
             Sign in to <em className="serif-italic" style={{ color: "var(--accent)" }}>practice</em>.
           </h2>
           <p className="text-[14px] mt-3 mb-6" style={{ color: "var(--fg-2)" }}>
-            Create a free account to access adaptive math practice, track your progress, and earn achievements.
+            Бүртгэл үүсгээд ЭЕШ математикийн бодлогуудыг бодож, ахицаа хянаарай.
           </p>
           <div className="flex flex-col gap-2">
             <Link href="/sign-up" className="btn btn-primary w-full">
-              Create free account
+              Бүртгүүлэх
             </Link>
             <Link href="/sign-in" className="btn btn-line w-full">
-              Log in
+              Нэвтрэх
             </Link>
           </div>
         </div>
@@ -93,79 +70,29 @@ export default function PracticePage() {
     );
   }
 
-  const xpPct = Math.round((user.xpCurrentLevel / user.xpNextLevel) * 100);
+  const firstName = user.displayName?.split(" ")[0] ?? "";
+  const overall = perf.getOverallStats();
 
   return (
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16">
         {/* Header */}
         <div className="eyebrow mb-3">Practice · Home</div>
         <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(40px, 6vw, 64px)", letterSpacing: "-0.04em", lineHeight: 0.98, color: "var(--fg)" }}>
-          Welcome back,{" "}
+          Сайн уу,{" "}
           <em className="serif-italic" style={{ color: "var(--accent)" }}>
-            {user.displayName.split(" ")[0]}
+            {firstName || "найз"}
           </em>
           .
         </h1>
         <p className="serif mt-4 max-w-2xl" style={{ fontSize: 17, lineHeight: 1.55, color: "var(--fg-1)" }}>
-          Ready to practice today?
+          Өнөөдөр юунаас эхлэх вэ?
         </p>
 
-        {/* Stats strip */}
-        <div className="card-edit p-5 mt-8">
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-            <div className="flex items-center gap-6">
-              {streak && (
-                <div className="flex items-baseline gap-2">
-                  <Flame className="h-4 w-4" style={{ color: "var(--warn)" }} />
-                  <span className="serif tabular" style={{ fontSize: 26, color: "var(--fg)", letterSpacing: "-0.02em" }}>
-                    {streak.currentStreak}
-                  </span>
-                  <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-                    day streak
-                  </span>
-                </div>
-              )}
-              <div className="flex items-baseline gap-2">
-                <Star className="h-4 w-4" style={{ color: "var(--accent)" }} />
-                <span className="serif tabular" style={{ fontSize: 26, color: "var(--fg)", letterSpacing: "-0.02em" }}>
-                  {user.globalXp.toLocaleString()}
-                </span>
-                <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-                  XP
-                </span>
-              </div>
-              <div className="flex items-baseline gap-2">
-                <Trophy className="h-4 w-4" style={{ color: "var(--fg-2)" }} />
-                <span className="serif tabular" style={{ fontSize: 26, color: "var(--fg)", letterSpacing: "-0.02em" }}>
-                  {user.globalLevel}
-                </span>
-                <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-                  level
-                </span>
-              </div>
-            </div>
-          </div>
-          <div className="flex items-center justify-between mb-1.5">
-            <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-              Level {user.globalLevel}
-            </span>
-            <span className="mono tabular text-[10px]" style={{ color: "var(--fg-3)" }}>
-              {xpPct}%
-            </span>
-            <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-              Level {user.globalLevel + 1}
-            </span>
-          </div>
-          <div className="h-[3px] rounded-full overflow-hidden" style={{ background: "var(--bg-2)" }}>
-            <div className="h-full rounded-full transition-all" style={{ width: `${xpPct}%`, background: "var(--accent)" }} />
-          </div>
-        </div>
-
-        {/* ESH banner */}
+        {/* ЭЕШ banner */}
         <Link
           href="/practice/esh"
-          className="block mt-6 card-edit p-6 group"
+          className="block mt-8 card-edit p-6 group"
           style={{ background: "var(--accent-wash)", borderColor: "var(--accent-line)" }}
         >
           <div className="flex items-center justify-between gap-4">
@@ -190,41 +117,108 @@ export default function PracticePage() {
           </div>
         </Link>
 
-        {/* Quick actions */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
-          {[
-            { href: "/progress", icon: BarChart3, title: "View progress", desc: "Track your growth" },
-            { href: "/progress#achievements", icon: Trophy, title: "Achievements", desc: "Earn badges" },
-            { href: "/practice/esh/previous-years", icon: Flame, title: "Previous year tests", desc: "2024–2025 ЭЕШ, free" },
-          ].map(({ href, icon: Icon, title, desc }) => (
-            <Link key={href} href={href} className="card-edit p-4 flex items-center gap-3 group">
+        {/* Learning resources */}
+        <div className="mt-10">
+          <div className="eyebrow mb-3">Learning resources</div>
+          <h2 className="serif mb-5" style={{ fontWeight: 400, fontSize: 28, letterSpacing: "-0.02em", color: "var(--fg)" }}>
+            Хичээл <em className="serif-italic" style={{ color: "var(--accent)" }}>үзэх</em>.
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <Link
+              href="/practice/esh/learn"
+              className="card-edit p-5 flex items-start gap-3 group"
+            >
               <div
                 className="w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0"
                 style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
               >
-                <Icon className="h-4 w-4" />
+                <BookOpen className="h-4 w-4" />
               </div>
-              <div>
-                <p className="serif" style={{ fontWeight: 400, fontSize: 15, color: "var(--fg)" }}>{title}</p>
-                <p className="text-[12px]" style={{ color: "var(--fg-3)" }}>{desc}</p>
+              <div className="min-w-0">
+                <p className="serif" style={{ fontWeight: 400, fontSize: 16, color: "var(--fg)" }}>Сэдвээр суралцах</p>
+                <p className="text-[12px] mt-0.5" style={{ color: "var(--fg-3)" }}>Томьёо, зөвлөгөө, видео</p>
               </div>
             </Link>
-          ))}
+
+            <Link
+              href="/practice/esh/previous-years"
+              className="card-edit p-5 flex items-start gap-3 group"
+            >
+              <div
+                className="w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0"
+                style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
+              >
+                <Flame className="h-4 w-4" />
+              </div>
+              <div className="min-w-0">
+                <p className="serif" style={{ fontWeight: 400, fontSize: 16, color: "var(--fg)" }}>Өмнөх жилийн шалгалт</p>
+                <p className="text-[12px] mt-0.5" style={{ color: "var(--fg-3)" }}>2024–2025 ЭЕШ</p>
+              </div>
+            </Link>
+
+            <div
+              className="card-edit p-5 flex items-start gap-3 opacity-80"
+              style={{ cursor: "default" }}
+            >
+              <div
+                className="w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0"
+                style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--accent)" }}
+              >
+                <Sparkles className="h-4 w-4" />
+              </div>
+              <div className="min-w-0">
+                <div className="flex items-center gap-2">
+                  <p className="serif" style={{ fontWeight: 400, fontSize: 16, color: "var(--fg)" }}>AI багш</p>
+                  <span className="badge-edit" style={{ background: "var(--bg-2)" }}>Coming soon</span>
+                </div>
+                <p className="text-[12px] mt-0.5" style={{ color: "var(--fg-3)" }}>Алдсан бодлогоо тайлбартай дахин бодно</p>
+              </div>
+            </div>
+          </div>
         </div>
+
+        {/* Analytics quick link */}
+        {overall.total > 0 && (
+          <Link
+            href="/analytics"
+            className="block mt-6 card-edit p-5 group"
+          >
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div
+                  className="w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0"
+                  style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
+                >
+                  <BarChart3 className="h-4 w-4" />
+                </div>
+                <div>
+                  <p className="serif" style={{ fontWeight: 400, fontSize: 16, color: "var(--fg)" }}>
+                    Таны үзүүлэлт
+                  </p>
+                  <p className="text-[12px] mt-0.5" style={{ color: "var(--fg-3)" }}>
+                    {overall.total} бодлого · {overall.accuracy}% зөв
+                  </p>
+                </div>
+              </div>
+              <ArrowRight className="h-4 w-4 flex-shrink-0" style={{ color: "var(--fg-3)" }} />
+            </div>
+          </Link>
+        )}
 
         {/* Topics */}
         <div className="mt-10">
           <div className="eyebrow mb-3">Topics · Choose</div>
           <h2 className="serif mb-5" style={{ fontWeight: 400, fontSize: 32, letterSpacing: "-0.02em", color: "var(--fg)" }}>
-            Pick a <em className="serif-italic" style={{ color: "var(--accent)" }}>topic</em>.
+            Сэдвээ <em className="serif-italic" style={{ color: "var(--accent)" }}>сонго</em>.
           </h2>
-          {topics.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {topics.map((topic, i) => (
-                <button
-                  key={topic.id}
-                  onClick={() => router.push(`/practice/session?topicId=${topic.id}`)}
-                  className="card-edit p-5 text-left group w-full"
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {TOPICS.map((topic, i) => {
+              const data = (topicsData as Record<string, { title: string; overview: string }>)[topic.value];
+              return (
+                <Link
+                  key={topic.value}
+                  href={`/practice/esh/learn/${topic.value}`}
+                  className="card-edit p-5 group"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
@@ -232,48 +226,20 @@ export default function PracticePage() {
                         {String(i + 1).padStart(2, "0")}
                       </div>
                       <h3 className="serif" style={{ fontWeight: 400, fontSize: 18, letterSpacing: "-0.01em", color: "var(--fg)" }}>
-                        {topic.name}
+                        {data?.title ?? topic.label}
                       </h3>
-                      {topic.children && topic.children.length > 0 && (
-                        <p className="text-[12px] mt-1" style={{ color: "var(--fg-3)" }}>{topic.children.length} subtopics</p>
+                      {data?.overview && (
+                        <p className="text-[12px] mt-1.5 line-clamp-2" style={{ color: "var(--fg-3)" }}>
+                          {data.overview}
+                        </p>
                       )}
                     </div>
                     <ArrowRight className="h-4 w-4 flex-shrink-0 mt-1" style={{ color: "var(--fg-3)" }} />
                   </div>
-                </button>
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {defaultTopics.map((topic, i) => {
-                const Icon = topic.icon;
-                return (
-                  <div key={topic.id} className="card-edit p-5">
-                    <div className="flex items-start gap-3">
-                      <div
-                        className="w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0"
-                        style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
-                      >
-                        <Icon className="h-4 w-4" />
-                      </div>
-                      <div className="min-w-0">
-                        <div className="mono text-[10px] mb-1" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-                          {String(i + 1).padStart(2, "0")}
-                        </div>
-                        <h3 className="serif" style={{ fontWeight: 400, fontSize: 17, color: "var(--fg)" }}>
-                          {topic.name}
-                        </h3>
-                        <p className="text-[12px] mt-0.5" style={{ color: "var(--fg-3)" }}>{topic.description}</p>
-                        <span className="badge-edit mt-2 inline-block" style={{ background: "var(--bg-2)" }}>
-                          Coming soon
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

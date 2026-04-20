@@ -2,7 +2,7 @@ export const dynamic = "force-dynamic";
 
 import { NextRequest, NextResponse } from "next/server";
 import { getAuthUser } from "@/lib/server-auth";
-import { isSubscribed, getDailyCount, FREE_DAILY_LIMIT } from "@/lib/subscription";
+import { isSubscribed, getDailyCount, FREE_DAILY_AI_LIMIT } from "@/lib/subscription";
 
 export async function GET(req: NextRequest) {
   const user = await getAuthUser(req);
@@ -19,10 +19,10 @@ export async function GET(req: NextRequest) {
     data: {
       isSubscribed: subscribed,
       dailyProblemsUsed: dailyCount,
-      dailyProblemsLimit: FREE_DAILY_LIMIT,
+      dailyProblemsLimit: FREE_DAILY_AI_LIMIT,
       remainingToday: subscribed
         ? null
-        : Math.max(0, FREE_DAILY_LIMIT - dailyCount),
+        : Math.max(0, FREE_DAILY_AI_LIMIT - dailyCount),
     },
   });
 }
