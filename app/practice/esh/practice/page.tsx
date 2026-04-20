@@ -19,13 +19,17 @@ import TopicBreakdownChart from "@/components/esh/TopicBreakdownChart";
 import usePerformance from "@/lib/use-performance";
 import useFlaggedQuestions from "@/lib/use-flagged-questions";
 import {
-  getAllQuestions,
-  getQuestionsByTopic,
+  getQuestionsForUser,
+  getQuestionsByTopicForUser,
   getQuestionBySource,
+  getTestInfo,
   TOPICS,
   TOPIC_LABELS,
 } from "@/lib/esh-questions";
 import type { Question } from "@/lib/esh-questions";
+import { useAuth } from "@/lib/auth-context";
+import { useUpgradeModal } from "@/lib/upgrade-modal-context";
+import { Sparkles } from "lucide-react";
 
 type PracticeMode = "weak" | "topic" | "flagged" | "mixed";
 type PracticeState = "setup" | "active" | "results";
@@ -52,11 +56,16 @@ export default function PracticePage() {
 
   const perf = usePerformance();
   const flaggedHook = useFlaggedQuestions();
+  const { isSubscribed } = useAuth();
+  const upgrade = useUpgradeModal();
 
   useEffect(() => setMounted(true), []);
 
   const weakTopics = perf.getWeakTopics();
-  const allQuestions = useMemo(() => getAllQuestions(), []);
+  const allQuestions = useMemo(
+    () => getQuestionsForUser(isSubscribed),
+    [isSubscribed],
+  );
 
   const generateQuestions = useCallback(
     (selectedMode: PracticeMode, selectedTopic: string): Question[] => {
@@ -68,7 +77,7 @@ export default function PracticePage() {
           break;
         case "topic":
           pool = selectedTopic
-            ? getQuestionsByTopic(selectedTopic)
+            ? getQuestionsByTopicForUser(selectedTopic, isSubscribed)
             : allQuestions;
           break;
         case "flagged":
@@ -94,7 +103,7 @@ export default function PracticePage() {
 
       return shuffleArray(pool).slice(0, 10);
     },
-    [allQuestions, weakTopics, flaggedHook.flagged, perf.attempts, perf],
+    [allQuestions, isSubscribed, weakTopics, flaggedHook.flagged, perf.attempts, perf],
   );
 
   const handleStart = () => {
@@ -283,6 +292,20 @@ export default function PracticePage() {
             mode="instant"
             question={currentQ}
             onAnswer={handleAnswer}
+            solutionsLocked={
+              !isSubscribed &&
+              !!getTestInfo(`${currentQ.testNumber}${currentQ.testVariant}`)
+                ?.solutionsRequirePremium
+            }
+            // KEEP IN SYNC with solutionsRequirePremium flags in lib/esh-questions.ts.
+            onSolutionUpgrade={() =>
+              upgrade.open({
+                source: "gated_full_solutions",
+                title: "Алхам алхмаар бодолт",
+                description:
+                  "2024 ба 2025 оны бүх шалгалтын бодолт үнэгүй. Бусад жилийн бүрэн бодолт Premium эхлэхэд нээгдэнэ.",
+              })
+            }
           />
 
           <div className="flex justify-between mt-4">
@@ -427,6 +450,32 @@ export default function PracticePage() {
               {weakTopics.map((t) => TOPIC_LABELS[t] || t).join(" · ")}
             </p>
           </div>
+        )}
+
+        {!isSubscribed && (
+          <button
+            type="button"
+            onClick={() =>
+              upgrade.open({
+                source: "gated_study_pool",
+                title: "Илүү олон бодлого — Premium",
+                description:
+                  "Premium багц нь 14 нэмэлт дадлага тестийн 500+ бодлогыг сэдвээр дадлага хийх санд нэмдэг.",
+              })
+            }
+            className="card-edit w-full flex items-center gap-3 p-4 mb-4 text-left"
+            style={{ background: "var(--accent-wash)", borderColor: "var(--accent-line)" }}
+          >
+            <Sparkles className="w-4 h-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
+            <div className="flex-1">
+              <p className="text-[13px]" style={{ color: "var(--fg)" }}>
+                <strong>Premium</strong> — 14 нэмэлт тест, 500+ бодлогыг сандаа нэм
+              </p>
+              <p className="mono text-[11px] mt-0.5" style={{ color: "var(--fg-2)", letterSpacing: "0.04em" }}>
+                Мэдэгдэл авах
+              </p>
+            </div>
+          </button>
         )}
 
         <button onClick={handleStart} className="btn btn-primary w-full">

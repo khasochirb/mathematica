@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -10,13 +10,18 @@ import {
   Play,
   RotateCcw,
   AlertCircle,
+  Lock,
 } from "lucide-react";
-import { getAllTests } from "@/lib/esh-questions";
+import { getAllTestsCombined, type TestInfo } from "@/lib/esh-questions";
 import useTestSession from "@/lib/use-test-session";
+import { useAuth } from "@/lib/auth-context";
+import { useUpgradeModal } from "@/lib/upgrade-modal-context";
+import PremiumBadge from "@/components/PremiumBadge";
 
 export default function TestSelectionPage() {
   const router = useRouter();
-  const tests = getAllTests();
+  const { isSubscribed } = useAuth();
+  const upgrade = useUpgradeModal();
   const session = useTestSession();
   const [mounted, setMounted] = useState(false);
   const [showResumeModal, setShowResumeModal] = useState<string | null>(null);
@@ -24,12 +29,29 @@ export default function TestSelectionPage() {
 
   useEffect(() => setMounted(true), []);
 
-  const handleTestClick = (testKey: string) => {
-    const active = session.getActiveSessionForTest(testKey);
+  // Free tests first, then locked premium. Within each group, source order preserved.
+  const tests = useMemo<TestInfo[]>(() => {
+    const all = getAllTestsCombined();
+    return [...all.filter((t) => !t.isPremium), ...all.filter((t) => t.isPremium)];
+  }, []);
+
+  const lookupTest = (key: string) => tests.find((t) => t.key === key);
+
+  const handleTestClick = (test: TestInfo) => {
+    if (test.isPremium && !isSubscribed) {
+      upgrade.open({
+        source: "gated_legacy_tests",
+        title: `${test.label} — Premium`,
+        description:
+          "Нэмэлт дадлага тестүүд нь Premium багцад багтсан. Premium эхлэхэд и-мэйлээр мэдэгдэнэ.",
+      });
+      return;
+    }
+    const active = session.getActiveSessionForTest(test.key);
     if (active) {
-      setShowResumeModal(testKey);
+      setShowResumeModal(test.key);
     } else {
-      setShowStartModal(testKey);
+      setShowStartModal(test.key);
     }
   };
 
@@ -52,6 +74,9 @@ export default function TestSelectionPage() {
 
   const scoreColor = (n: number) =>
     n >= 80 ? "var(--accent)" : n >= 50 ? "var(--warn)" : "var(--danger)";
+
+  const freeCount = tests.filter((t) => !t.isPremium).length;
+  const premiumCount = tests.filter((t) => t.isPremium).length;
 
   return (
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
@@ -95,31 +120,48 @@ export default function TestSelectionPage() {
             >
               {tests.length}
             </div>
+            {!isSubscribed && premiumCount > 0 && (
+              <div
+                className="mono text-[10px] mt-1 tabular"
+                style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}
+              >
+                {freeCount} ҮНЭГҮЙ · {premiumCount} PREMIUM
+              </div>
+            )}
           </div>
         </div>
 
         {/* Test grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {tests.map((test) => {
-            const best = mounted ? session.getBestScore(test.key) : null;
-            const latest = mounted ? session.getLatestSession(test.key) : undefined;
-            const active = mounted
-              ? session.getActiveSessionForTest(test.key)
-              : undefined;
-            const attemptCount = mounted
-              ? session.getSessionsByTest(test.key).length
-              : 0;
+            const locked = test.isPremium && !isSubscribed;
+            const best = mounted && !locked ? session.getBestScore(test.key) : null;
+            const latest =
+              mounted && !locked ? session.getLatestSession(test.key) : undefined;
+            const active =
+              mounted && !locked
+                ? session.getActiveSessionForTest(test.key)
+                : undefined;
+            const attemptCount =
+              mounted && !locked ? session.getSessionsByTest(test.key).length : 0;
 
             return (
               <button
                 key={test.key}
-                onClick={() => handleTestClick(test.key)}
-                className="card-edit p-5 text-left group"
+                onClick={() => handleTestClick(test)}
+                className="card-edit p-5 text-left group relative"
+                style={locked ? { opacity: 0.65 } : undefined}
               >
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <div className="eyebrow mb-1.5" style={{ color: "var(--accent)" }}>
-                      {test.key}
+                <div className="flex items-start justify-between mb-4 gap-3">
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <div
+                        className="eyebrow"
+                        style={{ color: locked ? "var(--fg-3)" : "var(--accent)" }}
+                      >
+                        {test.key}
+                      </div>
+                      {locked && <PremiumBadge variant="inline" />}
                     </div>
                     <h3
                       className="serif"
@@ -144,17 +186,30 @@ export default function TestSelectionPage() {
                       <span className="tabular">100 мин</span>
                     </div>
                   </div>
-                  {active ? (
-                    <span className="badge-edit badge-warn">Үргэлжлүүлэх</span>
+                  {locked ? (
+                    <Lock className="w-5 h-5 flex-shrink-0" style={{ color: "var(--fg-3)" }} />
+                  ) : active ? (
+                    <span className="badge-edit badge-warn flex-shrink-0">
+                      Үргэлжлүүлэх
+                    </span>
                   ) : (
                     <Play
-                      className="w-5 h-5 transition-colors"
+                      className="w-5 h-5 flex-shrink-0 transition-colors"
                       style={{ color: "var(--fg-3)" }}
                     />
                   )}
                 </div>
 
-                {mounted && best !== null && (
+                {locked && (
+                  <div
+                    className="mt-4 pt-3 text-[12px]"
+                    style={{ borderTop: "1px solid var(--line)", color: "var(--fg-2)" }}
+                  >
+                    Premium эхлэхэд нээгдэнэ
+                  </div>
+                )}
+
+                {!locked && mounted && best !== null && (
                   <div
                     className="flex items-center gap-3 mt-4 pt-3"
                     style={{ borderTop: "1px solid var(--line)" }}
@@ -186,7 +241,7 @@ export default function TestSelectionPage() {
                   </div>
                 )}
 
-                {mounted && best === null && (
+                {!locked && mounted && best === null && (
                   <div
                     className="mt-4 pt-3 mono text-[11px]"
                     style={{ borderTop: "1px solid var(--line)", color: "var(--fg-3)" }}
@@ -229,7 +284,7 @@ export default function TestSelectionPage() {
                     color: "var(--fg)",
                   }}
                 >
-                  {getAllTests().find((t) => t.key === showStartModal)?.label}
+                  {lookupTest(showStartModal)?.label}
                 </h3>
               </div>
             </div>
@@ -238,7 +293,7 @@ export default function TestSelectionPage() {
               <div className="flex items-center gap-2">
                 <FileText className="w-3.5 h-3.5" style={{ color: "var(--fg-3)" }} />
                 <span className="mono tabular">
-                  {getAllTests().find((t) => t.key === showStartModal)?.data.length} бодлого
+                  {lookupTest(showStartModal)?.data.length} бодлого
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -301,7 +356,7 @@ export default function TestSelectionPage() {
                     color: "var(--fg)",
                   }}
                 >
-                  {getAllTests().find((t) => t.key === showResumeModal)?.label}
+                  {lookupTest(showResumeModal)?.label}
                 </h3>
               </div>
             </div>

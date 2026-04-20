@@ -20,6 +20,8 @@ import useFlaggedQuestions from "@/lib/use-flagged-questions";
 import usePerformance from "@/lib/use-performance";
 import { getTestQuestions, getTestInfo } from "@/lib/esh-questions";
 import type { Question } from "@/lib/esh-questions";
+import { useAuth } from "@/lib/auth-context";
+import { useUpgradeModal } from "@/lib/upgrade-modal-context";
 
 export default function TestRunnerPage() {
   const params = useParams();
@@ -28,6 +30,8 @@ export default function TestRunnerPage() {
   const testKey = (params.testId as string).toUpperCase();
   const sessionId = searchParams.get("session") || "";
 
+  const { isSubscribed, isLoading: authLoading } = useAuth();
+  const upgrade = useUpgradeModal();
   const testSession = useTestSession();
   const flaggedHook = useFlaggedQuestions();
   const perf = usePerformance();
@@ -52,6 +56,20 @@ export default function TestRunnerPage() {
       router.replace("/practice/esh/test");
     }
   }, [mounted, session, router]);
+
+  // Guard against URL-bypass of the Premium gate.
+  useEffect(() => {
+    if (!mounted || authLoading) return;
+    if (testInfo?.isPremium && !isSubscribed) {
+      upgrade.open({
+        source: "gated_legacy_tests",
+        title: `${testInfo.label} — Premium`,
+        description:
+          "Нэмэлт дадлага тестүүд нь Premium багцад багтсан. Premium эхлэхэд и-мэйлээр мэдэгдэнэ.",
+      });
+      router.replace("/practice/esh/test");
+    }
+  }, [mounted, authLoading, testInfo, isSubscribed, upgrade, router]);
 
   const currentQuestion = questions[currentIndex];
   const answers = session?.answers || {};

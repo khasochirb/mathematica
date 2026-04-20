@@ -9,19 +9,42 @@ import {
   useState,
 } from "react";
 import { createPortal } from "react-dom";
-import { Lock, X, Sparkles, Check } from "lucide-react";
+import {
+  Lock,
+  X,
+  Sparkles,
+  Check,
+  Clock,
+  Bot,
+  Wand2,
+  Lightbulb,
+  Route,
+  Calendar,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { api } from "./api";
 import { useLang } from "./lang-context";
 
+// Two namespaces:
+//   gated_*        — feature exists, locked behind Premium (paid upgrade flow)
+//   coming_soon_*  — feature doesn't exist yet (waitlist signal only)
+// The modal branches framing on the prefix. Per-feature source drives analytics.
 export type UpgradeSource =
   | "header_button"
-  | "gated_56_tests"
-  | "gated_ai_tutor"
-  | "gated_ai_problems"
+  // Wall on the 14 legacy practice tests (current premium carrot).
+  // Distinct from gated_study_pool (study-by-topic CTA) and from the future
+  // coming-soon CTA for the aspirational 56-test pool.
+  | "gated_legacy_tests"
   | "gated_full_solutions"
   | "gated_study_pool"
   | "landing_premium_card"
   | "coming_soon_exams"
+  | "coming_soon_suraltsah"
+  | "coming_soon_ai_tutor"
+  | "coming_soon_ai_problems"
+  | "coming_soon_ai_feedback"
+  | "coming_soon_personalized_paths"
+  | "coming_soon_class_scheduling"
   | "other";
 
 interface OpenOptions {
@@ -42,6 +65,69 @@ const Ctx = createContext<UpgradeModalState>({
   close: () => {},
   isOpen: false,
 });
+
+// Canonical list of features that don't exist yet. Shared between the hub's
+// Coming Soon surface and the Premium modal's roadmap section so copy never drifts.
+export interface ComingSoonFeature {
+  key: string;
+  source: UpgradeSource;
+  icon: LucideIcon;
+  title: { en: string; mn: string };
+  desc: { en: string; mn: string };
+}
+
+export const COMING_SOON_FEATURES: ComingSoonFeature[] = [
+  {
+    key: "ai_tutor",
+    source: "coming_soon_ai_tutor",
+    icon: Bot,
+    title: { en: "AI tutor", mn: "AI багш" },
+    desc: {
+      en: "Ask any question, get a step-by-step explanation.",
+      mn: "Асуусан асуултад алхам-алхмаар тайлбар.",
+    },
+  },
+  {
+    key: "ai_problems",
+    source: "coming_soon_ai_problems",
+    icon: Wand2,
+    title: { en: "AI practice problems", mn: "AI бодлого үүсгэгч" },
+    desc: {
+      en: "New problems tuned to your weak spots.",
+      mn: "Сул тал дээр чинь тохируулсан шинэ бодлого.",
+    },
+  },
+  {
+    key: "ai_feedback",
+    source: "coming_soon_ai_feedback",
+    icon: Lightbulb,
+    title: { en: "AI feedback on mistakes", mn: "AI зөвлөмж" },
+    desc: {
+      en: "Pinpoint why you got it wrong and what to try next.",
+      mn: "Яагаад алдсан, дараа юу хийхийг оновчтой зааж өгнө.",
+    },
+  },
+  {
+    key: "personalized_paths",
+    source: "coming_soon_personalized_paths",
+    icon: Route,
+    title: { en: "Personalized study path", mn: "Хувийн суралцах зам" },
+    desc: {
+      en: "A plan that adapts as the exam gets closer.",
+      mn: "Шалгалт ойртох тусам өөрчлөгдөх төлөвлөгөө.",
+    },
+  },
+  {
+    key: "class_scheduling",
+    source: "coming_soon_class_scheduling",
+    icon: Calendar,
+    title: { en: "Class scheduling", mn: "Хичээлийн цаг захиалга" },
+    desc: {
+      en: "Book one-on-one sessions with math tutors.",
+      mn: "Математикийн багш нартай ганцаарчилсан хичээл захиал.",
+    },
+  },
+];
 
 export function UpgradeModalProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -104,40 +190,39 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
 
   const t = (en: string, mn: string) => (lang === "mn" ? mn : en);
 
-  const features = useMemo(
+  // What Premium actually unlocks today. Keep honest — every bullet must
+  // correspond to something a paying user can use right now.
+  const premiumLiveFeatures = useMemo(
     () => [
       {
-        en: "AI tutor — ask anything, get a step-by-step explanation",
-        mn: "AI багш — асуулт асууж, алхам алхмаар тайлбар аваарай",
+        en: "14 additional legacy practice tests",
+        mn: "14 нэмэлт дадлага тест",
       },
       {
-        en: "56 additional ЭЕШ-format practice tests",
-        mn: "ЭЕШ форматтай 56 нэмэлт дадлага шалгалт",
-      },
-      {
-        en: "Full step-by-step solutions for every test",
-        mn: "Тест бүрийн бүрэн алхам алхмаар бодолт",
-      },
-      {
-        en: "AI-generated practice problems tuned to your weak spots",
-        mn: "Таны сул тал дээр тохируулсан AI дасгал бодлого",
-      },
-      {
-        en: "Personalized study paths & topic priority",
-        mn: "Хувийн суралцах зам, сэдвийн эрэмбэлэлт",
+        en: "Full step-by-step solutions for 2021–2023 + every legacy test",
+        mn: "2021–2023 он + нэмэлт тестийн бүрэн бодолт",
       },
     ],
     [],
   );
 
-  const defaultTitle = t(
-    "Unlock the full Mongol Potential",
-    "Бүрэн боломжийг нээгээрэй",
-  );
-  const defaultDesc = t(
-    "Premium is launching soon. Drop your email and we'll notify you the moment it ships.",
-    "Премиум удахгүй гарна. Имэйлээ үлдээвэл гарсан даруй мэдэгдэх болно.",
-  );
+  // Modal has two framings. Premium framing pitches the paid tier (features list,
+  // "Premium · Coming soon" eyebrow). Coming-soon framing is narrower: "this specific
+  // thing is being built, want to know when it ships?" — no Premium pitch.
+  const isComingSoon = opts?.source?.startsWith("coming_soon_") ?? false;
+
+  const defaultTitle = isComingSoon
+    ? t("Get notified when it ships", "Гарсан даруй мэдэгдье")
+    : t("Unlock the full Mongol Potential", "Бүрэн боломжийг нээгээрэй");
+  const defaultDesc = isComingSoon
+    ? t(
+        "Drop your email and we'll ping you the moment this launches.",
+        "Имэйлээ үлдээвэл гарсан даруй мэдэгдэнэ.",
+      )
+    : t(
+        "Premium is launching soon. Drop your email and we'll notify you the moment it ships.",
+        "Премиум удахгүй гарна. Имэйлээ үлдээвэл гарсан даруй мэдэгдэх болно.",
+      );
 
   if (!mounted) return <Ctx.Provider value={{ open, close, isOpen }}>{children}</Ctx.Provider>;
 
@@ -169,17 +254,31 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
 
               <div
                 className="w-10 h-10 rounded-md flex items-center justify-center mb-4"
-                style={{
-                  background: "var(--accent-wash)",
-                  border: "1px solid var(--accent-line)",
-                  color: "var(--accent)",
-                }}
+                style={
+                  isComingSoon
+                    ? {
+                        background: "var(--bg-2)",
+                        border: "1px solid var(--line-strong)",
+                        color: "var(--fg-2)",
+                      }
+                    : {
+                        background: "var(--accent-wash)",
+                        border: "1px solid var(--accent-line)",
+                        color: "var(--accent)",
+                      }
+                }
               >
-                <Sparkles className="h-4 w-4" />
+                {isComingSoon ? (
+                  <Clock className="h-4 w-4" />
+                ) : (
+                  <Sparkles className="h-4 w-4" />
+                )}
               </div>
 
               <div className="eyebrow mb-1.5">
-                {t("Premium · Coming soon", "Премиум · Удахгүй")}
+                {isComingSoon
+                  ? t("Coming soon", "Удахгүй")
+                  : t("Premium · Coming soon", "Премиум · Удахгүй")}
               </div>
               <h2
                 className="serif"
@@ -197,17 +296,66 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
                 {opts?.description ?? defaultDesc}
               </p>
 
-              <ul className="mt-5 space-y-2">
-                {features.map((f) => (
-                  <li key={f.en} className="flex items-start gap-2 text-[13.5px]" style={{ color: "var(--fg-1)" }}>
-                    <Check
-                      className="h-3.5 w-3.5 mt-[4px] flex-shrink-0"
-                      style={{ color: "var(--accent)" }}
-                    />
-                    <span>{lang === "mn" ? f.mn : f.en}</span>
-                  </li>
-                ))}
-              </ul>
+              {!isComingSoon && (
+                <>
+                  <div
+                    className="eyebrow mt-5 mb-2"
+                    style={{ color: "var(--accent)" }}
+                  >
+                    {t("Unlocks today", "Яг одоо нээгдэх")}
+                  </div>
+                  <ul className="space-y-2">
+                    {premiumLiveFeatures.map((f) => (
+                      <li
+                        key={f.en}
+                        className="flex items-start gap-2 text-[13.5px]"
+                        style={{ color: "var(--fg-1)" }}
+                      >
+                        <Check
+                          className="h-3.5 w-3.5 mt-[4px] flex-shrink-0"
+                          style={{ color: "var(--accent)" }}
+                        />
+                        <span>{lang === "mn" ? f.mn : f.en}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div
+                    className="eyebrow mt-4 mb-2"
+                    style={{ color: "var(--fg-3)" }}
+                  >
+                    {t("On the way", "Удахгүй нэмэгдэнэ")}
+                  </div>
+                  <ul className="space-y-1.5">
+                    {COMING_SOON_FEATURES.map((f) => (
+                      <li
+                        key={f.key}
+                        className="flex items-start gap-2 text-[13px]"
+                        style={{ color: "var(--fg-2)" }}
+                      >
+                        <Clock
+                          className="h-3.5 w-3.5 mt-[4px] flex-shrink-0"
+                          style={{ color: "var(--fg-3)" }}
+                        />
+                        <span className="flex-1">
+                          {lang === "mn" ? f.title.mn : f.title.en}
+                        </span>
+                        <span
+                          className="mono text-[9px] uppercase rounded-full px-1.5 py-[1px] shrink-0"
+                          style={{
+                            background: "var(--bg-2)",
+                            border: "1px solid var(--line)",
+                            color: "var(--fg-3)",
+                            letterSpacing: "0.08em",
+                          }}
+                        >
+                          {t("Soon", "Удахгүй")}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
 
               {status === "ok" ? (
                 <div
@@ -222,10 +370,15 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
                     {t("You're on the list", "Та жагсаалтад орлоо")}
                   </p>
                   <p>
-                    {t(
-                      "We'll email you the moment Premium launches. Keep practicing in the meantime.",
-                      "Премиум гарсан даруй имэйлээр мэдэгдэнэ. Тэр хүртэл дадлагаа үргэлжлүүлээрэй.",
-                    )}
+                    {isComingSoon
+                      ? t(
+                          "We'll email you the moment this ships. Keep practicing in the meantime.",
+                          "Гарсан даруй имэйлээр мэдэгдэнэ. Тэр хүртэл дадлагаа үргэлжлүүлээрэй.",
+                        )
+                      : t(
+                          "We'll email you the moment Premium launches. Keep practicing in the meantime.",
+                          "Премиум гарсан даруй имэйлээр мэдэгдэнэ. Тэр хүртэл дадлагаа үргэлжлүүлээрэй.",
+                        )}
                   </p>
                 </div>
               ) : (

@@ -19,6 +19,8 @@ import TopicBreakdownChart from "@/components/esh/TopicBreakdownChart";
 import useTestSession from "@/lib/use-test-session";
 import { getTestQuestions, getTestInfo, TOPIC_LABELS } from "@/lib/esh-questions";
 import type { Question } from "@/lib/esh-questions";
+import { useAuth } from "@/lib/auth-context";
+import { useUpgradeModal } from "@/lib/upgrade-modal-context";
 
 function formatDuration(ms: number): string {
   const totalSeconds = Math.floor(ms / 1000);
@@ -38,6 +40,8 @@ export default function TestResultsPage() {
   const sessionId = searchParams.get("session") || "";
 
   const testSession = useTestSession();
+  const { isSubscribed } = useAuth();
+  const upgrade = useUpgradeModal();
   const [mounted, setMounted] = useState(false);
   const [expandedQuestions, setExpandedQuestions] = useState<Set<number>>(new Set());
   const [viewFilter, setViewFilter] = useState<ViewFilter>("all");
@@ -47,6 +51,17 @@ export default function TestResultsPage() {
   const session = mounted ? testSession.getSession(sessionId) : undefined;
   const testInfo = getTestInfo(testKey);
   const questions: Question[] = useMemo(() => getTestQuestions(testKey), [testKey]);
+  const solutionsLocked = !isSubscribed && !!testInfo?.solutionsRequirePremium;
+  // KEEP IN SYNC with solutionsRequirePremium flags in lib/esh-questions.ts.
+  // The free-set range ("2024 ба 2025") is hardcoded — if the gating matrix
+  // changes, update this copy too.
+  const openSolutionUpgrade = () =>
+    upgrade.open({
+      source: "gated_full_solutions",
+      title: "Алхам алхмаар бодолт",
+      description:
+        "2024 ба 2025 оны бүх шалгалтын бодолт үнэгүй. Бусад жилийн бүрэн бодолт Premium эхлэхэд нээгдэнэ.",
+    });
 
   useEffect(() => {
     if (mounted && (!session || session.status !== "completed")) {
@@ -344,6 +359,8 @@ export default function TestResultsPage() {
                         question={q}
                         selectedAnswer={answer || null}
                         isFlagged={isFlagged}
+                        solutionsLocked={solutionsLocked}
+                        onSolutionUpgrade={openSolutionUpgrade}
                       />
                     </div>
                   )}

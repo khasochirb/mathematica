@@ -11,21 +11,31 @@ import {
   ChevronRight,
   Archive,
 } from "lucide-react";
+import ComingSoonBadge from "@/components/ComingSoonBadge";
 import useESHProgress from "@/lib/use-esh-progress";
 import {
-  getAllTests,
-  getAllQuestions,
+  getTestsForUser,
+  getQuestionsForUser,
   getPreviousYearTests,
 } from "@/lib/esh-questions";
+import { useAuth } from "@/lib/auth-context";
+import {
+  COMING_SOON_FEATURES,
+  useUpgradeModal,
+} from "@/lib/upgrade-modal-context";
+import { useLang } from "@/lib/lang-context";
 
 export default function ESHHubPage() {
   const [mounted, setMounted] = useState(false);
   const progress = useESHProgress();
+  const { isSubscribed } = useAuth();
+  const upgrade = useUpgradeModal();
+  const { lang } = useLang();
 
   useEffect(() => setMounted(true), []);
 
-  const allTests = getAllTests();
-  const totalQuestions = getAllQuestions().length;
+  const allTests = getTestsForUser(isSubscribed);
+  const totalQuestions = getQuestionsForUser(isSubscribed).length;
   const previousYearTests = getPreviousYearTests();
 
   const sections = [
@@ -73,9 +83,15 @@ export default function ESHHubPage() {
       href: "/practice/esh/learn",
       eyebrow: "03 · СУРАЛЦАХ",
       title: "Суралцах",
-      desc: "Сэдвээр унших материал, томьёо, видео хичээл",
+      desc: "Сэдвээр унших материал, томьёо, зөвлөгөө",
       icon: BookOpen,
-      meta: <span className="mono tabular">10 сэдэв</span>,
+      meta: (
+        <>
+          <span className="mono tabular">10 сэдэв</span>
+          <span style={{ color: "var(--fg-3)" }}>·</span>
+          <ComingSoonBadge variant="inline" label="Видео удахгүй" />
+        </>
+      ),
     },
     {
       href: "/practice/esh/progress",
@@ -94,7 +110,7 @@ export default function ESHHubPage() {
       href: "/practice/esh/previous-years",
       eyebrow: "05 · ӨМНӨХ ЖИЛҮҮД",
       title: "Өмнөх жилийн шалгалтууд",
-      desc: "2024, 2025 оны бодит ЭЕШ — нэвтэрсэн хэрэглэгчдэд үнэгүй",
+      desc: "2021–2025 оны бодит ЭЕШ — нэвтэрсэн хэрэглэгчдэд үнэгүй",
       icon: Archive,
       meta: (
         <>
@@ -258,6 +274,94 @@ export default function ESHHubPage() {
               </Link>
             );
           })}
+        </div>
+
+        {/* Coming Soon — aggregated roadmap surface. One block, five features,
+            per-feature waitlist source for conversion research. No routes. */}
+        <div
+          className="mt-12 rounded-xl overflow-hidden"
+          style={{ border: "1px solid var(--line)" }}
+        >
+          <div
+            className="px-5 py-4 flex items-center justify-between gap-3"
+            style={{ background: "var(--bg-1)", borderBottom: "1px solid var(--line)" }}
+          >
+            <div>
+              <div className="eyebrow">Удахгүй</div>
+              <h3
+                className="serif mt-1"
+                style={{
+                  fontWeight: 400,
+                  fontSize: 20,
+                  letterSpacing: "-0.02em",
+                  color: "var(--fg)",
+                }}
+              >
+                Бэлдэж буй боломжууд
+              </h3>
+            </div>
+            <ComingSoonBadge />
+          </div>
+          <ul>
+            {COMING_SOON_FEATURES.map((f, i) => {
+              const Icon = f.icon;
+              const title = lang === "mn" ? f.title.mn : f.title.en;
+              const desc = lang === "mn" ? f.desc.mn : f.desc.en;
+              return (
+                <li key={f.key}>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      upgrade.open({
+                        source: f.source,
+                        title,
+                        description: desc,
+                      })
+                    }
+                    className="w-full text-left px-5 py-4 flex items-center gap-4 transition-colors hover:opacity-90"
+                    style={{
+                      background: "var(--bg)",
+                      borderTop: i === 0 ? "none" : "1px solid var(--line)",
+                    }}
+                  >
+                    <span
+                      className="w-9 h-9 rounded-md flex items-center justify-center shrink-0"
+                      style={{
+                        background: "var(--bg-2)",
+                        border: "1px solid var(--line)",
+                        color: "var(--fg-2)",
+                      }}
+                    >
+                      <Icon className="w-4 h-4" />
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="text-[14px]"
+                          style={{ color: "var(--fg)" }}
+                        >
+                          {title}
+                        </span>
+                        <ComingSoonBadge variant="inline" />
+                      </div>
+                      <p
+                        className="text-[12.5px] mt-0.5"
+                        style={{ color: "var(--fg-2)" }}
+                      >
+                        {desc}
+                      </p>
+                    </div>
+                    <span
+                      className="mono text-[10px] uppercase shrink-0"
+                      style={{ color: "var(--accent)", letterSpacing: "0.08em" }}
+                    >
+                      Мэдэгдэх →
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
         </div>
 
         {/* Recent test results */}

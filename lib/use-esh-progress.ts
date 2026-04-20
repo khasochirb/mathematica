@@ -4,7 +4,8 @@ import { useMemo } from "react";
 import useTestSession from "./use-test-session";
 import usePerformance from "./use-performance";
 import useFlaggedQuestions from "./use-flagged-questions";
-import { TOPIC_LABELS, getAllTests } from "./esh-questions";
+import { TOPIC_LABELS, getTestsForUser } from "./esh-questions";
+import { useAuth } from "./auth-context";
 
 export interface TopicMastery {
   topic: string;
@@ -18,6 +19,7 @@ export default function useESHProgress() {
   const testSession = useTestSession();
   const perf = usePerformance();
   const flaggedHook = useFlaggedQuestions();
+  const { isSubscribed } = useAuth();
 
   const completedSessions = testSession.getCompletedSessions();
 
@@ -54,21 +56,23 @@ export default function useESHProgress() {
   const weakTopics = perf.getWeakTopics();
 
   const suggestedNextTest = useMemo((): string | null => {
-    const allTests = getAllTests();
+    // Only suggest tests the user can actually take. Free users get past papers;
+    // subscribers get the full 34-test pool.
+    const availableTests = getTestsForUser(isSubscribed);
     const taken = new Set(completedSessions.map((s) => s.testKey));
-    const untaken = allTests.filter((t) => !taken.has(t.key));
+    const untaken = availableTests.filter((t) => !taken.has(t.key));
     if (untaken.length > 0) return untaken[0].key;
 
     // If all taken, suggest the one with lowest score
     let lowest: { key: string; accuracy: number } | null = null;
-    for (const t of allTests) {
+    for (const t of availableTests) {
       const best = testSession.getBestScore(t.key);
       if (best !== null && (!lowest || best < lowest.accuracy)) {
         lowest = { key: t.key, accuracy: best };
       }
     }
     return lowest?.key || null;
-  }, [completedSessions, testSession]);
+  }, [completedSessions, testSession, isSubscribed]);
 
   const practiceRecommendation = useMemo((): string => {
     if (totalTestsTaken === 0) {
