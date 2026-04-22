@@ -563,6 +563,19 @@ export default function AnalyticsPage() {
                   MOST RECENT FIRST
                 </span>
               </div>
+              {perf.isOffline && (
+                <div
+                  className="mono px-5 py-2 text-[11px]"
+                  style={{
+                    background: "color-mix(in oklch, var(--warn) 10%, transparent)",
+                    borderBottom: "1px solid var(--line)",
+                    color: "var(--warn)",
+                    letterSpacing: "0.04em",
+                  }}
+                >
+                  Showing cached data — reconnecting…
+                </div>
+              )}
               {incorrectAttempts.length === 0 ? (
                 <div className="p-8 text-[13px] text-center" style={{ color: "var(--fg-2)" }}>
                   No incorrect attempts yet — keep going.

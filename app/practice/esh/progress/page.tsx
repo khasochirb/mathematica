@@ -100,6 +100,19 @@ export default function ProgressPage() {
           </div>
         ) : (
           <div className="space-y-6 mt-8">
+            {perf.isOffline && (
+              <div
+                className="mono px-4 py-2 rounded-md text-[11px]"
+                style={{
+                  background: "color-mix(in oklch, var(--warn) 10%, transparent)",
+                  border: "1px solid color-mix(in oklch, var(--warn) 25%, transparent)",
+                  color: "var(--warn)",
+                  letterSpacing: "0.04em",
+                }}
+              >
+                Кэшнээс харуулж байна — холболт сэргээж байна…
+              </div>
+            )}
             {/* Overview */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {overviewStats.map((s, i) => (

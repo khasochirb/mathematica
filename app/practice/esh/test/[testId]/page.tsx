@@ -117,7 +117,6 @@ export default function TestRunnerPage() {
             questionSource: q.source,
             topic: q.topic,
             subtopic: q.subtopic,
-            difficulty: q.difficulty,
             selectedAnswer: answer,
             correctAnswer: q.answer,
             isCorrect: answer === q.answer,
