@@ -51,7 +51,7 @@ export default function SignUpPage() {
       const res = await api.auth.register(form);
       setToken(res.accessToken);
       await refresh();
-      router.push("/practice");
+      router.push("/dashboard");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not create account. Please try again.");
     } finally {

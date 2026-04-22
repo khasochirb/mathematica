@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Clock, Target, BarChart3, FileText } from "lucide-react";
+import { ArrowRight, Clock, BarChart3, FileText } from "lucide-react";
 import { useLang } from "@/lib/lang-context";
 
 export default function ExamPrepPage() {
@@ -57,33 +57,28 @@ export default function ExamPrepPage() {
           </h2>
           <p className="serif mt-4 max-w-2xl" style={{ fontSize: 16, lineHeight: 1.55, color: "var(--fg-1)" }}>
             {t(
-              "Taken by all Mongolian high school graduates seeking university admission. Administered annually each May.",
-              "Их, дээд сургуульд элсэхийг хүссэн бүх Монгол ахлах сургуулийн төгсөгчдөд зориулагдсан. Жил бүрийн 5-р сард зохион байгуулдаг.",
+              "Taken by all Mongolian high school graduates seeking university admission. Administered annually in late June.",
+              "Их, дээд сургуульд элсэхийг хүссэн бүх Монгол ахлах сургуулийн төгсөгчдөд зориулагдсан. Жил бүрийн 6-р сарын сүүлчээр зохион байгуулдаг.",
             )}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
             {
               icon: FileText,
-              en: { title: "Format", desc: "Part 1: 30 multiple-choice (A–E). Part 2: 10 open-ended problems with written solutions." },
-              mn: { title: "Формат", desc: "1-р хэсэг: 30 сонгох (А–Е). 2-р хэсэг: 10 нээлттэй бодлого, бичгээр бодолтоо харуулна." },
+              en: { title: "Format", desc: "Part 1: 36 multiple-choice questions. Part 2: 4 open-ended problems with written solutions." },
+              mn: { title: "Формат", desc: "1-р хэсэг: 36 сонгох бодлого. 2-р хэсэг: 4 нээлттэй бодлого, бичгээр бодолтоо харуулна." },
             },
             {
               icon: Clock,
-              en: { title: "Duration", desc: "3 hours total. Part 1 and Part 2 in one continuous sitting." },
-              mn: { title: "Хугацаа", desc: "Нийт 3 цаг. 1-р ба 2-р хэсгийг нэг удаа тасралтгүй бичнэ." },
+              en: { title: "Duration", desc: "100 minutes total. Part 1 and Part 2 in one continuous sitting." },
+              mn: { title: "Хугацаа", desc: "Нийт 100 минут. 1-р ба 2-р хэсгийг нэг удаа тасралтгүй бичнэ." },
             },
             {
               icon: BarChart3,
-              en: { title: "Scoring", desc: "Total: 800. Part 1: ~400 (each ~13). Part 2: ~400 (partial credit)." },
-              mn: { title: "Оноо", desc: "Нийт: 800. 1-р хэсэг: ~400 (зөв бүр ~13). 2-р хэсэг: ~400 (хэсэгчилсэн)." },
-            },
-            {
-              icon: Target,
-              en: { title: "Subjects", desc: "One subject per student. Math is required by most STEM and economics programs." },
-              mn: { title: "Хичээл", desc: "Сурагчид нэг хичээл сонгоно. Математик STEM, эдийн засгийн ихэнх хөтөлбөрт шаардлагатай." },
+              en: { title: "Scoring", desc: "Total: 100 points. Each problem has a specific point value — varies per problem." },
+              mn: { title: "Оноо", desc: "Нийт: 100 оноо. Бодлого бүр өөрийн тусгай оноотой — бодлогоос хамаарч өөр өөр." },
             },
           ].map((card, i) => {
             const Icon = card.icon;

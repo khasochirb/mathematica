@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import usePerformance from "@/lib/use-performance";
 import useTestSession from "@/lib/use-test-session";
@@ -42,6 +42,15 @@ export default function AnalyticsPage() {
   const incorrectAttempts = useMemo(
     () => perf.attempts.filter((a) => !a.isCorrect).slice().reverse(),
     [perf.attempts],
+  );
+
+  const MISTAKES_PER_PAGE = 20;
+  const [mistakePage, setMistakePage] = useState(0);
+  const mistakeTotalPages = Math.max(1, Math.ceil(incorrectAttempts.length / MISTAKES_PER_PAGE));
+  const safeMistakePage = Math.min(mistakePage, mistakeTotalPages - 1);
+  const paginatedMistakes = incorrectAttempts.slice(
+    safeMistakePage * MISTAKES_PER_PAGE,
+    (safeMistakePage + 1) * MISTAKES_PER_PAGE,
   );
 
   const hasData = overall.total > 0 || completed.length > 0;
@@ -559,42 +568,72 @@ export default function AnalyticsPage() {
                   No incorrect attempts yet — keep going.
                 </div>
               ) : (
-                <table className="w-full" style={{ borderCollapse: "collapse" }}>
-                  <thead>
-                    <tr style={{ background: "var(--bg-2)" }}>
-                      {["Question", "Topic", "Your answer", "Correct", "When", ""].map((h) => (
-                        <th
-                          key={h}
-                          className="mono uppercase text-left"
-                          style={{
-                            padding: "12px 18px",
-                            fontSize: 10,
-                            letterSpacing: "0.1em",
-                            color: "var(--fg-3)",
-                            fontWeight: 500,
-                            borderBottom: "1px solid var(--line)",
-                          }}
-                        >
-                          {h}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {incorrectAttempts.slice(0, 12).map((m, i) => (
-                      <tr key={`${m.questionSource}-${m.timestamp}-${i}`} style={{ borderBottom: "1px solid var(--line)" }}>
-                        <td className="mono" style={{ padding: "12px 18px", fontSize: 12, color: "var(--fg)", fontWeight: 500 }}>{m.questionSource}</td>
-                        <td style={{ padding: "12px 18px", fontSize: 13, color: "var(--fg-2)" }}>{TOPIC_LABELS[m.topic] || m.topic}</td>
-                        <td className="mono" style={{ padding: "12px 18px", fontSize: 13, color: "var(--danger)" }}>{m.selectedAnswer || "—"}</td>
-                        <td className="mono" style={{ padding: "12px 18px", fontSize: 13, color: "var(--accent)" }}>{m.correctAnswer}</td>
-                        <td className="mono" style={{ padding: "12px 18px", fontSize: 12, color: "var(--fg-3)" }}>{formatRelative(m.timestamp)}</td>
-                        <td style={{ padding: "12px 18px", fontSize: 12 }}>
-                          <Link href={`/practice/esh/learn/${m.topic}`} style={{ color: "var(--accent)" }}>Practice →</Link>
-                        </td>
+                <>
+                  <table className="w-full" style={{ borderCollapse: "collapse" }}>
+                    <thead>
+                      <tr style={{ background: "var(--bg-2)" }}>
+                        {["Question", "Topic", "Your answer", "Correct", "When", ""].map((h) => (
+                          <th
+                            key={h}
+                            className="mono uppercase text-left"
+                            style={{
+                              padding: "12px 18px",
+                              fontSize: 10,
+                              letterSpacing: "0.1em",
+                              color: "var(--fg-3)",
+                              fontWeight: 500,
+                              borderBottom: "1px solid var(--line)",
+                            }}
+                          >
+                            {h}
+                          </th>
+                        ))}
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {paginatedMistakes.map((m, i) => (
+                        <tr key={`${m.questionSource}-${m.timestamp}-${i}`} style={{ borderBottom: "1px solid var(--line)" }}>
+                          <td className="mono" style={{ padding: "12px 18px", fontSize: 12, color: "var(--fg)", fontWeight: 500 }}>{m.questionSource}</td>
+                          <td style={{ padding: "12px 18px", fontSize: 13, color: "var(--fg-2)" }}>{TOPIC_LABELS[m.topic] || m.topic}</td>
+                          <td className="mono" style={{ padding: "12px 18px", fontSize: 13, color: "var(--danger)" }}>{m.selectedAnswer || "—"}</td>
+                          <td className="mono" style={{ padding: "12px 18px", fontSize: 13, color: "var(--accent)" }}>{m.correctAnswer}</td>
+                          <td className="mono" style={{ padding: "12px 18px", fontSize: 12, color: "var(--fg-3)" }}>{formatRelative(m.timestamp)}</td>
+                          <td style={{ padding: "12px 18px", fontSize: 12 }}>
+                            <Link href={`/practice/esh/learn/${m.topic}`} style={{ color: "var(--accent)" }}>Practice →</Link>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  {mistakeTotalPages > 1 && (
+                    <div
+                      className="px-5 py-4 flex items-center justify-between gap-3"
+                      style={{ borderTop: "1px solid var(--line)" }}
+                    >
+                      <button
+                        type="button"
+                        className="btn btn-line"
+                        style={{ fontSize: 12, padding: "7px 14px", opacity: safeMistakePage === 0 ? 0.5 : 1 }}
+                        disabled={safeMistakePage === 0}
+                        onClick={() => setMistakePage((p) => Math.max(0, p - 1))}
+                      >
+                        ← Previous
+                      </button>
+                      <span className="mono" style={{ fontSize: 11, color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+                        PAGE {safeMistakePage + 1} OF {mistakeTotalPages}
+                      </span>
+                      <button
+                        type="button"
+                        className="btn btn-line"
+                        style={{ fontSize: 12, padding: "7px 14px", opacity: safeMistakePage === mistakeTotalPages - 1 ? 0.5 : 1 }}
+                        disabled={safeMistakePage === mistakeTotalPages - 1}
+                        onClick={() => setMistakePage((p) => Math.min(mistakeTotalPages - 1, p + 1))}
+                      >
+                        Next →
+                      </button>
+                    </div>
+                  )}
+                </>
               )}
             </div>
           </>

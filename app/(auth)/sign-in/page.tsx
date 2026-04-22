@@ -36,7 +36,7 @@ export default function SignInPage() {
       const res = await api.auth.login(form);
       setToken(res.accessToken);
       await refresh();
-      router.push("/practice");
+      router.push("/dashboard");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Invalid email or password.");
     } finally {

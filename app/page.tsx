@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo } from "react";
 import { useLang } from "@/lib/lang-context";
 
 const i18n = {
@@ -52,51 +51,6 @@ const i18n = {
   cta_t: { en: "Built by Mongolians, for Mongolians — wherever they are.", mn: "Монголчуудаар, Монголчуудад зориулж — хаана ч байсан." },
   cta_s: { en: "Free diagnostic. Upgrade any time.", mn: "Үнэгүй шалгалт. Хэзээ ч төлбөртэй болгож болно." },
 };
-
-function Heatmap() {
-  const cells = useMemo(() => {
-    const rows = 6;
-    const cols = 14;
-    const seed = [0.9, 0.85, 0.9, 0.7, 0.8, 0.3, 0.2, 0.4, 0.75, 0.85, 0.9, 0.4, 0.55, 0.92];
-    const out: { color: string; alpha: number }[] = [];
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        let v = seed[c] + (Math.sin(r * 3 + c) + 1) * 0.12 - 0.15;
-        v = Math.max(0.08, Math.min(0.97, v));
-        let color: string;
-        let alpha: number;
-        if (v < 0.5) {
-          color = "var(--warn)";
-          alpha = 0.3 + (0.5 - v) * 1.4;
-        } else if (v < 0.65) {
-          color = "var(--bg-3)";
-          alpha = 1;
-        } else {
-          color = "var(--accent)";
-          alpha = 0.35 + (v - 0.65) * 1.6;
-        }
-        out.push({ color, alpha });
-      }
-    }
-    return out;
-  }, []);
-
-  return (
-    <div className="grid gap-[3px] mt-2" style={{ gridTemplateColumns: "repeat(14, 1fr)" }}>
-      {cells.map((c, i) => (
-        <span
-          key={i}
-          style={{
-            aspectRatio: "1",
-            background: c.color,
-            opacity: c.alpha,
-            borderRadius: 2,
-          }}
-        />
-      ))}
-    </div>
-  );
-}
 
 export default function HomePage() {
   const { lang } = useLang();
@@ -380,76 +334,6 @@ export default function HomePage() {
           </div>
         ))}
       </section>
-
-      {/* FEAT 1: DIAGNOSTIC */}
-      <FeatSection
-        eyebrow={t("feat_1_eye")}
-        title={t("feat_1_t")}
-        body={t("feat_1_s")}
-        bullets={[t("feat_1_li1"), t("feat_1_li2"), t("feat_1_li3")]}
-        viz={
-          <>
-            <div className="flex justify-between items-baseline">
-              <div className="serif" style={{ fontSize: 24, letterSpacing: "-0.02em" }}>
-                Topic heatmap
-              </div>
-              <div
-                className="mono"
-                style={{ fontSize: 11, color: "var(--fg-2)", letterSpacing: "0.08em" }}
-              >
-                84 SUB-TOPICS · ЭЕШ 2024
-              </div>
-            </div>
-            <Heatmap />
-            <div
-              className="flex justify-between items-center mt-4 mono"
-              style={{ fontSize: 11, color: "var(--fg-2)" }}
-            >
-              <span>Weak</span>
-              <div className="flex gap-[3px]">
-                <span style={{ width: 14, height: 14, background: "var(--warn)", opacity: 0.95 }} />
-                <span style={{ width: 14, height: 14, background: "var(--warn)", opacity: 0.7 }} />
-                <span style={{ width: 14, height: 14, background: "var(--bg-3)" }} />
-                <span style={{ width: 14, height: 14, background: "var(--accent)", opacity: 0.55 }} />
-                <span style={{ width: 14, height: 14, background: "var(--accent)", opacity: 0.9 }} />
-              </div>
-              <span>Strong</span>
-            </div>
-            <div
-              className="mt-auto pt-4 grid gap-3.5"
-              style={{
-                borderTop: "1px solid var(--line)",
-                gridTemplateColumns: "1fr 1fr 1fr",
-                fontSize: 12,
-              }}
-            >
-              {[
-                { lbl: "TIME/Q", val: "1:42", color: "var(--fg)" },
-                { lbl: "ACCURACY", val: "78", suffix: "%", color: "var(--fg)" },
-                { lbl: "PERCENTILE", val: "P84", color: "var(--accent)" },
-              ].map((s) => (
-                <div key={s.lbl}>
-                  <div className="mono" style={{ color: "var(--fg-2)" }}>{s.lbl}</div>
-                  <div
-                    className="serif"
-                    style={{ fontSize: 28, letterSpacing: "-0.02em", color: s.color }}
-                  >
-                    {s.val}
-                    {s.suffix && (
-                      <span
-                        className="mono"
-                        style={{ fontSize: 14, color: "var(--fg-2)" }}
-                      >
-                        {s.suffix}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </>
-        }
-      />
 
       {/* FEAT 2: SCORE PREDICTION */}
       <FeatSection
