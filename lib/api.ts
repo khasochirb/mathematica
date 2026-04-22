@@ -1,8 +1,14 @@
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "";
 
-function getToken(): string | null {
+export function getMpToken(): string | null {
   if (typeof document === "undefined") return null;
   const match = document.cookie.match(/mp_token=([^;]+)/);
+  return match ? match[1] : null;
+}
+
+export function getMpRefreshToken(): string | null {
+  if (typeof document === "undefined") return null;
+  const match = document.cookie.match(/mp_refresh_token=([^;]+)/);
   return match ? match[1] : null;
 }
 
@@ -11,12 +17,33 @@ export function setToken(token: string) {
   document.cookie = `mp_token=${token}; path=/; max-age=${maxAge}; SameSite=Lax`;
 }
 
+export function setRefreshToken(token: string) {
+  const maxAge = 60 * 60 * 24 * 30; // 30 days — Supabase refresh token default
+  document.cookie = `mp_refresh_token=${token}; path=/; max-age=${maxAge}; SameSite=Lax`;
+}
+
 export function clearToken() {
   document.cookie = "mp_token=; path=/; max-age=0";
+  document.cookie = "mp_refresh_token=; path=/; max-age=0";
+}
+
+// Decode JWT payload (second base64url segment). Returns null on malformed input.
+// Roll-our-own to avoid pulling a JWT lib for one field; we do no signature validation here.
+export function decodeJwtExpSeconds(token: string): number | null {
+  const parts = token.split(".");
+  if (parts.length !== 3) return null;
+  try {
+    const b64 = parts[1].replace(/-/g, "+").replace(/_/g, "/");
+    const padded = b64 + "=".repeat((4 - (b64.length % 4)) % 4);
+    const payload = JSON.parse(atob(padded));
+    return typeof payload.exp === "number" ? payload.exp : null;
+  } catch {
+    return null;
+  }
 }
 
 async function fetchWithAuth(path: string, init?: RequestInit): Promise<Response> {
-  const token = getToken();
+  const token = getMpToken();
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
     ...(token ? { Authorization: `Bearer ${token}` } : {}),
@@ -48,6 +75,11 @@ export const api = {
       apiCall<User & { xpCurrentLevel: number; xpNextLevel: number; isSubscribed: boolean }>(
         "/api/auth/me",
       ),
+    refresh: (refreshToken: string) =>
+      apiCall<{ accessToken: string; refreshToken: string }>("/api/auth/refresh", {
+        method: "POST",
+        body: JSON.stringify({ refreshToken }),
+      }),
   },
   topics: {
     list: () => apiCall<TopicTree[]>("/api/topics"),

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
 import Image from "next/image";
-import { api, setToken } from "@/lib/api";
+import { api, setToken, setRefreshToken } from "@/lib/api";
 import { useAuth } from "@/lib/auth-context";
 
 const inputStyle: React.CSSProperties = {
@@ -50,6 +50,7 @@ export default function SignUpPage() {
     try {
       const res = await api.auth.register(form);
       setToken(res.accessToken);
+      setRefreshToken(res.refreshToken);
       await refresh();
       router.push("/dashboard");
     } catch (err) {

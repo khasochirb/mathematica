@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
 import Image from "next/image";
-import { api, setToken } from "@/lib/api";
+import { api, setToken, setRefreshToken } from "@/lib/api";
 import { useAuth } from "@/lib/auth-context";
 
 const inputStyle: React.CSSProperties = {
@@ -22,11 +22,13 @@ const inputStyle: React.CSSProperties = {
 
 export default function SignInPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { refresh } = useAuth();
   const [form, setForm] = useState({ email: "", password: "" });
   const [showPw, setShowPw] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const sessionExpired = searchParams.get("reason") === "session_expired";
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -35,6 +37,7 @@ export default function SignInPage() {
     try {
       const res = await api.auth.login(form);
       setToken(res.accessToken);
+      setRefreshToken(res.refreshToken);
       await refresh();
       router.push("/dashboard");
     } catch (err) {
@@ -83,6 +86,18 @@ export default function SignInPage() {
             </p>
           </div>
 
+          {sessionExpired && !error && (
+            <div
+              className="mb-5 p-3 rounded-md text-[13px]"
+              style={{
+                background: "color-mix(in oklch, var(--warn) 10%, transparent)",
+                border: "1px solid color-mix(in oklch, var(--warn) 30%, transparent)",
+                color: "var(--warn)",
+              }}
+            >
+              Your session expired. Please sign in again.
+            </div>
+          )}
           {error && (
             <div
               className="mb-5 p-3 rounded-md text-[13px]"
