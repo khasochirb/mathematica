@@ -23,10 +23,17 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  // Profile row was already created by the on_auth_user_created trigger
+  // with placeholder defaults; overwrite with the form-supplied values.
+  // .single() returns an error if 0 rows match — that means the trigger
+  // didn't fire, which is a hard fail; roll the auth user back.
   const admin = createAdminClient();
   const { error: profileError } = await admin
     .from("profiles")
-    .insert({ id: data.user.id, username, display_name: displayName });
+    .update({ username, display_name: displayName })
+    .eq("id", data.user.id)
+    .select()
+    .single();
 
   if (profileError) {
     await admin.auth.admin.deleteUser(data.user.id);
