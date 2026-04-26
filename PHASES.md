@@ -59,6 +59,7 @@ Both risks resolve simultaneously at Pro upgrade — no partial fix available. N
 - Landing page rewrite (drop "2σ confidence band", mark AI as Coming Soon)
 - No-signup test path
 - One-line reassurance about 2026 format change
+- **Marketing assets via Claude Design** (Anthropic Labs product, launched ~1 week ago) — generate Instagram/FB posters, Telegram channel banner, one-pager, branded email confirmation template reference. Prerequisites: P1 contract bug fixed (clean auth flow to point at), landing page rewrite drafted (settled brand voice to brief from). Onboarding plan: point Claude Design at the mathematica repo for design tokens, web-capture mongolpotential.com for realized look, upload logo asset. Time estimate: ~2-3 hours for first batch of social assets.
 
 ## Recently shipped
 - **Profiles auto-create trigger** — Postgres `on_auth_user_created` trigger inserts a placeholder profile row (username `u_<uuid>`, display_name email-local-part) on every `auth.users` insert. Closes FK 23503 for users provisioned outside the sign-up form. Register route changed INSERT→UPDATE to overwrite the placeholder with form values. Migration 005 also backfills existing orphans. Smoke 4/4 on staging, prod cutover green (commit `aaf6d6a`).
