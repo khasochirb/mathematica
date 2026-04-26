@@ -11,6 +11,7 @@ import {
   decodeJwtExpSeconds,
   type User,
 } from "./api";
+import { clearAllLocalPerformanceData } from "./use-performance";
 
 type AuthUser = User & {
   xpCurrentLevel: number;
@@ -45,6 +46,9 @@ const EXPIRY_BUFFER_SECONDS = 10 * 60; // refresh when <10 min to expiry
 let refreshPromise: Promise<void> | null = null;
 
 function logoutAndRedirect(reason?: string) {
+  // Sweep before clearing the token so any in-flight sync can't race back
+  // into the buckets we just cleared — parallel to manual logout() below.
+  clearAllLocalPerformanceData();
   clearToken();
   const qs = reason ? `?reason=${reason}` : "";
   if (typeof window !== "undefined") window.location.href = `/sign-in${qs}`;
@@ -163,9 +167,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   function logout() {
-    // TODO (Step 2.5): clear all `mongol-potential-performance:*` and
-    // `mongol-potential-attempts-queue:*` localStorage keys here to prevent
-    // stale per-user data from persisting on shared devices.
+    // Sweep before clearing the token: matches logoutAndRedirect ordering.
+    clearAllLocalPerformanceData();
     clearToken();
     setUser(null);
     window.location.href = "/";

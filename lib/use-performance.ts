@@ -156,6 +156,21 @@ function anonMigratedFlagKey(userId: string): string {
   return `${BASE}:anon-migrated:${userId}`;
 }
 
+// Sweep all attempts/performance localStorage on logout so a subsequent
+// login (different user or same user on shared device) starts clean.
+// Two-pass collect-then-remove is deliberate: iterating localStorage by
+// index while mutating would skip keys as indices shift.
+export function clearAllLocalPerformanceData(): void {
+  if (typeof window === "undefined") return;
+  const toRemove: string[] = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (!k) continue;
+    if (k.startsWith(BASE) || k.startsWith(QUEUE_BASE)) toRemove.push(k);
+  }
+  for (const k of toRemove) localStorage.removeItem(k);
+}
+
 // One-shot sync of anon localStorage attempts into the server, keyed by a
 // per-user flag. Uses client-generated UUIDs + ignoreDuplicates so retries
 // over flaky wifi cannot produce duplicates in the mistake library.

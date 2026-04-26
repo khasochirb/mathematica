@@ -3,10 +3,11 @@
 Flat queue of what's next, grouped by phase. Keep tactical — if it feels like overhead, delete entries.
 
 ## In flight
-- **2.5** logout cleanup — clear `mongol-potential-performance:*` + `mongol-potential-attempts-queue:*` keys on logout to prevent stale per-user data on shared devices. Sweeps the `anon-migrated:*` flags too — harmless because re-login finds an empty anon bucket and migration short-circuits. Covers the TODO breadcrumb in [lib/auth-context.tsx](lib/auth-context.tsx) logout().
+- _(empty)_
 
 ## Next
 - **Phase 8 defensive** — modal source-prefix guard, rename `getAllTests()`, badge styling audit.
+- **Offline-logout UX** — when network is down, post-logout `window.location.href = "/"` lands on the offline dinosaur page. Sweep itself runs correctly (synchronous, completes before nav). Future: detect `!navigator.onLine` in the logout handler and show a "logged out — reconnect to continue" message instead of attempting navigation. Cosmetic; not a blocker.
 
 ## Pre-launch blockers
 - [ ] Rotate prod Supabase service role key (was exposed in chat history)
@@ -20,6 +21,8 @@ Flat queue of what's next, grouped by phase. Keep tactical — if it feels like 
 
 ## Ops notes
 - Supabase free-tier signup rate limit is 3/hour — bit us mid-2.4 smoke testing. If it bites again pre-launch, bump via Auth settings or provision test users through the dashboard.
+- Push + confirm green Vercel build after every tier commit, even on feature branches. 2.3.5 added `useSearchParams()` to `/sign-in` without a Suspense boundary and it slipped past local typecheck because it only fails at prerender-time. Pushing early surfaces build-only issues before they stack up.
+- Local dev env recovery: `.env.local` should always exist locally and point at staging. If lost, reconstruct from `.env.staging.local` with `sed -E 's/^SUPABASE_URL=/NEXT_PUBLIC_SUPABASE_URL=/; s/^SUPABASE_ANON_KEY=/NEXT_PUBLIC_SUPABASE_ANON_KEY=/' .env.staging.local > .env.local`. Both files are gitignored under `.env*.local` (verified clean — neither in git history). Never `vercel env pull` to populate local dev: that points local at prod Supabase, conflating environments and risking prod-data mutation during smoke tests.
 
 ## Tier 3 (post-server-sync)
 - **3.1** Projected score scale (weighted avg last 5 tests)
@@ -34,6 +37,7 @@ Flat queue of what's next, grouped by phase. Keep tactical — if it feels like 
 - One-line reassurance about 2026 format change
 
 ## Recently shipped
+- **2.5** Logout cleanup — sweep `mongol-potential-performance:*` + `mongol-potential-attempts-queue:*` (and incidentally `anon-migrated:*`) keys on both manual logout and session-expired auto-logout. Smoke 4/4: manual logout, account handoff, session-expired path (both tokens corrupted), offline write+logout.
 - **2.4** Anon → signup migration (client UUIDs + upsert onConflict DO NOTHING, 2000 cap, focus-retry)
 - **2.3.5** Token refresh with rotation, buffer gate, transient-error handling — commit `19cd946`
 - **2.3** Attempts read path (Supabase-first with localStorage merge + offline fallback)
