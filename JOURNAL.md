@@ -2,6 +2,64 @@
 
 Reverse-chronological log of major work sessions. Each entry captures the arc — what shipped, what was decided, what surfaced, what's deferred — in tighter form than commit messages alone. PHASES.md holds the queue; this holds the narrative.
 
+## 2026-04-27 — Pre-launch hardening, day 2
+
+Three blockers shipped to prod, two P2 dashboard fixes shipped, PHASES.md cleanup, last technical blocker investigated and closed. End-of-day status: all technical blockers resolved or closed. Remaining work for soft launch is Phase B (legal baseline, content polish, landing page rewrite, no-signup test path, marketing assets).
+
+**Shipped:**
+- **HttpOnly refresh token cookie** (commit `eea7b31`, Option A scope). Refresh token moved from JS-readable cookie to server-set HttpOnly + Secure (prod) + SameSite=Lax + Path=/api/auth + Max-Age=2592000. New `/api/auth/logout` route added since JS can't clear HttpOnly cookies. Cookie attributes centralized in [lib/auth-cookies.ts](lib/auth-cookies.ts) — single source of truth for the four routes that touch the cookie, since attribute drift would silently break cookie matching at the clear site. **Access token deliberately NOT migrated** (Option B considered and rejected; reasoning under Design decisions below).
+- **Topic + subtopic canonicalization at the DB write boundary** (commit `7284839`). `canonicalizeTopic` validates against the 10 canonical English keys, falls back to `"other"` for unknowns. `canonicalizeSubtopic` is shape-normalizing only (trim + lowercase + collapse whitespace) and preserves Cyrillic. Hooked into `toServerRow` in [lib/use-performance.ts](lib/use-performance.ts) so all four DB write paths get canonicalization for free. Verification script at [scripts/verify-canonicalize.ts](scripts/verify-canonicalize.ts) (19/19 pass), runnable via `npm run verify:canonicalize`. Stopgap until the repo gets a real test framework (Vitest setup logged as a separate P3). One-time data-cleanup SQL ran via Supabase web SQL editor on both environments — staging: 12 distinct subtopics with `Вектор` + `вектор` collapsed into a single `вектор` row; prod: 7 distinct subtopics with `Стандарт хэлбэр` + `стандарт хэлбэр` collapsed into a single `стандарт хэлбэр` row.
+- **Dashboard + practice + analytics P2 fixes** (commit `249a4a9`). `displayName.split(" ")[0]` truncated multi-word names ("Anon Migrate Test" → "Anon"); switched to full `displayName` at all four render sites with consts renamed `firstName` → `userName`. Stale "ON THIS DEVICE · ACCOUNT SYNC COMING SOON" copy from before Tier 2 server-sync deleted from dashboard and analytics — line was actively misleading users about whether their data was being saved.
+- **PHASES.md status corrections** (commit `e4a95f3`). Topic-migration status updated from pending to verified; HttpOnly entry clarified as Option A scope (refresh token only, by design) so the decision isn't relitigated next session.
+- **PHASES.md staleness sweep** (commit `57f13ad`). Three already-resolved P2s moved out of `## Next`: dashboard greeting truncation + dashboard "ON THIS DEVICE" → Recently shipped; apex+www redirect allowlist → Ops notes (reframed as documentation, not pending work).
+
+**Investigation closures:**
+- **GoTrueClient instance accumulation** — closed without fix. Code audit identified the token-keyed memo in [lib/supabase.ts](lib/supabase.ts) `createAuthedSupabaseClient` as the predicted leak source: each token rotation creates a new GoTrueClient sharing the default `storageKey`, registering alongside the old one. Browser repro on staging showed zero warnings during 30-second click-through — consistent with prediction (warning would only fire after a ~50-minute token rotation, not initial load + casual nav). Worst-case ~few KB memory across a multi-hour session. Cosmetic, not a resource issue. Three mitigation directions captured in code-audit notes if user-impacting symptoms ever surface (per-token `storageKey`, single-client-with-`setSession`, single-client-with-header-rotation).
+
+**Design decisions captured:**
+- **Option A vs Option B for cookie HttpOnly migration**: chose A (refresh only). Reasoning: refresh token is the high-value asset (long-lived, mints new access tokens); access token has 1-hour TTL + rotates on every refresh via RTR (small XSS blast radius); Option B requires rewriting `lib/use-performance.ts` direct-Supabase calls + adds attempt-write latency for marginal security gain.
+- **sessionStorage → localStorage for resend lockout**: sessionStorage was per-tab so a user could open a second tab to bypass the rate limit entirely. Switched to localStorage; trade-off accepted since the 60s window is short.
+- **Topic canonicalization at write boundary, NOT in source files**: defensive layer that protects the DB even if source JSONs stay messy or become messy again later. Source JSON cleanup deferred to content polish phase as P3.
+- **Move-UPDATE-above-session in P1 register route** (caught during yesterday's step 5 review, but worth re-noting): without this, confirmation-required signups would have lost form-supplied username/displayName to the trigger placeholder on first login. Silent prod data loss avoided.
+
+**Production discoveries logged as P2/P3:**
+- **P2** apex+www redirect allowlist required: Vercel canonicalizes `mongolpotential.com` → `www.mongolpotential.com`, so `req.nextUrl.origin` returns the www form. Without `https://www.mongolpotential.com/**` in the Supabase Redirect URLs allowlist, redirect_to mismatch causes Supabase to fall back to the bare Site URL with `#access_token=...`. Resolved same-day; documented in Ops notes for future redirect-using flows.
+- **P2** ConfirmationURL email template appends auto-sign-in tokens to the redirect hash. UX-correct (sign-in page ignores the hash, renders manual sign-in form) but ugly. Fix in eventual email-template-customization PR with `{{ .TokenHash }}` + `type=email`.
+- **P2** Token-reuse errors return in URL hash, not query string. Sign-in banner reads only `useSearchParams` (query string) so hash errors are invisible to precedence logic. Currently produces correct UX incidentally. Robustness concern: if Supabase ever moves these errors into query string, `confirmed > error_code` precedence would mask real errors.
+
+**Configuration drifts caught:**
+- Staging/prod email-confirmation toggle parity: staging had Confirm email OFF while prod had it ON; P1 contract bug never surfaced in staging tests because the no-session branch never fired. Resolved during P1 step 5 verification by enabling Confirm email on staging. Discipline note added to PHASES.md Ops: any auth-config change to prod is made on staging first.
+- Prod URL Configuration mid-deploy: pre-merge checklist initially appeared unchecked when the work had been done; recovered via screenshot-based re-verification before push.
+
+**Working-relationship calibration notes** (operational, not blame):
+- claude.ai workflow terminology slipped twice. First: "feature branch + PR + preview" language when this repo is direct-to-main throughout. Second: "push to main for staging deployment, don't deploy to prod yet" — but push to main IS prod deployment in this workflow. Both caught before push.
+- claude.ai twice claimed work was undone that was actually done — prod URL Configuration items 1-3 marked unchecked when they had been verified earlier in the session; topic-migration SQL marked pending when it had been run via the Supabase web SQL editor (outside the terminal session, so not in commit history). Re-confirmed accurately from screenshot/SQL evidence before acting.
+- Operational discipline going forward: cross-check claude.ai claims about already-done work against file evidence, screenshot evidence, and SQL output on long sessions. Workflow shorthand ("PR", "preview", "merge") is fine as conversational language but worth confirming intent on workflow-shaping moves.
+
+**Pre-launch blocker status: all technical blockers resolved or closed.**
+- ✅ Prod service role key rotation
+- ✅ Auto-create profiles trigger
+- ✅ RTR verified
+- ✅ P1 contract bug fix
+- ✅ Both P2 dashboard bugs
+- ✅ Topic + subtopic canonicalization
+- ✅ HttpOnly auth tokens (Option A — refresh only, by design)
+- ✅ GoTrueClient instance accumulation (closed, cosmetic-only)
+
+**Carry-forward references worth verifying before next related work:**
+Tier 3 items in PHASES.md `## Tier 3 (post-server-sync)` — status unclear from this session, may have shipped quietly or may be unfinished:
+- 3.1 Projected score scale (weighted avg last 5 tests)
+- 3.2 Recent accuracy *(referenced in handoff but not in current PHASES.md — verify whether it shipped quietly or was renumbered)*
+- 3.3 Pre-filtered practice routing (`?topic=X&mode=topic`)
+- 3.5 Progress page restructure
+- 3.7 Logo / wordmark polish
+
+(PHASES.md additionally lists 3.4 dashboard audit-then-delta which wasn't in the carry-forward note; worth reconciling.)
+
+**Vercel deploys this session:** `eea7b31` (HttpOnly refresh token), `7284839` (topic canonicalization), `249a4a9` (dashboard P2 fixes), `e4a95f3` (PHASES corrections), `57f13ad` (PHASES staleness sweep), plus this commit (GoTrueClient closure + journal). All green.
+
+**Next session pickup:** Phase B begins. Likely starts with legal baseline scope decision (Terms / Privacy / Cookie policy minimums for a Mongolian launch) and the landing page rewrite.
+
 ## 2026-04-27 — P1 contract bug shipped to prod
 
 **Shipped:**
