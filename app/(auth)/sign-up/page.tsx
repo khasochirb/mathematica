@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
 import Image from "next/image";
 import { api, setToken, setRefreshToken } from "@/lib/api";
@@ -30,13 +30,14 @@ const labelStyle: React.CSSProperties = {
   fontFamily: "var(--font-mono), ui-monospace, monospace",
 };
 
-export default function SignUpPage() {
+function SignUpInner() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { refresh } = useAuth();
   const [form, setForm] = useState({
     displayName: "",
     username: "",
-    email: "",
+    email: searchParams.get("email") ?? "",
     password: "",
   });
   const [showPw, setShowPw] = useState(false);
@@ -49,6 +50,10 @@ export default function SignUpPage() {
     setError("");
     try {
       const res = await api.auth.register(form);
+      if ("needsConfirmation" in res) {
+        router.push(`/sign-up/check-email?email=${encodeURIComponent(res.email)}`);
+        return;
+      }
       setToken(res.accessToken);
       setRefreshToken(res.refreshToken);
       await refresh();
@@ -203,5 +208,13 @@ export default function SignUpPage() {
         </p>
       </div>
     </div>
+  );
+}
+
+export default function SignUpPage() {
+  return (
+    <Suspense fallback={null}>
+      <SignUpInner />
+    </Suspense>
   );
 }

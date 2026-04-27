@@ -56,13 +56,25 @@ async function apiCall<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetchWithAuth(path, init);
   const json = await res.json();
   if (!res.ok) throw new Error(json.error ?? "Request failed");
+  // Defensive backstop, NOT the canonical error path. Catches malformed
+  // server responses (2xx without `data`) so they fail loud instead of
+  // returning undefined and crashing downstream as a confusing TypeError.
+  // The original instance — register route returning 200 { error } on
+  // email-confirmation-required — goes away in the P1 fix below; this
+  // guard stays to catch any future contract drift.
+  if (!json || typeof json !== "object" || !("data" in json)) {
+    throw new Error(json?.error ?? "Malformed response (missing data field)");
+  }
   return json.data as T;
 }
 
 export const api = {
   auth: {
     register: (body: { email: string; password: string; username: string; displayName: string }) =>
-      apiCall<{ user: User; accessToken: string; refreshToken: string }>("/api/auth/register", {
+      apiCall<
+        | { needsConfirmation: true; email: string }
+        | { user: User; accessToken: string; refreshToken: string }
+      >("/api/auth/register", {
         method: "POST",
         body: JSON.stringify(body),
       }),
@@ -79,6 +91,11 @@ export const api = {
       apiCall<{ accessToken: string; refreshToken: string }>("/api/auth/refresh", {
         method: "POST",
         body: JSON.stringify({ refreshToken }),
+      }),
+    resend: (body: { email: string }) =>
+      apiCall<{ ok: true }>("/api/auth/resend", {
+        method: "POST",
+        body: JSON.stringify(body),
       }),
   },
   topics: {
