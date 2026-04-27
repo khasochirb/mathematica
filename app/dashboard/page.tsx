@@ -16,7 +16,7 @@ export default function DashboardPage() {
   const completed = ts.getCompletedSessions();
 
   const hasData = overall.total > 0 || completed.length > 0;
-  const firstName = user?.displayName?.split(" ")[0] ?? "";
+  const userName = user?.displayName ?? "";
 
   const latestSession = completed[0];
   const latestPct = latestSession?.score?.accuracy ?? null;
@@ -28,7 +28,7 @@ export default function DashboardPage() {
       <div className="max-w-5xl mx-auto px-6 md:px-10 py-10 md:py-12">
         {/* Welcome */}
         <section className="pb-7" style={{ borderBottom: "1px solid var(--line)" }}>
-          <div className="eyebrow">Dashboard{firstName && ` · ${firstName}`}</div>
+          <div className="eyebrow">Dashboard{userName && ` · ${userName}`}</div>
           <h1
             className="serif"
             style={{
@@ -40,15 +40,12 @@ export default function DashboardPage() {
               color: "var(--fg)",
             }}
           >
-            Сайн уу, <em className="serif-italic" style={{ color: "var(--accent)" }}>{firstName || "найз"}</em>.
+            Сайн уу, <em className="serif-italic" style={{ color: "var(--accent)" }}>{userName || "найз"}</em>.
           </h1>
           <p className="mt-3 text-[15px]" style={{ color: "var(--fg-2)" }}>
             {hasData
               ? "Ахиц амжилтаа доор харна уу."
               : "Дадлага эхлэхэд таны үзүүлэлт энд гарна."}
-          </p>
-          <p className="mono mt-2" style={{ fontSize: 11, color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-            ON THIS DEVICE · ACCOUNT SYNC COMING SOON
           </p>
         </section>
 

@@ -70,7 +70,7 @@ export default function PracticePage() {
     );
   }
 
-  const firstName = user.displayName?.split(" ")[0] ?? "";
+  const userName = user.displayName ?? "";
   const overall = perf.getOverallStats();
 
   return (
@@ -81,7 +81,7 @@ export default function PracticePage() {
         <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(40px, 6vw, 64px)", letterSpacing: "-0.04em", lineHeight: 0.98, color: "var(--fg)" }}>
           Сайн уу,{" "}
           <em className="serif-italic" style={{ color: "var(--accent)" }}>
-            {firstName || "найз"}
+            {userName || "найз"}
           </em>
           .
         </h1>

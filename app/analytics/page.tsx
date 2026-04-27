@@ -173,10 +173,6 @@ export default function AnalyticsPage() {
             </h1>
             <div className="mt-2.5 text-[13px]" style={{ color: "var(--fg-2)" }}>
               <strong style={{ color: "var(--fg)" }}>{displayName}</strong>
-              {" · "}
-              <span className="mono" style={{ fontSize: 11, color: "var(--fg-3)", letterSpacing: "0.04em" }}>
-                ON THIS DEVICE · ACCOUNT SYNC COMING SOON
-              </span>
             </div>
           </div>
           <div className="flex gap-2 items-center">
