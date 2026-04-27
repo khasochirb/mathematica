@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useAuth } from "./auth-context";
 import { createAuthedSupabaseClient } from "./supabase";
 import { getMpToken } from "./api";
+import { canonicalizeTopic, canonicalizeSubtopic } from "./esh-questions";
 
 export interface AttemptRecord {
   questionSource: string;
@@ -72,8 +73,8 @@ function toServerRow(attempt: AttemptRecord, userId: string) {
     user_answer: attempt.selectedAnswer,
     correct_answer: attempt.correctAnswer,
     is_correct: attempt.isCorrect,
-    topic: attempt.topic,
-    subtopic: attempt.subtopic || null,
+    topic: canonicalizeTopic(attempt.topic),
+    subtopic: canonicalizeSubtopic(attempt.subtopic),
     answered_at: new Date(attempt.timestamp).toISOString(),
     time_spent_seconds: null,
   };

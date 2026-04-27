@@ -130,6 +130,24 @@ export const TOPICS = [
   { value: "statistics", label: "Статистик" },
 ];
 
+// Derived from TOPIC_LABELS to stay DRY — `other` is excluded so it acts
+// purely as the fallback bucket for non-canonical inputs.
+const CANONICAL_TOPIC_KEYS = new Set(
+  Object.keys(TOPIC_LABELS).filter((k) => k !== "other"),
+);
+
+export function canonicalizeTopic(input: string | null | undefined): string {
+  if (!input) return "other";
+  const lower = input.trim().toLowerCase();
+  return CANONICAL_TOPIC_KEYS.has(lower) ? lower : "other";
+}
+
+export function canonicalizeSubtopic(input: string | null | undefined): string | null {
+  if (!input) return null;
+  const normalized = input.trim().toLowerCase().replace(/\s+/g, " ");
+  return normalized || null;
+}
+
 const ALL_TESTS_LOOKUP: TestInfo[] = [...TESTS, ...PREVIOUS_YEAR_TESTS];
 
 /**
