@@ -6,25 +6,15 @@ export function getMpToken(): string | null {
   return match ? match[1] : null;
 }
 
-export function getMpRefreshToken(): string | null {
-  if (typeof document === "undefined") return null;
-  const match = document.cookie.match(/mp_refresh_token=([^;]+)/);
-  return match ? match[1] : null;
-}
-
 export function setToken(token: string) {
   const maxAge = 60 * 60 * 24 * 7; // 7 days
   document.cookie = `mp_token=${token}; path=/; max-age=${maxAge}; SameSite=Lax`;
 }
 
-export function setRefreshToken(token: string) {
-  const maxAge = 60 * 60 * 24 * 30; // 30 days — Supabase refresh token default
-  document.cookie = `mp_refresh_token=${token}; path=/; max-age=${maxAge}; SameSite=Lax`;
-}
-
+// Clears only the JS-readable access-token cookie. The refresh-token
+// cookie is HttpOnly and must be cleared by the server via /api/auth/logout.
 export function clearToken() {
   document.cookie = "mp_token=; path=/; max-age=0";
-  document.cookie = "mp_refresh_token=; path=/; max-age=0";
 }
 
 // Decode JWT payload (second base64url segment). Returns null on malformed input.
@@ -73,13 +63,13 @@ export const api = {
     register: (body: { email: string; password: string; username: string; displayName: string }) =>
       apiCall<
         | { needsConfirmation: true; email: string }
-        | { user: User; accessToken: string; refreshToken: string }
+        | { user: User; accessToken: string }
       >("/api/auth/register", {
         method: "POST",
         body: JSON.stringify(body),
       }),
     login: (body: { email: string; password: string }) =>
-      apiCall<{ user: User; accessToken: string; refreshToken: string }>("/api/auth/login", {
+      apiCall<{ user: User; accessToken: string }>("/api/auth/login", {
         method: "POST",
         body: JSON.stringify(body),
       }),
@@ -87,10 +77,13 @@ export const api = {
       apiCall<User & { xpCurrentLevel: number; xpNextLevel: number; isSubscribed: boolean }>(
         "/api/auth/me",
       ),
-    refresh: (refreshToken: string) =>
-      apiCall<{ accessToken: string; refreshToken: string }>("/api/auth/refresh", {
+    refresh: () =>
+      apiCall<{ accessToken: string }>("/api/auth/refresh", {
         method: "POST",
-        body: JSON.stringify({ refreshToken }),
+      }),
+    logout: () =>
+      apiCall<{ ok: true }>("/api/auth/logout", {
+        method: "POST",
       }),
     resend: (body: { email: string }) =>
       apiCall<{ ok: true }>("/api/auth/resend", {

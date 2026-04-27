@@ -4,9 +4,7 @@ import { createContext, useContext, useState, useEffect, useCallback, useRef } f
 import {
   api,
   getMpToken,
-  getMpRefreshToken,
   setToken,
-  setRefreshToken,
   clearToken,
   decodeJwtExpSeconds,
   type User,
@@ -25,7 +23,7 @@ interface AuthState {
   isSubscribed: boolean;
   isLoading: boolean;
   loading: boolean;
-  logout: () => void;
+  logout: () => Promise<void>;
   refresh: () => Promise<void>;
 }
 
@@ -35,7 +33,7 @@ const AuthContext = createContext<AuthState>({
   isSubscribed: false,
   isLoading: true,
   loading: true,
-  logout: () => {},
+  logout: async () => {},
   refresh: async () => {},
 });
 
@@ -45,10 +43,19 @@ const EXPIRY_BUFFER_SECONDS = 10 * 60; // refresh when <10 min to expiry
 // invalidating each other (Supabase rotates the refresh token on use).
 let refreshPromise: Promise<void> | null = null;
 
-function logoutAndRedirect(reason?: string) {
+async function logoutAndRedirect(reason?: string) {
   // Sweep before clearing the token so any in-flight sync can't race back
   // into the buckets we just cleared — parallel to manual logout() below.
   clearAllLocalPerformanceData();
+  // Server clears the HttpOnly refresh-token cookie. Wrap in try/catch so a
+  // network failure still proceeds to local clear + redirect.
+  try {
+    await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
+  } catch (err) {
+    if (process.env.NODE_ENV !== "production") {
+      console.warn("[auth] logout network error, proceeding with local clear:", err);
+    }
+  }
   clearToken();
   const qs = reason ? `?reason=${reason}` : "";
   if (typeof window !== "undefined") window.location.href = `/sign-in${qs}`;
@@ -56,9 +63,10 @@ function logoutAndRedirect(reason?: string) {
 
 async function runRefreshOnce(): Promise<void> {
   const access = getMpToken();
-  const refresh = getMpRefreshToken();
-  // Gate: only refresh if we have both tokens. Prevents refresh loops on /sign-in.
-  if (!access || !refresh) return;
+  // Gate: only refresh if we have an access token. Refresh-token presence
+  // can't be checked from JS anymore (HttpOnly); the server returns 401 if
+  // its cookie is missing, and the 4xx branch below treats that as logout.
+  if (!access) return;
 
   const exp = decodeJwtExpSeconds(access);
   if (exp !== null) {
@@ -70,12 +78,13 @@ async function runRefreshOnce(): Promise<void> {
   // server errors into a single throw, but we need to treat them differently:
   //   - network/5xx → transient, keep session, next trigger retries
   //   - 4xx        → session genuinely dead, logout + redirect
+  // credentials: "include" is explicit — same-origin already sends the
+  // HttpOnly refresh cookie, but the explicit form prevents future regressions.
   let res: Response;
   try {
     res = await fetch("/api/auth/refresh", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ refreshToken: refresh }),
+      credentials: "include",
     });
   } catch (err) {
     if (process.env.NODE_ENV !== "production") {
@@ -88,7 +97,11 @@ async function runRefreshOnce(): Promise<void> {
     if (process.env.NODE_ENV !== "production") {
       console.warn("[auth] refresh rejected, logging out. status:", res.status);
     }
-    logoutAndRedirect("session_expired");
+    // Await: logoutAndRedirect is async (POSTs /api/auth/logout), and
+    // window.location.href can cancel that in-flight request on slow
+    // networks if we don't serialize. Cancelled logout = HttpOnly cookie
+    // orphaned in the user's browser.
+    await logoutAndRedirect("session_expired");
     return;
   }
 
@@ -101,14 +114,15 @@ async function runRefreshOnce(): Promise<void> {
 
   try {
     const body = await res.json();
-    if (!body.data?.accessToken || !body.data?.refreshToken) {
+    if (!body.data?.accessToken) {
       if (process.env.NODE_ENV !== "production") {
         console.warn("[auth] refresh returned malformed body, keeping session");
       }
       return;
     }
     setToken(body.data.accessToken);
-    setRefreshToken(body.data.refreshToken);
+    // Refresh-token cookie is rotated server-side via Set-Cookie on this
+    // same response — no client-side write needed.
   } catch (err) {
     if (process.env.NODE_ENV !== "production") {
       console.warn("[auth] refresh response parse error, keeping session:", err);
@@ -166,9 +180,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  function logout() {
+  async function logout() {
     // Sweep before clearing the token: matches logoutAndRedirect ordering.
     clearAllLocalPerformanceData();
+    // Server clears the HttpOnly refresh-token cookie. Wrap so a network
+    // failure still proceeds to local clear + redirect.
+    try {
+      await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
+    } catch (err) {
+      if (process.env.NODE_ENV !== "production") {
+        console.warn("[auth] logout network error, proceeding with local clear:", err);
+      }
+    }
     clearToken();
     setUser(null);
     window.location.href = "/";

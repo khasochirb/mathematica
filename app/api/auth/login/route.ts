@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 
 import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseClient, createAdminClient } from "@/lib/supabase";
+import { REFRESH_COOKIE_NAME, REFRESH_COOKIE_OPTIONS } from "@/lib/auth-cookies";
 
 export async function POST(req: NextRequest) {
   const { email, password } = await req.json();
@@ -20,7 +21,7 @@ export async function POST(req: NextRequest) {
     .eq("id", data.user.id)
     .single();
 
-  return NextResponse.json({
+  const res = NextResponse.json({
     data: {
       user: {
         id: data.user.id,
@@ -32,7 +33,8 @@ export async function POST(req: NextRequest) {
         globalXp: profile?.global_xp ?? 0,
       },
       accessToken: data.session.access_token,
-      refreshToken: data.session.refresh_token,
     },
   });
+  res.cookies.set(REFRESH_COOKIE_NAME, data.session.refresh_token, REFRESH_COOKIE_OPTIONS);
+  return res;
 }
