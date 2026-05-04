@@ -222,14 +222,19 @@ export function getQuestionBySource(source: string): Question | undefined {
   return getAllQuestions().find((q) => q.source === source);
 }
 
+// Subscription-aware: free users only score against the past-paper pool so
+// the "try a similar problem" CTA never surfaces locked-test content as bait.
 export function getSimilarQuestions(
   question: Question,
+  isSubscribed: boolean,
   count: number = 5,
 ): Question[] {
-  const all = getAllQuestions().filter((q) => q.source !== question.source);
+  const pool = getQuestionsForUser(isSubscribed).filter(
+    (q) => q.source !== question.source,
+  );
 
   // Score similarity: same topic +3, same subtopic +2, same difficulty +1
-  const scored = all.map((q) => {
+  const scored = pool.map((q) => {
     let score = 0;
     if (q.topic === question.topic) score += 3;
     if (q.subtopic === question.subtopic) score += 2;

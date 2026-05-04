@@ -56,12 +56,19 @@ interface OpenOptions {
 
 interface UpgradeModalState {
   open: (options: OpenOptions) => void;
+  // Canned modal-open for the gated-solutions CTA (locked solution badge,
+  // similar-questions panel, etc.) — single source of truth for the copy so
+  // call sites don't duplicate the year range. KEEP IN SYNC with
+  // solutionsRequirePremium flags in lib/esh-questions.ts (the "2024 ба 2025"
+  // free-set range is hardcoded in the description).
+  openSolutionUpgrade: () => void;
   close: () => void;
   isOpen: boolean;
 }
 
 const Ctx = createContext<UpgradeModalState>({
   open: () => {},
+  openSolutionUpgrade: () => {},
   close: () => {},
   isOpen: false,
 });
@@ -149,6 +156,15 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
     api.events.track({ name: "upgrade_modal_opened", properties: { source: options.source } });
   }, []);
 
+  const openSolutionUpgrade = useCallback(() => {
+    open({
+      source: "gated_full_solutions",
+      title: "Алхам алхмаар бодолт",
+      description:
+        "2024 ба 2025 оны бүх шалгалтын бодолт үнэгүй. Бусад жилийн бүрэн бодолт Premium эхлэхэд нээгдэнэ.",
+    });
+  }, [open]);
+
   const close = useCallback(() => {
     setIsOpen(false);
   }, []);
@@ -224,10 +240,10 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
         "Премиум удахгүй гарна. Имэйлээ үлдээвэл гарсан даруй мэдэгдэх болно.",
       );
 
-  if (!mounted) return <Ctx.Provider value={{ open, close, isOpen }}>{children}</Ctx.Provider>;
+  if (!mounted) return <Ctx.Provider value={{ open, openSolutionUpgrade, close, isOpen }}>{children}</Ctx.Provider>;
 
   return (
-    <Ctx.Provider value={{ open, close, isOpen }}>
+    <Ctx.Provider value={{ open, openSolutionUpgrade, close, isOpen }}>
       {children}
       {isOpen &&
         createPortal(

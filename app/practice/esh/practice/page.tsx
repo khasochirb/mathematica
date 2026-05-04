@@ -13,8 +13,11 @@ import {
   XCircle,
   RotateCcw,
   ChevronRight,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import QuestionCard from "@/components/esh/QuestionCard";
+import SimilarQuestionsPanel from "@/components/esh/SimilarQuestionsPanel";
 import TopicBreakdownChart from "@/components/esh/TopicBreakdownChart";
 import usePerformance from "@/lib/use-performance";
 import useFlaggedQuestions from "@/lib/use-flagged-questions";
@@ -53,6 +56,16 @@ export default function PracticePage() {
   const [results, setResults] = useState<
     Record<string, { selected: string; correct: string; isCorrect: boolean }>
   >({});
+  const [expandedSources, setExpandedSources] = useState<Set<string>>(new Set());
+
+  const toggleExpandSource = useCallback((source: string) => {
+    setExpandedSources((prev) => {
+      const next = new Set(prev);
+      if (next.has(source)) next.delete(source);
+      else next.add(source);
+      return next;
+    });
+  }, []);
 
   const perf = usePerformance();
   const flaggedHook = useFlaggedQuestions();
@@ -112,6 +125,7 @@ export default function PracticePage() {
     setPracticeQuestions(questions);
     setCurrentIndex(0);
     setResults({});
+    setExpandedSources(new Set());
     setState("active");
   };
 
@@ -136,13 +150,18 @@ export default function PracticePage() {
       [questionSource]: { selected, correct, isCorrect },
     }));
 
-    setTimeout(() => {
-      if (currentIndex < practiceQuestions.length - 1) {
-        setCurrentIndex((i) => i + 1);
-      } else {
-        setState("results");
-      }
-    }, 1500);
+    // Auto-advance keeps momentum on a correct streak. On a miss, hold so the
+    // student can read the solution and engage the SimilarQuestionsPanel —
+    // they progress manually via the existing Дараах / Үр дүн харах buttons.
+    if (isCorrect) {
+      setTimeout(() => {
+        if (currentIndex < practiceQuestions.length - 1) {
+          setCurrentIndex((i) => i + 1);
+        } else {
+          setState("results");
+        }
+      }, 1500);
+    }
   };
 
   const correctCount = Object.values(results).filter((r) => r.isCorrect).length;
@@ -218,24 +237,69 @@ export default function PracticePage() {
             </div>
             {practiceQuestions.map((q, i) => {
               const r = results[q.source];
+              const isMissed = !!r && !r.isCorrect;
+              const isExpanded = isMissed && expandedSources.has(q.source);
+              const isLast = i === practiceQuestions.length - 1;
+              const rowStyle = {
+                borderBottom: !isLast ? "1px solid var(--line)" : "none",
+              };
+
+              if (!isMissed) {
+                return (
+                  <div
+                    key={q.source}
+                    className="flex items-center gap-3 px-4 py-2.5"
+                    style={rowStyle}
+                  >
+                    <span className="mono tabular text-[11px] w-6" style={{ color: "var(--fg-3)" }}>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-[13px] flex-1 truncate" style={{ color: "var(--fg-2)" }}>
+                      {TOPIC_LABELS[q.topic] || q.topic}
+                    </span>
+                    {r?.isCorrect ? (
+                      <CheckCircle2 className="w-4 h-4" style={{ color: "var(--accent)" }} />
+                    ) : (
+                      <span className="mono text-[11px]" style={{ color: "var(--fg-3)" }}>—</span>
+                    )}
+                  </div>
+                );
+              }
+
+              const testKey = `${q.testNumber}${q.testVariant}`;
+              const solutionsLocked =
+                !isSubscribed && !!getTestInfo(testKey)?.solutionsRequirePremium;
+
               return (
-                <div
-                  key={q.source}
-                  className="flex items-center gap-3 px-4 py-2.5"
-                  style={{ borderBottom: i < practiceQuestions.length - 1 ? "1px solid var(--line)" : "none" }}
-                >
-                  <span className="mono tabular text-[11px] w-6" style={{ color: "var(--fg-3)" }}>
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="text-[13px] flex-1 truncate" style={{ color: "var(--fg-2)" }}>
-                    {TOPIC_LABELS[q.topic] || q.topic}
-                  </span>
-                  {r?.isCorrect ? (
-                    <CheckCircle2 className="w-4 h-4" style={{ color: "var(--accent)" }} />
-                  ) : r ? (
+                <div key={q.source} style={rowStyle}>
+                  <button
+                    onClick={() => toggleExpandSource(q.source)}
+                    className="w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors"
+                  >
+                    <span className="mono tabular text-[11px] w-6" style={{ color: "var(--fg-3)" }}>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-[13px] flex-1 truncate" style={{ color: "var(--fg-2)" }}>
+                      {TOPIC_LABELS[q.topic] || q.topic}
+                    </span>
                     <XCircle className="w-4 h-4" style={{ color: "var(--danger)" }} />
-                  ) : (
-                    <span className="mono text-[11px]" style={{ color: "var(--fg-3)" }}>—</span>
+                    {isExpanded ? (
+                      <ChevronUp className="w-4 h-4" style={{ color: "var(--fg-3)" }} />
+                    ) : (
+                      <ChevronDown className="w-4 h-4" style={{ color: "var(--fg-3)" }} />
+                    )}
+                  </button>
+                  {isExpanded && (
+                    <div className="px-2 pb-3">
+                      <QuestionCard
+                        mode="review"
+                        question={q}
+                        selectedAnswer={r.selected}
+                        solutionsLocked={solutionsLocked}
+                        onSolutionUpgrade={upgrade.openSolutionUpgrade}
+                      />
+                      <SimilarQuestionsPanel question={q} />
+                    </div>
                   )}
                 </div>
               );
@@ -264,7 +328,9 @@ export default function PracticePage() {
   if (state === "active") {
     const currentQ = practiceQuestions[currentIndex];
     const isLast = currentIndex === practiceQuestions.length - 1;
-    const answered = currentQ.source in results;
+    const currentResult = results[currentQ.source];
+    const answered = !!currentResult;
+    const missed = answered && !currentResult.isCorrect;
     const progressPct = ((currentIndex + (answered ? 1 : 0)) / practiceQuestions.length) * 100;
 
     return (
@@ -295,16 +361,10 @@ export default function PracticePage() {
               !!getTestInfo(`${currentQ.testNumber}${currentQ.testVariant}`)
                 ?.solutionsRequirePremium
             }
-            // KEEP IN SYNC with solutionsRequirePremium flags in lib/esh-questions.ts.
-            onSolutionUpgrade={() =>
-              upgrade.open({
-                source: "gated_full_solutions",
-                title: "Алхам алхмаар бодолт",
-                description:
-                  "2024 ба 2025 оны бүх шалгалтын бодолт үнэгүй. Бусад жилийн бүрэн бодолт Premium эхлэхэд нээгдэнэ.",
-              })
-            }
+            onSolutionUpgrade={upgrade.openSolutionUpgrade}
           />
+
+          {missed && <SimilarQuestionsPanel question={currentQ} />}
 
           <div className="flex justify-between mt-4">
             <button
