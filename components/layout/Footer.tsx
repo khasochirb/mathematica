@@ -5,7 +5,7 @@ import Link from "next/link";
 const links = {
   Programs: [
     { label: "Exam Prep", href: "/exam-prep" },
-    { label: "Previous Year Tests", href: "/practice/esh/previous-years" },
+    { label: "Previous Year Tests", href: "/practice/esh/test?type=previous" },
     { label: "Study by Topic", href: "/courses" },
     { label: "Math Practice", href: "/practice" },
     { label: "AI Tutor", href: "/ai" },

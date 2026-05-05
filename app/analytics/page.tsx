@@ -147,7 +147,7 @@ export default function AnalyticsPage() {
         <Link href="/practice/esh" className="block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
           Take an ЭЕШ test
         </Link>
-        <Link href="/practice/esh/previous-years" className="block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
+        <Link href="/practice/esh/test?type=previous" className="block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
           Previous year tests
         </Link>
         <Link href="/practice" className="block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
@@ -177,7 +177,7 @@ export default function AnalyticsPage() {
           </div>
           <div className="flex gap-2 items-center">
             <Link href="/practice/esh" className="btn btn-line">Take an ЭЕШ test</Link>
-            <Link href="/practice/esh/previous-years" className="btn btn-primary">Previous years</Link>
+            <Link href="/practice/esh/test?type=previous" className="btn btn-primary">Previous years</Link>
           </div>
         </div>
 
@@ -195,7 +195,7 @@ export default function AnalyticsPage() {
             </p>
             <div className="flex gap-3 justify-center">
               <Link href="/practice/esh" className="btn btn-primary">Start an ЭЕШ test</Link>
-              <Link href="/practice/esh/previous-years" className="btn btn-line">Previous year tests</Link>
+              <Link href="/practice/esh/test?type=previous" className="btn btn-line">Previous year tests</Link>
             </div>
           </div>
         )}
@@ -404,7 +404,7 @@ export default function AnalyticsPage() {
                     ))}
                     {weakTopics.length === 0 && (
                       <Link
-                        href="/practice/esh/previous-years"
+                        href="/practice/esh/test?type=previous"
                         className="btn btn-primary"
                         style={{ fontSize: 12, padding: "9px 12px" }}
                       >

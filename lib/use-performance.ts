@@ -5,6 +5,7 @@ import { useAuth } from "./auth-context";
 import { createAuthedSupabaseClient } from "./supabase";
 import { getMpToken } from "./api";
 import { canonicalizeTopic, canonicalizeSubtopic } from "./esh-questions";
+import { clearAllAnonPracticeCounts } from "./anon-practice-gate";
 
 export interface AttemptRecord {
   questionSource: string;
@@ -233,6 +234,9 @@ async function migrateAnonToServer(userId: string): Promise<void> {
 
     localStorage.setItem(anonMigratedFlagKey(userId), "1");
     localStorage.removeItem(ANON_KEY);
+    // Anon practice gate counters are reset alongside the attempts migration:
+    // signed-up users get unlimited practice, no carry-over of the 5-per-topic cap.
+    clearAllAnonPracticeCounts();
     if (IS_DEV) console.log(`[anon migrate] synced ${serverRows.length} attempts`);
   } catch (err) {
     if (IS_DEV) console.warn("[anon migrate] network error, will retry:", err);

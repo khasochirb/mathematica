@@ -141,7 +141,7 @@ export default function PracticePage() {
             </Link>
 
             <Link
-              href="/practice/esh/previous-years"
+              href="/practice/esh/test?type=previous"
               className="card-edit p-5 flex items-start gap-3 group"
             >
               <div

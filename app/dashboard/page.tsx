@@ -69,7 +69,7 @@ export default function DashboardPage() {
                 ЭЕШ дадлага эхлэх
                 <ArrowRight className="ml-1 h-3.5 w-3.5" />
               </Link>
-              <Link href="/practice/esh/previous-years" className="btn btn-line">
+              <Link href="/practice/esh/test?type=previous" className="btn btn-line">
                 Өмнөх жилийн шалгалт
               </Link>
             </div>

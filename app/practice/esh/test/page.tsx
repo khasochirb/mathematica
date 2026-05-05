@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { Suspense, useState, useEffect, useMemo } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   ArrowLeft,
   Clock,
@@ -18,9 +18,39 @@ import { useAuth } from "@/lib/auth-context";
 import { useUpgradeModal } from "@/lib/upgrade-modal-context";
 import PremiumBadge from "@/components/PremiumBadge";
 
-export default function TestSelectionPage() {
+type TestFilter = "premium" | "previous" | null;
+
+function readFilter(raw: string | null): TestFilter {
+  if (raw === "premium") return "premium";
+  if (raw === "previous") return "previous";
+  return null;
+}
+
+const HEADER_COPY: Record<
+  "premium" | "previous" | "all",
+  { eyebrow: string; title: string; subtitle: string }
+> = {
+  all: {
+    eyebrow: "01 · Шалгалт",
+    title: "Дадлага шалгалт",
+    subtitle: "Тест сонгоод шалгалтын горимд бодоорой",
+  },
+  premium: {
+    eyebrow: "ЭЕШ · Premium",
+    title: "Дадлага тестүүд",
+    subtitle: "Premium · 14 тест",
+  },
+  previous: {
+    eyebrow: "ЭЕШ · Бодит шалгалт",
+    title: "Өмнө жилийн тестүүд",
+    subtitle: "Бодит шалгалт · 20 тест",
+  },
+};
+
+function TestSelectionPageInner() {
   const router = useRouter();
-  const { isSubscribed } = useAuth();
+  const searchParams = useSearchParams();
+  const { isAuthenticated, isSubscribed } = useAuth();
   const upgrade = useUpgradeModal();
   const session = useTestSession();
   const [mounted, setMounted] = useState(false);
@@ -29,22 +59,56 @@ export default function TestSelectionPage() {
 
   useEffect(() => setMounted(true), []);
 
-  // Free tests first, then locked premium. Within each group, source order preserved.
+  const filter = readFilter(searchParams.get("type"));
+  const headerCopy = HEADER_COPY[filter ?? "all"];
+
+  // No filter: free first, then locked premium (existing fallback ordering).
+  // Filtered views: keep source order within the filtered set.
   const tests = useMemo<TestInfo[]>(() => {
     const all = getAllTestsCombined();
+    if (filter === "premium") return all.filter((t) => t.isPremium);
+    if (filter === "previous") return all.filter((t) => !t.isPremium);
     return [...all.filter((t) => !t.isPremium), ...all.filter((t) => t.isPremium)];
-  }, []);
+  }, [filter]);
 
   const lookupTest = (key: string) => tests.find((t) => t.key === key);
 
-  const handleTestClick = (test: TestInfo) => {
-    if (test.isPremium && !isSubscribed) {
+  // Lock decision per card. Two distinct lock states:
+  //   - Premium-locked: free-tier-or-anon hits a Premium test (existing UI)
+  //   - Anon-previous-locked: anonymous user, ?type=previous, all but the
+  //     first card. Shares the same locked-card visual treatment.
+  // Anonymous interactions on either lock route to /sign-in?next=…; signed-in
+  // free users on Premium still get the Premium upgrade modal (existing flow).
+  function lockStateFor(test: TestInfo, index: number) {
+    const premiumLocked = test.isPremium && !isSubscribed;
+    const anonPreviousLocked =
+      filter === "previous" && !isAuthenticated && index > 0;
+    return { premiumLocked, anonPreviousLocked };
+  }
+
+  function gotoSignIn() {
+    const path = filter ? `/practice/esh/test?type=${filter}` : "/practice/esh/test";
+    router.push(`/sign-in?next=${encodeURIComponent(path)}`);
+  }
+
+  const handleTestClick = (test: TestInfo, index: number) => {
+    const { premiumLocked, anonPreviousLocked } = lockStateFor(test, index);
+    if (premiumLocked) {
+      // Anon → signup gate first; signed-in free → Premium upgrade modal.
+      if (!isAuthenticated) {
+        gotoSignIn();
+        return;
+      }
       upgrade.open({
         source: "gated_legacy_tests",
         title: `${test.label} — Premium`,
         description:
           "Нэмэлт дадлага тестүүд нь Premium багцад багтсан. Premium эхлэхэд и-мэйлээр мэдэгдэнэ.",
       });
+      return;
+    }
+    if (anonPreviousLocked) {
+      gotoSignIn();
       return;
     }
     const active = session.getActiveSessionForTest(test.key);
@@ -95,7 +159,7 @@ export default function TestSelectionPage() {
             <ArrowLeft className="w-4 h-4" />
           </Link>
           <div>
-            <div className="eyebrow mb-1.5">01 · Шалгалт</div>
+            <div className="eyebrow mb-1.5">{headerCopy.eyebrow}</div>
             <h1
               className="serif"
               style={{
@@ -106,10 +170,10 @@ export default function TestSelectionPage() {
                 color: "var(--fg)",
               }}
             >
-              Дадлага шалгалт
+              {headerCopy.title}
             </h1>
             <p className="text-[13px] mt-2" style={{ color: "var(--fg-2)" }}>
-              Тест сонгоод шалгалтын горимд бодоорой
+              {headerCopy.subtitle}
             </p>
           </div>
           <div className="ml-auto text-right">
@@ -120,7 +184,7 @@ export default function TestSelectionPage() {
             >
               {tests.length}
             </div>
-            {!isSubscribed && premiumCount > 0 && (
+            {filter === null && !isSubscribed && premiumCount > 0 && (
               <div
                 className="mono text-[10px] mt-1 tabular"
                 style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}
@@ -133,8 +197,9 @@ export default function TestSelectionPage() {
 
         {/* Test grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {tests.map((test) => {
-            const locked = test.isPremium && !isSubscribed;
+          {tests.map((test, index) => {
+            const { premiumLocked, anonPreviousLocked } = lockStateFor(test, index);
+            const locked = premiumLocked || anonPreviousLocked;
             const best = mounted && !locked ? session.getBestScore(test.key) : null;
             const latest =
               mounted && !locked ? session.getLatestSession(test.key) : undefined;
@@ -148,7 +213,7 @@ export default function TestSelectionPage() {
             return (
               <button
                 key={test.key}
-                onClick={() => handleTestClick(test)}
+                onClick={() => handleTestClick(test, index)}
                 className="card-edit p-5 text-left group relative"
                 style={locked ? { opacity: 0.65 } : undefined}
               >
@@ -161,7 +226,7 @@ export default function TestSelectionPage() {
                       >
                         {test.key}
                       </div>
-                      {locked && <PremiumBadge variant="inline" />}
+                      {premiumLocked && <PremiumBadge variant="inline" />}
                     </div>
                     <h3
                       className="serif"
@@ -200,12 +265,20 @@ export default function TestSelectionPage() {
                   )}
                 </div>
 
-                {locked && (
+                {premiumLocked && (
                   <div
                     className="mt-4 pt-3 text-[12px]"
                     style={{ borderTop: "1px solid var(--line)", color: "var(--fg-2)" }}
                   >
                     Premium эхлэхэд нээгдэнэ
+                  </div>
+                )}
+                {anonPreviousLocked && !premiumLocked && (
+                  <div
+                    className="mt-4 pt-3 text-[12px]"
+                    style={{ borderTop: "1px solid var(--line)", color: "var(--fg-2)" }}
+                  >
+                    Бүртгүүлбэл нээгдэнэ
                   </div>
                 )}
 
@@ -390,5 +463,17 @@ export default function TestSelectionPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function TestSelectionPage() {
+  // Suspense boundary required because TestSelectionPageInner uses
+  // useSearchParams; without it, Next.js fails to prerender the static
+  // /practice/esh/test route at build time (caught by the same prerender
+  // gate that previously bit /sign-in — see PHASES ops note).
+  return (
+    <Suspense fallback={null}>
+      <TestSelectionPageInner />
+    </Suspense>
   );
 }

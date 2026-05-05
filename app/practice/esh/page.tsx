@@ -16,7 +16,6 @@ import useESHProgress from "@/lib/use-esh-progress";
 import {
   getTestsForUser,
   getQuestionsForUser,
-  getPreviousYearTests,
 } from "@/lib/esh-questions";
 import { useAuth } from "@/lib/auth-context";
 import {
@@ -28,7 +27,7 @@ import { useLang } from "@/lib/lang-context";
 export default function ESHHubPage() {
   const [mounted, setMounted] = useState(false);
   const progress = useESHProgress();
-  const { isSubscribed } = useAuth();
+  const { isAuthenticated, isSubscribed } = useAuth();
   const upgrade = useUpgradeModal();
   const { lang } = useLang();
 
@@ -36,91 +35,37 @@ export default function ESHHubPage() {
 
   const allTests = getTestsForUser(isSubscribed);
   const totalQuestions = getQuestionsForUser(isSubscribed).length;
-  const previousYearTests = getPreviousYearTests();
 
-  const sections = [
+  // Anonymous click on the progress banner falls through to sign-in with a
+  // next-path back to progress, matching the 5a/5b/5c gating pattern.
+  const progressBannerHref = isAuthenticated
+    ? "/practice/esh/progress"
+    : `/sign-in?next=${encodeURIComponent("/practice/esh/progress")}`;
+
+  const actionCards = [
     {
-      href: "/practice/esh/test",
-      eyebrow: "01 · ШАЛГАЛТ",
-      title: "Дадлага шалгалт",
-      desc: "Шалгалтын горимд цагтай бодоорой",
+      href: "/practice/esh/test?type=premium",
+      title: "Дадлага тестүүд",
+      subtitle: "Premium · 14 тест",
       icon: FileText,
-      meta: (
-        <>
-          <span className="mono tabular">{allTests.length} тест</span>
-          {mounted && progress.totalTestsTaken > 0 && (
-            <>
-              <span style={{ color: "var(--fg-3)" }}>·</span>
-              <span className="mono tabular" style={{ color: "var(--accent)" }}>
-                {progress.totalTestsTaken} бодсон
-              </span>
-            </>
-          )}
-        </>
-      ),
+    },
+    {
+      href: "/practice/esh/test?type=previous",
+      title: "Өмнө жилийн тестүүд",
+      subtitle: "Бодит шалгалт · 20 тест",
+      icon: Archive,
     },
     {
       href: "/practice/esh/practice",
-      eyebrow: "02 · БОДЛОГО",
-      title: "Дадлага бодлого",
-      desc: "Сэдвээр дадлага хийж, сул талаа сайжруул",
+      title: "Сэдвээр дадлагажих",
+      subtitle: "Сул талаа сайжруулах",
       icon: Target,
-      meta: (
-        <>
-          <span className="mono tabular">{totalQuestions} бодлого</span>
-          {mounted && progress.weakTopics.length > 0 && (
-            <>
-              <span style={{ color: "var(--fg-3)" }}>·</span>
-              <span className="mono tabular" style={{ color: "var(--warn)" }}>
-                {progress.weakTopics.length} сул сэдэв
-              </span>
-            </>
-          )}
-        </>
-      ),
     },
     {
       href: "/practice/esh/learn",
-      eyebrow: "03 · СУРАЛЦАХ",
       title: "Суралцах",
-      desc: "Сэдвээр унших материал, томьёо, зөвлөгөө",
+      subtitle: "Сэдвийн материал, томьёо",
       icon: BookOpen,
-      meta: (
-        <>
-          <span className="mono tabular">10 сэдэв</span>
-          <span style={{ color: "var(--fg-3)" }}>·</span>
-          <ComingSoonBadge variant="inline" label="Видео удахгүй" />
-        </>
-      ),
-    },
-    {
-      href: "/practice/esh/progress",
-      eyebrow: "04 · ПРОГРЕСС",
-      title: "Прогресс",
-      desc: "Оноогоо хяна, ахицаа хар",
-      icon: BarChart3,
-      meta:
-        mounted && progress.totalTestsTaken > 0 ? (
-          <span className="mono tabular">{progress.averageAccuracy}% дундаж</span>
-        ) : (
-          <span style={{ color: "var(--fg-3)" }}>Мэдээлэл байхгүй</span>
-        ),
-    },
-    {
-      href: "/practice/esh/previous-years",
-      eyebrow: "05 · ӨМНӨХ ЖИЛҮҮД",
-      title: "Өмнөх жилийн шалгалтууд",
-      desc: "2021–2025 оны бодит ЭЕШ — нэвтэрсэн хэрэглэгчдэд үнэгүй",
-      icon: Archive,
-      meta: (
-        <>
-          <span className="mono tabular">{previousYearTests.length} тест</span>
-          <span style={{ color: "var(--fg-3)" }}>·</span>
-          <span className="mono tabular" style={{ color: "var(--accent)" }}>
-            Үнэгүй
-          </span>
-        </>
-      ),
     },
   ];
 
@@ -228,12 +173,75 @@ export default function ESHHubPage() {
           </div>
         )}
 
-        {/* Section cards */}
+        {/* Progress banner — visually distinct destination, not an action card.
+            Full-width, accent-tinted, links to /practice/esh/progress (or /sign-in
+            for anonymous). Sits above the 2x2 action grid. */}
+        <Link
+          href={progressBannerHref}
+          className="block mb-4 p-5 group transition-colors"
+          style={{
+            background: "var(--bg-1)",
+            border: "1px solid var(--accent-line)",
+            borderRadius: 12,
+          }}
+        >
+          <div className="flex items-center gap-4">
+            <div
+              className="w-11 h-11 rounded-md flex items-center justify-center shrink-0"
+              style={{
+                background: "var(--accent-wash)",
+                border: "1px solid var(--accent-line)",
+                color: "var(--accent)",
+              }}
+            >
+              <BarChart3 className="w-5 h-5" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="eyebrow" style={{ color: "var(--accent)" }}>
+                Ахиц
+              </div>
+              <h2
+                className="serif mt-1"
+                style={{
+                  fontWeight: 400,
+                  fontSize: 22,
+                  letterSpacing: "-0.02em",
+                  color: "var(--fg)",
+                  lineHeight: 1.1,
+                }}
+              >
+                Гүйцэтгэлийн дэлгэрэнгүй
+              </h2>
+              <p
+                className="text-[13px] mt-1"
+                style={{ color: "var(--fg-2)" }}
+              >
+                {mounted && progress.totalTestsTaken > 0
+                  ? `${progress.averageAccuracy}% дундаж · ${progress.totalTestsTaken} тест бодсон`
+                  : "Тест бодож эхлээд ахицаа хяна"}
+              </p>
+            </div>
+            <span
+              className="mono text-[11px] uppercase shrink-0 hidden sm:inline-flex items-center gap-1"
+              style={{ color: "var(--accent)", letterSpacing: "0.06em" }}
+            >
+              Бүтнээр харах
+              <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+            </span>
+            <ChevronRight
+              className="w-5 h-5 sm:hidden transition-transform group-hover:translate-x-0.5"
+              style={{ color: "var(--accent)" }}
+            />
+          </div>
+        </Link>
+
+        {/* 2x2 action card grid — equal-weight cards, 2 cols on desktop,
+            1-col stack on mobile. */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {sections.map((s) => {
-            const Icon = s.icon;
+          {actionCards.map((c) => {
+            const Icon = c.icon;
             return (
-              <Link key={s.href} href={s.href} className="card-edit p-6 group block">
+              <Link key={c.href} href={c.href} className="card-edit p-6 group block">
                 <div className="flex items-start justify-between mb-4">
                   <div
                     className="w-10 h-10 rounded-md flex items-center justify-center"
@@ -250,27 +258,21 @@ export default function ESHHubPage() {
                     style={{ color: "var(--fg-3)" }}
                   />
                 </div>
-                <div className="eyebrow mb-2">{s.eyebrow}</div>
                 <h2
                   className="serif mb-1.5"
                   style={{
                     fontWeight: 400,
-                    fontSize: 24,
+                    fontSize: 22,
                     letterSpacing: "-0.02em",
                     color: "var(--fg)",
+                    lineHeight: 1.1,
                   }}
                 >
-                  {s.title}
+                  {c.title}
                 </h2>
-                <p className="text-[13px] mb-4" style={{ color: "var(--fg-2)" }}>
-                  {s.desc}
+                <p className="text-[13px]" style={{ color: "var(--fg-2)" }}>
+                  {c.subtitle}
                 </p>
-                <div
-                  className="flex items-center gap-2 text-[12px] pt-3"
-                  style={{ borderTop: "1px solid var(--line)", color: "var(--fg-2)" }}
-                >
-                  {s.meta}
-                </div>
               </Link>
             );
           })}

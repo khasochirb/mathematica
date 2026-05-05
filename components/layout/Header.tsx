@@ -22,16 +22,12 @@ import { useUpgradeModal } from "@/lib/upgrade-modal-context";
 
 const eshItems = [
   { en: "ЭЕШ Overview", mn: "ЭЕШ тойм", href: "/exam-prep" },
-  { en: "Practice Hub", mn: "Дадлагын хуудас", href: "/practice/esh" },
-  { en: "Previous Year Tests (2021–2025)", mn: "Өмнөх жилийн шалгалт (2021–2025)", href: "/practice/esh/previous-years" },
-  { en: "Study by Topic", mn: "Сэдвээр суралцах", href: "/practice/esh/learn" },
+  { en: "ЭЕШ Hub", mn: "ЭЕШ Hub", href: "/practice/esh" },
 ];
 
 const comingSoonExams = [
+  { en: "IB", mn: "IB" },
   { en: "SAT", mn: "SAT" },
-  { en: "IB Math", mn: "IB Математик" },
-  { en: "IGCSE", mn: "IGCSE" },
-  { en: "National Exam", mn: "Улсын шалгалт" },
 ];
 
 const aboutItems = [
@@ -42,10 +38,9 @@ const aboutItems = [
 
 interface ResourcesDropdownProps {
   label: string;
-  onComingSoonClick: () => void;
 }
 
-function ResourcesDropdown({ label, onComingSoonClick }: ResourcesDropdownProps) {
+function ResourcesDropdown({ label }: ResourcesDropdownProps) {
   const { lang } = useLang();
   const [open, setOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -120,25 +115,17 @@ function ResourcesDropdown({ label, onComingSoonClick }: ResourcesDropdownProps)
             <Lock className="h-3 w-3" />
             {lang === "mn" ? "Удахгүй" : "Coming Soon"}
           </div>
-          <button
-            type="button"
-            onClick={() => {
-              setOpen(false);
-              onComingSoonClick();
-            }}
-            className="block w-full text-left px-4 py-2 text-sm transition-colors"
-            style={{ color: "var(--fg-2)" }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = "var(--accent)";
-              e.currentTarget.style.background = "var(--accent-wash)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = "var(--fg-2)";
-              e.currentTarget.style.background = "transparent";
-            }}
-          >
-            {comingSoonExams.map((e) => (lang === "mn" ? e.mn : e.en)).join(" · ")}
-          </button>
+          {comingSoonExams.map((item) => (
+            <div
+              key={item.en}
+              className="flex items-center gap-2 px-4 py-2 text-sm select-none"
+              style={{ color: "var(--fg-3)", cursor: "not-allowed" }}
+              aria-disabled="true"
+            >
+              <Lock className="h-3 w-3" style={{ color: "var(--fg-3)" }} />
+              <span>{lang === "mn" ? item.mn : item.en}</span>
+            </div>
+          ))}
         </div>
       )}
     </li>
@@ -307,20 +294,7 @@ export default function Header() {
                   </Link>
                 </li>
               )}
-              <ResourcesDropdown
-                label={nav.resources}
-                onComingSoonClick={() =>
-                  openUpgrade({
-                    source: "coming_soon_exams",
-                    title: lang === "mn" ? "Бусад шалгалт удахгүй" : "More exams coming soon",
-                    description:
-                      lang === "mn"
-                        ? "SAT, IB, IGCSE, Улсын шалгалтын бэлтгэл удахгүй нэмэгдэнэ. Имэйлээ үлдээвэл гарсан даруй мэдэгдэх болно."
-                        : "SAT, IB, IGCSE and the Mongolian National Exam are coming. Leave your email and we'll notify you when each launches.",
-                    exams: ["SAT", "IB", "IGCSE", "National Exam"],
-                  })
-                }
-              />
+              <ResourcesDropdown label={nav.resources} />
               <AboutDropdown label={nav.about} />
             </ul>
           </nav>
@@ -492,12 +466,12 @@ export default function Header() {
               </Link>
             ))}
 
-            {/* Resources — ЭЕШ section */}
+            {/* Resources — ЭЕШ active section */}
             <div
               className="px-4 pt-3 mt-2 eyebrow"
               style={{ borderTop: "1px solid var(--line)" }}
             >
-              {lang === "mn" ? "Эх сурвалж · ЭЕШ" : "Resources · ЭЕШ"}
+              {lang === "mn" ? "ЭЕШ · Идэвхтэй" : "ЭЕШ · Active"}
             </div>
             {eshItems.map((item) => (
               <Link
@@ -511,25 +485,25 @@ export default function Header() {
               </Link>
             ))}
 
-            <button
-              type="button"
-              onClick={() => {
-                setMobileOpen(false);
-                openUpgrade({
-                  source: "coming_soon_exams",
-                  exams: ["SAT", "IB", "IGCSE", "National Exam"],
-                });
-              }}
-              className="block w-full text-left px-4 py-2 rounded-md text-sm"
-              style={{ color: "var(--fg-2)" }}
+            {/* Resources — Coming Soon section */}
+            <div
+              className="px-4 pt-3 mt-2 eyebrow flex items-center gap-1.5"
+              style={{ color: "var(--fg-3)" }}
             >
-              <span className="flex items-center gap-1.5">
-                <Lock className="h-3 w-3" />
-                {lang === "mn"
-                  ? "SAT · IB · IGCSE · Улсын шалгалт — удахгүй"
-                  : "SAT · IB · IGCSE · National Exam — coming soon"}
-              </span>
-            </button>
+              <Lock className="h-3 w-3" />
+              {lang === "mn" ? "Удахгүй" : "Coming Soon"}
+            </div>
+            {comingSoonExams.map((item) => (
+              <div
+                key={item.en}
+                className="flex items-center gap-2 px-4 py-2 rounded-md text-sm select-none"
+                style={{ color: "var(--fg-3)", cursor: "not-allowed" }}
+                aria-disabled="true"
+              >
+                <Lock className="h-3 w-3" style={{ color: "var(--fg-3)" }} />
+                <span>{lang === "mn" ? item.mn : item.en}</span>
+              </div>
+            ))}
 
             {/* About */}
             <div

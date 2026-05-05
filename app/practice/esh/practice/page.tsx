@@ -15,10 +15,16 @@ import {
   ChevronRight,
   ChevronDown,
   ChevronUp,
+  Lock,
 } from "lucide-react";
 import QuestionCard from "@/components/esh/QuestionCard";
 import SimilarQuestionsPanel from "@/components/esh/SimilarQuestionsPanel";
 import TopicBreakdownChart from "@/components/esh/TopicBreakdownChart";
+import {
+  ANON_PRACTICE_LIMIT,
+  incrementAnonPracticeCount,
+  isAnonPracticeGated,
+} from "@/lib/anon-practice-gate";
 import usePerformance from "@/lib/use-performance";
 import useFlaggedQuestions from "@/lib/use-flagged-questions";
 import {
@@ -69,7 +75,7 @@ export default function PracticePage() {
 
   const perf = usePerformance();
   const flaggedHook = useFlaggedQuestions();
-  const { isSubscribed } = useAuth();
+  const { isAuthenticated, isSubscribed } = useAuth();
   const upgrade = useUpgradeModal();
 
   useEffect(() => setMounted(true), []);
@@ -145,6 +151,9 @@ export default function PracticePage() {
       correctAnswer: correct,
       isCorrect,
     });
+    // Anonymous users: bump the per-topic counter. Hits the gate at the next
+    // question render once the topic crosses ANON_PRACTICE_LIMIT.
+    if (!isAuthenticated) incrementAnonPracticeCount(topic);
     setResults((prev) => ({
       ...prev,
       [questionSource]: { selected, correct, isCorrect },
@@ -332,6 +341,11 @@ export default function PracticePage() {
     const answered = !!currentResult;
     const missed = answered && !currentResult.isCorrect;
     const progressPct = ((currentIndex + (answered ? 1 : 0)) / practiceQuestions.length) * 100;
+    // Gate fires when anonymous user crosses ANON_PRACTICE_LIMIT for the
+    // current question's topic. Read at render-time so the count picks up the
+    // increment that fired in handleAnswer on the previous question.
+    const anonGated =
+      mounted && !isAuthenticated && !answered && isAnonPracticeGated(currentQ.topic);
 
     return (
       <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
@@ -351,20 +365,85 @@ export default function PracticePage() {
             />
           </div>
 
-          <QuestionCard
-            key={currentQ.source}
-            mode="instant"
-            question={currentQ}
-            onAnswer={handleAnswer}
-            solutionsLocked={
-              !isSubscribed &&
-              !!getTestInfo(`${currentQ.testNumber}${currentQ.testVariant}`)
-                ?.solutionsRequirePremium
-            }
-            onSolutionUpgrade={upgrade.openSolutionUpgrade}
-          />
+          {anonGated ? (
+            <div
+              className="card-edit p-8 text-center"
+              style={{
+                background: "var(--accent-wash)",
+                borderColor: "var(--accent-line)",
+              }}
+            >
+              <div
+                className="w-12 h-12 rounded-md flex items-center justify-center mx-auto mb-4"
+                style={{
+                  background: "var(--bg)",
+                  border: "1px solid var(--accent-line)",
+                  color: "var(--accent)",
+                }}
+              >
+                <Lock className="w-5 h-5" />
+              </div>
+              <div
+                className="eyebrow mb-2"
+                style={{ color: "var(--accent)" }}
+              >
+                ҮНЭГҮЙ ХЯЗГААР · {ANON_PRACTICE_LIMIT}/{ANON_PRACTICE_LIMIT}
+              </div>
+              <h3
+                className="serif"
+                style={{
+                  fontWeight: 400,
+                  fontSize: 24,
+                  letterSpacing: "-0.02em",
+                  color: "var(--fg)",
+                  lineHeight: 1.15,
+                }}
+              >
+                Бүртгүүлбэл{" "}
+                <em
+                  className="serif-italic"
+                  style={{ color: "var(--accent)" }}
+                >
+                  хязгааргүй
+                </em>{" "}
+                дадлага хийх боломжтой
+              </h3>
+              <p
+                className="text-[14px] mt-3 mb-6"
+                style={{ color: "var(--fg-2)" }}
+              >
+                Энэ сэдвийн {ANON_PRACTICE_LIMIT} үнэгүй бодлогыг бодлоо. Бүртгүүлэх нь үнэгүй — бусад сэдвээр үргэлжлүүлэн дадлагажих боломжтой.
+              </p>
+              <div className="flex gap-2 justify-center">
+                <Link
+                  href={`/sign-in?next=${encodeURIComponent("/practice/esh/practice")}`}
+                  className="btn btn-line"
+                >
+                  Нэвтрэх
+                </Link>
+                <Link href="/sign-up" className="btn btn-primary">
+                  Бүртгүүлэх
+                </Link>
+              </div>
+            </div>
+          ) : (
+            <>
+              <QuestionCard
+                key={currentQ.source}
+                mode="instant"
+                question={currentQ}
+                onAnswer={handleAnswer}
+                solutionsLocked={
+                  !isSubscribed &&
+                  !!getTestInfo(`${currentQ.testNumber}${currentQ.testVariant}`)
+                    ?.solutionsRequirePremium
+                }
+                onSolutionUpgrade={upgrade.openSolutionUpgrade}
+              />
 
-          {missed && <SimilarQuestionsPanel question={currentQ} />}
+              {missed && <SimilarQuestionsPanel question={currentQ} />}
+            </>
+          )}
 
           <div className="flex justify-between mt-4">
             <button

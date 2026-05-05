@@ -112,7 +112,12 @@ function SignInInner() {
       const res = await api.auth.login(form);
       setToken(res.accessToken);
       await refresh();
-      router.push("/dashboard");
+      // Honor `?next=` only for same-origin relative paths to avoid open-redirect
+      // risk from `?next=//evil.com` or absolute URLs. Falls back to dashboard.
+      const next = searchParams.get("next");
+      const safeNext =
+        next && next.startsWith("/") && !next.startsWith("//") ? next : null;
+      router.push(safeNext ?? "/dashboard");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Invalid email or password.");
     } finally {

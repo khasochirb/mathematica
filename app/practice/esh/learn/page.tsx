@@ -1,14 +1,88 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Play } from "lucide-react";
+import { ArrowLeft, ArrowRight, Play, Lock } from "lucide-react";
 import { TOPICS } from "@/lib/esh-questions";
 import topicsData from "@/data/learn/topics.json";
 import ComingSoonBadge from "@/components/ComingSoonBadge";
+import { useAuth } from "@/lib/auth-context";
 import { useUpgradeModal } from "@/lib/upgrade-modal-context";
 
 export default function LearnPage() {
   const upgrade = useUpgradeModal();
+  const { user, loading } = useAuth();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  // Auth wall for anonymous users — full-page card with sign-in/sign-up CTAs.
+  if (mounted && !loading && !user) {
+    return (
+      <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
+        <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <Link
+            href="/practice/esh"
+            className="btn btn-ghost mb-8 inline-flex"
+            style={{ padding: "8px 10px" }}
+            aria-label="Back"
+          >
+            <ArrowLeft className="w-4 h-4" />
+          </Link>
+          <div
+            className="card-edit p-8 text-center"
+            style={{ background: "var(--bg-1)" }}
+          >
+            <div
+              className="w-12 h-12 rounded-md flex items-center justify-center mx-auto mb-5"
+              style={{
+                background: "var(--accent-wash)",
+                border: "1px solid var(--accent-line)",
+                color: "var(--accent)",
+              }}
+            >
+              <Lock className="w-5 h-5" />
+            </div>
+            <div className="eyebrow mb-2">БҮРТГҮҮЛСЭН ХЭРЭГЛЭГЧДЭД</div>
+            <h1
+              className="serif"
+              style={{
+                fontWeight: 400,
+                fontSize: 28,
+                letterSpacing: "-0.02em",
+                color: "var(--fg)",
+                lineHeight: 1.1,
+              }}
+            >
+              Сэдвээр{" "}
+              <em className="serif-italic" style={{ color: "var(--accent)" }}>
+                суралцах
+              </em>
+            </h1>
+            <p
+              className="text-[14px] mt-4 mb-6"
+              style={{ color: "var(--fg-2)" }}
+            >
+              Сэдэв бүрийн томьёо, зөвлөгөө, материалыг үзэхийн тулд бүртгүүлнэ
+              үү. Бүртгүүлэх нь үнэгүй.
+            </p>
+            <div className="flex gap-2 justify-center">
+              <Link
+                href={`/sign-in?next=${encodeURIComponent("/practice/esh/learn")}`}
+                className="btn btn-line"
+              >
+                Нэвтрэх
+              </Link>
+              <Link href="/sign-up" className="btn btn-primary">
+                Бүртгүүлэх
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-12">
