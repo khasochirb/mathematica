@@ -25,10 +25,10 @@ Hand-audited 504 questions across the 14 paid practice tests (test1a–test7b). 
 - **Test-2A-Q22** — options C and D both render `2^(10^(13^(20^y)))`. Stored D correct mathematically, but which option to change and to what?
 - **Test-3B-Q20** — options C and D both render `\log_3 (1/(xy^(1/3)))`. Stored C correct, but which option to change?
 
-**Pending Khas's decision (Part 3 — solution-prose rewrites, ship now or defer):**
-- **Test-2B-Q2** — solution mid-step has `(8²)⁴ = 2¹²` (should be 2²⁴), final answer 2²³ correct.
-- **Test-2B-Q6** — solution first uses wrong Vieta values (`ab=−12` → 28), then self-corrects to 52.
-- **Test-3A-Q22** — solution talks about "average -2.5" but stored answer 0.5 is the median.
+**Shipped (Part 3 — solution-prose rewrites; Khas's call: ship now):**
+- **Test-2B-Q2** — solution mid-step had `(8²)⁴ = 2¹²` (should be 2²⁴) and ended with awkward "the corpus answer is 2²³". Rewritten cleanly: `(8²)⁴ = 8⁸ = 2²⁴`, `√2 = 2^(1/2)`, `32 = 2⁵`, `4^(3/4) = 2^(3/2)` → result 2^(5+24+1/2−5−3/2) = 2²³.
+- **Test-2B-Q6** — solution first claimed Vieta `a+b = −2, ab = −12` (gives 28), then self-corrected to `ab = −24` (gives 52). Rewritten: `(x²+2x−15)^(3/2) = 27 = 3³` ⇒ `x²+2x−15 = 9` ⇒ `x²+2x−24 = 0` ⇒ Vieta gives `a+b = −2, ab = −24` ⇒ `a²+b² = 4+48 = 52`.
+- **Test-3A-Q22** — old solution computed first 6 terms correctly then said "average = -2.5" (wrong concept — question asks for median). Rewritten: list first 6 terms (2, -1, 5, -7, 17, -31), sort to (-31, -7, -1, 2, 5, 17), median of 6-element sorted list = mean of middle two = (-1 + 2)/2 = 0.5.
 
 **Out of scope (NOT touched):**
 - 28 AMBIGUOUS questions reference images/graphs/tables not present in the JSON dump. Stored answers may be correct given the missing visuals. Defer to a separate image-data-restoration workstream.
