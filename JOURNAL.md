@@ -2,6 +2,47 @@
 
 Reverse-chronological log of major work sessions. Each entry captures the arc — what shipped, what was decided, what surfaced, what's deferred — in tighter form than commit messages alone. PHASES.md holds the queue; this holds the narrative.
 
+## 2026-05-07 — Practice-test answer-key audit, Part 1 fixes
+
+Hand-audited 504 questions across the 14 paid practice tests (test1a–test7b). Full per-test reports at `/Users/khasochir/Desktop/outputs/audit-results/`. Shipped Part 1 (6 deterministic fixes); Part 2 (9 items) and Part 3 (3 solution-prose rewrites) await Khas's input. No auth/code paths touched — pure JSON data edits.
+
+**Shipped (Part 1):**
+- **Test-2A-Q7** — slope question. `(√3, √6)` and `(2, 4√2)` → slope `= (4√2 − √6)/(2 − √3)`. Rationalized = `5√2 + 2√6`. Stored D was `(5√2 + 2√6)/2` — off by factor of 2. Option A `(√6 − 4√2)/(√3 − 2)` is the same value as the un-rationalized form (sign-flip of numerator and denominator). Corrected answer to A, solution rewritten to show the sign-flip and note rationalized value.
+- **Test-2A-Q27** — `M = [[1,2],[0,1]]`, `M³ = [[1,6],[0,1]]`. Solution prose computed this correctly but final letter said B (which was `[[3,8],[0,3]]`). Corrected letter to C.
+- **Test-2B-Q17** — α = 12 radians. `12 mod 2π ≈ 5.72 ∈ (3π/2, 2π)` → quadrant IV → answer D. Stored A (Q1) wrong; old solution's "subtract 2π twice to get −0.57 = Q1" reasoning is mathematically wrong (−0.57 rad is co-terminal with 5.72 rad which is in Q4, not Q1). Corrected answer to D, solution rewritten.
+- **Test-5A-Q34** — discrete probability. Σ_{x=2}^6 (1/4)^(x−1) = 341/1024, so k = 683/1024 = **2732/4096**. Stored option A was `2731/4096` (off-by-one). Option text fixed; stored answer letter A unchanged.
+- **Test-4B-Q31** — Venn-diagram MCQ. Options C and E were textually identical (`\overline{A} \cap B`). E rewritten to `\overline{A} \cup B` as a plausible distractor. Stored answer C unchanged.
+- **Test-7B-Q21** — power-simplification MCQ. Options B and D were textually identical (`x^{1/3}`). D rewritten to `x^{2/9}` (a plausible mid-step result for the simplification). Stored answer A unchanged.
+
+**Pending Khas's decision (Part 2 — surfaced in chat reply, NOT auto-fixed):**
+- **Test-2A-Q2** — denominator `5⁴` produces `3²⁶/5⁴`, not in any option. Either change question denominator to `3⁹` (then C is correct) or change stored answer to E (None). Solution prose silently uses `/3⁹`.
+- **Test-2A-Q13** — hexagon area is `1+√2`. Verified via shoelace coordinates. None of A–E match (stored C = `1 + √2/2`). Add `1+√2` as an option, or revise question geometry.
+- **Test-2A-Q26** — P(1 boy + 1 girl from 14B+7G picking 2) = `7/15`, not stored 7/30 (off by factor of 2 — likely ordered/unordered confusion). Add 7/15 as option, or rephrase question so 7/30 becomes correct.
+- **Test-2A-Q6** — exponent transcribed as `3/4 − 2 = -5/4` doesn't lead to the Vieta values the solution uses (`x²−x−20=0` gives stored 41). Question text appears corrupted; need original exponent.
+- **Test-3B-Q15** — statements I and III textually identical (both `3^(2x)`). If I and III are the same, answer should be D (I and III), not stored B (only III). Need original statement I.
+- **Test-1B-Q28** — "to nearest tenth" requested but stored A = `√5` (exact form). Strict reading would prefer D = 2.2. Lenient or strict?
+- **Test-7A / Test-7B** — both numbered Q2–Q37 (36 questions, no Q1). Intentional gap or renumbering needed?
+- **Test-2A-Q22** — options C and D both render `2^(10^(13^(20^y)))`. Stored D correct mathematically, but which option to change and to what?
+- **Test-3B-Q20** — options C and D both render `\log_3 (1/(xy^(1/3)))`. Stored C correct, but which option to change?
+
+**Pending Khas's decision (Part 3 — solution-prose rewrites, ship now or defer):**
+- **Test-2B-Q2** — solution mid-step has `(8²)⁴ = 2¹²` (should be 2²⁴), final answer 2²³ correct.
+- **Test-2B-Q6** — solution first uses wrong Vieta values (`ab=−12` → 28), then self-corrects to 52.
+- **Test-3A-Q22** — solution talks about "average -2.5" but stored answer 0.5 is the median.
+
+**Out of scope (NOT touched):**
+- 28 AMBIGUOUS questions reference images/graphs/tables not present in the JSON dump. Stored answers may be correct given the missing visuals. Defer to a separate image-data-restoration workstream.
+- All test1a, test1b, test4a, test5b, test6a, test6b items not flagged are confirmed clean.
+
+**Audit findings worth noting:**
+- **5 of the 7 DEFINITE answer-key errors are in test2a alone.** That test should be re-vetted in full — having 5/36 stored answers wrong is unusually high; suggests systematic transcription issues that may have repeated elsewhere undetected.
+- **Question-quality issues (duplicate options, corrupted text, missing options) cluster in test2a/test3b.** Same possible-systematic-cause story.
+
+**Working-relationship note:**
+- I (Claude) initially started editing in `~/mathematica` instead of the live `~/Desktop/mathematica2` folder during a prior session. No data lost (user pulled the commits in cleanly), but caught early this session via `git remote -v` + reflog cross-check. Memory updated so future sessions land on the right folder.
+
+---
+
 ## 2026-04-27 — Pre-launch hardening, day 2
 
 Three blockers shipped to prod, two P2 dashboard fixes shipped, PHASES.md cleanup, last technical blocker investigated and closed. End-of-day status: all technical blockers resolved or closed. Remaining work for soft launch is Phase B (legal baseline, content polish, landing page rewrite, no-signup test path, marketing assets).
