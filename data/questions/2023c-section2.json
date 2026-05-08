@@ -1,0 +1,328 @@
+[
+  {
+    "source": "Test-2023C-Q2.1.1",
+    "test": "2023C",
+    "section": 2,
+    "problem": "2.1",
+    "subproblem": 1,
+    "type": "fill_in",
+    "context": "$f(x) = x^2 - px + q$ функц өгөв.",
+    "instruction": "$f(x)$ функцийн график нь $(3, -1)$ цэгт оройтой парабол бол $p = [a],\\ q = [b]$ байна. Энэ үед функцийн $[1, 4]$ завсар дахь хамгийн их утга нь $[c]$ байна.",
+    "slots": [
+      {
+        "label": "a",
+        "type": "digit",
+        "answer": "6"
+      },
+      {
+        "label": "b",
+        "type": "digit",
+        "answer": "8"
+      },
+      {
+        "label": "c",
+        "type": "digit",
+        "answer": "3"
+      }
+    ],
+    "points": 3,
+    "solution": "Оройн x: $\\tfrac{p}{2} = 3 \\Rightarrow p = 6$. Оройн y: $f(3) = 9 - 18 + q = -1 \\Rightarrow q = 8$. $[1,4]$ завсар: $f(1) = 1-6+8 = 3$, $f(4) = 16-24+8 = 0$. Парабол өсөж буурдаг тул хамгийн их утга нь захын утгуудаас $\\max = 3$. **a=6, b=8, c=3**."
+  },
+  {
+    "source": "Test-2023C-Q2.1.2",
+    "test": "2023C",
+    "section": 2,
+    "problem": "2.1",
+    "subproblem": 2,
+    "type": "fill_in",
+    "context": "$f(x) = x^2 - px + q$ функц өгөв.",
+    "instruction": "$f(-1) = f(3)$ ба функцийн хамгийн бага утга нь 4 бол $p = [d],\\ q = [e]$ байна.",
+    "slots": [
+      {
+        "label": "d",
+        "type": "digit",
+        "answer": "2"
+      },
+      {
+        "label": "e",
+        "type": "digit",
+        "answer": "5"
+      }
+    ],
+    "points": 2,
+    "solution": "$f(-1) = f(3)$ тул график $x = 1$ тэнхлэгийн хувьд тэгш хэмтэй: $\\tfrac{p}{2} = 1 \\Rightarrow p = 2$. Хамгийн бага утга $q - \\tfrac{p^2}{4} = q - 1 = 4 \\Rightarrow q = 5$. **d=2, e=5**."
+  },
+  {
+    "source": "Test-2023C-Q2.1.3",
+    "test": "2023C",
+    "section": 2,
+    "problem": "2.1",
+    "subproblem": 3,
+    "type": "fill_in",
+    "context": "$f(x) = x^2 - px + q$ функц өгөв.",
+    "instruction": "$p > 0$ үед $y = f(x)$ функцийн график нь $A(1, 5)$ цэгийг дайрах ба оройн цэг нь $y = 2x$ шулуун дээр орших бол $p = [f],\\ q = [g]$ байна.",
+    "slots": [
+      {
+        "label": "f",
+        "type": "digit",
+        "answer": "4"
+      },
+      {
+        "label": "g",
+        "type": "digit",
+        "answer": "8"
+      }
+    ],
+    "points": 2,
+    "solution": "$f(1) = 1-p+q = 5 \\Rightarrow q = 4+p$. Оройн цэг $\\left(\\tfrac{p}{2}, q - \\tfrac{p^2}{4}\\right)$ нь $y = 2x$ шулуун дээр: $q - \\tfrac{p^2}{4} = p$. Орлуулбал $4 + p - \\tfrac{p^2}{4} = p \\Rightarrow p^2 = 16 \\Rightarrow p = 4$ (эерэг). $q = 8$. **f=4, g=8**."
+  },
+  {
+    "source": "Test-2023C-Q2.2.1",
+    "test": "2023C",
+    "section": 2,
+    "problem": "2.2",
+    "subproblem": 1,
+    "type": "fill_in",
+    "context": "$ABCD$ параллелограммын $DC$ талын дундаж цэг $K$, $AC$ диагональ ба $KB$ хэрчмийн огтлолцлын цэг $L$ байв.",
+    "instruction": "$\\triangle KLC \\sim \\triangle BLA$ тул $\\dfrac{LC}{LA} = \\dfrac{LK}{LB} = \\dfrac{KC}{BA} = \\dfrac{[a]}{[b]}$.",
+    "slots": [
+      {
+        "label": "a",
+        "type": "digit",
+        "answer": "1"
+      },
+      {
+        "label": "b",
+        "type": "digit",
+        "answer": "2"
+      }
+    ],
+    "points": 1,
+    "solution": "$KC = \\tfrac{1}{2}AB \\Rightarrow$ харьцаа $\\tfrac{1}{2}$. **a=1, b=2**."
+  },
+  {
+    "source": "Test-2023C-Q2.2.2",
+    "test": "2023C",
+    "section": 2,
+    "problem": "2.2",
+    "subproblem": 2,
+    "type": "fill_in",
+    "context": "$ABCD$ параллелограммын $DC$ талын дундаж цэг $K$, $AC$ диагональ ба $KB$ хэрчмийн огтлолцлын цэг $L$ байв.",
+    "instruction": "Хэрэв $S_{AKL} = 4$ бол $S_{KLC} = [c],\\ S_{ADC} = [de],\\ S_{ABCD} = [fg]$ байна.",
+    "slots": [
+      {
+        "label": "c",
+        "type": "digit",
+        "answer": "2"
+      },
+      {
+        "label": "de",
+        "type": "integer",
+        "answer": "12"
+      },
+      {
+        "label": "fg",
+        "type": "integer",
+        "answer": "24"
+      }
+    ],
+    "points": 4,
+    "solution": "$S_{KLC} = \\tfrac{S_{AKL}}{2} = 2$. $S_{AKC} = 6 \\Rightarrow S_{ADC} = 12 \\Rightarrow S_{ABCD} = 24$. **c=2, de=12, fg=24**."
+  },
+  {
+    "source": "Test-2023C-Q2.2.3",
+    "test": "2023C",
+    "section": 2,
+    "problem": "2.2",
+    "subproblem": 3,
+    "type": "fill_in",
+    "context": "$ABCD$ параллелограммын $DC$ талын дундаж цэг $K$, $AC$ диагональ ба $KB$ хэрчмийн огтлолцлын цэг $L$ байв.",
+    "instruction": "Хэрэв $LB = 6$ ба $\\angle KAL = 30°$ бол $AKL$ гурвалжныг багтаасан тойргийн радиус $[h]$ байна.",
+    "slots": [
+      {
+        "label": "h",
+        "type": "digit",
+        "answer": "3"
+      }
+    ],
+    "points": 2,
+    "solution": "$LK = \\tfrac{LB}{2} = 3$. $R = \\dfrac{LK}{2 \\sin 30°} = \\dfrac{3}{1} = 3$. **h=3**."
+  },
+  {
+    "source": "Test-2023C-Q2.3.1",
+    "test": "2023C",
+    "section": 2,
+    "problem": "2.3",
+    "subproblem": 1,
+    "type": "fill_in",
+    "context": "2 улаан, 3 цагаан бөмбөгтэй уутнаас бөмбөгнүүдийг нэг нэгээр нь буцааж хийхгүйгээр авч байв. Туршилтыг ялгаатай эхний бөмбөг гарч ирьтэл хийсэн ба туршилтын тоог $k$ гэе.",
+    "instruction": "$[a] \\le k \\le [b]$ байна.",
+    "slots": [
+      {
+        "label": "a",
+        "type": "digit",
+        "answer": "2"
+      },
+      {
+        "label": "b",
+        "type": "digit",
+        "answer": "4"
+      }
+    ],
+    "points": 1,
+    "solution": "Хамгийн багадаа $k=2$ (хоёр дахь бөмбөг ялгаатай). Хамгийн ихдээ цагаанаас эхэлж 3 цагаан, 4 дэх нь улаан гарвал $k=4$. **a=2, b=4**."
+  },
+  {
+    "source": "Test-2023C-Q2.3.2",
+    "test": "2023C",
+    "section": 2,
+    "problem": "2.3",
+    "subproblem": 2,
+    "type": "fill_in",
+    "context": "2 улаан, 3 цагаан бөмбөгтэй уутнаас бөмбөгнүүдийг буцааж хийхгүйгээр авч, ялгаатай эхний бөмбөг гарч ирьтэл хийсэн.",
+    "instruction": "$k = [a]$ байх магадлал нь $\\dfrac{[d]}{[c]}$ байна.",
+    "slots": [
+      {
+        "label": "c",
+        "type": "digit",
+        "answer": "5"
+      },
+      {
+        "label": "d",
+        "type": "digit",
+        "answer": "3"
+      }
+    ],
+    "points": 2,
+    "solution": "$P(k=2) = P(\\text{2-р нь 1-ээс ялгаатай}) = \\tfrac{2}{5} \\cdot \\tfrac{3}{4} + \\tfrac{3}{5} \\cdot \\tfrac{2}{4} = \\tfrac{6}{20} + \\tfrac{6}{20} = \\tfrac{3}{5}$. **d=3, c=5**."
+  },
+  {
+    "source": "Test-2023C-Q2.3.3",
+    "test": "2023C",
+    "section": 2,
+    "problem": "2.3",
+    "subproblem": 3,
+    "type": "fill_in",
+    "context": "2 улаан, 3 цагаан бөмбөгтэй уутнаас бөмбөгнүүдийг буцааж хийхгүйгээр авч, ялгаатай эхний бөмбөг гарч ирьтэл хийсэн.",
+    "instruction": "$k = [b]$ байх магадлал нь $\\dfrac{[g]}{[ef]}$ байна.",
+    "slots": [
+      {
+        "label": "g",
+        "type": "digit",
+        "answer": "1"
+      },
+      {
+        "label": "ef",
+        "type": "integer",
+        "answer": "10"
+      }
+    ],
+    "points": 2,
+    "solution": "$k=4$ зөвхөн (Ц,Ц,Ц,У) дарааллаар: $P = \\tfrac{3}{5} \\cdot \\tfrac{2}{4} \\cdot \\tfrac{1}{3} \\cdot 1 = \\tfrac{1}{10}$. **g=1, ef=10**."
+  },
+  {
+    "source": "Test-2023C-Q2.3.4",
+    "test": "2023C",
+    "section": 2,
+    "problem": "2.3",
+    "subproblem": 4,
+    "type": "fill_in",
+    "context": "2 улаан, 3 цагаан бөмбөгтэй уутнаас бөмбөгнүүдийг буцааж хийхгүйгээр авч, ялгаатай эхний бөмбөг гарч ирьтэл хийсэн.",
+    "instruction": "Туршилтын тоо $k$-ийн математик дундаж нь $\\dfrac{[h]}{2}$ байна. (Бутархайнууд үл хураагдах байна.)",
+    "slots": [
+      {
+        "label": "h",
+        "type": "digit",
+        "answer": "5"
+      }
+    ],
+    "points": 2,
+    "solution": "$P(k=3) = 1 - \\tfrac{3}{5} - \\tfrac{1}{10} = \\tfrac{3}{10}$. $E(k) = 2 \\cdot \\tfrac{6}{10} + 3 \\cdot \\tfrac{3}{10} + 4 \\cdot \\tfrac{1}{10} = \\tfrac{25}{10} = \\tfrac{5}{2}$. **h=5**."
+  },
+  {
+    "source": "Test-2023C-Q2.4.1",
+    "test": "2023C",
+    "section": 2,
+    "problem": "2.4",
+    "subproblem": 1,
+    "type": "fill_in",
+    "context": "$y = 4x - x^2$ парабол ба $y = kx\\ (k > 0)$ шулуунаар хүрээлэгдэх дүрсийн талбай $S$ гэе.",
+    "instruction": "Парабол болон $Ox$ тэнхлэгээр хүрээлэгдэх дүрсийн талбай $S_1 = \\dfrac{[ab]}{3}$ байна.",
+    "slots": [
+      {
+        "label": "ab",
+        "type": "integer",
+        "answer": "32"
+      }
+    ],
+    "points": 1,
+    "solution": "$S_1 = \\int_0^4 (4x-x^2) dx = [2x^2 - \\tfrac{x^3}{3}]_0^4 = 32 - \\tfrac{64}{3} = \\tfrac{32}{3}$. **ab=32**."
+  },
+  {
+    "source": "Test-2023C-Q2.4.2",
+    "test": "2023C",
+    "section": 2,
+    "problem": "2.4",
+    "subproblem": 2,
+    "type": "fill_in",
+    "context": "$y = 4x - x^2$ парабол ба $y = kx\\ (k > 0)$ шулуунаар хүрээлэгдэх дүрсийн талбай $S$ гэе.",
+    "instruction": "Парабол болон $y = kx$ шулуун $O,\\ A$ цэгүүдээр огтлолцох ба $A$ цэгийн $x$ координат нь $x = [c] - k$ тул $S = \\dfrac{([d] - k)^3}{[e]}$ байна.",
+    "slots": [
+      {
+        "label": "c",
+        "type": "digit",
+        "answer": "4"
+      },
+      {
+        "label": "d",
+        "type": "digit",
+        "answer": "4"
+      },
+      {
+        "label": "e",
+        "type": "digit",
+        "answer": "6"
+      }
+    ],
+    "points": 2,
+    "solution": "$4x - x^2 = kx \\Rightarrow x = 4-k$. $S = \\int_0^{4-k}[(4-k)x - x^2]dx = \\dfrac{(4-k)^3}{6}$. **c=4, d=4, e=6**."
+  },
+  {
+    "source": "Test-2023C-Q2.4.3",
+    "test": "2023C",
+    "section": 2,
+    "problem": "2.4",
+    "subproblem": 3,
+    "type": "fill_in",
+    "context": "$y = 4x - x^2$ парабол ба $y = kx\\ (k > 0)$ шулуунаар хүрээлэгдэх дүрсийн талбай $S$ гэе.",
+    "instruction": "$S = \\dfrac{9}{2}$ бол $k = [f]$ байна.",
+    "slots": [
+      {
+        "label": "f",
+        "type": "digit",
+        "answer": "1"
+      }
+    ],
+    "points": 2,
+    "solution": "$\\dfrac{(4-k)^3}{6} = \\dfrac{9}{2} \\Rightarrow (4-k)^3 = 27 \\Rightarrow k = 1$. **f=1**."
+  },
+  {
+    "source": "Test-2023C-Q2.4.4",
+    "test": "2023C",
+    "section": 2,
+    "problem": "2.4",
+    "subproblem": 4,
+    "type": "fill_in",
+    "context": "$y = 4x - x^2$ парабол ба $y = kx\\ (k > 0)$ шулуунаар хүрээлэгдэх дүрсийн талбай $S$ гэе.",
+    "instruction": "$S = \\dfrac{1}{8} S_1$ бол $k = [g]$ байна.",
+    "slots": [
+      {
+        "label": "g",
+        "type": "digit",
+        "answer": "2"
+      }
+    ],
+    "points": 2,
+    "solution": "$S = \\tfrac{1}{8} \\cdot \\tfrac{32}{3} = \\tfrac{4}{3}$. $\\dfrac{(4-k)^3}{6} = \\tfrac{4}{3} \\Rightarrow (4-k)^3 = 8 \\Rightarrow k = 2$. **g=2**."
+  }
+]

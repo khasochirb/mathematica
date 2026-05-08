@@ -1,0 +1,285 @@
+[
+  {
+    "source": "Test-2024D-Q2.1.1",
+    "test": "2024D",
+    "section": 2,
+    "problem": "2.1",
+    "subproblem": 1,
+    "type": "fill_in",
+    "context": "$f(x) = \\sqrt{8x - 4} - 1$ функц өгөв.",
+    "instruction": "$f(x)$ функцийн тодорхойлогдох муж $x \\geq \\dfrac{[a]}{[b]}$, утгын муж $[-[c],\\ +\\infty[$ байна.",
+    "slots": [
+      {
+        "label": "a",
+        "type": "digit",
+        "answer": "1"
+      },
+      {
+        "label": "b",
+        "type": "digit",
+        "answer": "2"
+      },
+      {
+        "label": "c",
+        "type": "digit",
+        "answer": "1"
+      }
+    ],
+    "points": 2,
+    "solution": "$8x - 4 \\ge 0 \\Rightarrow x \\ge \\tfrac{1}{2}$. Утгын муж: $\\sqrt{8x-4} \\ge 0 \\Rightarrow f(x) \\ge -1$. **a=1, b=2, c=1**."
+  },
+  {
+    "source": "Test-2024D-Q2.1.2",
+    "test": "2024D",
+    "section": 2,
+    "problem": "2.1",
+    "subproblem": 2,
+    "type": "fill_in",
+    "context": "$f(x) = \\sqrt{8x - 4} - 1$ функц өгөв.",
+    "instruction": "$f(x)$ функцийн урвуу функц нь $f^{-1}(x) = \\dfrac{x^2 + 2x + [d]}{[e]},\\ x \\geq -[f]$ байна.",
+    "slots": [
+      {
+        "label": "d",
+        "type": "digit",
+        "answer": "5"
+      },
+      {
+        "label": "e",
+        "type": "digit",
+        "answer": "8"
+      },
+      {
+        "label": "f",
+        "type": "digit",
+        "answer": "1"
+      }
+    ],
+    "points": 3,
+    "solution": "$y = \\sqrt{8x-4} - 1 \\Rightarrow (y+1)^2 = 8x - 4 \\Rightarrow x = \\dfrac{y^2 + 2y + 5}{8}$. Тиймээс $f^{-1}(x) = \\dfrac{x^2 + 2x + 5}{8}$, $x \\ge -1$. **d=5, e=8, f=1**."
+  },
+  {
+    "source": "Test-2024D-Q2.1.3",
+    "test": "2024D",
+    "section": 2,
+    "problem": "2.1",
+    "subproblem": 3,
+    "type": "fill_in",
+    "context": "$f(x) = \\sqrt{8x - 4} - 1$ функц өгөв.",
+    "instruction": "$f(x) \\geq f^{-1}(x)$ тэнцэтгэл бишийн шийд нь $[g] \\leq x \\leq [h]$ байна.",
+    "slots": [
+      {
+        "label": "g",
+        "type": "digit",
+        "answer": "1"
+      },
+      {
+        "label": "h",
+        "type": "digit",
+        "answer": "5"
+      }
+    ],
+    "points": 2,
+    "solution": "$f(x) = x \\Rightarrow (x+1)^2 = 8x-4 \\Rightarrow x^2 - 6x + 5 = 0 \\Rightarrow x = 1$ эсвэл $x = 5$. Энэ хооронд $f \\ge x \\ge f^{-1}$. **g=1, h=5**."
+  },
+  {
+    "source": "Test-2024D-Q2.2.1",
+    "test": "2024D",
+    "section": 2,
+    "problem": "2.2",
+    "subproblem": 1,
+    "type": "fill_in",
+    "context": "$AD = 2\\sqrt{5},\\ DC = 2\\sqrt{11},\\ DH = \\sqrt{5}$ байх $ABCDEFGH$ тэгш өнцөгт параллелепипедийн $D$ оройгоос $ACH$ гурвалжны хавтгай хүртэлх зайг олъё.",
+    "instruction": "$ADH$ гурвалжны талбай $S_{ADH} = [a]$, $ADHC$ пирамидын эзлэхүүн $V_{ADHC} = \\dfrac{10}{3}\\sqrt{[bc]}$ болно.",
+    "slots": [
+      {
+        "label": "a",
+        "type": "digit",
+        "answer": "5"
+      },
+      {
+        "label": "bc",
+        "type": "integer",
+        "answer": "11"
+      }
+    ],
+    "points": 2,
+    "solution": "$ADH$ нь $D$-д тэгш өнцөгтэй: $S_{ADH} = \\tfrac{1}{2} \\cdot AD \\cdot DH = \\tfrac{1}{2} \\cdot 2\\sqrt{5} \\cdot \\sqrt{5} = 5$. Параллелепипедд $DC \\perp$ (плоск $ADH$) тул $V_{ADHC} = \\tfrac{1}{3} \\cdot S_{ADH} \\cdot DC = \\tfrac{1}{3} \\cdot 5 \\cdot 2\\sqrt{11} = \\tfrac{10\\sqrt{11}}{3}$. **a=5, bc=11**."
+  },
+  {
+    "source": "Test-2024D-Q2.2.2",
+    "test": "2024D",
+    "section": 2,
+    "problem": "2.2",
+    "subproblem": 2,
+    "type": "fill_in",
+    "context": "$AD = 2\\sqrt{5},\\ DC = 2\\sqrt{11},\\ DH = \\sqrt{5}$ байх $ABCDEFGH$ тэгш өнцөгт параллелепипедийн $D$ оройгоос $ACH$ гурвалжны хавтгай хүртэлх зайг олъё.",
+    "instruction": "$AC = [d]$ ба үүний адилаар $ACH$ гурвалжны талуудыг олбол $CH = 7,\\ AH = 5$ болно. Иймд талбай $S_{ACH} = [ef]\\sqrt{3}$ болно.",
+    "slots": [
+      {
+        "label": "d",
+        "type": "digit",
+        "answer": "8"
+      },
+      {
+        "label": "ef",
+        "type": "integer",
+        "answer": "10"
+      }
+    ],
+    "points": 3,
+    "solution": "$AC = \\sqrt{AD^2 + DC^2} = \\sqrt{20 + 44} = \\sqrt{64} = 8$. $ACH$ гурвалж: $AC=8$, $CH=7$, $AH=5$. Геронгийн томьёогоор: $s = 10$, $S = \\sqrt{10 \\cdot 2 \\cdot 3 \\cdot 5} = \\sqrt{300} = 10\\sqrt{3}$. **d=8, ef=10**."
+  },
+  {
+    "source": "Test-2024D-Q2.2.3",
+    "test": "2024D",
+    "section": 2,
+    "problem": "2.2",
+    "subproblem": 3,
+    "type": "fill_in",
+    "context": "$AD = 2\\sqrt{5},\\ DC = 2\\sqrt{11},\\ DH = \\sqrt{5}$ байх $ABCDEFGH$ тэгш өнцөгт параллелепипедийн $D$ оройгоос $ACH$ гурвалжны хавтгай хүртэлх зайг олъё.",
+    "instruction": "Параллелепипедийн $D$ оройгоос $ACH$ гурвалжны хавтгай хүртэлх зай $\\dfrac{1}{3}\\sqrt{[gh]}$ байна.",
+    "slots": [
+      {
+        "label": "gh",
+        "type": "integer",
+        "answer": "33"
+      }
+    ],
+    "points": 2,
+    "solution": "$V_{ADHC} = \\tfrac{1}{3} \\cdot S_{ACH} \\cdot d_{D \\to ACH}$. $\\tfrac{10\\sqrt{11}}{3} = \\tfrac{1}{3} \\cdot 10\\sqrt{3} \\cdot d \\Rightarrow d = \\sqrt{\\tfrac{11}{3}} = \\dfrac{\\sqrt{33}}{3}$. **gh=33**."
+  },
+  {
+    "source": "Test-2024D-Q2.3.1",
+    "test": "2024D",
+    "section": 2,
+    "problem": "2.3",
+    "subproblem": 1,
+    "type": "fill_in",
+    "context": "Явган аялагчдын явсан замыг дөрвөн завсарт бүлэглэж, гистограммаар харуулав. Гистограмын баганууд: $[1; 3]$ — нягт 1, $[3; 5]$ — нягт 2, $[5; 7]$ — нягт 3, $[7; 9]$ — нягт 2.",
+    "instruction": "3 км-ээс 5 км явсан аялагчдын тоо $[a]$ байна. Нийт $[bc]$ хүн аялалд оролцжээ.",
+    "slots": [
+      {
+        "label": "a",
+        "type": "digit",
+        "answer": "4"
+      },
+      {
+        "label": "bc",
+        "type": "integer",
+        "answer": "16"
+      }
+    ],
+    "points": 2,
+    "solution": "Давтамж = ширхэг × нягт. $[3;5]$: $2 \\cdot 2 = 4$. Нийт: $2+4+6+4 = 16$. **a=4, bc=16**."
+  },
+  {
+    "source": "Test-2024D-Q2.3.2",
+    "test": "2024D",
+    "section": 2,
+    "problem": "2.3",
+    "subproblem": 2,
+    "type": "fill_in",
+    "context": "Явган аялагчдын явсан замыг дөрвөн завсарт бүлэглэж, гистограммаар харуулав.",
+    "instruction": "Аялагчдын явсан замын дундаж $\\dfrac{[de]}{2}$ км.",
+    "slots": [
+      {
+        "label": "de",
+        "type": "integer",
+        "answer": "11"
+      }
+    ],
+    "points": 2,
+    "solution": "Дундаж = $\\dfrac{2 \\cdot 2 + 4 \\cdot 4 + 6 \\cdot 6 + 8 \\cdot 4}{16} = \\dfrac{88}{16} = \\dfrac{11}{2}$ км. **de=11**."
+  },
+  {
+    "source": "Test-2024D-Q2.3.3",
+    "test": "2024D",
+    "section": 2,
+    "problem": "2.3",
+    "subproblem": 3,
+    "type": "fill_in",
+    "context": "Явган аялагчдын явсан замыг дөрвөн завсарт бүлэглэж, гистограммаар харуулав.",
+    "instruction": "Стандарт хазайлт $C.X = \\dfrac{1}{2}\\sqrt{[fg]}$ байна.",
+    "slots": [
+      {
+        "label": "fg",
+        "type": "integer",
+        "answer": "15"
+      }
+    ],
+    "points": 3,
+    "solution": "$\\sigma^2 = \\tfrac{2 \\cdot 49/4 + 4 \\cdot 9/4 + 6 \\cdot 1/4 + 4 \\cdot 25/4}{16} = \\dfrac{240}{64} = \\dfrac{15}{4}$. $C.X = \\sqrt{15/4} = \\dfrac{\\sqrt{15}}{2}$. **fg=15**."
+  },
+  {
+    "source": "Test-2024D-Q2.4.1",
+    "test": "2024D",
+    "section": 2,
+    "problem": "2.4",
+    "subproblem": 1,
+    "type": "fill_in",
+    "context": "$f(x) = \\tfrac{1}{2}|x^2 - 7x|$ функцийн график ба түүний $(3, 6)$ цэгт татсан шүргэгч шулуун $l$-ээр хүрээлэгдэх дүрсийн талбайг олъё.",
+    "instruction": "$|x^2 - 7x| = \\begin{cases} x(x - 7), & x \\le [a]\\ \\text{эсвэл}\\ x \\ge [b] \\\\ -x(x - 7), & [a] < x < [b] \\end{cases}$ тул $f(x)$ функцийн графикийн тоймлон зурвал.",
+    "slots": [
+      {
+        "label": "a",
+        "type": "digit",
+        "answer": "0"
+      },
+      {
+        "label": "b",
+        "type": "digit",
+        "answer": "7"
+      }
+    ],
+    "points": 1,
+    "solution": "$x^2 - 7x = x(x-7)$ нь $x = 0$ ба $x = 7$ дээр тэгтэй. $x \\le 0$ эсвэл $x \\ge 7$ үед эерэг, $0 < x < 7$ үед сөрөг. **a=0, b=7**."
+  },
+  {
+    "source": "Test-2024D-Q2.4.2",
+    "test": "2024D",
+    "section": 2,
+    "problem": "2.4",
+    "subproblem": 2,
+    "type": "fill_in",
+    "context": "$f(x) = \\tfrac{1}{2}|x^2 - 7x|$ функцийн график ба түүний $(3, 6)$ цэгт татсан шүргэгч шулуун $l$-ээр хүрээлэгдэх дүрсийн талбайг олъё.",
+    "instruction": "Шүргэгч $l$ шулууны тэгшитгэл $y = \\dfrac{x + [c]}{2}$ тул түүний графиктай огтлох $A,\\ B$ цэгүүдийн $x$ координат нь харгалзан $-[d],\\ [e]$ байна.",
+    "slots": [
+      {
+        "label": "c",
+        "type": "digit",
+        "answer": "9"
+      },
+      {
+        "label": "d",
+        "type": "digit",
+        "answer": "1"
+      },
+      {
+        "label": "e",
+        "type": "digit",
+        "answer": "9"
+      }
+    ],
+    "points": 4,
+    "solution": "$(0, 7)$ завсарт $f(x) = \\tfrac{1}{2}(7x - x^2)$, $f'(x) = \\tfrac{7 - 2x}{2}$. $x=3$-д $f'(3) = \\tfrac{1}{2}$, $f(3) = 6$. Шүргэгч: $y = \\tfrac{1}{2}(x-3) + 6 = \\dfrac{x+9}{2}$. Гадна салбартай ($f = \\tfrac{x^2-7x}{2}$) огтлолцол: $\\dfrac{x+9}{2} = \\dfrac{x^2-7x}{2} \\Rightarrow x^2 - 8x - 9 = 0 \\Rightarrow x = -1$ эсвэл $x = 9$. **c=9, d=1, e=9**."
+  },
+  {
+    "source": "Test-2024D-Q2.4.3",
+    "test": "2024D",
+    "section": 2,
+    "problem": "2.4",
+    "subproblem": 3,
+    "type": "fill_in",
+    "context": "$f(x) = \\tfrac{1}{2}|x^2 - 7x|$ функцийн график ба түүний $(3, 6)$ цэгт татсан шүргэгч шулуун $l$-ээр хүрээлэгдэх дүрсийн талбайг олъё.",
+    "instruction": "Иймд олох талбай $\\dfrac{[fgh]}{6}$ болно.",
+    "slots": [
+      {
+        "label": "fgh",
+        "type": "integer",
+        "answer": "157"
+      }
+    ],
+    "points": 2,
+    "solution": "$S = \\int_{-1}^{0} \\left[\\tfrac{x+9}{2} - \\tfrac{x^2-7x}{2}\\right] dx + \\int_{0}^{7} \\left[\\tfrac{x+9}{2} - \\tfrac{7x-x^2}{2}\\right] dx + \\int_{7}^{9} \\left[\\tfrac{x+9}{2} - \\tfrac{x^2-7x}{2}\\right] dx = \\tfrac{7}{3} + \\tfrac{91}{6} + \\tfrac{26}{3} = \\tfrac{157}{6}$. **fgh=157**."
+  }
+]
