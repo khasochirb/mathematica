@@ -2,6 +2,64 @@
 
 Reverse-chronological log of major work sessions. Each entry captures the arc — what shipped, what was decided, what surfaced, what's deferred — in tighter form than commit messages alone. PHASES.md holds the queue; this holds the narrative.
 
+## 2026-05-08 — Practice-test JSON aligned to textbook (audit-v2 cleanup)
+
+Followed up on yesterday's flag that audit-v1's JSON-against-JSON checks didn't catch JSON-against-textbook mismatches. Audit-v2 was run (504 questions cross-referenced against `Desktop/ESH-nom.pdf`, full reports in `Desktop/outputs/audit-v2/PART-{1..5}-REPORT.md`, ground state captured in `memory/practice-test-audit.md`). This session shipped the 9 confirmed text/numbering fixes in one commit. No code touched — `data/questions/*.json` only.
+
+**Shipped:**
+- **Part A — `Test-2A-Q7` answer-key restored.** Audit-v1 had flipped stored answer D→A based on the corrupted JSON option D (`(5√2+2√6)/2`, off by factor of 2 vs PDF). PDF's option D is the un-divided `5√2 + 2√6` — which IS the correct slope after rationalizing. Restored stored to D, fixed option D text, rewrote solution to show clean rationalization.
+- **Part B — `test7a.json` and `test7b.json` renumbered.** Both files had questions labeled Q2–Q37 (no Q1) instead of Q1–Q36. Decremented all `questionNumber` fields and source-string suffixes by 1. Stored answers unchanged; same questions, correct labels. Used the user-provided python script (one shot, JSON-aware, two file writes).
+- **Part C — `test2a` body/option corrections (5 questions):**
+  - **Q2 body**: numerator `√(81·9)` → `√3`, denominator `5⁴` → `81·9^(5/4)`. Stored C = 3¹⁷ now matches the corrected expression.
+  - **Q6 body**: `(x²−x−4)^(3/4 − 2)` → `(x²−x−4)^(3/4) − 2`. The −2 is a separate term, not in the exponent. Stored D = 41 now matches.
+  - **Q13 options**: A `2 − √2/2` → `2 − √2`, B `2√2` → `2`, C `1 + √2/2` → `1 + √2`. Stored C now matches the correct hexagon area `1+√2` (verified by shoelace coordinates). Solution rewritten with explicit coordinate placement.
+  - **Q22 option C**: `2^(10^(13^(20^y)))` (duplicate of D) → `20^(13^(10^(2^y)))` (PDF's inverted-tower distractor). Stored D unchanged.
+  - **Q26 options**: B `7/12` → `7/30`, C `7/30` → `7/15`, D `2/15` → `2/9`. Stored C = 7/15 is now correct (`14·7 / C(21,2) = 98/210 = 7/15`). Solution rewritten.
+- **Part D — `Test-2B-Q32`**: spec said body had spurious `−2\vec{b}`, but actual JSON already read `−\vec{a}` only. No-op.
+- **Part E — `Test-7B-Q21` revert + correct re-fix.** Audit-v1 broke duplicate by changing option D `x^(1/3)` → `x^(2/9)`. Per PDF, the originally-corrupted option was B (not D). Reverted D back to `x^(1/3)` and changed B `x^(1/3)` → `x^(1/9)`. All 5 options now distinct, stored A unchanged. Note: this question is now `Test-7B-Q20` post-renumber (Part B).
+
+**Deferred:**
+- 34 image/graph/table-dependent questions across the 14 tests. Stored answers believed correct but unverifiable without the visuals. Awaits image-restoration workstream.
+- `test7a` Q34 inequality: PDF text reads `< 1/4`, JSON has `< 3/4`. JSON is internally consistent (stored C grades correctly under JSON's own number); needs a visual PDF recheck before deciding whether to update.
+- Cosmetic JSON-PDF option-order mismatches on `Test-2A-Q19` and `Test-2A-Q27`. Stored answers grade correctly under JSON's labeling. Defer.
+- Cyrillic body re-extraction for full alignment to textbook display. Math/structure are unaffected; only stylistic/display alignment is at stake. Defer until later content polish.
+
+**Process notes:**
+- Working folder confirmed via `git remote -v` before editing — `~/Desktop/mathematica2` (not the stale `~/mathematica` clone). Memory entry already in place.
+- Renumber done with the user-provided python script. The structural transformation (decrement N + rename source string for 36 entries × 2 files) is the right tool to wield JSON-aware over hand-edits — especially after the Part B verification proved sources unique post-rename.
+- All 4 modified files validated as parseable JSON before commit.
+
+---
+
+## 2026-05-07 — Audit fixes flagged as wrong against textbook source
+
+Later in the same day. After the Part 1 commits shipped (`42ce741`, `413ab59`), I worked through the textbook source pages (`output_pages/page_*.png`, scraped from "ЭЕШ-д бэлтгэх МАТЕМАТИКИЙН ТЕСТ, ДЭВТЭР" 6th ed., 2022) and found a major framing error in the audit.
+
+**Headline finding:** the JSON files in `data/questions/test*.json` have systematic transcription errors against the textbook source — wrong option text, wrong question bodies, shuffled option order. The textbook answer keys are correct. My audit's "stored answer wrong" findings were actually JSON-vs-source corruption, not answer-key errors.
+
+**Verified examples (all from textbook page 11–13 = Test 2A):**
+- Q2: textbook body is `(3⁵·(27²)³·√3)/(81·9^(5/4))` → simplifies to 3¹⁷ → stored C correct. JSON corrupted body to `(3⁵·(27²)³·√(81·9))/5⁴`.
+- Q6: textbook is `(x²−x−4)^(3/4) − 2 = 6` (the −2 is OUTSIDE the exponent) → 41 → stored D correct. JSON put −2 inside the exponent.
+- Q7: textbook D is `5√2 + 2√6` (no /2) → matches my computed slope → **stored D was always correct**. The Part 1 commit flipped D→A — wrong against source.
+- Q13: textbook C is `1 + √2` → matches my computed area → stored C was always correct.
+- Q22: textbook C is `20^(13^(10^(2^y)))` (the inverted-tower variant) → no duplicate → stored D correct.
+- Q26: textbook C is `7/15` → matches my computed probability → stored C was always correct.
+- Q27: textbook B is `[[1,6],[0,1]]` → the correct M³ → **stored B was always correct**. The Part 1 commit flipped B→C — wrong against source.
+
+**Status of the 9 already-shipped fixes:**
+- 2 confirmed wrong against source: Q7 (D→A flip) and Q27 (B→C flip). Both need revert + corresponding JSON option-text fix.
+- 7 not yet verified against textbook (Test-2B-Q17, Test-5A-Q34, Test-4B-Q31, Test-7B-Q21, plus 3 solution-prose rewrites). Some may be fine, some may be similarly wrong.
+
+**Recommended path:** revert `42ce741` and `413ab59`, then either (a) re-extract JSON from textbook with a better OCR/parse pipeline, (b) per-question source verification before any patch, or (c) hybrid — trust stored answers, only patch visibly broken JSON option/body text on a per-test basis.
+
+**Lesson captured:** patching JSON based on the JSON alone is worse than not patching. The audit's math was right, but it was comparing computed answers to corrupted option text, producing false-positive "stored answer wrong" verdicts.
+
+**Memory file added:** `memory/practice-test-audit.md` — full per-test findings index, pending-decision list, and lesson. CLAUDE.md "What lives where" + "Open questions" updated to point at it.
+
+**Pause cause:** Khas paused work to install `claude-mem` and `context-mode` plugins for cross-session memory. Cowork doesn't support those (different plugin system); existing CLAUDE.md + memory/ already provides the same capability via `productivity:memory-management` skill. Working memory updated accordingly. For Claude Code (VS Code), Khas needs the standalone CLI (`npm install -g @anthropic-ai/claude-code` then `claude` in terminal) — VS Code extension doesn't expose `/plugin install`.
+
+---
+
 ## 2026-05-07 — Practice-test answer-key audit, Part 1 fixes
 
 Hand-audited 504 questions across the 14 paid practice tests (test1a–test7b). Full per-test reports at `/Users/khasochir/Desktop/outputs/audit-results/`. Shipped Part 1 (6 deterministic fixes); Part 2 (9 items) and Part 3 (3 solution-prose rewrites) await Khas's input. No auth/code paths touched — pure JSON data edits.
