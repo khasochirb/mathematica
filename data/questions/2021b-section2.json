@@ -1,0 +1,323 @@
+[
+  {
+    "source": "Test-2021B-Q2.1.1",
+    "test": "2021B",
+    "section": 2,
+    "problem": "2.1",
+    "subproblem": 1,
+    "type": "fill_in",
+    "context": "Тойрогт багтсан $ABCD$ дөрвөн өнцөгтийн $AB = 5,\\ BC = 8,\\ CD = 3,\\ \\angle ABC = 60°$ байв. Тойргийн радиус болон дөрвөн өнцөгтийн талбайг олоорой.",
+    "instruction": "$ABC$ гурвалжны $AC$ талын уртыг косинусын теоремоор олоход $AC = [a]$, синусын теоремоор тойргийн радиусын урт $\\dfrac{[b]\\sqrt{3}}{3}$ байна.",
+    "slots": [
+      {
+        "label": "a",
+        "type": "digit",
+        "answer": "7"
+      },
+      {
+        "label": "b",
+        "type": "digit",
+        "answer": "7"
+      }
+    ],
+    "points": 2,
+    "solution": "Косинусын теорем: $AC^2 = 25 + 64 - 40 = 49 \\Rightarrow AC = 7$. Синусын теорем: $R = \\tfrac{7\\sqrt{3}}{3}$. **a=7, b=7**."
+  },
+  {
+    "source": "Test-2021B-Q2.1.2",
+    "test": "2021B",
+    "section": 2,
+    "problem": "2.1",
+    "subproblem": 2,
+    "type": "fill_in",
+    "context": "Тойрогт багтсан $ABCD$ дөрвөн өнцөгтийн $AB = 5,\\ BC = 8,\\ CD = 3,\\ \\angle ABC = 60°$ байв. Тойргийн радиус болон дөрвөн өнцөгтийн талбайг олоорой.",
+    "instruction": "$ADC$ гурвалжны $AD$ талын уртыг косинусын теоремоор олоход $AD = [c]$ байна.",
+    "slots": [
+      {
+        "label": "c",
+        "type": "digit",
+        "answer": "5"
+      }
+    ],
+    "points": 2,
+    "solution": "$\\angle ADC = 120°$. $49 = AD^2 + 9 + 3\\cdot AD \\Rightarrow AD^2 + 3AD - 40 = 0 \\Rightarrow AD = 5$. **c=5**."
+  },
+  {
+    "source": "Test-2021B-Q2.1.3",
+    "test": "2021B",
+    "section": 2,
+    "problem": "2.1",
+    "subproblem": 3,
+    "type": "fill_in",
+    "context": "Тойрогт багтсан $ABCD$ дөрвөн өнцөгтийн $AB = 5,\\ BC = 8,\\ CD = 3,\\ \\angle ABC = 60°$ байв. Тойргийн радиус болон дөрвөн өнцөгтийн талбайг олоорой.",
+    "instruction": "Эндээс дөрвөн өнцөгтийн талбай $S_{ABCD} = S_{ABC} + S_{ADC} = [de]\\sqrt{3} + S_{ADC} = \\dfrac{[fg]\\sqrt{3}}{4}$ байна.",
+    "slots": [
+      {
+        "label": "de",
+        "type": "integer",
+        "answer": "10"
+      },
+      {
+        "label": "fg",
+        "type": "integer",
+        "answer": "55"
+      }
+    ],
+    "points": 3,
+    "solution": "$S_{ABC} = \\tfrac{1}{2}\\cdot 5\\cdot 8\\cdot \\tfrac{\\sqrt{3}}{2} = 10\\sqrt{3}$, $de=10$. $S_{ADC} = \\tfrac{1}{2}\\cdot 5\\cdot 3\\cdot \\tfrac{\\sqrt{3}}{2} = \\tfrac{15\\sqrt{3}}{4}$. Нийт $S_{ABCD} = 10\\sqrt{3} + \\tfrac{15\\sqrt{3}}{4} = \\tfrac{55\\sqrt{3}}{4}$. **de=10, fg=55**."
+  },
+  {
+    "source": "Test-2021B-Q2.2.1",
+    "test": "2021B",
+    "section": 2,
+    "problem": "2.2",
+    "subproblem": 1,
+    "type": "fill_in",
+    "context": "Уутанд $2, 3$ дугаартай хөх өнгийн мөн $1, 2, 3$ дугаартай улаан өнгийн, нийт таван бөмбөг байв. Тоглогч уутнаас санамсаргүйгээр хоёр бөмбөг авч, дугаарын нийлбэрийг өөрийн оноо гэж тооцно.",
+    "instruction": "$4$ оноо авах боломжийн тоо $[a]$ байна.",
+    "slots": [
+      {
+        "label": "a",
+        "type": "digit",
+        "answer": "3"
+      }
+    ],
+    "points": 1,
+    "solution": "Нийлбэр $4$ болох хосууд: (хөх 2, улаан 2), (хөх 3, улаан 1), (улаан 1, улаан 3) — **3** хос. **a=3**."
+  },
+  {
+    "source": "Test-2021B-Q2.2.2",
+    "test": "2021B",
+    "section": 2,
+    "problem": "2.2",
+    "subproblem": 2,
+    "type": "fill_in",
+    "context": "Уутанд $2, 3$ дугаартай хөх өнгийн мөн $1, 2, 3$ дугаартай улаан өнгийн, нийт таван бөмбөг байв. Тоглогч уутнаас санамсаргүйгээр хоёр бөмбөг авч, дугаарын нийлбэрийг өөрийн оноо гэж тооцно.",
+    "instruction": "$5$ оноо авах магадлал $\\dfrac{[c]}{[b]}$ байна. (Энд $\\dfrac{[c]}{[b]}$ нь үл хураагдах бутархай байна.)",
+    "slots": [
+      {
+        "label": "c",
+        "type": "digit",
+        "answer": "2"
+      },
+      {
+        "label": "b",
+        "type": "digit",
+        "answer": "5"
+      }
+    ],
+    "points": 3,
+    "solution": "Нийлбэр $5$ болох хосууд: (хөх 2, хөх 3), (хөх 2, улаан 3), (хөх 3, улаан 2), (улаан 2, улаан 3) — $4$ хос. $P = \\tfrac{4}{10} = \\tfrac{2}{5}$. **c=2, b=5**."
+  },
+  {
+    "source": "Test-2021B-Q2.2.3",
+    "test": "2021B",
+    "section": 2,
+    "problem": "2.2",
+    "subproblem": 3,
+    "type": "fill_in",
+    "context": "Уутанд $2, 3$ дугаартай хөх өнгийн мөн $1, 2, 3$ дугаартай улаан өнгийн, нийт таван бөмбөг байв. Тоглогч уутнаас санамсаргүйгээр хоёр бөмбөг авч, дугаарын нийлбэрийг өөрийн оноо гэж тооцно.",
+    "instruction": "Тоглогчийн авч болох оноонууд $3, 4, 5, [d]$ байна. Онооны математик дундаж нь $\\dfrac{[fg]}{[e]}$ байна.",
+    "slots": [
+      {
+        "label": "d",
+        "type": "digit",
+        "answer": "6"
+      },
+      {
+        "label": "fg",
+        "type": "integer",
+        "answer": "22"
+      },
+      {
+        "label": "e",
+        "type": "digit",
+        "answer": "5"
+      }
+    ],
+    "points": 3,
+    "solution": "10 хосын дугаарын нийлбэрүүд: $\\{3, 3, 4, 4, 4, 5, 5, 5, 5, 6\\}$. Боломжит утгууд $\\{3, 4, 5, 6\\}$, $d=6$. $E(X) = \\tfrac{44}{10} = \\tfrac{22}{5}$. **d=6, fg=22, e=5**."
+  },
+  {
+    "source": "Test-2021B-Q2.3.1",
+    "test": "2021B",
+    "section": 2,
+    "problem": "2.3",
+    "subproblem": 1,
+    "type": "fill_in",
+    "context": "$y = \\dfrac{1}{3}x^3 - \\dfrac{1}{2}x^2 - 2x + \\dfrac{5}{6}$ функцийг уламжлал хэрэглэн шинжилье.",
+    "instruction": "$y' = x^2 - x - [a]$ байна. $x^2 - x - [a] = 0$ гэдгээс сэжигтэй цэгүүд нь $x = -[b]$, $x = [c]$ байна.",
+    "slots": [
+      {
+        "label": "a",
+        "type": "digit",
+        "answer": "2"
+      },
+      {
+        "label": "b",
+        "type": "digit",
+        "answer": "1"
+      },
+      {
+        "label": "c",
+        "type": "digit",
+        "answer": "2"
+      }
+    ],
+    "points": 3,
+    "solution": "$y' = x^2 - x - 2 = (x+1)(x-2) = 0 \\Rightarrow x = -1,\\ x = 2$. **a=2, b=1, c=2**."
+  },
+  {
+    "source": "Test-2021B-Q2.3.2",
+    "test": "2021B",
+    "section": 2,
+    "problem": "2.3",
+    "subproblem": 2,
+    "type": "fill_in",
+    "context": "$y = \\dfrac{1}{3}x^3 - \\dfrac{1}{2}x^2 - 2x + \\dfrac{5}{6}$ функцийг уламжлал хэрэглэн шинжилье.",
+    "instruction": "Дээрх сэжигтэй цэгүүдээс функцийн экстремум утгууд нь $y = [d]$, $y = -2.5$ байна.",
+    "slots": [
+      {
+        "label": "d",
+        "type": "digit",
+        "answer": "2"
+      }
+    ],
+    "points": 1,
+    "solution": "$y(-1) = -\\tfrac{1}{3} - \\tfrac{1}{2} + 2 + \\tfrac{5}{6} = 2$. $y(2) = \\tfrac{8}{3} - 2 - 4 + \\tfrac{5}{6} = -2.5$. **d=2**."
+  },
+  {
+    "source": "Test-2021B-Q2.3.3",
+    "test": "2021B",
+    "section": 2,
+    "problem": "2.3",
+    "subproblem": 3,
+    "type": "fill_in",
+    "context": "$y = \\dfrac{1}{3}x^3 - \\dfrac{1}{2}x^2 - 2x + \\dfrac{5}{6}$ функцийг уламжлал хэрэглэн шинжилье.",
+    "instruction": "Мөн функцийн буурах завсар нь $-1 < x < [e]$ байна. Иймд функцийн графикийг тоймлон зурвал.",
+    "slots": [
+      {
+        "label": "e",
+        "type": "digit",
+        "answer": "2"
+      }
+    ],
+    "points": 1,
+    "solution": "$y' < 0 \\Leftrightarrow -1 < x < 2$. **e=2**."
+  },
+  {
+    "source": "Test-2021B-Q2.3.4",
+    "test": "2021B",
+    "section": 2,
+    "problem": "2.3",
+    "subproblem": 4,
+    "type": "fill_in",
+    "context": "$y = \\dfrac{1}{3}x^3 - \\dfrac{1}{2}x^2 - 2x + \\dfrac{5}{6}$ функцийг уламжлал хэрэглэн шинжилье.",
+    "instruction": "$\\dfrac{1}{3}x^3 - \\dfrac{1}{2}x^2 - 2x + \\dfrac{5}{6} = k$ тэгшитгэл ялгаатай гурван бодит шийдтэй байх $k$-ийн утгын муж нь $-\\dfrac{[f]}{2} < k < [g]$ байна.",
+    "slots": [
+      {
+        "label": "f",
+        "type": "digit",
+        "answer": "5"
+      },
+      {
+        "label": "g",
+        "type": "digit",
+        "answer": "2"
+      }
+    ],
+    "points": 2,
+    "solution": "$-2.5 < k < 2$, өөрөөр $-\\tfrac{5}{2} < k < 2$. **f=5, g=2**."
+  },
+  {
+    "source": "Test-2021B-Q2.4.1",
+    "test": "2021B",
+    "section": 2,
+    "problem": "2.4",
+    "subproblem": 1,
+    "type": "fill_in",
+    "context": "$f(x) = \\dfrac{3x - 10}{x - 4}$ функц авч үзье.",
+    "instruction": "$f(x)$ функцийн тодорхойлогдох муж нь $x \\neq [a]$ байна.",
+    "slots": [
+      {
+        "label": "a",
+        "type": "digit",
+        "answer": "4"
+      }
+    ],
+    "points": 1,
+    "solution": "$x - 4 \\neq 0 \\Rightarrow x \\neq 4$. **a=4**."
+  },
+  {
+    "source": "Test-2021B-Q2.4.2",
+    "test": "2021B",
+    "section": 2,
+    "problem": "2.4",
+    "subproblem": 2,
+    "type": "fill_in",
+    "context": "$f(x) = \\dfrac{3x - 10}{x - 4}$ функц авч үзье.",
+    "instruction": "$x \\neq [a]$ үед $f(x)$ функцийн урвуу функцийг $f^{-1}(x)$ гэвэл $f(6) = [b]$, $f^{-1}([b]) = [c]$ байна.",
+    "slots": [
+      {
+        "label": "b",
+        "type": "digit",
+        "answer": "4"
+      },
+      {
+        "label": "c",
+        "type": "digit",
+        "answer": "6"
+      }
+    ],
+    "points": 2,
+    "solution": "$f(6) = \\tfrac{18-10}{6-4} = 4$, $b=4$. $f^{-1}(x) = \\tfrac{4x-10}{x-3}$, $f^{-1}(4) = \\tfrac{6}{1} = 6$. **b=4, c=6**."
+  },
+  {
+    "source": "Test-2021B-Q2.4.3",
+    "test": "2021B",
+    "section": 2,
+    "problem": "2.4",
+    "subproblem": 3,
+    "type": "fill_in",
+    "context": "$f(x) = \\dfrac{3x - 10}{x - 4}$ функц авч үзье.",
+    "instruction": "$f^{-1}(x) = \\dfrac{[d]x - 10}{x - 3}$ тул $f(x)$ функцийн утгын муж нь $(-\\infty;\\ [e]] \\cup [[e];\\ \\infty)$ байна.",
+    "slots": [
+      {
+        "label": "d",
+        "type": "digit",
+        "answer": "4"
+      },
+      {
+        "label": "e",
+        "type": "digit",
+        "answer": "3"
+      }
+    ],
+    "points": 2,
+    "solution": "$f^{-1}(x) = \\tfrac{4x-10}{x-3}$, $d=4$. $f^{-1}$ нь $x=3$-д тодорхойлогдохгүй $\\Rightarrow$ $f$-ийн утгын мужид $y=3$ ороогүй. **d=4, e=3**."
+  },
+  {
+    "source": "Test-2021B-Q2.4.4",
+    "test": "2021B",
+    "section": 2,
+    "problem": "2.4",
+    "subproblem": 4,
+    "type": "fill_in",
+    "context": "$f(x) = \\dfrac{3x - 10}{x - 4}$ функц авч үзье.",
+    "instruction": "$f(x),\\ f^{-1}(x)$ функцийн графикуудын огтлолцох цэгийн абсцисс нь $x = [f],\\ x = [g],\\ ([f] < [g])$ байна.",
+    "slots": [
+      {
+        "label": "f",
+        "type": "digit",
+        "answer": "2"
+      },
+      {
+        "label": "g",
+        "type": "digit",
+        "answer": "5"
+      }
+    ],
+    "points": 2,
+    "solution": "$\\tfrac{3x-10}{x-4} = \\tfrac{4x-10}{x-3} \\Rightarrow x^2 - 7x + 10 = 0 \\Rightarrow x = 2,\\ x = 5$. **f=2, g=5**."
+  }
+]
