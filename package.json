@@ -8,7 +8,8 @@
     "start": "next start --port 3000",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "verify:canonicalize": "tsx scripts/verify-canonicalize.ts"
+    "verify:canonicalize": "tsx scripts/verify-canonicalize.ts",
+    "verify:section2-load": "tsx scripts/verify-section2-load.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.101.1",
