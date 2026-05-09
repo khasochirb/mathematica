@@ -1,9 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight, Heart, Lightbulb, Globe, Target } from "lucide-react";
 import { useLang } from "@/lib/lang-context";
+
+// next/image is imported on-demand by the team section. Currently the
+// team section is hidden (see below). When re-enabling, restore:
+//   import Image from "next/image";
 
 const values = [
   {
@@ -170,72 +173,19 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team */}
-      <section id="team" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16" style={{ borderTop: "1px solid var(--line)" }}>
-        <div className="eyebrow mb-3">{t("02 · Team", "02 · Баг")}</div>
-        <h2
-          className="serif mb-10"
-          style={{ fontWeight: 400, fontSize: "clamp(28px, 4vw, 40px)", letterSpacing: "-0.03em", color: "var(--fg)" }}
-        >
-          {t("Meet our team.", "Манай багтай танилц.")}
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {team.map((member) => {
-            const role = lang === "mn" ? member.role.mn : member.role.en;
-            const bio = lang === "mn" ? member.bio.mn : member.bio.en;
-            const achievements = lang === "mn" ? member.achievements.mn : member.achievements.en;
-            return (
-              <div key={member.name} className="card-edit p-6 flex flex-col">
-                <div
-                  className="w-20 h-20 rounded-full overflow-hidden mb-4"
-                  style={{ border: "1px solid var(--line)", background: "var(--bg-2)" }}
-                >
-                  <Image src={member.photo} alt={member.name} width={80} height={80} className="w-full h-full object-cover" />
-                </div>
-                <h3
-                  className="serif"
-                  style={{ fontWeight: 400, fontSize: 20, letterSpacing: "-0.02em", color: "var(--fg)" }}
-                >
-                  {member.name}
-                </h3>
-                <p className="mono text-[11px] mt-1.5" style={{ color: "var(--accent)", letterSpacing: "0.04em" }}>
-                  {role}
-                </p>
-                <p className="text-[13px] mt-3 leading-relaxed" style={{ color: "var(--fg-2)" }}>
-                  {bio}
-                </p>
-                {achievements.length > 0 && (
-                  <ul
-                    className="mt-4 pt-3 space-y-1 mono text-[11px]"
-                    style={{ borderTop: "1px solid var(--line)", color: "var(--fg-3)" }}
-                  >
-                    {achievements.map((a) => (
-                      <li key={a} className="flex items-start gap-1.5">
-                        <span style={{ color: "var(--warn)" }}>✦</span>
-                        <span className="tabular">{a}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                <div className="mt-auto pt-4 flex gap-3">
-                  {member.links.map((l) => (
-                    <a
-                      key={l.href}
-                      href={l.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mono text-[11px]"
-                      style={{ color: "var(--accent)", letterSpacing: "0.04em" }}
-                    >
-                      {l.label} →
-                    </a>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
+      {/*
+        Team section — hidden from the live site per Khas's call.
+
+        Bios + achievements + links are preserved in two places:
+          1. The `team` data array at the top of this file (still in
+             source; just unrendered).
+          2. memory/team.md — plain-text reference for quick lookup
+             without spelunking through this file.
+
+        To re-enable: restore the team <section>...</section> block
+        from git history (see commit log on this file) and re-add the
+        `import Image from "next/image";` line at the top.
+      */}
 
       {/* Careers */}
       <section
@@ -247,7 +197,7 @@ export default function AboutPage() {
           className="card-edit p-10 text-center"
           style={{ background: "var(--accent-wash)", borderColor: "var(--accent-line)" }}
         >
-          <div className="eyebrow mb-3">{t("03 · Careers", "03 · Ажлын байр")}</div>
+          <div className="eyebrow mb-3">{t("02 · Careers", "02 · Ажлын байр")}</div>
           <h2
             className="serif"
             style={{ fontWeight: 400, fontSize: "clamp(28px, 4vw, 40px)", letterSpacing: "-0.03em", color: "var(--fg)" }}
