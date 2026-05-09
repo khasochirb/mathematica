@@ -2,28 +2,19 @@
 
 import Link from "next/link";
 import { useLang } from "@/lib/lang-context";
+import MathText from "@/components/esh/MathText";
 
 const i18n = {
   hero_eyebrow: { en: "Analytics-first exam prep", mn: "Сул талд төвлөрсөн бэлтгэл" },
   hero_sub: {
-    en: "We grade every problem, not just every test. Get a personalized study plan that closes the gap between where you are and where ЭЕШ wants you.",
-    mn: "Бид зөвхөн тестийг биш, бодлого бүрийг шинжилнэ. Та одоо хаана байгаа болон ЭЕШ-ийн шалгуурын хооронд буй зайг хэмжиж, хувийн төлөвлөгөөг танд өгнө.",
+    en: "Get a personalized study plan that closes the gap between where you are and where you want to be.",
+    mn: "Бид хүсэж буй мэдлэгийн түвшин рүү тань хөтлөх зөвхөн танд зориулсан сургалтын төлөвлөгөөг гаргаж өгнө. Цагаа хэмнэ, мэдлэгээ дээшлүүл.",
   },
   hero_cta: { en: "Take a diagnostic", mn: "Шалгалт өгөх" },
   hero_cta2: { en: "See a sample report", mn: "Жишээ тайлан үзэх" },
-  trust: { en: "Trusted by students preparing for", mn: "Сурагчдын сонгодог" },
-  learners: { en: "test problems in our library", mn: "номын сан дахь бодлого" },
-  mistakes: { en: "real ЭЕШ questions, 2024–2025", mn: "ЭЕШ-ийн жинхэнэ бодлого, 2024–2025" },
+  learners: { en: "test problems in our library", mn: "2000+ бодлоготой бодлогын сан" },
+  mistakes: { en: "real exam questions", mn: "Жинхэнэ шалгалтын бодлогууд" },
   avg_lift: { en: "AI-generated practice problems", mn: "AI-аар үүсгэсэн дадлага бодлого" },
-  feat_1_eye: { en: "Diagnostic", mn: "Шалгалт" },
-  feat_1_t: { en: "One test. A complete picture.", mn: "Нэг тест. Бүрэн дүр зураг." },
-  feat_1_s: {
-    en: "Every question you answer is tagged to a sub-topic, a cognitive skill, and an expected difficulty. We surface where you're losing points — not just that you lost them.",
-    mn: "Та хариулсан бодлого болгон дэд сэдэв, танин мэдэхүйн ур чадвар, хүндрэлийн түвшинтэй холбогдоно. Та зөвхөн оноо алдсан биш, хаана алдсанаа харна.",
-  },
-  feat_1_li1: { en: "Official ЭЕШ tests, extracted & retagged to 84 sub-topics", mn: "ЭЕШ-ийн жинхэнэ тестүүд, 84 дэд сэдэвт ангилсан" },
-  feat_1_li2: { en: "Skill breakdown: computation, concept, application, trap avoidance", mn: "Ур чадвар: тооцоолол, ойлголт, хэрэглээ, занга" },
-  feat_1_li3: { en: "Time-per-question flagged against 95th-percentile pacing", mn: "Бодлого тус бүрийн цаг 95-р хувилийн хурдтай харьцуулна" },
   feat_2_eye: { en: "Score prediction", mn: "Оноо таамаглал" },
   feat_2_t: { en: "ЭЕШ score, before exam day.", mn: "Шалгалтаас өмнө ЭЕШ-ийн оноо." },
   feat_2_s: {
@@ -31,25 +22,31 @@ const i18n = {
     mn: "Бидний загвар таны дадлагын үр дүнг ЭЕШ-ийн таамагласан онооны 2σ итгэлийн зурвас болгон хөрвүүлнэ. Суралцах тусам нарийсах болно.",
   },
   feat_3_eye: { en: "AI problem generator", mn: "AI бодлого үүсгэгч" },
-  feat_3_t: { en: "Infinite practice, on the topics that matter.", mn: "Хэрэгтэй сэдвээр хязгааргүй дадлага." },
+  feat_3_t: {
+    en: "Learn from your mistakes, never miss again.",
+    mn: "Алдаагаа заавал засаж, дахин алдахгүй бай.",
+  },
   feat_3_s: {
-    en: "Generate 3–5 new problems on any weak topic, with step-by-step solutions explained at a fifth-grader level. Upload your own work for step-by-step feedback.",
-    mn: "Сул сэдэв тус бүр дээр 3–5 шинэ бодлого үүсгэж, 5-р ангийн түвшинд алхам алхмаар тайлбарлана. Өөрийн ажлаа байршуулж тусгай эргэх холбоо аваарай.",
+    en: "Generate many problems on any weak topic, with step-by-step solutions provided. If you miss a problem, we show you how to solve it and let you solve similar problems instantly to fill the gap.",
+    mn: "Сул сэдэв тус бүрд олон бодлого үүсгэж, алхам алхмаар бодолтыг харуулна. Алдаа гаргавал тухайн бодлогын шийдлийг харуулж, төстэй бодлогуудыг тэр даруй өгч сул талыг чинь нөхөнө.",
   },
-  pricing_eye: { en: "Pricing", mn: "Үнэ" },
-  pricing_h: { en: "Built for students.", mn: "Сурагчдад зориулсан." },
-  pricing_sub: {
-    en: "Free diagnostic always included. Upgrade for the full analytics + AI tutor experience.",
-    mn: "Үнэгүй шалгалт үргэлж нээлттэй. Бүрэн шинжилгээ + AI багш авахын тулд төлбөртэй болоорой.",
+  diaspora_eye: { en: "Multiple curricula", mn: "Олон хөтөлбөр" },
+  diaspora_h: {
+    en: "Join us from wherever you are.",
+    mn: "Хүссэн газраасаа бидэнтэй нэгд.",
   },
-  diaspora_eye: { en: "Diaspora & international curriculum", mn: "Гадаад болон олон улсын хөтөлбөр" },
-  diaspora_h: { en: "From Ulaanbaatar to anywhere.", mn: "Улаанбаатараас хаа сайгүй." },
   diaspora_s: {
-    en: "Native support for SAT Math, AP Calculus AB/BC, IB Math HL/SL — with instruction in Mongolian or English.",
-    mn: "SAT Math, AP Calculus AB/BC, IB Math HL/SL-ийн уугуул дэмжлэг — заавар нь Монгол эсвэл Англи хэлээр.",
+    en: "SAT Math, AP Calculus AB/BC, IB Math HL/SL prep — with instruction in Mongolian or English.",
+    mn: "SAT Math, AP Calculus AB/BC, IB Math HL/SL-ийн бэлтгэл — заавар нь Монгол эсвэл Англи хэл дээр.",
   },
-  cta_t: { en: "Built by Mongolians, for Mongolians — wherever they are.", mn: "Монголчуудаар, Монголчуудад зориулж — хаана ч байсан." },
-  cta_s: { en: "Free diagnostic. Upgrade any time.", mn: "Үнэгүй шалгалт. Хэзээ ч төлбөртэй болгож болно." },
+  cta_t: {
+    en: "Ready to start your journey?",
+    mn: "Аяллаа эхлүүлэхэд бэлэн үү?",
+  },
+  cta_s: {
+    en: "Free diagnostic. No card required.",
+    mn: "Үнэгүй шалгалт. Карт шаардахгүй.",
+  },
 };
 
 export default function HomePage() {
@@ -59,11 +56,13 @@ export default function HomePage() {
   const heroHeadline =
     lang === "mn" ? (
       <>
-        Юуг заавал <em className="serif-italic" style={{ color: "var(--accent)" }}>судлах</em> ёстойгоо мэд.
+        Сул талаа арилгаж,{" "}
+        <em className="serif-italic" style={{ color: "var(--accent)" }}>үр дүнтэй</em> бэлтгэ.
       </>
     ) : (
       <>
-        Know exactly what to <em className="serif-italic" style={{ color: "var(--accent)" }}>study</em> next.
+        Remove the gaps,{" "}
+        <em className="serif-italic" style={{ color: "var(--accent)" }}>prepare</em> efficiently.
       </>
     );
 
@@ -262,7 +261,7 @@ export default function HomePage() {
 
       {/* EXAM STRIP */}
       <div
-        className="flex items-center justify-between flex-wrap gap-4 mono uppercase"
+        className="flex items-center justify-center flex-wrap gap-4 mono uppercase"
         style={{
           padding: "24px 40px",
           borderTop: "1px solid var(--line)",
@@ -273,7 +272,6 @@ export default function HomePage() {
           background: "var(--bg-1)",
         }}
       >
-        <span style={{ color: "var(--fg-2)" }}>{t("trust")}</span>
         <span style={{ color: "var(--fg-1)" }}>ЭЕШ</span>
         <span>·</span>
         <span style={{ color: "var(--fg-1)" }}>SAT Math</span>
@@ -297,7 +295,7 @@ export default function HomePage() {
       >
         {[
           { big: "2,000", unit: "+", lbl: t("learners") },
-          { big: "800", unit: "", lbl: t("mistakes") },
+          { big: "1,000", unit: "+", lbl: t("mistakes") },
           { big: "10,000", unit: "+", lbl: t("avg_lift") },
         ].map((s, i) => (
           <div
@@ -344,7 +342,9 @@ export default function HomePage() {
         bullets={[
           lang === "mn" ? "12 жилийн ЭЕШ-ийн үр дүнгээр шалгасан" : "Calibrated on 12 years of ЭЕШ outcomes",
           lang === "mn" ? "Дадлагын тест бүрийн дараа шинэчлэгдэнэ" : "Updates after every practice test",
-          lang === "mn" ? "Багштаа хичээл төлөвлөхөөр илгээх" : "Exports to your tutor for session planning",
+          lang === "mn"
+            ? "Шалгуулагч тус бүрт зориулсан долоо хоног тутамын ахицын репорт"
+            : "Personalized weekly progress report for each student",
         ]}
         viz={
           <>
@@ -430,11 +430,8 @@ export default function HomePage() {
         body={t("feat_3_s")}
         bullets={[
           lang === "mn"
-            ? "Бодит ЭЕШ-ийн загвараас үүсгэсэн, сэдвээр хязгаарласан үүсгэлт"
-            : "Topic-constrained generation, seeded from real ЭЕШ patterns",
-          lang === "mn"
-            ? "Гарын бодолтоо зургаар оруулж, алхам бүрд эргэх холбоо аваарай"
-            : "Photograph handwritten solutions for per-step feedback",
+            ? "Сэдэв тус бүр дээр жинхэнэ шалгалтын загвараас үүсгэсэн дадлага бодлого"
+            : "Topic-constrained generation, seeded from real exam patterns",
           lang === "mn"
             ? "Тайлбар нь Монгол эсвэл Англи хэлээр"
             : "Explanations in Mongolian or English",
@@ -447,7 +444,7 @@ export default function HomePage() {
               style={{ padding: "24px 28px", borderBottom: "1px solid var(--line)" }}
             >
               <div className="serif" style={{ fontSize: 22, letterSpacing: "-0.02em" }}>
-                Definite integration
+                {lang === "mn" ? "Квадрат тэгшитгэл" : "Quadratic equations"}
               </div>
               <span className="badge-edit badge-accent live-dot">LIVE</span>
             </div>
@@ -459,21 +456,19 @@ export default function HomePage() {
                 className="mono uppercase"
                 style={{ color: "var(--fg-2)", fontSize: 11, letterSpacing: "0.08em" }}
               >
-                PROBLEM 02 / 05
+                {lang === "mn" ? "БОДЛОГО 02 / 05" : "PROBLEM 02 / 05"}
               </div>
               <div
                 className="serif"
-                style={{ fontSize: 22, letterSpacing: "-0.02em", lineHeight: 1.3 }}
+                style={{ fontSize: 18, letterSpacing: "-0.01em", lineHeight: 1.5 }}
               >
-                {lang === "mn" ? "Хэрвээ" : "If"}{" "}
-                <span className="mono" style={{ color: "var(--accent)", fontSize: 18 }}>
-                  f(x) = 2x·cos(x²)
-                </span>
-                ,{" "}
-                <span className="mono" style={{ fontSize: 18 }}>
-                  ∫₀^√π f(x)dx
-                </span>
-                {lang === "mn" ? "-ийг ол." : " — find."}
+                <MathText
+                  text={
+                    lang === "mn"
+                      ? "$x^2 - 5x + 6 = 0$ тэгшитгэлийг бод."
+                      : "Solve $x^2 - 5x + 6 = 0$."
+                  }
+                />
               </div>
               <div
                 className="mono uppercase"
@@ -485,12 +480,30 @@ export default function HomePage() {
                   letterSpacing: "0.08em",
                 }}
               >
-                Step-by-step (5th-grade level)
+                {lang === "mn" ? "Алхам алхмаар" : "Step-by-step"}
               </div>
               {[
-                { n: "01", t: "Notice 2x is the derivative of x². Substitute u = x²." },
-                { n: "02", t: "du = 2x dx, so ∫cos(u) du from 0 to π." },
-                { n: "03", t: <>= sin(π) − sin(0) = <span className="mono" style={{ color: "var(--accent)" }}>0</span>.</> },
+                {
+                  n: "01",
+                  text:
+                    lang === "mn"
+                      ? "Үржвэрт задлая: $(x - 2)(x - 3) = 0$."
+                      : "Factor: $(x - 2)(x - 3) = 0$.",
+                },
+                {
+                  n: "02",
+                  text:
+                    lang === "mn"
+                      ? "Хэрвээ үржвэр тэг бол үржигдэхүүн хооронд нэг нь тэг: $x - 2 = 0$ эсвэл $x - 3 = 0$."
+                      : "If a product is zero, one factor is zero: $x - 2 = 0$ or $x - 3 = 0$.",
+                },
+                {
+                  n: "03",
+                  text:
+                    lang === "mn"
+                      ? "Шийдүүд: $x = 2$ эсвэл $x = 3$."
+                      : "Solutions: $x = 2$ or $x = 3$.",
+                },
               ].map((s) => (
                 <div
                   key={s.n}
@@ -500,22 +513,21 @@ export default function HomePage() {
                   <div className="mono" style={{ color: "var(--accent)", fontSize: 11 }}>
                     {s.n}
                   </div>
-                  <div style={{ color: "var(--fg-1)" }}>{s.t}</div>
+                  <div style={{ color: "var(--fg-1)" }}>
+                    <MathText text={s.text} />
+                  </div>
                 </div>
               ))}
-              <div className="flex gap-2.5 mt-2">
+              <div className="flex gap-2.5 mt-2 flex-wrap">
                 <button className="btn btn-line" style={{ fontSize: 12, padding: "7px 12px" }}>
-                  Explain differently
-                </button>
-                <button className="btn btn-line" style={{ fontSize: 12, padding: "7px 12px" }}>
-                  Upload my solution
+                  {lang === "mn" ? "Өөрөөр тайлбарлах" : "Explain differently"}
                 </button>
                 <Link
                   href="/practice"
                   className="btn btn-line ml-auto"
                   style={{ fontSize: 12, padding: "7px 12px" }}
                 >
-                  Next problem →
+                  {lang === "mn" ? "Дараагийн бодлого →" : "Next problem →"}
                 </Link>
               </div>
             </div>
@@ -523,212 +535,39 @@ export default function HomePage() {
         }
       />
 
-      {/* PRICING */}
-      <section
-        style={{ padding: "120px 40px", borderBottom: "1px solid var(--line)" }}
-      >
-        <div className="flex justify-between items-end gap-6 flex-wrap">
-          <div>
-            <div className="eyebrow">{t("pricing_eye")}</div>
-            <h2
-              className="serif"
-              style={{
-                fontWeight: 400,
-                fontSize: "clamp(40px, 5vw, 56px)",
-                letterSpacing: "-0.04em",
-                margin: "10px 0 0",
-              }}
-            >
-              {t("pricing_h")}
-            </h2>
-          </div>
-          <div style={{ color: "var(--fg-2)", maxWidth: "34ch" }}>{t("pricing_sub")}</div>
-        </div>
-
-        <div
-          className="grid mt-12 gap-4"
-          style={{ gridTemplateColumns: "repeat(3, 1fr)" }}
-        >
-          {[
-            {
-              tier: "Free",
-              price: "₮0",
-              unit: "/ forever",
-              sub: "Get a baseline. No card required.",
-              items: [
-                "1 full diagnostic test",
-                "Topic-level weakness report",
-                "Practice mode (limited bank)",
-                "Community support",
-              ],
-              cta: { label: "Start free", href: "/sign-up", primary: false },
-              highlight: false,
-            },
-            {
-              tier: "Potential · monthly",
-              price: "₮20,000",
-              unit: "/ month",
-              sub: "≈ $5.60 · everything, billed monthly.",
-              items: [
-                "Unlimited practice & analytics",
-                "AI-generated problem sets",
-                "ЭЕШ score prediction",
-                "Priority tutor matching",
-              ],
-              cta: { label: "Upgrade", href: "/upgrade", primary: true },
-              highlight: true,
-            },
-            {
-              tier: "3-month bundle",
-              price: "₮30,000",
-              unit: "/ 3 months",
-              sub: "≈ $8.40 · save 50% committing to a season.",
-              items: [
-                "All Potential features",
-                "Exam countdown study plan",
-                "Weekly progress email",
-                "Transferable to a friend",
-              ],
-              cta: { label: "Choose bundle", href: "/upgrade", primary: false },
-              highlight: false,
-            },
-          ].map((p) => (
-            <div
-              key={p.tier}
-              className="flex flex-col"
-              style={{
-                background: p.highlight ? "var(--bg)" : "var(--bg-1)",
-                border: `1px solid ${p.highlight ? "var(--accent-line)" : "var(--line)"}`,
-                outline: p.highlight ? "1px solid var(--accent-line)" : undefined,
-                outlineOffset: p.highlight ? -1 : undefined,
-                borderRadius: 18,
-                padding: 28,
-                minHeight: 360,
-              }}
-            >
-              <div
-                className="mono uppercase"
-                style={{
-                  fontSize: 11,
-                  letterSpacing: "0.12em",
-                  color: p.highlight ? "var(--accent)" : "var(--fg-2)",
-                }}
-              >
-                {p.tier}
-              </div>
-              <div
-                className="serif"
-                style={{
-                  fontSize: 64,
-                  letterSpacing: "-0.04em",
-                  lineHeight: 1,
-                  margin: "18px 0 4px",
-                  fontWeight: 400,
-                }}
-              >
-                {p.price}
-                <span
-                  className="mono"
-                  style={{ fontSize: 16, color: "var(--fg-2)", marginLeft: 6 }}
-                >
-                  {p.unit}
-                </span>
-              </div>
-              <div style={{ color: "var(--fg-2)", fontSize: 13 }}>{p.sub}</div>
-              <ul
-                className="mt-6"
-                style={{ listStyle: "none", padding: 0, borderTop: "1px solid var(--line)" }}
-              >
-                {p.items.map((it) => (
-                  <li
-                    key={it}
-                    className="flex gap-2.5 py-2.5"
-                    style={{
-                      borderBottom: "1px solid var(--line)",
-                      fontSize: 13,
-                      color: "var(--fg-1)",
-                    }}
-                  >
-                    <span className="mono" style={{ color: "var(--accent)" }}>+</span>
-                    <span>{it}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href={p.cta.href}
-                className={p.cta.primary ? "btn btn-primary" : "btn btn-line"}
-                style={{ marginTop: "auto" }}
-              >
-                {p.cta.label}
-              </Link>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* DIASPORA */}
       <section
-        className="grid gap-20 items-start"
-        style={{ gridTemplateColumns: "1fr 1fr", padding: "80px 40px" }}
+        className="text-center"
+        style={{
+          padding: "100px 40px",
+          borderBottom: "1px solid var(--line)",
+        }}
       >
-        <div>
-          <div className="eyebrow">{t("diaspora_eye")}</div>
-          <h3
-            className="serif mt-3"
-            style={{
-              fontWeight: 400,
-              fontSize: 44,
-              letterSpacing: "-0.03em",
-              margin: "12px 0 0",
-            }}
-          >
-            {t("diaspora_h")}
-          </h3>
-          <p style={{ color: "var(--fg-1)", marginTop: 16, maxWidth: "44ch" }}>
-            {t("diaspora_s")}
-          </p>
-        </div>
-        <div
-          className="grid"
+        <div className="eyebrow">{t("diaspora_eye")}</div>
+        <h3
+          className="serif mt-3"
           style={{
-            gridTemplateColumns: "repeat(2, 1fr)",
-            border: "1px solid var(--line)",
-            borderRadius: 14,
-            overflow: "hidden",
+            fontWeight: 400,
+            fontSize: "clamp(40px, 5vw, 56px)",
+            letterSpacing: "-0.03em",
+            margin: "12px auto 0",
+            maxWidth: "20ch",
           }}
         >
-          {[
-            { region: "ULAANBAATAR", n: "1,842", note: "students · ЭЕШ focus" },
-            { region: "NORTH AMERICA", n: "486", note: "students · SAT + AP" },
-            { region: "EUROPE", n: "312", note: "students · IB HL/SL" },
-            { region: "ASIA-PACIFIC", n: "207", note: "students · Mixed" },
-          ].map((r, i) => (
-            <div
-              key={r.region}
-              style={{
-                padding: 24,
-                borderRight: i % 2 === 0 ? "1px solid var(--line)" : undefined,
-                borderBottom: i < 2 ? "1px solid var(--line)" : undefined,
-              }}
-            >
-              <div
-                className="mono uppercase"
-                style={{ fontSize: 10, letterSpacing: "0.1em", color: "var(--fg-3)" }}
-              >
-                {r.region}
-              </div>
-              <div
-                className="serif tabular"
-                style={{ fontSize: 32, letterSpacing: "-0.03em", marginTop: 6 }}
-              >
-                {r.n}
-              </div>
-              <div style={{ color: "var(--fg-2)", fontSize: 13, marginTop: 4 }}>
-                {r.note}
-              </div>
-            </div>
-          ))}
-        </div>
+          {t("diaspora_h")}
+        </h3>
+        <p
+          style={{
+            color: "var(--fg-1)",
+            marginTop: 18,
+            maxWidth: "60ch",
+            marginLeft: "auto",
+            marginRight: "auto",
+            fontSize: 16,
+          }}
+        >
+          {t("diaspora_s")}
+        </p>
       </section>
 
       {/* BIG CTA */}
