@@ -9,7 +9,8 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "verify:canonicalize": "tsx scripts/verify-canonicalize.ts",
-    "verify:section2-load": "tsx scripts/verify-section2-load.ts"
+    "verify:section2-load": "tsx scripts/verify-section2-load.ts",
+    "verify:section2-grading": "tsx scripts/verify-section2-grading.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.101.1",

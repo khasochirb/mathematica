@@ -19,6 +19,10 @@ export interface TestSession {
   completedAt: number | null;
   answers: Record<number, string>; // questionNumber -> letter
   flagged: number[]; // flagged questionNumbers
+  // Section 2 per-letter answers, keyed by subproblem source then by
+  // letter id. e.g. { "Test-2021A-Q2.1.1": { a: "7", b: "3", c: "5" } }.
+  // Optional so existing localStorage records (pre-S2.3) still load.
+  section2Answers?: Record<string, Record<string, string>>;
   score: TestScore | null;
   status: "in-progress" | "completed" | "abandoned";
 }
@@ -85,6 +89,7 @@ export default function useTestSession() {
       completedAt: null,
       answers: {},
       flagged: [],
+      section2Answers: {},
       score: null,
       status: "in-progress",
     };
@@ -100,6 +105,31 @@ export default function useTestSession() {
             ? { ...s, answers: { ...s.answers, [questionNumber]: letter } }
             : s,
         ),
+      );
+    },
+    [],
+  );
+
+  // Sets one Section 2 letter answer (e.g. for slot "ab" the user's "a"
+  // digit). `source` is the subproblem source id (e.g.
+  // "Test-2021A-Q2.1.1"); `letter` is the variable letter id; `digit` is
+  // the typed value (one character expected, but the hook stores whatever
+  // the caller passes — input filtering belongs to the renderer).
+  const setSection2Answer = useCallback(
+    (sessionId: string, source: string, letter: string, digit: string) => {
+      setSessions((prev) =>
+        prev.map((s) => {
+          if (s.id !== sessionId) return s;
+          const current = s.section2Answers ?? {};
+          const subProblemMap = current[source] ?? {};
+          return {
+            ...s,
+            section2Answers: {
+              ...current,
+              [source]: { ...subProblemMap, [letter]: digit },
+            },
+          };
+        }),
       );
     },
     [],
@@ -211,6 +241,7 @@ export default function useTestSession() {
     sessions,
     startSession,
     setAnswer,
+    setSection2Answer,
     toggleFlag,
     completeSession,
     abandonSession,

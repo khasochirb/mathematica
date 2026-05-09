@@ -99,3 +99,90 @@ export function parseSlotLabel(label: string): {
   if (!match) return { prefix: "", varPart: label };
   return { prefix: match[1] ?? "", varPart: match[2] };
 }
+
+// ─── Grading ───────────────────────────────────────────────────────────
+//
+// Section2Card stores per-letter user input (e.g. slot "ab" → {a, b}).
+// Grading is subproblem-level all-or-nothing: every slot in the subproblem
+// must match its `slot.answer` exactly to award `points`; any mismatch ⇒ 0.
+// See memory/section2-design.md decision #3.
+
+export interface SubproblemGrade {
+  correct: boolean;
+  pointsEarned: number;
+  pointsMax: number;
+}
+
+export interface Section2Grade {
+  totalEarned: number;
+  totalMax: number;
+  perSubproblem: Array<{
+    source: string;
+    correct: boolean;
+    pointsEarned: number;
+    pointsMax: number;
+  }>;
+}
+
+// Reassembles a slot's full answer string from per-letter user input. Walks
+// the slot's variable letters in source order, prepends any literal prefix.
+// Missing letters compose as "" (so a partial fill won't compare equal to
+// the expected answer).
+//
+//   slot.label "ab", letterAnswers {a:"1", b:"2"} → "12"
+//   slot.label "1e", letterAnswers {e:"0"}        → "10"
+//   slot.label "a",  letterAnswers {a:"5"}         → "5"
+export function composeSlotAnswer(
+  slot: Slot,
+  letterAnswers: Record<string, string>,
+): string {
+  const { prefix, varPart } = parseSlotLabel(slot.label);
+  let composed = prefix;
+  for (const letter of varPart) {
+    composed += letterAnswers[letter] ?? "";
+  }
+  return composed;
+}
+
+// Grades a single subproblem. Subproblem-level all-or-nothing: every slot
+// must exact-match (string compare, no normalization). Any mismatch ⇒ 0.
+export function gradeSection2Subproblem(
+  item: Section2Item,
+  letterAnswers: Record<string, string>,
+): SubproblemGrade {
+  for (const slot of item.slots) {
+    if (composeSlotAnswer(slot, letterAnswers) !== slot.answer) {
+      return { correct: false, pointsEarned: 0, pointsMax: item.points };
+    }
+  }
+  return {
+    correct: true,
+    pointsEarned: item.points,
+    pointsMax: item.points,
+  };
+}
+
+// Grades a whole Section 2 attempt. `letterAnswersBySource` is the shape
+// stored on the test session (see useTestSession): outer key is the
+// subproblem `source`, inner is letter → digit.
+export function gradeSection2(
+  items: Section2Item[],
+  letterAnswersBySource: Record<string, Record<string, string>>,
+): Section2Grade {
+  let totalEarned = 0;
+  let totalMax = 0;
+  const perSubproblem: Section2Grade["perSubproblem"] = [];
+  for (const item of items) {
+    const letterAnswers = letterAnswersBySource[item.source] ?? {};
+    const g = gradeSection2Subproblem(item, letterAnswers);
+    totalEarned += g.pointsEarned;
+    totalMax += g.pointsMax;
+    perSubproblem.push({
+      source: item.source,
+      correct: g.correct,
+      pointsEarned: g.pointsEarned,
+      pointsMax: g.pointsMax,
+    });
+  }
+  return { totalEarned, totalMax, perSubproblem };
+}
