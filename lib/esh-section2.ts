@@ -4,8 +4,8 @@
 // 28 points total per test. Content lives in
 // `data/questions/<testKey>-section2.json`.
 //
-// Currently authored: 2021/2022/2023/2024 × A/B/C/D (16 files).
-// Pending: 2025 (returns `undefined` from getTestSection2).
+// Currently authored: 2021/2022/2023/2024/2025 × A/B/C/D (20 files).
+// `getTestSection2` returns undefined for any unauthored key.
 
 import data2021A from "@/data/questions/2021a-section2.json";
 import data2021B from "@/data/questions/2021b-section2.json";
@@ -23,6 +23,10 @@ import data2024A from "@/data/questions/2024a-section2.json";
 import data2024B from "@/data/questions/2024b-section2.json";
 import data2024C from "@/data/questions/2024c-section2.json";
 import data2024D from "@/data/questions/2024d-section2.json";
+import data2025A from "@/data/questions/2025a-section2.json";
+import data2025B from "@/data/questions/2025b-section2.json";
+import data2025C from "@/data/questions/2025c-section2.json";
+import data2025D from "@/data/questions/2025d-section2.json";
 
 export type Section2ProblemId = "2.1" | "2.2" | "2.3" | "2.4";
 
@@ -65,6 +69,10 @@ const SECTION2_BY_KEY: Record<string, Section2Item[]> = {
   "2024B": data2024B as Section2Item[],
   "2024C": data2024C as Section2Item[],
   "2024D": data2024D as Section2Item[],
+  "2025A": data2025A as Section2Item[],
+  "2025B": data2025B as Section2Item[],
+  "2025C": data2025C as Section2Item[],
+  "2025D": data2025D as Section2Item[],
 };
 
 export const SECTION2_AUTHORED_KEYS: readonly string[] = Object.freeze(

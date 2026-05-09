@@ -53,20 +53,29 @@ function Section2PreviewInner() {
   }
 
   return (
-    <div className="min-h-screen bg-surface-900 pt-20 pb-12 px-4 sm:px-6">
+    <div
+      className="min-h-screen pt-20 pb-12 px-4 sm:px-6"
+      style={{ background: "var(--bg)", color: "var(--fg)" }}
+    >
       <div className="max-w-3xl mx-auto">
         <div className="mb-6 flex items-end justify-between gap-4 flex-wrap">
           <div>
-            <h1 className="font-display text-xl font-bold text-white">
+            <h1
+              className="font-display text-xl font-bold"
+              style={{ color: "var(--fg)" }}
+            >
               Section 2 preview
             </h1>
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm mt-1" style={{ color: "var(--fg-2)" }}>
               Dev-only visual smoke. {items.length} subproblems · 28 pts ·{" "}
               {testKey}
             </p>
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-xs uppercase tracking-wide text-gray-500">
+            <label
+              className="text-xs uppercase tracking-wide"
+              style={{ color: "var(--fg-3)" }}
+            >
               Test
             </label>
             <select
@@ -74,7 +83,12 @@ function Section2PreviewInner() {
               onChange={(e) => {
                 router.replace(`/dev/section2-preview?test=${e.target.value}`);
               }}
-              className="bg-white/[0.05] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-white"
+              className="rounded-lg px-3 py-2 text-sm"
+              style={{
+                background: "var(--bg-1)",
+                border: "1px solid var(--line)",
+                color: "var(--fg)",
+              }}
             >
               {SECTION2_AUTHORED_KEYS.map((k) => (
                 <option key={k} value={k}>
@@ -110,28 +124,42 @@ function Section2PreviewInner() {
           })}
         </div>
 
-        <div className="mt-8 p-4 rounded-xl bg-white/[0.03] border border-white/[0.05] text-xs text-gray-500 leading-relaxed">
-          <p className="font-semibold text-gray-400 mb-2">Smoke checklist</p>
+        <div
+          className="mt-8 p-4 rounded-xl text-xs leading-relaxed"
+          style={{
+            background: "var(--bg-1)",
+            border: "1px solid var(--line)",
+            color: "var(--fg-2)",
+          }}
+        >
+          <p
+            className="font-semibold mb-2"
+            style={{ color: "var(--fg-1)" }}
+          >
+            Smoke checklist
+          </p>
           <ul className="list-disc list-inside space-y-1">
-            <li>Cyrillic + math read like the official PDF</li>
+            <li>Cards visible against page bg in both light + dark themes</li>
             <li>
-              Slot letters appear inline as variables (e.g.{" "}
-              <code>x ≥ a/b</code>)
+              Formula: each <code>[label]</code> renders as a{" "}
+              <code>\boxed{"{"}varPart{"}"}</code> rectangle (no input)
             </li>
             <li>
-              Slot tray below shows one input per slot; widths match answer
-              length
+              Answer panel below: per-letter inputs in a grid (one digit
+              each)
+            </li>
+            <li>Click any answer-panel input → focus ring → type a digit</li>
+            <li>
+              2024B/2024C 2.4.2 (literal-prefix <code>1e</code>): formula
+              shows literal <code>1</code> + <code>\boxed{"{"}e{"}"}</code>;
+              answer panel has one input labeled <code>e</code>
             </li>
             <li>
-              Literal-prefix slots (only on 2024B/2024C 2.4.2 — label{" "}
-              <code>1e</code>) render the &quot;1&quot; prefix as text before
-              the input
-            </li>
-            <li>
-              On a touch device or with <code>pointer:coarse</code>, the numeric
-              keypad appears below each card
+              Multi-letter slots (e.g. <code>bc</code>, <code>fgh</code>)
+              split into separate inputs in the answer panel
             </li>
             <li>Per-problem context shows once, above the first subproblem</li>
+            <li>Toggle theme via nav sun/moon — both modes readable</li>
           </ul>
         </div>
       </div>

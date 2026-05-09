@@ -89,10 +89,10 @@ console.log(`authored keys (${SECTION2_AUTHORED_KEYS.length}):`);
 console.log(`  ${SECTION2_AUTHORED_KEYS.join(", ")}`);
 console.log("");
 
-if (SECTION2_AUTHORED_KEYS.length !== 16) {
+if (SECTION2_AUTHORED_KEYS.length !== 20) {
   fail(
     "authored count",
-    `expected 16 files (2021-2024 × A/B/C/D), got ${SECTION2_AUTHORED_KEYS.length}`,
+    `expected 20 files (2021-2025 × A/B/C/D), got ${SECTION2_AUTHORED_KEYS.length}`,
   );
 }
 
@@ -142,21 +142,12 @@ for (const testKey of SECTION2_AUTHORED_KEYS) {
 }
 
 console.log("");
-console.log("=== unknown-key + 2025 sentinel ===");
+console.log("=== unknown-key sentinel ===");
 const unknown = getTestSection2("2099Z");
 if (unknown !== undefined) {
   fail("unknown key sentinel", "expected undefined for 2099Z, got an array");
 } else {
   ok("getTestSection2(\"2099Z\") returned undefined");
-}
-const pending2025 = getTestSection2("2025A");
-if (pending2025 !== undefined) {
-  fail(
-    "2025 pending",
-    "expected undefined (2025 Section 2 not yet authored)",
-  );
-} else {
-  ok('getTestSection2("2025A") returned undefined (still pending)');
 }
 
 console.log("");
