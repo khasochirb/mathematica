@@ -3,6 +3,53 @@
 import { useState, useEffect, useCallback } from "react";
 import { getTestQuestions } from "./esh-questions";
 import type { Question } from "./esh-questions";
+import { getTestSection2 } from "./esh-section2";
+import { api } from "./api";
+
+// Section 2 submit-on-failure queue. Mirrors the queue pattern in
+// lib/use-performance.ts: if the POST to /api/section2/attempts fails
+// (offline, 5xx, expired token), the batch is parked in localStorage
+// keyed by user id and re-attempted on focus / reconnect.
+//
+// Userless queue keying: this hook does not directly know the user id
+// (auth lives in lib/api). We key the queue by sessionId — at most one
+// active session per test, and the session_id is unique per sitting,
+// so collisions can't happen.
+const SECTION2_QUEUE_KEY = "mongol-potential-section2-queue";
+
+interface QueuedSubmission {
+  sessionId: string;
+  testKey: string;
+  attempts: Array<{ source: string; slotAnswers: Record<string, string> }>;
+  queuedAt: number;
+}
+
+function loadSection2Queue(): QueuedSubmission[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = localStorage.getItem(SECTION2_QUEUE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveSection2Queue(q: QueuedSubmission[]) {
+  if (typeof window === "undefined") return;
+  if (q.length === 0) {
+    localStorage.removeItem(SECTION2_QUEUE_KEY);
+  } else {
+    localStorage.setItem(SECTION2_QUEUE_KEY, JSON.stringify(q));
+  }
+}
+
+function enqueueSection2(submission: QueuedSubmission) {
+  const q = loadSection2Queue().filter(
+    (s) => s.sessionId !== submission.sessionId,
+  );
+  q.push(submission);
+  saveSection2Queue(q);
+}
 
 export interface TestScore {
   total: number;
@@ -135,6 +182,75 @@ export default function useTestSession() {
     [],
   );
 
+  // Submits the current session's Section 2 answers to the server.
+  // Called explicitly on test submit (S2.5 wires the runner). Builds
+  // the batch payload from `section2Answers`, posts in a single call.
+  // On HTTP failure, the submission is queued in localStorage and
+  // retried on next call to flushSection2Queue (mirrors the
+  // attempts-queue pattern in lib/use-performance.ts).
+  const submitSection2Attempts = useCallback(
+    async (sessionId: string) => {
+      const session = sessions.find((s) => s.id === sessionId);
+      if (!session) return null;
+      const items = getTestSection2(session.testKey);
+      if (!items || items.length === 0) {
+        // No Section 2 content for this test (e.g. legacy 1A-7B that
+        // don't have Section 2 authored). No-op, treat as success.
+        return { ok: true as const, attempts: 0, totalEarned: 0, totalMax: 0 };
+      }
+      const answersMap = session.section2Answers ?? {};
+      const attempts = items.map((item) => ({
+        source: item.source,
+        slotAnswers: answersMap[item.source] ?? {},
+      }));
+      const submission: QueuedSubmission = {
+        sessionId,
+        testKey: session.testKey,
+        attempts,
+        queuedAt: Date.now(),
+      };
+      try {
+        const result = await api.section2.submitAttempts({
+          sessionId,
+          testKey: session.testKey,
+          attempts,
+        });
+        return result;
+      } catch (err) {
+        // Park for retry. The next call to flushSection2Queue (e.g. on
+        // window-focus or reconnect, wired by the runner) drains it.
+        enqueueSection2(submission);
+        throw err;
+      }
+    },
+    [sessions],
+  );
+
+  // Drains the localStorage queue. Returns an array of results — each
+  // entry pairs the sessionId with either the API response or an error.
+  // Caller decides whether to retry on partial failure.
+  const flushSection2Queue = useCallback(async () => {
+    const queue = loadSection2Queue();
+    if (queue.length === 0) return [] as Array<{ sessionId: string; ok: boolean }>;
+    const results: Array<{ sessionId: string; ok: boolean }> = [];
+    const remaining: QueuedSubmission[] = [];
+    for (const submission of queue) {
+      try {
+        await api.section2.submitAttempts({
+          sessionId: submission.sessionId,
+          testKey: submission.testKey,
+          attempts: submission.attempts,
+        });
+        results.push({ sessionId: submission.sessionId, ok: true });
+      } catch {
+        remaining.push(submission);
+        results.push({ sessionId: submission.sessionId, ok: false });
+      }
+    }
+    saveSection2Queue(remaining);
+    return results;
+  }, []);
+
   const toggleFlag = useCallback(
     (sessionId: string, questionNumber: number) => {
       setSessions((prev) =>
@@ -242,6 +358,8 @@ export default function useTestSession() {
     startSession,
     setAnswer,
     setSection2Answer,
+    submitSection2Attempts,
+    flushSection2Queue,
     toggleFlag,
     completeSession,
     abandonSession,

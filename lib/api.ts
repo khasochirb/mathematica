@@ -152,6 +152,25 @@ export const api = {
         body: JSON.stringify(body),
       }).catch(() => ({ success: false })),
   },
+  section2: {
+    submitAttempts: (body: {
+      sessionId: string;
+      testKey: string;
+      attempts: Array<{
+        source: string;
+        slotAnswers: Record<string, string>;
+      }>;
+    }) =>
+      apiCall<{
+        ok: true;
+        attempts: number;
+        totalEarned: number;
+        totalMax: number;
+      }>("/api/section2/attempts", {
+        method: "POST",
+        body: JSON.stringify(body),
+      }),
+  },
 };
 
 // ─── Types ────────────────────────────────────────────────────────
