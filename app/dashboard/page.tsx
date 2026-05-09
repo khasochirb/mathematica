@@ -132,11 +132,11 @@ export default function DashboardPage() {
   // Focus banner sentence — interpolates accuracy + (correct/total).
   const focusBanner = weakest && (
     <>
-      {lang === "mn" ? "Одоогийн зөв хариулт: " : "Current accuracy: "}
+      {lang === "mn" ? "Одоогийн үнэлгээ " : "Current accuracy: "}
       <strong style={{ color: "var(--warn)" }}>{weakest.accuracy}%</strong>{" "}
-      ({weakest.correct}/{weakest.total}).{" "}
+      ({weakest.correct}/{weakest.total}){lang === "mn" ? " " : ". "}
       {lang === "mn"
-        ? "Энэ сэдэв дээр илүү дасгал хийвэл оноо мэдэгдэхүйцээр нэмэгдэнэ."
+        ? "Энэ сэдвээр илүү их дадлага хийх хэрэгтэй байна."
         : "More practice on this topic will move your score the most."}
     </>
   );
