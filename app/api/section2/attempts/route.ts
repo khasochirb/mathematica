@@ -3,9 +3,13 @@
 // POST /api/section2/attempts
 //   Body: { sessionId, testKey, attempts: [{ source, slotAnswers }, ...] }
 //
+// GET /api/section2/attempts?sessionId=<id>&testKey=<key>
+//   Returns the calling user's attempts for a single session, used by
+//   the results page (S2.6) to render per-subproblem ✓/✗ + scores.
+//
 // Auth: Bearer JWT in Authorization header (same as other routes).
-// 401 if missing/invalid; client may not claim correctness — server
-// recomputes is_correct via gradeSection2Subproblem (S2.3 logic).
+// 401 if missing/invalid; on POST the client may not claim correctness —
+// server recomputes is_correct via gradeSection2Subproblem (S2.3 logic).
 //
 // Storage: section2_attempts table (migration 006). Re-submission
 // within the same session (same user_id, test_key, problem,
@@ -164,4 +168,41 @@ export async function POST(req: NextRequest) {
       totalMax,
     },
   });
+}
+
+export async function GET(req: NextRequest) {
+  const user = await getAuthUser(req);
+  if (!user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const url = new URL(req.url);
+  const sessionId = (url.searchParams.get("sessionId") ?? "").trim();
+  const testKey = (url.searchParams.get("testKey") ?? "").trim().toUpperCase();
+  if (!sessionId) {
+    return NextResponse.json(
+      { error: "sessionId required" },
+      { status: 400 },
+    );
+  }
+
+  const admin = createAdminClient();
+  let query = admin
+    .from("section2_attempts")
+    .select(
+      "test_key, problem, subproblem, slot_answers, is_correct, points_earned, points_max",
+    )
+    .eq("user_id", user.id)
+    .eq("session_id", sessionId);
+  if (testKey) query = query.eq("test_key", testKey);
+
+  const { data, error } = await query;
+  if (error) {
+    return NextResponse.json(
+      { error: error.message ?? "Database read failed" },
+      { status: 500 },
+    );
+  }
+
+  return NextResponse.json({ data: { attempts: data ?? [] } });
 }

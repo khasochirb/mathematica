@@ -17,9 +17,11 @@ import {
 import QuestionCard from "@/components/esh/QuestionCard";
 import SimilarQuestionsPanel from "@/components/esh/SimilarQuestionsPanel";
 import TopicBreakdownChart from "@/components/esh/TopicBreakdownChart";
+import Section2Results from "@/components/esh/Section2Results";
 import useTestSession from "@/lib/use-test-session";
 import { getTestQuestions, getTestInfo, TOPIC_LABELS } from "@/lib/esh-questions";
 import type { Question } from "@/lib/esh-questions";
+import { hasSection2 } from "@/lib/esh-section2";
 import { useAuth } from "@/lib/auth-context";
 import { useUpgradeModal } from "@/lib/upgrade-modal-context";
 
@@ -41,7 +43,7 @@ export default function TestResultsPage() {
   const sessionId = searchParams.get("session") || "";
 
   const testSession = useTestSession();
-  const { isSubscribed } = useAuth();
+  const { user, isSubscribed } = useAuth();
   const upgrade = useUpgradeModal();
   const [mounted, setMounted] = useState(false);
   const [expandedQuestions, setExpandedQuestions] = useState<Set<number>>(new Set());
@@ -371,6 +373,15 @@ export default function TestResultsPage() {
             </div>
           )}
         </div>
+
+        {hasSection2(testKey) && (
+          <Section2Results
+            testKey={testKey}
+            sessionId={sessionId}
+            localAnswers={session.section2Answers ?? {}}
+            isAuthed={!!user}
+          />
+        )}
       </div>
     </div>
   );

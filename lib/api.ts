@@ -170,6 +170,20 @@ export const api = {
         method: "POST",
         body: JSON.stringify(body),
       }),
+    getAttempts: (sessionId: string, testKey: string) =>
+      apiCall<{
+        attempts: Array<{
+          test_key: string;
+          problem: string;
+          subproblem: number;
+          slot_answers: Record<string, string>;
+          is_correct: boolean;
+          points_earned: number;
+          points_max: number;
+        }>;
+      }>(
+        `/api/section2/attempts?sessionId=${encodeURIComponent(sessionId)}&testKey=${encodeURIComponent(testKey)}`,
+      ),
   },
 };
 
