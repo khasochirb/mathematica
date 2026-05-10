@@ -1,0 +1,75 @@
+{
+  "total": 124,
+  "section_1": 84,
+  "section_2": 40,
+  "per_year": {
+    "2024": {
+      "s1": 32,
+      "s2": 16
+    },
+    "2025": {
+      "s1": 12,
+      "s2": 4
+    },
+    "2023": {
+      "s1": 12,
+      "s2": 8
+    },
+    "2022": {
+      "s1": 16,
+      "s2": 4
+    },
+    "2021": {
+      "s1": 12,
+      "s2": 8
+    }
+  },
+  "per_test": {
+    "2024A": 12,
+    "2024B": 12,
+    "2024C": 12,
+    "2024D": 12,
+    "2025A": 4,
+    "2025B": 4,
+    "2025C": 4,
+    "2025D": 4,
+    "2023A": 5,
+    "2023B": 5,
+    "2023C": 5,
+    "2023D": 5,
+    "2022A": 5,
+    "2022B": 5,
+    "2022C": 5,
+    "2022D": 5,
+    "2021A": 5,
+    "2021B": 5,
+    "2021C": 5,
+    "2021D": 5
+  },
+  "figure_types": {
+    "chart": 8,
+    "geometry": 44,
+    "3d": 20,
+    "graph": 28,
+    "diagram": 24
+  },
+  "estimated_unique_post_dedup": 115,
+  "composite_figures": {
+    "policy": "Kept as composite single-PNG blocks for v1 (no per-option splitting). Phase 2 crops the entire reference + sub-options block as one PNG; Phase 4 renders it inline like any other figure. Splitting per-option deferred to v1.1.",
+    "instances": [
+      {
+        "test_pattern": "2023 Q3 (A/B/C/D)",
+        "description": "Reference vector + 5 sub-fig candidate vectors A-E (multiple-choice \"which is opposite to a\")"
+      },
+      {
+        "test_pattern": "2025 Q13 (A/B/C/D)",
+        "description": "Reference linear graph y=ax+b + 5 sub-fig parabola candidates A-E (multiple-choice \"which y=ax²+bx is possible\")"
+      },
+      {
+        "test_pattern": "2025 2.4 (A/B/C/D)",
+        "description": "Two cone views side-by-side (frustum + full cone with shaded internal frustum) — both are inseparable for the problem"
+      }
+    ],
+    "count_entries": 12
+  }
+}

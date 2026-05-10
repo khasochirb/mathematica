@@ -1,0 +1,92 @@
+{
+  "_doc": "Override crop boxes for cases where pdfimages doesn't yield 1 PNG per audit entry. Three categories: (1) workspace cover-page filtering, (2) composite figures rendered as multi-image, (3) scanned PDFs (2021 BCD).",
+  "_bbox_format": "[x0, y0, x1, y1] in pixel coords. For 'page_jpeg' source, coords are in the embedded page-JPEG's pixel space (typically 1275×1650 for 2021 BCD). For 'render' source, coords are in pixels at the given render DPI (200).",
+
+  "skip_pages": {
+    "_doc": "Pages to skip entirely beyond the cover page-1. 2022B has 9 pages with formula sheet on pages 1-2.",
+    "2022B": [2]
+  },
+
+  "render_overrides": [
+    {
+      "test_pattern": "2023[A-D]",
+      "page": 2,
+      "_doc": "Page 2 has Q3 (composite vector multi-choice) and Q8 (circle figure). Render at 200dpi (1654x2339), crop two regions.",
+      "entries": [
+        {"questionNumber": 3, "bbox": [80, 530, 1500, 1180], "comment": "Q3 composite: reference vector ā + 5 sub-fig candidates A-E (2 rows). y_min covers ref vector inline with question text."},
+        {"questionNumber": 8, "bbox": [400, 1820, 1100, 2280], "comment": "Q8 circle with inscribed angle"}
+      ]
+    },
+    {
+      "test_pattern": "2025[A-D]",
+      "page": 3,
+      "_doc": "Q13 composite at 200dpi (1654x2339): linear y=ax+b reference (right column) + 5 parabola sub-figs A-E (left). Single combined crop.",
+      "entries": [
+        {"questionNumber": 13, "bbox": [70, 720, 1540, 1500], "comment": "Q13 composite block (5 parabolas + linear reference)"}
+      ]
+    },
+    {
+      "test_pattern": "2025[A-D]",
+      "page": 8,
+      "_doc": "2.4 cone composite at 200dpi (1654x2339): frustum (left) + full cone (right) side-by-side.",
+      "entries": [
+        {"problem": "2.4", "bbox": [180, 1050, 1500, 1640], "comment": "2.4 cone composite (frustum + full cone)"}
+      ]
+    }
+  ],
+
+  "page_jpeg_overrides": [
+    {
+      "_doc": "2021B has formula sheet on page 1 → content pages 2-8. Bboxes calibrated against grid-overlay thumbnails of /tmp/figextract/2021B/pages/p-00X-Y.jpg.",
+      "test_pattern": "2021B",
+      "page": 4,
+      "entries": [{"questionNumber": 25, "bbox": [120, 840, 620, 1190], "comment": "Q25 triangle OAB"}]
+    },
+    {
+      "test_pattern": "2021B",
+      "page": 5,
+      "entries": [{"questionNumber": 29, "bbox": [100, 270, 580, 690], "comment": "Q29 transformation grid"}]
+    },
+    {
+      "test_pattern": "2021B",
+      "page": 6,
+      "entries": [{"questionNumber": 34, "bbox": [100, 260, 480, 590], "comment": "Q34 cube"}]
+    },
+    {
+      "test_pattern": "2021B",
+      "page": 7,
+      "entries": [{"problem": "2.1", "bbox": [100, 280, 420, 740], "comment": "2.1 cyclic quadrilateral"}]
+    },
+    {
+      "test_pattern": "2021B",
+      "page": 8,
+      "entries": [{"problem": "2.3", "bbox": [580, 460, 1110, 880], "comment": "2.3 cubic graph"}]
+    },
+    {
+      "_doc": "2021C and 2021D have NO formula sheet — content starts page 1, so page numbers shift -1 vs 2021A/B. Verified visually that 2021C page 5 cube position matches 2021B page 6 cube position (same bbox).",
+      "test_pattern": "2021[CD]",
+      "page": 3,
+      "entries": [{"questionNumber": 25, "bbox": [120, 840, 620, 1190], "comment": "Q25 triangle OAB"}]
+    },
+    {
+      "test_pattern": "2021[CD]",
+      "page": 4,
+      "entries": [{"questionNumber": 29, "bbox": [100, 270, 580, 690], "comment": "Q29 transformation grid"}]
+    },
+    {
+      "test_pattern": "2021[CD]",
+      "page": 5,
+      "entries": [{"questionNumber": 34, "bbox": [100, 260, 480, 590], "comment": "Q34 cube"}]
+    },
+    {
+      "test_pattern": "2021[CD]",
+      "page": 6,
+      "entries": [{"problem": "2.1", "bbox": [100, 280, 420, 740], "comment": "2.1 cyclic quadrilateral"}]
+    },
+    {
+      "test_pattern": "2021[CD]",
+      "page": 7,
+      "entries": [{"problem": "2.3", "bbox": [580, 460, 1110, 880], "comment": "2.3 cubic graph"}]
+    }
+  ]
+}

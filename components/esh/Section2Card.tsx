@@ -2,6 +2,7 @@
 
 import { useCallback, useMemo } from "react";
 import MathText from "./MathText";
+import EshFigure from "./EshFigure";
 import type { Section2Item, Slot } from "@/lib/esh-section2";
 import { parseSlotLabel } from "@/lib/esh-section2";
 
@@ -146,6 +147,15 @@ export default function Section2Card({
           style={{ color: "var(--fg-3)" }}
         >{item.points} оноо</span>
       </div>
+
+      {/* Figure: shown once per problem group at the top, above the
+          context. Only set on subproblem === 1 by wire-figures-to-json.py;
+          gated on showContext as well for defensive belt-and-suspenders. */}
+      {showContext && item.figure && (
+        <div className="mb-3">
+          <EshFigure {...item.figure} />
+        </div>
+      )}
 
       {showContext && item.context && (
         <div

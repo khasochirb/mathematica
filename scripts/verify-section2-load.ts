@@ -82,6 +82,22 @@ function assertItemShape(testKey: string, item: Section2Item, idx: number) {
       fail(sctx, `label "${slot.label}" has no letter portion`);
     }
   }
+  // Optional figure (Phase 3): if present, must have the full shape
+  // and only attaches to subproblem === 1.
+  if (item.figure !== undefined) {
+    const fctx = `${ctx} figure`;
+    if (item.subproblem !== 1) {
+      fail(fctx, `figure attached to subproblem ${item.subproblem}; should only be on subproblem 1`);
+    }
+    const f = item.figure;
+    if (typeof f.src !== "string" || !f.src.startsWith("/section2-figures/")) {
+      fail(fctx, `src must be /section2-figures/...; got ${JSON.stringify(f.src)}`);
+    }
+    if (typeof f.alt_mn !== "string" || f.alt_mn.length === 0) fail(fctx, "alt_mn missing");
+    if (typeof f.alt_en !== "string" || f.alt_en.length === 0) fail(fctx, "alt_en missing");
+    if (!Number.isInteger(f.width) || f.width <= 0) fail(fctx, `width invalid: ${f.width}`);
+    if (!Number.isInteger(f.height) || f.height <= 0) fail(fctx, `height invalid: ${f.height}`);
+  }
 }
 
 console.log("=== Section 2 loader ===");
@@ -174,6 +190,32 @@ if (!item2024B) {
     }
   }
 }
+
+console.log("");
+console.log("=== figure file existence (Phase 3) ===");
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+const REPO_ROOT = join(import.meta.dirname ?? __dirname, "..");
+let figureChecks = 0;
+let figureMissing = 0;
+for (const testKey of SECTION2_AUTHORED_KEYS) {
+  const items = getTestSection2(testKey);
+  if (!items) continue;
+  for (const item of items) {
+    if (!item.figure) continue;
+    figureChecks++;
+    // src is "/section2-figures/<file>" — strip leading slash, prepend REPO/public
+    const path = join(REPO_ROOT, "public", item.figure.src.replace(/^\//, ""));
+    if (!existsSync(path)) {
+      fail(
+        `${testKey} ${item.problem}.${item.subproblem} figure file`,
+        `not found at ${path}`,
+      );
+      figureMissing++;
+    }
+  }
+}
+ok(`figure refs resolve to existing files (${figureChecks} checked, ${figureMissing} missing)`);
 
 console.log("");
 if (failures > 0) {

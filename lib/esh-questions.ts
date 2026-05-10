@@ -33,6 +33,19 @@ import test2025bData from "@/data/questions/2025b.json";
 import test2025cData from "@/data/questions/2025c.json";
 import test2025dData from "@/data/questions/2025d.json";
 
+// Optional figure attached to a question. When present, the renderer
+// (QuestionCard / Section2Card) shows the PNG above the question body.
+// `src` is a URL relative to the public/ root. Variants share files via
+// the canonical naming in scripts/figures-byVersion.json — see
+// memory/figures.md.
+export interface Figure {
+  src: string;       // e.g. "/section1-figures/2024-Q5-A.png"
+  alt_mn: string;
+  alt_en: string;
+  width: number;     // intrinsic px, for next/image sizing
+  height: number;
+}
+
 export interface Question {
   source: string;
   testNumber: number;
@@ -46,6 +59,7 @@ export interface Question {
   options?: Record<string, string>;
   answer: string;
   solution: string;
+  figure?: Figure;
 }
 
 export interface TestInfo {

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import MathText from "./MathText";
+import EshFigure from "./EshFigure";
 import {
   CheckCircle2,
   XCircle,
@@ -281,6 +282,8 @@ export default function QuestionCard(props: QuestionCardProps) {
           }
         />
 
+        {question.figure && <EshFigure {...question.figure} />}
+
         <div className="q-math text-[15px] leading-relaxed mb-5" style={{ color: "var(--fg)" }}>
           <MathText text={question.body} />
         </div>
@@ -349,6 +352,8 @@ export default function QuestionCard(props: QuestionCardProps) {
             )
           }
         />
+
+        {question.figure && <EshFigure {...question.figure} />}
 
         <div className="q-math text-[15px] leading-relaxed mb-5" style={{ color: "var(--fg)" }}>
           <MathText text={question.body} />
@@ -516,6 +521,8 @@ export default function QuestionCard(props: QuestionCardProps) {
         subtopic={question.subtopic}
         difficulty={question.difficulty}
       />
+
+      {question.figure && <EshFigure {...question.figure} />}
 
       <div className="q-math text-[15px] leading-relaxed mb-5" style={{ color: "var(--fg)" }}>
         <MathText text={question.body} />

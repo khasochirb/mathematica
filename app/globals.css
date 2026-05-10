@@ -232,6 +232,39 @@
   cursor: default;
 }
 
+/* Question figures (Section 1 + Section 2). Used by EshFigure component.
+   Light: white card with subtle border. Dark: invert filter on the image
+   itself flips black-on-white line art to white-on-dark. The container
+   stays transparent in dark so the inverted figure blends with the page.
+   Spec: max 480px on desktop (matches question-card width); full-width on
+   mobile. See memory/figures.md for the figure naming/sharing story. */
+.esh-figure-container {
+  display: block;
+  max-width: 480px;
+  margin: 0 auto 1.25rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+}
+
+[data-theme="dark"] .esh-figure-container,
+.dark .esh-figure-container {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: transparent;
+}
+
+.esh-figure-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+[data-theme="dark"] .esh-figure-image,
+.dark .esh-figure-image {
+  filter: invert(1) hue-rotate(180deg);
+}
+
 /* Mongolian vertical script */
 .mongolian-vertical {
   writing-mode: vertical-lr;

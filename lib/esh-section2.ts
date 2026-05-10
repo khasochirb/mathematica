@@ -38,6 +38,17 @@ export interface Slot {
   answer: string;
 }
 
+// Optional figure attached to a Section 2 problem. By convention the
+// figure is set on subproblem === 1 only and renders once per problem
+// group. See memory/figures.md.
+export interface Section2Figure {
+  src: string;       // e.g. "/section2-figures/2024-2.1-A.png"
+  alt_mn: string;
+  alt_en: string;
+  width: number;
+  height: number;
+}
+
 export interface Section2Item {
   source: string;
   test: string;
@@ -50,6 +61,7 @@ export interface Section2Item {
   slots: Slot[];
   points: number;
   solution: string;
+  figure?: Section2Figure;
 }
 
 const SECTION2_BY_KEY: Record<string, Section2Item[]> = {
