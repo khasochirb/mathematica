@@ -9,6 +9,7 @@ import {
   BookOpen,
 } from "lucide-react";
 import MathText from "./MathText";
+import EshFigure from "./EshFigure";
 import {
   getTestSection2,
   gradeSection2Subproblem,
@@ -238,6 +239,17 @@ export default function Section2Results({
                   {earned}/{max} оноо
                 </span>
               </div>
+
+              {/* Figure: rendered once per problem on the first
+                  subproblem (item.figure is only set on subproblem===1
+                  by wire-figures-to-json.py). Sits above the shared
+                  context block, mirroring the Section2Card layout in
+                  the runner so review-mode visual matches test-mode. */}
+              {subs[0]?.item.figure && (
+                <div className="mb-3">
+                  <EshFigure {...subs[0].item.figure} />
+                </div>
+              )}
 
               {subs[0]?.item.context && (
                 <div
