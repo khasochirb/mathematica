@@ -55,6 +55,7 @@ const i18n = {
   kpi_weak_scope: { en: "under 70% accuracy", mn: "70%-аас доош" },
   kpi_lowest:     { en: "Lowest",           mn: "Хамгийн бага" },
   kpi_none_weak:  { en: "Nothing under 70%", mn: "70%-аас доош сэдэв алга" },
+  kpi_weak_no_tests: { en: "Take a test to surface weak topics", mn: "Шалгалт өгсний дараа сул сэдвүүд гарах болно" },
 
   // Trajectory
   traj_h:         { en: "Score trajectory", mn: "Онооны өсөлт" },
@@ -69,6 +70,10 @@ const i18n = {
   rec_solid:      { en: "You're solid across the board.", mn: "Бүх сэдэв дээр сайн байна." },
   rec_no_data:    { en: "We'll start tracking weak topics and trends as soon as you complete one.",
                     mn: "Тестээ дуусгасны дараа сул сэдэв, чиглэлийг бид хянаж эхэлнэ." },
+  rec_no_tests_h: { en: "Take a practice test and check back.",
+                    mn: "Шалгалт өгөөд эргэж очоорой." },
+  rec_no_tests_p: { en: "The recommendation surfaces based on test results.",
+                    mn: "Шалгалтын үр дүн дээр үндэслэсэн зөвлөмж эндээс гарах болно." },
   rec_pacing:     { en: "Try a previous year test to confirm exam-day pacing.",
                     mn: "Шалгалтын хурдаа шалгахын тулд өмнөх жилийн тест хийгээрэй." },
   rec_attempt:    { en: "attempt",          mn: "дасгал" },
@@ -184,7 +189,15 @@ export default function AnalyticsPage() {
     : null;
   const projected = recentAvgPct !== null ? Math.min(800, Math.max(400, Math.round(recentAvgPct * 8))) : null;
 
-  const weakTopics = topicStats.filter((t) => t.accuracy < 70 && t.total >= 3);
+  // Weak-topic recommendation reads from TEST sessions only — topic-drill
+  // misses are excluded so a student who drills Algebra heavily doesn't get
+  // told "Algebra is your weakness" when their real weakness shows on tests.
+  // Accidental-quit sessions are filtered out (see isAccidentalQuit). No
+  // minimum-attempts threshold: a single low-accuracy topic on one test is
+  // a real signal worth surfacing.
+  const testTopicStats = ts.getTestBasedTopicStats();
+  const hasQualifyingTests = ts.hasQualifyingTestData();
+  const weakTopics = testTopicStats.filter((t) => t.accuracy < 70);
 
   // Build score trajectory from completed sessions, oldest → newest.
   const trajectory = useMemo(() => {
@@ -375,7 +388,7 @@ export default function AnalyticsPage() {
               {[
                 { key: "accuracy" as const, lbl: t("kpi_accuracy"), val: `${overall.accuracy}`, suffix: "%" },
                 { key: "tests" as const, lbl: t("kpi_tests"), val: `${completed.length}`, suffix: "" },
-                { key: "weak" as const, lbl: t("kpi_weak"), val: `${weakTopics.length}`, suffix: ` / ${topicStats.length || 0}` },
+                { key: "weak" as const, lbl: t("kpi_weak"), val: `${weakTopics.length}`, suffix: ` / ${testTopicStats.length || 0}` },
               ].map((s, i) => (
                 <div
                   key={s.key}
@@ -394,9 +407,11 @@ export default function AnalyticsPage() {
                         ? latestSession
                           ? `${t("kpi_latest")}: ${latestPct}% · ${formatRelative(latestSession.completedAt || latestSession.startedAt, langKey)} · ${t("kpi_tests_scope")}`
                           : t("kpi_no_tests")
-                        : weakTopics.length > 0
-                          ? `${t("kpi_lowest")}: ${TOPIC_LABELS[weakTopics[0].topic] || weakTopics[0].topic} · ${t("kpi_weak_scope")}`
-                          : t("kpi_none_weak")}
+                        : !hasQualifyingTests
+                          ? t("kpi_weak_no_tests")
+                          : weakTopics.length > 0
+                            ? `${t("kpi_lowest")}: ${TOPIC_LABELS[weakTopics[0].topic] || weakTopics[0].topic} · ${t("kpi_weak_scope")}`
+                            : t("kpi_none_weak")}
                   </div>
                 </div>
               ))}
@@ -489,8 +504,8 @@ export default function AnalyticsPage() {
                   <h4 className="serif mt-1.5" style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--accent)" }}>
                     {weakTopics.length > 0
                       ? `${t("rec_focus")} ${TOPIC_LABELS[weakTopics[0].topic] || weakTopics[0].topic}.`
-                      : completed.length === 0
-                        ? t("rec_first")
+                      : !hasQualifyingTests
+                        ? t("rec_no_tests_h")
                         : t("rec_solid")}
                   </h4>
                   <p className="mt-2 mb-4 text-sm" style={{ color: "var(--fg-1)" }}>
@@ -498,8 +513,8 @@ export default function AnalyticsPage() {
                       ? (langKey === "mn"
                           ? `Та ${weakTopics.length} сул сэдэв дээр ${weakTopics[0].accuracy}% байна. Дадлага хийгээд таамагласан оноогоо өсгөөрэй.`
                           : `You're at ${weakTopics[0].accuracy}% on ${weakTopics.length} weak topic${weakTopics.length === 1 ? "" : "s"}. Drill them to lift your projected score.`)
-                      : completed.length === 0
-                        ? t("rec_no_data")
+                      : !hasQualifyingTests
+                        ? t("rec_no_tests_p")
                         : t("rec_pacing")}
                   </p>
                   <div className="grid gap-2">

@@ -1,10 +1,33 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { getTestQuestions } from "./esh-questions";
+import { getTestQuestions, canonicalizeTopic, TOPIC_LABELS } from "./esh-questions";
 import type { Question } from "./esh-questions";
 import { getTestSection2 } from "./esh-section2";
 import { api } from "./api";
+
+// Accidental-quit heuristics. A "completed" session that fires in under 5
+// minutes with fewer than 5 answers is almost certainly an instant submit
+// (closed tab → recovery → click submit, or user opened a test and immediately
+// gave up). We exclude such sessions from the weak-topic recommendation so
+// 0/36 noise doesn't poison the signal.
+const ACCIDENTAL_QUIT_DURATION_MS = 5 * 60 * 1000;
+const ACCIDENTAL_QUIT_MIN_ANSWERS = 5;
+
+// Per-topic accuracy from completed practice-test sessions, with accidental
+// quits filtered out. Used by the analytics + dashboard "Recommended next"
+// card so the weak-topic suggestion reflects TEST performance only — never
+// topic-drill activity, which is selection-biased (a student who drills
+// Algebra heavily would otherwise be told their weakness is Algebra even
+// when they bomb Combinatorics on every real exam).
+export interface TestTopicStats {
+  topic: string;
+  label: string;
+  total: number;
+  correct: number;
+  incorrect: number;
+  accuracy: number;
+}
 
 // Section 2 submit-on-failure queue. Mirrors the queue pattern in
 // lib/use-performance.ts: if the POST to /api/section2/attempts fails
@@ -114,6 +137,24 @@ function scoreSession(session: TestSession, questions: Question[]): TestScore {
     skipped,
     accuracy: total > 0 ? Math.round((correct / total) * 100) : 0,
   };
+}
+
+// Heuristic for accidental quits. A completed session is "accidental" if its
+// duration was under ACCIDENTAL_QUIT_DURATION_MS and it has fewer than
+// ACCIDENTAL_QUIT_MIN_ANSWERS recorded. Both conditions must hold — a fast
+// session with many answers is a confident speed-runner, not noise. Abandoned
+// (forcibly-superseded) sessions also count as accidental defensively, but in
+// practice they never reach "completed" status.
+export function isAccidentalQuit(session: TestSession): boolean {
+  if (session.status === "abandoned") return true;
+  if (session.status !== "completed") return false;
+  const completed = session.completedAt ?? session.startedAt;
+  const duration = completed - session.startedAt;
+  const s1AnswerCount = Object.keys(session.answers ?? {}).length;
+  return (
+    duration < ACCIDENTAL_QUIT_DURATION_MS &&
+    s1AnswerCount < ACCIDENTAL_QUIT_MIN_ANSWERS
+  );
 }
 
 export default function useTestSession() {
@@ -322,6 +363,48 @@ export default function useTestSession() {
       .sort((a, b) => (b.completedAt || 0) - (a.completedAt || 0));
   }, [sessions]);
 
+  // Per-topic accuracy from completed practice-test sessions only.
+  // - Section 1: every answered question (correct or wrong) contributes.
+  //   Skipped questions don't count toward totals (they're not a data point).
+  // - Section 2: NOT aggregated per-topic — the Section 2 JSON has no topic
+  //   field per subproblem (multi-topic word problems). Section 2 still
+  //   feeds overall test accuracy through the session score.
+  // - Accidental quits (see ACCIDENTAL_QUIT_* constants) are dropped before
+  //   aggregation so a 30-second-test-then-submit doesn't poison the signal.
+  const getTestBasedTopicStats = useCallback((): TestTopicStats[] => {
+    const map: Record<string, { correct: number; total: number }> = {};
+    const qualifying = sessions.filter(
+      (s) => s.status === "completed" && !isAccidentalQuit(s),
+    );
+    for (const session of qualifying) {
+      const questions = getTestQuestions(session.testKey);
+      for (const q of questions) {
+        const userAnswer = session.answers[q.questionNumber];
+        if (!userAnswer) continue;
+        const topic = canonicalizeTopic(q.topic);
+        if (!map[topic]) map[topic] = { correct: 0, total: 0 };
+        map[topic].total++;
+        if (userAnswer === q.answer) map[topic].correct++;
+      }
+    }
+    return Object.entries(map)
+      .map(([topic, { correct, total }]) => ({
+        topic,
+        label: TOPIC_LABELS[topic] || topic,
+        total,
+        correct,
+        incorrect: total - correct,
+        accuracy: total > 0 ? Math.round((correct / total) * 100) : 0,
+      }))
+      .sort((a, b) => a.accuracy - b.accuracy);
+  }, [sessions]);
+
+  const hasQualifyingTestData = useCallback((): boolean => {
+    return sessions.some(
+      (s) => s.status === "completed" && !isAccidentalQuit(s),
+    );
+  }, [sessions]);
+
   const getSessionsByTest = useCallback(
     (testKey: string): TestSession[] => {
       return sessions
@@ -370,6 +453,8 @@ export default function useTestSession() {
     getSessionsByTest,
     getBestScore,
     getLatestSession,
+    getTestBasedTopicStats,
+    hasQualifyingTestData,
     clearAll,
   };
 }

@@ -48,6 +48,15 @@ const i18n = {
     en: "No clear weak topic right now. Keep taking tests to confirm.",
     mn: "Одоогоор ямар нэг сэдэв тодорхой сул гэж гарсангүй. Илүү шалгалт өгч баталгаажуулцгаая.",
   },
+  no_tests_eyebrow: { en: "Get started", mn: "Эхлэх" },
+  no_tests_h: {
+    en: "Take a practice test and check back.",
+    mn: "Шалгалт өгөөд эргэж очоорой.",
+  },
+  no_tests_p: {
+    en: "The recommendation surfaces based on test results.",
+    mn: "Шалгалтын үр дүн дээр үндэслэсэн зөвлөмж эндээс гарах болно.",
+  },
 
   analytics_eyebrow: {
     en: "Detailed analytics",
@@ -85,8 +94,13 @@ export default function DashboardPage() {
 
   const latestSession = completed[0];
   const latestPct = latestSession?.score?.accuracy ?? null;
-  const weakTopics = topicStats.filter((t) => t.accuracy < 70 && t.total >= 3);
-  const weakest = weakTopics.sort((a, b) => a.accuracy - b.accuracy)[0];
+  // Weak-topic recommendation reads from TEST sessions only — topic-drill
+  // misses are excluded so the focus card doesn't recommend the topic a
+  // student happens to drill instead of the one they struggle with on tests.
+  const testTopicStats = ts.getTestBasedTopicStats();
+  const hasQualifyingTests = ts.hasQualifyingTestData();
+  const weakTopics = testTopicStats.filter((t) => t.accuracy < 70);
+  const weakest = weakTopics[0]; // already sorted asc by accuracy
 
   const greeting =
     lang === "mn" ? (
@@ -324,7 +338,9 @@ export default function DashboardPage() {
                 </div>
               ) : (
                 <div className="card-edit p-6">
-                  <div className="eyebrow">{t("practice_eyebrow")}</div>
+                  <div className="eyebrow">
+                    {hasQualifyingTests ? t("practice_eyebrow") : t("no_tests_eyebrow")}
+                  </div>
                   <h3
                     className="serif mt-2"
                     style={{
@@ -334,10 +350,10 @@ export default function DashboardPage() {
                       color: "var(--fg)",
                     }}
                   >
-                    {doingWellHeading}
+                    {hasQualifyingTests ? doingWellHeading : t("no_tests_h")}
                   </h3>
                   <p className="text-[14px] mt-2" style={{ color: "var(--fg-1)" }}>
-                    {t("doing_well_p")}
+                    {hasQualifyingTests ? t("doing_well_p") : t("no_tests_p")}
                   </p>
                   <Link href="/practice/esh" className="btn btn-primary mt-5 self-start">
                     {t("focus_btn_practice")}
