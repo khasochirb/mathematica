@@ -16,19 +16,22 @@ const i18n = {
   mistakes: { en: "real exam questions", mn: "Жинхэнэ шалгалтын бодлогууд" },
   avg_lift: { en: "AI-generated practice problems", mn: "AI-аар үүсгэсэн дадлага бодлого" },
   feat_2_eye: { en: "Score prediction", mn: "Оноо таамаглал" },
-  feat_2_t: { en: "ЭЕШ score, before exam day.", mn: "Шалгалтаас өмнө ЭЕШ-ийн оноо." },
+  feat_2_t: {
+    en: "Predict your exam score in advance.",
+    mn: "Шалгалтын оноогоо урьдчилж таамаглаарай.",
+  },
   feat_2_s: {
-    en: "Our model translates your practice performance into an estimated ЭЕШ score with a 2σ confidence band. Watch it tighten as you study.",
-    mn: "Бидний загвар таны дадлагын үр дүнг ЭЕШ-ийн таамагласан онооны 2σ итгэлийн зурвас болгон хөрвүүлнэ. Суралцах тусам нарийсах болно.",
+    en: "Our model produces a precise score estimate based on your test and practice results. As you prepare for the exam, you can watch yourself improve.",
+    mn: "Бидний гаргасан модель, таны шалгалт болон дадлагын үр дүн дээр тулгуурлан нарийвчилсан таамаг дүнг гаргаж өгнө. Шалгалтдаа бэлдэхийн хажуугаар хэрхэн сайжирч буйгаа харах боломжтой.",
   },
   feat_3_eye: { en: "AI problem generator", mn: "AI бодлого үүсгэгч" },
   feat_3_t: {
-    en: "Learn from your mistakes, never miss again.",
-    mn: "Алдаагаа заавал засаж, дахин алдахгүй бай.",
+    en: "Fix your mistakes, don't repeat them.",
+    mn: "Алдаагаа засаж, дахин алдаагаа давтахгүй болцгооё.",
   },
   feat_3_s: {
-    en: "Generate many problems on any weak topic, with step-by-step solutions provided. If you miss a problem, we show you how to solve it and let you solve similar problems instantly to fill the gap.",
-    mn: "Сул сэдэв тус бүрд олон бодлого үүсгэж, алхам алхмаар бодолтыг харуулна. Алдаа гаргавал тухайн бодлогын шийдлийг харуулж, төстэй бодлогуудыг тэр даруй өгч сул талыг чинь нөхөнө.",
+    en: "We generate practice problems targeted at your weak topics and past mistakes — drill them to close the gap. Learning the solution path of a missed problem and solving similar ones builds the muscle to avoid the same mistake next time.",
+    mn: "Сул сэдэв болон алдсан бодлогууд дээр тулгуурлан дасгал бодлогууд үүсгэж, түүн дээрээ дадлага хийснээр сул байгаа хэсгээ нөхөж авна. Тухайн алдсан бодлогыг бодох арга замд сурлацан төстэй бодлогуудыг бодсоноор ахиж адилхан алдаа гарахгүй болох боломжтой.",
   },
   diaspora_eye: { en: "Multiple curricula", mn: "Олон хөтөлбөр" },
   diaspora_h: {
@@ -134,7 +137,7 @@ export default function HomePage() {
               className="flex items-center justify-between mb-4 uppercase"
               style={{ color: "var(--fg-2)", letterSpacing: "0.1em", fontSize: 10 }}
             >
-              <span>Sample report · Erdene B.</span>
+              <span>{lang === "mn" ? "Жишээ тайлан · Б. Эрдэнэ" : "Sample report · Erdene B."}</span>
               <span>· ЭЕШ</span>
             </div>
             <div className="flex items-end justify-between gap-5">
@@ -161,7 +164,7 @@ export default function HomePage() {
                   className="uppercase mt-1.5"
                   style={{ color: "var(--fg-2)", fontSize: 11, letterSpacing: "0.1em" }}
                 >
-                  Predicted ЭЕШ · ±18
+                  {lang === "mn" ? "Таамагласан ЭЕШ · ±18" : "Predicted ЭЕШ · ±18"}
                 </div>
               </div>
               <svg viewBox="0 0 160 60" width="160" height="60" preserveAspectRatio="none" style={{ opacity: 0.85 }}>
@@ -184,13 +187,22 @@ export default function HomePage() {
               </svg>
             </div>
             <div className="mt-5 pt-3.5" style={{ borderTop: "1px solid var(--line)" }}>
-              {[
-                { name: "Functions & Graphs", pct: 92, weak: false },
-                { name: "Trigonometry", pct: 84, weak: false },
-                { name: "Integration · definite", pct: 41, weak: true },
-                { name: "Sequences · limits", pct: 38, weak: true },
-                { name: "Probability", pct: 72, weak: false },
-              ].map((r, i) => (
+              {(lang === "mn"
+                ? [
+                    { name: "Функц ба график", pct: 92, weak: false },
+                    { name: "Тригонометр", pct: 84, weak: false },
+                    { name: "Тодорхой интеграл", pct: 41, weak: true },
+                    { name: "Дараалал · хязгаар", pct: 38, weak: true },
+                    { name: "Магадлал", pct: 72, weak: false },
+                  ]
+                : [
+                    { name: "Functions & Graphs", pct: 92, weak: false },
+                    { name: "Trigonometry", pct: 84, weak: false },
+                    { name: "Integration · definite", pct: 41, weak: true },
+                    { name: "Sequences · limits", pct: 38, weak: true },
+                    { name: "Probability", pct: 72, weak: false },
+                  ]
+              ).map((r, i) => (
                 <div
                   key={r.name}
                   className="grid items-center gap-3 py-2.5"
@@ -243,7 +255,7 @@ export default function HomePage() {
                 className="uppercase"
                 style={{ color: "var(--fg-2)", fontSize: 11, letterSpacing: "0.1em" }}
               >
-                Next up
+                {lang === "mn" ? "Дараагийнх" : "Next up"}
               </div>
               <div
                 className="serif mt-1"
@@ -254,7 +266,9 @@ export default function HomePage() {
                   : "5 problems on definite integration"}
               </div>
             </div>
-            <span className="badge-edit badge-accent live-dot">AI · ready</span>
+            <span className="badge-edit badge-accent live-dot">
+              {lang === "mn" ? "AI · бэлэн" : "AI · ready"}
+            </span>
           </div>
         </aside>
       </section>
@@ -340,19 +354,22 @@ export default function HomePage() {
         title={t("feat_2_t")}
         body={t("feat_2_s")}
         bullets={[
-          lang === "mn" ? "12 жилийн ЭЕШ-ийн үр дүнгээр шалгасан" : "Calibrated on 12 years of ЭЕШ outcomes",
-          lang === "mn" ? "Дадлагын тест бүрийн дараа шинэчлэгдэнэ" : "Updates after every practice test",
           lang === "mn"
-            ? "Шалгуулагч тус бүрт зориулсан долоо хоног тутамын ахицын репорт"
-            : "Personalized weekly progress report for each student",
+            ? "өмнөх жилүүдийн шалгалтын оноонууд дээр тулгуурласан"
+            : "Calibrated on past years of ЭЕШ scores",
+          lang === "mn"
+            ? "дадлага хийх бүрд таны оноо шинэчлэгдэнэ"
+            : "Your score updates with every practice session",
         ]}
         viz={
           <>
             <div className="flex justify-between items-baseline">
               <div className="serif" style={{ fontSize: 24, letterSpacing: "-0.02em" }}>
-                Projected ЭЕШ · 8 weeks
+                {lang === "mn" ? "Таамагласан ЭЕШ · 8 долоо хоног" : "Projected ЭЕШ · 8 weeks"}
               </div>
-              <span className="badge-edit badge-accent live-dot">tracking</span>
+              <span className="badge-edit badge-accent live-dot">
+                {lang === "mn" ? "хянагдаж байна" : "tracking"}
+              </span>
             </div>
             <svg viewBox="0 0 560 280" width="100%" height="280" style={{ marginTop: 8 }}>
               <defs>

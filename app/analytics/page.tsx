@@ -5,19 +5,131 @@ import Link from "next/link";
 import usePerformance from "@/lib/use-performance";
 import useTestSession from "@/lib/use-test-session";
 import { useAuth } from "@/lib/auth-context";
+import { useLang } from "@/lib/lang-context";
 import { getTestInfo, TOPIC_LABELS } from "@/lib/esh-questions";
 
-function formatRelative(ts: number): string {
+type Lang = "mn" | "en";
+
+const i18n = {
+  // Side nav
+  nav_sections:   { en: "Sections",          mn: "Хэсгүүд" },
+  nav_overview:   { en: "Overview",          mn: "Тойм" },
+  nav_topic:      { en: "Topic mastery",     mn: "Сэдвийн эзэмшил" },
+  nav_history:    { en: "Test history",      mn: "Тестийн түүх" },
+  nav_recent:     { en: "Recent attempts",   mn: "Сүүлийн дасгалууд" },
+  nav_mistakes:   { en: "Mistakes",          mn: "Алдаа" },
+  nav_actions:    { en: "Quick actions",     mn: "Шуурхай үйлдэл" },
+  nav_take_eesh:  { en: "Take an ЭЕШ test",  mn: "ЭЕШ тест өгөх" },
+  nav_prev:       { en: "Previous year tests", mn: "Өмнөх жилийн тестүүд" },
+  nav_hub:        { en: "Practice hub",      mn: "Дадлагын төв" },
+
+  // Head
+  head_eyebrow:   { en: "Performance analytics", mn: "Дэлгэрэнгүй мэдээлэл" },
+  head_projected: { en: "Projected",         mn: "Таамагласан" },
+  head_no_tests:  { en: "No tests yet",      mn: "Одоогоор тест байхгүй" },
+  cta_eesh:       { en: "Take an ЭЕШ test",  mn: "ЭЕШ тест өгөх" },
+  cta_prev:       { en: "Previous years",    mn: "Өмнөх жилүүд" },
+
+  // Empty state
+  empty_eye:      { en: "Get started",       mn: "Эхлэх" },
+  empty_t:        { en: "Take a test to see your analytics.", mn: "Тест өгснөөр дэлгэрэнгүй мэдээллээ үзнэ үү." },
+  empty_s:        { en: "Your projected score, weak topics, and mistakes show up here as soon as you complete a test.",
+                    mn: "Тестээ дуусгасны дараа таамагласан оноо, сул сэдэв, алдааны жагсаалт энд харагдана." },
+  empty_cta1:     { en: "Start an ЭЕШ test", mn: "ЭЕШ тест эхлэх" },
+  empty_cta2:     { en: "Previous year tests", mn: "Өмнөх жилийн тестүүд" },
+
+  // KPI band
+  kpi_projected:  { en: "Projected ЭЕШ score", mn: "Таамагласан ЭЕШ оноо" },
+  kpi_basis_pre:  { en: "Based on your last", mn: "Сүүлийн" },
+  kpi_basis_post: { en: "tests",              mn: "тестийн дундаж" },
+  kpi_basis_one:  { en: "test",               mn: "тест" },
+  kpi_basis_avg:  { en: "avg",                mn: "дундаж" },
+  kpi_accuracy:   { en: "Overall accuracy", mn: "Зөв хариулсан хувь" },
+  kpi_correct:    { en: "correct",          mn: "зөв" },
+  kpi_acc_scope:  { en: "across all attempts", mn: "бүх дасгалын дундаж" },
+  kpi_tests:      { en: "Tests completed",  mn: "Дуусгасан тест" },
+  kpi_tests_scope:{ en: "includes retries", mn: "давталттай" },
+  kpi_no_tests:   { en: "No completed tests yet", mn: "Дуусгасан тест байхгүй" },
+  kpi_latest:     { en: "Latest",           mn: "Сүүлд" },
+  kpi_weak:       { en: "Weak topics",      mn: "Сул сэдэв" },
+  kpi_weak_scope: { en: "under 70% accuracy", mn: "70%-аас доош" },
+  kpi_lowest:     { en: "Lowest",           mn: "Хамгийн бага" },
+  kpi_none_weak:  { en: "Nothing under 70%", mn: "70%-аас доош сэдэв алга" },
+
+  // Trajectory
+  traj_h:         { en: "Score trajectory", mn: "Онооны өсөлт" },
+  traj_legend:    { en: "Accuracy %",       mn: "Зөв хариулсан хувь" },
+  traj_empty:     { en: "Complete a test to plot your trajectory.",
+                    mn: "Графикийг үзэхийн тулд тест дуусгана уу." },
+
+  // Recommendations
+  rec_eye:        { en: "Recommended next", mn: "Дараагийнх" },
+  rec_focus:      { en: "Focus on",         mn: "Анхаарлаа төвлөрүүлэх сэдэв:" },
+  rec_first:      { en: "Take your first ЭЕШ test.", mn: "Анхны ЭЕШ тестээ өгөөрэй." },
+  rec_solid:      { en: "You're solid across the board.", mn: "Бүх сэдэв дээр сайн байна." },
+  rec_no_data:    { en: "We'll start tracking weak topics and trends as soon as you complete one.",
+                    mn: "Тестээ дуусгасны дараа сул сэдэв, чиглэлийг бид хянаж эхэлнэ." },
+  rec_pacing:     { en: "Try a previous year test to confirm exam-day pacing.",
+                    mn: "Шалгалтын хурдаа шалгахын тулд өмнөх жилийн тест хийгээрэй." },
+  rec_attempt:    { en: "attempt",          mn: "дасгал" },
+  rec_practice:   { en: "Practice",         mn: "Дадлага" },
+  rec_try_prev:   { en: "Try a previous year test →", mn: "Өмнөх жилийн тест хийх →" },
+
+  // Topic mastery
+  tm_h:           { en: "Topic mastery",    mn: "Сэдвийн эзэмшил" },
+  tm_tracked:     { en: "tracked",          mn: "хянагдсан" },
+  tm_attempts:    { en: "ATTEMPTS",         mn: "ДАСГАЛ" },
+  tm_empty:       { en: "No attempts recorded yet.", mn: "Дасгал бүртгэгдээгүй." },
+  tm_col_topic:   { en: "Topic",            mn: "Сэдэв" },
+  tm_col_mastery: { en: "Mastery",          mn: "Эзэмшил" },
+  tm_col_pct:     { en: "%",                mn: "%" },
+  tm_col_attempts:{ en: "Attempts",         mn: "Дасгал" },
+  tm_col_trend:   { en: "Recent trend",     mn: "Сүүлийн хандлага" },
+
+  // Recent tests
+  recent_h:       { en: "Recent tests",     mn: "Сүүлийн тестүүд" },
+  recent_take:    { en: "TAKE ANOTHER →",   mn: "ӨӨР ТЕСТ ӨГӨХ →" },
+  recent_empty:   { en: "No completed tests yet.", mn: "Дуусгасан тест байхгүй." },
+  recent_correct: { en: "correct",          mn: "зөв" },
+  recent_skipped: { en: "skipped",          mn: "хариулаагүй" },
+  recent_review:  { en: "REVIEW",           mn: "ҮЗЭХ" },
+
+  // Mistake library
+  mist_h:         { en: "Mistake library",  mn: "Алдааны сан" },
+  mist_recent:    { en: "MOST RECENT FIRST", mn: "СҮҮЛИЙН АЛДАА ЭХЭНДЭЭ" },
+  mist_offline:   { en: "Showing cached data — reconnecting…", mn: "Хадгалсан өгөгдлийг үзүүлж байна — холбогдож байна…" },
+  mist_empty:     { en: "No incorrect attempts yet — keep going.", mn: "Алдсан дасгал байхгүй — Үргэлжлүүл." },
+  mist_col_q:     { en: "Question",         mn: "Бодлого" },
+  mist_col_topic: { en: "Topic",            mn: "Сэдэв" },
+  mist_col_yours: { en: "Your answer",      mn: "Таны хариу" },
+  mist_col_correct:{ en: "Correct",         mn: "Зөв" },
+  mist_col_when:  { en: "When",             mn: "Хэзээ" },
+  mist_prev:      { en: "← Previous",       mn: "← Өмнөх" },
+  mist_next:      { en: "Next →",           mn: "Дараах →" },
+  mist_page:      { en: "PAGE",             mn: "ХУУДАС" },
+  mist_of:        { en: "OF",               mn: "/" },
+
+  // Trend arrows
+  trend_flat:     { en: "flat",             mn: "тогтвортой" },
+
+  // Relative-time
+  rel_just_now:   { en: "just now",         mn: "одоо" },
+  rel_min:        { en: "m ago",            mn: "м өмнө" },
+  rel_hr:         { en: "h ago",            mn: "ц өмнө" },
+  rel_day:        { en: "d ago",            mn: "ө өмнө" },
+} as const;
+
+function formatRelative(ts: number, lang: Lang): string {
   const diff = Date.now() - ts;
   const min = Math.floor(diff / 60_000);
-  if (min < 1) return "just now";
-  if (min < 60) return `${min}m ago`;
+  if (min < 1) return i18n.rel_just_now[lang];
+  if (min < 60) return `${min}${i18n.rel_min[lang]}`;
   const hr = Math.floor(min / 60);
-  if (hr < 24) return `${hr}h ago`;
+  if (hr < 24) return `${hr}${i18n.rel_hr[lang]}`;
   const day = Math.floor(hr / 24);
-  if (day < 7) return `${day}d ago`;
+  if (day < 7) return `${day}${i18n.rel_day[lang]}`;
   const d = new Date(ts);
-  return d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+  return d.toLocaleDateString(lang === "mn" ? "mn-MN" : undefined, { month: "short", day: "numeric" });
 }
 
 function formatTime(ts: number): string {
@@ -25,16 +137,19 @@ function formatTime(ts: number): string {
   return d.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
 }
 
-function trendArrow(delta: number): { text: string; color: string } {
+function trendArrow(delta: number, lang: Lang): { text: string; color: string } {
   if (delta > 1) return { text: `▲ +${delta}`, color: "var(--accent)" };
   if (delta < -1) return { text: `▼ ${delta}`, color: "var(--warn)" };
-  return { text: "∼ flat", color: "var(--fg-2)" };
+  return { text: `∼ ${i18n.trend_flat[lang]}`, color: "var(--fg-2)" };
 }
 
 export default function AnalyticsPage() {
   const perf = usePerformance();
   const ts = useTestSession();
   const { user } = useAuth();
+  const { lang } = useLang();
+  const langKey: Lang = lang === "mn" ? "mn" : "en";
+  const t = (key: keyof typeof i18n) => i18n[key][langKey];
 
   const overall = perf.getOverallStats();
   const topicStats = perf.getTopicStats();
@@ -57,10 +172,17 @@ export default function AnalyticsPage() {
 
   const latestSession = completed[0];
   const latestPct = latestSession?.score?.accuracy ?? null;
-  const bestPct = completed.length
-    ? Math.max(...completed.map((s) => s.score?.accuracy ?? 0))
+  // Project from the rolling average of the most recent N completed tests
+  // (capped at PROJECTION_WINDOW). Averaging across sessions smooths out
+  // single-test variance — one bad test no longer drags the projection down,
+  // one lucky test no longer inflates it. Falls back to whatever's available
+  // when count < N. Floor at 400 to match the ЭЕШ 400–800 reporting scale.
+  const PROJECTION_WINDOW = 5;
+  const recentN = Math.min(completed.length, PROJECTION_WINDOW);
+  const recentAvgPct = completed.length
+    ? completed.slice(0, PROJECTION_WINDOW).reduce((a, s) => a + (s.score?.accuracy ?? 0), 0) / recentN
     : null;
-  const projected = bestPct !== null ? Math.min(800, Math.round(bestPct * 8)) : null;
+  const projected = recentAvgPct !== null ? Math.min(800, Math.max(400, Math.round(recentAvgPct * 8))) : null;
 
   const weakTopics = topicStats.filter((t) => t.accuracy < 70 && t.total >= 3);
 
@@ -82,11 +204,11 @@ export default function AnalyticsPage() {
     for (const a of perf.attempts) {
       if (!map[a.topic]) map[a.topic] = { recent: [], prior: [] };
     }
-    for (const t of Object.keys(map)) {
-      const tAttempts = perf.attempts.filter((a) => a.topic === t);
+    for (const tk of Object.keys(map)) {
+      const tAttempts = perf.attempts.filter((a) => a.topic === tk);
       const split = Math.max(0, tAttempts.length - 5);
-      map[t].prior = tAttempts.slice(0, split).map((a) => (a.isCorrect ? 1 : 0));
-      map[t].recent = tAttempts.slice(split).map((a) => (a.isCorrect ? 1 : 0));
+      map[tk].prior = tAttempts.slice(0, split).map((a) => (a.isCorrect ? 1 : 0));
+      map[tk].recent = tAttempts.slice(split).map((a) => (a.isCorrect ? 1 : 0));
     }
     const out: Record<string, number> = {};
     for (const [topic, { recent, prior }] of Object.entries(map)) {
@@ -103,7 +225,7 @@ export default function AnalyticsPage() {
 
   const displayTopics = topicStats.map((s) => {
     const delta = topicTrends[s.topic] ?? 0;
-    const arrow = trendArrow(delta);
+    const arrow = trendArrow(delta, langKey);
     return {
       topic: s.topic,
       label: TOPIC_LABELS[s.topic] || s.label,
@@ -115,7 +237,7 @@ export default function AnalyticsPage() {
     };
   });
 
-  const displayName = user?.displayName || "Student";
+  const displayName = user?.displayName || (langKey === "mn" ? "Сурагч" : "Student");
 
   return (
     <div className="grid min-h-[calc(100vh-64px)] pt-16" style={{ gridTemplateColumns: "minmax(0, 240px) minmax(0, 1fr)", background: "var(--bg)" }}>
@@ -130,28 +252,28 @@ export default function AnalyticsPage() {
           borderRight: "1px solid var(--line)",
         }}
       >
-        <h5 className="eyebrow mb-2.5 px-2">Sections</h5>
+        <h5 className="eyebrow mb-2.5 px-2">{t("nav_sections")}</h5>
         {[
-          { label: "Overview", href: "#overview" },
-          { label: "Topic mastery", href: "#topic-mastery" },
-          { label: "Test history", href: "#test-history" },
-          { label: "Recent attempts", href: "#recent-attempts" },
-          { label: "Mistakes", href: "#mistakes" },
+          { label: t("nav_overview"), href: "#overview" },
+          { label: t("nav_topic"), href: "#topic-mastery" },
+          { label: t("nav_history"), href: "#test-history" },
+          { label: t("nav_recent"), href: "#recent-attempts" },
+          { label: t("nav_mistakes"), href: "#mistakes" },
         ].map((s) => (
-          <a key={s.label} href={s.href} className="block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
+          <a key={s.href} href={s.href} className="block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
             {s.label}
           </a>
         ))}
 
-        <h5 className="eyebrow mb-2.5 px-2 mt-5">Quick actions</h5>
+        <h5 className="eyebrow mb-2.5 px-2 mt-5">{t("nav_actions")}</h5>
         <Link href="/practice/esh" className="block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
-          Take an ЭЕШ test
+          {t("nav_take_eesh")}
         </Link>
         <Link href="/practice/esh/test?type=previous" className="block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
-          Previous year tests
+          {t("nav_prev")}
         </Link>
         <Link href="/practice" className="block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
-          Practice hub
+          {t("nav_hub")}
         </Link>
       </aside>
 
@@ -160,15 +282,15 @@ export default function AnalyticsPage() {
         {/* Head */}
         <div id="overview" className="flex items-end justify-between flex-wrap gap-6 pb-7" style={{ borderBottom: "1px solid var(--line)" }}>
           <div>
-            <div className="eyebrow">Performance analytics</div>
+            <div className="eyebrow">{t("head_eyebrow")}</div>
             <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(40px, 5vw, 56px)", letterSpacing: "-0.03em", margin: "8px 0 0", lineHeight: 1, color: "var(--fg)" }}>
               {projected !== null ? (
                 <>
-                  Projected {projected}
+                  {t("head_projected")} {projected}
                   <span className="mono" style={{ color: "var(--fg-3)", fontSize: 28, letterSpacing: 0 }}>/800</span>
                 </>
               ) : (
-                <>No tests yet</>
+                <>{t("head_no_tests")}</>
               )}
             </h1>
             <div className="mt-2.5 text-[13px]" style={{ color: "var(--fg-2)" }}>
@@ -176,8 +298,8 @@ export default function AnalyticsPage() {
             </div>
           </div>
           <div className="flex gap-2 items-center">
-            <Link href="/practice/esh" className="btn btn-line">Take an ЭЕШ test</Link>
-            <Link href="/practice/esh/test?type=previous" className="btn btn-primary">Previous years</Link>
+            <Link href="/practice/esh" className="btn btn-line">{t("cta_eesh")}</Link>
+            <Link href="/practice/esh/test?type=previous" className="btn btn-primary">{t("cta_prev")}</Link>
           </div>
         </div>
 
@@ -186,16 +308,16 @@ export default function AnalyticsPage() {
             className="card-edit p-10 mt-7 text-center"
             style={{ borderStyle: "dashed" }}
           >
-            <div className="eyebrow" style={{ color: "var(--accent)" }}>Get started</div>
+            <div className="eyebrow" style={{ color: "var(--accent)" }}>{t("empty_eye")}</div>
             <h2 className="serif mt-2" style={{ fontWeight: 400, fontSize: 28, letterSpacing: "-0.02em", color: "var(--fg)" }}>
-              Take a test to see your analytics.
+              {t("empty_t")}
             </h2>
             <p className="mt-2 mb-5 text-[14px]" style={{ color: "var(--fg-2)" }}>
-              Your projected score, weak topics, and mistakes show up here as soon as you complete a test.
+              {t("empty_s")}
             </p>
             <div className="flex gap-3 justify-center">
-              <Link href="/practice/esh" className="btn btn-primary">Start an ЭЕШ test</Link>
-              <Link href="/practice/esh/test?type=previous" className="btn btn-line">Previous year tests</Link>
+              <Link href="/practice/esh" className="btn btn-primary">{t("empty_cta1")}</Link>
+              <Link href="/practice/esh/test?type=previous" className="btn btn-line">{t("empty_cta2")}</Link>
             </div>
           </div>
         )}
@@ -208,7 +330,7 @@ export default function AnalyticsPage() {
               style={{ gridTemplateColumns: "minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)" }}
             >
               <div className="p-7" style={{ borderRight: "1px solid var(--line)" }}>
-                <div className="eyebrow mb-2.5">Projected ЭЕШ score</div>
+                <div className="eyebrow mb-2.5">{t("kpi_projected")}</div>
                 <div className="serif tabular" style={{ fontWeight: 400, fontSize: 72, letterSpacing: "-0.04em", lineHeight: 0.95, color: "var(--fg)" }}>
                   {projected ?? "—"}
                   {projected !== null && (
@@ -216,7 +338,9 @@ export default function AnalyticsPage() {
                   )}
                 </div>
                 <div className="mono mt-3" style={{ fontSize: 11, color: "var(--fg-2)", letterSpacing: "0.04em" }}>
-                  Based on your best test ({bestPct ?? 0}% accuracy)
+                  {recentAvgPct !== null
+                    ? `${t("kpi_basis_pre")} ${recentN} ${recentN === 1 ? t("kpi_basis_one") : t("kpi_basis_post")} · ${t("kpi_basis_avg")} ${Math.round(recentAvgPct)}%`
+                    : t("kpi_no_tests")}
                 </div>
                 {trajectory.length >= 2 && (
                   <svg viewBox="0 0 400 80" preserveAspectRatio="none" width="100%" height="80" style={{ marginTop: 16 }}>
@@ -249,12 +373,12 @@ export default function AnalyticsPage() {
                 )}
               </div>
               {[
-                { lbl: "Overall accuracy", val: `${overall.accuracy}`, suffix: "%" },
-                { lbl: "Tests completed", val: `${completed.length}`, suffix: "" },
-                { lbl: "Weak topics", val: `${weakTopics.length}`, suffix: ` / ${topicStats.length || 0}` },
+                { key: "accuracy" as const, lbl: t("kpi_accuracy"), val: `${overall.accuracy}`, suffix: "%" },
+                { key: "tests" as const, lbl: t("kpi_tests"), val: `${completed.length}`, suffix: "" },
+                { key: "weak" as const, lbl: t("kpi_weak"), val: `${weakTopics.length}`, suffix: ` / ${topicStats.length || 0}` },
               ].map((s, i) => (
                 <div
-                  key={s.lbl}
+                  key={s.key}
                   className="p-7"
                   style={{ borderRight: i < 2 ? "1px solid var(--line)" : "none" }}
                 >
@@ -264,15 +388,15 @@ export default function AnalyticsPage() {
                     {s.suffix && <span className="mono ml-1" style={{ fontSize: 20, color: "var(--fg-3)" }}>{s.suffix}</span>}
                   </div>
                   <div className="mono mt-3" style={{ fontSize: 11, color: "var(--fg-2)", letterSpacing: "0.04em" }}>
-                    {s.lbl === "Overall accuracy"
-                      ? `${overall.correct}/${overall.total} correct`
-                      : s.lbl === "Tests completed"
+                    {s.key === "accuracy"
+                      ? `${overall.correct}/${overall.total} ${t("kpi_correct")} · ${t("kpi_acc_scope")}`
+                      : s.key === "tests"
                         ? latestSession
-                          ? `Latest: ${latestPct}% · ${formatRelative(latestSession.completedAt || latestSession.startedAt)}`
-                          : "No completed tests yet"
+                          ? `${t("kpi_latest")}: ${latestPct}% · ${formatRelative(latestSession.completedAt || latestSession.startedAt, langKey)} · ${t("kpi_tests_scope")}`
+                          : t("kpi_no_tests")
                         : weakTopics.length > 0
-                          ? `Lowest: ${TOPIC_LABELS[weakTopics[0].topic] || weakTopics[0].topic}`
-                          : "Nothing under 70%"}
+                          ? `${t("kpi_lowest")}: ${TOPIC_LABELS[weakTopics[0].topic] || weakTopics[0].topic} · ${t("kpi_weak_scope")}`
+                          : t("kpi_none_weak")}
                   </div>
                 </div>
               ))}
@@ -283,16 +407,16 @@ export default function AnalyticsPage() {
               <div id="test-history" className="card-edit overflow-hidden">
                 <div className="px-5 py-4 flex items-center justify-between" style={{ borderBottom: "1px solid var(--line)" }}>
                   <h3 className="serif" style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--fg)" }}>
-                    Score trajectory · {trajectory.length} test{trajectory.length === 1 ? "" : "s"}
+                    {t("traj_h")} · {trajectory.length} {langKey === "mn" ? "тест" : (trajectory.length === 1 ? "test" : "tests")}
                   </h3>
                   <div className="mono uppercase flex gap-3" style={{ fontSize: 11, color: "var(--fg-2)", letterSpacing: "0.08em" }}>
-                    <span><span className="inline-block mr-1.5" style={{ width: 8, height: 8, background: "var(--accent)", borderRadius: 2 }} />Accuracy %</span>
+                    <span><span className="inline-block mr-1.5" style={{ width: 8, height: 8, background: "var(--accent)", borderRadius: 2 }} />{t("traj_legend")}</span>
                   </div>
                 </div>
                 <div className="p-5">
                   {trajectory.length === 0 && (
                     <div className="text-[13px] py-10 text-center" style={{ color: "var(--fg-2)" }}>
-                      Complete a test to plot your trajectory.
+                      {t("traj_empty")}
                     </div>
                   )}
                   {trajectory.length > 0 && (
@@ -343,7 +467,7 @@ export default function AnalyticsPage() {
                             {trajectory.map((p, i) => {
                               if (n > 8 && i % Math.ceil(n / 8) !== 0 && i !== n - 1) return null;
                               const d = new Date(p.ts);
-                              const lbl = d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+                              const lbl = d.toLocaleDateString(langKey === "mn" ? "mn-MN" : undefined, { month: "short", day: "numeric" });
                               return (
                                 <text key={i} x={xFor(i)} y={H - 12} textAnchor="middle">{lbl}</text>
                               );
@@ -361,20 +485,22 @@ export default function AnalyticsPage() {
                   className="card-edit p-6"
                   style={{ background: "var(--accent-wash)", borderColor: "var(--accent-line)" }}
                 >
-                  <div className="eyebrow" style={{ color: "var(--accent)" }}>Recommended next</div>
+                  <div className="eyebrow" style={{ color: "var(--accent)" }}>{t("rec_eye")}</div>
                   <h4 className="serif mt-1.5" style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--accent)" }}>
                     {weakTopics.length > 0
-                      ? `Focus on ${TOPIC_LABELS[weakTopics[0].topic] || weakTopics[0].topic}.`
+                      ? `${t("rec_focus")} ${TOPIC_LABELS[weakTopics[0].topic] || weakTopics[0].topic}.`
                       : completed.length === 0
-                        ? "Take your first ЭЕШ test."
-                        : "You're solid across the board."}
+                        ? t("rec_first")
+                        : t("rec_solid")}
                   </h4>
                   <p className="mt-2 mb-4 text-sm" style={{ color: "var(--fg-1)" }}>
                     {weakTopics.length > 0
-                      ? `You're at ${weakTopics[0].accuracy}% on ${weakTopics.length} weak topic${weakTopics.length === 1 ? "" : "s"}. Drill them to lift your projected score.`
+                      ? (langKey === "mn"
+                          ? `Та ${weakTopics.length} сул сэдэв дээр ${weakTopics[0].accuracy}% байна. Дадлага хийгээд таамагласан оноогоо өсгөөрэй.`
+                          : `You're at ${weakTopics[0].accuracy}% on ${weakTopics.length} weak topic${weakTopics.length === 1 ? "" : "s"}. Drill them to lift your projected score.`)
                       : completed.length === 0
-                        ? "We'll start tracking weak topics and trends as soon as you complete one."
-                        : "Try a previous year test to confirm exam-day pacing."}
+                        ? t("rec_no_data")
+                        : t("rec_pacing")}
                   </p>
                   <div className="grid gap-2">
                     {weakTopics.slice(0, 3).map((t) => (
@@ -390,7 +516,7 @@ export default function AnalyticsPage() {
                         <div>
                           <div style={{ color: "var(--fg)" }}>{TOPIC_LABELS[t.topic] || t.label}</div>
                           <div className="eyebrow" style={{ fontSize: 10 }}>
-                            {t.accuracy}% · {t.total} attempt{t.total === 1 ? "" : "s"}
+                            {t.accuracy}% · {t.total} {i18n.rec_attempt[langKey]}{langKey === "en" && t.total !== 1 ? "s" : ""}
                           </div>
                         </div>
                         <Link
@@ -398,7 +524,7 @@ export default function AnalyticsPage() {
                           className="btn btn-line"
                           style={{ fontSize: 12, padding: "7px 12px" }}
                         >
-                          Practice
+                          {i18n.rec_practice[langKey]}
                         </Link>
                       </div>
                     ))}
@@ -408,7 +534,7 @@ export default function AnalyticsPage() {
                         className="btn btn-primary"
                         style={{ fontSize: 12, padding: "9px 12px" }}
                       >
-                        Try a previous year test →
+                        {i18n.rec_try_prev[langKey]}
                       </Link>
                     )}
                   </div>
@@ -420,21 +546,21 @@ export default function AnalyticsPage() {
             <div id="topic-mastery" className="card-edit overflow-hidden mt-5">
               <div className="px-5 py-4 flex items-center justify-between" style={{ borderBottom: "1px solid var(--line)" }}>
                 <h3 className="serif" style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--fg)" }}>
-                  Topic mastery · {displayTopics.length} tracked
+                  {t("tm_h")} · {displayTopics.length} {t("tm_tracked")}
                 </h3>
                 <span className="mono" style={{ fontSize: 11, color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-                  {overall.total} ATTEMPT{overall.total === 1 ? "" : "S"}
+                  {overall.total} {t("tm_attempts")}
                 </span>
               </div>
               {displayTopics.length === 0 ? (
                 <div className="p-8 text-[13px] text-center" style={{ color: "var(--fg-2)" }}>
-                  No attempts recorded yet.
+                  {t("tm_empty")}
                 </div>
               ) : (
                 <table className="w-full" style={{ borderCollapse: "collapse" }}>
                   <thead>
                     <tr style={{ background: "var(--bg-2)" }}>
-                      {["Topic", "Mastery", "%", "Attempts", "Recent trend", ""].map((h) => (
+                      {[t("tm_col_topic"), t("tm_col_mastery"), t("tm_col_pct"), t("tm_col_attempts"), t("tm_col_trend"), ""].map((h) => (
                         <th
                           key={h}
                           className="mono uppercase text-left"
@@ -478,7 +604,7 @@ export default function AnalyticsPage() {
                           {t.trend}
                         </td>
                         <td style={{ padding: "12px 18px", fontSize: 12 }}>
-                          <Link href={`/practice/esh/learn/${t.topic}`} style={{ color: "var(--accent)" }}>Practice →</Link>
+                          <Link href={`/practice/esh/learn/${t.topic}`} style={{ color: "var(--accent)" }}>{i18n.rec_practice[langKey]} →</Link>
                         </td>
                       </tr>
                     ))}
@@ -491,13 +617,13 @@ export default function AnalyticsPage() {
             <div id="recent-attempts" className="card-edit overflow-hidden mt-5">
               <div className="px-5 py-4 flex items-center justify-between" style={{ borderBottom: "1px solid var(--line)" }}>
                 <h3 className="serif" style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--fg)" }}>
-                  Recent tests
+                  {t("recent_h")}
                 </h3>
-                <Link href="/practice/esh" className="mono" style={{ fontSize: 11, color: "var(--accent)", letterSpacing: "0.08em" }}>TAKE ANOTHER →</Link>
+                <Link href="/practice/esh" className="mono" style={{ fontSize: 11, color: "var(--accent)", letterSpacing: "0.08em" }}>{t("recent_take")}</Link>
               </div>
               {completed.length === 0 ? (
                 <div className="p-8 text-[13px] text-center" style={{ color: "var(--fg-2)" }}>
-                  No completed tests yet.
+                  {t("recent_empty")}
                 </div>
               ) : (
                 <div>
@@ -516,7 +642,7 @@ export default function AnalyticsPage() {
                         }}
                       >
                         <span className="mono" style={{ fontSize: 11, color: "var(--fg-3)", letterSpacing: "0.05em" }}>
-                          {formatRelative(completedAt)}
+                          {formatRelative(completedAt, langKey)}
                           <br />
                           <span style={{ fontSize: 10 }}>{formatTime(completedAt)}</span>
                         </span>
@@ -528,7 +654,7 @@ export default function AnalyticsPage() {
                           <strong>{info?.label || s.testKey}</strong>
                           {score && (
                             <span style={{ color: "var(--fg-2)" }}>
-                              {" · "}{score.correct}/{score.total} correct{score.skipped > 0 ? ` · ${score.skipped} skipped` : ""}
+                              {" · "}{score.correct}/{score.total} {t("recent_correct")}{score.skipped > 0 ? ` · ${score.skipped} ${t("recent_skipped")}` : ""}
                             </span>
                           )}
                         </span>
@@ -540,7 +666,7 @@ export default function AnalyticsPage() {
                           className="mono"
                           style={{ fontSize: 11, color: "var(--accent)", letterSpacing: "0.05em" }}
                         >
-                          REVIEW
+                          {t("recent_review")}
                         </Link>
                       </div>
                     );
@@ -553,10 +679,10 @@ export default function AnalyticsPage() {
             <div id="mistakes" className="card-edit overflow-hidden mt-5">
               <div className="px-5 py-4 flex items-center justify-between" style={{ borderBottom: "1px solid var(--line)" }}>
                 <h3 className="serif" style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--fg)" }}>
-                  Mistake library · {incorrectAttempts.length}
+                  {t("mist_h")} · {incorrectAttempts.length}
                 </h3>
                 <span className="mono" style={{ fontSize: 11, color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-                  MOST RECENT FIRST
+                  {t("mist_recent")}
                 </span>
               </div>
               {perf.isOffline && (
@@ -569,19 +695,19 @@ export default function AnalyticsPage() {
                     letterSpacing: "0.04em",
                   }}
                 >
-                  Showing cached data — reconnecting…
+                  {t("mist_offline")}
                 </div>
               )}
               {incorrectAttempts.length === 0 ? (
                 <div className="p-8 text-[13px] text-center" style={{ color: "var(--fg-2)" }}>
-                  No incorrect attempts yet — keep going.
+                  {t("mist_empty")}
                 </div>
               ) : (
                 <>
                   <table className="w-full" style={{ borderCollapse: "collapse" }}>
                     <thead>
                       <tr style={{ background: "var(--bg-2)" }}>
-                        {["Question", "Topic", "Your answer", "Correct", "When", ""].map((h) => (
+                        {[t("mist_col_q"), t("mist_col_topic"), t("mist_col_yours"), t("mist_col_correct"), t("mist_col_when"), ""].map((h) => (
                           <th
                             key={h}
                             className="mono uppercase text-left"
@@ -606,9 +732,9 @@ export default function AnalyticsPage() {
                           <td style={{ padding: "12px 18px", fontSize: 13, color: "var(--fg-2)" }}>{TOPIC_LABELS[m.topic] || m.topic}</td>
                           <td className="mono" style={{ padding: "12px 18px", fontSize: 13, color: "var(--danger)" }}>{m.selectedAnswer || "—"}</td>
                           <td className="mono" style={{ padding: "12px 18px", fontSize: 13, color: "var(--accent)" }}>{m.correctAnswer}</td>
-                          <td className="mono" style={{ padding: "12px 18px", fontSize: 12, color: "var(--fg-3)" }}>{formatRelative(m.timestamp)}</td>
+                          <td className="mono" style={{ padding: "12px 18px", fontSize: 12, color: "var(--fg-3)" }}>{formatRelative(m.timestamp, langKey)}</td>
                           <td style={{ padding: "12px 18px", fontSize: 12 }}>
-                            <Link href={`/practice/esh/learn/${m.topic}`} style={{ color: "var(--accent)" }}>Practice →</Link>
+                            <Link href={`/practice/esh/learn/${m.topic}`} style={{ color: "var(--accent)" }}>{i18n.rec_practice[langKey]} →</Link>
                           </td>
                         </tr>
                       ))}
@@ -626,10 +752,10 @@ export default function AnalyticsPage() {
                         disabled={safeMistakePage === 0}
                         onClick={() => setMistakePage((p) => Math.max(0, p - 1))}
                       >
-                        ← Previous
+                        {t("mist_prev")}
                       </button>
                       <span className="mono" style={{ fontSize: 11, color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-                        PAGE {safeMistakePage + 1} OF {mistakeTotalPages}
+                        {t("mist_page")} {safeMistakePage + 1} {t("mist_of")} {mistakeTotalPages}
                       </span>
                       <button
                         type="button"
@@ -638,7 +764,7 @@ export default function AnalyticsPage() {
                         disabled={safeMistakePage === mistakeTotalPages - 1}
                         onClick={() => setMistakePage((p) => Math.min(mistakeTotalPages - 1, p + 1))}
                       >
-                        Next →
+                        {t("mist_next")}
                       </button>
                     </div>
                   )}

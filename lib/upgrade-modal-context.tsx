@@ -211,12 +211,12 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
   const premiumLiveFeatures = useMemo(
     () => [
       {
-        en: "14 additional legacy practice tests",
-        mn: "14 нэмэлт дадлага тест",
+        en: "Additional practice tests created by experienced math teachers",
+        mn: "Туршлагатай математикийн багш нарын зохиосон нэмэлт дадлага тестүүд",
       },
       {
-        en: "Full step-by-step solutions for 2021–2023 + every legacy test",
-        mn: "2021–2023 он + нэмэлт тестийн бүрэн бодолт",
+        en: "Full solutions for the additional practice tests",
+        mn: "Нэмэлт дадлага тестүүдийн бүрэн бодолт",
       },
     ],
     [],

@@ -362,7 +362,13 @@ function SlotComparison({
     <div className="mb-4">
       <div className="eyebrow mb-2">Хариу</div>
       <div className="grid gap-1.5">
-        {item.slots.flatMap((slot) => {
+        {[...item.slots]
+          .sort((a, b) =>
+            parseSlotLabel(a.label).varPart.localeCompare(
+              parseSlotLabel(b.label).varPart,
+            ),
+          )
+          .flatMap((slot) => {
           const { prefix, varPart } = parseSlotLabel(slot.label);
           const correctVarDigits = slot.answer.slice(prefix.length).split("");
           return varPart.split("").map((letter, i) => {
