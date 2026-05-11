@@ -309,24 +309,32 @@ export default function useTestSession() {
 
   const completeSession = useCallback(
     (sessionId: string): TestSession | null => {
-      let completed: TestSession | null = null;
+      // Compute the completed value from the current sessions snapshot, then
+      // schedule the state update. Returning the value synchronously is
+      // critical for the Submit handler — it loops over the returned session's
+      // answers to write attempts. The previous implementation captured the
+      // value as a side-effect inside the React updater function, which only
+      // runs during the next render in React 18 (see React docs: "When you
+      // pass an updater function to set, React will call it later, during the
+      // next render"). That made `completed` null at return time and silently
+      // skipped the entire write fan-out (Bug introduced 2026-04-15 in commit
+      // a2df6bd; surfaced after 2026-05-11 device testing).
+      const current = sessions.find((s) => s.id === sessionId);
+      if (!current) return null;
+      const questions = getTestQuestions(current.testKey);
+      const score = scoreSession(current, questions);
+      const completed: TestSession = {
+        ...current,
+        completedAt: Date.now(),
+        score,
+        status: "completed",
+      };
       setSessions((prev) =>
-        prev.map((s) => {
-          if (s.id !== sessionId) return s;
-          const questions = getTestQuestions(s.testKey);
-          const score = scoreSession(s, questions);
-          completed = {
-            ...s,
-            completedAt: Date.now(),
-            score,
-            status: "completed",
-          };
-          return completed;
-        }),
+        prev.map((s) => (s.id === sessionId ? completed : s)),
       );
       return completed;
     },
-    [],
+    [sessions],
   );
 
   const abandonSession = useCallback((sessionId: string) => {

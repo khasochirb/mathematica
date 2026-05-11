@@ -21,7 +21,7 @@ import Section2Results from "@/components/esh/Section2Results";
 import useTestSession from "@/lib/use-test-session";
 import { getTestQuestions, getTestInfo, TOPIC_LABELS } from "@/lib/esh-questions";
 import type { Question } from "@/lib/esh-questions";
-import { hasSection2 } from "@/lib/esh-section2";
+import { hasSection2, getTestSection2, gradeSection2 } from "@/lib/esh-section2";
 import { useAuth } from "@/lib/auth-context";
 import { useUpgradeModal } from "@/lib/upgrade-modal-context";
 
@@ -120,7 +120,22 @@ export default function TestResultsPage() {
 
   const score = session.score;
   const duration = session.completedAt ? session.completedAt - session.startedAt : 0;
-  const scoreColor = score.accuracy >= 80 ? "var(--accent)" : score.accuracy >= 50 ? "var(--warn)" : "var(--danger)";
+
+  // Integrated overall score across Section 1 (MCQ) + Section 2 (fill-ins).
+  // Official ЭЕШ scoring: 72 pts max from Section 1 (2 pts × 36 MCQs) + 28 pts
+  // max from Section 2 (4 problems @ 7 pts) = 100 pts total. For tests without
+  // Section 2 (legacy 1A-7B), the headline falls back to 72-max framing.
+  const section1Earned = score.correct * 2;
+  const section1Max = score.total * 2;
+  const section2Items = getTestSection2(testKey) ?? [];
+  const section2HasContent = section2Items.length > 0;
+  const section2Grade = section2HasContent
+    ? gradeSection2(section2Items, session.section2Answers ?? {})
+    : { totalEarned: 0, totalMax: 0 };
+  const totalEarned = section1Earned + section2Grade.totalEarned;
+  const totalMax = section1Max + section2Grade.totalMax;
+  const totalPct = totalMax > 0 ? Math.round((totalEarned / totalMax) * 100) : 0;
+  const scoreColor = totalPct >= 80 ? "var(--accent)" : totalPct >= 50 ? "var(--warn)" : "var(--danger)";
 
   const filterButtons: { key: ViewFilter; label: string; count: number }[] = [
     { key: "all", label: "Бүгд", count: questions.length },
@@ -163,10 +178,16 @@ export default function TestResultsPage() {
                 className="serif tabular"
                 style={{ fontSize: "clamp(72px, 12vw, 120px)", color: scoreColor, letterSpacing: "-0.04em", lineHeight: 1 }}
               >
-                {score.accuracy}<span className="mono text-[24px]" style={{ color: "var(--fg-3)" }}>%</span>
+                {totalEarned}<span className="mono text-[24px]" style={{ color: "var(--fg-3)" }}>/{totalMax}</span>
               </div>
               <p className="mono text-[11px] mt-2 uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-                {score.correct}/{score.total} зөв
+                {totalPct}% нийт
+              </p>
+              <p className="mono text-[11px] mt-1 uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
+                {section1Earned}/{section1Max} Хэсэг 1
+                {section2HasContent && (
+                  <> · {section2Grade.totalEarned}/{section2Grade.totalMax} Хэсэг 2</>
+                )}
               </p>
             </div>
 
