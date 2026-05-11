@@ -117,6 +117,7 @@ export default function SimilarQuestionsPanel({
                 selectedAnswer: selected,
                 correctAnswer: correct,
                 isCorrect,
+                source: "drill",
               })
             }
             solutionsLocked={solutionsLocked}

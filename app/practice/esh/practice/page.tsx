@@ -150,6 +150,7 @@ export default function PracticePage() {
       selectedAnswer: selected,
       correctAnswer: correct,
       isCorrect,
+      source: "drill",
     });
     // Anonymous users: bump the per-topic counter. Hits the gate at the next
     // question render once the topic crosses ANON_PRACTICE_LIMIT.

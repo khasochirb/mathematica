@@ -206,6 +206,7 @@ export default function TestRunnerPage() {
             selectedAnswer: answer,
             correctAnswer: q.answer,
             isCorrect: answer === q.answer,
+            source: "test",
           });
         }
       }

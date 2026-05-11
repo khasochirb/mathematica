@@ -15,6 +15,12 @@ export interface AttemptRecord {
   correctAnswer: string;
   isCorrect: boolean;
   timestamp: number;
+  // Origin of the attempt: "test" for full practice-test sessions, "drill"
+  // for topic-drill / practice mode. Optional for back-compat with rows that
+  // existed before the source column was added — those load as undefined and
+  // are excluded from test-only stats (weak-topic recommendation, tests-completed
+  // count). New writes always populate this.
+  source?: "test" | "drill";
 }
 
 export interface TopicStats {
@@ -78,6 +84,7 @@ function toServerRow(attempt: AttemptRecord, userId: string) {
     subtopic: canonicalizeSubtopic(attempt.subtopic),
     answered_at: new Date(attempt.timestamp).toISOString(),
     time_spent_seconds: null,
+    source: attempt.source ?? null,
   };
 }
 
@@ -89,9 +96,11 @@ type ServerRow = {
   topic: string;
   subtopic: string | null;
   answered_at: string;
+  source: string | null;
 };
 
 function fromServerRow(r: ServerRow): AttemptRecord {
+  const src = r.source === "test" || r.source === "drill" ? r.source : undefined;
   return {
     questionSource: r.question_id,
     topic: r.topic,
@@ -100,6 +109,7 @@ function fromServerRow(r: ServerRow): AttemptRecord {
     correctAnswer: r.correct_answer,
     isCorrect: r.is_correct,
     timestamp: new Date(r.answered_at).getTime(),
+    source: src,
   };
 }
 
@@ -295,7 +305,7 @@ export default function usePerformance() {
         const supabase = createAuthedSupabaseClient(token);
         const { data, error } = await supabase
           .from("attempts")
-          .select("question_id,user_answer,correct_answer,is_correct,topic,subtopic,answered_at")
+          .select("question_id,user_answer,correct_answer,is_correct,topic,subtopic,answered_at,source")
           .eq("user_id", uid)
           .order("answered_at", { ascending: false })
           .limit(FETCH_LIMIT);
@@ -472,6 +482,82 @@ export default function usePerformance() {
     };
   }, [attempts]);
 
+  // Per-topic stats limited to attempts written from full practice-test
+  // sessions (source === "test"). Drives the weak-topic recommendation card
+  // on /analytics and /dashboard. Drill-mode attempts and legacy rows
+  // (source IS NULL) are excluded by design — they would bias the signal
+  // toward whatever topic the student happened to practice instead of the
+  // one they actually struggle with on tests.
+  const getTestOnlyTopicStats = useCallback((): TopicStats[] => {
+    const map: Record<string, { correct: number; total: number }> = {};
+    for (const a of attempts) {
+      if (a.source !== "test") continue;
+      if (!map[a.topic]) map[a.topic] = { correct: 0, total: 0 };
+      map[a.topic].total++;
+      if (a.isCorrect) map[a.topic].correct++;
+    }
+    return Object.entries(map)
+      .map(([topic, { correct, total }]) => ({
+        topic,
+        label: topicLabels[topic] || topic,
+        total,
+        correct,
+        incorrect: total - correct,
+        accuracy: total > 0 ? Math.round((correct / total) * 100) : 0,
+      }))
+      .sort((a, b) => a.accuracy - b.accuracy);
+  }, [attempts]);
+
+  // Sessions derived from server-stored test-mode attempts, grouped by
+  // test_id. Each derived session reports startedAt (min answered_at),
+  // completedAt (max answered_at), total, correct, accuracy. Sorted
+  // newest-first by completedAt. Accidental quits are filtered out using
+  // the same heuristic as the local-session path: duration < 5 min AND
+  // answer count < 5. Cross-device-safe — works on any device the user
+  // logs into because it reads from the synced attempts table.
+  const ACCIDENTAL_DURATION_MS = 5 * 60 * 1000;
+  const ACCIDENTAL_MIN_ANSWERS = 5;
+  const getTestOnlySessions = useCallback(() => {
+    const byTest: Record<
+      string,
+      { startedAt: number; completedAt: number; correct: number; total: number }
+    > = {};
+    for (const a of attempts) {
+      if (a.source !== "test") continue;
+      const testId = parseTestId(a.questionSource);
+      if (!testId) continue;
+      const entry = byTest[testId] ?? {
+        startedAt: a.timestamp,
+        completedAt: a.timestamp,
+        correct: 0,
+        total: 0,
+      };
+      entry.startedAt = Math.min(entry.startedAt, a.timestamp);
+      entry.completedAt = Math.max(entry.completedAt, a.timestamp);
+      entry.total++;
+      if (a.isCorrect) entry.correct++;
+      byTest[testId] = entry;
+    }
+    return Object.entries(byTest)
+      .map(([testId, s]) => ({
+        testKey: testId.replace(/^Test-/, ""),
+        startedAt: s.startedAt,
+        completedAt: s.completedAt,
+        total: s.total,
+        correct: s.correct,
+        accuracy: s.total > 0 ? Math.round((s.correct / s.total) * 100) : 0,
+      }))
+      .filter((s) => {
+        const duration = s.completedAt - s.startedAt;
+        return !(duration < ACCIDENTAL_DURATION_MS && s.total < ACCIDENTAL_MIN_ANSWERS);
+      })
+      .sort((a, b) => b.completedAt - a.completedAt);
+  }, [attempts]);
+
+  const hasTestOnlyData = useCallback((): boolean => {
+    return getTestOnlySessions().length > 0;
+  }, [getTestOnlySessions]);
+
   const getLastAttempt = useCallback(
     (questionSource: string): AttemptRecord | undefined => {
       const matching = attempts.filter((a) => a.questionSource === questionSource);
@@ -506,6 +592,9 @@ export default function usePerformance() {
     isOffline,
     recordAttempt,
     getTopicStats,
+    getTestOnlyTopicStats,
+    getTestOnlySessions,
+    hasTestOnlyData,
     getWeakTopics,
     getOverallStats,
     getLastAttempt,

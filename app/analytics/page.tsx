@@ -158,7 +158,14 @@ export default function AnalyticsPage() {
 
   const overall = perf.getOverallStats();
   const topicStats = perf.getTopicStats();
-  const completed = ts.getCompletedSessions();
+  // Server-derived test sessions: time-clustered groups of test-mode attempts,
+  // synced via Supabase so they survive a fresh-device login. Drives the
+  // "Tests completed" count, projection, trajectory, and Recent tests list.
+  const testSessions = perf.getTestOnlySessions();
+  // Local sessions are still used to look up Review links and Section 2
+  // metadata that only lives in localStorage. On a fresh device this list
+  // is empty — testSessions covers the cross-device displays.
+  const localSessions = ts.getCompletedSessions();
   const incorrectAttempts = useMemo(
     () => perf.attempts.filter((a) => !a.isCorrect).slice().reverse(),
     [perf.attempts],
@@ -173,43 +180,45 @@ export default function AnalyticsPage() {
     (safeMistakePage + 1) * MISTAKES_PER_PAGE,
   );
 
-  const hasData = overall.total > 0 || completed.length > 0;
+  const hasData = overall.total > 0 || testSessions.length > 0;
 
-  const latestSession = completed[0];
-  const latestPct = latestSession?.score?.accuracy ?? null;
+  const latestServerSession = testSessions[0];
+  const latestPct = latestServerSession?.accuracy ?? null;
   // Project from the rolling average of the most recent N completed tests
-  // (capped at PROJECTION_WINDOW). Averaging across sessions smooths out
-  // single-test variance — one bad test no longer drags the projection down,
-  // one lucky test no longer inflates it. Falls back to whatever's available
-  // when count < N. Floor at 400 to match the ЭЕШ 400–800 reporting scale.
+  // (capped at PROJECTION_WINDOW). Reads from server-derived sessions so a
+  // fresh-device login still surfaces the user's projected score. Averaging
+  // across sessions smooths out single-test variance — one bad test no
+  // longer drags it down, one lucky test no longer inflates. Floor at 400
+  // to match the ЭЕШ 400–800 reporting scale.
   const PROJECTION_WINDOW = 5;
-  const recentN = Math.min(completed.length, PROJECTION_WINDOW);
-  const recentAvgPct = completed.length
-    ? completed.slice(0, PROJECTION_WINDOW).reduce((a, s) => a + (s.score?.accuracy ?? 0), 0) / recentN
+  const recentN = Math.min(testSessions.length, PROJECTION_WINDOW);
+  const recentAvgPct = testSessions.length
+    ? testSessions.slice(0, PROJECTION_WINDOW).reduce((a, s) => a + s.accuracy, 0) / recentN
     : null;
   const projected = recentAvgPct !== null ? Math.min(800, Math.max(400, Math.round(recentAvgPct * 8))) : null;
 
-  // Weak-topic recommendation reads from TEST sessions only — topic-drill
-  // misses are excluded so a student who drills Algebra heavily doesn't get
-  // told "Algebra is your weakness" when their real weakness shows on tests.
-  // Accidental-quit sessions are filtered out (see isAccidentalQuit). No
-  // minimum-attempts threshold: a single low-accuracy topic on one test is
-  // a real signal worth surfacing.
-  const testTopicStats = ts.getTestBasedTopicStats();
-  const hasQualifyingTests = ts.hasQualifyingTestData();
+  // Weak-topic recommendation reads from TEST-mode server attempts only —
+  // drill-mode rows (source="drill") and legacy rows (source IS NULL) are
+  // excluded so a student who drills Algebra heavily doesn't get told
+  // "Algebra is your weakness" when their real weakness shows on tests.
+  // No minimum-attempts threshold per directive: a single low-accuracy
+  // topic on one test is a real signal worth surfacing.
+  const testTopicStats = perf.getTestOnlyTopicStats();
+  const hasQualifyingTests = perf.hasTestOnlyData();
   const weakTopics = testTopicStats.filter((t) => t.accuracy < 70);
 
-  // Build score trajectory from completed sessions, oldest → newest.
+  // Build score trajectory from server-derived test sessions, oldest → newest.
+  // Cross-device-safe — reads from synced attempts table.
   const trajectory = useMemo(() => {
-    return completed
+    return testSessions
       .slice()
       .reverse()
       .map((s) => ({
-        ts: s.completedAt || s.startedAt,
-        pct: s.score?.accuracy ?? 0,
+        ts: s.completedAt,
+        pct: s.accuracy,
         testKey: s.testKey,
       }));
-  }, [completed]);
+  }, [testSessions]);
 
   // Topic deltas: compare last 5 attempts vs prior attempts per topic.
   const topicTrends = useMemo(() => {
@@ -253,7 +262,7 @@ export default function AnalyticsPage() {
   const displayName = user?.displayName || (langKey === "mn" ? "Сурагч" : "Student");
 
   return (
-    <div className="grid min-h-[calc(100vh-64px)] pt-16" style={{ gridTemplateColumns: "minmax(0, 240px) minmax(0, 1fr)", background: "var(--bg)" }}>
+    <div className="grid min-h-[calc(100vh-64px)] pt-16 grid-cols-1 md:grid-cols-[minmax(0,240px)_minmax(0,1fr)]" style={{ background: "var(--bg)" }}>
       {/* Side nav */}
       <aside
         className="hidden md:block sticky overflow-y-auto"
@@ -337,13 +346,16 @@ export default function AnalyticsPage() {
 
         {hasData && (
           <>
-            {/* KPI band */}
-            <div
-              className="mt-7 grid card-edit overflow-hidden"
-              style={{ gridTemplateColumns: "minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)" }}
-            >
-              <div className="p-7" style={{ borderRight: "1px solid var(--line)" }}>
-                <div className="eyebrow mb-2.5">{t("kpi_projected")}</div>
+            {/* KPI band: 1 col mobile, 2 col tablet, 4 col desktop.
+                On mobile the projection card spans full width (single column
+                anyway); on tablet it spans both columns of row 1; on desktop
+                it returns to a single column with the original 1.4fr weighting. */}
+            <div className="mt-7 grid card-edit overflow-hidden grid-cols-1 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)]">
+              <div
+                className="p-7 sm:col-span-2 lg:col-span-1 border-b lg:border-b-0 lg:border-r"
+                style={{ borderColor: "var(--line)" }}
+              >
+                <div className="eyebrow mb-2.5" style={{ wordBreak: "break-word" }}>{t("kpi_projected")}</div>
                 <div className="serif tabular" style={{ fontWeight: 400, fontSize: 72, letterSpacing: "-0.04em", lineHeight: 0.95, color: "var(--fg)" }}>
                   {projected ?? "—"}
                   {projected !== null && (
@@ -387,38 +399,51 @@ export default function AnalyticsPage() {
               </div>
               {[
                 { key: "accuracy" as const, lbl: t("kpi_accuracy"), val: `${overall.accuracy}`, suffix: "%" },
-                { key: "tests" as const, lbl: t("kpi_tests"), val: `${completed.length}`, suffix: "" },
+                { key: "tests" as const, lbl: t("kpi_tests"), val: `${testSessions.length}`, suffix: "" },
                 { key: "weak" as const, lbl: t("kpi_weak"), val: `${weakTopics.length}`, suffix: ` / ${testTopicStats.length || 0}` },
-              ].map((s, i) => (
-                <div
-                  key={s.key}
-                  className="p-7"
-                  style={{ borderRight: i < 2 ? "1px solid var(--line)" : "none" }}
-                >
-                  <div className="eyebrow mb-2.5">{s.lbl}</div>
-                  <div className="serif tabular" style={{ fontSize: 44, lineHeight: 1, letterSpacing: "-0.03em", color: "var(--fg)" }}>
-                    {s.val}
-                    {s.suffix && <span className="mono ml-1" style={{ fontSize: 20, color: "var(--fg-3)" }}>{s.suffix}</span>}
+              ].map((s, i) => {
+                // Per-breakpoint border rules (line color from --line):
+                // - mobile (1 col): border-b between rows, none on last
+                // - tablet (2 col, projection above): accuracy & tests share row,
+                //   accuracy gets border-r, weak gets border-t (col-span-2 below)
+                // - desktop (4 col, all inline): all three get border-r except last
+                const cls = [
+                  "p-7",
+                  i < 2 && "border-b sm:border-b-0", // mobile only divider
+                  i === 0 && "sm:border-r", // accuracy gets right divider on tablet
+                  i === 2 && "sm:col-span-2 sm:border-t lg:col-span-1 lg:border-t-0", // weak full-width row on tablet
+                  i < 2 && "lg:border-r", // accuracy/tests get right divider on desktop
+                ]
+                  .filter(Boolean)
+                  .join(" ");
+                return (
+                  <div key={s.key} className={cls} style={{ borderColor: "var(--line)" }}>
+                    <div className="eyebrow mb-2.5" style={{ wordBreak: "break-word" }}>{s.lbl}</div>
+                    <div className="serif tabular" style={{ fontSize: 44, lineHeight: 1, letterSpacing: "-0.03em", color: "var(--fg)" }}>
+                      {s.val}
+                      {s.suffix && <span className="mono ml-1" style={{ fontSize: 20, color: "var(--fg-3)" }}>{s.suffix}</span>}
+                    </div>
+                    <div className="mono mt-3" style={{ fontSize: 11, color: "var(--fg-2)", letterSpacing: "0.04em", overflowWrap: "anywhere" }}>
+                      {s.key === "accuracy"
+                        ? `${overall.correct}/${overall.total} ${t("kpi_correct")} · ${t("kpi_acc_scope")}`
+                        : s.key === "tests"
+                          ? latestServerSession
+                            ? `${t("kpi_latest")}: ${latestPct}% · ${formatRelative(latestServerSession.completedAt, langKey)} · ${t("kpi_tests_scope")}`
+                            : t("kpi_no_tests")
+                          : !hasQualifyingTests
+                            ? t("kpi_weak_no_tests")
+                            : weakTopics.length > 0
+                              ? `${t("kpi_lowest")}: ${TOPIC_LABELS[weakTopics[0].topic] || weakTopics[0].topic} · ${t("kpi_weak_scope")}`
+                              : t("kpi_none_weak")}
+                    </div>
                   </div>
-                  <div className="mono mt-3" style={{ fontSize: 11, color: "var(--fg-2)", letterSpacing: "0.04em" }}>
-                    {s.key === "accuracy"
-                      ? `${overall.correct}/${overall.total} ${t("kpi_correct")} · ${t("kpi_acc_scope")}`
-                      : s.key === "tests"
-                        ? latestSession
-                          ? `${t("kpi_latest")}: ${latestPct}% · ${formatRelative(latestSession.completedAt || latestSession.startedAt, langKey)} · ${t("kpi_tests_scope")}`
-                          : t("kpi_no_tests")
-                        : !hasQualifyingTests
-                          ? t("kpi_weak_no_tests")
-                          : weakTopics.length > 0
-                            ? `${t("kpi_lowest")}: ${TOPIC_LABELS[weakTopics[0].topic] || weakTopics[0].topic} · ${t("kpi_weak_scope")}`
-                            : t("kpi_none_weak")}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
-            {/* Row 1: Score trajectory + Recommendations */}
-            <div className="grid gap-5 mt-5" style={{ gridTemplateColumns: "minmax(0,1.4fr) minmax(0,1fr)" }}>
+            {/* Row 1: Score trajectory + Recommendations — stacks on mobile/tablet,
+                 side-by-side on desktop. */}
+            <div className="grid gap-5 mt-5 grid-cols-1 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
               <div id="test-history" className="card-edit overflow-hidden">
                 <div className="px-5 py-4 flex items-center justify-between" style={{ borderBottom: "1px solid var(--line)" }}>
                   <h3 className="serif" style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--fg)" }}>
@@ -636,53 +661,60 @@ export default function AnalyticsPage() {
                 </h3>
                 <Link href="/practice/esh" className="mono" style={{ fontSize: 11, color: "var(--accent)", letterSpacing: "0.08em" }}>{t("recent_take")}</Link>
               </div>
-              {completed.length === 0 ? (
+              {testSessions.length === 0 ? (
                 <div className="p-8 text-[13px] text-center" style={{ color: "var(--fg-2)" }}>
                   {t("recent_empty")}
                 </div>
               ) : (
                 <div>
-                  {completed.slice(0, 8).map((s, i) => {
+                  {testSessions.slice(0, 8).map((s, i) => {
                     const info = getTestInfo(s.testKey);
-                    const completedAt = s.completedAt || s.startedAt;
-                    const score = s.score;
-                    const pct = score?.accuracy ?? 0;
+                    // Try to match a local session for the Review link. On a
+                    // fresh device this returns undefined and we degrade the
+                    // row to display-only (no Review).
+                    const localMatch = localSessions.find(
+                      (ls) =>
+                        ls.testKey === s.testKey &&
+                        Math.abs((ls.completedAt ?? ls.startedAt) - s.completedAt) < 60_000,
+                    );
                     return (
                       <div
-                        key={s.id}
+                        key={`${s.testKey}-${s.completedAt}`}
                         className="grid items-center gap-3.5 px-5 py-3.5 text-[13px]"
                         style={{
                           gridTemplateColumns: "100px 1fr auto auto",
-                          borderBottom: i < Math.min(7, completed.length - 1) ? "1px solid var(--line)" : "none",
+                          borderBottom: i < Math.min(7, testSessions.length - 1) ? "1px solid var(--line)" : "none",
                         }}
                       >
                         <span className="mono" style={{ fontSize: 11, color: "var(--fg-3)", letterSpacing: "0.05em" }}>
-                          {formatRelative(completedAt, langKey)}
+                          {formatRelative(s.completedAt, langKey)}
                           <br />
-                          <span style={{ fontSize: 10 }}>{formatTime(completedAt)}</span>
+                          <span style={{ fontSize: 10 }}>{formatTime(s.completedAt)}</span>
                         </span>
                         <span style={{ color: "var(--fg)" }}>
                           <span
                             className="inline-block mr-2"
-                            style={{ width: 8, height: 8, borderRadius: 99, background: pct >= 70 ? "var(--accent)" : pct >= 50 ? "var(--fg-2)" : "var(--warn)", verticalAlign: 1 }}
+                            style={{ width: 8, height: 8, borderRadius: 99, background: s.accuracy >= 70 ? "var(--accent)" : s.accuracy >= 50 ? "var(--fg-2)" : "var(--warn)", verticalAlign: 1 }}
                           />
                           <strong>{info?.label || s.testKey}</strong>
-                          {score && (
-                            <span style={{ color: "var(--fg-2)" }}>
-                              {" · "}{score.correct}/{score.total} {t("recent_correct")}{score.skipped > 0 ? ` · ${score.skipped} ${t("recent_skipped")}` : ""}
-                            </span>
-                          )}
+                          <span style={{ color: "var(--fg-2)" }}>
+                            {" · "}{s.correct}/{s.total} {t("recent_correct")}
+                          </span>
                         </span>
-                        <span className="mono tabular" style={{ fontSize: 13, color: pct >= 70 ? "var(--accent)" : pct >= 50 ? "var(--fg-1)" : "var(--warn)" }}>
-                          {pct}%
+                        <span className="mono tabular" style={{ fontSize: 13, color: s.accuracy >= 70 ? "var(--accent)" : s.accuracy >= 50 ? "var(--fg-1)" : "var(--warn)" }}>
+                          {s.accuracy}%
                         </span>
-                        <Link
-                          href={`/practice/esh/test/${s.testKey.toLowerCase()}/results?session=${s.id}`}
-                          className="mono"
-                          style={{ fontSize: 11, color: "var(--accent)", letterSpacing: "0.05em" }}
-                        >
-                          {t("recent_review")}
-                        </Link>
+                        {localMatch ? (
+                          <Link
+                            href={`/practice/esh/test/${s.testKey.toLowerCase()}/results?session=${localMatch.id}`}
+                            className="mono"
+                            style={{ fontSize: 11, color: "var(--accent)", letterSpacing: "0.05em" }}
+                          >
+                            {t("recent_review")}
+                          </Link>
+                        ) : (
+                          <span />
+                        )}
                       </div>
                     );
                   })}

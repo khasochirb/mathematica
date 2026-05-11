@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { ArrowRight, BarChart3, Calculator, Sparkles, Target } from "lucide-react";
 import usePerformance from "@/lib/use-performance";
-import useTestSession from "@/lib/use-test-session";
 import { useAuth } from "@/lib/auth-context";
 import { useLang } from "@/lib/lang-context";
 
@@ -80,25 +79,27 @@ const i18n = {
 
 export default function DashboardPage() {
   const perf = usePerformance();
-  const ts = useTestSession();
   const { user } = useAuth();
   const { lang } = useLang();
   const t = (key: keyof typeof i18n) => i18n[key][lang === "mn" ? "mn" : "en"];
 
   const overall = perf.getOverallStats();
   const topicStats = perf.getTopicStats();
-  const completed = ts.getCompletedSessions();
+  // Server-derived test sessions (cross-device-safe). Replaces the previous
+  // local-only ts.getCompletedSessions() for stats display so a fresh-device
+  // login still shows the correct "Tests completed" count and latest test.
+  const testSessions = perf.getTestOnlySessions();
 
-  const hasData = overall.total > 0 || completed.length > 0;
+  const hasData = overall.total > 0 || testSessions.length > 0;
   const userName = user?.displayName ?? "";
 
-  const latestSession = completed[0];
-  const latestPct = latestSession?.score?.accuracy ?? null;
-  // Weak-topic recommendation reads from TEST sessions only — topic-drill
-  // misses are excluded so the focus card doesn't recommend the topic a
+  const latestSession = testSessions[0];
+  const latestPct = latestSession?.accuracy ?? null;
+  // Weak-topic recommendation reads from TEST-mode server attempts only —
+  // drill rows excluded so the focus card doesn't recommend the topic the
   // student happens to drill instead of the one they struggle with on tests.
-  const testTopicStats = ts.getTestBasedTopicStats();
-  const hasQualifyingTests = ts.hasQualifyingTestData();
+  const testTopicStats = perf.getTestOnlyTopicStats();
+  const hasQualifyingTests = perf.hasTestOnlyData();
   const weakTopics = testTopicStats.filter((t) => t.accuracy < 70);
   const weakest = weakTopics[0]; // already sorted asc by accuracy
 
@@ -268,7 +269,7 @@ export default function DashboardPage() {
                     color: "var(--fg)",
                   }}
                 >
-                  {completed.length}
+                  {testSessions.length}
                 </div>
               </div>
               {latestPct !== null && (
@@ -292,11 +293,10 @@ export default function DashboardPage() {
               )}
             </section>
 
-            {/* Focus row */}
-            <section
-              className="grid gap-4 mt-5"
-              style={{ gridTemplateColumns: "minmax(0, 1.4fr) minmax(0, 1fr)" }}
-            >
+            {/* Focus row — single column on mobile/tablet so the weak-topic
+                 card (or empty-state copy) gets full width and Mongolian
+                 phrases don't wrap word-per-line. */}
+            <section className="grid gap-4 mt-5 grid-cols-1 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
               {/* Weakest topic */}
               {weakest ? (
                 <div
