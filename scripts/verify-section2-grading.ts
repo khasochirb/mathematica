@@ -148,37 +148,32 @@ console.log("=== literal-prefix case (2024B 2.4.2: slot 1e=10) ===");
 }
 
 console.log("");
-console.log("=== deliberate wrong case ===");
+console.log("=== deliberate all-wrong case (per-letter scoring: all-wrong → 0) ===");
 {
   const items = getTestSection2("2021A");
   const first = items?.[0];
   if (!first) {
     fail("2021A first item", "missing");
   } else {
-    const perfect: Record<string, string> = {};
+    // Flip every letter to a guaranteed-different digit so letterCorrect === 0
+    // and pointsEarned should be 0 under per-letter partial credit.
+    const allWrong: Record<string, string> = {};
     for (const slot of first.slots) {
-      Object.assign(perfect, decomposeAnswerToLetters(slot));
-    }
-    const letters = Object.keys(perfect);
-    if (letters.length === 0) {
-      fail("2021A first item", "no letters to flip");
-    } else {
-      const target = letters[0];
-      // Flip to a digit that's guaranteed different from the original.
-      const orig = perfect[target];
-      const flipped = orig === "9" ? "0" : "9";
-      const wrong = { ...perfect, [target]: flipped };
-      const grade = gradeSection2Subproblem(first, wrong);
-      if (grade.correct || grade.pointsEarned !== 0) {
-        fail(
-          `${first.source} flipped letter`,
-          `expected 0, got ${JSON.stringify(grade)}`,
-        );
-      } else {
-        ok(
-          `${first.source} — flipped "${target}" "${orig}"→"${flipped}", scored 0/${grade.pointsMax}`,
-        );
+      const real = decomposeAnswerToLetters(slot);
+      for (const [letter, digit] of Object.entries(real)) {
+        allWrong[letter] = digit === "9" ? "0" : "9";
       }
+    }
+    const grade = gradeSection2Subproblem(first, allWrong);
+    if (grade.correct || grade.pointsEarned !== 0) {
+      fail(
+        `${first.source} all-letters-flipped`,
+        `expected 0/${grade.pointsMax}, got ${JSON.stringify(grade)}`,
+      );
+    } else {
+      ok(
+        `${first.source} — all letters flipped, scored 0/${grade.pointsMax} (letterCorrect=${grade.letterCorrect}/${grade.letterTotal})`,
+      );
     }
   }
 }

@@ -30,9 +30,29 @@ check(`canonicalizeTopic("algebra")`, canonicalizeTopic("algebra"), "algebra");
 check(`canonicalizeTopic("Algebra")`, canonicalizeTopic("Algebra"), "algebra");
 check(`canonicalizeTopic("  algebra  ")`, canonicalizeTopic("  algebra  "), "algebra");
 check(`canonicalizeTopic("ALGEBRA")`, canonicalizeTopic("ALGEBRA"), "algebra");
-check(`canonicalizeTopic("Алгебр")`, canonicalizeTopic("Алгебр"), "other");
-check(`canonicalizeTopic("set_theory")`, canonicalizeTopic("set_theory"), "other");
-check(`canonicalizeTopic("Coordinate Geometry")`, canonicalizeTopic("Coordinate Geometry"), "other");
+// MN-cased aliases (updated 2026-05-12 — previously fell to "other")
+check(`canonicalizeTopic("Алгебр")`, canonicalizeTopic("Алгебр"), "algebra");
+check(`canonicalizeTopic("Геометр")`, canonicalizeTopic("Геометр"), "geometry");
+check(`canonicalizeTopic("Анализ")`, canonicalizeTopic("Анализ"), "calculus");
+// New canonical topics
+check(`canonicalizeTopic("set_theory")`, canonicalizeTopic("set_theory"), "set_theory");
+check(`canonicalizeTopic("linear_algebra")`, canonicalizeTopic("linear_algebra"), "linear_algebra");
+check(`canonicalizeTopic("arithmetic")`, canonicalizeTopic("arithmetic"), "arithmetic");
+check(`canonicalizeTopic("complex_numbers")`, canonicalizeTopic("complex_numbers"), "complex_numbers");
+// English aliases
+check(`canonicalizeTopic("Coordinate Geometry")`, canonicalizeTopic("Coordinate Geometry"), "geometry");
+check(`canonicalizeTopic("matrices")`, canonicalizeTopic("matrices"), "linear_algebra");
+check(`canonicalizeTopic("vectors")`, canonicalizeTopic("vectors"), "linear_algebra");
+check(`canonicalizeTopic("sets")`, canonicalizeTopic("sets"), "set_theory");
+check(`canonicalizeTopic("complex numbers")`, canonicalizeTopic("complex numbers"), "complex_numbers");
+check(`canonicalizeTopic("polynomials")`, canonicalizeTopic("polynomials"), "algebra");
+check(`canonicalizeTopic("sequences and series")`, canonicalizeTopic("sequences and series"), "sequences");
+// MN-cased aliases used in legacy JSON
+check(`canonicalizeTopic("Вектор")`, canonicalizeTopic("Вектор"), "linear_algebra");
+check(`canonicalizeTopic("Матриц")`, canonicalizeTopic("Матриц"), "linear_algebra");
+check(`canonicalizeTopic("Олонлог")`, canonicalizeTopic("Олонлог"), "set_theory");
+// Fallback behaviour preserved
+check(`canonicalizeTopic("nonsense_topic")`, canonicalizeTopic("nonsense_topic"), "other");
 check(`canonicalizeTopic("")`, canonicalizeTopic(""), "other");
 check(`canonicalizeTopic(null)`, canonicalizeTopic(null), "other");
 check(`canonicalizeTopic(undefined)`, canonicalizeTopic(undefined), "other");

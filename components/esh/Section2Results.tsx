@@ -203,6 +203,17 @@ export default function Section2Results({
             {correctCount}/{perSubproblem.length} зөв
           </p>
         </div>
+        <p
+          className="text-[11px] mt-3 pt-3"
+          style={{
+            color: "var(--fg-3)",
+            borderTop: "1px solid var(--line)",
+            lineHeight: 1.5,
+          }}
+        >
+          Дасгалын үнэлгээ үсэг тус бүрээр хэсэгчлэн оноо өгнө.
+          Жинхэнэ шалгалт илүү хатуу үнэлж болзошгүй.
+        </p>
       </div>
 
       {/* Per-problem cards */}

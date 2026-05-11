@@ -131,7 +131,37 @@ export default function TestResultsPage() {
   const section2HasContent = section2Items.length > 0;
   const section2Grade = section2HasContent
     ? gradeSection2(section2Items, session.section2Answers ?? {})
-    : { totalEarned: 0, totalMax: 0 };
+    : { totalEarned: 0, totalMax: 0, perSubproblem: [] };
+
+  // Per-letter counts for the Section 2 stat cards. Mirrors the
+  // gradeSection2Subproblem internal walk so the headline cards and the
+  // per-subproblem grades reflect the same numbers. Skipped = letter slot
+  // left empty by the student; wrong = filled but not matching.
+  let s2CorrectLetters = 0;
+  let s2WrongLetters = 0;
+  let s2SkippedLetters = 0;
+  if (section2HasContent) {
+    const answersBySource = session.section2Answers ?? {};
+    for (const item of section2Items) {
+      const letterAnswers = answersBySource[item.source] ?? {};
+      for (const slot of item.slots) {
+        // parseSlotLabel mirrored inline (avoid the extra import here).
+        const match = /^(\d*)([A-Za-z]+)$/.exec(slot.label);
+        const prefix = match?.[1] ?? "";
+        const varPart = match?.[2] ?? slot.label;
+        const correctDigits = slot.answer.slice(prefix.length).split("");
+        for (let i = 0; i < varPart.length; i++) {
+          const letter = varPart[i];
+          const userDigit = letterAnswers[letter] ?? "";
+          const correctDigit = correctDigits[i] ?? "";
+          if (userDigit === "") s2SkippedLetters++;
+          else if (userDigit === correctDigit) s2CorrectLetters++;
+          else s2WrongLetters++;
+        }
+      }
+    }
+  }
+
   const totalEarned = section1Earned + section2Grade.totalEarned;
   const totalMax = section1Max + section2Grade.totalMax;
   const totalPct = totalMax > 0 ? Math.round((totalEarned / totalMax) * 100) : 0;
@@ -191,26 +221,63 @@ export default function TestResultsPage() {
               </p>
             </div>
 
-            <div className="flex-1 grid grid-cols-2 sm:grid-cols-4 gap-3 w-full">
-              {[
-                { value: score.correct, label: "Зөв", color: "var(--accent)" },
-                { value: score.incorrect, label: "Буруу", color: "var(--danger)" },
-                { value: score.skipped, label: "Хариулаагүй", color: "var(--fg-2)" },
-                { value: formatDuration(duration), label: "Хугацаа", color: "var(--fg-2)" },
-              ].map((s) => (
-                <div
-                  key={s.label}
-                  className="text-center p-3 rounded-md"
-                  style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}
-                >
-                  <p className="serif tabular" style={{ fontSize: 22, color: s.color, letterSpacing: "-0.02em" }}>
-                    {s.value}
-                  </p>
-                  <p className="mono text-[10px] mt-0.5 uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
-                    {s.label}
-                  </p>
+            <div className="flex-1 w-full flex flex-col gap-3">
+              {/* Section 1 stat row — always shown */}
+              <div>
+                <div className="eyebrow mb-1.5" style={{ color: "var(--fg-3)" }}>
+                  Хэсэг 1
                 </div>
-              ))}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {[
+                    { value: score.correct, label: "Зөв", color: "var(--accent)" },
+                    { value: score.incorrect, label: "Буруу", color: "var(--danger)" },
+                    { value: score.skipped, label: "Хариулаагүй", color: "var(--fg-2)" },
+                    { value: formatDuration(duration), label: "Хугацаа", color: "var(--fg-2)" },
+                  ].map((s) => (
+                    <div
+                      key={s.label}
+                      className="text-center p-3 rounded-md"
+                      style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}
+                    >
+                      <p className="serif tabular" style={{ fontSize: 22, color: s.color, letterSpacing: "-0.02em" }}>
+                        {s.value}
+                      </p>
+                      <p className="mono text-[10px] mt-0.5 uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
+                        {s.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Section 2 stat row — letter-level counts, only when Section 2 exists */}
+              {section2HasContent && (
+                <div>
+                  <div className="eyebrow mb-1.5" style={{ color: "var(--fg-3)" }}>
+                    Хэсэг 2
+                  </div>
+                  <div className="grid grid-cols-3 gap-2">
+                    {[
+                      { value: s2CorrectLetters, label: "Зөв", color: "var(--accent)" },
+                      { value: s2WrongLetters, label: "Буруу", color: "var(--danger)" },
+                      { value: s2SkippedLetters, label: "Хариулаагүй", color: "var(--fg-2)" },
+                    ].map((s) => (
+                      <div
+                        key={s.label}
+                        className="text-center p-3 rounded-md"
+                        style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}
+                      >
+                        <p className="serif tabular" style={{ fontSize: 22, color: s.color, letterSpacing: "-0.02em" }}>
+                          {s.value}
+                        </p>
+                        <p className="mono text-[10px] mt-0.5 uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
+                          {s.label}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -92,8 +92,8 @@ const TESTS: TestInfo[] = [
 ];
 
 // 20 real ЭЕШ past papers (2021–2025). Free for all users.
-// Full step-by-step solutions free on every 2024 and 2025 variant (8 tests);
-// 2021–2023 solutions require Premium.
+// Full step-by-step solutions free on every 2021–2025 variant (20 tests).
+// Premium-gated solutions remain only on the 14 legacy practice tests (1A–7B).
 const PREVIOUS_YEAR_TESTS: TestInfo[] = [
   { key: "2025A", label: "ЭЕШ 2025 · Хувилбар А", data: test2025aData as Question[], isPremium: false, solutionsRequirePremium: false },
   { key: "2025B", label: "ЭЕШ 2025 · Хувилбар Б", data: test2025bData as Question[], isPremium: false, solutionsRequirePremium: false },
@@ -103,18 +103,18 @@ const PREVIOUS_YEAR_TESTS: TestInfo[] = [
   { key: "2024B", label: "ЭЕШ 2024 · Хувилбар Б", data: test2024bData as Question[], isPremium: false, solutionsRequirePremium: false },
   { key: "2024C", label: "ЭЕШ 2024 · Хувилбар В", data: test2024cData as Question[], isPremium: false, solutionsRequirePremium: false },
   { key: "2024D", label: "ЭЕШ 2024 · Хувилбар Г", data: test2024dData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2023A", label: "ЭЕШ 2023 · Хувилбар А", data: test2023aData as Question[], isPremium: false, solutionsRequirePremium: true },
-  { key: "2023B", label: "ЭЕШ 2023 · Хувилбар Б", data: test2023bData as Question[], isPremium: false, solutionsRequirePremium: true },
-  { key: "2023C", label: "ЭЕШ 2023 · Хувилбар В", data: test2023cData as Question[], isPremium: false, solutionsRequirePremium: true },
-  { key: "2023D", label: "ЭЕШ 2023 · Хувилбар Г", data: test2023dData as Question[], isPremium: false, solutionsRequirePremium: true },
-  { key: "2022A", label: "ЭЕШ 2022 · Хувилбар А", data: test2022aData as Question[], isPremium: false, solutionsRequirePremium: true },
-  { key: "2022B", label: "ЭЕШ 2022 · Хувилбар Б", data: test2022bData as Question[], isPremium: false, solutionsRequirePremium: true },
-  { key: "2022C", label: "ЭЕШ 2022 · Хувилбар В", data: test2022cData as Question[], isPremium: false, solutionsRequirePremium: true },
-  { key: "2022D", label: "ЭЕШ 2022 · Хувилбар Г", data: test2022dData as Question[], isPremium: false, solutionsRequirePremium: true },
-  { key: "2021A", label: "ЭЕШ 2021 · Хувилбар А", data: test2021aData as Question[], isPremium: false, solutionsRequirePremium: true },
-  { key: "2021B", label: "ЭЕШ 2021 · Хувилбар Б", data: test2021bData as Question[], isPremium: false, solutionsRequirePremium: true },
-  { key: "2021C", label: "ЭЕШ 2021 · Хувилбар В", data: test2021cData as Question[], isPremium: false, solutionsRequirePremium: true },
-  { key: "2021D", label: "ЭЕШ 2021 · Хувилбар Г", data: test2021dData as Question[], isPremium: false, solutionsRequirePremium: true },
+  { key: "2023A", label: "ЭЕШ 2023 · Хувилбар А", data: test2023aData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2023B", label: "ЭЕШ 2023 · Хувилбар Б", data: test2023bData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2023C", label: "ЭЕШ 2023 · Хувилбар В", data: test2023cData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2023D", label: "ЭЕШ 2023 · Хувилбар Г", data: test2023dData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2022A", label: "ЭЕШ 2022 · Хувилбар А", data: test2022aData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2022B", label: "ЭЕШ 2022 · Хувилбар Б", data: test2022bData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2022C", label: "ЭЕШ 2022 · Хувилбар В", data: test2022cData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2022D", label: "ЭЕШ 2022 · Хувилбар Г", data: test2022dData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2021A", label: "ЭЕШ 2021 · Хувилбар А", data: test2021aData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2021B", label: "ЭЕШ 2021 · Хувилбар Б", data: test2021bData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2021C", label: "ЭЕШ 2021 · Хувилбар В", data: test2021cData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2021D", label: "ЭЕШ 2021 · Хувилбар Г", data: test2021dData as Question[], isPremium: false, solutionsRequirePremium: false },
 ];
 
 export const TOPIC_LABELS: Record<string, string> = {
@@ -128,6 +128,11 @@ export const TOPIC_LABELS: Record<string, string> = {
   functions: "Функц",
   logarithms: "Логарифм",
   combinatorics: "Комбинаторик",
+  // Added 2026-05-12 (БУСАД reclassification audit, see memory/practice-test-audit.md):
+  arithmetic: "Арифметик",
+  set_theory: "Олонлог",
+  linear_algebra: "Линейн алгебр",
+  complex_numbers: "Комплекс тоо",
   other: "Бусад",
 };
 
@@ -142,6 +147,10 @@ export const TOPICS = [
   { value: "combinatorics", label: "Комбинаторик" },
   { value: "calculus", label: "Анализ" },
   { value: "statistics", label: "Статистик" },
+  { value: "arithmetic", label: "Арифметик" },
+  { value: "set_theory", label: "Олонлог" },
+  { value: "linear_algebra", label: "Линейн алгебр" },
+  { value: "complex_numbers", label: "Комплекс тоо" },
 ];
 
 // Derived from TOPIC_LABELS to stay DRY — `other` is excluded so it acts
@@ -150,10 +159,48 @@ const CANONICAL_TOPIC_KEYS = new Set(
   Object.keys(TOPIC_LABELS).filter((k) => k !== "other"),
 );
 
+// Lowercase string variants that are NOT canonical keys but map cleanly to
+// one. Covers both Mongolian topic labels (when the source data stores
+// "Алгебр" instead of "algebra") and English aliases like "matrices" /
+// "coordinate geometry" used across the legacy test files.
+// See memory/practice-test-audit.md for the audit that produced this map.
+const TOPIC_ALIASES: Record<string, string> = {
+  // Mongolian-cased canonical labels
+  "алгебр": "algebra",
+  "геометр": "geometry",
+  "тригонометр": "trigonometry",
+  "анализ": "calculus",
+  "магадлал": "probability",
+  "статистик": "statistics",
+  "дараалал": "sequences",
+  "функц": "functions",
+  "логарифм": "logarithms",
+  "комбинаторик": "combinatorics",
+  "арифметик": "arithmetic",
+  "олонлог": "set_theory",
+  "вектор": "linear_algebra",
+  "матриц": "linear_algebra",
+  "комплекс тоо": "complex_numbers",
+  "аналитик геометр": "geometry",
+  // English variants seen in raw JSON
+  "vectors": "linear_algebra",
+  "matrices": "linear_algebra",
+  "coordinate geometry": "geometry",
+  "solid geometry": "geometry",
+  "polynomials": "algebra",
+  "equations": "algebra",
+  "sequences and series": "sequences",
+  "exponents and logarithms": "logarithms",
+  "exponents": "logarithms",
+  "sets": "set_theory",
+  "complex numbers": "complex_numbers",
+};
+
 export function canonicalizeTopic(input: string | null | undefined): string {
   if (!input) return "other";
   const lower = input.trim().toLowerCase();
-  return CANONICAL_TOPIC_KEYS.has(lower) ? lower : "other";
+  if (CANONICAL_TOPIC_KEYS.has(lower)) return lower;
+  return TOPIC_ALIASES[lower] ?? "other";
 }
 
 export function canonicalizeSubtopic(input: string | null | undefined): string | null {

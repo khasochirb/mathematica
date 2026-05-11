@@ -115,14 +115,27 @@ export function parseSlotLabel(label: string): {
 // ─── Grading ───────────────────────────────────────────────────────────
 //
 // Section2Card stores per-letter user input (e.g. slot "ab" → {a, b}).
-// Grading is subproblem-level all-or-nothing: every slot in the subproblem
-// must match its `slot.answer` exactly to award `points`; any mismatch ⇒ 0.
-// See memory/section2-design.md decision #3.
+// Grading is PER-LETTER partial credit (as of 2026-05-12): each correctly
+// filled letter contributes a proportional share of the subproblem's
+// points. With P subproblem points and L total letters across all slots,
+// each correct letter is worth P/L, and the awarded score is
+// floor(letterCorrect * P / L).
+//
+// Rationale: the previous all-or-nothing rule was discouraging for
+// students who got most of a subproblem right but missed one letter
+// (e.g. 4 of 5 letters correct → 0 points). Per-letter scoring matches
+// the practice-mode framing better. The real ЭЕШ may grade more strictly;
+// the results page surfaces this caveat via a footnote.
+//
+// See memory/section2-design.md decision #3 for the original design and
+// the 2026-05-12 update note.
 
 export interface SubproblemGrade {
-  correct: boolean;
-  pointsEarned: number;
+  correct: boolean;       // every letter matched
+  pointsEarned: number;   // floor(letterCorrect * P / L)
   pointsMax: number;
+  letterCorrect: number;  // count of letters answered correctly
+  letterTotal: number;    // total letters across all slots in the subproblem
 }
 
 export interface Section2Grade {
@@ -156,21 +169,39 @@ export function composeSlotAnswer(
   return composed;
 }
 
-// Grades a single subproblem. Subproblem-level all-or-nothing: every slot
-// must exact-match (string compare, no normalization). Any mismatch ⇒ 0.
+// Grades a single subproblem with per-letter partial credit. Walks every
+// slot's variable letters, compares each against the corresponding digit
+// of the expected answer (after stripping any literal prefix), and counts
+// matches. Awards floor(letterCorrect / letterTotal * points). `correct`
+// is true iff every letter matched (subproblem fully solved).
 export function gradeSection2Subproblem(
   item: Section2Item,
   letterAnswers: Record<string, string>,
 ): SubproblemGrade {
+  let letterTotal = 0;
+  let letterCorrect = 0;
   for (const slot of item.slots) {
-    if (composeSlotAnswer(slot, letterAnswers) !== slot.answer) {
-      return { correct: false, pointsEarned: 0, pointsMax: item.points };
+    const { prefix, varPart } = parseSlotLabel(slot.label);
+    const correctVarDigits = slot.answer.slice(prefix.length).split("");
+    for (let i = 0; i < varPart.length; i++) {
+      const letter = varPart[i];
+      const userDigit = letterAnswers[letter] ?? "";
+      const correctDigit = correctVarDigits[i] ?? "";
+      letterTotal++;
+      if (userDigit !== "" && userDigit === correctDigit) letterCorrect++;
     }
   }
+  const pointsMax = item.points;
+  const pointsEarned =
+    letterTotal === 0
+      ? 0
+      : Math.floor((letterCorrect * pointsMax) / letterTotal);
   return {
-    correct: true,
-    pointsEarned: item.points,
-    pointsMax: item.points,
+    correct: letterTotal > 0 && letterCorrect === letterTotal,
+    pointsEarned,
+    pointsMax,
+    letterCorrect,
+    letterTotal,
   };
 }
 
