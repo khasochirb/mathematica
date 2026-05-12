@@ -120,7 +120,7 @@ const PREVIOUS_YEAR_TESTS: TestInfo[] = [
 export const TOPIC_LABELS: Record<string, string> = {
   algebra: "Алгебр",
   geometry: "Геометр",
-  trigonometry: "Тригнометр",
+  trigonometry: "Тригонометр",
   calculus: "Анализ",
   probability: "Магадлал",
   statistics: "Статистик",
@@ -131,7 +131,7 @@ export const TOPIC_LABELS: Record<string, string> = {
   // Added 2026-05-12 (БУСАД reclassification audit, see memory/practice-test-audit.md):
   arithmetic: "Арифметик",
   set_theory: "Олонлог",
-  linear_algebra: "Линейн алгебр",
+  linear_algebra: "Шугаман алгебр",
   complex_numbers: "Комплекс тоо",
   other: "Бусад",
 };
@@ -139,7 +139,7 @@ export const TOPIC_LABELS: Record<string, string> = {
 export const TOPICS = [
   { value: "algebra", label: "Алгебр" },
   { value: "geometry", label: "Геометр" },
-  { value: "trigonometry", label: "Тригнометр" },
+  { value: "trigonometry", label: "Тригонометр" },
   { value: "functions", label: "Функц" },
   { value: "logarithms", label: "Логарифм" },
   { value: "sequences", label: "Дараалал" },
@@ -149,7 +149,7 @@ export const TOPICS = [
   { value: "statistics", label: "Статистик" },
   { value: "arithmetic", label: "Арифметик" },
   { value: "set_theory", label: "Олонлог" },
-  { value: "linear_algebra", label: "Линейн алгебр" },
+  { value: "linear_algebra", label: "Шугаман алгебр" },
   { value: "complex_numbers", label: "Комплекс тоо" },
 ];
 

@@ -2,6 +2,7 @@
 
 import Section2Card from "./Section2Card";
 import { composeSlotAnswer, type Section2Item } from "@/lib/esh-section2";
+import { TOPIC_LABELS, canonicalizeTopic } from "@/lib/esh-questions";
 
 // Renders one Section 2 problem (e.g. "2.1") as a single screen with
 // every subproblem stacked vertically. Mirrors the printed EYSH paper
@@ -31,8 +32,39 @@ export default function Section2Problem({
   disabled,
 }: Section2ProblemProps) {
   if (items.length === 0) return null;
+  // Topic chip is shown once per problem (all subproblems share the same
+  // topic). Drawn from the first subproblem's metadata. Mirrors the
+  // chip style used on Section 1 questions in QuestionCard.tsx.
+  const head = items[0];
+  const topicKey = canonicalizeTopic(head.topic);
+  const topicLabel = TOPIC_LABELS[topicKey] || head.topic;
   return (
     <div className="space-y-4">
+      {(head.topic || head.subtopic) && (
+        <div className="flex items-center gap-2 flex-wrap">
+          {head.topic && (
+            <span
+              className="mono text-[10px] uppercase px-2 py-1 rounded-full"
+              style={{
+                background: "var(--bg-2)",
+                border: "1px solid var(--line)",
+                color: "var(--fg-2)",
+                letterSpacing: "0.06em",
+              }}
+            >
+              {topicLabel}
+            </span>
+          )}
+          {head.subtopic && (
+            <span
+              className="mono text-[10px]"
+              style={{ color: "var(--fg-3)", letterSpacing: "0.04em" }}
+            >
+              {head.subtopic}
+            </span>
+          )}
+        </div>
+      )}
       {items.map((item, i) => (
         <Section2Card
           key={item.source}

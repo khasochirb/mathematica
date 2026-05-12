@@ -5,7 +5,15 @@ import useTestSession from "./use-test-session";
 import usePerformance from "./use-performance";
 import useFlaggedQuestions from "./use-flagged-questions";
 import { TOPIC_LABELS, getTestsForUser } from "./esh-questions";
+import { hasSection2 } from "./esh-section2";
 import { useAuth } from "./auth-context";
+
+// Each completed Section 2 test contributes 4 main problems to the
+// "Бодлого бодсон" counter. We count at the MAIN PROBLEM level (2.1, 2.2,
+// 2.3, 2.4) — not at the slot level (which would inflate to ~12 per test
+// and feel dishonest). Each test with Section 2 authored contributes
+// exactly 4. Tests without Section 2 (legacy 1A-7B) contribute 0.
+const SECTION2_MAIN_PROBLEMS_PER_TEST = 4;
 
 export interface TopicMastery {
   topic: string;
@@ -24,7 +32,15 @@ export default function useESHProgress() {
   const completedSessions = testSession.getCompletedSessions();
 
   const totalTestsTaken = completedSessions.length;
-  const totalQuestionsAnswered = perf.attempts.length;
+  // Section 1 attempts + 4 main problems per completed test that had
+  // Section 2 authored. Shows 40 after one completed past-paper test
+  // (36 MCQ + 4 main problems) instead of 36.
+  const section2MainProblemsTotal = completedSessions.reduce(
+    (n, s) => (hasSection2(s.testKey) ? n + SECTION2_MAIN_PROBLEMS_PER_TEST : n),
+    0,
+  );
+  const totalQuestionsAnswered =
+    perf.attempts.length + section2MainProblemsTotal;
 
   const overallStats = perf.getOverallStats();
   const averageAccuracy = overallStats.accuracy;
@@ -94,14 +110,29 @@ export default function useESHProgress() {
   const weeklyActivity = useMemo(() => {
     const now = Date.now();
     const weekMs = 7 * 24 * 60 * 60 * 1000;
-    const thisWeek = perf.attempts.filter(
+    const s1ThisWeek = perf.attempts.filter(
       (a) => now - a.timestamp < weekMs,
     ).length;
-    const lastWeek = perf.attempts.filter(
+    const s1LastWeek = perf.attempts.filter(
       (a) => now - a.timestamp >= weekMs && now - a.timestamp < 2 * weekMs,
     ).length;
-    return { thisWeek, lastWeek };
-  }, [perf.attempts]);
+    // Section 2: 4 main problems per completed Section-2 test, bucketed by
+    // session's completedAt. Mirrors how Section 1 attempts feed the count
+    // — both sections contribute proportionally to weekly engagement.
+    let s2ThisWeek = 0;
+    let s2LastWeek = 0;
+    for (const session of completedSessions) {
+      if (!hasSection2(session.testKey)) continue;
+      const completedAt = session.completedAt ?? session.startedAt;
+      const age = now - completedAt;
+      if (age < weekMs) s2ThisWeek += SECTION2_MAIN_PROBLEMS_PER_TEST;
+      else if (age < 2 * weekMs) s2LastWeek += SECTION2_MAIN_PROBLEMS_PER_TEST;
+    }
+    return {
+      thisWeek: s1ThisWeek + s2ThisWeek,
+      lastWeek: s1LastWeek + s2LastWeek,
+    };
+  }, [perf.attempts, completedSessions]);
 
   return {
     totalTestsTaken,

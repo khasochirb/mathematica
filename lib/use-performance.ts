@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useAuth } from "./auth-context";
 import { createAuthedSupabaseClient } from "./supabase";
 import { getMpToken } from "./api";
-import { canonicalizeTopic, canonicalizeSubtopic } from "./esh-questions";
+import { canonicalizeTopic, canonicalizeSubtopic, getQuestionBySource } from "./esh-questions";
 import { clearAllAnonPracticeCounts } from "./anon-practice-gate";
 
 export interface AttemptRecord {
@@ -46,7 +46,7 @@ const ANON_MIGRATE_CAP = 2000; // mirrors FETCH_LIMIT — migration can't push m
 const topicLabels: Record<string, string> = {
   algebra: "Алгебр",
   geometry: "Геометр",
-  trigonometry: "Тригнометр",
+  trigonometry: "Тригонометр",
   calculus: "Анализ",
   probability: "Магадлал",
   statistics: "Статистик",
@@ -445,12 +445,26 @@ export default function usePerformance() {
     [userId, loading],
   );
 
+  // Resolve an attempt's topic from the CURRENT question JSON, not the
+  // stored snapshot. This fixes the case where a question's topic was
+  // reclassified after the attempt was recorded (e.g. 2025A-Q35 went from
+  // raw "other" → "linear_algebra" in the 2026-05-12 audit) — without this
+  // re-lookup, stale local-cache rows would still display as "Бусад".
+  // Falls back to the stored topic if the question is unknown (e.g., a
+  // deprecated test).
+  const resolveCurrentTopic = (a: AttemptRecord): string => {
+    const q = getQuestionBySource(a.questionSource);
+    if (q?.topic) return canonicalizeTopic(q.topic);
+    return canonicalizeTopic(a.topic);
+  };
+
   const getTopicStats = useCallback((): TopicStats[] => {
     const map: Record<string, { correct: number; total: number }> = {};
     for (const a of attempts) {
-      if (!map[a.topic]) map[a.topic] = { correct: 0, total: 0 };
-      map[a.topic].total++;
-      if (a.isCorrect) map[a.topic].correct++;
+      const topic = resolveCurrentTopic(a);
+      if (!map[topic]) map[topic] = { correct: 0, total: 0 };
+      map[topic].total++;
+      if (a.isCorrect) map[topic].correct++;
     }
     return Object.entries(map)
       .map(([topic, { correct, total }]) => ({
@@ -492,9 +506,10 @@ export default function usePerformance() {
     const map: Record<string, { correct: number; total: number }> = {};
     for (const a of attempts) {
       if (a.source !== "test") continue;
-      if (!map[a.topic]) map[a.topic] = { correct: 0, total: 0 };
-      map[a.topic].total++;
-      if (a.isCorrect) map[a.topic].correct++;
+      const topic = resolveCurrentTopic(a);
+      if (!map[topic]) map[topic] = { correct: 0, total: 0 };
+      map[topic].total++;
+      if (a.isCorrect) map[topic].correct++;
     }
     return Object.entries(map)
       .map(([topic, { correct, total }]) => ({

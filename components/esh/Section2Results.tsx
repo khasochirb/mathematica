@@ -17,6 +17,7 @@ import {
   type Section2Item,
 } from "@/lib/esh-section2";
 import { api } from "@/lib/api";
+import { TOPIC_LABELS, canonicalizeTopic } from "@/lib/esh-questions";
 
 interface ServerAttempt {
   test_key: string;
@@ -238,10 +239,33 @@ export default function Section2Results({
                 borderColor: `color-mix(in oklch, ${tintBase} 25%, transparent)`,
               }}
             >
-              <div className="flex items-center justify-between mb-3">
-                <div className="eyebrow">{pid}</div>
+              <div className="flex items-center justify-between mb-3 gap-3">
+                <div className="flex items-center gap-2 flex-wrap min-w-0">
+                  <div className="eyebrow">{pid}</div>
+                  {subs[0]?.item.topic && (
+                    <span
+                      className="mono text-[10px] uppercase px-2 py-1 rounded-full"
+                      style={{
+                        background: "var(--bg-2)",
+                        border: "1px solid var(--line)",
+                        color: "var(--fg-2)",
+                        letterSpacing: "0.06em",
+                      }}
+                    >
+                      {TOPIC_LABELS[canonicalizeTopic(subs[0].item.topic)] || subs[0].item.topic}
+                    </span>
+                  )}
+                  {subs[0]?.item.subtopic && (
+                    <span
+                      className="mono text-[10px]"
+                      style={{ color: "var(--fg-3)", letterSpacing: "0.04em" }}
+                    >
+                      {subs[0].item.subtopic}
+                    </span>
+                  )}
+                </div>
                 <span
-                  className="mono text-[11px] tabular uppercase"
+                  className="mono text-[11px] tabular uppercase shrink-0"
                   style={{
                     color: "var(--fg-2)",
                     letterSpacing: "0.06em",

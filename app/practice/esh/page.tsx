@@ -42,18 +42,30 @@ export default function ESHHubPage() {
     ? "/practice/esh/progress"
     : `/sign-in?next=${encodeURIComponent("/practice/esh/progress")}`;
 
-  const actionCards = [
-    {
-      href: "/practice/esh/test?type=premium",
-      title: "Дадлага тестүүд",
-      subtitle: "Premium · 14 тест",
-      icon: FileText,
-    },
+  // Free first (top-left where eyes land), Premium second. The reorder is
+  // the bigger funnel win — users used to click "Дадлага тестүүд" expecting
+  // free access, hit the locked screen, and bounce. Now the free
+  // past-papers card gets first-card visibility.
+  const actionCards: Array<{
+    href: string;
+    title: string;
+    subtitle: string;
+    icon: typeof FileText;
+    badge?: "free" | "locked";
+  }> = [
     {
       href: "/practice/esh/test?type=previous",
       title: "Өмнө жилийн тестүүд",
       subtitle: "Бодит шалгалт · 20 тест",
       icon: Archive,
+      badge: "free",
+    },
+    {
+      href: "/practice/esh/test?type=premium",
+      title: "Дадлага тестүүд",
+      subtitle: "Premium · 14 тест · Түгжээтэй",
+      icon: FileText,
+      badge: "locked",
     },
     {
       href: "/practice/esh/practice",
@@ -258,18 +270,45 @@ export default function ESHHubPage() {
                     style={{ color: "var(--fg-3)" }}
                   />
                 </div>
-                <h2
-                  className="serif mb-1.5"
-                  style={{
-                    fontWeight: 400,
-                    fontSize: 22,
-                    letterSpacing: "-0.02em",
-                    color: "var(--fg)",
-                    lineHeight: 1.1,
-                  }}
-                >
-                  {c.title}
-                </h2>
+                <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                  <h2
+                    className="serif"
+                    style={{
+                      fontWeight: 400,
+                      fontSize: 22,
+                      letterSpacing: "-0.02em",
+                      color: "var(--fg)",
+                      lineHeight: 1.1,
+                    }}
+                  >
+                    {c.title}
+                  </h2>
+                  {c.badge === "free" && (
+                    <span
+                      className="mono text-[10px] uppercase px-2 py-0.5 rounded-full"
+                      style={{
+                        background: "color-mix(in oklch, var(--accent) 14%, transparent)",
+                        color: "var(--accent)",
+                        letterSpacing: "0.08em",
+                      }}
+                    >
+                      Үнэгүй
+                    </span>
+                  )}
+                  {c.badge === "locked" && (
+                    <span
+                      className="mono text-[10px] uppercase px-2 py-0.5 rounded-full"
+                      style={{
+                        background: "var(--bg-2)",
+                        border: "1px solid var(--line)",
+                        color: "var(--fg-3)",
+                        letterSpacing: "0.08em",
+                      }}
+                    >
+                      Түгжээтэй
+                    </span>
+                  )}
+                </div>
                 <p className="text-[13px]" style={{ color: "var(--fg-2)" }}>
                   {c.subtitle}
                 </p>

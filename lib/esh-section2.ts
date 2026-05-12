@@ -62,6 +62,11 @@ export interface Section2Item {
   points: number;
   solution: string;
   figure?: Section2Figure;
+  // Added 2026-05-12 (per-problem topic chip on Section 2). All subproblems
+  // of the same `problem` share the same topic + subtopic — Section 2
+  // problems are single-context across their subparts.
+  topic?: string;
+  subtopic?: string;
 }
 
 const SECTION2_BY_KEY: Record<string, Section2Item[]> = {

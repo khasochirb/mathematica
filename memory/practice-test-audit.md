@@ -85,12 +85,12 @@ Q35 (matrix system + inverse) and similar questions were showing up as **БУС�
 
 ## Decisions
 
-**Added 4 new canonical topics** (Линейн алгебр includes vectors per Khas's directive):
+**Added 4 new canonical topics** (Шугаман алгебр includes vectors per Khas's directive):
 | Key | MN label | Covers |
 |---|---|---|
 | `arithmetic` | Арифметик | Rounding, scientific notation, fraction arithmetic, mixture problems |
 | `set_theory` | Олонлог | Set unions/intersections, irrational-number subsets, inclusion-exclusion |
-| `linear_algebra` | Линейн алгебр | Matrices (transformation, inverse, Cayley-Hamilton), determinants, vectors in ℝⁿ |
+| `linear_algebra` | Шугаман алгебр | Matrices (transformation, inverse, Cayley-Hamilton), determinants, vectors in ℝⁿ |
 | `complex_numbers` | Комплекс тоо | Complex arithmetic, complex roots of quadratics |
 
 **Aliased to existing canonical keys** (no new topic; `canonicalizeTopic` handles 181 questions via the alias map without touching their JSON):
@@ -110,10 +110,14 @@ Q35 (matrix system + inverse) and similar questions were showing up as **БУС�
 - `БУСАД` count: 204 → 1 (`Test-2021D-Q18` fully resolved → 0 after the final edit)
 - New topic distribution surfaces 14 distinct topics on the analytics topic mastery table instead of the prior 10 + a massive "other" bucket
 - `verify:canonicalize` expanded from 10 cases to 24, all pass
-- Q35 now correctly labeled `Линейн алгебр` — addresses Khas's surfaced example
+- Q35 now correctly labeled `Шугаман алгебр` — addresses Khas's surfaced example
 
 ## How to extend
 - New raw-topic value seen in JSON: prefer adding to `TOPIC_ALIASES` in `lib/esh-questions.ts` rather than touching every test file
 - New canonical topic: add to `TOPIC_LABELS` + `TOPICS` array
 - Update `scripts/verify-canonicalize.ts` with a regression case
+
+## Topic label fixes (2026-05-12, follow-up)
+- `Линейн алгебр` → `Шугаман алгебр`. "Линейн" is a Russian loanword; "шугаман" is the modern Mongolian. Khas's decision after the 2026-05-12 review.
+- `Тригнометр` → `Тригонометр`. Was a typo missing the middle "о"; the rest of the codebase + question data already used the corrected spelling.
 
