@@ -85,6 +85,25 @@ Reconciling the body of this audit (which described Q7 + Q27 as needing revert) 
 - **The 7 unverified questions from 42ce741 + 413ab59** (Test-2B-Q17, Test-5A-Q34, Test-4B-Q31, Test-7B-Q21, Test-2B-Q2, Test-2B-Q6, Test-3A-Q22) are NOT reverted in Phase 2 Step 2. They will be re-validated by the Phase 2 Step 3 extractor against `ESH-nom.pdf`; if the extractor's diff shows the audit-v1 fixes were wrong, they'll be reverted in Phase 2 Step 4 along with any other corruption surfaced by the extractor.
 - **Phase 2 Step 3** (Python extractor over the in-scope PDFs + diff report) is the next gated action. See `scripts/audit-json-corruption.md` for the audit-side plan.
 
+## Phase 2 Step 3 result (2026-05-13)
+
+Built `scripts/extract-past-paper.py` (PyMuPDF) + `scripts/diff-json-vs-extracted.py`. Ran across the 16 in-scope past-paper PDFs (2022/2023/2024/2025 × A/B/C/D = 576 questions). Full report: `scripts/json-corruption-diff.md`.
+
+**Past papers are clean.** Zero confirmed corruption candidates after triage. All 359 HIGH-confidence diffs the diff tool surfaced are extractor false positives with named causes:
+- 2022 PDFs: Oriya-letter font glyph substitution (280 flags)
+- 2023 PDFs: `°` extracts as digit `0` (57 flags)
+- 2024B/D: extractor anchor missed Q19 + cascade bleed (4 flags)
+- 2025 PDFs: LaTeX-vs-glyph radical-index ordering (20 flags)
+- Page header bleed on last-of-page option E (~10 flags)
+
+**Hypothesis confirmed: the corruption pattern is textbook-specific (`ESH-nom.pdf`), NOT universal.** The audit memory's documented Test-2A through Test-7B corruptions are confined to the practice-test textbook. Past papers (the FREE tier surface) need no rebuild.
+
+## Phase 2 status (2026-05-13)
+
+- **Phase 2a (past papers)**: DONE. Diff verifies clean. No JSON edits needed.
+- **Phase 2b (textbook)**: PAUSED (per Khas's call). Needs either a Cyrillic↔Latin transliteration table or `tesseract` Mongolian OCR to build a textbook extractor. The 9 documented textbook-corruption questions (Test-2A Q2/Q6/Q7/Q13/Q22/Q26/Q27 + the 7 unverified `42ce741`/`413ab59` fixes) remain as documented manual-fix-as-they-surface items. Premium tier; gated by the Pro-upgrade launch trigger; not a free-launch blocker.
+- **Phase 2.5 (2021 scanned PDFs)**: still deferred. Will be picked up alongside Phase 2b when textbook extractor work resumes.
+
 ---
 
 # Topic canonicalization audit (2026-05-12)
