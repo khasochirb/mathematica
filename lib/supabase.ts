@@ -1,6 +1,8 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { getMpToken } from "./api";
 
-// Called at request time — env vars are available then
+// Called at request time — env vars are available then.
+// Server-only (auth API routes). Each request gets a fresh client.
 export function createSupabaseClient() {
   return createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -17,25 +19,34 @@ export function createAdminClient() {
   );
 }
 
-// Client-component factory: anon key + the user's JWT as Bearer.
-// RLS enforces ownership — policies all check auth.uid() against row user_id.
+// Browser-side singleton. The previous design created a fresh client per
+// token (with a memo on token equality), which spawned a new GoTrueClient
+// each time the token rotated and triggered the
+// "Multiple GoTrueClient instances detected" warning.
 //
-// Token-keyed memo: caller MUST re-call this factory on every use.
-// Do not cache the returned client at the call site — token changes
-// will invalidate it.
-let cached: SupabaseClient | null = null;
-let cachedToken: string | null = null;
+// Fix: ONE client, lifetime of the page. The token comes from the
+// `accessToken` callback supabase-js calls before every request — it
+// hits getMpToken() (cookie read) at request time, so token rotation
+// doesn't require re-instantiation. RLS still enforces ownership.
+let browserClient: SupabaseClient | null = null;
 
-export function createAuthedSupabaseClient(token: string): SupabaseClient {
-  if (cached && cachedToken === token) return cached;
-  cached = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      auth: { persistSession: false, autoRefreshToken: false },
-      global: { headers: { Authorization: `Bearer ${token}` } },
-    },
-  );
-  cachedToken = token;
-  return cached;
+export function getSupabaseClient(): SupabaseClient {
+  if (typeof window === "undefined") {
+    throw new Error(
+      "getSupabaseClient() is browser-only. Use createSupabaseClient or createAdminClient on the server.",
+    );
+  }
+  if (!browserClient) {
+    browserClient = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        // accessToken callback resolves the JWT at request time so the
+        // client never needs to be re-instantiated on token rotation.
+        accessToken: async () => getMpToken() ?? null,
+        auth: { persistSession: false, autoRefreshToken: false },
+      },
+    );
+  }
+  return browserClient;
 }

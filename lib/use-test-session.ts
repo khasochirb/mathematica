@@ -139,6 +139,36 @@ function scoreSession(session: TestSession, questions: Question[]): TestScore {
   };
 }
 
+// Counts distinct (testKey, mainProblem) tuples where the user has typed
+// at least one letter in any subproblem of that main problem. Used by the
+// "Бодлого бодсон" counter on the dashboard so a Section 2 main problem
+// the user actually engaged with contributes +1 (not +4 the previous
+// hasSection2-binary fix). Optionally filters sessions (used for weekly
+// buckets in lib/use-esh-progress.ts).
+// Pure function (no React) so it can be unit-tested directly.
+export function countAnsweredSection2MainProblems(
+  sessions: TestSession[],
+  filter?: (session: TestSession) => boolean,
+): number {
+  const seen = new Set<string>();
+  for (const session of sessions) {
+    if (filter && !filter(session)) continue;
+    const answers = session.section2Answers ?? {};
+    for (const source of Object.keys(answers)) {
+      // source shape e.g. "Test-2025A-Q2.1.1" → main problem "2.1"
+      const match = /^(Test-\d{4}[A-Z])-Q(\d+\.\d+)\.\d+$/.exec(source);
+      if (!match) continue;
+      const letters = answers[source] ?? {};
+      const hasInput = Object.values(letters).some(
+        (v) => v !== "" && v !== undefined,
+      );
+      if (!hasInput) continue;
+      seen.add(`${match[1]}:${match[2]}`);
+    }
+  }
+  return seen.size;
+}
+
 // Heuristic for accidental quits. A completed session is "accidental" if its
 // duration was under ACCIDENTAL_QUIT_DURATION_MS and it has fewer than
 // ACCIDENTAL_QUIT_MIN_ANSWERS recorded. Both conditions must hold — a fast

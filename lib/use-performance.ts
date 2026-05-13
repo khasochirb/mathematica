@@ -2,9 +2,9 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useAuth } from "./auth-context";
-import { createAuthedSupabaseClient } from "./supabase";
+import { getSupabaseClient } from "./supabase";
 import { getMpToken } from "./api";
-import { canonicalizeTopic, canonicalizeSubtopic, getQuestionBySource } from "./esh-questions";
+import { canonicalizeTopic, canonicalizeSubtopic, getQuestionBySource, TOPIC_LABELS } from "./esh-questions";
 import { clearAllAnonPracticeCounts } from "./anon-practice-gate";
 
 export interface AttemptRecord {
@@ -43,19 +43,8 @@ const IS_DEV = process.env.NODE_ENV !== "production";
 const FETCH_LIMIT = 2000; // TODO: paginate or warn user when count >= LIMIT
 const ANON_MIGRATE_CAP = 2000; // mirrors FETCH_LIMIT — migration can't push more than reads return
 
-const topicLabels: Record<string, string> = {
-  algebra: "Алгебр",
-  geometry: "Геометр",
-  trigonometry: "Тригонометр",
-  calculus: "Анализ",
-  probability: "Магадлал",
-  statistics: "Статистик",
-  sequences: "Дараалал",
-  functions: "Функц",
-  logarithms: "Логарифм",
-  combinatorics: "Комбинаторик",
-  other: "Бусад",
-};
+// Topic labels live in lib/esh-questions.ts (TOPIC_LABELS) as the single
+// source of truth — re-aliased here so existing references stay one-token.
 
 function cacheKeyFor(userId: string | null, loading: boolean): string {
   if (loading) return PENDING_KEY;
@@ -225,7 +214,7 @@ async function migrateAnonToServer(userId: string): Promise<void> {
 
     const serverRows = rows.map((a) => ({ id: a.id, ...toServerRow(a, userId) }));
 
-    const supabase = createAuthedSupabaseClient(token);
+    const supabase = getSupabaseClient();
     const { error } = await supabase
       .from("attempts")
       .upsert(serverRows, { onConflict: "id", ignoreDuplicates: true });
@@ -266,7 +255,7 @@ async function flushQueue(userId: string): Promise<void> {
 
   flushing = true;
   try {
-    const supabase = createAuthedSupabaseClient(token);
+    const supabase = getSupabaseClient();
     const { error } = await supabase.from("attempts").insert(snapshot);
     if (error) {
       if (IS_DEV) {
@@ -302,7 +291,7 @@ export default function usePerformance() {
   const fetchRemote = useCallback(
     async (uid: string, token: string) => {
       try {
-        const supabase = createAuthedSupabaseClient(token);
+        const supabase = getSupabaseClient();
         const { data, error } = await supabase
           .from("attempts")
           .select("question_id,user_answer,correct_answer,is_correct,topic,subtopic,answered_at,source")
@@ -423,7 +412,7 @@ export default function usePerformance() {
 
       (async () => {
         try {
-          const supabase = createAuthedSupabaseClient(token);
+          const supabase = getSupabaseClient();
           const { error } = await supabase.from("attempts").insert(toServerRow(full, userId));
           if (error) {
             if (IS_DEV) {
@@ -469,7 +458,7 @@ export default function usePerformance() {
     return Object.entries(map)
       .map(([topic, { correct, total }]) => ({
         topic,
-        label: topicLabels[topic] || topic,
+        label: TOPIC_LABELS[topic] || topic,
         total,
         correct,
         incorrect: total - correct,
@@ -514,7 +503,7 @@ export default function usePerformance() {
     return Object.entries(map)
       .map(([topic, { correct, total }]) => ({
         topic,
-        label: topicLabels[topic] || topic,
+        label: TOPIC_LABELS[topic] || topic,
         total,
         correct,
         incorrect: total - correct,
@@ -591,7 +580,7 @@ export default function usePerformance() {
       if (!token) return;
       (async () => {
         try {
-          const supabase = createAuthedSupabaseClient(token);
+          const supabase = getSupabaseClient();
           const { error } = await supabase.from("attempts").delete().eq("user_id", userId);
           if (error && IS_DEV) console.warn("[attempts sync] clearAll delete failed:", error.message);
         } catch (err) {
