@@ -76,6 +76,15 @@ Also still open from Part 2 (never asked):
 
 If "continue audit" or "fix the practice tests" comes up: **don't patch the JSON without verifying each change against the corresponding textbook source page.** The previous audit pass produced 9 commits, of which at least 2 are actively wrong. Revert path is open via `git revert 42ce741 413ab59` if needed.
 
+## State as of 2026-05-13 (Phase 2 Step 2 update)
+
+Reconciling the body of this audit (which described Q7 + Q27 as needing revert) against the actual git history:
+
+- **Q7 was already fixed** in commit `4c0e922` (audit-v2, 2026-05-08, same day as the "Resolved" banner). Answer restored D→…→D, option D text restored to `5\sqrt{2} + 2\sqrt{6}`, solution rewritten. No revert needed.
+- **Q27 fixed this commit (2026-05-13).** Audit-v2 explicitly deferred Q27 as "cosmetic JSON-PDF option-order mismatch (grading works under JSON labels)". Khas's Phase 2 directive overrides that: answer restored C→B + JSON options B and C swapped so option B holds the textbook value `[[1,6][0,1]]` (matching the audit's "stored B was always correct" finding). Grading semantics unchanged for users (the correct M³ value is still pickable; just at letter B now instead of letter C).
+- **The 7 unverified questions from 42ce741 + 413ab59** (Test-2B-Q17, Test-5A-Q34, Test-4B-Q31, Test-7B-Q21, Test-2B-Q2, Test-2B-Q6, Test-3A-Q22) are NOT reverted in Phase 2 Step 2. They will be re-validated by the Phase 2 Step 3 extractor against `ESH-nom.pdf`; if the extractor's diff shows the audit-v1 fixes were wrong, they'll be reverted in Phase 2 Step 4 along with any other corruption surfaced by the extractor.
+- **Phase 2 Step 3** (Python extractor over the in-scope PDFs + diff report) is the next gated action. See `scripts/audit-json-corruption.md` for the audit-side plan.
+
 ---
 
 # Topic canonicalization audit (2026-05-12)
