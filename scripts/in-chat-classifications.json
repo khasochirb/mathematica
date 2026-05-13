@@ -1,0 +1,2303 @@
+{
+  "batch1": [
+    {
+      "source": "Test-1A-Q16",
+      "skill_tag": "basic_probability",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "P(prime in 1-20) = 8/20 — single-event probability via favorable/total counting. New basic_probability tag added 2026-05-13."
+    },
+    {
+      "source": "Test-1A-Q18",
+      "skill_tag": "progression",
+      "difficulty_tier": "medium",
+      "confidence": 0.55,
+      "rationale": "Telescoping sum 1/(2k-1)(2k+1) via partial fractions. Routed to progression (sequences/series umbrella, sum-formula scope) per <5 systemic-gap rule — telescoping cohort = 4 total. Imperfect fit: AP/GP drill cohort overlaps with series-summation practice."
+    },
+    {
+      "source": "Test-1A-Q21",
+      "skill_tag": "function_graph",
+      "difficulty_tier": "easy",
+      "confidence": 0.65,
+      "rationale": "Identify Y=f(X) rule from table of (X,Y) pairs. Tabular analogue of function_graph's 'identify the graph' — same identification skill, different representation."
+    },
+    {
+      "source": "Test-1A-Q22",
+      "skill_tag": "needs_human_review",
+      "difficulty_tier": "medium",
+      "confidence": 0.3,
+      "rationale": "Parity reasoning: a even ⇒ b odd via (odd)^n=odd, (even)^n=even, odd−even=odd. Parity is the core skill, not exponent computation — exponent_rules drill cohort wouldn't teach this. Flag for 3b.3 review; may justify parity_arithmetic tag if Phase 2b textbook extraction surfaces more such questions."
+    },
+    {
+      "source": "Test-1A-Q23",
+      "skill_tag": "polynomial_remainder",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Remainder theorem: f(x)=x³−ax²+6x−14 divisible by (x−3) ⇒ f(3)=0 ⇒ a=31/9. Parameter-finding via remainder theorem — exact polynomial_remainder scope."
+    },
+    {
+      "source": "Test-1A-Q25",
+      "skill_tag": "system_of_equations",
+      "difficulty_tier": "hard",
+      "confidence": 0.65,
+      "rationale": "Digit-swap word problem reducing to two-variable linear system in (a,b): original−swap=18 plus multiplication-error condition. System solving is the math kernel; word_problem_arithmetic scope is mixtures/proportions, doesn't fit."
+    },
+    {
+      "source": "Test-1A-Q26",
+      "skill_tag": "trig_identity",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Simplify cot x + sin x/(1+cos x). Combine + apply sin²+cos²=1 + cancel ⇒ 1/sin x. Pure Pythagorean-identity simplification."
+    },
+    {
+      "source": "Test-1A-Q30",
+      "skill_tag": "function_graph",
+      "difficulty_tier": "easy",
+      "confidence": 0.75,
+      "rationale": "y=15/x — identify the point NOT on the hyperbola via xy=15 test. Point-on-graph verification, not coefficient computation."
+    },
+    {
+      "source": "Test-1A-Q31",
+      "skill_tag": "number_representation",
+      "difficulty_tier": "easy",
+      "confidence": 0.55,
+      "rationale": "Tolerance interval x=8.7±0.4 ⇒ x∈[8.3,9.1], pick values inside. Force-fit per refined rule: number_representation drill cohort (rounding/approximation/comparing reals) does teach tolerance-band reasoning. Near-neighbor fit, not exact."
+    },
+    {
+      "source": "Test-1A-Q32",
+      "skill_tag": "matrix_operation",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Compute A+B element-wise for two 2×2 matrices with variable entries. No determinant, no inverse — matrix_operation by definition."
+    },
+    {
+      "source": "Test-1A-Q35",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "2x²−3x−5 < x²−1 ⇒ x²−3x−4<0 ⇒ (x−4)(x+1)<0 ⇒ −1<x<4; integer enumeration from given set; sum=6. Quadratic-inequality solve dominates."
+    },
+    {
+      "source": "Test-1A-Q36",
+      "skill_tag": "function_graph",
+      "difficulty_tier": "medium",
+      "confidence": 0.6,
+      "rationale": "Identify which of three named functions are decreasing on [−10,−3]. Qualitative monotonicity per function family — no derivative computation expected. function_graph (function-behavior identification) over derivative_application."
+    },
+    {
+      "source": "Test-1B-Q16",
+      "skill_tag": "basic_probability",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "P(composite in 1-20). Single-event probability via favorable/total counting."
+    },
+    {
+      "source": "Test-1B-Q18",
+      "skill_tag": "progression",
+      "difficulty_tier": "medium",
+      "confidence": 0.55,
+      "rationale": "Telescoping sum 1/(2k)(2k+2). Same telescoping technique as Q1A-Q18; same force-fit rationale."
+    },
+    {
+      "source": "Test-1B-Q20",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "System: x²+5x+6<0 (gives −3<x<−2) AND 4x+3≥3x+½ (gives x≥−2.5). Intersection [−2.5,−2). Quadratic inequality is the binding skill."
+    },
+    {
+      "source": "Test-1B-Q21",
+      "skill_tag": "function_graph",
+      "difficulty_tier": "easy",
+      "confidence": 0.65,
+      "rationale": "Variant of Q1A-Q21: identify Y=f(X) from table of pairs. Tabular identification."
+    },
+    {
+      "source": "Test-1B-Q22",
+      "skill_tag": "needs_human_review",
+      "difficulty_tier": "medium",
+      "confidence": 0.3,
+      "rationale": "Variant of Q1A-Q22: parity reasoning with different powers. Same flag rationale — parity is the core skill, not exponent computation."
+    },
+    {
+      "source": "Test-1B-Q23",
+      "skill_tag": "polynomial_remainder",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Variant of Q1A-Q23: f(x)=x³+ax²+7x−18 divisible by (x+3) ⇒ f(−3)=0 ⇒ a=22/3. Remainder theorem with parameter."
+    },
+    {
+      "source": "Test-1B-Q25",
+      "skill_tag": "system_of_equations",
+      "difficulty_tier": "hard",
+      "confidence": 0.65,
+      "rationale": "Variant of Q1A-Q25: digit-swap with multiplication-error + sum conditions. Two-variable linear system after setup."
+    },
+    {
+      "source": "Test-1B-Q26",
+      "skill_tag": "trig_identity",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Simplify tan x + cos x/(1+sin x) ⇒ 1/cos x. Symmetric variant of Q1A-Q26."
+    },
+    {
+      "source": "Test-1B-Q30",
+      "skill_tag": "function_graph",
+      "difficulty_tier": "easy",
+      "confidence": 0.75,
+      "rationale": "y=−12/x — identify point NOT on hyperbola via xy=−12. Variant of Q1A-Q30."
+    },
+    {
+      "source": "Test-1B-Q31",
+      "skill_tag": "number_representation",
+      "difficulty_tier": "easy",
+      "confidence": 0.55,
+      "rationale": "Tolerance interval 500±12.3 ⇒ [487.7,512.3]. CSV topic is statistics (subtopic 'алдаа'/error) but the math is approximation/tolerance, not statistical dispersion (variance/SD). Same near-neighbor concern as Q1A-Q31."
+    },
+    {
+      "source": "Test-1B-Q32",
+      "skill_tag": "matrix_operation",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Compute A−B element-wise. Variant of Q1A-Q32."
+    },
+    {
+      "source": "Test-1B-Q35",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "3n²−10n+2 < 5n+2 ⇒ 3n²−15n<0 ⇒ 3n(n−5)<0 ⇒ 0<n<5; integer enumeration; sum=10. Quadratic-inequality solve."
+    },
+    {
+      "source": "Test-1B-Q36",
+      "skill_tag": "function_graph",
+      "difficulty_tier": "medium",
+      "confidence": 0.6,
+      "rationale": "Variant of Q1A-Q36: identify which of y=6/x, (1-x)², √(x-3) increase on [5,8]. Qualitative monotonicity identification."
+    }
+  ],
+  "batch2": [
+    {
+      "source": "Test-2021A-Q10",
+      "skill_tag": "derivative_rules",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "f(x)=2x^(-1/2), f'(4)=-1/8. Power-rule on radical function."
+    },
+    {
+      "source": "Test-2021B-Q10",
+      "skill_tag": "derivative_rules",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "f(x)=4/√x, f'(9)=-2/27. Power-rule on radical function."
+    },
+    {
+      "source": "Test-2021C-Q10",
+      "skill_tag": "derivative_rules",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Variant. Power-rule derivative."
+    },
+    {
+      "source": "Test-2021D-Q10",
+      "skill_tag": "derivative_rules",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Variant. Power-rule derivative."
+    },
+    {
+      "source": "Test-2021D-Q11",
+      "skill_tag": "number_representation",
+      "difficulty_tier": "easy",
+      "confidence": 0.9,
+      "rationale": "Compare numbers vs √2≈1.414. 'Comparing irrationals' explicit in number_representation scope."
+    },
+    {
+      "source": "Test-2021D-Q12",
+      "skill_tag": "dispersion",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "IQR of 9 scores = 25. IQR explicit in dispersion scope; data_display is for chart-reading."
+    },
+    {
+      "source": "Test-2021D-Q13",
+      "skill_tag": "radical_expression",
+      "difficulty_tier": "medium",
+      "confidence": 0.8,
+      "rationale": "√((a-1)²)+√((a-4)²) under 1<a<4 → 3. Force-fit: drill cohort teaches √(x²)=|x|, even though deeper skill is abs-value-with-interval (no tag)."
+    },
+    {
+      "source": "Test-2021D-Q14",
+      "skill_tag": "matrix_inverse",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Compute M^(-1) for 2×2. det=2 then formula."
+    },
+    {
+      "source": "Test-2021D-Q17",
+      "skill_tag": "polynomial_remainder",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "P(x) divided by (x+1), P(-1)=-5. Remainder theorem."
+    },
+    {
+      "source": "Test-2021D-Q19",
+      "skill_tag": "counting_principle",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "x+y+z=7 natural solutions via stars-and-bars: C(6,2)=15. Stars-and-bars explicit in scope."
+    },
+    {
+      "source": "Test-2021D-Q21",
+      "skill_tag": "polynomial_factoring",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Build polynomial from roots: (x+1)(x-1)(x-3) expansion."
+    },
+    {
+      "source": "Test-2021D-Q22",
+      "skill_tag": "linear_equation",
+      "difficulty_tier": "medium",
+      "confidence": 0.55,
+      "rationale": "|2x-1|+|x+5|=10 via case analysis; each case is linear. No abs-value-equation tag; force-fit. SURVEILLANCE: abs-value equation pattern (1 of 5 needed)."
+    },
+    {
+      "source": "Test-2021D-Q23",
+      "skill_tag": "indefinite_integral",
+      "difficulty_tier": "easy",
+      "confidence": 0.9,
+      "rationale": "dy/dx=2x-3 with initial condition. Antiderivative + constant via point."
+    },
+    {
+      "source": "Test-2021D-Q24",
+      "skill_tag": "derivative_application",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Normal line at x=1 for x²-4x+5. Tangent/normal scope."
+    },
+    {
+      "source": "Test-2021D-Q25",
+      "skill_tag": "vector_geometry",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Section formula in triangle, vector representation of internal point."
+    },
+    {
+      "source": "Test-2021D-Q27",
+      "skill_tag": "rational_expression",
+      "difficulty_tier": "hard",
+      "confidence": 0.95,
+      "rationale": "Multi-step rational simplification. CSV 'word problem' rationale was wrong."
+    },
+    {
+      "source": "Test-2021D-Q34",
+      "skill_tag": "solid_geometry",
+      "difficulty_tier": "hard",
+      "confidence": 0.95,
+      "rationale": "Cube cross-sectioned into two prisms; volume ratio."
+    },
+    {
+      "source": "Test-2021D-Q35",
+      "skill_tag": "geometric_transformation",
+      "difficulty_tier": "medium",
+      "confidence": 0.9,
+      "rationale": "Reflection across line y=3x+1 — non-axis reflection."
+    },
+    {
+      "source": "Test-2021D-Q36",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "hard",
+      "confidence": 0.8,
+      "rationale": "Parameter problem via discriminant<0 → quadratic inequality in a."
+    },
+    {
+      "source": "Test-2021D-Q4",
+      "skill_tag": "basic_probability",
+      "difficulty_tier": "easy",
+      "confidence": 0.9,
+      "rationale": "P(A')=1-P(A)=1/4. Complement of single event."
+    },
+    {
+      "source": "Test-2021D-Q7",
+      "skill_tag": "coordinate_geometry",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Distance from point to origin via formula."
+    },
+    {
+      "source": "Test-2021D-Q8",
+      "skill_tag": "matrix_operation",
+      "difficulty_tier": "easy",
+      "confidence": 0.9,
+      "rationale": "Matrix dimensional conformability check."
+    },
+    {
+      "source": "Test-2021D-Q9",
+      "skill_tag": "trig_value",
+      "difficulty_tier": "easy",
+      "confidence": 0.8,
+      "rationale": "sin α=2/3 in Q2, find cos α=-√5/3. Exact-value computation with quadrant sign."
+    },
+    {
+      "source": "Test-2022A-Q1",
+      "skill_tag": "exponent_rules",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "3^(-2)=1/9. Negative-exponent rule."
+    },
+    {
+      "source": "Test-2022A-Q10",
+      "skill_tag": "rational_expression",
+      "difficulty_tier": "easy",
+      "confidence": 0.7,
+      "rationale": "a/2=b/3 substitution into (3a-b)/(a+2b). Algebraic substitution + simplification (not a word problem)."
+    }
+  ],
+  "batch3": [
+    {
+      "source": "Test-2022A-Q11",
+      "skill_tag": "radical_expression",
+      "difficulty_tier": "easy",
+      "confidence": 0.6,
+      "rationale": "Radical equation with domain check. Force-fit; partial transfer."
+    },
+    {
+      "source": "Test-2022A-Q17",
+      "skill_tag": "complex_numbers",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Complex division by conjugate."
+    },
+    {
+      "source": "Test-2022A-Q21",
+      "skill_tag": "polynomial_factoring",
+      "difficulty_tier": "medium",
+      "confidence": 0.7,
+      "rationale": "Numerical eval via factoring recognition. Hybrid with rational_expression."
+    },
+    {
+      "source": "Test-2022A-Q29",
+      "skill_tag": "geometric_transformation",
+      "difficulty_tier": "hard",
+      "confidence": 0.85,
+      "rationale": "Homothety + reflection + triangle area."
+    },
+    {
+      "source": "Test-2022A-Q32",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "hard",
+      "confidence": 0.95,
+      "rationale": "Parameter problem on integer solutions of quadratic inequality."
+    },
+    {
+      "source": "Test-2022A-Q4",
+      "skill_tag": "set_theory",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "|A∪B|=6."
+    },
+    {
+      "source": "Test-2023A-Q15",
+      "skill_tag": "derivative_rules",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Second derivative of e^(-3x)."
+    },
+    {
+      "source": "Test-2023A-Q2",
+      "skill_tag": "coordinate_geometry",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Distance from point to axis."
+    },
+    {
+      "source": "Test-2023A-Q20",
+      "skill_tag": "matrix_inverse",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "det=0 for non-invertibility."
+    },
+    {
+      "source": "Test-2023A-Q25",
+      "skill_tag": "indefinite_integral",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "u-substitution antiderivative."
+    },
+    {
+      "source": "Test-2023A-Q29",
+      "skill_tag": "trig_identity",
+      "difficulty_tier": "hard",
+      "confidence": 0.9,
+      "rationale": "sin³α-cos³α via factoring and (sinα-cosα)² expansion."
+    },
+    {
+      "source": "Test-2023A-Q30",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "|2x+3|>|4-x| via squaring. Abs-value inequality in scope."
+    },
+    {
+      "source": "Test-2023A-Q31",
+      "skill_tag": "central_tendency",
+      "difficulty_tier": "medium",
+      "confidence": 0.9,
+      "rationale": "Mean from grouped frequency, solve for missing frequency."
+    },
+    {
+      "source": "Test-2023A-Q34",
+      "skill_tag": "polynomial_remainder",
+      "difficulty_tier": "hard",
+      "confidence": 0.95,
+      "rationale": "Remainder theorem twice + system."
+    },
+    {
+      "source": "Test-2023A-Q36",
+      "skill_tag": "matrix_operation",
+      "difficulty_tier": "hard",
+      "confidence": 0.65,
+      "rationale": "Cayley-Hamilton: A²=2A-E ⇒ A³=3A-2E. matrix_operation as umbrella; rare topic."
+    },
+    {
+      "source": "Test-2023A-Q5",
+      "skill_tag": "complex_numbers",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "(3+i)²."
+    },
+    {
+      "source": "Test-2023B-Q19",
+      "skill_tag": "exponent_rules",
+      "difficulty_tier": "medium",
+      "confidence": 0.6,
+      "rationale": "Matching exponent/log values. Force-fit; SURVEILLANCE for multi-skill matching pattern."
+    },
+    {
+      "source": "Test-2023B-Q5",
+      "skill_tag": "complex_numbers",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "(2+i)²."
+    },
+    {
+      "source": "Test-2023C-Q19",
+      "skill_tag": "exponent_rules",
+      "difficulty_tier": "medium",
+      "confidence": 0.6,
+      "rationale": "Variant of 2023B-Q19."
+    },
+    {
+      "source": "Test-2023C-Q5",
+      "skill_tag": "complex_numbers",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "(3+i)²."
+    },
+    {
+      "source": "Test-2023D-Q19",
+      "skill_tag": "exponent_rules",
+      "difficulty_tier": "medium",
+      "confidence": 0.6,
+      "rationale": "Variant of 2023B-Q19."
+    },
+    {
+      "source": "Test-2023D-Q5",
+      "skill_tag": "complex_numbers",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "(2+i)²."
+    },
+    {
+      "source": "Test-2024A-Q21",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Quadratic+linear system inequality."
+    },
+    {
+      "source": "Test-2024A-Q26",
+      "skill_tag": "polynomial_remainder",
+      "difficulty_tier": "hard",
+      "confidence": 0.95,
+      "rationale": "Division by (x+3)² remainder via P(-3) and P'(-3)."
+    },
+    {
+      "source": "Test-2024A-Q28",
+      "skill_tag": "permutation_arrangement",
+      "difficulty_tier": "hard",
+      "confidence": 0.85,
+      "rationale": "Multiset permutation with usage cap."
+    }
+  ],
+  "batch4": [
+    {
+      "source": "Test-2024A-Q31",
+      "skill_tag": "indefinite_integral",
+      "difficulty_tier": "hard",
+      "confidence": 0.9,
+      "rationale": "∫e^(2x)/(e^x-1)dx via u-sub → e^x + ln(e^x-1) + C."
+    },
+    {
+      "source": "Test-2024A-Q35",
+      "skill_tag": "matrix_inverse",
+      "difficulty_tier": "hard",
+      "confidence": 0.9,
+      "rationale": "A - 3A^(-1) = 5E, derive xy=-6, x+y=5, x²+y²=37."
+    },
+    {
+      "source": "Test-2024A-Q8",
+      "skill_tag": "derivative_rules",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "y=ln(5x)-2x derivative."
+    },
+    {
+      "source": "Test-2024B-Q21",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "x²-4x<0 + linear."
+    },
+    {
+      "source": "Test-2024B-Q26",
+      "skill_tag": "polynomial_remainder",
+      "difficulty_tier": "hard",
+      "confidence": 0.95,
+      "rationale": "(x+2)² remainder."
+    },
+    {
+      "source": "Test-2024B-Q28",
+      "skill_tag": "permutation_arrangement",
+      "difficulty_tier": "hard",
+      "confidence": 0.85,
+      "rationale": "Multiset permutation."
+    },
+    {
+      "source": "Test-2024B-Q31",
+      "skill_tag": "indefinite_integral",
+      "difficulty_tier": "hard",
+      "confidence": 0.9,
+      "rationale": "∫e^(2x)/(e^x+1)dx."
+    },
+    {
+      "source": "Test-2024B-Q35",
+      "skill_tag": "matrix_inverse",
+      "difficulty_tier": "hard",
+      "confidence": 0.9,
+      "rationale": "A + 9A^(-1) = 6E variant."
+    },
+    {
+      "source": "Test-2024B-Q8",
+      "skill_tag": "derivative_rules",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "y=ln(3x)-4x derivative."
+    },
+    {
+      "source": "Test-2024C-Q19",
+      "skill_tag": "indefinite_integral",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Antiderivative + IC for trig derivative."
+    },
+    {
+      "source": "Test-2024C-Q21",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Variant."
+    },
+    {
+      "source": "Test-2024C-Q26",
+      "skill_tag": "polynomial_remainder",
+      "difficulty_tier": "hard",
+      "confidence": 0.95,
+      "rationale": "Variant."
+    },
+    {
+      "source": "Test-2024C-Q31",
+      "skill_tag": "indefinite_integral",
+      "difficulty_tier": "hard",
+      "confidence": 0.9,
+      "rationale": "Variant."
+    },
+    {
+      "source": "Test-2024C-Q6",
+      "skill_tag": "counting_principle",
+      "difficulty_tier": "easy",
+      "confidence": 0.9,
+      "rationale": "Different-color pair count by case."
+    },
+    {
+      "source": "Test-2024C-Q8",
+      "skill_tag": "derivative_rules",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Variant."
+    },
+    {
+      "source": "Test-2024D-Q19",
+      "skill_tag": "indefinite_integral",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Trig antiderivative + IC."
+    },
+    {
+      "source": "Test-2024D-Q21",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Variant."
+    },
+    {
+      "source": "Test-2024D-Q26",
+      "skill_tag": "polynomial_remainder",
+      "difficulty_tier": "hard",
+      "confidence": 0.95,
+      "rationale": "Variant."
+    },
+    {
+      "source": "Test-2024D-Q31",
+      "skill_tag": "indefinite_integral",
+      "difficulty_tier": "hard",
+      "confidence": 0.9,
+      "rationale": "Variant."
+    },
+    {
+      "source": "Test-2024D-Q6",
+      "skill_tag": "counting_principle",
+      "difficulty_tier": "easy",
+      "confidence": 0.9,
+      "rationale": "Different-color pair count."
+    },
+    {
+      "source": "Test-2024D-Q8",
+      "skill_tag": "derivative_rules",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Variant."
+    },
+    {
+      "source": "Test-2025A-Q13",
+      "skill_tag": "function_graph",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Infer coefficients from one graph, match another."
+    },
+    {
+      "source": "Test-2025A-Q16",
+      "skill_tag": "definite_integral",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Piecewise definite integral."
+    },
+    {
+      "source": "Test-2025A-Q21",
+      "skill_tag": "progression",
+      "difficulty_tier": "easy",
+      "confidence": 0.65,
+      "rationale": "Sum cancellation. Force-fit."
+    },
+    {
+      "source": "Test-2025A-Q22",
+      "skill_tag": "word_problem_arithmetic",
+      "difficulty_tier": "medium",
+      "confidence": 0.9,
+      "rationale": "Speed/distance word problem."
+    }
+  ],
+  "batch5": [
+    {
+      "source": "Test-2025A-Q26",
+      "skill_tag": "geometric_probability",
+      "difficulty_tier": "hard",
+      "confidence": 0.95,
+      "rationale": "Trapezoid inscribed circle, area ratio."
+    },
+    {
+      "source": "Test-2025A-Q27",
+      "skill_tag": "word_problem_arithmetic",
+      "difficulty_tier": "hard",
+      "confidence": 0.85,
+      "rationale": "Ratio R:W=4:9 with removal."
+    },
+    {
+      "source": "Test-2025A-Q29",
+      "skill_tag": "permutation_arrangement",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Multiset non-adjacent permutation."
+    },
+    {
+      "source": "Test-2025A-Q35",
+      "skill_tag": "matrix_inverse",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Solve linear system via given A^(-1)."
+    },
+    {
+      "source": "Test-2025A-Q4",
+      "skill_tag": "indefinite_integral",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "∫cos(2x)dx."
+    },
+    {
+      "source": "Test-2025A-Q5",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Linear abs-value inequality."
+    },
+    {
+      "source": "Test-2025B-Q13",
+      "skill_tag": "function_graph",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Coefficient inference graph match."
+    },
+    {
+      "source": "Test-2025B-Q16",
+      "skill_tag": "definite_integral",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Piecewise definite integral."
+    },
+    {
+      "source": "Test-2025B-Q21",
+      "skill_tag": "progression",
+      "difficulty_tier": "easy",
+      "confidence": 0.65,
+      "rationale": "Sum cancellation. Force-fit."
+    },
+    {
+      "source": "Test-2025B-Q22",
+      "skill_tag": "word_problem_arithmetic",
+      "difficulty_tier": "medium",
+      "confidence": 0.9,
+      "rationale": "Speed/distance variant."
+    },
+    {
+      "source": "Test-2025B-Q26",
+      "skill_tag": "geometric_probability",
+      "difficulty_tier": "hard",
+      "confidence": 0.95,
+      "rationale": "Trapezoid inscribed circle variant."
+    },
+    {
+      "source": "Test-2025B-Q27",
+      "skill_tag": "word_problem_arithmetic",
+      "difficulty_tier": "hard",
+      "confidence": 0.85,
+      "rationale": "Ratio variant."
+    },
+    {
+      "source": "Test-2025B-Q29",
+      "skill_tag": "permutation_arrangement",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Multiset non-adjacent permutation variant."
+    },
+    {
+      "source": "Test-2025B-Q35",
+      "skill_tag": "matrix_inverse",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "System solve via inverse variant."
+    },
+    {
+      "source": "Test-2025B-Q4",
+      "skill_tag": "indefinite_integral",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "∫sin(5x)dx."
+    },
+    {
+      "source": "Test-2025B-Q5",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "|7x-5|<9 variant."
+    },
+    {
+      "source": "Test-2025C-Q13",
+      "skill_tag": "function_graph",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Variant."
+    },
+    {
+      "source": "Test-2025C-Q16",
+      "skill_tag": "definite_integral",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Variant."
+    },
+    {
+      "source": "Test-2025C-Q21",
+      "skill_tag": "progression",
+      "difficulty_tier": "easy",
+      "confidence": 0.65,
+      "rationale": "Variant."
+    },
+    {
+      "source": "Test-2025C-Q22",
+      "skill_tag": "word_problem_arithmetic",
+      "difficulty_tier": "medium",
+      "confidence": 0.9,
+      "rationale": "Variant."
+    },
+    {
+      "source": "Test-2025C-Q26",
+      "skill_tag": "geometric_probability",
+      "difficulty_tier": "hard",
+      "confidence": 0.95,
+      "rationale": "Variant."
+    },
+    {
+      "source": "Test-2025C-Q27",
+      "skill_tag": "word_problem_arithmetic",
+      "difficulty_tier": "hard",
+      "confidence": 0.85,
+      "rationale": "Variant."
+    },
+    {
+      "source": "Test-2025C-Q29",
+      "skill_tag": "permutation_arrangement",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Variant."
+    },
+    {
+      "source": "Test-2025C-Q35",
+      "skill_tag": "matrix_inverse",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Variant."
+    },
+    {
+      "source": "Test-2025C-Q4",
+      "skill_tag": "indefinite_integral",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Variant."
+    }
+  ],
+  "batch6": [
+    {
+      "source": "Test-2025C-Q5",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Variant."
+    },
+    {
+      "source": "Test-2025D-Q19",
+      "skill_tag": "derivative_application",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Normal line to 1/(x-1)."
+    },
+    {
+      "source": "Test-2025D-Q22",
+      "skill_tag": "word_problem_arithmetic",
+      "difficulty_tier": "medium",
+      "confidence": 0.9,
+      "rationale": "Variant."
+    },
+    {
+      "source": "Test-2025D-Q35",
+      "skill_tag": "matrix_inverse",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Variant."
+    },
+    {
+      "source": "Test-2025D-Q4",
+      "skill_tag": "indefinite_integral",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Variant."
+    },
+    {
+      "source": "Test-2025D-Q5",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Variant."
+    },
+    {
+      "source": "Test-2025D-Q8",
+      "skill_tag": "coordinate_geometry",
+      "difficulty_tier": "medium",
+      "confidence": 0.65,
+      "rationale": "3D parametric line + plane intersection. Force-fit; surveillance 1/5."
+    },
+    {
+      "source": "Test-2A-Q1",
+      "skill_tag": "exponent_rules",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Zero exponent."
+    },
+    {
+      "source": "Test-2A-Q10",
+      "skill_tag": "function_inverse_composite",
+      "difficulty_tier": "medium",
+      "confidence": 0.55,
+      "rationale": "Custom operators. Surveillance 1/5."
+    },
+    {
+      "source": "Test-2A-Q14",
+      "skill_tag": "number_theory",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Count 3-digit perfect cubes: 5³=125 through 9³=729 ⇒ 5 numbers. Reclassified from number_representation to number_theory (new tag added 2026-05-13)."
+    },
+    {
+      "source": "Test-2A-Q15",
+      "skill_tag": "word_problem_arithmetic",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Age problem."
+    },
+    {
+      "source": "Test-2A-Q16",
+      "skill_tag": "polynomial_remainder",
+      "difficulty_tier": "easy",
+      "confidence": 0.65,
+      "rationale": "P(1) trick. Force-fit."
+    },
+    {
+      "source": "Test-2A-Q17",
+      "skill_tag": "trig_value",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Quadrant identification."
+    },
+    {
+      "source": "Test-2A-Q20",
+      "skill_tag": "polygon_geometry",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Rhombus diagonals."
+    },
+    {
+      "source": "Test-2A-Q23",
+      "skill_tag": "solid_geometry",
+      "difficulty_tier": "medium",
+      "confidence": 0.9,
+      "rationale": "Box volume integer constraint."
+    },
+    {
+      "source": "Test-2A-Q25",
+      "skill_tag": "coordinate_geometry",
+      "difficulty_tier": "medium",
+      "confidence": 0.9,
+      "rationale": "Line intersection + triangle area."
+    },
+    {
+      "source": "Test-2A-Q26",
+      "skill_tag": "basic_probability",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Combination probability."
+    },
+    {
+      "source": "Test-2A-Q27",
+      "skill_tag": "matrix_operation",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Matrix power."
+    },
+    {
+      "source": "Test-2A-Q29",
+      "skill_tag": "rational_expression",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Partial fractions."
+    },
+    {
+      "source": "Test-2A-Q3",
+      "skill_tag": "quadratic_equation",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Vieta sum."
+    },
+    {
+      "source": "Test-2A-Q31",
+      "skill_tag": "derivative_application",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "f' graph monotonicity."
+    },
+    {
+      "source": "Test-2A-Q35",
+      "skill_tag": "discrete_distribution",
+      "difficulty_tier": "medium",
+      "confidence": 0.6,
+      "rationale": "Continuous CDF. Force-fit; surveillance 1/5."
+    },
+    {
+      "source": "Test-2A-Q36",
+      "skill_tag": "geometric_probability",
+      "difficulty_tier": "hard",
+      "confidence": 0.95,
+      "rationale": "Area-based curved region."
+    },
+    {
+      "source": "Test-2A-Q6",
+      "skill_tag": "quadratic_equation",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Radical→quadratic→Vieta."
+    },
+    {
+      "source": "Test-2B-Q10",
+      "skill_tag": "function_inverse_composite",
+      "difficulty_tier": "medium",
+      "confidence": 0.55,
+      "rationale": "Custom operators variant. Surveillance 2/5."
+    }
+  ],
+  "batch7": [
+    {
+      "source": "Test-2B-Q13",
+      "skill_tag": "polygon_geometry",
+      "difficulty_tier": "hard",
+      "confidence": 0.95,
+      "rationale": "Pentagon area by decomposition."
+    },
+    {
+      "source": "Test-2B-Q14",
+      "skill_tag": "number_theory",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Count 3-digit perfect squares: 10² through 31² ⇒ 22 numbers. Reclassified from number_representation to number_theory."
+    },
+    {
+      "source": "Test-2B-Q15",
+      "skill_tag": "word_problem_arithmetic",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Age problem."
+    },
+    {
+      "source": "Test-2B-Q16",
+      "skill_tag": "polynomial_remainder",
+      "difficulty_tier": "easy",
+      "confidence": 0.65,
+      "rationale": "P(1) coefficient sum."
+    },
+    {
+      "source": "Test-2B-Q17",
+      "skill_tag": "trig_value",
+      "difficulty_tier": "medium",
+      "confidence": 0.8,
+      "rationale": "12 rad quadrant."
+    },
+    {
+      "source": "Test-2B-Q18",
+      "skill_tag": "trig_identity",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Reduction + Pythagorean → 1."
+    },
+    {
+      "source": "Test-2B-Q23",
+      "skill_tag": "solid_geometry",
+      "difficulty_tier": "medium",
+      "confidence": 0.9,
+      "rationale": "Box volume ratio."
+    },
+    {
+      "source": "Test-2B-Q25",
+      "skill_tag": "coordinate_geometry",
+      "difficulty_tier": "medium",
+      "confidence": 0.9,
+      "rationale": "Triangle area in coords."
+    },
+    {
+      "source": "Test-2B-Q26",
+      "skill_tag": "basic_probability",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Combination probability."
+    },
+    {
+      "source": "Test-2B-Q27",
+      "skill_tag": "matrix_operation",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Matrix power."
+    },
+    {
+      "source": "Test-2B-Q29",
+      "skill_tag": "rational_expression",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Partial fractions."
+    },
+    {
+      "source": "Test-2B-Q3",
+      "skill_tag": "quadratic_equation",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Vieta sum."
+    },
+    {
+      "source": "Test-2B-Q30",
+      "skill_tag": "polynomial_remainder",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Equal remainders condition."
+    },
+    {
+      "source": "Test-2B-Q31",
+      "skill_tag": "derivative_application",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Derivative graph monotonicity."
+    },
+    {
+      "source": "Test-2B-Q35",
+      "skill_tag": "discrete_distribution",
+      "difficulty_tier": "medium",
+      "confidence": 0.6,
+      "rationale": "Continuous CDF. Force-fit."
+    },
+    {
+      "source": "Test-2B-Q36",
+      "skill_tag": "geometric_probability",
+      "difficulty_tier": "hard",
+      "confidence": 0.95,
+      "rationale": "Area-based prob."
+    },
+    {
+      "source": "Test-2B-Q6",
+      "skill_tag": "quadratic_equation",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Radical→quadratic."
+    },
+    {
+      "source": "Test-3A-Q1",
+      "skill_tag": "number_representation",
+      "difficulty_tier": "easy",
+      "confidence": 0.5,
+      "rationale": "Basic abs-value eval. Force-fit."
+    },
+    {
+      "source": "Test-3A-Q14",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Trivial abs-value inequality."
+    },
+    {
+      "source": "Test-3A-Q16",
+      "skill_tag": "rational_expression",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Rational eq with domain."
+    },
+    {
+      "source": "Test-3A-Q17",
+      "skill_tag": "quadratic_equation",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Vieta."
+    },
+    {
+      "source": "Test-3A-Q18",
+      "skill_tag": "rational_expression",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "x+1/x identity."
+    },
+    {
+      "source": "Test-3A-Q19",
+      "skill_tag": "counting_principle",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Multiplication principle."
+    },
+    {
+      "source": "Test-3A-Q2",
+      "skill_tag": "linear_equation",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Linear with no solution."
+    },
+    {
+      "source": "Test-3A-Q23",
+      "skill_tag": "system_of_equations",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Multiplicative system."
+    }
+  ],
+  "batch8": [
+    {
+      "source": "Test-3A-Q25",
+      "skill_tag": "function_domain_range",
+      "difficulty_tier": "medium",
+      "confidence": 0.65,
+      "rationale": "Recursive function evaluation."
+    },
+    {
+      "source": "Test-3A-Q3",
+      "skill_tag": "word_problem_arithmetic",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Consecutive page sum."
+    },
+    {
+      "source": "Test-3A-Q30",
+      "skill_tag": "discrete_distribution",
+      "difficulty_tier": "easy",
+      "confidence": 0.9,
+      "rationale": "Distribution table read."
+    },
+    {
+      "source": "Test-3A-Q34",
+      "skill_tag": "derivative_rules",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "ln(sin x) chain rule."
+    },
+    {
+      "source": "Test-3A-Q4",
+      "skill_tag": "linear_equation",
+      "difficulty_tier": "easy",
+      "confidence": 0.65,
+      "rationale": "Supplementary angles. Surveillance 1/5."
+    },
+    {
+      "source": "Test-3A-Q6",
+      "skill_tag": "linear_inequality",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Linear inequality."
+    },
+    {
+      "source": "Test-3A-Q8",
+      "skill_tag": "system_of_equations",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Line intersection via substitution."
+    },
+    {
+      "source": "Test-3B-Q1",
+      "skill_tag": "number_representation",
+      "difficulty_tier": "easy",
+      "confidence": 0.5,
+      "rationale": "Basic abs-value eval."
+    },
+    {
+      "source": "Test-3B-Q16",
+      "skill_tag": "rational_expression",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Rational eq domain restriction."
+    },
+    {
+      "source": "Test-3B-Q17",
+      "skill_tag": "quadratic_equation",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Vieta sum."
+    },
+    {
+      "source": "Test-3B-Q18",
+      "skill_tag": "rational_expression",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "x+1/x identity."
+    },
+    {
+      "source": "Test-3B-Q19",
+      "skill_tag": "counting_principle",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Coloring sequence."
+    },
+    {
+      "source": "Test-3B-Q2",
+      "skill_tag": "linear_equation",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Identity case."
+    },
+    {
+      "source": "Test-3B-Q21",
+      "skill_tag": "permutation_arrangement",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "CIRCLE multiset permutation."
+    },
+    {
+      "source": "Test-3B-Q3",
+      "skill_tag": "word_problem_arithmetic",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Consecutive ticket sum."
+    },
+    {
+      "source": "Test-3B-Q30",
+      "skill_tag": "discrete_distribution",
+      "difficulty_tier": "easy",
+      "confidence": 0.9,
+      "rationale": "Distribution table."
+    },
+    {
+      "source": "Test-3B-Q34",
+      "skill_tag": "derivative_rules",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "ln(cos x)."
+    },
+    {
+      "source": "Test-3B-Q36",
+      "skill_tag": "triangle_geometry",
+      "difficulty_tier": "easy",
+      "confidence": 0.9,
+      "rationale": "Triangle inequality."
+    },
+    {
+      "source": "Test-3B-Q4",
+      "skill_tag": "linear_equation",
+      "difficulty_tier": "easy",
+      "confidence": 0.65,
+      "rationale": "Supplementary angles variant. Surveillance 2/5."
+    },
+    {
+      "source": "Test-3B-Q5",
+      "skill_tag": "rational_expression",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Sign-of-denom equivalence."
+    },
+    {
+      "source": "Test-3B-Q6",
+      "skill_tag": "linear_inequality",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Linear inequality."
+    },
+    {
+      "source": "Test-3B-Q7",
+      "skill_tag": "coordinate_geometry",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Slope formula."
+    },
+    {
+      "source": "Test-3B-Q8",
+      "skill_tag": "system_of_equations",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Line intersection."
+    },
+    {
+      "source": "Test-4A-Q12",
+      "skill_tag": "number_theory",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Product=864, GCD=6 ⇒ coprime pair mn=24, (m,n)=(3,8), numbers (18,48). GCD/LCM pair enumeration. Reclassified from number_representation."
+    },
+    {
+      "source": "Test-4A-Q14",
+      "skill_tag": "polygon_geometry",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Right trapezoid area via diagonal."
+    }
+  ],
+  "batch9": [
+    {
+      "source": "Test-4A-Q16",
+      "skill_tag": "word_problem_arithmetic",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Book reading percentages."
+    },
+    {
+      "source": "Test-4A-Q18",
+      "skill_tag": "polynomial_factoring",
+      "difficulty_tier": "medium",
+      "confidence": 0.75,
+      "rationale": "Cubic root substitution."
+    },
+    {
+      "source": "Test-4A-Q2",
+      "skill_tag": "quadratic_equation",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "x²-7=0 sum=0."
+    },
+    {
+      "source": "Test-4A-Q21",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "medium",
+      "confidence": 0.9,
+      "rationale": "Rational inequality."
+    },
+    {
+      "source": "Test-4A-Q24",
+      "skill_tag": "function_graph",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Graph negative interval."
+    },
+    {
+      "source": "Test-4A-Q25",
+      "skill_tag": "basic_probability",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Digit product probability."
+    },
+    {
+      "source": "Test-4A-Q27",
+      "skill_tag": "matrix_inverse",
+      "difficulty_tier": "hard",
+      "confidence": 0.75,
+      "rationale": "3x3 determinant condition."
+    },
+    {
+      "source": "Test-4A-Q28",
+      "skill_tag": "discrete_distribution",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Binomial coin."
+    },
+    {
+      "source": "Test-4A-Q33",
+      "skill_tag": "indefinite_integral",
+      "difficulty_tier": "hard",
+      "confidence": 0.95,
+      "rationale": "Decomposition integral."
+    },
+    {
+      "source": "Test-4A-Q4",
+      "skill_tag": "function_domain_range",
+      "difficulty_tier": "easy",
+      "confidence": 0.8,
+      "rationale": "Function eval for parameter."
+    },
+    {
+      "source": "Test-4A-Q5",
+      "skill_tag": "counting_principle",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "2-digit multiples count."
+    },
+    {
+      "source": "Test-4A-Q6",
+      "skill_tag": "rational_expression",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Rational eq + substitution."
+    },
+    {
+      "source": "Test-4A-Q7",
+      "skill_tag": "number_theory",
+      "difficulty_tier": "hard",
+      "confidence": 0.9,
+      "rationale": "(2n²+n+11)/(n+2) natural ⇒ (n+2)|17 ⇒ n=15. Integer-divisibility reasoning is the binding skill (polynomial division is the technique to expose it). Reclassified from polynomial_remainder to number_theory per new tag scope: 'distinct from polynomial_remainder (polynomial not integer divisibility)'."
+    },
+    {
+      "source": "Test-4A-Q8",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Graph→inequality reverse."
+    },
+    {
+      "source": "Test-4B-Q12",
+      "skill_tag": "number_theory",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Product=4800, GCD=20 ⇒ coprime pair mn=12, (m,n)=(3,4), numbers (60,80). Reclassified from number_representation."
+    },
+    {
+      "source": "Test-4B-Q14",
+      "skill_tag": "polygon_geometry",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Trapezoid variant."
+    },
+    {
+      "source": "Test-4B-Q16",
+      "skill_tag": "word_problem_arithmetic",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Book variant."
+    },
+    {
+      "source": "Test-4B-Q18",
+      "skill_tag": "polynomial_factoring",
+      "difficulty_tier": "medium",
+      "confidence": 0.75,
+      "rationale": "Cubic root substitution variant."
+    },
+    {
+      "source": "Test-4B-Q2",
+      "skill_tag": "quadratic_equation",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Sum of roots."
+    },
+    {
+      "source": "Test-4B-Q21",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "medium",
+      "confidence": 0.9,
+      "rationale": "Rational inequality variant."
+    },
+    {
+      "source": "Test-4B-Q24",
+      "skill_tag": "function_graph",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Graph positive interval."
+    },
+    {
+      "source": "Test-4B-Q25",
+      "skill_tag": "basic_probability",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Digit product variant."
+    },
+    {
+      "source": "Test-4B-Q27",
+      "skill_tag": "matrix_inverse",
+      "difficulty_tier": "hard",
+      "confidence": 0.75,
+      "rationale": "Determinant variant."
+    },
+    {
+      "source": "Test-4B-Q28",
+      "skill_tag": "discrete_distribution",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Binomial variant."
+    },
+    {
+      "source": "Test-4B-Q33",
+      "skill_tag": "indefinite_integral",
+      "difficulty_tier": "hard",
+      "confidence": 0.95,
+      "rationale": "Partial fractions integral."
+    }
+  ],
+  "batch10": [
+    {
+      "source": "Test-4B-Q4",
+      "skill_tag": "function_domain_range",
+      "difficulty_tier": "easy",
+      "confidence": 0.8,
+      "rationale": "y=(x+4)/(x-a) at (-2,4) ⇒ a=-5/2; a+4=3/2."
+    },
+    {
+      "source": "Test-4B-Q5",
+      "skill_tag": "counting_principle",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "2-digit multiples of 3: count=30."
+    },
+    {
+      "source": "Test-4B-Q6",
+      "skill_tag": "rational_expression",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "(a+3)/2-1/a=2 → a²-a-2=0; both a=2 and a=-1 give 1/5."
+    },
+    {
+      "source": "Test-4B-Q7",
+      "skill_tag": "number_theory",
+      "difficulty_tier": "hard",
+      "confidence": 0.9,
+      "rationale": "(3n²+7n-11)/(n+2) natural ⇒ (n+2)|13 ⇒ n=11. Integer-divisibility reasoning. number_theory (new tag)."
+    },
+    {
+      "source": "Test-4B-Q8",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Graph→inequality variant."
+    },
+    {
+      "source": "Test-5A-Q13",
+      "skill_tag": "quadratic_equation",
+      "difficulty_tier": "hard",
+      "confidence": 0.85,
+      "rationale": "x²+28/x²=4√7; substitute u=x²; double root, product of x values = -2√7."
+    },
+    {
+      "source": "Test-5A-Q15",
+      "skill_tag": "counting_principle",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Sum of 24 distinct-digit 3-digit numbers from {1,2,3,4}: 6660."
+    },
+    {
+      "source": "Test-5A-Q16",
+      "skill_tag": "progression",
+      "difficulty_tier": "easy",
+      "confidence": 0.7,
+      "rationale": "Alternating series 1-2+3-...+99=50. Force-fit progression."
+    },
+    {
+      "source": "Test-5A-Q18",
+      "skill_tag": "counting_principle",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Pigeonhole: 6 colors, draw 7 to guarantee pair."
+    },
+    {
+      "source": "Test-5A-Q19",
+      "skill_tag": "quadratic_equation",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Line tangent to parabola: discriminant=0, m=-2 or 6; m₁²+m₂²=40."
+    },
+    {
+      "source": "Test-5A-Q22",
+      "skill_tag": "polynomial_remainder",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "x⁴+4 divided by x²+5; remainder=29."
+    },
+    {
+      "source": "Test-5A-Q23",
+      "skill_tag": "basic_probability",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "P(prime on d10)=4/10=2/5."
+    },
+    {
+      "source": "Test-5A-Q24",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "hard",
+      "confidence": 0.75,
+      "rationale": "Quartic factored to n(n-1)(n+1)(n-6)<0; integers in (1,6) count=4."
+    },
+    {
+      "source": "Test-5A-Q27",
+      "skill_tag": "function_graph",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Leading term identification from graph end-behavior."
+    },
+    {
+      "source": "Test-5A-Q28",
+      "skill_tag": "function_domain_range",
+      "difficulty_tier": "hard",
+      "confidence": 0.65,
+      "rationale": "Horizontal asymptote of sum of rational functions: slants cancel, constants=2."
+    },
+    {
+      "source": "Test-5A-Q3",
+      "skill_tag": "polynomial_factoring",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "x²+3x-28=(x+7)(x-4); a=4."
+    },
+    {
+      "source": "Test-5A-Q30",
+      "skill_tag": "function_inverse_composite",
+      "difficulty_tier": "hard",
+      "confidence": 0.85,
+      "rationale": "f(f(x))=5 via graph reading + composition."
+    },
+    {
+      "source": "Test-5A-Q31",
+      "skill_tag": "polynomial_remainder",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "f(-2)=-10."
+    },
+    {
+      "source": "Test-5A-Q33",
+      "skill_tag": "derivative_rules",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Implicit differentiation: y'=-16x³/y³."
+    },
+    {
+      "source": "Test-5A-Q34",
+      "skill_tag": "discrete_distribution",
+      "difficulty_tier": "hard",
+      "confidence": 0.95,
+      "rationale": "Geometric-like sum=341/1024; k=2732/4096."
+    },
+    {
+      "source": "Test-5A-Q36",
+      "skill_tag": "definite_integral",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Area between curves: 5 5/24."
+    }
+  ],
+  "batch10_rest": [
+    {
+      "source": "Test-5A-Q8",
+      "skill_tag": "number_theory",
+      "difficulty_tier": "hard",
+      "confidence": 0.95,
+      "rationale": "k! divisible by 100 requires ≥2 factors of 5. Count=9 for k=1..9. Factorial divisibility."
+    },
+    {
+      "source": "Test-5B-Q13",
+      "skill_tag": "quadratic_equation",
+      "difficulty_tier": "hard",
+      "confidence": 0.85,
+      "rationale": "Quadratic in u=x² variant."
+    },
+    {
+      "source": "Test-5B-Q15",
+      "skill_tag": "counting_principle",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Sum of 2-digit distinct-digit numbers."
+    },
+    {
+      "source": "Test-5B-Q16",
+      "skill_tag": "progression",
+      "difficulty_tier": "medium",
+      "confidence": 0.7,
+      "rationale": "Period-4 alternating series. Force-fit."
+    },
+    {
+      "source": "Test-5B-Q18",
+      "skill_tag": "counting_principle",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Pigeonhole variant."
+    },
+    {
+      "source": "Test-5B-Q19",
+      "skill_tag": "quadratic_equation",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Tangent to parabola."
+    },
+    {
+      "source": "Test-5B-Q22",
+      "skill_tag": "polynomial_remainder",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Polynomial remainder."
+    },
+    {
+      "source": "Test-5B-Q23",
+      "skill_tag": "basic_probability",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "P(prime on d12)."
+    },
+    {
+      "source": "Test-5B-Q24",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "hard",
+      "confidence": 0.75,
+      "rationale": "Quartic inequality integer count."
+    },
+    {
+      "source": "Test-5B-Q27",
+      "skill_tag": "function_graph",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Leading term from graph."
+    },
+    {
+      "source": "Test-5B-Q28",
+      "skill_tag": "function_domain_range",
+      "difficulty_tier": "hard",
+      "confidence": 0.65,
+      "rationale": "Horizontal asymptote."
+    },
+    {
+      "source": "Test-5B-Q3",
+      "skill_tag": "polynomial_factoring",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Factor quadratic for a."
+    },
+    {
+      "source": "Test-5B-Q30",
+      "skill_tag": "function_inverse_composite",
+      "difficulty_tier": "hard",
+      "confidence": 0.85,
+      "rationale": "f(f(x))=6 graph."
+    },
+    {
+      "source": "Test-5B-Q31",
+      "skill_tag": "polynomial_remainder",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "f(-1)=13."
+    },
+    {
+      "source": "Test-5B-Q33",
+      "skill_tag": "derivative_rules",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Implicit differentiation."
+    },
+    {
+      "source": "Test-5B-Q34",
+      "skill_tag": "discrete_distribution",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Sum to 1 for k."
+    },
+    {
+      "source": "Test-5B-Q36",
+      "skill_tag": "definite_integral",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Area between curves."
+    },
+    {
+      "source": "Test-5B-Q8",
+      "skill_tag": "number_theory",
+      "difficulty_tier": "hard",
+      "confidence": 0.95,
+      "rationale": "Factorial divisibility by 25."
+    },
+    {
+      "source": "Test-6A-Q1",
+      "skill_tag": "trig_value",
+      "difficulty_tier": "easy",
+      "confidence": 0.75,
+      "rationale": "Degree to radian. Force-fit."
+    },
+    {
+      "source": "Test-6A-Q10",
+      "skill_tag": "quadratic_equation",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Vieta sum."
+    },
+    {
+      "source": "Test-6A-Q11",
+      "skill_tag": "permutation_arrangement",
+      "difficulty_tier": "hard",
+      "confidence": 0.85,
+      "rationale": "Multiset arrangement with usage cap."
+    },
+    {
+      "source": "Test-6A-Q12",
+      "skill_tag": "exponent_rules",
+      "difficulty_tier": "medium",
+      "confidence": 0.7,
+      "rationale": "Exponential inequality. Force-fit. Surveillance 1/5."
+    },
+    {
+      "source": "Test-6A-Q13",
+      "skill_tag": "function_domain_range",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Function eval with param."
+    },
+    {
+      "source": "Test-6A-Q16",
+      "skill_tag": "counting_principle",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "2⁵ signals."
+    },
+    {
+      "source": "Test-6A-Q2",
+      "skill_tag": "polynomial_factoring",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Difference of squares."
+    },
+    {
+      "source": "Test-6A-Q20",
+      "skill_tag": "quadratic_equation",
+      "difficulty_tier": "hard",
+      "confidence": 0.9,
+      "rationale": "Vieta + cubic identity."
+    },
+    {
+      "source": "Test-6A-Q21",
+      "skill_tag": "function_domain_range",
+      "difficulty_tier": "hard",
+      "confidence": 0.95,
+      "rationale": "Domain of radical+log expression."
+    },
+    {
+      "source": "Test-6A-Q22",
+      "skill_tag": "counting_principle",
+      "difficulty_tier": "hard",
+      "confidence": 0.9,
+      "rationale": "4-digit number counts by digit constraints."
+    },
+    {
+      "source": "Test-6A-Q23",
+      "skill_tag": "function_domain_range",
+      "difficulty_tier": "hard",
+      "confidence": 0.8,
+      "rationale": "Even+periodic sum."
+    }
+  ],
+  "rows_276_300": [
+    {
+      "source": "Test-6A-Q24",
+      "skill_tag": "coordinate_geometry",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Square from 3 vertices."
+    },
+    {
+      "source": "Test-6A-Q26",
+      "skill_tag": "function_inverse_composite",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Functional equation substitution."
+    },
+    {
+      "source": "Test-6A-Q30",
+      "skill_tag": "matrix_inverse",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Rotation matrix inverse."
+    },
+    {
+      "source": "Test-6A-Q31",
+      "skill_tag": "discrete_distribution",
+      "difficulty_tier": "medium",
+      "confidence": 0.6,
+      "rationale": "Continuous density k. Force-fit. Surveillance 3/5."
+    },
+    {
+      "source": "Test-6A-Q32",
+      "skill_tag": "indefinite_integral",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "u-sub e^u."
+    },
+    {
+      "source": "Test-6A-Q33",
+      "skill_tag": "combination_selection",
+      "difficulty_tier": "hard",
+      "confidence": 0.65,
+      "rationale": "Binomial expansion x-free term. Force-fit. Surveillance 1/5."
+    },
+    {
+      "source": "Test-6A-Q34",
+      "skill_tag": "coordinate_geometry",
+      "difficulty_tier": "medium",
+      "confidence": 0.65,
+      "rationale": "3D plane equation. Force-fit. Surveillance 2/5."
+    },
+    {
+      "source": "Test-6A-Q36",
+      "skill_tag": "derivative_rules",
+      "difficulty_tier": "hard",
+      "confidence": 0.85,
+      "rationale": "Derivative domain of √."
+    },
+    {
+      "source": "Test-6A-Q6",
+      "skill_tag": "rational_expression",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Rational eval."
+    },
+    {
+      "source": "Test-6B-Q1",
+      "skill_tag": "trig_value",
+      "difficulty_tier": "easy",
+      "confidence": 0.75,
+      "rationale": "Radian conversion."
+    },
+    {
+      "source": "Test-6B-Q10",
+      "skill_tag": "quadratic_equation",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Vieta."
+    },
+    {
+      "source": "Test-6B-Q11",
+      "skill_tag": "permutation_arrangement",
+      "difficulty_tier": "hard",
+      "confidence": 0.85,
+      "rationale": "Multiset arrangement."
+    },
+    {
+      "source": "Test-6B-Q12",
+      "skill_tag": "exponent_rules",
+      "difficulty_tier": "medium",
+      "confidence": 0.7,
+      "rationale": "Exponential inequality. Surveillance 2/5."
+    },
+    {
+      "source": "Test-6B-Q13",
+      "skill_tag": "function_domain_range",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Function eval w/ param."
+    },
+    {
+      "source": "Test-6B-Q16",
+      "skill_tag": "counting_principle",
+      "difficulty_tier": "easy",
+      "confidence": 0.95,
+      "rationale": "Signals."
+    },
+    {
+      "source": "Test-6B-Q2",
+      "skill_tag": "polynomial_factoring",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Diff of squares."
+    },
+    {
+      "source": "Test-6B-Q20",
+      "skill_tag": "quadratic_equation",
+      "difficulty_tier": "hard",
+      "confidence": 0.9,
+      "rationale": "Vieta + cubic identity."
+    },
+    {
+      "source": "Test-6B-Q21",
+      "skill_tag": "function_domain_range",
+      "difficulty_tier": "hard",
+      "confidence": 0.95,
+      "rationale": "Domain radical+log."
+    },
+    {
+      "source": "Test-6B-Q22",
+      "skill_tag": "counting_principle",
+      "difficulty_tier": "hard",
+      "confidence": 0.9,
+      "rationale": "5-digit count."
+    },
+    {
+      "source": "Test-6B-Q23",
+      "skill_tag": "function_domain_range",
+      "difficulty_tier": "hard",
+      "confidence": 0.8,
+      "rationale": "Even+periodic sum."
+    },
+    {
+      "source": "Test-6B-Q24",
+      "skill_tag": "coordinate_geometry",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Square vertices."
+    },
+    {
+      "source": "Test-6B-Q26",
+      "skill_tag": "function_inverse_composite",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Functional eq."
+    },
+    {
+      "source": "Test-6B-Q30",
+      "skill_tag": "matrix_inverse",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Inverse with param."
+    },
+    {
+      "source": "Test-6B-Q31",
+      "skill_tag": "discrete_distribution",
+      "difficulty_tier": "medium",
+      "confidence": 0.6,
+      "rationale": "Continuous PDF integral. Surveillance 4/5."
+    },
+    {
+      "source": "Test-6B-Q32",
+      "skill_tag": "indefinite_integral",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "u-sub e^u."
+    }
+  ],
+  "rows_301_325": [
+    {
+      "source": "Test-6B-Q33",
+      "skill_tag": "combination_selection",
+      "difficulty_tier": "hard",
+      "confidence": 0.65,
+      "rationale": "Binomial x-free term. Force-fit. Surveillance 2/5."
+    },
+    {
+      "source": "Test-6B-Q34",
+      "skill_tag": "coordinate_geometry",
+      "difficulty_tier": "hard",
+      "confidence": 0.65,
+      "rationale": "3D plane through 3 points. Force-fit. Surveillance 3/5."
+    },
+    {
+      "source": "Test-6B-Q36",
+      "skill_tag": "derivative_rules",
+      "difficulty_tier": "hard",
+      "confidence": 0.85,
+      "rationale": "Derivative domain of √(1-cosx)."
+    },
+    {
+      "source": "Test-6B-Q6",
+      "skill_tag": "rational_expression",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Rational eval."
+    },
+    {
+      "source": "Test-7A-Q11",
+      "skill_tag": "radical_expression",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Radical multiplication simplify."
+    },
+    {
+      "source": "Test-7A-Q15",
+      "skill_tag": "system_of_equations",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Rectangle dim system."
+    },
+    {
+      "source": "Test-7A-Q16",
+      "skill_tag": "number_representation",
+      "difficulty_tier": "easy",
+      "confidence": 0.65,
+      "rationale": "Compare |·|. Force-fit."
+    },
+    {
+      "source": "Test-7A-Q17",
+      "skill_tag": "counting_principle",
+      "difficulty_tier": "easy",
+      "confidence": 0.9,
+      "rationale": "Digit sum count."
+    },
+    {
+      "source": "Test-7A-Q2",
+      "skill_tag": "rational_expression",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Rational simplify w/ diff of squares."
+    },
+    {
+      "source": "Test-7A-Q32",
+      "skill_tag": "polynomial_factoring",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Diff of squares."
+    },
+    {
+      "source": "Test-7A-Q34",
+      "skill_tag": "progression",
+      "difficulty_tier": "medium",
+      "confidence": 0.55,
+      "rationale": "Telescoping inequality."
+    },
+    {
+      "source": "Test-7A-Q4",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "easy",
+      "confidence": 0.9,
+      "rationale": "1/x>1 rational inequality."
+    },
+    {
+      "source": "Test-7A-Q7",
+      "skill_tag": "triangle_geometry",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Angle from figure."
+    },
+    {
+      "source": "Test-7A-Q8",
+      "skill_tag": "word_problem_arithmetic",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Digit puzzle."
+    },
+    {
+      "source": "Test-7B-Q11",
+      "skill_tag": "radical_expression",
+      "difficulty_tier": "medium",
+      "confidence": 0.95,
+      "rationale": "Radical simplify variant."
+    },
+    {
+      "source": "Test-7B-Q15",
+      "skill_tag": "system_of_equations",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Rectangle dim variant."
+    },
+    {
+      "source": "Test-7B-Q16",
+      "skill_tag": "number_representation",
+      "difficulty_tier": "easy",
+      "confidence": 0.65,
+      "rationale": "|·| variant. Force-fit."
+    },
+    {
+      "source": "Test-7B-Q17",
+      "skill_tag": "counting_principle",
+      "difficulty_tier": "easy",
+      "confidence": 0.9,
+      "rationale": "Digit sum variant."
+    },
+    {
+      "source": "Test-7B-Q2",
+      "skill_tag": "rational_expression",
+      "difficulty_tier": "medium",
+      "confidence": 0.85,
+      "rationale": "Rational simplify variant."
+    },
+    {
+      "source": "Test-7B-Q33",
+      "skill_tag": "polynomial_factoring",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Diff of squares variant."
+    },
+    {
+      "source": "Test-7B-Q34",
+      "skill_tag": "progression",
+      "difficulty_tier": "medium",
+      "confidence": 0.55,
+      "rationale": "Telescoping inequality variant."
+    },
+    {
+      "source": "Test-7B-Q4",
+      "skill_tag": "quadratic_inequality",
+      "difficulty_tier": "easy",
+      "confidence": 0.9,
+      "rationale": "1/x>2 rational inequality."
+    },
+    {
+      "source": "Test-7B-Q6",
+      "skill_tag": "polynomial_factoring",
+      "difficulty_tier": "easy",
+      "confidence": 0.7,
+      "rationale": "Cubic-eq recognition. Force-fit."
+    },
+    {
+      "source": "Test-7B-Q7",
+      "skill_tag": "triangle_geometry",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Angle variant."
+    },
+    {
+      "source": "Test-7B-Q8",
+      "skill_tag": "word_problem_arithmetic",
+      "difficulty_tier": "easy",
+      "confidence": 0.85,
+      "rationale": "Digit puzzle variant."
+    }
+  ]
+}

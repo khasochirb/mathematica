@@ -75,16 +75,17 @@ This document is the **proposed taxonomy** + each tag's **justification**. After
 
 **Rationale:** 58 questions / 3 tags = ~19 each. Linear algebra is the most uniformly distributed topic in the bank. No need to over-split.
 
-### probability — 4 tags
+### probability — 5 tags
 
 | Tag | Examples / scope | Questions est. |
 |---|---|---|
+| `basic_probability` | Single-event probability computed via favorable/total counting | ~20 |
 | `discrete_distribution` | Probability tables, P(X=x) given a parametric distribution | ~16 |
 | `compound_event` | Independent / dependent / conditional events, mutually exclusive | ~13 |
 | `geometric_probability` | Area-based probability problems | ~8 |
 | `expected_value` | E(X), expected value computation | ~12 |
 
-**Rationale:** 49 questions. `compound_event` covers conditional probability and independence rules; `discrete_distribution` is specifically table-based.
+**Rationale:** 69 questions. `basic_probability` covers single-event |favorable|/|total| problems — P(prime in 1–20), P(composite), P(even ball drawn). Distinct from `compound_event` (combined/conditional events) and `discrete_distribution` (parametric tables). Added 2026-05-13 after Phase 3b.2 pilot surfaced this gap — rule-based pass was routing basic-probability questions to `compound_event` by elimination, but the doc description of compound_event ('independent/dependent/conditional/mutually exclusive') doesn't fit single events. `compound_event` covers conditional probability and independence rules; `discrete_distribution` is specifically table-based.
 
 ### statistics — 3 tags
 
@@ -107,15 +108,16 @@ This document is the **proposed taxonomy** + each tag's **justification**. After
 
 **Rationale:** 41 questions / 4 tags (35 trig-pure + 6 trig-triangle, after the 2026-05-13 move from geometry). MN curriculum places sine/cosine rule in trigonometry chapters, not geometry mensuration — moving `trig_triangle` here corrects the placement.
 
-### arithmetic — 3 tags
+### arithmetic — 4 tags
 
 | Tag | Examples / scope | Questions est. |
 |---|---|---|
 | `number_representation` | Rounding, scientific notation, repeating decimals, comparing irrationals | ~10 |
 | `fraction_arithmetic` | Fraction operations, mixed numbers, simplification | ~9 |
 | `word_problem_arithmetic` | Mixture problems, proportions, percentages, age problems | ~9 |
+| `number_theory` | Number-theoretic enumeration and divisibility properties of integers | ~10 |
 
-**Rationale:** 28 questions. `word_problem_arithmetic` is the "real-world setup → arithmetic" pattern that often shows up early in tests (Q1–Q8 territory).
+**Rationale:** 38 questions. `word_problem_arithmetic` is the "real-world setup → arithmetic" pattern that often shows up early in tests (Q1–Q8 territory). `number_theory` covers number-theoretic enumeration and divisibility reasoning: count perfect cubes/squares in a range, GCD/LCM pair problems, factorial divisibility, divisibility patterns. Distinct from `number_representation` (decimal forms, reading rather than reasoning) and `polynomial_remainder` (polynomial not integer divisibility). Added 2026-05-13 after Phase 3b.2 batch-10 STOP surfaced this gap — 5 force-fits to `number_representation` showed drill-cohort mismatch (rounding/comparing reals doesn't teach factorial divisibility or coprime pair enumeration).
 
 ### functions — 3 tags
 
@@ -171,25 +173,27 @@ This document is the **proposed taxonomy** + each tag's **justification**. After
 
 **Rationale:** Only 7 questions total — single combined tag. Same auto-trigger limitation as `progression`.
 
-## Tag count: 50
+## Tag count: 51
 
 ```
 algebra            10
 geometry            7   (was 8; trig_triangle moved to trigonometry)
 calculus            5   (was 6; limits merged into derivative_rules)
-probability         4
+probability         5   (was 4; basic_probability added 2026-05-13 from Phase 3b.2 pilot)
 trigonometry        4   (was 3; trig_triangle moved in from geometry)
 linear_algebra      3
 statistics          3
-arithmetic          3
+arithmetic          4   (was 3; number_theory added 2026-05-13 from Phase 3b.2 batch-10 STOP)
 functions           3
 combinatorics       3
 set_theory          1
 complex_numbers     1
 sequences           1
 logarithms          1
-TOTAL              50
+TOTAL              51
 ```
+
+**Header-math note (2026-05-13):** Prior to the basic_probability addition, the table summed to 49 despite the doc claiming 50 — the post-modification arithmetic from Phase 3b.1 review (move trig_triangle, merge limits) netted −1 from the original 50, which wasn't caught when the doc was locked. Adding basic_probability restored the total to 50; adding number_theory brings it to 51.
 
 ## Naming convention
 
