@@ -195,6 +195,10 @@ TOTAL              51
 
 **Header-math note (2026-05-13):** Prior to the basic_probability addition, the table summed to 49 despite the doc claiming 50 — the post-modification arithmetic from Phase 3b.1 review (move trig_triangle, merge limits) netted −1 from the original 50, which wasn't caught when the doc was locked. Adding basic_probability restored the total to 50; adding number_theory brings it to 51.
 
+## Known biases of the classifier
+
+- **Rule-based classifier confidence reflects keyword-match strength, not tag-fit quality.** A high-confidence rule-based row can still be wrong-tagged if the subtopic keyword pointed to the wrong skill bucket. See Phase 3b.3 row 82 (Test-2025A-Q8): solid_geometry @ 0.85 → vector_geometry @ 0.70 was a real quality improvement despite the confidence drop, because the original 0.85 reflected a strong keyword match ('орон зайн геометр' → solid_geometry) on a question that was actually a 3D parametric line ∩ plane intersection (vector skill). When sampling rows to spot-check during future taxonomy work, weight by "rule-based tag with no in-chat review" higher than by confidence alone — high rule confidence is not a substitute for skill-fit judgment.
+
 ## Naming convention
 
 - `lowercase_snake_case`

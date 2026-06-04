@@ -170,3 +170,5 @@ These are one shy of the ≥5 systemic-gap threshold (per the 3b.2 surveillance 
 - `continuous_distribution`: Continuous random variables — PDFs, CDFs, finding normalization constants, computing probabilities by integration.
 - Distinct from `discrete_distribution` (P(X=x) tables / parametric mass functions) and `geometric_probability` (area-based events on a sample space, not random-variable distributions).
 
+**Surveillance trigger compounding rule (2026-05-13, clarified after Phase 3b.3):** When a force-fit pattern's surveillance counter says "≥N more" or "≥1 more", that count **compounds across phases**, not "≥5 from scratch." A pattern surfaced in Phase 3b.2 with 4 instances and force-fit accordingly starts Phase 2b at count 4; one more instance triggers the new-tag split. Same for all other carryforward patterns in `memory/skill-tag-taxonomy.md`. Don't reset the counter when a new phase begins — the goal is to detect systemic gaps regardless of which phase surfaces the question.
+
