@@ -6,7 +6,7 @@
 
 Per `memory/refinement-loop-design.md` §2 + §6 Q6: every Section 1 question needs a `skill_tag` (fine-grained skill identifier) so the refinement loop can build similar-problem cohorts and trigger on weak-skill signals. Khas's target: ~50 tags, granularity around "factoring_quadratics / log_change_of_base / vector_dot_product".
 
-This document is the **proposed taxonomy** + each tag's **justification**. After review, the next step is LLM pre-classify of 1,724 questions against this list (Phase 3b Step 2).
+This document is the **proposed taxonomy** + each tag's **justification**. After review, the next step is LLM pre-classify of 1,224 questions against this list (Phase 3b Step 2).
 
 ## Methodology
 
@@ -235,7 +235,7 @@ This matches §3's design note: "Skills with <2 instances per test can never aut
 ## Phase 3b sequencing reminder
 
 - **3b.1 (this doc):** taxonomy draft — HARD STOP HERE.
-- **3b.2:** LLM pre-classify all 1,724 Section 1 questions against this taxonomy, emit `confidence` per tag. Output `scripts/skill-tag-classification.csv`.
+- **3b.2:** LLM pre-classify all 1,224 Section 1 questions against this taxonomy, emit `confidence` per tag. Output `scripts/skill-tag-classification.csv`.
 - **3b.3:** Manual spot-check — top-20 most-missed skills + every `confidence < 0.7` row. Show diff. HARD STOP.
 - **3b.4:** Apply tags to JSON files. Re-run vitest (164 tests still pass).
 - **3b.5:** New `verify:skill-tag-coverage.test.ts` asserting every question has `skill_tag` + `difficulty_tier`. Commit.

@@ -2,6 +2,8 @@
 
 **Date:** 2026-05-13. **Author:** Claude Opus 4.7. **Status:** Draft for Khas review. **No code touched** — this is the planning artefact that locks the architecture before Phase 3b builds it.
 
+> **Correction (2026-06-12):** this doc originally said 1,724 Section 1 questions; the verified count is **1,224** (20 past papers × 36 + 14 practice tests × 36). All figures updated in place.
+
 ## Context
 
 Per `CLAUDE.md`, the refinement loop is the product's differentiator:
@@ -251,7 +253,7 @@ Surfaces in analytics so we can prioritize authoring more content for over-train
 
 ### The three approaches
 
-**A. Manual `similar_problem_ids` curation.** Per-question authored list. Highest quality (a human picked them) but highest cost — for 1,724 Section 1 questions, authoring 5 similar per question is ~8,000 entries with cross-references.
+**A. Manual `similar_problem_ids` curation.** Per-question authored list. Highest quality (a human picked them) but highest cost — for 1,224 Section 1 questions, authoring 5 similar per question is ~8,000 entries with cross-references.
 
 **B. Auto-grouping by `skill_tag` + `difficulty_tier`.** Group all questions by `skill_tag` and within each group filter by difficulty_tier when needed. Cheap to query (`SELECT * FROM questions WHERE skill_tag = $1 AND source != $2`). Quality depends on skill-tag consistency.
 
@@ -324,7 +326,7 @@ These need your decisions before Phase 3b implementation.
 2. **Block other practice while a loop is active, or run alongside?** Blocking is more focused but feels coercive. Running alongside risks the loop being abandoned mid-flow. **Default proposal: run alongside, with a small badge on the dashboard "Сурлаа: [skill_tag] · Үргэлжлүүлэх"** so the student remembers.
 
 3. **Mini-test question pool source.** Three options:
-   - (a) Pull from the existing 1,724 Section 1 questions filtered by skill_tag
+   - (a) Pull from the existing 1,224 Section 1 questions filtered by skill_tag
    - (b) Author a dedicated mini-test bank (cleaner pool, but lots of new content)
    - (c) Generate via LLM at runtime (cheap, but quality risk)
    **Default proposal: (a) — reuse existing content. The LLM authoring tool we'd build for (c) is better-spent on hint_progression.**
@@ -335,7 +337,7 @@ These need your decisions before Phase 3b implementation.
 
 6. **Skill-tag granularity.** How fine? `algebra` is too coarse; `factoring_quadratics_with_leading_one` is too narrow. **Default proposal: ~50–80 distinct skill_tags total, granularity around the level of "factoring_quadratics" / "log_change_of_base" / "vector_dot_product".**
 
-7. **Skill_tag authoring cost.** Tagging 1,724 questions is real work — manual review is ~30 sec/q = ~14 hours. An LLM pre-classify + human review is ~5 hours. **Decision (locked 2026-05-13):** LLM pre-classify emits a **confidence score per tag**; tags with `confidence < 0.7` auto-route to manual review regardless of skill. Independent of the "top-20 most-missed" spot-check, which is additive. This guarantees the riskiest classifications get human eyes without blanket-reviewing the high-confidence ones.
+7. **Skill_tag authoring cost.** Tagging 1,224 questions is real work — manual review is ~30 sec/q = ~14 hours. An LLM pre-classify + human review is ~5 hours. **Decision (locked 2026-05-13):** LLM pre-classify emits a **confidence score per tag**; tags with `confidence < 0.7` auto-route to manual review regardless of skill. Independent of the "top-20 most-missed" spot-check, which is additive. This guarantees the riskiest classifications get human eyes without blanket-reviewing the high-confidence ones.
 
 8. **Daily loop-time cap.** Should we enforce a per-day cap to prevent fatigue (e.g., "Today you've worked through 3 loops; come back tomorrow")? **Default proposal: no cap for now; revisit if metrics show diminishing returns.**
 
@@ -362,7 +364,7 @@ These need your decisions before Phase 3b implementation.
 ## Phase 3 sequencing summary
 
 - **Phase 3a (this doc):** design. STOPPED here.
-- **Phase 3b (next gate):** content audit + tagging. Add `skill_tag`, `difficulty_tier` to existing 1,724 Section 1 questions. Author `key_insight` and `step_by_step_solution` for a starter subset (proposal: 200 most-missed questions). Skip `hint_progression` initially.
+- **Phase 3b (next gate):** content audit + tagging. Add `skill_tag`, `difficulty_tier` to existing 1,224 Section 1 questions. Author `key_insight` and `step_by_step_solution` for a starter subset (proposal: 200 most-missed questions). Skip `hint_progression` initially.
 - **Phase 3c:** state machine implementation. `refinement_loop_sessions` table, the state-machine TypeScript module, the 8 user-facing states from §1.
 - **Phase 3d:** trigger integrations. Wire 3a/3b/3c entry points. Cool-down logic. Recently-mastered flag in analytics.
 - **Phase 3e:** telemetry + iteration. Land event tracking; review first cohort's loop completion rates; tune thresholds.
