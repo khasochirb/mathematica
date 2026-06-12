@@ -2,19 +2,25 @@
 
 Flat queue of what's next, grouped by phase. Keep tactical — if it feels like overhead, delete entries.
 
+## Launch timeline
+- **First launch was targeted for 2026-06-11 — SLIPPED.** New date: **TBD (Khas to set)**. The deadline lived only in off-repo planning (claude.ai sessions); recorded here 2026-06-12 during the notes-reconstruction pass. Reconstruction's best guess at what blocked it (Khas to correct): Supabase Pro upgrade not done (sole hard launch-trigger item below), Phase 2 funnel items open (no-signup test path, marketing assets), team section still hidden pending re-launch (`63de6bb`).
+- **Expansion vision** (IB / SAT / AP — "the ultimate math prep website") reconstructed into [memory/expansion-vision.md](./memory/expansion-vision.md); has its own open-questions list for Khas.
+
 ## In flight
-- **Section 2 build (Part 2 fill-in problems) — P0 for v1 launch.** Spec: [memory/section2-design.md](./memory/section2-design.md). All 20 past-paper Section 2 JSONs authored (2021–2025 × 4 variants). Schema + loader + renderer + grading + persistence shipped (S2.1–S2.4). Runner integration + results page still ahead. Phase status:
+- **Section 2 build (Part 2 fill-in problems) — COMPLETE.** Spec: memory/section2-design.md (⚠️ referenced but never committed to the repo — exists only off-repo; recover or rewrite). All 20 past-paper Section 2 JSONs authored (2021–2025 × 4 variants). All phases shipped, S2.5/S2.6 included (status corrected 2026-06-12 — the entries below were stale). Phase status:
   - ✅ **S2.0 Content** — 2021/2022/2023/2024/2025 × A/B/C/D, 20 files, all verified.
   - ✅ **S2.1 Schema + loader** — `lib/esh-section2.ts`, `getTestSection2(testKey)`, `parseSlotLabel`. Verify: `npm run verify:section2-load` (20 keys × 28 pts).
   - ✅ **S2.2 Slot rendering component** — `Section2Card` with `\boxed{}` formula + per-letter answer panel; light/dark themed; literal-prefix `1e` handled.
   - ✅ **S2.3 Test session + grading** — `composeSlotAnswer`, `gradeSection2Subproblem`, `gradeSection2`; `useTestSession.section2Answers` + `setSection2Answer`. Verify: `npm run verify:section2-grading` (perfect/empty/literal-prefix/wrong cases).
   - ✅ **S2.4 DB migration + persist** — `section2_attempts` table (migration 006), `POST /api/section2/attempts`, `useTestSession.submitSection2Attempts` with localStorage queue-on-failure. Staging + prod cutover smoke 6/6 each. Details in Recently shipped.
-  - **S2.5 Runner navigation + transition** — after the last MCQ, transition to a "Section 2 begins" interstitial (single accept-and-continue). Soft warning if remaining time < 30 min. Combined timer keeps running across sections. Question navigator extended to show Part 1 + Part 2 nav.
-  - **S2.6 Results page** — extend results to show Part 1 score, Part 2 score, total. Per-subproblem breakdown with correct/incorrect indicator. Solutions accordion (free for past papers). Section-2 entry into refinement loop deferred to post-launch.
+  - ✅ **S2.5 Runner navigation + transition** — shipped (`afb04a8`, 2026-05-10): Part 2 wired into the test runner. Follow-up fixes in `2f443e9` (test submits write to attempts + integrated Section 1+2 headline) and `51c5af6` (per-letter partial credit).
+  - ✅ **S2.6 Results page** — shipped (`e03e227`, 2026-05-09): per-subproblem ✓/✗ + solutions. Figures on Section 2 results added in `2bb3661`. Section-2 entry into refinement loop deferred to post-launch.
 
   **Edge cases / gotchas to test:** literal-prefix slot `1e=10` (only in 2024B/2024C 2.4.2); per-variant slot-label divergence (2.2.2 in 2022 has `[bc, d, e]` for A but `[bc, de, f]` for B — renderer must drive layout from JSON, not hard-coded); joint-graded slots like vertex pair `(a, b)=1pt` (handled by `points < slots.length` + all-or-nothing rule).
 
   **Not in scope for v1:** Section 2 in the refinement loop, Section 2 in topic-drill page, solution-quality pass on Section 2, animated subproblem transitions.
+
+- **Refinement loop (Phase 3) — design locked, tagging next.** Phase 3a architecture locked (`b9d578f`, [memory/refinement-loop-design.md](./memory/refinement-loop-design.md)); Phase 3b.1 skill-tag taxonomy locked at 50 tags, Khas-reviewed (`aa129c3`, [memory/skill-tag-taxonomy.md](./memory/skill-tag-taxonomy.md)). **Next gate: Phase 3b Step 2 — LLM pre-classify of all Section 1 questions against the taxonomy** (confidence < 0.7 routes to manual review). ⚠️ Reconcile first: the design doc says **1,724** Section 1 questions, the taxonomy doc's inventory says **1,224** — one is stale or counts a different pool (past papers vs paid practice tests?). Several §6 open questions in the design doc remain undecided (notably premium gating and mini-test pool source); confirm whether they gate Step 2 or only Phase 3c.
 
 ## Next
 - **Phase 8 defensive** — modal source-prefix guard, rename `getAllTests()`, badge styling audit.
@@ -64,10 +70,13 @@ Both risks resolve simultaneously at Pro upgrade — no partial fix available. N
 - **3.7** Logo / wordmark polish
 
 ## Phase 2 (landing + funnel)
-- Landing page rewrite (drop "2σ confidence band", mark AI as Coming Soon)
+- [x] ~~Landing page rewrite~~ — shipped (`94c7b6e`, 2026-05-09): hero/stats/AI-generator rewrite, pricing dropped. Same arc shipped the exam-prep factual rewrite (`1d9a39c`), dashboard i18n + MN copy polish (`448bc18`, `b065440`), and hid the team section pending re-launch (`63de6bb` — **re-show before launch**).
 - No-signup test path
 - One-line reassurance about 2026 format change
 - **Marketing assets via Claude Design** (Anthropic Labs product, launched ~1 week ago) — generate Instagram/FB posters, Telegram channel banner, one-pager, branded email confirmation template reference. Prerequisites: P1 contract bug fixed (clean auth flow to point at), landing page rewrite drafted (settled brand voice to brief from). Onboarding plan: point Claude Design at the mathematica repo for design tokens, web-capture mongolpotential.com for realized look, upload logo asset. Time estimate: ~2-3 hours for first batch of social assets.
+
+## Curriculum expansion (post-launch workstream)
+IB Math HL/SL + SAT Math (and possibly AP Calculus AB/BC) added alongside ЭЕШ — "the ultimate math prep website," bilingual MN/EN with a diaspora angle. Currently marketing-surface only: landing strip + locked "Coming Soon" nav items, zero content/routes. Full reconstructed plan + open questions (which exam second, content sourcing/copyright, taxonomy reuse, pricing) in [memory/expansion-vision.md](./memory/expansion-vision.md). No implementation until Khas answers the open questions there.
 
 ## Recently shipped
 - **Past-paper figures (Section 1 + Section 2)** (2026-05-10). Adds geometry diagrams, function graphs, statistics charts, and 3D solids to all 20 EYSH past papers (2021-2025 × ABCD). 84 Section 1 figure references + 40 Section 2 figure references = 124 total wired entries pointing at 81 unique canonical PNGs (after MD5 byte-identity dedup of variant-mix duplicates). Bundle: 3.1 MB. Schema: optional `figure?: Figure` on Question / `Section2Item` (`src`, `alt_mn`, `alt_en`, `width`, `height`); for Section 2 the figure attaches to subproblem===1 only and renders once at the top of the problem screen, matching the paper exam. Renderer: new `components/esh/EshFigure.tsx` using next/image; dark mode via CSS `filter: invert(1) hue-rotate(180deg)` on the image (preserves card chrome). Tooling committed for reproducibility: `scripts/extract-figures.py` (pdfimages + fitz visual-order resolution), `scripts/dedup-figures.py` (MD5), `scripts/wire-figures-to-json.py` (idempotent), `scripts/verify-figures-wired.py`. Phase 1 audit caught a critical pdfimages object-stream-order bug (would have shipped 2024B 2.1 ↔ 2.2 swapped); fix uses fitz `page.get_image_rects()` to sort by y0 ascending — see `scripts/extract-figures.py` header comment + `memory/figures.md` for the full gotcha list. Out of scope: legacy paid practice tests (separate audit per `memory/practice-test-audit.md`), pre-2021 years, alt_mn translations (P3 follow-up).

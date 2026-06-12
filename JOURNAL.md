@@ -2,6 +2,24 @@
 
 Reverse-chronological log of major work sessions. Each entry captures the arc — what shipped, what was decided, what surfaced, what's deferred — in tighter form than commit messages alone. PHASES.md holds the queue; this holds the narrative.
 
+## 2026-06-12 — Notes reconstruction: month-long gap, launch slip, expansion vision
+
+Docs-only session. The repo's planning notes had gone a month stale (last notes commit 2026-05-13) while two major developments happened off-repo: the **"ultimate math prep website" expansion plan** (IB/SAT/AP alongside ЭЕШ) and a **first-launch deadline of 2026-06-11, which slipped** (new date TBD). Neither was anywhere in PHASES/JOURNAL/memory. Khas asked for a reconstruction from the deployed site + git history rather than a brain-dump.
+
+**Shipped (this commit):**
+- **`memory/expansion-vision.md`** — the reconstructed expansion plan, every claim cited to a commit or file, with 8 open questions for Khas (which exam second, AP real-or-aspirational, content sourcing/copyright per exam, taxonomy reuse, pricing, loop-vs-launch ordering, EN ЭЕШ scope, definition of "first launch").
+- **PHASES.md refresh** — new Launch timeline section (June 11 slip recorded, new date TBD); Section 2 corrected to COMPLETE (S2.5 `afb04a8` and S2.6 `e03e227` had shipped 2026-05-09/10 but the queue still showed them pending); landing rewrite marked shipped (`94c7b6e`); refinement-loop status entry added (3a/3b.1 locked, next gate = 3b Step 2 LLM pre-classify); Curriculum expansion workstream added.
+- **This journal entry.**
+
+**Surfaced:**
+- **1,724 vs 1,224 question-count discrepancy** between `refinement-loop-design.md` and `skill-tag-taxonomy.md`. Must reconcile before the Phase 3b Step 2 pre-classify run — auto-trigger viability estimates depend on the real pool size.
+- **`memory/section2-design.md` was never committed** — PHASES.md references it but it exists only off-repo. Recover from the local machine or accept the loss.
+- **Landing/nav inconsistency**: landing strip lists AP Calculus AB/BC; the Coming Soon nav lists only IB and SAT. Decide whether AP is roadmap or aspiration, then align.
+
+**Lesson captured (second occurrence):** plans made in claude.ai sessions or local working copies are invisible to future sessions unless they land in git. The section2-design.md gap was the first occurrence; the June-11 deadline + expansion vision living nowhere in the repo is the second. Discipline going forward: any planning artefact that locks a decision gets committed the same day, even as a rough draft.
+
+---
+
 ## 2026-05-08 — Practice-test JSON aligned to textbook (audit-v2 cleanup)
 
 Followed up on yesterday's flag that audit-v1's JSON-against-JSON checks didn't catch JSON-against-textbook mismatches. Audit-v2 was run (504 questions cross-referenced against `Desktop/ESH-nom.pdf`, full reports in `Desktop/outputs/audit-v2/PART-{1..5}-REPORT.md`, ground state captured in `memory/practice-test-audit.md`). This session shipped the 9 confirmed text/numbering fixes in one commit. No code touched — `data/questions/*.json` only.
