@@ -1,6 +1,6 @@
 # Expansion vision — "the ultimate math prep website"
 
-**Status:** RECONSTRUCTED from the deployed site + git history on 2026-06-12 by Claude. The original plan was made off-repo (claude.ai sessions / uncommitted local notes) and never committed, so this document back-fills it from code evidence. Every claim below either cites a commit/file or is marked **[needs Khas]**. Khas: please correct anything that doesn't match the actual plan, and answer the open questions in §4.
+**Status:** Reconstructed from the deployed site + git history on 2026-06-12 by Claude; **§4 decisions locked same day from Khas's answers.** Only pricing (Q5) remains open.
 
 ## 1. Vision
 
@@ -21,28 +21,32 @@ The product mechanics that make it "ultimate" carry over from the ЭЕШ build: 
 | ЭЕШ | **Active** — full product: 20 past papers (2021–2025 × ABCD) with Section 1 + Section 2, figures, analytics, server-synced attempts, refinement loop designed (Phase 3a/3b.1 locked) | `app/practice/esh/*`, PHASES.md, commits through `aa129c3` |
 | SAT Math | **Coming Soon** — locked nav item only; zero content, zero routes | `components/layout/Header.tsx` `comingSoonExams` |
 | IB Math HL/SL | **Coming Soon** — locked nav item only; zero content, zero routes | same |
-| AP Calculus AB/BC | **Landing-strip mention only** — not even in the Coming Soon nav. Aspiration vs. roadmap unclear **[needs Khas]** | `app/page.tsx` exam strip vs. `Header.tsx` |
+| AP Calculus AB/BC | **Confirmed roadmap item** (Khas, 2026-06-12) — currently landing-strip mention only; add to the Coming Soon nav for consistency | `app/page.tsx` exam strip vs. `Header.tsx` |
 | AMC | Blog/SEO mention only | `app/layout.tsx`, `app/blog/page.tsx` |
 
-## 3. Inferred sequencing **[needs Khas confirmation]**
+## 3. Sequencing (locked 2026-06-12)
 
-1. **ЭЕШ first launch** — was targeted for **2026-06-11**; slipped, new date TBD (see PHASES.md Launch timeline).
-2. **Refinement loop** (Phase 3b–3e) — the differentiator, ЭЕШ-scoped initially.
-3. **Second curriculum** — IB or SAT (both in nav as Coming Soon; order undecided).
-4. **AP / AMC** — later or aspirational.
+1. **ЭЕШ first launch** — was targeted for **2026-06-11**; slipped, new date TBD (see PHASES.md Launch timeline). Refinement loop intended **before** launch (Khas's lean; see Q6).
+2. **SAT Math** — the second curriculum.
+3. **IB Math HL/SL** — third.
+4. **AP Calculus AB/BC** — confirmed roadmap (order relative to IB TBD as the SAT build teaches us the cost of a curriculum).
+5. **Launch strategy is iterative relaunches**: each curriculum/feature addition is a relaunch moment that reaches new audiences — compounding toward "the #1 option for students to prepare for their math tests or improve their math skills" (Q8).
 
-## 4. Open questions for Khas
+## 4. Decisions (locked 2026-06-12, from Khas's answers)
 
-These are the gaps reconstruction cannot fill. Answers should be recorded here (same pattern as `refinement-loop-design.md` §6).
+Numbering matches the original open-questions list.
 
-1. **Which exam is second — IB or SAT?** Both are locked nav items. SAT has a bigger global content ecosystem and the diaspora angle; IB matches international-school students in UB.
-2. **Is AP Calculus a real roadmap item** or landing-page aspiration? The nav omits it; the landing strip includes it. If real, AB and BC together or AB first?
-3. **Content sourcing per exam.** Past ЭЕШ papers were transcribed from official sources + textbook. For SAT/IB/AP: licensed question banks? Hand-authored? AI-generated with human review (the `outputs/explanations` pipeline pattern)? Copyright posture differs sharply per exam — College Board and IB are litigious about real questions.
-4. **Does the 50-tag skill taxonomy generalize?** `memory/skill-tag-taxonomy.md` is ЭЕШ-shaped. Options: one shared cross-curriculum taxonomy with per-exam mappings, or a separate taxonomy per curriculum. This decides whether the refinement loop is reusable as-is.
-5. **Premium pricing.** The landing rewrite (`94c7b6e`) deliberately dropped pricing. What's the model — per-exam subscription, all-access, freemium per curriculum? Interacts with refinement-loop gating (open Q5 in `refinement-loop-design.md` §6).
-6. **Does the refinement loop ship before or after the (re-)launch?** Phase 3b Step 2 (LLM pre-classify of Section 1 questions) is the next gate; is it on the launch critical path or post-launch?
-7. **English-language ЭЕШ surface.** The diaspora pitch promises MN-or-EN instruction, but ЭЕШ content is MN-only today (alt_en exists on figures only). Is EN ЭЕШ in scope, or does EN instruction apply only to SAT/IB/AP?
-8. **What does "first launch" mean exactly** — public announcement, paid tier on, or just the site being usable? PHASES.md's launch trigger items (Supabase Pro upgrade) key off "public announcement OR first paying user."
+1. **Second exam: SAT.** ✅
+2. **AP Calculus: confirmed real roadmap item.** ✅ Align the nav (add AP to Coming Soon) when next touching the header.
+3. **Content sourcing: 100% self-authored.** ✅ Brand-new tests, materials, and a problem bank per topic, created in-house (Claude-assisted authoring + Khas review). No licensed banks, no transcribed real questions — which also neutralizes the College Board/IB copyright risk: we emulate the *format and difficulty distribution*, never the actual questions. This is a major content workstream per exam; needs its own phased plan (taxonomy → problem bank → practice tests → solutions/explanations) when SAT work starts.
+4. **Taxonomy: separate per curriculum.** ✅ Each exam gets its own skill-tag taxonomy (the ЭЕШ 50-tag doc stays ЭЕШ-only). The refinement-loop *machinery* (state machine, session table, cohort matching) is curriculum-agnostic; only the tag vocabulary is per-exam.
+5. **Pricing: OPEN.** Mix of per-exam / all-access / freemium under consideration; no solid decision. Needs a dedicated analysis pass ("go for the best option") before the paid tier launches. ⏳
+6. **Refinement loop before launch — Khas leans yes, asked for Claude's opinion.** Claude's recommendation (2026-06-12): **launch first, loop as relaunch #2's headline.** Reasoning: (a) the launch definition (Q8) is "site usable + audience growth via repeated relaunches" — that strategy *needs* a headline feature per relaunch, and the loop is the strongest headline available; spending it on launch #1 leaves relaunch #2 empty-handed. (b) The loop is weeks of work (3b tagging → 3c state machine → 3d triggers) and the date has already slipped once. (c) Launch #1 isn't naked without it: the ЭЕШ product is complete (20 past papers, Section 1+2, analytics, score projection) and `SimilarQuestionsPanel` (`70025c5`) already gives a basic post-miss flow. Final call is Khas's — if loop-before-launch is chosen, do 3b Step 2 immediately and timebox it.
+7. **Language architecture.** ✅
+   - **ЭЕШ hub:** ALL content in Mongolian — exam problems, practice problems, solutions, explanations, analysis. The EN toggle affects **navigation/chrome only**, never content.
+   - **International hubs (SAT, IB, AP):** ALL content in English — that's how the real test reads; realism is the point. Navigation/chrome gets a full MN option (and EN), same toggle pattern in reverse.
+   - Implementation note: the existing `useLang` context already separates nav i18n from content; the rule to encode is *content language is a property of the hub, not of the user's toggle*.
+8. **"First launch" =** the site being usable and reaching as many audiences as possible — gaining customers and name recognition with every relaunch, eventually becoming the #1 option for students preparing for math tests or improving their math skills. Not gated on the paid tier being live. (Supabase Pro upgrade still gates per PHASES.md — usable-at-scale requires signups to not rate-limit.)
 
 ## 5. Known constraints carried from PHASES.md
 
