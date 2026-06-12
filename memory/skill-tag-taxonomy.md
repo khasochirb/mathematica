@@ -171,7 +171,9 @@ This document is the **proposed taxonomy** + each tag's **justification**. After
 
 **Rationale:** Only 7 questions total — single combined tag. Same auto-trigger limitation as `progression`.
 
-## Tag count: 50
+## Tag count: 49
+
+> **Correction (2026-06-12, found during 3b.2):** this section previously claimed TOTAL 50, but the category tally below sums to **49** — when `limits` merged into `derivative_rules` the grand total was never decremented. The taxonomy is and was 49 tags.
 
 ```
 algebra            10
@@ -188,7 +190,7 @@ set_theory          1
 complex_numbers     1
 sequences           1
 logarithms          1
-TOTAL              50
+TOTAL              49
 ```
 
 ## Naming convention

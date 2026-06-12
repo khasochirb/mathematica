@@ -38,7 +38,7 @@ const CSV_OUT = "scripts/skill-tag-classification.csv";
 const BATCH_SIZE = 40;
 const REVIEW_THRESHOLD = 0.7;
 
-// The locked 50-tag taxonomy — memory/skill-tag-taxonomy.md. Keep in sync.
+// The locked taxonomy (49 tags) — memory/skill-tag-taxonomy.md. Keep in sync.
 export const SKILL_TAGS = [
   // algebra (10)
   "linear_equation", "quadratic_equation", "polynomial_factoring",
@@ -187,7 +187,7 @@ function cmdMerge() {
   console.log(`Merged ${done}/${total} questions (${((done / total) * 100).toFixed(1)}% coverage) → ${CSV_OUT}`);
   console.log(`Confidence: ${Object.entries(hist).map(([k, v]) => `${k}: ${v}`).join("  ")}`);
   console.log(`Needs manual review (<${REVIEW_THRESHOLD}): ${needsReview}`);
-  console.log(`Distinct tags used: ${Object.keys(tagCounts).length}/50`);
+  console.log(`Distinct tags used: ${Object.keys(tagCounts).length}/${SKILL_TAGS.length}`);
   console.log("Per-tag counts:");
   for (const [tag, n] of Object.entries(tagCounts).sort((a, b) => b[1] - a[1]))
     console.log(`  ${tag.padEnd(28)} ${n}`);
