@@ -6,7 +6,7 @@ import { ArrowRight, BarChart3, Calculator, Sparkles, Target } from "lucide-reac
 import usePerformance from "@/lib/use-performance";
 import { useAuth } from "@/lib/auth-context";
 import { useLang } from "@/lib/lang-context";
-import useRefinementLoop from "@/lib/use-refinement-loop";
+import useRefinementLoop, { useRecentlyMastered } from "@/lib/use-refinement-loop";
 import { getAllQuestions } from "@/lib/esh-questions";
 
 const i18n = {
@@ -125,7 +125,10 @@ export default function DashboardPage() {
   // student happens to drill instead of the one they struggle with on tests.
   const testTopicStats = perf.getTestOnlyTopicStats();
   const hasQualifyingTests = perf.hasTestOnlyData();
-  const weakTopics = testTopicStats.filter((t) => t.accuracy < 70);
+  // §5: a topic mastered in the last 14 days is hidden from the weak-spot card
+  // even if its accuracy still lags (stats trail the actual learning).
+  const masteredTopics = useRecentlyMastered();
+  const weakTopics = testTopicStats.filter((t) => t.accuracy < 70 && !masteredTopics.has(t.topic));
   const weakest = weakTopics[0]; // already sorted asc by accuracy
 
   const greeting =
@@ -433,7 +436,25 @@ export default function DashboardPage() {
                   {topicStats.slice(0, 5).map((tt) => (
                     <div key={tt.topic}>
                       <div className="flex items-baseline justify-between mb-1.5 text-sm">
-                        <span style={{ color: "var(--fg-1)" }}>{tt.label}</span>
+                        <span className="flex items-center gap-1.5" style={{ color: "var(--fg-1)" }}>
+                          {tt.label}
+                          {masteredTopics.has(tt.topic) && (
+                            <span
+                              className="mono uppercase"
+                              style={{
+                                fontSize: 9,
+                                letterSpacing: "0.08em",
+                                color: "var(--accent)",
+                                border: "1px solid var(--accent-line)",
+                                background: "var(--accent-wash)",
+                                borderRadius: 4,
+                                padding: "1px 5px",
+                              }}
+                            >
+                              {lang === "mn" ? "Бүрэн эзэмшсэн" : "Mastered"}
+                            </span>
+                          )}
+                        </span>
                         <span
                           className="mono tabular"
                           style={{ color: "var(--fg-3)", fontSize: 12 }}

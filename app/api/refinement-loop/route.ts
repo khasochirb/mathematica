@@ -33,6 +33,27 @@ export async function GET(req: NextRequest) {
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const admin = createAdminClient();
+
+  // ?scope=completed → recent completed loops (for the §5 recently-mastered
+  // dashboard suppression). Default → the single active loop (for resume).
+  if (new URL(req.url).searchParams.get("scope") === "completed") {
+    const { data, error } = await admin
+      .from("refinement_loop_sessions")
+      .select("topic, exit_reason, completed_at")
+      .eq("user_id", user.id)
+      .not("completed_at", "is", null)
+      .order("completed_at", { ascending: false })
+      .limit(50);
+    if (error) {
+      return NextResponse.json({ error: error.message ?? "Database read failed" }, { status: 500 });
+    }
+    const loops = (data ?? []).map((r) => {
+      const row = r as { topic: string; exit_reason: string | null; completed_at: string | null };
+      return { topic: row.topic, exitReason: row.exit_reason, completedAt: row.completed_at };
+    });
+    return NextResponse.json({ data: loops });
+  }
+
   const { data, error } = await admin
     .from("refinement_loop_sessions")
     .select(ROW_COLUMNS)

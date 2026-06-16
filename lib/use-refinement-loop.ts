@@ -18,6 +18,7 @@ import { useAuth } from "./auth-context";
 import { getMpToken } from "./api";
 import type { RefinementLoopSession } from "./refinement-loop";
 import { advanceLoop, createLoopSession, type LoopEvent } from "./refinement-loop-machine";
+import { recentlyMasteredTopics, type CompletedLoopLite } from "./refinement-loop-analytics";
 
 const CACHE_BASE = "mongol-potential-loop";
 function cacheKey(userId: string): string {
@@ -191,4 +192,39 @@ export default function useRefinementLoop(): UseRefinementLoop {
   const hasActive = !!session && !session.completedAt;
 
   return { session, loading, error, hasActive, start, dispatch };
+}
+
+// Topics the user mastered recently (§5) — used by the dashboard to suppress a
+// just-mastered topic from the weak-spot card. Returns an empty set until the
+// fetch resolves (and for signed-out users).
+export function useRecentlyMastered(windowDays = 14): Set<string> {
+  const { user, loading: authLoading } = useAuth();
+  const [topics, setTopics] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    if (authLoading || !user) {
+      setTopics(new Set());
+      return;
+    }
+    const token = getMpToken();
+    if (!token) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch("/api/refinement-loop?scope=completed", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!res.ok) return;
+        const body = (await res.json()) as { data: CompletedLoopLite[] };
+        if (!cancelled) setTopics(recentlyMasteredTopics(body.data ?? [], Date.now(), windowDays));
+      } catch {
+        /* network error — leave the set empty (topic just won't be suppressed) */
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [user, authLoading, windowDays]);
+
+  return topics;
 }
