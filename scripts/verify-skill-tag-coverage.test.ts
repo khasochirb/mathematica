@@ -6,7 +6,7 @@
 import { describe, it, expect } from "vitest";
 import { getAllQuestions } from "@/lib/esh-questions";
 
-// The locked taxonomy (49 tags) — memory/skill-tag-taxonomy.md. Mirror of the
+// The locked taxonomy (50 tags) — memory/skill-tag-taxonomy.md. Mirror of the
 // list in scripts/preclassify-skill-tags.mjs; kept here so the test has no
 // dependency on the classification harness.
 const SKILL_TAGS = new Set([
@@ -31,8 +31,9 @@ const SKILL_TAGS = new Set([
   "central_tendency", "dispersion", "data_display",
   // trigonometry (4)
   "trig_identity", "trig_equation", "trig_value", "trig_triangle",
-  // arithmetic (3)
+  // arithmetic (4)
   "number_representation", "fraction_arithmetic", "word_problem_arithmetic",
+  "number_theory",
   // functions (3)
   "function_domain_range", "function_inverse_composite", "function_graph",
   // combinatorics (3)
@@ -42,7 +43,7 @@ const SKILL_TAGS = new Set([
 ]);
 
 function expectedTier(d: number): "easy" | "medium" | "hard" {
-  return d <= 2 ? "easy" : d === 3 ? "medium" : "hard";
+  return d === 1 ? "easy" : d === 2 ? "medium" : "hard";
 }
 
 const questions = getAllQuestions();
@@ -52,8 +53,8 @@ describe("skill-tag coverage (Phase 3b.4)", () => {
     expect(questions.length).toBe(1224);
   });
 
-  it("taxonomy is exactly 49 tags", () => {
-    expect(SKILL_TAGS.size).toBe(49);
+  it("taxonomy is exactly 50 tags", () => {
+    expect(SKILL_TAGS.size).toBe(50);
   });
 
   it("every question has a skill_tag", () => {

@@ -1,31 +1,22 @@
 # Phase 3b.3 — skill-tag review sheet
 
-**152 low-confidence (<0.7) classifications collapse into 58 decisions** (A/B/C/D + practice A/B variants share a skill, so one ruling per family covers all members). For each: keep the assigned tag, or write the replacement. Generated 2026-06-16.
+**132 low-confidence (<0.7) classifications collapse into 49 decisions** (A/B/C/D + practice A/B variants share a skill, so one ruling per family covers all members). Keep the assigned tag, or write the replacement. Regenerated 2026-06-16 after the number_theory split (those rows are now resolved at 0.9 and no longer appear here).
 
 | Family | Assigned tag | Conf | #vars | Source subtopic | Question (snippet) |
 |---|---|---|---|---|---|
-| 2024-Q1 | `number_representation` | 0.50 | 4 | algebra/Хуваагдах чанар | 4-т хуваагдах тоог олоорой. |
 | 2024-Q30 | `polynomial_factoring` | 0.50 | 4 | algebra/Биномын теорем | $(1-4x)^3\cdot(1+x)^5$ биномын задаргааны үржвэрийн $x^2$-ын өмнөх коэ |
 | 2025-Q30 | `polynomial_factoring` | 0.50 | 4 | algebra/бином задаргаа | $(z^2 + z + a)^4$ задаргааны $z^3$ – ийг агуулсан гишүүний өмнөх коэфф |
-| practice1-Q10 | `number_representation` | 0.50 | 2 | algebra/хуваагдах чанар | $1, 2, 3$ цифрүүдээр бичигдсэн дараах тоонуудаас $36$-д хуваагдах тоог |
 | practice2-Q10 | `function_inverse_composite` | 0.50 | 2 | undefined/шинэ үйлдэл | $a \mathbin{./} b = a^b$ ба $a \otimes b = 2a + b$ гэсэн хоёр шинэ үйл |
-| practice5-Q8 | `number_representation` | 0.50 | 2 | number theory/тоолол | $k!$ нь 100-д хуваагдахгүй хэдэн натурал $k$ тоо байх вэ? |
 | practice6-Q33 | `polynomial_factoring` | 0.50 | 2 | algebra/бином | $(3x - \frac{2}{x})^8$ задаргааны $x$ агуулаагүй гишүүнийг ол. |
 | 2025-Q8 | `coordinate_geometry` | 0.55 | 4 | geometry/орон зайн геометр | $\frac{x-1}{1} = \frac{y+1}{1} = \frac{z-1}{2}$ шулуун $Oxz$ хавтгайта |
 | practice1-Q21 | `function_graph` | 0.55 | 2 | functions/хамаарал | Хүснэгтийг ашиглан $X$ ба $Y$ хоорондох хамаарлыг ол. |
-| practice1-Q22 | `number_representation` | 0.55 | 2 | algebra/тэгш сондгой | $a$ нь тэгш тоо бөгөөд $[(3a+7)^{30} - (9a+4)^{100}](7a-9) = b$ бол да |
 | practice1-Q35 | `quadratic_inequality` | 0.55 | 2 | algebra/илэрхийлэл | $-2; -1; 0; 1; 2; 3; 4; 5$ тоонуудаас $2x^2 - 3x - 5$ илэрхийллийн утг |
-| practice2-Q14 | `number_representation` | 0.55 | 2 | undefined/бүтэн куб | Бүтэн куб болдог гурван оронтой хэдэн тоо бий вэ? |
 | practice2-Q16 | `polynomial_remainder` | 0.55 | 2 | undefined/олон гишүүнт | $(2 - x^2)^{2015}$-олон гишүүнтийн бүх коэффициентүүдийн нийлбэрийг ол |
 | practice3-Q4 | `linear_equation` | 0.55 | 2 | geometry/хамар өнцөг | Хамар өнцгүүд $(7x - 1)°$, $(2x + 1)°$ бол $x$-г ол. |
 | practice3-Q25 | `function_domain_range` | 0.55 | 2 | functions/функц | $x > 0$ үед $f(x) = f(x - 2)$ ба $x \leq 0$ бол $f(x) = \|x\|$ гэж тод |
-| practice4-Q5 | `number_representation` | 0.55 | 2 | number theory/тоолол | Хоёр оронтой 4-т хуваагддаг хичнээн ширхэг тоо бий вэ? |
-| practice4-Q11 | `number_representation` | 0.55 | 2 | number theory/анхны тоо | 420-оос 430 хооронд орших анхны тоог ол. |
-| practice4-Q12 | `number_representation` | 0.55 | 2 | number theory/ХИЕХ | Үржвэр нь 864 бөгөөд ХИЕХ нь 6 байх хоёр тоог ол. |
 | practice5-Q18 | `counting_principle` | 0.55 | 2 | combinatorics/тоолол | Хатаагч дээр ялгаатай зургаан өмс байв. Чи харанхүйд хамгийн цөөндөө х |
 | practice6-Q23 | `function_graph` | 0.55 | 2 | algebra/функц | $y = f(x)$ функц тэгш, $T = 5$ үетэй ба $f(100) = 1$ бол $f(-100) + f( |
 | practice6-Q31 | `discrete_distribution` | 0.55 | 2 | probability/магадлал | $Y$-санамсаргүй хэмжигдэхүүний нягтын функц $f(y) = \begin{cases} 4y^k |
-| practice7-Q3 | `number_representation` | 0.55 | 2 | Тоон онол/Анхны тоо | 5460-ийн хамгийн их анхны тоон хуваагчийг ол. |
 | practice7-Q35 | `function_graph` | 0.55 | 2 | Функц/Зэрэг функц | $f(x)=x^{2016}, g(x)=x^{2017}$ бол $a=f(2); b=f(-3); c=g(-4); d=g(12); |
 | 2021-Q22 | `linear_equation` | 0.60 | 4 | algebra/absolute_value_equation | $\|2x+1\|+\|x-3\|=5$ тэгшитгэлийн шийдийг олоорой. |
 | 2021-Q35 | `geometric_transformation` | 0.60 | 4 | geometry/reflection_over_line | $A(5,1)$ цэгийг $y=3x+1$ шулуунд тэгш хэмээр хувиргахад үүсэх цэгийн к |

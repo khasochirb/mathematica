@@ -24,8 +24,10 @@ const QUESTIONS_DIR = "data/questions";
 const CSV = "scripts/skill-tag-classification.csv";
 const check = process.argv.includes("--check");
 
+// Authored difficulty is on a 1-3 scale → 1 easy, 2 medium, 3 hard.
+// See scripts/preclassify-skill-tags.mjs and memory/skill-tag-taxonomy.md.
 function difficultyTier(d) {
-  return d <= 2 ? "easy" : d === 3 ? "medium" : "hard";
+  return d === 1 ? "easy" : d === 2 ? "medium" : "hard";
 }
 
 // source -> skill_tag, from the classification CSV.

@@ -61,8 +61,9 @@ export const SKILL_TAGS = [
   "central_tendency", "dispersion", "data_display",
   // trigonometry (4)
   "trig_identity", "trig_equation", "trig_value", "trig_triangle",
-  // arithmetic (3)
+  // arithmetic (4)
   "number_representation", "fraction_arithmetic", "word_problem_arithmetic",
+  "number_theory",
   // functions (3)
   "function_domain_range", "function_inverse_composite", "function_graph",
   // combinatorics (3)
@@ -85,9 +86,13 @@ function loadSection1() {
   return questions;
 }
 
+// The authored difficulty scale is 1-3 (not the 1-5 the design doc assumed),
+// so the tier boundaries map straight across: 1 easy, 2 medium, 3 hard. This
+// populates the hard tier; the old 1-2/3/4-5 mapping left it empty. See
+// memory/skill-tag-taxonomy.md (2026-06-16 note).
 function difficultyTier(d) {
   if (d == null) return "";
-  return d <= 2 ? "easy" : d === 3 ? "medium" : "hard";
+  return d === 1 ? "easy" : d === 2 ? "medium" : "hard";
 }
 
 function cmdExport() {

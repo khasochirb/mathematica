@@ -107,15 +107,16 @@ This document is the **proposed taxonomy** + each tag's **justification**. After
 
 **Rationale:** 41 questions / 4 tags (35 trig-pure + 6 trig-triangle, after the 2026-05-13 move from geometry). MN curriculum places sine/cosine rule in trigonometry chapters, not geometry mensuration — moving `trig_triangle` here corrects the placement.
 
-### arithmetic — 3 tags
+### arithmetic — 4 tags
 
 | Tag | Examples / scope | Questions est. |
 |---|---|---|
-| `number_representation` | Rounding, scientific notation, repeating decimals, comparing irrationals | ~10 |
+| `number_representation` | Rounding, scientific notation, repeating decimals, integer part, comparing irrationals, number-line placement | ~44 |
 | `fraction_arithmetic` | Fraction operations, mixed numbers, simplification | ~9 |
 | `word_problem_arithmetic` | Mixture problems, proportions, percentages, age problems | ~9 |
+| `number_theory` | Divisibility, primes / prime factorization, GCD/LCM (ХБХ/ХИЕХ), factorial divisibility, perfect squares/cubes, parity | ~20 |
 
-**Rationale:** 28 questions. `word_problem_arithmetic` is the "real-world setup → arithmetic" pattern that often shows up early in tests (Q1–Q8 territory).
+**Rationale:** `number_theory` added 2026-06-16 during 3b.3. The 3b.2 pass dumped 64 questions into `number_representation`; ~20 of them are number theory — the source JSONs literally tag them "Тоон онол / number theory" (k!÷100, GCD/LCM, primes-in-range, divisibility, parity). Splitting keeps `number_representation` a coherent "represent & compare real numbers" cluster (~44) and gives the loop a real number-theory cohort. `word_problem_arithmetic` is the "real-world setup → arithmetic" pattern that shows up early in tests (Q1–Q8 territory).
 
 ### functions — 3 tags
 
@@ -171,9 +172,9 @@ This document is the **proposed taxonomy** + each tag's **justification**. After
 
 **Rationale:** Only 7 questions total — single combined tag. Same auto-trigger limitation as `progression`.
 
-## Tag count: 49
+## Tag count: 50
 
-> **Correction (2026-06-12, found during 3b.2):** this section previously claimed TOTAL 50, but the category tally below sums to **49** — when `limits` merged into `derivative_rules` the grand total was never decremented. The taxonomy is and was 49 tags.
+> **History:** locked at "50" in 3b.1, but the tally actually summed to 49 (the `limits`→`derivative_rules` merge never decremented the total). During 3b.3 (2026-06-16) `number_theory` was added to arithmetic, bringing the real total to **50**.
 
 ```
 algebra            10
@@ -181,17 +182,19 @@ geometry            7   (was 8; trig_triangle moved to trigonometry)
 calculus            5   (was 6; limits merged into derivative_rules)
 probability         4
 trigonometry        4   (was 3; trig_triangle moved in from geometry)
+arithmetic          4   (was 3; number_theory added in 3b.3)
 linear_algebra      3
 statistics          3
-arithmetic          3
 functions           3
 combinatorics       3
 set_theory          1
 complex_numbers     1
 sequences           1
 logarithms          1
-TOTAL              49
+TOTAL              50
 ```
+
+> **difficulty_tier mapping (2026-06-16, 3b.3):** the design doc (§2) assumed a 1–5 difficulty scale and mapped 1–2→easy / 3→medium / 4–5→hard. The authored data is on a **1–3 scale** (no 4–5 values exist), so that mapping left the hard tier empty. Remapped to **1→easy, 2→medium, 3→hard**, giving easy 838 / medium 192 / hard 194. If difficulty is ever re-authored to 1–5, revisit.
 
 ## Naming convention
 
