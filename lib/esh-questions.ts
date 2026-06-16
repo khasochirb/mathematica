@@ -60,6 +60,10 @@ export interface Question {
   // difficulty_tier is derived from difficulty (1-2 easy, 3 medium, 4-5 hard).
   skill_tag?: string;
   difficulty_tier?: "easy" | "medium" | "hard";
+  // Optional manual override for similar-problem matching (design §4). When
+  // present and non-empty, these source ids are used as the cohort instead of
+  // skill_tag auto-grouping. Empty/absent everywhere today.
+  similar_problem_ids?: string[];
   body: string;
   options?: Record<string, string>;
   answer: string;
