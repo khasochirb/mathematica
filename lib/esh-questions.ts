@@ -55,6 +55,11 @@ export interface Question {
   topic: string;
   subtopic: string;
   difficulty: number;
+  // Refinement-loop fields (Phase 3b). Optional so questions authored before
+  // the tagging pass degrade gracefully. skill_tag is the cohort join key;
+  // difficulty_tier is derived from difficulty (1-2 easy, 3 medium, 4-5 hard).
+  skill_tag?: string;
+  difficulty_tier?: "easy" | "medium" | "hard";
   body: string;
   options?: Record<string, string>;
   answer: string;
