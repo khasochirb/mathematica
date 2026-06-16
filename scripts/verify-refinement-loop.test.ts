@@ -42,6 +42,7 @@ describe("states (§1)", () => {
 describe("transitions (§1 mermaid)", () => {
   it("accepts the happy-path mastery edges", () => {
     expect(isValidTransition("post_miss_result", "similar_problems")).toBe(true);
+    expect(isValidTransition("post_miss_result", "mini_test")).toBe(true); // §3 cohort-0 fast-path
     expect(isValidTransition("similar_problems", "mini_test")).toBe(true);
     expect(isValidTransition("mini_test", "mini_test_result")).toBe(true);
     expect(isValidTransition("mini_test_result", "exit_mastered")).toBe(true);

@@ -41,7 +41,9 @@ export type ExitReason = "mastered" | "abandoned" | "no_content" | "student_skip
 // (Алгасах) from any non-terminal waiting state to exit_abandoned is allowed
 // implicitly and checked in isValidTransition, not duplicated per row.
 export const ALLOWED_TRANSITIONS: Record<LoopState, readonly LoopState[]> = {
-  post_miss_result: ["similar_problems", "step_by_step", "exit_abandoned"],
+  // mini_test is the §3 cohort-0 fast-path ("skip to mini-test if the
+  // skill_tag cohort is empty") — not drawn in the §1 mermaid but specified.
+  post_miss_result: ["similar_problems", "step_by_step", "mini_test", "exit_abandoned"],
   step_by_step: ["similar_problems"],
   similar_problems: ["mini_test", "step_by_step"],
   mini_test: ["mini_test_result"],
