@@ -190,7 +190,7 @@ Rationale: every-miss triggering would create loop fatigue (a test has 36 questi
 
 #### 3b. Manual trigger from results page or mistake panel
 
-Every missed question has a **"Тогтоох" (master this)** button. Click → loop fires on that question regardless of test-level miss rate.
+Every missed question has a **"Бүрэн эзэмших" (fully master)** button (renamed from "Бүрэн эзэмших" 2026-06-16; alt: "Гартаа оруулах"). Click → loop fires on that question regardless of test-level miss rate.
 
 Rationale: the auto-trigger picks one skill per test, but students often want to drill multiple. Manual is the escape hatch.
 
@@ -229,11 +229,11 @@ The data model supports both via `skill_tag` + `difficulty_tier`. Similar-proble
 
 Auto-triggers (3a, 3c) operate on Section 1 questions only — they have a clean `skill_tag` and an unambiguous miss signal (right letter vs wrong letter). Section 2 problems are intentionally multi-skill (a single problem spans 3–5 subproblems, each potentially exercising a different sub-skill), so they don't fit the auto-trigger model cleanly.
 
-**Manual trigger remains available on Section 2.** The mistake-panel entry point (3b) renders Section 2 misses alongside Section 1 misses, each with a Тогтоох button. Clicking it on a Section 2 problem enters the loop using the problem's denormalized `skill_tag` — the dominant skill in the problem's main question stem, chosen by the content author at tagging time. Accept that this denormalization is lossy: a Section 2 problem that exercises "integration_by_substitution" + "definite_integral_bounds" picks one tag, and similar-problem matching will be cohort-matched on that one. Manual override via `similar_problem_ids` is available if the cohort match is bad.
+**Manual trigger remains available on Section 2.** The mistake-panel entry point (3b) renders Section 2 misses alongside Section 1 misses, each with a Бүрэн эзэмших button. Clicking it on a Section 2 problem enters the loop using the problem's denormalized `skill_tag` — the dominant skill in the problem's main question stem, chosen by the content author at tagging time. Accept that this denormalization is lossy: a Section 2 problem that exercises "integration_by_substitution" + "definite_integral_bounds" picks one tag, and similar-problem matching will be cohort-matched on that one. Manual override via `similar_problem_ids` is available if the cohort match is bad.
 
 ### Design note: skills with <2 instances per test
 
-A skill_tag that appears on fewer than 2 questions per test cannot satisfy 3a's auto-trigger condition (`miss_rate ≥ 0.5 AND ≥2 missed questions in skill`). These skills are **manual-trigger only** by design — surfacing them requires the student to open the mistake panel and Тогтоох a single miss. Known consequence: rare-skill weaknesses (e.g., a tag that lands on only one question per test) will never auto-train. Accepted trade-off — the alternative is too-noisy auto-trigger on single misses.
+A skill_tag that appears on fewer than 2 questions per test cannot satisfy 3a's auto-trigger condition (`miss_rate ≥ 0.5 AND ≥2 missed questions in skill`). These skills are **manual-trigger only** by design — surfacing them requires the student to open the mistake panel and Бүрэн эзэмших a single miss. Known consequence: rare-skill weaknesses (e.g., a tag that lands on only one question per test) will never auto-train. Accepted trade-off — the alternative is too-noisy auto-trigger on single misses.
 
 ### Retest pool exhaustion fallback
 
@@ -312,7 +312,7 @@ The `weak-topic` filter on the dashboard (currently `t.accuracy < 70%` on test-o
 ### Edge cases
 
 - **Student passes mini-test 80% but with 1 missed question — should drill cover that miss?** No. The exit threshold is a threshold, not a perfectionism check. Re-entering the loop for that single miss would be punitive. Honor the threshold.
-- **Student skips the loop, then immediately misses another question on the same skill.** The 3-day cool-down only suppresses *auto*-triggers. The student can still manually trigger via the Тогтоох button.
+- **Student skips the loop, then immediately misses another question on the same skill.** The 3-day cool-down only suppresses *auto*-triggers. The student can still manually trigger via the Бүрэн эзэмших button.
 - **Student finishes the loop but their stats still show the topic as weak** (because the loop's problems are too few to flip the average). The "Recently mastered" flag handles this — the dashboard doesn't shame the student.
 
 ---
@@ -343,7 +343,7 @@ These need your decisions before Phase 3b implementation.
 
 9. **Cross-loop signal sharing.** If a student passes a loop on `factoring_quadratics`, does that affect their weak-topic ranking for `quadratic_formula` (a related skill)? Build a skill-graph or treat them independently? **Default proposal: independent at launch. A skill-graph is a Phase 5 problem.**
 
-10. **Section 2 (fill-in problems) — is the loop scope Section 1 only, or do Section 2 misses also trigger?** Section 2 problems are multi-skill and don't have a clean `skill_tag`. **Decision (locked 2026-05-13):** auto-trigger stays Section-1-only. Students can manually trigger the loop on Section 2 main problems via the Тогтоох button in the mistake panel. Each Section 2 problem gets a single denormalized `skill_tag` (the dominant skill in the problem's main question stem) for cohort matching — accept the lossiness. See §3d.
+10. **Section 2 (fill-in problems) — is the loop scope Section 1 only, or do Section 2 misses also trigger?** Section 2 problems are multi-skill and don't have a clean `skill_tag`. **Decision (locked 2026-05-13):** auto-trigger stays Section-1-only. Students can manually trigger the loop on Section 2 main problems via the Бүрэн эзэмших button in the mistake panel. Each Section 2 problem gets a single denormalized `skill_tag` (the dominant skill in the problem's main question stem) for cohort matching — accept the lossiness. See §3d.
 
 11. **Retest content — same questions as the mini-test or a fresh draw?** Same questions = direct comparison; fresh draw = harder to game. **Decision (locked 2026-05-13):** fresh draw from the same skill_tag pool, excluding the mini-test's questions. **Fallback:** if the pool is exhausted (mini-test + any prior retests used up the unique questions), allow reuse oldest-attempted-first and log `meta.retest_pool_exhausted = true` for analytics. See §3.
 
