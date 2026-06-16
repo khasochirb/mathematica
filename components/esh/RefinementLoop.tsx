@@ -3,20 +3,24 @@
 // Refinement loop — UI orchestrator (Phase 3c).
 //
 // Renders the current §1 state from useRefinementLoop() and dispatches events,
-// delegating all question rendering to QuestionCard (review / instant / test
-// modes) and all selection to lib/refinement-loop-select. The loop's content
-// is ЭЕШ (Mongolian), so chrome labels here are Mongolian per design §6 Q1.
+// delegating question rendering to QuestionCard (review / instant / test modes)
+// and selection to lib/refinement-loop-select.
 //
-// Selection lists for similar/drill rounds are held in a useMemo keyed on the
-// state + session id, so they stay stable within a state and re-derive
-// deterministically (seeded by the session id) on resume. mini-test / retest
-// lists live on the session (set when entering those states).
+// Language: question CONTENT stays in its own language (ЭЕШ = Mongolian), but
+// all chrome — buttons, headings, instructions — follows the global EN/MN
+// toggle (per the §4 Q7 rule: navigation is bilingual, content is not).
+//
+// "Илүү тайлбар" / step-by-step is intentionally NOT offered as an optional
+// branch yet: step_by_step_solution content isn't authored, so it would just
+// re-show the same solution. It remains reachable only on the relearn path
+// (mini-test < 40%), where re-reading the solution before retrying is useful.
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { CheckCircle2, Sparkles } from "lucide-react";
 import MathText from "./MathText";
 import QuestionCard from "./QuestionCard";
+import { useLang } from "@/lib/lang-context";
 import { getAllQuestions, getQuestionBySource } from "@/lib/esh-questions";
 import type { Question } from "@/lib/esh-questions";
 import useRefinementLoop from "@/lib/use-refinement-loop";
@@ -28,20 +32,60 @@ import {
 } from "@/lib/refinement-loop-select";
 import { drillReadyForRetest } from "@/lib/refinement-loop";
 
+type Bi = { en: string; mn: string };
+const T = {
+  loading: { en: "Loading…", mn: "Ачааллаж байна…" },
+  noActive: { en: "No active practice loop.", mn: "Идэвхтэй давтлага алга байна." },
+  noActiveBody: {
+    en: "From a test's results page, pick a missed question and press “Master this” to begin.",
+    mn: "Шалгалтын дүнгийн хуудаснаас алдсан бодлогоо сонгож «Бүрэн эзэмших» товчийг дарж эхлүүлээрэй.",
+  },
+  back: { en: "Back to practice", mn: "Дасгал руу буцах" },
+  notFound: { en: "Question not found", mn: "Бодлого олдсонгүй" },
+  missTitle: { en: "The question you missed", mn: "Алдсан бодлого" },
+  continue: { en: "Continue", mn: "Үргэлжлүүлэх" },
+  skip: { en: "Skip", mn: "Алгасах" },
+  stepTitle: { en: "Review the solution", mn: "Бодолтыг дахин үзэх" },
+  similarTitle: { en: "Similar problems", mn: "Төстэй бодлого" },
+  takeTest: { en: "Take the test", mn: "Шалгалт хийх" },
+  miniTitle: { en: "Mini-test", mn: "Шалгалт" },
+  retestTitle: { en: "Retest", mn: "Дахин шалгалт" },
+  miniInstr: { en: "Pick an answer for each, then press Submit below.", mn: "Хариугаа сонгоод доор «Илгээх» дарна уу." },
+  submit: { en: "Submit", mn: "Илгээх" },
+  miniResult: { en: "Test result", mn: "Шалгалтын дүн" },
+  retestResult: { en: "Retest result", mn: "Дахин шалгалтын дүн" },
+  finish: { en: "Finish", mn: "Дуусгах" },
+  doDrills: { en: "Practice drills", mn: "Дасгал хийх" },
+  reviewAgain: { en: "Review again", mn: "Дахин үзэх" },
+  drillTitle: { en: "Drills", mn: "Дасгал" },
+  streak: { en: "Correct in a row", mn: "Дараалан зөв бодсон" },
+  retake: { en: "Retake the test", mn: "Шалгалт давтах" },
+  masteredTitle: { en: "Mastered! 🎉", mn: "Бүрэн эзэмшлээ! 🎉" },
+  abandonedTitle: { en: "Continue another time", mn: "Дараа дахин үргэлжлүүлээрэй" },
+  masteredBody: {
+    en: "You've got a solid grip on this topic now. Pick a new topic whenever you're ready.",
+    mn: "Энэ сэдвийг сайн эзэмшсэн байна. Бэлэн болоход шинэ сэдэв дээр давтлага хийж болно.",
+  },
+  abandonedBody: {
+    en: "This topic is tough right now. Give it another go in a few days.",
+    mn: "Энэ сэдэв одоохондоо хэцүү байна. Хэдэн хоногийн дараа дахин оролдоорой.",
+  },
+};
+
 function resolve(sources: readonly string[]): Question[] {
   return sources.map((s) => getQuestionBySource(s)).filter((q): q is Question => !!q);
 }
 
 export default function RefinementLoop() {
+  const { lang } = useLang();
+  const L = (b: Bi) => (lang === "mn" ? b.mn : b.en);
   const { session, loading, dispatch } = useRefinementLoop();
   const pool = useMemo(() => getAllQuestions(), []);
-  // Local answer collection for the no-feedback test phases (mini-test / retest).
   const [answers, setAnswers] = useState<Record<string, string>>({});
 
   const trigger = session ? getQuestionBySource(session.triggeredQuestion) : undefined;
   const seed = session ? hashSeed(session.id) : 0;
 
-  // Similar / drill question batches — stable within a state, deterministic on resume.
   const similars = useMemo(
     () => (trigger && session?.state === "similar_problems" ? selectSimilarProblems(trigger, pool, { seed }) : []),
     [trigger, session?.state, pool, seed],
@@ -51,101 +95,76 @@ export default function RefinementLoop() {
     [trigger, session?.state, pool, seed],
   );
 
-  if (loading) {
-    return <Shell><p style={{ color: "var(--fg-2)" }}>Ачааллаж байна…</p></Shell>;
-  }
+  if (loading) return <Shell><p style={{ color: "var(--fg-2)" }}>{L(T.loading)}</p></Shell>;
   if (!session) {
     return (
       <Shell>
-        <p className="serif" style={{ fontSize: 22 }}>Идэвхтэй давтлага алга байна.</p>
-        <p style={{ color: "var(--fg-2)", marginTop: 8 }}>
-          Шалгалтын дүнгийн хуудаснаас алдсан бодлогоо сонгож &laquo;Бүрэн эзэмших&raquo; товчийг дарж эхлүүлээрэй.
-        </p>
-        <Link href="/practice/esh" className="btn btn-line mt-6">Дасгал руу буцах</Link>
+        <p className="serif" style={{ fontSize: 22 }}>{L(T.noActive)}</p>
+        <p style={{ color: "var(--fg-2)", marginTop: 8 }}>{L(T.noActiveBody)}</p>
+        <Link href="/practice/esh" className="btn btn-line mt-6">{L(T.back)}</Link>
       </Shell>
     );
   }
   if (!trigger) {
-    return <Shell><p style={{ color: "var(--danger)" }}>Бодлого олдсонгүй ({session.triggeredQuestion}).</p></Shell>;
+    return <Shell><p style={{ color: "var(--danger)" }}>{L(T.notFound)} ({session.triggeredQuestion}).</p></Shell>;
   }
 
   const s = session.state;
 
-  // ── POST_MISS_RESULT ────────────────────────────────────────────────
   if (s === "post_miss_result") {
     const onContinue = () => {
       const sims = selectSimilarProblems(trigger, pool, { seed });
-      if (sims.length > 0) {
-        dispatch({ type: "continue", similarShown: sims.length });
-      } else {
-        const mini = selectMiniTest(trigger, pool, { seed });
-        dispatch({ type: "continue", similarShown: 0, miniTest: mini.map((q) => q.source) });
-      }
+      if (sims.length > 0) dispatch({ type: "continue", similarShown: sims.length });
+      else dispatch({ type: "continue", similarShown: 0, miniTest: selectMiniTest(trigger, pool, { seed }).map((q) => q.source) });
     };
     return (
-      <Shell title="Алдсан бодлого">
+      <Shell title={L(T.missTitle)}>
         <QuestionCard mode="review" question={trigger} />
         <div className="flex gap-3 flex-wrap mt-6">
-          <button className="btn btn-primary" onClick={onContinue}>Үргэлжлүүлэх</button>
-          <button className="btn btn-line" onClick={() => dispatch({ type: "explain" })}>Илүү тайлбар</button>
-          <button className="btn btn-line" onClick={() => dispatch({ type: "skip" })} style={{ color: "var(--fg-3)" }}>
-            Алгасах
-          </button>
+          <button className="btn btn-primary" onClick={onContinue}>{L(T.continue)}</button>
+          <button className="btn btn-line" onClick={() => dispatch({ type: "skip" })} style={{ color: "var(--fg-3)" }}>{L(T.skip)}</button>
         </div>
       </Shell>
     );
   }
 
-  // ── STEP_BY_STEP (graceful: shows the full solution; step list not authored yet)
   if (s === "step_by_step") {
     return (
-      <Shell title="Алхам алхмаар">
+      <Shell title={L(T.stepTitle)}>
         <div className="p-5 rounded-xl" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
           <div className="serif" style={{ fontSize: 18, marginBottom: 12 }}><MathText text={trigger.body} /></div>
           <MathText text={trigger.solution} />
         </div>
-        <button className="btn btn-primary mt-6" onClick={() => dispatch({ type: "stepDone" })}>Үргэлжлүүлэх</button>
+        <button className="btn btn-primary mt-6" onClick={() => dispatch({ type: "stepDone" })}>{L(T.continue)}</button>
       </Shell>
     );
   }
 
-  // ── SIMILAR_PROBLEMS ────────────────────────────────────────────────
   if (s === "similar_problems") {
     const answeredCount = session.similarAttempts.length - ((session.meta.similarMark as number) ?? 0);
     const allAnswered = answeredCount >= similars.length && similars.length > 0;
-    const roundCorrect = session.similarAttempts.slice((session.meta.similarMark as number) ?? 0).every((a) => a.correct);
-    const goMini = (wantDeeper: boolean) => {
+    const goMini = () => {
       const mini = selectMiniTest(trigger, pool, { seed, exclude: similars.map((q) => q.source) });
-      dispatch({ type: "finishSimilar", wantDeeper, miniTest: mini.map((q) => q.source) });
+      dispatch({ type: "finishSimilar", wantDeeper: false, miniTest: mini.map((q) => q.source) });
     };
     return (
-      <Shell title="Төстэй бодлого">
+      <Shell title={L(T.similarTitle)}>
         {similars.map((q) => (
           <div key={q.source} className="mb-4">
             <QuestionCard
               mode="instant"
               question={q}
-              onAnswer={(src, _t, _st, _sel, _cor, isCorrect) =>
-                dispatch({ type: "answerSimilar", source: src, correct: isCorrect })
-              }
+              onAnswer={(src, _t, _st, _sel, _cor, isCorrect) => dispatch({ type: "answerSimilar", source: src, correct: isCorrect })}
             />
           </div>
         ))}
         {allAnswered && (
-          <div className="flex gap-3 flex-wrap mt-4">
-            <button className="btn btn-primary" onClick={() => goMini(false)}>Шалгалт хийх</button>
-            {!roundCorrect && (
-              <button className="btn btn-line" onClick={() => dispatch({ type: "finishSimilar", wantDeeper: true })}>
-                Илүү тайлбар үзэх
-              </button>
-            )}
-          </div>
+          <button className="btn btn-primary mt-4" onClick={goMini}>{L(T.takeTest)}</button>
         )}
       </Shell>
     );
   }
 
-  // ── MINI_TEST / RETEST (no instant feedback; submit at end) ─────────
   if (s === "mini_test" || s === "retest") {
     const sources = s === "mini_test" ? session.miniTestQuestions : session.retestQuestions;
     const qs = resolve(sources);
@@ -157,10 +176,8 @@ export default function RefinementLoop() {
       else dispatch({ type: "submitRetest", score });
     };
     return (
-      <Shell title={s === "mini_test" ? "Бясалгалын шалгалт" : "Дахин шалгалт"}>
-        <p style={{ color: "var(--fg-2)", marginBottom: 16 }}>
-          {qs.length} бодлого · хариугаа сонгоод доор &laquo;Илгээх&raquo; дарна уу.
-        </p>
+      <Shell title={s === "mini_test" ? L(T.miniTitle) : L(T.retestTitle)}>
+        <p style={{ color: "var(--fg-2)", marginBottom: 16 }}>{qs.length} · {L(T.miniInstr)}</p>
         {qs.map((q, i) => (
           <div key={q.source} className="mb-4">
             <QuestionCard
@@ -173,73 +190,62 @@ export default function RefinementLoop() {
           </div>
         ))}
         <button className="btn btn-primary mt-2" disabled={!allAnswered} onClick={submit} style={{ opacity: allAnswered ? 1 : 0.5 }}>
-          Илгээх
+          {L(T.submit)}
         </button>
       </Shell>
     );
   }
 
-  // ── MINI_TEST_RESULT ────────────────────────────────────────────────
   if (s === "mini_test_result") {
-    const total = session.miniTestQuestions.length;
     const disp = session.meta.miniDisposition as "mastered" | "drill" | "relearn";
-    const label = disp === "mastered" ? "Дуусгах" : disp === "drill" ? "Дасгал хийх" : "Дахин тайлбар үзэх";
+    const label = disp === "mastered" ? L(T.finish) : disp === "drill" ? L(T.doDrills) : L(T.reviewAgain);
     return (
-      <ResultShell score={session.miniTestScore ?? 0} total={total} title="Шалгалтын дүн">
+      <ResultShell score={session.miniTestScore ?? 0} total={session.miniTestQuestions.length} title={L(T.miniResult)}>
         <button className="btn btn-primary" onClick={() => dispatch({ type: "acceptMiniTestOutcome" })}>{label}</button>
         {disp !== "mastered" && (
-          <button className="btn btn-line" onClick={() => dispatch({ type: "skip" })} style={{ color: "var(--fg-3)" }}>Алгасах</button>
+          <button className="btn btn-line" onClick={() => dispatch({ type: "skip" })} style={{ color: "var(--fg-3)" }}>{L(T.skip)}</button>
         )}
       </ResultShell>
     );
   }
 
-  // ── DRILL_MODE ──────────────────────────────────────────────────────
   if (s === "drill_mode") {
     const ready = drillReadyForRetest(session.drillStreak);
     const retake = () => {
-      const used = Array.from(
-        new Set<string>([...session.miniTestQuestions, ...session.drillAttempts.map((d) => d.source)]),
-      );
+      const used = Array.from(new Set<string>([...session.miniTestQuestions, ...session.drillAttempts.map((d) => d.source)]));
       const rt = selectMiniTest(trigger, pool, { seed, exclude: used });
       dispatch({ type: "retakeFromDrill", retest: rt.map((q) => q.source) });
     };
     return (
-      <Shell title="Дасгал">
+      <Shell title={L(T.drillTitle)}>
         <p style={{ color: "var(--fg-2)", marginBottom: 16 }}>
-          Дараалан зөв бодсон: <b style={{ color: "var(--accent)" }}>{session.drillStreak}</b> / 3
+          {L(T.streak)}: <b style={{ color: "var(--accent)" }}>{session.drillStreak}</b> / 3
         </p>
         {drills.map((q) => (
           <div key={q.source} className="mb-4">
             <QuestionCard
               mode="instant"
               question={q}
-              onAnswer={(src, _t, _st, _sel, _cor, isCorrect) =>
-                dispatch({ type: "answerDrill", source: src, correct: isCorrect })
-              }
+              onAnswer={(src, _t, _st, _sel, _cor, isCorrect) => dispatch({ type: "answerDrill", source: src, correct: isCorrect })}
             />
           </div>
         ))}
         <div className="flex gap-3 flex-wrap mt-2">
-          <button className="btn btn-primary" disabled={!ready} onClick={retake} style={{ opacity: ready ? 1 : 0.5 }}>
-            Шалгалт давтах
-          </button>
-          <button className="btn btn-line" onClick={() => dispatch({ type: "skip" })} style={{ color: "var(--fg-3)" }}>Алгасах</button>
+          <button className="btn btn-primary" disabled={!ready} onClick={retake} style={{ opacity: ready ? 1 : 0.5 }}>{L(T.retake)}</button>
+          <button className="btn btn-line" onClick={() => dispatch({ type: "skip" })} style={{ color: "var(--fg-3)" }}>{L(T.skip)}</button>
         </div>
       </Shell>
     );
   }
 
-  // ── RETEST_RESULT ───────────────────────────────────────────────────
   if (s === "retest_result") {
     return (
-      <ResultShell score={session.retestScore ?? 0} total={session.retestQuestions.length} title="Дахин шалгалтын дүн">
-        <button className="btn btn-primary" onClick={() => dispatch({ type: "acceptRetestOutcome" })}>Үргэлжлүүлэх</button>
+      <ResultShell score={session.retestScore ?? 0} total={session.retestQuestions.length} title={L(T.retestResult)}>
+        <button className="btn btn-primary" onClick={() => dispatch({ type: "acceptRetestOutcome" })}>{L(T.continue)}</button>
       </ResultShell>
     );
   }
 
-  // ── TERMINAL ────────────────────────────────────────────────────────
   const mastered = s === "exit_mastered";
   return (
     <Shell>
@@ -249,15 +255,11 @@ export default function RefinementLoop() {
         ) : (
           <Sparkles className="mx-auto mb-4" style={{ width: 48, height: 48, color: "var(--fg-3)" }} />
         )}
-        <h2 className="serif" style={{ fontSize: 30, fontWeight: 400 }}>
-          {mastered ? "Бүрэн эзэмшлээ! 🎉" : "Дараа дахин үргэлжлүүлээрэй"}
-        </h2>
+        <h2 className="serif" style={{ fontSize: 30, fontWeight: 400 }}>{mastered ? L(T.masteredTitle) : L(T.abandonedTitle)}</h2>
         <p style={{ color: "var(--fg-2)", marginTop: 10, maxWidth: "44ch", marginInline: "auto" }}>
-          {mastered
-            ? "Энэ сэдвийг сайн эзэмшсэн байна. Шинэ сэдэв дээр давтлага хийж болно."
-            : "Энэ сэдэв одоохондоо хэцүү байна. Хэдэн хоногийн дараа дахин оролдоорой."}
+          {mastered ? L(T.masteredBody) : L(T.abandonedBody)}
         </p>
-        <Link href="/practice/esh" className="btn btn-primary mt-8">Дасгал руу буцах</Link>
+        <Link href="/practice/esh" className="btn btn-primary mt-8">{L(T.back)}</Link>
       </div>
     </Shell>
   );

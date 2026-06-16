@@ -28,22 +28,22 @@ type Bi = { en: string; mn: string };
 const TESTIMONIALS: { quote: Bi; attribution: Bi }[] = [
   {
     quote: {
-      en: "She scored 100% on her last three math tests. Thank you for teaching her so well.",
-      mn: "Сүүлийн 3 math тестээ 3 удаа 100% авсан гэж үзүүлж байсан. Хичээлийг үр дүнтэй сайн заасанд баярлалаа.",
+      en: "She got 100% on all of her last three math tests, and showed them to me. Thank you for teaching her so effectively.",
+      mn: "Сүүлийн 3 math тестдээ бүгдэд нь 100% авсан гэж үзүүлж байсан. Хичээлийг үр дүнтэй сайн заасанд баярлалаа.",
     },
     attribution: { en: "Parent of a 6th grade student", mn: "6-р ангийн сурагчийн эцэг эх" },
   },
   {
     quote: {
       en: "My daughter's state test came back “Exceeded” — a 100-point jump from last year. Thank you so much for helping her.",
-      mn: "Манай хүүхдийн state test-ийн оноо гарлаа, “Exceeded” болж, өнгөрсөн жилээс 100 оноогоор нэмэгдсэн байна. Охиныд маань тусалсанд маш их баярлалаа.",
+      mn: "Манай хүүхдийн state test-ийн оноо гарлаа, “Exceeded” болж, өнгөрсөн жилээс 100 оноогоор нэмэгдсэн байна. Охинд маань тусалсанд маш их баярлалаа.",
     },
     attribution: { en: "Parent of a 9th grade student", mn: "9-р ангийн сурагчийн эцэг эх" },
   },
   {
     quote: {
-      en: "Thank you so much, teacher. ❤️",
-      mn: "Маш их баярлалаа багшаа ❤️",
+      en: "He thinks so much faster now. He used to dread his homework, but now he gets through it quickly with no trouble. Thank you so much, teacher. ❤️",
+      mn: "Их хурдтай боддог болсон, гэрийн даалгавраа хийх гээд зовдог байсан ч одоо бол асуудалгүй хурдан дуусгадаг болсон. Маш их баярлалаа багшаа ❤️",
     },
     attribution: { en: "Parent of a 9th grade student", mn: "9-р ангийн сурагчийн эцэг эх" },
   },
@@ -60,15 +60,15 @@ const VALUE_PROPS: { title: Bi; body: Bi }[] = [
   {
     title: { en: "A plan built around your child", mn: "Хүүхдэд тань тохирсон төлөвлөгөө" },
     body: {
-      en: "We find exactly where the gaps are, then tailor every session to them. The plan adjusts as your child grows — never one-size-fits-all.",
-      mn: "Дутагдаж буй мэдлэгийг нь яг олж тогтоон, хичээл бүрийг түүнд тааруулна. Хүүхдийг тань ахихад төлөвлөгөө ч хамт өөрчлөгдөнө — бүгдэд ижил загвар байхгүй.",
+      en: "We build the plan around your child's needs and adjust it as they grow.",
+      mn: "Дутагдаж буй мэдлэгийг нь яг олж тогтоон, хичээл бүрийг зөвхөн өөрт нь тааруулан төлөвлөнө. Хүүхэд бүр өөр өөр түвшинд, өөр арга барилаар суралцдаг тул, зөвхөн өөрт нь тохирсон төлөвлөгөөг гаргаж хичээллэнэ.",
     },
   },
   {
     title: { en: "1-on-1, fully online", mn: "Ганцаарчилсан, бүрэн онлайн" },
     body: {
-      en: "Focused individual attention over video, scheduled around your family. Wherever you are in the U.S., we meet your child where they are.",
-      mn: "Видеогоор ганцаарчилсан анхаарал, гэр бүлийн тань цагт тохируулан. АНУ-ын хаана ч байсан хүүхдийнхээ түвшнээс эхэлнэ.",
+      en: "Focused individual attention over video, scheduled around your family. Wherever you are, we meet your child where they are.",
+      mn: "Ганцаарчилсан онлайн хичээл, хүссэн цагаа товлоод, хүссэн газраасаа авах боломжтой.",
     },
   },
 ];
@@ -78,24 +78,24 @@ const STEPS: { n: string; title: Bi; body: Bi }[] = [
     n: "01",
     title: { en: "Reach out", mn: "Холбогдох" },
     body: {
-      en: "Message me on Facebook or WhatsApp, or send a quick email — whatever's easiest.",
-      mn: "Facebook эсвэл WhatsApp-аар, эсвэл имэйлээр — танд тохирсон аргаар бичээрэй.",
+      en: "Message me on Facebook, my number, or WhatsApp, or send a quick email — whatever's easiest.",
+      mn: "Facebook эсвэл миний дугаар луу, эсвэл WhatsApp, эсвэл имэйл ашиглан холбогдоорой.",
     },
   },
   {
     n: "02",
     title: { en: "Talk through goals", mn: "Зорилгоо ярилцах" },
     body: {
-      en: "A short, free conversation about where your child is and what they need.",
-      mn: "Хүүхэд тань хаана байгаа, юу хэрэгтэйг богино, үнэгүй ярилцлагаар тодорхойлно.",
+      en: "We pin down your child's level and what they need with a short, free consultation and a placement test — for a clearer, more personalized plan and faster, greater improvement.",
+      mn: "Хүүхэд тань аль түвшинд байгааг, юу сурах хэрэгтэйг богино, үнэгүй ярилцлага болон түвшин тогтоох шалгалтаар тодорхойлно.",
     },
   },
   {
     n: "03",
     title: { en: "Start improving", mn: "Ахиц дэвшил эхэлнэ" },
     body: {
-      en: "Personalized 1-on-1 sessions begin, with a plan that adapts every step of the way.",
-      mn: "Алхам бүрт өөрчлөгдөх төлөвлөгөөтэй ганцаарчилсан хичээл эхэлнэ.",
+      en: "Personalized 1-on-1 sessions begin on your schedule, making a visible difference every lesson.",
+      mn: "Хичээл бүрд мэдэгдэхүйц өөрчлөлт үзүүлэх ганцаарчилсан хичээлүүд товлосон цагийн дагуу эхэлнэ.",
     },
   },
 ];
@@ -104,8 +104,8 @@ const i18n = {
   eyebrow: { en: "1-on-1 Online Math Tutoring", mn: "Ганцаарчилсан онлайн математикийн хичээл" },
   heroH: { en: "The best math support your child will have.", mn: "Таны хүүхдэд зориулсан хамгийн сайн математикийн дэмжлэг." },
   heroSub: {
-    en: "Personalized online tutoring for students in the U.S. — any grade, any curriculum. We build the plan around your child's needs and adjust it as they grow.",
-    mn: "АНУ-д сурч буй сурагчдад зориулсан ганцаарчилсан онлайн хичээл — аль ч анги, аль ч хөтөлбөр. Бид таны хүүхдийн хэрэгцээнд тохирсон төлөвлөгөө гаргаж, ахиц дэвшилд нь тааруулан өөрчилнө.",
+    en: "Personalized online tutoring for Mongolian students abroad — any grade, any curriculum.",
+    mn: "Дэлхий даяар сурч буй бүх сурагчдад зориулсан ганцаарчилсан онлайн хичээл. Бүх төрлийн ангилал, бүх төрлийн математикийн хөтөлбөр. Бид таны хүүхдийн түвшин болон хэрэгцээнд тохирсон төлөвлөгөө гаргаж, хамтдаа ахиж дэвшинэ.",
   },
   ctaFb: { en: "Message on Facebook", mn: "Facebook-ээр холбогдох" },
   ctaReach: { en: "See all the ways to reach me", mn: "Холбоо барих бусад арга" },
@@ -116,21 +116,21 @@ const i18n = {
     mn: "Эцэг эхчүүдээс ирсэн жинхэнэ сэтгэгдэл.",
   },
   trustLine: {
-    en: "Real attention, real plans, real progress — one student at a time.",
-    mn: "Жинхэнэ анхаарал, жинхэнэ төлөвлөгөө, жинхэнэ ахиц — нэг хүүхэд тус бүрт.",
+    en: "Real help, real plans, real progress — for every student.",
+    mn: "Бодит тусламж, бодит төлөвлөгөө, бодит дэвшил. Сурагч тус бүрд.",
   },
-  contactH: { en: "Let's get your child the help they deserve.", mn: "Хүүхдэдээ зохих дэмжлэгийг нь аваад өгцгөөе." },
+  contactH: { en: "Let's get your child the support they need.", mn: "Хүүхдэдээ хэрэгтэй зохих дэмжлэгийг нь өгцгөөе." },
   contactSub: {
-    en: "Reach out any way you like — I usually reply the same day.",
-    mn: "Танд тохирсон аргаар холбогдоорой — би ихэвчлэн тухайн өдөртөө хариу өгдөг.",
+    en: "Pick whichever way below is easiest — I usually reply the same day.",
+    mn: "Доорх холбогдох хаягуудаас сонгоод холбогдоорой. (би ихэвчлэн тухайн өдөртөө хариуг нь өгдөг)",
   },
   email: { en: "Email", mn: "Имэйл" },
 };
 
 const TRUST_BULLETS: Bi[] = [
-  { en: "Online, anywhere in the U.S.", mn: "Онлайн, АНУ-ын хаана ч" },
+  { en: "Online, anywhere in the world", mn: "Онлайн, дэлхийн хаанаас ч" },
   { en: "Any grade · any curriculum", mn: "Аль ч анги · аль ч хөтөлбөр" },
-  { en: "A plan tailored to your child", mn: "Хүүхдэд тань тохирсон төлөвлөгөө" },
+  { en: "A perfect plan tailored to your child", mn: "Хүүхдэд тань тохирсон төгс төлөвлөгөө" },
 ];
 
 export default function TutoringPage() {
