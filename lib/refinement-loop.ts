@@ -71,7 +71,62 @@ export const THRESHOLDS = {
   drillGiveUpWrongStreak: 5, // 5 wrong in a row → give up
   drillGiveUpTotalAttempts: 15, // 15 attempts without a 3-streak → give up
   retestCap: 2, // at most 2 retests; a 2nd failure → abandoned
+  // §3a auto-trigger (tunable per §6 Q14): a skill auto-fires the loop only
+  // when at least this share AND this many of its questions were missed.
+  autoTriggerMissRate: 0.5,
+  autoTriggerMinMisses: 2,
 } as const;
+
+// One graded Section-1 question, as fed to the auto-trigger picker.
+export interface GradedResult {
+  source: string;
+  skillTag: string | null;
+  correct: boolean;
+}
+
+export interface AutoTrigger {
+  skillTag: string;
+  triggerQuestion: string; // first missed question of that skill (loop entry)
+  misses: number;
+  total: number;
+  missRate: number;
+}
+
+// §3a: after a test is graded, pick the single weakest skill worth auto-firing
+// the loop — the eligible skill (missRate ≥ threshold AND misses ≥ min) with
+// the highest miss rate, ties broken by absolute miss count then skill name
+// (stable). Returns null when no skill clears the bar (the common case for a
+// strong test — avoids loop fatigue). Untagged questions are ignored.
+export function pickAutoTriggerSkill(results: readonly GradedResult[]): AutoTrigger | null {
+  const byTag = new Map<string, { total: number; misses: number; firstMiss: string | null }>();
+  for (const r of results) {
+    if (!r.skillTag) continue;
+    const e = byTag.get(r.skillTag) ?? { total: 0, misses: 0, firstMiss: null };
+    e.total += 1;
+    if (!r.correct) {
+      e.misses += 1;
+      if (e.firstMiss === null) e.firstMiss = r.source;
+    }
+    byTag.set(r.skillTag, e);
+  }
+
+  let best: AutoTrigger | null = null;
+  for (const [skillTag, e] of Array.from(byTag.entries())) {
+    if (e.misses < THRESHOLDS.autoTriggerMinMisses) continue;
+    const missRate = e.misses / e.total;
+    if (missRate < THRESHOLDS.autoTriggerMissRate) continue;
+    const cand: AutoTrigger = { skillTag, triggerQuestion: e.firstMiss as string, misses: e.misses, total: e.total, missRate };
+    if (
+      !best ||
+      cand.missRate > best.missRate ||
+      (cand.missRate === best.missRate && cand.misses > best.misses) ||
+      (cand.missRate === best.missRate && cand.misses === best.misses && cand.skillTag < best.skillTag)
+    ) {
+      best = cand;
+    }
+  }
+  return best;
+}
 
 // Number of similar problems to show, by skill_tag cohort size (§3).
 // cohort = 0 means the caller should skip straight to the mini-test.

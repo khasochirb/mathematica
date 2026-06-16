@@ -22,6 +22,8 @@ import useTestSession from "@/lib/use-test-session";
 import { getTestQuestions, getTestInfo, TOPIC_LABELS } from "@/lib/esh-questions";
 import type { Question } from "@/lib/esh-questions";
 import { hasSection2, getTestSection2, gradeSection2 } from "@/lib/esh-section2";
+import { pickAutoTriggerSkill, type GradedResult } from "@/lib/refinement-loop";
+import useRefinementLoop from "@/lib/use-refinement-loop";
 import { useAuth } from "@/lib/auth-context";
 import { useUpgradeModal } from "@/lib/upgrade-modal-context";
 
@@ -54,6 +56,30 @@ export default function TestResultsPage() {
   const session = mounted ? testSession.getSession(sessionId) : undefined;
   const testInfo = getTestInfo(testKey);
   const questions: Question[] = useMemo(() => getTestQuestions(testKey), [testKey]);
+
+  // §3a auto-trigger: pick the single weakest Section-1 skill worth a loop.
+  const loop = useRefinementLoop();
+  const autoTrigger = useMemo(() => {
+    if (!session) return null;
+    const results: GradedResult[] = questions.map((q) => ({
+      source: q.source,
+      skillTag: q.skill_tag ?? null,
+      correct: session.answers[q.questionNumber] === q.answer,
+    }));
+    return pickAutoTriggerSkill(results);
+  }, [session, questions]);
+
+  const startAutoLoop = () => {
+    if (!autoTrigger) return;
+    const tq = questions.find((x) => x.source === autoTrigger.triggerQuestion);
+    loop.start({
+      triggeredSource: "test_submit",
+      triggeredQuestion: autoTrigger.triggerQuestion,
+      skillTag: autoTrigger.skillTag,
+      topic: tq?.topic ?? "other",
+    });
+    router.push("/practice/esh/loop");
+  };
   const solutionsLocked = !isSubscribed && !!testInfo?.solutionsRequirePremium;
 
   useEffect(() => {
@@ -198,6 +224,35 @@ export default function TestResultsPage() {
             </p>
           </div>
         </div>
+
+        {/* §3a auto-trigger — surface the single weakest skill (authed only) */}
+        {user && autoTrigger && (() => {
+          const tq = questions.find((x) => x.source === autoTrigger.triggerQuestion);
+          const skillLabel = tq?.subtopic || TOPIC_LABELS[tq?.topic ?? ""] || "энэ сэдэв";
+          return (
+            <button
+              type="button"
+              onClick={startAutoLoop}
+              className="w-full text-left rounded-xl p-4 mb-6 flex items-center gap-4 transition-colors"
+              style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)" }}
+            >
+              <span
+                className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+                style={{ background: "var(--accent)", color: "var(--accent-ink, white)" }}
+              >
+                <Target className="w-5 h-5" />
+              </span>
+              <span className="flex-1 min-w-0">
+                <span className="eyebrow block" style={{ color: "var(--accent)" }}>Дараагийн алхам</span>
+                <span className="block text-[14px]" style={{ color: "var(--fg-1)" }}>
+                  <b>{skillLabel}</b> сэдэв дээр {autoTrigger.misses}/{autoTrigger.total} алдсан байна.
+                  Бүрэн эзэмшихийн тулд алхам алхмаар давтлага хийе.
+                </span>
+              </span>
+              <span className="btn btn-primary shrink-0">Эхлэх →</span>
+            </button>
+          );
+        })()}
 
         {/* Score banner */}
         <div className="card-edit p-8 mb-6">
