@@ -2,6 +2,8 @@
 
 **Date:** 2026-05-13. **Author:** Claude Opus 4.7. **Status:** Draft for Khas review. **No code touched** — this is the planning artefact that locks the architecture before Phase 3b builds it.
 
+> **Correction (2026-06-12):** this doc originally said 1,724 Section 1 questions; the verified count is **1,224** (20 past papers × 36 + 14 practice tests × 36). All figures updated in place.
+
 ## Context
 
 Per `CLAUDE.md`, the refinement loop is the product's differentiator:
@@ -188,7 +190,7 @@ Rationale: every-miss triggering would create loop fatigue (a test has 36 questi
 
 #### 3b. Manual trigger from results page or mistake panel
 
-Every missed question has a **"Тогтоох" (master this)** button. Click → loop fires on that question regardless of test-level miss rate.
+Every missed question has a **"Бүрэн эзэмших" (fully master)** button (renamed from "Бүрэн эзэмших" 2026-06-16; alt: "Гартаа оруулах"). Click → loop fires on that question regardless of test-level miss rate.
 
 Rationale: the auto-trigger picks one skill per test, but students often want to drill multiple. Manual is the escape hatch.
 
@@ -227,11 +229,11 @@ The data model supports both via `skill_tag` + `difficulty_tier`. Similar-proble
 
 Auto-triggers (3a, 3c) operate on Section 1 questions only — they have a clean `skill_tag` and an unambiguous miss signal (right letter vs wrong letter). Section 2 problems are intentionally multi-skill (a single problem spans 3–5 subproblems, each potentially exercising a different sub-skill), so they don't fit the auto-trigger model cleanly.
 
-**Manual trigger remains available on Section 2.** The mistake-panel entry point (3b) renders Section 2 misses alongside Section 1 misses, each with a Тогтоох button. Clicking it on a Section 2 problem enters the loop using the problem's denormalized `skill_tag` — the dominant skill in the problem's main question stem, chosen by the content author at tagging time. Accept that this denormalization is lossy: a Section 2 problem that exercises "integration_by_substitution" + "definite_integral_bounds" picks one tag, and similar-problem matching will be cohort-matched on that one. Manual override via `similar_problem_ids` is available if the cohort match is bad.
+**Manual trigger remains available on Section 2.** The mistake-panel entry point (3b) renders Section 2 misses alongside Section 1 misses, each with a Бүрэн эзэмших button. Clicking it on a Section 2 problem enters the loop using the problem's denormalized `skill_tag` — the dominant skill in the problem's main question stem, chosen by the content author at tagging time. Accept that this denormalization is lossy: a Section 2 problem that exercises "integration_by_substitution" + "definite_integral_bounds" picks one tag, and similar-problem matching will be cohort-matched on that one. Manual override via `similar_problem_ids` is available if the cohort match is bad.
 
 ### Design note: skills with <2 instances per test
 
-A skill_tag that appears on fewer than 2 questions per test cannot satisfy 3a's auto-trigger condition (`miss_rate ≥ 0.5 AND ≥2 missed questions in skill`). These skills are **manual-trigger only** by design — surfacing them requires the student to open the mistake panel and Тогтоох a single miss. Known consequence: rare-skill weaknesses (e.g., a tag that lands on only one question per test) will never auto-train. Accepted trade-off — the alternative is too-noisy auto-trigger on single misses.
+A skill_tag that appears on fewer than 2 questions per test cannot satisfy 3a's auto-trigger condition (`miss_rate ≥ 0.5 AND ≥2 missed questions in skill`). These skills are **manual-trigger only** by design — surfacing them requires the student to open the mistake panel and Бүрэн эзэмших a single miss. Known consequence: rare-skill weaknesses (e.g., a tag that lands on only one question per test) will never auto-train. Accepted trade-off — the alternative is too-noisy auto-trigger on single misses.
 
 ### Retest pool exhaustion fallback
 
@@ -251,7 +253,7 @@ Surfaces in analytics so we can prioritize authoring more content for over-train
 
 ### The three approaches
 
-**A. Manual `similar_problem_ids` curation.** Per-question authored list. Highest quality (a human picked them) but highest cost — for 1,724 Section 1 questions, authoring 5 similar per question is ~8,000 entries with cross-references.
+**A. Manual `similar_problem_ids` curation.** Per-question authored list. Highest quality (a human picked them) but highest cost — for 1,224 Section 1 questions, authoring 5 similar per question is ~8,000 entries with cross-references.
 
 **B. Auto-grouping by `skill_tag` + `difficulty_tier`.** Group all questions by `skill_tag` and within each group filter by difficulty_tier when needed. Cheap to query (`SELECT * FROM questions WHERE skill_tag = $1 AND source != $2`). Quality depends on skill-tag consistency.
 
@@ -310,7 +312,7 @@ The `weak-topic` filter on the dashboard (currently `t.accuracy < 70%` on test-o
 ### Edge cases
 
 - **Student passes mini-test 80% but with 1 missed question — should drill cover that miss?** No. The exit threshold is a threshold, not a perfectionism check. Re-entering the loop for that single miss would be punitive. Honor the threshold.
-- **Student skips the loop, then immediately misses another question on the same skill.** The 3-day cool-down only suppresses *auto*-triggers. The student can still manually trigger via the Тогтоох button.
+- **Student skips the loop, then immediately misses another question on the same skill.** The 3-day cool-down only suppresses *auto*-triggers. The student can still manually trigger via the Бүрэн эзэмших button.
 - **Student finishes the loop but their stats still show the topic as weak** (because the loop's problems are too few to flip the average). The "Recently mastered" flag handles this — the dashboard doesn't shame the student.
 
 ---
@@ -324,7 +326,7 @@ These need your decisions before Phase 3b implementation.
 2. **Block other practice while a loop is active, or run alongside?** Blocking is more focused but feels coercive. Running alongside risks the loop being abandoned mid-flow. **Default proposal: run alongside, with a small badge on the dashboard "Сурлаа: [skill_tag] · Үргэлжлүүлэх"** so the student remembers.
 
 3. **Mini-test question pool source.** Three options:
-   - (a) Pull from the existing 1,724 Section 1 questions filtered by skill_tag
+   - (a) Pull from the existing 1,224 Section 1 questions filtered by skill_tag
    - (b) Author a dedicated mini-test bank (cleaner pool, but lots of new content)
    - (c) Generate via LLM at runtime (cheap, but quality risk)
    **Default proposal: (a) — reuse existing content. The LLM authoring tool we'd build for (c) is better-spent on hint_progression.**
@@ -335,13 +337,13 @@ These need your decisions before Phase 3b implementation.
 
 6. **Skill-tag granularity.** How fine? `algebra` is too coarse; `factoring_quadratics_with_leading_one` is too narrow. **Default proposal: ~50–80 distinct skill_tags total, granularity around the level of "factoring_quadratics" / "log_change_of_base" / "vector_dot_product".**
 
-7. **Skill_tag authoring cost.** Tagging 1,724 questions is real work — manual review is ~30 sec/q = ~14 hours. An LLM pre-classify + human review is ~5 hours. **Decision (locked 2026-05-13):** LLM pre-classify emits a **confidence score per tag**; tags with `confidence < 0.7` auto-route to manual review regardless of skill. Independent of the "top-20 most-missed" spot-check, which is additive. This guarantees the riskiest classifications get human eyes without blanket-reviewing the high-confidence ones.
+7. **Skill_tag authoring cost.** Tagging 1,224 questions is real work — manual review is ~30 sec/q = ~14 hours. An LLM pre-classify + human review is ~5 hours. **Decision (locked 2026-05-13):** LLM pre-classify emits a **confidence score per tag**; tags with `confidence < 0.7` auto-route to manual review regardless of skill. Independent of the "top-20 most-missed" spot-check, which is additive. This guarantees the riskiest classifications get human eyes without blanket-reviewing the high-confidence ones.
 
 8. **Daily loop-time cap.** Should we enforce a per-day cap to prevent fatigue (e.g., "Today you've worked through 3 loops; come back tomorrow")? **Default proposal: no cap for now; revisit if metrics show diminishing returns.**
 
 9. **Cross-loop signal sharing.** If a student passes a loop on `factoring_quadratics`, does that affect their weak-topic ranking for `quadratic_formula` (a related skill)? Build a skill-graph or treat them independently? **Default proposal: independent at launch. A skill-graph is a Phase 5 problem.**
 
-10. **Section 2 (fill-in problems) — is the loop scope Section 1 only, or do Section 2 misses also trigger?** Section 2 problems are multi-skill and don't have a clean `skill_tag`. **Decision (locked 2026-05-13):** auto-trigger stays Section-1-only. Students can manually trigger the loop on Section 2 main problems via the Тогтоох button in the mistake panel. Each Section 2 problem gets a single denormalized `skill_tag` (the dominant skill in the problem's main question stem) for cohort matching — accept the lossiness. See §3d.
+10. **Section 2 (fill-in problems) — is the loop scope Section 1 only, or do Section 2 misses also trigger?** Section 2 problems are multi-skill and don't have a clean `skill_tag`. **Decision (locked 2026-05-13):** auto-trigger stays Section-1-only. Students can manually trigger the loop on Section 2 main problems via the Бүрэн эзэмших button in the mistake panel. Each Section 2 problem gets a single denormalized `skill_tag` (the dominant skill in the problem's main question stem) for cohort matching — accept the lossiness. See §3d.
 
 11. **Retest content — same questions as the mini-test or a fresh draw?** Same questions = direct comparison; fresh draw = harder to game. **Decision (locked 2026-05-13):** fresh draw from the same skill_tag pool, excluding the mini-test's questions. **Fallback:** if the pool is exhausted (mini-test + any prior retests used up the unique questions), allow reuse oldest-attempted-first and log `meta.retest_pool_exhausted = true` for analytics. See §3.
 
@@ -359,12 +361,30 @@ These need your decisions before Phase 3b implementation.
 
 ---
 
+## Section 6 — Decisions (locked 2026-06-16)
+
+The remaining open questions are resolved below. Most ratify the default proposal; the rationale notes where a decision is tied to a locked answer elsewhere (the expansion-vision §4 answers, `memory/expansion-vision.md`). All are reversible pre-launch defaults — they unblock 3c without foreclosing later tuning.
+
+1. **Authoring language (step_by_step / hint_progression): Mongolian-only at launch.** Consistent with the locked language rule (expansion-vision §4 Q7): ЭЕШ content — including solutions and explanations — is MN; the EN toggle is nav-only. The international hubs (SAT/IB/AP) will author their loop content in English when they exist. Bilingual ЭЕШ loop copy is not planned.
+2. **Run alongside other practice (not blocking).** Ratify default: a dashboard badge ("Сурлаа: [skill_tag] · Үргэлжлүүлэх") keeps the active loop discoverable. Blocking felt coercive; the badge mitigates the abandon risk.
+3. **Mini-test pool source: (a) reuse the existing 1,224 Section 1 questions, filtered by skill_tag.** Ratify default. Now unblocked — every Section 1 question carries `skill_tag` + `difficulty_tier` (3b.4) and difficulty is authored across the whole pool (3c-prep), so skill-tag cohorts are real and difficulty-uniform sampling has signal. No dedicated bank, no runtime LLM generation at launch.
+4. **Drills: same `skill_tag` + `difficulty_tier` at launch.** Ratify default. A parametric generator is deferred until metrics show students clear same-tag drills without learning. Feasible now that difficulty_tier is populated pool-wide.
+5. **Premium gating: FREE at launch (provisional).** Ratify the design default — free for product-market-fit validation. **Tied to the still-open pricing decision** (expansion-vision §4 Q5, "go for the best option"): when pricing lands, revisit whether the loop becomes the paid differentiator. Building 3c gating-free is correct either way (adding a gate later is a smaller change than building one speculatively now).
+8. **Daily loop-time cap: none at launch.** Ratify default; revisit if telemetry (§Q12 events) shows fatigue / diminishing returns.
+9. **Cross-loop signal sharing: independent at launch.** Ratify default. A skill-graph relating e.g. `quadratic_equation`↔`quadratic_inequality` is a Phase 5 problem.
+13. **Per-state Mongolian copy: authoring pass after the reducer + UI exist** (3c/3d). Not blocking the policy core or reducer.
+14. **Auto-trigger 3a threshold: ship `miss_rate ≥ 0.5 AND ≥2 missed`, log per-test fire rate, tune after 100 user-tests.** Ratify default. Lives in 3d (trigger integration), not the 3c policy core.
+
+**Net effect:** 3c is unblocked. The reducer can be built against pool-source (a), same-tag drills, no gating, MN copy — all locked above. Pricing/gating is the only provisional item and it doesn't block the build.
+
+---
+
 ## Phase 3 sequencing summary
 
 - **Phase 3a (this doc):** design. STOPPED here.
-- **Phase 3b (next gate):** content audit + tagging. Add `skill_tag`, `difficulty_tier` to existing 1,724 Section 1 questions. Author `key_insight` and `step_by_step_solution` for a starter subset (proposal: 200 most-missed questions). Skip `hint_progression` initially.
+- **Phase 3b (next gate):** content audit + tagging. Add `skill_tag`, `difficulty_tier` to existing 1,224 Section 1 questions. Author `key_insight` and `step_by_step_solution` for a starter subset (proposal: 200 most-missed questions). Skip `hint_progression` initially.
 - **Phase 3c:** state machine implementation. `refinement_loop_sessions` table, the state-machine TypeScript module, the 8 user-facing states from §1.
 - **Phase 3d:** trigger integrations. Wire 3a/3b/3c entry points. Cool-down logic. Recently-mastered flag in analytics.
 - **Phase 3e:** telemetry + iteration. Land event tracking; review first cohort's loop completion rates; tune thresholds.
 
-Each phase has its own gate. No work on 3b until Khas resolves the §6 open questions.
+Each phase has its own gate. **Status (2026-06-16):** 3b complete (tagging + difficulty authored, all verified); §6 open questions resolved above; 3c policy core (`lib/refinement-loop.ts`) + migration 007 built. Remaining 3c: the stateful reducer, question selection over pool-source (a), persistence against `refinement_loop_sessions`, and the 8 UI states. 3b.3 per-row tag review is the only outstanding 3b item (tag-quality polish; non-blocking for the reducer).

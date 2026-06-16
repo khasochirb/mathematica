@@ -5,7 +5,7 @@ import { useLang } from "@/lib/lang-context";
 import MathText from "@/components/esh/MathText";
 
 const i18n = {
-  hero_eyebrow: { en: "Analytics-first exam prep", mn: "Сул талд төвлөрсөн бэлтгэл" },
+  hero_eyebrow: { en: "Personalized math mastery", mn: "Ганцаарчилсан математикийн дэмжлэг" },
   hero_sub: {
     en: "Get a personalized study plan that closes the gap between where you are and where you want to be.",
     mn: "Бид хүсэж буй мэдлэгийн түвшин рүү тань хөтлөх зөвхөн танд зориулсан сургалтын төлөвлөгөөг гаргаж өгнө. Цагаа хэмнэ, мэдлэгээ дээшлүүл.",
@@ -59,13 +59,13 @@ export default function HomePage() {
   const heroHeadline =
     lang === "mn" ? (
       <>
-        Сул талаа арилгаж,{" "}
-        <em className="serif-italic" style={{ color: "var(--accent)" }}>үр дүнтэй</em> бэлтгэ.
+        Сул талаа нөхөж, математикаа{" "}
+        <em className="serif-italic" style={{ color: "var(--accent)" }}>бүрэн эзэмш</em>.
       </>
     ) : (
       <>
-        Remove the gaps,{" "}
-        <em className="serif-italic" style={{ color: "var(--accent)" }}>prepare</em> efficiently.
+        Close the gaps,{" "}
+        <em className="serif-italic" style={{ color: "var(--accent)" }}>master</em> the math.
       </>
     );
 
@@ -116,8 +116,8 @@ export default function HomePage() {
             style={{ fontSize: 12, color: "var(--fg-3)", maxWidth: "40ch", letterSpacing: "0.02em" }}
           >
             {lang === "mn"
-              ? "ЭЕШ · SAT Math · AP Calculus · IB Math"
-              : "ЭЕШ · SAT Math · AP Calculus · IB Math"}
+              ? "Аль ч хөтөлбөр · SAT · AP Calculus · IB · ЭЕШ"
+              : "Any curriculum · SAT · AP Calculus · IB · ЭЕШ"}
           </div>
         </div>
 
@@ -138,7 +138,7 @@ export default function HomePage() {
               style={{ color: "var(--fg-2)", letterSpacing: "0.1em", fontSize: 10 }}
             >
               <span>{lang === "mn" ? "Жишээ тайлан · Б. Эрдэнэ" : "Sample report · Erdene B."}</span>
-              <span>· ЭЕШ</span>
+              <span>{lang === "mn" ? "· Математик" : "· Math"}</span>
             </div>
             <div className="flex items-end justify-between gap-5">
               <div>
@@ -164,7 +164,7 @@ export default function HomePage() {
                   className="uppercase mt-1.5"
                   style={{ color: "var(--fg-2)", fontSize: 11, letterSpacing: "0.1em" }}
                 >
-                  {lang === "mn" ? "Таамагласан ЭЕШ · ±18" : "Predicted ЭЕШ · ±18"}
+                  {lang === "mn" ? "Таамагласан оноо · ±18" : "Projected score · ±18"}
                 </div>
               </div>
               <svg viewBox="0 0 160 60" width="160" height="60" preserveAspectRatio="none" style={{ opacity: 0.85 }}>
@@ -286,17 +286,15 @@ export default function HomePage() {
           background: "var(--bg-1)",
         }}
       >
-        <span style={{ color: "var(--fg-1)" }}>ЭЕШ</span>
+        <span style={{ color: "var(--fg-1)" }}>{lang === "mn" ? "Сургуулийн математик" : "School math"}</span>
         <span>·</span>
         <span style={{ color: "var(--fg-1)" }}>SAT Math</span>
         <span>·</span>
-        <span style={{ color: "var(--fg-1)" }}>AP Calculus AB</span>
+        <span style={{ color: "var(--fg-1)" }}>AP Calculus</span>
         <span>·</span>
-        <span style={{ color: "var(--fg-1)" }}>AP Calculus BC</span>
+        <span style={{ color: "var(--fg-1)" }}>IB Math</span>
         <span>·</span>
-        <span style={{ color: "var(--fg-1)" }}>IB Math HL</span>
-        <span>·</span>
-        <span style={{ color: "var(--fg-1)" }}>IB Math SL</span>
+        <span style={{ color: "var(--fg-1)" }}>ЭЕШ</span>
       </div>
 
       {/* STATS */}
@@ -355,8 +353,8 @@ export default function HomePage() {
         body={t("feat_2_s")}
         bullets={[
           lang === "mn"
-            ? "өмнөх жилүүдийн шалгалтын оноонууд дээр тулгуурласан"
-            : "Calibrated on past years of ЭЕШ scores",
+            ? "өмнөх жилүүдийн жинхэнэ шалгалтын оноонууд дээр тулгуурласан"
+            : "Calibrated on years of real exam scores",
           lang === "mn"
             ? "дадлага хийх бүрд таны оноо шинэчлэгдэнэ"
             : "Your score updates with every practice session",
@@ -365,7 +363,7 @@ export default function HomePage() {
           <>
             <div className="flex justify-between items-baseline">
               <div className="serif" style={{ fontSize: 24, letterSpacing: "-0.02em" }}>
-                {lang === "mn" ? "Таамагласан ЭЕШ · 8 долоо хоног" : "Projected ЭЕШ · 8 weeks"}
+                {lang === "mn" ? "Таамагласан оноо · 8 долоо хоног" : "Projected score · 8 weeks"}
               </div>
               <span className="badge-edit badge-accent live-dot">
                 {lang === "mn" ? "хянагдаж байна" : "tracking"}

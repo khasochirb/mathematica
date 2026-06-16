@@ -232,6 +232,7 @@ export default function Header() {
   const nav = {
     home: lang === "mn" ? "Нүүр" : "Home",
     dashboard: lang === "mn" ? "Хяналтын самбар" : "Dashboard",
+    tutoring: lang === "mn" ? "Ганцаарчилсан хичээл" : "1-on-1 Tutoring",
     resources: lang === "mn" ? "Эх сурвалж" : "Resources",
     about: lang === "mn" ? "Бидний тухай" : "About",
     login: lang === "mn" ? "Нэвтрэх" : "Log in",
@@ -294,6 +295,17 @@ export default function Header() {
                   </Link>
                 </li>
               )}
+              <li>
+                <Link
+                  href="/tutoring"
+                  className="text-sm font-medium px-3 py-2 rounded-md transition-colors"
+                  style={{ color: "var(--fg-1)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "var(--bg-1)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                >
+                  {nav.tutoring}
+                </Link>
+              </li>
               <ResourcesDropdown label={nav.resources} />
               <AboutDropdown label={nav.about} />
             </ul>
@@ -454,6 +466,7 @@ export default function Header() {
             {[
               { label: nav.home, href: "/" },
               ...(isAuthenticated ? [{ label: nav.dashboard, href: "/dashboard" }] : []),
+              { label: nav.tutoring, href: "/tutoring" },
             ].map((item) => (
               <Link
                 key={item.href}

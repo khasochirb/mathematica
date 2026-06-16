@@ -1,13 +1,15 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Sparkles, X } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Sparkles, X, Target } from "lucide-react";
 import QuestionCard from "./QuestionCard";
 import { getSimilarQuestions, getTestInfo } from "@/lib/esh-questions";
 import type { Question } from "@/lib/esh-questions";
 import usePerformance from "@/lib/use-performance";
 import { useAuth } from "@/lib/auth-context";
 import { useUpgradeModal } from "@/lib/upgrade-modal-context";
+import useRefinementLoop from "@/lib/use-refinement-loop";
 
 interface SimilarQuestionsPanelProps {
   question: Question;
@@ -19,9 +21,21 @@ export default function SimilarQuestionsPanel({
   count = 3,
 }: SimilarQuestionsPanelProps) {
   const [expanded, setExpanded] = useState(false);
-  const { isSubscribed } = useAuth();
+  const { isSubscribed, isAuthenticated } = useAuth();
   const upgrade = useUpgradeModal();
   const perf = usePerformance();
+  const loop = useRefinementLoop();
+  const router = useRouter();
+
+  const startLoop = () => {
+    loop.start({
+      triggeredSource: "mistake_panel",
+      triggeredQuestion: question.source,
+      skillTag: question.skill_tag ?? null,
+      topic: question.topic,
+    });
+    router.push("/practice/esh/loop");
+  };
 
   const similars = useMemo(
     () => getSimilarQuestions(question, isSubscribed, count),
@@ -98,6 +112,21 @@ export default function SimilarQuestionsPanel({
           <X className="w-4 h-4" />
         </button>
       </div>
+
+      {isAuthenticated && (
+        <button
+          type="button"
+          onClick={startLoop}
+          className="w-full text-left rounded-md p-3 mb-3 flex items-center gap-3 transition-colors"
+          style={{ background: "var(--accent)", color: "var(--accent-ink, white)", border: "1px solid var(--accent)" }}
+        >
+          <Target className="w-4 h-4 shrink-0" />
+          <span className="flex-1 min-w-0 text-[13px] font-medium">
+            Энэ сэдвийг бүрэн эзэмших — алхам алхмаар давтлага
+          </span>
+          <span className="mono text-[10px] uppercase shrink-0" style={{ letterSpacing: "0.08em" }}>Эхлэх →</span>
+        </button>
+      )}
 
       {similars.map((s) => {
         const testKey = `${s.testNumber}${s.testVariant}`;

@@ -1,10 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowRight, BarChart3, Calculator, Sparkles, Target } from "lucide-react";
 import usePerformance from "@/lib/use-performance";
 import { useAuth } from "@/lib/auth-context";
 import { useLang } from "@/lib/lang-context";
+import useRefinementLoop, { useRecentlyMastered } from "@/lib/use-refinement-loop";
+import { getAllQuestions } from "@/lib/esh-questions";
 
 const i18n = {
   eyebrow_dashboard: { en: "Dashboard", mn: "Хяналтын самбар" },
@@ -41,6 +44,7 @@ const i18n = {
   },
   focus_btn_learn: { en: "Learn", mn: "Суралцах" },
   focus_btn_practice: { en: "Take a test", mn: "Шалгалт өгөх" },
+  focus_btn_master: { en: "Master this topic", mn: "Бүрэн эзэмших" },
 
   practice_eyebrow: { en: "Practice", mn: "Дадлага" },
   doing_well_p: {
@@ -83,6 +87,27 @@ export default function DashboardPage() {
   const { lang } = useLang();
   const t = (key: keyof typeof i18n) => i18n[key][lang === "mn" ? "mn" : "en"];
 
+  const router = useRouter();
+  const loop = useRefinementLoop();
+  // §3c: start a refinement loop on the easiest still-unsolved question in a topic.
+  const startTopicLoop = (topic: string) => {
+    const solved = new Set(perf.attempts.filter((a) => a.isCorrect).map((a) => a.questionSource));
+    const inTopic = getAllQuestions().filter((q) => q.topic === topic);
+    const unsolved = inTopic.filter((q) => !solved.has(q.source));
+    const pickFrom = unsolved.length > 0 ? unsolved : inTopic;
+    const entry = pickFrom
+      .slice()
+      .sort((a, b) => a.difficulty - b.difficulty || a.source.localeCompare(b.source))[0];
+    if (!entry) return;
+    loop.start({
+      triggeredSource: "dashboard_weak_topic",
+      triggeredQuestion: entry.source,
+      skillTag: entry.skill_tag ?? null,
+      topic,
+    });
+    router.push("/practice/esh/loop");
+  };
+
   const overall = perf.getOverallStats();
   const topicStats = perf.getTopicStats();
   // Server-derived test sessions (cross-device-safe). Replaces the previous
@@ -100,7 +125,10 @@ export default function DashboardPage() {
   // student happens to drill instead of the one they struggle with on tests.
   const testTopicStats = perf.getTestOnlyTopicStats();
   const hasQualifyingTests = perf.hasTestOnlyData();
-  const weakTopics = testTopicStats.filter((t) => t.accuracy < 70);
+  // §5: a topic mastered in the last 14 days is hidden from the weak-spot card
+  // even if its accuracy still lags (stats trail the actual learning).
+  const masteredTopics = useRecentlyMastered();
+  const weakTopics = testTopicStats.filter((t) => t.accuracy < 70 && !masteredTopics.has(t.topic));
   const weakest = weakTopics[0]; // already sorted asc by accuracy
 
   const greeting =
@@ -324,9 +352,17 @@ export default function DashboardPage() {
                     {focusBanner}
                   </p>
                   <div className="flex flex-wrap gap-2 mt-5">
+                    <button
+                      type="button"
+                      onClick={() => startTopicLoop(weakest.topic)}
+                      className="btn btn-primary"
+                    >
+                      <Target className="mr-1 h-3.5 w-3.5" />
+                      {t("focus_btn_master")}
+                    </button>
                     <Link
                       href={`/practice/esh/learn/${weakest.topic}`}
-                      className="btn btn-primary"
+                      className="btn btn-line"
                     >
                       {t("focus_btn_learn")}
                       <ArrowRight className="ml-1 h-3.5 w-3.5" />
@@ -400,7 +436,25 @@ export default function DashboardPage() {
                   {topicStats.slice(0, 5).map((tt) => (
                     <div key={tt.topic}>
                       <div className="flex items-baseline justify-between mb-1.5 text-sm">
-                        <span style={{ color: "var(--fg-1)" }}>{tt.label}</span>
+                        <span className="flex items-center gap-1.5" style={{ color: "var(--fg-1)" }}>
+                          {tt.label}
+                          {masteredTopics.has(tt.topic) && (
+                            <span
+                              className="mono uppercase"
+                              style={{
+                                fontSize: 9,
+                                letterSpacing: "0.08em",
+                                color: "var(--accent)",
+                                border: "1px solid var(--accent-line)",
+                                background: "var(--accent-wash)",
+                                borderRadius: 4,
+                                padding: "1px 5px",
+                              }}
+                            >
+                              {lang === "mn" ? "Бүрэн эзэмшсэн" : "Mastered"}
+                            </span>
+                          )}
+                        </span>
                         <span
                           className="mono tabular"
                           style={{ color: "var(--fg-3)", fontSize: 12 }}

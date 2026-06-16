@@ -55,6 +55,15 @@ export interface Question {
   topic: string;
   subtopic: string;
   difficulty: number;
+  // Refinement-loop fields (Phase 3b). Optional so questions authored before
+  // the tagging pass degrade gracefully. skill_tag is the cohort join key;
+  // difficulty_tier is derived from difficulty (1-2 easy, 3 medium, 4-5 hard).
+  skill_tag?: string;
+  difficulty_tier?: "easy" | "medium" | "hard";
+  // Optional manual override for similar-problem matching (design §4). When
+  // present and non-empty, these source ids are used as the cohort instead of
+  // skill_tag auto-grouping. Empty/absent everywhere today.
+  similar_problem_ids?: string[];
   body: string;
   options?: Record<string, string>;
   answer: string;
