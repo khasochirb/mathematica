@@ -1,6 +1,6 @@
 # Expansion vision — "the ultimate math prep website"
 
-**Status:** Reconstructed from the deployed site + git history on 2026-06-12 by Claude; **§4 decisions locked same day from Khas's answers.** Only pricing (Q5) remains open.
+**Status:** Reconstructed 2026-06-12. **All §4 decisions locked** (pricing Q5 locked 2026-06-16: FREE for early launches). Ground truth updated 2026-06-16 to reflect Phase 3b/3c/3d shipping.
 
 ## 1. Vision
 
@@ -14,14 +14,15 @@ The diaspora framing is explicit ("Multiple curricula — Join us from wherever 
 
 The product mechanics that make it "ultimate" carry over from the ЭЕШ build: weak-topic analytics, score prediction, the refinement loop (miss → mastery state machine, `memory/refinement-loop-design.md`), and AI-generated targeted practice.
 
-## 2. Ground truth as of 2026-06-12
+## 2. Ground truth as of 2026-06-16
 
 | Curriculum | Status | Evidence |
 |---|---|---|
-| ЭЕШ | **Active** — full product: 20 past papers (2021–2025 × ABCD) with Section 1 + Section 2, figures, analytics, server-synced attempts, refinement loop designed (Phase 3a/3b.1 locked) | `app/practice/esh/*`, PHASES.md, commits through `aa129c3` |
+| ЭЕШ | **Active / LIVE** — full product: 20 past papers (2021–2025 × ABCD), Section 1 + Section 2, figures, analytics, server-synced attempts, **refinement loop SHIPPED** (Phase 3b/3c/3d, PR #2 merged 2026-06-16, sha `75467e0`). All 1,224 §1 questions tagged. Loop entry from results page, dashboard, mistake panel. | `app/practice/esh/*`, `lib/refinement-loop*.ts`, `components/esh/RefinementLoop.tsx`, JOURNAL.md 2026-06-16 |
+| 1-on-1 Tutoring | **LIVE** — `/tutoring` landing page, bilingual EN/MN, nav item in Header. Khas's contact + 3 real testimonials. | `app/tutoring/page.tsx` |
 | SAT Math | **Coming Soon** — locked nav item only; zero content, zero routes | `components/layout/Header.tsx` `comingSoonExams` |
 | IB Math HL/SL | **Coming Soon** — locked nav item only; zero content, zero routes | same |
-| AP Calculus AB/BC | **Confirmed roadmap item** (Khas, 2026-06-12) — currently landing-strip mention only; add to the Coming Soon nav for consistency | `app/page.tsx` exam strip vs. `Header.tsx` |
+| AP Calculus AB/BC | **Confirmed roadmap item** — landing-strip mention only; not yet in Coming Soon nav (todo: align `Header.tsx`) | `app/page.tsx` exam strip vs. `Header.tsx` |
 | AMC | Blog/SEO mention only | `app/layout.tsx`, `app/blog/page.tsx` |
 
 ## 3. Sequencing (locked 2026-06-12)

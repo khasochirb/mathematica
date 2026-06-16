@@ -2,6 +2,79 @@
 
 Reverse-chronological log of major work sessions. Each entry captures the arc — what shipped, what was decided, what surfaced, what's deferred — in tighter form than commit messages alone. PHASES.md holds the queue; this holds the narrative.
 
+## 2026-06-16 — Phase 3b/3c/3d complete: refinement loop live + tutoring page + homepage reframe
+
+**Longest build session to date.** Started by orienting a new Claude instance to the existing plan, then ran all of Phase 3b (skill tagging) and Phase 3c/3d (refinement loop implementation) in a single session, plus two additional features (tutoring landing page, homepage reframe), plus Khas's post-review edits. Merged to `main` at the end of the session (PR #2, merge sha `75467e0`). Everything is now live on mongolpotential.com.
+
+### What shipped (all in PR #2, `claude/mongolpotential-plan-6ul1o6` → `main`)
+
+**Phase 3b — Skill tagging (complete)**
+- All **1,224 Section 1 questions** now carry `skill_tag` + `difficulty_tier` (1/2/3 = easy/medium/hard).
+- `scripts/preclassify-skill-tags.mjs` — LLM-assisted classifier (batch mode, confidence scores); outputs in `outputs/skill-tags/classified/batch-*.jsonl`.
+- `scripts/apply-skill-tags.mjs` — Idempotent applier that writes tags from the CSV back into the 34 JSON files.
+- `scripts/skill-tag-classification.csv` — Ground truth: 1,224 rows, one per question, tag + tier + confidence.
+- `scripts/author-difficulty.mjs` — Filled difficulty_tier on 18 files (2021–2023 papers + practice 1–3) that were uniformly tier-1. Used positional-thirds convention (Q1–12 = 1, Q13–24 = 2, Q25–36 = 3) consistent with all other files.
+- `scripts/verify-skill-tag-coverage.test.ts` — Verifies every Section 1 question has a tag; passes 1,224/1,224.
+- `outputs/skill-tags/REVIEW-3b3.md` — Per-tag cohort review (51 tags), with flags for any outlier counts.
+- Two new tags added during review: `number_theory`, `binomial_theorem`.
+- `memory/skill-tag-taxonomy.md` updated to 51 tags (was 50).
+
+**Phase 3c — State machine + persistence**
+- `lib/refinement-loop.ts` — Policy core: 10 states, transitions, thresholds (80%/40%/3-streak/retest-cap-2), `pickAutoTriggerSkill`, `miniTestDisposition`, `cooldownDays`. Key fix: added `post_miss_result → mini_test` edge (§3 cohort-0 fast-path was missing from ALLOWED_TRANSITIONS). Fixed `Array.from(byTag.entries())` for TS Map iteration.
+- `lib/refinement-loop-machine.ts` — `createLoopSession`, `advanceLoop(session, event, now)`. Pure reducer pattern (never mutates input). All 8 event types in `LoopEvent` union. `meta.similarMark` delimits similar rounds.
+- `lib/refinement-loop-row.ts` — `rowToSession`/`sessionToRow` between snake_case DB and camelCase session. Guards unknown state.
+- `lib/refinement-loop-select.ts` — `selectSimilarProblems` (honors `similar_problem_ids` override, cap 2), `selectMiniTest` (5/10 clamped), `selectDrill` (same tag+tier). `hashSeed`, seeded Fisher-Yates PRNG (mulberry32).
+- `lib/refinement-loop-analytics.ts` — `recentlyMasteredTopics(loops, now, windowDays=14)`, `partitionWeakTopics`.
+- `lib/use-refinement-loop.ts` — `useRefinementLoop()` + `useRecentlyMastered()`. Cache key `mongol-potential-loop:{userId}`. Dirty-flag retry on window focus. `start()` creates a session, `dispatch(event)` advances it. `useRecentlyMastered()` fetches `GET /api/refinement-loop?scope=completed`.
+- `lib/esh-questions.ts` — `Question` interface gained `skill_tag?`, `difficulty_tier?`, `similar_problem_ids?`.
+- `app/api/refinement-loop/route.ts` — `GET` (active loop or `?scope=completed`), `POST` (upsert, user_id forced from token, state validated).
+- `supabase/migrations/007_refinement_loop_sessions.sql` — Full schema with RLS (SELECT/INSERT/UPDATE own rows), two partial indexes (active/completed). **Applied to both staging and production by Khas.**
+- Test suite: 5 verify scripts (machine, row, select, trigger, analytics, coverage) — 235/235 passing.
+
+**Phase 3d — UI + entry points**
+- `components/esh/RefinementLoop.tsx` — Full UI for all 8 loop states. All chrome bilingual via `T` lookup + `useLang()`. "Илүү тайлбар" button removed (step_by_step content not authored; button just re-showed the same solution — Khas caught this in review). Mini-test/retest: no instant feedback, submit-at-end. Drill: streak counter (N/3), retake enabled at 3-streak.
+- `app/practice/esh/loop/page.tsx` — Route at `/practice/esh/loop`.
+- `components/esh/SimilarQuestionsPanel.tsx` — "Бүрэн эзэмших" button (authed users only) → `loop.start()` → push to `/practice/esh/loop`.
+- `app/practice/esh/test/[testId]/results/page.tsx` — `pickAutoTriggerSkill` runs on graded results; shows "Дараагийн алхам" banner above score for authed users when a skill clears the threshold.
+- `app/dashboard/page.tsx` — `useRecentlyMastered()` filters weak topics by mastered set; "Бүрэн эзэмших" button on Focus card via `startTopicLoop(topic)` (picks easiest unsolved question); "Mastered" badge in top-topics list.
+- `components/layout/Header.tsx` — "1-on-1 Tutoring" / "Ганцаарчилсан хичээл" nav item added (desktop + mobile).
+
+**Tutoring landing page**
+- `app/tutoring/page.tsx` — `/tutoring` route. Bilingual (EN/MN via `useLang`). Audience: Mongolian students abroad + anywhere in the world, any grade. 3 real testimonials (6th grade: 100% three tests; 9th grade state test "Exceeded" +100 points; 9th grade "thinks faster, no longer dreads homework"). Contact: Facebook (khasochirb), WhatsApp (wa.me/14153367764), Phone (+14159818165), Email (khasochir@uni.minerva.edu). Placement test mention in step 2.
+
+**Homepage reframe**
+- `app/page.tsx` — Eyebrow "Personalized math mastery" (was "Analytics-first exam prep"). Headline "Close the gaps, master the math." Sample report chip "Math" not "ЭЕШ". Exam strip reordered.
+
+### Decisions locked this session
+
+- **§4 Q5 (Pricing): FREE for the first few (re)launches.** Revisit paid tier after traction. Locked in `memory/expansion-vision.md`.
+- **Loop chrome is bilingual** — nav/buttons follow the EN/MN toggle; question content stays in its authored language (MN for ЭЕШ).
+- **"Илүү тайлбар" button removed.** `step_by_step_solution` not yet authored; the button just re-showed the same solution. Step-by-step now only reachable on the relearn path (mini-test <40%).
+- **"Бүрэн эзэмших" confirmed** as the loop entry button label (over "Тогтоох" or "Гартаа оруулах").
+- **Analytics tool: paused.** No telemetry product selected; defer until after early launches.
+- **Loop content will come from Khas** — he will send Mongolian step_by_step / hints documents. Remind him next session.
+
+### Technical bugs caught and fixed this session
+
+- `for...of Map` → `Array.from(byTag.entries())` (TS strict mode)
+- `[...Set]` spread → `Array.from(new Set(...))` in two files
+- `as const` readonly mismatch in test fixture → typed as `LoopEvent[]`
+- Supabase double-cast: `as unknown as LoopRow` for GenericStringError mismatch
+- Missing `post_miss_result → mini_test` transition (cohort-0 fast-path) — caught by tests, added
+- Test fixture source collision (`"alg-0"` collided with trigger question) — renamed trigger to `"trig"`
+
+### Pending (carry to next session)
+
+1. **Loop content docs** — Khas will send Mongolian `step_by_step_solution`, `key_insight`, `hint_progression` materials. **Remind him.** Without these the deep loop paths are empty.
+2. **Supabase Pro upgrade** ($25/mo) — hard launch gate (3/hr signup limit + no backups on free tier).
+3. **No-signup test path** — Phase 2 funnel item, still open.
+4. **Team section** — Hidden since commit `63de6bb`, "pending re-launch." Re-show before launch.
+5. **Smoke test** — `scripts/smoke-refinement-loop.ts` against live site (needs a real Supabase session).
+6. **SAT content plan** — Next curriculum after ЭЕШ launch; needs its own phased plan (taxonomy → problem bank → practice tests → solutions).
+7. **AP Calculus nav** — On landing strip but not in Coming Soon nav in `Header.tsx`. Align per `expansion-vision.md` §4 decision 2.
+
+---
+
 ## 2026-06-12 — Notes reconstruction: month-long gap, launch slip, expansion vision
 
 Docs-only session. The repo's planning notes had gone a month stale (last notes commit 2026-05-13) while two major developments happened off-repo: the **"ultimate math prep website" expansion plan** (IB/SAT/AP alongside ЭЕШ) and a **first-launch deadline of 2026-06-11, which slipped** (new date TBD). Neither was anywhere in PHASES/JOURNAL/memory. Khas asked for a reconstruction from the deployed site + git history rather than a brain-dump.
