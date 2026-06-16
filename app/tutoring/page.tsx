@@ -22,9 +22,21 @@ const PHONE_TEL = "tel:+14159818165";
 const PHONE_DISPLAY = "+1 (415) 981-8165";
 const EMAIL = "khasochir@uni.minerva.edu";
 
-// Paste real parent testimonials here (e.g. { quote, attribution }). The
-// "What parents say" section appears automatically once this is non-empty.
-const TESTIMONIALS: { quote: string; attribution: string }[] = [];
+// Real parent messages (provided 2026-06-16), transcribed + translated from
+// Mongolian and anonymized — no screenshots, names, or private info shipped.
+// The "What parents say" section appears automatically when this is non-empty.
+const TESTIMONIALS: { quote: string; attribution: string }[] = [
+  {
+    quote:
+      "My daughter's state test came back “Exceeded” — a 100-point jump from last year. Thank you so much for helping her.",
+    attribution: "Parent of a high-school student",
+  },
+  {
+    quote:
+      "She scored 100% on her last three math tests. Thank you for teaching her so well.",
+    attribution: "Parent of a returning student",
+  },
+];
 
 const VALUE_PROPS = [
   {
@@ -131,7 +143,10 @@ export default function TutoringPage() {
       {TESTIMONIALS.length > 0 && (
         <section className="px-10 py-20" style={{ borderBottom: "1px solid var(--line)", background: "var(--bg-1)" }}>
           <div className="max-w-5xl mx-auto">
-            <div className="eyebrow text-center mb-12">What parents say</div>
+            <div className="eyebrow text-center mb-3">What parents say</div>
+            <p className="text-center mb-12" style={{ color: "var(--fg-3)", fontSize: 13 }}>
+              Real messages from families, translated from Mongolian.
+            </p>
             <div className="grid gap-6" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}>
               {TESTIMONIALS.map((t, i) => (
                 <figure
