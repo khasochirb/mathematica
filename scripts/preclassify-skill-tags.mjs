@@ -40,11 +40,11 @@ const REVIEW_THRESHOLD = 0.7;
 
 // The locked taxonomy (49 tags) — memory/skill-tag-taxonomy.md. Keep in sync.
 export const SKILL_TAGS = [
-  // algebra (10)
+  // algebra (11)
   "linear_equation", "quadratic_equation", "polynomial_factoring",
   "polynomial_remainder", "system_of_equations", "linear_inequality",
   "quadratic_inequality", "radical_expression", "rational_expression",
-  "exponent_rules",
+  "exponent_rules", "binomial_theorem",
   // geometry (7)
   "triangle_geometry", "circle_geometry", "polygon_geometry",
   "coordinate_geometry", "solid_geometry", "geometric_transformation",

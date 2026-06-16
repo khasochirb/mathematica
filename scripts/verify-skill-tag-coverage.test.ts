@@ -6,15 +6,15 @@
 import { describe, it, expect } from "vitest";
 import { getAllQuestions } from "@/lib/esh-questions";
 
-// The locked taxonomy (50 tags) — memory/skill-tag-taxonomy.md. Mirror of the
+// The locked taxonomy (51 tags) — memory/skill-tag-taxonomy.md. Mirror of the
 // list in scripts/preclassify-skill-tags.mjs; kept here so the test has no
 // dependency on the classification harness.
 const SKILL_TAGS = new Set([
-  // algebra (10)
+  // algebra (11)
   "linear_equation", "quadratic_equation", "polynomial_factoring",
   "polynomial_remainder", "system_of_equations", "linear_inequality",
   "quadratic_inequality", "radical_expression", "rational_expression",
-  "exponent_rules",
+  "exponent_rules", "binomial_theorem",
   // geometry (7)
   "triangle_geometry", "circle_geometry", "polygon_geometry",
   "coordinate_geometry", "solid_geometry", "geometric_transformation",
@@ -53,8 +53,8 @@ describe("skill-tag coverage (Phase 3b.4)", () => {
     expect(questions.length).toBe(1224);
   });
 
-  it("taxonomy is exactly 50 tags", () => {
-    expect(SKILL_TAGS.size).toBe(50);
+  it("taxonomy is exactly 51 tags", () => {
+    expect(SKILL_TAGS.size).toBe(51);
   });
 
   it("every question has a skill_tag", () => {

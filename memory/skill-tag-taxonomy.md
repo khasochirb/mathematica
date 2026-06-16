@@ -20,7 +20,7 @@ This document is the **proposed taxonomy** + each tag's **justification**. After
 
 ## The 50 tags
 
-### algebra — 10 tags
+### algebra — 11 tags
 
 | Tag | Examples / scope | Questions est. | Auto-trigger viable? |
 |---|---|---|---|
@@ -34,8 +34,9 @@ This document is the **proposed taxonomy** + each tag's **justification**. After
 | `radical_expression` | Simplification with √, ³√, n-th roots | ~22 | yes |
 | `rational_expression` | Simplification of polynomial fractions, common denominators | ~16 | borderline |
 | `exponent_rules` | Laws of exponents (xⁿ × xᵐ, (xⁿ)ᵐ, etc.), simplification | ~24 | yes |
+| `binomial_theorem` | Binomial expansion, coefficient / specific-term extraction, $(a+b)^n$ | ~10 | no — manual-trigger only |
 
-**Rationale:** algebra has 190 questions — splitting into 10 distinct skills (~19 each) keeps cohorts large enough for drill mode. `linear_inequality` vs `quadratic_inequality` is the one split that may be unnecessary; flagged for review.
+**Rationale:** algebra has ~200 questions. `binomial_theorem` added 2026-06-16 during the 3b.3 review — 10 questions (2024/2025 Q30, test6 Q33; subtopics "Биномын теорем / бином задаргаа") were parked at `polynomial_factoring` 0.5 but are a distinct skill (expand $(a+b)^n$, pull a coefficient), so they got a poor cohort. Small cohort (10) → manual-trigger only, like `progression`/`logarithm`. `linear_inequality` vs `quadratic_inequality` is the one split that may be unnecessary; flagged for review.
 
 **Polynomial-remainder split evaluated (2026-05-13):** Inventoried division-mechanics questions across the bank — 14 candidates total. All 14 are remainder-theorem applications (substitute the root) or factor-condition problems (divisible by x-a). **Zero pure long-division-mechanics questions.** A standalone `polynomial_division` tag would have <5 questions, falling below the drill-cohort threshold. Decision: keep `polynomial_remainder` as one tag covering both remainder-theorem and division-by-linear-factor problems. Re-evaluate if future content adds pure long-division questions.
 
@@ -172,12 +173,12 @@ This document is the **proposed taxonomy** + each tag's **justification**. After
 
 **Rationale:** Only 7 questions total — single combined tag. Same auto-trigger limitation as `progression`.
 
-## Tag count: 50
+## Tag count: 51
 
-> **History:** locked at "50" in 3b.1, but the tally actually summed to 49 (the `limits`→`derivative_rules` merge never decremented the total). During 3b.3 (2026-06-16) `number_theory` was added to arithmetic, bringing the real total to **50**.
+> **History:** locked at "50" in 3b.1, but the tally actually summed to 49 (the `limits`→`derivative_rules` merge never decremented the total). During 3b.3 (2026-06-16) two data-driven gaps surfaced and were filled: `number_theory` (arithmetic) and `binomial_theorem` (algebra), bringing the real total to **51**.
 
 ```
-algebra            10
+algebra            11   (was 10; binomial_theorem added in 3b.3)
 geometry            7   (was 8; trig_triangle moved to trigonometry)
 calculus            5   (was 6; limits merged into derivative_rules)
 probability         4
@@ -191,7 +192,7 @@ set_theory          1
 complex_numbers     1
 sequences           1
 logarithms          1
-TOTAL              50
+TOTAL              51
 ```
 
 > **difficulty_tier mapping (2026-06-16, 3b.3):** the design doc (§2) assumed a 1–5 difficulty scale and mapped 1–2→easy / 3→medium / 4–5→hard. The authored data is on a **1–3 scale** (no 4–5 values exist), so that mapping left the hard tier empty. Remapped to **1→easy, 2→medium, 3→hard**. If difficulty is ever re-authored to 1–5, revisit.
