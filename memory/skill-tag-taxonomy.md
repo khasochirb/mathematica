@@ -194,7 +194,9 @@ logarithms          1
 TOTAL              50
 ```
 
-> **difficulty_tier mapping (2026-06-16, 3b.3):** the design doc (§2) assumed a 1–5 difficulty scale and mapped 1–2→easy / 3→medium / 4–5→hard. The authored data is on a **1–3 scale** (no 4–5 values exist), so that mapping left the hard tier empty. Remapped to **1→easy, 2→medium, 3→hard**, giving easy 838 / medium 192 / hard 194. If difficulty is ever re-authored to 1–5, revisit.
+> **difficulty_tier mapping (2026-06-16, 3b.3):** the design doc (§2) assumed a 1–5 difficulty scale and mapped 1–2→easy / 3→medium / 4–5→hard. The authored data is on a **1–3 scale** (no 4–5 values exist), so that mapping left the hard tier empty. Remapped to **1→easy, 2→medium, 3→hard**. If difficulty is ever re-authored to 1–5, revisit.
+>
+> **difficulty authoring (2026-06-16):** 18 of 34 files (2021–2023 papers + practice 1–3) shipped uniformly `difficulty:1`. Difficulty in every authored file follows a fixed **positional-thirds** convention by questionNumber — Q1–12 = 1, Q13–24 = 2, Q25–36 = 3 (identical across all 16 authored files). The flat files were filled with that same convention via `scripts/author-difficulty.mjs`. Final pool: difficulty 406 / 408 / 410 → tiers easy 406 / medium 408 / hard 410.
 
 ## Naming convention
 
