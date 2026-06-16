@@ -361,6 +361,24 @@ These need your decisions before Phase 3b implementation.
 
 ---
 
+## Section 6 — Decisions (locked 2026-06-16)
+
+The remaining open questions are resolved below. Most ratify the default proposal; the rationale notes where a decision is tied to a locked answer elsewhere (the expansion-vision §4 answers, `memory/expansion-vision.md`). All are reversible pre-launch defaults — they unblock 3c without foreclosing later tuning.
+
+1. **Authoring language (step_by_step / hint_progression): Mongolian-only at launch.** Consistent with the locked language rule (expansion-vision §4 Q7): ЭЕШ content — including solutions and explanations — is MN; the EN toggle is nav-only. The international hubs (SAT/IB/AP) will author their loop content in English when they exist. Bilingual ЭЕШ loop copy is not planned.
+2. **Run alongside other practice (not blocking).** Ratify default: a dashboard badge ("Сурлаа: [skill_tag] · Үргэлжлүүлэх") keeps the active loop discoverable. Blocking felt coercive; the badge mitigates the abandon risk.
+3. **Mini-test pool source: (a) reuse the existing 1,224 Section 1 questions, filtered by skill_tag.** Ratify default. Now unblocked — every Section 1 question carries `skill_tag` + `difficulty_tier` (3b.4) and difficulty is authored across the whole pool (3c-prep), so skill-tag cohorts are real and difficulty-uniform sampling has signal. No dedicated bank, no runtime LLM generation at launch.
+4. **Drills: same `skill_tag` + `difficulty_tier` at launch.** Ratify default. A parametric generator is deferred until metrics show students clear same-tag drills without learning. Feasible now that difficulty_tier is populated pool-wide.
+5. **Premium gating: FREE at launch (provisional).** Ratify the design default — free for product-market-fit validation. **Tied to the still-open pricing decision** (expansion-vision §4 Q5, "go for the best option"): when pricing lands, revisit whether the loop becomes the paid differentiator. Building 3c gating-free is correct either way (adding a gate later is a smaller change than building one speculatively now).
+8. **Daily loop-time cap: none at launch.** Ratify default; revisit if telemetry (§Q12 events) shows fatigue / diminishing returns.
+9. **Cross-loop signal sharing: independent at launch.** Ratify default. A skill-graph relating e.g. `quadratic_equation`↔`quadratic_inequality` is a Phase 5 problem.
+13. **Per-state Mongolian copy: authoring pass after the reducer + UI exist** (3c/3d). Not blocking the policy core or reducer.
+14. **Auto-trigger 3a threshold: ship `miss_rate ≥ 0.5 AND ≥2 missed`, log per-test fire rate, tune after 100 user-tests.** Ratify default. Lives in 3d (trigger integration), not the 3c policy core.
+
+**Net effect:** 3c is unblocked. The reducer can be built against pool-source (a), same-tag drills, no gating, MN copy — all locked above. Pricing/gating is the only provisional item and it doesn't block the build.
+
+---
+
 ## Phase 3 sequencing summary
 
 - **Phase 3a (this doc):** design. STOPPED here.
@@ -369,4 +387,4 @@ These need your decisions before Phase 3b implementation.
 - **Phase 3d:** trigger integrations. Wire 3a/3b/3c entry points. Cool-down logic. Recently-mastered flag in analytics.
 - **Phase 3e:** telemetry + iteration. Land event tracking; review first cohort's loop completion rates; tune thresholds.
 
-Each phase has its own gate. No work on 3b until Khas resolves the §6 open questions.
+Each phase has its own gate. **Status (2026-06-16):** 3b complete (tagging + difficulty authored, all verified); §6 open questions resolved above; 3c policy core (`lib/refinement-loop.ts`) + migration 007 built. Remaining 3c: the stateful reducer, question selection over pool-source (a), persistence against `refinement_loop_sessions`, and the 8 UI states. 3b.3 per-row tag review is the only outstanding 3b item (tag-quality polish; non-blocking for the reducer).
