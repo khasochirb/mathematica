@@ -9,6 +9,7 @@
 // contact section. Testimonials are real parent messages: English mode shows a
 // faithful translation, Mongolian mode shows the parents' original words.
 
+import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Facebook, MessageCircle, Phone, Mail, Check } from "lucide-react";
@@ -50,19 +51,20 @@ const TESTIMONIALS: { quote: Bi; attribution: Bi }[] = [
   },
 ];
 
-// Tutor profile. All facts here are drawn from the Khas-reviewed team bio in
-// app/about/page.tsx (5+ yrs teaching; olympiad medals) — not invented. Photo
-// is the same asset already used on the About page.
+// Tutor profile. Facts here are from the Khas-reviewed team bio in
+// app/about/page.tsx (5+ yrs teaching; olympiad medals); the Minerva University
+// line was confirmed by Khas (2026-06-17). Nothing invented. Photo is the same
+// asset already used on the About page.
 const TUTOR = {
   name: "Khas-Ochir Bayarjargal",
   photo: "/images/khas.png",
   role: {
-    en: "Founder of Mongol Potential · Mathematician & educator",
-    mn: "Mongol Potential-ийн үүсгэн байгуулагч · Математикч, багш",
+    en: "Founder of Mongol Potential · Minerva University",
+    mn: "Mongol Potential-ийн үүсгэн байгуулагч · Minerva их сургууль",
   },
   bio: {
-    en: "I'm a mathematician with 5+ years of teaching experience. I work one-on-one with every student — finding exactly where they're stuck, building a plan around them, and turning “I don't get it” into real confidence that lasts.",
-    mn: "Би 5+ жилийн заах туршлагатай математикч. Сурагч бүртэй ганцаарчлан ажиллаж, яг хаана нь гацаж байгааг олж тогтоон, түүнд тохирсон төлөвлөгөө гаргаж, “ойлгохгүй байна”-г удаан хадгалагдах жинхэнэ итгэл болгон хувиргадаг.",
+    en: "I'm a mathematician and Minerva University student with 5+ years of teaching experience. I work one-on-one with every student — finding exactly where they're stuck, building a plan around them, and turning “I don't get it” into real confidence that lasts.",
+    mn: "Би Minerva их сургуулийн оюутан, 5+ жилийн заах туршлагатай математикч. Сурагч бүртэй ганцаарчлан ажиллаж, яг хаана нь гацаж байгааг олж тогтоон, түүнд тохирсон төлөвлөгөө гаргаж, “ойлгохгүй байна”-г удаан хадгалагдах жинхэнэ итгэл болгон хувиргадаг.",
   },
   credentials: [
     { en: "5+ years teaching", mn: "5+ жил заасан туршлага" },
@@ -157,8 +159,19 @@ const TRUST_BULLETS: Bi[] = [
 ];
 
 export default function TutoringPage() {
-  const { lang } = useLang();
+  const { lang, setLang } = useLang();
   const L = (b: Bi) => (lang === "mn" ? b.mn : b.en);
+
+  // This page is the landing target for the Facebook ad, whose audience is
+  // Mongolian parents — so default it to Mongolian for first-time visitors.
+  // Anyone who has already picked a language keeps their choice, and the
+  // header EN/MN toggle still works normally.
+  useEffect(() => {
+    if (typeof window !== "undefined" && !localStorage.getItem("mp_lang")) {
+      setLang("mn");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div style={{ background: "var(--bg)", color: "var(--fg)" }}>
