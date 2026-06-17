@@ -4,10 +4,11 @@ import Link from "next/link";
 
 const links = {
   Programs: [
-    { label: "Exam Prep", href: "/exam-prep" },
+    { label: "ЭЕШ Hub", href: "/practice/esh" },
     { label: "Previous Year Tests", href: "/practice/esh/test?type=previous" },
     { label: "Study by Topic", href: "/courses" },
     { label: "Math Practice", href: "/practice" },
+    { label: "1-on-1 Tutoring", href: "/tutoring" },
     { label: "AI Tutor", href: "/ai" },
   ],
   Company: [

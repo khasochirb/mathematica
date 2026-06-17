@@ -234,9 +234,6 @@ export default function TopicsPage() {
               {t("Start all topics", "Бүх сэдвийг эхлэх")}
               <ArrowRight className="ml-1 h-3.5 w-3.5" />
             </Link>
-            <Link href="/exam-prep" className="btn btn-line">
-              {t("Exam overview", "Шалгалтын тойм")}
-            </Link>
           </div>
         </div>
       </section>

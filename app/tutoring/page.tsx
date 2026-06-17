@@ -11,7 +11,6 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Facebook, MessageCircle, Phone, Mail, Check } from "lucide-react";
 import { useLang } from "@/lib/lang-context";
 
@@ -33,45 +32,23 @@ const TESTIMONIALS: { quote: Bi; attribution: Bi }[] = [
       en: "She got 100% on all of her last three math tests, and showed them to me. Thank you for teaching her so effectively.",
       mn: "Сүүлийн 3 math тестдээ бүгдэд нь 100% авсан гэж үзүүлж байсан. Хичээлийг үр дүнтэй сайн заасанд баярлалаа.",
     },
-    attribution: { en: "Parent of a 6th grade student", mn: "6-р ангийн сурагчийн эцэг эх" },
+    attribution: { en: "Parent of a 6th grade student", mn: "6-р ангийн сурагчийн маань эцэг эх" },
   },
   {
     quote: {
       en: "My daughter's state test came back “Exceeded” — a 100-point jump from last year. Thank you so much for helping her.",
       mn: "Манай хүүхдийн state test-ийн оноо гарлаа, “Exceeded” болж, өнгөрсөн жилээс 100 оноогоор нэмэгдсэн байна. Охинд маань тусалсанд маш их баярлалаа.",
     },
-    attribution: { en: "Parent of a 9th grade student", mn: "9-р ангийн сурагчийн эцэг эх" },
+    attribution: { en: "Parent of a 9th grade student", mn: "9-р ангийн сурагчийн маань эцэг эх" },
   },
   {
     quote: {
       en: "He thinks so much faster now. He used to dread his homework, but now he gets through it quickly with no trouble. Thank you so much, teacher. ❤️",
       mn: "Их хурдтай боддог болсон, гэрийн даалгавраа хийх гээд зовдог байсан ч одоо бол асуудалгүй хурдан дуусгадаг болсон. Маш их баярлалаа багшаа ❤️",
     },
-    attribution: { en: "Parent of a 9th grade student", mn: "9-р ангийн сурагчийн эцэг эх" },
+    attribution: { en: "Parent of a 9th grade student", mn: "9-р ангийн сурагчийн маань эцэг эх" },
   },
 ];
-
-// Tutor profile. Facts here are from the Khas-reviewed team bio in
-// app/about/page.tsx (5+ yrs teaching; olympiad medals); the Minerva University
-// line was confirmed by Khas (2026-06-17). Nothing invented. Photo is the same
-// asset already used on the About page.
-const TUTOR = {
-  name: "Khas-Ochir Bayarjargal",
-  photo: "/images/khas.png",
-  role: {
-    en: "Founder of Mongol Potential · Minerva University",
-    mn: "Mongol Potential-ийн үүсгэн байгуулагч · Minerva их сургууль",
-  },
-  bio: {
-    en: "I'm a mathematician and Minerva University student with 5+ years of teaching experience. I work one-on-one with every student — finding exactly where they're stuck, building a plan around them, and turning “I don't get it” into real confidence that lasts.",
-    mn: "Би Minerva их сургуулийн оюутан, 5+ жилийн заах туршлагатай математикч. Сурагч бүртэй ганцаарчлан ажиллаж, яг хаана нь гацаж байгааг олж тогтоон, түүнд тохирсон төлөвлөгөө гаргаж, “ойлгохгүй байна”-г удаан хадгалагдах жинхэнэ итгэл болгон хувиргадаг.",
-  },
-  credentials: [
-    { en: "5+ years teaching", mn: "5+ жил заасан туршлага" },
-    { en: "International olympiad — 2× gold, 1× bronze", mn: "Олон улсын олимпиад — 2× алт, 1× хүрэл" },
-    { en: "National olympiad — silver & bronze", mn: "Үндэсний олимпиад — мөнгө, хүрэл" },
-  ],
-};
 
 const VALUE_PROPS: { title: Bi; body: Bi }[] = [
   {
@@ -134,11 +111,10 @@ const i18n = {
   ctaFb: { en: "Message on Facebook", mn: "Facebook-ээр холбогдох" },
   ctaReach: { en: "See all the ways to reach me", mn: "Холбоо барих бусад арга" },
   howItWorks: { en: "How it works", mn: "Хэрхэн ажилладаг вэ" },
-  aboutEyebrow: { en: "Your tutor", mn: "Таны багш" },
   parentsHeading: { en: "What parents say", mn: "Эцэг эхчүүд юу гэж хэлдэг вэ" },
   parentsCaption: {
     en: "Real messages from families, translated from Mongolian.",
-    mn: "Эцэг эхчүүдээс ирсэн жинхэнэ сэтгэгдэл.",
+    mn: "Эцэг эхчүүдээс ирсэн сэтгэгдэл.",
   },
   trustLine: {
     en: "Real help, real plans, real progress — for every student.",
@@ -231,49 +207,6 @@ export default function TutoringPage() {
             </p>
           </div>
         ))}
-      </section>
-
-      {/* ABOUT THE TUTOR */}
-      <section
-        className="px-6 sm:px-10 py-16 sm:py-20"
-        style={{ borderBottom: "1px solid var(--line)", background: "var(--bg-1)" }}
-      >
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-[320px_1fr] gap-10 md:gap-14 items-center">
-          <div
-            className="relative w-full mx-auto md:mx-0"
-            style={{
-              maxWidth: 320,
-              aspectRatio: "802 / 906",
-              borderRadius: 18,
-              overflow: "hidden",
-              border: "1px solid var(--line)",
-            }}
-          >
-            <Image src={TUTOR.photo} alt={TUTOR.name} fill sizes="320px" style={{ objectFit: "cover" }} priority />
-          </div>
-          <div>
-            <div className="eyebrow mb-3">{L(i18n.aboutEyebrow)}</div>
-            <h2
-              className="serif"
-              style={{ fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 400, letterSpacing: "-0.02em", margin: 0 }}
-            >
-              {TUTOR.name}
-            </h2>
-            <div className="mono mt-2" style={{ fontSize: 13, color: "var(--accent)", letterSpacing: "0.04em" }}>
-              {L(TUTOR.role)}
-            </div>
-            <p className="mt-5" style={{ color: "var(--fg-1)", fontSize: 16, lineHeight: 1.6, maxWidth: "54ch" }}>
-              {L(TUTOR.bio)}
-            </p>
-            <div className="flex flex-wrap gap-2 mt-6">
-              {TUTOR.credentials.map((c) => (
-                <span key={c.en} className="badge-edit badge-accent">
-                  {L(c)}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* HOW IT WORKS */}

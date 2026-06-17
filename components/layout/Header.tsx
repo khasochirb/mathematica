@@ -12,7 +12,6 @@ import {
   Sun,
   Moon,
   Sparkles,
-  Lock,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLang } from "@/lib/lang-context";
@@ -20,14 +19,14 @@ import { useAuth } from "@/lib/auth-context";
 import { useTheme } from "@/lib/theme-context";
 import { useUpgradeModal } from "@/lib/upgrade-modal-context";
 
-const eshItems = [
-  { en: "ЭЕШ Overview", mn: "ЭЕШ тойм", href: "/exam-prep" },
-  { en: "ЭЕШ Hub", mn: "ЭЕШ Hub", href: "/practice/esh" },
-];
-
-const comingSoonExams = [
-  { en: "IB", mn: "IB" },
-  { en: "SAT", mn: "SAT" },
+// Curriculum hubs shown in the Resources menu. ЭЕШ is live; the rest link to
+// their own polished "coming soon / get notified" hub pages so the menu is
+// fully navigable (no dead, greyed-out items) and the site reads as complete.
+const mathHubs = [
+  { en: "ЭЕШ Hub", mn: "ЭЕШ төв", href: "/practice/esh", live: true },
+  { en: "SAT Math Hub", mn: "SAT Math төв", href: "/practice/sat", live: false },
+  { en: "IB Math Hub", mn: "IB Math төв", href: "/practice/ib", live: false },
+  { en: "AP Calculus Hub", mn: "AP Calculus төв", href: "/practice/ap", live: false },
 ];
 
 const aboutItems = [
@@ -86,13 +85,13 @@ function ResourcesDropdown({ label }: ResourcesDropdownProps) {
             className="px-4 pb-2 mb-1 eyebrow"
             style={{ borderBottom: "1px solid var(--line)" }}
           >
-            {lang === "mn" ? "ЭЕШ · Идэвхтэй" : "ЭЕШ · Active"}
+            {lang === "mn" ? "Математикийн төвүүд" : "Math hubs"}
           </div>
-          {eshItems.map((item) => (
+          {mathHubs.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="block px-4 py-2 text-sm transition-colors"
+              className="flex items-center justify-between gap-3 px-4 py-2 text-sm transition-colors"
               style={{ color: "var(--fg-1)" }}
               onClick={() => setOpen(false)}
               onMouseEnter={(e) => {
@@ -104,27 +103,18 @@ function ResourcesDropdown({ label }: ResourcesDropdownProps) {
                 e.currentTarget.style.background = "transparent";
               }}
             >
-              {lang === "mn" ? item.mn : item.en}
-            </Link>
-          ))}
-
-          <div
-            className="px-4 pt-3 mt-2 eyebrow flex items-center gap-1.5"
-            style={{ borderTop: "1px solid var(--line)", color: "var(--fg-3)" }}
-          >
-            <Lock className="h-3 w-3" />
-            {lang === "mn" ? "Удахгүй" : "Coming Soon"}
-          </div>
-          {comingSoonExams.map((item) => (
-            <div
-              key={item.en}
-              className="flex items-center gap-2 px-4 py-2 text-sm select-none"
-              style={{ color: "var(--fg-3)", cursor: "not-allowed" }}
-              aria-disabled="true"
-            >
-              <Lock className="h-3 w-3" style={{ color: "var(--fg-3)" }} />
               <span>{lang === "mn" ? item.mn : item.en}</span>
-            </div>
+              <span
+                className="badge-edit"
+                style={
+                  item.live
+                    ? { color: "var(--accent)", borderColor: "var(--accent-line)", background: "var(--accent-wash)" }
+                    : undefined
+                }
+              >
+                {item.live ? (lang === "mn" ? "Нээлттэй" : "Live") : lang === "mn" ? "Удахгүй" : "Soon"}
+              </span>
+            </Link>
           ))}
         </div>
       )}
@@ -479,43 +469,33 @@ export default function Header() {
               </Link>
             ))}
 
-            {/* Resources — ЭЕШ active section */}
+            {/* Math hubs */}
             <div
               className="px-4 pt-3 mt-2 eyebrow"
               style={{ borderTop: "1px solid var(--line)" }}
             >
-              {lang === "mn" ? "ЭЕШ · Идэвхтэй" : "ЭЕШ · Active"}
+              {lang === "mn" ? "Математикийн төвүүд" : "Math hubs"}
             </div>
-            {eshItems.map((item) => (
+            {mathHubs.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="block px-4 py-2 rounded-md text-sm transition-colors"
+                className="flex items-center justify-between gap-3 px-4 py-2 rounded-md text-sm transition-colors"
                 style={{ color: "var(--fg-1)" }}
                 onClick={() => setMobileOpen(false)}
               >
-                {lang === "mn" ? item.mn : item.en}
-              </Link>
-            ))}
-
-            {/* Resources — Coming Soon section */}
-            <div
-              className="px-4 pt-3 mt-2 eyebrow flex items-center gap-1.5"
-              style={{ color: "var(--fg-3)" }}
-            >
-              <Lock className="h-3 w-3" />
-              {lang === "mn" ? "Удахгүй" : "Coming Soon"}
-            </div>
-            {comingSoonExams.map((item) => (
-              <div
-                key={item.en}
-                className="flex items-center gap-2 px-4 py-2 rounded-md text-sm select-none"
-                style={{ color: "var(--fg-3)", cursor: "not-allowed" }}
-                aria-disabled="true"
-              >
-                <Lock className="h-3 w-3" style={{ color: "var(--fg-3)" }} />
                 <span>{lang === "mn" ? item.mn : item.en}</span>
-              </div>
+                <span
+                  className="badge-edit"
+                  style={
+                    item.live
+                      ? { color: "var(--accent)", borderColor: "var(--accent-line)", background: "var(--accent-wash)" }
+                      : undefined
+                  }
+                >
+                  {item.live ? (lang === "mn" ? "Нээлттэй" : "Live") : lang === "mn" ? "Удахгүй" : "Soon"}
+                </span>
+              </Link>
             ))}
 
             {/* About */}
