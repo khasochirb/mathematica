@@ -1,8 +1,22 @@
 "use client";
 
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { useLang } from "@/lib/lang-context";
 import MathText from "@/components/esh/MathText";
+
+type Bi = { en: string; mn: string };
+
+// Curriculum hubs surfaced on the homepage. ЭЕШ + general school math are live;
+// SAT/AP/IB link to their coming-soon hub pages. Used by the exam strip and the
+// "multiple curricula" launchpad chips so every curriculum name is navigable.
+const CURRICULA: { label: Bi; href: string; live: boolean }[] = [
+  { label: { en: "School math", mn: "Сургуулийн математик" }, href: "/courses", live: true },
+  { label: { en: "SAT Math", mn: "SAT Math" }, href: "/practice/sat", live: false },
+  { label: { en: "AP Calculus", mn: "AP Calculus" }, href: "/practice/ap", live: false },
+  { label: { en: "IB Math", mn: "IB Math" }, href: "/practice/ib", live: false },
+  { label: { en: "ЭЕШ", mn: "ЭЕШ" }, href: "/practice/esh", live: true },
+];
 
 const i18n = {
   hero_eyebrow: { en: "Personalized math mastery", mn: "Ганцаарчилсан математикийн дэмжлэг" },
@@ -50,6 +64,24 @@ const i18n = {
     en: "Free diagnostic. No card required.",
     mn: "Үнэгүй шалгалт. Карт шаардахгүй.",
   },
+  ways_eye: { en: "Two ways to learn", mn: "Суралцах хоёр арга" },
+  ways_h: { en: "Master math your way.", mn: "Математикийг өөрийнхөөрөө эзэмш." },
+  way1_eye: { en: "Self-study platform", mn: "Бие даан суралцах" },
+  way1_t: { en: "Practice on your own", mn: "Бие даан дадлага хий" },
+  way1_s: {
+    en: "Full practice tests, weak-spot analytics, score prediction, and AI-generated drills aimed at your mistakes — all free.",
+    mn: "Бүрэн дадлага тестүүд, сул талын аналитик, оноо таамаглал, алдаан дээр чинь суурилсан AI бодлогууд — бүгд үнэгүй.",
+  },
+  way1_cta: { en: "Start practicing", mn: "Дадлага эхлэх" },
+  way2_eye: { en: "1-on-1 tutoring", mn: "Ганцаарчилсан хичээл" },
+  way2_t: { en: "Learn with a tutor", mn: "Багштай суралц" },
+  way2_s: {
+    en: "Personalized online sessions with an experienced tutor — a plan built around the student, any grade, any curriculum.",
+    mn: "Туршлагатай багштай ганцаарчилсан онлайн хичээл — сурагчид тохирсон төлөвлөгөө, аль ч анги, аль ч хөтөлбөр.",
+  },
+  way2_cta: { en: "Meet your tutor", mn: "Багштай танилц" },
+  free_badge: { en: "Free", mn: "Үнэгүй" },
+  soon: { en: "soon", mn: "удахгүй" },
 };
 
 export default function HomePage() {
@@ -286,15 +318,21 @@ export default function HomePage() {
           background: "var(--bg-1)",
         }}
       >
-        <span style={{ color: "var(--fg-1)" }}>{lang === "mn" ? "Сургуулийн математик" : "School math"}</span>
-        <span>·</span>
-        <span style={{ color: "var(--fg-1)" }}>SAT Math</span>
-        <span>·</span>
-        <span style={{ color: "var(--fg-1)" }}>AP Calculus</span>
-        <span>·</span>
-        <span style={{ color: "var(--fg-1)" }}>IB Math</span>
-        <span>·</span>
-        <span style={{ color: "var(--fg-1)" }}>ЭЕШ</span>
+        {CURRICULA.flatMap((c, i) => {
+          const link = (
+            <Link
+              key={c.href}
+              href={c.href}
+              className="transition-colors"
+              style={{ color: "var(--fg-1)" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--fg-1)")}
+            >
+              {lang === "mn" ? c.label.mn : c.label.en}
+            </Link>
+          );
+          return i === 0 ? [link] : [<span key={`sep-${i}`} aria-hidden>·</span>, link];
+        })}
       </div>
 
       {/* STATS */}
@@ -343,6 +381,56 @@ export default function HomePage() {
             </div>
           </div>
         ))}
+      </section>
+
+      {/* TWO WAYS TO LEARN */}
+      <section className="px-6 sm:px-10 py-24" style={{ borderBottom: "1px solid var(--line)" }}>
+        <div className="max-w-5xl mx-auto">
+          <div className="eyebrow text-center">{t("ways_eye")}</div>
+          <h3
+            className="serif text-center mt-3"
+            style={{
+              fontWeight: 400,
+              fontSize: "clamp(32px, 4vw, 48px)",
+              letterSpacing: "-0.03em",
+              margin: "0 auto",
+              maxWidth: "18ch",
+            }}
+          >
+            {t("ways_h")}
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-12">
+            {/* Self-study platform */}
+            <div className="card-edit p-8 flex flex-col">
+              <div className="flex items-center justify-between">
+                <div className="eyebrow">{t("way1_eye")}</div>
+                <span className="badge-edit badge-accent">{t("free_badge")}</span>
+              </div>
+              <h4 className="serif mt-3" style={{ fontWeight: 400, fontSize: 28, letterSpacing: "-0.02em" }}>
+                {t("way1_t")}
+              </h4>
+              <p className="mt-3" style={{ color: "var(--fg-1)", fontSize: 15, lineHeight: 1.6, flex: 1 }}>
+                {t("way1_s")}
+              </p>
+              <Link href="/practice" className="btn btn-primary mt-6 self-start">
+                {t("way1_cta")} <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+            {/* 1-on-1 tutoring */}
+            <div className="card-edit p-8 flex flex-col">
+              <div className="eyebrow">{t("way2_eye")}</div>
+              <h4 className="serif mt-3" style={{ fontWeight: 400, fontSize: 28, letterSpacing: "-0.02em" }}>
+                {t("way2_t")}
+              </h4>
+              <p className="mt-3" style={{ color: "var(--fg-1)", fontSize: 15, lineHeight: 1.6, flex: 1 }}>
+                {t("way2_s")}
+              </p>
+              <Link href="/tutoring" className="btn btn-line mt-6 self-start">
+                {t("way2_cta")} <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* FEAT 2: SCORE PREDICTION */}
@@ -583,6 +671,29 @@ export default function HomePage() {
         >
           {t("diaspora_s")}
         </p>
+        <div className="flex flex-wrap items-center justify-center gap-2 mt-9">
+          {CURRICULA.map((c) => (
+            <Link
+              key={c.href}
+              href={c.href}
+              className="badge-edit"
+              style={{ fontSize: 12.5, padding: "8px 14px", color: "var(--fg-1)" }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = "var(--accent)";
+                e.currentTarget.style.borderColor = "var(--accent-line)";
+                e.currentTarget.style.background = "var(--accent-wash)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = "var(--fg-1)";
+                e.currentTarget.style.borderColor = "var(--line)";
+                e.currentTarget.style.background = "var(--bg-1)";
+              }}
+            >
+              {lang === "mn" ? c.label.mn : c.label.en}
+              {!c.live && <span style={{ color: "var(--fg-3)", marginLeft: 6 }}>· {t("soon")}</span>}
+            </Link>
+          ))}
+        </div>
       </section>
 
       {/* BIG CTA */}
