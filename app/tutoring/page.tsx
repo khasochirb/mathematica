@@ -10,6 +10,7 @@
 // faithful translation, Mongolian mode shows the parents' original words.
 
 import Link from "next/link";
+import Image from "next/image";
 import { Facebook, MessageCircle, Phone, Mail, Check } from "lucide-react";
 import { useLang } from "@/lib/lang-context";
 
@@ -48,6 +49,27 @@ const TESTIMONIALS: { quote: Bi; attribution: Bi }[] = [
     attribution: { en: "Parent of a 9th grade student", mn: "9-р ангийн сурагчийн эцэг эх" },
   },
 ];
+
+// Tutor profile. All facts here are drawn from the Khas-reviewed team bio in
+// app/about/page.tsx (5+ yrs teaching; olympiad medals) — not invented. Photo
+// is the same asset already used on the About page.
+const TUTOR = {
+  name: "Khas-Ochir Bayarjargal",
+  photo: "/images/khas.png",
+  role: {
+    en: "Founder of Mongol Potential · Mathematician & educator",
+    mn: "Mongol Potential-ийн үүсгэн байгуулагч · Математикч, багш",
+  },
+  bio: {
+    en: "I'm a mathematician with 5+ years of teaching experience. I work one-on-one with every student — finding exactly where they're stuck, building a plan around them, and turning “I don't get it” into real confidence that lasts.",
+    mn: "Би 5+ жилийн заах туршлагатай математикч. Сурагч бүртэй ганцаарчлан ажиллаж, яг хаана нь гацаж байгааг олж тогтоон, түүнд тохирсон төлөвлөгөө гаргаж, “ойлгохгүй байна”-г удаан хадгалагдах жинхэнэ итгэл болгон хувиргадаг.",
+  },
+  credentials: [
+    { en: "5+ years teaching", mn: "5+ жил заасан туршлага" },
+    { en: "International olympiad — 2× gold, 1× bronze", mn: "Олон улсын олимпиад — 2× алт, 1× хүрэл" },
+    { en: "National olympiad — silver & bronze", mn: "Үндэсний олимпиад — мөнгө, хүрэл" },
+  ],
+};
 
 const VALUE_PROPS: { title: Bi; body: Bi }[] = [
   {
@@ -110,6 +132,7 @@ const i18n = {
   ctaFb: { en: "Message on Facebook", mn: "Facebook-ээр холбогдох" },
   ctaReach: { en: "See all the ways to reach me", mn: "Холбоо барих бусад арга" },
   howItWorks: { en: "How it works", mn: "Хэрхэн ажилладаг вэ" },
+  aboutEyebrow: { en: "Your tutor", mn: "Таны багш" },
   parentsHeading: { en: "What parents say", mn: "Эцэг эхчүүд юу гэж хэлдэг вэ" },
   parentsCaption: {
     en: "Real messages from families, translated from Mongolian.",
@@ -141,7 +164,7 @@ export default function TutoringPage() {
     <div style={{ background: "var(--bg)", color: "var(--fg)" }}>
       {/* HERO */}
       <section
-        className="px-10 pt-24 pb-20"
+        className="px-6 sm:px-10 pt-24 pb-20"
         style={{
           borderBottom: "1px solid var(--line)",
           background:
@@ -159,11 +182,21 @@ export default function TutoringPage() {
           <p className="mt-7 mx-auto" style={{ color: "var(--fg-1)", fontSize: 18, maxWidth: "62ch" }}>
             {L(i18n.heroSub)}
           </p>
-          <div className="flex gap-3 justify-center flex-wrap mt-8">
-            <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
+            <a
+              href={FACEBOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary w-full sm:w-auto"
+              style={{ padding: "12px 22px", fontSize: 14 }}
+            >
               <Facebook className="h-4 w-4" /> {L(i18n.ctaFb)}
             </a>
-            <Link href="#contact" className="btn btn-line">
+            <Link
+              href="#contact"
+              className="btn btn-line w-full sm:w-auto"
+              style={{ padding: "12px 22px", fontSize: 14 }}
+            >
               {L(i18n.ctaReach)}
             </Link>
           </div>
@@ -171,9 +204,12 @@ export default function TutoringPage() {
       </section>
 
       {/* VALUE PROPS */}
-      <section className="grid" style={{ gridTemplateColumns: "repeat(3, 1fr)", borderBottom: "1px solid var(--line)" }}>
-        {VALUE_PROPS.map((v, i) => (
-          <div key={v.title.en} style={{ padding: "56px 40px", borderRight: i < 2 ? "1px solid var(--line)" : undefined }}>
+      <section className="grid grid-cols-1 md:grid-cols-3" style={{ borderBottom: "1px solid var(--line)" }}>
+        {VALUE_PROPS.map((v) => (
+          <div
+            key={v.title.en}
+            className="px-8 py-12 sm:px-10 sm:py-14 border-[color:var(--line)] border-b last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0"
+          >
             <h3 className="serif" style={{ fontSize: 26, letterSpacing: "-0.02em", fontWeight: 400, margin: 0 }}>
               {L(v.title)}
             </h3>
@@ -184,11 +220,54 @@ export default function TutoringPage() {
         ))}
       </section>
 
+      {/* ABOUT THE TUTOR */}
+      <section
+        className="px-6 sm:px-10 py-16 sm:py-20"
+        style={{ borderBottom: "1px solid var(--line)", background: "var(--bg-1)" }}
+      >
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-[320px_1fr] gap-10 md:gap-14 items-center">
+          <div
+            className="relative w-full mx-auto md:mx-0"
+            style={{
+              maxWidth: 320,
+              aspectRatio: "802 / 906",
+              borderRadius: 18,
+              overflow: "hidden",
+              border: "1px solid var(--line)",
+            }}
+          >
+            <Image src={TUTOR.photo} alt={TUTOR.name} fill sizes="320px" style={{ objectFit: "cover" }} priority />
+          </div>
+          <div>
+            <div className="eyebrow mb-3">{L(i18n.aboutEyebrow)}</div>
+            <h2
+              className="serif"
+              style={{ fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 400, letterSpacing: "-0.02em", margin: 0 }}
+            >
+              {TUTOR.name}
+            </h2>
+            <div className="mono mt-2" style={{ fontSize: 13, color: "var(--accent)", letterSpacing: "0.04em" }}>
+              {L(TUTOR.role)}
+            </div>
+            <p className="mt-5" style={{ color: "var(--fg-1)", fontSize: 16, lineHeight: 1.6, maxWidth: "54ch" }}>
+              {L(TUTOR.bio)}
+            </p>
+            <div className="flex flex-wrap gap-2 mt-6">
+              {TUTOR.credentials.map((c) => (
+                <span key={c.en} className="badge-edit badge-accent">
+                  {L(c)}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* HOW IT WORKS */}
-      <section className="px-10 py-20" style={{ borderBottom: "1px solid var(--line)" }}>
+      <section className="px-6 sm:px-10 py-20" style={{ borderBottom: "1px solid var(--line)" }}>
         <div className="max-w-5xl mx-auto">
           <div className="eyebrow text-center mb-12">{L(i18n.howItWorks)}</div>
-          <div className="grid gap-8" style={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
+          <div className="grid gap-8 grid-cols-1 sm:grid-cols-3">
             {STEPS.map((s) => (
               <div key={s.n}>
                 <div className="mono" style={{ color: "var(--accent)", fontSize: 13, letterSpacing: "0.1em" }}>{s.n}</div>
@@ -206,7 +285,7 @@ export default function TutoringPage() {
 
       {/* TESTIMONIALS */}
       {TESTIMONIALS.length > 0 && (
-        <section className="px-10 py-20" style={{ borderBottom: "1px solid var(--line)", background: "var(--bg-1)" }}>
+        <section className="px-6 sm:px-10 py-20" style={{ borderBottom: "1px solid var(--line)", background: "var(--bg-1)" }}>
           <div className="max-w-5xl mx-auto">
             <div className="eyebrow text-center mb-3">{L(i18n.parentsHeading)}</div>
             <p className="text-center mb-12" style={{ color: "var(--fg-3)", fontSize: 13 }}>{L(i18n.parentsCaption)}</p>
@@ -227,7 +306,7 @@ export default function TutoringPage() {
       )}
 
       {/* TRUST LINE */}
-      <section className="px-10 py-16 text-center" style={{ borderBottom: "1px solid var(--line)" }}>
+      <section className="px-6 sm:px-10 py-16 text-center" style={{ borderBottom: "1px solid var(--line)" }}>
         <p className="serif mx-auto" style={{ fontSize: "clamp(22px, 3vw, 30px)", fontWeight: 400, letterSpacing: "-0.02em", maxWidth: "34ch", lineHeight: 1.3 }}>
           {L(i18n.trustLine)}
         </p>
@@ -243,7 +322,7 @@ export default function TutoringPage() {
       {/* CONTACT */}
       <section
         id="contact"
-        className="px-10 py-24 text-center"
+        className="px-6 sm:px-10 py-24 text-center"
         style={{ background: "radial-gradient(ellipse 900px 400px at 50% 100%, var(--accent-wash), transparent 70%), var(--bg)" }}
       >
         <h2 className="serif" style={{ fontSize: "clamp(32px, 5vw, 60px)", fontWeight: 400, letterSpacing: "-0.03em", margin: 0 }}>
@@ -251,16 +330,32 @@ export default function TutoringPage() {
         </h2>
         <p className="mt-4" style={{ color: "var(--fg-2)", fontSize: 16 }}>{L(i18n.contactSub)}</p>
         <div className="flex gap-3 justify-center flex-wrap mt-9 max-w-2xl mx-auto">
-          <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+          <a
+            href={FACEBOOK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary"
+            style={{ padding: "12px 20px", fontSize: 14 }}
+          >
             <Facebook className="h-4 w-4" /> Facebook
           </a>
-          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn btn-line">
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-line"
+            style={{ padding: "12px 20px", fontSize: 14 }}
+          >
             <MessageCircle className="h-4 w-4" /> WhatsApp
           </a>
-          <a href={PHONE_TEL} className="btn btn-line">
+          <a href={PHONE_TEL} className="btn btn-line" style={{ padding: "12px 20px", fontSize: 14 }}>
             <Phone className="h-4 w-4" /> {PHONE_DISPLAY}
           </a>
-          <a href={`mailto:${EMAIL}`} className="btn btn-line">
+          <a
+            href={`mailto:${EMAIL}`}
+            className="btn btn-line"
+            style={{ padding: "12px 20px", fontSize: 14 }}
+          >
             <Mail className="h-4 w-4" /> {L(i18n.email)}
           </a>
         </div>

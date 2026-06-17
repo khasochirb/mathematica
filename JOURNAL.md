@@ -2,6 +2,22 @@
 
 Reverse-chronological log of major work sessions. Each entry captures the arc — what shipped, what was decided, what surfaced, what's deferred — in tighter form than commit messages alone. PHASES.md holds the queue; this holds the narrative.
 
+## 2026-06-17 — Tutoring page polished for the Facebook ad launch
+
+Khas is **pausing refinement-loop content authoring** to advertise the 1-on-1 tutoring first and build a student base. The funnel: FB post (poster + link) → parents click → land on `/tutoring`. So the whole job this session was making that page look professional and legit *on arrival* — especially the shared-link preview and the phone experience (parents click FB links on phones).
+
+**Shipped (branch `claude/eloquent-allen-7gzirv`):**
+- **Facebook link-preview card.** The site had **no OG image anywhere** — a shared link unfurled as a bare, image-less text link (the "sketchy" look). Added `app/tutoring/opengraph-image.tsx` — a dynamic 1200×630 card via `next/og`: dark brand surface + indigo accent, Instrument Serif headline "The best math support your child will have.", the real "+100-point state test" parent quote, and `mongolpotential.com/tutoring`. **Fonts (Instrument Serif + Inter) are bundled in `assets/fonts/` and read from disk** — `@vercel/og` ships no default font and an empty fallback *hard-fails the build* (learned the hard way), and build-time `fetch` to Google Fonts is unreliable. Disk read = deterministic, no build-time network.
+- **Route metadata.** `app/tutoring/layout.tsx` (server component wrapping the client page) supplies real `og:title`/`description` + a `summary_large_image` twitter card. `metadataBase` added to the root layout (`https://www.mongolpotential.com`) so image URLs resolve absolute.
+- **Mobile-responsive.** The value-props and how-it-works sections were inline `repeat(3,1fr)` with no breakpoint → 3 unreadable slivers on a phone. Now `grid-cols-1 md:grid-cols-3` with responsive dividers; section padding `px-6 sm:px-10`; hero + contact CTAs enlarged and full-width-stacked on mobile.
+- **"About your tutor" section.** Photo (`/images/khas.png`) + name + role + bio + credential chips (5+ yrs teaching · intl olympiad 2× gold, 1× bronze · national medals). **Every fact pulled from the Khas-reviewed team bio in `app/about/page.tsx` — nothing invented.** This is the page's main credibility anchor for parents. Khas's existing marketing copy/voice was left untouched.
+
+**Verified:** typecheck clean; `next build` clean; OG PNG rendered + eyeballed; `/tutoring` screenshotted via Playwright at 1280px (desktop) and 390px (mobile) — single-column stack confirmed, photo well-framed.
+
+**Open for Khas (next iteration):** (1) confirm/adjust the tutor bio framing for a US-parent audience (keep olympiad emphasis vs. lead with teaching style / Minerva / US-curriculum fluency); (2) OG card + page default language (English now; FB audience is Mongolian parents); (3) offer: generate matching **Facebook posters** (Canva) in the same brand language so the post and the landing page feel like one piece. Nothing here is live until Khas merges to `main` and posts.
+
+---
+
 ## 2026-06-16 — Phase 3b/3c/3d complete: refinement loop live + tutoring page + homepage reframe
 
 **Longest build session to date.** Started by orienting a new Claude instance to the existing plan, then ran all of Phase 3b (skill tagging) and Phase 3c/3d (refinement loop implementation) in a single session, plus two additional features (tutoring landing page, homepage reframe), plus Khas's post-review edits. Merged to `main` at the end of the session (PR #2, merge sha `75467e0`). Everything is now live on mongolpotential.com.

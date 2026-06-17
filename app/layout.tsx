@@ -36,6 +36,7 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.mongolpotential.com"),
   title: {
     default: "Mongol Potential | World Class Math Education",
     template: "%s | Mongol Potential",
