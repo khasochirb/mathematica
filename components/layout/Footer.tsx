@@ -9,11 +9,9 @@ const links = {
     { label: "Study by Topic", href: "/courses" },
     { label: "Math Practice", href: "/practice" },
     { label: "1-on-1 Tutoring", href: "/tutoring" },
-    { label: "AI Tutor", href: "/ai" },
   ],
   Company: [
     { label: "About Us", href: "/about" },
-    { label: "Our Team", href: "/about#team" },
     { label: "Careers", href: "/about#careers" },
     { label: "Blog", href: "/blog" },
   ],

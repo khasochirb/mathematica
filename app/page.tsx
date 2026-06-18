@@ -105,11 +105,8 @@ export default function HomePage() {
     <div style={{ background: "var(--bg)", color: "var(--fg)" }}>
       {/* HERO */}
       <section
-        className="grid gap-15 items-end pt-24 pb-20 px-10"
+        className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-[60px] items-end pt-24 pb-20 px-6 sm:px-10 lg:min-h-[78vh]"
         style={{
-          gridTemplateColumns: "1.1fr 1fr",
-          gap: 60,
-          minHeight: "78vh",
           borderBottom: "1px solid var(--line)",
           background:
             "radial-gradient(ellipse 900px 400px at 15% 90%, var(--accent-wash), transparent 70%), var(--bg)",
@@ -337,23 +334,17 @@ export default function HomePage() {
 
       {/* STATS */}
       <section
-        className="grid"
-        style={{
-          gridTemplateColumns: "repeat(3, 1fr)",
-          borderBottom: "1px solid var(--line)",
-        }}
+        className="grid grid-cols-1 sm:grid-cols-3"
+        style={{ borderBottom: "1px solid var(--line)" }}
       >
         {[
           { big: "2,000", unit: "+", lbl: t("learners") },
           { big: "1,000", unit: "+", lbl: t("mistakes") },
           { big: "10,000", unit: "+", lbl: t("avg_lift") },
-        ].map((s, i) => (
+        ].map((s) => (
           <div
             key={s.lbl}
-            style={{
-              padding: "64px 40px",
-              borderRight: i < 2 ? "1px solid var(--line)" : undefined,
-            }}
+            className="px-6 py-12 sm:px-10 sm:py-16 border-[color:var(--line)] border-b last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0"
           >
             <div
               className="serif tabular"
@@ -640,11 +631,8 @@ export default function HomePage() {
 
       {/* DIASPORA */}
       <section
-        className="text-center"
-        style={{
-          padding: "100px 40px",
-          borderBottom: "1px solid var(--line)",
-        }}
+        className="text-center px-6 sm:px-10 py-20 lg:py-[100px]"
+        style={{ borderBottom: "1px solid var(--line)" }}
       >
         <div className="eyebrow">{t("diaspora_eye")}</div>
         <h3
@@ -698,9 +686,8 @@ export default function HomePage() {
 
       {/* BIG CTA */}
       <section
-        className="text-center"
+        className="text-center px-6 sm:px-10 py-24 lg:py-[140px]"
         style={{
-          padding: "140px 40px",
           background:
             "radial-gradient(ellipse 900px 400px at 50% 100%, var(--accent-wash), transparent 70%), var(--bg)",
         }}
@@ -753,15 +740,10 @@ function FeatSection({
 }) {
   return (
     <section
-      className="grid items-center"
-      style={{
-        gridTemplateColumns: reverse ? "1.1fr 1fr" : "1fr 1.1fr",
-        gap: 80,
-        padding: "120px 40px",
-        borderBottom: "1px solid var(--line)",
-      }}
+      className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-20 px-6 sm:px-10 py-20 lg:py-[120px]"
+      style={{ borderBottom: "1px solid var(--line)" }}
     >
-      <div style={{ order: reverse ? 2 : 1 }}>
+      <div className={reverse ? "lg:order-2" : "lg:order-1"}>
         <div className="eyebrow">{eyebrow}</div>
         <h3
           className="serif"
@@ -813,9 +795,8 @@ function FeatSection({
       </div>
 
       <div
-        className="flex flex-col gap-4"
+        className={`flex flex-col gap-4 ${reverse ? "lg:order-1" : "lg:order-2"}`}
         style={{
-          order: reverse ? 1 : 2,
           position: "relative",
           padding: vizPadding ? 32 : 0,
           background: "var(--bg-1)",

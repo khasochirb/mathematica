@@ -31,7 +31,6 @@ const mathHubs = [
 
 const aboutItems = [
   { en: "About Us", mn: "Бидний тухай", href: "/about#about" },
-  { en: "Our Team", mn: "Манай баг", href: "/about#team" },
   { en: "Contact", mn: "Холбоо барих", href: "/contact" },
 ];
 
