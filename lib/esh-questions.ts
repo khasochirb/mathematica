@@ -60,6 +60,8 @@ export interface Question {
   answer: string;
   solution: string;
   figure?: Figure;
+  skill_tag?: string;
+  difficulty_tier?: "easy" | "medium" | "hard";
 }
 
 export interface TestInfo {
