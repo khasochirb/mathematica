@@ -1,0 +1,67 @@
+import algebraLesson from "@/data/learn/lessons/algebra.json";
+
+export interface WorkedExampleRef {
+  source: string;
+  teachingNote?: string;
+}
+
+export interface LessonFormula {
+  title: string;
+  latex: string;
+  explanation: string;
+}
+
+export interface CommonMistake {
+  text: string;
+  correction?: string;
+  authored: boolean; // false => TODO(Khas) scaffold, not publish-ready
+}
+
+export interface TryItConfig {
+  skillTag: string;
+  topic: string;
+  inlineCount: number;
+}
+
+export interface Lesson {
+  slug: string;
+  skillTag: string;
+  topic: string;
+  title: string;
+  subtitle?: string;
+  objective: string;
+  concept: string[];
+  keyIdea?: string;
+  formulas: LessonFormula[];
+  workedExamples: WorkedExampleRef[];
+  commonMistakes: CommonMistake[];
+  tryIt: TryItConfig;
+}
+
+// Static registry — same import-by-build pattern as topics.json / the test data.
+const LESSONS: Record<string, Lesson> = {
+  algebra: algebraLesson as Lesson,
+};
+
+export function getLesson(slug: string): Lesson | null {
+  return LESSONS[slug] ?? null;
+}
+
+// Returns a list of human-readable problems; empty array means valid.
+export function validateLesson(lesson: Lesson | null): string[] {
+  const errors: string[] = [];
+  if (!lesson) return ["lesson is null"];
+  if (!lesson.slug) errors.push("missing slug");
+  if (!lesson.skillTag) errors.push("missing skillTag");
+  if (!lesson.topic) errors.push("missing topic");
+  if (!lesson.title) errors.push("missing title");
+  if (!lesson.objective) errors.push("missing objective");
+  if (!Array.isArray(lesson.concept) || lesson.concept.length === 0)
+    errors.push("concept must be a non-empty array of paragraphs");
+  if (!Array.isArray(lesson.formulas) || lesson.formulas.length === 0)
+    errors.push("formulas must be non-empty");
+  if (!Array.isArray(lesson.workedExamples) || lesson.workedExamples.length === 0)
+    errors.push("workedExamples must be non-empty");
+  if (!lesson.tryIt?.skillTag) errors.push("missing tryIt.skillTag");
+  return errors;
+}
