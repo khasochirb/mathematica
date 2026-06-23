@@ -5,7 +5,7 @@
 **Status:** Draft for review → implementation plan
 **Scope of this spec:** A **focused, atomic prototype** — one Algebra *skill cluster* (a single `skill_tag`), not the full Algebra topic. This is the smallest complete instance of the lesson template. Built atomic-to-one-cluster deliberately, because the future refinement loop serves content by `skill_tag`. The full-topic vs. per-cluster IA decision is **deferred until we see the prototype**. Other topics/clusters replicate the template later (out of scope here).
 
-**Cluster reality (verified 2026-06-23):** there is **no `quadratic_equation` tag** in the data. The quadratics-themed atomic cluster in the free pool is **`quadratic_inequality` (20 free-pool questions)** — recommended anchor for the prototype (solving a quadratic inequality teaches solving the underlying quadratic equation as step 1). Final cluster pick confirmed with Khas before the plan.
+**Cluster pick (Khas, 2026-06-23):** prove the template on the cleanest well-populated cluster, do quadratics properly later (there is **no `quadratic_equation` tag** in the data). Chosen anchor: **`rational_expression`** — **10–11 distinct** free-pool problems after family-dedup, essentially all with full step-by-step solutions; enough for 3 worked examples + 5–7 try-it inline + practice-more. Clean atomic skill, teachable from zero, pedagogically rich common mistakes (illegal cancellation across +/−, lost domain restrictions). **Tier caveat:** the cluster is effectively mono-tier (`easy`); the lone `hard`-tagged item (`Test-2021D-Q27`) is a stub-solution duplicate of `Test-2021A-Q27` and is excluded. Worked examples are therefore ordered by *curated complexity* — the renderer's tier-sort runs but isn't visually dramatic here; clusters like `quadratic_inequality` / `indefinite_integral` (real easy/medium/hard spread) are where tier-ordering shines later. Worked-example sources: `Test-2024A-Q11`, `Test-2025A-Q10`, `Test-2021A-Q27` (increasing complexity). **Family/dup-dedup is a hard requirement** — never surface the same problem family twice across worked + try-it.
 
 ---
 
@@ -173,7 +173,7 @@ Once Algebra is approved as the template: author one `data/learn/lessons/<slug>.
 ## 13. Decisions resolved (2026-06-23, Khas)
 
 - **First cut = FOCUSED + atomic.** One skill cluster, not full-topic. Use the `subtitle`/focused-lesson mechanism as the *primary* path (it is the prototype = smallest complete instance). Topic-vs-cluster IA is **deferred** until we see the prototype. Atomic because the future loop serves by `skill_tag`.
-- **Cluster anchor = `quadratic_inequality`** (recommended; no `quadratic_equation` tag exists — see scope note). 20 free-pool questions, easy/medium/hard tiers available. *Final confirm gating the plan.*
+- **Cluster anchor = `rational_expression`** (Khas: prove template on cleanest cluster; `quadratic_equation` tag exists but is near-empty — 1 full solution). 10–11 distinct free-pool problems, ~all with full solutions; mono-tier (`easy`). Quadratics done properly in a later, tier-rich cluster. **Family/dup-dedup required** when selecting worked + try-it problems.
 - **"practice more →" filtering = build-time call.** Wire `?topic=&mode=` if small; else unfiltered link + logged follow-up. **Must not block the prototype.**
 - **Common mistakes = Claude scaffolds, Khas authors** from real student errors (not approve-only). Marked `TODO(Khas)` until authored.
 - **Try-it = 5–8 inline (reveal toggles) + remainder via "practice more →".**
