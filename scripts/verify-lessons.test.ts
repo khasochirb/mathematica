@@ -85,3 +85,24 @@ describe("selectTryItQuestions", () => {
     expect(families.size).toBe(picked.length);
   });
 });
+
+describe("lesson data-integrity gate", () => {
+  const lesson = getLesson("algebra")!;
+
+  it("schema is valid", () => {
+    expect(validateLesson(lesson)).toEqual([]);
+  });
+
+  it("try-it has at least 5 distinct inline problems available", () => {
+    const pool = getQuestionsByTopicForUser(lesson.tryIt.topic, false);
+    expect(selectTryItQuestions(lesson, pool).length).toBeGreaterThanOrEqual(5);
+  });
+
+  it("no worked-example source also appears in try-it", () => {
+    const pool = getQuestionsByTopicForUser(lesson.tryIt.topic, false);
+    const tryItSources = new Set(selectTryItQuestions(lesson, pool).map((q) => q.source));
+    for (const w of lesson.workedExamples) {
+      expect(tryItSources.has(w.source)).toBe(false);
+    }
+  });
+});
