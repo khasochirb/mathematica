@@ -9,6 +9,8 @@ import { getLesson } from "@/lib/esh-lessons";
 import LessonWorkedExamples from "@/components/esh/lesson/LessonWorkedExamples";
 import LessonTryIt from "@/components/esh/lesson/LessonTryIt";
 import LessonCommonMistakes from "@/components/esh/lesson/LessonCommonMistakes";
+import Section from "@/components/lesson/Section";
+import FactCard from "@/components/lesson/FactCard";
 import topicsData from "@/data/learn/topics.json";
 
 type LegacyTopic = {
@@ -17,15 +19,6 @@ type LegacyTopic = {
   formulas: { title: string; latex: string }[];
   tips: string[];
 };
-
-function Section({ n, label, children }: { n: string; label: string; children: React.ReactNode }) {
-  return (
-    <section className="mt-10 pt-10" style={{ borderTop: "1px solid var(--line)" }}>
-      <div className="eyebrow mb-4">{n} · {label}</div>
-      {children}
-    </section>
-  );
-}
 
 export default function TopicLearnPage() {
   const params = useParams();
@@ -75,11 +68,7 @@ export default function TopicLearnPage() {
           <Section n="03" label="Томьёо ба тодорхойлолт">
             <div className="space-y-3">
               {lesson.formulas.map((f, i) => (
-                <div key={i} className="card-edit p-5">
-                  <p className="serif mb-2" style={{ fontWeight: 400, fontSize: 14, color: "var(--accent)" }}>{f.title}</p>
-                  <div className="q-math text-[15px] mb-2" style={{ color: "var(--fg)" }}><MathText text={f.latex} /></div>
-                  <p className="text-[13px] leading-relaxed" style={{ color: "var(--fg-2)" }}><MathText text={f.explanation} /></p>
-                </div>
+                <FactCard key={i} fact={f} />
               ))}
             </div>
           </Section>

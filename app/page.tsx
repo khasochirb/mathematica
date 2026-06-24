@@ -585,6 +585,16 @@ export default function HomePage() {
         >
           {t("diaspora_s")}
         </p>
+        {/* General Math entry */}
+        <div className="mt-8 inline-block">
+          <Link
+            href="/math"
+            className="btn btn-line"
+            style={{ fontSize: 14 }}
+          >
+            General Math (Grades 6–12) →
+          </Link>
+        </div>
       </section>
 
       {/* BIG CTA */}

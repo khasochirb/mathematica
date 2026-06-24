@@ -1,48 +1,29 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Eye, EyeOff } from "lucide-react";
-import MathText from "@/components/esh/MathText";
+import { ArrowRight } from "lucide-react";
+import RevealProblemCard from "@/components/lesson/RevealProblemCard";
 import { type Lesson, selectTryItQuestions } from "@/lib/esh-lessons";
 import { getFreeQuestions } from "@/lib/esh-questions";
 
+const LABELS = { reveal: "Шийд", hide: "Нуух", revealAria: "Шийд харах", hideAria: "Шийдийг нуух" };
+
+// ЭЕШ adapter: pulls try-it questions from the free question bank by skill_tag,
+// renders each via the shared reveal card, plus the "practice more" deep-link.
 export default function LessonTryIt({ lesson }: { lesson: Lesson }) {
   const pool = getFreeQuestions();
   const questions = selectTryItQuestions(lesson, pool);
-  const [revealed, setRevealed] = useState<Record<string, boolean>>({});
 
   return (
     <div className="space-y-3">
-      {questions.map((q, i) => {
-        const open = !!revealed[q.source];
-        return (
-          <div key={q.source} className="card-edit p-5">
-            <div className="flex items-start justify-between gap-3">
-              <div className="q-math text-[15px]" style={{ color: "var(--fg)" }}>
-                <span className="mono text-[11px] mr-2" style={{ color: "var(--fg-3)" }}>
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <MathText text={q.body} />
-              </div>
-              <button
-                type="button"
-                onClick={() => setRevealed((r) => ({ ...r, [q.source]: !open }))}
-                className="btn btn-line flex-shrink-0 text-[12px]"
-                aria-label={open ? "Шийдийг нуух" : "Шийд харах"}
-              >
-                {open ? <EyeOff className="mr-1 h-3.5 w-3.5" /> : <Eye className="mr-1 h-3.5 w-3.5" />}
-                {open ? "Нуух" : "Шийд"}
-              </button>
-            </div>
-            {open && (
-              <div className="q-math text-[14px] mt-3 pt-3" style={{ color: "var(--fg-1)", borderTop: "1px solid var(--line)" }}>
-                <MathText text={q.solution} />
-              </div>
-            )}
-          </div>
-        );
-      })}
+      {questions.map((q, i) => (
+        <RevealProblemCard
+          key={q.source}
+          index={i}
+          problem={{ id: q.source, statement: q.body, solution: q.solution }}
+          labels={LABELS}
+        />
+      ))}
 
       <Link
         href={`/practice/esh/practice?topic=${lesson.tryIt.topic}&mode=topic`}

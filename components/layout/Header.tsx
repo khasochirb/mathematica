@@ -12,7 +12,6 @@ import {
   Sun,
   Moon,
   Sparkles,
-  Lock,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLang } from "@/lib/lang-context";
@@ -21,13 +20,11 @@ import { useTheme } from "@/lib/theme-context";
 import { useUpgradeModal } from "@/lib/upgrade-modal-context";
 
 const eshItems = [
-  { en: "ЭЕШ Overview", mn: "ЭЕШ тойм", href: "/exam-prep" },
   { en: "ЭЕШ Hub", mn: "ЭЕШ Hub", href: "/practice/esh" },
 ];
 
-const comingSoonExams = [
-  { en: "IB", mn: "IB" },
-  { en: "SAT", mn: "SAT" },
+const genMathItems = [
+  { en: "General Math (Grades 6–12)", href: "/math" },
 ];
 
 const aboutItems = [
@@ -107,24 +104,30 @@ function ResourcesDropdown({ label }: ResourcesDropdownProps) {
               {lang === "mn" ? item.mn : item.en}
             </Link>
           ))}
-
           <div
-            className="px-4 pt-3 mt-2 eyebrow flex items-center gap-1.5"
-            style={{ borderTop: "1px solid var(--line)", color: "var(--fg-3)" }}
+            className="px-4 pb-2 mb-1 mt-2 eyebrow"
+            style={{ borderTop: "1px solid var(--line)", paddingTop: 8 }}
           >
-            <Lock className="h-3 w-3" />
-            {lang === "mn" ? "Удахгүй" : "Coming Soon"}
+            General Math · Active
           </div>
-          {comingSoonExams.map((item) => (
-            <div
-              key={item.en}
-              className="flex items-center gap-2 px-4 py-2 text-sm select-none"
-              style={{ color: "var(--fg-3)", cursor: "not-allowed" }}
-              aria-disabled="true"
+          {genMathItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="block px-4 py-2 text-sm transition-colors"
+              style={{ color: "var(--fg-1)" }}
+              onClick={() => setOpen(false)}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = "var(--accent)";
+                e.currentTarget.style.background = "var(--accent-wash)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = "var(--fg-1)";
+                e.currentTarget.style.background = "transparent";
+              }}
             >
-              <Lock className="h-3 w-3" style={{ color: "var(--fg-3)" }} />
-              <span>{lang === "mn" ? item.mn : item.en}</span>
-            </div>
+              {item.en}
+            </Link>
           ))}
         </div>
       )}
@@ -231,6 +234,7 @@ export default function Header() {
 
   const nav = {
     home: lang === "mn" ? "Нүүр" : "Home",
+    esh: "ЭЕШ",
     dashboard: lang === "mn" ? "Хяналтын самбар" : "Dashboard",
     resources: lang === "mn" ? "Эх сурвалж" : "Resources",
     about: lang === "mn" ? "Бидний тухай" : "About",
@@ -279,6 +283,17 @@ export default function Header() {
                   onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
                 >
                   {nav.home}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/practice/esh"
+                  className="text-sm font-semibold px-3 py-2 rounded-md transition-colors"
+                  style={{ color: "var(--accent)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "var(--accent-wash)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                >
+                  {nav.esh}
                 </Link>
               </li>
               {isAuthenticated && (
@@ -453,13 +468,14 @@ export default function Header() {
           <nav className="max-w-7xl mx-auto px-4 py-4 space-y-1">
             {[
               { label: nav.home, href: "/" },
+              { label: nav.esh, href: "/practice/esh", primary: true },
               ...(isAuthenticated ? [{ label: nav.dashboard, href: "/dashboard" }] : []),
             ].map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 className="block px-4 py-2.5 rounded-md font-medium text-sm transition-colors"
-                style={{ color: "var(--fg-1)" }}
+                style={{ color: item.primary ? "var(--accent)" : "var(--fg-1)" }}
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
@@ -485,24 +501,20 @@ export default function Header() {
               </Link>
             ))}
 
-            {/* Resources — Coming Soon section */}
-            <div
-              className="px-4 pt-3 mt-2 eyebrow flex items-center gap-1.5"
-              style={{ color: "var(--fg-3)" }}
-            >
-              <Lock className="h-3 w-3" />
-              {lang === "mn" ? "Удахгүй" : "Coming Soon"}
+            {/* Resources — General Math active section */}
+            <div className="px-4 pt-2 eyebrow">
+              General Math · Active
             </div>
-            {comingSoonExams.map((item) => (
-              <div
-                key={item.en}
-                className="flex items-center gap-2 px-4 py-2 rounded-md text-sm select-none"
-                style={{ color: "var(--fg-3)", cursor: "not-allowed" }}
-                aria-disabled="true"
+            {genMathItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="block px-4 py-2 rounded-md text-sm transition-colors"
+                style={{ color: "var(--fg-1)" }}
+                onClick={() => setMobileOpen(false)}
               >
-                <Lock className="h-3 w-3" style={{ color: "var(--fg-3)" }} />
-                <span>{lang === "mn" ? item.mn : item.en}</span>
-              </div>
+                {item.en}
+              </Link>
             ))}
 
             {/* About */}
