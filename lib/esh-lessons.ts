@@ -1,4 +1,5 @@
 import algebraLesson from "@/data/learn/lessons/algebra.json";
+import { getQuestionBySource, type Question } from "@/lib/esh-questions";
 
 export interface WorkedExampleRef {
   source: string;
@@ -45,6 +46,21 @@ const LESSONS: Record<string, Lesson> = {
 
 export function getLesson(slug: string): Lesson | null {
   return LESSONS[slug] ?? null;
+}
+
+export interface ResolvedWorkedExample {
+  question: Question;
+  teachingNote?: string;
+}
+
+export function resolveWorkedExamples(lesson: Lesson): ResolvedWorkedExample[] {
+  const out: ResolvedWorkedExample[] = [];
+  for (const ref of lesson.workedExamples) {
+    const question = getQuestionBySource(ref.source);
+    if (!question) continue; // missing sources are caught by verify:lessons
+    out.push({ question, teachingNote: ref.teachingNote });
+  }
+  return out;
 }
 
 // Returns a list of human-readable problems; empty array means valid.
