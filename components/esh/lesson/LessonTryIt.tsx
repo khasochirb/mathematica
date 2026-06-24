@@ -5,10 +5,10 @@ import Link from "next/link";
 import { ArrowRight, Eye, EyeOff } from "lucide-react";
 import MathText from "@/components/esh/MathText";
 import { type Lesson, selectTryItQuestions } from "@/lib/esh-lessons";
-import { getQuestionsByTopicForUser } from "@/lib/esh-questions";
+import { getFreeQuestions } from "@/lib/esh-questions";
 
 export default function LessonTryIt({ lesson }: { lesson: Lesson }) {
-  const pool = getQuestionsByTopicForUser(lesson.tryIt.topic, false);
+  const pool = getFreeQuestions();
   const questions = selectTryItQuestions(lesson, pool);
   const [revealed, setRevealed] = useState<Record<string, boolean>>({});
 

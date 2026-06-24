@@ -81,8 +81,17 @@ export function dedupeByFamily(questions: Question[]): Question[] {
 
 export function selectTryItQuestions(lesson: Lesson, pool: Question[]): Question[] {
   const workedSources = new Set(lesson.workedExamples.map((w) => w.source));
+  const workedFamilies = new Set(
+    lesson.workedExamples
+      .map((w) => getQuestionBySource(w.source))
+      .filter((q): q is Question => Boolean(q))
+      .map((q) => familyKey(q.body)),
+  );
   const tagged = pool.filter(
-    (q) => q.skill_tag === lesson.tryIt.skillTag && !workedSources.has(q.source),
+    (q) =>
+      q.skill_tag === lesson.tryIt.skillTag &&
+      !workedSources.has(q.source) &&
+      !workedFamilies.has(familyKey(q.body)),
   );
   return dedupeByFamily(tagged).slice(0, lesson.tryIt.inlineCount);
 }

@@ -55,7 +55,7 @@ describe("resolveWorkedExamples", () => {
 });
 
 import { dedupeByFamily, selectTryItQuestions } from "@/lib/esh-lessons";
-import { getQuestionsByTopicForUser } from "@/lib/esh-questions";
+import { getQuestionBySource } from "@/lib/esh-questions";
 
 describe("dedupeByFamily", () => {
   it("collapses number-only variants to one per family", () => {
@@ -68,7 +68,7 @@ describe("dedupeByFamily", () => {
 
 describe("selectTryItQuestions", () => {
   const lesson = getLesson("algebra")!;
-  const pool = getQuestionsByTopicForUser(lesson.tryIt.topic, false);
+  const pool = getFreeQuestions();
 
   it("returns distinct families, excludes worked-example sources, caps at inlineCount", () => {
     const worked = new Set(lesson.workedExamples.map((w) => w.source));
@@ -94,15 +94,30 @@ describe("lesson data-integrity gate", () => {
   });
 
   it("try-it has at least 5 distinct inline problems available", () => {
-    const pool = getQuestionsByTopicForUser(lesson.tryIt.topic, false);
+    const pool = getFreeQuestions();
     expect(selectTryItQuestions(lesson, pool).length).toBeGreaterThanOrEqual(5);
   });
 
   it("no worked-example source also appears in try-it", () => {
-    const pool = getQuestionsByTopicForUser(lesson.tryIt.topic, false);
+    const pool = getFreeQuestions();
     const tryItSources = new Set(selectTryItQuestions(lesson, pool).map((q) => q.source));
     for (const w of lesson.workedExamples) {
       expect(tryItSources.has(w.source)).toBe(false);
+    }
+  });
+
+  it("no worked-example family appears in try-it", () => {
+    const pool = getFreeQuestions();
+    const picked = selectTryItQuestions(lesson, pool);
+    const workedFamilies = new Set(
+      lesson.workedExamples
+        .map((w) => getQuestionBySource(w.source))
+        .filter(Boolean)
+        .map((q) => q!.body.replace(/[0-9]/g, " ").replace(/\s+/g, "").trim()),
+    );
+    for (const q of picked) {
+      const family = q.body.replace(/[0-9]/g, " ").replace(/\s+/g, "").trim();
+      expect(workedFamilies.has(family)).toBe(false);
     }
   });
 });
