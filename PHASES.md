@@ -3,18 +3,20 @@
 Flat queue of what's next, grouped by phase. Keep tactical — if it feels like overhead, delete entries.
 
 ## In flight
-- **Section 2 build (Part 2 fill-in problems) — P0 for v1 launch.** Spec: [memory/section2-design.md](./memory/section2-design.md). All 20 past-paper Section 2 JSONs authored (2021–2025 × 4 variants). Schema + loader + renderer + grading + persistence shipped (S2.1–S2.4). Runner integration + results page still ahead. Phase status:
+- **Section 2 build (Part 2 fill-in problems) — P0 for v1 launch.** Spec: [memory/section2-design.md](./memory/section2-design.md). All 20 past-paper Section 2 JSONs authored (2021–2025 × 4 variants). Schema + loader + renderer + grading + persistence shipped (S2.1–S2.4). Runner integration + results page now shipped too — **BUILD COMPLETE (S2.0–S2.6), verified in code 2026-06-23** (relocate to Recently shipped at next cleanup). Phase status:
   - ✅ **S2.0 Content** — 2021/2022/2023/2024/2025 × A/B/C/D, 20 files, all verified.
   - ✅ **S2.1 Schema + loader** — `lib/esh-section2.ts`, `getTestSection2(testKey)`, `parseSlotLabel`. Verify: `npm run verify:section2-load` (20 keys × 28 pts).
   - ✅ **S2.2 Slot rendering component** — `Section2Card` with `\boxed{}` formula + per-letter answer panel; light/dark themed; literal-prefix `1e` handled.
   - ✅ **S2.3 Test session + grading** — `composeSlotAnswer`, `gradeSection2Subproblem`, `gradeSection2`; `useTestSession.section2Answers` + `setSection2Answer`. Verify: `npm run verify:section2-grading` (perfect/empty/literal-prefix/wrong cases).
   - ✅ **S2.4 DB migration + persist** — `section2_attempts` table (migration 006), `POST /api/section2/attempts`, `useTestSession.submitSection2Attempts` with localStorage queue-on-failure. Staging + prod cutover smoke 6/6 each. Details in Recently shipped.
-  - **S2.5 Runner navigation + transition** — after the last MCQ, transition to a "Section 2 begins" interstitial (single accept-and-continue). Soft warning if remaining time < 30 min. Combined timer keeps running across sections. Question navigator extended to show Part 1 + Part 2 nav.
-  - **S2.6 Results page** — extend results to show Part 1 score, Part 2 score, total. Per-subproblem breakdown with correct/incorrect indicator. Solutions accordion (free for past papers). Section-2 entry into refinement loop deferred to post-launch.
+  - ✅ **S2.5 Runner navigation + transition** — SHIPPED ~May 10–12 (verified in code 2026-06-23). NOTE: the planned interstitial was deliberately dropped for a seamless Part 1→Part 2 transition (`app/practice/esh/test/[testId]/page.tsx:113`); decide if you want it restored. Original spec — after the last MCQ, transition to a "Section 2 begins" interstitial (single accept-and-continue). Soft warning if remaining time < 30 min. Combined timer keeps running across sections. Question navigator extended to show Part 1 + Part 2 nav.
+  - ✅ **S2.6 Results page** — SHIPPED (verified in code 2026-06-23). Spec — extend results to show Part 1 score, Part 2 score, total. Per-subproblem breakdown with correct/incorrect indicator. Solutions accordion (free for past papers). Section-2 entry into refinement loop deferred to post-launch.
 
   **Edge cases / gotchas to test:** literal-prefix slot `1e=10` (only in 2024B/2024C 2.4.2); per-variant slot-label divergence (2.2.2 in 2022 has `[bc, d, e]` for A but `[bc, de, f]` for B — renderer must drive layout from JSON, not hard-coded); joint-graded slots like vertex pair `(a, b)=1pt` (handled by `points < slots.length` + all-or-nothing rule).
 
   **Not in scope for v1:** Section 2 in the refinement loop, Section 2 in topic-drill page, solution-quality pass on Section 2, animated subproblem transitions.
+
+  **Carried follow-ups (small, non-blocking; off-season so not urgent):** (a) decide on the dropped "Section 2 begins" interstitial; (b) one runner→results smoke walk-through on a Section 2 test (DB layer was prod-smoked 6/6 but the integrated flow hasn't been re-smoked); (c) the three "decide before launch" open questions in `memory/section2-design.md` (unfilled-slot submit warning, mid-Section-2 timeout, log-on-quit) — deferred, no launch pending.
 
 ## Next
 - **Phase 8 defensive** — modal source-prefix guard, rename `getAllTests()`, badge styling audit.
@@ -34,6 +36,9 @@ Flat queue of what's next, grouped by phase. Keep tactical — if it feels like 
   - `Test-2025A-Q34` — minor off-by-one in geometric-sum closed form. Corpus answer A still picks the nearest match so grading lands correctly, but the option text should be patched.
 - **P2** Monitor anon-practice-gate cleanup-on-signup post-launch. The IA refactor's Step 7 smoke could not browser-verify the `clearAllAnonPracticeCounts()` call inside `migrateAnonToServer()` (lib/use-performance.ts) — localhost auth failed during smoke (Supabase staging rate-limit / paused-project suspected; prod auth works fine), so the migration path was code-reviewed only. Watch for any user reports of authenticated users hitting the 5-per-topic gate. If that fires, the cleanup hook isn't running as expected — likely because the gating `loadAttemptsFrom(ANON_KEY).length > 0` short-circuits when an anon user has counter writes but no recorded attempts, leaving counters orphaned. Fix path: decouple `clearAllAnonPracticeCounts()` from the attempt-migration upsert and call it on any successful auth establishment.
 - **P3** Topic detail route `app/practice/esh/learn/[topicSlug]/page.tsx` is not auth-walled. The list page `app/practice/esh/learn/page.tsx` got a wall added in the IA refactor (Step 5d) — only the parent is gated, not the deep-link routes. Defense-in-depth would suggest walling both — anyone with a deep link to `/practice/esh/learn/algebra` currently bypasses the wall. Not a launch blocker because the deep links aren't surfaced anywhere users would discover them anonymously, but worth post-launch hardening for parity with the parent route.
+- **P3** Wire the drill page (`app/practice/esh/practice/page.tsx`) to read `?topic=&mode=` so the lesson "practice more →" deep-link pre-selects the topic drill (needs a Suspense boundary per the useSearchParams ops note). Prototype links unfiltered for now.
+- **P2** Author the `rational_expression` lesson `commonMistakes` from real student errors (currently `authored:false` scaffolds, hidden in prod) — Khas. Then run new prose through the glossary + polish pipeline.
+- **P3** Reconcile `/courses` topic list (8) onto the canonical `TOPICS` (14) and decide topic-vs-cluster lesson IA after this prototype is reviewed.
 
 ## Pre-launch blockers
 - [x] ~~Verify Refresh Token Rotation enabled on prod Supabase~~ — verified ON, reuse interval 10s, detect-and-revoke compromised tokens enabled.
