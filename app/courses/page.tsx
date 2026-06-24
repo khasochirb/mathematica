@@ -158,7 +158,7 @@ export default function TopicsPage() {
           {topics.map((topic, idx) => {
             const content = lang === "mn" ? topic.mn : topic.en;
             return (
-              <div key={topic.slug} id={topic.slug} className="card-edit p-6 flex flex-col group">
+              <Link key={topic.slug} id={topic.slug} href={`/practice/esh/learn/${topic.slug}`} className="card-edit p-6 flex flex-col group">
                 <div className="flex items-start justify-between mb-4">
                   <div>
                     <div className="eyebrow mb-1.5" style={{ color: "var(--accent)" }}>
@@ -200,7 +200,7 @@ export default function TopicsPage() {
                     ))}
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
@@ -234,7 +234,7 @@ export default function TopicsPage() {
               {t("Start all topics", "Бүх сэдвийг эхлэх")}
               <ArrowRight className="ml-1 h-3.5 w-3.5" />
             </Link>
-            <Link href="/exam-prep" className="btn btn-line">
+            <Link href="/practice/esh" className="btn btn-line">
               {t("Exam overview", "Шалгалтын тойм")}
             </Link>
           </div>
