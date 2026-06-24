@@ -3,6 +3,7 @@
 // LessonProblem / LessonFact / LessonMistake types from lib/lesson-types.ts.
 
 import type { LessonProblem, LessonFact, LessonMistake } from "@/lib/lesson-types";
+import type { InteractiveLesson } from "@/lib/genmath-interactive";
 
 export interface TryThis {
   title: string;
@@ -21,6 +22,9 @@ export interface GenMathLesson {
   workedExamples: LessonProblem[]; // authored inline
   commonMistakes: LessonMistake[];
   tryIt: LessonProblem[];          // short inline practice
+  // When present, the route renders the paced interactive experience instead of
+  // the static scroll page. Other topics omit this and stay static.
+  interactive?: InteractiveLesson;
 }
 
 export interface GenMathTopic {
@@ -28,6 +32,9 @@ export interface GenMathTopic {
   title: string;
   grade: number;
   blurb: string;
+  // "published" topics are fully authored + sympy-verified (gated by
+  // verify:genmath). Absent/"placeholder" topics are scaffold-only and exempt.
+  status?: "published" | "placeholder";
   lessons: GenMathLesson[];
   practice: LessonProblem[];
   testYourself: LessonProblem[];

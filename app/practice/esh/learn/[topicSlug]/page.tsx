@@ -46,13 +46,13 @@ export default function TopicLearnPage() {
           )}
 
           <Section n="01" label="Зорилго">
-            <p className="serif" style={{ fontSize: 17, lineHeight: 1.55, color: "var(--fg-1)" }}>{lesson.objective}</p>
+            <p className="font-sans" style={{ fontSize: 17, lineHeight: 1.55, color: "var(--fg-1)" }}>{lesson.objective}</p>
           </Section>
 
           <Section n="02" label="Үзэл баримтлал">
             <div className="space-y-4">
               {lesson.concept.map((para, i) => (
-                <p key={i} className="serif" style={{ fontSize: 17, lineHeight: 1.6, color: "var(--fg-1)" }}>
+                <p key={i} className="font-sans" style={{ fontSize: 17, lineHeight: 1.6, color: "var(--fg-1)" }}>
                   <MathText text={para} />
                 </p>
               ))}
@@ -122,7 +122,7 @@ export default function TopicLearnPage() {
           {data.title}
         </h1>
         <Section n="01" label="Тойм">
-          <p className="serif" style={{ fontSize: 17, lineHeight: 1.55, color: "var(--fg-1)" }}>{data.overview}</p>
+          <p className="font-sans" style={{ fontSize: 17, lineHeight: 1.55, color: "var(--fg-1)" }}>{data.overview}</p>
         </Section>
         <Section n="02" label="Гол томьёонууд">
           <div className="space-y-3">

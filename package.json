@@ -18,7 +18,9 @@
     "verify:section2-payload": "tsx scripts/verify-section2-payload.ts",
     "verify:figures-wired": "python3 scripts/verify-figures-wired.py",
     "verify:figure-extraction": "python3 scripts/verify-figure-extraction.py",
-    "verify:lessons": "vitest run scripts/verify-lessons.test.ts"
+    "verify:lessons": "vitest run scripts/verify-lessons.test.ts",
+    "verify:genmath": "python3 scripts/verify-genmath.py",
+    "verify:genmath-interactive": "vitest run scripts/verify-genmath-interactive.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.101.1",

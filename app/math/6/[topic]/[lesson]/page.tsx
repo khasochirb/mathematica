@@ -10,6 +10,7 @@ import WorkedExampleCard from "@/components/lesson/WorkedExampleCard";
 import RevealProblemCard from "@/components/lesson/RevealProblemCard";
 import CommonMistakesList from "@/components/lesson/CommonMistakesList";
 import { getGenMathTopic, getGenMathLesson } from "@/lib/genmath-lessons";
+import LessonPlayer from "@/components/genmath/interactive/LessonPlayer";
 
 const REVEAL_LABELS = {
   reveal: "Show solution",
@@ -42,6 +43,12 @@ export default function GenMathLessonPage() {
         </div>
       </div>
     );
+  }
+
+  // Interactive lessons (e.g. Ratios) render the paced player; all other
+  // lessons keep the static scroll renderer below. No regression.
+  if (lesson.interactive) {
+    return <LessonPlayer lesson={lesson} topicSlug={topicSlug} topicTitle={topic.title} />;
   }
 
   const hasAuthoredMistakes = lesson.commonMistakes.some((m) => m.authored);
@@ -77,14 +84,14 @@ export default function GenMathLessonPage() {
 
         {/* 01 · Real-world picture — ALWAYS shown */}
         <Section n="01" label="Real-world picture">
-          <p className="serif" style={{ fontSize: 17, lineHeight: 1.55, color: "var(--fg-1)" }}>
+          <p className="font-sans" style={{ fontSize: 17, lineHeight: 1.55, color: "var(--fg-1)" }}>
             <MathText text={lesson.concreteComparison} />
           </p>
         </Section>
 
         {/* 02 · What you'll learn */}
         <Section n="02" label="What you'll learn">
-          <p className="serif" style={{ fontSize: 17, lineHeight: 1.55, color: "var(--fg-1)" }}>
+          <p className="font-sans" style={{ fontSize: 17, lineHeight: 1.55, color: "var(--fg-1)" }}>
             {lesson.objective}
           </p>
         </Section>
@@ -93,7 +100,7 @@ export default function GenMathLessonPage() {
         <Section n="03" label="The idea">
           <div className="space-y-4">
             {lesson.concept.map((para, i) => (
-              <p key={i} className="serif" style={{ fontSize: 17, lineHeight: 1.6, color: "var(--fg-1)" }}>
+              <p key={i} className="font-sans" style={{ fontSize: 17, lineHeight: 1.6, color: "var(--fg-1)" }}>
                 <MathText text={para} />
               </p>
             ))}
