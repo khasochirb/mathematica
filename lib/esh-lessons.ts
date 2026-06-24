@@ -63,6 +63,30 @@ export function resolveWorkedExamples(lesson: Lesson): ResolvedWorkedExample[] {
   return out;
 }
 
+function familyKey(body: string): string {
+  return (body || "").replace(/[0-9]/g, " ").replace(/\s+/g, " ").trim();
+}
+
+export function dedupeByFamily(questions: Question[]): Question[] {
+  const seen = new Set<string>();
+  const out: Question[] = [];
+  for (const q of questions) {
+    const k = familyKey(q.body);
+    if (seen.has(k)) continue;
+    seen.add(k);
+    out.push(q);
+  }
+  return out;
+}
+
+export function selectTryItQuestions(lesson: Lesson, pool: Question[]): Question[] {
+  const workedSources = new Set(lesson.workedExamples.map((w) => w.source));
+  const tagged = pool.filter(
+    (q) => q.skill_tag === lesson.tryIt.skillTag && !workedSources.has(q.source),
+  );
+  return dedupeByFamily(tagged).slice(0, lesson.tryIt.inlineCount);
+}
+
 // Returns a list of human-readable problems; empty array means valid.
 export function validateLesson(lesson: Lesson | null): string[] {
   const errors: string[] = [];

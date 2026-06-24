@@ -53,3 +53,35 @@ describe("resolveWorkedExamples", () => {
     expect(resolved[0].teachingNote).toBeTruthy();
   });
 });
+
+import { dedupeByFamily, selectTryItQuestions } from "@/lib/esh-lessons";
+import { getQuestionsByTopicForUser } from "@/lib/esh-questions";
+
+describe("dedupeByFamily", () => {
+  it("collapses number-only variants to one per family", () => {
+    const a = { source: "T-A", body: "$x=5$ үед утга ол" } as never;
+    const b = { source: "T-B", body: "$x=9$ үед утга ол" } as never;
+    const c = { source: "T-C", body: "өөр бодлого" } as never;
+    expect(dedupeByFamily([a, b, c]).length).toBe(2);
+  });
+});
+
+describe("selectTryItQuestions", () => {
+  const lesson = getLesson("algebra")!;
+  const pool = getQuestionsByTopicForUser(lesson.tryIt.topic, false);
+
+  it("returns distinct families, excludes worked-example sources, caps at inlineCount", () => {
+    const worked = new Set(lesson.workedExamples.map((w) => w.source));
+    const picked = selectTryItQuestions(lesson, pool);
+    expect(picked.length).toBeGreaterThanOrEqual(3);
+    expect(picked.length).toBeLessThanOrEqual(lesson.tryIt.inlineCount);
+    for (const q of picked) {
+      expect(q.skill_tag).toBe(lesson.tryIt.skillTag);
+      expect(worked.has(q.source)).toBe(false);
+    }
+    const families = new Set(
+      picked.map((q) => q.body.replace(/[0-9]/g, " ").replace(/\s+/g, " ").trim()),
+    );
+    expect(families.size).toBe(picked.length);
+  });
+});
