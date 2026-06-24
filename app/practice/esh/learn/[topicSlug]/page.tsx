@@ -88,9 +88,11 @@ export default function TopicLearnPage() {
             <LessonWorkedExamples lesson={lesson} />
           </Section>
 
-          <Section n="05" label="Түгээмэл алдаа">
-            <LessonCommonMistakes lesson={lesson} />
-          </Section>
+          {lesson.commonMistakes.some((m) => m.authored) && (
+            <Section n="05" label="Түгээмэл алдаа">
+              <LessonCommonMistakes lesson={lesson} />
+            </Section>
+          )}
 
           <Section n="06" label="Өөрөө бод">
             <LessonTryIt lesson={lesson} />

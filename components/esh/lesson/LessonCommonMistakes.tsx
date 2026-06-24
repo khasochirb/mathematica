@@ -13,7 +13,7 @@ export default function LessonCommonMistakes({ lesson }: { lesson: Lesson }) {
     <ul className="card-edit p-2" style={{ background: "var(--warn-wash, var(--bg-2))" }}>
       {items.map((m, i) => (
         <li
-          key={i}
+          key={m.text}
           className="flex items-start gap-3 px-4 py-3"
           style={{ borderBottom: i < items.length - 1 ? "1px solid var(--line)" : "none" }}
         >

@@ -80,7 +80,7 @@ describe("selectTryItQuestions", () => {
       expect(worked.has(q.source)).toBe(false);
     }
     const families = new Set(
-      picked.map((q) => q.body.replace(/[0-9]/g, " ").replace(/\s+/g, " ").trim()),
+      picked.map((q) => q.body.replace(/[0-9]/g, " ").replace(/\s+/g, "").trim()),
     );
     expect(families.size).toBe(picked.length);
   });

@@ -64,7 +64,7 @@ export function resolveWorkedExamples(lesson: Lesson): ResolvedWorkedExample[] {
 }
 
 function familyKey(body: string): string {
-  return (body || "").replace(/[0-9]/g, " ").replace(/\s+/g, " ").trim();
+  return (body || "").replace(/[0-9]/g, " ").replace(/\s+/g, "").trim();
 }
 
 export function dedupeByFamily(questions: Question[]): Question[] {
