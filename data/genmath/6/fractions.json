@@ -2,47 +2,3959 @@
   "slug": "fractions",
   "title": "Fractions",
   "grade": 6,
-  "blurb": "Placeholder — add, subtract, multiply, and divide fractions and mixed numbers.",
+  "status": "published",
+  "blurb": "Equivalent fractions, comparing, the four operations, and word problems — taught with bars you can split, merge, and combine.",
   "lessons": [
     {
-      "slug": "fractions-intro",
-      "title": "Introduction to Fractions",
-      "concreteComparison": "Placeholder — real-world opener authored in Step 3. Example: a pizza cut into 8 slices; eating 3 slices means you ate $\\frac{3}{8}$ of the pizza.",
-      "objective": "Placeholder — identify the numerator and denominator of a fraction and represent fractions on a number line.",
+      "slug": "equivalent-fractions",
+      "title": "Equivalent Fractions",
+      "concreteComparison": "Half a pizza is half a pizza — whether you cut it into **2 big slices** and take 1, or **6 small slices** and take 3. $\\frac{1}{2}=\\frac{3}{6}$: different numbers, the exact same amount. Fractions like these are **equivalent**.",
+      "objective": "Build equivalent fractions by multiplying the top and bottom by the same number, and reduce a fraction to simplest form by dividing.",
       "concept": [
-        "Placeholder concept paragraph. A fraction $\\frac{a}{b}$ represents $a$ parts out of $b$ equal parts."
+        "Splitting **every** piece of a fraction bar into the same number of smaller pieces multiplies the top and bottom by that number — and the shaded amount never changes. So $\\frac{1}{2}=\\frac{2}{4}=\\frac{3}{6}$ are all the same amount.",
+        "This is the same move as **equivalent ratios**: multiply both numbers by the same number and the value stays the same.",
+        "**Simplest form** runs it backwards: divide the top and bottom by the same number until nothing divides both. It is the equivalent fraction with the smallest whole numbers."
+      ],
+      "keyIdea": "Multiply or divide the top and bottom by the **same** number and a fraction's value never changes. Simplest form is the version with the smallest whole numbers.",
+      "facts": [
+        {
+          "title": "Equivalent fractions",
+          "latex": "$\\dfrac{a}{b} = \\dfrac{a\\times n}{b\\times n}$",
+          "explanation": "Multiply top and bottom by the same number n — the amount is unchanged."
+        }
       ],
       "workedExamples": [
         {
-          "id": "frac-ex-01",
-          "statement": "Placeholder problem. Add $\\frac{1}{4} + \\frac{2}{4}$.",
-          "solution": "Placeholder solution. $\\frac{1}{4} + \\frac{2}{4} = \\frac{3}{4}$."
+          "id": "ef-we1",
+          "statement": "Write a fraction equal to $\\frac{2}{3}$ that has **6** on the bottom.",
+          "note": "Find what 3 was multiplied by, then do the same on top.",
+          "solution": "$6 \\div 3 = 2$, so multiply top and bottom by 2: $\\frac{2}{3} = \\frac{4}{6}$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(2,3) == Rational(4,6)"
+          ]
+        },
+        {
+          "id": "ef-we2",
+          "statement": "Reduce $\\frac{8}{12}$ to simplest form.",
+          "note": "Find a number that divides both, and keep going until none does.",
+          "solution": "Both divide by 4: $\\frac{8}{12} = \\frac{2}{3}$. Nothing divides 2 and 3, so $\\frac{2}{3}$ is simplest.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(8,12) == Rational(2,3)"
+          ]
         }
       ],
       "commonMistakes": [
-        { "text": "Placeholder mistake — authored in Step 3.", "authored": false }
+        {
+          "text": "Adding the same number to top and bottom (e.g. $\\frac{1}{2}$ → $\\frac{2}{3}$).",
+          "correction": "You must **multiply** (or divide), not add — $\\frac{1}{2}=\\frac{2}{4}$, not $\\frac{2}{3}$.",
+          "authored": true
+        },
+        {
+          "text": "Stopping before simplest form (e.g. simplifying $\\frac{8}{12}$ only to $\\frac{4}{6}$).",
+          "correction": "Keep dividing until no number divides both top and bottom.",
+          "authored": true
+        }
       ],
       "tryIt": [
         {
-          "id": "frac-try-01",
-          "statement": "Placeholder try-it. Simplify $\\frac{6}{8}$.",
-          "solution": "Placeholder solution. $\\frac{6}{8} = \\frac{3}{4}$."
+          "id": "ef-t1",
+          "statement": "Write a fraction equal to $\\frac{3}{4}$ with 12 on the bottom.",
+          "solution": "$12 \\div 4 = 3$, so $\\frac{3}{4} = \\frac{9}{12}$.",
+          "check": [
+            "Rational(3,4) == Rational(9,12)"
+          ]
+        },
+        {
+          "id": "ef-t2",
+          "statement": "Reduce $\\frac{10}{15}$ to simplest form.",
+          "solution": "Both divide by 5: $\\frac{10}{15} = \\frac{2}{3}$.",
+          "check": [
+            "Rational(10,15) == Rational(2,3)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "fractionScaler",
+            "eyebrow": "Concept A",
+            "title": "Same amount, more pieces",
+            "teach": "This bar shows $\\frac{1}{2}$. Tap **+** to split every piece into more — watch the orange amount stay exactly the same while the numbers grow.",
+            "config": {
+              "num": 1,
+              "den": 2,
+              "maxSplit": 6,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Why the amount doesn't change",
+            "beats": [
+              "Splitting **every** piece into the same number multiplies the **top and bottom by that same number**.",
+              "$\\frac{1}{2}$ split into 2 becomes $\\frac{2}{4}$; into 3, $\\frac{3}{6}$ — the orange amount never moved.",
+              "Fractions that shade the same amount are **equivalent fractions**.",
+              "Remember **equivalent ratios**? Exact same move — multiply both numbers by the same number."
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 3,
+                "den": 6,
+                "label": "the same as 1/2"
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Building an equivalent fraction",
+            "intro": "Find what the bottom was multiplied by, then do the same to the top.",
+            "examples": [
+              {
+                "prompt": "Write a fraction equal to $\\frac{2}{3}$ with **6** on the bottom.",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 4,
+                    "den": 6,
+                    "label": "equal to 2/3"
+                  }
+                },
+                "steps": [
+                  "$6 \\div 3 = 2$, so multiply top and bottom by 2.",
+                  "$\\frac{2}{3} = \\frac{2\\times 2}{3\\times 2} = \\frac{4}{6}$."
+                ],
+                "answer": "$\\frac{4}{6}$",
+                "check": [
+                  "Rational(2,3) == Rational(4,6)"
+                ]
+              },
+              {
+                "prompt": "Is $\\frac{3}{4}$ equal to $\\frac{9}{12}$?",
+                "steps": [
+                  "Multiply top and bottom of $\\frac{3}{4}$ by 3: $\\frac{9}{12}$.",
+                  "Yes — they are equivalent."
+                ],
+                "answer": "Yes, $\\frac{3}{4}=\\frac{9}{12}$",
+                "check": [
+                  "Rational(3,4) == Rational(9,12)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Spot the equivalent fraction",
+            "intro": "Multiply top and bottom by the same number. Tap the match.",
+            "problems": [
+              {
+                "prompt": "Which fraction is equal to $\\frac{1}{2}$?",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 1,
+                    "den": 2,
+                    "label": "the target"
+                  }
+                },
+                "options": [
+                  "$\\frac{3}{6}$",
+                  "$\\frac{2}{5}$",
+                  "$\\frac{3}{5}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Multiply $\\frac{1}{2}$ top and bottom by 3 → $\\frac{3}{6}$.",
+                "check": [
+                  "Rational(1,2) == Rational(3,6)"
+                ]
+              },
+              {
+                "prompt": "Which fraction is equal to $\\frac{2}{3}$?",
+                "options": [
+                  "$\\frac{4}{9}$",
+                  "$\\frac{6}{9}$",
+                  "$\\frac{3}{4}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Multiply $\\frac{2}{3}$ top and bottom by 3 → $\\frac{6}{9}$.",
+                "check": [
+                  "Rational(2,3) == Rational(6,9)"
+                ]
+              },
+              {
+                "prompt": "Which fraction is equal to $\\frac{3}{5}$?",
+                "options": [
+                  "$\\frac{6}{15}$",
+                  "$\\frac{9}{10}$",
+                  "$\\frac{9}{15}$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Multiply $\\frac{3}{5}$ top and bottom by 3 → $\\frac{9}{15}$.",
+                "check": [
+                  "Rational(3,5) == Rational(9,15)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Multiply top and bottom",
+            "prompt": "Multiply the top and bottom of $\\frac{3}{4}$ by 5. What do you get?",
+            "options": [
+              "$\\frac{8}{9}$",
+              "$\\frac{15}{4}$",
+              "$\\frac{3}{20}$",
+              "$\\frac{15}{20}$"
+            ],
+            "correctIndex": 3,
+            "explanation": "$3\\times 5 = 15$ and $4\\times 5 = 20$ → $\\frac{15}{20}$ (still equal to $\\frac{3}{4}$).",
+            "check": [
+              "Rational(3,4) == Rational(15,20)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Music runs on equivalent fractions",
+            "body": "A half note, two quarter notes, four eighth notes — all the same length of time, written as $\\frac{1}{2}=\\frac{2}{4}=\\frac{4}{8}$. Musicians read equivalent fractions every single bar."
+          },
+          {
+            "kind": "fractionSimplify",
+            "eyebrow": "Concept B",
+            "title": "Simplest form: the biggest pieces",
+            "teach": "Same idea, backwards. Tap **Merge** to divide the top and bottom by the same number until you can't anymore — that's **simplest form**.",
+            "config": {
+              "num": 8,
+              "den": 12,
+              "color": "#3fb27f"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Dividing down to simplest form",
+            "beats": [
+              "**Simplest form** is the equivalent fraction with the **fewest, biggest pieces** — the smallest numbers.",
+              "To get there, **divide** the top and bottom by the same number until nothing divides both.",
+              "$\\frac{8}{12}$: both divide by 4 → $\\frac{2}{3}$. Nothing divides 2 and 3, so you're done.",
+              "Dividing top and bottom by the same number is just splitting in reverse — the amount stays the same."
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 2,
+                "den": 3,
+                "label": "8/12 in simplest form"
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Reducing to simplest form",
+            "intro": "Divide top and bottom by a common number, and keep going until none is left.",
+            "examples": [
+              {
+                "prompt": "Simplify $\\frac{6}{9}$.",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 2,
+                    "den": 3,
+                    "label": "6/9 simplified"
+                  }
+                },
+                "steps": [
+                  "Both 6 and 9 divide by 3.",
+                  "$\\frac{6}{9} = \\frac{2}{3}$. Nothing divides 2 and 3 → simplest."
+                ],
+                "answer": "$\\frac{2}{3}$",
+                "check": [
+                  "Rational(6,9) == Rational(2,3)"
+                ]
+              },
+              {
+                "prompt": "Simplify $\\frac{12}{16}$.",
+                "steps": [
+                  "Both divide by 4.",
+                  "$\\frac{12}{16} = \\frac{3}{4}$ — simplest."
+                ],
+                "answer": "$\\frac{3}{4}$",
+                "check": [
+                  "Rational(12,16) == Rational(3,4)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Reduce to simplest form",
+            "intro": "Divide top and bottom until nothing divides both. Tap the simplest form.",
+            "problems": [
+              {
+                "prompt": "Simplest form of $\\frac{4}{8}$?",
+                "options": [
+                  "$\\frac{2}{4}$",
+                  "$\\frac{1}{2}$",
+                  "$\\frac{4}{8}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Both divide by 4: $\\frac{4}{8} = \\frac{1}{2}$.",
+                "check": [
+                  "Rational(4,8) == Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "Simplest form of $\\frac{10}{15}$?",
+                "options": [
+                  "$\\frac{5}{15}$",
+                  "$\\frac{10}{15}$",
+                  "$\\frac{2}{3}$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Both divide by 5: $\\frac{10}{15} = \\frac{2}{3}$.",
+                "check": [
+                  "Rational(10,15) == Rational(2,3)"
+                ]
+              },
+              {
+                "prompt": "Simplest form of $\\frac{9}{12}$?",
+                "options": [
+                  "$\\frac{3}{4}$",
+                  "$\\frac{9}{12}$",
+                  "$\\frac{18}{24}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both divide by 3: $\\frac{9}{12} = \\frac{3}{4}$.",
+                "check": [
+                  "Rational(9,12) == Rational(3,4)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Simplify it",
+            "prompt": "Reduce $\\frac{15}{20}$ to simplest form.",
+            "options": [
+              "$\\frac{5}{4}$",
+              "$\\frac{15}{20}$",
+              "$\\frac{6}{8}$",
+              "$\\frac{3}{4}$"
+            ],
+            "correctIndex": 3,
+            "explanation": "Both divide by 5: $\\frac{15}{20} = \\frac{3}{4}$.",
+            "check": [
+              "Rational(15,20) == Rational(3,4)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Equivalent fractions** shade the same amount: multiply the top and bottom by the **same** number.",
+              "It's the same move as **equivalent ratios** — both numbers grow together.",
+              "**Simplest form** divides the top and bottom by the same number until nothing divides both.",
+              "Never add to the top and bottom — that changes the amount. Only multiply or divide."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Two moves to lock in: building an equal fraction (multiply) and reducing one (divide). Run this mixed set — tap a wrong choice and just try again."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Which fraction is equal to $\\frac{1}{3}$?",
+                "options": [
+                  "$\\frac{3}{12}$",
+                  "$\\frac{2}{5}$",
+                  "$\\frac{4}{12}$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Multiply $\\frac{1}{3}$ top and bottom by 4 → $\\frac{4}{12}$.",
+                "check": [
+                  "Rational(1,3) == Rational(4,12)"
+                ]
+              },
+              {
+                "prompt": "Simplest form of $\\frac{6}{8}$?",
+                "options": [
+                  "$\\frac{3}{4}$",
+                  "$\\frac{6}{8}$",
+                  "$\\frac{12}{16}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both divide by 2: $\\frac{6}{8} = \\frac{3}{4}$.",
+                "check": [
+                  "Rational(6,8) == Rational(3,4)"
+                ]
+              },
+              {
+                "prompt": "Write $\\frac{2}{5}$ with 20 on the bottom.",
+                "options": [
+                  "$\\frac{4}{20}$",
+                  "$\\frac{8}{20}$",
+                  "$\\frac{10}{20}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$20 \\div 5 = 4$, so $\\frac{2}{5} = \\frac{8}{20}$.",
+                "check": [
+                  "Rational(2,5) == Rational(8,20)"
+                ]
+              },
+              {
+                "prompt": "Which is **not** equal to $\\frac{1}{2}$?",
+                "options": [
+                  "$\\frac{5}{10}$",
+                  "$\\frac{6}{12}$",
+                  "$\\frac{4}{9}$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$\\frac{5}{10}$ and $\\frac{6}{12}$ both reduce to $\\frac{1}{2}$, but $\\frac{4}{9}$ does not.",
+                "check": [
+                  "Rational(4,9) != Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "Simplest form of $\\frac{14}{21}$?",
+                "options": [
+                  "$\\frac{2}{3}$",
+                  "$\\frac{7}{21}$",
+                  "$\\frac{14}{21}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both divide by 7: $\\frac{14}{21} = \\frac{2}{3}$.",
+                "check": [
+                  "Rational(14,21) == Rational(2,3)"
+                ]
+              },
+              {
+                "prompt": "Which fraction is equal to $\\frac{3}{4}$?",
+                "options": [
+                  "$\\frac{9}{16}$",
+                  "$\\frac{12}{16}$",
+                  "$\\frac{6}{7}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Multiply $\\frac{3}{4}$ top and bottom by 4 → $\\frac{12}{16}$.",
+                "check": [
+                  "Rational(3,4) == Rational(12,16)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Equivalent Fractions\"",
+            "body": "You can now grow a fraction into an equal one and shrink any fraction to simplest form — the two moves behind almost everything else with fractions. Next up: **comparing fractions**, where you give two fractions the same-size pieces and just compare."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "comparing-fractions",
+      "title": "Comparing Fractions",
+      "concreteComparison": "Two friends each get their own pie — Pie A is cut into **3 equal slices** and you take 2; Pie B is cut into **5 equal slices** and your friend takes 3. $\\frac{2}{3}$ vs $\\frac{3}{5}$: who got more? The slices are different sizes, so you can't just count them. **Give both pies the same number of slices first** — then you simply count who has more shaded pieces. This is the one idea behind every fraction comparison.",
+      "objective": "Compare two fractions by rewriting them with a common denominator, and order three or more fractions from smallest to largest.",
+      "concept": [
+        "To compare $\\frac{2}{3}$ and $\\frac{3}{5}$, **give them the same-size pieces** (common denominator). $\\frac{2}{3}=\\frac{10}{15}$ and $\\frac{3}{5}=\\frac{9}{15}$. Now both bars have 15 pieces and you just count: 10 shaded beats 9 shaded, so $\\frac{2}{3}>\\frac{3}{5}$.",
+        "This is the **fraction twin of Ratios** — \"make the water equal\" from *Comparing Ratios* is the same move: get both on the same scale, then compare. And it uses **Lesson 1** (Equivalent Fractions): multiply the top and bottom by the same number to reach the common denominator.",
+        "**Ordering** three fractions and **spotting equal ones** work the same way — convert every fraction to the same denominator, then read off the order of the numerators. If two numerators match, the fractions are equal."
+      ],
+      "keyIdea": "**Give fractions the same-size pieces (common denominator), then compare numerators.** The fraction with more shaded pieces is larger.",
+      "facts": [
+        {
+          "title": "Comparing with a common denominator",
+          "latex": "If $\\dfrac{a}{n}$ and $\\dfrac{b}{n}$ have the **same denominator**, then $\\dfrac{a}{n} > \\dfrac{b}{n}$ when $a > b$.",
+          "explanation": "Find a common denominator by multiplying (or using the LCM), convert both fractions, then compare the numerators."
+        },
+        {
+          "title": "Equal fractions",
+          "latex": "$\\dfrac{a}{b} = \\dfrac{c}{d}$ exactly when $a \\times d = b \\times c$",
+          "explanation": "Two fractions are equal when their cross-products match — which is just another way of saying they have the same value after finding a common denominator."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cf-we1",
+          "statement": "Which is greater: $\\frac{2}{3}$ or $\\frac{3}{5}$?",
+          "note": "Find a common denominator (the product $3 \\times 5 = 15$ always works), convert both, then compare.",
+          "solution": "$\\frac{2}{3} = \\frac{10}{15}$ and $\\frac{3}{5} = \\frac{9}{15}$. Since $10 > 9$, we have $\\frac{2}{3} > \\frac{3}{5}$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(2,3) > Rational(3,5)"
+          ]
+        },
+        {
+          "id": "cf-we2",
+          "statement": "Are $\\frac{2}{3}$ and $\\frac{4}{6}$ equal?",
+          "note": "Convert $\\frac{2}{3}$ to sixths and compare, or use equivalent fractions from Lesson 1.",
+          "solution": "$\\frac{2}{3} = \\frac{4}{6}$ (multiply top and bottom by 2). Yes — they are equal.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(2,3) == Rational(4,6)"
+          ]
+        },
+        {
+          "id": "cf-we3",
+          "statement": "Order $\\frac{1}{2}$, $\\frac{2}{3}$, and $\\frac{3}{8}$ from smallest to largest.",
+          "note": "Use the common denominator 24 (or the LCM of 2, 3, and 8 = 24).",
+          "solution": "$\\frac{1}{2}=\\frac{12}{24}$, $\\frac{2}{3}=\\frac{16}{24}$, $\\frac{3}{8}=\\frac{9}{24}$. Order of numerators: $9<12<16$, so $\\frac{3}{8}<\\frac{1}{2}<\\frac{2}{3}$.",
+          "badges": [
+            {
+              "text": "stretch"
+            }
+          ],
+          "check": [
+            "Rational(3,8) < Rational(1,2)",
+            "Rational(1,2) < Rational(2,3)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Comparing numerators before finding a common denominator — e.g. saying $\\frac{3}{5} > \\frac{2}{3}$ because $3 > 2$.",
+          "correction": "The pieces are different sizes until you get a common denominator. $\\frac{2}{3}=\\frac{10}{15}$ vs $\\frac{3}{5}=\\frac{9}{15}$, so $\\frac{2}{3}$ wins.",
+          "authored": true
+        },
+        {
+          "text": "Comparing denominators alone — thinking $\\frac{3}{5} > \\frac{2}{3}$ because 5 > 3.",
+          "correction": "A bigger denominator means **smaller** pieces, not a bigger fraction. Always convert first.",
+          "authored": true
+        },
+        {
+          "text": "Stopping at the common denominator without converting the numerators.",
+          "correction": "Whatever you multiply the bottom by, multiply the top by the **same** number. Both parts must change.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cf-t1",
+          "statement": "Which is greater: $\\frac{3}{4}$ or $\\frac{5}{6}$?",
+          "solution": "Common denominator 12: $\\frac{3}{4}=\\frac{9}{12}$ and $\\frac{5}{6}=\\frac{10}{12}$. Since $10>9$, $\\frac{5}{6}>\\frac{3}{4}$.",
+          "check": [
+            "Rational(5,6) > Rational(3,4)"
+          ]
+        },
+        {
+          "id": "cf-t2",
+          "statement": "Are $\\frac{3}{4}$ and $\\frac{9}{12}$ equal?",
+          "solution": "$\\frac{3}{4}=\\frac{9}{12}$ (multiply top and bottom by 3). Yes, they are equal.",
+          "check": [
+            "Rational(3,4) == Rational(9,12)"
+          ]
+        },
+        {
+          "id": "cf-t3",
+          "statement": "Order $\\frac{5}{6}$, $\\frac{2}{3}$, and $\\frac{3}{4}$ from smallest to largest.",
+          "solution": "Common denominator 12: $\\frac{5}{6}=\\frac{10}{12}$, $\\frac{2}{3}=\\frac{8}{12}$, $\\frac{3}{4}=\\frac{9}{12}$. Order: $\\frac{2}{3}<\\frac{3}{4}<\\frac{5}{6}$.",
+          "check": [
+            "Rational(2,3) < Rational(3,4)",
+            "Rational(3,4) < Rational(5,6)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "fractionCompare",
+            "eyebrow": "Concept A",
+            "title": "Give them the same-size pieces",
+            "teach": "Pie A is $\\frac{2}{3}$ and Pie B is $\\frac{3}{5}$ — but the slices are different sizes, so you can't just count them yet. Tap **\"Give them the same-size pieces\"** to re-split both pies into equal slices. Then count who has more shaded pieces.",
+            "config": {
+              "left": {
+                "num": 2,
+                "den": 3,
+                "label": "Pie A"
+              },
+              "right": {
+                "num": 3,
+                "den": 5,
+                "label": "Pie B"
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Why we find a common denominator",
+            "beats": [
+              "Both pies got **re-split into 15 equal slices** — that's the **common denominator** ($3 \\times 5 = 15$).",
+              "Pie A becomes $\\frac{2}{3} = \\frac{10}{15}$ (10 pieces shaded). The bar below shows those 10 out of 15 equal pieces.",
+              "Pie B becomes $\\frac{3}{5} = \\frac{9}{15}$ (9 pieces shaded). Same-size pieces now — just compare: **10 > 9**, so $\\frac{2}{3} > \\frac{3}{5}$.",
+              "This is the fraction twin of Ratios — **make the water equal** so you're comparing like with like."
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 10,
+                "den": 15,
+                "label": "2/3 = 10/15"
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Compare two fractions",
+            "intro": "Find a common denominator, convert both fractions, then compare the numerators.",
+            "examples": [
+              {
+                "prompt": "Which is greater: $\\frac{1}{2}$ or $\\frac{2}{5}$?",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 5,
+                    "den": 10,
+                    "label": "1/2 = 5/10"
+                  }
+                },
+                "steps": [
+                  "Common denominator: $2 \\times 5 = 10$.",
+                  "$\\frac{1}{2} = \\frac{5}{10}$ and $\\frac{2}{5} = \\frac{4}{10}$.",
+                  "$5 > 4$, so $\\frac{1}{2} > \\frac{2}{5}$."
+                ],
+                "answer": "$\\frac{1}{2} > \\frac{2}{5}$",
+                "check": [
+                  "Rational(1,2) > Rational(2,5)"
+                ]
+              },
+              {
+                "prompt": "Which is greater: $\\frac{3}{4}$ or $\\frac{5}{8}$?",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 6,
+                    "den": 8,
+                    "label": "3/4 = 6/8"
+                  }
+                },
+                "steps": [
+                  "The denominator 8 is already a multiple of 4, so use 8.",
+                  "$\\frac{3}{4} = \\frac{6}{8}$ and $\\frac{5}{8}$ stays as $\\frac{5}{8}$.",
+                  "$6 > 5$, so $\\frac{3}{4} > \\frac{5}{8}$."
+                ],
+                "answer": "$\\frac{3}{4} > \\frac{5}{8}$",
+                "check": [
+                  "Rational(3,4) > Rational(5,8)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Which fraction is bigger?",
+            "intro": "Find a common denominator and compare the numerators. Tap the correct answer.",
+            "problems": [
+              {
+                "prompt": "Which is greater: $\\frac{2}{3}$ or $\\frac{3}{5}$?",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 10,
+                    "den": 15,
+                    "label": "2/3 = 10/15"
+                  }
+                },
+                "options": [
+                  "$\\frac{3}{5}$",
+                  "They are equal",
+                  "$\\frac{2}{3}$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$\\frac{2}{3}=\\frac{10}{15}$ and $\\frac{3}{5}=\\frac{9}{15}$. Since $10>9$, $\\frac{2}{3}$ is bigger.",
+                "check": [
+                  "Rational(2,3) > Rational(3,5)"
+                ]
+              },
+              {
+                "prompt": "Which is greater: $\\frac{3}{8}$ or $\\frac{1}{3}$?",
+                "options": [
+                  "$\\frac{3}{8}$",
+                  "$\\frac{1}{3}$",
+                  "They are equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "Common denominator 24: $\\frac{3}{8}=\\frac{9}{24}$ and $\\frac{1}{3}=\\frac{8}{24}$. Since $9>8$, $\\frac{3}{8}$ wins.",
+                "check": [
+                  "Rational(3,8) > Rational(1,3)"
+                ]
+              },
+              {
+                "prompt": "Which is smaller: $\\frac{5}{6}$ or $\\frac{4}{5}$?",
+                "options": [
+                  "$\\frac{5}{6}$",
+                  "$\\frac{4}{5}$",
+                  "They are equal"
+                ],
+                "correctIndex": 1,
+                "explanation": "Common denominator 30: $\\frac{5}{6}=\\frac{25}{30}$ and $\\frac{4}{5}=\\frac{24}{30}$. Since $24<25$, $\\frac{4}{5}$ is smaller.",
+                "check": [
+                  "Rational(4,5) < Rational(5,6)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Compare these two",
+            "prompt": "Which is greater: $\\frac{5}{6}$ or $\\frac{7}{9}$?",
+            "options": [
+              "$\\frac{7}{9}$",
+              "$\\frac{5}{6}$",
+              "They are equal",
+              "Can't tell"
+            ],
+            "correctIndex": 1,
+            "explanation": "Common denominator 18: $\\frac{5}{6}=\\frac{15}{18}$ and $\\frac{7}{9}=\\frac{14}{18}$. Since $15>14$, $\\frac{5}{6}$ is larger.",
+            "check": [
+              "Rational(5,6) > Rational(7,9)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Fractions on a number line",
+            "body": "If you placed $\\frac{2}{3}$ and $\\frac{3}{5}$ on the same number line, $\\frac{2}{3}$ ($\\approx 0.667$) would sit just to the right of $\\frac{3}{5}$ ($= 0.6$). The common-denominator method does exactly what the number line shows — and it works for any two fractions, no decimal needed."
+          },
+          {
+            "kind": "fractionCompare",
+            "eyebrow": "Play more",
+            "title": "Try a different pair",
+            "teach": "Now try $\\frac{3}{4}$ vs $\\frac{5}{6}$. Tap to give them equal-size pieces and see who wins.",
+            "config": {
+              "left": {
+                "num": 3,
+                "den": 4,
+                "label": "Fraction A"
+              },
+              "right": {
+                "num": 5,
+                "den": 6,
+                "label": "Fraction B"
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Spotting equal fractions and ordering three",
+            "beats": [
+              "Two fractions are **equal** when, after converting to a common denominator, their numerators match. $\\frac{2}{3}=\\frac{4}{6}$ because both become $\\frac{4}{6}$.",
+              "To **order three fractions**, convert all three to the same denominator and line up the numerators smallest to largest.",
+              "Example: $\\frac{1}{2}$, $\\frac{2}{3}$, $\\frac{3}{8}$ → denominator 24 → $\\frac{12}{24}$, $\\frac{16}{24}$, $\\frac{9}{24}$ → order: $\\frac{3}{8}<\\frac{1}{2}<\\frac{2}{3}$.",
+              "The shortcut for finding a common denominator: multiply the two (or three) denominators together. You can always simplify later."
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 4,
+                "den": 6,
+                "label": "2/3 = 4/6"
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Equal fractions and ordering",
+            "intro": "Convert to a common denominator, then compare or order.",
+            "examples": [
+              {
+                "prompt": "Are $\\frac{2}{3}$ and $\\frac{4}{6}$ equal?",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 4,
+                    "den": 6,
+                    "label": "4/6 = 2/3"
+                  }
+                },
+                "steps": [
+                  "Multiply top and bottom of $\\frac{2}{3}$ by 2: $\\frac{4}{6}$.",
+                  "$\\frac{2}{3}=\\frac{4}{6}$ — yes, they are equal."
+                ],
+                "answer": "Yes, $\\frac{2}{3}=\\frac{4}{6}$",
+                "check": [
+                  "Rational(2,3) == Rational(4,6)"
+                ]
+              },
+              {
+                "prompt": "Order $\\frac{2}{3}$, $\\frac{1}{4}$, and $\\frac{5}{6}$ from smallest to largest.",
+                "steps": [
+                  "Common denominator: 12 is the smallest number 3, 4, and 6 all divide into ($12\\div3=4$, $12\\div4=3$, $12\\div6=2$), so use 12.",
+                  "$\\frac{2}{3}=\\frac{8}{12}$, $\\frac{1}{4}=\\frac{3}{12}$, $\\frac{5}{6}=\\frac{10}{12}$.",
+                  "Numerators: $3<8<10$, so $\\frac{1}{4}<\\frac{2}{3}<\\frac{5}{6}$."
+                ],
+                "answer": "$\\frac{1}{4}<\\frac{2}{3}<\\frac{5}{6}$",
+                "check": [
+                  "Rational(1,4) < Rational(2,3)",
+                  "Rational(2,3) < Rational(5,6)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Equal or ordered?",
+            "intro": "Convert to a common denominator, then decide. Tap the right answer.",
+            "problems": [
+              {
+                "prompt": "Are $\\frac{3}{4}$ and $\\frac{9}{12}$ equal?",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 9,
+                    "den": 12,
+                    "label": "9/12 = 3/4"
+                  }
+                },
+                "options": [
+                  "Yes — they are equal",
+                  "No — $\\frac{3}{4}$ is bigger",
+                  "No — $\\frac{9}{12}$ is bigger"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{3}{4} \\times \\frac{3}{3} = \\frac{9}{12}$. Same numerator and denominator, so they are equal.",
+                "check": [
+                  "Rational(3,4) == Rational(9,12)"
+                ]
+              },
+              {
+                "prompt": "Which list puts $\\frac{1}{2}$, $\\frac{3}{4}$, and $\\frac{1}{3}$ in order from **smallest to largest**?",
+                "options": [
+                  "$\\frac{1}{2} < \\frac{1}{3} < \\frac{3}{4}$",
+                  "$\\frac{1}{3} < \\frac{1}{2} < \\frac{3}{4}$",
+                  "$\\frac{3}{4} < \\frac{1}{2} < \\frac{1}{3}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Common denominator 12: $\\frac{1}{3}=\\frac{4}{12}$, $\\frac{1}{2}=\\frac{6}{12}$, $\\frac{3}{4}=\\frac{9}{12}$. Order: $4<6<9$.",
+                "check": [
+                  "Rational(1,3) < Rational(1,2)",
+                  "Rational(1,2) < Rational(3,4)"
+                ]
+              },
+              {
+                "prompt": "Are $\\frac{4}{6}$ and $\\frac{6}{9}$ equal?",
+                "options": [
+                  "No — $\\frac{4}{6}$ is bigger",
+                  "No — $\\frac{6}{9}$ is bigger",
+                  "Yes — they are equal"
+                ],
+                "correctIndex": 2,
+                "explanation": "Both reduce to $\\frac{2}{3}$: $\\frac{4}{6}\\div\\frac{2}{2}=\\frac{2}{3}$ and $\\frac{6}{9}\\div\\frac{3}{3}=\\frac{2}{3}$.",
+                "check": [
+                  "Rational(4,6) == Rational(6,9)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Spot the order",
+            "prompt": "Which correctly orders $\\frac{2}{5}$, $\\frac{1}{2}$, and $\\frac{3}{10}$ from smallest to largest?",
+            "options": [
+              "$\\frac{2}{5} < \\frac{3}{10} < \\frac{1}{2}$",
+              "$\\frac{3}{10} < \\frac{2}{5} < \\frac{1}{2}$",
+              "$\\frac{1}{2} < \\frac{2}{5} < \\frac{3}{10}$",
+              "$\\frac{3}{10} < \\frac{1}{2} < \\frac{2}{5}$"
+            ],
+            "correctIndex": 1,
+            "explanation": "Common denominator 10: $\\frac{3}{10}=\\frac{3}{10}$, $\\frac{2}{5}=\\frac{4}{10}$, $\\frac{1}{2}=\\frac{5}{10}$. Order: $3<4<5$, so $\\frac{3}{10}<\\frac{2}{5}<\\frac{1}{2}$.",
+            "check": [
+              "Rational(3,10) < Rational(2,5)",
+              "Rational(2,5) < Rational(1,2)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "To compare fractions, **give them the same-size pieces** (common denominator), then count who has more shaded pieces — the larger numerator wins.",
+              "This is the fraction twin of **\"make the water equal\"** from Ratios, and it uses **Lesson 1** (multiply top and bottom by the same number to build an equivalent fraction).",
+              "Two fractions are **equal** when they have the same numerator after converting to a common denominator — like $\\frac{2}{3}=\\frac{4}{6}$.",
+              "To **order three (or more) fractions**, convert all of them to the same denominator and sort the numerators."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Two moves to lock in: comparing two fractions with a common denominator, and ordering three. The mixed set below has both — plus a sneaky equal pair. Tap a wrong choice and just try again."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Which is greater: $\\frac{2}{3}$ or $\\frac{3}{5}$?",
+                "options": [
+                  "$\\frac{3}{5}$",
+                  "$\\frac{2}{3}$",
+                  "They are equal"
+                ],
+                "correctIndex": 1,
+                "explanation": "Common denominator 15: $\\frac{2}{3}=\\frac{10}{15}$ and $\\frac{3}{5}=\\frac{9}{15}$. $10>9$, so $\\frac{2}{3}$ wins.",
+                "check": [
+                  "Rational(2,3) > Rational(3,5)"
+                ]
+              },
+              {
+                "prompt": "Are $\\frac{2}{3}$ and $\\frac{4}{6}$ equal?",
+                "options": [
+                  "No — $\\frac{2}{3}$ is bigger",
+                  "No — $\\frac{4}{6}$ is bigger",
+                  "Yes — they are equal"
+                ],
+                "correctIndex": 2,
+                "explanation": "$\\frac{2}{3}=\\frac{4}{6}$ by multiplying top and bottom by 2.",
+                "check": [
+                  "Rational(2,3) == Rational(4,6)"
+                ]
+              },
+              {
+                "prompt": "Which is smaller: $\\frac{3}{4}$ or $\\frac{7}{10}$?",
+                "options": [
+                  "$\\frac{7}{10}$",
+                  "$\\frac{3}{4}$",
+                  "They are equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "Common denominator 20: $\\frac{3}{4}=\\frac{15}{20}$ and $\\frac{7}{10}=\\frac{14}{20}$. $14<15$, so $\\frac{7}{10}$ is smaller.",
+                "check": [
+                  "Rational(7,10) < Rational(3,4)"
+                ]
+              },
+              {
+                "prompt": "Order $\\frac{5}{6}$, $\\frac{2}{3}$, and $\\frac{3}{4}$ from smallest to largest.",
+                "options": [
+                  "$\\frac{3}{4} < \\frac{2}{3} < \\frac{5}{6}$",
+                  "$\\frac{2}{3} < \\frac{3}{4} < \\frac{5}{6}$",
+                  "$\\frac{5}{6} < \\frac{3}{4} < \\frac{2}{3}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Common denominator 12: $\\frac{5}{6}=\\frac{10}{12}$, $\\frac{2}{3}=\\frac{8}{12}$, $\\frac{3}{4}=\\frac{9}{12}$. Order: $8<9<10$.",
+                "check": [
+                  "Rational(2,3) < Rational(3,4)",
+                  "Rational(3,4) < Rational(5,6)"
+                ]
+              },
+              {
+                "prompt": "Which is greater: $\\frac{4}{9}$ or $\\frac{5}{12}$?",
+                "options": [
+                  "$\\frac{5}{12}$",
+                  "They are equal",
+                  "$\\frac{4}{9}$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Common denominator 36: $\\frac{4}{9}=\\frac{16}{36}$ and $\\frac{5}{12}=\\frac{15}{36}$. $16>15$, so $\\frac{4}{9}$ wins.",
+                "check": [
+                  "Rational(4,9) > Rational(5,12)"
+                ]
+              },
+              {
+                "prompt": "Are $\\frac{6}{10}$ and $\\frac{3}{5}$ equal?",
+                "options": [
+                  "Yes — they are equal",
+                  "No — $\\frac{6}{10}$ is bigger",
+                  "No — $\\frac{3}{5}$ is bigger"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{6}{10}$ reduces to $\\frac{3}{5}$ (divide by 2). They are equal.",
+                "check": [
+                  "Rational(6,10) == Rational(3,5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Comparing Fractions\"",
+            "body": "Ancient Egyptian mathematicians wrote all fractions as sums of *unit fractions* (fractions with 1 on top, like $\\frac{1}{2}+\\frac{1}{3}$) — comparing them was so tricky they needed whole tables. You just did it in seconds with a common denominator. Next up: **adding and subtracting fractions** — and you already know the secret ingredient."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "adding-subtracting-fractions",
+      "title": "Adding & Subtracting Fractions",
+      "concreteComparison": "You eat **1/4** of a pizza and your friend eats **1/2** of the same pizza. How much is gone? You cannot just add the 1 and 1 on top — the slices are different sizes. First you need **same-size pieces**, then you count them up. That one rule unlocks all fraction addition and subtraction.",
+      "objective": "Add and subtract fractions with like and unlike denominators by finding a common denominator, and name an improper result as a mixed number.",
+      "concept": [
+        "When denominators are **the same** (like denominators), the pieces are already the same size — just add or subtract the tops: $\\frac{3}{8} + \\frac{2}{8} = \\frac{5}{8}$.",
+        "When denominators are **different** (unlike denominators), rename both fractions with a common denominator first — the same move as **equivalent fractions** (multiply top and bottom by the same number). Then add or subtract the tops.",
+        "If the result is an **improper fraction** (top ≥ bottom), convert it to a **mixed number**: divide the top by the bottom. For example $\\frac{5}{4} = 1\\frac{1}{4}$. This usually only shows up with unlike denominators when the sum is greater than 1."
+      ],
+      "keyIdea": "You can only add or subtract fraction pieces that are **the same size** — same denominator. Make them match first (equivalent fractions), then add or subtract the tops.",
+      "facts": [
+        {
+          "title": "Like denominators",
+          "latex": "$\\dfrac{a}{c} + \\dfrac{b}{c} = \\dfrac{a+b}{c}$",
+          "explanation": "Same-size pieces: just add (or subtract) the tops. The bottom stays the same."
+        },
+        {
+          "title": "Unlike denominators",
+          "latex": "$\\dfrac{a}{b} + \\dfrac{c}{d} = \\dfrac{a\\times d}{b\\times d} + \\dfrac{c\\times b}{d\\times b} = \\dfrac{a\\times d + c\\times b}{b\\times d}$",
+          "explanation": "Rewrite both fractions with the same denominator, then add the tops. Simplify the result if possible."
+        },
+        {
+          "title": "Mixed numbers",
+          "latex": "$\\dfrac{5}{4} = 1\\dfrac{1}{4}$",
+          "explanation": "If the top is bigger than the bottom after adding, divide to get the whole-number part, and keep the remainder as the new top."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "asf-we1",
+          "statement": "Add $\\dfrac{3}{8} + \\dfrac{2}{8}$.",
+          "note": "The denominators are already the same — pieces are the same size. Just add the tops.",
+          "solution": "$\\dfrac{3}{8} + \\dfrac{2}{8} = \\dfrac{3+2}{8} = \\dfrac{5}{8}$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(3,8) + Rational(2,8) == Rational(5,8)"
+          ]
+        },
+        {
+          "id": "asf-we2",
+          "statement": "Add $\\dfrac{1}{4} + \\dfrac{1}{2}$.",
+          "note": "Different denominators — make the pieces match first. The common denominator is 4.",
+          "solution": "Rewrite $\\frac{1}{2}$ as $\\frac{2}{4}$ (multiply top and bottom by 2). Now add: $\\frac{1}{4} + \\frac{2}{4} = \\frac{3}{4}$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(1,4) + Rational(1,2) == Rational(3,4)"
+          ]
+        },
+        {
+          "id": "asf-we3",
+          "statement": "Subtract $\\dfrac{5}{6} - \\dfrac{1}{3}$.",
+          "note": "Different denominators — find a common denominator. 6 works: rewrite 1/3 as 2/6.",
+          "solution": "$\\frac{1}{3} = \\frac{2}{6}$. Then $\\frac{5}{6} - \\frac{2}{6} = \\frac{3}{6} = \\frac{1}{2}$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(5,6) - Rational(1,3) == Rational(1,2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding the denominators: $\\frac{1}{4} + \\frac{1}{4} = \\frac{2}{8}$.",
+          "correction": "The denominator tells you the **size** of each piece. When pieces are the same size, count only the pieces on top — the bottom stays: $\\frac{1}{4} + \\frac{1}{4} = \\frac{2}{4}$.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting to rename both fractions: changing only one denominator and leaving the other as is.",
+          "correction": "Both fractions must be rewritten with the same denominator before you touch the tops.",
+          "authored": true
+        },
+        {
+          "text": "Leaving an improper fraction like $\\frac{5}{4}$ without converting to a mixed number when a mixed number is expected.",
+          "correction": "Divide the top by the bottom: $5 \\div 4 = 1$ remainder $1$, so $\\frac{5}{4} = 1\\frac{1}{4}$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "asf-t1",
+          "statement": "Add $\\dfrac{2}{7} + \\dfrac{3}{7}$.",
+          "solution": "Same denominator — add tops: $\\frac{2+3}{7} = \\frac{5}{7}$.",
+          "check": [
+            "Rational(2,7) + Rational(3,7) == Rational(5,7)"
+          ]
+        },
+        {
+          "id": "asf-t2",
+          "statement": "Add $\\dfrac{1}{6} + \\dfrac{1}{3}$.",
+          "solution": "Rewrite $\\frac{1}{3} = \\frac{2}{6}$. Then $\\frac{1}{6} + \\frac{2}{6} = \\frac{3}{6} = \\frac{1}{2}$.",
+          "check": [
+            "Rational(1,6) + Rational(1,3) == Rational(1,2)"
+          ]
+        },
+        {
+          "id": "asf-t3",
+          "statement": "Subtract $\\dfrac{3}{4} - \\dfrac{1}{4}$.",
+          "solution": "Same denominator: $\\frac{3-1}{4} = \\frac{2}{4} = \\frac{1}{2}$.",
+          "check": [
+            "Rational(3,4) - Rational(1,4) == Rational(1,2)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "fractionCombine",
+            "eyebrow": "Concept A — Like denominators",
+            "title": "Same pieces: just count the shaded ones",
+            "teach": "Both bars already show **eighths** — the pieces are the same size. Tap **Combine** to push them together and count the shaded pieces. You don't touch the 8 on the bottom at all.",
+            "config": {
+              "left": {
+                "num": 3,
+                "den": 8
+              },
+              "right": {
+                "num": 2,
+                "den": 8
+              },
+              "op": "add"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Why the bottom stays put",
+            "beats": [
+              "The denominator is the **piece size**. Both bars cut into 8 pieces means every shaded piece is exactly $\\frac{1}{8}$.",
+              "3 shaded pieces **plus** 2 more shaded pieces = **5** shaded pieces — and each is still $\\frac{1}{8}$.",
+              "So $\\frac{3}{8} + \\frac{2}{8} = \\frac{5}{8}$. The bottom never changes because the piece size never changed.",
+              "Same idea for subtraction: $\\frac{7}{8} - \\frac{3}{8}$ — unshade 3 pieces and count what's left: $\\frac{4}{8} = \\frac{1}{2}$."
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 5,
+                "den": 8,
+                "label": "3/8 + 2/8"
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Adding and subtracting with like denominators",
+            "intro": "Same denominator? Add or subtract the tops. Leave the bottom alone.",
+            "examples": [
+              {
+                "prompt": "Calculate $\\dfrac{5}{9} + \\dfrac{2}{9}$.",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 7,
+                    "den": 9,
+                    "label": "5/9 + 2/9"
+                  }
+                },
+                "steps": [
+                  "Same denominator (9) → pieces are the same size.",
+                  "$\\frac{5}{9} + \\frac{2}{9} = \\frac{5+2}{9} = \\frac{7}{9}$."
+                ],
+                "answer": "$\\dfrac{7}{9}$",
+                "check": [
+                  "Rational(5,9) + Rational(2,9) == Rational(7,9)"
+                ]
+              },
+              {
+                "prompt": "Calculate $\\dfrac{7}{10} - \\dfrac{3}{10}$.",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 4,
+                    "den": 10,
+                    "label": "7/10 − 3/10"
+                  }
+                },
+                "steps": [
+                  "Same denominator (10) — subtract the tops.",
+                  "$\\frac{7}{10} - \\frac{3}{10} = \\frac{7-3}{10} = \\frac{4}{10} = \\frac{2}{5}$."
+                ],
+                "answer": "$\\dfrac{2}{5}$",
+                "check": [
+                  "Rational(7,10) - Rational(3,10) == Rational(2,5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Like denominators",
+            "intro": "Same bottom? Go straight to the tops. Tap your answer.",
+            "problems": [
+              {
+                "prompt": "$\\dfrac{2}{7} + \\dfrac{3}{7} = ?$",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 5,
+                    "den": 7,
+                    "label": "result"
+                  }
+                },
+                "options": [
+                  "$\\dfrac{5}{14}$",
+                  "$\\dfrac{5}{7}$",
+                  "$\\dfrac{1}{7}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Same denominator: $2+3=5$, keep the 7 → $\\frac{5}{7}$.",
+                "check": [
+                  "Rational(2,7) + Rational(3,7) == Rational(5,7)"
+                ]
+              },
+              {
+                "prompt": "$\\dfrac{5}{6} - \\dfrac{2}{6} = ?$",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 3,
+                    "den": 6,
+                    "label": "result"
+                  }
+                },
+                "options": [
+                  "$\\dfrac{3}{6}$",
+                  "$\\dfrac{3}{12}$",
+                  "$\\dfrac{1}{2}$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$5-2=3$, keep the 6 → $\\frac{3}{6} = \\frac{1}{2}$.",
+                "check": [
+                  "Rational(5,6) - Rational(2,6) == Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "$\\dfrac{1}{5} + \\dfrac{3}{5} = ?$",
+                "options": [
+                  "$\\dfrac{4}{5}$",
+                  "$\\dfrac{4}{10}$",
+                  "$\\dfrac{2}{5}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$1+3=4$, keep the 5 → $\\frac{4}{5}$.",
+                "check": [
+                  "Rational(1,5) + Rational(3,5) == Rational(4,5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Like denominators — fast",
+            "prompt": "$\\dfrac{4}{11} + \\dfrac{5}{11} = ?$",
+            "options": [
+              "$\\dfrac{9}{22}$",
+              "$\\dfrac{1}{11}$",
+              "$\\dfrac{20}{11}$",
+              "$\\dfrac{9}{11}$"
+            ],
+            "correctIndex": 3,
+            "explanation": "Same bottom: $4+5=9$, keep 11 → $\\frac{9}{11}$.",
+            "check": [
+              "Rational(4,11) + Rational(5,11) == Rational(9,11)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Fractions in Mongolian cooking",
+            "body": "Traditional buuz dumplings are often made in batches. If you use $\\frac{3}{8}$ of a bag of flour in the morning and $\\frac{2}{8}$ in the evening, you've used $\\frac{5}{8}$ of the bag total — the same pieces, just counted together. Mongolian cooks have been doing fraction addition for centuries without calling it that."
+          },
+          {
+            "kind": "fractionCombine",
+            "eyebrow": "Concept B — Unlike denominators",
+            "title": "Make the pieces match first",
+            "teach": "These bars have **different** piece sizes — you can't count them together yet. Tap **Match** to give them a common denominator (splits the left bar into equal-size pieces), then tap **Combine** to add. This is exactly the equivalent-fractions move from Lesson 1.",
+            "config": {
+              "left": {
+                "num": 1,
+                "den": 4
+              },
+              "right": {
+                "num": 1,
+                "den": 2
+              },
+              "op": "add"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "The two-step: match, then combine",
+            "beats": [
+              "**Step 1 — Match:** find a common denominator and rewrite both fractions. Multiply each fraction's top and bottom by the same number (equivalent fractions from Lesson 1).",
+              "**Step 2 — Combine:** now the pieces are the same size — add or subtract the tops, keep the bottom.",
+              "Example: $\\frac{1}{4} + \\frac{1}{2}$. Common denominator = 4. Rewrite $\\frac{1}{2}$ as $\\frac{2}{4}$. Then $\\frac{1}{4} + \\frac{2}{4} = \\frac{3}{4}$.",
+              "The common denominator is often the **larger denominator** if it's a multiple of the smaller — or multiply the two denominators together if no quick multiple shows up."
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 3,
+                "den": 4,
+                "label": "1/4 + 1/2 = 3/4"
+              }
+            }
+          },
+          {
+            "kind": "fractionCombine",
+            "eyebrow": "Concept B — play again",
+            "title": "Now try subtraction with unlike denominators",
+            "teach": "Same two steps — match first, then subtract. Tap **Match** to give both bars 6ths, then tap **Combine** to remove the shaded pieces.",
+            "config": {
+              "left": {
+                "num": 5,
+                "den": 6
+              },
+              "right": {
+                "num": 1,
+                "den": 3
+              },
+              "op": "sub"
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Unlike denominators — match then combine",
+            "intro": "Step 1: find a common denominator and rewrite. Step 2: add or subtract the tops.",
+            "examples": [
+              {
+                "prompt": "Add $\\dfrac{1}{6} + \\dfrac{1}{3}$.",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 1,
+                    "den": 2,
+                    "label": "1/6 + 1/3 = 1/2"
+                  }
+                },
+                "steps": [
+                  "Common denominator: 6 (since $3 \\times 2 = 6$).",
+                  "Rewrite $\\frac{1}{3} = \\frac{2}{6}$ (multiply top and bottom by 2).",
+                  "$\\frac{1}{6} + \\frac{2}{6} = \\frac{3}{6} = \\frac{1}{2}$."
+                ],
+                "answer": "$\\dfrac{1}{2}$",
+                "check": [
+                  "Rational(1,6) + Rational(1,3) == Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "Subtract $\\dfrac{3}{4} - \\dfrac{1}{2}$.",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 1,
+                    "den": 4,
+                    "label": "3/4 − 1/2 = 1/4"
+                  }
+                },
+                "steps": [
+                  "Common denominator: 4.",
+                  "Rewrite $\\frac{1}{2} = \\frac{2}{4}$.",
+                  "$\\frac{3}{4} - \\frac{2}{4} = \\frac{1}{4}$."
+                ],
+                "answer": "$\\dfrac{1}{4}$",
+                "check": [
+                  "Rational(3,4) - Rational(1,2) == Rational(1,4)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Unlike denominators",
+            "intro": "Match first, then combine. Tap your answer.",
+            "problems": [
+              {
+                "prompt": "$\\dfrac{1}{4} + \\dfrac{1}{2} = ?$",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 3,
+                    "den": 4,
+                    "label": "after matching"
+                  }
+                },
+                "options": [
+                  "$\\dfrac{2}{6}$",
+                  "$\\dfrac{1}{4}$",
+                  "$\\dfrac{3}{4}$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Common denominator 4: $\\frac{1}{2} = \\frac{2}{4}$, so $\\frac{1}{4} + \\frac{2}{4} = \\frac{3}{4}$.",
+                "check": [
+                  "Rational(1,4) + Rational(1,2) == Rational(3,4)"
+                ]
+              },
+              {
+                "prompt": "$\\dfrac{5}{6} - \\dfrac{1}{3} = ?$",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 1,
+                    "den": 2,
+                    "label": "after matching"
+                  }
+                },
+                "options": [
+                  "$\\dfrac{1}{2}$",
+                  "$\\dfrac{4}{3}$",
+                  "$\\dfrac{2}{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Common denominator 6: $\\frac{1}{3} = \\frac{2}{6}$, so $\\frac{5}{6} - \\frac{2}{6} = \\frac{3}{6} = \\frac{1}{2}$.",
+                "check": [
+                  "Rational(5,6) - Rational(1,3) == Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "$\\dfrac{1}{3} + \\dfrac{1}{4} = ?$",
+                "options": [
+                  "$\\dfrac{2}{7}$",
+                  "$\\dfrac{7}{12}$",
+                  "$\\dfrac{1}{6}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Common denominator 12: $\\frac{1}{3} = \\frac{4}{12}$, $\\frac{1}{4} = \\frac{3}{12}$. Sum: $\\frac{7}{12}$.",
+                "check": [
+                  "Rational(1,3) + Rational(1,4) == Rational(7,12)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Unlike denominators",
+            "prompt": "$\\dfrac{2}{3} + \\dfrac{1}{6} = ?$",
+            "options": [
+              "$\\dfrac{3}{9}$",
+              "$\\dfrac{1}{2}$",
+              "$\\dfrac{3}{6}$",
+              "$\\dfrac{5}{6}$"
+            ],
+            "correctIndex": 3,
+            "explanation": "Common denominator 6: $\\frac{2}{3} = \\frac{4}{6}$. Then $\\frac{4}{6} + \\frac{1}{6} = \\frac{5}{6}$.",
+            "check": [
+              "Rational(2,3) + Rational(1,6) == Rational(5,6)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Mixed numbers — a short note",
+            "title": "When the answer goes over 1",
+            "beats": [
+              "Sometimes adding two fractions gives a result bigger than 1 whole — you get an **improper fraction** (top ≥ bottom), like $\\frac{5}{4}$.",
+              "Divide the top by the bottom: $5 \\div 4 = 1$ remainder $1$. The whole-number part is $1$, the leftover is $\\frac{1}{4}$.",
+              "So $\\frac{5}{4} = 1\\frac{1}{4}$ — read \"one and one-quarter\". This is a **mixed number**.",
+              "Example with unlike denominators: $\\frac{2}{3} + \\frac{3}{4}$. Common denominator 12 → $\\frac{8}{12} + \\frac{9}{12} = \\frac{17}{12} = 1\\frac{5}{12}$. In the interactive tool we always pick problems whose answer stays below 1, but you should know what to do when it doesn't!"
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 1,
+                "den": 4,
+                "label": "the leftover 1/4 after taking out 1 whole"
+              }
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Mixed numbers",
+            "prompt": "$\\dfrac{2}{3} + \\dfrac{3}{4} = \\dfrac{17}{12} = ?$ as a mixed number",
+            "options": [
+              "$1\\dfrac{5}{12}$",
+              "$1\\dfrac{7}{12}$",
+              "$2\\dfrac{1}{12}$",
+              "$\\dfrac{17}{12}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$17 \\div 12 = 1$ remainder $5$, so $\\frac{17}{12} = 1\\frac{5}{12}$.",
+            "check": [
+              "Rational(2,3) + Rational(3,4) == Rational(17,12)",
+              "Rational(17,12) > 1"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Like denominators:** pieces already match — add or subtract the tops, keep the bottom.",
+              "**Unlike denominators:** use the equivalent-fractions move (multiply top and bottom by the same number) to give both fractions the same denominator, then add or subtract the tops.",
+              "**Mixed numbers:** if the result is an improper fraction (top ≥ bottom), divide top by bottom to find the whole-number part and the remainder fraction.",
+              "The common denominator is often the **larger** of the two denominators — check if the smaller one divides into it evenly."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "You've seen both kinds — like and unlike denominators — plus mixed-number results. This mixed set covers all three. If you tap a wrong answer, look at the explanation and try again."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$\\dfrac{3}{8} + \\dfrac{2}{8} = ?$",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 5,
+                    "den": 8,
+                    "label": "result"
+                  }
+                },
+                "options": [
+                  "$\\dfrac{5}{16}$",
+                  "$\\dfrac{5}{8}$",
+                  "$\\dfrac{6}{8}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Same denominator: $3+2=5$, keep 8 → $\\frac{5}{8}$.",
+                "check": [
+                  "Rational(3,8) + Rational(2,8) == Rational(5,8)"
+                ]
+              },
+              {
+                "prompt": "$\\dfrac{7}{10} - \\dfrac{3}{10} = ?$",
+                "options": [
+                  "$\\dfrac{4}{10}$ (unsimplified)",
+                  "$\\dfrac{4}{20}$",
+                  "$\\dfrac{2}{5}$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$7-3=4$, keep 10 → $\\frac{4}{10} = \\frac{2}{5}$.",
+                "check": [
+                  "Rational(7,10) - Rational(3,10) == Rational(2,5)"
+                ]
+              },
+              {
+                "prompt": "$\\dfrac{1}{4} + \\dfrac{1}{2} = ?$",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 3,
+                    "den": 4,
+                    "label": "result"
+                  }
+                },
+                "options": [
+                  "$\\dfrac{3}{4}$",
+                  "$\\dfrac{2}{6}$",
+                  "$\\dfrac{1}{6}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Common denominator 4: $\\frac{1}{2} = \\frac{2}{4}$, so $\\frac{1}{4} + \\frac{2}{4} = \\frac{3}{4}$.",
+                "check": [
+                  "Rational(1,4) + Rational(1,2) == Rational(3,4)"
+                ]
+              },
+              {
+                "prompt": "$\\dfrac{5}{6} - \\dfrac{1}{3} = ?$",
+                "options": [
+                  "$\\dfrac{4}{3}$",
+                  "$\\dfrac{1}{2}$",
+                  "$\\dfrac{5}{3}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Common denominator 6: $\\frac{1}{3} = \\frac{2}{6}$. $\\frac{5}{6} - \\frac{2}{6} = \\frac{3}{6} = \\frac{1}{2}$.",
+                "check": [
+                  "Rational(5,6) - Rational(1,3) == Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "What mixed number equals $\\dfrac{9}{4}$?",
+                "options": [
+                  "$1\\dfrac{3}{4}$",
+                  "$2\\dfrac{3}{4}$",
+                  "$2\\dfrac{1}{4}$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$9 \\div 4 = 2$ remainder $1$ → $2\\frac{1}{4}$.",
+                "check": [
+                  "Rational(9,4) == 2 + Rational(1,4)",
+                  "Rational(9,4) > 2"
+                ]
+              },
+              {
+                "prompt": "$\\dfrac{1}{6} + \\dfrac{1}{3} = ?$",
+                "options": [
+                  "$\\dfrac{1}{2}$",
+                  "$\\dfrac{2}{9}$",
+                  "$\\dfrac{2}{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Common denominator 6: $\\frac{1}{3} = \\frac{2}{6}$. $\\frac{1}{6} + \\frac{2}{6} = \\frac{3}{6} = \\frac{1}{2}$.",
+                "check": [
+                  "Rational(1,6) + Rational(1,3) == Rational(1,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Adding & Subtracting Fractions\"",
+            "body": "Ancient Egyptian scribes around 1650 BCE used only **unit fractions** (fractions with 1 on top) to write every fraction — so they'd write $\\frac{3}{4}$ as $\\frac{1}{2} + \\frac{1}{4}$. Adding fractions with unlike denominators was central to their entire number system. You now know exactly how they did it."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "multiplying-fractions",
+      "title": "Multiplying Fractions",
+      "concreteComparison": "Imagine you have **$\\frac{2}{3}$ of a chocolate bar** left — and you want to eat **$\\frac{3}{4}$ of that piece**. How much of the *whole* bar do you end up with? Drawing a rectangle and shading two overlapping regions gives you the answer instantly: the dark overlap is $\\frac{6}{12} = \\frac{1}{2}$ of the bar. That is what multiplying fractions means — a fraction *of* a fraction.",
+      "objective": "Find the product of two fractions using an area model, then use the shortcut (multiply tops, multiply bottoms, simplify) and apply it to real-world problems.",
+      "concept": [
+        "**A fraction of a fraction is a product.** Shade $\\frac{2}{3}$ of the columns of a grid and $\\frac{3}{4}$ of the rows. The dark overlap — the part inside both shaded regions — is the product. It covers $6$ small squares out of $12$ total squares, so the answer is $\\frac{6}{12}$.",
+        "**The shortcut:** multiply the two tops (numerators) to get the new top, and multiply the two bottoms (denominators) to get the new bottom. $\\frac{2}{3} \\times \\frac{3}{4} = \\frac{2 \\times 3}{3 \\times 4} = \\frac{6}{12}$.",
+        "**Simplify the result** the same way you learned in *Equivalent Fractions*: divide the top and bottom by their greatest common factor. $\\frac{6}{12}$ — both divide by 6 — gives $\\frac{1}{2}$."
+      ],
+      "keyIdea": "To multiply two fractions: multiply the tops, multiply the bottoms, then simplify. The area model shows *why* it works — the overlap squares out of the total squares.",
+      "facts": [
+        {
+          "title": "Multiplying fractions",
+          "latex": "$\\dfrac{a}{b} \\times \\dfrac{c}{d} = \\dfrac{a \\times c}{b \\times d}$",
+          "explanation": "Multiply numerator by numerator and denominator by denominator, then simplify the result."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "mf-we1",
+          "statement": "Calculate $\\dfrac{2}{3} \\times \\dfrac{3}{4}$.",
+          "note": "Multiply tops together and bottoms together, then simplify.",
+          "solution": "$\\dfrac{2}{3} \\times \\dfrac{3}{4} = \\dfrac{2 \\times 3}{3 \\times 4} = \\dfrac{6}{12}$. Both divide by 6: $\\dfrac{6}{12} = \\dfrac{1}{2}$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(2,3)*Rational(3,4)==Rational(1,2)"
+          ]
+        },
+        {
+          "id": "mf-we2",
+          "statement": "Calculate $\\dfrac{2}{5} \\times \\dfrac{1}{3}$.",
+          "note": "Multiply tops, multiply bottoms. Check if the result simplifies.",
+          "solution": "$\\dfrac{2}{5} \\times \\dfrac{1}{3} = \\dfrac{2 \\times 1}{5 \\times 3} = \\dfrac{2}{15}$. Nothing divides 2 and 15, so $\\dfrac{2}{15}$ is already simplest.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(2,5)*Rational(1,3)==Rational(2,15)"
+          ]
+        },
+        {
+          "id": "mf-we3",
+          "statement": "A recipe uses $\\dfrac{3}{4}$ of a bag of flour. You want to make $\\dfrac{1}{2}$ of the recipe. How much of a bag do you need?",
+          "note": "\"Half of three-quarters\" means multiply.",
+          "solution": "$\\dfrac{1}{2} \\times \\dfrac{3}{4} = \\dfrac{1 \\times 3}{2 \\times 4} = \\dfrac{3}{8}$ of a bag.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(1,2)*Rational(3,4)==Rational(3,8)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding the denominators instead of multiplying them ($\\frac{1}{2} \\times \\frac{1}{3} = \\frac{1}{5}$ — wrong!).",
+          "correction": "Multiplying fractions means **multiply** the tops and **multiply** the bottoms: $\\frac{1}{2} \\times \\frac{1}{3} = \\frac{1}{6}$.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting to simplify the result (leaving $\\frac{6}{12}$ instead of $\\frac{1}{2}$).",
+          "correction": "Always check if the result simplifies — divide the top and bottom by their greatest common factor.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "mf-t1",
+          "statement": "Calculate $\\dfrac{1}{2} \\times \\dfrac{2}{3}$.",
+          "solution": "$\\dfrac{1 \\times 2}{2 \\times 3} = \\dfrac{2}{6} = \\dfrac{1}{3}$.",
+          "check": [
+            "Rational(1,2)*Rational(2,3)==Rational(1,3)"
+          ]
+        },
+        {
+          "id": "mf-t2",
+          "statement": "Calculate $\\dfrac{3}{5} \\times \\dfrac{1}{2}$.",
+          "solution": "$\\dfrac{3 \\times 1}{5 \\times 2} = \\dfrac{3}{10}$.",
+          "check": [
+            "Rational(3,5)*Rational(1,2)==Rational(3,10)"
+          ]
+        },
+        {
+          "id": "mf-t3",
+          "statement": "You have $\\dfrac{3}{4}$ of a pizza. You eat $\\dfrac{2}{3}$ of what is left. What fraction of the whole pizza did you eat?",
+          "solution": "$\\dfrac{2}{3} \\times \\dfrac{3}{4} = \\dfrac{6}{12} = \\dfrac{1}{2}$ of the whole pizza.",
+          "check": [
+            "Rational(2,3)*Rational(3,4)==Rational(1,2)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "areaModel",
+            "eyebrow": "Concept A",
+            "title": "Build the overlap yourself",
+            "teach": "The grid has **3 columns** (for the thirds) and **4 rows** (for the quarters). The light shading shows $\\frac{2}{3}$ of the columns; the stripe shading shows $\\frac{3}{4}$ of the rows. The **dark overlap** is the product. Use the steppers to change how many columns and rows are shaded — watch the overlap fraction update.",
+            "config": {
+              "aNum": 2,
+              "aDen": 3,
+              "bNum": 3,
+              "bDen": 4
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Counting overlap squares",
+            "beats": [
+              "You have $\\frac{2}{3}$ of a chocolate bar left. You eat $\\frac{3}{4}$ of **that** piece. How much of the whole bar is that?",
+              "The grid has $3 \\times 4 = 12$ small squares total — that's the new **denominator**.",
+              "The overlap has $2 \\times 3 = 6$ dark squares — that's the new **numerator**.",
+              "So $\\frac{2}{3} \\times \\frac{3}{4} = \\frac{2 \\times 3}{3 \\times 4} = \\frac{6}{12}$.",
+              "Simplify using what you learned in *Equivalent Fractions*: both divide by 6 → $\\frac{1}{2}$."
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 1,
+                "den": 2,
+                "label": "6/12 simplified = 1/2"
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Seeing the overlap",
+            "intro": "Sketch the grid in your head: columns for one fraction, rows for the other. Count the overlap.",
+            "examples": [
+              {
+                "prompt": "Use an area model to find $\\frac{1}{2} \\times \\frac{2}{3}$.",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 2,
+                    "den": 6,
+                    "label": "overlap = 2 out of 6"
+                  }
+                },
+                "steps": [
+                  "Grid: 2 columns (halves) × 3 rows (thirds) = 6 total squares.",
+                  "Shade 1 column and 2 rows. Overlap: $1 \\times 2 = 2$ dark squares.",
+                  "$\\frac{1}{2} \\times \\frac{2}{3} = \\frac{2}{6}$. Both divide by 2 → $\\frac{1}{3}$."
+                ],
+                "answer": "$\\frac{1}{3}$",
+                "check": [
+                  "Rational(1,2)*Rational(2,3)==Rational(1,3)"
+                ]
+              },
+              {
+                "prompt": "Use an area model to find $\\frac{3}{4} \\times \\frac{1}{3}$.",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 3,
+                    "den": 12,
+                    "label": "overlap = 3 out of 12"
+                  }
+                },
+                "steps": [
+                  "Grid: 4 columns × 3 rows = 12 total squares.",
+                  "Shade 3 columns and 1 row. Overlap: $3 \\times 1 = 3$ dark squares.",
+                  "$\\frac{3}{4} \\times \\frac{1}{3} = \\frac{3}{12}$. Both divide by 3 → $\\frac{1}{4}$."
+                ],
+                "answer": "$\\frac{1}{4}$",
+                "check": [
+                  "Rational(3,4)*Rational(1,3)==Rational(1,4)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Read the overlap",
+            "intro": "Picture the grid: columns for one fraction, rows for the other. Count overlap squares ÷ total squares.",
+            "problems": [
+              {
+                "prompt": "What does the area model give for $\\frac{1}{2} \\times \\frac{1}{2}$?",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 1,
+                    "den": 4,
+                    "label": "overlap = 1 out of 4"
+                  }
+                },
+                "options": [
+                  "$\\frac{1}{2}$",
+                  "$\\frac{1}{4}$",
+                  "$\\frac{2}{4}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Grid: $2 \\times 2 = 4$ squares. Overlap: $1 \\times 1 = 1$. Answer: $\\frac{1}{4}$.",
+                "check": [
+                  "Rational(1,2)*Rational(1,2)==Rational(1,4)"
+                ]
+              },
+              {
+                "prompt": "Area model for $\\frac{2}{3} \\times \\frac{1}{4}$ — how many overlap squares out of how many total?",
+                "options": [
+                  "3 overlap, 12 total → $\\frac{3}{12}$",
+                  "2 overlap, 7 total → $\\frac{2}{7}$",
+                  "2 overlap, 12 total → $\\frac{2}{12}$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Grid: $3 \\times 4 = 12$ total. Overlap: $2 \\times 1 = 2$. So $\\frac{2}{12} = \\frac{1}{6}$.",
+                "check": [
+                  "Rational(2,3)*Rational(1,4)==Rational(1,6)"
+                ]
+              },
+              {
+                "prompt": "Area model for $\\frac{1}{2} \\times \\frac{4}{5}$ — what is the simplified answer?",
+                "options": [
+                  "$\\frac{2}{5}$",
+                  "$\\frac{4}{7}$",
+                  "$\\frac{5}{10}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Grid: $2 \\times 5 = 10$ total. Overlap: $1 \\times 4 = 4$. $\\frac{4}{10} = \\frac{2}{5}$.",
+                "check": [
+                  "Rational(1,2)*Rational(4,5)==Rational(2,5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Name the overlap",
+            "prompt": "An area model has 5 columns and 2 rows. You shade 3 columns and 1 row. What fraction does the overlap represent?",
+            "options": [
+              "$\\frac{4}{10}$",
+              "$\\frac{3}{7}$",
+              "$\\frac{3}{10}$",
+              "$\\frac{1}{5}$"
+            ],
+            "correctIndex": 2,
+            "explanation": "Total squares: $5 \\times 2 = 10$. Overlap: $3 \\times 1 = 3$. Overlap fraction: $\\frac{3}{10}$.",
+            "check": [
+              "Rational(3,5)*Rational(1,2)==Rational(3,10)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Area models are how builders think",
+            "body": "When an architect says a room is $\\frac{3}{4}$ as wide as another and $\\frac{2}{3}$ as long, they multiply those fractions to find the fraction of the floor area. Every blueprint calculation is a hidden area model."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "The shortcut — multiply tops, multiply bottoms",
+            "beats": [
+              "The area model told us **why**: total squares = bottom × bottom, overlap squares = top × top.",
+              "**The shortcut:** $\\dfrac{a}{b} \\times \\dfrac{c}{d} = \\dfrac{a \\times c}{b \\times d}$. Tops together, bottoms together.",
+              "Try it: $\\dfrac{2}{5} \\times \\dfrac{1}{3} = \\dfrac{2 \\times 1}{5 \\times 3} = \\dfrac{2}{15}$. Nothing divides 2 and 15 — already simplest.",
+              "Always finish by simplifying, just like in *Equivalent Fractions* — divide top and bottom by the same number until you can't anymore."
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 2,
+                "den": 15,
+                "label": "2/5 × 1/3 = 2/15"
+              }
+            }
+          },
+          {
+            "kind": "areaModel",
+            "eyebrow": "Play with it",
+            "title": "Shortcut matches the model",
+            "teach": "Try $\\frac{2}{5} \\times \\frac{1}{3}$: set the steppers to 2 of 5 columns and 1 of 3 rows. The overlap is $\\frac{2}{15}$ — and so is the shortcut $\\frac{2 \\times 1}{5 \\times 3}$. They always agree.",
+            "config": {
+              "aNum": 2,
+              "aDen": 5,
+              "bNum": 1,
+              "bDen": 3
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Using the shortcut",
+            "intro": "Multiply tops, multiply bottoms, then simplify with the equivalent-fractions technique.",
+            "examples": [
+              {
+                "prompt": "Calculate $\\dfrac{3}{4} \\times \\dfrac{2}{5}$.",
+                "steps": [
+                  "Tops: $3 \\times 2 = 6$. Bottoms: $4 \\times 5 = 20$.",
+                  "$\\dfrac{6}{20}$. Both divide by 2 → $\\dfrac{3}{10}$."
+                ],
+                "answer": "$\\dfrac{3}{10}$",
+                "check": [
+                  "Rational(3,4)*Rational(2,5)==Rational(3,10)"
+                ]
+              },
+              {
+                "prompt": "Calculate $\\dfrac{4}{9} \\times \\dfrac{3}{8}$.",
+                "steps": [
+                  "Tops: $4 \\times 3 = 12$. Bottoms: $9 \\times 8 = 72$.",
+                  "$\\dfrac{12}{72}$. Both divide by 12 → $\\dfrac{1}{6}$."
+                ],
+                "answer": "$\\dfrac{1}{6}$",
+                "check": [
+                  "Rational(4,9)*Rational(3,8)==Rational(1,6)"
+                ]
+              },
+              {
+                "prompt": "A garden plot is $\\dfrac{2}{3}$ of a field wide and $\\dfrac{3}{5}$ of a field long. What fraction of the field does it cover?",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 6,
+                    "den": 15,
+                    "label": "2/3 × 3/5 = 6/15 = 2/5"
+                  }
+                },
+                "steps": [
+                  "Area = width × length = $\\dfrac{2}{3} \\times \\dfrac{3}{5}$.",
+                  "Tops: $2 \\times 3 = 6$. Bottoms: $3 \\times 5 = 15$.",
+                  "$\\dfrac{6}{15}$. Both divide by 3 → $\\dfrac{2}{5}$ of the field."
+                ],
+                "answer": "$\\dfrac{2}{5}$ of the field",
+                "check": [
+                  "Rational(2,3)*Rational(3,5)==Rational(2,5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Apply the shortcut",
+            "intro": "Multiply tops, multiply bottoms, simplify. Tap the right answer.",
+            "problems": [
+              {
+                "prompt": "Calculate $\\dfrac{1}{3} \\times \\dfrac{3}{5}$.",
+                "options": [
+                  "$\\dfrac{3}{15}$",
+                  "$\\dfrac{4}{8}$",
+                  "$\\dfrac{1}{5}$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$\\dfrac{1 \\times 3}{3 \\times 5} = \\dfrac{3}{15}$. Both divide by 3 → $\\dfrac{1}{5}$.",
+                "check": [
+                  "Rational(1,3)*Rational(3,5)==Rational(1,5)"
+                ]
+              },
+              {
+                "prompt": "Calculate $\\dfrac{1}{2} \\times \\dfrac{4}{5}$.",
+                "options": [
+                  "$\\dfrac{2}{5}$",
+                  "$\\dfrac{5}{7}$",
+                  "$\\dfrac{4}{7}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\dfrac{1 \\times 4}{2 \\times 5} = \\dfrac{4}{10}$. Both divide by 2 → $\\dfrac{2}{5}$.",
+                "check": [
+                  "Rational(1,2)*Rational(4,5)==Rational(2,5)"
+                ]
+              },
+              {
+                "prompt": "Calculate $\\dfrac{5}{6} \\times \\dfrac{3}{10}$.",
+                "options": [
+                  "$\\dfrac{15}{60}$",
+                  "$\\dfrac{1}{4}$",
+                  "$\\dfrac{8}{16}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$\\dfrac{5 \\times 3}{6 \\times 10} = \\dfrac{15}{60}$. Both divide by 15 → $\\dfrac{1}{4}$.",
+                "check": [
+                  "Rational(5,6)*Rational(3,10)==Rational(1,4)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Multiply and simplify",
+            "prompt": "What is $\\dfrac{2}{5} \\times \\dfrac{1}{3}$?",
+            "options": [
+              "$\\dfrac{3}{8}$",
+              "$\\dfrac{2}{8}$",
+              "$\\dfrac{2}{15}$",
+              "$\\dfrac{3}{15}$"
+            ],
+            "correctIndex": 2,
+            "explanation": "Tops: $2 \\times 1 = 2$. Bottoms: $5 \\times 3 = 15$. Result: $\\frac{2}{15}$. Nothing divides 2 and 15 — already simplest.",
+            "check": [
+              "Rational(2,5)*Rational(1,3)==Rational(2,15)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Multiplying fractions is smaller",
+            "body": "When you multiply two fractions that are each less than 1, the answer is always **smaller** than either one — because you are taking a *part of a part*. $\\frac{1}{2} \\times \\frac{1}{2} = \\frac{1}{4}$. A quarter is smaller than a half. The number line gets shorter, not longer."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**A fraction of a fraction** = the dark overlap in an area model — overlap squares ÷ total squares.",
+              "**The shortcut:** $\\dfrac{a}{b} \\times \\dfrac{c}{d} = \\dfrac{a \\times c}{b \\times d}$ — multiply tops, multiply bottoms.",
+              "**Always simplify** the result — same move as *Equivalent Fractions*: divide top and bottom by their greatest common factor.",
+              "Multiplying two fractions less than 1 always gives a result **smaller** than either fraction — you're taking a part of a part."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Two skills locked in: reading the area model and using the shortcut. Work through this mixed set — if you tap wrong, just try again."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Calculate $\\dfrac{3}{4} \\times \\dfrac{1}{3}$.",
+                "options": [
+                  "$\\dfrac{1}{4}$",
+                  "$\\dfrac{4}{7}$",
+                  "$\\dfrac{3}{7}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\dfrac{3 \\times 1}{4 \\times 3} = \\dfrac{3}{12} = \\dfrac{1}{4}$.",
+                "check": [
+                  "Rational(3,4)*Rational(1,3)==Rational(1,4)"
+                ]
+              },
+              {
+                "prompt": "Calculate $\\dfrac{2}{5} \\times \\dfrac{5}{6}$.",
+                "options": [
+                  "$\\dfrac{10}{11}$",
+                  "$\\dfrac{1}{3}$",
+                  "$\\dfrac{7}{11}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$\\dfrac{2 \\times 5}{5 \\times 6} = \\dfrac{10}{30} = \\dfrac{1}{3}$.",
+                "check": [
+                  "Rational(2,5)*Rational(5,6)==Rational(1,3)"
+                ]
+              },
+              {
+                "prompt": "An area model has 3 columns and 5 rows. 2 columns and 4 rows are shaded. What fraction is the overlap?",
+                "options": [
+                  "$\\dfrac{6}{15}$",
+                  "$\\dfrac{8}{8}$",
+                  "$\\dfrac{8}{15}$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Overlap: $2 \\times 4 = 8$. Total: $3 \\times 5 = 15$. Fraction: $\\dfrac{8}{15}$ (already simplest).",
+                "check": [
+                  "Rational(2,3)*Rational(4,5)==Rational(8,15)"
+                ]
+              },
+              {
+                "prompt": "You have $\\dfrac{3}{4}$ of a bottle of juice. You drink $\\dfrac{2}{3}$ of what is there. What fraction of the full bottle did you drink?",
+                "options": [
+                  "$\\dfrac{1}{2}$",
+                  "$\\dfrac{5}{7}$",
+                  "$\\dfrac{1}{4}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\dfrac{2}{3} \\times \\dfrac{3}{4} = \\dfrac{6}{12} = \\dfrac{1}{2}$ of the full bottle.",
+                "check": [
+                  "Rational(2,3)*Rational(3,4)==Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "Which multiplication gives the **smallest** result?",
+                "options": [
+                  "$\\dfrac{1}{2} \\times \\dfrac{1}{2}$",
+                  "$\\dfrac{1}{4} \\times \\dfrac{1}{3}$",
+                  "$\\dfrac{2}{3} \\times \\dfrac{1}{2}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$\\dfrac{1}{4} \\times \\dfrac{1}{3} = \\dfrac{1}{12}$. $\\dfrac{1}{2} \\times \\dfrac{1}{2} = \\dfrac{1}{4}$. $\\dfrac{2}{3} \\times \\dfrac{1}{2} = \\dfrac{1}{3}$. The smallest is $\\dfrac{1}{12}$.",
+                "check": [
+                  "Rational(1,4)*Rational(1,3) < Rational(1,4)",
+                  "Rational(1,4)*Rational(1,3) < Rational(1,3)"
+                ]
+              },
+              {
+                "prompt": "Calculate $\\dfrac{3}{5} \\times \\dfrac{1}{2}$.",
+                "options": [
+                  "$\\dfrac{4}{7}$",
+                  "$\\dfrac{3}{7}$",
+                  "$\\dfrac{3}{10}$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$\\dfrac{3 \\times 1}{5 \\times 2} = \\dfrac{3}{10}$. Nothing divides 3 and 10 — already simplest.",
+                "check": [
+                  "Rational(3,5)*Rational(1,2)==Rational(3,10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You have finished \"Multiplying Fractions\"",
+            "body": "You can now picture the overlap in an area model and use the shortcut to multiply any two fractions — then simplify the result using equivalent fractions. Next up: **dividing fractions**, where you will flip one fraction and multiply instead."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "dividing-fractions",
+      "title": "Dividing Fractions",
+      "concreteComparison": "You have **$\\frac{3}{4}$** of a chocolate bar and each friend gets a **$\\frac{1}{8}$-sized piece**. How many friends can you feed? You're asking: *how many eighths fit inside three-quarters?* Count them up — the answer is **6**. That's fraction division: finding how many of one piece fit inside another.",
+      "objective": "Divide a fraction by a fraction using the measurement model (how many fit?) and the keep-change-flip shortcut, and explain why the shortcut works.",
+      "concept": [
+        "**Measurement model:** $\\frac{3}{4} \\div \\frac{1}{8}$ asks \"how many $\\frac{1}{8}$-size pieces fit inside $\\frac{3}{4}$?\" Count the pieces on a bar and you get 6.",
+        "**Keep-change-flip shortcut:** to divide by a fraction, *keep* the dividend, *change* $\\div$ to $\\times$, and *flip* the divisor to its reciprocal. So $\\frac{3}{4} \\div \\frac{1}{8} = \\frac{3}{4} \\times \\frac{8}{1} = 6$.",
+        "**Why it works:** dividing by $\\frac{1}{8}$ is the same as asking \"how many eighths?\", which is the same as multiplying by 8 — the reciprocal. Flipping is just the shortcut for that swap."
+      ],
+      "keyIdea": "To divide by a fraction, **keep** the first fraction, **change** $\\div$ to $\\times$, and **flip** the second fraction (use its reciprocal). This works because dividing by $\\frac{a}{b}$ is identical to multiplying by $\\frac{b}{a}$.",
+      "facts": [
+        {
+          "title": "Keep-change-flip",
+          "latex": "$\\dfrac{a}{b} \\div \\dfrac{c}{d} = \\dfrac{a}{b} \\times \\dfrac{d}{c}$",
+          "explanation": "Flip the divisor (the fraction you're dividing by) to its reciprocal, then multiply. The answer is the number of divisor-size pieces that fit in the dividend."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "df-we1",
+          "statement": "How many $\\frac{1}{8}$-size pieces fit in $\\frac{3}{4}$? In other words, find $\\frac{3}{4} \\div \\frac{1}{8}$.",
+          "note": "Use keep-change-flip, then multiply.",
+          "solution": "Keep $\\frac{3}{4}$, change $\\div$ to $\\times$, flip $\\frac{1}{8}$ to $\\frac{8}{1}$: $\\frac{3}{4} \\times \\frac{8}{1} = \\frac{24}{4} = 6$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(3,4)/Rational(1,8)==6"
+          ]
+        },
+        {
+          "id": "df-we2",
+          "statement": "Find $\\frac{1}{2} \\div \\frac{1}{6}$.",
+          "note": "How many sixths fit inside one-half?",
+          "solution": "Keep $\\frac{1}{2}$, flip $\\frac{1}{6}$ to $\\frac{6}{1}$: $\\frac{1}{2} \\times \\frac{6}{1} = \\frac{6}{2} = 3$. Three sixths fit in one-half.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(1,2)/Rational(1,6)==3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Flipping the wrong fraction — flipping the dividend instead of the divisor.",
+          "correction": "Only flip the fraction you are dividing **by** (the one after the $\\div$ sign). Keep the first fraction exactly as it is.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting to flip at all and just multiplying the two fractions straight across.",
+          "correction": "The divisor must become its reciprocal first. $\\frac{3}{4} \\div \\frac{1}{8}$ is $\\frac{3}{4} \\times \\frac{8}{1}$, not $\\frac{3}{4} \\times \\frac{1}{8}$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "df-t1",
+          "statement": "Find $\\frac{2}{3} \\div \\frac{1}{6}$.",
+          "solution": "Keep $\\frac{2}{3}$, flip $\\frac{1}{6}$ to $\\frac{6}{1}$: $\\frac{2}{3} \\times \\frac{6}{1} = \\frac{12}{3} = 4$.",
+          "check": [
+            "Rational(2,3)/Rational(1,6)==4"
+          ]
+        },
+        {
+          "id": "df-t2",
+          "statement": "Find $\\frac{3}{4} \\div \\frac{1}{4}$.",
+          "solution": "Keep $\\frac{3}{4}$, flip $\\frac{1}{4}$ to $\\frac{4}{1}$: $\\frac{3}{4} \\times \\frac{4}{1} = \\frac{12}{4} = 3$.",
+          "check": [
+            "Rational(3,4)/Rational(1,4)==3"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "fractionDivide",
+            "eyebrow": "Concept A",
+            "title": "How many fit?",
+            "teach": "This bar shows $\\frac{3}{4}$. Tap **Count** and watch the tool mark off $\\frac{1}{8}$-size pieces one by one. How many fit? **Count them** — that number is your answer.",
+            "config": {
+              "dividend": {
+                "num": 3,
+                "den": 4
+              },
+              "divisor": {
+                "num": 1,
+                "den": 8
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Why counting pieces gives the answer",
+            "beats": [
+              "$\\frac{3}{4} \\div \\frac{1}{8}$ is asking: **how many $\\frac{1}{8}$-size pieces fit inside $\\frac{3}{4}$?**",
+              "Put both fractions over the same-size pieces (eighths): $\\frac{3}{4} = \\frac{6}{8}$. Six eighths fit inside six-eighths — so the answer is **6**.",
+              "This is the **measurement model** of division — same idea as asking how many 2-metre sticks fit in a 6-metre hall.",
+              "Tie-back to **equivalent fractions**: getting a common denominator is just the first step — it lets you count pieces on the same bar."
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 6,
+                "den": 8,
+                "label": "6 eighths — 6 pieces fit"
+              }
+            }
+          },
+          {
+            "kind": "fractionDivide",
+            "eyebrow": "Play with it",
+            "title": "Now try one-half divided by one-sixth",
+            "teach": "Bar shows $\\frac{1}{2}$. Each piece is $\\frac{1}{6}$. Tap **Count** — how many sixths fit inside one-half?",
+            "config": {
+              "dividend": {
+                "num": 1,
+                "den": 2
+              },
+              "divisor": {
+                "num": 1,
+                "den": 6
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Count how many fit",
+            "intro": "Re-write the dividend with the divisor's denominator, then count the pieces.",
+            "examples": [
+              {
+                "prompt": "$\\frac{3}{4} \\div \\frac{1}{8}$ — how many $\\frac{1}{8}$ pieces fit in $\\frac{3}{4}$?",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 6,
+                    "den": 8,
+                    "label": "3/4 = 6/8"
+                  }
+                },
+                "steps": [
+                  "Convert: $\\frac{3}{4} = \\frac{6}{8}$.",
+                  "Count: how many $\\frac{1}{8}$ pieces in $\\frac{6}{8}$? **6**."
+                ],
+                "answer": "$6$",
+                "check": [
+                  "Rational(3,4)/Rational(1,8)==6"
+                ]
+              },
+              {
+                "prompt": "$\\frac{1}{2} \\div \\frac{1}{6}$ — how many $\\frac{1}{6}$ pieces fit in $\\frac{1}{2}$?",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 3,
+                    "den": 6,
+                    "label": "1/2 = 3/6"
+                  }
+                },
+                "steps": [
+                  "Convert: $\\frac{1}{2} = \\frac{3}{6}$.",
+                  "Count: how many $\\frac{1}{6}$ pieces in $\\frac{3}{6}$? **3**."
+                ],
+                "answer": "$3$",
+                "check": [
+                  "Rational(1,2)/Rational(1,6)==3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Count the pieces",
+            "intro": "Convert the dividend to the divisor's denominator, then count. Tap your answer.",
+            "problems": [
+              {
+                "prompt": "$\\frac{2}{3} \\div \\frac{1}{6}$ — how many sixths fit in $\\frac{2}{3}$?",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 4,
+                    "den": 6,
+                    "label": "2/3 = 4/6"
+                  }
+                },
+                "options": [
+                  "$4$",
+                  "$3$",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{2}{3} = \\frac{4}{6}$. Four $\\frac{1}{6}$ pieces fit.",
+                "check": [
+                  "Rational(2,3)/Rational(1,6)==4"
+                ]
+              },
+              {
+                "prompt": "$\\frac{3}{4} \\div \\frac{1}{4}$ — how many quarter-pieces fit in $\\frac{3}{4}$?",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 3,
+                    "den": 4,
+                    "label": "3/4"
+                  }
+                },
+                "options": [
+                  "$4$",
+                  "$3$",
+                  "$2$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$\\frac{3}{4}$ already has fourths. Three $\\frac{1}{4}$ pieces fit.",
+                "check": [
+                  "Rational(3,4)/Rational(1,4)==3"
+                ]
+              },
+              {
+                "prompt": "$1 \\div \\frac{1}{3}$ — how many thirds fit in one whole?",
+                "options": [
+                  "$1$",
+                  "$2$",
+                  "$3$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$1 = \\frac{3}{3}$. Three $\\frac{1}{3}$ pieces fit in one whole.",
+                "check": [
+                  "Rational(1,1)/Rational(1,3)==3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Count the sixths",
+            "prompt": "How many $\\frac{1}{6}$ pieces fit in $\\frac{5}{6}$?",
+            "options": [
+              "$5$",
+              "$6$",
+              "$3$",
+              "$4$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\frac{5}{6}$ already has sixths. Five $\\frac{1}{6}$ pieces fit — so $\\frac{5}{6} \\div \\frac{1}{6} = 5$.",
+            "check": [
+              "Rational(5,6)/Rational(1,6)==5"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Cooks use fraction division every day",
+            "body": "A recipe uses $\\frac{3}{4}$ of a cup of rice per person. You have a $\\frac{1}{4}$-cup scoop. How many scoops? $\\frac{3}{4} \\div \\frac{1}{4} = 3$ scoops. Every time a cook asks \"how many scoops fill this amount?\", they're doing fraction division — usually without even realising it."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "The shortcut: keep, change, flip",
+            "beats": [
+              "Counting pieces works, but there is a faster shortcut for any fraction division.",
+              "**Keep** the first fraction exactly as it is. **Change** $\\div$ to $\\times$. **Flip** the second fraction upside-down (that flipped version is called the **reciprocal**).",
+              "Example: $\\frac{3}{4} \\div \\frac{1}{8}$ → $\\frac{3}{4} \\times \\frac{8}{1} = \\frac{24}{4} = 6$. Same answer as counting!",
+              "**Why it works:** dividing by $\\frac{1}{8}$ is the same as asking \"how many eighths?\", which is multiplying by 8. Flipping $\\frac{1}{8}$ gives $\\frac{8}{1} = 8$ — that's exactly the same move. Builds on **multiplying fractions** from the previous lesson."
+            ]
+          },
+          {
+            "kind": "fractionDivide",
+            "eyebrow": "Concept B — play with it",
+            "title": "Keep-change-flip in action",
+            "teach": "Watch the shortcut animate: the bar marks off $\\frac{1}{6}$-size pieces inside $\\frac{2}{3}$. Confirm that $\\frac{2}{3} \\times \\frac{6}{1} = 4$ matches the count.",
+            "config": {
+              "dividend": {
+                "num": 2,
+                "den": 3
+              },
+              "divisor": {
+                "num": 1,
+                "den": 6
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Keep-change-flip",
+            "intro": "Keep the dividend, change ÷ to ×, flip the divisor. Multiply straight across.",
+            "examples": [
+              {
+                "prompt": "Find $\\frac{1}{2} \\div \\frac{1}{8}$ using keep-change-flip.",
+                "steps": [
+                  "Keep $\\frac{1}{2}$. Change $\\div$ to $\\times$. Flip $\\frac{1}{8}$ to $\\frac{8}{1}$.",
+                  "$\\frac{1}{2} \\times \\frac{8}{1} = \\frac{8}{2} = 4$."
+                ],
+                "answer": "$4$",
+                "check": [
+                  "Rational(1,2)/Rational(1,8)==4"
+                ]
+              },
+              {
+                "prompt": "Find $\\frac{1}{2} \\div \\frac{1}{6}$ using keep-change-flip.",
+                "steps": [
+                  "Keep $\\frac{1}{2}$. Flip $\\frac{1}{6}$ to $\\frac{6}{1}$.",
+                  "$\\frac{1}{2} \\times \\frac{6}{1} = \\frac{6}{2} = 3$."
+                ],
+                "answer": "$3$",
+                "check": [
+                  "Rational(1,2)/Rational(1,6)==3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Keep, change, flip",
+            "intro": "Apply the shortcut: keep the first, change to ×, flip the second. Tap your answer.",
+            "problems": [
+              {
+                "prompt": "Find $\\frac{3}{4} \\div \\frac{1}{8}$.",
+                "options": [
+                  "$3$",
+                  "$6$",
+                  "$8$",
+                  "$\\frac{3}{32}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$\\frac{3}{4} \\times \\frac{8}{1} = \\frac{24}{4} = 6$.",
+                "check": [
+                  "Rational(3,4)/Rational(1,8)==6"
+                ]
+              },
+              {
+                "prompt": "Find $\\frac{3}{5} \\div \\frac{1}{10}$.",
+                "options": [
+                  "$3$",
+                  "$\\frac{3}{50}$",
+                  "$6$",
+                  "$5$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$\\frac{3}{5} \\times \\frac{10}{1} = \\frac{30}{5} = 6$.",
+                "check": [
+                  "Rational(3,5)/Rational(1,10)==6"
+                ]
+              },
+              {
+                "prompt": "Find $\\frac{4}{5} \\div \\frac{2}{5}$.",
+                "options": [
+                  "$4$",
+                  "$\\frac{8}{25}$",
+                  "$1$",
+                  "$2$"
+                ],
+                "correctIndex": 3,
+                "explanation": "$\\frac{4}{5} \\times \\frac{5}{2} = \\frac{20}{10} = 2$.",
+                "check": [
+                  "Rational(4,5)/Rational(2,5)==2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Keep, change, flip",
+            "prompt": "Evaluate $\\frac{2}{3} \\div \\frac{1}{9}$.",
+            "options": [
+              "$6$",
+              "$3$",
+              "$\\frac{2}{27}$",
+              "$4$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\frac{2}{3} \\times \\frac{9}{1} = \\frac{18}{3} = 6$.",
+            "check": [
+              "Rational(2,3)/Rational(1,9)==6"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The reciprocal always multiplies to 1",
+            "body": "In algebra the flipped version of a fraction is called its **reciprocal** (or \"multiplicative inverse\"). Every non-zero number has one: the reciprocal of $\\frac{3}{4}$ is $\\frac{4}{3}$, and $\\frac{3}{4} \\times \\frac{4}{3} = 1$. Multiplying a number by its reciprocal always gives 1 — that is the secret behind why keep-change-flip works."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Measurement model:** $\\frac{a}{b} \\div \\frac{c}{d}$ asks how many $\\frac{c}{d}$-size pieces fit inside $\\frac{a}{b}$.",
+              "**Keep-change-flip:** keep the dividend, change $\\div$ to $\\times$, flip the divisor to its reciprocal.",
+              "**Why it works:** dividing by a fraction is the same as multiplying by its reciprocal — flipping is just that swap.",
+              "This builds directly on **multiplying fractions**: once you flip, it is just a multiplication problem."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Two ideas to lock in: the counting model and the keep-change-flip shortcut. Run this mixed set — every question has a whole-number answer so you can check your work easily."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "How many $\\frac{1}{8}$ pieces fit in $\\frac{1}{2}$?",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 4,
+                    "den": 8,
+                    "label": "1/2 = 4/8"
+                  }
+                },
+                "options": [
+                  "$2$",
+                  "$8$",
+                  "$4$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$\\frac{1}{2} = \\frac{4}{8}$. Four $\\frac{1}{8}$ pieces fit.",
+                "check": [
+                  "Rational(1,2)/Rational(1,8)==4"
+                ]
+              },
+              {
+                "prompt": "Find $\\frac{5}{8} \\div \\frac{1}{8}$ using keep-change-flip.",
+                "options": [
+                  "$5$",
+                  "$8$",
+                  "$\\frac{5}{64}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{5}{8} \\times \\frac{8}{1} = \\frac{40}{8} = 5$.",
+                "check": [
+                  "Rational(5,8)/Rational(1,8)==5"
+                ]
+              },
+              {
+                "prompt": "The reciprocal of $\\frac{1}{8}$ is:",
+                "options": [
+                  "$\\frac{1}{8}$",
+                  "$8$",
+                  "$\\frac{1}{16}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Flip $\\frac{1}{8}$ to get $\\frac{8}{1} = 8$.",
+                "check": [
+                  "Rational(1,8)*8==1"
+                ]
+              },
+              {
+                "prompt": "Find $\\frac{3}{4} \\div \\frac{3}{8}$.",
+                "options": [
+                  "$3$",
+                  "$\\frac{9}{32}$",
+                  "$2$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$\\frac{3}{4} \\times \\frac{8}{3} = \\frac{24}{12} = 2$.",
+                "check": [
+                  "Rational(3,4)/Rational(3,8)==2"
+                ]
+              },
+              {
+                "prompt": "Find $\\frac{1}{2} \\div \\frac{1}{6}$.",
+                "options": [
+                  "$3$",
+                  "$\\frac{1}{12}$",
+                  "$2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{1}{2} \\times \\frac{6}{1} = \\frac{6}{2} = 3$.",
+                "check": [
+                  "Rational(1,2)/Rational(1,6)==3"
+                ]
+              },
+              {
+                "prompt": "Which expression equals $\\frac{3}{4} \\div \\frac{1}{8}$?",
+                "options": [
+                  "$\\frac{3}{4} \\times \\frac{1}{8}$",
+                  "$\\frac{3}{4} \\times 8$",
+                  "$\\frac{4}{3} \\times \\frac{1}{8}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Keep $\\frac{3}{4}$, flip $\\frac{1}{8}$ to $8$: $\\frac{3}{4} \\times 8 = 6$.",
+                "check": [
+                  "Rational(3,4)*8==6",
+                  "Rational(3,4)/Rational(1,8)==6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Dividing Fractions\"",
+            "body": "You can now see *why* dividing a fraction works (counting pieces) and *how* to do it fast (keep-change-flip). These two ideas together — the picture and the shortcut — are the full story. Next up: fraction word problems, where you'll decide which operation to use and then go."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "fraction-word-problems",
+      "title": "Fraction Word Problems",
+      "concreteComparison": "A recipe needs $\\frac{1}{2}$ cup of butter and $\\frac{1}{3}$ cup of sugar — how much is that **together**? A garden is $\\frac{3}{4}$ of a field and you plant $\\frac{2}{3}$ of that — how much did you plant? You have $\\frac{3}{4}$ of a pizza and each friend gets $\\frac{1}{8}$ — how many friends can you feed? Every real question about fractions is hiding one of four operations. This lesson teaches you to spot which one before you calculate.",
+      "objective": "Read a fraction word problem, identify which operation (add, subtract, multiply, or divide) the story needs, solve it, and simplify the answer in context.",
+      "concept": [
+        "The story tells you the operation. **\"Together,\" \"combined,\" \"total\"** signal addition. **\"Left over,\" \"difference,\" \"how much more\"** signal subtraction. **\"of\" between two fractions** (as in \"$\\frac{1}{2}$ of $\\frac{2}{3}$\") signals multiplication. **\"How many times does X fit into Y,\" \"cut into pieces of size...\"** signals division.",
+        "For **add or subtract**, give the fractions the same-size pieces (common denominator) first — the same move from **Comparing Fractions** and **Adding Fractions**. Then combine or take away the tops.",
+        "**Multiply** means area: shade columns for the first fraction, rows for the second — the double-shaded overlap is the answer. The keyword is **\"of\"** placed between two fractions.",
+        "**Divide** means \"how many fit?\": flip the divisor and multiply, or think of it as fitting the smaller piece into the larger one. Always check: does the answer make sense in the story?"
+      ],
+      "keyIdea": "The story tells you the operation — then you use the fraction skills from Lessons 1–5. The only new skill here is **reading the story** and matching it to the right operation.",
+      "facts": [
+        {
+          "title": "Four operation signals",
+          "latex": "\\text{Together} \\to +,\\quad \\text{Left over} \\to -,\\quad \\text{of} \\to \\times,\\quad \\text{How many fit?} \\to \\div",
+          "explanation": "Read the story first. Identify the key word or phrase, then reach for the matching operation."
+        },
+        {
+          "title": "Add fractions (find common denominator)",
+          "latex": "\\frac{a}{b} + \\frac{c}{d} = \\frac{ad + bc}{bd} \\;(\\text{then simplify})",
+          "explanation": "Give both fractions the same-size pieces (common denominator), then add the tops."
+        },
+        {
+          "title": "Multiply fractions (area model)",
+          "latex": "\\frac{a}{b} \\times \\frac{c}{d} = \\frac{a \\times c}{b \\times d} \\;(\\text{then simplify})",
+          "explanation": "Multiply tops together and bottoms together. The area model shows why: columns times rows equals overlap."
+        },
+        {
+          "title": "Divide fractions (flip and multiply)",
+          "latex": "\\frac{a}{b} \\div \\frac{c}{d} = \\frac{a}{b} \\times \\frac{d}{c}",
+          "explanation": "Flip the divisor and multiply. Alternatively: count how many of the second fraction fit in the first."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "fwp-we1",
+          "statement": "A recipe uses $\\frac{1}{2}$ cup of butter and $\\frac{1}{3}$ cup of sugar. How much is that altogether?",
+          "note": "\"Altogether\" signals addition. Give both fractions the same-size pieces first.",
+          "solution": "Common denominator of 2 and 3 is 6. $\\frac{1}{2} = \\frac{3}{6}$ and $\\frac{1}{3} = \\frac{2}{6}$. So $\\frac{3}{6} + \\frac{2}{6} = \\frac{5}{6}$ cup. **Answer: $\\frac{5}{6}$ cup.**",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(1,2) + Rational(1,3) == Rational(5,6)"
+          ]
+        },
+        {
+          "id": "fwp-we2",
+          "statement": "A garden covers $\\frac{3}{4}$ of a field. You plant flowers in $\\frac{2}{3}$ of the garden. What fraction of the whole field has flowers?",
+          "note": "\"$\\frac{2}{3}$ **of** $\\frac{3}{4}$\" — the word \"of\" between two fractions means multiply.",
+          "solution": "$\\frac{2}{3} \\times \\frac{3}{4} = \\frac{2 \\times 3}{3 \\times 4} = \\frac{6}{12} = \\frac{1}{2}$. **Answer: $\\frac{1}{2}$ of the field.**",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(2,3) * Rational(3,4) == Rational(1,2)"
+          ]
+        },
+        {
+          "id": "fwp-we3",
+          "statement": "You have $\\frac{3}{4}$ of a pizza. Each friend gets $\\frac{1}{8}$ of the whole pizza. How many friends can you feed?",
+          "note": "\"How many $\\frac{1}{8}$s fit in $\\frac{3}{4}$?\" — that is division.",
+          "solution": "$\\frac{3}{4} \\div \\frac{1}{8} = \\frac{3}{4} \\times \\frac{8}{1} = \\frac{24}{4} = 6$. **Answer: 6 friends.**",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(3,4) / Rational(1,8) == 6"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Multiplying when the story calls for addition — e.g. confusing \"together\" with \"of\".",
+          "correction": "Underline the key word first. \"Together\" or \"total\" → add. \"Of\" between two fractions → multiply.",
+          "authored": true
+        },
+        {
+          "text": "Adding the tops and bottoms separately when adding fractions (e.g. $\\frac{1}{2}+\\frac{1}{3}=\\frac{2}{5}$).",
+          "correction": "Give them the same-size pieces first (common denominator), **then** add only the tops.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting to simplify the answer — e.g. leaving $\\frac{6}{12}$ instead of $\\frac{1}{2}$.",
+          "correction": "Always reduce to simplest form before writing the final answer.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "fwp-t1",
+          "statement": "Mia walked $\\frac{1}{2}$ km to school and $\\frac{1}{4}$ km to the library. How far did she walk in total?",
+          "solution": "Common denominator is 4. $\\frac{1}{2} = \\frac{2}{4}$. $\\frac{2}{4} + \\frac{1}{4} = \\frac{3}{4}$ km.",
+          "check": [
+            "Rational(1,2) + Rational(1,4) == Rational(3,4)"
+          ]
+        },
+        {
+          "id": "fwp-t2",
+          "statement": "A loaf of bread is $\\frac{5}{6}$ full. You eat $\\frac{1}{3}$ of the whole loaf. How much is left?",
+          "solution": "Common denominator is 6. $\\frac{1}{3} = \\frac{2}{6}$. $\\frac{5}{6} - \\frac{2}{6} = \\frac{3}{6} = \\frac{1}{2}$ of the loaf.",
+          "check": [
+            "Rational(5,6) - Rational(1,3) == Rational(1,2)"
+          ]
+        },
+        {
+          "id": "fwp-t3",
+          "statement": "A chocolate bar weighs $\\frac{2}{3}$ kg. You eat $\\frac{3}{4}$ of the bar. How many kilograms did you eat?",
+          "solution": "$\\frac{3}{4}$ **of** $\\frac{2}{3}$ — multiply: $\\frac{3}{4} \\times \\frac{2}{3} = \\frac{6}{12} = \\frac{1}{2}$ kg.",
+          "check": [
+            "Rational(3,4) * Rational(2,3) == Rational(1,2)"
+          ]
+        },
+        {
+          "id": "fwp-t4",
+          "statement": "You have $\\frac{2}{3}$ of a metre of ribbon. You want pieces that are each $\\frac{1}{6}$ of a metre. How many pieces can you cut?",
+          "solution": "$\\frac{2}{3} \\div \\frac{1}{6} = \\frac{2}{3} \\times \\frac{6}{1} = \\frac{12}{3} = 4$ pieces.",
+          "check": [
+            "Rational(2,3) / Rational(1,6) == 4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "The story tells you the operation",
+            "beats": [
+              "Every fraction word problem hides one of four operations. Your first job is **reading for the signal word.**",
+              "**\"Together,\" \"total,\" \"combined\"** — the amounts join up — **addition**.",
+              "**\"Left over,\" \"how much more,\" \"difference\"** — an amount is removed — **subtraction**.",
+              "**\"of\"** placed between two fractions (e.g. \"$\\frac{1}{2}$ of $\\frac{2}{3}$\") — a fraction of a fraction — **multiplication**.",
+              "**\"How many fit?,\" \"cut into pieces of,\" \"how many pieces\"** — counting portions — **division**."
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 1,
+                "den": 2,
+                "label": "half a recipe"
+              }
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Warm-up check",
+            "title": "Spot the operation",
+            "prompt": "A jug holds $\\frac{1}{2}$ litre of juice. You pour in $\\frac{1}{3}$ litre more. Which operation gives the **total** juice?",
+            "options": [
+              "Subtraction",
+              "Multiplication",
+              "Division",
+              "Addition"
+            ],
+            "correctIndex": 3,
+            "explanation": "\"Total\" and \"pour in more\" tell you the amounts join — that is addition. $\\frac{1}{2} + \\frac{1}{3} = \\frac{5}{6}$ litre.",
+            "check": [
+              "Rational(1,2) + Rational(1,3) == Rational(5,6)"
+            ]
+          },
+          {
+            "kind": "fractionCombine",
+            "eyebrow": "Concept A — addition story",
+            "title": "Butter + sugar: see the bars combine",
+            "teach": "A recipe needs $\\frac{1}{2}$ cup of butter and $\\frac{1}{3}$ cup of sugar. The bars show each amount — then they combine into same-size pieces. Watch how the common denominator snaps into place before the tops add.",
+            "config": {
+              "left": {
+                "num": 1,
+                "den": 2
+              },
+              "right": {
+                "num": 1,
+                "den": 3
+              },
+              "op": "add",
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works — addition",
+            "title": "Same-size pieces, then add the tops",
+            "beats": [
+              "You cannot add $\\frac{1}{2}$ and $\\frac{1}{3}$ directly — the pieces are different sizes.",
+              "Give them the **same-size pieces** (common denominator = 6): $\\frac{1}{2} = \\frac{3}{6}$, $\\frac{1}{3} = \\frac{2}{6}$.",
+              "Now the pieces match — add the tops: $\\frac{3}{6} + \\frac{2}{6} = \\frac{5}{6}$.",
+              "This is the same move from **Lesson 3 (Adding Fractions)** — just applied to a real story."
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 5,
+                "den": 6,
+                "label": "1/2 + 1/3 combined"
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Add and subtract in context",
+            "intro": "Spot the signal word. Give fractions the same-size pieces. Then combine or take away.",
+            "examples": [
+              {
+                "prompt": "Mia walked $\\frac{1}{2}$ km to school and $\\frac{1}{4}$ km to the library. How far in total?",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 3,
+                    "den": 4,
+                    "label": "1/2 + 1/4"
+                  }
+                },
+                "steps": [
+                  "\"Total\" → addition.",
+                  "Common denominator of 2 and 4 is 4: $\\frac{1}{2} = \\frac{2}{4}$.",
+                  "$\\frac{2}{4} + \\frac{1}{4} = \\frac{3}{4}$ km."
+                ],
+                "answer": "$\\frac{3}{4}$ km",
+                "check": [
+                  "Rational(1,2) + Rational(1,4) == Rational(3,4)"
+                ]
+              },
+              {
+                "prompt": "A loaf of bread is $\\frac{5}{6}$ full. You eat $\\frac{1}{3}$ of the whole loaf. How much is left?",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 1,
+                    "den": 2,
+                    "label": "5/6 minus 1/3"
+                  }
+                },
+                "steps": [
+                  "\"Left\" → subtraction.",
+                  "Common denominator of 6 and 3 is 6: $\\frac{1}{3} = \\frac{2}{6}$.",
+                  "$\\frac{5}{6} - \\frac{2}{6} = \\frac{3}{6} = \\frac{1}{2}$ of the loaf."
+                ],
+                "answer": "$\\frac{1}{2}$ of the loaf",
+                "check": [
+                  "Rational(5,6) - Rational(1,3) == Rational(1,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Add and subtract: pick the right answer",
+            "intro": "Underline the signal word, match the operation, then compute.",
+            "problems": [
+              {
+                "prompt": "A tank is $\\frac{7}{8}$ full of water. You use $\\frac{3}{8}$ of a tank. How much is left?",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 4,
+                    "den": 8,
+                    "label": "7/8 minus 3/8"
+                  }
+                },
+                "options": [
+                  "$\\frac{1}{2}$",
+                  "$\\frac{4}{8}$ (not simplified)",
+                  "$\\frac{10}{8}$",
+                  "$\\frac{1}{4}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "\"Left\" → subtract: $\\frac{7}{8} - \\frac{3}{8} = \\frac{4}{8} = \\frac{1}{2}$.",
+                "check": [
+                  "Rational(7,8) - Rational(3,8) == Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "Davi drinks $\\frac{1}{3}$ litre of water in the morning and $\\frac{1}{2}$ litre at lunch. How much altogether?",
+                "options": [
+                  "$\\frac{2}{5}$ litre",
+                  "$\\frac{5}{6}$ litre",
+                  "$\\frac{2}{6}$ litre",
+                  "$\\frac{1}{6}$ litre"
+                ],
+                "correctIndex": 1,
+                "explanation": "\"Altogether\" → add. Common denominator 6: $\\frac{2}{6} + \\frac{3}{6} = \\frac{5}{6}$ litre.",
+                "check": [
+                  "Rational(1,3) + Rational(1,2) == Rational(5,6)"
+                ]
+              },
+              {
+                "prompt": "Biscuits need $\\frac{2}{5}$ cup of oats and $\\frac{3}{10}$ cup of flour. Total dry ingredients?",
+                "options": [
+                  "$\\frac{5}{15}$ cup",
+                  "$\\frac{5}{10}$ cup",
+                  "$\\frac{7}{10}$ cup",
+                  "$\\frac{1}{10}$ cup"
+                ],
+                "correctIndex": 2,
+                "explanation": "Common denominator 10: $\\frac{4}{10} + \\frac{3}{10} = \\frac{7}{10}$ cup.",
+                "check": [
+                  "Rational(2,5) + Rational(3,10) == Rational(7,10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Subtract in context",
+            "prompt": "A ribbon is $\\frac{3}{4}$ m long. You cut off $\\frac{1}{6}$ m. How much is left?",
+            "options": [
+              "$\\frac{1}{2}$ m",
+              "$\\frac{2}{10}$ m",
+              "$\\frac{5}{12}$ m",
+              "$\\frac{7}{12}$ m"
+            ],
+            "correctIndex": 3,
+            "explanation": "Common denominator 12: $\\frac{9}{12} - \\frac{2}{12} = \\frac{7}{12}$ m.",
+            "check": [
+              "Rational(3,4) - Rational(1,6) == Rational(7,12)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Recipes run on fraction addition every day",
+            "body": "Professional bakers halve and double recipes constantly — adding $\\frac{1}{2}$ cup to $\\frac{1}{3}$ cup, subtracting what they already poured. Fraction addition word problems are literally what happens in every kitchen, every day."
+          },
+          {
+            "kind": "areaModel",
+            "eyebrow": "Concept B — multiplication story",
+            "title": "\"of\" means area: see the overlap",
+            "teach": "A garden covers $\\frac{3}{4}$ of a field. You plant flowers in $\\frac{2}{3}$ of **that** garden — so you need $\\frac{2}{3}$ **of** $\\frac{3}{4}$. The area model shades 3 columns out of 4 for the garden, then 2 rows out of 3 for the planted part. The double-shaded overlap is the answer.",
+            "config": {
+              "aNum": 3,
+              "aDen": 4,
+              "bNum": 2,
+              "bDen": 3
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works — multiplication",
+            "title": "\"of\" → multiply tops, multiply bottoms",
+            "beats": [
+              "When you see **\"of\"** between two fractions, multiply them.",
+              "$\\frac{2}{3} \\times \\frac{3}{4}$: multiply tops → $2 \\times 3 = 6$, multiply bottoms → $3 \\times 4 = 12$, giving $\\frac{6}{12}$.",
+              "Simplify: both 6 and 12 divide by 6, giving $\\frac{1}{2}$.",
+              "This is the same move from **Lesson 4 (Multiplying Fractions)** — the area model you just saw is exactly why it works."
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 1,
+                "den": 2,
+                "label": "2/3 of 3/4 of the field"
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Multiply fractions in context",
+            "intro": "Spot the word \"of\" between two fractions. Multiply tops, multiply bottoms, then simplify.",
+            "examples": [
+              {
+                "prompt": "A chocolate bar weighs $\\frac{2}{3}$ kg. You eat $\\frac{3}{4}$ of the bar. How many kilograms did you eat?",
+                "steps": [
+                  "\"$\\frac{3}{4}$ of $\\frac{2}{3}$\" → multiply.",
+                  "$\\frac{3}{4} \\times \\frac{2}{3} = \\frac{6}{12} = \\frac{1}{2}$ kg."
+                ],
+                "answer": "$\\frac{1}{2}$ kg",
+                "check": [
+                  "Rational(3,4) * Rational(2,3) == Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "A water tank holds $\\frac{5}{6}$ of a barrel. You use $\\frac{3}{4}$ of the tank for irrigation. What fraction of a barrel did you use?",
+                "steps": [
+                  "\"$\\frac{3}{4}$ **of** $\\frac{5}{6}$\" → multiply.",
+                  "$\\frac{3}{4} \\times \\frac{5}{6} = \\frac{15}{24} = \\frac{5}{8}$ of a barrel."
+                ],
+                "answer": "$\\frac{5}{8}$ of a barrel",
+                "check": [
+                  "Rational(3,4) * Rational(5,6) == Rational(5,8)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Multiply in context",
+            "intro": "Look for the word \"of\" between two fractions. Multiply tops, multiply bottoms, simplify.",
+            "problems": [
+              {
+                "prompt": "A cookie recipe uses $\\frac{3}{4}$ cup of flour. You make only $\\frac{1}{3}$ of the recipe. How much flour?",
+                "options": [
+                  "$\\frac{1}{4}$ cup",
+                  "$\\frac{4}{7}$ cup",
+                  "$\\frac{3}{7}$ cup",
+                  "$\\frac{1}{3}$ cup"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{1}{3}$ **of** $\\frac{3}{4}$ → multiply: $\\frac{1}{3} \\times \\frac{3}{4} = \\frac{3}{12} = \\frac{1}{4}$ cup.",
+                "check": [
+                  "Rational(1,3) * Rational(3,4) == Rational(1,4)"
+                ]
+              },
+              {
+                "prompt": "A field is $\\frac{3}{5}$ km long. You run $\\frac{5}{6}$ of the length. How far do you run?",
+                "options": [
+                  "$\\frac{8}{11}$ km",
+                  "$\\frac{1}{2}$ km",
+                  "$\\frac{15}{18}$ km",
+                  "$\\frac{5}{9}$ km"
+                ],
+                "correctIndex": 1,
+                "explanation": "$\\frac{5}{6} \\times \\frac{3}{5} = \\frac{15}{30} = \\frac{1}{2}$ km.",
+                "check": [
+                  "Rational(3,5) * Rational(5,6) == Rational(1,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "\"of\" means multiply",
+            "prompt": "A jug holds $\\frac{7}{8}$ litre. You pour out $\\frac{1}{4}$ of the jug. How much do you pour?",
+            "options": [
+              "$\\frac{1}{4}$ litre",
+              "$\\frac{7}{4}$ litre",
+              "$\\frac{7}{32}$ litre",
+              "$\\frac{5}{8}$ litre"
+            ],
+            "correctIndex": 2,
+            "explanation": "$\\frac{1}{4}$ **of** $\\frac{7}{8}$ → multiply: $\\frac{1}{4} \\times \\frac{7}{8} = \\frac{7}{32}$ litre.",
+            "check": [
+              "Rational(1,4) * Rational(7,8) == Rational(7,32)"
+            ]
+          },
+          {
+            "kind": "fractionDivide",
+            "eyebrow": "Concept C — division story",
+            "title": "Cutting ribbon: how many pieces fit?",
+            "teach": "You have $\\frac{3}{4}$ m of ribbon and want to cut pieces that are each $\\frac{3}{8}$ m. How many pieces? The bar shows $\\frac{3}{4}$ divided into $\\frac{3}{8}$-sized chunks — count how many fit.",
+            "config": {
+              "dividend": {
+                "num": 3,
+                "den": 4
+              },
+              "divisor": {
+                "num": 3,
+                "den": 8
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works — division",
+            "title": "Flip the divisor, then multiply",
+            "beats": [
+              "\"How many $\\frac{3}{8}$s fit in $\\frac{3}{4}$?\" is a division question.",
+              "To divide by a fraction: **flip the second fraction (the divisor) and multiply.**",
+              "$\\frac{3}{4} \\div \\frac{3}{8} = \\frac{3}{4} \\times \\frac{8}{3} = \\frac{24}{12} = 2$ pieces.",
+              "Always check: does the answer make sense? 2 pieces of $\\frac{3}{8}$ m each $= \\frac{6}{8} = \\frac{3}{4}$ m. Correct."
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 3,
+                "den": 4,
+                "label": "3/4 divided into 3/8 pieces"
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Divide fractions in context",
+            "intro": "Spot the division signal. Flip the second fraction, then multiply.",
+            "examples": [
+              {
+                "prompt": "You have $\\frac{2}{3}$ litre of juice to pour into cups that each hold $\\frac{1}{6}$ litre. How many cups?",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 2,
+                    "den": 3,
+                    "label": "2/3 litre to divide"
+                  }
+                },
+                "steps": [
+                  "\"How many cups?\" → division.",
+                  "$\\frac{2}{3} \\div \\frac{1}{6} = \\frac{2}{3} \\times \\frac{6}{1} = \\frac{12}{3} = 4$ cups.",
+                  "Check: $4 \\times \\frac{1}{6} = \\frac{4}{6} = \\frac{2}{3}$. Correct."
+                ],
+                "answer": "4 cups",
+                "check": [
+                  "Rational(2,3) / Rational(1,6) == 4"
+                ]
+              },
+              {
+                "prompt": "A board is $\\frac{5}{6}$ m long. You need pieces each $\\frac{5}{12}$ m. How many pieces?",
+                "steps": [
+                  "$\\frac{5}{6} \\div \\frac{5}{12} = \\frac{5}{6} \\times \\frac{12}{5} = \\frac{60}{30} = 2$ pieces."
+                ],
+                "answer": "2 pieces",
+                "check": [
+                  "Rational(5,6) / Rational(5,12) == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Divide in context",
+            "intro": "Flip the divisor and multiply. Double-check that the answer makes sense.",
+            "problems": [
+              {
+                "prompt": "You have $\\frac{3}{4}$ of a pizza. Each person gets $\\frac{1}{8}$. How many people can you serve?",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 3,
+                    "den": 4,
+                    "label": "3/4 pizza to share"
+                  }
+                },
+                "options": [
+                  "3 people",
+                  "4 people",
+                  "8 people",
+                  "6 people"
+                ],
+                "correctIndex": 3,
+                "explanation": "$\\frac{3}{4} \\div \\frac{1}{8} = \\frac{3}{4} \\times 8 = \\frac{24}{4} = 6$ people.",
+                "check": [
+                  "Rational(3,4) / Rational(1,8) == 6"
+                ]
+              },
+              {
+                "prompt": "A rope is $\\frac{3}{8}$ m. You cut pieces of $\\frac{3}{16}$ m each. How many pieces?",
+                "options": [
+                  "2 pieces",
+                  "3 pieces",
+                  "6 pieces",
+                  "4 pieces"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{3}{8} \\div \\frac{3}{16} = \\frac{3}{8} \\times \\frac{16}{3} = \\frac{48}{24} = 2$ pieces.",
+                "check": [
+                  "Rational(3,8) / Rational(3,16) == 2"
+                ]
+              },
+              {
+                "prompt": "You have $\\frac{3}{4}$ m of wire. Each bracelet needs $\\frac{1}{4}$ m. How many bracelets?",
+                "options": [
+                  "4 bracelets",
+                  "3 bracelets",
+                  "2 bracelets",
+                  "6 bracelets"
+                ],
+                "correctIndex": 1,
+                "explanation": "$\\frac{3}{4} \\div \\frac{1}{4} = \\frac{3}{4} \\times 4 = 3$ bracelets.",
+                "check": [
+                  "Rational(3,4) / Rational(1,4) == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Division in context",
+            "prompt": "You cut a board $\\frac{7}{8}$ m long into pieces each $\\frac{1}{4}$ m. How many whole pieces do you get?",
+            "options": [
+              "4 whole pieces",
+              "7 whole pieces",
+              "3 whole pieces (with $\\frac{1}{8}$ m left over)",
+              "2 whole pieces"
+            ],
+            "correctIndex": 2,
+            "explanation": "$\\frac{7}{8} \\div \\frac{1}{4} = \\frac{7}{8} \\times 4 = \\frac{28}{8} = \\frac{7}{2} = 3\\frac{1}{2}$ — so 3 whole pieces, with $\\frac{1}{8}$ m left over.",
+            "check": [
+              "Rational(7,8) / Rational(1,4) == Rational(7,2)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Fraction division powers real kitchens",
+            "body": "A chef has $\\frac{3}{4}$ of a bag of rice and a serving is $\\frac{1}{8}$ of a bag. How many servings? $\\frac{3}{4} \\div \\frac{1}{8} = 6$ — the exact same division you just practised. Fraction word problems are not made-up school math; they run every professional kitchen on Earth."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Read the story first.** Spot the signal: \"together/total\" → $+$, \"left over/difference\" → $-$, \"of\" between fractions → $\\times$, \"how many fit/pieces\" → $\\div$.",
+              "Addition and subtraction: give the fractions **same-size pieces** (common denominator) first, then combine or take away the tops.",
+              "Multiplication: multiply tops together and bottoms together — the **area model** shows why \"of\" becomes $\\times$.",
+              "Division: **flip the divisor and multiply** — then check the answer makes sense in the story.",
+              "Always **simplify** before writing the final answer."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "This mixed set covers all four operations in story form — your job is to spot the signal word before you calculate. Tap a wrong choice and just try again."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything — spot the signal word, choose the operation, solve.",
+            "problems": [
+              {
+                "prompt": "Nina has $\\frac{1}{4}$ cup of red paint and $\\frac{5}{8}$ cup of blue paint. How much paint altogether?",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 7,
+                    "den": 8,
+                    "label": "1/4 + 5/8"
+                  }
+                },
+                "options": [
+                  "$\\frac{6}{12}$ cup",
+                  "$\\frac{5}{32}$ cup",
+                  "$\\frac{1}{2}$ cup",
+                  "$\\frac{7}{8}$ cup"
+                ],
+                "correctIndex": 3,
+                "explanation": "\"Altogether\" → add. $\\frac{1}{4} = \\frac{2}{8}$. $\\frac{2}{8} + \\frac{5}{8} = \\frac{7}{8}$ cup.",
+                "check": [
+                  "Rational(1,4) + Rational(5,8) == Rational(7,8)"
+                ]
+              },
+              {
+                "prompt": "A bucket is $\\frac{5}{6}$ full of water. $\\frac{1}{2}$ of a bucket leaks out. How much is left?",
+                "options": [
+                  "$\\frac{1}{3}$ bucket",
+                  "$\\frac{4}{6}$ bucket (not simplified)",
+                  "$\\frac{5}{12}$ bucket",
+                  "$\\frac{5}{3}$ bucket"
+                ],
+                "correctIndex": 0,
+                "explanation": "\"Left\" → subtract. $\\frac{5}{6} - \\frac{1}{2} = \\frac{5}{6} - \\frac{3}{6} = \\frac{2}{6} = \\frac{1}{3}$ bucket.",
+                "check": [
+                  "Rational(5,6) - Rational(1,2) == Rational(1,3)"
+                ]
+              },
+              {
+                "prompt": "A plot of land is $\\frac{3}{4}$ of a hectare. You plant crops on $\\frac{1}{3}$ of the plot. What fraction of a hectare has crops?",
+                "options": [
+                  "$\\frac{4}{7}$ hectare",
+                  "$\\frac{1}{4}$ hectare",
+                  "$\\frac{13}{12}$ hectare",
+                  "$\\frac{3}{7}$ hectare"
+                ],
+                "correctIndex": 1,
+                "explanation": "\"of\" → multiply: $\\frac{1}{3} \\times \\frac{3}{4} = \\frac{3}{12} = \\frac{1}{4}$ hectare.",
+                "check": [
+                  "Rational(1,3) * Rational(3,4) == Rational(1,4)"
+                ]
+              },
+              {
+                "prompt": "You have $\\frac{2}{3}$ kg of trail mix and divide it into bags of $\\frac{1}{6}$ kg each. How many bags?",
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 2,
+                    "den": 3,
+                    "label": "2/3 kg to portion"
+                  }
+                },
+                "options": [
+                  "2 bags",
+                  "3 bags",
+                  "4 bags",
+                  "6 bags"
+                ],
+                "correctIndex": 2,
+                "explanation": "\"Divide into bags\" → division: $\\frac{2}{3} \\div \\frac{1}{6} = \\frac{2}{3} \\times 6 = 4$ bags.",
+                "check": [
+                  "Rational(2,3) / Rational(1,6) == 4"
+                ]
+              },
+              {
+                "prompt": "A jug holds $\\frac{2}{3}$ litre and another holds $\\frac{5}{6}$ litre. Together, how many litres?",
+                "options": [
+                  "$\\frac{10}{18}$ litre",
+                  "$\\frac{7}{9}$ litre",
+                  "$\\frac{3}{9}$ litre",
+                  "$\\frac{3}{2}$ litre ($1\\frac{1}{2}$)"
+                ],
+                "correctIndex": 3,
+                "explanation": "\"Together\" → add. $\\frac{2}{3} + \\frac{5}{6} = \\frac{4}{6} + \\frac{5}{6} = \\frac{9}{6} = \\frac{3}{2}$ litre.",
+                "check": [
+                  "Rational(2,3) + Rational(5,6) == Rational(3,2)"
+                ]
+              },
+              {
+                "prompt": "You have $\\frac{3}{4}$ m of ribbon and cut pieces of $\\frac{1}{4}$ m each. How many pieces?",
+                "options": [
+                  "3 pieces",
+                  "4 pieces",
+                  "$\\frac{3}{16}$ pieces",
+                  "6 pieces"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{3}{4} \\div \\frac{1}{4} = \\frac{3}{4} \\times 4 = 3$ pieces.",
+                "check": [
+                  "Rational(3,4) / Rational(1,4) == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You have finished \"Fraction Word Problems\"",
+            "body": "You can now read any fraction story, spot the signal word, choose the right operation, and solve it — pulling together everything from Lessons 1 through 5 into one powerful skill. You have completed the Fractions chapter. Next in Grade 6: **Decimals**, where fractions meet place value."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [],
+  "testYourself": [],
+  "_lessonDraft_dividing-fractions": {
+    "slug": "dividing-fractions",
+    "title": "Dividing Fractions",
+    "concreteComparison": "You have **$\\frac{3}{4}$** of a chocolate bar and each friend gets a **$\\frac{1}{8}$-sized piece**. How many friends can you feed? You're asking: *how many eighths fit inside three-quarters?* Count them up — the answer is **6**. That's fraction division: finding how many of one piece fit inside another.",
+    "objective": "Divide a fraction by a fraction using the measurement model (how many fit?) and the keep-change-flip shortcut, and explain why the shortcut works.",
+    "concept": [
+      "**Measurement model:** $\\frac{3}{4} \\div \\frac{1}{8}$ asks \"how many $\\frac{1}{8}$-size pieces fit inside $\\frac{3}{4}$?\" Count the pieces on a bar and you get 6.",
+      "**Keep-change-flip shortcut:** to divide by a fraction, *keep* the dividend, *change* $\\div$ to $\\times$, and *flip* the divisor to its reciprocal. So $\\frac{3}{4} \\div \\frac{1}{8} = \\frac{3}{4} \\times \\frac{8}{1} = 6$.",
+      "**Why it works:** dividing by $\\frac{1}{8}$ is the same as asking \"how many eighths?\", which is the same as multiplying by 8 — the reciprocal. Flipping is just the shortcut for that swap."
+    ],
+    "keyIdea": "To divide by a fraction, **keep** the first fraction, **change** $\\div$ to $\\times$, and **flip** the second fraction (use its reciprocal). This works because dividing by $\\frac{a}{b}$ is identical to multiplying by $\\frac{b}{a}$.",
+    "facts": [
+      {
+        "title": "Keep-change-flip",
+        "latex": "$\\dfrac{a}{b} \\div \\dfrac{c}{d} = \\dfrac{a}{b} \\times \\dfrac{d}{c}$",
+        "explanation": "Flip the divisor (the fraction you're dividing by) to its reciprocal, then multiply. The answer is the number of divisor-size pieces that fit in the dividend."
+      }
+    ],
+    "workedExamples": [
+      {
+        "id": "df-we1",
+        "statement": "How many $\\frac{1}{8}$-size pieces fit in $\\frac{3}{4}$? In other words, find $\\frac{3}{4} \\div \\frac{1}{8}$.",
+        "note": "Use keep-change-flip, then multiply.",
+        "solution": "Keep $\\frac{3}{4}$, change $\\div$ to $\\times$, flip $\\frac{1}{8}$ to $\\frac{8}{1}$: $\\frac{3}{4} \\times \\frac{8}{1} = \\frac{24}{4} = 6$.",
+        "badges": [
+          {
+            "text": "core"
+          }
+        ],
+        "check": [
+          "Rational(3,4)/Rational(1,8)==6"
+        ]
+      },
+      {
+        "id": "df-we2",
+        "statement": "Find $\\frac{1}{2} \\div \\frac{1}{6}$.",
+        "note": "How many sixths fit inside one-half?",
+        "solution": "Keep $\\frac{1}{2}$, flip $\\frac{1}{6}$ to $\\frac{6}{1}$: $\\frac{1}{2} \\times \\frac{6}{1} = \\frac{6}{2} = 3$. Three sixths fit in one-half.",
+        "badges": [
+          {
+            "text": "core"
+          }
+        ],
+        "check": [
+          "Rational(1,2)/Rational(1,6)==3"
+        ]
+      }
+    ],
+    "commonMistakes": [
+      {
+        "text": "Flipping the wrong fraction — flipping the dividend instead of the divisor.",
+        "correction": "Only flip the fraction you are dividing **by** (the one after the $\\div$ sign). Keep the first fraction exactly as it is.",
+        "authored": true
+      },
+      {
+        "text": "Forgetting to flip at all and just multiplying the two fractions straight across.",
+        "correction": "The divisor must become its reciprocal first. $\\frac{3}{4} \\div \\frac{1}{8}$ is $\\frac{3}{4} \\times \\frac{8}{1}$, not $\\frac{3}{4} \\times \\frac{1}{8}$.",
+        "authored": true
+      }
+    ],
+    "tryIt": [
+      {
+        "id": "df-t1",
+        "statement": "Find $\\frac{2}{3} \\div \\frac{1}{6}$.",
+        "solution": "Keep $\\frac{2}{3}$, flip $\\frac{1}{6}$ to $\\frac{6}{1}$: $\\frac{2}{3} \\times \\frac{6}{1} = \\frac{12}{3} = 4$.",
+        "check": [
+          "Rational(2,3)/Rational(1,6)==4"
+        ]
+      },
+      {
+        "id": "df-t2",
+        "statement": "Find $\\frac{3}{4} \\div \\frac{1}{4}$.",
+        "solution": "Keep $\\frac{3}{4}$, flip $\\frac{1}{4}$ to $\\frac{4}{1}$: $\\frac{3}{4} \\times \\frac{4}{1} = \\frac{12}{4} = 3$.",
+        "check": [
+          "Rational(3,4)/Rational(1,4)==3"
+        ]
+      }
+    ],
+    "interactive": {
+      "steps": [
+        {
+          "kind": "fractionDivide",
+          "eyebrow": "Concept A",
+          "title": "How many fit?",
+          "teach": "This bar shows $\\frac{3}{4}$. Tap **Count** and watch the tool mark off $\\frac{1}{8}$-size pieces one by one. How many fit? **Count them** — that number is your answer.",
+          "config": {
+            "dividend": {
+              "num": 3,
+              "den": 4
+            },
+            "divisor": {
+              "num": 1,
+              "den": 8
+            }
+          }
+        },
+        {
+          "kind": "teach",
+          "eyebrow": "How it works",
+          "title": "Why counting pieces gives the answer",
+          "beats": [
+            "$\\frac{3}{4} \\div \\frac{1}{8}$ is asking: **how many $\\frac{1}{8}$-size pieces fit inside $\\frac{3}{4}$?**",
+            "Put both fractions over the same-size pieces (eighths): $\\frac{3}{4} = \\frac{6}{8}$. Six eighths fit inside six-eighths — so the answer is **6**.",
+            "This is the **measurement model** of division — same idea as asking how many 2-metre sticks fit in a 6-metre hall.",
+            "Tie-back to **equivalent fractions**: getting a common denominator is just the first step — it lets you count pieces on the same bar."
+          ],
+          "figure": {
+            "mode": "fractionBar",
+            "fraction": {
+              "num": 6,
+              "den": 8,
+              "label": "6 eighths — 6 pieces fit"
+            }
+          }
+        },
+        {
+          "kind": "fractionDivide",
+          "eyebrow": "Play with it",
+          "title": "Now try one-half divided by one-sixth",
+          "teach": "Bar shows $\\frac{1}{2}$. Each piece is $\\frac{1}{6}$. Tap **Count** — how many sixths fit inside one-half?",
+          "config": {
+            "dividend": {
+              "num": 1,
+              "den": 2
+            },
+            "divisor": {
+              "num": 1,
+              "den": 6
+            }
+          }
+        },
+        {
+          "kind": "workedSet",
+          "eyebrow": "Worked examples",
+          "title": "Count how many fit",
+          "intro": "Re-write the dividend with the divisor's denominator, then count the pieces.",
+          "examples": [
+            {
+              "prompt": "$\\frac{3}{4} \\div \\frac{1}{8}$ — how many $\\frac{1}{8}$ pieces fit in $\\frac{3}{4}$?",
+              "figure": {
+                "mode": "fractionBar",
+                "fraction": {
+                  "num": 6,
+                  "den": 8,
+                  "label": "3/4 = 6/8"
+                }
+              },
+              "steps": [
+                "Convert: $\\frac{3}{4} = \\frac{6}{8}$.",
+                "Count: how many $\\frac{1}{8}$ pieces in $\\frac{6}{8}$? **6**."
+              ],
+              "answer": "$6$",
+              "check": [
+                "Rational(3,4)/Rational(1,8)==6"
+              ]
+            },
+            {
+              "prompt": "$\\frac{1}{2} \\div \\frac{1}{6}$ — how many $\\frac{1}{6}$ pieces fit in $\\frac{1}{2}$?",
+              "figure": {
+                "mode": "fractionBar",
+                "fraction": {
+                  "num": 3,
+                  "den": 6,
+                  "label": "1/2 = 3/6"
+                }
+              },
+              "steps": [
+                "Convert: $\\frac{1}{2} = \\frac{3}{6}$.",
+                "Count: how many $\\frac{1}{6}$ pieces in $\\frac{3}{6}$? **3**."
+              ],
+              "answer": "$3$",
+              "check": [
+                "Rational(1,2)/Rational(1,6)==3"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "tryItSet",
+          "eyebrow": "Try it yourself",
+          "title": "Count the pieces",
+          "intro": "Convert the dividend to the divisor's denominator, then count. Tap your answer.",
+          "problems": [
+            {
+              "prompt": "$\\frac{2}{3} \\div \\frac{1}{6}$ — how many sixths fit in $\\frac{2}{3}$?",
+              "figure": {
+                "mode": "fractionBar",
+                "fraction": {
+                  "num": 4,
+                  "den": 6,
+                  "label": "2/3 = 4/6"
+                }
+              },
+              "options": [
+                "$4$",
+                "$3$",
+                "$6$"
+              ],
+              "correctIndex": 0,
+              "explanation": "$\\frac{2}{3} = \\frac{4}{6}$. Four $\\frac{1}{6}$ pieces fit.",
+              "check": [
+                "Rational(2,3)/Rational(1,6)==4"
+              ]
+            },
+            {
+              "prompt": "$\\frac{3}{4} \\div \\frac{1}{4}$ — how many quarter-pieces fit in $\\frac{3}{4}$?",
+              "figure": {
+                "mode": "fractionBar",
+                "fraction": {
+                  "num": 3,
+                  "den": 4,
+                  "label": "3/4"
+                }
+              },
+              "options": [
+                "$3$",
+                "$4$",
+                "$2$"
+              ],
+              "correctIndex": 0,
+              "explanation": "$\\frac{3}{4}$ already has fourths. Three $\\frac{1}{4}$ pieces fit.",
+              "check": [
+                "Rational(3,4)/Rational(1,4)==3"
+              ]
+            },
+            {
+              "prompt": "$1 \\div \\frac{1}{3}$ — how many thirds fit in one whole?",
+              "figure": {
+                "mode": "fractionBar",
+                "fraction": {
+                  "num": 3,
+                  "den": 3,
+                  "label": "1 whole = 3/3"
+                }
+              },
+              "options": [
+                "$3$",
+                "$1$",
+                "$2$"
+              ],
+              "correctIndex": 0,
+              "explanation": "$1 = \\frac{3}{3}$. Three $\\frac{1}{3}$ pieces fit in one whole.",
+              "check": [
+                "Rational(1,1)/Rational(1,3)==3"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "tapQuestion",
+          "eyebrow": "Quick check",
+          "title": "Count the sixths",
+          "prompt": "How many $\\frac{1}{6}$ pieces fit in $\\frac{1}{2}$?",
+          "options": [
+            "$3$",
+            "$2$",
+            "$6$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\frac{1}{2} = \\frac{3}{6}$. Three sixths fit inside one-half.",
+          "check": [
+            "Rational(1,2)/Rational(1,6)==3"
+          ]
+        },
+        {
+          "kind": "funFact",
+          "eyebrow": "Fun fact",
+          "title": "Cooks use fraction division every day",
+          "body": "A recipe uses $\\frac{3}{4}$ of a cup of rice per person. You have a $\\frac{1}{4}$-cup scoop. How many scoops? $\\frac{3}{4} \\div \\frac{1}{4} = 3$ scoops. Every time a cook asks \"how many scoops fill this amount?\", they're doing fraction division — usually without even realising it."
+        },
+        {
+          "kind": "teach",
+          "eyebrow": "Concept B",
+          "title": "The shortcut: keep, change, flip",
+          "beats": [
+            "Counting pieces works, but there is a faster shortcut for any fraction division.",
+            "**Keep** the first fraction exactly as it is. **Change** $\\div$ to $\\times$. **Flip** the second fraction upside-down (that flipped version is called the **reciprocal**).",
+            "Example: $\\frac{3}{4} \\div \\frac{1}{8}$ → $\\frac{3}{4} \\times \\frac{8}{1} = \\frac{24}{4} = 6$. Same answer as counting!",
+            "**Why it works:** dividing by $\\frac{1}{8}$ is the same as asking \"how many eighths?\", which is multiplying by 8. Flipping $\\frac{1}{8}$ gives $\\frac{8}{1} = 8$ — that's exactly the same move. Builds on **multiplying fractions** from the previous lesson."
+          ],
+          "figure": {
+            "mode": "fractionBar",
+            "fraction": {
+              "num": 6,
+              "den": 8,
+              "label": "3/4 × 8/1 = 6"
+            }
+          }
+        },
+        {
+          "kind": "fractionDivide",
+          "eyebrow": "Concept B — play with it",
+          "title": "Keep-change-flip in action",
+          "teach": "Watch the shortcut animate: the bar marks off $\\frac{1}{6}$-size pieces inside $\\frac{2}{3}$. Confirm that $\\frac{2}{3} \\times \\frac{6}{1} = 4$ matches the count.",
+          "config": {
+            "dividend": {
+              "num": 2,
+              "den": 3
+            },
+            "divisor": {
+              "num": 1,
+              "den": 6
+            }
+          }
+        },
+        {
+          "kind": "workedSet",
+          "eyebrow": "Worked examples",
+          "title": "Keep-change-flip",
+          "intro": "Keep the dividend, change ÷ to ×, flip the divisor. Multiply straight across.",
+          "examples": [
+            {
+              "prompt": "Find $\\frac{2}{3} \\div \\frac{1}{6}$ using keep-change-flip.",
+              "steps": [
+                "Keep $\\frac{2}{3}$. Change $\\div$ to $\\times$. Flip $\\frac{1}{6}$ to $\\frac{6}{1}$.",
+                "$\\frac{2}{3} \\times \\frac{6}{1} = \\frac{12}{3} = 4$."
+              ],
+              "answer": "$4$",
+              "check": [
+                "Rational(2,3)/Rational(1,6)==4"
+              ]
+            },
+            {
+              "prompt": "Find $\\frac{1}{2} \\div \\frac{1}{6}$ using keep-change-flip.",
+              "steps": [
+                "Keep $\\frac{1}{2}$. Flip $\\frac{1}{6}$ to $\\frac{6}{1}$.",
+                "$\\frac{1}{2} \\times \\frac{6}{1} = \\frac{6}{2} = 3$."
+              ],
+              "answer": "$3$",
+              "check": [
+                "Rational(1,2)/Rational(1,6)==3"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "tryItSet",
+          "eyebrow": "Try it yourself",
+          "title": "Keep, change, flip",
+          "intro": "Apply the shortcut: keep the first, change to ×, flip the second. Tap your answer.",
+          "problems": [
+            {
+              "prompt": "Find $\\frac{3}{4} \\div \\frac{1}{8}$.",
+              "options": [
+                "$6$",
+                "$3$",
+                "$8$",
+                "$\\frac{3}{32}$"
+              ],
+              "correctIndex": 0,
+              "explanation": "$\\frac{3}{4} \\times \\frac{8}{1} = \\frac{24}{4} = 6$.",
+              "check": [
+                "Rational(3,4)/Rational(1,8)==6"
+              ]
+            },
+            {
+              "prompt": "Find $\\frac{3}{4} \\div \\frac{1}{4}$.",
+              "options": [
+                "$3$",
+                "$4$",
+                "$\\frac{3}{16}$",
+                "$1$"
+              ],
+              "correctIndex": 0,
+              "explanation": "$\\frac{3}{4} \\times \\frac{4}{1} = \\frac{12}{4} = 3$.",
+              "check": [
+                "Rational(3,4)/Rational(1,4)==3"
+              ]
+            },
+            {
+              "prompt": "Find $1 \\div \\frac{1}{3}$.",
+              "options": [
+                "$3$",
+                "$\\frac{1}{3}$",
+                "$2$",
+                "$6$"
+              ],
+              "correctIndex": 0,
+              "explanation": "$\\frac{1}{1} \\times \\frac{3}{1} = 3$. One whole holds three thirds.",
+              "check": [
+                "Rational(1,1)/Rational(1,3)==3"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "tapQuestion",
+          "eyebrow": "Quick check",
+          "title": "Keep, change, flip",
+          "prompt": "Evaluate $\\frac{2}{3} \\div \\frac{1}{6}$.",
+          "options": [
+            "$4$",
+            "$3$",
+            "$\\frac{2}{18}$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\frac{2}{3} \\times \\frac{6}{1} = \\frac{12}{3} = 4$.",
+          "check": [
+            "Rational(2,3)/Rational(1,6)==4"
+          ]
+        },
+        {
+          "kind": "funFact",
+          "eyebrow": "Fun fact",
+          "title": "The reciprocal has its own name in Mongolian math",
+          "body": "In algebra the flipped version of a fraction is called its **reciprocal** (or \"multiplicative inverse\"). Every non-zero number has one: the reciprocal of $\\frac{3}{4}$ is $\\frac{4}{3}$, and $\\frac{3}{4} \\times \\frac{4}{3} = 1$. Multiplying a number by its reciprocal always gives 1 — that is the secret behind why keep-change-flip works."
+        },
+        {
+          "kind": "recap",
+          "eyebrow": "Recap",
+          "title": "What you learned",
+          "points": [
+            "**Measurement model:** $\\frac{a}{b} \\div \\frac{c}{d}$ asks how many $\\frac{c}{d}$-size pieces fit inside $\\frac{a}{b}$.",
+            "**Keep-change-flip:** keep the dividend, change $\\div$ to $\\times$, flip the divisor to its reciprocal.",
+            "**Why it works:** dividing by a fraction is the same as multiplying by its reciprocal — flipping is just that swap.",
+            "This builds directly on **multiplying fractions**: once you flip, it is just a multiplication problem."
+          ]
+        },
+        {
+          "kind": "tip",
+          "eyebrow": "Practice",
+          "title": "Time to practice",
+          "body": "Two ideas to lock in: the counting model and the keep-change-flip shortcut. Run this mixed set — every question has a whole-number answer so you can check your work easily."
+        },
+        {
+          "kind": "tryItSet",
+          "eyebrow": "Chapter practice",
+          "title": "Mixed practice",
+          "intro": "A little of everything you learned.",
+          "problems": [
+            {
+              "prompt": "How many $\\frac{1}{8}$ pieces fit in $\\frac{3}{4}$?",
+              "figure": {
+                "mode": "fractionBar",
+                "fraction": {
+                  "num": 6,
+                  "den": 8,
+                  "label": "3/4 = 6/8"
+                }
+              },
+              "options": [
+                "$6$",
+                "$4$",
+                "$8$"
+              ],
+              "correctIndex": 0,
+              "explanation": "$\\frac{3}{4} = \\frac{6}{8}$. Six $\\frac{1}{8}$ pieces fit.",
+              "check": [
+                "Rational(3,4)/Rational(1,8)==6"
+              ]
+            },
+            {
+              "prompt": "Find $\\frac{1}{2} \\div \\frac{1}{6}$ using keep-change-flip.",
+              "options": [
+                "$3$",
+                "$2$",
+                "$6$"
+              ],
+              "correctIndex": 0,
+              "explanation": "$\\frac{1}{2} \\times \\frac{6}{1} = \\frac{6}{2} = 3$.",
+              "check": [
+                "Rational(1,2)/Rational(1,6)==3"
+              ]
+            },
+            {
+              "prompt": "The reciprocal of $\\frac{1}{8}$ is:",
+              "options": [
+                "$8$",
+                "$\\frac{1}{8}$",
+                "$\\frac{1}{16}$"
+              ],
+              "correctIndex": 0,
+              "explanation": "Flip $\\frac{1}{8}$ to get $\\frac{8}{1} = 8$.",
+              "check": [
+                "Rational(1,8)*8==1"
+              ]
+            },
+            {
+              "prompt": "Find $\\frac{2}{3} \\div \\frac{1}{6}$.",
+              "options": [
+                "$4$",
+                "$3$",
+                "$\\frac{2}{18}$"
+              ],
+              "correctIndex": 0,
+              "explanation": "$\\frac{2}{3} \\times \\frac{6}{1} = \\frac{12}{3} = 4$.",
+              "check": [
+                "Rational(2,3)/Rational(1,6)==4"
+              ]
+            },
+            {
+              "prompt": "Find $1 \\div \\frac{1}{3}$.",
+              "options": [
+                "$3$",
+                "$\\frac{1}{3}$",
+                "$2$"
+              ],
+              "correctIndex": 0,
+              "explanation": "$\\frac{1}{1} \\times \\frac{3}{1} = 3$.",
+              "check": [
+                "Rational(1,1)/Rational(1,3)==3"
+              ]
+            },
+            {
+              "prompt": "Which expression equals $\\frac{3}{4} \\div \\frac{1}{8}$?",
+              "options": [
+                "$\\frac{3}{4} \\times 8$",
+                "$\\frac{3}{4} \\times \\frac{1}{8}$",
+                "$\\frac{4}{3} \\times \\frac{1}{8}$"
+              ],
+              "correctIndex": 0,
+              "explanation": "Keep $\\frac{3}{4}$, flip $\\frac{1}{8}$ to $8$: $\\frac{3}{4} \\times 8 = 6$.",
+              "check": [
+                "Rational(3,4)*8==6",
+                "Rational(3,4)/Rational(1,8)==6"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "funFact",
+          "eyebrow": "Chapter complete",
+          "title": "You've finished \"Dividing Fractions\"",
+          "body": "You can now see *why* dividing a fraction works (counting pieces) and *how* to do it fast (keep-change-flip). These two ideas together — the picture and the shortcut — are the full story. Next up: fraction word problems, where you'll decide which operation to use and then go."
         }
       ]
     }
-  ],
-  "practice": [
-    {
-      "id": "frac-prac-01",
-      "statement": "Placeholder practice problem. Compute $\\frac{3}{5} + \\frac{1}{5}$.",
-      "solution": "Placeholder solution. $\\frac{3}{5} + \\frac{1}{5} = \\frac{4}{5}$."
-    }
-  ],
-  "testYourself": [
-    {
-      "id": "frac-test-01",
-      "statement": "Placeholder test problem. What is $\\frac{2}{3} \\times \\frac{3}{4}$?",
-      "solution": "Placeholder solution. $\\frac{2}{3} \\times \\frac{3}{4} = \\frac{6}{12} = \\frac{1}{2}$."
-    }
-  ]
+  }
 }

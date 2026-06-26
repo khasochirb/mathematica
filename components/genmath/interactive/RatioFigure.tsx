@@ -1,6 +1,7 @@
 "use client";
 
 import { type FigureSpec, type FigureGroupSpec } from "@/lib/genmath-interactive";
+import FractionBar from "@/components/genmath/interactive/FractionBar";
 
 function Token({ color }: { color: string }) {
   return (
@@ -121,6 +122,19 @@ export default function RatioFigure({ figure }: { figure: FigureSpec }) {
 
   if (mode === "compareMix" && figure.mixes && figure.mixes.length >= 2) {
     return <CompareMixFigure mixes={figure.mixes} />;
+  }
+
+  if (mode === "fractionBar" && figure.fraction) {
+    const { num, den, label } = figure.fraction;
+    return (
+      <div className="gm-fade w-full max-w-[320px] rounded-xl p-4" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
+        <FractionBar num={num} den={den} />
+        <div className="mt-2 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
+          <span className="serif tabular" style={{ fontSize: 17, color: "var(--fg)" }}>{num}/{den}</span>
+          {label ? ` — ${label}` : ""}
+        </div>
+      </div>
+    );
   }
 
   // Plain side-by-side groups (used on teach pages).

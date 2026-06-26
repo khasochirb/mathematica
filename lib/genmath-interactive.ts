@@ -112,7 +112,7 @@ export interface FigureGroupSpec {
   glyph?: string;
 }
 export interface FigureSpec {
-  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix";
+  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar";
   groups?: FigureGroupSpec[];
   highlightIndex?: number; // the highlighted "part" in partToWhole (default 0)
   // "cross" — a cross-multiply diagram for a:b vs c:d (draws the two diagonals + products).
@@ -120,6 +120,52 @@ export interface FigureSpec {
   // "compareMix" — two read-only mixes side by side (juice + water), so a compare
   // question shows BOTH options, never just one.
   mixes?: { a: number; b: number; label?: string }[];
+  // "fractionBar" — a bar split into `den` equal pieces with `num` shaded.
+  fraction?: { num: number; den: number; label?: string };
+}
+
+// Fractions — a bar you split into more (equal) pieces to see equivalent fractions.
+export interface FractionScalerConfig {
+  num: number;
+  den: number;
+  maxSplit: number; // split each piece into 1..maxSplit
+  color?: string;
+}
+
+// Fractions — a bar whose pieces you merge to reach simplest form.
+export interface FractionSimplifyConfig {
+  num: number;
+  den: number;
+  color?: string;
+}
+
+// Comparing — two bars; give them the same-size pieces (common denominator), then compare.
+export interface FractionCompareConfig {
+  left: { num: number; den: number; label?: string };
+  right: { num: number; den: number; label?: string };
+  color?: string;
+}
+
+// Add/subtract — match the pieces, then combine the shaded amounts.
+export interface FractionCombineConfig {
+  left: { num: number; den: number };
+  right: { num: number; den: number };
+  op: "add" | "sub";
+  color?: string;
+}
+
+// Multiply — an area model: shade columns (first fraction) × rows (second fraction).
+export interface AreaModelConfig {
+  aNum: number;
+  aDen: number;
+  bNum: number;
+  bDen: number;
+}
+
+// Divide — a measurement model: how many of the divisor fit into the dividend.
+export interface FractionDivideConfig {
+  dividend: { num: number; den: number };
+  divisor: { num: number; den: number };
 }
 
 export interface NotationToggleConfig {
@@ -163,6 +209,12 @@ export type InteractiveStep =
   | { kind: "rateMeter"; eyebrow?: string; title: string; teach: string; config: RateMeterConfig }
   | { kind: "dealCompare"; eyebrow?: string; title: string; teach: string; config: DealCompareConfig }
   | { kind: "proportionBuilder"; eyebrow?: string; title: string; teach: string; config: ProportionBuilderConfig }
+  | { kind: "fractionScaler"; eyebrow?: string; title: string; teach: string; config: FractionScalerConfig }
+  | { kind: "fractionSimplify"; eyebrow?: string; title: string; teach: string; config: FractionSimplifyConfig }
+  | { kind: "fractionCompare"; eyebrow?: string; title: string; teach: string; config: FractionCompareConfig }
+  | { kind: "fractionCombine"; eyebrow?: string; title: string; teach: string; config: FractionCombineConfig }
+  | { kind: "areaModel"; eyebrow?: string; title: string; teach: string; config: AreaModelConfig }
+  | { kind: "fractionDivide"; eyebrow?: string; title: string; teach: string; config: FractionDivideConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {
