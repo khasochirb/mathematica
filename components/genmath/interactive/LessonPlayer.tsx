@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Sparkles, Lightbulb } from "lucide-react";
 import MathText from "@/components/esh/MathText";
 import WorkedExampleCard from "@/components/lesson/WorkedExampleCard";
 import RevealProblemCard from "@/components/lesson/RevealProblemCard";
@@ -11,8 +11,15 @@ import QuantityScaler from "@/components/genmath/interactive/QuantityScaler";
 import OrderFlip from "@/components/genmath/interactive/OrderFlip";
 import CompareToggle from "@/components/genmath/interactive/CompareToggle";
 import TapQuestion from "@/components/genmath/interactive/TapQuestion";
+import RatioTable from "@/components/genmath/interactive/RatioTable";
+import RatioCompare from "@/components/genmath/interactive/RatioCompare";
+import RateMeter from "@/components/genmath/interactive/RateMeter";
+import DealCompare from "@/components/genmath/interactive/DealCompare";
+import ProportionBuilder from "@/components/genmath/interactive/ProportionBuilder";
+import RatioFigure from "@/components/genmath/interactive/RatioFigure";
+import NotationToggle from "@/components/genmath/interactive/NotationToggle";
 import { type GenMathLesson } from "@/lib/genmath-lessons";
-import { type InteractiveStep, getLessonProblem } from "@/lib/genmath-interactive";
+import { type InteractiveStep, type WorkedItem, getLessonProblem } from "@/lib/genmath-interactive";
 
 const REVEAL = { reveal: "Show solution", hide: "Hide", revealAria: "Show solution", hideAria: "Hide solution" };
 
@@ -34,6 +41,50 @@ function StepHeader({ eyebrow, title }: { eyebrow?: string; title: string }) {
   );
 }
 
+function AnswerPill({ answer }: { answer: string }) {
+  return (
+    <span className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5" style={{ background: "var(--accent-wash)", color: "var(--accent)" }}>
+      <span className="text-[12px]">Answer:</span>
+      <span className="q-math text-[14px]">
+        <MathText text={answer} />
+      </span>
+    </span>
+  );
+}
+
+function WorkedItemCard({ item, index }: { item: WorkedItem; index: number }) {
+  return (
+    <div className="card-edit p-5">
+      <div className="mb-2 flex items-center gap-2">
+        <span className="grid h-6 w-6 place-items-center rounded-full text-[11px]" style={{ background: "var(--accent-wash)", color: "var(--accent)" }}>
+          {index + 1}
+        </span>
+        <div className="q-math text-[15px]" style={{ color: "var(--fg)" }}>
+          <MathText text={item.prompt} />
+        </div>
+      </div>
+      {item.figure && (
+        <div className="my-3 flex justify-center">
+          <RatioFigure figure={item.figure} />
+        </div>
+      )}
+      <ol className="mt-2 space-y-1.5">
+        {item.steps.map((s, i) => (
+          <li key={i} className="flex gap-2.5">
+            <span className="mono mt-0.5 text-[11px]" style={{ color: "var(--fg-3)" }}>{i + 1}</span>
+            <span className="q-math text-[14px]" style={{ color: "var(--fg-1)" }}>
+              <MathText text={s} />
+            </span>
+          </li>
+        ))}
+      </ol>
+      <div className="mt-3">
+        <AnswerPill answer={item.answer} />
+      </div>
+    </div>
+  );
+}
+
 function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveStep }) {
   switch (step.kind) {
     case "concept":
@@ -43,6 +94,88 @@ function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveSt
           <p className="font-sans" style={{ fontSize: 17, lineHeight: 1.6, color: "var(--fg-1)" }}>
             <MathText text={step.body} />
           </p>
+        </>
+      );
+    case "teach":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          {/* Visual first — the figure leads, then the explanation. */}
+          {step.figure && (
+            <div className="mb-5 flex justify-center">
+              <RatioFigure figure={step.figure} />
+            </div>
+          )}
+          {step.beats && step.beats.length > 0 ? (
+            <ul className="space-y-3">
+              {step.beats.map((b, i) => (
+                <li key={i} className="gm-step flex items-start gap-3" style={{ animationDelay: `${i * 70}ms` }}>
+                  <span
+                    className="mt-0.5 grid h-6 w-6 flex-shrink-0 place-items-center rounded-full text-[12px] font-medium"
+                    style={{ background: "var(--accent-wash)", color: "var(--accent)" }}
+                  >
+                    {i + 1}
+                  </span>
+                  <span className="font-sans" style={{ fontSize: 16, lineHeight: 1.5, color: "var(--fg-1)" }}>
+                    <MathText text={b} />
+                  </span>
+                </li>
+              ))}
+            </ul>
+          ) : step.body ? (
+            <p className="font-sans" style={{ fontSize: 17, lineHeight: 1.6, color: "var(--fg-1)" }}>
+              <MathText text={step.body} />
+            </p>
+          ) : null}
+        </>
+      );
+    case "notationToggle":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <NotationToggle config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "workedSet":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          {step.intro && (
+            <p className="font-sans mb-3" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+              <MathText text={step.intro} />
+            </p>
+          )}
+          <div className="space-y-3">
+            {step.examples.map((ex, i) => (
+              <WorkedItemCard key={i} item={ex} index={i} />
+            ))}
+          </div>
+        </>
+      );
+    case "tryItSet":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          {step.intro && (
+            <p className="font-sans mb-3" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+              <MathText text={step.intro} />
+            </p>
+          )}
+          <div className="space-y-3">
+            {step.problems.map((p, i) => (
+              <TapQuestion
+                key={i}
+                prompt={p.prompt}
+                options={p.options}
+                correctIndex={p.correctIndex}
+                explanation={p.explanation}
+                figure={p.figure}
+              />
+            ))}
+          </div>
         </>
       );
     case "scaler":
@@ -70,6 +203,56 @@ function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveSt
         <>
           <StepHeader eyebrow={step.eyebrow} title={step.title} />
           <CompareToggle config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "ratioTable":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <RatioTable config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "ratioCompare":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <RatioCompare config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "rateMeter":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <RateMeter config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "dealCompare":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <DealCompare config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "proportionBuilder":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <ProportionBuilder config={step.config} />
           <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
             <MathText text={step.teach} />
           </p>
@@ -105,6 +288,40 @@ function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveSt
         </>
       );
     }
+    case "funFact":
+      return (
+        <div className="rounded-2xl p-5 sm:p-6" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
+          <div className="mb-3 flex items-center gap-2">
+            <span className="grid h-9 w-9 place-items-center rounded-full" style={{ background: "rgba(239,159,39,0.16)", color: "#b97316" }}>
+              <Sparkles className="h-5 w-5" />
+            </span>
+            <div className="eyebrow" style={{ color: "#b97316" }}>{step.eyebrow ?? "Fun fact"}</div>
+          </div>
+          <h2 className="serif" style={{ fontWeight: 400, fontSize: "clamp(20px, 4vw, 28px)", lineHeight: 1.12, letterSpacing: "-0.02em", color: "var(--fg)" }}>
+            {step.title}
+          </h2>
+          <p className="font-sans mt-2" style={{ fontSize: 16, lineHeight: 1.6, color: "var(--fg-1)" }}>
+            <MathText text={step.body} />
+          </p>
+        </div>
+      );
+    case "tip":
+      return (
+        <div className="rounded-2xl p-5 sm:p-6" style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)" }}>
+          <div className="mb-3 flex items-center gap-2">
+            <span className="grid h-9 w-9 place-items-center rounded-full" style={{ background: "var(--accent)", color: "var(--accent-ink, #fff)" }}>
+              <Lightbulb className="h-5 w-5" />
+            </span>
+            <div className="eyebrow" style={{ color: "var(--accent)" }}>{step.eyebrow ?? "Tip"}</div>
+          </div>
+          <h2 className="serif" style={{ fontWeight: 400, fontSize: "clamp(20px, 4vw, 28px)", lineHeight: 1.12, letterSpacing: "-0.02em", color: "var(--fg)" }}>
+            {step.title}
+          </h2>
+          <p className="font-sans mt-2" style={{ fontSize: 16, lineHeight: 1.6, color: "var(--fg-1)" }}>
+            <MathText text={step.body} />
+          </p>
+        </div>
+      );
     case "recap":
       return (
         <>

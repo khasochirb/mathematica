@@ -4,28 +4,28 @@ import { useState } from "react";
 import { ArrowLeftRight, Smile, Frown } from "lucide-react";
 import { type OrderFlipConfig, formatRatio } from "@/lib/genmath-interactive";
 
+// The two labels stay PUT (cocoa first, milk second); flipping swaps only the
+// NUMBERS. Forward: a cocoa : b milk (good). Flipped: b cocoa : a milk (mud).
+// That's what makes "order matters" true — the actual mix changes.
 export default function OrderFlip({ config }: { config: OrderFlipConfig }) {
   const [flipped, setFlipped] = useState(false);
 
-  const first = flipped ? config.tokenB : config.tokenA;
-  const second = flipped ? config.tokenA : config.tokenB;
-  const firstN = flipped ? config.b : config.a;
-  const secondN = flipped ? config.b : config.a; // counts shown per label below
-  const ratioL = flipped ? config.b : config.a;
-  const ratioR = flipped ? config.a : config.b;
+  const countA = flipped ? config.b : config.a; // number on tokenA (e.g. cocoa)
+  const countB = flipped ? config.a : config.b; // number on tokenB (e.g. milk)
   const outcome = flipped ? config.flippedLabel : config.forwardLabel;
 
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
-      {/* Order readout */}
+      {/* Order readout — tokens fixed, numbers swap */}
       <div className="flex items-center justify-center gap-3">
         {[
-          { token: first, n: ratioL },
-          { token: second, n: ratioR },
+          { token: config.tokenA, n: countA },
+          { token: config.tokenB, n: countB },
         ].map((g, gi) => (
           <div key={gi} className="flex items-center gap-2">
             {gi === 1 && <span className="serif" style={{ fontSize: 24, color: "var(--fg-3)" }}>:</span>}
             <div
+              key={g.n}
               className="gm-fade flex items-center gap-2 rounded-xl px-3 py-2"
               style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}
             >
@@ -39,7 +39,7 @@ export default function OrderFlip({ config }: { config: OrderFlipConfig }) {
         ))}
       </div>
 
-      {/* Outcome cup */}
+      {/* Outcome */}
       <div
         key={flipped ? "bad" : "good"}
         className="gm-step mx-auto mt-4 flex max-w-xs items-center gap-3 rounded-xl p-3"
@@ -56,7 +56,7 @@ export default function OrderFlip({ config }: { config: OrderFlipConfig }) {
         </span>
         <div>
           <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>
-            {formatRatio(ratioL, ratioR)} makes
+            {config.tokenA.label} : {config.tokenB.label} = {formatRatio(countA, countB)} makes
           </div>
           <div className="serif" style={{ fontSize: 18, color: "var(--fg)" }}>{outcome}</div>
         </div>

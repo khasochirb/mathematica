@@ -6,6 +6,10 @@ import {
   ratioEquivalent,
   partToWhole,
   formatRatio,
+  unitPrice,
+  cheaperDeal,
+  rateValue,
+  proportionMissing,
 } from "@/lib/genmath-interactive";
 
 describe("ratio interaction logic", () => {
@@ -60,5 +64,25 @@ describe("compare toggle — two kinds of ratio", () => {
   it("part-to-part is 3:5, part-to-whole is 3:8", () => {
     expect(formatRatio(3, 5)).toBe("3:5");
     expect(formatRatio(...partToWhole(3, 5))).toBe("3:8");
+  });
+});
+
+describe("rate / unit-rate / proportion logic (STEP 2 manipulables)", () => {
+  it("unitPrice", () => {
+    expect(unitPrice(12, 4)).toBe(3);
+    expect(unitPrice(6, 3)).toBe(2);
+  });
+  it("cheaperDeal picks the lower unit price (or -1 tie)", () => {
+    expect(cheaperDeal({ price: 6, qty: 3 }, { price: 10, qty: 4 })).toBe(0); // 2 < 2.5
+    expect(cheaperDeal({ price: 9, qty: 3 }, { price: 15, qty: 6 })).toBe(1); // 3 > 2.5
+    expect(cheaperDeal({ price: 4, qty: 2 }, { price: 6, qty: 3 })).toBe(-1); // tie 2 = 2
+  });
+  it("rateValue", () => {
+    expect(rateValue(120, 2)).toBe(60);
+    expect(rateValue(90, 6)).toBe(15);
+  });
+  it("proportionMissing scales to the known value", () => {
+    expect(proportionMissing(3, 5, "b", 15)).toBe(9); // 15 blue -> 9 red
+    expect(proportionMissing(4, 7, "a", 12)).toBe(21); // 12 of the 4-part -> 21
   });
 });

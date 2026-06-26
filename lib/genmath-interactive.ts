@@ -42,11 +42,127 @@ export interface CompareToggleConfig {
   groupB: CompareGroup;
 }
 
+// Equivalent ratios — a ratio table / double number line the student extends.
+export interface RatioTableConfig {
+  a: number;
+  b: number;
+  tokenA: Token;
+  tokenB: Token;
+  maxCols: number; // how many equivalent columns can be revealed
+}
+
+// Comparing ratios — two mixes side by side; reveal which is stronger.
+export interface CompareRatio {
+  a: number;
+  b: number;
+  label: string;
+  token: Token;
+}
+export interface RatioCompareConfig {
+  left: CompareRatio;
+  right: CompareRatio;
+  unitNote: string; // e.g. "more orangey" — what "bigger" means here
+}
+
+// Rates — a live two-quantity rate calculator (distance/time, items/min, …).
+export interface RateMeterConfig {
+  topLabel: string;
+  topUnit: string;
+  top: number;
+  topMax: number;
+  topStep: number;
+  bottomLabel: string;
+  bottomUnit: string;
+  bottom: number;
+  bottomMax: number;
+  bottomStep: number;
+  rateUnit: string; // e.g. "km per hour"
+}
+
+// Unit rate — two deals side by side; reveal the better buy per unit.
+export interface Deal {
+  label: string;
+  price: number;
+  qty: number;
+}
+export interface DealCompareConfig {
+  unit: string; // e.g. "bottle"
+  currency: string; // e.g. "$"
+  dealA: Deal;
+  dealB: Deal;
+}
+
+// Word problems — scale a known ratio to find the missing value.
+export interface ProportionBuilderConfig {
+  aLabel: string;
+  bLabel: string;
+  a: number;
+  b: number;
+  knownSide: "a" | "b";
+  knownValue: number;
+  tokenA: Token;
+  tokenB: Token;
+}
+
+// A visual figure attached to teach steps and problems.
+export interface FigureGroupSpec {
+  count: number;
+  color: string;
+  label: string;
+  glyph?: string;
+}
+export interface FigureSpec {
+  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix";
+  groups?: FigureGroupSpec[];
+  highlightIndex?: number; // the highlighted "part" in partToWhole (default 0)
+  // "cross" — a cross-multiply diagram for a:b vs c:d (draws the two diagonals + products).
+  cross?: { a: number; b: number; c: number; d: number };
+  // "compareMix" — two read-only mixes side by side (juice + water), so a compare
+  // question shows BOTH options, never just one.
+  mixes?: { a: number; b: number; label?: string }[];
+}
+
+export interface NotationToggleConfig {
+  a: number;
+  b: number;
+  tokenA: Token;
+  tokenB: Token;
+}
+
+// One worked example on a multi-example page (figure + reasoning steps).
+export interface WorkedItem {
+  prompt: string;
+  figure?: FigureSpec;
+  steps: string[];
+  answer: string;
+  check: string[];
+}
+
+// One try-it problem on a multi-problem page — the student ANSWERS (taps an
+// option) and gets instant feedback, with a figure.
+export interface TryItItem {
+  prompt: string;
+  figure?: FigureSpec;
+  options: string[];
+  correctIndex: number;
+  explanation: string;
+  check: string[];
+}
+
 export type InteractiveStep =
   | { kind: "concept"; eyebrow?: string; title: string; body: string }
+  | { kind: "teach"; eyebrow?: string; title: string; body?: string; beats?: string[]; figure?: FigureSpec }
+  | { kind: "notationToggle"; eyebrow?: string; title: string; teach: string; config: NotationToggleConfig }
+  | { kind: "workedSet"; eyebrow?: string; title: string; intro?: string; examples: WorkedItem[] }
+  | { kind: "tryItSet"; eyebrow?: string; title: string; intro?: string; problems: TryItItem[] }
   | { kind: "scaler"; eyebrow?: string; title: string; teach: string; config: ScalerConfig }
   | { kind: "orderFlip"; eyebrow?: string; title: string; teach: string; config: OrderFlipConfig }
   | { kind: "compareToggle"; eyebrow?: string; title: string; teach: string; config: CompareToggleConfig }
+  | { kind: "ratioTable"; eyebrow?: string; title: string; teach: string; config: RatioTableConfig }
+  | { kind: "ratioCompare"; eyebrow?: string; title: string; teach: string; config: RatioCompareConfig }
+  | { kind: "rateMeter"; eyebrow?: string; title: string; teach: string; config: RateMeterConfig }
+  | { kind: "dealCompare"; eyebrow?: string; title: string; teach: string; config: DealCompareConfig }
+  | { kind: "proportionBuilder"; eyebrow?: string; title: string; teach: string; config: ProportionBuilderConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {
@@ -59,6 +175,8 @@ export type InteractiveStep =
       explanation: string;
       check: string[]; // sympy assertions proving the correct option is right
     }
+  | { kind: "funFact"; eyebrow?: string; title: string; body: string }
+  | { kind: "tip"; eyebrow?: string; title: string; body: string }
   | { kind: "recap"; eyebrow?: string; title: string; points: string[] };
 
 export interface InteractiveLesson {
@@ -102,6 +220,39 @@ export function formatRatio(a: number, b: number): string {
 // Part-to-whole pair for a compare toggle, e.g. partToWhole(3,5) -> [3,8].
 export function partToWhole(part: number, other: number): [number, number] {
   return [part, part + other];
+}
+
+// Unit price of a deal (price per single unit).
+export function unitPrice(price: number, qty: number): number {
+  return price / qty;
+}
+
+// Index (0 = first, 1 = second) of the cheaper deal by unit price; -1 if equal.
+export function cheaperDeal(
+  a: { price: number; qty: number },
+  b: { price: number; qty: number },
+): number {
+  const ua = a.price / a.qty;
+  const ub = b.price / b.qty;
+  if (ua < ub) return 0;
+  if (ub < ua) return 1;
+  return -1;
+}
+
+// A rate value, top per bottom (e.g. distance per time).
+export function rateValue(top: number, bottom: number): number {
+  return bottom === 0 ? 0 : top / bottom;
+}
+
+// Scale a:b so the known side equals knownValue; return the matching other side.
+// e.g. proportionMissing(3,5,"b",15) -> 9  (red:blue 3:5, 15 blue -> 9 red)
+export function proportionMissing(
+  a: number,
+  b: number,
+  knownSide: "a" | "b",
+  knownValue: number,
+): number {
+  return knownSide === "a" ? (b * knownValue) / a : (a * knownValue) / b;
 }
 
 // ---------------------------------------------------------------------------

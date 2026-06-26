@@ -3,17 +3,21 @@
 import { useState } from "react";
 import { Check, X } from "lucide-react";
 import MathText from "@/components/esh/MathText";
+import RatioFigure from "@/components/genmath/interactive/RatioFigure";
+import { type FigureSpec } from "@/lib/genmath-interactive";
 
 export default function TapQuestion({
   prompt,
   options,
   correctIndex,
   explanation,
+  figure,
 }: {
   prompt: string;
   options: string[];
   correctIndex: number;
   explanation: string;
+  figure?: FigureSpec;
 }) {
   const [solved, setSolved] = useState(false);
   const [wrong, setWrong] = useState<number[]>([]);
@@ -36,6 +40,12 @@ export default function TapQuestion({
       <p className="font-sans" style={{ fontSize: 16, lineHeight: 1.5, color: "var(--fg)" }}>
         <MathText text={prompt} />
       </p>
+
+      {figure && (
+        <div className="mt-3 flex justify-center">
+          <RatioFigure figure={figure} />
+        </div>
+      )}
 
       <div className="mt-4 grid gap-2.5 sm:grid-cols-2">
         {options.map((opt, i) => {

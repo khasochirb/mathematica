@@ -85,6 +85,20 @@ def check_tap_question(topic_slug, where, step):
     run_checks(label, checks)
 
 
+def check_inline(topic_slug, where, item):
+    # An inline worked-example or try-it problem (prompt + check, figure optional).
+    global problems_checked
+    label = f"{topic_slug} / {where}"
+    if not item.get("prompt"):
+        failures.append(f"{label}: missing prompt")
+    checks = item.get("check")
+    if not isinstance(checks, list) or len(checks) == 0:
+        failures.append(f"{label}: missing non-empty 'check'")
+        return
+    problems_checked += 1
+    run_checks(label, checks)
+
+
 def main():
     global topics_checked
     files = sorted(glob.glob(DATA_GLOB, recursive=True))
@@ -112,8 +126,15 @@ def main():
             for ex in lesson.get("tryIt", []):
                 check_problem(slug, f"{lslug}:tryIt", ex)
             for s in (lesson.get("interactive") or {}).get("steps", []):
-                if s.get("kind") == "tapQuestion":
+                k = s.get("kind")
+                if k == "tapQuestion":
                     check_tap_question(slug, f"{lslug}:interactive", s)
+                elif k == "workedSet":
+                    for j, ex in enumerate(s.get("examples", [])):
+                        check_inline(slug, f"{lslug}:workedSet[{j}]", ex)
+                elif k == "tryItSet":
+                    for j, p in enumerate(s.get("problems", [])):
+                        check_tap_question(slug, f"{lslug}:tryItSet[{j}]", p)
 
         for ex in topic.get("practice", []):
             check_problem(slug, "practice", ex)

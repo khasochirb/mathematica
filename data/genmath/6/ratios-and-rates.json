@@ -21,8 +21,16 @@
         "body": "Open the cutlery drawer and count the forks and the spoons. Write the ratio of forks to spoons, then the ratio of forks to the total number of utensils. Two different ratios from the same drawer!"
       },
       "facts": [
-        { "title": "Three ways to write a ratio", "latex": "$a:b \\;=\\; a \\text{ to } b \\;=\\; \\frac{a}{b}$", "explanation": "All three notations mean the same comparison. The fraction form is handy because it lets you use everything you already know about fractions." },
-        { "title": "Part-to-whole", "latex": "$\\text{part} : \\text{total}$", "explanation": "The total is the sum of all the parts. If there are 3 red and 5 blue, the total is 8." }
+        {
+          "title": "Three ways to write a ratio",
+          "latex": "$a:b \\;=\\; a \\text{ to } b \\;=\\; \\frac{a}{b}$",
+          "explanation": "All three notations mean the same comparison. The fraction form is handy because it lets you use everything you already know about fractions."
+        },
+        {
+          "title": "Part-to-whole",
+          "latex": "$\\text{part} : \\text{total}$",
+          "explanation": "The total is the sum of all the parts. If there are 3 red and 5 blue, the total is 8."
+        }
       ],
       "workedExamples": [
         {
@@ -30,54 +38,1030 @@
           "statement": "A fruit bowl has **4 apples** and **6 oranges**. Write the ratio of apples to oranges in simplest form.",
           "note": "\"Apples to oranges\" means apples first. Both numbers share a common factor, so we can simplify — just like a fraction.",
           "solution": "Apples : oranges $= 4 : 6$. Both 4 and 6 divide by 2, so $4:6 = 2:3$. **Answer: $2:3$** (for every 2 apples there are 3 oranges).",
-          "badges": [{ "text": "warm-up" }],
-          "check": ["Rational(4,6) == Rational(2,3)"]
+          "badges": [
+            {
+              "text": "warm-up"
+            }
+          ],
+          "check": [
+            "Rational(4,6) == Rational(2,3)"
+          ]
         },
         {
           "id": "wir-we2",
           "statement": "A class has **10 girls** and **15 boys**. What is the ratio of girls to the **total** number of students?",
           "note": "\"Total\" is the signal for a part-to-whole ratio. First find the total, then compare.",
           "solution": "Total students $= 10 + 15 = 25$. Girls : total $= 10 : 25$. Both divide by 5: $10:25 = 2:5$. **Answer: $2:5$** (2 of every 5 students are girls).",
-          "badges": [{ "text": "core" }],
-          "check": ["Rational(10,25) == Rational(2,5)"]
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(10,25) == Rational(2,5)"
+          ]
         },
         {
           "id": "wir-we3",
           "statement": "In a bag of marbles there are **3 red** and **5 blue**. Give (a) red-to-blue and (b) red-to-total.",
           "note": "Same marbles, two different questions — watch which words you're matching.",
           "solution": "(a) Red : blue $= 3:5$ (already simplest). (b) Total $= 3+5 = 8$, so red : total $= 3:8$. **Answers: $3:5$ and $3:8$.**",
-          "badges": [{ "text": "core" }],
-          "check": ["Rational(3,5) == Rational(3,5)", "Rational(3,8) == Rational(3,8)"]
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(3,5) == Rational(3,5)",
+            "Rational(3,8) == Rational(3,8)"
+          ]
         }
       ],
       "commonMistakes": [
-        { "text": "Writing the numbers in the wrong order — answering $3:5$ when the question asks for the ratio of the *second* group to the first.", "correction": "Match each number to the word right next to it, left to right.", "authored": true },
-        { "text": "Mixing up part-to-part and part-to-whole — giving $3:5$ when the question asks \"out of the total\".", "correction": "The word \"total\" or \"out of all\" means add the parts first.", "authored": true },
-        { "text": "Subtracting the amounts (6 − 2 = 4) instead of comparing them.", "correction": "A ratio compares by division, not subtraction.", "authored": true }
+        {
+          "text": "Writing the numbers in the wrong order — answering $3:5$ when the question asks for the ratio of the *second* group to the first.",
+          "correction": "Match each number to the word right next to it, left to right.",
+          "authored": true
+        },
+        {
+          "text": "Mixing up part-to-part and part-to-whole — giving $3:5$ when the question asks \"out of the total\".",
+          "correction": "The word \"total\" or \"out of all\" means add the parts first.",
+          "authored": true
+        },
+        {
+          "text": "Subtracting the amounts (6 − 2 = 4) instead of comparing them.",
+          "correction": "A ratio compares by division, not subtraction.",
+          "authored": true
+        }
       ],
       "tryIt": [
-        { "id": "wir-t1", "statement": "Write **8 : 12** in simplest form.", "solution": "Both divide by 4: $8:12 = 2:3$.", "check": ["Rational(8,12) == Rational(2,3)"] },
-        { "id": "wir-t2", "statement": "A team has 7 wins and 4 losses. Ratio of wins to **total** games?", "solution": "Total $= 7+4 = 11$, so wins : total $= 7:11$.", "check": ["Rational(7,11) == Rational(7,11)"] },
-        { "id": "wir-t3", "statement": "Simplify the ratio **15 : 9**.", "solution": "Both divide by 3: $15:9 = 5:3$.", "check": ["Rational(15,9) == Rational(5,3)"] }
+        {
+          "id": "wir-t1",
+          "statement": "Write **8 : 12** in simplest form.",
+          "solution": "Both divide by 4: $8:12 = 2:3$.",
+          "check": [
+            "Rational(8,12) == Rational(2,3)"
+          ]
+        },
+        {
+          "id": "wir-t2",
+          "statement": "A team has 7 wins and 4 losses. Ratio of wins to **total** games?",
+          "solution": "Total $= 7+4 = 11$, so wins : total $= 7:11$.",
+          "check": [
+            "Rational(7,11) == Rational(7,11)"
+          ]
+        },
+        {
+          "id": "wir-t3",
+          "statement": "Simplify the ratio **15 : 9**.",
+          "solution": "Both divide by 3: $15:9 = 5:3$.",
+          "check": [
+            "Rational(15,9) == Rational(5,3)"
+          ]
+        }
       ],
       "interactive": {
         "steps": [
-          { "kind": "concept", "eyebrow": "Warm-up", "title": "The perfect hot chocolate", "body": "A great cup of hot chocolate mixes **2** scoops of cocoa for every **6** cups of milk. That \"2 to 6\" is a **ratio** — it doesn't say how *much* you make, it says the **mix**." },
-          { "kind": "scaler", "eyebrow": "Try it", "title": "Scale the recipe", "teach": "Make more batches and both amounts grow — but the mix never changes. **A ratio is the mix, not the amount.**", "config": { "a": 2, "b": 6, "tokenA": { "label": "cocoa", "plural": "cocoa scoops", "color": "#7c4a2d" }, "tokenB": { "label": "milk", "plural": "milk cups", "color": "#efe2c9" }, "maxBatches": 4, "goodLabel": "tastes just right" } },
-          { "kind": "orderFlip", "eyebrow": "Try it", "title": "Does the order matter?", "teach": "Cocoa-to-milk and milk-to-cocoa are *different* ratios — and very different drinks. **Order matters.**", "config": { "a": 2, "b": 6, "tokenA": { "label": "cocoa", "plural": "cocoa scoops", "color": "#7c4a2d" }, "tokenB": { "label": "milk", "plural": "milk cups", "color": "#efe2c9" }, "forwardLabel": "Smooth hot chocolate", "flippedLabel": "A cup of mud" } },
-          { "kind": "compareToggle", "eyebrow": "Try it", "title": "Two kinds of ratio", "teach": "**Part-to-part** compares the two groups ($3:5$). **Part-to-whole** compares one group to the total ($3:8$).", "config": { "groupA": { "count": 3, "token": { "label": "apple", "plural": "apples", "color": "#d7503f" } }, "groupB": { "count": 5, "token": { "label": "orange", "plural": "oranges", "color": "#e8913c" } } } },
-          { "kind": "tapQuestion", "eyebrow": "Quick check", "title": "Did the mix hold?", "prompt": "1 batch is **2 cocoa : 6 milk**. What is **3 batches**?", "options": ["$6 : 18$", "$8 : 18$", "$6 : 12$", "$12 : 18$"], "correctIndex": 0, "explanation": "Multiply both by 3: $2\\times3=6$ and $6\\times3=18$, so $6:18$ — still the same $1:3$ mix.", "check": ["Rational(6,18)==Rational(1,3)"] },
-          { "kind": "orderFlip", "eyebrow": "Try it", "title": "Does the order matter?", "teach": "Cocoa-to-milk and milk-to-cocoa are *different* ratios — and very different drinks. **Order matters.**", "config": { "a": 2, "b": 6, "tokenA": { "label": "cocoa", "plural": "cocoa scoops", "color": "#7c4a2d" }, "tokenB": { "label": "milk", "plural": "milk cups", "color": "#efe2c9" }, "forwardLabel": "Smooth hot chocolate", "flippedLabel": "A cup of mud" } },
-          { "kind": "tapQuestion", "eyebrow": "Quick check", "title": "Which order is right?", "prompt": "You want a **smooth** hot chocolate from 2 cocoa and 6 milk. Which ratio is it?", "options": ["cocoa : milk $= 2:6$", "milk : cocoa $= 6:2$", "they are the same"], "correctIndex": 0, "explanation": "$2:6$ (cocoa to milk) is the smooth drink. Flip it to $6:2$ and it's mostly cocoa — mud!", "check": ["Rational(2,6) != Rational(6,2)"] },
-          { "kind": "compareToggle", "eyebrow": "Try it", "title": "Two kinds of ratio", "teach": "**Part-to-part** compares the two groups ($3:5$). **Part-to-whole** compares one group to the total ($3:8$).", "config": { "groupA": { "count": 3, "token": { "label": "apple", "plural": "apples", "color": "#d7503f" } }, "groupB": { "count": 5, "token": { "label": "orange", "plural": "oranges", "color": "#e8913c" } } } },
-          { "kind": "tapQuestion", "eyebrow": "Quick check", "title": "Part or whole?", "prompt": "There are **3 apples** and **5 oranges**. What is apples to the **total**?", "options": ["$3 : 5$", "$3 : 8$", "$5 : 8$", "$8 : 3$"], "correctIndex": 1, "explanation": "Total $= 3+5 = 8$, so apples : total $= 3:8$. ($3:5$ would be apples to oranges.)", "check": ["Rational(3,3+5)==Rational(3,8)"] },
-          { "kind": "concept", "eyebrow": "Put it together", "title": "Let's see it on paper", "body": "You've felt how ratios work — now watch them written out step by step. Same ideas, just on the page." },
-          { "kind": "worked", "eyebrow": "Worked example", "title": "See one worked out", "problemId": "wir-we1" },
-          { "kind": "worked", "eyebrow": "Worked example", "title": "Now a part-to-whole one", "problemId": "wir-we2" },
-          { "kind": "tapQuestion", "eyebrow": "Practice", "title": "Simplest form", "prompt": "Write **8 : 12** in simplest form.", "options": ["$2 : 3$", "$4 : 6$", "$2 : 4$", "$1 : 2$"], "correctIndex": 0, "explanation": "Divide both by 4: $8\\div4=2$, $12\\div4=3$ → $2:3$. ($4:6$ still shares a factor of 2.)", "check": ["Rational(8,12)==Rational(2,3)"] },
-          { "kind": "tryIt", "eyebrow": "Your turn", "title": "Try one yourself", "problemId": "wir-t2" },
-          { "kind": "tapQuestion", "eyebrow": "Practice", "title": "One more", "prompt": "Write **15 : 9** in simplest form.", "options": ["$5 : 3$", "$3 : 5$", "$5 : 9$", "$15 : 9$"], "correctIndex": 0, "explanation": "Divide both by 3: $15\\div3=5$, $9\\div3=3$ → $5:3$.", "check": ["Rational(15,9)==Rational(5,3)"] },
-          { "kind": "recap", "eyebrow": "Recap", "title": "What you learned", "points": ["A ratio is the **mix**, not the amount — scale it up and the mix stays the same.", "**Order matters**: $2:6$ and $6:2$ are different ratios.", "**Part-to-part** compares groups ($3:5$); **part-to-whole** compares to the total ($3:8$)."] }
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "What is a ratio?",
+            "beats": [
+              "A **ratio** compares two amounts — it tells you the **mix**, not how much you made.",
+              "This hot chocolate recipe is **2 scoops of cocoa** for every **6 cups of milk**.",
+              "We write that as $2:6$ (read: \"2 to 6\"). One cup or a giant pot — keep 2-to-6 and it tastes the same.",
+              "A ratio is about the **mix**, not the total amount."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 2,
+                  "color": "#7c4a2d",
+                  "label": "cocoa"
+                },
+                {
+                  "count": 6,
+                  "color": "#efe2c9",
+                  "label": "milk"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "scaler",
+            "eyebrow": "Play with it",
+            "title": "Scale the recipe",
+            "teach": "Slide to make more batches — both amounts grow, but the mix never changes. **The ratio is the mix.**",
+            "config": {
+              "a": 2,
+              "b": 6,
+              "tokenA": {
+                "label": "cocoa",
+                "plural": "cocoa scoops",
+                "color": "#7c4a2d"
+              },
+              "tokenB": {
+                "label": "milk",
+                "plural": "milk cups",
+                "color": "#efe2c9"
+              },
+              "maxBatches": 4,
+              "goodLabel": "tastes just right"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Why the recipe still tastes the same",
+            "beats": [
+              "Every new batch **multiplies both numbers by the same amount**: 2 batches → $4:12$, 3 batches → $6:18$.",
+              "Because you scaled both parts equally, the mix — the ratio — stays the same.",
+              "This connects to what you'll learn next: $2:6$, $4:12$, and $6:18$ are all **equivalent ratios**.",
+              "The ratio $2:6$ is not a recipe for \"this much\" hot chocolate — it's the recipe for **any amount**."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 2,
+                  "color": "#7c4a2d",
+                  "label": "cocoa"
+                },
+                {
+                  "count": 6,
+                  "color": "#efe2c9",
+                  "label": "milk"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Reading a ratio",
+            "intro": "Read the two amounts, then write them in the order asked.",
+            "examples": [
+              {
+                "prompt": "5 apples and 3 oranges — write the ratio of **apples to oranges**.",
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 5,
+                      "color": "#d7503f",
+                      "label": "apples"
+                    },
+                    {
+                      "count": 3,
+                      "color": "#e8913c",
+                      "label": "oranges"
+                    }
+                  ]
+                },
+                "steps": [
+                  "Apples are named first, so apples go first.",
+                  "5 apples, 3 oranges → $5:3$."
+                ],
+                "answer": "$5:3$",
+                "check": [
+                  "Rational(5,3)==Rational(5,3)"
+                ]
+              },
+              {
+                "prompt": "2 red and 7 blue marbles — write **red to blue**.",
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 2,
+                      "color": "#d7503f",
+                      "label": "red"
+                    },
+                    {
+                      "count": 7,
+                      "color": "#3f78d7",
+                      "label": "blue"
+                    }
+                  ]
+                },
+                "steps": [
+                  "Red is named first: red goes first.",
+                  "2 red, 7 blue → $2:7$."
+                ],
+                "answer": "$2:7$",
+                "check": [
+                  "Rational(2,7)==Rational(2,7)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Your turn",
+            "intro": "Write each ratio in the order asked. The picture shows who goes first.",
+            "problems": [
+              {
+                "prompt": "4 cats and 9 dogs — ratio of **cats to dogs**?",
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 4,
+                      "color": "#a8703f",
+                      "label": "cats"
+                    },
+                    {
+                      "count": 9,
+                      "color": "#5f4632",
+                      "label": "dogs"
+                    }
+                  ]
+                },
+                "options": [
+                  "$4:9$",
+                  "$9:4$",
+                  "$4:13$",
+                  "$13:4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Cats are named first, so cats go first: $4:9$.",
+                "check": [
+                  "Rational(4,9)==Rational(4,9)"
+                ]
+              },
+              {
+                "prompt": "3 stars and 8 moons — ratio of **stars to moons**?",
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 3,
+                      "color": "#f2c14e",
+                      "label": "stars"
+                    },
+                    {
+                      "count": 8,
+                      "color": "#9aa3b2",
+                      "label": "moons"
+                    }
+                  ]
+                },
+                "options": [
+                  "$3:8$",
+                  "$8:3$",
+                  "$3:11$",
+                  "$11:3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Stars are named first: $3:8$.",
+                "check": [
+                  "Rational(3,8)==Rational(3,8)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Did the mix hold?",
+            "prompt": "1 batch is **2 cocoa : 6 milk**. What is **3 batches**?",
+            "options": [
+              "$6:18$",
+              "$8:18$",
+              "$6:12$",
+              "$12:18$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Multiply both by 3 → $6:18$. The mix is still the same.",
+            "check": [
+              "Rational(6,18)==Rational(1,3)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Three ways to write the same ratio",
+            "beats": [
+              "The ratio $2:6$ can be written three ways — and they all mean exactly the same comparison.",
+              "**Colon notation:** $2:6$ — the most common way you'll see ratios.",
+              "**Word form:** \"2 to 6\" — used in everyday language.",
+              "**Fraction form:** $\\dfrac{2}{6}$ — handy because you can use everything you already know about fractions."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 2,
+                  "color": "#7c4a2d",
+                  "label": "cocoa"
+                },
+                {
+                  "count": 6,
+                  "color": "#efe2c9",
+                  "label": "milk"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "notationToggle",
+            "eyebrow": "Play with it",
+            "title": "Tap each notation",
+            "teach": "Three costumes, one ratio. Tap each one and see it switch — the comparison never changes.",
+            "config": {
+              "a": 2,
+              "b": 6,
+              "tokenA": {
+                "label": "cocoa",
+                "plural": "cocoa",
+                "color": "#7c4a2d"
+              },
+              "tokenB": {
+                "label": "milk",
+                "plural": "milk",
+                "color": "#efe2c9"
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Write it three ways",
+            "examples": [
+              {
+                "prompt": "5 dogs and 8 cats — write **dogs to cats** three ways.",
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 5,
+                      "color": "#5f4632",
+                      "label": "dogs"
+                    },
+                    {
+                      "count": 8,
+                      "color": "#a8703f",
+                      "label": "cats"
+                    }
+                  ]
+                },
+                "steps": [
+                  "Colon: $5:8$.",
+                  "Words: \"5 to 8\".",
+                  "Fraction: $\\dfrac{5}{8}$.",
+                  "All three are the same comparison."
+                ],
+                "answer": "$5:8$",
+                "check": [
+                  "Rational(5,8)==Rational(5,8)"
+                ]
+              },
+              {
+                "prompt": "3 wins and 4 losses — write **wins to losses** three ways.",
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 3,
+                      "color": "#3fb27f",
+                      "label": "wins"
+                    },
+                    {
+                      "count": 4,
+                      "color": "#d7503f",
+                      "label": "losses"
+                    }
+                  ]
+                },
+                "steps": [
+                  "$3:4$, \"3 to 4\", and $\\dfrac{3}{4}$ — all three mean the same thing."
+                ],
+                "answer": "$3:4$",
+                "check": [
+                  "Rational(3,4)==Rational(3,4)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Your turn",
+            "problems": [
+              {
+                "prompt": "Write **2 to 9** as a ratio $a:b$.",
+                "options": [
+                  "$2:9$",
+                  "$9:2$",
+                  "$2 + 9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "\"2 to 9\" in colon notation is $2:9$.",
+                "check": [
+                  "Rational(2,9)==Rational(2,9)"
+                ]
+              },
+              {
+                "prompt": "Write the fraction $\\dfrac{4}{7}$ as a ratio.",
+                "options": [
+                  "$4:7$",
+                  "$7:4$",
+                  "$\\dfrac{7}{4}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\dfrac{4}{7}$ and $4:7$ are the same comparison — same order, same numbers.",
+                "check": [
+                  "Rational(4,7)==Rational(4,7)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which one is different?",
+            "prompt": "Which is **NOT** another way to write $3:5$?",
+            "options": [
+              "$5:3$",
+              "$\\dfrac{3}{5}$",
+              "3 to 5"
+            ],
+            "correctIndex": 0,
+            "explanation": "$5:3$ flips the order — that is a different ratio. $\\dfrac{3}{5}$ and \"3 to 5\" are both the same as $3:5$.",
+            "check": [
+              "Rational(5,3) != Rational(3,5)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept C",
+            "title": "Order matters — a lot",
+            "beats": [
+              "Look at the picture: **2 cocoa scoops, 6 cups of milk** — that is a smooth, drinkable hot chocolate.",
+              "Now flip it: **6 cocoa scoops, 2 cups of milk** — same numbers, very different drink. That is basically mud.",
+              "So $2:6$ and $6:2$ are **not** the same ratio. Order always matches the words.",
+              "Rule: the first number belongs to whichever word comes first. Match them left to right, every time."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 2,
+                  "color": "#7c4a2d",
+                  "label": "cocoa"
+                },
+                {
+                  "count": 6,
+                  "color": "#efe2c9",
+                  "label": "milk"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "orderFlip",
+            "eyebrow": "Play with it",
+            "title": "Flip the order",
+            "teach": "Tap to flip the ratio. Notice $2:6$ is a smooth drink — $6:2$ is mud. Same numbers, totally different mix.",
+            "config": {
+              "a": 2,
+              "b": 6,
+              "tokenA": {
+                "label": "cocoa",
+                "plural": "cocoa",
+                "color": "#7c4a2d"
+              },
+              "tokenB": {
+                "label": "milk",
+                "plural": "milk",
+                "color": "#efe2c9"
+              },
+              "forwardLabel": "Smooth hot chocolate",
+              "flippedLabel": "A cup of mud"
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Reversing a ratio",
+            "intro": "Reversing the order swaps the two numbers — and makes a completely different ratio.",
+            "examples": [
+              {
+                "prompt": "A snack is **1 raisin : 3 nuts**. What is the ratio of **nuts to raisins**?",
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 1,
+                      "color": "#6b4a3a",
+                      "label": "raisin"
+                    },
+                    {
+                      "count": 3,
+                      "color": "#c8a06a",
+                      "label": "nuts"
+                    }
+                  ]
+                },
+                "steps": [
+                  "Raisins to nuts: $1:3$.",
+                  "The question asks nuts first — so swap the numbers.",
+                  "Nuts to raisins: $3:1$."
+                ],
+                "answer": "$3:1$",
+                "check": [
+                  "Rational(1,3) != Rational(3,1)"
+                ]
+              },
+              {
+                "prompt": "Wins to losses is **5:2**. Write **losses to wins**.",
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 5,
+                      "color": "#3fb27f",
+                      "label": "wins"
+                    },
+                    {
+                      "count": 2,
+                      "color": "#d7503f",
+                      "label": "losses"
+                    }
+                  ]
+                },
+                "steps": [
+                  "Losses are now named first — put losses first.",
+                  "Swap: $2:5$."
+                ],
+                "answer": "$2:5$",
+                "check": [
+                  "Rational(5,2) != Rational(2,5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Your turn",
+            "problems": [
+              {
+                "prompt": "Dogs to cats is **4:7**. What is **cats to dogs**?",
+                "options": [
+                  "$7:4$",
+                  "$4:7$",
+                  "$11:4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Cats go first now — reverse the order: $7:4$.",
+                "check": [
+                  "Rational(4,7) != Rational(7,4)"
+                ]
+              },
+              {
+                "prompt": "A paint mix is **2 blue : 5 white**. Is **5 blue : 2 white** the same mix?",
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 2,
+                      "color": "#3f78d7",
+                      "label": "blue"
+                    },
+                    {
+                      "count": 5,
+                      "color": "#e7e2d6",
+                      "label": "white"
+                    }
+                  ]
+                },
+                "options": [
+                  "No — it is a different ratio",
+                  "Yes — same numbers",
+                  "Yes — they are equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2:5$ has much more white; $5:2$ has much more blue. Same numbers, very different paint colours.",
+                "check": [
+                  "Rational(2,5) != Rational(5,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which order gives a smooth drink?",
+            "prompt": "You want **smooth** hot chocolate (2 cocoa, 6 milk). Which ratio is it?",
+            "options": [
+              "cocoa : milk $= 2:6$",
+              "cocoa : milk $= 6:2$",
+              "they are the same"
+            ],
+            "correctIndex": 0,
+            "explanation": "$2:6$ is 2 cocoa to 6 milk — smooth. $6:2$ would be 6 cocoa to 2 milk — mud.",
+            "check": [
+              "Rational(2,6) != Rational(6,2)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept D",
+            "title": "Two kinds of ratio",
+            "beats": [
+              "Look at the picture: 3 apples and 5 oranges sitting side by side — that is **8 pieces of fruit** total.",
+              "**Part-to-part** compares the two groups against each other: apples to oranges $= 3:5$.",
+              "**Part-to-whole** compares one group to the full total: apples to all fruit $= 3:8$ (because $3+5=8$).",
+              "The word **\"total\"** or **\"out of all\"** is your signal to add the parts first, then compare."
+            ],
+            "figure": {
+              "mode": "partToWhole",
+              "groups": [
+                {
+                  "count": 3,
+                  "color": "#d7503f",
+                  "label": "apples"
+                },
+                {
+                  "count": 5,
+                  "color": "#e8913c",
+                  "label": "oranges"
+                }
+              ],
+              "highlightIndex": 0
+            }
+          },
+          {
+            "kind": "compareToggle",
+            "eyebrow": "Play with it",
+            "title": "Compare the two",
+            "teach": "**Part-to-part** compares the two groups ($3:5$). **Part-to-whole** compares one group to the total ($3:8$).",
+            "config": {
+              "groupA": {
+                "count": 3,
+                "token": {
+                  "label": "apple",
+                  "plural": "apples",
+                  "color": "#d7503f"
+                }
+              },
+              "groupB": {
+                "count": 5,
+                "token": {
+                  "label": "orange",
+                  "plural": "oranges",
+                  "color": "#e8913c"
+                }
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Part-to-part and part-to-whole",
+            "examples": [
+              {
+                "prompt": "A bag has **3 red** and **5 blue** marbles. Write (a) red to blue, and (b) red to the total.",
+                "figure": {
+                  "mode": "partToWhole",
+                  "groups": [
+                    {
+                      "count": 3,
+                      "color": "#d7503f",
+                      "label": "red"
+                    },
+                    {
+                      "count": 5,
+                      "color": "#3f78d7",
+                      "label": "blue"
+                    }
+                  ],
+                  "highlightIndex": 0
+                },
+                "steps": [
+                  "(a) Red vs blue (two groups, part-to-part): $3:5$.",
+                  "(b) Total $= 3+5 = 8$. Red vs all marbles (part-to-whole): $3:8$."
+                ],
+                "answer": "$3:5$ and $3:8$",
+                "check": [
+                  "Rational(3,5)==Rational(3,5)",
+                  "Rational(3,3+5)==Rational(3,8)"
+                ]
+              },
+              {
+                "prompt": "A class has **4 boys** and **6 girls**. Write **boys to the total**.",
+                "figure": {
+                  "mode": "partToWhole",
+                  "groups": [
+                    {
+                      "count": 4,
+                      "color": "#3f78d7",
+                      "label": "boys"
+                    },
+                    {
+                      "count": 6,
+                      "color": "#d4537e",
+                      "label": "girls"
+                    }
+                  ],
+                  "highlightIndex": 0
+                },
+                "steps": [
+                  "\"To the total\" → add first: $4+6 = 10$.",
+                  "Boys to total: $4:10$."
+                ],
+                "answer": "$4:10$",
+                "check": [
+                  "Rational(4,4+6)==Rational(4,10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Your turn",
+            "intro": "Separated groups = part-to-part. One group circled inside the total = part-to-whole.",
+            "problems": [
+              {
+                "prompt": "**2 cats, 6 dogs** — cats to dogs (just the two groups)?",
+                "figure": {
+                  "mode": "partToPart",
+                  "groups": [
+                    {
+                      "count": 2,
+                      "color": "#a8703f",
+                      "label": "cats"
+                    },
+                    {
+                      "count": 6,
+                      "color": "#5f4632",
+                      "label": "dogs"
+                    }
+                  ]
+                },
+                "options": [
+                  "$2:6$",
+                  "$2:8$",
+                  "$6:2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two separate groups compared directly: $2:6$.",
+                "check": [
+                  "Rational(2,6)==Rational(2,6)"
+                ]
+              },
+              {
+                "prompt": "**2 cats, 6 dogs** — cats to **all the animals**?",
+                "figure": {
+                  "mode": "partToWhole",
+                  "groups": [
+                    {
+                      "count": 2,
+                      "color": "#a8703f",
+                      "label": "cats"
+                    },
+                    {
+                      "count": 6,
+                      "color": "#5f4632",
+                      "label": "dogs"
+                    }
+                  ],
+                  "highlightIndex": 0
+                },
+                "options": [
+                  "$2:8$",
+                  "$2:6$",
+                  "$6:8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Total $= 2+6 = 8$, so cats to all animals: $2:8$.",
+                "check": [
+                  "Rational(2,2+6)==Rational(2,8)"
+                ]
+              },
+              {
+                "prompt": "**5 apples, 3 bananas** — apples to the total?",
+                "figure": {
+                  "mode": "partToWhole",
+                  "groups": [
+                    {
+                      "count": 5,
+                      "color": "#d7503f",
+                      "label": "apples"
+                    },
+                    {
+                      "count": 3,
+                      "color": "#f2c14e",
+                      "label": "bananas"
+                    }
+                  ],
+                  "highlightIndex": 0
+                },
+                "options": [
+                  "$5:8$",
+                  "$5:3$",
+                  "$3:8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Total $= 5+3 = 8$. Apples to all fruit: $5:8$.",
+                "check": [
+                  "Rational(5,5+3)==Rational(5,8)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Part-to-part or part-to-whole?",
+            "prompt": "**3 apples, 5 oranges.** What is apples to the **total**?",
+            "options": [
+              "$3:8$",
+              "$3:5$",
+              "$5:8$",
+              "$8:3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Total $= 3+5 = 8$. Apples to total: $3:8$. (The key word was \"total\" — add first!)",
+            "check": [
+              "Rational(3,3+5)==Rational(3,8)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **ratio** compares two amounts — it gives the **mix**, not the total.",
+              "Write it three ways: $a:b$, \"$a$ to $b$\", or $\\dfrac{a}{b}$.",
+              "**Order matters**: $2:6$ (smooth drink) and $6:2$ (mud) are different ratios.",
+              "**Part-to-part** compares two groups ($3:5$); **part-to-whole** compares one group to the total ($3:8$) — add the parts first."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "You have learned all four ideas — reading a ratio, writing it three ways, order, and part-to-part vs part-to-whole. Lock them in with this mixed set. Tap a wrong choice and just try again."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "**8 red and 3 green** counters — ratio of **red to green**?",
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 8,
+                      "color": "#d7503f",
+                      "label": "red"
+                    },
+                    {
+                      "count": 3,
+                      "color": "#3fb27f",
+                      "label": "green"
+                    }
+                  ]
+                },
+                "options": [
+                  "$8:3$",
+                  "$3:8$",
+                  "$8:11$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Red is named first, so red goes first: $8:3$.",
+                "check": [
+                  "Rational(8,3)==Rational(8,3)"
+                ]
+              },
+              {
+                "prompt": "Which is another way to write $5:2$?",
+                "options": [
+                  "$\\dfrac{5}{2}$",
+                  "$\\dfrac{2}{5}$",
+                  "$2:5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5:2 = \\dfrac{5}{2}$ — same order, same comparison.",
+                "check": [
+                  "Rational(5,2)==Rational(5,2)"
+                ]
+              },
+              {
+                "prompt": "Cats to dogs is **3:7**. What is **dogs to cats**?",
+                "options": [
+                  "$7:3$",
+                  "$3:7$",
+                  "$10:3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Dogs go first now — reverse the order: $7:3$.",
+                "check": [
+                  "Rational(3,7) != Rational(7,3)"
+                ]
+              },
+              {
+                "prompt": "**4 apples and 6 oranges** — apples to the **total**?",
+                "figure": {
+                  "mode": "partToWhole",
+                  "groups": [
+                    {
+                      "count": 4,
+                      "color": "#d7503f",
+                      "label": "apples"
+                    },
+                    {
+                      "count": 6,
+                      "color": "#e8913c",
+                      "label": "oranges"
+                    }
+                  ],
+                  "highlightIndex": 0
+                },
+                "options": [
+                  "$4:10$",
+                  "$4:6$",
+                  "$6:10$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Total $= 4+6 = 10$. Apples to total: $4:10$.",
+                "check": [
+                  "Rational(4,4+6)==Rational(4,10)"
+                ]
+              },
+              {
+                "prompt": "**2 blue and 5 red** — blue to red (just the two groups)?",
+                "figure": {
+                  "mode": "partToPart",
+                  "groups": [
+                    {
+                      "count": 2,
+                      "color": "#3f78d7",
+                      "label": "blue"
+                    },
+                    {
+                      "count": 5,
+                      "color": "#d7503f",
+                      "label": "red"
+                    }
+                  ]
+                },
+                "options": [
+                  "$2:5$",
+                  "$5:2$",
+                  "$2:7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two separate groups, blue first: $2:5$.",
+                "check": [
+                  "Rational(2,5)==Rational(2,5)"
+                ]
+              },
+              {
+                "prompt": "**3 cats and 5 dogs** — cats to **all the animals**?",
+                "figure": {
+                  "mode": "partToWhole",
+                  "groups": [
+                    {
+                      "count": 3,
+                      "color": "#a8703f",
+                      "label": "cats"
+                    },
+                    {
+                      "count": 5,
+                      "color": "#5f4632",
+                      "label": "dogs"
+                    }
+                  ],
+                  "highlightIndex": 0
+                },
+                "options": [
+                  "$3:8$",
+                  "$3:5$",
+                  "$5:8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Total $= 3+5 = 8$. Cats to all animals: $3:8$.",
+                "check": [
+                  "Rational(3,3+5)==Rational(3,8)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You have finished \"What is a ratio?\"",
+            "body": "You can now read a ratio, write it three ways, respect its order, and tell part-to-part from part-to-whole. Next up: **equivalent ratios** — making bigger and smaller batches with the same mix."
+          }
         ]
       }
     },
@@ -97,8 +1081,16 @@
         "body": "Pick a snack you like that mixes two things (say 2 scoops of raisins to 3 scoops of nuts). Build a ratio table: write the mix for 1 batch, 2 batches, and 3 batches. Notice both numbers grow by the same factor."
       },
       "facts": [
-        { "title": "Scaling a ratio", "latex": "$a:b \\;=\\; (a\\times k):(b\\times k)$", "explanation": "Multiply both parts by any non-zero number $k$ to get an equivalent ratio." },
-        { "title": "Simplest form", "latex": "$a:b \\;=\\; \\frac{a}{g}:\\frac{b}{g}, \\quad g=\\gcd(a,b)$", "explanation": "Divide both parts by their greatest common factor to reduce the ratio." }
+        {
+          "title": "Scaling a ratio",
+          "latex": "$a:b \\;=\\; (a\\times k):(b\\times k)$",
+          "explanation": "Multiply both parts by any non-zero number $k$ to get an equivalent ratio."
+        },
+        {
+          "title": "Simplest form",
+          "latex": "$a:b \\;=\\; \\frac{a}{g}:\\frac{b}{g}, \\quad g=\\gcd(a,b)$",
+          "explanation": "Divide both parts by their greatest common factor to reduce the ratio."
+        }
       ],
       "workedExamples": [
         {
@@ -106,77 +1098,1021 @@
           "statement": "Reduce **18 : 24** to simplest form.",
           "note": "Find the biggest number that divides both. The GCF of 18 and 24 is 6.",
           "solution": "$18 \\div 6 = 3$ and $24 \\div 6 = 4$, so $18:24 = 3:4$. **Answer: $3:4$.**",
-          "badges": [{ "text": "warm-up" }],
-          "check": ["Rational(18,24) == Rational(3,4)"]
+          "badges": [
+            {
+              "text": "warm-up"
+            }
+          ],
+          "check": [
+            "Rational(18,24) == Rational(3,4)"
+          ]
         },
         {
           "id": "eq-we2",
           "statement": "Fill the ratio table for $2:5$ — find the partners for 4 and for 6 on the left.",
           "note": "Whatever you multiply the left number by, multiply the right by the same.",
           "solution": "$2:5$. Double it: $4:10$. Triple it: $6:15$. So the table reads $2:5,\\;4:10,\\;6:15$.",
-          "badges": [{ "text": "core" }],
-          "check": ["Rational(2,5) == Rational(4,10)", "Rational(2,5) == Rational(6,15)"]
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(2,5) == Rational(4,10)",
+            "Rational(2,5) == Rational(6,15)"
+          ]
         },
         {
           "id": "eq-we3",
           "statement": "Find the missing number: $3:4 = 9:\\;?$",
           "note": "How do you turn 3 into 9? Multiply by 3. Do the same to the 4.",
           "solution": "$3 \\times 3 = 9$, so multiply the right side by 3 too: $4 \\times 3 = 12$. **Answer: $9:12$.**",
-          "badges": [{ "text": "core" }],
-          "check": ["Rational(3,4) == Rational(9,12)"]
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(3,4) == Rational(9,12)"
+          ]
         }
       ],
       "commonMistakes": [
-        { "text": "Adding the same number to both parts ($2:3 \\to 3:4$ by adding 1) and thinking it's equivalent.", "correction": "Equivalent ratios come from multiplying/dividing both parts, never adding.", "authored": true },
-        { "text": "Scaling only one part ($2:5 \\to 4:5$).", "correction": "Whatever you do to one number, do to the other.", "authored": true }
+        {
+          "text": "Adding the same number to both parts ($2:3 \\to 3:4$ by adding 1) and thinking it's equivalent.",
+          "correction": "Equivalent ratios come from multiplying/dividing both parts, never adding.",
+          "authored": true
+        },
+        {
+          "text": "Scaling only one part ($2:5 \\to 4:5$).",
+          "correction": "Whatever you do to one number, do to the other.",
+          "authored": true
+        }
       ],
       "tryIt": [
-        { "id": "eq-t1", "statement": "Reduce **20 : 30** to simplest form.", "solution": "GCF is 10: $20:30 = 2:3$.", "check": ["Rational(20,30) == Rational(2,3)"] },
-        { "id": "eq-t2", "statement": "Find the missing number: $3:7 = \\;?:21$.", "solution": "$7 \\times 3 = 21$, so $3 \\times 3 = 9$. Answer: $9$.", "check": ["Rational(3,7) == Rational(9,21)"] },
-        { "id": "eq-t3", "statement": "Is **6 : 9** equivalent to **8 : 12**?", "solution": "$6:9 = 2:3$ and $8:12 = 2:3$. Yes — both reduce to $2:3$.", "check": ["Rational(6,9) == Rational(8,12)"] }
-      ]
+        {
+          "id": "eq-t1",
+          "statement": "Reduce **20 : 30** to simplest form.",
+          "solution": "GCF is 10: $20:30 = 2:3$.",
+          "check": [
+            "Rational(20,30) == Rational(2,3)"
+          ]
+        },
+        {
+          "id": "eq-t2",
+          "statement": "Find the missing number: $3:7 = \\;?:21$.",
+          "solution": "$7 \\times 3 = 21$, so $3 \\times 3 = 9$. Answer: $9$.",
+          "check": [
+            "Rational(3,7) == Rational(9,21)"
+          ]
+        },
+        {
+          "id": "eq-t3",
+          "statement": "Is **6 : 9** equivalent to **8 : 12**?",
+          "solution": "$6:9 = 2:3$ and $8:12 = 2:3$. Yes — both reduce to $2:3$.",
+          "check": [
+            "Rational(6,9) == Rational(8,12)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Same pancakes, bigger batch",
+            "beats": [
+              "Your pancake recipe: **1 egg** for every **2 cups of flour** — that's the ratio $1:2$.",
+              "For the whole family you use **3 eggs** and **6 cups of flour**. Different amounts, but the pancakes taste exactly the same.",
+              "Why? You multiplied **both** numbers by 3. Multiply both by the same number and the mix doesn't change — you get an **equivalent ratio**.",
+              "Remember from **What Is a Ratio?**: a ratio is the mix, not the amount. Equivalent ratios are just *bigger or smaller batches of the same mix*."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 1,
+                  "color": "#f2c14e",
+                  "label": "egg"
+                },
+                {
+                  "count": 2,
+                  "color": "#e7e2d6",
+                  "label": "flour"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "ratioTable",
+            "eyebrow": "Play with it",
+            "title": "Build the ratio table",
+            "teach": "Tap the columns to add batches. Both numbers grow together — the mix never changes. That's **equivalent ratios**.",
+            "config": {
+              "a": 1,
+              "b": 2,
+              "tokenA": {
+                "label": "egg",
+                "plural": "eggs",
+                "color": "#f2c14e"
+              },
+              "tokenB": {
+                "label": "flour",
+                "plural": "cups flour",
+                "color": "#e7e2d6"
+              },
+              "maxCols": 5
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Why the table works",
+            "beats": [
+              "Each new column multiplies **both** numbers by the same factor — so every column is still the ratio $1:2$.",
+              "To **find a missing value**, ask: what did I multiply one side by? Then do the same to the other.",
+              "Example: $1:2 = 5:\\;?$ → the 1 became 5 ($\\times 5$), so multiply the 2 by 5 too → $10$.",
+              "Never **add** the same number to both parts. Adding gives a different ratio — only multiplying keeps the mix."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 5,
+                  "color": "#f2c14e",
+                  "label": "eggs"
+                },
+                {
+                  "count": 10,
+                  "color": "#e7e2d6",
+                  "label": "flour"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Finding the missing number",
+            "intro": "Whatever you multiply one part by, multiply the other by the same.",
+            "examples": [
+              {
+                "prompt": "Find the missing number: $2 : 3 = 8 : \\;?$",
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 2,
+                      "color": "#d7503f",
+                      "label": "red"
+                    },
+                    {
+                      "count": 3,
+                      "color": "#3f78d7",
+                      "label": "blue"
+                    }
+                  ]
+                },
+                "steps": [
+                  "The first part went $2 \\to 8$ — that's $\\times 4$.",
+                  "Do the same to the second: $3 \\times 4 = 12$."
+                ],
+                "answer": "$12$ (so $8:12$)",
+                "check": [
+                  "Rational(2,3)==Rational(8,12)"
+                ]
+              },
+              {
+                "prompt": "Find the missing number: $5 : 2 = \\;? : 10$",
+                "steps": [
+                  "The second part went $2 \\to 10$ — that's $\\times 5$.",
+                  "Do the same to the first: $5 \\times 5 = 25$."
+                ],
+                "answer": "$25$ (so $25:10$)",
+                "check": [
+                  "Rational(5,2)==Rational(25,10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Your turn — scale both parts",
+            "intro": "Spot the multiplier on one side, then apply it to the other.",
+            "problems": [
+              {
+                "prompt": "$1 : 2 = 5 : \\;?$",
+                "options": [
+                  "$10$",
+                  "$7$",
+                  "$6$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The 1 became 5 ($\\times 5$), so the 2 becomes $10$.",
+                "check": [
+                  "Rational(1,2)==Rational(5,10)"
+                ]
+              },
+              {
+                "prompt": "Ratio table: $2 : 7 = 4 : \\;?$",
+                "options": [
+                  "$14$",
+                  "$9$",
+                  "$11$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\times 2$ on both: $7 \\times 2 = 14$.",
+                "check": [
+                  "Rational(2,7)==Rational(4,14)"
+                ]
+              },
+              {
+                "prompt": "Is $4:6$ equivalent to $10:15$?",
+                "options": [
+                  "Yes — both are $2:3$",
+                  "No — the parts differ",
+                  "Yes — because $4+6=10$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4:6 = 2:3$ and $10:15 = 2:3$ — same ratio.",
+                "check": [
+                  "Rational(4,6)==Rational(10,15)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Find the missing value",
+            "prompt": "$3 : 5 = 12 : \\;?$",
+            "options": [
+              "$20$",
+              "$15$",
+              "$10$",
+              "$18$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$3 \\to 12$ is $\\times 4$, so $5 \\times 4 = 20$.",
+            "check": [
+              "Rational(3,5)==Rational(12,20)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Mongolian süütei tsai in a kettle",
+            "body": "Süütei tsai (Mongolian milk tea) uses about $2:3$ — 2 parts milk to 3 parts water. A tiny cup or a giant pot, as long as you keep $2:3$ (or $4:6$, or $10:15$) it tastes exactly right. Equivalent ratios in every sip."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Shrinking a ratio to its simplest form",
+            "beats": [
+              "You can also go the other way — **shrink** a ratio by dividing both parts by the same number.",
+              "The key is the **greatest common factor (GCF)**: the biggest number that divides evenly into both parts.",
+              "Example: $4:6$ — the GCF is $2$. Divide both by 2: $4\\div2=2$ and $6\\div2=3$ → **simplest form $2:3$**.",
+              "A ratio is in simplest form when the only number that divides evenly into both parts is $1$."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 4,
+                  "color": "#d7503f",
+                  "label": "red"
+                },
+                {
+                  "count": 6,
+                  "color": "#3f78d7",
+                  "label": "blue"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "ratioTable",
+            "eyebrow": "Play with it",
+            "title": "The simplest column",
+            "teach": "Every column here is equivalent — but the **first** one, $2:3$, uses the smallest whole numbers possible. That's **simplest form**.",
+            "config": {
+              "a": 2,
+              "b": 3,
+              "tokenA": {
+                "label": "red",
+                "plural": "red",
+                "color": "#d7503f"
+              },
+              "tokenB": {
+                "label": "blue",
+                "plural": "blue",
+                "color": "#3f78d7"
+              },
+              "maxCols": 5
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Reducing to simplest form",
+            "intro": "Find the GCF, then divide both parts by it.",
+            "examples": [
+              {
+                "prompt": "Write $18 : 24$ in simplest form.",
+                "steps": [
+                  "List factors: GCF of 18 and 24 is $6$.",
+                  "$18 \\div 6 = 3$ and $24 \\div 6 = 4$ → $\\mathbf{3:4}$."
+                ],
+                "answer": "$3:4$",
+                "check": [
+                  "Rational(18,24)==Rational(3,4)"
+                ]
+              },
+              {
+                "prompt": "Write $20 : 30$ in simplest form.",
+                "steps": [
+                  "GCF of 20 and 30 is $10$.",
+                  "$20 \\div 10 = 2$ and $30 \\div 10 = 3$ → $\\mathbf{2:3}$."
+                ],
+                "answer": "$2:3$",
+                "check": [
+                  "Rational(20,30)==Rational(2,3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Your turn — divide both by the GCF",
+            "intro": "Divide both parts by their greatest common factor.",
+            "problems": [
+              {
+                "prompt": "Write $18:24$ in simplest form.",
+                "options": [
+                  "$3:4$",
+                  "$6:8$",
+                  "$9:12$",
+                  "$2:3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Divide both by 6 → $3:4$.",
+                "check": [
+                  "Rational(18,24)==Rational(3,4)"
+                ]
+              },
+              {
+                "prompt": "Write $20:30$ in simplest form.",
+                "options": [
+                  "$2:3$",
+                  "$4:6$",
+                  "$2:5$",
+                  "$10:15$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Divide both by 10 → $2:3$.",
+                "check": [
+                  "Rational(20,30)==Rational(2,3)"
+                ]
+              },
+              {
+                "prompt": "Which is **NOT** equivalent to $3:8$?",
+                "options": [
+                  "$9:20$",
+                  "$6:16$",
+                  "$15:40$",
+                  "$12:32$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6:16$, $15:40$, and $12:32$ all reduce to $3:8$. $9:20$ does not — it reduces to $9:20$.",
+                "check": [
+                  "Rational(9,20)!=Rational(3,8)",
+                  "Rational(6,16)==Rational(3,8)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Simplest form",
+            "prompt": "Write $12 : 18$ in simplest form.",
+            "options": [
+              "$2:3$",
+              "$6:9$",
+              "$4:6$",
+              "$3:4$"
+            ],
+            "correctIndex": 0,
+            "explanation": "GCF is 6: $12 \\div 6 = 2$, $18 \\div 6 = 3$ → $2:3$.",
+            "check": [
+              "Rational(12,18)==Rational(2,3)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Multiply or divide both** parts by the same number → you get an equivalent ratio. The mix stays the same.",
+              "**Never add** the same number to both — that changes the ratio.",
+              "A **ratio table** lines up equivalents so you can read off or fill in any missing value.",
+              "**Simplest form**: divide both parts by their greatest common factor (GCF)."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "A mix of both ideas — find missing values, build equivalents, and reduce to simplest form. Tap a wrong choice and just try again."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$2 : 5 = 6 : \\;?$",
+                "options": [
+                  "$15$",
+                  "$10$",
+                  "$12$",
+                  "$30$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2 \\to 6$ is $\\times 3$, so $5 \\times 3 = 15$.",
+                "check": [
+                  "Rational(2,5)==Rational(6,15)"
+                ]
+              },
+              {
+                "prompt": "Write $15 : 25$ in simplest form.",
+                "options": [
+                  "$3:5$",
+                  "$5:3$",
+                  "$3:7$",
+                  "$1:2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "GCF is 5 → $3:5$.",
+                "check": [
+                  "Rational(15,25)==Rational(3,5)"
+                ]
+              },
+              {
+                "prompt": "$4 : 9 = \\;? : 27$",
+                "options": [
+                  "$12$",
+                  "$13$",
+                  "$8$",
+                  "$18$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$9 \\to 27$ is $\\times 3$, so $4 \\times 3 = 12$.",
+                "check": [
+                  "Rational(4,9)==Rational(12,27)"
+                ]
+              },
+              {
+                "prompt": "Is $6:10$ equivalent to $9:15$?",
+                "options": [
+                  "Yes — both are $3:5$",
+                  "No",
+                  "Yes — because $6+10=16$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6:10 = 3:5$ and $9:15 = 3:5$.",
+                "check": [
+                  "Rational(6,10)==Rational(9,15)"
+                ]
+              },
+              {
+                "prompt": "Write $14 : 21$ in simplest form.",
+                "options": [
+                  "$2:3$",
+                  "$7:3$",
+                  "$2:7$",
+                  "$3:2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "GCF is 7 → $2:3$.",
+                "check": [
+                  "Rational(14,21)==Rational(2,3)"
+                ]
+              },
+              {
+                "prompt": "A ratio table reads $3:4$, $6:8$, $9:\\;?$. What is the missing value?",
+                "options": [
+                  "$12$",
+                  "$10$",
+                  "$16$",
+                  "$11$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Each step multiplies both by the next whole number. $4 \\times 3 = 12$.",
+                "check": [
+                  "Rational(3,4)==Rational(9,12)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Equivalent Ratios\"",
+            "body": "You can scale a ratio up, find a missing value with a ratio table, and shrink any ratio to its simplest form. Maps, recipes, and mixing paint all run on this. Next up: **comparing ratios** — which mix is stronger?"
+          }
+        ]
+      }
     },
     {
       "slug": "comparing-ratios",
       "title": "Comparing ratios",
-      "concreteComparison": "Two jugs of orange squash: one mixes **2** cups juice to **3** cups water, the other **3** to **5**. Which tastes more orangey? You can't just eyeball it — you compare the ratios. It's the same skill that tells you which paint mix is darker or which class has more girls per boy.",
-      "objective": "Decide which of two ratios is larger by scaling to a common term or comparing their fraction values.",
+      "concreteComparison": "Two jugs of orange squash: one mixes **2** cups juice to **3** cups water, the other **3** to **5**. Which tastes more orange? You can't just eyeball it — copy each mix until the waters match, then compare the juice. It's the same skill that tells you which paint mix is darker or which class has more girls per boy.",
+      "objective": "Decide which of two mixes tastes stronger by copying each until the waters match, or by cross-multiplying.",
       "concept": [
-        "Turn each ratio into its fraction value and compare those numbers. $2:3 = \\frac{2}{3} \\approx 0.67$ and $3:5 = \\frac{3}{5} = 0.6$, so $2:3$ is the more orangey mix.",
-        "Another way is **cross-multiplication**: to compare $\\frac{a}{b}$ and $\\frac{c}{d}$, compare $a\\times d$ with $c\\times b$. The side with the bigger product is the bigger ratio.",
-        "If the two products are equal, the ratios are **equivalent** — neither is bigger."
+        "Copy each mix until both have the same water, then compare the juice — more juice tastes more orange. For $2:3$ vs $3:5$, copy to 15 water each: 10 juice vs 9, so $2:3$ tastes more orange.",
+        "The quick shortcut is **cross-multiplication**: to compare $\\frac{a}{b}$ and $\\frac{c}{d}$, compare $a\\times d$ with $c\\times b$. The side with the bigger product tastes stronger.",
+        "If the two products are equal, the mixes **taste exactly the same** — equivalent ratios (same taste, different size)."
       ],
-      "keyIdea": "To compare two ratios, make one of their numbers match — or turn each into a single fraction value and compare. Cross-multiplying is the quick shortcut.",
+      "keyIdea": "To compare two mixes, copy each until the waters match, then compare the juice — more juice tastes more orange. Cross-multiplying is the quick shortcut.",
       "facts": [
-        { "title": "Cross-multiply to compare", "latex": "$\\frac{a}{b} \\;?\\; \\frac{c}{d} \\;\\Rightarrow\\; a\\times d \\;?\\; c\\times b$", "explanation": "Bigger cross-product means bigger ratio. Equal products mean equivalent ratios." }
+        {
+          "title": "Cross-multiply to compare",
+          "latex": "$\\frac{a}{b} \\;?\\; \\frac{c}{d} \\;\\Rightarrow\\; a\\times d \\;?\\; c\\times b$",
+          "explanation": "Bigger cross-product means bigger ratio. Equal products mean equivalent ratios."
+        }
       ],
       "workedExamples": [
         {
           "id": "cmp-we1",
-          "statement": "Which is larger, **3 : 4** or **5 : 6**?",
-          "note": "Compare the fraction values, or cross-multiply.",
-          "solution": "Cross-multiply: $3\\times 6 = 18$ and $5\\times 4 = 20$. Since $20 > 18$, the side with 5 wins. **$5:6$ is larger** (as values, $\\frac{5}{6}\\approx 0.83 > \\frac{3}{4}=0.75$).",
-          "badges": [{ "text": "core" }],
-          "check": ["Rational(5,6) > Rational(3,4)"]
+          "statement": "Which has more orange taste, **3 : 4** or **5 : 6**?",
+          "note": "Copy until the waters match, or cross-multiply.",
+          "solution": "Cross-multiply: $3\\times 6 = 18$ and $5\\times 4 = 20$. Since $20 > 18$, **$5:6$ has more orange taste** (as values, $\\frac{5}{6}\\approx 0.83 > \\frac{3}{4}=0.75$).",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(5,6) > Rational(3,4)"
+          ]
         },
         {
           "id": "cmp-we2",
-          "statement": "Which is larger, **2 : 3** or **4 : 5**?",
+          "statement": "Which has more orange taste, **2 : 3** or **4 : 5**?",
           "note": "Cross-multiply and compare the products.",
-          "solution": "$2\\times 5 = 10$ and $4\\times 3 = 12$. Since $12 > 10$, **$4:5$ is larger** ($\\frac{4}{5}=0.8 > \\frac{2}{3}\\approx 0.67$).",
-          "badges": [{ "text": "core" }],
-          "check": ["Rational(2,3) < Rational(4,5)"]
+          "solution": "$2\\times 5 = 10$ and $4\\times 3 = 12$. Since $12 > 10$, **$4:5$ has more orange taste** ($\\frac{4}{5}=0.8 > \\frac{2}{3}\\approx 0.67$).",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(2,3) < Rational(4,5)"
+          ]
         }
       ],
       "commonMistakes": [
-        { "text": "Comparing only the first numbers (\"5 beats 3, so $5:6$ wins\") — which sometimes gives the right answer by luck and sometimes doesn't.", "correction": "Always compare the whole ratio: cross-multiply or compare fraction values.", "authored": true },
-        { "text": "Deciding by the size of the gap ($3:4$ has a gap of 1, $5:6$ has a gap of 1, so \"equal\").", "correction": "The difference between the parts doesn't measure a ratio — its value does.", "authored": true }
+        {
+          "text": "Comparing only the first numbers (\"5 beats 3, so $5:6$ tastes stronger\") — which sometimes gives the right answer by luck and sometimes doesn't.",
+          "correction": "Always compare the whole mix: copy until the waters match, or cross-multiply.",
+          "authored": true
+        },
+        {
+          "text": "Deciding by the size of the gap ($3:4$ has a gap of 1, $5:6$ has a gap of 1, so \"equal\").",
+          "correction": "The difference between the parts doesn't measure a ratio — its value does.",
+          "authored": true
+        }
       ],
       "tryIt": [
-        { "id": "cmp-t1", "statement": "Which is larger, **5 : 8** or **7 : 10**?", "solution": "Cross-multiply: $5\\times10=50$, $7\\times8=56$. $56>50$, so $7:10$ is larger.", "check": ["Rational(7,10) > Rational(5,8)"] },
-        { "id": "cmp-t2", "statement": "Are **4 : 5** and **8 : 10** equal?", "solution": "$8:10$ reduces to $4:5$ — yes, equal.", "check": ["Rational(4,5) == Rational(8,10)"] },
-        { "id": "cmp-t3", "statement": "Which is larger, **7 : 9** or **8 : 11**?", "solution": "Cross-multiply: $7\\times11=77$, $8\\times9=72$. $77>72$, so $7:9$ is larger.", "check": ["Rational(7,9) > Rational(8,11)"] }
-      ]
+        {
+          "id": "cmp-t1",
+          "statement": "Which has more orange taste, **5 : 8** or **7 : 10**?",
+          "solution": "Cross-multiply: $5\\times10=50$, $7\\times8=56$. $56>50$, so $7:10$ has more orange taste.",
+          "check": [
+            "Rational(7,10) > Rational(5,8)"
+          ]
+        },
+        {
+          "id": "cmp-t2",
+          "statement": "Do **4 : 5** and **8 : 10** taste the same?",
+          "solution": "$8:10$ reduces to $4:5$ — yes, same taste.",
+          "check": [
+            "Rational(4,5) == Rational(8,10)"
+          ]
+        },
+        {
+          "id": "cmp-t3",
+          "statement": "Which has more orange taste, **7 : 9** or **8 : 11**?",
+          "solution": "Cross-multiply: $7\\times11=77$, $8\\times9=72$. $77>72$, so $7:9$ has more orange taste.",
+          "check": [
+            "Rational(7,9) > Rational(8,11)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "ratioCompare",
+            "eyebrow": "Concept A",
+            "title": "Which jug has more orange taste?",
+            "teach": "Two jugs of orange squash — different mixes. Which one *tastes* more orange? Tap **Make the water equal**, then the taller orange bar wins.",
+            "config": {
+              "left": {
+                "a": 2,
+                "b": 3,
+                "label": "Jug A",
+                "token": {
+                  "label": "juice",
+                  "plural": "juice",
+                  "color": "#e8913c"
+                }
+              },
+              "right": {
+                "a": 3,
+                "b": 5,
+                "label": "Jug B",
+                "token": {
+                  "label": "juice",
+                  "plural": "juice",
+                  "color": "#e8913c"
+                }
+              },
+              "unitNote": "has more orange taste"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Why making the water equal works",
+            "beats": [
+              "Remember from **Equivalent Ratios**: if you multiply **both** numbers by the same number, the mix tastes exactly the same — it's just a bigger batch.",
+              "**Make the water equal** uses that idea — it copies each mix (Jug A ×5, Jug B ×3) until both jugs hold the same water, $3 \\times 5 = 15$.",
+              "Now the waters match, so the only thing left to compare is the **juice**: $10$ vs $9$ → Jug A tastes more orange.",
+              "The quick shortcut for this is **cross-multiplying**: $2 \\times 5 = 10$ vs $3 \\times 3 = 9$ — multiply across the corners."
+            ],
+            "figure": {
+              "mode": "cross",
+              "cross": {
+                "a": 2,
+                "b": 3,
+                "c": 3,
+                "d": 5
+              }
+            }
+          },
+          {
+            "kind": "ratioCompare",
+            "eyebrow": "Watch it work",
+            "title": "Try it with 3 : 4 and 5 : 6",
+            "teach": "Same move every time: make the water equal, then the taller orange bar wins. Which jug has more orange taste?",
+            "config": {
+              "left": {
+                "a": 3,
+                "b": 4,
+                "label": "Mix A",
+                "token": {
+                  "label": "juice",
+                  "plural": "juice",
+                  "color": "#e8913c"
+                }
+              },
+              "right": {
+                "a": 5,
+                "b": 6,
+                "label": "Mix B",
+                "token": {
+                  "label": "juice",
+                  "plural": "juice",
+                  "color": "#e8913c"
+                }
+              },
+              "unitNote": "has more orange taste"
+            }
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Your turn",
+            "title": "Which has more orange taste?",
+            "intro": "Picture copying each mix until the waters match — or cross-multiply. Tap your answer.",
+            "problems": [
+              {
+                "prompt": "Which has more orange taste — **3 : 5** or **4 : 7**?",
+                "figure": {
+                  "mode": "compareMix",
+                  "mixes": [
+                    {
+                      "a": 3,
+                      "b": 5,
+                      "label": "Mix 1"
+                    },
+                    {
+                      "a": 4,
+                      "b": 7,
+                      "label": "Mix 2"
+                    }
+                  ]
+                },
+                "options": [
+                  "$3:5$",
+                  "$4:7$",
+                  "they taste the same"
+                ],
+                "correctIndex": 0,
+                "explanation": "Cross-multiply: $3 \\times 7 = 21$ vs $4 \\times 5 = 20$. $21 > 20$, so $3:5$ has more orange taste.",
+                "check": [
+                  "Rational(3,5) > Rational(4,7)"
+                ]
+              },
+              {
+                "prompt": "Which paint is bluer — **5 : 8** blue:white or **7 : 10** blue:white?",
+                "options": [
+                  "$7:10$",
+                  "$5:8$",
+                  "they are the same"
+                ],
+                "correctIndex": 0,
+                "explanation": "Cross-multiply: $5 \\times 10 = 50$ vs $7 \\times 8 = 56$. $56 > 50$, so $7:10$ is bluer.",
+                "check": [
+                  "Rational(7,10) > Rational(5,8)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which tastes more orange?",
+            "prompt": "Jug A is **2 : 3**, Jug B is **3 : 5**. Which jug has more orange taste?",
+            "options": [
+              "Jug A ($2:3$)",
+              "Jug B ($3:5$)",
+              "they taste the same"
+            ],
+            "correctIndex": 0,
+            "explanation": "Copy by the other jug's water (×5 and ×3): the juice becomes $10$ vs $9$. Jug A has more orange taste.",
+            "check": [
+              "Rational(2,3) > Rational(3,5)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Traders did this for a living",
+            "body": "Merchants on the Silk Road — which crossed Mongolia — sized up deals like **3 silks for 5 coins** against **2 silks for 3 coins** all day long. Same idea you just used: make one side match, then compare."
+          },
+          {
+            "kind": "ratioCompare",
+            "eyebrow": "Concept B",
+            "title": "When two jugs taste exactly the same",
+            "teach": "These two jugs are different sizes, but they can **taste exactly the same** — that's *equivalent ratios*. If you copied Jug A enough, you'd get exactly Jug B. Tap **Make the water equal** to copy each one and watch them become the same mix.",
+            "config": {
+              "left": {
+                "a": 2,
+                "b": 3,
+                "label": "Jug A",
+                "token": {
+                  "label": "juice",
+                  "plural": "juice",
+                  "color": "#e8913c"
+                }
+              },
+              "right": {
+                "a": 4,
+                "b": 6,
+                "label": "Jug B",
+                "token": {
+                  "label": "juice",
+                  "plural": "juice",
+                  "color": "#e8913c"
+                }
+              },
+              "unitNote": "has more orange taste"
+            }
+          },
+          {
+            "kind": "ratioCompare",
+            "eyebrow": "Watch it work",
+            "title": "Do 1 : 2 and 2 : 4 taste the same?",
+            "teach": "Different numbers can still be the very same mix. Copy each one until the waters match and see if they taste the same.",
+            "config": {
+              "left": {
+                "a": 1,
+                "b": 2,
+                "label": "Mix A",
+                "token": {
+                  "label": "juice",
+                  "plural": "juice",
+                  "color": "#e8913c"
+                }
+              },
+              "right": {
+                "a": 2,
+                "b": 4,
+                "label": "Mix B",
+                "token": {
+                  "label": "juice",
+                  "plural": "juice",
+                  "color": "#e8913c"
+                }
+              },
+              "unitNote": "has more orange taste"
+            }
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Your turn",
+            "title": "Do they taste the same?",
+            "intro": "Cross-multiply: if both numbers match, the mixes taste exactly the same.",
+            "problems": [
+              {
+                "prompt": "Do **2 : 5** and **4 : 10** taste the same?",
+                "options": [
+                  "Yes — same taste",
+                  "No — $2:5$ is stronger",
+                  "No — $4:10$ is stronger"
+                ],
+                "correctIndex": 0,
+                "explanation": "Cross-multiply: $2 \\times 10 = 20$ and $4 \\times 5 = 20$. Both $20$ → same taste.",
+                "check": [
+                  "Rational(2,5) == Rational(4,10)"
+                ]
+              },
+              {
+                "prompt": "Do **3 : 5** and **6 : 8** taste the same?",
+                "options": [
+                  "No — different",
+                  "Yes — same taste",
+                  "Yes — both even"
+                ],
+                "correctIndex": 0,
+                "explanation": "Cross-multiply: $3 \\times 8 = 24$ and $5 \\times 6 = 30$. $24 \\neq 30$ → not the same.",
+                "check": [
+                  "Rational(3,5) != Rational(6,8)"
+                ]
+              },
+              {
+                "prompt": "One paint is **3 blue : 7 white**, another is **6 : 14**. Same colour?",
+                "options": [
+                  "Yes — same colour",
+                  "No — different shades",
+                  "No — $6:14$ is bluer"
+                ],
+                "correctIndex": 0,
+                "explanation": "Cross-multiply: $3 \\times 14 = 42$ and $6 \\times 7 = 42$. Both $42$ → same colour.",
+                "check": [
+                  "Rational(3,7) == Rational(6,14)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Same taste?",
+            "prompt": "Do **2 : 3** and **8 : 12** taste the same?",
+            "options": [
+              "Yes — same taste",
+              "No — $8:12$ is stronger",
+              "No — $2:3$ is stronger"
+            ],
+            "correctIndex": 0,
+            "explanation": "Cross-multiply: $2 \\times 12 = 24$ and $3 \\times 8 = 24$. Both $24$ → same taste (both are $2:3$).",
+            "check": [
+              "Rational(2,3) == Rational(8,12)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "To compare two mixes, **copy each one until the waters match**, then compare the juice.",
+              "The shortcut is **cross-multiplying**: for $a:b$ vs $c:d$, compare $a \\times d$ with $b \\times c$.",
+              "**More juice (the bigger cross-number) = more orange taste.** Never just compare the first numbers.",
+              "If the two cross-numbers are **equal**, the mixes **taste exactly the same** — equivalent ratios."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "You've got both moves — finding which jug tastes stronger, and spotting jugs that taste the same. Run this mixed set to lock them in. Tap a wrong choice and just try again."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Which has more orange taste — **1 : 2** or **3 : 7**?",
+                "options": [
+                  "$1:2$",
+                  "$3:7$",
+                  "they taste the same"
+                ],
+                "correctIndex": 0,
+                "explanation": "Cross-multiply: $1 \\times 7 = 7$ vs $3 \\times 2 = 6$. $7 > 6$, so $1:2$.",
+                "check": [
+                  "Rational(1,2) > Rational(3,7)"
+                ]
+              },
+              {
+                "prompt": "Do **5 : 8** and **10 : 16** taste the same?",
+                "options": [
+                  "Yes — same taste",
+                  "No — $10:16$ is stronger",
+                  "No — $5:8$ is stronger"
+                ],
+                "correctIndex": 0,
+                "explanation": "Cross-multiply: $5 \\times 16 = 80$ and $8 \\times 10 = 80$. Both $80$ → same taste.",
+                "check": [
+                  "Rational(5,8) == Rational(10,16)"
+                ]
+              },
+              {
+                "prompt": "Which has more orange taste — **4 : 5** or **5 : 6**?",
+                "options": [
+                  "$5:6$",
+                  "$4:5$",
+                  "they taste the same"
+                ],
+                "correctIndex": 0,
+                "explanation": "Cross-multiply: $4 \\times 6 = 24$ vs $5 \\times 5 = 25$. $25 > 24$, so $5:6$.",
+                "check": [
+                  "Rational(5,6) > Rational(4,5)"
+                ]
+              },
+              {
+                "prompt": "Jug A is **3 : 4**, Jug B is **5 : 7**. Which jug has more orange taste?",
+                "figure": {
+                  "mode": "compareMix",
+                  "mixes": [
+                    {
+                      "a": 3,
+                      "b": 4,
+                      "label": "Jug A"
+                    },
+                    {
+                      "a": 5,
+                      "b": 7,
+                      "label": "Jug B"
+                    }
+                  ]
+                },
+                "options": [
+                  "Jug A ($3:4$)",
+                  "Jug B ($5:7$)",
+                  "they taste the same"
+                ],
+                "correctIndex": 0,
+                "explanation": "Cross-multiply: $3 \\times 7 = 21$ vs $4 \\times 5 = 20$. $21 > 20$, so $3:4$.",
+                "check": [
+                  "Rational(3,4) > Rational(5,7)"
+                ]
+              },
+              {
+                "prompt": "Do **6 : 9** and **4 : 7** taste the same?",
+                "options": [
+                  "No — different",
+                  "Yes — same taste",
+                  "Yes — same GCF"
+                ],
+                "correctIndex": 0,
+                "explanation": "Cross-multiply: $6 \\times 7 = 42$ vs $9 \\times 4 = 36$. $42 \\neq 36$ → not the same.",
+                "check": [
+                  "Rational(6,9) != Rational(4,7)"
+                ]
+              },
+              {
+                "prompt": "Which has more orange taste — **7 : 9** or **8 : 11**?",
+                "options": [
+                  "$7:9$",
+                  "$8:11$",
+                  "they taste the same"
+                ],
+                "correctIndex": 0,
+                "explanation": "Cross-multiply: $7 \\times 11 = 77$ vs $8 \\times 9 = 72$. $77 > 72$, so $7:9$.",
+                "check": [
+                  "Rational(7,9) > Rational(8,11)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Comparing Ratios\"",
+            "body": "You can now compare any two mixes by copying until the waters match — or cross-multiplying, the same trick — and spot jugs that taste the same in a flash. Next up: **rates**, when the two things you compare have *different units*, like kilometres and hours."
+          }
+        ]
+      }
     },
     {
       "slug": "rates",
@@ -194,7 +2130,11 @@
         "body": "Set a 30-second timer and write your full name over and over until it stops. Count how many times you wrote it, then double it — that's your name-writing rate in **names per minute**."
       },
       "facts": [
-        { "title": "What a rate is", "latex": "$\\text{rate} = \\dfrac{\\text{amount of one thing}}{\\text{amount of a different thing}}$", "explanation": "The two quantities have different units, so the answer is 'something per something'." }
+        {
+          "title": "What a rate is",
+          "latex": "$\\text{rate} = \\dfrac{\\text{amount of one thing}}{\\text{amount of a different thing}}$",
+          "explanation": "The two quantities have different units, so the answer is 'something per something'."
+        }
       ],
       "workedExamples": [
         {
@@ -202,27 +2142,489 @@
           "statement": "A printer prints **90 pages in 6 minutes**. What is its rate in pages per minute?",
           "note": "Pages and minutes are different units — this is a rate. Divide pages by minutes.",
           "solution": "$\\frac{90 \\text{ pages}}{6 \\text{ minutes}} = 15$ pages/minute. **Answer: 15 pages per minute.**",
-          "badges": [{ "text": "warm-up" }],
-          "check": ["Rational(90,6) == 15"]
+          "badges": [
+            {
+              "text": "warm-up"
+            }
+          ],
+          "check": [
+            "Rational(90,6) == 15"
+          ]
         },
         {
           "id": "rt-we2",
           "statement": "A car travels **150 miles in 3 hours**. Find its speed.",
           "note": "Speed is a rate: distance per time.",
           "solution": "$\\frac{150 \\text{ miles}}{3 \\text{ hours}} = 50$ miles/hour. **Answer: 50 mph.**",
-          "badges": [{ "text": "core" }],
-          "check": ["Rational(150,3) == 50"]
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(150,3) == 50"
+          ]
         }
       ],
       "commonMistakes": [
-        { "text": "Writing just the number (\"the rate is 15\") and forgetting the units.", "correction": "A rate needs its units: 15 pages per minute.", "authored": true },
-        { "text": "Dividing the wrong way (minutes ÷ pages).", "correction": "Match the order to the words: 'pages per minute' means pages ÷ minutes.", "authored": true }
+        {
+          "text": "Writing just the number (\"the rate is 15\") and forgetting the units.",
+          "correction": "A rate needs its units: 15 pages per minute.",
+          "authored": true
+        },
+        {
+          "text": "Dividing the wrong way (minutes ÷ pages).",
+          "correction": "Match the order to the words: 'pages per minute' means pages ÷ minutes.",
+          "authored": true
+        }
       ],
       "tryIt": [
-        { "id": "rt-t1", "statement": "A runner covers **240 km in 4 hours**. Find the speed.", "solution": "$240 \\div 4 = 60$ km/h.", "check": ["Rational(240,4) == 60"] },
-        { "id": "rt-t2", "statement": "You type **60 words in 2 minutes**. What is your rate?", "solution": "$60 \\div 2 = 30$ words per minute.", "check": ["Rational(60,2) == 30"] },
-        { "id": "rt-t3", "statement": "A tap fills **84 litres in 7 minutes**. Find the rate in litres per minute.", "solution": "$84 \\div 7 = 12$ litres per minute.", "check": ["Rational(84,7) == 12"] }
-      ]
+        {
+          "id": "rt-t1",
+          "statement": "A runner covers **240 km in 4 hours**. Find the speed.",
+          "solution": "$240 \\div 4 = 60$ km/h.",
+          "check": [
+            "Rational(240,4) == 60"
+          ]
+        },
+        {
+          "id": "rt-t2",
+          "statement": "You type **60 words in 2 minutes**. What is your rate?",
+          "solution": "$60 \\div 2 = 30$ words per minute.",
+          "check": [
+            "Rational(60,2) == 30"
+          ]
+        },
+        {
+          "id": "rt-t3",
+          "statement": "A tap fills **84 litres in 7 minutes**. Find the rate in litres per minute.",
+          "solution": "$84 \\div 7 = 12$ litres per minute.",
+          "check": [
+            "Rational(84,7) == 12"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "A ratio of two DIFFERENT things",
+            "beats": [
+              "You already know a ratio compares two amounts — like 2 cocoa scoops to 6 milk cups. Both are measured in *scoops* or *cups*, the same kind of thing.",
+              "A **rate** is a ratio where the two things are **completely different kinds** — like kilometres and hours, pages and minutes, or beats and seconds.",
+              "Because the units are different, you **must keep the units** when you write a rate. \"60\" means nothing. \"60 km/h\" is a rate — it tells you exactly what was measured.",
+              "To find a rate, **divide** the first amount by the second: $120 \\text{ km} \\div 2 \\text{ h} = 60$ km/h — how far you go in **one** hour."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 4,
+                  "color": "#3f78d7",
+                  "label": "km (distance)"
+                },
+                {
+                  "count": 2,
+                  "color": "#e8913c",
+                  "label": "h (time)"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "rateMeter",
+            "eyebrow": "Play with it",
+            "title": "Build a speed",
+            "teach": "Change the distance or the time — the rate updates instantly. More distance in the same time = faster. Same distance in less time = faster too. The rate is always **distance ÷ time**.",
+            "config": {
+              "topLabel": "Distance",
+              "topUnit": "km",
+              "top": 120,
+              "topMax": 300,
+              "topStep": 30,
+              "bottomLabel": "Time",
+              "bottomUnit": "h",
+              "bottom": 2,
+              "bottomMax": 6,
+              "bottomStep": 1,
+              "rateUnit": "km/h"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Why we divide — and why units stay",
+            "beats": [
+              "A rate is just the **equivalent ratio with 1 on the bottom**: scale $120:2$ down until the bottom is $1$ and you get $60:1$ — that is **60 km per 1 hour**.",
+              "$\\dfrac{120 \\text{ km}}{2 \\text{ h}}$ means: for every 1 hour, how many km? Divide both sides by 2 → $\\dfrac{60 \\text{ km}}{1 \\text{ h}}$, which we write **60 km/h**.",
+              "The word **per** always means ÷ (divide). \"Pages **per** minute\" = pages ÷ minutes. \"Beats **per** second\" = beats ÷ seconds.",
+              "Drop the units and the number is useless — \"60\" could be anything. Keep them: **60 km/h** is a speed; **60 pages/min** is a reading pace."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 6,
+                  "color": "#3f78d7",
+                  "label": "km (distance)"
+                },
+                {
+                  "count": 1,
+                  "color": "#e8913c",
+                  "label": "h (time)"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Computing a speed",
+            "intro": "Spot the two different units, then divide the top by the bottom and keep the units.",
+            "examples": [
+              {
+                "prompt": "A car travels **90 km in 3 hours**. How fast is it going?",
+                "steps": [
+                  "Speed is a rate: distance ÷ time.",
+                  "$90 \\text{ km} \\div 3 \\text{ h} = 30$ km/h."
+                ],
+                "answer": "**30 km/h**",
+                "check": [
+                  "Rational(90,3)==30"
+                ]
+              },
+              {
+                "prompt": "A cyclist covers **60 km in 4 hours**. What is the speed?",
+                "steps": [
+                  "Divide distance by time: $60 \\div 4$.",
+                  "$60 \\div 4 = 15$ km/h."
+                ],
+                "answer": "**15 km/h**",
+                "check": [
+                  "Rational(60,4)==15"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Your turn — find the speed",
+            "intro": "Divide the distance by the time. Pick the correct answer.",
+            "problems": [
+              {
+                "prompt": "A bus travels **120 km in 2 hours**. What is its speed?",
+                "options": [
+                  "$60$ km/h",
+                  "$122$ km/h",
+                  "$240$ km/h",
+                  "$30$ km/h"
+                ],
+                "correctIndex": 0,
+                "explanation": "$120 \\div 2 = 60$ km/h.",
+                "check": [
+                  "Rational(120,2)==60"
+                ]
+              },
+              {
+                "prompt": "A runner covers **45 km in 3 hours**. What is the speed?",
+                "options": [
+                  "$15$ km/h",
+                  "$48$ km/h",
+                  "$42$ km/h",
+                  "$135$ km/h"
+                ],
+                "correctIndex": 0,
+                "explanation": "$45 \\div 3 = 15$ km/h.",
+                "check": [
+                  "Rational(45,3)==15"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Spot the rate",
+            "prompt": "A car goes **180 km in 3 h**. What is the speed?",
+            "options": [
+              "$60$ km/h",
+              "$183$ km/h",
+              "$177$ km/h",
+              "$540$ km/h"
+            ],
+            "correctIndex": 0,
+            "explanation": "Divide: $180 \\div 3 = 60$ km/h. Keep the units — km/h, not just 60!",
+            "check": [
+              "Rational(180,3)==60"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Rates hide in every sport",
+            "body": "The 100 m world record sprint takes about **9.58 seconds** — a rate of roughly **10.44 metres per second**. That's faster than most cyclists on flat ground. Rates let us compare things that would otherwise be impossible to line up side by side."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Rates are everywhere — not just speed",
+            "beats": [
+              "Speed (km/h) is the most famous rate, but the same **divide and keep the units** move works for any two different quantities.",
+              "A printer making **84 pages in 7 minutes** → $84 \\div 7 = 12$ **pages per minute**.",
+              "A tap filling **90 litres in 6 minutes** → $90 \\div 6 = 15$ **litres per minute**.",
+              "A healthy heart beating **280 times in 4 minutes** → $280 \\div 4 = 70$ **beats per minute**. Same idea every time: divide the top by the bottom, keep both unit names."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 5,
+                  "color": "#3fb27f",
+                  "label": "pages"
+                },
+                {
+                  "count": 1,
+                  "color": "#9aa3b2",
+                  "label": "min"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "rateMeter",
+            "eyebrow": "Play with it",
+            "title": "Items packed per minute",
+            "teach": "A factory line packs items into boxes. Change the number of items or the minutes and the rate updates. The unit is **items/min** — a different pair of units from km/h, but the exact same move: top ÷ bottom.",
+            "config": {
+              "topLabel": "Items",
+              "topUnit": "items",
+              "top": 60,
+              "topMax": 180,
+              "topStep": 30,
+              "bottomLabel": "Time",
+              "bottomUnit": "min",
+              "bottom": 3,
+              "bottomMax": 9,
+              "bottomStep": 1,
+              "rateUnit": "items/min"
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "All kinds of rates",
+            "intro": "\"Per\" always means divide. Divide the first quantity by the second and keep both unit names.",
+            "examples": [
+              {
+                "prompt": "A printer prints **84 pages in 7 minutes**. What is the rate in pages per minute?",
+                "steps": [
+                  "Pages **per** minute → pages ÷ minutes.",
+                  "$84 \\div 7 = 12$ pages/min."
+                ],
+                "answer": "**12 pages per minute**",
+                "check": [
+                  "Rational(84,7)==12"
+                ]
+              },
+              {
+                "prompt": "A tap fills **90 litres in 6 minutes**. What is the flow rate?",
+                "steps": [
+                  "Litres **per** minute → litres ÷ minutes.",
+                  "$90 \\div 6 = 15$ L/min."
+                ],
+                "answer": "**15 litres per minute**",
+                "check": [
+                  "Rational(90,6)==15"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Your turn — rates beyond speed",
+            "intro": "Divide the first quantity by the second and choose the correct rate.",
+            "problems": [
+              {
+                "prompt": "You read **72 pages in 6 minutes**. What is your reading rate?",
+                "options": [
+                  "$12$ pages/min",
+                  "$66$ pages/min",
+                  "$78$ pages/min",
+                  "$8$ pages/min"
+                ],
+                "correctIndex": 0,
+                "explanation": "$72 \\div 6 = 12$ pages per minute.",
+                "check": [
+                  "Rational(72,6)==12"
+                ]
+              },
+              {
+                "prompt": "A hose fills **75 litres in 5 minutes**. What is the flow rate?",
+                "options": [
+                  "$15$ L/min",
+                  "$70$ L/min",
+                  "$80$ L/min",
+                  "$375$ L/min"
+                ],
+                "correctIndex": 0,
+                "explanation": "$75 \\div 5 = 15$ litres per minute.",
+                "check": [
+                  "Rational(75,5)==15"
+                ]
+              },
+              {
+                "prompt": "A heart beats **280 times in 4 minutes**. What is the rate in beats per minute?",
+                "options": [
+                  "$70$ bpm",
+                  "$276$ bpm",
+                  "$284$ bpm",
+                  "$7$ bpm"
+                ],
+                "correctIndex": 0,
+                "explanation": "$280 \\div 4 = 70$ beats per minute.",
+                "check": [
+                  "Rational(280,4)==70"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Factory line rate",
+            "prompt": "A factory packs **96 items in 8 minutes**. What is the packing rate?",
+            "options": [
+              "$12$ items/min",
+              "$88$ items/min",
+              "$104$ items/min",
+              "$768$ items/min"
+            ],
+            "correctIndex": 0,
+            "explanation": "$96 \\div 8 = 12$ items per minute. Divide, then keep the units.",
+            "check": [
+              "Rational(96,8)==12"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **rate** is a ratio of two **different** units — km and hours, pages and minutes, litres and minutes.",
+              "Compute a rate by **dividing** the first quantity by the second: $\\text{rate} = \\dfrac{\\text{top quantity}}{\\text{bottom quantity}}$.",
+              "**Always keep the units** — \"15\" is meaningless; \"15 pages per minute\" is a rate.",
+              "\"**Per**\" means divide: pages **per** minute $=$ pages $\\div$ minutes."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "You've seen rates in distance/time, pages/time, litres/time, and beats/time. The move is always the same: **divide and keep the units**. Work through this mixed set to lock it in."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Different units, same idea: divide the first by the second and keep the unit names.",
+            "problems": [
+              {
+                "prompt": "A car travels **180 km in 3 hours**. What is the speed?",
+                "options": [
+                  "$60$ km/h",
+                  "$183$ km/h",
+                  "$177$ km/h",
+                  "$60$ km"
+                ],
+                "correctIndex": 0,
+                "explanation": "$180 \\div 3 = 60$ km/h.",
+                "check": [
+                  "Rational(180,3)==60"
+                ]
+              },
+              {
+                "prompt": "A cyclist covers **90 km in 6 hours**. What is the speed?",
+                "options": [
+                  "$15$ km/h",
+                  "$84$ km/h",
+                  "$96$ km/h",
+                  "$540$ km/h"
+                ],
+                "correctIndex": 0,
+                "explanation": "$90 \\div 6 = 15$ km/h.",
+                "check": [
+                  "Rational(90,6)==15"
+                ]
+              },
+              {
+                "prompt": "A printer prints **60 pages in 4 minutes**. What is the rate?",
+                "options": [
+                  "$15$ pages/min",
+                  "$56$ pages/min",
+                  "$64$ pages/min",
+                  "$240$ pages/min"
+                ],
+                "correctIndex": 0,
+                "explanation": "$60 \\div 4 = 15$ pages per minute.",
+                "check": [
+                  "Rational(60,4)==15"
+                ]
+              },
+              {
+                "prompt": "A tap fills **84 litres in 7 minutes**. What is the flow rate?",
+                "options": [
+                  "$12$ L/min",
+                  "$77$ L/min",
+                  "$91$ L/min",
+                  "$7$ L/min"
+                ],
+                "correctIndex": 0,
+                "explanation": "$84 \\div 7 = 12$ litres per minute.",
+                "check": [
+                  "Rational(84,7)==12"
+                ]
+              },
+              {
+                "prompt": "Which of these is **not** a rate?",
+                "options": [
+                  "$3$ apples $:$ $5$ oranges",
+                  "$60$ km/h",
+                  "$12$ pages/min",
+                  "$15$ L/min"
+                ],
+                "correctIndex": 0,
+                "explanation": "Apples and oranges are the **same kind of thing** (fruit) — that's a ratio, not a rate. A rate must compare two **different** units.",
+                "check": [
+                  "True"
+                ]
+              },
+              {
+                "prompt": "A heart beats **420 times in 6 minutes**. What is the rate?",
+                "options": [
+                  "$70$ bpm",
+                  "$414$ bpm",
+                  "$426$ bpm",
+                  "$2520$ bpm"
+                ],
+                "correctIndex": 0,
+                "explanation": "$420 \\div 6 = 70$ beats per minute.",
+                "check": [
+                  "Rational(420,6)==70"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Rates\"",
+            "body": "You can now spot a rate (two different units), compute it (divide!), and keep the units attached. Rates hide in every number with a **per** in it — on speedometers, food labels, download bars, and even your own heartbeat. Next up: **unit rates** — always scaling a rate down to a single unit to make comparisons easy."
+          }
+        ]
+      }
     },
     {
       "slug": "unit-rate",
@@ -240,7 +2642,11 @@
         "body": "Find two sizes of the same product in your kitchen (or a shop flyer). Divide each price by the number (or grams) to get the price per unit. Which size is actually cheaper per unit? Sometimes the big one isn't!"
       },
       "facts": [
-        { "title": "Unit rate", "latex": "$\\text{unit rate} = \\dfrac{\\text{total amount}}{\\text{number of units}}$", "explanation": "Dividing gives the amount per single unit — per item, per kilogram, per hour." }
+        {
+          "title": "Unit rate",
+          "latex": "$\\text{unit rate} = \\dfrac{\\text{total amount}}{\\text{number of units}}$",
+          "explanation": "Dividing gives the amount per single unit — per item, per kilogram, per hour."
+        }
       ],
       "workedExamples": [
         {
@@ -248,35 +2654,461 @@
           "statement": "**$12 for 4 notebooks.** What is the price per notebook?",
           "note": "Per one notebook means divide the price by the number of notebooks.",
           "solution": "$\\frac{\\$12}{4} = \\$3$ per notebook. **Answer: $3 each.**",
-          "badges": [{ "text": "warm-up" }],
-          "check": ["Rational(12,4) == 3"]
+          "badges": [
+            {
+              "text": "warm-up"
+            }
+          ],
+          "check": [
+            "Rational(12,4) == 3"
+          ]
         },
         {
           "id": "ur-we2",
           "statement": "A car drives **300 km on 25 litres** of fuel. Find the unit rate in km per litre.",
           "note": "Per one litre — divide distance by litres.",
           "solution": "$\\frac{300 \\text{ km}}{25 \\text{ L}} = 12$ km per litre. **Answer: 12 km/L.**",
-          "badges": [{ "text": "core" }],
-          "check": ["Rational(300,25) == 12"]
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(300,25) == 12"
+          ]
         },
         {
           "id": "ur-we3",
           "statement": "Which is the better deal: **$6 for 3 bottles** or **$10 for 4 bottles**?",
           "note": "Find each unit price, then compare — cheaper per bottle wins.",
           "solution": "First: $\\frac{\\$6}{3} = \\$2$ per bottle. Second: $\\frac{\\$10}{4} = \\$2.50$ per bottle. Since $\\$2 < \\$2.50$, **the $6-for-3 pack is the better deal.**",
-          "badges": [{ "text": "challenge" }],
-          "check": ["Rational(6,3) < Rational(10,4)"]
+          "badges": [
+            {
+              "text": "challenge"
+            }
+          ],
+          "check": [
+            "Rational(6,3) < Rational(10,4)"
+          ]
         }
       ],
       "commonMistakes": [
-        { "text": "Picking the cheaper total price as 'the deal' without checking the size.", "correction": "Compare price per unit, not the total — the dearer pack can be cheaper per item.", "authored": true },
-        { "text": "Dividing the wrong way (bottles ÷ dollars), getting 'bottles per dollar' when you wanted price per bottle.", "correction": "Match the words: 'price per bottle' = price ÷ bottles.", "authored": true }
+        {
+          "text": "Picking the cheaper total price as 'the deal' without checking the size.",
+          "correction": "Compare price per unit, not the total — the dearer pack can be cheaper per item.",
+          "authored": true
+        },
+        {
+          "text": "Dividing the wrong way (bottles ÷ dollars), getting 'bottles per dollar' when you wanted price per bottle.",
+          "correction": "Match the words: 'price per bottle' = price ÷ bottles.",
+          "authored": true
+        }
       ],
       "tryIt": [
-        { "id": "ur-t1", "statement": "**$20 for 5 pens.** Price per pen?", "solution": "$20 \\div 5 = \\$4$ per pen.", "check": ["Rational(20,5) == 4"] },
-        { "id": "ur-t2", "statement": "A bike covers **180 miles on 6 gallons**. Unit rate in miles per gallon?", "solution": "$180 \\div 6 = 30$ mpg.", "check": ["Rational(180,6) == 30"] },
-        { "id": "ur-t3", "statement": "Better deal: **$9 for 3 kg** or **$15 for 6 kg**?", "solution": "$\\$9/3 = \\$3$/kg; $\\$15/6 = \\$2.50$/kg. The $15-for-6 kg is cheaper per kg.", "check": ["Rational(15,6) < Rational(9,3)"] }
-      ]
+        {
+          "id": "ur-t1",
+          "statement": "**$20 for 5 pens.** Price per pen?",
+          "solution": "$20 \\div 5 = \\$4$ per pen.",
+          "check": [
+            "Rational(20,5) == 4"
+          ]
+        },
+        {
+          "id": "ur-t2",
+          "statement": "A bike covers **180 miles on 6 gallons**. Unit rate in miles per gallon?",
+          "solution": "$180 \\div 6 = 30$ mpg.",
+          "check": [
+            "Rational(180,6) == 30"
+          ]
+        },
+        {
+          "id": "ur-t3",
+          "statement": "Better deal: **$9 for 3 kg** or **$15 for 6 kg**?",
+          "solution": "$\\$9/3 = \\$3$/kg; $\\$15/6 = \\$2.50$/kg. The $15-for-6 kg is cheaper per kg.",
+          "check": [
+            "Rational(15,6) < Rational(9,3)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "dealCompare",
+            "eyebrow": "Concept A",
+            "title": "Which pack gives you more for your money?",
+            "teach": "Two packs of juice, different sizes. Tap **Reveal price per one** on each pack to find the cost for a single bottle. The smaller number wins.",
+            "config": {
+              "unit": "bottle",
+              "currency": "$",
+              "dealA": {
+                "label": "Small pack",
+                "price": 6,
+                "qty": 3
+              },
+              "dealB": {
+                "label": "Big pack",
+                "price": 10,
+                "qty": 4
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Why dividing by the quantity works",
+            "beats": [
+              "From **Rates**: a rate compares two different amounts (like dollars and bottles). A **unit rate** goes one step further — the amount for exactly **one**.",
+              "**Dividing** the total price by the number of bottles shrinks the denominator to 1. That special case — amount for exactly one — is called the **unit rate**.",
+              "Small pack: 6 dollars ÷ 3 bottles $= 2$ dollars per bottle. Big pack: 10 dollars ÷ 4 bottles $= 2.50$ dollars per bottle.",
+              "Now both numbers are \"per ONE bottle\", so comparing is easy: 2 dollars is less than 2.50 dollars — the small pack is the better deal."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 3,
+                  "color": "#e8913c",
+                  "label": "bottles (6 dollars)"
+                },
+                {
+                  "count": 4,
+                  "color": "#3f78d7",
+                  "label": "bottles (10 dollars)"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Finding a unit rate",
+            "intro": "Divide the total by the number of units to get the amount for exactly one.",
+            "examples": [
+              {
+                "prompt": "A pack of 4 notebooks costs 12 dollars. What is the price **per notebook**?",
+                "steps": [
+                  "We want the price for **one** notebook, so we divide: $12 \\div 4$.",
+                  "$12 \\div 4 = 3$ dollars."
+                ],
+                "answer": "3 dollars per notebook",
+                "check": [
+                  "Rational(12,4)==3"
+                ]
+              },
+              {
+                "prompt": "A car travels 300 km on 25 litres of fuel. Find the unit rate in **km per litre**.",
+                "steps": [
+                  "Per **one** litre means we divide distance by litres: $300 \\div 25$.",
+                  "$300 \\div 25 = 12$ km."
+                ],
+                "answer": "12 km per litre",
+                "check": [
+                  "Rational(300,25)==12"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Your turn",
+            "intro": "Divide the total by the number of units. Tap the correct unit rate.",
+            "problems": [
+              {
+                "prompt": "5 pens cost 20 dollars. What is the price **per pen**?",
+                "options": [
+                  "4 dollars",
+                  "5 dollars",
+                  "15 dollars",
+                  "100 dollars"
+                ],
+                "correctIndex": 0,
+                "explanation": "$20 \\div 5 = 4$ dollars per pen.",
+                "check": [
+                  "Rational(20,5)==4"
+                ]
+              },
+              {
+                "prompt": "A cyclist rides 180 km in 6 hours. What is the speed in **km per hour**?",
+                "options": [
+                  "30 km per hour",
+                  "6 km per hour",
+                  "180 km per hour",
+                  "36 km per hour"
+                ],
+                "correctIndex": 0,
+                "explanation": "$180 \\div 6 = 30$ km per hour.",
+                "check": [
+                  "Rational(180,6)==30"
+                ]
+              },
+              {
+                "prompt": "A tap fills 84 litres in 7 minutes. How many **litres per minute**?",
+                "options": [
+                  "12 litres per minute",
+                  "7 litres per minute",
+                  "77 litres per minute",
+                  "84 litres per minute"
+                ],
+                "correctIndex": 0,
+                "explanation": "$84 \\div 7 = 12$ litres per minute.",
+                "check": [
+                  "Rational(84,7)==12"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "What is the unit rate?",
+            "prompt": "A bag of 8 apples costs 24 dollars. What is the price per apple?",
+            "options": [
+              "3 dollars",
+              "4 dollars",
+              "8 dollars",
+              "16 dollars"
+            ],
+            "correctIndex": 0,
+            "explanation": "$24 \\div 8 = 3$ dollars per apple.",
+            "check": [
+              "Rational(24,8)==3"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The tiny number on the shelf label",
+            "body": "Next time you shop, look at the small print in the corner of a price label — \"2 dollars 50 per 100 g\". That is the **unit rate**: the shop did the division so you can compare sizes fairly. Unit rates are on every shelf in every supermarket."
+          },
+          {
+            "kind": "dealCompare",
+            "eyebrow": "Concept B",
+            "title": "Which bag is the better deal?",
+            "teach": "Reveal the price per kg for each bag. Remember: the **smaller** unit price wins — even if that bag costs more in total.",
+            "config": {
+              "unit": "kg",
+              "currency": "$",
+              "dealA": {
+                "label": "Small bag",
+                "price": 9,
+                "qty": 3
+              },
+              "dealB": {
+                "label": "Large bag",
+                "price": 15,
+                "qty": 6
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Watch out",
+            "title": "A bigger total does NOT mean a worse deal",
+            "beats": [
+              "The large bag (15 dollars) costs **more in total** than the small bag (9 dollars).",
+              "But: small bag $= 9 \\div 3 = 3$ dollars per kg; large bag $= 15 \\div 6 = 2.50$ dollars per kg.",
+              "The large bag is actually **cheaper per kg** — you get more rice for each dollar you spend.",
+              "Rule: always divide before you decide. Never judge a deal by the total price alone."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Picking the better deal",
+            "intro": "Find the unit price of each option, then compare — lower unit price wins.",
+            "examples": [
+              {
+                "prompt": "Which is cheaper per bottle: 6 dollars for 3 bottles, or 10 dollars for 4 bottles?",
+                "steps": [
+                  "Pack A: $6 \\div 3 = 2$ dollars per bottle.",
+                  "Pack B: $10 \\div 4 = 2.50$ dollars per bottle.",
+                  "Compare: $2 < 2.50$, so Pack A is cheaper."
+                ],
+                "answer": "Pack A (6 dollars for 3 bottles) — 2 dollars per bottle",
+                "check": [
+                  "Rational(6,3) < Rational(10,4)"
+                ]
+              },
+              {
+                "prompt": "Store A sells 5 eggs for 9 dollars. Store B sells 4 eggs for 7 dollars. Which store is cheaper per egg?",
+                "steps": [
+                  "Store A: $9 \\div 5 = 1.80$ dollars per egg.",
+                  "Store B: $7 \\div 4 = 1.75$ dollars per egg.",
+                  "Compare: $1.75 < 1.80$, so Store B is cheaper per egg."
+                ],
+                "answer": "Store B — 1.75 dollars per egg",
+                "check": [
+                  "Rational(7,4) < Rational(9,5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Your turn",
+            "intro": "Find each unit price, then pick the better deal.",
+            "problems": [
+              {
+                "prompt": "Which is cheaper per kg: 9 dollars for 3 kg, or 15 dollars for 6 kg?",
+                "options": [
+                  "15 dollars for 6 kg — 2.50 dollars per kg",
+                  "9 dollars for 3 kg — 3 dollars per kg",
+                  "They cost the same per kg"
+                ],
+                "correctIndex": 0,
+                "explanation": "$9 \\div 3 = 3$ dollars per kg; $15 \\div 6 = 2.50$ dollars per kg. The large bag is cheaper per kg.",
+                "check": [
+                  "Rational(15,6) < Rational(9,3)"
+                ]
+              },
+              {
+                "prompt": "Brand X: 2 litres of juice for 6 dollars. Brand Y: 3 litres for 12 dollars. Which is cheaper per litre?",
+                "options": [
+                  "Brand X — 3 dollars per litre",
+                  "Brand Y — 4 dollars per litre",
+                  "They are the same price per litre"
+                ],
+                "correctIndex": 0,
+                "explanation": "Brand X: $6 \\div 2 = 3$ dollars per litre. Brand Y: $12 \\div 3 = 4$ dollars per litre. Brand X is cheaper.",
+                "check": [
+                  "Rational(6,2) < Rational(12,3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which pack is the better deal?",
+            "prompt": "Pack A: 8 dollars for 4 biscuits. Pack B: 9 dollars for 3 biscuits. Which pack is the **better deal**?",
+            "options": [
+              "Pack A — 2 dollars per biscuit",
+              "Pack B — 3 dollars per biscuit",
+              "They are the same"
+            ],
+            "correctIndex": 0,
+            "explanation": "Pack A: $8 \\div 4 = 2$ dollars each. Pack B: $9 \\div 3 = 3$ dollars each. Pack A wins.",
+            "check": [
+              "Rational(8,4) < Rational(9,3)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **unit rate** is the amount for exactly **one** unit — divide the total by the count.",
+              "\"Per\" always means divide: price **per** bottle $=$ price $\\div$ number of bottles.",
+              "To find the **better deal**, compute each unit price and pick the **smaller** one.",
+              "The bigger pack is **not always** cheaper — always divide before you decide."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "You know how to find a unit rate and use it to compare deals. Lock it in with this mixed set — some ask for the unit rate, some ask which deal is better. Tap a wrong choice and just try again."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "6 books cost 30 dollars. What is the price **per book**?",
+                "options": [
+                  "5 dollars",
+                  "6 dollars",
+                  "24 dollars",
+                  "180 dollars"
+                ],
+                "correctIndex": 0,
+                "explanation": "$30 \\div 6 = 5$ dollars per book.",
+                "check": [
+                  "Rational(30,6)==5"
+                ]
+              },
+              {
+                "prompt": "A runner covers 420 m in 60 seconds. What is the speed in **metres per second**?",
+                "options": [
+                  "7 m per second",
+                  "6 m per second",
+                  "60 m per second",
+                  "420 m per second"
+                ],
+                "correctIndex": 0,
+                "explanation": "$420 \\div 60 = 7$ metres per second.",
+                "check": [
+                  "Rational(420,60)==7"
+                ]
+              },
+              {
+                "prompt": "Which is cheaper per pencil: 8 dollars for 4 pencils, or 9 dollars for 3 pencils?",
+                "options": [
+                  "8 dollars for 4 pencils — 2 dollars each",
+                  "9 dollars for 3 pencils — 3 dollars each",
+                  "They cost the same"
+                ],
+                "correctIndex": 0,
+                "explanation": "Pack A: $8 \\div 4 = 2$ dollars. Pack B: $9 \\div 3 = 3$ dollars. Pack A is cheaper.",
+                "check": [
+                  "Rational(8,4) < Rational(9,3)"
+                ]
+              },
+              {
+                "prompt": "A hose fills 90 litres in 6 minutes. How many **litres per minute**?",
+                "options": [
+                  "15 litres per minute",
+                  "9 litres per minute",
+                  "84 litres per minute",
+                  "96 litres per minute"
+                ],
+                "correctIndex": 0,
+                "explanation": "$90 \\div 6 = 15$ litres per minute.",
+                "check": [
+                  "Rational(90,6)==15"
+                ]
+              },
+              {
+                "prompt": "Munkh earns 56 dollars in 8 hours. What is his **hourly rate**?",
+                "options": [
+                  "7 dollars per hour",
+                  "8 dollars per hour",
+                  "6 dollars per hour",
+                  "48 dollars per hour"
+                ],
+                "correctIndex": 0,
+                "explanation": "$56 \\div 8 = 7$ dollars per hour.",
+                "check": [
+                  "Rational(56,8)==7"
+                ]
+              },
+              {
+                "prompt": "Store A: 12 eggs for 6 dollars. Store B: 8 eggs for 5 dollars. Which store is cheaper **per egg**?",
+                "options": [
+                  "Store A — 0.50 dollars per egg",
+                  "Store B — 0.625 dollars per egg",
+                  "They are the same"
+                ],
+                "correctIndex": 0,
+                "explanation": "Store A: $6 \\div 12 = 0.50$ dollars per egg. Store B: $5 \\div 8 = 0.625$ dollars per egg. Store A is cheaper.",
+                "check": [
+                  "Rational(6,12) < Rational(5,8)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Unit Rate\"",
+            "body": "Wages (dollars per hour), fuel economy (km per litre), internet speed (megabits per second), population density (people per km²) — almost every real-world measure is a unit rate. Every time you see the word **per**, you are reading one. You now have the tool to compare any two of them."
+          }
+        ]
+      }
     },
     {
       "slug": "ratio-word-problems",
@@ -290,7 +3122,11 @@
       ],
       "keyIdea": "Find the unit rate or write two equal ratios, then scale up or down. Always check your answer points the sensible direction.",
       "facts": [
-        { "title": "Proportion", "latex": "$\\dfrac{a}{b} = \\dfrac{c}{d}$", "explanation": "Two equal ratios. If three of the four numbers are known, you can find the fourth by scaling or cross-multiplying." }
+        {
+          "title": "Proportion",
+          "latex": "$\\dfrac{a}{b} = \\dfrac{c}{d}$",
+          "explanation": "Two equal ratios. If three of the four numbers are known, you can find the fourth by scaling or cross-multiplying."
+        }
       ],
       "workedExamples": [
         {
@@ -298,52 +3134,618 @@
           "statement": "If **4 concert tickets cost $52**, how much do **7 tickets** cost (same price each)?",
           "note": "Find the price of one ticket first, then multiply by 7.",
           "solution": "Unit price $= \\frac{\\$52}{4} = \\$13$ per ticket. For 7 tickets: $13 \\times 7 = \\$91$. **Answer: $91.**",
-          "badges": [{ "text": "warm-up" }],
-          "check": ["Rational(52,4) * 7 == 91"]
+          "badges": [
+            {
+              "text": "warm-up"
+            }
+          ],
+          "check": [
+            "Rational(52,4) * 7 == 91"
+          ]
         },
         {
           "id": "wp-we2",
           "statement": "A car travels **180 km in 3 hours**. At the same speed, how far does it go in **5 hours**?",
           "note": "Find the speed (unit rate), then multiply by 5 hours.",
           "solution": "Speed $= \\frac{180}{3} = 60$ km/h. In 5 hours: $60 \\times 5 = 300$ km. **Answer: 300 km.**",
-          "badges": [{ "text": "core" }],
-          "check": ["Rational(180,3) * 5 == 300"]
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(180,3) * 5 == 300"
+          ]
         },
         {
           "id": "wp-we3",
           "statement": "Paint is mixed **red : blue = 3 : 5**. If you use **15 litres of blue**, how much red do you need?",
           "note": "Set up equal ratios: red/blue = 3/5 = ?/15. The blue went from 5 to 15 — a factor of 3.",
           "solution": "Blue scaled by $15 \\div 5 = 3$, so red scales by 3 too: $3 \\times 3 = 9$ litres. **Answer: 9 litres of red.**",
-          "badges": [{ "text": "challenge" }],
-          "check": ["Rational(3,5) * 15 == 9"]
+          "badges": [
+            {
+              "text": "challenge"
+            }
+          ],
+          "check": [
+            "Rational(3,5) * 15 == 9"
+          ]
         }
       ],
       "commonMistakes": [
-        { "text": "Setting the proportion upside down (putting blue over red on one side and red over blue on the other).", "correction": "Keep the same order on both sides: red/blue = red/blue.", "authored": true },
-        { "text": "Multiplying when you should divide (or vice-versa) because the unit rate wasn't found first.", "correction": "Find the amount for ONE, then scale to the amount you need.", "authored": true }
+        {
+          "text": "Setting the proportion upside down (putting blue over red on one side and red over blue on the other).",
+          "correction": "Keep the same order on both sides: red/blue = red/blue.",
+          "authored": true
+        },
+        {
+          "text": "Multiplying when you should divide (or vice-versa) because the unit rate wasn't found first.",
+          "correction": "Find the amount for ONE, then scale to the amount you need.",
+          "authored": true
+        }
       ],
       "tryIt": [
-        { "id": "wp-t1", "statement": "**6 pens cost $9.** How much do **10 pens** cost?", "solution": "Unit price $= 9/6 = \\$1.50$. Ten pens: $1.5 \\times 10 = \\$15$.", "check": ["Rational(9,6) * 10 == 15"] },
-        { "id": "wp-t2", "statement": "On a map, **2 cm = 5 km**. How many km is **8 cm**?", "solution": "Per cm: $5/2 = 2.5$ km. For 8 cm: $2.5 \\times 8 = 20$ km.", "check": ["Rational(5,2) * 8 == 20"] },
-        { "id": "wp-t3", "statement": "A ratio is **4 : 7**. If the 4-part equals **12**, what is the 7-part?", "solution": "Scale factor $= 12/4 = 3$, so $7 \\times 3 = 21$.", "check": ["Rational(7,4) * 12 == 21"] }
-      ]
+        {
+          "id": "wp-t1",
+          "statement": "**6 pens cost $9.** How much do **10 pens** cost?",
+          "solution": "Unit price $= 9/6 = \\$1.50$. Ten pens: $1.5 \\times 10 = \\$15$.",
+          "check": [
+            "Rational(9,6) * 10 == 15"
+          ]
+        },
+        {
+          "id": "wp-t2",
+          "statement": "On a map, **2 cm = 5 km**. How many km is **8 cm**?",
+          "solution": "Per cm: $5/2 = 2.5$ km. For 8 cm: $2.5 \\times 8 = 20$ km.",
+          "check": [
+            "Rational(5,2) * 8 == 20"
+          ]
+        },
+        {
+          "id": "wp-t3",
+          "statement": "A ratio is **4 : 7**. If the 4-part equals **12**, what is the 7-part?",
+          "solution": "Scale factor $= 12/4 = 3$, so $7 \\times 3 = 21$.",
+          "check": [
+            "Rational(7,4) * 12 == 21"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "proportionBuilder",
+            "eyebrow": "Play with it",
+            "title": "Scale the paint mix",
+            "teach": "The base recipe is **3 red : 5 blue**. You set the blue amount — the tool finds the scale factor (new blue ÷ 5) and shows how much red you need. Same colour, bigger batch.",
+            "config": {
+              "aLabel": "red",
+              "bLabel": "blue",
+              "a": 3,
+              "b": 5,
+              "knownSide": "b",
+              "knownValue": 15,
+              "tokenA": {
+                "label": "red",
+                "plural": "cups red",
+                "color": "#d7503f"
+              },
+              "tokenB": {
+                "label": "blue",
+                "plural": "cups blue",
+                "color": "#3f78d7"
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Why the scale-factor move works",
+            "beats": [
+              "Remember **Equivalent Ratios**: multiply both numbers by the same amount and the ratio stays the same — just a bigger batch.",
+              "The scale-factor move is exactly that: divide the known new amount by the base value to find the multiplier, then apply it to the other side.",
+              "Here, blue went $5 \\to 15$, so the scale factor is $15 \\div 5 = 3$. Red follows: $3 \\times 3 = 9$.",
+              "**Sanity check**: you scaled *up*, so your answer should be *bigger* than the original. If it came out smaller, your ratio was upside down."
+            ],
+            "figure": {
+              "mode": "cross",
+              "cross": {
+                "a": 3,
+                "b": 5,
+                "c": 9,
+                "d": 15
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Stretching a recipe",
+            "intro": "Find the scale factor (new ÷ base), then multiply the other side.",
+            "examples": [
+              {
+                "prompt": "A recipe uses **sugar : flour = 2 : 7**. You use **14 cups of flour**. How many cups of sugar?",
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 2,
+                      "color": "#f2c14e",
+                      "label": "sugar"
+                    },
+                    {
+                      "count": 7,
+                      "color": "#e7e2d6",
+                      "label": "flour"
+                    }
+                  ]
+                },
+                "steps": [
+                  "Flour went from 7 to 14. Scale factor: $14 \\div 7 = 2$.",
+                  "Sugar gets the same treatment: $2 \\times 2 = 4$ cups of sugar."
+                ],
+                "answer": "4 cups of sugar",
+                "check": [
+                  "Rational(2,7)*14==4"
+                ]
+              },
+              {
+                "prompt": "Concrete is mixed **gravel : sand = 4 : 3**. You pour **12 bags of gravel**. How many bags of sand?",
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 4,
+                      "color": "#a8703f",
+                      "label": "gravel"
+                    },
+                    {
+                      "count": 3,
+                      "color": "#e7e2d6",
+                      "label": "sand"
+                    }
+                  ]
+                },
+                "steps": [
+                  "Gravel went from 4 to 12. Scale factor: $12 \\div 4 = 3$.",
+                  "Sand gets the same: $3 \\times 3 = 9$ bags of sand."
+                ],
+                "answer": "9 bags of sand",
+                "check": [
+                  "Rational(3,4)*12==9"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Your turn — stretch the recipe",
+            "intro": "Find the scale factor (new ÷ base), then multiply the other side.",
+            "problems": [
+              {
+                "prompt": "Juice is mixed **concentrate : water = 1 : 4**. You use **20 cups of water**. How many cups of concentrate?",
+                "options": [
+                  "5 cups",
+                  "4 cups",
+                  "8 cups",
+                  "16 cups"
+                ],
+                "correctIndex": 0,
+                "explanation": "Water went from 4 to 20, so scale factor is $20 \\div 4 = 5$. Concentrate: $1 \\times 5 = 5$ cups.",
+                "check": [
+                  "Rational(1,4)*20==5"
+                ]
+              },
+              {
+                "prompt": "A paint colour uses **yellow : green = 3 : 2**. You have **6 cans of green**. How many cans of yellow?",
+                "options": [
+                  "9 cans",
+                  "4 cans",
+                  "6 cans",
+                  "12 cans"
+                ],
+                "correctIndex": 0,
+                "explanation": "Green went from 2 to 6, so scale factor is $6 \\div 2 = 3$. Yellow: $3 \\times 3 = 9$ cans.",
+                "check": [
+                  "Rational(3,2)*6==9"
+                ]
+              },
+              {
+                "prompt": "A mortar mix is **cement : sand = 1 : 5**. You use **25 kg of sand**. How many kg of cement?",
+                "options": [
+                  "5 kg",
+                  "20 kg",
+                  "10 kg",
+                  "125 kg"
+                ],
+                "correctIndex": 0,
+                "explanation": "Sand went from 5 to 25, so scale factor is $25 \\div 5 = 5$. Cement: $1 \\times 5 = 5$ kg.",
+                "check": [
+                  "Rational(1,5)*25==5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Stretch that recipe",
+            "prompt": "Orange squash is mixed **cordial : water = 2 : 9**. You use **18 cups of water**. How much cordial?",
+            "options": [
+              "4 cups",
+              "2 cups",
+              "9 cups",
+              "6 cups"
+            ],
+            "correctIndex": 0,
+            "explanation": "Water went from 9 to 18, scale factor $= 18 \\div 9 = 2$. Cordial: $2 \\times 2 = 4$ cups.",
+            "check": [
+              "Rational(2,9)*18==4"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Recipes are ratios in disguise",
+            "body": "A traditional Mongolian buuz recipe keeps a fixed ratio of meat to dough — scale the batch up for a big family gathering and you use the same proportions every time. Cooks have been solving 'stretch the recipe' problems for thousands of years without ever writing an equation."
+          },
+          {
+            "kind": "proportionBuilder",
+            "eyebrow": "Play with it",
+            "title": "Lemons per litre",
+            "teach": "The recipe is **4 lemons for every 1 litre** of lemonade. That rate (4 lemons per litre) is already a unit rate. Step the litres up and watch the lemons multiply: $4 \\times \\text{litres}$.",
+            "config": {
+              "aLabel": "lemons",
+              "bLabel": "litre",
+              "a": 4,
+              "b": 1,
+              "knownSide": "b",
+              "knownValue": 3,
+              "tokenA": {
+                "label": "lemon",
+                "plural": "lemons",
+                "color": "#e8c33c"
+              },
+              "tokenB": {
+                "label": "litre",
+                "plural": "litres",
+                "color": "#3fb27f"
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Find the price for ONE, then multiply",
+            "beats": [
+              "Sometimes you know the total for many, and need the total for a *different* number. The safe move: **divide to find ONE, then multiply to find N**.",
+              "4 concert tickets cost 52 dollars. How much do 7 tickets cost?",
+              "Step 1 — find the unit rate: $52 \\div 4 = 13$ dollars per ticket.",
+              "Step 2 — scale to what you need: $13 \\times 7 = 91$ dollars. This works for cost, distance, time, anything."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Find ONE, then scale to N",
+            "intro": "Divide to get the unit rate, then multiply by whatever N you need.",
+            "examples": [
+              {
+                "prompt": "A car travels **180 km in 3 hours** at a steady speed. How far does it go in **5 hours**?",
+                "steps": [
+                  "Find the unit rate (speed): $180 \\div 3 = 60$ km per hour.",
+                  "Scale to 5 hours: $60 \\times 5 = 300$ km."
+                ],
+                "answer": "300 km",
+                "check": [
+                  "Rational(180,3)*5==300"
+                ]
+              },
+              {
+                "prompt": "A tap fills **96 litres in 4 minutes** at a steady rate. How much does it fill in **7 minutes**?",
+                "steps": [
+                  "Unit rate: $96 \\div 4 = 24$ litres per minute.",
+                  "In 7 minutes: $24 \\times 7 = 168$ litres."
+                ],
+                "answer": "168 litres",
+                "check": [
+                  "Rational(96,4)*7==168"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Your turn — find ONE, then multiply",
+            "intro": "Divide to find the amount for ONE, then multiply by the number you need.",
+            "problems": [
+              {
+                "prompt": "**3 notebooks cost 9 dollars.** How much do **5 notebooks** cost?",
+                "options": [
+                  "15 dollars",
+                  "12 dollars",
+                  "18 dollars",
+                  "27 dollars"
+                ],
+                "correctIndex": 0,
+                "explanation": "One notebook: $9 \\div 3 = 3$ dollars. Five notebooks: $3 \\times 5 = 15$ dollars.",
+                "check": [
+                  "Rational(9,3)*5==15"
+                ]
+              },
+              {
+                "prompt": "A runner covers **30 km in 2 hours**. At the same pace, how far does she run in **5 hours**?",
+                "options": [
+                  "75 km",
+                  "60 km",
+                  "50 km",
+                  "100 km"
+                ],
+                "correctIndex": 0,
+                "explanation": "Speed: $30 \\div 2 = 15$ km/h. In 5 hours: $15 \\times 5 = 75$ km.",
+                "check": [
+                  "Rational(30,2)*5==75"
+                ]
+              },
+              {
+                "prompt": "A machine makes **84 parts in 6 minutes**. How many parts does it make in **10 minutes**?",
+                "options": [
+                  "140 parts",
+                  "120 parts",
+                  "168 parts",
+                  "90 parts"
+                ],
+                "correctIndex": 0,
+                "explanation": "Rate: $84 \\div 6 = 14$ parts per minute. In 10 minutes: $14 \\times 10 = 140$ parts.",
+                "check": [
+                  "Rational(84,6)*10==140"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "How much for 8?",
+            "prompt": "**6 pens cost 18 dollars.** How much do **8 pens** cost?",
+            "options": [
+              "24 dollars",
+              "20 dollars",
+              "16 dollars",
+              "30 dollars"
+            ],
+            "correctIndex": 0,
+            "explanation": "One pen: $18 \\div 6 = 3$ dollars. Eight pens: $3 \\times 8 = 24$ dollars.",
+            "check": [
+              "Rational(18,6)*8==24"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Stretch a known ratio:** find the scale factor (new ÷ base), then multiply the other side by it.",
+              "**Find ONE, then multiply:** divide the total by the count to get the unit rate, then multiply by N.",
+              "**Sanity check:** scaling up gives a bigger answer; scaling down gives a smaller one. If it goes the wrong way, your ratio was upside down.",
+              "Both moves are the same idea underneath — equivalent ratios from the **Equivalent Ratios** chapter."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Both strategies in one mixed set. For each problem ask yourself: do I know the ratio and just need to scale? Or do I need to find the unit rate first? Then solve and check the direction."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Orange paint is **red : yellow = 2 : 5**. You use **10 cups of yellow**. How much red?",
+                "options": [
+                  "4 cups",
+                  "5 cups",
+                  "8 cups",
+                  "20 cups"
+                ],
+                "correctIndex": 0,
+                "explanation": "Scale factor: $10 \\div 5 = 2$. Red: $2 \\times 2 = 4$ cups.",
+                "check": [
+                  "Rational(2,5)*10==4"
+                ]
+              },
+              {
+                "prompt": "**5 notebooks cost 45 dollars.** How much do **8 notebooks** cost?",
+                "options": [
+                  "72 dollars",
+                  "63 dollars",
+                  "56 dollars",
+                  "81 dollars"
+                ],
+                "correctIndex": 0,
+                "explanation": "One notebook: $45 \\div 5 = 9$ dollars. Eight: $9 \\times 8 = 72$ dollars.",
+                "check": [
+                  "Rational(45,5)*8==72"
+                ]
+              },
+              {
+                "prompt": "A map uses **3 cm : 60 km**. A road is **5 cm** on the map. How long is it in real life?",
+                "options": [
+                  "100 km",
+                  "80 km",
+                  "120 km",
+                  "150 km"
+                ],
+                "correctIndex": 0,
+                "explanation": "Per cm: $60 \\div 3 = 20$ km. For 5 cm: $20 \\times 5 = 100$ km.",
+                "check": [
+                  "Rational(60,3)*5==100"
+                ]
+              },
+              {
+                "prompt": "Concrete mix is **cement : gravel = 1 : 3**. You have **9 bags of gravel**. How many bags of cement?",
+                "options": [
+                  "3 bags",
+                  "6 bags",
+                  "9 bags",
+                  "27 bags"
+                ],
+                "correctIndex": 0,
+                "explanation": "Scale factor: $9 \\div 3 = 3$. Cement: $1 \\times 3 = 3$ bags.",
+                "check": [
+                  "Rational(1,3)*9==3"
+                ]
+              },
+              {
+                "prompt": "A cyclist rides **45 km in 3 hours**. How far at the same pace in **7 hours**?",
+                "options": [
+                  "105 km",
+                  "90 km",
+                  "75 km",
+                  "120 km"
+                ],
+                "correctIndex": 0,
+                "explanation": "Speed: $45 \\div 3 = 15$ km/h. In 7 hours: $15 \\times 7 = 105$ km.",
+                "check": [
+                  "Rational(45,3)*7==105"
+                ]
+              },
+              {
+                "prompt": "Purple dye is **red : blue = 3 : 4**. You use **12 cups of red**. How many cups of blue?",
+                "options": [
+                  "16 cups",
+                  "9 cups",
+                  "12 cups",
+                  "20 cups"
+                ],
+                "correctIndex": 0,
+                "explanation": "Scale factor: $12 \\div 3 = 4$. Blue: $4 \\times 4 = 16$ cups.",
+                "check": [
+                  "Rational(4,3)*12==16"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Ratio & Rate Word Problems\"",
+            "body": "Find the scale factor or find the unit rate — those two moves unlock almost every ratio and rate word problem you'll meet. Maps, recipes, prices, speeds — they all run on the same math you just practised. You've finished the whole Ratios & Rates topic — well done!"
+          }
+        ]
+      }
     }
   ],
   "practice": [
-    { "id": "pr-1", "statement": "Write **24 : 36** in simplest form.", "solution": "GCF is 12: $24:36 = 2:3$.", "check": ["Rational(24,36) == Rational(2,3)"] },
-    { "id": "pr-2", "statement": "Find the missing number: $5 : 8 = 20 : \\;?$", "solution": "$5\\times4=20$, so $8\\times4=32$. Answer: 32.", "check": ["Rational(5,8) == Rational(20,32)"] },
-    { "id": "pr-3", "statement": "Which is larger, **7 : 9** or **8 : 11**?", "solution": "Cross-multiply: $77 > 72$, so $7:9$ is larger.", "check": ["Rational(7,9) > Rational(8,11)"] },
-    { "id": "pr-4", "statement": "A plane flies **210 km in 3 hours**. Find its speed.", "solution": "$210 \\div 3 = 70$ km/h.", "check": ["Rational(210,3) == 70"] },
-    { "id": "pr-5", "statement": "Better deal: **$14 for 4 kg** or **$18 for 6 kg**?", "solution": "$\\$14/4 = \\$3.50$/kg; $\\$18/6 = \\$3$/kg. The $18-for-6 kg is cheaper per kg.", "check": ["Rational(18,6) < Rational(14,4)"] },
-    { "id": "pr-6", "statement": "**8 oranges cost $6.** How much do **12 oranges** cost?", "solution": "Unit price $= 6/8 = \\$0.75$. Twelve: $0.75 \\times 12 = \\$9$.", "check": ["Rational(6,8) * 12 == 9"] }
+    {
+      "id": "pr-1",
+      "statement": "Write **24 : 36** in simplest form.",
+      "solution": "GCF is 12: $24:36 = 2:3$.",
+      "check": [
+        "Rational(24,36) == Rational(2,3)"
+      ]
+    },
+    {
+      "id": "pr-2",
+      "statement": "Find the missing number: $5 : 8 = 20 : \\;?$",
+      "solution": "$5\\times4=20$, so $8\\times4=32$. Answer: 32.",
+      "check": [
+        "Rational(5,8) == Rational(20,32)"
+      ]
+    },
+    {
+      "id": "pr-3",
+      "statement": "Which is larger, **7 : 9** or **8 : 11**?",
+      "solution": "Cross-multiply: $77 > 72$, so $7:9$ is larger.",
+      "check": [
+        "Rational(7,9) > Rational(8,11)"
+      ]
+    },
+    {
+      "id": "pr-4",
+      "statement": "A plane flies **210 km in 3 hours**. Find its speed.",
+      "solution": "$210 \\div 3 = 70$ km/h.",
+      "check": [
+        "Rational(210,3) == 70"
+      ]
+    },
+    {
+      "id": "pr-5",
+      "statement": "Better deal: **$14 for 4 kg** or **$18 for 6 kg**?",
+      "solution": "$\\$14/4 = \\$3.50$/kg; $\\$18/6 = \\$3$/kg. The $18-for-6 kg is cheaper per kg.",
+      "check": [
+        "Rational(18,6) < Rational(14,4)"
+      ]
+    },
+    {
+      "id": "pr-6",
+      "statement": "**8 oranges cost $6.** How much do **12 oranges** cost?",
+      "solution": "Unit price $= 6/8 = \\$0.75$. Twelve: $0.75 \\times 12 = \\$9$.",
+      "check": [
+        "Rational(6,8) * 12 == 9"
+      ]
+    }
   ],
   "testYourself": [
-    { "id": "ty-1", "statement": "Write **45 : 60** in simplest form.", "solution": "GCF is 15: $45:60 = 3:4$.", "check": ["Rational(45,60) == Rational(3,4)"] },
-    { "id": "ty-2", "statement": "Find the missing number: $3 : 4 = 27 : \\;?$", "solution": "$3\\times9=27$, so $4\\times9=36$. Answer: 36.", "check": ["Rational(3,4) == Rational(27,36)"] },
-    { "id": "ty-3", "statement": "Which is larger, **11 : 15** or **7 : 10**?", "solution": "Cross-multiply: $11\\times10=110$, $7\\times15=105$. $110>105$, so $11:15$ is larger.", "check": ["Rational(11,15) > Rational(7,10)"] },
-    { "id": "ty-4", "statement": "A train covers **432 km in 6 hours**. Find its speed.", "solution": "$432 \\div 6 = 72$ km/h.", "check": ["Rational(432,6) == 72"] },
-    { "id": "ty-5", "statement": "**$7.50 for 5 apples.** Find the price per apple.", "solution": "$7.50 \\div 5 = \\$1.50$ per apple.", "check": ["Rational(15,2)/5 == Rational(3,2)"] },
-    { "id": "ty-6", "statement": "A recipe uses **4 cups of flour to make 24 cookies**. How much flour for **60 cookies**?", "solution": "Flour per cookie $= 4/24 = 1/6$ cup. For 60: $\\frac{1}{6}\\times 60 = 10$ cups.", "check": ["Rational(4,24) * 60 == 10"] },
-    { "id": "ty-7", "statement": "A train goes **50 km in 40 minutes**. How far in **2 hours** (120 minutes), same speed?", "solution": "Per minute: $50/40 = 1.25$ km. For 120 min: $1.25 \\times 120 = 150$ km.", "check": ["Rational(50,40) * 120 == 150"] }
+    {
+      "id": "ty-1",
+      "statement": "Write **45 : 60** in simplest form.",
+      "solution": "GCF is 15: $45:60 = 3:4$.",
+      "check": [
+        "Rational(45,60) == Rational(3,4)"
+      ]
+    },
+    {
+      "id": "ty-2",
+      "statement": "Find the missing number: $3 : 4 = 27 : \\;?$",
+      "solution": "$3\\times9=27$, so $4\\times9=36$. Answer: 36.",
+      "check": [
+        "Rational(3,4) == Rational(27,36)"
+      ]
+    },
+    {
+      "id": "ty-3",
+      "statement": "Which is larger, **11 : 15** or **7 : 10**?",
+      "solution": "Cross-multiply: $11\\times10=110$, $7\\times15=105$. $110>105$, so $11:15$ is larger.",
+      "check": [
+        "Rational(11,15) > Rational(7,10)"
+      ]
+    },
+    {
+      "id": "ty-4",
+      "statement": "A train covers **432 km in 6 hours**. Find its speed.",
+      "solution": "$432 \\div 6 = 72$ km/h.",
+      "check": [
+        "Rational(432,6) == 72"
+      ]
+    },
+    {
+      "id": "ty-5",
+      "statement": "**$7.50 for 5 apples.** Find the price per apple.",
+      "solution": "$7.50 \\div 5 = \\$1.50$ per apple.",
+      "check": [
+        "Rational(15,2)/5 == Rational(3,2)"
+      ]
+    },
+    {
+      "id": "ty-6",
+      "statement": "A recipe uses **4 cups of flour to make 24 cookies**. How much flour for **60 cookies**?",
+      "solution": "Flour per cookie $= 4/24 = 1/6$ cup. For 60: $\\frac{1}{6}\\times 60 = 10$ cups.",
+      "check": [
+        "Rational(4,24) * 60 == 10"
+      ]
+    },
+    {
+      "id": "ty-7",
+      "statement": "A train goes **50 km in 40 minutes**. How far in **2 hours** (120 minutes), same speed?",
+      "solution": "Per minute: $50/40 = 1.25$ km. For 120 min: $1.25 \\times 120 = 150$ km.",
+      "check": [
+        "Rational(50,40) * 120 == 150"
+      ]
+    }
   ]
 }
