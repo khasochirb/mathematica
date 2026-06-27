@@ -29,6 +29,11 @@ const mathHubs = [
   { en: "AP Calculus Hub", mn: "AP Calculus төв", href: "/practice/ap", live: false },
 ];
 
+// The General Math hub (grades 6–12) is active and lives at /math.
+const genMathItems = [
+  { en: "General Math (Grades 6–12)", href: "/math" },
+];
+
 const aboutItems = [
   { en: "About Us", mn: "Бидний тухай", href: "/about#about" },
   { en: "Contact", mn: "Холбоо барих", href: "/contact" },
@@ -113,6 +118,31 @@ function ResourcesDropdown({ label }: ResourcesDropdownProps) {
               >
                 {item.live ? (lang === "mn" ? "Нээлттэй" : "Live") : lang === "mn" ? "Удахгүй" : "Soon"}
               </span>
+            </Link>
+          ))}
+          <div
+            className="px-4 pb-2 mb-1 mt-2 eyebrow"
+            style={{ borderTop: "1px solid var(--line)", paddingTop: 8 }}
+          >
+            General Math · Active
+          </div>
+          {genMathItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="block px-4 py-2 text-sm transition-colors"
+              style={{ color: "var(--fg-1)" }}
+              onClick={() => setOpen(false)}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = "var(--accent)";
+                e.currentTarget.style.background = "var(--accent-wash)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = "var(--fg-1)";
+                e.currentTarget.style.background = "transparent";
+              }}
+            >
+              {item.en}
             </Link>
           ))}
         </div>
@@ -220,6 +250,7 @@ export default function Header() {
 
   const nav = {
     home: lang === "mn" ? "Нүүр" : "Home",
+    esh: "ЭЕШ",
     dashboard: lang === "mn" ? "Хяналтын самбар" : "Dashboard",
     tutoring: lang === "mn" ? "Ганцаарчилсан хичээл" : "1-on-1 Tutoring",
     resources: lang === "mn" ? "Эх сурвалж" : "Resources",
@@ -269,6 +300,17 @@ export default function Header() {
                   onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
                 >
                   {nav.home}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/practice/esh"
+                  className="text-sm font-semibold px-3 py-2 rounded-md transition-colors"
+                  style={{ color: "var(--accent)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "var(--accent-wash)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                >
+                  {nav.esh}
                 </Link>
               </li>
               {isAuthenticated && (
@@ -454,6 +496,7 @@ export default function Header() {
           <nav className="max-w-7xl mx-auto px-4 py-4 space-y-1">
             {[
               { label: nav.home, href: "/" },
+              { label: nav.esh, href: "/practice/esh", primary: true },
               ...(isAuthenticated ? [{ label: nav.dashboard, href: "/dashboard" }] : []),
               { label: nav.tutoring, href: "/tutoring" },
             ].map((item) => (
@@ -461,7 +504,7 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 className="block px-4 py-2.5 rounded-md font-medium text-sm transition-colors"
-                style={{ color: "var(--fg-1)" }}
+                style={{ color: item.primary ? "var(--accent)" : "var(--fg-1)" }}
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
@@ -494,6 +537,22 @@ export default function Header() {
                 >
                   {item.live ? (lang === "mn" ? "Нээлттэй" : "Live") : lang === "mn" ? "Удахгүй" : "Soon"}
                 </span>
+              </Link>
+            ))}
+
+            {/* Resources — General Math active section */}
+            <div className="px-4 pt-2 eyebrow">
+              General Math · Active
+            </div>
+            {genMathItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="block px-4 py-2 rounded-md text-sm transition-colors"
+                style={{ color: "var(--fg-1)" }}
+                onClick={() => setMobileOpen(false)}
+              >
+                {item.en}
               </Link>
             ))}
 

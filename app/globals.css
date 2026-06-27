@@ -463,9 +463,10 @@
   100% { box-shadow: 0 0 0 0   transparent; }
 }
 
-/* Math problem text container */
+/* Math problem text container — body/reading text is UI sans (display serif is
+   for titles + section headings only). KaTeX keeps its own math fonts. */
 .q-math {
-  font-family: var(--font-serif), Georgia, serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
   font-size: 18px;
   line-height: 1.55;
   color: var(--fg);
@@ -473,4 +474,37 @@
 .q-math .var {
   font-style: italic;
   color: var(--accent);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   General Math — interactive lesson player motion
+   ───────────────────────────────────────────────────────────── */
+@keyframes gm-step-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes gm-pop-in {
+  0% { opacity: 0; transform: scale(0.4); }
+  70% { opacity: 1; transform: scale(1.08); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes gm-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.gm-step { animation: gm-step-in 0.34s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.gm-pop { animation: gm-pop-in 0.36s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.gm-fade { animation: gm-fade-in 0.3s ease both; }
+/* Tactile press for chunky controls */
+.gm-press { transition: transform 0.12s ease, background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease; }
+.gm-press:active { transform: scale(0.96); }
+@keyframes gm-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+.gm-shake { animation: gm-shake 0.4s ease both; }
+@media (prefers-reduced-motion: reduce) {
+  .gm-step, .gm-pop, .gm-fade, .gm-shake { animation: none; }
+  .gm-press { transition: none; }
 }

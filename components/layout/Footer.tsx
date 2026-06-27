@@ -7,6 +7,7 @@ const links = {
     { label: "ЭЕШ Hub", href: "/practice/esh" },
     { label: "Previous Year Tests", href: "/practice/esh/test?type=previous" },
     { label: "Study by Topic", href: "/courses" },
+    { label: "General Math", href: "/math" },
     { label: "Math Practice", href: "/practice" },
     { label: "1-on-1 Tutoring", href: "/tutoring" },
   ],
