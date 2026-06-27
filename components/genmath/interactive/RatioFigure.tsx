@@ -2,6 +2,7 @@
 
 import { type FigureSpec, type FigureGroupSpec } from "@/lib/genmath-interactive";
 import FractionBar from "@/components/genmath/interactive/FractionBar";
+import DecimalGridView from "@/components/genmath/interactive/DecimalGridView";
 
 function Token({ color }: { color: string }) {
   return (
@@ -131,6 +132,24 @@ export default function RatioFigure({ figure }: { figure: FigureSpec }) {
         <FractionBar num={num} den={den} />
         <div className="mt-2 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
           <span className="serif tabular" style={{ fontSize: 17, color: "var(--fg)" }}>{num}/{den}</span>
+          {label ? ` — ${label}` : ""}
+        </div>
+      </div>
+    );
+  }
+
+  if (mode === "decimalGrid" && figure.decimal) {
+    const { value, label } = figure.decimal;
+    const hundredths = Math.round(value * 100);
+    return (
+      <div className="gm-fade rounded-xl p-4" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
+        <div className="flex justify-center">
+          <DecimalGridView hundredths={hundredths} size={180} />
+        </div>
+        <div className="mt-2 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
+          <span className="serif tabular" style={{ fontSize: 17, color: "var(--fg)" }}>{value.toFixed(2)}</span>
+          {" = "}
+          <span className="serif tabular" style={{ color: "var(--fg)" }}>{hundredths}/100</span>
           {label ? ` — ${label}` : ""}
         </div>
       </div>

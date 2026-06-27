@@ -112,7 +112,7 @@ export interface FigureGroupSpec {
   glyph?: string;
 }
 export interface FigureSpec {
-  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar";
+  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid";
   groups?: FigureGroupSpec[];
   highlightIndex?: number; // the highlighted "part" in partToWhole (default 0)
   // "cross" — a cross-multiply diagram for a:b vs c:d (draws the two diagonals + products).
@@ -122,6 +122,8 @@ export interface FigureSpec {
   mixes?: { a: number; b: number; label?: string }[];
   // "fractionBar" — a bar split into `den` equal pieces with `num` shaded.
   fraction?: { num: number; den: number; label?: string };
+  // "decimalGrid" — a 10×10 grid (one whole) with `value` shaded (e.g. 0.37).
+  decimal?: { value: number; label?: string };
 }
 
 // Fractions — a bar you split into more (equal) pieces to see equivalent fractions.
@@ -175,6 +177,15 @@ export interface NotationToggleConfig {
   tokenB: Token;
 }
 
+// Decimals — a 10×10 grid that is ONE whole. Filled tenths read as full
+// columns, loose hundredths as single cells, so place value is literal. The
+// student taps ±0.1 / ±0.01 to build a decimal and watch the grid + fraction
+// update in lockstep.
+export interface DecimalGridConfig {
+  start: number; // initial value in [0, 1], a multiple of 0.01 (e.g. 0.37)
+  color?: string;
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -215,6 +226,7 @@ export type InteractiveStep =
   | { kind: "fractionCombine"; eyebrow?: string; title: string; teach: string; config: FractionCombineConfig }
   | { kind: "areaModel"; eyebrow?: string; title: string; teach: string; config: AreaModelConfig }
   | { kind: "fractionDivide"; eyebrow?: string; title: string; teach: string; config: FractionDivideConfig }
+  | { kind: "decimalGrid"; eyebrow?: string; title: string; teach: string; config: DecimalGridConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

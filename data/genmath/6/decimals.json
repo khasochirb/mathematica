@@ -2,47 +2,286 @@
   "slug": "decimals",
   "title": "Decimals",
   "grade": 6,
-  "blurb": "Placeholder — understand place value and perform operations with decimals.",
+  "status": "published",
+  "blurb": "Place value past the dot, comparing, rounding, and the four operations — built on a 10×10 grid you can shade.",
   "lessons": [
     {
-      "slug": "decimals-intro",
-      "title": "Introduction to Decimals",
-      "concreteComparison": "Placeholder — real-world opener authored in Step 3. Example: $\\$3.75$ means 3 dollars and 75 hundredths.",
-      "objective": "Placeholder — read, write, and compare decimal numbers to the thousandths place.",
+      "slug": "decimal-place-value",
+      "title": "Decimal Place Value",
+      "concreteComparison": "A price tag of \\$2.45 means 2 whole dollars, 4 dimes, and 5 pennies. A dime is one **tenth** of a dollar and a penny is one **hundredth** — so the digits after the dot are counting tenths and hundredths. That dot is a **decimal point**, and $2.45$ is a **decimal**.",
+      "objective": "Read and write decimals to the thousandths place, name the value of each digit, and see a decimal as a fraction with a denominator of 10, 100, or 1000.",
       "concept": [
-        "Placeholder concept paragraph. A decimal is another way to write a fraction with a denominator that is a power of 10."
+        "A **decimal** uses a dot to show parts of a whole smaller than 1. The first digit after the dot is **tenths** (out of 10), the next is **hundredths** (out of 100), the next is **thousandths** (out of 1000).",
+        "Each place is **10 times smaller** than the one to its left — the same pattern as ones, tens, hundreds, just running the other way past the dot.",
+        "Because the places are tenths, hundredths, and thousandths, every decimal is just a **fraction with a denominator that is a power of 10**. So $0.37 = \\frac{37}{100}$."
+      ],
+      "keyIdea": "The digits after the decimal point are tenths, hundredths, thousandths — each place 10× smaller than the last. A decimal is a fraction whose denominator is 10, 100, or 1000.",
+      "facts": [
+        {
+          "title": "Place value after the dot",
+          "latex": "$0.d_1d_2d_3 = \\dfrac{d_1}{10} + \\dfrac{d_2}{100} + \\dfrac{d_3}{1000}$",
+          "explanation": "Tenths, then hundredths, then thousandths — each ten times smaller."
+        }
       ],
       "workedExamples": [
         {
-          "id": "dec-ex-01",
-          "statement": "Placeholder problem. Add $2.4 + 1.35$.",
-          "solution": "Placeholder solution. $2.40 + 1.35 = 3.75$."
+          "id": "dpv-we1",
+          "statement": "Write $0.37$ as a fraction.",
+          "solution": "The last digit (7) is in the hundredths place, so the denominator is 100: $0.37 = \\frac{37}{100}$.",
+          "check": ["Rational(3,10) + Rational(7,100) == Rational(37,100)"]
+        },
+        {
+          "id": "dpv-we2",
+          "statement": "Write $0.6$ as a fraction in simplest form.",
+          "solution": "One digit after the dot means tenths: $0.6 = \\frac{6}{10} = \\frac{3}{5}$.",
+          "check": ["Rational(6,10) == Rational(3,5)"]
         }
       ],
       "commonMistakes": [
-        { "text": "Placeholder mistake — authored in Step 3.", "authored": false }
+        {
+          "text": "Reading $0.6$ and $0.06$ as the same size.",
+          "correction": "$0.6$ is six tenths; $0.06$ is six hundredths — ten times smaller.",
+          "authored": true
+        },
+        {
+          "text": "Giving $0.37$ the denominator 10 instead of 100.",
+          "correction": "Count the digits after the dot: two digits → hundredths → $\\frac{37}{100}$.",
+          "authored": true
+        }
       ],
       "tryIt": [
         {
-          "id": "dec-try-01",
-          "statement": "Placeholder try-it. Subtract $5.6 - 2.14$.",
-          "solution": "Placeholder solution. $5.60 - 2.14 = 3.46$."
+          "id": "dpv-t1",
+          "statement": "Write $0.08$ as a fraction in simplest form.",
+          "solution": "The 8 is in the hundredths place: $0.08 = \\frac{8}{100} = \\frac{2}{25}$.",
+          "check": ["Rational(8,100) == Rational(2,25)"]
+        },
+        {
+          "id": "dpv-t2",
+          "statement": "Write $0.125$ as a fraction in simplest form.",
+          "solution": "Three digits after the dot means thousandths: $0.125 = \\frac{125}{1000} = \\frac{1}{8}$.",
+          "check": ["Rational(125,1000) == Rational(1,8)"]
         }
-      ]
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "decimalGrid",
+            "eyebrow": "Concept A",
+            "title": "One whole, cut into 100",
+            "teach": "The big square is **one whole**. Each small square is one **hundredth** ($0.01$), and a full column of ten is one **tenth** ($0.1$). Tap to build a decimal and watch the fraction keep up.",
+            "config": {
+              "start": 0.37,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Tenths and hundredths",
+            "beats": [
+              "The first digit after the dot counts **tenths** — full columns of the grid.",
+              "The second digit counts **hundredths** — single squares.",
+              "So $0.37$ is **3 tenths and 7 hundredths**: three full columns plus seven squares.",
+              "Together that is $\\frac{3}{10} + \\frac{7}{100} = \\frac{37}{100}$."
+            ],
+            "figure": {
+              "mode": "decimalGrid",
+              "decimal": {
+                "value": 0.37,
+                "label": "3 tenths + 7 hundredths"
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The big idea",
+            "title": "A decimal is a fraction in disguise",
+            "beats": [
+              "Count the digits after the dot — that tells you the denominator.",
+              "One digit → tenths (over 10). Two digits → hundredths (over 100).",
+              "$0.6$ is six full columns: $\\frac{6}{10}$, which simplifies to $\\frac{3}{5}$.",
+              "Same amount, two costumes — a decimal and a fraction."
+            ],
+            "figure": {
+              "mode": "decimalGrid",
+              "decimal": {
+                "value": 0.6,
+                "label": "six tenths"
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Reading a decimal as a fraction",
+            "intro": "Count the digits after the dot to choose the denominator, then simplify if you can.",
+            "examples": [
+              {
+                "prompt": "Write $0.37$ as a fraction.",
+                "figure": {
+                  "mode": "decimalGrid",
+                  "decimal": { "value": 0.37, "label": "3 tenths, 7 hundredths" }
+                },
+                "steps": [
+                  "The last digit (7) is in the **hundredths** place, so the denominator is 100.",
+                  "$0.37 = \\frac{37}{100}$ — nothing divides 37 and 100, so it is already simplest."
+                ],
+                "answer": "$\\frac{37}{100}$",
+                "check": ["Rational(3,10) + Rational(7,100) == Rational(37,100)"]
+              },
+              {
+                "prompt": "Write $0.6$ as a fraction in simplest form.",
+                "figure": {
+                  "mode": "decimalGrid",
+                  "decimal": { "value": 0.6, "label": "six tenths" }
+                },
+                "steps": [
+                  "One digit after the dot → **tenths**, so $0.6 = \\frac{6}{10}$.",
+                  "Divide top and bottom by 2: $\\frac{6}{10} = \\frac{3}{5}$."
+                ],
+                "answer": "$\\frac{3}{5}$",
+                "check": ["Rational(6,10) == Rational(3,5)"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Read the grid",
+            "intro": "Each grid is one whole. Count the columns (tenths) and squares (hundredths).",
+            "problems": [
+              {
+                "prompt": "Which decimal does this grid show?",
+                "figure": {
+                  "mode": "decimalGrid",
+                  "decimal": { "value": 0.4, "label": "shaded" }
+                },
+                "options": ["$0.4$", "$0.04$", "$4.0$"],
+                "correctIndex": 0,
+                "explanation": "Four full columns = 4 tenths = $0.4$.",
+                "check": ["Rational(4,10) == Rational(40,100)"]
+              },
+              {
+                "prompt": "Which fraction equals $0.08$?",
+                "figure": {
+                  "mode": "decimalGrid",
+                  "decimal": { "value": 0.08, "label": "0.08" }
+                },
+                "options": ["$\\frac{8}{100}$", "$\\frac{8}{10}$", "$\\frac{80}{100}$"],
+                "correctIndex": 0,
+                "explanation": "The 8 is in the hundredths place → $\\frac{8}{100}$.",
+                "check": ["Rational(8,100) == Rational(2,25)"]
+              },
+              {
+                "prompt": "What is $0.05$ as a fraction in simplest form?",
+                "figure": {
+                  "mode": "decimalGrid",
+                  "decimal": { "value": 0.05, "label": "0.05" }
+                },
+                "options": ["$\\frac{1}{20}$", "$\\frac{5}{10}$", "$\\frac{1}{5}$"],
+                "correctIndex": 0,
+                "explanation": "$0.05 = \\frac{5}{100} = \\frac{1}{20}$.",
+                "check": ["Rational(5,100) == Rational(1,20)"]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Going smaller",
+            "title": "One more place: thousandths",
+            "beats": [
+              "Add a third digit after the dot and you reach **thousandths** — out of 1000.",
+              "$0.125$ means 1 tenth, 2 hundredths, and 5 thousandths.",
+              "As a fraction that is $\\frac{125}{1000}$, which simplifies to $\\frac{1}{8}$.",
+              "Every step right past the dot makes the place ten times smaller."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Naming the place value",
+            "intro": "The place tells you the value: 1st = tenths, 2nd = hundredths, 3rd = thousandths.",
+            "examples": [
+              {
+                "prompt": "In $0.125$, what is the value of the digit **2**?",
+                "steps": [
+                  "The 2 is the **second** digit after the dot → hundredths.",
+                  "Its value is $\\frac{2}{100} = 0.02$."
+                ],
+                "answer": "$\\frac{2}{100}$ (two hundredths)",
+                "check": ["Rational(2,100) == Rational(1,50)"]
+              },
+              {
+                "prompt": "Write $0.125$ as a fraction in simplest form.",
+                "steps": [
+                  "Three digits after the dot → **thousandths**, so $\\frac{125}{1000}$.",
+                  "Divide top and bottom by 125: $\\frac{125}{1000} = \\frac{1}{8}$."
+                ],
+                "answer": "$\\frac{1}{8}$",
+                "check": ["Rational(125,1000) == Rational(1,8)"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Which place, which value?",
+            "intro": "Read the position of each digit after the dot.",
+            "problems": [
+              {
+                "prompt": "In $0.349$, which digit is in the **thousandths** place?",
+                "options": ["$9$", "$3$", "$4$"],
+                "correctIndex": 0,
+                "explanation": "Third place after the dot = thousandths = 9.",
+                "check": ["Rational(3,10) + Rational(4,100) + Rational(9,1000) == Rational(349,1000)"]
+              },
+              {
+                "prompt": "Which is **larger**: the value of 4 in $0.4$, or the value of 4 in $0.04$?",
+                "options": ["the 4 in $0.4$", "the 4 in $0.04$", "they are equal"],
+                "correctIndex": 0,
+                "explanation": "$0.4 = \\frac{4}{10}$ is ten times bigger than $0.04 = \\frac{4}{100}$.",
+                "check": ["Rational(4,10) > Rational(4,100)"]
+              },
+              {
+                "prompt": "Write $0.2$ as a fraction in simplest form.",
+                "options": ["$\\frac{1}{5}$", "$\\frac{2}{100}$", "$\\frac{1}{2}$"],
+                "correctIndex": 0,
+                "explanation": "$0.2 = \\frac{2}{10} = \\frac{1}{5}$.",
+                "check": ["Rational(2,10) == Rational(1,5)"]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "You already read decimals every day",
+            "body": "Every price tag is a decimal. \\$4.99 is 4 whole dollars and 99 hundredths of a dollar — 99 cents. You have been reading hundredths your whole life."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Decimal to fraction",
+            "prompt": "Which fraction is equal to $0.37$?",
+            "options": ["$\\frac{37}{100}$", "$\\frac{37}{10}$", "$\\frac{3}{7}$"],
+            "correctIndex": 0,
+            "explanation": "Two digits after the dot → hundredths → $\\frac{37}{100}$.",
+            "check": ["Rational(3,10) + Rational(7,100) == Rational(37,100)"]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "The places after the dot are **tenths, hundredths, thousandths** — each 10× smaller than the last.",
+              "A decimal is a **fraction over 10, 100, or 1000**: $0.37 = \\frac{37}{100}$.",
+              "Count the digits after the dot to pick the denominator, then simplify."
+            ]
+          }
+        ]
+      }
     }
   ],
-  "practice": [
-    {
-      "id": "dec-prac-01",
-      "statement": "Placeholder practice problem. Multiply $0.3 \\times 0.4$.",
-      "solution": "Placeholder solution. $0.3 \\times 0.4 = 0.12$."
-    }
-  ],
-  "testYourself": [
-    {
-      "id": "dec-test-01",
-      "statement": "Placeholder test problem. Divide $6.4 \\div 0.8$.",
-      "solution": "Placeholder solution. $6.4 \\div 0.8 = 8$."
-    }
-  ]
+  "practice": [],
+  "testYourself": []
 }

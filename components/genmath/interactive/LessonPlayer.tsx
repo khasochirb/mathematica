@@ -22,6 +22,7 @@ import FractionCompare from "@/components/genmath/interactive/FractionCompare";
 import FractionCombine from "@/components/genmath/interactive/FractionCombine";
 import AreaModel from "@/components/genmath/interactive/AreaModel";
 import FractionDivide from "@/components/genmath/interactive/FractionDivide";
+import DecimalGrid from "@/components/genmath/interactive/DecimalGrid";
 import RatioFigure from "@/components/genmath/interactive/RatioFigure";
 import NotationToggle from "@/components/genmath/interactive/NotationToggle";
 import { type GenMathLesson } from "@/lib/genmath-lessons";
@@ -319,6 +320,16 @@ function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveSt
         <>
           <StepHeader eyebrow={step.eyebrow} title={step.title} />
           <FractionDivide config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "decimalGrid":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <DecimalGrid config={step.config} />
           <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
             <MathText text={step.teach} />
           </p>
