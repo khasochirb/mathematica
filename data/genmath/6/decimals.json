@@ -1098,6 +1098,257 @@
           }
         ]
       }
+    },
+    {
+      "slug": "multiplying-decimals",
+      "title": "Multiplying Decimals",
+      "concreteComparison": "A tile is $0.4$ m wide and $0.3$ m tall. Its area is length × width $= 0.4 \\times 0.3 = 0.12$ square meters — about an eighth of a square meter. Multiplying decimals finds areas, scales recipes, and totals prices.",
+      "objective": "Multiply decimals by multiplying as if they were whole numbers, then placing the decimal point so the answer has as many places as the two factors combined.",
+      "concept": [
+        "To multiply decimals, **ignore the points** at first and multiply the digits like whole numbers.",
+        "Then **count the decimal places** in both factors and give the answer that many places.",
+        "$0.3 \\times 0.4$: multiply $3 \\times 4 = 12$; the factors have $1 + 1 = 2$ places, so the answer is $0.12$. Multiplying by a number **less than 1** makes the result smaller."
+      ],
+      "keyIdea": "Multiply as whole numbers, then count the total decimal places in both factors — the answer gets that many places.",
+      "facts": [
+        {
+          "title": "Count the places",
+          "latex": "$0.3 \\times 0.4 = 0.12 \\;\\;(1+1=2\\text{ places})$",
+          "explanation": "Multiply 3×4 = 12, then place the point 2 digits from the right."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "mul-we1",
+          "statement": "Multiply $0.3 \\times 0.4$.",
+          "solution": "$3 \\times 4 = 12$; $1+1=2$ decimal places → $0.12$.",
+          "check": ["Rational(3,10) * Rational(4,10) == Rational(12,100)"]
+        },
+        {
+          "id": "mul-we2",
+          "statement": "Multiply $1.2 \\times 0.3$.",
+          "solution": "$12 \\times 3 = 36$; $1+1=2$ places → $0.36$.",
+          "check": ["Rational(12,10) * Rational(3,10) == Rational(36,100)"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Lining up the decimal points like you do for addition.",
+          "correction": "For multiplication you don't line up points — multiply the digits, then **count places** to place the point.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting a place, e.g. writing $0.2 \\times 0.4 = 0.8$.",
+          "correction": "Count both places: $1+1=2$, so $0.2 \\times 0.4 = 0.08$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "mul-t1",
+          "statement": "Multiply $0.2 \\times 0.4$.",
+          "solution": "$2 \\times 4 = 8$; 2 places → $0.08$.",
+          "check": ["Rational(2,10) * Rational(4,10) == Rational(8,100)"]
+        },
+        {
+          "id": "mul-t2",
+          "statement": "Multiply $0.25 \\times 0.2$.",
+          "solution": "$25 \\times 2 = 50$; $2+1=3$ places → $0.050 = 0.05$.",
+          "check": ["Rational(25,100) * Rational(2,10) == Rational(5,100)"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "decimalArea",
+            "eyebrow": "Concept A",
+            "title": "The area is the product",
+            "teach": "Let one factor run **across** and the other run **up** the unit square. The overlap rectangle is the product: $0.3 \\times 0.4$ fills a $3 \\times 4 = 12$-square corner, which is $0.12$. Change the factors and watch the area.",
+            "config": {
+              "a": 0.3,
+              "b": 0.4,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Multiply, then count the places",
+            "beats": [
+              "First ignore the points and multiply: $3 \\times 4 = 12$.",
+              "Then count the decimal places in the factors: $0.3$ has 1, $0.4$ has 1, so $1+1=2$.",
+              "Give the answer 2 places: $0.12$.",
+              "It matches the grid — 12 of the 100 little squares are shaded."
+            ],
+            "figure": {
+              "mode": "decimalArea",
+              "area": { "a": 0.3, "b": 0.4 }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "A surprise",
+            "title": "Multiplying can make things smaller",
+            "beats": [
+              "When you multiply by a number **less than 1**, the result shrinks.",
+              "$0.6 \\times 0.5 = 0.30$ — smaller than both $0.6$ and $0.5$.",
+              "On the grid, the product rectangle is only part of each strip.",
+              "That's why half of something ($\\times 0.5$) is less than the whole."
+            ],
+            "figure": {
+              "mode": "decimalArea",
+              "area": { "a": 0.6, "b": 0.5 }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Multiplying decimals",
+            "intro": "Multiply the digits, then count the places in both factors.",
+            "examples": [
+              {
+                "prompt": "Multiply $0.3 \\times 0.4$.",
+                "figure": { "mode": "decimalArea", "area": { "a": 0.3, "b": 0.4 } },
+                "steps": [
+                  "Ignore the points: $3 \\times 4 = 12$.",
+                  "Places: $1 + 1 = 2$.",
+                  "So $0.3 \\times 0.4 = 0.12$."
+                ],
+                "answer": "$0.12$",
+                "check": ["Rational(3,10) * Rational(4,10) == Rational(12,100)"]
+              },
+              {
+                "prompt": "Multiply $1.2 \\times 0.3$.",
+                "steps": [
+                  "Ignore the points: $12 \\times 3 = 36$.",
+                  "Places: $1 + 1 = 2$.",
+                  "So $1.2 \\times 0.3 = 0.36$."
+                ],
+                "answer": "$0.36$",
+                "check": ["Rational(12,10) * Rational(3,10) == Rational(36,100)"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Multiply them",
+            "intro": "Multiply the digits, then count both factors' places.",
+            "problems": [
+              {
+                "prompt": "What is $0.2 \\times 0.4$?",
+                "figure": { "mode": "decimalArea", "area": { "a": 0.2, "b": 0.4 } },
+                "options": ["$0.08$", "$0.8$", "$0.6$"],
+                "correctIndex": 0,
+                "explanation": "$2 \\times 4 = 8$, and $1+1=2$ places → $0.08$.",
+                "check": ["Rational(2,10) * Rational(4,10) == Rational(8,100)"]
+              },
+              {
+                "prompt": "What is $0.5 \\times 6$?",
+                "options": ["$3$", "$0.3$", "$30$"],
+                "correctIndex": 0,
+                "explanation": "$5 \\times 6 = 30$; 1 place → $3.0 = 3$. (Half of 6 is 3.)",
+                "check": ["Rational(5,10) * 6 == 3"]
+              },
+              {
+                "prompt": "What is $0.3 \\times 0.3$?",
+                "figure": { "mode": "decimalArea", "area": { "a": 0.3, "b": 0.3 } },
+                "options": ["$0.09$", "$0.9$", "$0.6$"],
+                "correctIndex": 0,
+                "explanation": "$3 \\times 3 = 9$, and $1+1=2$ places → $0.09$.",
+                "check": ["Rational(3,10) * Rational(3,10) == Rational(9,100)"]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Bigger numbers",
+            "title": "Counting places, every time",
+            "beats": [
+              "The rule never changes — multiply, then count places.",
+              "$2.5 \\times 0.4$: $25 \\times 4 = 100$; $1+1=2$ places → $1.00 = 1$.",
+              "$0.25 \\times 0.2$: $25 \\times 2 = 50$; $2+1=3$ places → $0.050 = 0.05$.",
+              "A trailing zero can be dropped once the point is placed."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "More products",
+            "intro": "Count carefully when the factors have more digits.",
+            "examples": [
+              {
+                "prompt": "Multiply $2.5 \\times 0.4$.",
+                "steps": [
+                  "Ignore the points: $25 \\times 4 = 100$.",
+                  "Places: $1 + 1 = 2$ → $1.00$.",
+                  "Drop the trailing zeros: $1$."
+                ],
+                "answer": "$1$",
+                "check": ["Rational(25,10) * Rational(4,10) == 1"]
+              },
+              {
+                "prompt": "Multiply $0.25 \\times 0.2$.",
+                "steps": [
+                  "Ignore the points: $25 \\times 2 = 50$.",
+                  "Places: $2 + 1 = 3$ → $0.050$.",
+                  "So $0.25 \\times 0.2 = 0.05$."
+                ],
+                "answer": "$0.05$",
+                "check": ["Rational(25,100) * Rational(2,10) == Rational(5,100)"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "More multiplying",
+            "intro": "Multiply the digits, then place the point by counting places.",
+            "problems": [
+              {
+                "prompt": "What is $1.5 \\times 0.2$?",
+                "options": ["$0.3$", "$3.0$", "$0.03$"],
+                "correctIndex": 0,
+                "explanation": "$15 \\times 2 = 30$; $1+1=2$ places → $0.30 = 0.3$.",
+                "check": ["Rational(15,10) * Rational(2,10) == Rational(3,10)"]
+              },
+              {
+                "prompt": "What is $0.4 \\times 0.25$?",
+                "options": ["$0.1$", "$0.01$", "$1.0$"],
+                "correctIndex": 0,
+                "explanation": "$4 \\times 25 = 100$; $1+2=3$ places → $0.100 = 0.1$.",
+                "check": ["Rational(4,10) * Rational(25,100) == Rational(1,10)"]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Times 0.1 just shifts the point",
+            "body": "Multiplying by $0.1$ moves the decimal point one place left: $7 \\times 0.1 = 0.7$, and $0.7 \\times 0.1 = 0.07$. Each $0.1$ makes a number ten times smaller — the mirror image of multiplying by 10."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Multiply the decimals",
+            "prompt": "What is $0.3 \\times 0.4$?",
+            "options": ["$0.12$", "$1.2$", "$0.012$"],
+            "correctIndex": 0,
+            "explanation": "$3 \\times 4 = 12$, and $1+1=2$ places → $0.12$.",
+            "check": ["Rational(3,10) * Rational(4,10) == Rational(12,100)"]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Multiply the digits as if there were no decimal points.",
+              "Count the decimal places in **both** factors; the answer gets that many.",
+              "Multiplying by a number less than 1 makes the result smaller."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [],

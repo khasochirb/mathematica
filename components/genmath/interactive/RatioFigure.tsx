@@ -5,6 +5,7 @@ import FractionBar from "@/components/genmath/interactive/FractionBar";
 import DecimalGridView from "@/components/genmath/interactive/DecimalGridView";
 import DecimalNumberLineView from "@/components/genmath/interactive/DecimalNumberLineView";
 import DecimalColumnView from "@/components/genmath/interactive/DecimalColumnView";
+import DecimalAreaView from "@/components/genmath/interactive/DecimalAreaView";
 
 function Token({ color }: { color: string }) {
   return (
@@ -174,6 +175,23 @@ export default function RatioFigure({ figure }: { figure: FigureSpec }) {
     return (
       <div className="gm-fade rounded-xl px-6 py-4" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
         <DecimalColumnView a={a} b={b} op={op} showAnswer />
+      </div>
+    );
+  }
+
+  if (mode === "decimalArea" && figure.area) {
+    const { a, b } = figure.area;
+    const aT = Math.round(a * 10);
+    const bT = Math.round(b * 10);
+    return (
+      <div className="gm-fade rounded-xl p-4" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
+        <div className="flex justify-center">
+          <DecimalAreaView aTenths={aT} bTenths={bT} size={180} />
+        </div>
+        <div className="mt-2 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
+          <span className="serif tabular" style={{ fontSize: 17, color: "var(--fg)" }}>{a.toFixed(1)} × {b.toFixed(1)} = {(a * b).toFixed(2)}</span>
+          {" — "}{aT * bT} of 100 squares
+        </div>
       </div>
     );
   }

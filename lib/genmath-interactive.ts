@@ -112,7 +112,7 @@ export interface FigureGroupSpec {
   glyph?: string;
 }
 export interface FigureSpec {
-  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid" | "numberLine" | "decimalColumn";
+  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid" | "numberLine" | "decimalColumn" | "decimalArea";
   groups?: FigureGroupSpec[];
   highlightIndex?: number; // the highlighted "part" in partToWhole (default 0)
   // "cross" — a cross-multiply diagram for a:b vs c:d (draws the two diagonals + products).
@@ -128,6 +128,8 @@ export interface FigureSpec {
   numberLine?: { min?: number; max?: number; points: { value: number; label?: string; color?: string }[] };
   // "decimalColumn" — a stacked add/subtract with the decimal points aligned.
   column?: { a: number; b: number; op: "add" | "sub" };
+  // "decimalArea" — an area model (a across × b up) with the product rectangle.
+  area?: { a: number; b: number };
 }
 
 // Fractions — a bar you split into more (equal) pieces to see equivalent fractions.
@@ -218,6 +220,16 @@ export interface DecimalColumnConfig {
   color?: string;
 }
 
+// Multiplying decimals — an area model on the unit square. One factor runs
+// across (columns of tenths), the other up (rows of tenths); the overlap
+// rectangle is the product in hundredths (0.3 × 0.4 = 12 squares = 0.12).
+// Both factors are tenths (0.1–0.9), so the product fits in one whole.
+export interface DecimalAreaConfig {
+  a: number; // 0.1–0.9
+  b: number; // 0.1–0.9
+  color?: string;
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -262,6 +274,7 @@ export type InteractiveStep =
   | { kind: "decimalCompare"; eyebrow?: string; title: string; teach: string; config: DecimalCompareConfig }
   | { kind: "decimalRounder"; eyebrow?: string; title: string; teach: string; config: DecimalRounderConfig }
   | { kind: "decimalColumnSum"; eyebrow?: string; title: string; teach: string; config: DecimalColumnConfig }
+  | { kind: "decimalArea"; eyebrow?: string; title: string; teach: string; config: DecimalAreaConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {
