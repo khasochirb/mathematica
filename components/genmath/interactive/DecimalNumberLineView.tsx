@@ -44,19 +44,34 @@ export default function DecimalNumberLineView({
           </text>
         </g>
       ))}
-      {/* plotted points */}
-      {points.map((p, i) => {
-        const c = p.color ?? "var(--accent)";
-        return (
-          <g key={`p${i}`}>
-            <line x1={x(p.value)} y1={y - 14} x2={x(p.value)} y2={y} stroke={c} strokeWidth="2" />
-            <circle cx={x(p.value)} cy={y} r="4.5" fill={c} stroke="var(--bg)" strokeWidth="1.5" />
-            <text x={x(p.value)} y={y - 19} textAnchor="middle" fontSize="11.5" fill={c} fontFamily="Georgia, serif">
-              {p.label ?? p.value}
-            </text>
-          </g>
-        );
-      })}
+      {/* plotted points — labels stagger to two heights when markers crowd */}
+      {(() => {
+        const order = points
+          .map((p, i) => ({ p, i, px: x(p.value) }))
+          .sort((a, b) => a.px - b.px);
+        const rowOf: Record<number, number> = {};
+        let prevPx = -Infinity;
+        let prevRow = 1;
+        for (const { i, px } of order) {
+          const row = px - prevPx < 28 ? (prevRow === 0 ? 1 : 0) : 0;
+          rowOf[i] = row;
+          prevPx = px;
+          prevRow = row;
+        }
+        return points.map((p, i) => {
+          const c = p.color ?? "var(--accent)";
+          const lift = rowOf[i] === 1 ? 13 : 0; // raise crowded labels
+          return (
+            <g key={`p${i}`}>
+              <line x1={x(p.value)} y1={y - 14 - lift} x2={x(p.value)} y2={y} stroke={c} strokeWidth="2" />
+              <circle cx={x(p.value)} cy={y} r="4.5" fill={c} stroke="var(--bg)" strokeWidth="1.5" />
+              <text x={x(p.value)} y={y - 19 - lift} textAnchor="middle" fontSize="11.5" fill={c} fontFamily="Georgia, serif">
+                {p.label ?? p.value}
+              </text>
+            </g>
+          );
+        });
+      })()}
     </svg>
   );
 }

@@ -564,6 +564,277 @@
           }
         ]
       }
+    },
+    {
+      "slug": "rounding-decimals",
+      "title": "Rounding Decimals",
+      "concreteComparison": "A jacket is priced at \\$39.95. Rounded to the nearest dollar that's \\$40 — close enough to budget with. **Rounding** swaps an exact decimal for a simpler nearby one: you give up a little precision to get an easier number.",
+      "objective": "Round a decimal to the nearest whole number, tenth, or hundredth by finding the nearest mark on the number line, using the rule that the next digit being 5 or more rounds up.",
+      "concept": [
+        "To **round**, pick the place you want — whole, tenth, or hundredth — and find the **nearest** value at that place.",
+        "Look at the digit **just after** that place. If it is **5 or more**, round up; if it is **4 or less**, keep the digit (round down).",
+        "On a number line, rounding is choosing the closer mark. A digit of 5 lands exactly halfway, and by rule that **rounds up**."
+      ],
+      "keyIdea": "Look at the digit right after your rounding place: 5 or more rounds up, 4 or less rounds down. It is the nearest mark on the number line.",
+      "facts": [
+        {
+          "title": "The rounding rule",
+          "latex": "$5\\text{ or more} \\to \\text{up}, \\quad 4\\text{ or less} \\to \\text{down}$",
+          "explanation": "Check the single digit just after the place you're rounding to."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rnd-we1",
+          "statement": "Round $0.37$ to the nearest tenth.",
+          "solution": "$0.37$ is between $0.3$ and $0.4$; the next digit is 7 (≥5), so round up to $0.4$.",
+          "check": ["Abs(Rational(37,100) - Rational(4,10)) < Abs(Rational(37,100) - Rational(3,10))"]
+        },
+        {
+          "id": "rnd-we2",
+          "statement": "Round $3.7$ to the nearest whole number.",
+          "solution": "$3.7$ is between $3$ and $4$; the next digit is 7 (≥5), so round up to $4$.",
+          "check": ["Abs(Rational(37,10) - 4) < Abs(Rational(37,10) - 3)"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Rounding $0.62$ up to $0.7$ because there are digits after the tenths.",
+          "correction": "Only the **next single digit** matters: $0.62$ → next digit 2 (≤4) → stays $0.6$.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting that a digit of 5 rounds up.",
+          "correction": "Exactly 5 is the halfway point; the rule sends it up.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rnd-t1",
+          "statement": "Round $0.83$ to the nearest tenth.",
+          "solution": "Next digit is 3 (≤4), so round down to $0.8$.",
+          "check": ["Abs(Rational(83,100) - Rational(8,10)) < Abs(Rational(83,100) - Rational(9,10))"]
+        },
+        {
+          "id": "rnd-t2",
+          "statement": "Round $2.4$ to the nearest whole number.",
+          "solution": "Next digit is 4 (≤4), so round down to $2$.",
+          "check": ["Abs(Rational(24,10) - 2) < Abs(Rational(24,10) - 3)"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "decimalRounder",
+            "eyebrow": "Concept A",
+            "title": "Which mark is it closer to?",
+            "teach": "$0.37$ sits between $0.3$ and $0.4$. It is past the halfway mark $0.35$, so it is closer to $0.4$. Tap the mark it rounds to.",
+            "config": {
+              "value": 0.37,
+              "place": "tenth",
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Rounding is the nearest mark",
+            "beats": [
+              "Rounding to the nearest tenth asks: which tenth-mark is closest?",
+              "$0.37$ is between $0.3$ and $0.4$.",
+              "It is past the halfway point $0.35$, so it rounds to $0.4$.",
+              "The number line shows it sitting nearer the $0.4$ mark."
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": { "points": [ { "value": 0.37, "label": "0.37" } ] }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The shortcut",
+            "title": "The 5-or-more rule",
+            "beats": [
+              "You don't always need a picture — just look at the **next digit**.",
+              "Rounding to tenths? Look at the **hundredths** digit.",
+              "$5$ or more → round the tenth **up**; $4$ or less → leave it.",
+              "A digit of exactly 5 is halfway, and the rule sends it **up**: $0.35 \\to 0.4$."
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": { "points": [ { "value": 0.35, "label": "0.35 (halfway)" } ] }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Rounding to the nearest tenth",
+            "intro": "Find the two tenths it sits between, then check the hundredths digit.",
+            "examples": [
+              {
+                "prompt": "Round $0.37$ to the nearest tenth.",
+                "figure": {
+                  "mode": "numberLine",
+                  "numberLine": { "points": [ { "value": 0.37, "label": "0.37" } ] }
+                },
+                "steps": [
+                  "Between $0.3$ and $0.4$.",
+                  "Next digit (hundredths) is 7 ≥ 5 → round up.",
+                  "So $0.37 \\to 0.4$."
+                ],
+                "answer": "$0.4$",
+                "check": ["Abs(Rational(37,100) - Rational(4,10)) < Abs(Rational(37,100) - Rational(3,10))"]
+              },
+              {
+                "prompt": "Round $0.62$ to the nearest tenth.",
+                "figure": {
+                  "mode": "numberLine",
+                  "numberLine": { "points": [ { "value": 0.62, "label": "0.62" } ] }
+                },
+                "steps": [
+                  "Between $0.6$ and $0.7$.",
+                  "Next digit is 2 ≤ 4 → round down (keep it).",
+                  "So $0.62 \\to 0.6$."
+                ],
+                "answer": "$0.6$",
+                "check": ["Abs(Rational(62,100) - Rational(6,10)) < Abs(Rational(62,100) - Rational(7,10))"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Round to the nearest tenth",
+            "intro": "Check the hundredths digit: 5 or more rounds up.",
+            "problems": [
+              {
+                "prompt": "Round $0.74$ to the nearest tenth.",
+                "options": ["$0.7$", "$0.8$", "$0.74$"],
+                "correctIndex": 0,
+                "explanation": "Next digit 4 ≤ 4 → round down to $0.7$.",
+                "check": ["Abs(Rational(74,100) - Rational(7,10)) < Abs(Rational(74,100) - Rational(8,10))"]
+              },
+              {
+                "prompt": "Round $0.55$ to the nearest tenth.",
+                "options": ["$0.6$", "$0.5$", "$0.55$"],
+                "correctIndex": 0,
+                "explanation": "$0.55$ is exactly halfway between $0.5$ and $0.6$; the rule rounds it up to $0.6$.",
+                "check": ["Rational(55,100) == (Rational(5,10) + Rational(6,10))/2"]
+              },
+              {
+                "prompt": "Round $0.91$ to the nearest tenth.",
+                "options": ["$0.9$", "$1.0$", "$0.91$"],
+                "correctIndex": 0,
+                "explanation": "Next digit 1 ≤ 4 → round down to $0.9$.",
+                "check": ["Abs(Rational(91,100) - Rational(9,10)) < Abs(Rational(91,100) - 1)"]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Any place",
+            "title": "Whole numbers and hundredths",
+            "beats": [
+              "The same rule works at every place — just look one digit to the right.",
+              "Nearest **whole**: check the tenths digit. $3.7 \\to 4$ (7 ≥ 5).",
+              "Nearest **hundredth**: check the thousandths digit. $0.348 \\to 0.35$ (8 ≥ 5).",
+              "Always check the one digit just past the place you want."
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": { "min": 3, "max": 4, "points": [ { "value": 3.7, "label": "3.7" } ] }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Rounding to other places",
+            "intro": "Whole → check tenths. Hundredth → check thousandths.",
+            "examples": [
+              {
+                "prompt": "Round $3.7$ to the nearest whole number.",
+                "figure": {
+                  "mode": "numberLine",
+                  "numberLine": { "min": 3, "max": 4, "points": [ { "value": 3.7, "label": "3.7" } ] }
+                },
+                "steps": [
+                  "Between $3$ and $4$.",
+                  "Tenths digit is 7 ≥ 5 → round up.",
+                  "So $3.7 \\to 4$."
+                ],
+                "answer": "$4$",
+                "check": ["Abs(Rational(37,10) - 4) < Abs(Rational(37,10) - 3)"]
+              },
+              {
+                "prompt": "Round $0.348$ to the nearest hundredth.",
+                "steps": [
+                  "Nearest hundredth: between $0.34$ and $0.35$.",
+                  "Thousandths digit is 8 ≥ 5 → round up.",
+                  "So $0.348 \\to 0.35$."
+                ],
+                "answer": "$0.35$",
+                "check": ["Abs(Rational(348,1000) - Rational(35,100)) < Abs(Rational(348,1000) - Rational(34,100))"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Round it",
+            "intro": "Pick the place, then check the one digit to its right.",
+            "problems": [
+              {
+                "prompt": "Round $1.49$ to the nearest whole number.",
+                "options": ["$1$", "$2$", "$1.5$"],
+                "correctIndex": 0,
+                "explanation": "Tenths digit is 4 ≤ 4 → round down to $1$ (don't let the 9 fool you).",
+                "check": ["Abs(Rational(149,100) - 1) < Abs(Rational(149,100) - 2)"]
+              },
+              {
+                "prompt": "Round $0.275$ to the nearest hundredth.",
+                "options": ["$0.28$", "$0.27$", "$0.30$"],
+                "correctIndex": 0,
+                "explanation": "$0.275$ is exactly halfway between $0.27$ and $0.28$; the rule rounds up to $0.28$.",
+                "check": ["Rational(275,1000) == (Rational(27,100) + Rational(28,100))/2"]
+              },
+              {
+                "prompt": "Round $5.82$ to the nearest whole number.",
+                "options": ["$6$", "$5$", "$5.8$"],
+                "correctIndex": 0,
+                "explanation": "Tenths digit is 8 ≥ 5 → round up to $6$.",
+                "check": ["Abs(Rational(582,100) - 6) < Abs(Rational(582,100) - 5)"]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Stores round to the penny",
+            "body": "Sales tax often makes a price like \\$4.937. Stores round to the nearest **hundredth** — the penny — so you actually pay \\$4.94. Rounding to two places is everywhere money is."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Round to the nearest tenth",
+            "prompt": "Round $0.48$ to the nearest tenth.",
+            "options": ["$0.5$", "$0.4$", "$0.48$"],
+            "correctIndex": 0,
+            "explanation": "Next digit 8 ≥ 5 → round up to $0.5$.",
+            "check": ["Abs(Rational(48,100) - Rational(5,10)) < Abs(Rational(48,100) - Rational(4,10))"]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Rounding swaps a decimal for the **nearest** value at the place you want.",
+              "Check the **one digit** just after that place: 5 or more rounds up, 4 or less rounds down.",
+              "On a number line, you're just picking the closer mark — and halfway rounds up."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [],

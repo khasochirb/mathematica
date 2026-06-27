@@ -197,6 +197,15 @@ export interface DecimalCompareConfig {
   color?: string;
 }
 
+// Rounding decimals — a number line zoomed to the two bracketing marks at the
+// chosen place, with the midpoint shown. The student taps which mark the value
+// is nearer; rounding becomes "the closer tick, halfway rounds up".
+export interface DecimalRounderConfig {
+  value: number;
+  place: "whole" | "tenth" | "hundredth";
+  color?: string;
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -239,6 +248,7 @@ export type InteractiveStep =
   | { kind: "fractionDivide"; eyebrow?: string; title: string; teach: string; config: FractionDivideConfig }
   | { kind: "decimalGrid"; eyebrow?: string; title: string; teach: string; config: DecimalGridConfig }
   | { kind: "decimalCompare"; eyebrow?: string; title: string; teach: string; config: DecimalCompareConfig }
+  | { kind: "decimalRounder"; eyebrow?: string; title: string; teach: string; config: DecimalRounderConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {
