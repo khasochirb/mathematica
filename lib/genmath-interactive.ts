@@ -112,7 +112,7 @@ export interface FigureGroupSpec {
   glyph?: string;
 }
 export interface FigureSpec {
-  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid";
+  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid" | "numberLine";
   groups?: FigureGroupSpec[];
   highlightIndex?: number; // the highlighted "part" in partToWhole (default 0)
   // "cross" — a cross-multiply diagram for a:b vs c:d (draws the two diagonals + products).
@@ -124,6 +124,8 @@ export interface FigureSpec {
   fraction?: { num: number; den: number; label?: string };
   // "decimalGrid" — a 10×10 grid (one whole) with `value` shaded (e.g. 0.37).
   decimal?: { value: number; label?: string };
+  // "numberLine" — a number line (default 0..1, ticks at tenths) with points plotted.
+  numberLine?: { min?: number; max?: number; points: { value: number; label?: string; color?: string }[] };
 }
 
 // Fractions — a bar you split into more (equal) pieces to see equivalent fractions.
@@ -186,6 +188,15 @@ export interface DecimalGridConfig {
   color?: string;
 }
 
+// Comparing decimals — two grids side by side; the student taps <, =, or >
+// and gets instant feedback. Targets the "more digits = bigger" misconception
+// (0.5 shades more than 0.45).
+export interface DecimalCompareConfig {
+  left: number; // a value in [0, 1], multiple of 0.01
+  right: number;
+  color?: string;
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -227,6 +238,7 @@ export type InteractiveStep =
   | { kind: "areaModel"; eyebrow?: string; title: string; teach: string; config: AreaModelConfig }
   | { kind: "fractionDivide"; eyebrow?: string; title: string; teach: string; config: FractionDivideConfig }
   | { kind: "decimalGrid"; eyebrow?: string; title: string; teach: string; config: DecimalGridConfig }
+  | { kind: "decimalCompare"; eyebrow?: string; title: string; teach: string; config: DecimalCompareConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

@@ -3,6 +3,7 @@
 import { type FigureSpec, type FigureGroupSpec } from "@/lib/genmath-interactive";
 import FractionBar from "@/components/genmath/interactive/FractionBar";
 import DecimalGridView from "@/components/genmath/interactive/DecimalGridView";
+import DecimalNumberLineView from "@/components/genmath/interactive/DecimalNumberLineView";
 
 function Token({ color }: { color: string }) {
   return (
@@ -151,6 +152,17 @@ export default function RatioFigure({ figure }: { figure: FigureSpec }) {
           {" = "}
           <span className="serif tabular" style={{ color: "var(--fg)" }}>{hundredths}/100</span>
           {label ? ` — ${label}` : ""}
+        </div>
+      </div>
+    );
+  }
+
+  if (mode === "numberLine" && figure.numberLine) {
+    const { min, max, points } = figure.numberLine;
+    return (
+      <div className="gm-fade w-full max-w-[360px] rounded-xl p-4" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
+        <div className="flex justify-center">
+          <DecimalNumberLineView min={min} max={max} points={points} />
         </div>
       </div>
     );

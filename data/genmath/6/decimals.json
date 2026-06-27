@@ -280,6 +280,290 @@
           }
         ]
       }
+    },
+    {
+      "slug": "comparing-decimals",
+      "title": "Comparing & Ordering Decimals",
+      "concreteComparison": "A pen costs \\$0.50 and a pencil \\$0.45. Which is cheaper? The pencil: $0.45 < 0.50$ — even though 45 looks bigger than 5, because $0.45$ is four-tenths-and-a-bit while $0.50$ is five tenths. Comparing decimals means comparing **place by place**, not counting digits.",
+      "objective": "Compare two decimals by lining up the decimal points and checking place value from the left, and put several decimals in order — knowing that extra digits do not make a decimal larger.",
+      "concept": [
+        "To compare decimals, **line up the decimal points** and read from the **left**: tenths first, then hundredths, then thousandths.",
+        "The first place where the digits differ decides it. For $0.5$ and $0.45$, the tenths are 5 vs 4, so $0.5 > 0.45$.",
+        "Putting a zero on the **end** changes nothing: $0.5 = 0.50$. Writing both with the same number of places makes them easy to line up."
+      ],
+      "keyIdea": "Compare from the left, one place at a time — the first place that differs wins. More digits does NOT mean a bigger decimal.",
+      "facts": [
+        {
+          "title": "Trailing zeros are free",
+          "latex": "$0.5 = 0.50 = 0.500$",
+          "explanation": "Zeros on the right don't change the value; they just show more places."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cmp-we1",
+          "statement": "Which is greater, $0.5$ or $0.45$?",
+          "solution": "Tenths: 5 vs 4. Since $5 > 4$, $0.5 > 0.45$.",
+          "check": ["Rational(5,10) > Rational(45,100)"]
+        },
+        {
+          "id": "cmp-we2",
+          "statement": "Order $0.3$, $0.25$, $0.4$ from least to greatest.",
+          "solution": "Compare tenths: 2, 3, 4. So $0.25 < 0.3 < 0.4$.",
+          "check": ["Rational(25,100) < Rational(3,10)", "Rational(3,10) < Rational(4,10)"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking $0.45 > 0.5$ because 45 > 5.",
+          "correction": "Line up places: tenths 4 vs 5, so $0.45 < 0.5$. Digit count doesn't decide size.",
+          "authored": true
+        },
+        {
+          "text": "Treating $0.5$ and $0.50$ as different sizes.",
+          "correction": "$0.5 = 0.50$ — a trailing zero adds no value.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cmp-t1",
+          "statement": "Which is greater, $0.7$ or $0.68$?",
+          "solution": "Tenths 7 vs 6, so $0.7 > 0.68$.",
+          "check": ["Rational(7,10) > Rational(68,100)"]
+        },
+        {
+          "id": "cmp-t2",
+          "statement": "Order $0.6$, $0.06$, $0.66$ from least to greatest.",
+          "solution": "$0.06 < 0.6 < 0.66$.",
+          "check": ["Rational(6,100) < Rational(6,10)", "Rational(6,10) < Rational(66,100)"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "decimalCompare",
+            "eyebrow": "Concept A",
+            "title": "Which one is bigger?",
+            "teach": "Both grids are one whole. $0.5$ fills five full columns; $0.45$ fills four columns and five squares. Tap the sign that makes it true — the shaded amount never lies.",
+            "config": {
+              "left": 0.5,
+              "right": 0.45,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Compare from the left",
+            "beats": [
+              "Line up the decimal points and read **left to right**.",
+              "The first place that differs decides it — here the **tenths**: 5 beats 4.",
+              "So $0.5 > 0.45$, even though 45 has more digits than 5.",
+              "On a number line, $0.45$ sits just to the left of $0.5$."
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": {
+                "points": [
+                  { "value": 0.45, "label": "0.45" },
+                  { "value": 0.5, "label": "0.5", "color": "#3b82f6" }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "A handy trick",
+            "title": "Trailing zeros are free",
+            "beats": [
+              "Adding a zero on the **end** of a decimal doesn't change its value: $0.5 = 0.50$.",
+              "That lets you give two decimals the **same number of places** before comparing.",
+              "To compare $0.5$ and $0.45$, write $0.50$ vs $0.45$ — now just compare $50$ and $45$ hundredths.",
+              "$50 > 45$, so $0.5 > 0.45$."
+            ],
+            "figure": {
+              "mode": "decimalGrid",
+              "decimal": { "value": 0.5, "label": "0.5 = 0.50" }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Comparing two decimals",
+            "intro": "Line up the points, then compare from the left until the digits differ.",
+            "examples": [
+              {
+                "prompt": "Which is greater, $0.5$ or $0.45$?",
+                "figure": {
+                  "mode": "numberLine",
+                  "numberLine": { "points": [ { "value": 0.45, "label": "0.45" }, { "value": 0.5, "label": "0.5", "color": "#3b82f6" } ] }
+                },
+                "steps": [
+                  "Line up: $0.50$ and $0.45$.",
+                  "Tenths: 5 vs 4 — so $0.5$ is greater."
+                ],
+                "answer": "$0.5 > 0.45$",
+                "check": ["Rational(5,10) > Rational(45,100)"]
+              },
+              {
+                "prompt": "Which is greater, $0.7$ or $0.68$?",
+                "figure": {
+                  "mode": "numberLine",
+                  "numberLine": { "points": [ { "value": 0.68, "label": "0.68" }, { "value": 0.7, "label": "0.7", "color": "#3b82f6" } ] }
+                },
+                "steps": [
+                  "Line up: $0.70$ and $0.68$.",
+                  "Tenths: 7 vs 6 — so $0.7$ is greater."
+                ],
+                "answer": "$0.7 > 0.68$",
+                "check": ["Rational(7,10) > Rational(68,100)"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Which is larger?",
+            "intro": "Compare from the left. A number line can help you picture it.",
+            "problems": [
+              {
+                "prompt": "Which is larger, $0.6$ or $0.59$?",
+                "figure": {
+                  "mode": "numberLine",
+                  "numberLine": { "points": [ { "value": 0.59, "label": "0.59" }, { "value": 0.6, "label": "0.6", "color": "#3b82f6" } ] }
+                },
+                "options": ["$0.6$", "$0.59$", "they are equal"],
+                "correctIndex": 0,
+                "explanation": "Tenths: 6 vs 5, so $0.6 > 0.59$.",
+                "check": ["Rational(6,10) > Rational(59,100)"]
+              },
+              {
+                "prompt": "Which is larger, $0.1$ or $0.08$?",
+                "figure": {
+                  "mode": "numberLine",
+                  "numberLine": { "points": [ { "value": 0.08, "label": "0.08" }, { "value": 0.1, "label": "0.1", "color": "#3b82f6" } ] }
+                },
+                "options": ["$0.1$", "$0.08$", "they are equal"],
+                "correctIndex": 0,
+                "explanation": "$0.1 = 0.10$; tenths 1 vs 0, so $0.1 > 0.08$.",
+                "check": ["Rational(1,10) > Rational(8,100)"]
+              },
+              {
+                "prompt": "Pick the **smallest**: $0.305$, $0.35$, $0.3$.",
+                "options": ["$0.3$", "$0.305$", "$0.35$"],
+                "correctIndex": 0,
+                "explanation": "$0.3 = 0.300$, the smallest: $0.3 < 0.305 < 0.35$.",
+                "check": ["Rational(3,10) < Rational(305,1000)", "Rational(305,1000) < Rational(35,100)"]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Lining them up",
+            "title": "Putting decimals in order",
+            "beats": [
+              "To order several decimals, compare the **tenths** first and group them.",
+              "Break ties by the **hundredths**, then the **thousandths**.",
+              "$0.25$, $0.3$, $0.4$ → tenths 2, 3, 4 → already in order.",
+              "Plot them and the order is the left-to-right order on the line."
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": {
+                "points": [
+                  { "value": 0.25, "label": "0.25" },
+                  { "value": 0.3, "label": "0.3", "color": "#3b82f6" },
+                  { "value": 0.4, "label": "0.4", "color": "#16a34a" }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Ordering decimals",
+            "intro": "Compare tenths first; break ties with the next place.",
+            "examples": [
+              {
+                "prompt": "Order $0.3$, $0.25$, $0.4$ from least to greatest.",
+                "figure": {
+                  "mode": "numberLine",
+                  "numberLine": { "points": [ { "value": 0.25, "label": "0.25" }, { "value": 0.3, "label": "0.3", "color": "#3b82f6" }, { "value": 0.4, "label": "0.4", "color": "#16a34a" } ] }
+                },
+                "steps": [
+                  "Compare tenths: 2, 3, 4 — all different.",
+                  "So $0.25 < 0.3 < 0.4$."
+                ],
+                "answer": "$0.25 < 0.3 < 0.4$",
+                "check": ["Rational(25,100) < Rational(3,10)", "Rational(3,10) < Rational(4,10)"]
+              },
+              {
+                "prompt": "Order $0.6$, $0.06$, $0.66$ from least to greatest.",
+                "figure": {
+                  "mode": "numberLine",
+                  "numberLine": { "points": [ { "value": 0.06, "label": "0.06" }, { "value": 0.6, "label": "0.6", "color": "#3b82f6" }, { "value": 0.66, "label": "0.66", "color": "#16a34a" } ] }
+                },
+                "steps": [
+                  "$0.06$ has 0 tenths; $0.6$ and $0.66$ both have 6 tenths.",
+                  "Break the tie by hundredths: 0 vs 6, so $0.6 < 0.66$.",
+                  "So $0.06 < 0.6 < 0.66$."
+                ],
+                "answer": "$0.06 < 0.6 < 0.66$",
+                "check": ["Rational(6,100) < Rational(6,10)", "Rational(6,10) < Rational(66,100)"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Order them",
+            "intro": "Tenths first, then break ties.",
+            "problems": [
+              {
+                "prompt": "Which ordering (least to greatest) is correct?",
+                "options": ["$0.2 < 0.25 < 0.3$", "$0.25 < 0.2 < 0.3$", "$0.3 < 0.25 < 0.2$"],
+                "correctIndex": 0,
+                "explanation": "Tenths then hundredths: $0.2, 0.25, 0.3$.",
+                "check": ["Rational(2,10) < Rational(25,100)", "Rational(25,100) < Rational(3,10)"]
+              },
+              {
+                "prompt": "Which decimal lies **between** $0.4$ and $0.5$?",
+                "options": ["$0.45$", "$0.55$", "$0.39$"],
+                "correctIndex": 0,
+                "explanation": "$0.4 < 0.45 < 0.5$.",
+                "check": ["Rational(4,10) < Rational(45,100)", "Rational(45,100) < Rational(5,10)"]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Hundredths win medals",
+            "body": "At the 2008 Olympics, swimmer Michael Phelps won a gold medal by **one hundredth of a second** — $0.01$ s. Comparing decimals out to the hundredths place was the whole difference between gold and silver."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Pick the sign",
+            "prompt": "Which sign makes it true: $0.5 \\;\\square\\; 0.45$?",
+            "options": ["$>$", "$<$", "$=$"],
+            "correctIndex": 0,
+            "explanation": "Tenths 5 vs 4, so $0.5 > 0.45$.",
+            "check": ["Rational(5,10) > Rational(45,100)"]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Line up the decimal points and compare **from the left**, place by place.",
+              "The first place that differs decides it — more digits doesn't mean bigger.",
+              "Trailing zeros don't change a decimal: $0.5 = 0.50$."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [],
