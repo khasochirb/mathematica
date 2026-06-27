@@ -1,6 +1,6 @@
 "use client";
 
-import { type FigureSpec, type FigureGroupSpec } from "@/lib/genmath-interactive";
+import { type FigureSpec, type FigureGroupSpec, divideShift } from "@/lib/genmath-interactive";
 import FractionBar from "@/components/genmath/interactive/FractionBar";
 import DecimalGridView from "@/components/genmath/interactive/DecimalGridView";
 import DecimalNumberLineView from "@/components/genmath/interactive/DecimalNumberLineView";
@@ -192,6 +192,32 @@ export default function RatioFigure({ figure }: { figure: FigureSpec }) {
           <span className="serif tabular" style={{ fontSize: 17, color: "var(--fg)" }}>{a.toFixed(1)} × {b.toFixed(1)} = {(a * b).toFixed(2)}</span>
           {" — "}{aT * bT} of 100 squares
         </div>
+      </div>
+    );
+  }
+
+  if (mode === "divideChain" && figure.divide) {
+    const { dividend, divisor } = figure.divide;
+    const { shifts, scaledDividend, scaledDivisor, quotient } = divideShift(dividend, divisor);
+    const f = (x: number) => x.toFixed(6).replace(/0+$/, "").replace(/\.$/, "");
+    return (
+      <div className="gm-fade flex flex-col items-center gap-1.5 rounded-xl px-6 py-4" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
+        <div className="flex flex-wrap items-center justify-center gap-2.5 serif tabular" style={{ fontSize: 22, color: "var(--fg)" }}>
+          <span>{f(dividend)} ÷ {f(divisor)}</span>
+          {shifts > 0 && (
+            <>
+              <span style={{ color: "var(--fg-3)" }}>=</span>
+              <span>{f(scaledDividend)} ÷ {f(scaledDivisor)}</span>
+            </>
+          )}
+          <span style={{ color: "var(--fg-3)" }}>=</span>
+          <span style={{ color: "var(--accent)" }}>{f(quotient)}</span>
+        </div>
+        {shifts > 0 && (
+          <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>
+            ×10{shifts > 1 ? ` (${shifts} times)` : ""} on both
+          </div>
+        )}
       </div>
     );
   }

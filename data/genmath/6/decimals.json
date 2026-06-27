@@ -1349,6 +1349,267 @@
           }
         ]
       }
+    },
+    {
+      "slug": "dividing-decimals",
+      "title": "Dividing Decimals",
+      "concreteComparison": "A \\$4.80 pizza split among 4 friends is $4.80 \\div 4 = \\$1.20$ each. And if ribbon costs \\$0.60 a meter, \\$4.80 buys $4.80 \\div 0.6 = 8$ meters. Dividing decimals shares amounts and finds how many fit.",
+      "objective": "Divide a decimal by a whole number by bringing the point straight up, and divide by a decimal by shifting both numbers to make the divisor a whole number first.",
+      "concept": [
+        "Dividing a decimal by a **whole number** works like normal division — just bring the decimal point **straight up** into the answer: $4.8 \\div 4 = 1.2$.",
+        "To divide **by a decimal**, first make the divisor a whole number: multiply **both** numbers by 10, 100, … the same amount.",
+        "Scaling both by the same factor doesn't change the answer — it's an equivalent fraction: $4.8 \\div 0.6 = 48 \\div 6 = 8$."
+      ],
+      "keyIdea": "Divide by a whole number → bring the point straight up. Divide by a decimal → shift both numbers to make the divisor whole, then divide. Scaling both keeps the answer the same.",
+      "facts": [
+        {
+          "title": "Make the divisor whole",
+          "latex": "$4.8 \\div 0.6 = 48 \\div 6 = 8$",
+          "explanation": "Multiply both by 10 — the quotient is unchanged."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "div-we1",
+          "statement": "Divide $4.8 \\div 4$.",
+          "solution": "$48 \\div 4 = 12$, bring the point up → $1.2$.",
+          "check": ["Rational(48,10) / 4 == Rational(12,10)"]
+        },
+        {
+          "id": "div-we2",
+          "statement": "Divide $4.8 \\div 0.6$.",
+          "solution": "Multiply both by 10: $48 \\div 6 = 8$.",
+          "check": ["Rational(48,10) / Rational(6,10) == 8"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Only shifting the divisor's decimal point and forgetting the dividend.",
+          "correction": "Shift **both** numbers the same amount, or the answer changes.",
+          "authored": true
+        },
+        {
+          "text": "Losing the decimal point when dividing by a whole number.",
+          "correction": "Bring the point straight up — it sits directly above the point in the dividend.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "div-t1",
+          "statement": "Divide $0.9 \\div 3$.",
+          "solution": "$9 \\div 3 = 3$, point up → $0.3$.",
+          "check": ["Rational(9,10)/3 == Rational(3,10)"]
+        },
+        {
+          "id": "div-t2",
+          "statement": "Divide $0.8 \\div 0.2$.",
+          "solution": "Multiply both by 10: $8 \\div 2 = 4$.",
+          "check": ["Rational(8,10)/Rational(2,10) == 4"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "decimalShiftDivide",
+            "eyebrow": "Concept A",
+            "title": "Make the divisor whole",
+            "teach": "You can't easily divide by $0.6$. Multiply **both** numbers by 10 so the divisor becomes a whole number — the answer doesn't change. Then $48 \\div 6 = 8$.",
+            "config": {
+              "dividend": 4.8,
+              "divisor": 0.6,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Dividing by a whole number",
+            "beats": [
+              "Dividing by a **whole number** is ordinary long division.",
+              "Divide the digits as usual and bring the decimal point **straight up**.",
+              "$4.8 \\div 4$: $48 \\div 4 = 12$, point up → $1.2$.",
+              "The point in the answer sits right above the point in $4.8$."
+            ],
+            "figure": {
+              "mode": "divideChain",
+              "divide": { "dividend": 4.8, "divisor": 4 }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The key move",
+            "title": "Dividing by a decimal",
+            "beats": [
+              "You can't easily divide by $0.6$ — so make the divisor a **whole number**.",
+              "Multiply **both** numbers by 10: $4.8 \\div 0.6$ becomes $48 \\div 6$.",
+              "Scaling both by the same amount keeps the answer the same.",
+              "$48 \\div 6 = 8$, so $4.8 \\div 0.6 = 8$."
+            ],
+            "figure": {
+              "mode": "divideChain",
+              "divide": { "dividend": 4.8, "divisor": 0.6 }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Dividing by a whole number",
+            "intro": "Divide normally; bring the decimal point straight up.",
+            "examples": [
+              {
+                "prompt": "Divide $4.8 \\div 4$.",
+                "figure": { "mode": "divideChain", "divide": { "dividend": 4.8, "divisor": 4 } },
+                "steps": [
+                  "Divide as usual: $48 \\div 4 = 12$.",
+                  "Bring the point straight up.",
+                  "So $4.8 \\div 4 = 1.2$."
+                ],
+                "answer": "$1.2$",
+                "check": ["Rational(48,10) / 4 == Rational(12,10)"]
+              },
+              {
+                "prompt": "Divide $0.9 \\div 3$.",
+                "steps": [
+                  "$9 \\div 3 = 3$, with the point up.",
+                  "So $0.9 \\div 3 = 0.3$."
+                ],
+                "answer": "$0.3$",
+                "check": ["Rational(9,10)/3 == Rational(3,10)"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Divide by a whole number",
+            "intro": "Bring the decimal point straight up into the answer.",
+            "problems": [
+              {
+                "prompt": "What is $0.9 \\div 3$?",
+                "options": ["$0.3$", "$3$", "$0.03$"],
+                "correctIndex": 0,
+                "explanation": "$9 \\div 3 = 3$, point up → $0.3$.",
+                "check": ["Rational(9,10)/3 == Rational(3,10)"]
+              },
+              {
+                "prompt": "What is $3.6 \\div 3$?",
+                "options": ["$1.2$", "$12$", "$0.12$"],
+                "correctIndex": 0,
+                "explanation": "$36 \\div 3 = 12$, point up → $1.2$.",
+                "check": ["Rational(36,10)/3 == Rational(12,10)"]
+              },
+              {
+                "prompt": "What is $2.4 \\div 6$?",
+                "options": ["$0.4$", "$4$", "$0.04$"],
+                "correctIndex": 0,
+                "explanation": "$24 \\div 6 = 4$, point up → $0.4$.",
+                "check": ["Rational(24,10)/6 == Rational(4,10)"]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why it works",
+            "title": "Shifting both keeps the answer",
+            "beats": [
+              "A division is a fraction: $4.8 \\div 0.6 = \\frac{4.8}{0.6}$.",
+              "Multiplying top and bottom by the same number gives an **equivalent fraction**.",
+              "$\\frac{4.8}{0.6} = \\frac{48}{6}$ — same value, easier numbers.",
+              "That's exactly the equivalent-fractions move from earlier, used for division."
+            ],
+            "figure": {
+              "mode": "divideChain",
+              "divide": { "dividend": 2.4, "divisor": 0.4 }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Dividing by a decimal",
+            "intro": "Shift both numbers until the divisor is whole, then divide.",
+            "examples": [
+              {
+                "prompt": "Divide $4.8 \\div 0.6$.",
+                "figure": { "mode": "divideChain", "divide": { "dividend": 4.8, "divisor": 0.6 } },
+                "steps": [
+                  "Divisor has 1 place: multiply both by 10 → $48 \\div 6$.",
+                  "$48 \\div 6 = 8$.",
+                  "So $4.8 \\div 0.6 = 8$."
+                ],
+                "answer": "$8$",
+                "check": ["Rational(48,10) / Rational(6,10) == 8"]
+              },
+              {
+                "prompt": "Divide $0.75 \\div 0.25$.",
+                "figure": { "mode": "divideChain", "divide": { "dividend": 0.75, "divisor": 0.25 } },
+                "steps": [
+                  "Divisor has 2 places: multiply both by 100 → $75 \\div 25$.",
+                  "$75 \\div 25 = 3$.",
+                  "So $0.75 \\div 0.25 = 3$."
+                ],
+                "answer": "$3$",
+                "check": ["Rational(75,100)/Rational(25,100) == 3"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Divide by a decimal",
+            "intro": "Make the divisor whole by shifting both numbers.",
+            "problems": [
+              {
+                "prompt": "What is $0.8 \\div 0.2$?",
+                "options": ["$4$", "$0.4$", "$40$"],
+                "correctIndex": 0,
+                "explanation": "Multiply both by 10: $8 \\div 2 = 4$.",
+                "check": ["Rational(8,10)/Rational(2,10) == 4"]
+              },
+              {
+                "prompt": "What is $6.4 \\div 0.8$?",
+                "options": ["$8$", "$0.8$", "$80$"],
+                "correctIndex": 0,
+                "explanation": "Multiply both by 10: $64 \\div 8 = 8$.",
+                "check": ["Rational(64,10)/Rational(8,10) == 8"]
+              },
+              {
+                "prompt": "What is $5 \\div 0.5$?",
+                "options": ["$10$", "$2.5$", "$1$"],
+                "correctIndex": 0,
+                "explanation": "Multiply both by 10: $50 \\div 5 = 10$. (Dividing by $0.5$ doubles!)",
+                "check": ["Rational(5,1)/Rational(5,10) == 10"]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Dividing finds the unit price",
+            "body": "A 0.5 kg block of cheese costs \\$4.00? Divide to find the price per kg: $4.00 \\div 0.5 = \\$8$ per kg. Shops compare deals by dividing price by amount — decimal division in the real world."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Divide by a decimal",
+            "prompt": "What is $4.8 \\div 0.6$?",
+            "options": ["$8$", "$0.8$", "$80$"],
+            "correctIndex": 0,
+            "explanation": "Multiply both by 10: $48 \\div 6 = 8$.",
+            "check": ["Rational(48,10) / Rational(6,10) == 8"]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "By a **whole number**: divide normally and bring the point straight up.",
+              "By a **decimal**: multiply both numbers by 10, 100, … to make the divisor whole.",
+              "Shifting both the same amount keeps the answer the same."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [],

@@ -112,7 +112,7 @@ export interface FigureGroupSpec {
   glyph?: string;
 }
 export interface FigureSpec {
-  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid" | "numberLine" | "decimalColumn" | "decimalArea";
+  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid" | "numberLine" | "decimalColumn" | "decimalArea" | "divideChain";
   groups?: FigureGroupSpec[];
   highlightIndex?: number; // the highlighted "part" in partToWhole (default 0)
   // "cross" — a cross-multiply diagram for a:b vs c:d (draws the two diagonals + products).
@@ -130,6 +130,8 @@ export interface FigureSpec {
   column?: { a: number; b: number; op: "add" | "sub" };
   // "decimalArea" — an area model (a across × b up) with the product rectangle.
   area?: { a: number; b: number };
+  // "divideChain" — the shift transformation a ÷ b = (a·10ⁿ) ÷ (b·10ⁿ) = quotient.
+  divide?: { dividend: number; divisor: number };
 }
 
 // Fractions — a bar you split into more (equal) pieces to see equivalent fractions.
@@ -230,6 +232,14 @@ export interface DecimalAreaConfig {
   color?: string;
 }
 
+// Dividing decimals — shift both numbers by ×10 until the divisor is a whole
+// number, watching the quotient stay the same: 4.8 ÷ 0.6 → 48 ÷ 6 = 8.
+export interface DecimalDivideConfig {
+  dividend: number;
+  divisor: number;
+  color?: string;
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -275,6 +285,7 @@ export type InteractiveStep =
   | { kind: "decimalRounder"; eyebrow?: string; title: string; teach: string; config: DecimalRounderConfig }
   | { kind: "decimalColumnSum"; eyebrow?: string; title: string; teach: string; config: DecimalColumnConfig }
   | { kind: "decimalArea"; eyebrow?: string; title: string; teach: string; config: DecimalAreaConfig }
+  | { kind: "decimalShiftDivide"; eyebrow?: string; title: string; teach: string; config: DecimalDivideConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {
@@ -365,6 +376,30 @@ export function proportionMissing(
   knownValue: number,
 ): number {
   return knownSide === "a" ? (b * knownValue) / a : (a * knownValue) / b;
+}
+
+// Decimal places in a number as written, e.g. decimalPlaces(0.25) -> 2.
+export function decimalPlaces(x: number): number {
+  const s = String(x);
+  const i = s.indexOf(".");
+  return i < 0 ? 0 : s.length - i - 1;
+}
+
+// The shift-to-whole-divisor chain for dividing decimals. Multiply both by
+// 10^shifts so the divisor is whole; the quotient is computed via integers so
+// it stays exact (4.8 / 0.6 -> 48 / 6 = 8, never 7.9999).
+export function divideShift(
+  dividend: number,
+  divisor: number,
+): { shifts: number; scaledDividend: number; scaledDivisor: number; quotient: number } {
+  const shifts = decimalPlaces(divisor);
+  const f = Math.pow(10, shifts);
+  const scaledDividend = Math.round(dividend * f * 1e6) / 1e6;
+  const scaledDivisor = Math.round(divisor * f);
+  const p = Math.max(decimalPlaces(dividend), decimalPlaces(divisor));
+  const s = Math.pow(10, p);
+  const quotient = Math.round(dividend * s) / Math.round(divisor * s);
+  return { shifts, scaledDividend, scaledDivisor, quotient };
 }
 
 // ---------------------------------------------------------------------------
