@@ -112,7 +112,7 @@ export interface FigureGroupSpec {
   glyph?: string;
 }
 export interface FigureSpec {
-  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid" | "numberLine";
+  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid" | "numberLine" | "decimalColumn";
   groups?: FigureGroupSpec[];
   highlightIndex?: number; // the highlighted "part" in partToWhole (default 0)
   // "cross" — a cross-multiply diagram for a:b vs c:d (draws the two diagonals + products).
@@ -126,6 +126,8 @@ export interface FigureSpec {
   decimal?: { value: number; label?: string };
   // "numberLine" — a number line (default 0..1, ticks at tenths) with points plotted.
   numberLine?: { min?: number; max?: number; points: { value: number; label?: string; color?: string }[] };
+  // "decimalColumn" — a stacked add/subtract with the decimal points aligned.
+  column?: { a: number; b: number; op: "add" | "sub" };
 }
 
 // Fractions — a bar you split into more (equal) pieces to see equivalent fractions.
@@ -206,6 +208,16 @@ export interface DecimalRounderConfig {
   color?: string;
 }
 
+// Adding / subtracting decimals — a stacked column with the decimal points in a
+// vertical line and missing places padded with faded zeros, so "line up the
+// points" is literal. The answer reveals on tap.
+export interface DecimalColumnConfig {
+  a: number;
+  b: number;
+  op: "add" | "sub";
+  color?: string;
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -249,6 +261,7 @@ export type InteractiveStep =
   | { kind: "decimalGrid"; eyebrow?: string; title: string; teach: string; config: DecimalGridConfig }
   | { kind: "decimalCompare"; eyebrow?: string; title: string; teach: string; config: DecimalCompareConfig }
   | { kind: "decimalRounder"; eyebrow?: string; title: string; teach: string; config: DecimalRounderConfig }
+  | { kind: "decimalColumnSum"; eyebrow?: string; title: string; teach: string; config: DecimalColumnConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

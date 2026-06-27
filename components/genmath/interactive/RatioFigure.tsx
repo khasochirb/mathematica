@@ -4,6 +4,7 @@ import { type FigureSpec, type FigureGroupSpec } from "@/lib/genmath-interactive
 import FractionBar from "@/components/genmath/interactive/FractionBar";
 import DecimalGridView from "@/components/genmath/interactive/DecimalGridView";
 import DecimalNumberLineView from "@/components/genmath/interactive/DecimalNumberLineView";
+import DecimalColumnView from "@/components/genmath/interactive/DecimalColumnView";
 
 function Token({ color }: { color: string }) {
   return (
@@ -164,6 +165,15 @@ export default function RatioFigure({ figure }: { figure: FigureSpec }) {
         <div className="flex justify-center">
           <DecimalNumberLineView min={min} max={max} points={points} />
         </div>
+      </div>
+    );
+  }
+
+  if (mode === "decimalColumn" && figure.column) {
+    const { a, b, op } = figure.column;
+    return (
+      <div className="gm-fade rounded-xl px-6 py-4" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
+        <DecimalColumnView a={a} b={b} op={op} showAnswer />
       </div>
     );
   }
