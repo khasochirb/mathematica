@@ -240,6 +240,13 @@ export interface DecimalDivideConfig {
   color?: string;
 }
 
+// Percent — the 10×10 grid is literally "out of 100", so n squares shaded is
+// n%. The readout shows the percent, its fraction over 100, and the decimal.
+export interface PercentGridConfig {
+  start: number; // a percent, 0–100
+  color?: string;
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -286,6 +293,7 @@ export type InteractiveStep =
   | { kind: "decimalColumnSum"; eyebrow?: string; title: string; teach: string; config: DecimalColumnConfig }
   | { kind: "decimalArea"; eyebrow?: string; title: string; teach: string; config: DecimalAreaConfig }
   | { kind: "decimalShiftDivide"; eyebrow?: string; title: string; teach: string; config: DecimalDivideConfig }
+  | { kind: "percentGrid"; eyebrow?: string; title: string; teach: string; config: PercentGridConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

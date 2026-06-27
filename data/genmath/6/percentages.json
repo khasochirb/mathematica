@@ -2,47 +2,261 @@
   "slug": "percentages",
   "title": "Percentages",
   "grade": 6,
-  "blurb": "Placeholder — convert between fractions, decimals, and percents; find percent of a number.",
+  "status": "published",
+  "blurb": "Percent means out of 100 — read on the same 10×10 grid, then converted to fractions and decimals and used on real prices.",
   "lessons": [
     {
-      "slug": "percentages-intro",
-      "title": "Introduction to Percentages",
-      "concreteComparison": "Placeholder — real-world opener authored in Step 3. Example: a store offers 25% off — that means you pay 75 cents for every dollar.",
-      "objective": "Placeholder — convert between percent, decimal, and fraction forms.",
+      "slug": "what-is-a-percent",
+      "title": "What Is a Percent?",
+      "concreteComparison": "A phone battery at $75\\%$ is 75 out of every 100 — three-quarters full. A test score of $90\\%$ is 90 right out of 100. **Percent** means 'out of 100', and the $\\%$ sign is shorthand for 'per hundred'.",
+      "objective": "Understand percent as 'out of 100', and write a percent as a fraction over 100 and as a decimal.",
       "concept": [
-        "Placeholder concept paragraph. Percent means 'out of 100'. $50\\% = \\frac{50}{100} = 0.5$."
+        "**Percent** means 'per hundred'. $37\\%$ means **37 out of 100**, which is the fraction $\\frac{37}{100}$.",
+        "Because it is already out of 100, a percent is the same as a **two-place decimal**: $37\\% = 0.37$.",
+        "The whole is $100\\%$. Half is $50\\%$, a quarter is $25\\%$, and nothing is $0\\%$."
+      ],
+      "keyIdea": "Percent means out of 100: $n\\% = \\frac{n}{100} =$ the decimal with $n$ hundredths.",
+      "facts": [
+        {
+          "title": "Percent = hundredths",
+          "latex": "$37\\% = \\dfrac{37}{100} = 0.37$",
+          "explanation": "Out of 100 is a fraction over 100 and a two-place decimal."
+        }
       ],
       "workedExamples": [
         {
-          "id": "pct-ex-01",
-          "statement": "Placeholder problem. What is $30\\%$ of $200$?",
-          "solution": "Placeholder solution. $200 \\times 0.30 = 60$."
+          "id": "pct-we1",
+          "statement": "Write $37\\%$ as a fraction and a decimal.",
+          "solution": "$37\\% = \\frac{37}{100} = 0.37$.",
+          "check": ["Rational(37,100)*100 == 37"]
+        },
+        {
+          "id": "pct-we2",
+          "statement": "Write $50\\%$ as a fraction in simplest form.",
+          "solution": "$50\\% = \\frac{50}{100} = \\frac{1}{2}$.",
+          "check": ["Rational(50,100) == Rational(1,2)"]
         }
       ],
       "commonMistakes": [
-        { "text": "Placeholder mistake — authored in Step 3.", "authored": false }
+        {
+          "text": "Writing $9\\%$ as the decimal $0.9$.",
+          "correction": "$9\\%$ is 9 out of 100 = $\\frac{9}{100} = 0.09$. $0.9$ would be $90\\%$.",
+          "authored": true
+        },
+        {
+          "text": "Treating $100\\%$ as more than the whole.",
+          "correction": "$100\\%$ is exactly one whole; $50\\%$ is half of it.",
+          "authored": true
+        }
       ],
       "tryIt": [
         {
-          "id": "pct-try-01",
-          "statement": "Placeholder try-it. What is $15\\%$ of $80$?",
-          "solution": "Placeholder solution. $80 \\times 0.15 = 12$."
+          "id": "pct-t1",
+          "statement": "Write $25\\%$ as a fraction in simplest form.",
+          "solution": "$25\\% = \\frac{25}{100} = \\frac{1}{4}$.",
+          "check": ["Rational(25,100) == Rational(1,4)"]
+        },
+        {
+          "id": "pct-t2",
+          "statement": "Write $9\\%$ as a decimal.",
+          "solution": "$9\\% = \\frac{9}{100} = 0.09$.",
+          "check": ["Rational(9,100)*100 == 9"]
         }
-      ]
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "percentGrid",
+            "eyebrow": "Concept A",
+            "title": "Percent means out of 100",
+            "teach": "The whole grid is 100 squares — that's $100\\%$. Shade some squares and read it three ways: as a **percent**, as a **fraction over 100**, and as a **decimal**. They are all the same amount.",
+            "config": {
+              "start": 37,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Out of one hundred",
+            "beats": [
+              "The $\\%$ sign is shorthand for **out of 100**.",
+              "$37\\%$ = 37 of the 100 squares = $\\frac{37}{100}$.",
+              "A fraction over 100 is a two-place decimal: $\\frac{37}{100} = 0.37$.",
+              "So $37\\% = \\frac{37}{100} = 0.37$ — one amount, three costumes."
+            ],
+            "figure": {
+              "mode": "decimalGrid",
+              "decimal": { "value": 0.37, "label": "37% shaded" }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Three names",
+            "title": "Percent, fraction, decimal — same thing",
+            "beats": [
+              "Half the grid is 50 squares: $50\\% = \\frac{50}{100} = \\frac{1}{2} = 0.5$.",
+              "To make a percent a decimal, move the point two places: $50\\% \\to 0.50$.",
+              "To make a percent a fraction, put it over 100 and simplify.",
+              "Same shaded amount, just three ways to name it."
+            ],
+            "figure": {
+              "mode": "decimalGrid",
+              "decimal": { "value": 0.5, "label": "50% = a half" }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Writing a percent as a fraction and decimal",
+            "intro": "Put the percent over 100, then simplify and read off the decimal.",
+            "examples": [
+              {
+                "prompt": "Write $37\\%$ as a fraction and a decimal.",
+                "figure": { "mode": "decimalGrid", "decimal": { "value": 0.37, "label": "37%" } },
+                "steps": [
+                  "$37\\%$ means 37 out of 100 → $\\frac{37}{100}$.",
+                  "Out of 100 is a two-place decimal → $0.37$."
+                ],
+                "answer": "$\\frac{37}{100} = 0.37$",
+                "check": ["Rational(37,100)*100 == 37"]
+              },
+              {
+                "prompt": "Write $50\\%$ as a fraction in simplest form and a decimal.",
+                "figure": { "mode": "decimalGrid", "decimal": { "value": 0.5, "label": "50%" } },
+                "steps": [
+                  "$50\\% = \\frac{50}{100}$.",
+                  "Simplify by 50: $\\frac{1}{2}$; as a decimal, $0.5$."
+                ],
+                "answer": "$\\frac{1}{2} = 0.5$",
+                "check": ["Rational(50,100) == Rational(1,2)"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Read it as a percent",
+            "intro": "Out of 100: count the shaded squares, or put the percent over 100.",
+            "problems": [
+              {
+                "prompt": "The grid has 25 of 100 squares shaded. What percent is that?",
+                "figure": { "mode": "decimalGrid", "decimal": { "value": 0.25, "label": "shaded" } },
+                "options": ["$25\\%$", "$2.5\\%$", "$250\\%$"],
+                "correctIndex": 0,
+                "explanation": "25 out of 100 = $25\\% = \\frac{25}{100} = \\frac{1}{4}$.",
+                "check": ["Rational(25,100) == Rational(1,4)"]
+              },
+              {
+                "prompt": "What is $50\\%$ as a fraction in simplest form?",
+                "options": ["$\\frac{1}{2}$", "$\\frac{1}{50}$", "$\\frac{50}{10}$"],
+                "correctIndex": 0,
+                "explanation": "$50\\% = \\frac{50}{100} = \\frac{1}{2}$.",
+                "check": ["Rational(50,100) == Rational(1,2)"]
+              },
+              {
+                "prompt": "What is $9\\%$ as a decimal?",
+                "options": ["$0.09$", "$0.9$", "$9.0$"],
+                "correctIndex": 0,
+                "explanation": "$9\\% = \\frac{9}{100} = 0.09$. ($0.9$ would be $90\\%$.)",
+                "check": ["Rational(9,100)*100 == 9"]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Worth memorizing",
+            "title": "The friendly percents",
+            "beats": [
+              "A few percents come up constantly — learn them as fractions.",
+              "$25\\% = \\frac{1}{4}$, $50\\% = \\frac{1}{2}$, $75\\% = \\frac{3}{4}$.",
+              "$10\\% = \\frac{1}{10}$ and $100\\% = 1$ (the whole).",
+              "Knowing these makes percents quick without a calculator."
+            ],
+            "figure": {
+              "mode": "decimalGrid",
+              "decimal": { "value": 0.25, "label": "25% = a quarter" }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Common percents",
+            "intro": "Put over 100 and simplify to the friendly fraction.",
+            "examples": [
+              {
+                "prompt": "Write $25\\%$ as a fraction in simplest form and a decimal.",
+                "figure": { "mode": "decimalGrid", "decimal": { "value": 0.25, "label": "25%" } },
+                "steps": [
+                  "$25\\% = \\frac{25}{100}$.",
+                  "Simplify by 25: $\\frac{1}{4}$; as a decimal, $0.25$."
+                ],
+                "answer": "$\\frac{1}{4} = 0.25$",
+                "check": ["Rational(25,100) == Rational(1,4)"]
+              },
+              {
+                "prompt": "Write $10\\%$ as a fraction in simplest form and a decimal.",
+                "steps": [
+                  "$10\\% = \\frac{10}{100}$.",
+                  "Simplify by 10: $\\frac{1}{10}$; as a decimal, $0.1$."
+                ],
+                "answer": "$\\frac{1}{10} = 0.1$",
+                "check": ["Rational(10,100) == Rational(1,10)"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Match the percent",
+            "intro": "Use the friendly fractions where you can.",
+            "problems": [
+              {
+                "prompt": "What is $75\\%$ as a fraction in simplest form?",
+                "options": ["$\\frac{3}{4}$", "$\\frac{75}{10}$", "$\\frac{7}{5}$"],
+                "correctIndex": 0,
+                "explanation": "$75\\% = \\frac{75}{100} = \\frac{3}{4}$.",
+                "check": ["Rational(75,100) == Rational(3,4)"]
+              },
+              {
+                "prompt": "What is $20\\%$ as a decimal?",
+                "options": ["$0.2$", "$0.02$", "$2.0$"],
+                "correctIndex": 0,
+                "explanation": "$20\\% = \\frac{20}{100} = \\frac{1}{5} = 0.2$.",
+                "check": ["Rational(20,100) == Rational(1,5)"]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Percent comes from 'per cento'",
+            "body": "The word percent comes from the Latin per centum — 'per hundred'. Merchants used it for taxes and interest centuries ago, and the $\\%$ sign grew out of writing '/100' in a hurry."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Percent to fraction",
+            "prompt": "What is $37\\%$ as a fraction?",
+            "options": ["$\\frac{37}{100}$", "$\\frac{37}{10}$", "$\\frac{1}{37}$"],
+            "correctIndex": 0,
+            "explanation": "$37\\%$ means 37 out of 100 → $\\frac{37}{100}$.",
+            "check": ["Rational(37,100)*100 == 37"]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Percent means **out of 100**: $n\\% = \\frac{n}{100}$.",
+              "A percent is a two-place decimal: $37\\% = 0.37$.",
+              "Learn the friendly ones: $25\\%=\\frac14$, $50\\%=\\frac12$, $75\\%=\\frac34$, $10\\%=\\frac{1}{10}$."
+            ]
+          }
+        ]
+      }
     }
   ],
-  "practice": [
-    {
-      "id": "pct-prac-01",
-      "statement": "Placeholder practice problem. Convert $0.75$ to a percent.",
-      "solution": "Placeholder solution. $0.75 = 75\\%$."
-    }
-  ],
-  "testYourself": [
-    {
-      "id": "pct-test-01",
-      "statement": "Placeholder test problem. A jacket costs $\\$60$ and is on sale for $20\\%$ off. What is the sale price?",
-      "solution": "Placeholder solution. $60 \\times 0.20 = 12$. Sale price: $60 - 12 = \\$48$."
-    }
-  ]
+  "practice": [],
+  "testYourself": []
 }
