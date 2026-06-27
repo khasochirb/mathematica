@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import {
   Menu,
   X,
@@ -41,9 +42,10 @@ const aboutItems = [
 
 interface ResourcesDropdownProps {
   label: string;
+  active?: boolean;
 }
 
-function ResourcesDropdown({ label }: ResourcesDropdownProps) {
+function ResourcesDropdown({ label, active }: ResourcesDropdownProps) {
   const { lang } = useLang();
   const [open, setOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -69,11 +71,15 @@ function ResourcesDropdown({ label }: ResourcesDropdownProps) {
     <li ref={ref} className="relative" onMouseEnter={onEnter} onMouseLeave={onLeave}>
       <button
         type="button"
-        className="flex items-center gap-1 text-sm font-medium transition-colors py-2 px-3 rounded-md"
-        style={{ color: "var(--fg-1)" }}
+        className="flex items-center gap-1 text-sm transition-colors py-2 px-3 rounded-md"
+        style={{
+          color: active ? "var(--accent)" : "var(--fg-1)",
+          background: active ? "var(--accent-wash)" : "transparent",
+          fontWeight: active ? 600 : 500,
+        }}
         onClick={() => setOpen((v) => !v)}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "var(--bg-1)")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+        onMouseEnter={(e) => { if (!active) e.currentTarget.style.background = "var(--bg-1)"; }}
+        onMouseLeave={(e) => { if (!active) e.currentTarget.style.background = "transparent"; }}
       >
         {label}
         <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", open && "rotate-180")} />
@@ -153,9 +159,10 @@ function ResourcesDropdown({ label }: ResourcesDropdownProps) {
 
 interface AboutDropdownProps {
   label: string;
+  active?: boolean;
 }
 
-function AboutDropdown({ label }: AboutDropdownProps) {
+function AboutDropdown({ label, active }: AboutDropdownProps) {
   const { lang } = useLang();
   const [open, setOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -181,11 +188,15 @@ function AboutDropdown({ label }: AboutDropdownProps) {
     <li ref={ref} className="relative" onMouseEnter={onEnter} onMouseLeave={onLeave}>
       <Link
         href="/about"
-        className="flex items-center gap-1 text-sm font-medium transition-colors py-2 px-3 rounded-md"
-        style={{ color: "var(--fg-1)" }}
+        className="flex items-center gap-1 text-sm transition-colors py-2 px-3 rounded-md"
+        style={{
+          color: active ? "var(--accent)" : "var(--fg-1)",
+          background: active ? "var(--accent-wash)" : "transparent",
+          fontWeight: active ? 600 : 500,
+        }}
         onClick={() => setOpen(false)}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "var(--bg-1)")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+        onMouseEnter={(e) => { if (!active) e.currentTarget.style.background = "var(--bg-1)"; }}
+        onMouseLeave={(e) => { if (!active) e.currentTarget.style.background = "transparent"; }}
       >
         {label}
         <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", open && "rotate-180")} />
@@ -218,6 +229,39 @@ function AboutDropdown({ label }: AboutDropdownProps) {
           ))}
         </div>
       )}
+    </li>
+  );
+}
+
+// Top-level desktop nav link with an active (current-page) highlight.
+function NavLink({
+  href,
+  active,
+  children,
+}: {
+  href: string;
+  active: boolean;
+  children: ReactNode;
+}) {
+  return (
+    <li>
+      <Link
+        href={href}
+        className="text-sm px-3 py-2 rounded-md transition-colors"
+        style={{
+          color: active ? "var(--accent)" : "var(--fg-1)",
+          background: active ? "var(--accent-wash)" : "transparent",
+          fontWeight: active ? 600 : 500,
+        }}
+        onMouseEnter={(e) => {
+          if (!active) e.currentTarget.style.background = "var(--bg-1)";
+        }}
+        onMouseLeave={(e) => {
+          if (!active) e.currentTarget.style.background = "transparent";
+        }}
+      >
+        {children}
+      </Link>
     </li>
   );
 }
@@ -261,6 +305,21 @@ export default function Header() {
     logout: lang === "mn" ? "Гарах" : "Log out",
   };
 
+  // Active-route detection so the current page is highlighted in the nav.
+  const pathname = usePathname() || "/";
+  const onPath = (href: string) =>
+    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
+  const onAnyPath = (hrefs: string[]) => hrefs.some(onPath);
+  // Resources groups the math hubs (ЭЕШ + SAT/IB/AP) and General Math.
+  const resourcesActive = onAnyPath([
+    "/math",
+    "/practice/esh",
+    "/practice/sat",
+    "/practice/ib",
+    "/practice/ap",
+  ]);
+  const aboutActive = onAnyPath(["/about", "/contact"]);
+
   return (
     <header
       className="fixed top-0 left-0 right-0 z-40 transition-all duration-300 backdrop-blur-xl"
@@ -291,54 +350,19 @@ export default function Header() {
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-1">
             <ul className="flex items-center gap-0.5">
-              <li>
-                <Link
-                  href="/"
-                  className="text-sm font-medium px-3 py-2 rounded-md transition-colors"
-                  style={{ color: "var(--fg-1)" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "var(--bg-1)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-                >
-                  {nav.home}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/practice/esh"
-                  className="text-sm font-semibold px-3 py-2 rounded-md transition-colors"
-                  style={{ color: "var(--accent)" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "var(--accent-wash)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-                >
-                  {nav.esh}
-                </Link>
-              </li>
+              <NavLink href="/" active={onPath("/")}>
+                {nav.home}
+              </NavLink>
               {isAuthenticated && (
-                <li>
-                  <Link
-                    href="/dashboard"
-                    className="text-sm font-medium px-3 py-2 rounded-md transition-colors"
-                    style={{ color: "var(--fg-1)" }}
-                    onMouseEnter={(e) => (e.currentTarget.style.background = "var(--bg-1)")}
-                    onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-                  >
-                    {nav.dashboard}
-                  </Link>
-                </li>
+                <NavLink href="/dashboard" active={onPath("/dashboard")}>
+                  {nav.dashboard}
+                </NavLink>
               )}
-              <li>
-                <Link
-                  href="/tutoring"
-                  className="text-sm font-medium px-3 py-2 rounded-md transition-colors"
-                  style={{ color: "var(--fg-1)" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "var(--bg-1)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-                >
-                  {nav.tutoring}
-                </Link>
-              </li>
-              <ResourcesDropdown label={nav.resources} />
-              <AboutDropdown label={nav.about} />
+              <NavLink href="/tutoring" active={onPath("/tutoring")}>
+                {nav.tutoring}
+              </NavLink>
+              <ResourcesDropdown label={nav.resources} active={resourcesActive} />
+              <AboutDropdown label={nav.about} active={aboutActive} />
             </ul>
           </nav>
 
@@ -496,20 +520,26 @@ export default function Header() {
           <nav className="max-w-7xl mx-auto px-4 py-4 space-y-1">
             {[
               { label: nav.home, href: "/" },
-              { label: nav.esh, href: "/practice/esh", primary: true },
               ...(isAuthenticated ? [{ label: nav.dashboard, href: "/dashboard" }] : []),
               { label: nav.tutoring, href: "/tutoring" },
-            ].map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="block px-4 py-2.5 rounded-md font-medium text-sm transition-colors"
-                style={{ color: item.primary ? "var(--accent)" : "var(--fg-1)" }}
-                onClick={() => setMobileOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
+            ].map((item) => {
+              const active = onPath(item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="block px-4 py-2.5 rounded-md text-sm transition-colors"
+                  style={{
+                    color: active ? "var(--accent)" : "var(--fg-1)",
+                    background: active ? "var(--accent-wash)" : "transparent",
+                    fontWeight: active ? 600 : 500,
+                  }}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
 
             {/* Math hubs */}
             <div
@@ -544,17 +574,24 @@ export default function Header() {
             <div className="px-4 pt-2 eyebrow">
               General Math · Active
             </div>
-            {genMathItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="block px-4 py-2 rounded-md text-sm transition-colors"
-                style={{ color: "var(--fg-1)" }}
-                onClick={() => setMobileOpen(false)}
-              >
-                {item.en}
-              </Link>
-            ))}
+            {genMathItems.map((item) => {
+              const active = onPath(item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="block px-4 py-2 rounded-md text-sm transition-colors"
+                  style={{
+                    color: active ? "var(--accent)" : "var(--fg-1)",
+                    background: active ? "var(--accent-wash)" : "transparent",
+                    fontWeight: active ? 600 : undefined,
+                  }}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {item.en}
+                </Link>
+              );
+            })}
 
             {/* About */}
             <div
