@@ -259,10 +259,10 @@ export default function RatioFigure({ figure }: { figure: FigureSpec }) {
   }
 
   if (mode === "integerLine" && figure.integerLine) {
-    const { min, max, points } = figure.integerLine;
+    const { min, max, points, highlight } = figure.integerLine;
     return (
       <div className="gm-fade flex justify-center rounded-xl px-4 py-4" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-        <IntegerLineView min={min} max={max} points={points} />
+        <IntegerLineView min={min} max={max} points={points} highlightFromZero={highlight} />
       </div>
     );
   }

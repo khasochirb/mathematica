@@ -138,8 +138,9 @@ export interface FigureSpec {
   percentChange?: { original: number; percent: number; mode: "discount" | "increase"; currency?: string };
   // "percentChangeFinder" — before/after bars with the percent increase/decrease.
   percentChangeFinder?: { original: number; final: number; currency?: string };
-  // "integerLine" — a number line across zero with integers marked.
-  integerLine?: { min: number; max: number; points: { value: number; label?: string; color?: string }[] };
+  // "integerLine" — a number line across zero with integers marked. `highlight`
+  // draws a distance band from zero (for absolute value).
+  integerLine?: { min: number; max: number; points: { value: number; label?: string; color?: string }[]; highlight?: number };
 }
 
 // Fractions — a bar you split into more (equal) pieces to see equivalent fractions.
@@ -354,6 +355,7 @@ export type InteractiveStep =
   | { kind: "percentChangeFinder"; eyebrow?: string; title: string; teach: string; config: PercentChangeFinderConfig }
   | { kind: "integerLine"; eyebrow?: string; title: string; teach: string; config: IntegerLineConfig }
   | { kind: "integerCompare"; eyebrow?: string; title: string; teach: string; config: IntegerCompareConfig }
+  | { kind: "absoluteValue"; eyebrow?: string; title: string; teach: string; config: IntegerLineConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

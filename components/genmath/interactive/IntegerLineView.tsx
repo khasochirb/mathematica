@@ -9,11 +9,13 @@ export default function IntegerLineView({
   max,
   points,
   width = 340,
+  highlightFromZero,
 }: {
   min: number;
   max: number;
   points: { value: number; label?: string; color?: string }[];
   width?: number;
+  highlightFromZero?: number; // draw a distance band from 0 to this value
 }) {
   const pad = 20;
   const h = 70;
@@ -34,6 +36,15 @@ export default function IntegerLineView({
       </defs>
       {/* axis with arrowheads both ends */}
       <line x1={pad - 8} y1={y} x2={width - pad + 8} y2={y} stroke="var(--fg-3)" strokeWidth="1.5" markerStart="url(#il-arrow)" markerEnd="url(#il-arrow)" />
+      {/* distance band from zero (absolute value) */}
+      {highlightFromZero !== undefined && highlightFromZero !== 0 && (
+        <>
+          <line x1={x(0)} y1={y} x2={x(highlightFromZero)} y2={y} stroke="var(--accent)" strokeWidth="5" strokeLinecap="round" opacity="0.55" />
+          <text x={(x(0) + x(highlightFromZero)) / 2} y={y - 28} textAnchor="middle" fontSize="11" fill="var(--accent)">
+            distance {Math.abs(highlightFromZero)}
+          </text>
+        </>
+      )}
       {/* ticks + labels */}
       {ticks.map((t) => {
         const zero = t === 0;

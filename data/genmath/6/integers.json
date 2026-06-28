@@ -510,6 +510,258 @@
           }
         ]
       }
+    },
+    {
+      "slug": "absolute-value",
+      "title": "Absolute Value & Opposites",
+      "concreteComparison": "Walk 5 blocks **east** or 5 blocks **west** and you've travelled the same **distance** — 5 blocks — even though the directions are opposite. The **absolute value** of a number is its distance from zero, so $|5| = 5$ and $|-5| = 5$.",
+      "objective": "Find the absolute value of an integer as its distance from zero, and connect it to opposites — a number and its opposite share the same absolute value.",
+      "concept": [
+        "The **absolute value** of a number is its **distance from zero** on the number line, written with bars: $|-5| = 5$.",
+        "Distance is never negative, so an absolute value is always **0 or positive**: $|-8| = 8$, $|3| = 3$, $|0| = 0$.",
+        "A number and its **opposite** are the same distance from zero, so they have the **same** absolute value: $|-5| = |5| = 5$."
+      ],
+      "keyIdea": "Absolute value = distance from zero. Always 0 or positive. Opposites share the same absolute value: $|-5| = |5| = 5$.",
+      "facts": [
+        {
+          "title": "Absolute value",
+          "latex": "$|-5| = 5, \\quad |5| = 5$",
+          "explanation": "The distance from zero — direction doesn't matter."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "av-we1",
+          "statement": "What is $|-8|$?",
+          "solution": "$-8$ is 8 away from zero, so $|-8| = 8$.",
+          "check": ["Abs(-8) == 8"]
+        },
+        {
+          "id": "av-we2",
+          "statement": "What is $|3|$?",
+          "solution": "$3$ is 3 away from zero, so $|3| = 3$.",
+          "check": ["Abs(3) == 3"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Writing $|-8| = -8$.",
+          "correction": "Absolute value is a distance, so it's never negative: $|-8| = 8$.",
+          "authored": true
+        },
+        {
+          "text": "Thinking a number with a bigger absolute value is bigger.",
+          "correction": "$|-9| = 9$ is the bigger distance, but $-9$ is the smaller number. Distance ≠ value.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "av-t1",
+          "statement": "What is $|-6|$?",
+          "solution": "$|-6| = 6$ — 6 away from zero.",
+          "check": ["Abs(-6) == 6"]
+        },
+        {
+          "id": "av-t2",
+          "statement": "Which is farther from zero, $-10$ or $2$?",
+          "solution": "$|-10| = 10$ and $|2| = 2$, so $-10$ is farther.",
+          "check": ["Abs(-10) > Abs(2)"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "absoluteValue",
+            "eyebrow": "Concept A",
+            "title": "Distance from zero",
+            "teach": "The absolute value $|-5|$ is how far $-5$ is from $0$ — that distance is $5$. Move the marker and watch the distance. Notice $|-5|$ and $|5|$ are both $5$.",
+            "config": {
+              "min": -7,
+              "max": 7,
+              "start": -5,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "The bars mean distance",
+            "beats": [
+              "The bars $|\\;\\;|$ mean 'distance from zero'.",
+              "$|-5|$ asks: how far is $-5$ from $0$? Five steps.",
+              "So $|-5| = 5$.",
+              "Direction doesn't matter — only how far."
+            ],
+            "figure": {
+              "mode": "integerLine",
+              "integerLine": { "min": -7, "max": 7, "points": [ { "value": -5, "label": "-5" } ], "highlight": -5 }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Mirror match",
+            "title": "Opposites share an absolute value",
+            "beats": [
+              "A number and its opposite are the same distance from zero.",
+              "$-5$ is 5 to the left; $5$ is 5 to the right.",
+              "So $|-5| = |5| = 5$.",
+              "Opposites always have the same absolute value."
+            ],
+            "figure": {
+              "mode": "integerLine",
+              "integerLine": { "min": -7, "max": 7, "points": [ { "value": -5, "label": "-5" }, { "value": 5, "label": "5", "color": "#3b82f6" } ], "highlight": 5 }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Finding absolute value",
+            "intro": "Count the distance from the number to zero.",
+            "examples": [
+              {
+                "prompt": "What is $|-8|$?",
+                "figure": { "mode": "integerLine", "integerLine": { "min": -9, "max": 9, "points": [ { "value": -8, "label": "-8" } ], "highlight": -8 } },
+                "steps": [
+                  "$|-8|$ is the distance from $-8$ to $0$.",
+                  "That distance is $8$, so $|-8| = 8$."
+                ],
+                "answer": "$8$",
+                "check": ["Abs(-8) == 8"]
+              },
+              {
+                "prompt": "What is $|3|$?",
+                "figure": { "mode": "integerLine", "integerLine": { "min": -6, "max": 6, "points": [ { "value": 3, "label": "3" } ], "highlight": 3 } },
+                "steps": [
+                  "$|3|$ is the distance from $3$ to $0$.",
+                  "$|3| = 3$."
+                ],
+                "answer": "$3$",
+                "check": ["Abs(3) == 3"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Absolute value",
+            "intro": "How far from zero?",
+            "problems": [
+              {
+                "prompt": "What is $|-6|$?",
+                "options": ["$6$", "$-6$", "$0$"],
+                "correctIndex": 0,
+                "explanation": "$-6$ is 6 from zero, so $|-6| = 6$.",
+                "check": ["Abs(-6) == 6"]
+              },
+              {
+                "prompt": "What is $|4|$?",
+                "options": ["$4$", "$-4$", "$0$"],
+                "correctIndex": 0,
+                "explanation": "$4$ is 4 from zero, so $|4| = 4$.",
+                "check": ["Abs(4) == 4"]
+              },
+              {
+                "prompt": "What is $|-10|$?",
+                "options": ["$10$", "$-10$", "$1$"],
+                "correctIndex": 0,
+                "explanation": "$-10$ is 10 from zero, so $|-10| = 10$.",
+                "check": ["Abs(-10) == 10"]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Always 0 or up",
+            "title": "Absolute value is never negative",
+            "beats": [
+              "Distance can't be negative, so an absolute value is always $\\geq 0$.",
+              "$|0| = 0$ — zero is no distance from itself.",
+              "Absolute value tells you **how far**, not which side.",
+              "Two different numbers can share one: $|-7| = |7| = 7$."
+            ],
+            "figure": {
+              "mode": "integerLine",
+              "integerLine": { "min": -8, "max": 8, "points": [ { "value": -7, "label": "-7" }, { "value": 7, "label": "7", "color": "#3b82f6" } ] }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Comparing distances",
+            "intro": "Take the absolute value, then compare those distances.",
+            "examples": [
+              {
+                "prompt": "Which is farther from zero, $-7$ or $4$?",
+                "figure": { "mode": "integerLine", "integerLine": { "min": -8, "max": 8, "points": [ { "value": -7, "label": "-7" }, { "value": 4, "label": "4", "color": "#3b82f6" } ] } },
+                "steps": [
+                  "$|-7| = 7$ and $|4| = 4$.",
+                  "$7 > 4$, so $-7$ is farther from zero."
+                ],
+                "answer": "$-7$",
+                "check": ["Abs(-7) > Abs(4)"]
+              },
+              {
+                "prompt": "Which has the greater absolute value, $-9$ or $6$?",
+                "steps": [
+                  "$|-9| = 9$ and $|6| = 6$.",
+                  "$9 > 6$, so $-9$ has the greater absolute value."
+                ],
+                "answer": "$-9$",
+                "check": ["Abs(-9) > Abs(6)"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Which is farther from zero?",
+            "intro": "Compare the absolute values.",
+            "problems": [
+              {
+                "prompt": "Which is farther from zero, $-10$ or $2$?",
+                "options": ["$-10$", "$2$", "they are the same"],
+                "correctIndex": 0,
+                "explanation": "$|-10| = 10 > 2 = |2|$, so $-10$ is farther.",
+                "check": ["Abs(-10) > Abs(2)"]
+              },
+              {
+                "prompt": "Which has the greater absolute value, $-3$ or $-8$?",
+                "options": ["$-8$", "$-3$", "they are the same"],
+                "correctIndex": 0,
+                "explanation": "$|-8| = 8 > 3 = |-3|$.",
+                "check": ["Abs(-8) > Abs(-3)"]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Distance has no sign",
+            "body": "A submarine 300 m down and a drone 300 m up are both $300$ m from sea level — $|-300| = |300| = 300$. Speedometers, GPS distances, and error sizes all use absolute value: how far, never which way."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Absolute value",
+            "prompt": "What is $|-5|$?",
+            "options": ["$5$", "$-5$", "$0$"],
+            "correctIndex": 0,
+            "explanation": "$-5$ is 5 from zero, so $|-5| = 5$.",
+            "check": ["Abs(-5) == 5"]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Absolute value is the **distance from zero**: $|-5| = 5$.",
+              "It is always **0 or positive** — direction doesn't matter.",
+              "Opposites share an absolute value: $|-5| = |5| = 5$."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [],
