@@ -9,6 +9,7 @@ import DecimalAreaView from "@/components/genmath/interactive/DecimalAreaView";
 import PercentBarView from "@/components/genmath/interactive/PercentBarView";
 import PercentChangeView from "@/components/genmath/interactive/PercentChangeView";
 import PercentChangeFinderView from "@/components/genmath/interactive/PercentChangeFinderView";
+import IntegerLineView from "@/components/genmath/interactive/IntegerLineView";
 
 function Token({ color }: { color: string }) {
   return (
@@ -253,6 +254,15 @@ export default function RatioFigure({ figure }: { figure: FigureSpec }) {
     return (
       <div className="gm-fade flex justify-center rounded-xl px-6 py-4" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
         <PercentChangeFinderView original={original} final={final} currency={currency} showAnswer />
+      </div>
+    );
+  }
+
+  if (mode === "integerLine" && figure.integerLine) {
+    const { min, max, points } = figure.integerLine;
+    return (
+      <div className="gm-fade flex justify-center rounded-xl px-4 py-4" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
+        <IntegerLineView min={min} max={max} points={points} />
       </div>
     );
   }

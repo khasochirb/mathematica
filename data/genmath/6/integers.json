@@ -2,47 +2,262 @@
   "slug": "integers",
   "title": "Integers",
   "grade": 6,
-  "blurb": "Placeholder — understand positive and negative integers, absolute value, and operations on the number line.",
+  "status": "published",
+  "blurb": "Positive and negative whole numbers on a number line that crosses zero — temperatures, depths, and debts.",
   "lessons": [
     {
-      "slug": "integers-intro",
-      "title": "Introduction to Integers",
-      "concreteComparison": "Placeholder — real-world opener authored in Step 3. Example: a temperature of $-5°C$ means 5 degrees below zero.",
-      "objective": "Placeholder — place integers on a number line and compare them using $<$ and $>$.",
+      "slug": "what-are-integers",
+      "title": "What Are Integers?",
+      "concreteComparison": "A thermometer reading $-5°$ is 5 degrees **below** zero. A diver at $-20$ m is 20 m **below** sea level. Owing \\$10 is like having $-10$ dollars. **Integers** are the whole numbers together with their negatives: $\\ldots, -3, -2, -1, 0, 1, 2, 3, \\ldots$",
+      "objective": "Understand integers as the whole numbers and their negatives, place them on a number line that crosses zero, and read negative numbers in real situations.",
       "concept": [
-        "Placeholder concept paragraph. Integers include all whole numbers and their negatives: $\\ldots, -2, -1, 0, 1, 2, \\ldots$"
+        "**Integers** are the counting numbers, their **negatives**, and **zero**: $\\ldots, -2, -1, 0, 1, 2, \\ldots$ — no fractions or decimals.",
+        "On a number line, **positive** integers sit to the **right** of zero and **negative** integers to the **left**. Zero is neither positive nor negative.",
+        "Negatives describe 'below' or 'less than nothing': temperatures below zero, depths below sea level, and money owed."
+      ],
+      "keyIdea": "Integers are whole numbers and their negatives. On the number line, negatives go left of zero and positives go right.",
+      "facts": [
+        {
+          "title": "Opposites",
+          "latex": "$-5 \\text{ and } 5 \\text{ are opposites}$",
+          "explanation": "Same distance from zero, on opposite sides."
+        }
       ],
       "workedExamples": [
         {
-          "id": "int-ex-01",
-          "statement": "Placeholder problem. What is $|-7|$?",
-          "solution": "Placeholder solution. $|-7| = 7$."
+          "id": "wai-we1",
+          "statement": "What integer is 4 units to the left of $0$?",
+          "solution": "Left of zero is negative, so it is $-4$.",
+          "check": ["0 - 4 == -4"]
+        },
+        {
+          "id": "wai-we2",
+          "statement": "What is the opposite of $-7$?",
+          "solution": "The opposite is the same distance from 0 on the other side: $7$.",
+          "check": ["-(-7) == 7"]
         }
       ],
       "commonMistakes": [
-        { "text": "Placeholder mistake — authored in Step 3.", "authored": false }
+        {
+          "text": "Thinking $-5$ is bigger than $-2$ because 5 is bigger than 2.",
+          "correction": "Further **left** on the number line is smaller, so $-5 < -2$.",
+          "authored": true
+        },
+        {
+          "text": "Calling zero a positive number.",
+          "correction": "Zero is neither positive nor negative — it sits exactly between them.",
+          "authored": true
+        }
       ],
       "tryIt": [
         {
-          "id": "int-try-01",
-          "statement": "Placeholder try-it. Order from least to greatest: $-3, 5, -1, 0$.",
-          "solution": "Placeholder solution. $-3, -1, 0, 5$."
+          "id": "wai-t1",
+          "statement": "What is the opposite of $6$?",
+          "solution": "$-6$ — same distance from 0, other side.",
+          "check": ["-(6) == -6"]
+        },
+        {
+          "id": "wai-t2",
+          "statement": "A temperature 5 degrees below zero is which integer?",
+          "solution": "Below zero is negative: $-5$.",
+          "check": ["0 - 5 == -5"]
         }
-      ]
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "integerLine",
+            "eyebrow": "Concept A",
+            "title": "Crossing zero",
+            "teach": "Move the marker left and right across zero. To the **right** of zero are the positives $(1, 2, 3, \\ldots)$; to the **left** are the negatives $(-1, -2, -3, \\ldots)$. Zero sits right in the middle.",
+            "config": {
+              "min": -6,
+              "max": 6,
+              "start": -3,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Left of zero is negative",
+            "beats": [
+              "The number line stretches **both** ways from zero, forever.",
+              "Positive integers ($1, 2, 3, \\ldots$) go to the **right**.",
+              "Negative integers ($-1, -2, -3, \\ldots$) go to the **left**.",
+              "$-3$ sits 3 steps to the left of zero."
+            ],
+            "figure": {
+              "mode": "integerLine",
+              "integerLine": { "min": -6, "max": 6, "points": [ { "value": -3, "label": "-3" } ] }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Mirror images",
+            "title": "Opposites",
+            "beats": [
+              "Every integer has an **opposite** — the same distance from zero, on the other side.",
+              "The opposite of $4$ is $-4$; the opposite of $-4$ is $4$.",
+              "Opposites are mirror images across zero.",
+              "The opposite of $0$ is just $0$."
+            ],
+            "figure": {
+              "mode": "integerLine",
+              "integerLine": { "min": -6, "max": 6, "points": [ { "value": -4, "label": "-4" }, { "value": 4, "label": "4", "color": "#3b82f6" } ] }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Reading integers",
+            "intro": "Use the number line: left is negative, right is positive.",
+            "examples": [
+              {
+                "prompt": "What integer is 4 units to the left of $0$?",
+                "figure": { "mode": "integerLine", "integerLine": { "min": -6, "max": 6, "points": [ { "value": -4, "label": "-4" } ] } },
+                "steps": [
+                  "Left of zero is negative.",
+                  "4 units left of $0$ is $-4$."
+                ],
+                "answer": "$-4$",
+                "check": ["0 - 4 == -4"]
+              },
+              {
+                "prompt": "What is the opposite of $-7$?",
+                "steps": [
+                  "The opposite is the same distance from 0, on the other side.",
+                  "The opposite of $-7$ is $7$."
+                ],
+                "answer": "$7$",
+                "check": ["-(-7) == 7"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Place and read",
+            "intro": "Think about which side of zero you're on.",
+            "problems": [
+              {
+                "prompt": "Which integer is the opposite of $6$?",
+                "figure": { "mode": "integerLine", "integerLine": { "min": -7, "max": 7, "points": [ { "value": -6, "label": "-6" }, { "value": 6, "label": "6", "color": "#3b82f6" } ] } },
+                "options": ["$-6$", "$6$", "$0$"],
+                "correctIndex": 0,
+                "explanation": "The opposite of $6$ is $-6$ — same distance, other side.",
+                "check": ["-(6) == -6"]
+              },
+              {
+                "prompt": "Which integer is 3 units to the right of $0$?",
+                "options": ["$3$", "$-3$", "$0$"],
+                "correctIndex": 0,
+                "explanation": "Right of zero is positive: $3$.",
+                "check": ["0 + 3 == 3"]
+              },
+              {
+                "prompt": "Is $-2$ to the left or right of $0$?",
+                "options": ["left", "right", "on zero"],
+                "correctIndex": 0,
+                "explanation": "Negatives are to the left of zero, so $-2$ is on the left.",
+                "check": ["-2 < 0"]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Out in the world",
+            "title": "Integers in real life",
+            "beats": [
+              "**Temperature:** 5 degrees below zero is $-5°$.",
+              "**Elevation:** 20 m below sea level is $-20$ m.",
+              "**Money:** owing \\$8 is like having $-8$ dollars.",
+              "Negatives are how we measure 'below' and 'owe'."
+            ],
+            "figure": {
+              "mode": "integerLine",
+              "integerLine": { "min": -6, "max": 6, "points": [ { "value": -5, "label": "-5°" } ] }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Real-world integers",
+            "intro": "Below or owed → negative.",
+            "examples": [
+              {
+                "prompt": "A temperature of 5 degrees below zero is which integer?",
+                "figure": { "mode": "integerLine", "integerLine": { "min": -6, "max": 6, "points": [ { "value": -5, "label": "-5" } ] } },
+                "steps": [
+                  "Below zero is negative.",
+                  "5 below zero is $-5$."
+                ],
+                "answer": "$-5$",
+                "check": ["0 - 5 == -5"]
+              },
+              {
+                "prompt": "A diver 20 m below sea level is at which integer?",
+                "steps": [
+                  "Below sea level is negative.",
+                  "20 m below is $-20$ m."
+                ],
+                "answer": "$-20$",
+                "check": ["0 - 20 == -20"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Which integer?",
+            "intro": "Translate the situation into a positive or negative integer.",
+            "problems": [
+              {
+                "prompt": "You owe \\$8. As an integer, that's:",
+                "options": ["$-8$", "$8$", "$0$"],
+                "correctIndex": 0,
+                "explanation": "Owing money is negative: $-8$.",
+                "check": ["0 - 8 == -8"]
+              },
+              {
+                "prompt": "The opposite of $-3$ is:",
+                "options": ["$3$", "$-3$", "$0$"],
+                "correctIndex": 0,
+                "explanation": "The opposite of $-3$ is $3$.",
+                "check": ["-(-3) == 3"]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The lowest place on land",
+            "body": "The shore of the Dead Sea sits about $-430$ m — 430 metres below sea level, the lowest dry land on Earth. Negative integers describe real places, not just math problems."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Find the opposite",
+            "prompt": "Which integer is the opposite of $5$?",
+            "options": ["$-5$", "$5$", "$0$"],
+            "correctIndex": 0,
+            "explanation": "The opposite of $5$ is $-5$ — same distance from zero, other side.",
+            "check": ["-(5) == -5"]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Integers are whole numbers and their **negatives**: $\\ldots, -2, -1, 0, 1, 2, \\ldots$",
+              "On the number line, **negatives go left** of zero, **positives go right**.",
+              "Every integer has an **opposite** the same distance from zero; negatives mean 'below' or 'owed'."
+            ]
+          }
+        ]
+      }
     }
   ],
-  "practice": [
-    {
-      "id": "int-prac-01",
-      "statement": "Placeholder practice problem. Compute $-4 + 9$.",
-      "solution": "Placeholder solution. $-4 + 9 = 5$."
-    }
-  ],
-  "testYourself": [
-    {
-      "id": "int-test-01",
-      "statement": "Placeholder test problem. A submarine is at $-200$ m. It rises 75 m. What is its new depth?",
-      "solution": "Placeholder solution. $-200 + 75 = -125$ m."
-    }
-  ]
+  "practice": [],
+  "testYourself": []
 }
