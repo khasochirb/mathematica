@@ -112,7 +112,7 @@ export interface FigureGroupSpec {
   glyph?: string;
 }
 export interface FigureSpec {
-  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid" | "numberLine" | "decimalColumn" | "decimalArea" | "divideChain" | "percentBar" | "percentChange";
+  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid" | "numberLine" | "decimalColumn" | "decimalArea" | "divideChain" | "percentBar" | "percentChange" | "percentChangeFinder";
   groups?: FigureGroupSpec[];
   highlightIndex?: number; // the highlighted "part" in partToWhole (default 0)
   // "cross" — a cross-multiply diagram for a:b vs c:d (draws the two diagonals + products).
@@ -136,6 +136,8 @@ export interface FigureSpec {
   percentBar?: { whole: number; percent: number };
   // "percentChange" — a price bar splitting into pay+discount, or extended by tax/tip.
   percentChange?: { original: number; percent: number; mode: "discount" | "increase"; currency?: string };
+  // "percentChangeFinder" — before/after bars with the percent increase/decrease.
+  percentChangeFinder?: { original: number; final: number; currency?: string };
 }
 
 // Fractions — a bar you split into more (equal) pieces to see equivalent fractions.
@@ -270,6 +272,15 @@ export interface PercentChangeConfig {
   color?: string;
 }
 
+// Percent increase / decrease — a before/after bar pair with the change
+// highlighted; the percent change (out of the ORIGINAL) reveals on tap.
+export interface PercentChangeFinderConfig {
+  original: number;
+  final: number;
+  currency?: string; // default "$"
+  color?: string;
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -319,6 +330,7 @@ export type InteractiveStep =
   | { kind: "percentGrid"; eyebrow?: string; title: string; teach: string; config: PercentGridConfig }
   | { kind: "percentBar"; eyebrow?: string; title: string; teach: string; config: PercentBarConfig }
   | { kind: "percentChange"; eyebrow?: string; title: string; teach: string; config: PercentChangeConfig }
+  | { kind: "percentChangeFinder"; eyebrow?: string; title: string; teach: string; config: PercentChangeFinderConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

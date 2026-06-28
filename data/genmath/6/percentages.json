@@ -1013,6 +1013,261 @@
           }
         ]
       }
+    },
+    {
+      "slug": "percent-increase-decrease",
+      "title": "Percent Increase & Decrease",
+      "concreteComparison": "A \\$40 game's price rises to \\$50. That's a \\$10 increase on \\$40 — a $25\\%$ **increase**. If instead it dropped from \\$50 to \\$40, that same \\$10 is now on \\$50 — a $20\\%$ **decrease**. Percent change is always measured against the **starting** amount.",
+      "objective": "Find a percent increase or decrease by comparing the change to the original amount: percent change = (change ÷ original) × 100.",
+      "concept": [
+        "A **percent increase** or **decrease** measures how much something changed, **out of the original** amount.",
+        "Find the change (new − old, or old − new), then ask what percent that is of the **original**: $\\frac{\\text{change}}{\\text{original}} \\times 100$.",
+        "\\$40 → \\$50 is a \\$10 increase on \\$40 = $25\\%$ up. \\$50 → \\$40 is a \\$10 decrease on \\$50 = $20\\%$ down — different, because the starting amount is different."
+      ],
+      "keyIdea": "Percent change = (change ÷ original) × 100. Always divide by the ORIGINAL (starting) amount, not the new one.",
+      "facts": [
+        {
+          "title": "Percent change",
+          "latex": "$\\dfrac{\\text{change}}{\\text{original}} \\times 100\\%$",
+          "explanation": "Compare the change to the amount you started with."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pid-we1",
+          "statement": "A price rises from \\$40 to \\$50. What is the percent increase?",
+          "solution": "Change \\$10 on \\$40: $\\frac{10}{40} = 25\\%$ increase.",
+          "check": ["Rational(50-40,40)*100 == 25"]
+        },
+        {
+          "id": "pid-we2",
+          "statement": "A price falls from \\$50 to \\$40. What is the percent decrease?",
+          "solution": "Change \\$10 on \\$50: $\\frac{10}{50} = 20\\%$ decrease.",
+          "check": ["Rational(50-40,50)*100 == 20"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dividing the change by the new amount instead of the original.",
+          "correction": "Always divide by the **starting** amount: \\$40 → \\$50 is $\\frac{10}{40}$, not $\\frac{10}{50}$.",
+          "authored": true
+        },
+        {
+          "text": "Assuming a $25\\%$ rise then a $25\\%$ fall returns to the start.",
+          "correction": "They are on different bases. Up $25\\%$ from \\$40 is \\$50; down $25\\%$ from \\$50 is \\$37.50 — not \\$40.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pid-t1",
+          "statement": "A \\$20 item rises to \\$25. What is the percent increase?",
+          "solution": "Change \\$5 on \\$20: $\\frac{5}{20} = 25\\%$.",
+          "check": ["Rational(25-20,20)*100 == 25"]
+        },
+        {
+          "id": "pid-t2",
+          "statement": "An \\$80 item falls to \\$60. What is the percent decrease?",
+          "solution": "Change \\$20 on \\$80: $\\frac{20}{80} = 25\\%$.",
+          "check": ["Rational(80-60,80)*100 == 25"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "percentChangeFinder",
+            "eyebrow": "Concept A",
+            "title": "From old to new",
+            "teach": "The price went from \\$40 to \\$50 — a \\$10 change. To turn that into a percent, compare it to the **original** \\$40: $\\frac{10}{40} = 25\\%$. Tap to reveal the percent change.",
+            "config": {
+              "original": 40,
+              "final": 50,
+              "currency": "$",
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Change out of the original",
+            "beats": [
+              "Find the change: $50 - 40 = \\$10$.",
+              "Ask what percent that change is of the **original** \\$40.",
+              "$\\frac{10}{40} = \\frac{1}{4} = 25\\%$.",
+              "The price went up, so it's a $25\\%$ **increase**."
+            ],
+            "figure": {
+              "mode": "percentChangeFinder",
+              "percentChangeFinder": { "original": 40, "final": 50 }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Watch the base",
+            "title": "Why direction matters",
+            "beats": [
+              "The same \\$10 change gives a different percent on a different base.",
+              "$40 \\to 50$: \\$10 on \\$40 = $25\\%$ up.",
+              "$50 \\to 40$: \\$10 on \\$50 = $20\\%$ down.",
+              "Always divide by the amount you **started** from."
+            ],
+            "figure": {
+              "mode": "percentChangeFinder",
+              "percentChangeFinder": { "original": 50, "final": 40 }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Percent increase",
+            "intro": "Change divided by the original, then ×100.",
+            "examples": [
+              {
+                "prompt": "A price rises from \\$40 to \\$50. Find the percent increase.",
+                "figure": { "mode": "percentChangeFinder", "percentChangeFinder": { "original": 40, "final": 50 } },
+                "steps": [
+                  "Change: $50 - 40 = \\$10$.",
+                  "Of the original: $\\frac{10}{40} = 25\\%$.",
+                  "A $25\\%$ increase."
+                ],
+                "answer": "$25\\%$ increase",
+                "check": ["Rational(50-40,40)*100 == 25"]
+              },
+              {
+                "prompt": "A \\$20 item rises to \\$25. Find the percent increase.",
+                "figure": { "mode": "percentChangeFinder", "percentChangeFinder": { "original": 20, "final": 25 } },
+                "steps": [
+                  "Change: $25 - 20 = \\$5$.",
+                  "$\\frac{5}{20} = 25\\%$."
+                ],
+                "answer": "$25\\%$ increase",
+                "check": ["Rational(25-20,20)*100 == 25"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Increase or decrease?",
+            "intro": "Divide the change by the original amount.",
+            "problems": [
+              {
+                "prompt": "A price goes from \\$50 to \\$60. What is the percent change?",
+                "options": ["$20\\%$ increase", "$10\\%$ increase", "$20\\%$ decrease"],
+                "correctIndex": 0,
+                "explanation": "Change \\$10 on \\$50: $\\frac{10}{50} = 20\\%$ increase.",
+                "check": ["Rational(60-50,50)*100 == 20"]
+              },
+              {
+                "prompt": "A \\$30 plant grows to \\$36 in value. What is the percent change?",
+                "options": ["$20\\%$ increase", "$6\\%$ increase", "$16\\%$ increase"],
+                "correctIndex": 0,
+                "explanation": "Change \\$6 on \\$30: $\\frac{6}{30} = 20\\%$ increase.",
+                "check": ["Rational(36-30,30)*100 == 20"]
+              },
+              {
+                "prompt": "A score rises from \\$80 to \\$100. What is the percent change?",
+                "options": ["$25\\%$ increase", "$20\\%$ increase", "$80\\%$ increase"],
+                "correctIndex": 0,
+                "explanation": "Change \\$20 on \\$80: $\\frac{20}{80} = 25\\%$ increase.",
+                "check": ["Rational(100-80,80)*100 == 25"]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Going down",
+            "title": "Percent decrease",
+            "beats": [
+              "A decrease works the same way — change over the original.",
+              "$50 \\to 40$: the change is \\$10.",
+              "$\\frac{10}{50} = 20\\%$.",
+              "The price dropped, so it's a $20\\%$ **decrease**."
+            ],
+            "figure": {
+              "mode": "percentChangeFinder",
+              "percentChangeFinder": { "original": 50, "final": 40 }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Percent decrease",
+            "intro": "Change divided by the original — the price just went down.",
+            "examples": [
+              {
+                "prompt": "A price falls from \\$50 to \\$40. Find the percent decrease.",
+                "figure": { "mode": "percentChangeFinder", "percentChangeFinder": { "original": 50, "final": 40 } },
+                "steps": [
+                  "Change: $50 - 40 = \\$10$ down.",
+                  "Of the original: $\\frac{10}{50} = 20\\%$.",
+                  "A $20\\%$ decrease."
+                ],
+                "answer": "$20\\%$ decrease",
+                "check": ["Rational(50-40,50)*100 == 20"]
+              },
+              {
+                "prompt": "An \\$80 item falls to \\$60. Find the percent decrease.",
+                "figure": { "mode": "percentChangeFinder", "percentChangeFinder": { "original": 80, "final": 60 } },
+                "steps": [
+                  "Change: $80 - 60 = \\$20$.",
+                  "$\\frac{20}{80} = 25\\%$."
+                ],
+                "answer": "$25\\%$ decrease",
+                "check": ["Rational(80-60,80)*100 == 25"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the percent change",
+            "intro": "Always over the original amount.",
+            "problems": [
+              {
+                "prompt": "A \\$100 item drops to \\$75. What is the percent decrease?",
+                "options": ["$25\\%$", "$75\\%$", "$33\\%$"],
+                "correctIndex": 0,
+                "explanation": "Change \\$25 on \\$100: $\\frac{25}{100} = 25\\%$.",
+                "check": ["Rational(100-75,100)*100 == 25"]
+              },
+              {
+                "prompt": "A \\$60 item drops to \\$48. What is the percent decrease?",
+                "options": ["$20\\%$", "$12\\%$", "$25\\%$"],
+                "correctIndex": 0,
+                "explanation": "Change \\$12 on \\$60: $\\frac{12}{60} = 20\\%$.",
+                "check": ["Rational(60-48,60)*100 == 20"]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Up 25%, down 25% — not back to start",
+            "body": "Raise \\$40 by $25\\%$ and you get \\$50. Now drop \\$50 by $25\\%$ and you get \\$37.50 — not \\$40! The percents sit on different starting amounts, so they don't cancel. It's a trap worth remembering."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Percent increase",
+            "prompt": "A price rises from \\$40 to \\$50. What is the percent increase?",
+            "options": ["$25\\%$", "$20\\%$", "$10\\%$"],
+            "correctIndex": 0,
+            "explanation": "Change \\$10 on the original \\$40: $\\frac{10}{40} = 25\\%$.",
+            "check": ["Rational(50-40,40)*100 == 25"]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Percent change = $\\frac{\\text{change}}{\\text{original}} \\times 100$.",
+              "Divide by the **original** (starting) amount, never the new one.",
+              "Up then down by the same percent does **not** return to the start."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [],
