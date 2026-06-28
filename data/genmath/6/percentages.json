@@ -1268,6 +1268,258 @@
           }
         ]
       }
+    },
+    {
+      "slug": "finding-the-whole",
+      "title": "Finding the Whole",
+      "concreteComparison": "You scored $15$ points and that was $25\\%$ of the quiz. How many points was the whole quiz worth? If $25\\%$ is $15$, the whole is $15 \\div 0.25 = 60$ points. Sometimes you know the part and the percent and need to find the **whole**.",
+      "objective": "Find the whole when you know a part and what percent it is: whole = part ÷ (percent as a decimal), or use the 1% method.",
+      "concept": [
+        "When a **part** is a known **percent** of an unknown whole, you can work backwards to the whole.",
+        "Divide the part by the percent written as a decimal: $15 \\div 0.25 = 60$.",
+        "Or use the **1% method**: if $25\\%$ is $15$, then $1\\%$ is $15 \\div 25 = 0.6$, so $100\\%$ is $60$."
+      ],
+      "keyIdea": "part = percent × whole, so whole = part ÷ (percent as a decimal). Or: find 1%, then ×100.",
+      "facts": [
+        {
+          "title": "Find the whole",
+          "latex": "$\\text{whole} = \\dfrac{\\text{part}}{\\text{percent as a decimal}} = \\dfrac{15}{0.25} = 60$",
+          "explanation": "Divide the part by the percent written as a decimal."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ftw-we1",
+          "statement": "$15$ is $25\\%$ of what number?",
+          "solution": "$15 \\div 0.25 = 60$.",
+          "check": ["15 / Rational(25,100) == 60"]
+        },
+        {
+          "id": "ftw-we2",
+          "statement": "$9$ is $10\\%$ of what number?",
+          "solution": "$10\\%$ is 9, so $1\\%$ is $0.9$ and $100\\%$ is $90$.",
+          "check": ["9 / Rational(10,100) == 90"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Taking the percent OF the part (finding $25\\%$ of $15$).",
+          "correction": "Here $15$ IS the $25\\%$. Go the other way: divide, $15 \\div 0.25 = 60$.",
+          "authored": true
+        },
+        {
+          "text": "Multiplying the part by the percent instead of dividing.",
+          "correction": "To undo 'percent of', you **divide** by the percent: $15 \\div 0.25 = 60$, not $15 \\times 0.25$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ftw-t1",
+          "statement": "$20$ is $25\\%$ of what number?",
+          "solution": "$20 \\div 0.25 = 80$.",
+          "check": ["20 / Rational(25,100) == 80"]
+        },
+        {
+          "id": "ftw-t2",
+          "statement": "$12$ is $20\\%$ of what number?",
+          "solution": "$12 \\div 0.2 = 60$.",
+          "check": ["12 / Rational(20,100) == 60"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "percentBar",
+            "eyebrow": "Concept A",
+            "title": "Working up to the whole",
+            "teach": "You know $25\\%$ of the quiz is $15$ points. Slide all the way up to $100\\%$ — that's the whole quiz: $60$ points. The part grows to the whole as the percent grows to $100\\%$.",
+            "config": {
+              "whole": 60,
+              "start": 25,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Divide by the percent",
+            "beats": [
+              "The part is the percent times the whole: $15 = 0.25 \\times \\text{whole}$.",
+              "To undo the multiply, **divide** by the percent (as a decimal).",
+              "$\\text{whole} = 15 \\div 0.25 = 60$.",
+              "So the quiz was worth $60$ points."
+            ],
+            "figure": {
+              "mode": "percentBar",
+              "percentBar": { "whole": 60, "percent": 25 }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Another way",
+            "title": "The 1% method",
+            "beats": [
+              "If you know one percent's worth, multiply up to $100\\%$.",
+              "$10\\%$ is $9$, so $1\\%$ is $9 \\div 10 = 0.9$.",
+              "$100\\%$ is $100 \\times 0.9 = 90$.",
+              "Great when the percent divides into 100 nicely."
+            ],
+            "figure": {
+              "mode": "percentBar",
+              "percentBar": { "whole": 90, "percent": 10 }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Finding the whole",
+            "intro": "Divide the part by the percent as a decimal.",
+            "examples": [
+              {
+                "prompt": "$15$ is $25\\%$ of what number?",
+                "figure": { "mode": "percentBar", "percentBar": { "whole": 60, "percent": 25 } },
+                "steps": [
+                  "$15 = 25\\%$ of the whole.",
+                  "Divide by the decimal: $15 \\div 0.25 = 60$."
+                ],
+                "answer": "$60$",
+                "check": ["15 / Rational(25,100) == 60"]
+              },
+              {
+                "prompt": "$9$ is $10\\%$ of what number?",
+                "figure": { "mode": "percentBar", "percentBar": { "whole": 90, "percent": 10 } },
+                "steps": [
+                  "$10\\%$ is $9$, so $1\\%$ is $0.9$.",
+                  "$100\\%$ is $90$."
+                ],
+                "answer": "$90$",
+                "check": ["9 / Rational(10,100) == 90"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the whole",
+            "intro": "Divide the part by the percent as a decimal.",
+            "problems": [
+              {
+                "prompt": "$20$ is $25\\%$ of what number?",
+                "options": ["$80$", "$5$", "$45$"],
+                "correctIndex": 0,
+                "explanation": "$20 \\div 0.25 = 80$.",
+                "check": ["20 / Rational(25,100) == 80"]
+              },
+              {
+                "prompt": "$7$ is $10\\%$ of what number?",
+                "options": ["$70$", "$0.7$", "$17$"],
+                "correctIndex": 0,
+                "explanation": "$10\\%$ is $7$, so $100\\%$ is $70$.",
+                "check": ["7 / Rational(10,100) == 70"]
+              },
+              {
+                "prompt": "$30$ is $50\\%$ of what number?",
+                "options": ["$60$", "$15$", "$80$"],
+                "correctIndex": 0,
+                "explanation": "$50\\%$ is half, so the whole is double: $30 \\times 2 = 60$.",
+                "check": ["30 / Rational(50,100) == 60"]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Always check",
+            "title": "Check by going forward",
+            "beats": [
+              "Once you have the whole, check it the easy way.",
+              "Found the whole is $60$? Take $25\\%$ of it.",
+              "$25\\%$ of $60 = 15$ — back to the part you started with. ✓",
+              "If the forward check matches, your whole is right."
+            ],
+            "figure": {
+              "mode": "percentBar",
+              "percentBar": { "whole": 60, "percent": 25 }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "More wholes",
+            "intro": "Divide, or scale up from a friendly percent.",
+            "examples": [
+              {
+                "prompt": "$12$ is $20\\%$ of what number?",
+                "figure": { "mode": "percentBar", "percentBar": { "whole": 60, "percent": 20 } },
+                "steps": [
+                  "$12 = 20\\%$ of the whole.",
+                  "$12 \\div 0.2 = 60$."
+                ],
+                "answer": "$60$",
+                "check": ["12 / Rational(20,100) == 60"]
+              },
+              {
+                "prompt": "$30$ is $50\\%$ of what number?",
+                "figure": { "mode": "percentBar", "percentBar": { "whole": 60, "percent": 50 } },
+                "steps": [
+                  "$50\\%$ is half.",
+                  "So the whole is double: $30 \\times 2 = 60$."
+                ],
+                "answer": "$60$",
+                "check": ["30 / Rational(50,100) == 60"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "What's the whole?",
+            "intro": "Part ÷ percent (as a decimal).",
+            "problems": [
+              {
+                "prompt": "$18$ is $20\\%$ of what number?",
+                "options": ["$90$", "$3.6$", "$80$"],
+                "correctIndex": 0,
+                "explanation": "$18 \\div 0.2 = 90$.",
+                "check": ["18 / Rational(20,100) == 90"]
+              },
+              {
+                "prompt": "$6$ is $5\\%$ of what number?",
+                "options": ["$120$", "$30$", "$110$"],
+                "correctIndex": 0,
+                "explanation": "$5\\%$ is $6$, so $1\\%$ is $1.2$ and $100\\%$ is $120$.",
+                "check": ["6 / Rational(5,100) == 120"]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Reverse-engineering a sale",
+            "body": "See '\\$45 — that's $75\\%$ of the original!'? Work back to the original: $45 \\div 0.75 = \\$60$. Finding the whole is how you uncover the price before a discount."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Find the whole",
+            "prompt": "$15$ is $25\\%$ of what number?",
+            "options": ["$60$", "$3.75$", "$40$"],
+            "correctIndex": 0,
+            "explanation": "$15 \\div 0.25 = 60$.",
+            "check": ["15 / Rational(25,100) == 60"]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "If a part is a known percent of the whole, **divide** to find the whole.",
+              "whole = part ÷ (percent as a decimal): $15 \\div 0.25 = 60$.",
+              "Or find $1\\%$, then multiply by $100$. Check by taking the percent of your answer."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [],
