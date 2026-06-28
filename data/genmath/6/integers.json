@@ -762,6 +762,262 @@
           }
         ]
       }
+    },
+    {
+      "slug": "adding-integers",
+      "title": "Adding Integers",
+      "concreteComparison": "It's $-3°$ and it warms up $5°$. The new temperature? Start at $-3$ and jump $5$ to the **right**: $-3 + 5 = 2$. Adding a **positive** jumps right; adding a **negative** jumps left.",
+      "objective": "Add integers using number-line jumps (right for positive, left for negative), and with the sign rules: same signs add, different signs subtract.",
+      "concept": [
+        "To add on the number line, **start** at the first number and **jump**: right for a positive, left for a negative.",
+        "**Same signs:** add the distances and keep the sign. $-3 + (-4) = -7$.",
+        "**Different signs:** subtract the smaller distance from the larger, and take the sign of the number farther from zero. $-3 + 5 = 2$; $3 + (-5) = -2$."
+      ],
+      "keyIdea": "Adding is a number-line jump (right for +, left for −). Same signs add; different signs subtract and keep the sign of the bigger absolute value.",
+      "facts": [
+        {
+          "title": "Sign rules",
+          "latex": "$-3 + (-4) = -7, \\quad -3 + 5 = 2$",
+          "explanation": "Same signs add; different signs subtract."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ai-we1",
+          "statement": "Add $-3 + 5$.",
+          "solution": "Start at $-3$, jump 5 right, land on $2$.",
+          "check": ["-3 + 5 == 2"]
+        },
+        {
+          "id": "ai-we2",
+          "statement": "Add $-3 + (-4)$.",
+          "solution": "Start at $-3$, jump 4 left, land on $-7$.",
+          "check": ["-3 + (-4) == -7"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding the digits and keeping a negative for different signs, e.g. $-3 + 5 = -8$.",
+          "correction": "Different signs **subtract**: $5 - 3 = 2$, and $5$ is farther from zero, so $-3 + 5 = 2$.",
+          "authored": true
+        },
+        {
+          "text": "Jumping the wrong way for a negative.",
+          "correction": "Adding a negative jumps **left**: $2 + (-5)$ goes left to $-3$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ai-t1",
+          "statement": "Add $-6 + 2$.",
+          "solution": "Start at $-6$, jump 2 right, land on $-4$.",
+          "check": ["-6 + 2 == -4"]
+        },
+        {
+          "id": "ai-t2",
+          "statement": "Add $5 + (-8)$.",
+          "solution": "Start at $5$, jump 8 left, land on $-3$.",
+          "check": ["5 + (-8) == -3"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "integerAdd",
+            "eyebrow": "Concept A",
+            "title": "Jumping to add",
+            "teach": "Start at $-3$. Adding $5$ means jump **5 to the right** (positive = right). You land on $2$, so $-3 + 5 = 2$. Tap to take the jump.",
+            "config": {
+              "a": -3,
+              "b": 5,
+              "min": -8,
+              "max": 8,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Right for positive, left for negative",
+            "beats": [
+              "Adding is moving along the number line from where you start.",
+              "Add a **positive** → jump **right**.",
+              "Add a **negative** → jump **left**.",
+              "$-3 + 5$: start at $-3$, jump 5 right, land on $2$."
+            ],
+            "figure": {
+              "mode": "integerAdd",
+              "integerAdd": { "a": -3, "b": 5, "min": -8, "max": 8 }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Same direction",
+            "title": "Same signs: add",
+            "beats": [
+              "When both numbers are negative, you jump further into the negatives.",
+              "$-3 + (-4)$: start at $-3$, jump 4 more **left**.",
+              "Add the distances ($3 + 4 = 7$) and keep the sign: $-7$.",
+              "Two positives work the same, landing further right."
+            ],
+            "figure": {
+              "mode": "integerAdd",
+              "integerAdd": { "a": -3, "b": -4, "min": -9, "max": 5 }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Adding with the number line",
+            "intro": "Start, then jump — right for positive, left for negative.",
+            "examples": [
+              {
+                "prompt": "Add $-3 + 5$.",
+                "figure": { "mode": "integerAdd", "integerAdd": { "a": -3, "b": 5, "min": -8, "max": 8 } },
+                "steps": [
+                  "Start at $-3$.",
+                  "Add $5$ → jump 5 to the **right**.",
+                  "Land on $2$: $-3 + 5 = 2$."
+                ],
+                "answer": "$2$",
+                "check": ["-3 + 5 == 2"]
+              },
+              {
+                "prompt": "Add $-3 + (-4)$.",
+                "figure": { "mode": "integerAdd", "integerAdd": { "a": -3, "b": -4, "min": -9, "max": 5 } },
+                "steps": [
+                  "Start at $-3$.",
+                  "Add $-4$ → jump 4 to the **left**.",
+                  "Land on $-7$: $-3 + (-4) = -7$."
+                ],
+                "answer": "$-7$",
+                "check": ["-3 + (-4) == -7"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Add them",
+            "intro": "Picture the jump: right for positive, left for negative.",
+            "problems": [
+              {
+                "prompt": "$-3 + (-4) = ?$",
+                "options": ["$-7$", "$7$", "$-1$"],
+                "correctIndex": 0,
+                "explanation": "Same signs: add $3 + 4 = 7$, keep the negative → $-7$.",
+                "check": ["-3 + (-4) == -7"]
+              },
+              {
+                "prompt": "$-6 + 2 = ?$",
+                "options": ["$-4$", "$4$", "$-8$"],
+                "correctIndex": 0,
+                "explanation": "Start at $-6$, jump 2 right → $-4$.",
+                "check": ["-6 + 2 == -4"]
+              },
+              {
+                "prompt": "$5 + (-8) = ?$",
+                "options": ["$-3$", "$3$", "$13$"],
+                "correctIndex": 0,
+                "explanation": "Start at $5$, jump 8 left → $-3$.",
+                "check": ["5 + (-8) == -3"]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Opposite directions",
+            "title": "Different signs: subtract",
+            "beats": [
+              "With one positive and one negative, the jumps partly cancel.",
+              "$3 + (-5)$: start at $3$, jump 5 left, land on $-2$.",
+              "Shortcut: subtract the distances ($5 - 3 = 2$) and take the sign of the farther one.",
+              "$-5$ is farther from zero, so the answer is negative: $-2$."
+            ],
+            "figure": {
+              "mode": "integerAdd",
+              "integerAdd": { "a": 3, "b": -5, "min": -6, "max": 6 }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Same vs different signs",
+            "intro": "Same signs add; different signs subtract and keep the bigger one's sign.",
+            "examples": [
+              {
+                "prompt": "Add $6 + (-2)$.",
+                "figure": { "mode": "integerAdd", "integerAdd": { "a": 6, "b": -2, "min": -2, "max": 8 } },
+                "steps": [
+                  "Different signs: subtract $6 - 2 = 4$.",
+                  "$6$ is farther from zero, so the answer is positive: $4$."
+                ],
+                "answer": "$4$",
+                "check": ["6 + (-2) == 4"]
+              },
+              {
+                "prompt": "Add $-7 + 3$.",
+                "figure": { "mode": "integerAdd", "integerAdd": { "a": -7, "b": 3, "min": -9, "max": 5 } },
+                "steps": [
+                  "Different signs: subtract $7 - 3 = 4$.",
+                  "$-7$ is farther from zero, so the answer is negative: $-4$."
+                ],
+                "answer": "$-4$",
+                "check": ["-7 + 3 == -4"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the sum",
+            "intro": "Decide: same signs add, different signs subtract.",
+            "problems": [
+              {
+                "prompt": "$-2 + (-6) = ?$",
+                "options": ["$-8$", "$8$", "$4$"],
+                "correctIndex": 0,
+                "explanation": "Same signs: $2 + 6 = 8$, keep negative → $-8$.",
+                "check": ["-2 + (-6) == -8"]
+              },
+              {
+                "prompt": "$4 + (-9) = ?$",
+                "options": ["$-5$", "$5$", "$13$"],
+                "correctIndex": 0,
+                "explanation": "Different signs: $9 - 4 = 5$; $-9$ is farther, so $-5$.",
+                "check": ["4 + (-9) == -5"]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "A number plus its opposite is zero",
+            "body": "Jump 5 right then 5 left and you're back where you started: $-5 + 5 = 0$. A number and its opposite are a 'zero pair' — they always add to $0$. That idea powers all of integer arithmetic."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Add the integers",
+            "prompt": "$-3 + 5 = ?$",
+            "options": ["$2$", "$-2$", "$8$"],
+            "correctIndex": 0,
+            "explanation": "Start at $-3$, jump 5 right → $2$.",
+            "check": ["-3 + 5 == 2"]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Adding is a **jump**: right for a positive, left for a negative.",
+              "**Same signs:** add the distances, keep the sign.",
+              "**Different signs:** subtract, and keep the sign of the number farther from zero."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [],

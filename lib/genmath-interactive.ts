@@ -112,7 +112,7 @@ export interface FigureGroupSpec {
   glyph?: string;
 }
 export interface FigureSpec {
-  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid" | "numberLine" | "decimalColumn" | "decimalArea" | "divideChain" | "percentBar" | "percentChange" | "percentChangeFinder" | "integerLine";
+  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid" | "numberLine" | "decimalColumn" | "decimalArea" | "divideChain" | "percentBar" | "percentChange" | "percentChangeFinder" | "integerLine" | "integerAdd";
   groups?: FigureGroupSpec[];
   highlightIndex?: number; // the highlighted "part" in partToWhole (default 0)
   // "cross" — a cross-multiply diagram for a:b vs c:d (draws the two diagonals + products).
@@ -141,6 +141,8 @@ export interface FigureSpec {
   // "integerLine" — a number line across zero with integers marked. `highlight`
   // draws a distance band from zero (for absolute value).
   integerLine?: { min: number; max: number; points: { value: number; label?: string; color?: string }[]; highlight?: number };
+  // "integerAdd" — a number-line jump from a by b, landing at a + b.
+  integerAdd?: { a: number; b: number; min: number; max: number };
 }
 
 // Fractions — a bar you split into more (equal) pieces to see equivalent fractions.
@@ -303,6 +305,16 @@ export interface IntegerCompareConfig {
   color?: string;
 }
 
+// Adding integers — a number-line jump: start at a, hop b units (right if
+// positive, left if negative), landing at a + b.
+export interface IntegerAddConfig {
+  a: number;
+  b: number;
+  min: number;
+  max: number;
+  color?: string;
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -356,6 +368,7 @@ export type InteractiveStep =
   | { kind: "integerLine"; eyebrow?: string; title: string; teach: string; config: IntegerLineConfig }
   | { kind: "integerCompare"; eyebrow?: string; title: string; teach: string; config: IntegerCompareConfig }
   | { kind: "absoluteValue"; eyebrow?: string; title: string; teach: string; config: IntegerLineConfig }
+  | { kind: "integerAdd"; eyebrow?: string; title: string; teach: string; config: IntegerAddConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

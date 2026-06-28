@@ -10,6 +10,7 @@ import PercentBarView from "@/components/genmath/interactive/PercentBarView";
 import PercentChangeView from "@/components/genmath/interactive/PercentChangeView";
 import PercentChangeFinderView from "@/components/genmath/interactive/PercentChangeFinderView";
 import IntegerLineView from "@/components/genmath/interactive/IntegerLineView";
+import IntegerAddView from "@/components/genmath/interactive/IntegerAddView";
 
 function Token({ color }: { color: string }) {
   return (
@@ -263,6 +264,18 @@ export default function RatioFigure({ figure }: { figure: FigureSpec }) {
     return (
       <div className="gm-fade flex justify-center rounded-xl px-4 py-4" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
         <IntegerLineView min={min} max={max} points={points} highlightFromZero={highlight} />
+      </div>
+    );
+  }
+
+  if (mode === "integerAdd" && figure.integerAdd) {
+    const { a, b, min, max } = figure.integerAdd;
+    return (
+      <div className="gm-fade flex flex-col items-center gap-1.5 rounded-xl px-4 py-4" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
+        <IntegerAddView a={a} b={b} min={min} max={max} showJump />
+        <div className="serif tabular text-[14px]" style={{ color: "var(--fg)" }}>
+          {a} {b >= 0 ? `+ ${b}` : `+ (${b})`} = {a + b}
+        </div>
       </div>
     );
   }
