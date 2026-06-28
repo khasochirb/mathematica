@@ -255,6 +255,257 @@
           }
         ]
       }
+    },
+    {
+      "slug": "percent-of-a-number",
+      "title": "Percent of a Number",
+      "concreteComparison": "An \\$80 jacket is $25\\%$ off. The discount is $25\\%$ of \\$80 = \\$20$, so you save \\$20. Finding a 'percent of a number' shows up every time there's a sale, a tip, or a tax.",
+      "objective": "Find a percent of a number by turning the percent into a fraction or decimal and multiplying, and by using benchmark percents like 10%, 25%, and 50%.",
+      "concept": [
+        "To find a percent **of** a number, change the percent to a fraction or decimal, then **multiply**.",
+        "$25\\%$ of $80 = \\frac{1}{4} \\times 80 = 20$, or $0.25 \\times 80 = 20$.",
+        "Benchmarks make it quick: $10\\%$ is divide by 10, $50\\%$ is half, $25\\%$ is a quarter, $1\\%$ is divide by 100."
+      ],
+      "keyIdea": "Percent of a number = (percent as a decimal or fraction) × the number. $10\\%$ is ÷10, $50\\%$ is half, $25\\%$ is a quarter.",
+      "facts": [
+        {
+          "title": "Percent OF means multiply",
+          "latex": "$25\\% \\text{ of } 80 = 0.25 \\times 80 = 20$",
+          "explanation": "Turn the percent into a decimal or fraction, then multiply."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pon-we1",
+          "statement": "Find $25\\%$ of $80$.",
+          "solution": "$25\\% = \\frac{1}{4}$, and $\\frac{1}{4} \\times 80 = 20$.",
+          "check": ["Rational(25,100)*80 == 20"]
+        },
+        {
+          "id": "pon-we2",
+          "statement": "Find $10\\%$ of $50$.",
+          "solution": "$10\\%$ means divide by 10: $50 \\div 10 = 5$.",
+          "check": ["Rational(10,100)*50 == 5"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Multiplying by the percent number instead of the decimal, e.g. $25 \\times 80$.",
+          "correction": "Change $25\\%$ to $0.25$ (or $\\frac{1}{4}$) first, then multiply: $0.25 \\times 80 = 20$.",
+          "authored": true
+        },
+        {
+          "text": "Mixing up $10\\%$ with $\\frac{1}{10}$ of the wrong number.",
+          "correction": "$10\\%$ of a number is that number ÷ 10: $10\\%$ of 90 is 9.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pon-t1",
+          "statement": "Find $50\\%$ of $40$.",
+          "solution": "$50\\%$ is half: $40 \\div 2 = 20$.",
+          "check": ["Rational(50,100)*40 == 20"]
+        },
+        {
+          "id": "pon-t2",
+          "statement": "Find $30\\%$ of $80$.",
+          "solution": "$10\\%$ of 80 is 8, so $30\\%$ is $3 \\times 8 = 24$.",
+          "check": ["Rational(30,100)*80 == 24"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "percentBar",
+            "eyebrow": "Concept A",
+            "title": "A percent of an amount",
+            "teach": "The top bar is the percent (0% to 100%); the bottom bar is the amount (0 to the whole). Slide to a percent and read the matching value below. $25\\%$ of $80$ lines up with $20$.",
+            "config": {
+              "whole": 80,
+              "start": 25,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Percent OF means multiply",
+            "beats": [
+              "Change the percent to a fraction or decimal, then **multiply** by the number.",
+              "$25\\% = \\frac{1}{4} = 0.25$.",
+              "$\\frac{1}{4} \\times 80 = 20$, and $0.25 \\times 80 = 20$ — same answer.",
+              "So $25\\%$ of $80$ is $20$."
+            ],
+            "figure": {
+              "mode": "percentBar",
+              "percentBar": { "whole": 80, "percent": 25 }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "A fast trick",
+            "title": "Use 10% as a stepping stone",
+            "beats": [
+              "$10\\%$ of a number is just that number ÷ 10.",
+              "$10\\%$ of $80 = 8$.",
+              "Build other percents from it: $30\\% = 3 \\times 8 = 24$; $5\\%$ is half of $10\\%$ = $4$.",
+              "No calculator needed — just multiply and halve."
+            ],
+            "figure": {
+              "mode": "percentBar",
+              "percentBar": { "whole": 80, "percent": 10 }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Finding a percent of a number",
+            "intro": "Turn the percent into a fraction or decimal, then multiply.",
+            "examples": [
+              {
+                "prompt": "Find $25\\%$ of $80$.",
+                "figure": { "mode": "percentBar", "percentBar": { "whole": 80, "percent": 25 } },
+                "steps": [
+                  "$25\\% = \\frac{1}{4}$ (or $0.25$).",
+                  "$\\frac{1}{4} \\times 80 = 20$."
+                ],
+                "answer": "$20$",
+                "check": ["Rational(25,100)*80 == 20"]
+              },
+              {
+                "prompt": "Find $10\\%$ of $50$.",
+                "figure": { "mode": "percentBar", "percentBar": { "whole": 50, "percent": 10 } },
+                "steps": [
+                  "$10\\%$ means divide by 10.",
+                  "$50 \\div 10 = 5$."
+                ],
+                "answer": "$5$",
+                "check": ["Rational(10,100)*50 == 5"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the percent of the number",
+            "intro": "Use a benchmark or multiply by the decimal.",
+            "problems": [
+              {
+                "prompt": "What is $50\\%$ of $40$?",
+                "options": ["$20$", "$80$", "$4$"],
+                "correctIndex": 0,
+                "explanation": "$50\\%$ is half: $40 \\div 2 = 20$.",
+                "check": ["Rational(50,100)*40 == 20"]
+              },
+              {
+                "prompt": "What is $10\\%$ of $90$?",
+                "options": ["$9$", "$90$", "$0.9$"],
+                "correctIndex": 0,
+                "explanation": "$10\\%$ means divide by 10: $90 \\div 10 = 9$.",
+                "check": ["Rational(10,100)*90 == 9"]
+              },
+              {
+                "prompt": "What is $25\\%$ of $60$?",
+                "options": ["$15$", "$30$", "$240$"],
+                "correctIndex": 0,
+                "explanation": "$25\\%$ is a quarter: $60 \\div 4 = 15$.",
+                "check": ["Rational(25,100)*60 == 15"]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Benchmarks",
+            "title": "Half, quarter, and one percent",
+            "beats": [
+              "$50\\%$ = half the number; $25\\%$ = a quarter.",
+              "$1\\%$ = the number ÷ 100 — handy for any percent.",
+              "$5\\%$ of $200$: $10\\%$ is $20$, so $5\\%$ is $10$.",
+              "Pick the benchmark closest to your percent and adjust."
+            ],
+            "figure": {
+              "mode": "percentBar",
+              "percentBar": { "whole": 60, "percent": 50 }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Using benchmarks",
+            "intro": "Lean on half, quarter, ten percent, and one percent.",
+            "examples": [
+              {
+                "prompt": "Find $50\\%$ of $60$.",
+                "figure": { "mode": "percentBar", "percentBar": { "whole": 60, "percent": 50 } },
+                "steps": [
+                  "$50\\%$ is half.",
+                  "Half of $60$ is $30$."
+                ],
+                "answer": "$30$",
+                "check": ["Rational(50,100)*60 == 30"]
+              },
+              {
+                "prompt": "Find $5\\%$ of $200$.",
+                "steps": [
+                  "$10\\%$ of $200$ is $20$.",
+                  "$5\\%$ is half of that: $10$."
+                ],
+                "answer": "$10$",
+                "check": ["Rational(5,100)*200 == 10"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Use a benchmark",
+            "intro": "Build the answer from 10%, half, quarter, or 1%.",
+            "problems": [
+              {
+                "prompt": "What is $30\\%$ of $80$?",
+                "options": ["$24$", "$240$", "$2.4$"],
+                "correctIndex": 0,
+                "explanation": "$10\\%$ of $80$ is $8$, so $30\\% = 3 \\times 8 = 24$.",
+                "check": ["Rational(30,100)*80 == 24"]
+              },
+              {
+                "prompt": "What is $1\\%$ of $350$?",
+                "options": ["$3.5$", "$35$", "$350$"],
+                "correctIndex": 0,
+                "explanation": "$1\\%$ means divide by 100: $350 \\div 100 = 3.5$.",
+                "check": ["Rational(1,100)*350 == Rational(7,2)"]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Tips are percents of a number",
+            "body": "Leaving a 15% tip on a \\$40 meal? That's $15\\%$ of $40 = \\$6$. A quick way: $10\\%$ is \\$4 and $5\\%$ is \\$2, so $15\\%$ is \\$6. People do percent-of-a-number math at restaurants all the time."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Percent of a number",
+            "prompt": "What is $25\\%$ of $80$?",
+            "options": ["$20$", "$40$", "$2$"],
+            "correctIndex": 0,
+            "explanation": "$25\\%$ is a quarter: $80 \\div 4 = 20$.",
+            "check": ["Rational(25,100)*80 == 20"]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Percent **of** a number means multiply by the percent as a decimal or fraction.",
+              "$25\\%$ of $80 = 0.25 \\times 80 = 20$.",
+              "Benchmarks are fast: $10\\%$ = ÷10, $50\\%$ = half, $25\\%$ = quarter, $1\\%$ = ÷100."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [],

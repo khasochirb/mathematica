@@ -6,6 +6,7 @@ import DecimalGridView from "@/components/genmath/interactive/DecimalGridView";
 import DecimalNumberLineView from "@/components/genmath/interactive/DecimalNumberLineView";
 import DecimalColumnView from "@/components/genmath/interactive/DecimalColumnView";
 import DecimalAreaView from "@/components/genmath/interactive/DecimalAreaView";
+import PercentBarView from "@/components/genmath/interactive/PercentBarView";
 
 function Token({ color }: { color: string }) {
   return (
@@ -218,6 +219,20 @@ export default function RatioFigure({ figure }: { figure: FigureSpec }) {
             ×10{shifts > 1 ? ` (${shifts} times)` : ""} on both
           </div>
         )}
+      </div>
+    );
+  }
+
+  if (mode === "percentBar" && figure.percentBar) {
+    const { whole, percent } = figure.percentBar;
+    const value = Math.round((percent / 100) * whole * 100) / 100;
+    const fmt = (x: number) => (Number.isInteger(x) ? String(x) : x.toFixed(2).replace(/0+$/, "").replace(/\.$/, ""));
+    return (
+      <div className="gm-fade flex flex-col items-center gap-2 rounded-xl px-6 py-4" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
+        <PercentBarView whole={whole} percent={percent} />
+        <div className="text-[13px]" style={{ color: "var(--fg-2)" }}>
+          <span className="serif tabular" style={{ fontSize: 16, color: "var(--fg)" }}>{percent}% of {fmt(whole)} = {fmt(value)}</span>
+        </div>
       </div>
     );
   }

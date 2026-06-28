@@ -112,7 +112,7 @@ export interface FigureGroupSpec {
   glyph?: string;
 }
 export interface FigureSpec {
-  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid" | "numberLine" | "decimalColumn" | "decimalArea" | "divideChain";
+  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid" | "numberLine" | "decimalColumn" | "decimalArea" | "divideChain" | "percentBar";
   groups?: FigureGroupSpec[];
   highlightIndex?: number; // the highlighted "part" in partToWhole (default 0)
   // "cross" — a cross-multiply diagram for a:b vs c:d (draws the two diagonals + products).
@@ -132,6 +132,8 @@ export interface FigureSpec {
   area?: { a: number; b: number };
   // "divideChain" — the shift transformation a ÷ b = (a·10ⁿ) ÷ (b·10ⁿ) = quotient.
   divide?: { dividend: number; divisor: number };
+  // "percentBar" — a 0–100% bar aligned to a 0–whole value bar (percent of a number).
+  percentBar?: { whole: number; percent: number };
 }
 
 // Fractions — a bar you split into more (equal) pieces to see equivalent fractions.
@@ -247,6 +249,14 @@ export interface PercentGridConfig {
   color?: string;
 }
 
+// Percent of a number — a double bar: a 0–100% scale aligned to a 0–whole
+// value scale, so the marker reads both at once (25% of 80 = 20).
+export interface PercentBarConfig {
+  whole: number;
+  start: number; // a percent, 0–100
+  color?: string;
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -294,6 +304,7 @@ export type InteractiveStep =
   | { kind: "decimalArea"; eyebrow?: string; title: string; teach: string; config: DecimalAreaConfig }
   | { kind: "decimalShiftDivide"; eyebrow?: string; title: string; teach: string; config: DecimalDivideConfig }
   | { kind: "percentGrid"; eyebrow?: string; title: string; teach: string; config: PercentGridConfig }
+  | { kind: "percentBar"; eyebrow?: string; title: string; teach: string; config: PercentBarConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {
