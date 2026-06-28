@@ -369,6 +369,7 @@ export type InteractiveStep =
   | { kind: "integerCompare"; eyebrow?: string; title: string; teach: string; config: IntegerCompareConfig }
   | { kind: "absoluteValue"; eyebrow?: string; title: string; teach: string; config: IntegerLineConfig }
   | { kind: "integerAdd"; eyebrow?: string; title: string; teach: string; config: IntegerAddConfig }
+  | { kind: "integerSubtract"; eyebrow?: string; title: string; teach: string; config: IntegerAddConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

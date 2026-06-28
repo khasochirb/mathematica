@@ -1018,6 +1018,261 @@
           }
         ]
       }
+    },
+    {
+      "slug": "subtracting-integers",
+      "title": "Subtracting Integers",
+      "concreteComparison": "Today it's $3°$; the record low was $-5°$. How much warmer is it today? $3 - (-5) = 3 + 5 = 8$ degrees warmer. **Subtracting** an integer is the same as **adding its opposite**.",
+      "objective": "Subtract integers by adding the opposite, a − b = a + (−b), then add using the number-line jump.",
+      "concept": [
+        "To subtract an integer, **add its opposite**: $a - b = a + (-b)$.",
+        "Subtracting a **positive** is adding a negative (jump left): $3 - 5 = 3 + (-5) = -2$.",
+        "Subtracting a **negative** is adding a positive (jump right): $3 - (-5) = 3 + 5 = 8$."
+      ],
+      "keyIdea": "Subtracting = adding the opposite. Keep–change–change: keep the first number, change minus to plus, change the sign of the second.",
+      "facts": [
+        {
+          "title": "Add the opposite",
+          "latex": "$3 - (-5) = 3 + 5 = 8$",
+          "explanation": "Flip the subtraction to addition and flip the second number's sign."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "si-we1",
+          "statement": "Subtract $3 - (-5)$.",
+          "solution": "Add the opposite: $3 - (-5) = 3 + 5 = 8$.",
+          "check": ["3 - (-5) == 8"]
+        },
+        {
+          "id": "si-we2",
+          "statement": "Subtract $3 - 5$.",
+          "solution": "Add the opposite: $3 - 5 = 3 + (-5) = -2$.",
+          "check": ["3 - 5 == -2"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading $3 - (-5)$ as $3 - 5$.",
+          "correction": "Two negatives become a plus: $3 - (-5) = 3 + 5 = 8$, not $-2$.",
+          "authored": true
+        },
+        {
+          "text": "Only flipping the sign, not the operation (or vice versa).",
+          "correction": "Change **both**: minus becomes plus AND the second number flips sign. $a - b = a + (-b)$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "si-t1",
+          "statement": "Subtract $-2 - (-6)$.",
+          "solution": "$-2 - (-6) = -2 + 6 = 4$.",
+          "check": ["-2 - (-6) == 4"]
+        },
+        {
+          "id": "si-t2",
+          "statement": "Subtract $6 - (-3)$.",
+          "solution": "$6 - (-3) = 6 + 3 = 9$.",
+          "check": ["6 - (-3) == 9"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "integerSubtract",
+            "eyebrow": "Concept A",
+            "title": "Subtracting a negative",
+            "teach": "$3 - (-5)$ looks tricky, but subtracting is just **adding the opposite**: it becomes $3 + 5$. Tap to flip it, then jump 5 to the right and land on $8$.",
+            "config": {
+              "a": 3,
+              "b": -5,
+              "min": -6,
+              "max": 10,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Add the opposite",
+            "beats": [
+              "Subtracting an integer means **adding its opposite**: $a - b = a + (-b)$.",
+              "$3 - (-5)$: the opposite of $-5$ is $5$, so it becomes $3 + 5$.",
+              "Now add as usual — jump 5 right from $3$.",
+              "Land on $8$: $3 - (-5) = 8$."
+            ],
+            "figure": {
+              "mode": "integerAdd",
+              "integerAdd": { "a": 3, "b": 5, "min": -6, "max": 10 }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The other case",
+            "title": "Subtracting a positive",
+            "beats": [
+              "Subtracting a positive becomes adding a negative.",
+              "$3 - 5 = 3 + (-5)$.",
+              "Jump 5 to the **left** from $3$.",
+              "Land on $-2$: $3 - 5 = -2$."
+            ],
+            "figure": {
+              "mode": "integerAdd",
+              "integerAdd": { "a": 3, "b": -5, "min": -6, "max": 6 }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Subtracting integers",
+            "intro": "Rewrite as add-the-opposite, then jump.",
+            "examples": [
+              {
+                "prompt": "Subtract $3 - (-5)$.",
+                "figure": { "mode": "integerAdd", "integerAdd": { "a": 3, "b": 5, "min": -6, "max": 10 } },
+                "steps": [
+                  "Add the opposite: $3 - (-5) = 3 + 5$.",
+                  "Jump 5 right from $3$ → $8$."
+                ],
+                "answer": "$8$",
+                "check": ["3 - (-5) == 8"]
+              },
+              {
+                "prompt": "Subtract $3 - 5$.",
+                "figure": { "mode": "integerAdd", "integerAdd": { "a": 3, "b": -5, "min": -6, "max": 6 } },
+                "steps": [
+                  "Add the opposite: $3 - 5 = 3 + (-5)$.",
+                  "Jump 5 left from $3$ → $-2$."
+                ],
+                "answer": "$-2$",
+                "check": ["3 - 5 == -2"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Subtract them",
+            "intro": "Keep–change–change, then add.",
+            "problems": [
+              {
+                "prompt": "$3 - (-5) = ?$",
+                "options": ["$8$", "$-2$", "$-8$"],
+                "correctIndex": 0,
+                "explanation": "$3 - (-5) = 3 + 5 = 8$.",
+                "check": ["3 - (-5) == 8"]
+              },
+              {
+                "prompt": "$3 - 5 = ?$",
+                "options": ["$-2$", "$2$", "$8$"],
+                "correctIndex": 0,
+                "explanation": "$3 - 5 = 3 + (-5) = -2$.",
+                "check": ["3 - 5 == -2"]
+              },
+              {
+                "prompt": "$-2 - (-6) = ?$",
+                "options": ["$4$", "$-8$", "$-4$"],
+                "correctIndex": 0,
+                "explanation": "$-2 - (-6) = -2 + 6 = 4$.",
+                "check": ["-2 - (-6) == 4"]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "A handy chant",
+            "title": "Keep–change–change",
+            "beats": [
+              "**Keep** the first number.",
+              "**Change** the subtraction to addition.",
+              "**Change** the sign of the second number.",
+              "$-4 - 3$ → $-4 + (-3) = -7$."
+            ],
+            "figure": {
+              "mode": "integerAdd",
+              "integerAdd": { "a": -4, "b": -3, "min": -9, "max": 3 }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "More subtraction",
+            "intro": "Keep–change–change, then jump.",
+            "examples": [
+              {
+                "prompt": "Subtract $-2 - (-6)$.",
+                "figure": { "mode": "integerAdd", "integerAdd": { "a": -2, "b": 6, "min": -6, "max": 8 } },
+                "steps": [
+                  "$-2 - (-6) = -2 + 6$.",
+                  "Jump 6 right from $-2$ → $4$."
+                ],
+                "answer": "$4$",
+                "check": ["-2 - (-6) == 4"]
+              },
+              {
+                "prompt": "Subtract $-4 - 3$.",
+                "figure": { "mode": "integerAdd", "integerAdd": { "a": -4, "b": -3, "min": -9, "max": 3 } },
+                "steps": [
+                  "$-4 - 3 = -4 + (-3)$.",
+                  "Jump 3 left from $-4$ → $-7$."
+                ],
+                "answer": "$-7$",
+                "check": ["-4 - 3 == -7"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the difference",
+            "intro": "Add the opposite first.",
+            "problems": [
+              {
+                "prompt": "$6 - (-3) = ?$",
+                "options": ["$9$", "$3$", "$-9$"],
+                "correctIndex": 0,
+                "explanation": "$6 - (-3) = 6 + 3 = 9$.",
+                "check": ["6 - (-3) == 9"]
+              },
+              {
+                "prompt": "$-5 - 2 = ?$",
+                "options": ["$-7$", "$-3$", "$7$"],
+                "correctIndex": 0,
+                "explanation": "$-5 - 2 = -5 + (-2) = -7$.",
+                "check": ["-5 - 2 == -7"]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Differences love subtracting negatives",
+            "body": "The gap between the highest peak ($+8849$ m, Everest) and the Dead Sea shore ($-430$ m) is $8849 - (-430) = 8849 + 430 = 9279$ m. Subtracting a negative is how we measure the full span across zero.",
+            "check": ["8849 - (-430) == 9279"]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Subtract a negative",
+            "prompt": "$3 - (-5) = ?$",
+            "options": ["$8$", "$-2$", "$-8$"],
+            "correctIndex": 0,
+            "explanation": "$3 - (-5) = 3 + 5 = 8$.",
+            "check": ["3 - (-5) == 8"]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Subtracting an integer = **adding its opposite**: $a - b = a + (-b)$.",
+              "**Keep–change–change**, then add with a number-line jump.",
+              "Subtracting a negative moves you **up**: $3 - (-5) = 8$."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [],
