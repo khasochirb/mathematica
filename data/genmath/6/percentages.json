@@ -506,6 +506,259 @@
           }
         ]
       }
+    },
+    {
+      "slug": "what-percent-is-it",
+      "title": "What Percent Is It?",
+      "concreteComparison": "You got 15 out of 20 on a quiz. What percent is that? $\\frac{15}{20} = \\frac{75}{100} = 75\\%$. Turning a 'part out of a whole' into a percent is how scores, surveys, and statistics get reported.",
+      "objective": "Find what percent one number is of another by writing it as a fraction and converting to hundredths (part ÷ whole × 100).",
+      "concept": [
+        "To find **what percent** one number is of another, write it as a fraction: $\\frac{\\text{part}}{\\text{whole}}$.",
+        "Then turn that fraction into hundredths — an equivalent fraction over 100, or divide and multiply by 100.",
+        "$\\frac{15}{60} = \\frac{1}{4} = \\frac{25}{100} = 25\\%$."
+      ],
+      "keyIdea": "What percent is part of whole? Write $\\frac{\\text{part}}{\\text{whole}}$, then convert to hundredths: $\\frac{\\text{part}}{\\text{whole}} \\times 100\\%$.",
+      "facts": [
+        {
+          "title": "Part out of whole",
+          "latex": "$\\dfrac{15}{60} = \\dfrac{25}{100} = 25\\%$",
+          "explanation": "Write part over whole, then scale to a denominator of 100."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "wpi-we1",
+          "statement": "What percent is $15$ of $60$?",
+          "solution": "$\\frac{15}{60} = \\frac{1}{4} = \\frac{25}{100} = 25\\%$.",
+          "check": ["Rational(15,60)*100 == 25"]
+        },
+        {
+          "id": "wpi-we2",
+          "statement": "What percent is $15$ of $20$?",
+          "solution": "$\\frac{15}{20} = \\frac{75}{100} = 75\\%$.",
+          "check": ["Rational(15,20)*100 == 75"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Flipping the fraction — writing $\\frac{\\text{whole}}{\\text{part}}$.",
+          "correction": "It's always $\\frac{\\text{part}}{\\text{whole}}$: 15 of 60 is $\\frac{15}{60}$, not $\\frac{60}{15}$.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting to scale to hundredths and calling $\\frac{15}{60}$ '15%'.",
+          "correction": "Convert to a denominator of 100 first: $\\frac{15}{60} = \\frac{25}{100} = 25\\%$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "wpi-t1",
+          "statement": "What percent is $12$ of $48$?",
+          "solution": "$\\frac{12}{48} = \\frac{1}{4} = 25\\%$.",
+          "check": ["Rational(12,48)*100 == 25"]
+        },
+        {
+          "id": "wpi-t2",
+          "statement": "What percent is $9$ of $30$?",
+          "solution": "$9 \\div 30 = 0.3 = 30\\%$.",
+          "check": ["Rational(9,30)*100 == 30"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "percentBar",
+            "eyebrow": "Concept A",
+            "title": "Working backwards to the percent",
+            "teach": "This time you know the amount and want the percent. Slide until the value below reads $15$ (out of $60$) — the percent above is your answer: $25\\%$.",
+            "config": {
+              "whole": 60,
+              "start": 50,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Part out of whole, as a percent",
+            "beats": [
+              "Write the two numbers as a fraction: $\\frac{\\text{part}}{\\text{whole}} = \\frac{15}{60}$.",
+              "Convert it to hundredths — an equivalent fraction over 100.",
+              "$\\frac{15}{60} = \\frac{1}{4} = \\frac{25}{100}$.",
+              "A fraction over 100 is a percent: $25\\%$."
+            ],
+            "figure": {
+              "mode": "percentBar",
+              "percentBar": { "whole": 60, "percent": 25 }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Two ways",
+            "title": "Scale to 100, or divide",
+            "beats": [
+              "**Way 1 — equivalent fraction:** $\\frac{15}{20} = \\frac{75}{100} = 75\\%$.",
+              "**Way 2 — divide and ×100:** $15 \\div 20 = 0.75 = 75\\%$.",
+              "Use whichever is easier for the numbers you have.",
+              "Both turn 'part out of whole' into 'out of 100'."
+            ],
+            "figure": {
+              "mode": "percentBar",
+              "percentBar": { "whole": 20, "percent": 75 }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Finding the percent",
+            "intro": "Write part over whole, then make it out of 100.",
+            "examples": [
+              {
+                "prompt": "What percent is $15$ of $60$?",
+                "figure": { "mode": "percentBar", "percentBar": { "whole": 60, "percent": 25 } },
+                "steps": [
+                  "Write the fraction: $\\frac{15}{60}$.",
+                  "Simplify: $\\frac{1}{4} = \\frac{25}{100}$.",
+                  "So $15$ is $25\\%$ of $60$."
+                ],
+                "answer": "$25\\%$",
+                "check": ["Rational(15,60)*100 == 25"]
+              },
+              {
+                "prompt": "What percent is $15$ of $20$?",
+                "figure": { "mode": "percentBar", "percentBar": { "whole": 20, "percent": 75 } },
+                "steps": [
+                  "Write the fraction: $\\frac{15}{20}$.",
+                  "$\\frac{15}{20} = \\frac{75}{100} = 75\\%$."
+                ],
+                "answer": "$75\\%$",
+                "check": ["Rational(15,20)*100 == 75"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "What percent?",
+            "intro": "Write part over whole, then convert to hundredths.",
+            "problems": [
+              {
+                "prompt": "What percent is $12$ of $48$?",
+                "options": ["$25\\%$", "$4\\%$", "$40\\%$"],
+                "correctIndex": 0,
+                "explanation": "$\\frac{12}{48} = \\frac{1}{4} = 25\\%$.",
+                "check": ["Rational(12,48)*100 == 25"]
+              },
+              {
+                "prompt": "What percent is $7$ of $10$?",
+                "options": ["$70\\%$", "$7\\%$", "$17\\%$"],
+                "correctIndex": 0,
+                "explanation": "$\\frac{7}{10} = \\frac{70}{100} = 70\\%$.",
+                "check": ["Rational(7,10)*100 == 70"]
+              },
+              {
+                "prompt": "What percent is $6$ of $24$?",
+                "options": ["$25\\%$", "$6\\%$", "$18\\%$"],
+                "correctIndex": 0,
+                "explanation": "$\\frac{6}{24} = \\frac{1}{4} = 25\\%$.",
+                "check": ["Rational(6,24)*100 == 25"]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "When it isn't a friendly fraction",
+            "title": "Divide, then read the decimal",
+            "beats": [
+              "If the fraction doesn't easily scale to 100, just divide.",
+              "$9$ of $30$: $9 \\div 30 = 0.3$.",
+              "A decimal becomes a percent by moving the point two places: $0.3 = 30\\%$.",
+              "Divide, get a decimal, then read it as a percent."
+            ],
+            "figure": {
+              "mode": "percentBar",
+              "percentBar": { "whole": 30, "percent": 30 }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Divide then convert",
+            "intro": "Divide part by whole; turn the decimal into a percent.",
+            "examples": [
+              {
+                "prompt": "What percent is $9$ of $30$?",
+                "figure": { "mode": "percentBar", "percentBar": { "whole": 30, "percent": 30 } },
+                "steps": [
+                  "$9 \\div 30 = 0.3$.",
+                  "$0.3 = 30\\%$."
+                ],
+                "answer": "$30\\%$",
+                "check": ["Rational(9,30)*100 == 30"]
+              },
+              {
+                "prompt": "What percent is $45$ of $50$?",
+                "figure": { "mode": "percentBar", "percentBar": { "whole": 50, "percent": 90 } },
+                "steps": [
+                  "$\\frac{45}{50} = \\frac{90}{100}$.",
+                  "So $90\\%$."
+                ],
+                "answer": "$90\\%$",
+                "check": ["Rational(45,50)*100 == 90"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the percent",
+            "intro": "Scale to 100 or divide — whichever is easier.",
+            "problems": [
+              {
+                "prompt": "What percent is $20$ of $80$?",
+                "options": ["$25\\%$", "$20\\%$", "$60\\%$"],
+                "correctIndex": 0,
+                "explanation": "$\\frac{20}{80} = \\frac{1}{4} = 25\\%$.",
+                "check": ["Rational(20,80)*100 == 25"]
+              },
+              {
+                "prompt": "What percent is $8$ of $40$?",
+                "options": ["$20\\%$", "$8\\%$", "$32\\%$"],
+                "correctIndex": 0,
+                "explanation": "$\\frac{8}{40} = \\frac{1}{5} = 20\\%$.",
+                "check": ["Rational(8,40)*100 == 20"]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Your test scores are percents",
+            "body": "A score of 18 out of 24 is $\\frac{18}{24} = \\frac{75}{100} = 75\\%$. Every graded paper turns 'right out of total' into a percent — that's exactly this skill."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "What percent is it?",
+            "prompt": "What percent is $15$ of $60$?",
+            "options": ["$25\\%$", "$15\\%$", "$45\\%$"],
+            "correctIndex": 0,
+            "explanation": "$\\frac{15}{60} = \\frac{1}{4} = 25\\%$.",
+            "check": ["Rational(15,60)*100 == 25"]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Write the two numbers as $\\frac{\\text{part}}{\\text{whole}}$.",
+              "Convert to hundredths — an equivalent fraction over 100, or divide and ×100.",
+              "$\\frac{15}{60} = \\frac{25}{100} = 25\\%$."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [],
