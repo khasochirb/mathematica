@@ -292,6 +292,16 @@ export interface IntegerLineConfig {
   color?: string;
 }
 
+// Comparing integers — two integers plotted on one line; the student taps <,
+// =, or >. Targets the "−5 > −2" misconception (further left is smaller).
+export interface IntegerCompareConfig {
+  left: number;
+  right: number;
+  min: number;
+  max: number;
+  color?: string;
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -343,6 +353,7 @@ export type InteractiveStep =
   | { kind: "percentChange"; eyebrow?: string; title: string; teach: string; config: PercentChangeConfig }
   | { kind: "percentChangeFinder"; eyebrow?: string; title: string; teach: string; config: PercentChangeFinderConfig }
   | { kind: "integerLine"; eyebrow?: string; title: string; teach: string; config: IntegerLineConfig }
+  | { kind: "integerCompare"; eyebrow?: string; title: string; teach: string; config: IntegerCompareConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {
