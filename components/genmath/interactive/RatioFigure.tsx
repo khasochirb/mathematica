@@ -7,6 +7,7 @@ import DecimalNumberLineView from "@/components/genmath/interactive/DecimalNumbe
 import DecimalColumnView from "@/components/genmath/interactive/DecimalColumnView";
 import DecimalAreaView from "@/components/genmath/interactive/DecimalAreaView";
 import PercentBarView from "@/components/genmath/interactive/PercentBarView";
+import PercentChangeView from "@/components/genmath/interactive/PercentChangeView";
 
 function Token({ color }: { color: string }) {
   return (
@@ -233,6 +234,15 @@ export default function RatioFigure({ figure }: { figure: FigureSpec }) {
         <div className="text-[13px]" style={{ color: "var(--fg-2)" }}>
           <span className="serif tabular" style={{ fontSize: 16, color: "var(--fg)" }}>{percent}% of {fmt(whole)} = {fmt(value)}</span>
         </div>
+      </div>
+    );
+  }
+
+  if (mode === "percentChange" && figure.percentChange) {
+    const { original, percent, mode: m, currency } = figure.percentChange;
+    return (
+      <div className="gm-fade flex justify-center rounded-xl px-6 py-4" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
+        <PercentChangeView original={original} percent={percent} mode={m} currency={currency} />
       </div>
     );
   }

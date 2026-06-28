@@ -759,6 +759,260 @@
           }
         ]
       }
+    },
+    {
+      "slug": "percent-word-problems",
+      "title": "Percent Word Problems",
+      "concreteComparison": "A \\$50 hoodie is $20\\%$ off. The discount is $20\\%$ of \\$50 = \\$10, so the sale price is $50 - 10 = \\$40$. Add $8\\%$ sales tax and you pay a little more. Discounts, tax, and tips are all percent-of-a-number problems in disguise.",
+      "objective": "Solve real percent problems — discounts, sales tax, and tips — by finding the percent of the amount and then subtracting or adding, and by using the shortcut of paying a single percent of the original.",
+      "concept": [
+        "A **discount** subtracts: sale price = original − (percent of original). $20\\%$ off \\$50 is $50 - 10 = \\$40$.",
+        "**Tax** and **tips** add: total = original + (percent of original). $8\\%$ tax on \\$50 is $50 + 4 = \\$54$.",
+        "Shortcut: $20\\%$ off means you **pay $80\\%$**; adding $8\\%$ tax means you pay $108\\%$ of the original."
+      ],
+      "keyIdea": "Discount → subtract the percent; tax or tip → add the percent. Shortcut: $20\\%$ off = pay $80\\%$; $+8\\%$ tax = pay $108\\%$.",
+      "facts": [
+        {
+          "title": "Discount and total",
+          "latex": "$50 - 20\\% = 40,\\quad 50 + 8\\% = 54$",
+          "explanation": "Find the percent of the amount, then subtract (discount) or add (tax / tip)."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pwp-we1",
+          "statement": "A \\$50 hoodie is $20\\%$ off. What is the sale price?",
+          "solution": "$20\\%$ of \\$50 = \\$10 off, so $50 - 10 = \\$40$.",
+          "check": ["50 - Rational(20,100)*50 == 40"]
+        },
+        {
+          "id": "pwp-we2",
+          "statement": "A \\$50 meal has $8\\%$ tax. What is the total?",
+          "solution": "$8\\%$ of \\$50 = \\$4 tax, so $50 + 4 = \\$54$.",
+          "check": ["50 + Rational(8,100)*50 == 54"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Stopping at the discount amount and calling it the price ($20\\%$ off \\$50 = \\$10).",
+          "correction": "$10 is the amount off — subtract it: the price is $50 - 10 = \\$40$.",
+          "authored": true
+        },
+        {
+          "text": "Adding tax to the percent instead of to the price.",
+          "correction": "Find the tax in dollars first ($8\\%$ of \\$50 = \\$4), then add: $50 + 4 = \\$54$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pwp-t1",
+          "statement": "An \\$80 jacket is $25\\%$ off. What is the sale price?",
+          "solution": "$25\\%$ of \\$80 = \\$20 off, so $80 - 20 = \\$60$.",
+          "check": ["80 - Rational(25,100)*80 == 60"]
+        },
+        {
+          "id": "pwp-t2",
+          "statement": "A \\$40 meal with a $15\\%$ tip. What is the total?",
+          "solution": "$15\\%$ of \\$40 = \\$6, so $40 + 6 = \\$46$.",
+          "check": ["40 + Rational(15,100)*40 == 46"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "percentChange",
+            "eyebrow": "Concept A",
+            "title": "Taking off a discount",
+            "teach": "The bar is the original \\$50 price. A $20\\%$ discount takes \\$10 off, leaving you to pay \\$40. Change the percent and watch the sale price move.",
+            "config": {
+              "original": 50,
+              "start": 20,
+              "mode": "discount",
+              "currency": "$",
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "A discount subtracts",
+            "beats": [
+              "Find the discount: $20\\%$ of \\$50 = \\$10.",
+              "Subtract it from the original: $50 - 10 = \\$40$.",
+              "Shortcut: $20\\%$ off means you keep $80\\%$, so pay $0.8 \\times 50 = \\$40$ directly.",
+              "Either way, the sale price is \\$40."
+            ],
+            "figure": {
+              "mode": "percentChange",
+              "percentChange": { "original": 50, "percent": 20, "mode": "discount" }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The other direction",
+            "title": "Tax and tips add on",
+            "beats": [
+              "Find the tax or tip: $8\\%$ of \\$50 = \\$4.",
+              "Add it to the original: $50 + 4 = \\$54$.",
+              "Shortcut: adding $8\\%$ means you pay $108\\%$, so $1.08 \\times 50 = \\$54$.",
+              "The total is more than you started with."
+            ],
+            "figure": {
+              "mode": "percentChange",
+              "percentChange": { "original": 50, "percent": 8, "mode": "increase" }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Discounts",
+            "intro": "Find the amount off, then subtract from the original.",
+            "examples": [
+              {
+                "prompt": "A \\$50 hoodie is $20\\%$ off. Find the sale price.",
+                "figure": { "mode": "percentChange", "percentChange": { "original": 50, "percent": 20, "mode": "discount" } },
+                "steps": [
+                  "$20\\%$ of \\$50 = \\$10 off.",
+                  "$50 - 10 = \\$40$."
+                ],
+                "answer": "\\$40",
+                "check": ["50 - Rational(20,100)*50 == 40"]
+              },
+              {
+                "prompt": "An \\$80 jacket is $25\\%$ off. Find the sale price.",
+                "figure": { "mode": "percentChange", "percentChange": { "original": 80, "percent": 25, "mode": "discount" } },
+                "steps": [
+                  "$25\\%$ of \\$80 = \\$20 off.",
+                  "$80 - 20 = \\$60$."
+                ],
+                "answer": "\\$60",
+                "check": ["80 - Rational(25,100)*80 == 60"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the sale price",
+            "intro": "Take the percent off the original.",
+            "problems": [
+              {
+                "prompt": "A \\$60 game is $10\\%$ off. What is the sale price?",
+                "options": ["\\$54", "\\$50", "\\$6"],
+                "correctIndex": 0,
+                "explanation": "$10\\%$ of \\$60 = \\$6 off, so $60 - 6 = \\$54$.",
+                "check": ["60 - Rational(10,100)*60 == 54"]
+              },
+              {
+                "prompt": "A \\$120 jacket is $50\\%$ off. What is the sale price?",
+                "options": ["\\$60", "\\$70", "\\$170"],
+                "correctIndex": 0,
+                "explanation": "$50\\%$ off is half: $120 - 60 = \\$60$.",
+                "check": ["120 - Rational(50,100)*120 == 60"]
+              },
+              {
+                "prompt": "A \\$25 shirt is $20\\%$ off. What is the sale price?",
+                "options": ["\\$20", "\\$5", "\\$23"],
+                "correctIndex": 0,
+                "explanation": "$20\\%$ of \\$25 = \\$5 off, so $25 - 5 = \\$20$.",
+                "check": ["25 - Rational(20,100)*25 == 20"]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Putting it on top",
+            "title": "Adding tax and tips",
+            "beats": [
+              "A tip is a percent of the bill, added on top.",
+              "$15\\%$ of \\$40: $10\\%$ is \\$4 and $5\\%$ is \\$2, so $15\\%$ is \\$6.",
+              "Add it: $40 + 6 = \\$46$.",
+              "Sales tax works exactly the same way."
+            ],
+            "figure": {
+              "mode": "percentChange",
+              "percentChange": { "original": 40, "percent": 15, "mode": "increase" }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Tax and tips",
+            "intro": "Find the percent of the bill, then add it on.",
+            "examples": [
+              {
+                "prompt": "A \\$50 meal has $8\\%$ tax. Find the total.",
+                "figure": { "mode": "percentChange", "percentChange": { "original": 50, "percent": 8, "mode": "increase" } },
+                "steps": [
+                  "$8\\%$ of \\$50 = \\$4 tax.",
+                  "$50 + 4 = \\$54$."
+                ],
+                "answer": "\\$54",
+                "check": ["50 + Rational(8,100)*50 == 54"]
+              },
+              {
+                "prompt": "A \\$40 meal with a $15\\%$ tip. Find the total.",
+                "figure": { "mode": "percentChange", "percentChange": { "original": 40, "percent": 15, "mode": "increase" } },
+                "steps": [
+                  "$10\\%$ of \\$40 is \\$4, $5\\%$ is \\$2, so $15\\%$ is \\$6.",
+                  "$40 + 6 = \\$46$."
+                ],
+                "answer": "\\$46",
+                "check": ["40 + Rational(15,100)*40 == 46"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the total",
+            "intro": "Add the percent on top of the original.",
+            "problems": [
+              {
+                "prompt": "A \\$60 meal with a $10\\%$ tip. What is the total?",
+                "options": ["\\$66", "\\$70", "\\$54"],
+                "correctIndex": 0,
+                "explanation": "$10\\%$ of \\$60 = \\$6, so $60 + 6 = \\$66$.",
+                "check": ["60 + Rational(10,100)*60 == 66"]
+              },
+              {
+                "prompt": "A \\$200 phone has $7\\%$ tax. What is the total?",
+                "options": ["\\$214", "\\$207", "\\$221"],
+                "correctIndex": 0,
+                "explanation": "$7\\%$ of \\$200 = \\$14, so $200 + 14 = \\$214$.",
+                "check": ["200 + Rational(7,100)*200 == 214"]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The pay-80% shortcut",
+            "body": "Stores love '$20\\%$ off', but cashiers think '$pay 80\\%$': $0.8 \\times 50 = \\$40$ in one step, no subtracting. For \\$8\\% tax, multiply by $1.08$. One multiplication does the whole job."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Find the sale price",
+            "prompt": "A \\$50 item is $20\\%$ off. What do you pay?",
+            "options": ["\\$40", "\\$30", "\\$10"],
+            "correctIndex": 0,
+            "explanation": "$20\\%$ of \\$50 = \\$10 off, so $50 - 10 = \\$40$.",
+            "check": ["50 - Rational(20,100)*50 == 40"]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Discount:** find the percent of the price, then **subtract**.",
+              "**Tax / tip:** find the percent of the price, then **add**.",
+              "Shortcut: $20\\%$ off = pay $80\\%$; $+8\\%$ tax = pay $108\\%$."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [],

@@ -30,6 +30,7 @@ import DecimalAreaModel from "@/components/genmath/interactive/DecimalAreaModel"
 import DecimalShiftDivide from "@/components/genmath/interactive/DecimalShiftDivide";
 import PercentGrid from "@/components/genmath/interactive/PercentGrid";
 import PercentBar from "@/components/genmath/interactive/PercentBar";
+import PercentChange from "@/components/genmath/interactive/PercentChange";
 import RatioFigure from "@/components/genmath/interactive/RatioFigure";
 import NotationToggle from "@/components/genmath/interactive/NotationToggle";
 import { type GenMathLesson } from "@/lib/genmath-lessons";
@@ -407,6 +408,16 @@ function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveSt
         <>
           <StepHeader eyebrow={step.eyebrow} title={step.title} />
           <PercentBar config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "percentChange":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <PercentChange config={step.config} />
           <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
             <MathText text={step.teach} />
           </p>

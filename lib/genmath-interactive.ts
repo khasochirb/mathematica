@@ -112,7 +112,7 @@ export interface FigureGroupSpec {
   glyph?: string;
 }
 export interface FigureSpec {
-  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid" | "numberLine" | "decimalColumn" | "decimalArea" | "divideChain" | "percentBar";
+  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid" | "numberLine" | "decimalColumn" | "decimalArea" | "divideChain" | "percentBar" | "percentChange";
   groups?: FigureGroupSpec[];
   highlightIndex?: number; // the highlighted "part" in partToWhole (default 0)
   // "cross" — a cross-multiply diagram for a:b vs c:d (draws the two diagonals + products).
@@ -134,6 +134,8 @@ export interface FigureSpec {
   divide?: { dividend: number; divisor: number };
   // "percentBar" — a 0–100% bar aligned to a 0–whole value bar (percent of a number).
   percentBar?: { whole: number; percent: number };
+  // "percentChange" — a price bar splitting into pay+discount, or extended by tax/tip.
+  percentChange?: { original: number; percent: number; mode: "discount" | "increase"; currency?: string };
 }
 
 // Fractions — a bar you split into more (equal) pieces to see equivalent fractions.
@@ -257,6 +259,17 @@ export interface PercentBarConfig {
   color?: string;
 }
 
+// Percent word problems — a price bar that either splits into "you pay" +
+// "discount" (mode: discount) or extends by "+ tax/tip" (mode: increase),
+// with a stepper on the percent. Models real sales, tax, and tips.
+export interface PercentChangeConfig {
+  original: number;
+  start: number; // the percent, 0–100
+  mode: "discount" | "increase";
+  currency?: string; // default "$"
+  color?: string;
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -305,6 +318,7 @@ export type InteractiveStep =
   | { kind: "decimalShiftDivide"; eyebrow?: string; title: string; teach: string; config: DecimalDivideConfig }
   | { kind: "percentGrid"; eyebrow?: string; title: string; teach: string; config: PercentGridConfig }
   | { kind: "percentBar"; eyebrow?: string; title: string; teach: string; config: PercentBarConfig }
+  | { kind: "percentChange"; eyebrow?: string; title: string; teach: string; config: PercentChangeConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {
