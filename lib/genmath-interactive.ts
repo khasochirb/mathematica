@@ -315,6 +315,15 @@ export interface IntegerAddConfig {
   color?: string;
 }
 
+// Multiplying / dividing integers — flip each factor's sign and watch the
+// result's sign follow the rule: same signs → positive, different → negative.
+export interface IntegerSignRuleConfig {
+  a: number;
+  b: number;
+  op: "mul" | "div";
+  color?: string;
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -370,6 +379,7 @@ export type InteractiveStep =
   | { kind: "absoluteValue"; eyebrow?: string; title: string; teach: string; config: IntegerLineConfig }
   | { kind: "integerAdd"; eyebrow?: string; title: string; teach: string; config: IntegerAddConfig }
   | { kind: "integerSubtract"; eyebrow?: string; title: string; teach: string; config: IntegerAddConfig }
+  | { kind: "integerSignRule"; eyebrow?: string; title: string; teach: string; config: IntegerSignRuleConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

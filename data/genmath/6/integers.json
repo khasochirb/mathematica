@@ -1273,6 +1273,244 @@
           }
         ]
       }
+    },
+    {
+      "slug": "multiplying-dividing-integers",
+      "title": "Multiplying & Dividing Integers",
+      "concreteComparison": "Losing \\$3 a day for 4 days is $4 \\times (-3) = -\\$12$ — a growing debt. Share that $-12$ back over 4 days and it's $-12 \\div 4 = -3$ a day. With integers, the **signs** decide whether the answer comes out positive or negative.",
+      "objective": "Multiply and divide integers using the sign rules: same signs give a positive result, different signs give a negative result.",
+      "concept": [
+        "Multiply or divide the **digits** as usual, then decide the **sign**.",
+        "**Same signs → positive:** $(-3)(-4) = 12$ and $-12 \\div -4 = 3$.",
+        "**Different signs → negative:** $(-3)(4) = -12$ and $-12 \\div 4 = -3$."
+      ],
+      "keyIdea": "Same signs → positive, different signs → negative. The rule is the same for × and ÷.",
+      "facts": [
+        {
+          "title": "Sign rules",
+          "latex": "$(-)(-) = +, \\quad (-)(+) = -$",
+          "explanation": "Same signs give positive; different signs give negative."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "md-we1",
+          "statement": "Multiply $(-3)(4)$.",
+          "solution": "$3 \\times 4 = 12$; different signs → negative, so $-12$.",
+          "check": ["(-3)*4 == -12"]
+        },
+        {
+          "id": "md-we2",
+          "statement": "Divide $-12 \\div (-4)$.",
+          "solution": "$12 \\div 4 = 3$; same signs → positive, so $3$.",
+          "check": ["(-12)/(-4) == 3"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking two negatives multiply to a negative.",
+          "correction": "Same signs give a **positive**: $(-3)(-4) = 12$, not $-12$.",
+          "authored": true
+        },
+        {
+          "text": "Mixing up the rule for division.",
+          "correction": "Division uses the **same** sign rule as multiplication: $-12 \\div 4 = -3$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "md-t1",
+          "statement": "Multiply $(-3)(-4)$.",
+          "solution": "$3 \\times 4 = 12$; same signs → positive: $12$.",
+          "check": ["(-3)*(-4) == 12"]
+        },
+        {
+          "id": "md-t2",
+          "statement": "Divide $-20 \\div 5$.",
+          "solution": "$20 \\div 5 = 4$; different signs → negative: $-4$.",
+          "check": ["(-20)/5 == -4"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "integerSignRule",
+            "eyebrow": "Concept A",
+            "title": "The sign decides",
+            "teach": "Multiply the digits as normal, then set the sign. Tap each number to flip its sign and watch the answer: **same signs make a positive, different signs make a negative**.",
+            "config": {
+              "a": -3,
+              "b": 4,
+              "op": "mul",
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Same signs give positive",
+            "beats": [
+              "Multiply the digits first: $3 \\times 4 = 12$.",
+              "Two **negatives** make a positive: $(-3)(-4) = 12$.",
+              "Two **positives** are positive too: $(3)(4) = 12$.",
+              "Same signs → positive."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The flip",
+            "title": "Different signs give negative",
+            "beats": [
+              "One negative flips the result to negative.",
+              "$(-3)(4) = -12$ and $(3)(-4) = -12$.",
+              "It doesn't matter which one is negative.",
+              "Different signs → negative."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Multiplying integers",
+            "intro": "Multiply the digits, then apply the sign rule.",
+            "examples": [
+              {
+                "prompt": "Multiply $(-3)(4)$.",
+                "steps": [
+                  "Digits: $3 \\times 4 = 12$.",
+                  "Different signs → negative: $-12$."
+                ],
+                "answer": "$-12$",
+                "check": ["(-3)*4 == -12"]
+              },
+              {
+                "prompt": "Multiply $(-3)(-4)$.",
+                "steps": [
+                  "Digits: $3 \\times 4 = 12$.",
+                  "Same signs → positive: $12$."
+                ],
+                "answer": "$12$",
+                "check": ["(-3)*(-4) == 12"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Multiply",
+            "intro": "Same signs → positive; different signs → negative.",
+            "problems": [
+              {
+                "prompt": "$(-3)(4) = ?$",
+                "options": ["$-12$", "$12$", "$-7$"],
+                "correctIndex": 0,
+                "explanation": "Different signs → negative: $-12$.",
+                "check": ["(-3)*4 == -12"]
+              },
+              {
+                "prompt": "$(-3)(-4) = ?$",
+                "options": ["$12$", "$-12$", "$7$"],
+                "correctIndex": 0,
+                "explanation": "Same signs → positive: $12$.",
+                "check": ["(-3)*(-4) == 12"]
+              },
+              {
+                "prompt": "$5 \\times (-2) = ?$",
+                "options": ["$-10$", "$10$", "$-7$"],
+                "correctIndex": 0,
+                "explanation": "Different signs → negative: $-10$.",
+                "check": ["5*(-2) == -10"]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Same rule",
+            "title": "Division follows the same rules",
+            "beats": [
+              "Divide the digits, then apply the very same sign rule.",
+              "Same signs → positive: $-12 \\div -4 = 3$.",
+              "Different signs → negative: $-12 \\div 4 = -3$.",
+              "Multiplication and division share one sign rule."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Dividing integers",
+            "intro": "Divide the digits, then set the sign.",
+            "examples": [
+              {
+                "prompt": "Divide $-12 \\div 4$.",
+                "steps": [
+                  "Digits: $12 \\div 4 = 3$.",
+                  "Different signs → negative: $-3$."
+                ],
+                "answer": "$-3$",
+                "check": ["(-12)/4 == -3"]
+              },
+              {
+                "prompt": "Divide $-12 \\div (-4)$.",
+                "steps": [
+                  "Digits: $12 \\div 4 = 3$.",
+                  "Same signs → positive: $3$."
+                ],
+                "answer": "$3$",
+                "check": ["(-12)/(-4) == 3"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Divide",
+            "intro": "Same sign rule as multiplying.",
+            "problems": [
+              {
+                "prompt": "$-20 \\div 5 = ?$",
+                "options": ["$-4$", "$4$", "$-15$"],
+                "correctIndex": 0,
+                "explanation": "Different signs → negative: $-4$.",
+                "check": ["(-20)/5 == -4"]
+              },
+              {
+                "prompt": "$-15 \\div (-3) = ?$",
+                "options": ["$5$", "$-5$", "$-18$"],
+                "correctIndex": 0,
+                "explanation": "Same signs → positive: $5$.",
+                "check": ["(-15)/(-3) == 5"]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Count the negatives",
+            "body": "Multiplying a string of numbers? Just count the negative signs: an **even** number of negatives gives a positive, an **odd** number gives a negative. So $(-2)(-2)(-2) = -8$ — three negatives, so negative.",
+            "check": ["(-2)*(-2)*(-2) == -8"]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Apply the sign rule",
+            "prompt": "$(-3)(-4) = ?$",
+            "options": ["$12$", "$-12$", "$7$"],
+            "correctIndex": 0,
+            "explanation": "Same signs → positive: $12$.",
+            "check": ["(-3)*(-4) == 12"]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Multiply or divide the **digits**, then set the **sign**.",
+              "**Same signs → positive**, **different signs → negative**.",
+              "The rule is identical for × and ÷; count negatives for long products."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [],
