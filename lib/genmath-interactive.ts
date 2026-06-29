@@ -324,6 +324,13 @@ export interface IntegerSignRuleConfig {
   color?: string;
 }
 
+// Factors — arrange n squares into a rectangle of a chosen width. A width that
+// divides n evenly forms a complete rectangle and reveals a factor pair.
+export interface FactorPairsConfig {
+  n: number;
+  color?: string;
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -380,6 +387,7 @@ export type InteractiveStep =
   | { kind: "integerAdd"; eyebrow?: string; title: string; teach: string; config: IntegerAddConfig }
   | { kind: "integerSubtract"; eyebrow?: string; title: string; teach: string; config: IntegerAddConfig }
   | { kind: "integerSignRule"; eyebrow?: string; title: string; teach: string; config: IntegerSignRuleConfig }
+  | { kind: "factorPairs"; eyebrow?: string; title: string; teach: string; config: FactorPairsConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

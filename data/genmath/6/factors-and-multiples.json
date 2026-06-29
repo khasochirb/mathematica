@@ -2,47 +2,246 @@
   "slug": "factors-and-multiples",
   "title": "Factors and Multiples",
   "grade": 6,
-  "blurb": "Placeholder — find factors, multiples, GCF, and LCM of whole numbers.",
+  "status": "published",
+  "blurb": "Factors, multiples, primes, GCF, and LCM — built from rectangles and skip-counting.",
   "lessons": [
     {
-      "slug": "factors-multiples-intro",
-      "title": "Factors and Multiples",
-      "concreteComparison": "Placeholder — real-world opener authored in Step 3. Example: arranging 12 chairs into equal rows — the number of rows must be a factor of 12.",
-      "objective": "Placeholder — list factors and multiples of a number; find the GCF and LCM of two numbers.",
+      "slug": "factors",
+      "title": "Factors & Factor Pairs",
+      "concreteComparison": "You have 12 cookies to set out in equal rows. You could make $1 \\times 12$, $2 \\times 6$, or $3 \\times 4$ — but not 5 rows, because 12 won't split into 5 equal groups. The numbers that **divide evenly** into 12 are its **factors**.",
+      "objective": "Find the factors of a number as the whole numbers that divide it evenly, and list them in factor pairs.",
       "concept": [
-        "Placeholder concept paragraph. A factor of $n$ divides $n$ evenly. A multiple of $n$ is $n \\times k$ for some whole number $k$."
+        "A **factor** of a number divides it **evenly**, with no remainder. $3$ is a factor of $12$ because $12 \\div 3 = 4$.",
+        "Factors come in **pairs** that multiply to the number: $12 = 1 \\times 12 = 2 \\times 6 = 3 \\times 4$.",
+        "Find them all by checking $1, 2, 3, \\ldots$ in order: the factors of $12$ are $1, 2, 3, 4, 6, 12$."
+      ],
+      "keyIdea": "A factor divides a number with no remainder. Factors come in pairs that multiply to the number.",
+      "facts": [
+        {
+          "title": "Factor pairs of 12",
+          "latex": "$1\\times12,\\ 2\\times6,\\ 3\\times4$",
+          "explanation": "Each pair multiplies to 12."
+        }
       ],
       "workedExamples": [
         {
-          "id": "fm-ex-01",
-          "statement": "Placeholder problem. Find the GCF of 12 and 18.",
-          "solution": "Placeholder solution. Factors of 12: 1, 2, 3, 4, 6, 12. Factors of 18: 1, 2, 3, 6, 9, 18. GCF = 6."
+          "id": "f-we1",
+          "statement": "List the factors of $12$.",
+          "solution": "Check 1–12: $1, 2, 3, 4, 6, 12$. Pairs: $1\\times12, 2\\times6, 3\\times4$.",
+          "check": ["3*4 == 12"]
+        },
+        {
+          "id": "f-we2",
+          "statement": "Is $5$ a factor of $12$?",
+          "solution": "$12 \\div 5$ leaves a remainder, so no.",
+          "check": ["12 % 5 != 0"]
         }
       ],
       "commonMistakes": [
-        { "text": "Placeholder mistake — authored in Step 3.", "authored": false }
+        {
+          "text": "Forgetting that 1 and the number itself are always factors.",
+          "correction": "Every number has $1$ and itself as factors: for 12 that's $1$ and $12$.",
+          "authored": true
+        },
+        {
+          "text": "Listing a multiple instead of a factor.",
+          "correction": "A factor divides into the number ($3$ into $12$); a multiple is built from it ($24$ is a multiple of 12).",
+          "authored": true
+        }
       ],
       "tryIt": [
         {
-          "id": "fm-try-01",
-          "statement": "Placeholder try-it. Find the LCM of 4 and 6.",
-          "solution": "Placeholder solution. Multiples of 4: 4, 8, 12, 16 ... Multiples of 6: 6, 12 ... LCM = 12."
+          "id": "f-t1",
+          "statement": "Is $6$ a factor of $18$?",
+          "solution": "$18 \\div 6 = 3$ with no remainder, so yes.",
+          "check": ["18 % 6 == 0"]
+        },
+        {
+          "id": "f-t2",
+          "statement": "Is $4$ a factor of $20$?",
+          "solution": "$20 \\div 4 = 5$, so yes.",
+          "check": ["20 % 4 == 0"]
         }
-      ]
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "factorPairs",
+            "eyebrow": "Concept A",
+            "title": "Arranging into rectangles",
+            "teach": "Try to arrange all $12$ squares into a complete rectangle. Change the width: when it fits perfectly (no gaps), the width and height are a **factor pair** of 12. Widths that leave a short row are not factors.",
+            "config": {
+              "n": 12,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Factors divide evenly",
+            "beats": [
+              "A **factor** divides a number with **no remainder**.",
+              "$12 \\div 3 = 4$ exactly, so $3$ is a factor of $12$.",
+              "$12 \\div 5 = 2$ remainder $2$, so $5$ is **not** a factor.",
+              "On the grid, factors are the widths that fill a complete rectangle."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Two at a time",
+            "title": "Factors come in pairs",
+            "beats": [
+              "Each rectangle gives a **pair** of factors that multiply to the number.",
+              "$12 = 1 \\times 12 = 2 \\times 6 = 3 \\times 4$.",
+              "So the factors of $12$ are $1, 2, 3, 4, 6, 12$.",
+              "$1$ and the number itself are always a pair."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Finding factors",
+            "intro": "Check what divides evenly, and pair them up.",
+            "examples": [
+              {
+                "prompt": "List the factors of $12$.",
+                "steps": [
+                  "Check 1–12 for even division.",
+                  "Pairs: $1\\times12,\\ 2\\times6,\\ 3\\times4$.",
+                  "Factors: $1, 2, 3, 4, 6, 12$."
+                ],
+                "answer": "$1, 2, 3, 4, 6, 12$",
+                "check": ["3*4 == 12"]
+              },
+              {
+                "prompt": "Is $5$ a factor of $12$?",
+                "steps": [
+                  "$12 \\div 5 = 2$ remainder $2$.",
+                  "A remainder means it doesn't divide evenly — not a factor."
+                ],
+                "answer": "No",
+                "check": ["12 % 5 != 0"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Factor or not?",
+            "intro": "Does it divide evenly?",
+            "problems": [
+              {
+                "prompt": "Is $3$ a factor of $12$?",
+                "options": ["Yes", "No"],
+                "correctIndex": 0,
+                "explanation": "$12 \\div 3 = 4$ exactly, so yes.",
+                "check": ["12 % 3 == 0"]
+              },
+              {
+                "prompt": "Is $5$ a factor of $12$?",
+                "options": ["No", "Yes"],
+                "correctIndex": 0,
+                "explanation": "$12 \\div 5$ leaves a remainder, so no.",
+                "check": ["12 % 5 != 0"]
+              },
+              {
+                "prompt": "Is $6$ a factor of $18$?",
+                "options": ["Yes", "No"],
+                "correctIndex": 0,
+                "explanation": "$18 \\div 6 = 3$, so yes.",
+                "check": ["18 % 6 == 0"]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Be systematic",
+            "title": "Listing all factors in order",
+            "beats": [
+              "Start at $1$ and work up, checking each number.",
+              "Each time one divides evenly, write it **and** its partner.",
+              "$18$: $1\\times18, 2\\times9, 3\\times6$ → $1, 2, 3, 6, 9, 18$.",
+              "Stop when the pair starts to repeat."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "All the factors",
+            "intro": "List each factor pair, then write them in order.",
+            "examples": [
+              {
+                "prompt": "List the factors of $18$.",
+                "steps": [
+                  "Pairs: $1\\times18,\\ 2\\times9,\\ 3\\times6$.",
+                  "Factors: $1, 2, 3, 6, 9, 18$."
+                ],
+                "answer": "$1, 2, 3, 6, 9, 18$",
+                "check": ["3*6 == 18"]
+              },
+              {
+                "prompt": "List the factors of $16$.",
+                "steps": [
+                  "Pairs: $1\\times16,\\ 2\\times8,\\ 4\\times4$.",
+                  "Factors: $1, 2, 4, 8, 16$."
+                ],
+                "answer": "$1, 2, 4, 8, 16$",
+                "check": ["4*4 == 16"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find a factor",
+            "intro": "Which number divides evenly?",
+            "problems": [
+              {
+                "prompt": "Which is a factor of $20$?",
+                "options": ["$4$", "$3$", "$7$"],
+                "correctIndex": 0,
+                "explanation": "$20 \\div 4 = 5$, so $4$ is a factor.",
+                "check": ["20 % 4 == 0"]
+              },
+              {
+                "prompt": "Which is a factor of $15$?",
+                "options": ["$5$", "$4$", "$6$"],
+                "correctIndex": 0,
+                "explanation": "$15 \\div 5 = 3$, so $5$ is a factor.",
+                "check": ["15 % 5 == 0"]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Square numbers have an odd count",
+            "body": "Most numbers have an even number of factors because they pair up. But a **square** like $16$ has a pair that repeats ($4\\times4$), so it counts once — giving an odd total: $1, 2, 4, 8, 16$ (five factors)."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Is it a factor?",
+            "prompt": "Is $4$ a factor of $12$?",
+            "options": ["Yes", "No"],
+            "correctIndex": 0,
+            "explanation": "$12 \\div 4 = 3$ exactly, so yes.",
+            "check": ["12 % 4 == 0"]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **factor** divides a number with no remainder.",
+              "Factors come in **pairs** that multiply to the number: $3 \\times 4 = 12$.",
+              "List them by checking $1, 2, 3, \\ldots$ and pairing as you go."
+            ]
+          }
+        ]
+      }
     }
   ],
-  "practice": [
-    {
-      "id": "fm-prac-01",
-      "statement": "Placeholder practice problem. Is 7 a factor of 49?",
-      "solution": "Placeholder solution. Yes, $49 \\div 7 = 7$."
-    }
-  ],
-  "testYourself": [
-    {
-      "id": "fm-test-01",
-      "statement": "Placeholder test problem. Two buses depart every 8 and 12 minutes respectively. When do they next depart together?",
-      "solution": "Placeholder solution. LCM$(8, 12) = 24$ minutes."
-    }
-  ]
+  "practice": [],
+  "testYourself": []
 }
