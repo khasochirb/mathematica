@@ -331,6 +331,14 @@ export interface FactorPairsConfig {
   color?: string;
 }
 
+// Multiples — a 1..max number grid where the multiples of a chosen number light
+// up, making skip-counting visible.
+export interface MultiplesGridConfig {
+  max: number;
+  start: number; // the number whose multiples are shown
+  color?: string;
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -388,6 +396,7 @@ export type InteractiveStep =
   | { kind: "integerSubtract"; eyebrow?: string; title: string; teach: string; config: IntegerAddConfig }
   | { kind: "integerSignRule"; eyebrow?: string; title: string; teach: string; config: IntegerSignRuleConfig }
   | { kind: "factorPairs"; eyebrow?: string; title: string; teach: string; config: FactorPairsConfig }
+  | { kind: "multiplesGrid"; eyebrow?: string; title: string; teach: string; config: MultiplesGridConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

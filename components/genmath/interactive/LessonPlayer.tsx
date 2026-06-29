@@ -39,6 +39,7 @@ import IntegerAdd from "@/components/genmath/interactive/IntegerAdd";
 import IntegerSubtract from "@/components/genmath/interactive/IntegerSubtract";
 import IntegerSignRule from "@/components/genmath/interactive/IntegerSignRule";
 import FactorPairs from "@/components/genmath/interactive/FactorPairs";
+import MultiplesGrid from "@/components/genmath/interactive/MultiplesGrid";
 import RatioFigure from "@/components/genmath/interactive/RatioFigure";
 import NotationToggle from "@/components/genmath/interactive/NotationToggle";
 import { type GenMathLesson } from "@/lib/genmath-lessons";
@@ -506,6 +507,16 @@ function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveSt
         <>
           <StepHeader eyebrow={step.eyebrow} title={step.title} />
           <FactorPairs config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "multiplesGrid":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <MultiplesGrid config={step.config} />
           <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
             <MathText text={step.teach} />
           </p>

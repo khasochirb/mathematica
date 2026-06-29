@@ -240,6 +240,244 @@
           }
         ]
       }
+    },
+    {
+      "slug": "multiples",
+      "title": "Multiples",
+      "concreteComparison": "Counting off a marching band in 4s — $4, 8, 12, 16, \\ldots$ — lists the **multiples** of 4. A multiple of a number is what you land on when you skip-count by it (or multiply it by $1, 2, 3, \\ldots$).",
+      "objective": "Find multiples of a number by skip-counting (multiplying by 1, 2, 3, …), and find common multiples shared by two numbers.",
+      "concept": [
+        "A **multiple** of a number is that number times $1, 2, 3, \\ldots$ — what you land on skip-counting. Multiples of $4$: $4, 8, 12, 16, \\ldots$",
+        "Every number has **infinitely many** multiples, and is its own smallest (nonzero) multiple.",
+        "A **common multiple** of two numbers shows up in **both** lists. $12$ is a common multiple of $3$ and $4$."
+      ],
+      "keyIdea": "A multiple is the number × 1, 2, 3, … (skip-counting). Common multiples appear in both numbers' lists.",
+      "facts": [
+        {
+          "title": "Multiples of 4",
+          "latex": "$4, 8, 12, 16, 20, \\ldots$",
+          "explanation": "Skip-count by 4, forever."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "m-we1",
+          "statement": "List the first four multiples of $6$.",
+          "solution": "$6\\times1, 6\\times2, 6\\times3, 6\\times4 = 6, 12, 18, 24$.",
+          "check": ["6*4 == 24"]
+        },
+        {
+          "id": "m-we2",
+          "statement": "Find a common multiple of $3$ and $4$.",
+          "solution": "$12$ is in both lists ($3\\times4$ and $4\\times3$).",
+          "check": ["12 % 3 == 0", "12 % 4 == 0"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Mixing up multiples with factors.",
+          "correction": "A multiple is **bigger** (built from the number): $12$ is a multiple of $3$. A factor **divides** it: $3$ is a factor of $12$.",
+          "authored": true
+        },
+        {
+          "text": "Thinking a number has only a few multiples.",
+          "correction": "Multiples never run out — you can always skip-count one more.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "m-t1",
+          "statement": "Is $20$ a multiple of $5$?",
+          "solution": "$5 \\times 4 = 20$, so yes.",
+          "check": ["20 % 5 == 0"]
+        },
+        {
+          "id": "m-t2",
+          "statement": "Find a common multiple of $2$ and $5$.",
+          "solution": "$10$ is in both lists.",
+          "check": ["10 % 2 == 0", "10 % 5 == 0"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "multiplesGrid",
+            "eyebrow": "Concept A",
+            "title": "Skip-counting lights up multiples",
+            "teach": "Pick a number and skip-count by it. Every square you land on — $k, 2k, 3k, \\ldots$ — is a **multiple** of $k$. Change the number and watch the pattern shift.",
+            "config": {
+              "max": 30,
+              "start": 4,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Multiples are skip-counting",
+            "beats": [
+              "A multiple of $4$ is $4 \\times 1, 4 \\times 2, 4 \\times 3, \\ldots$",
+              "That lands you on $4, 8, 12, 16, \\ldots$",
+              "The list never ends — there are infinitely many.",
+              "The number itself ($4$) is its smallest nonzero multiple."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Don't mix them up",
+            "title": "Factors vs multiples",
+            "beats": [
+              "A **factor** divides **into** a number: $3$ is a factor of $12$.",
+              "A **multiple** is built **from** a number: $12$ is a multiple of $3$.",
+              "Factors are $\\leq$ the number; multiples are $\\geq$ the number.",
+              "$3$ and $12$ show both sides of the same relationship."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Listing multiples",
+            "intro": "Multiply by 1, 2, 3, 4, …",
+            "examples": [
+              {
+                "prompt": "List the first four multiples of $6$.",
+                "steps": [
+                  "$6\\times1, 6\\times2, 6\\times3, 6\\times4$.",
+                  "$6, 12, 18, 24$."
+                ],
+                "answer": "$6, 12, 18, 24$",
+                "check": ["6*4 == 24"]
+              },
+              {
+                "prompt": "List the first four multiples of $5$.",
+                "steps": [
+                  "$5\\times1, 5\\times2, 5\\times3, 5\\times4$.",
+                  "$5, 10, 15, 20$."
+                ],
+                "answer": "$5, 10, 15, 20$",
+                "check": ["5*4 == 20"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Is it a multiple?",
+            "intro": "Does the number divide it evenly?",
+            "problems": [
+              {
+                "prompt": "Is $20$ a multiple of $5$?",
+                "options": ["Yes", "No"],
+                "correctIndex": 0,
+                "explanation": "$5 \\times 4 = 20$, so yes.",
+                "check": ["20 % 5 == 0"]
+              },
+              {
+                "prompt": "Is $18$ a multiple of $4$?",
+                "options": ["No", "Yes"],
+                "correctIndex": 0,
+                "explanation": "$4 \\times 4 = 16$ and $4 \\times 5 = 20$ — 18 is skipped, so no.",
+                "check": ["18 % 4 != 0"]
+              },
+              {
+                "prompt": "Is $24$ a multiple of $6$?",
+                "options": ["Yes", "No"],
+                "correctIndex": 0,
+                "explanation": "$6 \\times 4 = 24$, so yes.",
+                "check": ["24 % 6 == 0"]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Where lists overlap",
+            "title": "Common multiples",
+            "beats": [
+              "List the multiples of each number, then look for matches.",
+              "Multiples of $3$: $3, 6, 9, 12, \\ldots$",
+              "Multiples of $4$: $4, 8, 12, \\ldots$",
+              "$12$ shows up in both — a **common multiple** of $3$ and $4$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Common multiples",
+            "intro": "Find a number that appears in both lists.",
+            "examples": [
+              {
+                "prompt": "Find a common multiple of $3$ and $4$.",
+                "steps": [
+                  "Multiples of $3$: $3, 6, 9, 12$.",
+                  "Multiples of $4$: $4, 8, 12$.",
+                  "$12$ is in both."
+                ],
+                "answer": "$12$",
+                "check": ["12 % 3 == 0", "12 % 4 == 0"]
+              },
+              {
+                "prompt": "Find a common multiple of $2$ and $5$.",
+                "steps": [
+                  "Multiples of $2$: $2, 4, 6, 8, 10$.",
+                  "Multiples of $5$: $5, 10$.",
+                  "$10$ is in both."
+                ],
+                "answer": "$10$",
+                "check": ["10 % 2 == 0", "10 % 5 == 0"]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find a common multiple",
+            "intro": "Which number is in both lists?",
+            "problems": [
+              {
+                "prompt": "Which is a common multiple of $3$ and $4$?",
+                "options": ["$12$", "$6$", "$8$"],
+                "correctIndex": 0,
+                "explanation": "$12$ is a multiple of both $3$ and $4$.",
+                "check": ["12 % 3 == 0", "12 % 4 == 0"]
+              },
+              {
+                "prompt": "Which is a common multiple of $2$ and $5$?",
+                "options": ["$10$", "$12$", "$15$"],
+                "correctIndex": 0,
+                "explanation": "$10$ is a multiple of both $2$ and $5$.",
+                "check": ["10 % 2 == 0", "10 % 5 == 0"]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "When skip-counts collide",
+            "body": "Skip-count by 3 and by 4 at the same time and you both land on $12$ — then $24$, then $36$. The first place two skip-counts meet is their **least common multiple**, the trick behind adding fractions with different denominators."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Is it a multiple?",
+            "prompt": "Is $24$ a multiple of $6$?",
+            "options": ["Yes", "No"],
+            "correctIndex": 0,
+            "explanation": "$6 \\times 4 = 24$, so yes.",
+            "check": ["24 % 6 == 0"]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **multiple** is the number × $1, 2, 3, \\ldots$ — skip-counting, forever.",
+              "**Factors divide in; multiples build up.**",
+              "A **common multiple** appears in both numbers' lists, like $12$ for $3$ and $4$."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [],
