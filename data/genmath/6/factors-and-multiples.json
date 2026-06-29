@@ -28,13 +28,17 @@
           "id": "f-we1",
           "statement": "List the factors of $12$.",
           "solution": "Check 1–12: $1, 2, 3, 4, 6, 12$. Pairs: $1\\times12, 2\\times6, 3\\times4$.",
-          "check": ["3*4 == 12"]
+          "check": [
+            "3*4 == 12"
+          ]
         },
         {
           "id": "f-we2",
           "statement": "Is $5$ a factor of $12$?",
           "solution": "$12 \\div 5$ leaves a remainder, so no.",
-          "check": ["12 % 5 != 0"]
+          "check": [
+            "12 % 5 != 0"
+          ]
         }
       ],
       "commonMistakes": [
@@ -54,13 +58,17 @@
           "id": "f-t1",
           "statement": "Is $6$ a factor of $18$?",
           "solution": "$18 \\div 6 = 3$ with no remainder, so yes.",
-          "check": ["18 % 6 == 0"]
+          "check": [
+            "18 % 6 == 0"
+          ]
         },
         {
           "id": "f-t2",
           "statement": "Is $4$ a factor of $20$?",
           "solution": "$20 \\div 4 = 5$, so yes.",
-          "check": ["20 % 4 == 0"]
+          "check": [
+            "20 % 4 == 0"
+          ]
         }
       ],
       "interactive": {
@@ -111,7 +119,9 @@
                   "Factors: $1, 2, 3, 4, 6, 12$."
                 ],
                 "answer": "$1, 2, 3, 4, 6, 12$",
-                "check": ["3*4 == 12"]
+                "check": [
+                  "3*4 == 12"
+                ]
               },
               {
                 "prompt": "Is $5$ a factor of $12$?",
@@ -120,7 +130,9 @@
                   "A remainder means it doesn't divide evenly — not a factor."
                 ],
                 "answer": "No",
-                "check": ["12 % 5 != 0"]
+                "check": [
+                  "12 % 5 != 0"
+                ]
               }
             ]
           },
@@ -132,24 +144,39 @@
             "problems": [
               {
                 "prompt": "Is $3$ a factor of $12$?",
-                "options": ["Yes", "No"],
+                "options": [
+                  "Yes",
+                  "No"
+                ],
                 "correctIndex": 0,
                 "explanation": "$12 \\div 3 = 4$ exactly, so yes.",
-                "check": ["12 % 3 == 0"]
+                "check": [
+                  "12 % 3 == 0"
+                ]
               },
               {
                 "prompt": "Is $5$ a factor of $12$?",
-                "options": ["No", "Yes"],
+                "options": [
+                  "No",
+                  "Yes"
+                ],
                 "correctIndex": 0,
                 "explanation": "$12 \\div 5$ leaves a remainder, so no.",
-                "check": ["12 % 5 != 0"]
+                "check": [
+                  "12 % 5 != 0"
+                ]
               },
               {
                 "prompt": "Is $6$ a factor of $18$?",
-                "options": ["Yes", "No"],
+                "options": [
+                  "Yes",
+                  "No"
+                ],
                 "correctIndex": 0,
                 "explanation": "$18 \\div 6 = 3$, so yes.",
-                "check": ["18 % 6 == 0"]
+                "check": [
+                  "18 % 6 == 0"
+                ]
               }
             ]
           },
@@ -177,7 +204,9 @@
                   "Factors: $1, 2, 3, 6, 9, 18$."
                 ],
                 "answer": "$1, 2, 3, 6, 9, 18$",
-                "check": ["3*6 == 18"]
+                "check": [
+                  "3*6 == 18"
+                ]
               },
               {
                 "prompt": "List the factors of $16$.",
@@ -186,7 +215,9 @@
                   "Factors: $1, 2, 4, 8, 16$."
                 ],
                 "answer": "$1, 2, 4, 8, 16$",
-                "check": ["4*4 == 16"]
+                "check": [
+                  "4*4 == 16"
+                ]
               }
             ]
           },
@@ -198,17 +229,29 @@
             "problems": [
               {
                 "prompt": "Which is a factor of $20$?",
-                "options": ["$4$", "$3$", "$7$"],
+                "options": [
+                  "$4$",
+                  "$3$",
+                  "$7$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$20 \\div 4 = 5$, so $4$ is a factor.",
-                "check": ["20 % 4 == 0"]
+                "check": [
+                  "20 % 4 == 0"
+                ]
               },
               {
                 "prompt": "Which is a factor of $15$?",
-                "options": ["$5$", "$4$", "$6$"],
+                "options": [
+                  "$5$",
+                  "$4$",
+                  "$6$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$15 \\div 5 = 3$, so $5$ is a factor.",
-                "check": ["15 % 5 == 0"]
+                "check": [
+                  "15 % 5 == 0"
+                ]
               }
             ]
           },
@@ -223,10 +266,15 @@
             "eyebrow": "Quick check",
             "title": "Is it a factor?",
             "prompt": "Is $4$ a factor of $12$?",
-            "options": ["Yes", "No"],
+            "options": [
+              "Yes",
+              "No"
+            ],
             "correctIndex": 0,
             "explanation": "$12 \\div 4 = 3$ exactly, so yes.",
-            "check": ["12 % 4 == 0"]
+            "check": [
+              "12 % 4 == 0"
+            ]
           },
           {
             "kind": "recap",
@@ -237,6 +285,116 @@
               "Factors come in **pairs** that multiply to the number: $3 \\times 4 = 12$.",
               "List them by checking $1, 2, 3, \\ldots$ and pairing as you go."
             ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Time to put your factor skills to work with a mix of problems on factors and factor pairs."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Which number is a factor of $24$?",
+                "options": [
+                  "$5$",
+                  "$7$",
+                  "$6$",
+                  "$9$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$6$ divides $24$ evenly because $24 \\div 6 = 4$ with no remainder.",
+                "check": [
+                  "24 % 6 == 0",
+                  "24 % 5 != 0"
+                ]
+              },
+              {
+                "prompt": "Complete the factor pair of $36$: $4 \\times \\;? = 36$.",
+                "options": [
+                  "$9$",
+                  "$8$",
+                  "$6$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Since $4 \\times 9 = 36$, the missing factor is $9$.",
+                "check": [
+                  "4 * 9 == 36",
+                  "36 % 9 == 0"
+                ]
+              },
+              {
+                "prompt": "Which of these is NOT a factor of $40$?",
+                "options": [
+                  "$4$",
+                  "$5$",
+                  "$8$",
+                  "$6$"
+                ],
+                "correctIndex": 3,
+                "explanation": "$40 \\div 6$ leaves a remainder, so $6$ is not a factor of $40$.",
+                "check": [
+                  "40 % 6 != 0",
+                  "40 % 5 == 0"
+                ]
+              },
+              {
+                "prompt": "Which pair of numbers is a factor pair of $42$?",
+                "options": [
+                  "$5 \\times 8$",
+                  "$6 \\times 7$",
+                  "$4 \\times 9$",
+                  "$3 \\times 12$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$6 \\times 7 = 42$, so $6$ and $7$ are a factor pair of $42$.",
+                "check": [
+                  "6 * 7 == 42",
+                  "42 % 6 == 0"
+                ]
+              },
+              {
+                "prompt": "How many factors does $48$ have? (Hint: list its factor pairs.)",
+                "options": [
+                  "$8$",
+                  "$10$",
+                  "$6$",
+                  "$12$"
+                ],
+                "correctIndex": 1,
+                "explanation": "The factors of $48$ are $1,2,3,4,6,8,12,16,24,48$, which is $10$ factors.",
+                "check": [
+                  "48 % 8 == 0",
+                  "48 % 7 != 0"
+                ]
+              },
+              {
+                "prompt": "A number has the factor pair $8 \\times 9$. What is the number, and which of these is also one of its factors?",
+                "options": [
+                  "$72$, and $5$ is a factor",
+                  "$72$, and $6$ is a factor",
+                  "$64$, and $6$ is a factor",
+                  "$81$, and $8$ is a factor"
+                ],
+                "correctIndex": 1,
+                "explanation": "Since $8 \\times 9 = 72$ and $72 \\div 6 = 12$, the number is $72$ and $6$ is a factor.",
+                "check": [
+                  "8 * 9 == 72",
+                  "72 % 6 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Factors & Factor Pairs\"",
+            "body": "Nice work, you've mastered finding factors and factor pairs. Next up is \"Multiples,\" where you'll flip the idea around and skip-count to build numbers instead of breaking them down."
           }
         ]
       }
@@ -264,13 +422,18 @@
           "id": "m-we1",
           "statement": "List the first four multiples of $6$.",
           "solution": "$6\\times1, 6\\times2, 6\\times3, 6\\times4 = 6, 12, 18, 24$.",
-          "check": ["6*4 == 24"]
+          "check": [
+            "6*4 == 24"
+          ]
         },
         {
           "id": "m-we2",
           "statement": "Find a common multiple of $3$ and $4$.",
           "solution": "$12$ is in both lists ($3\\times4$ and $4\\times3$).",
-          "check": ["12 % 3 == 0", "12 % 4 == 0"]
+          "check": [
+            "12 % 3 == 0",
+            "12 % 4 == 0"
+          ]
         }
       ],
       "commonMistakes": [
@@ -290,13 +453,18 @@
           "id": "m-t1",
           "statement": "Is $20$ a multiple of $5$?",
           "solution": "$5 \\times 4 = 20$, so yes.",
-          "check": ["20 % 5 == 0"]
+          "check": [
+            "20 % 5 == 0"
+          ]
         },
         {
           "id": "m-t2",
           "statement": "Find a common multiple of $2$ and $5$.",
           "solution": "$10$ is in both lists.",
-          "check": ["10 % 2 == 0", "10 % 5 == 0"]
+          "check": [
+            "10 % 2 == 0",
+            "10 % 5 == 0"
+          ]
         }
       ],
       "interactive": {
@@ -347,7 +515,9 @@
                   "$6, 12, 18, 24$."
                 ],
                 "answer": "$6, 12, 18, 24$",
-                "check": ["6*4 == 24"]
+                "check": [
+                  "6*4 == 24"
+                ]
               },
               {
                 "prompt": "List the first four multiples of $5$.",
@@ -356,7 +526,9 @@
                   "$5, 10, 15, 20$."
                 ],
                 "answer": "$5, 10, 15, 20$",
-                "check": ["5*4 == 20"]
+                "check": [
+                  "5*4 == 20"
+                ]
               }
             ]
           },
@@ -368,24 +540,39 @@
             "problems": [
               {
                 "prompt": "Is $20$ a multiple of $5$?",
-                "options": ["Yes", "No"],
+                "options": [
+                  "Yes",
+                  "No"
+                ],
                 "correctIndex": 0,
                 "explanation": "$5 \\times 4 = 20$, so yes.",
-                "check": ["20 % 5 == 0"]
+                "check": [
+                  "20 % 5 == 0"
+                ]
               },
               {
                 "prompt": "Is $18$ a multiple of $4$?",
-                "options": ["No", "Yes"],
+                "options": [
+                  "No",
+                  "Yes"
+                ],
                 "correctIndex": 0,
                 "explanation": "$4 \\times 4 = 16$ and $4 \\times 5 = 20$ — 18 is skipped, so no.",
-                "check": ["18 % 4 != 0"]
+                "check": [
+                  "18 % 4 != 0"
+                ]
               },
               {
                 "prompt": "Is $24$ a multiple of $6$?",
-                "options": ["Yes", "No"],
+                "options": [
+                  "Yes",
+                  "No"
+                ],
                 "correctIndex": 0,
                 "explanation": "$6 \\times 4 = 24$, so yes.",
-                "check": ["24 % 6 == 0"]
+                "check": [
+                  "24 % 6 == 0"
+                ]
               }
             ]
           },
@@ -414,7 +601,10 @@
                   "$12$ is in both."
                 ],
                 "answer": "$12$",
-                "check": ["12 % 3 == 0", "12 % 4 == 0"]
+                "check": [
+                  "12 % 3 == 0",
+                  "12 % 4 == 0"
+                ]
               },
               {
                 "prompt": "Find a common multiple of $2$ and $5$.",
@@ -424,7 +614,10 @@
                   "$10$ is in both."
                 ],
                 "answer": "$10$",
-                "check": ["10 % 2 == 0", "10 % 5 == 0"]
+                "check": [
+                  "10 % 2 == 0",
+                  "10 % 5 == 0"
+                ]
               }
             ]
           },
@@ -436,17 +629,31 @@
             "problems": [
               {
                 "prompt": "Which is a common multiple of $3$ and $4$?",
-                "options": ["$12$", "$6$", "$8$"],
+                "options": [
+                  "$12$",
+                  "$6$",
+                  "$8$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$12$ is a multiple of both $3$ and $4$.",
-                "check": ["12 % 3 == 0", "12 % 4 == 0"]
+                "check": [
+                  "12 % 3 == 0",
+                  "12 % 4 == 0"
+                ]
               },
               {
                 "prompt": "Which is a common multiple of $2$ and $5$?",
-                "options": ["$10$", "$12$", "$15$"],
+                "options": [
+                  "$10$",
+                  "$12$",
+                  "$15$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$10$ is a multiple of both $2$ and $5$.",
-                "check": ["10 % 2 == 0", "10 % 5 == 0"]
+                "check": [
+                  "10 % 2 == 0",
+                  "10 % 5 == 0"
+                ]
               }
             ]
           },
@@ -461,10 +668,15 @@
             "eyebrow": "Quick check",
             "title": "Is it a multiple?",
             "prompt": "Is $24$ a multiple of $6$?",
-            "options": ["Yes", "No"],
+            "options": [
+              "Yes",
+              "No"
+            ],
             "correctIndex": 0,
             "explanation": "$6 \\times 4 = 24$, so yes.",
-            "check": ["24 % 6 == 0"]
+            "check": [
+              "24 % 6 == 0"
+            ]
           },
           {
             "kind": "recap",
@@ -475,6 +687,115 @@
               "**Factors divide in; multiples build up.**",
               "A **common multiple** appears in both numbers' lists, like $12$ for $3$ and $4$."
             ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's review multiples and common multiples with a mix of skip-counting and odd-one-out problems."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "What is the $4$th multiple of $6$?",
+                "options": [
+                  "$18$",
+                  "$24$",
+                  "$30$",
+                  "$36$"
+                ],
+                "correctIndex": 1,
+                "explanation": "The 4th multiple of 6 is $6 \\times 4 = 24$.",
+                "check": [
+                  "6*4 == 24",
+                  "24 % 6 == 0"
+                ]
+              },
+              {
+                "prompt": "Which number is a multiple of $7$?",
+                "options": [
+                  "$22$",
+                  "$30$",
+                  "$35$",
+                  "$40$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$7 \\times 5 = 35$, so 35 is a multiple of 7.",
+                "check": [
+                  "35 % 7 == 0"
+                ]
+              },
+              {
+                "prompt": "Which number is NOT a multiple of $7$?",
+                "options": [
+                  "$14$",
+                  "$21$",
+                  "$34$",
+                  "$42$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$34$ is not in the 7 times table, since $7 \\times 4 = 28$ and $7 \\times 5 = 35$.",
+                "check": [
+                  "34 % 7 != 0",
+                  "35 % 7 == 0"
+                ]
+              },
+              {
+                "prompt": "Counting by $9$, what is the $5$th multiple of $9$?",
+                "options": [
+                  "$36$",
+                  "$45$",
+                  "$54$",
+                  "$63$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Skip-counting gives $9, 18, 27, 36, 45$, so the 5th multiple is 45.",
+                "check": [
+                  "9*5 == 45",
+                  "45 % 9 == 0"
+                ]
+              },
+              {
+                "prompt": "Which number is a common multiple of both $4$ and $6$?",
+                "options": [
+                  "$12$ only if it is in both lists, but choose",
+                  "$14$",
+                  "$18$",
+                  "$24$"
+                ],
+                "correctIndex": 3,
+                "explanation": "$24 = 4 \\times 6$ and $24 = 6 \\times 4$, so it appears in both lists.",
+                "check": [
+                  "24 % 4 == 0",
+                  "24 % 6 == 0"
+                ]
+              },
+              {
+                "prompt": "Which number is a common multiple of both $4$ and $10$?",
+                "options": [
+                  "$24$",
+                  "$30$",
+                  "$50$",
+                  "$60$"
+                ],
+                "correctIndex": 3,
+                "explanation": "$60$ is in both lists since $60 = 4 \\times 15$ and $60 = 10 \\times 6$.",
+                "check": [
+                  "60 % 4 == 0",
+                  "60 % 10 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Multiples\"",
+            "body": "Great work, you've finished the Multiples lesson. You can now list multiples by skip-counting and spot the common multiples shared by two numbers."
           }
         ]
       }

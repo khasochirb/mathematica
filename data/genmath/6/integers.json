@@ -28,13 +28,17 @@
           "id": "wai-we1",
           "statement": "What integer is 4 units to the left of $0$?",
           "solution": "Left of zero is negative, so it is $-4$.",
-          "check": ["0 - 4 == -4"]
+          "check": [
+            "0 - 4 == -4"
+          ]
         },
         {
           "id": "wai-we2",
           "statement": "What is the opposite of $-7$?",
           "solution": "The opposite is the same distance from 0 on the other side: $7$.",
-          "check": ["-(-7) == 7"]
+          "check": [
+            "-(-7) == 7"
+          ]
         }
       ],
       "commonMistakes": [
@@ -54,13 +58,17 @@
           "id": "wai-t1",
           "statement": "What is the opposite of $6$?",
           "solution": "$-6$ — same distance from 0, other side.",
-          "check": ["-(6) == -6"]
+          "check": [
+            "-(6) == -6"
+          ]
         },
         {
           "id": "wai-t2",
           "statement": "A temperature 5 degrees below zero is which integer?",
           "solution": "Below zero is negative: $-5$.",
-          "check": ["0 - 5 == -5"]
+          "check": [
+            "0 - 5 == -5"
+          ]
         }
       ],
       "interactive": {
@@ -89,7 +97,16 @@
             ],
             "figure": {
               "mode": "integerLine",
-              "integerLine": { "min": -6, "max": 6, "points": [ { "value": -3, "label": "-3" } ] }
+              "integerLine": {
+                "min": -6,
+                "max": 6,
+                "points": [
+                  {
+                    "value": -3,
+                    "label": "-3"
+                  }
+                ]
+              }
             }
           },
           {
@@ -104,7 +121,21 @@
             ],
             "figure": {
               "mode": "integerLine",
-              "integerLine": { "min": -6, "max": 6, "points": [ { "value": -4, "label": "-4" }, { "value": 4, "label": "4", "color": "#3b82f6" } ] }
+              "integerLine": {
+                "min": -6,
+                "max": 6,
+                "points": [
+                  {
+                    "value": -4,
+                    "label": "-4"
+                  },
+                  {
+                    "value": 4,
+                    "label": "4",
+                    "color": "#3b82f6"
+                  }
+                ]
+              }
             }
           },
           {
@@ -115,13 +146,27 @@
             "examples": [
               {
                 "prompt": "What integer is 4 units to the left of $0$?",
-                "figure": { "mode": "integerLine", "integerLine": { "min": -6, "max": 6, "points": [ { "value": -4, "label": "-4" } ] } },
+                "figure": {
+                  "mode": "integerLine",
+                  "integerLine": {
+                    "min": -6,
+                    "max": 6,
+                    "points": [
+                      {
+                        "value": -4,
+                        "label": "-4"
+                      }
+                    ]
+                  }
+                },
                 "steps": [
                   "Left of zero is negative.",
                   "4 units left of $0$ is $-4$."
                 ],
                 "answer": "$-4$",
-                "check": ["0 - 4 == -4"]
+                "check": [
+                  "0 - 4 == -4"
+                ]
               },
               {
                 "prompt": "What is the opposite of $-7$?",
@@ -130,7 +175,9 @@
                   "The opposite of $-7$ is $7$."
                 ],
                 "answer": "$7$",
-                "check": ["-(-7) == 7"]
+                "check": [
+                  "-(-7) == 7"
+                ]
               }
             ]
           },
@@ -142,25 +189,60 @@
             "problems": [
               {
                 "prompt": "Which integer is the opposite of $6$?",
-                "figure": { "mode": "integerLine", "integerLine": { "min": -7, "max": 7, "points": [ { "value": -6, "label": "-6" }, { "value": 6, "label": "6", "color": "#3b82f6" } ] } },
-                "options": ["$-6$", "$6$", "$0$"],
+                "figure": {
+                  "mode": "integerLine",
+                  "integerLine": {
+                    "min": -7,
+                    "max": 7,
+                    "points": [
+                      {
+                        "value": -6,
+                        "label": "-6"
+                      },
+                      {
+                        "value": 6,
+                        "label": "6",
+                        "color": "#3b82f6"
+                      }
+                    ]
+                  }
+                },
+                "options": [
+                  "$-6$",
+                  "$6$",
+                  "$0$"
+                ],
                 "correctIndex": 0,
                 "explanation": "The opposite of $6$ is $-6$ — same distance, other side.",
-                "check": ["-(6) == -6"]
+                "check": [
+                  "-(6) == -6"
+                ]
               },
               {
                 "prompt": "Which integer is 3 units to the right of $0$?",
-                "options": ["$3$", "$-3$", "$0$"],
+                "options": [
+                  "$3$",
+                  "$-3$",
+                  "$0$"
+                ],
                 "correctIndex": 0,
                 "explanation": "Right of zero is positive: $3$.",
-                "check": ["0 + 3 == 3"]
+                "check": [
+                  "0 + 3 == 3"
+                ]
               },
               {
                 "prompt": "Is $-2$ to the left or right of $0$?",
-                "options": ["left", "right", "on zero"],
+                "options": [
+                  "left",
+                  "right",
+                  "on zero"
+                ],
                 "correctIndex": 0,
                 "explanation": "Negatives are to the left of zero, so $-2$ is on the left.",
-                "check": ["-2 < 0"]
+                "check": [
+                  "-2 < 0"
+                ]
               }
             ]
           },
@@ -176,7 +258,16 @@
             ],
             "figure": {
               "mode": "integerLine",
-              "integerLine": { "min": -6, "max": 6, "points": [ { "value": -5, "label": "-5°" } ] }
+              "integerLine": {
+                "min": -6,
+                "max": 6,
+                "points": [
+                  {
+                    "value": -5,
+                    "label": "-5°"
+                  }
+                ]
+              }
             }
           },
           {
@@ -187,13 +278,27 @@
             "examples": [
               {
                 "prompt": "A temperature of 5 degrees below zero is which integer?",
-                "figure": { "mode": "integerLine", "integerLine": { "min": -6, "max": 6, "points": [ { "value": -5, "label": "-5" } ] } },
+                "figure": {
+                  "mode": "integerLine",
+                  "integerLine": {
+                    "min": -6,
+                    "max": 6,
+                    "points": [
+                      {
+                        "value": -5,
+                        "label": "-5"
+                      }
+                    ]
+                  }
+                },
                 "steps": [
                   "Below zero is negative.",
                   "5 below zero is $-5$."
                 ],
                 "answer": "$-5$",
-                "check": ["0 - 5 == -5"]
+                "check": [
+                  "0 - 5 == -5"
+                ]
               },
               {
                 "prompt": "A diver 20 m below sea level is at which integer?",
@@ -202,7 +307,9 @@
                   "20 m below is $-20$ m."
                 ],
                 "answer": "$-20$",
-                "check": ["0 - 20 == -20"]
+                "check": [
+                  "0 - 20 == -20"
+                ]
               }
             ]
           },
@@ -214,17 +321,29 @@
             "problems": [
               {
                 "prompt": "You owe \\$8. As an integer, that's:",
-                "options": ["$-8$", "$8$", "$0$"],
+                "options": [
+                  "$-8$",
+                  "$8$",
+                  "$0$"
+                ],
                 "correctIndex": 0,
                 "explanation": "Owing money is negative: $-8$.",
-                "check": ["0 - 8 == -8"]
+                "check": [
+                  "0 - 8 == -8"
+                ]
               },
               {
                 "prompt": "The opposite of $-3$ is:",
-                "options": ["$3$", "$-3$", "$0$"],
+                "options": [
+                  "$3$",
+                  "$-3$",
+                  "$0$"
+                ],
                 "correctIndex": 0,
                 "explanation": "The opposite of $-3$ is $3$.",
-                "check": ["-(-3) == 3"]
+                "check": [
+                  "-(-3) == 3"
+                ]
               }
             ]
           },
@@ -239,10 +358,16 @@
             "eyebrow": "Quick check",
             "title": "Find the opposite",
             "prompt": "Which integer is the opposite of $5$?",
-            "options": ["$-5$", "$5$", "$0$"],
+            "options": [
+              "$-5$",
+              "$5$",
+              "$0$"
+            ],
             "correctIndex": 0,
             "explanation": "The opposite of $5$ is $-5$ — same distance from zero, other side.",
-            "check": ["-(5) == -5"]
+            "check": [
+              "-(5) == -5"
+            ]
           },
           {
             "kind": "recap",
@@ -253,6 +378,112 @@
               "On the number line, **negatives go left** of zero, **positives go right**.",
               "Every integer has an **opposite** the same distance from zero; negatives mean 'below' or 'owed'."
             ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Try these six problems to review integers, the number line, and which numbers count as integers."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Which of these is an integer?",
+                "options": [
+                  "$\\dfrac{1}{2}$",
+                  "$2.5$",
+                  "$-8$",
+                  "$\\dfrac{3}{4}$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Integers are whole numbers and their negatives, so $-8$ qualifies while fractions and decimals do not.",
+                "check": [
+                  "sympify(-8).is_integer"
+                ]
+              },
+              {
+                "prompt": "A diver is $15$ feet below sea level. Which integer represents this position?",
+                "options": [
+                  "$15$",
+                  "$-15$",
+                  "$0$",
+                  "$\\dfrac{1}{15}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Below sea level is to the left of zero, so it is the negative integer $-15$.",
+                "check": [
+                  "Abs(-15) == 15"
+                ]
+              },
+              {
+                "prompt": "On the number line, which statement is true about $-6$ and $6$?",
+                "options": [
+                  "$-6$ is right of zero",
+                  "both are left of zero",
+                  "both are right of zero",
+                  "$-6$ is left of zero and $6$ is right of zero"
+                ],
+                "correctIndex": 3,
+                "explanation": "Negatives sit left of zero and positives sit right of zero.",
+                "check": [
+                  "(-6) < 0",
+                  "6 > 0"
+                ]
+              },
+              {
+                "prompt": "Which of the following is NOT an integer?",
+                "options": [
+                  "$\\dfrac{3}{4}$",
+                  "$-10$",
+                  "$0$",
+                  "$7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The fraction $\\tfrac{3}{4}$ is not a whole number or its negative, so it is not an integer.",
+                "check": [
+                  "sympify(Rational(3,4)).is_integer == False"
+                ]
+              },
+              {
+                "prompt": "Which integer is farthest to the LEFT on the number line?",
+                "options": [
+                  "$-12$",
+                  "$0$",
+                  "$-30$",
+                  "$5$"
+                ],
+                "correctIndex": 2,
+                "explanation": "The most negative value, $-30$, sits farthest left of zero.",
+                "check": [
+                  "(-30) < (-12)"
+                ]
+              },
+              {
+                "prompt": "The integers $-7$ and $7$ are each how many units from zero on the number line?",
+                "options": [
+                  "different distances",
+                  "$7$ units each",
+                  "$0$ units each",
+                  "$14$ units each"
+                ],
+                "correctIndex": 1,
+                "explanation": "Both $-7$ and $7$ are $7$ units from zero, just on opposite sides.",
+                "check": [
+                  "Abs(-7) == Abs(7)",
+                  "-7 != 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"What Are Integers?\"",
+            "body": "Nice work, you can now recognize integers and place positives and negatives on the number line. Next up is \"Comparing & Ordering Integers,\" where you'll use that left-right thinking to decide which integers are bigger or smaller."
           }
         ]
       }
@@ -280,13 +511,18 @@
           "id": "ci-we1",
           "statement": "Compare $-5$ and $-2$.",
           "solution": "$-5$ is further left, so $-5 < -2$.",
-          "check": ["-5 < -2"]
+          "check": [
+            "-5 < -2"
+          ]
         },
         {
           "id": "ci-we2",
           "statement": "Order $-4$, $2$, $-1$ from least to greatest.",
           "solution": "Left to right on the line: $-4 < -1 < 2$.",
-          "check": ["-4 < -1", "-1 < 2"]
+          "check": [
+            "-4 < -1",
+            "-1 < 2"
+          ]
         }
       ],
       "commonMistakes": [
@@ -306,13 +542,18 @@
           "id": "ci-t1",
           "statement": "Which is greater, $-3$ or $1$?",
           "solution": "$1$ is positive and $-3$ is negative, so $1 > -3$.",
-          "check": ["1 > -3"]
+          "check": [
+            "1 > -3"
+          ]
         },
         {
           "id": "ci-t2",
           "statement": "Which is the smallest: $-1$, $-7$, $3$?",
           "solution": "$-7$ is furthest left, so it is smallest.",
-          "check": ["-7 < -1", "-1 < 3"]
+          "check": [
+            "-7 < -1",
+            "-1 < 3"
+          ]
         }
       ],
       "interactive": {
@@ -342,7 +583,21 @@
             ],
             "figure": {
               "mode": "integerLine",
-              "integerLine": { "min": -7, "max": 7, "points": [ { "value": -5, "label": "-5" }, { "value": -2, "label": "-2", "color": "#3b82f6" } ] }
+              "integerLine": {
+                "min": -7,
+                "max": 7,
+                "points": [
+                  {
+                    "value": -5,
+                    "label": "-5"
+                  },
+                  {
+                    "value": -2,
+                    "label": "-2",
+                    "color": "#3b82f6"
+                  }
+                ]
+              }
             }
           },
           {
@@ -357,7 +612,26 @@
             ],
             "figure": {
               "mode": "integerLine",
-              "integerLine": { "min": -6, "max": 6, "points": [ { "value": -3, "label": "-3" }, { "value": 0, "label": "0", "color": "#16a34a" }, { "value": 2, "label": "2", "color": "#3b82f6" } ] }
+              "integerLine": {
+                "min": -6,
+                "max": 6,
+                "points": [
+                  {
+                    "value": -3,
+                    "label": "-3"
+                  },
+                  {
+                    "value": 0,
+                    "label": "0",
+                    "color": "#16a34a"
+                  },
+                  {
+                    "value": 2,
+                    "label": "2",
+                    "color": "#3b82f6"
+                  }
+                ]
+              }
             }
           },
           {
@@ -368,23 +642,61 @@
             "examples": [
               {
                 "prompt": "Compare $-5$ and $-2$.",
-                "figure": { "mode": "integerLine", "integerLine": { "min": -7, "max": 7, "points": [ { "value": -5, "label": "-5" }, { "value": -2, "label": "-2", "color": "#3b82f6" } ] } },
+                "figure": {
+                  "mode": "integerLine",
+                  "integerLine": {
+                    "min": -7,
+                    "max": 7,
+                    "points": [
+                      {
+                        "value": -5,
+                        "label": "-5"
+                      },
+                      {
+                        "value": -2,
+                        "label": "-2",
+                        "color": "#3b82f6"
+                      }
+                    ]
+                  }
+                },
                 "steps": [
                   "$-5$ is further left than $-2$.",
                   "Further left is smaller, so $-5 < -2$."
                 ],
                 "answer": "$-5 < -2$",
-                "check": ["-5 < -2"]
+                "check": [
+                  "-5 < -2"
+                ]
               },
               {
                 "prompt": "Compare $-3$ and $1$.",
-                "figure": { "mode": "integerLine", "integerLine": { "min": -6, "max": 6, "points": [ { "value": -3, "label": "-3" }, { "value": 1, "label": "1", "color": "#3b82f6" } ] } },
+                "figure": {
+                  "mode": "integerLine",
+                  "integerLine": {
+                    "min": -6,
+                    "max": 6,
+                    "points": [
+                      {
+                        "value": -3,
+                        "label": "-3"
+                      },
+                      {
+                        "value": 1,
+                        "label": "1",
+                        "color": "#3b82f6"
+                      }
+                    ]
+                  }
+                },
                 "steps": [
                   "$-3$ is negative; $1$ is positive.",
                   "Every negative is less than every positive: $-3 < 1$."
                 ],
                 "answer": "$-3 < 1$",
-                "check": ["-3 < 1"]
+                "check": [
+                  "-3 < 1"
+                ]
               }
             ]
           },
@@ -396,24 +708,42 @@
             "problems": [
               {
                 "prompt": "Which is greater, $-5$ or $-2$?",
-                "options": ["$-2$", "$-5$", "they are equal"],
+                "options": [
+                  "$-2$",
+                  "$-5$",
+                  "they are equal"
+                ],
                 "correctIndex": 0,
                 "explanation": "$-2$ is further right, so $-2 > -5$.",
-                "check": ["-2 > -5"]
+                "check": [
+                  "-2 > -5"
+                ]
               },
               {
                 "prompt": "Which is greater, $-3$ or $1$?",
-                "options": ["$1$", "$-3$", "they are equal"],
+                "options": [
+                  "$1$",
+                  "$-3$",
+                  "they are equal"
+                ],
                 "correctIndex": 0,
                 "explanation": "A positive beats a negative: $1 > -3$.",
-                "check": ["1 > -3"]
+                "check": [
+                  "1 > -3"
+                ]
               },
               {
                 "prompt": "Which is smaller, $-8$ or $-3$?",
-                "options": ["$-8$", "$-3$", "they are equal"],
+                "options": [
+                  "$-8$",
+                  "$-3$",
+                  "they are equal"
+                ],
                 "correctIndex": 0,
                 "explanation": "$-8$ is further left, so $-8 < -3$.",
-                "check": ["-8 < -3"]
+                "check": [
+                  "-8 < -3"
+                ]
               }
             ]
           },
@@ -429,7 +759,26 @@
             ],
             "figure": {
               "mode": "integerLine",
-              "integerLine": { "min": -6, "max": 6, "points": [ { "value": -4, "label": "-4" }, { "value": -1, "label": "-1", "color": "#3b82f6" }, { "value": 3, "label": "3", "color": "#16a34a" } ] }
+              "integerLine": {
+                "min": -6,
+                "max": 6,
+                "points": [
+                  {
+                    "value": -4,
+                    "label": "-4"
+                  },
+                  {
+                    "value": -1,
+                    "label": "-1",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "value": 3,
+                    "label": "3",
+                    "color": "#16a34a"
+                  }
+                ]
+              }
             }
           },
           {
@@ -440,23 +789,73 @@
             "examples": [
               {
                 "prompt": "Order $-4$, $2$, $-1$ from least to greatest.",
-                "figure": { "mode": "integerLine", "integerLine": { "min": -6, "max": 6, "points": [ { "value": -4, "label": "-4" }, { "value": -1, "label": "-1", "color": "#3b82f6" }, { "value": 2, "label": "2", "color": "#16a34a" } ] } },
+                "figure": {
+                  "mode": "integerLine",
+                  "integerLine": {
+                    "min": -6,
+                    "max": 6,
+                    "points": [
+                      {
+                        "value": -4,
+                        "label": "-4"
+                      },
+                      {
+                        "value": -1,
+                        "label": "-1",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "value": 2,
+                        "label": "2",
+                        "color": "#16a34a"
+                      }
+                    ]
+                  }
+                },
                 "steps": [
                   "On the line: $-4$, then $-1$, then $2$.",
                   "So $-4 < -1 < 2$."
                 ],
                 "answer": "$-4 < -1 < 2$",
-                "check": ["-4 < -1", "-1 < 2"]
+                "check": [
+                  "-4 < -1",
+                  "-1 < 2"
+                ]
               },
               {
                 "prompt": "Order $0$, $-3$, $5$ from least to greatest.",
-                "figure": { "mode": "integerLine", "integerLine": { "min": -6, "max": 6, "points": [ { "value": -3, "label": "-3" }, { "value": 0, "label": "0", "color": "#3b82f6" }, { "value": 5, "label": "5", "color": "#16a34a" } ] } },
+                "figure": {
+                  "mode": "integerLine",
+                  "integerLine": {
+                    "min": -6,
+                    "max": 6,
+                    "points": [
+                      {
+                        "value": -3,
+                        "label": "-3"
+                      },
+                      {
+                        "value": 0,
+                        "label": "0",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "value": 5,
+                        "label": "5",
+                        "color": "#16a34a"
+                      }
+                    ]
+                  }
+                },
                 "steps": [
                   "$-3$ is left of $0$, which is left of $5$.",
                   "So $-3 < 0 < 5$."
                 ],
                 "answer": "$-3 < 0 < 5$",
-                "check": ["-3 < 0", "0 < 5"]
+                "check": [
+                  "-3 < 0",
+                  "0 < 5"
+                ]
               }
             ]
           },
@@ -468,17 +867,31 @@
             "problems": [
               {
                 "prompt": "Which ordering (least to greatest) is correct?",
-                "options": ["$-6 < -2 < 1$", "$-2 < -6 < 1$", "$1 < -2 < -6$"],
+                "options": [
+                  "$-6 < -2 < 1$",
+                  "$-2 < -6 < 1$",
+                  "$1 < -2 < -6$"
+                ],
                 "correctIndex": 0,
                 "explanation": "Left to right: $-6$, $-2$, $1$.",
-                "check": ["-6 < -2", "-2 < 1"]
+                "check": [
+                  "-6 < -2",
+                  "-2 < 1"
+                ]
               },
               {
                 "prompt": "Which integer is the smallest: $-1$, $-7$, $3$?",
-                "options": ["$-7$", "$-1$", "$3$"],
+                "options": [
+                  "$-7$",
+                  "$-1$",
+                  "$3$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$-7$ is furthest left, so it is smallest.",
-                "check": ["-7 < -1", "-1 < 3"]
+                "check": [
+                  "-7 < -1",
+                  "-1 < 3"
+                ]
               }
             ]
           },
@@ -493,10 +906,16 @@
             "eyebrow": "Quick check",
             "title": "Which is smaller?",
             "prompt": "Which is smaller, $-5$ or $-2$?",
-            "options": ["$-5$", "$-2$", "they are equal"],
+            "options": [
+              "$-5$",
+              "$-2$",
+              "they are equal"
+            ],
             "correctIndex": 0,
             "explanation": "$-5$ is further left, so $-5 < -2$.",
-            "check": ["-5 < -2"]
+            "check": [
+              "-5 < -2"
+            ]
           },
           {
             "kind": "recap",
@@ -507,6 +926,107 @@
               "A bigger-looking negative is actually smaller: $-5 < -2$.",
               "Order by reading left to right: negatives, then zero, then positives."
             ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Time to put your integer-comparison skills to work: remember, the further left on the number line, the smaller the number."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Which symbol makes this true? $-8 \\;\\square\\; -3$",
+                "options": [
+                  "$<$",
+                  "$>$",
+                  "$=$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$-8$ sits further left on the number line, so it is smaller than $-3$.",
+                "check": [
+                  "-8 < -3"
+                ]
+              },
+              {
+                "prompt": "Which statement is true?",
+                "options": [
+                  "$-2 < -7$",
+                  "$-7 < -2$",
+                  "$-7 = -2$"
+                ],
+                "correctIndex": 1,
+                "explanation": "A bigger digit on a negative means smaller, so $-7$ is less than $-2$.",
+                "check": [
+                  "-7 < -2"
+                ]
+              },
+              {
+                "prompt": "Which of these integers is the smallest? $\\;-4,\\; -1,\\; -9,\\; -6$",
+                "options": [
+                  "$-1$",
+                  "$-4$",
+                  "$-9$",
+                  "$-6$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$-9$ is farthest left on the number line, so it is the smallest.",
+                "check": [
+                  "Min(-9,-4,-1,-6) == -9"
+                ]
+              },
+              {
+                "prompt": "Which symbol makes this true? $-15 \\;\\square\\; -11$",
+                "options": [
+                  "$>$",
+                  "$=$",
+                  "$<$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$-15$ is further left than $-11$, so it is the smaller value.",
+                "check": [
+                  "-15 < -11"
+                ]
+              },
+              {
+                "prompt": "Which list is correctly ordered from least to greatest?",
+                "options": [
+                  "$-6,\\; -14,\\; -20$",
+                  "$-20,\\; -14,\\; -6$",
+                  "$-14,\\; -20,\\; -6$"
+                ],
+                "correctIndex": 1,
+                "explanation": "From least to greatest the most-negative number comes first: $-20, -14, -6$.",
+                "check": [
+                  "(-20 < -14) and (-14 < -6)"
+                ]
+              },
+              {
+                "prompt": "Which integer is NOT smaller than $-19$? $\\;-30,\\; -25,\\; -22,\\; -19$ are the choices below.",
+                "options": [
+                  "$-30$",
+                  "$-25$",
+                  "$-22$",
+                  "$-19$"
+                ],
+                "correctIndex": 3,
+                "explanation": "$-19$ is the largest of the four, so it is not smaller than $-19$ (it equals it), while the others are all less.",
+                "check": [
+                  "Max(-30,-25,-19,-22) == -19",
+                  "-22 < -19"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Comparing & Ordering Integers\"",
+            "body": "Nice work! You can now compare and order positive and negative integers with confidence. Next up: \"Absolute Value & Opposites,\" where you'll measure how far a number is from zero."
           }
         ]
       }
@@ -534,13 +1054,17 @@
           "id": "av-we1",
           "statement": "What is $|-8|$?",
           "solution": "$-8$ is 8 away from zero, so $|-8| = 8$.",
-          "check": ["Abs(-8) == 8"]
+          "check": [
+            "Abs(-8) == 8"
+          ]
         },
         {
           "id": "av-we2",
           "statement": "What is $|3|$?",
           "solution": "$3$ is 3 away from zero, so $|3| = 3$.",
-          "check": ["Abs(3) == 3"]
+          "check": [
+            "Abs(3) == 3"
+          ]
         }
       ],
       "commonMistakes": [
@@ -560,13 +1084,17 @@
           "id": "av-t1",
           "statement": "What is $|-6|$?",
           "solution": "$|-6| = 6$ — 6 away from zero.",
-          "check": ["Abs(-6) == 6"]
+          "check": [
+            "Abs(-6) == 6"
+          ]
         },
         {
           "id": "av-t2",
           "statement": "Which is farther from zero, $-10$ or $2$?",
           "solution": "$|-10| = 10$ and $|2| = 2$, so $-10$ is farther.",
-          "check": ["Abs(-10) > Abs(2)"]
+          "check": [
+            "Abs(-10) > Abs(2)"
+          ]
         }
       ],
       "interactive": {
@@ -595,7 +1123,17 @@
             ],
             "figure": {
               "mode": "integerLine",
-              "integerLine": { "min": -7, "max": 7, "points": [ { "value": -5, "label": "-5" } ], "highlight": -5 }
+              "integerLine": {
+                "min": -7,
+                "max": 7,
+                "points": [
+                  {
+                    "value": -5,
+                    "label": "-5"
+                  }
+                ],
+                "highlight": -5
+              }
             }
           },
           {
@@ -610,7 +1148,22 @@
             ],
             "figure": {
               "mode": "integerLine",
-              "integerLine": { "min": -7, "max": 7, "points": [ { "value": -5, "label": "-5" }, { "value": 5, "label": "5", "color": "#3b82f6" } ], "highlight": 5 }
+              "integerLine": {
+                "min": -7,
+                "max": 7,
+                "points": [
+                  {
+                    "value": -5,
+                    "label": "-5"
+                  },
+                  {
+                    "value": 5,
+                    "label": "5",
+                    "color": "#3b82f6"
+                  }
+                ],
+                "highlight": 5
+              }
             }
           },
           {
@@ -621,23 +1174,53 @@
             "examples": [
               {
                 "prompt": "What is $|-8|$?",
-                "figure": { "mode": "integerLine", "integerLine": { "min": -9, "max": 9, "points": [ { "value": -8, "label": "-8" } ], "highlight": -8 } },
+                "figure": {
+                  "mode": "integerLine",
+                  "integerLine": {
+                    "min": -9,
+                    "max": 9,
+                    "points": [
+                      {
+                        "value": -8,
+                        "label": "-8"
+                      }
+                    ],
+                    "highlight": -8
+                  }
+                },
                 "steps": [
                   "$|-8|$ is the distance from $-8$ to $0$.",
                   "That distance is $8$, so $|-8| = 8$."
                 ],
                 "answer": "$8$",
-                "check": ["Abs(-8) == 8"]
+                "check": [
+                  "Abs(-8) == 8"
+                ]
               },
               {
                 "prompt": "What is $|3|$?",
-                "figure": { "mode": "integerLine", "integerLine": { "min": -6, "max": 6, "points": [ { "value": 3, "label": "3" } ], "highlight": 3 } },
+                "figure": {
+                  "mode": "integerLine",
+                  "integerLine": {
+                    "min": -6,
+                    "max": 6,
+                    "points": [
+                      {
+                        "value": 3,
+                        "label": "3"
+                      }
+                    ],
+                    "highlight": 3
+                  }
+                },
                 "steps": [
                   "$|3|$ is the distance from $3$ to $0$.",
                   "$|3| = 3$."
                 ],
                 "answer": "$3$",
-                "check": ["Abs(3) == 3"]
+                "check": [
+                  "Abs(3) == 3"
+                ]
               }
             ]
           },
@@ -649,24 +1232,42 @@
             "problems": [
               {
                 "prompt": "What is $|-6|$?",
-                "options": ["$6$", "$-6$", "$0$"],
+                "options": [
+                  "$6$",
+                  "$-6$",
+                  "$0$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$-6$ is 6 from zero, so $|-6| = 6$.",
-                "check": ["Abs(-6) == 6"]
+                "check": [
+                  "Abs(-6) == 6"
+                ]
               },
               {
                 "prompt": "What is $|4|$?",
-                "options": ["$4$", "$-4$", "$0$"],
+                "options": [
+                  "$4$",
+                  "$-4$",
+                  "$0$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$4$ is 4 from zero, so $|4| = 4$.",
-                "check": ["Abs(4) == 4"]
+                "check": [
+                  "Abs(4) == 4"
+                ]
               },
               {
                 "prompt": "What is $|-10|$?",
-                "options": ["$10$", "$-10$", "$1$"],
+                "options": [
+                  "$10$",
+                  "$-10$",
+                  "$1$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$-10$ is 10 from zero, so $|-10| = 10$.",
-                "check": ["Abs(-10) == 10"]
+                "check": [
+                  "Abs(-10) == 10"
+                ]
               }
             ]
           },
@@ -682,7 +1283,21 @@
             ],
             "figure": {
               "mode": "integerLine",
-              "integerLine": { "min": -8, "max": 8, "points": [ { "value": -7, "label": "-7" }, { "value": 7, "label": "7", "color": "#3b82f6" } ] }
+              "integerLine": {
+                "min": -8,
+                "max": 8,
+                "points": [
+                  {
+                    "value": -7,
+                    "label": "-7"
+                  },
+                  {
+                    "value": 7,
+                    "label": "7",
+                    "color": "#3b82f6"
+                  }
+                ]
+              }
             }
           },
           {
@@ -693,13 +1308,32 @@
             "examples": [
               {
                 "prompt": "Which is farther from zero, $-7$ or $4$?",
-                "figure": { "mode": "integerLine", "integerLine": { "min": -8, "max": 8, "points": [ { "value": -7, "label": "-7" }, { "value": 4, "label": "4", "color": "#3b82f6" } ] } },
+                "figure": {
+                  "mode": "integerLine",
+                  "integerLine": {
+                    "min": -8,
+                    "max": 8,
+                    "points": [
+                      {
+                        "value": -7,
+                        "label": "-7"
+                      },
+                      {
+                        "value": 4,
+                        "label": "4",
+                        "color": "#3b82f6"
+                      }
+                    ]
+                  }
+                },
                 "steps": [
                   "$|-7| = 7$ and $|4| = 4$.",
                   "$7 > 4$, so $-7$ is farther from zero."
                 ],
                 "answer": "$-7$",
-                "check": ["Abs(-7) > Abs(4)"]
+                "check": [
+                  "Abs(-7) > Abs(4)"
+                ]
               },
               {
                 "prompt": "Which has the greater absolute value, $-9$ or $6$?",
@@ -708,7 +1342,9 @@
                   "$9 > 6$, so $-9$ has the greater absolute value."
                 ],
                 "answer": "$-9$",
-                "check": ["Abs(-9) > Abs(6)"]
+                "check": [
+                  "Abs(-9) > Abs(6)"
+                ]
               }
             ]
           },
@@ -720,17 +1356,29 @@
             "problems": [
               {
                 "prompt": "Which is farther from zero, $-10$ or $2$?",
-                "options": ["$-10$", "$2$", "they are the same"],
+                "options": [
+                  "$-10$",
+                  "$2$",
+                  "they are the same"
+                ],
                 "correctIndex": 0,
                 "explanation": "$|-10| = 10 > 2 = |2|$, so $-10$ is farther.",
-                "check": ["Abs(-10) > Abs(2)"]
+                "check": [
+                  "Abs(-10) > Abs(2)"
+                ]
               },
               {
                 "prompt": "Which has the greater absolute value, $-3$ or $-8$?",
-                "options": ["$-8$", "$-3$", "they are the same"],
+                "options": [
+                  "$-8$",
+                  "$-3$",
+                  "they are the same"
+                ],
                 "correctIndex": 0,
                 "explanation": "$|-8| = 8 > 3 = |-3|$.",
-                "check": ["Abs(-8) > Abs(-3)"]
+                "check": [
+                  "Abs(-8) > Abs(-3)"
+                ]
               }
             ]
           },
@@ -745,10 +1393,16 @@
             "eyebrow": "Quick check",
             "title": "Absolute value",
             "prompt": "What is $|-5|$?",
-            "options": ["$5$", "$-5$", "$0$"],
+            "options": [
+              "$5$",
+              "$-5$",
+              "$0$"
+            ],
             "correctIndex": 0,
             "explanation": "$-5$ is 5 from zero, so $|-5| = 5$.",
-            "check": ["Abs(-5) == 5"]
+            "check": [
+              "Abs(-5) == 5"
+            ]
           },
           {
             "kind": "recap",
@@ -759,6 +1413,109 @@
               "It is always **0 or positive** — direction doesn't matter.",
               "Opposites share an absolute value: $|-5| = |5| = 5$."
             ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's practice finding absolute value and working with opposites."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "What is $|-7|$?",
+                "options": [
+                  "$-7$",
+                  "$0$",
+                  "$7$",
+                  "$14$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Absolute value is distance from zero, so $|-7| = 7$.",
+                "check": [
+                  "Abs(-7) == 7"
+                ]
+              },
+              {
+                "prompt": "What is $|9|$?",
+                "options": [
+                  "$9$",
+                  "$-9$",
+                  "$0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The number 9 is 9 units from zero, so $|9| = 9$.",
+                "check": [
+                  "Abs(9) == 9"
+                ]
+              },
+              {
+                "prompt": "Which statement is true?",
+                "options": [
+                  "$|-15| = -15$",
+                  "$|-15| = |15|$",
+                  "$|-15| = 0$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Opposites share the same absolute value, so $|-15| = |15| = 15$.",
+                "check": [
+                  "Abs(-15) == Abs(15)",
+                  "Abs(-15) == 15"
+                ]
+              },
+              {
+                "prompt": "Which of these is NOT equal to $8$?",
+                "options": [
+                  "$|8|$",
+                  "$|-8|$",
+                  "$|-3|$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$|-3| = 3$, while $|8|$ and $|-8|$ both equal $8$.",
+                "check": [
+                  "Abs(-3) == 3",
+                  "Abs(-3) != 8"
+                ]
+              },
+              {
+                "prompt": "Which number has the greater absolute value, $-8$ or $3$?",
+                "options": [
+                  "$3$",
+                  "$-8$",
+                  "They are equal"
+                ],
+                "correctIndex": 1,
+                "explanation": "$|-8| = 8$ and $|3| = 3$, and $8 > 3$.",
+                "check": [
+                  "Abs(-8) > Abs(3)"
+                ]
+              },
+              {
+                "prompt": "What is $|-100|$?",
+                "options": [
+                  "$-100$",
+                  "$0$",
+                  "$10$",
+                  "$100$"
+                ],
+                "correctIndex": 3,
+                "explanation": "Absolute value is always 0 or positive, so $|-100| = 100$.",
+                "check": [
+                  "Abs(-100) == 100",
+                  "Abs(-100) > Abs(99)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Absolute Value & Opposites\"",
+            "body": "Nice work, you've mastered absolute value and opposites. Next up is \"Adding Integers,\" where you'll put these distance-from-zero ideas to use."
           }
         ]
       }
@@ -786,13 +1543,17 @@
           "id": "ai-we1",
           "statement": "Add $-3 + 5$.",
           "solution": "Start at $-3$, jump 5 right, land on $2$.",
-          "check": ["-3 + 5 == 2"]
+          "check": [
+            "-3 + 5 == 2"
+          ]
         },
         {
           "id": "ai-we2",
           "statement": "Add $-3 + (-4)$.",
           "solution": "Start at $-3$, jump 4 left, land on $-7$.",
-          "check": ["-3 + (-4) == -7"]
+          "check": [
+            "-3 + (-4) == -7"
+          ]
         }
       ],
       "commonMistakes": [
@@ -812,13 +1573,17 @@
           "id": "ai-t1",
           "statement": "Add $-6 + 2$.",
           "solution": "Start at $-6$, jump 2 right, land on $-4$.",
-          "check": ["-6 + 2 == -4"]
+          "check": [
+            "-6 + 2 == -4"
+          ]
         },
         {
           "id": "ai-t2",
           "statement": "Add $5 + (-8)$.",
           "solution": "Start at $5$, jump 8 left, land on $-3$.",
-          "check": ["5 + (-8) == -3"]
+          "check": [
+            "5 + (-8) == -3"
+          ]
         }
       ],
       "interactive": {
@@ -848,7 +1613,12 @@
             ],
             "figure": {
               "mode": "integerAdd",
-              "integerAdd": { "a": -3, "b": 5, "min": -8, "max": 8 }
+              "integerAdd": {
+                "a": -3,
+                "b": 5,
+                "min": -8,
+                "max": 8
+              }
             }
           },
           {
@@ -863,7 +1633,12 @@
             ],
             "figure": {
               "mode": "integerAdd",
-              "integerAdd": { "a": -3, "b": -4, "min": -9, "max": 5 }
+              "integerAdd": {
+                "a": -3,
+                "b": -4,
+                "min": -9,
+                "max": 5
+              }
             }
           },
           {
@@ -874,25 +1649,45 @@
             "examples": [
               {
                 "prompt": "Add $-3 + 5$.",
-                "figure": { "mode": "integerAdd", "integerAdd": { "a": -3, "b": 5, "min": -8, "max": 8 } },
+                "figure": {
+                  "mode": "integerAdd",
+                  "integerAdd": {
+                    "a": -3,
+                    "b": 5,
+                    "min": -8,
+                    "max": 8
+                  }
+                },
                 "steps": [
                   "Start at $-3$.",
                   "Add $5$ → jump 5 to the **right**.",
                   "Land on $2$: $-3 + 5 = 2$."
                 ],
                 "answer": "$2$",
-                "check": ["-3 + 5 == 2"]
+                "check": [
+                  "-3 + 5 == 2"
+                ]
               },
               {
                 "prompt": "Add $-3 + (-4)$.",
-                "figure": { "mode": "integerAdd", "integerAdd": { "a": -3, "b": -4, "min": -9, "max": 5 } },
+                "figure": {
+                  "mode": "integerAdd",
+                  "integerAdd": {
+                    "a": -3,
+                    "b": -4,
+                    "min": -9,
+                    "max": 5
+                  }
+                },
                 "steps": [
                   "Start at $-3$.",
                   "Add $-4$ → jump 4 to the **left**.",
                   "Land on $-7$: $-3 + (-4) = -7$."
                 ],
                 "answer": "$-7$",
-                "check": ["-3 + (-4) == -7"]
+                "check": [
+                  "-3 + (-4) == -7"
+                ]
               }
             ]
           },
@@ -904,24 +1699,42 @@
             "problems": [
               {
                 "prompt": "$-3 + (-4) = ?$",
-                "options": ["$-7$", "$7$", "$-1$"],
+                "options": [
+                  "$-7$",
+                  "$7$",
+                  "$-1$"
+                ],
                 "correctIndex": 0,
                 "explanation": "Same signs: add $3 + 4 = 7$, keep the negative → $-7$.",
-                "check": ["-3 + (-4) == -7"]
+                "check": [
+                  "-3 + (-4) == -7"
+                ]
               },
               {
                 "prompt": "$-6 + 2 = ?$",
-                "options": ["$-4$", "$4$", "$-8$"],
+                "options": [
+                  "$-4$",
+                  "$4$",
+                  "$-8$"
+                ],
                 "correctIndex": 0,
                 "explanation": "Start at $-6$, jump 2 right → $-4$.",
-                "check": ["-6 + 2 == -4"]
+                "check": [
+                  "-6 + 2 == -4"
+                ]
               },
               {
                 "prompt": "$5 + (-8) = ?$",
-                "options": ["$-3$", "$3$", "$13$"],
+                "options": [
+                  "$-3$",
+                  "$3$",
+                  "$13$"
+                ],
                 "correctIndex": 0,
                 "explanation": "Start at $5$, jump 8 left → $-3$.",
-                "check": ["5 + (-8) == -3"]
+                "check": [
+                  "5 + (-8) == -3"
+                ]
               }
             ]
           },
@@ -937,7 +1750,12 @@
             ],
             "figure": {
               "mode": "integerAdd",
-              "integerAdd": { "a": 3, "b": -5, "min": -6, "max": 6 }
+              "integerAdd": {
+                "a": 3,
+                "b": -5,
+                "min": -6,
+                "max": 6
+              }
             }
           },
           {
@@ -948,23 +1766,43 @@
             "examples": [
               {
                 "prompt": "Add $6 + (-2)$.",
-                "figure": { "mode": "integerAdd", "integerAdd": { "a": 6, "b": -2, "min": -2, "max": 8 } },
+                "figure": {
+                  "mode": "integerAdd",
+                  "integerAdd": {
+                    "a": 6,
+                    "b": -2,
+                    "min": -2,
+                    "max": 8
+                  }
+                },
                 "steps": [
                   "Different signs: subtract $6 - 2 = 4$.",
                   "$6$ is farther from zero, so the answer is positive: $4$."
                 ],
                 "answer": "$4$",
-                "check": ["6 + (-2) == 4"]
+                "check": [
+                  "6 + (-2) == 4"
+                ]
               },
               {
                 "prompt": "Add $-7 + 3$.",
-                "figure": { "mode": "integerAdd", "integerAdd": { "a": -7, "b": 3, "min": -9, "max": 5 } },
+                "figure": {
+                  "mode": "integerAdd",
+                  "integerAdd": {
+                    "a": -7,
+                    "b": 3,
+                    "min": -9,
+                    "max": 5
+                  }
+                },
                 "steps": [
                   "Different signs: subtract $7 - 3 = 4$.",
                   "$-7$ is farther from zero, so the answer is negative: $-4$."
                 ],
                 "answer": "$-4$",
-                "check": ["-7 + 3 == -4"]
+                "check": [
+                  "-7 + 3 == -4"
+                ]
               }
             ]
           },
@@ -976,17 +1814,29 @@
             "problems": [
               {
                 "prompt": "$-2 + (-6) = ?$",
-                "options": ["$-8$", "$8$", "$4$"],
+                "options": [
+                  "$-8$",
+                  "$8$",
+                  "$4$"
+                ],
                 "correctIndex": 0,
                 "explanation": "Same signs: $2 + 6 = 8$, keep negative → $-8$.",
-                "check": ["-2 + (-6) == -8"]
+                "check": [
+                  "-2 + (-6) == -8"
+                ]
               },
               {
                 "prompt": "$4 + (-9) = ?$",
-                "options": ["$-5$", "$5$", "$13$"],
+                "options": [
+                  "$-5$",
+                  "$5$",
+                  "$13$"
+                ],
                 "correctIndex": 0,
                 "explanation": "Different signs: $9 - 4 = 5$; $-9$ is farther, so $-5$.",
-                "check": ["4 + (-9) == -5"]
+                "check": [
+                  "4 + (-9) == -5"
+                ]
               }
             ]
           },
@@ -1001,10 +1851,16 @@
             "eyebrow": "Quick check",
             "title": "Add the integers",
             "prompt": "$-3 + 5 = ?$",
-            "options": ["$2$", "$-2$", "$8$"],
+            "options": [
+              "$2$",
+              "$-2$",
+              "$8$"
+            ],
             "correctIndex": 0,
             "explanation": "Start at $-3$, jump 5 right → $2$.",
-            "check": ["-3 + 5 == 2"]
+            "check": [
+              "-3 + 5 == 2"
+            ]
           },
           {
             "kind": "recap",
@@ -1015,6 +1871,110 @@
               "**Same signs:** add the distances, keep the sign.",
               "**Different signs:** subtract, and keep the sign of the number farther from zero."
             ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Time to put your number-line jumps to work: add these integers using the same-sign and different-sign rules you just learned."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Same signs add. What is $(-6) + (-3)$?",
+                "options": [
+                  "$-9$",
+                  "$-3$",
+                  "$9$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both are negative, so add the absolute values and keep the negative sign.",
+                "check": [
+                  "(-6) + (-3) == -9"
+                ]
+              },
+              {
+                "prompt": "Different signs subtract. What is $8 + (-5)$?",
+                "options": [
+                  "$13$",
+                  "$-13$",
+                  "$3$",
+                  "$-3$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Subtract 5 from 8 and keep the sign of 8, which has the bigger absolute value.",
+                "check": [
+                  "8 + (-5) == 3"
+                ]
+              },
+              {
+                "prompt": "Jump left past zero: what is $(-12) + 7$?",
+                "options": [
+                  "$19$",
+                  "$5$",
+                  "$-5$",
+                  "$-19$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Subtract 7 from 12 and keep the negative sign of the bigger absolute value.",
+                "check": [
+                  "(-12) + 7 == -5"
+                ]
+              },
+              {
+                "prompt": "What is $(-7) + 7$?",
+                "options": [
+                  "$14$",
+                  "$-14$",
+                  "$0$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Opposites cancel, landing you back at zero on the number line.",
+                "check": [
+                  "(-7) + 7 == 0"
+                ]
+              },
+              {
+                "prompt": "Two negatives stack up: what is $(-15) + (-9)$?",
+                "options": [
+                  "$-6$",
+                  "$6$",
+                  "$24$",
+                  "$-24$"
+                ],
+                "correctIndex": 3,
+                "explanation": "Same signs, so add 15 and 9 and keep the negative sign.",
+                "check": [
+                  "(-15) + (-9) == -24"
+                ]
+              },
+              {
+                "prompt": "Which expression does NOT equal $-4$?",
+                "options": [
+                  "$5 + (-9)$",
+                  "$(-10) + 6$",
+                  "$2 + (-6)$",
+                  "$(-1) + 3$"
+                ],
+                "correctIndex": 3,
+                "explanation": "$(-1) + 3 = 2$, while every other expression equals $-4$.",
+                "check": [
+                  "(-1) + 3 == 2",
+                  "5 + (-9) == -4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Adding Integers\"",
+            "body": "Nice work, you can now jump along the number line and add integers with confidence whether the signs match or not. Next up is \"Subtracting Integers,\" where you'll turn every subtraction into an addition you already know."
           }
         ]
       }
@@ -1042,13 +2002,17 @@
           "id": "si-we1",
           "statement": "Subtract $3 - (-5)$.",
           "solution": "Add the opposite: $3 - (-5) = 3 + 5 = 8$.",
-          "check": ["3 - (-5) == 8"]
+          "check": [
+            "3 - (-5) == 8"
+          ]
         },
         {
           "id": "si-we2",
           "statement": "Subtract $3 - 5$.",
           "solution": "Add the opposite: $3 - 5 = 3 + (-5) = -2$.",
-          "check": ["3 - 5 == -2"]
+          "check": [
+            "3 - 5 == -2"
+          ]
         }
       ],
       "commonMistakes": [
@@ -1068,13 +2032,17 @@
           "id": "si-t1",
           "statement": "Subtract $-2 - (-6)$.",
           "solution": "$-2 - (-6) = -2 + 6 = 4$.",
-          "check": ["-2 - (-6) == 4"]
+          "check": [
+            "-2 - (-6) == 4"
+          ]
         },
         {
           "id": "si-t2",
           "statement": "Subtract $6 - (-3)$.",
           "solution": "$6 - (-3) = 6 + 3 = 9$.",
-          "check": ["6 - (-3) == 9"]
+          "check": [
+            "6 - (-3) == 9"
+          ]
         }
       ],
       "interactive": {
@@ -1104,7 +2072,12 @@
             ],
             "figure": {
               "mode": "integerAdd",
-              "integerAdd": { "a": 3, "b": 5, "min": -6, "max": 10 }
+              "integerAdd": {
+                "a": 3,
+                "b": 5,
+                "min": -6,
+                "max": 10
+              }
             }
           },
           {
@@ -1119,7 +2092,12 @@
             ],
             "figure": {
               "mode": "integerAdd",
-              "integerAdd": { "a": 3, "b": -5, "min": -6, "max": 6 }
+              "integerAdd": {
+                "a": 3,
+                "b": -5,
+                "min": -6,
+                "max": 6
+              }
             }
           },
           {
@@ -1130,23 +2108,43 @@
             "examples": [
               {
                 "prompt": "Subtract $3 - (-5)$.",
-                "figure": { "mode": "integerAdd", "integerAdd": { "a": 3, "b": 5, "min": -6, "max": 10 } },
+                "figure": {
+                  "mode": "integerAdd",
+                  "integerAdd": {
+                    "a": 3,
+                    "b": 5,
+                    "min": -6,
+                    "max": 10
+                  }
+                },
                 "steps": [
                   "Add the opposite: $3 - (-5) = 3 + 5$.",
                   "Jump 5 right from $3$ → $8$."
                 ],
                 "answer": "$8$",
-                "check": ["3 - (-5) == 8"]
+                "check": [
+                  "3 - (-5) == 8"
+                ]
               },
               {
                 "prompt": "Subtract $3 - 5$.",
-                "figure": { "mode": "integerAdd", "integerAdd": { "a": 3, "b": -5, "min": -6, "max": 6 } },
+                "figure": {
+                  "mode": "integerAdd",
+                  "integerAdd": {
+                    "a": 3,
+                    "b": -5,
+                    "min": -6,
+                    "max": 6
+                  }
+                },
                 "steps": [
                   "Add the opposite: $3 - 5 = 3 + (-5)$.",
                   "Jump 5 left from $3$ → $-2$."
                 ],
                 "answer": "$-2$",
-                "check": ["3 - 5 == -2"]
+                "check": [
+                  "3 - 5 == -2"
+                ]
               }
             ]
           },
@@ -1158,24 +2156,42 @@
             "problems": [
               {
                 "prompt": "$3 - (-5) = ?$",
-                "options": ["$8$", "$-2$", "$-8$"],
+                "options": [
+                  "$8$",
+                  "$-2$",
+                  "$-8$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$3 - (-5) = 3 + 5 = 8$.",
-                "check": ["3 - (-5) == 8"]
+                "check": [
+                  "3 - (-5) == 8"
+                ]
               },
               {
                 "prompt": "$3 - 5 = ?$",
-                "options": ["$-2$", "$2$", "$8$"],
+                "options": [
+                  "$-2$",
+                  "$2$",
+                  "$8$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$3 - 5 = 3 + (-5) = -2$.",
-                "check": ["3 - 5 == -2"]
+                "check": [
+                  "3 - 5 == -2"
+                ]
               },
               {
                 "prompt": "$-2 - (-6) = ?$",
-                "options": ["$4$", "$-8$", "$-4$"],
+                "options": [
+                  "$4$",
+                  "$-8$",
+                  "$-4$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$-2 - (-6) = -2 + 6 = 4$.",
-                "check": ["-2 - (-6) == 4"]
+                "check": [
+                  "-2 - (-6) == 4"
+                ]
               }
             ]
           },
@@ -1191,7 +2207,12 @@
             ],
             "figure": {
               "mode": "integerAdd",
-              "integerAdd": { "a": -4, "b": -3, "min": -9, "max": 3 }
+              "integerAdd": {
+                "a": -4,
+                "b": -3,
+                "min": -9,
+                "max": 3
+              }
             }
           },
           {
@@ -1202,23 +2223,43 @@
             "examples": [
               {
                 "prompt": "Subtract $-2 - (-6)$.",
-                "figure": { "mode": "integerAdd", "integerAdd": { "a": -2, "b": 6, "min": -6, "max": 8 } },
+                "figure": {
+                  "mode": "integerAdd",
+                  "integerAdd": {
+                    "a": -2,
+                    "b": 6,
+                    "min": -6,
+                    "max": 8
+                  }
+                },
                 "steps": [
                   "$-2 - (-6) = -2 + 6$.",
                   "Jump 6 right from $-2$ → $4$."
                 ],
                 "answer": "$4$",
-                "check": ["-2 - (-6) == 4"]
+                "check": [
+                  "-2 - (-6) == 4"
+                ]
               },
               {
                 "prompt": "Subtract $-4 - 3$.",
-                "figure": { "mode": "integerAdd", "integerAdd": { "a": -4, "b": -3, "min": -9, "max": 3 } },
+                "figure": {
+                  "mode": "integerAdd",
+                  "integerAdd": {
+                    "a": -4,
+                    "b": -3,
+                    "min": -9,
+                    "max": 3
+                  }
+                },
                 "steps": [
                   "$-4 - 3 = -4 + (-3)$.",
                   "Jump 3 left from $-4$ → $-7$."
                 ],
                 "answer": "$-7$",
-                "check": ["-4 - 3 == -7"]
+                "check": [
+                  "-4 - 3 == -7"
+                ]
               }
             ]
           },
@@ -1230,17 +2271,29 @@
             "problems": [
               {
                 "prompt": "$6 - (-3) = ?$",
-                "options": ["$9$", "$3$", "$-9$"],
+                "options": [
+                  "$9$",
+                  "$3$",
+                  "$-9$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$6 - (-3) = 6 + 3 = 9$.",
-                "check": ["6 - (-3) == 9"]
+                "check": [
+                  "6 - (-3) == 9"
+                ]
               },
               {
                 "prompt": "$-5 - 2 = ?$",
-                "options": ["$-7$", "$-3$", "$7$"],
+                "options": [
+                  "$-7$",
+                  "$-3$",
+                  "$7$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$-5 - 2 = -5 + (-2) = -7$.",
-                "check": ["-5 - 2 == -7"]
+                "check": [
+                  "-5 - 2 == -7"
+                ]
               }
             ]
           },
@@ -1249,17 +2302,25 @@
             "eyebrow": "Fun fact",
             "title": "Differences love subtracting negatives",
             "body": "The gap between the highest peak ($+8849$ m, Everest) and the Dead Sea shore ($-430$ m) is $8849 - (-430) = 8849 + 430 = 9279$ m. Subtracting a negative is how we measure the full span across zero.",
-            "check": ["8849 - (-430) == 9279"]
+            "check": [
+              "8849 - (-430) == 9279"
+            ]
           },
           {
             "kind": "tapQuestion",
             "eyebrow": "Quick check",
             "title": "Subtract a negative",
             "prompt": "$3 - (-5) = ?$",
-            "options": ["$8$", "$-2$", "$-8$"],
+            "options": [
+              "$8$",
+              "$-2$",
+              "$-8$"
+            ],
             "correctIndex": 0,
             "explanation": "$3 - (-5) = 3 + 5 = 8$.",
-            "check": ["3 - (-5) == 8"]
+            "check": [
+              "3 - (-5) == 8"
+            ]
           },
           {
             "kind": "recap",
@@ -1270,6 +2331,115 @@
               "**Keep–change–change**, then add with a number-line jump.",
               "Subtracting a negative moves you **up**: $3 - (-5) = 8$."
             ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Practice subtracting integers using keep-change-change: keep the first number, switch subtraction to addition, and flip the sign of the second number."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$(-8) - 5 = ?$",
+                "options": [
+                  "$-3$",
+                  "$-13$",
+                  "$3$",
+                  "$13$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Keep-change-change gives $(-8) + (-5) = -13$.",
+                "check": [
+                  "(-8) - 5 == -13",
+                  "(-8) - 5 == (-8) + (-5)"
+                ]
+              },
+              {
+                "prompt": "$4 - 9 = ?$",
+                "options": [
+                  "$5$",
+                  "$13$",
+                  "$-5$",
+                  "$-13$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Rewrite as $4 + (-9) = -5$.",
+                "check": [
+                  "4 - 9 == -5",
+                  "4 - 9 == 4 + (-9)"
+                ]
+              },
+              {
+                "prompt": "$(-6) - (-10) = ?$",
+                "options": [
+                  "$-16$",
+                  "$-4$",
+                  "$16$",
+                  "$4$"
+                ],
+                "correctIndex": 3,
+                "explanation": "Change to $(-6) + 10 = 4$.",
+                "check": [
+                  "(-6) - (-10) == 4",
+                  "(-6) - (-10) == (-6) + 10"
+                ]
+              },
+              {
+                "prompt": "$12 - (-7) = ?$",
+                "options": [
+                  "$5$",
+                  "$-19$",
+                  "$19$",
+                  "$-5$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Subtracting $-7$ means adding $7$: $12 + 7 = 19$.",
+                "check": [
+                  "12 - (-7) == 19"
+                ]
+              },
+              {
+                "prompt": "Which expression does NOT equal $-15$?",
+                "options": [
+                  "$(-20) - (-5)$",
+                  "$(-10) - 5$",
+                  "$(-8) - 7$",
+                  "$(-9) - (-9)$"
+                ],
+                "correctIndex": 3,
+                "explanation": "$(-9) - (-9) = 0$, while the others all equal $-15$.",
+                "check": [
+                  "(-9) - (-9) == 0",
+                  "(-20) - (-5) == -15"
+                ]
+              },
+              {
+                "prompt": "Evaluate $\\,0 - (-9) - (-9)\\,$.",
+                "options": [
+                  "$18$",
+                  "$0$",
+                  "$-18$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Each subtraction of $-9$ adds $9$, so $0 + 9 + 9 = 18$.",
+                "check": [
+                  "0 - (-9) - (-9) == 18",
+                  "0 - (-9) == 9"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Subtracting Integers\"",
+            "body": "Nice work, you have mastered subtracting integers with keep-change-change. Next up is \"Multiplying & Dividing Integers,\" where the sign rules get even handier."
           }
         ]
       }
@@ -1297,13 +2467,17 @@
           "id": "md-we1",
           "statement": "Multiply $(-3)(4)$.",
           "solution": "$3 \\times 4 = 12$; different signs → negative, so $-12$.",
-          "check": ["(-3)*4 == -12"]
+          "check": [
+            "(-3)*4 == -12"
+          ]
         },
         {
           "id": "md-we2",
           "statement": "Divide $-12 \\div (-4)$.",
           "solution": "$12 \\div 4 = 3$; same signs → positive, so $3$.",
-          "check": ["(-12)/(-4) == 3"]
+          "check": [
+            "(-12)/(-4) == 3"
+          ]
         }
       ],
       "commonMistakes": [
@@ -1323,13 +2497,17 @@
           "id": "md-t1",
           "statement": "Multiply $(-3)(-4)$.",
           "solution": "$3 \\times 4 = 12$; same signs → positive: $12$.",
-          "check": ["(-3)*(-4) == 12"]
+          "check": [
+            "(-3)*(-4) == 12"
+          ]
         },
         {
           "id": "md-t2",
           "statement": "Divide $-20 \\div 5$.",
           "solution": "$20 \\div 5 = 4$; different signs → negative: $-4$.",
-          "check": ["(-20)/5 == -4"]
+          "check": [
+            "(-20)/5 == -4"
+          ]
         }
       ],
       "interactive": {
@@ -1381,7 +2559,9 @@
                   "Different signs → negative: $-12$."
                 ],
                 "answer": "$-12$",
-                "check": ["(-3)*4 == -12"]
+                "check": [
+                  "(-3)*4 == -12"
+                ]
               },
               {
                 "prompt": "Multiply $(-3)(-4)$.",
@@ -1390,7 +2570,9 @@
                   "Same signs → positive: $12$."
                 ],
                 "answer": "$12$",
-                "check": ["(-3)*(-4) == 12"]
+                "check": [
+                  "(-3)*(-4) == 12"
+                ]
               }
             ]
           },
@@ -1402,24 +2584,42 @@
             "problems": [
               {
                 "prompt": "$(-3)(4) = ?$",
-                "options": ["$-12$", "$12$", "$-7$"],
+                "options": [
+                  "$-12$",
+                  "$12$",
+                  "$-7$"
+                ],
                 "correctIndex": 0,
                 "explanation": "Different signs → negative: $-12$.",
-                "check": ["(-3)*4 == -12"]
+                "check": [
+                  "(-3)*4 == -12"
+                ]
               },
               {
                 "prompt": "$(-3)(-4) = ?$",
-                "options": ["$12$", "$-12$", "$7$"],
+                "options": [
+                  "$12$",
+                  "$-12$",
+                  "$7$"
+                ],
                 "correctIndex": 0,
                 "explanation": "Same signs → positive: $12$.",
-                "check": ["(-3)*(-4) == 12"]
+                "check": [
+                  "(-3)*(-4) == 12"
+                ]
               },
               {
                 "prompt": "$5 \\times (-2) = ?$",
-                "options": ["$-10$", "$10$", "$-7$"],
+                "options": [
+                  "$-10$",
+                  "$10$",
+                  "$-7$"
+                ],
                 "correctIndex": 0,
                 "explanation": "Different signs → negative: $-10$.",
-                "check": ["5*(-2) == -10"]
+                "check": [
+                  "5*(-2) == -10"
+                ]
               }
             ]
           },
@@ -1447,7 +2647,9 @@
                   "Different signs → negative: $-3$."
                 ],
                 "answer": "$-3$",
-                "check": ["(-12)/4 == -3"]
+                "check": [
+                  "(-12)/4 == -3"
+                ]
               },
               {
                 "prompt": "Divide $-12 \\div (-4)$.",
@@ -1456,7 +2658,9 @@
                   "Same signs → positive: $3$."
                 ],
                 "answer": "$3$",
-                "check": ["(-12)/(-4) == 3"]
+                "check": [
+                  "(-12)/(-4) == 3"
+                ]
               }
             ]
           },
@@ -1468,17 +2672,29 @@
             "problems": [
               {
                 "prompt": "$-20 \\div 5 = ?$",
-                "options": ["$-4$", "$4$", "$-15$"],
+                "options": [
+                  "$-4$",
+                  "$4$",
+                  "$-15$"
+                ],
                 "correctIndex": 0,
                 "explanation": "Different signs → negative: $-4$.",
-                "check": ["(-20)/5 == -4"]
+                "check": [
+                  "(-20)/5 == -4"
+                ]
               },
               {
                 "prompt": "$-15 \\div (-3) = ?$",
-                "options": ["$5$", "$-5$", "$-18$"],
+                "options": [
+                  "$5$",
+                  "$-5$",
+                  "$-18$"
+                ],
                 "correctIndex": 0,
                 "explanation": "Same signs → positive: $5$.",
-                "check": ["(-15)/(-3) == 5"]
+                "check": [
+                  "(-15)/(-3) == 5"
+                ]
               }
             ]
           },
@@ -1487,17 +2703,25 @@
             "eyebrow": "Fun fact",
             "title": "Count the negatives",
             "body": "Multiplying a string of numbers? Just count the negative signs: an **even** number of negatives gives a positive, an **odd** number gives a negative. So $(-2)(-2)(-2) = -8$ — three negatives, so negative.",
-            "check": ["(-2)*(-2)*(-2) == -8"]
+            "check": [
+              "(-2)*(-2)*(-2) == -8"
+            ]
           },
           {
             "kind": "tapQuestion",
             "eyebrow": "Quick check",
             "title": "Apply the sign rule",
             "prompt": "$(-3)(-4) = ?$",
-            "options": ["$12$", "$-12$", "$7$"],
+            "options": [
+              "$12$",
+              "$-12$",
+              "$7$"
+            ],
             "correctIndex": 0,
             "explanation": "Same signs → positive: $12$.",
-            "check": ["(-3)*(-4) == 12"]
+            "check": [
+              "(-3)*(-4) == 12"
+            ]
           },
           {
             "kind": "recap",
@@ -1508,6 +2732,116 @@
               "**Same signs → positive**, **different signs → negative**.",
               "The rule is identical for × and ÷; count negatives for long products."
             ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Time to mix it up and put the sign rule to work across both multiplication and division."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$(-6) \\times 7 = \\,?$",
+                "options": [
+                  "$-42$",
+                  "$42$",
+                  "$-13$",
+                  "$13$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Different signs give a negative product, and $6 \\times 7 = 42$.",
+                "check": [
+                  "(-6)*7 == -42",
+                  "(-6)*7 < 0"
+                ]
+              },
+              {
+                "prompt": "$(-8) \\times (-9) = \\,?$",
+                "options": [
+                  "$-72$",
+                  "$-17$",
+                  "$72$",
+                  "$17$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Same signs give a positive product, and $8 \\times 9 = 72$.",
+                "check": [
+                  "(-8)*(-9) == 72",
+                  "(-8)*(-9) > 0"
+                ]
+              },
+              {
+                "prompt": "$(-72) \\div 8 = \\,?$",
+                "options": [
+                  "$9$",
+                  "$-9$",
+                  "$-64$",
+                  "$64$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Different signs give a negative quotient, and $72 \\div 8 = 9$.",
+                "check": [
+                  "(-72)/8 == -9",
+                  "(-72)/8 < 0"
+                ]
+              },
+              {
+                "prompt": "$(-90) \\div (-6) = \\,?$",
+                "options": [
+                  "$-15$",
+                  "$-96$",
+                  "$96$",
+                  "$15$"
+                ],
+                "correctIndex": 3,
+                "explanation": "Same signs give a positive quotient, and $90 \\div 6 = 15$.",
+                "check": [
+                  "(-90)/(-6) == 15",
+                  "(-90)/(-6) > 0"
+                ]
+              },
+              {
+                "prompt": "$(-2) \\times (-2) \\times (-2) = \\,?$",
+                "options": [
+                  "$8$",
+                  "$-8$",
+                  "$-6$",
+                  "$6$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Two negatives make a positive, then one more negative makes the result negative.",
+                "check": [
+                  "(-2)*(-2)*(-2) == -8",
+                  "(-2)*(-2)*(-2) < 0"
+                ]
+              },
+              {
+                "prompt": "Which expression is NOT negative?",
+                "options": [
+                  "$(-9) \\times 4$",
+                  "$(-8) \\times (-3)$",
+                  "$48 \\div (-6)$",
+                  "$(-30) \\div 6$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$(-8) \\times (-3) = 24$ has same signs, so it is positive while the others are negative.",
+                "check": [
+                  "(-8)*(-3) > 0",
+                  "(-9)*4 < 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Multiplying & Dividing Integers\"",
+            "body": "That wraps up Multiplying and Dividing Integers. You can now apply the same-signs-positive, different-signs-negative rule confidently to both operations."
           }
         ]
       }

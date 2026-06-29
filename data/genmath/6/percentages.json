@@ -28,13 +28,17 @@
           "id": "pct-we1",
           "statement": "Write $37\\%$ as a fraction and a decimal.",
           "solution": "$37\\% = \\frac{37}{100} = 0.37$.",
-          "check": ["Rational(37,100)*100 == 37"]
+          "check": [
+            "Rational(37,100)*100 == 37"
+          ]
         },
         {
           "id": "pct-we2",
           "statement": "Write $50\\%$ as a fraction in simplest form.",
           "solution": "$50\\% = \\frac{50}{100} = \\frac{1}{2}$.",
-          "check": ["Rational(50,100) == Rational(1,2)"]
+          "check": [
+            "Rational(50,100) == Rational(1,2)"
+          ]
         }
       ],
       "commonMistakes": [
@@ -54,13 +58,17 @@
           "id": "pct-t1",
           "statement": "Write $25\\%$ as a fraction in simplest form.",
           "solution": "$25\\% = \\frac{25}{100} = \\frac{1}{4}$.",
-          "check": ["Rational(25,100) == Rational(1,4)"]
+          "check": [
+            "Rational(25,100) == Rational(1,4)"
+          ]
         },
         {
           "id": "pct-t2",
           "statement": "Write $9\\%$ as a decimal.",
           "solution": "$9\\% = \\frac{9}{100} = 0.09$.",
-          "check": ["Rational(9,100)*100 == 9"]
+          "check": [
+            "Rational(9,100)*100 == 9"
+          ]
         }
       ],
       "interactive": {
@@ -87,7 +95,10 @@
             ],
             "figure": {
               "mode": "decimalGrid",
-              "decimal": { "value": 0.37, "label": "37% shaded" }
+              "decimal": {
+                "value": 0.37,
+                "label": "37% shaded"
+              }
             }
           },
           {
@@ -102,7 +113,10 @@
             ],
             "figure": {
               "mode": "decimalGrid",
-              "decimal": { "value": 0.5, "label": "50% = a half" }
+              "decimal": {
+                "value": 0.5,
+                "label": "50% = a half"
+              }
             }
           },
           {
@@ -113,23 +127,39 @@
             "examples": [
               {
                 "prompt": "Write $37\\%$ as a fraction and a decimal.",
-                "figure": { "mode": "decimalGrid", "decimal": { "value": 0.37, "label": "37%" } },
+                "figure": {
+                  "mode": "decimalGrid",
+                  "decimal": {
+                    "value": 0.37,
+                    "label": "37%"
+                  }
+                },
                 "steps": [
                   "$37\\%$ means 37 out of 100 → $\\frac{37}{100}$.",
                   "Out of 100 is a two-place decimal → $0.37$."
                 ],
                 "answer": "$\\frac{37}{100} = 0.37$",
-                "check": ["Rational(37,100)*100 == 37"]
+                "check": [
+                  "Rational(37,100)*100 == 37"
+                ]
               },
               {
                 "prompt": "Write $50\\%$ as a fraction in simplest form and a decimal.",
-                "figure": { "mode": "decimalGrid", "decimal": { "value": 0.5, "label": "50%" } },
+                "figure": {
+                  "mode": "decimalGrid",
+                  "decimal": {
+                    "value": 0.5,
+                    "label": "50%"
+                  }
+                },
                 "steps": [
                   "$50\\% = \\frac{50}{100}$.",
                   "Simplify by 50: $\\frac{1}{2}$; as a decimal, $0.5$."
                 ],
                 "answer": "$\\frac{1}{2} = 0.5$",
-                "check": ["Rational(50,100) == Rational(1,2)"]
+                "check": [
+                  "Rational(50,100) == Rational(1,2)"
+                ]
               }
             ]
           },
@@ -141,25 +171,49 @@
             "problems": [
               {
                 "prompt": "The grid has 25 of 100 squares shaded. What percent is that?",
-                "figure": { "mode": "decimalGrid", "decimal": { "value": 0.25, "label": "shaded" } },
-                "options": ["$25\\%$", "$2.5\\%$", "$250\\%$"],
+                "figure": {
+                  "mode": "decimalGrid",
+                  "decimal": {
+                    "value": 0.25,
+                    "label": "shaded"
+                  }
+                },
+                "options": [
+                  "$25\\%$",
+                  "$2.5\\%$",
+                  "$250\\%$"
+                ],
                 "correctIndex": 0,
                 "explanation": "25 out of 100 = $25\\% = \\frac{25}{100} = \\frac{1}{4}$.",
-                "check": ["Rational(25,100) == Rational(1,4)"]
+                "check": [
+                  "Rational(25,100) == Rational(1,4)"
+                ]
               },
               {
                 "prompt": "What is $50\\%$ as a fraction in simplest form?",
-                "options": ["$\\frac{1}{2}$", "$\\frac{1}{50}$", "$\\frac{50}{10}$"],
+                "options": [
+                  "$\\frac{1}{2}$",
+                  "$\\frac{1}{50}$",
+                  "$\\frac{50}{10}$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$50\\% = \\frac{50}{100} = \\frac{1}{2}$.",
-                "check": ["Rational(50,100) == Rational(1,2)"]
+                "check": [
+                  "Rational(50,100) == Rational(1,2)"
+                ]
               },
               {
                 "prompt": "What is $9\\%$ as a decimal?",
-                "options": ["$0.09$", "$0.9$", "$9.0$"],
+                "options": [
+                  "$0.09$",
+                  "$0.9$",
+                  "$9.0$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$9\\% = \\frac{9}{100} = 0.09$. ($0.9$ would be $90\\%$.)",
-                "check": ["Rational(9,100)*100 == 9"]
+                "check": [
+                  "Rational(9,100)*100 == 9"
+                ]
               }
             ]
           },
@@ -175,7 +229,10 @@
             ],
             "figure": {
               "mode": "decimalGrid",
-              "decimal": { "value": 0.25, "label": "25% = a quarter" }
+              "decimal": {
+                "value": 0.25,
+                "label": "25% = a quarter"
+              }
             }
           },
           {
@@ -186,13 +243,21 @@
             "examples": [
               {
                 "prompt": "Write $25\\%$ as a fraction in simplest form and a decimal.",
-                "figure": { "mode": "decimalGrid", "decimal": { "value": 0.25, "label": "25%" } },
+                "figure": {
+                  "mode": "decimalGrid",
+                  "decimal": {
+                    "value": 0.25,
+                    "label": "25%"
+                  }
+                },
                 "steps": [
                   "$25\\% = \\frac{25}{100}$.",
                   "Simplify by 25: $\\frac{1}{4}$; as a decimal, $0.25$."
                 ],
                 "answer": "$\\frac{1}{4} = 0.25$",
-                "check": ["Rational(25,100) == Rational(1,4)"]
+                "check": [
+                  "Rational(25,100) == Rational(1,4)"
+                ]
               },
               {
                 "prompt": "Write $10\\%$ as a fraction in simplest form and a decimal.",
@@ -201,7 +266,9 @@
                   "Simplify by 10: $\\frac{1}{10}$; as a decimal, $0.1$."
                 ],
                 "answer": "$\\frac{1}{10} = 0.1$",
-                "check": ["Rational(10,100) == Rational(1,10)"]
+                "check": [
+                  "Rational(10,100) == Rational(1,10)"
+                ]
               }
             ]
           },
@@ -213,17 +280,29 @@
             "problems": [
               {
                 "prompt": "What is $75\\%$ as a fraction in simplest form?",
-                "options": ["$\\frac{3}{4}$", "$\\frac{75}{10}$", "$\\frac{7}{5}$"],
+                "options": [
+                  "$\\frac{3}{4}$",
+                  "$\\frac{75}{10}$",
+                  "$\\frac{7}{5}$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$75\\% = \\frac{75}{100} = \\frac{3}{4}$.",
-                "check": ["Rational(75,100) == Rational(3,4)"]
+                "check": [
+                  "Rational(75,100) == Rational(3,4)"
+                ]
               },
               {
                 "prompt": "What is $20\\%$ as a decimal?",
-                "options": ["$0.2$", "$0.02$", "$2.0$"],
+                "options": [
+                  "$0.2$",
+                  "$0.02$",
+                  "$2.0$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$20\\% = \\frac{20}{100} = \\frac{1}{5} = 0.2$.",
-                "check": ["Rational(20,100) == Rational(1,5)"]
+                "check": [
+                  "Rational(20,100) == Rational(1,5)"
+                ]
               }
             ]
           },
@@ -238,10 +317,16 @@
             "eyebrow": "Quick check",
             "title": "Percent to fraction",
             "prompt": "What is $37\\%$ as a fraction?",
-            "options": ["$\\frac{37}{100}$", "$\\frac{37}{10}$", "$\\frac{1}{37}$"],
+            "options": [
+              "$\\frac{37}{100}$",
+              "$\\frac{37}{10}$",
+              "$\\frac{1}{37}$"
+            ],
             "correctIndex": 0,
             "explanation": "$37\\%$ means 37 out of 100 → $\\frac{37}{100}$.",
-            "check": ["Rational(37,100)*100 == 37"]
+            "check": [
+              "Rational(37,100)*100 == 37"
+            ]
           },
           {
             "kind": "recap",
@@ -252,6 +337,113 @@
               "A percent is a two-place decimal: $37\\% = 0.37$.",
               "Learn the friendly ones: $25\\%=\\frac14$, $50\\%=\\frac12$, $75\\%=\\frac34$, $10\\%=\\frac{1}{10}$."
             ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Try these six problems to lock in the idea that a percent always means \"out of 100.\""
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "What does $7\\%$ mean?",
+                "options": [
+                  "$\\dfrac{7}{100}$",
+                  "$\\dfrac{100}{7}$",
+                  "$\\dfrac{7}{10}$",
+                  "$7 \\times 100$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Percent means out of 100, so $7\\%=\\dfrac{7}{100}$.",
+                "check": [
+                  "Rational(7,100) == Rational(7,100)",
+                  "Rational(7,100)*100 == 7"
+                ]
+              },
+              {
+                "prompt": "Which fraction is equal to $40\\%$?",
+                "options": [
+                  "$\\dfrac{4}{100}$",
+                  "$\\dfrac{2}{5}$",
+                  "$\\dfrac{1}{4}$",
+                  "$\\dfrac{4}{10000}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$40\\%=\\dfrac{40}{100}=\\dfrac{2}{5}$.",
+                "check": [
+                  "Rational(40,100) == Rational(2,5)"
+                ]
+              },
+              {
+                "prompt": "The fraction $\\dfrac{3}{4}$ is the same as what percent?",
+                "options": [
+                  "$34\\%$",
+                  "$43\\%$",
+                  "$75\\%$",
+                  "$3.4\\%$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$\\dfrac{3}{4}=\\dfrac{75}{100}=75\\%$.",
+                "check": [
+                  "Rational(3,4) == Rational(75,100)"
+                ]
+              },
+              {
+                "prompt": "Which of these is NOT equal to $50\\%$?",
+                "options": [
+                  "$\\dfrac{1}{2}$",
+                  "$\\dfrac{50}{100}$",
+                  "$\\dfrac{5}{100}$",
+                  "$\\dfrac{25}{50}$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$\\dfrac{5}{100}=5\\%$, while the others all equal $50\\%$.",
+                "check": [
+                  "Rational(5,100) != Rational(50,100)",
+                  "Rational(50,100) == Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "Written as a fraction in lowest terms, $8\\%$ equals which of these?",
+                "options": [
+                  "$\\dfrac{8}{10}$",
+                  "$\\dfrac{2}{25}$",
+                  "$\\dfrac{4}{5}$",
+                  "$\\dfrac{8}{1000}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$8\\%=\\dfrac{8}{100}=\\dfrac{2}{25}$.",
+                "check": [
+                  "Rational(8,100) == Rational(2,25)"
+                ]
+              },
+              {
+                "prompt": "Which percent is the same as $\\dfrac{5}{4}$?",
+                "options": [
+                  "$54\\%$",
+                  "$45\\%$",
+                  "$80\\%$",
+                  "$125\\%$"
+                ],
+                "correctIndex": 3,
+                "explanation": "$\\dfrac{5}{4}=\\dfrac{125}{100}=125\\%$, which is more than one whole.",
+                "check": [
+                  "Rational(125,100) == Rational(5,4)",
+                  "Rational(125,100) > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"What Is a Percent?\"",
+            "body": "Nice work finishing \"What Is a Percent?\" — you can now read any percent as \"out of 100\" and switch between percents, fractions, and decimals. Up next is \"Percent of a Number,\" where you'll use these skills to actually take a percent of something."
           }
         ]
       }
@@ -279,13 +471,17 @@
           "id": "pon-we1",
           "statement": "Find $25\\%$ of $80$.",
           "solution": "$25\\% = \\frac{1}{4}$, and $\\frac{1}{4} \\times 80 = 20$.",
-          "check": ["Rational(25,100)*80 == 20"]
+          "check": [
+            "Rational(25,100)*80 == 20"
+          ]
         },
         {
           "id": "pon-we2",
           "statement": "Find $10\\%$ of $50$.",
           "solution": "$10\\%$ means divide by 10: $50 \\div 10 = 5$.",
-          "check": ["Rational(10,100)*50 == 5"]
+          "check": [
+            "Rational(10,100)*50 == 5"
+          ]
         }
       ],
       "commonMistakes": [
@@ -305,13 +501,17 @@
           "id": "pon-t1",
           "statement": "Find $50\\%$ of $40$.",
           "solution": "$50\\%$ is half: $40 \\div 2 = 20$.",
-          "check": ["Rational(50,100)*40 == 20"]
+          "check": [
+            "Rational(50,100)*40 == 20"
+          ]
         },
         {
           "id": "pon-t2",
           "statement": "Find $30\\%$ of $80$.",
           "solution": "$10\\%$ of 80 is 8, so $30\\%$ is $3 \\times 8 = 24$.",
-          "check": ["Rational(30,100)*80 == 24"]
+          "check": [
+            "Rational(30,100)*80 == 24"
+          ]
         }
       ],
       "interactive": {
@@ -339,7 +539,10 @@
             ],
             "figure": {
               "mode": "percentBar",
-              "percentBar": { "whole": 80, "percent": 25 }
+              "percentBar": {
+                "whole": 80,
+                "percent": 25
+              }
             }
           },
           {
@@ -354,7 +557,10 @@
             ],
             "figure": {
               "mode": "percentBar",
-              "percentBar": { "whole": 80, "percent": 10 }
+              "percentBar": {
+                "whole": 80,
+                "percent": 10
+              }
             }
           },
           {
@@ -365,23 +571,39 @@
             "examples": [
               {
                 "prompt": "Find $25\\%$ of $80$.",
-                "figure": { "mode": "percentBar", "percentBar": { "whole": 80, "percent": 25 } },
+                "figure": {
+                  "mode": "percentBar",
+                  "percentBar": {
+                    "whole": 80,
+                    "percent": 25
+                  }
+                },
                 "steps": [
                   "$25\\% = \\frac{1}{4}$ (or $0.25$).",
                   "$\\frac{1}{4} \\times 80 = 20$."
                 ],
                 "answer": "$20$",
-                "check": ["Rational(25,100)*80 == 20"]
+                "check": [
+                  "Rational(25,100)*80 == 20"
+                ]
               },
               {
                 "prompt": "Find $10\\%$ of $50$.",
-                "figure": { "mode": "percentBar", "percentBar": { "whole": 50, "percent": 10 } },
+                "figure": {
+                  "mode": "percentBar",
+                  "percentBar": {
+                    "whole": 50,
+                    "percent": 10
+                  }
+                },
                 "steps": [
                   "$10\\%$ means divide by 10.",
                   "$50 \\div 10 = 5$."
                 ],
                 "answer": "$5$",
-                "check": ["Rational(10,100)*50 == 5"]
+                "check": [
+                  "Rational(10,100)*50 == 5"
+                ]
               }
             ]
           },
@@ -393,24 +615,42 @@
             "problems": [
               {
                 "prompt": "What is $50\\%$ of $40$?",
-                "options": ["$20$", "$80$", "$4$"],
+                "options": [
+                  "$20$",
+                  "$80$",
+                  "$4$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$50\\%$ is half: $40 \\div 2 = 20$.",
-                "check": ["Rational(50,100)*40 == 20"]
+                "check": [
+                  "Rational(50,100)*40 == 20"
+                ]
               },
               {
                 "prompt": "What is $10\\%$ of $90$?",
-                "options": ["$9$", "$90$", "$0.9$"],
+                "options": [
+                  "$9$",
+                  "$90$",
+                  "$0.9$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$10\\%$ means divide by 10: $90 \\div 10 = 9$.",
-                "check": ["Rational(10,100)*90 == 9"]
+                "check": [
+                  "Rational(10,100)*90 == 9"
+                ]
               },
               {
                 "prompt": "What is $25\\%$ of $60$?",
-                "options": ["$15$", "$30$", "$240$"],
+                "options": [
+                  "$15$",
+                  "$30$",
+                  "$240$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$25\\%$ is a quarter: $60 \\div 4 = 15$.",
-                "check": ["Rational(25,100)*60 == 15"]
+                "check": [
+                  "Rational(25,100)*60 == 15"
+                ]
               }
             ]
           },
@@ -426,7 +666,10 @@
             ],
             "figure": {
               "mode": "percentBar",
-              "percentBar": { "whole": 60, "percent": 50 }
+              "percentBar": {
+                "whole": 60,
+                "percent": 50
+              }
             }
           },
           {
@@ -437,13 +680,21 @@
             "examples": [
               {
                 "prompt": "Find $50\\%$ of $60$.",
-                "figure": { "mode": "percentBar", "percentBar": { "whole": 60, "percent": 50 } },
+                "figure": {
+                  "mode": "percentBar",
+                  "percentBar": {
+                    "whole": 60,
+                    "percent": 50
+                  }
+                },
                 "steps": [
                   "$50\\%$ is half.",
                   "Half of $60$ is $30$."
                 ],
                 "answer": "$30$",
-                "check": ["Rational(50,100)*60 == 30"]
+                "check": [
+                  "Rational(50,100)*60 == 30"
+                ]
               },
               {
                 "prompt": "Find $5\\%$ of $200$.",
@@ -452,7 +703,9 @@
                   "$5\\%$ is half of that: $10$."
                 ],
                 "answer": "$10$",
-                "check": ["Rational(5,100)*200 == 10"]
+                "check": [
+                  "Rational(5,100)*200 == 10"
+                ]
               }
             ]
           },
@@ -464,17 +717,29 @@
             "problems": [
               {
                 "prompt": "What is $30\\%$ of $80$?",
-                "options": ["$24$", "$240$", "$2.4$"],
+                "options": [
+                  "$24$",
+                  "$240$",
+                  "$2.4$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$10\\%$ of $80$ is $8$, so $30\\% = 3 \\times 8 = 24$.",
-                "check": ["Rational(30,100)*80 == 24"]
+                "check": [
+                  "Rational(30,100)*80 == 24"
+                ]
               },
               {
                 "prompt": "What is $1\\%$ of $350$?",
-                "options": ["$3.5$", "$35$", "$350$"],
+                "options": [
+                  "$3.5$",
+                  "$35$",
+                  "$350$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$1\\%$ means divide by 100: $350 \\div 100 = 3.5$.",
-                "check": ["Rational(1,100)*350 == Rational(7,2)"]
+                "check": [
+                  "Rational(1,100)*350 == Rational(7,2)"
+                ]
               }
             ]
           },
@@ -489,10 +754,16 @@
             "eyebrow": "Quick check",
             "title": "Percent of a number",
             "prompt": "What is $25\\%$ of $80$?",
-            "options": ["$20$", "$40$", "$2$"],
+            "options": [
+              "$20$",
+              "$40$",
+              "$2$"
+            ],
             "correctIndex": 0,
             "explanation": "$25\\%$ is a quarter: $80 \\div 4 = 20$.",
-            "check": ["Rational(25,100)*80 == 20"]
+            "check": [
+              "Rational(25,100)*80 == 20"
+            ]
           },
           {
             "kind": "recap",
@@ -503,6 +774,112 @@
               "$25\\%$ of $80 = 0.25 \\times 80 = 20$.",
               "Benchmarks are fast: $10\\%$ = ÷10, $50\\%$ = half, $25\\%$ = quarter, $1\\%$ = ÷100."
             ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Time to practice finding the percent of a number using decimals, fractions, and the handy shortcuts for 10%, 25%, and 50%."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "What is $10\\%$ of $70$?",
+                "options": [
+                  "$7$",
+                  "$10$",
+                  "$17$",
+                  "$700$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Finding $10\\%$ means dividing by $10$, and $70 \\div 10 = 7$.",
+                "check": [
+                  "Rational(10,100)*70 == 7"
+                ]
+              },
+              {
+                "prompt": "What is $50\\%$ of $48$?",
+                "options": [
+                  "$96$",
+                  "$12$",
+                  "$24$",
+                  "$8$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Finding $50\\%$ means taking half, and half of $48$ is $24$.",
+                "check": [
+                  "Rational(50,100)*48 == 24"
+                ]
+              },
+              {
+                "prompt": "What is $25\\%$ of $60$?",
+                "options": [
+                  "$30$",
+                  "$20$",
+                  "$15$",
+                  "$45$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Finding $25\\%$ means taking a quarter, and $60 \\div 4 = 15$.",
+                "check": [
+                  "Rational(25,100)*60 == 15"
+                ]
+              },
+              {
+                "prompt": "A shirt costs $\\$45$. A coupon takes $20\\%$ off. How much money is taken off?",
+                "options": [
+                  "$\\$9$",
+                  "$\\$20$",
+                  "$\\$36$",
+                  "$\\$25$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$20\\%$ as a decimal is $0.2$, and $0.2 \\times 45 = 9$.",
+                "check": [
+                  "Rational(20,100)*45 == 9"
+                ]
+              },
+              {
+                "prompt": "Which of these is NOT equal to $9$?",
+                "options": [
+                  "$10\\%$ of $90$",
+                  "$75\\%$ of $40$",
+                  "$30\\%$ of $30$",
+                  "$50\\%$ of $18$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$75\\%$ of $40$ equals $30$, while all the others equal $9$.",
+                "check": [
+                  "Rational(75,100)*40 == 30",
+                  "Rational(10,100)*90 == 9"
+                ]
+              },
+              {
+                "prompt": "Which expression has the larger value: $15\\%$ of $80$, or $5\\%$ of $240$?",
+                "options": [
+                  "$15\\%$ of $80$",
+                  "$5\\%$ of $240$",
+                  "They are equal",
+                  "Cannot be determined"
+                ],
+                "correctIndex": 2,
+                "explanation": "$15\\%$ of $80 = 12$ and $5\\%$ of $240 = 12$, so they are equal.",
+                "check": [
+                  "Rational(15,100)*80 == 12",
+                  "Rational(15,100)*80 == Rational(5,100)*240"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Percent of a Number\"",
+            "body": "Nice work, you can now find the percent of a number using decimals, fractions, and quick shortcuts. Next up is \"What Percent Is It?\", where you will work backward to figure out the percent itself."
           }
         ]
       }
@@ -530,13 +907,17 @@
           "id": "wpi-we1",
           "statement": "What percent is $15$ of $60$?",
           "solution": "$\\frac{15}{60} = \\frac{1}{4} = \\frac{25}{100} = 25\\%$.",
-          "check": ["Rational(15,60)*100 == 25"]
+          "check": [
+            "Rational(15,60)*100 == 25"
+          ]
         },
         {
           "id": "wpi-we2",
           "statement": "What percent is $15$ of $20$?",
           "solution": "$\\frac{15}{20} = \\frac{75}{100} = 75\\%$.",
-          "check": ["Rational(15,20)*100 == 75"]
+          "check": [
+            "Rational(15,20)*100 == 75"
+          ]
         }
       ],
       "commonMistakes": [
@@ -556,13 +937,17 @@
           "id": "wpi-t1",
           "statement": "What percent is $12$ of $48$?",
           "solution": "$\\frac{12}{48} = \\frac{1}{4} = 25\\%$.",
-          "check": ["Rational(12,48)*100 == 25"]
+          "check": [
+            "Rational(12,48)*100 == 25"
+          ]
         },
         {
           "id": "wpi-t2",
           "statement": "What percent is $9$ of $30$?",
           "solution": "$9 \\div 30 = 0.3 = 30\\%$.",
-          "check": ["Rational(9,30)*100 == 30"]
+          "check": [
+            "Rational(9,30)*100 == 30"
+          ]
         }
       ],
       "interactive": {
@@ -590,7 +975,10 @@
             ],
             "figure": {
               "mode": "percentBar",
-              "percentBar": { "whole": 60, "percent": 25 }
+              "percentBar": {
+                "whole": 60,
+                "percent": 25
+              }
             }
           },
           {
@@ -605,7 +993,10 @@
             ],
             "figure": {
               "mode": "percentBar",
-              "percentBar": { "whole": 20, "percent": 75 }
+              "percentBar": {
+                "whole": 20,
+                "percent": 75
+              }
             }
           },
           {
@@ -616,24 +1007,40 @@
             "examples": [
               {
                 "prompt": "What percent is $15$ of $60$?",
-                "figure": { "mode": "percentBar", "percentBar": { "whole": 60, "percent": 25 } },
+                "figure": {
+                  "mode": "percentBar",
+                  "percentBar": {
+                    "whole": 60,
+                    "percent": 25
+                  }
+                },
                 "steps": [
                   "Write the fraction: $\\frac{15}{60}$.",
                   "Simplify: $\\frac{1}{4} = \\frac{25}{100}$.",
                   "So $15$ is $25\\%$ of $60$."
                 ],
                 "answer": "$25\\%$",
-                "check": ["Rational(15,60)*100 == 25"]
+                "check": [
+                  "Rational(15,60)*100 == 25"
+                ]
               },
               {
                 "prompt": "What percent is $15$ of $20$?",
-                "figure": { "mode": "percentBar", "percentBar": { "whole": 20, "percent": 75 } },
+                "figure": {
+                  "mode": "percentBar",
+                  "percentBar": {
+                    "whole": 20,
+                    "percent": 75
+                  }
+                },
                 "steps": [
                   "Write the fraction: $\\frac{15}{20}$.",
                   "$\\frac{15}{20} = \\frac{75}{100} = 75\\%$."
                 ],
                 "answer": "$75\\%$",
-                "check": ["Rational(15,20)*100 == 75"]
+                "check": [
+                  "Rational(15,20)*100 == 75"
+                ]
               }
             ]
           },
@@ -645,24 +1052,42 @@
             "problems": [
               {
                 "prompt": "What percent is $12$ of $48$?",
-                "options": ["$25\\%$", "$4\\%$", "$40\\%$"],
+                "options": [
+                  "$25\\%$",
+                  "$4\\%$",
+                  "$40\\%$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$\\frac{12}{48} = \\frac{1}{4} = 25\\%$.",
-                "check": ["Rational(12,48)*100 == 25"]
+                "check": [
+                  "Rational(12,48)*100 == 25"
+                ]
               },
               {
                 "prompt": "What percent is $7$ of $10$?",
-                "options": ["$70\\%$", "$7\\%$", "$17\\%$"],
+                "options": [
+                  "$70\\%$",
+                  "$7\\%$",
+                  "$17\\%$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$\\frac{7}{10} = \\frac{70}{100} = 70\\%$.",
-                "check": ["Rational(7,10)*100 == 70"]
+                "check": [
+                  "Rational(7,10)*100 == 70"
+                ]
               },
               {
                 "prompt": "What percent is $6$ of $24$?",
-                "options": ["$25\\%$", "$6\\%$", "$18\\%$"],
+                "options": [
+                  "$25\\%$",
+                  "$6\\%$",
+                  "$18\\%$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$\\frac{6}{24} = \\frac{1}{4} = 25\\%$.",
-                "check": ["Rational(6,24)*100 == 25"]
+                "check": [
+                  "Rational(6,24)*100 == 25"
+                ]
               }
             ]
           },
@@ -678,7 +1103,10 @@
             ],
             "figure": {
               "mode": "percentBar",
-              "percentBar": { "whole": 30, "percent": 30 }
+              "percentBar": {
+                "whole": 30,
+                "percent": 30
+              }
             }
           },
           {
@@ -689,23 +1117,39 @@
             "examples": [
               {
                 "prompt": "What percent is $9$ of $30$?",
-                "figure": { "mode": "percentBar", "percentBar": { "whole": 30, "percent": 30 } },
+                "figure": {
+                  "mode": "percentBar",
+                  "percentBar": {
+                    "whole": 30,
+                    "percent": 30
+                  }
+                },
                 "steps": [
                   "$9 \\div 30 = 0.3$.",
                   "$0.3 = 30\\%$."
                 ],
                 "answer": "$30\\%$",
-                "check": ["Rational(9,30)*100 == 30"]
+                "check": [
+                  "Rational(9,30)*100 == 30"
+                ]
               },
               {
                 "prompt": "What percent is $45$ of $50$?",
-                "figure": { "mode": "percentBar", "percentBar": { "whole": 50, "percent": 90 } },
+                "figure": {
+                  "mode": "percentBar",
+                  "percentBar": {
+                    "whole": 50,
+                    "percent": 90
+                  }
+                },
                 "steps": [
                   "$\\frac{45}{50} = \\frac{90}{100}$.",
                   "So $90\\%$."
                 ],
                 "answer": "$90\\%$",
-                "check": ["Rational(45,50)*100 == 90"]
+                "check": [
+                  "Rational(45,50)*100 == 90"
+                ]
               }
             ]
           },
@@ -717,17 +1161,29 @@
             "problems": [
               {
                 "prompt": "What percent is $20$ of $80$?",
-                "options": ["$25\\%$", "$20\\%$", "$60\\%$"],
+                "options": [
+                  "$25\\%$",
+                  "$20\\%$",
+                  "$60\\%$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$\\frac{20}{80} = \\frac{1}{4} = 25\\%$.",
-                "check": ["Rational(20,80)*100 == 25"]
+                "check": [
+                  "Rational(20,80)*100 == 25"
+                ]
               },
               {
                 "prompt": "What percent is $8$ of $40$?",
-                "options": ["$20\\%$", "$8\\%$", "$32\\%$"],
+                "options": [
+                  "$20\\%$",
+                  "$8\\%$",
+                  "$32\\%$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$\\frac{8}{40} = \\frac{1}{5} = 20\\%$.",
-                "check": ["Rational(8,40)*100 == 20"]
+                "check": [
+                  "Rational(8,40)*100 == 20"
+                ]
               }
             ]
           },
@@ -742,10 +1198,16 @@
             "eyebrow": "Quick check",
             "title": "What percent is it?",
             "prompt": "What percent is $15$ of $60$?",
-            "options": ["$25\\%$", "$15\\%$", "$45\\%$"],
+            "options": [
+              "$25\\%$",
+              "$15\\%$",
+              "$45\\%$"
+            ],
             "correctIndex": 0,
             "explanation": "$\\frac{15}{60} = \\frac{1}{4} = 25\\%$.",
-            "check": ["Rational(15,60)*100 == 25"]
+            "check": [
+              "Rational(15,60)*100 == 25"
+            ]
           },
           {
             "kind": "recap",
@@ -756,6 +1218,115 @@
               "Convert to hundredths — an equivalent fraction over 100, or divide and ×100.",
               "$\\frac{15}{60} = \\frac{25}{100} = 25\\%$."
             ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Practice finding what percent the part is of the whole by writing part/whole and multiplying by 100%."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "What percent is $3$ out of $10$?",
+                "options": [
+                  "$30\\%$",
+                  "$3\\%$",
+                  "$13\\%$",
+                  "$70\\%$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{3}{10}\\times100\\% = 30\\%$.",
+                "check": [
+                  "Rational(3,10)*100 == 30",
+                  "Rational(30,100) == Rational(3,10)"
+                ]
+              },
+              {
+                "prompt": "What percent is $13$ out of $25$?",
+                "options": [
+                  "$13\\%$",
+                  "$26\\%$",
+                  "$52\\%$",
+                  "$48\\%$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$\\frac{13}{25}\\times100\\% = 52\\%$.",
+                "check": [
+                  "Rational(13,25)*100 == 52"
+                ]
+              },
+              {
+                "prompt": "What percent is $18$ out of $24$?",
+                "options": [
+                  "$60\\%$",
+                  "$75\\%$",
+                  "$80\\%$",
+                  "$70\\%$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$\\frac{18}{24}=\\frac{3}{4}$, so $\\frac{3}{4}\\times100\\% = 75\\%$.",
+                "check": [
+                  "Rational(18,24)*100 == 75",
+                  "Rational(75,100) == Rational(3,4)"
+                ]
+              },
+              {
+                "prompt": "Which fraction is NOT equal to $60\\%$?",
+                "options": [
+                  "$\\frac{3}{5}$",
+                  "$\\frac{6}{10}$",
+                  "$\\frac{5}{8}$",
+                  "$\\frac{12}{20}$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$\\frac{5}{8}\\times100\\% = 62.5\\%$, while the others all equal $60\\%$.",
+                "check": [
+                  "Rational(5,8)*100 != 60",
+                  "Rational(3,5)*100 == 60"
+                ]
+              },
+              {
+                "prompt": "What percent is $7$ out of $8$?",
+                "options": [
+                  "$78\\%$",
+                  "$80\\%$",
+                  "$87.5\\%$",
+                  "$70\\%$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$\\frac{7}{8}\\times100\\% = 87.5\\%$.",
+                "check": [
+                  "Rational(7,8)*100 == Rational(175,2)",
+                  "Rational(7,8)*100 != 78"
+                ]
+              },
+              {
+                "prompt": "On a test, a student answered $51$ out of $60$ questions correctly. What percent is that?",
+                "options": [
+                  "$80\\%$",
+                  "$90\\%$",
+                  "$75\\%$",
+                  "$85\\%$"
+                ],
+                "correctIndex": 3,
+                "explanation": "$\\frac{51}{60}\\times100\\% = 85\\%$.",
+                "check": [
+                  "Rational(51,60)*100 == 85",
+                  "Rational(85,100) == Rational(17,20)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"What Percent Is It?\"",
+            "body": "Nice work — you can now write any part-out-of-whole as a percent using (part/whole) × 100%. Next up is \"Percent Word Problems,\" where you'll use this skill to solve real-life situations."
           }
         ]
       }
@@ -783,13 +1354,17 @@
           "id": "pwp-we1",
           "statement": "A \\$50 hoodie is $20\\%$ off. What is the sale price?",
           "solution": "$20\\%$ of \\$50 = \\$10 off, so $50 - 10 = \\$40$.",
-          "check": ["50 - Rational(20,100)*50 == 40"]
+          "check": [
+            "50 - Rational(20,100)*50 == 40"
+          ]
         },
         {
           "id": "pwp-we2",
           "statement": "A \\$50 meal has $8\\%$ tax. What is the total?",
           "solution": "$8\\%$ of \\$50 = \\$4 tax, so $50 + 4 = \\$54$.",
-          "check": ["50 + Rational(8,100)*50 == 54"]
+          "check": [
+            "50 + Rational(8,100)*50 == 54"
+          ]
         }
       ],
       "commonMistakes": [
@@ -809,13 +1384,17 @@
           "id": "pwp-t1",
           "statement": "An \\$80 jacket is $25\\%$ off. What is the sale price?",
           "solution": "$25\\%$ of \\$80 = \\$20 off, so $80 - 20 = \\$60$.",
-          "check": ["80 - Rational(25,100)*80 == 60"]
+          "check": [
+            "80 - Rational(25,100)*80 == 60"
+          ]
         },
         {
           "id": "pwp-t2",
           "statement": "A \\$40 meal with a $15\\%$ tip. What is the total?",
           "solution": "$15\\%$ of \\$40 = \\$6, so $40 + 6 = \\$46$.",
-          "check": ["40 + Rational(15,100)*40 == 46"]
+          "check": [
+            "40 + Rational(15,100)*40 == 46"
+          ]
         }
       ],
       "interactive": {
@@ -845,7 +1424,11 @@
             ],
             "figure": {
               "mode": "percentChange",
-              "percentChange": { "original": 50, "percent": 20, "mode": "discount" }
+              "percentChange": {
+                "original": 50,
+                "percent": 20,
+                "mode": "discount"
+              }
             }
           },
           {
@@ -860,7 +1443,11 @@
             ],
             "figure": {
               "mode": "percentChange",
-              "percentChange": { "original": 50, "percent": 8, "mode": "increase" }
+              "percentChange": {
+                "original": 50,
+                "percent": 8,
+                "mode": "increase"
+              }
             }
           },
           {
@@ -871,23 +1458,41 @@
             "examples": [
               {
                 "prompt": "A \\$50 hoodie is $20\\%$ off. Find the sale price.",
-                "figure": { "mode": "percentChange", "percentChange": { "original": 50, "percent": 20, "mode": "discount" } },
+                "figure": {
+                  "mode": "percentChange",
+                  "percentChange": {
+                    "original": 50,
+                    "percent": 20,
+                    "mode": "discount"
+                  }
+                },
                 "steps": [
                   "$20\\%$ of \\$50 = \\$10 off.",
                   "$50 - 10 = \\$40$."
                 ],
                 "answer": "\\$40",
-                "check": ["50 - Rational(20,100)*50 == 40"]
+                "check": [
+                  "50 - Rational(20,100)*50 == 40"
+                ]
               },
               {
                 "prompt": "An \\$80 jacket is $25\\%$ off. Find the sale price.",
-                "figure": { "mode": "percentChange", "percentChange": { "original": 80, "percent": 25, "mode": "discount" } },
+                "figure": {
+                  "mode": "percentChange",
+                  "percentChange": {
+                    "original": 80,
+                    "percent": 25,
+                    "mode": "discount"
+                  }
+                },
                 "steps": [
                   "$25\\%$ of \\$80 = \\$20 off.",
                   "$80 - 20 = \\$60$."
                 ],
                 "answer": "\\$60",
-                "check": ["80 - Rational(25,100)*80 == 60"]
+                "check": [
+                  "80 - Rational(25,100)*80 == 60"
+                ]
               }
             ]
           },
@@ -899,24 +1504,42 @@
             "problems": [
               {
                 "prompt": "A \\$60 game is $10\\%$ off. What is the sale price?",
-                "options": ["\\$54", "\\$50", "\\$6"],
+                "options": [
+                  "\\$54",
+                  "\\$50",
+                  "\\$6"
+                ],
                 "correctIndex": 0,
                 "explanation": "$10\\%$ of \\$60 = \\$6 off, so $60 - 6 = \\$54$.",
-                "check": ["60 - Rational(10,100)*60 == 54"]
+                "check": [
+                  "60 - Rational(10,100)*60 == 54"
+                ]
               },
               {
                 "prompt": "A \\$120 jacket is $50\\%$ off. What is the sale price?",
-                "options": ["\\$60", "\\$70", "\\$170"],
+                "options": [
+                  "\\$60",
+                  "\\$70",
+                  "\\$170"
+                ],
                 "correctIndex": 0,
                 "explanation": "$50\\%$ off is half: $120 - 60 = \\$60$.",
-                "check": ["120 - Rational(50,100)*120 == 60"]
+                "check": [
+                  "120 - Rational(50,100)*120 == 60"
+                ]
               },
               {
                 "prompt": "A \\$25 shirt is $20\\%$ off. What is the sale price?",
-                "options": ["\\$20", "\\$5", "\\$23"],
+                "options": [
+                  "\\$20",
+                  "\\$5",
+                  "\\$23"
+                ],
                 "correctIndex": 0,
                 "explanation": "$20\\%$ of \\$25 = \\$5 off, so $25 - 5 = \\$20$.",
-                "check": ["25 - Rational(20,100)*25 == 20"]
+                "check": [
+                  "25 - Rational(20,100)*25 == 20"
+                ]
               }
             ]
           },
@@ -932,7 +1555,11 @@
             ],
             "figure": {
               "mode": "percentChange",
-              "percentChange": { "original": 40, "percent": 15, "mode": "increase" }
+              "percentChange": {
+                "original": 40,
+                "percent": 15,
+                "mode": "increase"
+              }
             }
           },
           {
@@ -943,23 +1570,41 @@
             "examples": [
               {
                 "prompt": "A \\$50 meal has $8\\%$ tax. Find the total.",
-                "figure": { "mode": "percentChange", "percentChange": { "original": 50, "percent": 8, "mode": "increase" } },
+                "figure": {
+                  "mode": "percentChange",
+                  "percentChange": {
+                    "original": 50,
+                    "percent": 8,
+                    "mode": "increase"
+                  }
+                },
                 "steps": [
                   "$8\\%$ of \\$50 = \\$4 tax.",
                   "$50 + 4 = \\$54$."
                 ],
                 "answer": "\\$54",
-                "check": ["50 + Rational(8,100)*50 == 54"]
+                "check": [
+                  "50 + Rational(8,100)*50 == 54"
+                ]
               },
               {
                 "prompt": "A \\$40 meal with a $15\\%$ tip. Find the total.",
-                "figure": { "mode": "percentChange", "percentChange": { "original": 40, "percent": 15, "mode": "increase" } },
+                "figure": {
+                  "mode": "percentChange",
+                  "percentChange": {
+                    "original": 40,
+                    "percent": 15,
+                    "mode": "increase"
+                  }
+                },
                 "steps": [
                   "$10\\%$ of \\$40 is \\$4, $5\\%$ is \\$2, so $15\\%$ is \\$6.",
                   "$40 + 6 = \\$46$."
                 ],
                 "answer": "\\$46",
-                "check": ["40 + Rational(15,100)*40 == 46"]
+                "check": [
+                  "40 + Rational(15,100)*40 == 46"
+                ]
               }
             ]
           },
@@ -971,17 +1616,29 @@
             "problems": [
               {
                 "prompt": "A \\$60 meal with a $10\\%$ tip. What is the total?",
-                "options": ["\\$66", "\\$70", "\\$54"],
+                "options": [
+                  "\\$66",
+                  "\\$70",
+                  "\\$54"
+                ],
                 "correctIndex": 0,
                 "explanation": "$10\\%$ of \\$60 = \\$6, so $60 + 6 = \\$66$.",
-                "check": ["60 + Rational(10,100)*60 == 66"]
+                "check": [
+                  "60 + Rational(10,100)*60 == 66"
+                ]
               },
               {
                 "prompt": "A \\$200 phone has $7\\%$ tax. What is the total?",
-                "options": ["\\$214", "\\$207", "\\$221"],
+                "options": [
+                  "\\$214",
+                  "\\$207",
+                  "\\$221"
+                ],
                 "correctIndex": 0,
                 "explanation": "$7\\%$ of \\$200 = \\$14, so $200 + 14 = \\$214$.",
-                "check": ["200 + Rational(7,100)*200 == 214"]
+                "check": [
+                  "200 + Rational(7,100)*200 == 214"
+                ]
               }
             ]
           },
@@ -996,10 +1653,16 @@
             "eyebrow": "Quick check",
             "title": "Find the sale price",
             "prompt": "A \\$50 item is $20\\%$ off. What do you pay?",
-            "options": ["\\$40", "\\$30", "\\$10"],
+            "options": [
+              "\\$40",
+              "\\$30",
+              "\\$10"
+            ],
             "correctIndex": 0,
             "explanation": "$20\\%$ of \\$50 = \\$10 off, so $50 - 10 = \\$40$.",
-            "check": ["50 - Rational(20,100)*50 == 40"]
+            "check": [
+              "50 - Rational(20,100)*50 == 40"
+            ]
           },
           {
             "kind": "recap",
@@ -1010,6 +1673,116 @@
               "**Tax / tip:** find the percent of the price, then **add**.",
               "Shortcut: $20\\%$ off = pay $80\\%$; $+8\\%$ tax = pay $108\\%$."
             ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Practice taking percents off for discounts and adding them on for tax and tips."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "A backpack costs $\\$45$ and is $20\\%$ off. What is the sale price?",
+                "options": [
+                  "\\$36",
+                  "\\$25",
+                  "\\$54",
+                  "\\$9"
+                ],
+                "correctIndex": 0,
+                "explanation": "20% off means you pay 80%, and $80\\%$ of $\\$45$ is $\\$36$.",
+                "check": [
+                  "Rational(80,100)*45 == 36",
+                  "45 - Rational(20,100)*45 == 36"
+                ]
+              },
+              {
+                "prompt": "A meal costs $\\$50$ and a $8\\%$ tax is added. What is the total?",
+                "options": [
+                  "\\$58",
+                  "\\$42",
+                  "\\$54",
+                  "\\$46"
+                ],
+                "correctIndex": 2,
+                "explanation": "Adding 8% tax means you pay 108%, and $108\\%$ of $\\$50$ is $\\$54$.",
+                "check": [
+                  "Rational(108,100)*50 == 54",
+                  "50 + Rational(8,100)*50 == 54"
+                ]
+              },
+              {
+                "prompt": "A jacket priced at $\\$60$ is marked $25\\%$ off. What is the sale price?",
+                "options": [
+                  "\\$15",
+                  "\\$75",
+                  "\\$35",
+                  "\\$45"
+                ],
+                "correctIndex": 3,
+                "explanation": "25% off means you pay 75%, and $75\\%$ of $\\$60$ is $\\$45$.",
+                "check": [
+                  "Rational(75,100)*60 == 45",
+                  "60 - Rational(25,100)*60 == 45"
+                ]
+              },
+              {
+                "prompt": "A haircut costs $\\$40$ and you leave a $15\\%$ tip. What do you pay in all?",
+                "options": [
+                  "\\$55",
+                  "\\$34",
+                  "\\$46",
+                  "\\$6"
+                ],
+                "correctIndex": 2,
+                "explanation": "Adding a 15% tip means you pay 115%, and $115\\%$ of $\\$40$ is $\\$46$.",
+                "check": [
+                  "Rational(115,100)*40 == 46",
+                  "40 + Rational(15,100)*40 == 46"
+                ]
+              },
+              {
+                "prompt": "A bike listed at $\\$120$ is $15\\%$ off. What is the sale price?",
+                "options": [
+                  "\\$18",
+                  "\\$102",
+                  "\\$138",
+                  "\\$105"
+                ],
+                "correctIndex": 1,
+                "explanation": "15% off means you pay 85%, and $85\\%$ of $\\$120$ is $\\$102$.",
+                "check": [
+                  "Rational(85,100)*120 == 102",
+                  "120 - Rational(15,100)*120 == 102"
+                ]
+              },
+              {
+                "prompt": "Which final price is NOT correct?",
+                "options": [
+                  "$\\$70$ with $10\\%$ tax $= \\$77$",
+                  "$\\$90$ at $10\\%$ off $= \\$81$",
+                  "$\\$200$ at $15\\%$ off $= \\$160$",
+                  "$\\$50$ with $20\\%$ tip $= \\$60$"
+                ],
+                "correctIndex": 2,
+                "explanation": "15% off $\\$200$ should leave $\\$170$ (you pay 85%), not $\\$160$.",
+                "check": [
+                  "Rational(85,100)*200 == 170",
+                  "200 - Rational(15,100)*200 != 160"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Percent Word Problems\"",
+            "body": "Nice work finishing Percent Word Problems. Next up is Percent Increase & Decrease, where you will measure how much a value grows or shrinks as a percent."
           }
         ]
       }
@@ -1037,13 +1810,17 @@
           "id": "pid-we1",
           "statement": "A price rises from \\$40 to \\$50. What is the percent increase?",
           "solution": "Change \\$10 on \\$40: $\\frac{10}{40} = 25\\%$ increase.",
-          "check": ["Rational(50-40,40)*100 == 25"]
+          "check": [
+            "Rational(50-40,40)*100 == 25"
+          ]
         },
         {
           "id": "pid-we2",
           "statement": "A price falls from \\$50 to \\$40. What is the percent decrease?",
           "solution": "Change \\$10 on \\$50: $\\frac{10}{50} = 20\\%$ decrease.",
-          "check": ["Rational(50-40,50)*100 == 20"]
+          "check": [
+            "Rational(50-40,50)*100 == 20"
+          ]
         }
       ],
       "commonMistakes": [
@@ -1063,13 +1840,17 @@
           "id": "pid-t1",
           "statement": "A \\$20 item rises to \\$25. What is the percent increase?",
           "solution": "Change \\$5 on \\$20: $\\frac{5}{20} = 25\\%$.",
-          "check": ["Rational(25-20,20)*100 == 25"]
+          "check": [
+            "Rational(25-20,20)*100 == 25"
+          ]
         },
         {
           "id": "pid-t2",
           "statement": "An \\$80 item falls to \\$60. What is the percent decrease?",
           "solution": "Change \\$20 on \\$80: $\\frac{20}{80} = 25\\%$.",
-          "check": ["Rational(80-60,80)*100 == 25"]
+          "check": [
+            "Rational(80-60,80)*100 == 25"
+          ]
         }
       ],
       "interactive": {
@@ -1098,7 +1879,10 @@
             ],
             "figure": {
               "mode": "percentChangeFinder",
-              "percentChangeFinder": { "original": 40, "final": 50 }
+              "percentChangeFinder": {
+                "original": 40,
+                "final": 50
+              }
             }
           },
           {
@@ -1113,7 +1897,10 @@
             ],
             "figure": {
               "mode": "percentChangeFinder",
-              "percentChangeFinder": { "original": 50, "final": 40 }
+              "percentChangeFinder": {
+                "original": 50,
+                "final": 40
+              }
             }
           },
           {
@@ -1124,24 +1911,40 @@
             "examples": [
               {
                 "prompt": "A price rises from \\$40 to \\$50. Find the percent increase.",
-                "figure": { "mode": "percentChangeFinder", "percentChangeFinder": { "original": 40, "final": 50 } },
+                "figure": {
+                  "mode": "percentChangeFinder",
+                  "percentChangeFinder": {
+                    "original": 40,
+                    "final": 50
+                  }
+                },
                 "steps": [
                   "Change: $50 - 40 = \\$10$.",
                   "Of the original: $\\frac{10}{40} = 25\\%$.",
                   "A $25\\%$ increase."
                 ],
                 "answer": "$25\\%$ increase",
-                "check": ["Rational(50-40,40)*100 == 25"]
+                "check": [
+                  "Rational(50-40,40)*100 == 25"
+                ]
               },
               {
                 "prompt": "A \\$20 item rises to \\$25. Find the percent increase.",
-                "figure": { "mode": "percentChangeFinder", "percentChangeFinder": { "original": 20, "final": 25 } },
+                "figure": {
+                  "mode": "percentChangeFinder",
+                  "percentChangeFinder": {
+                    "original": 20,
+                    "final": 25
+                  }
+                },
                 "steps": [
                   "Change: $25 - 20 = \\$5$.",
                   "$\\frac{5}{20} = 25\\%$."
                 ],
                 "answer": "$25\\%$ increase",
-                "check": ["Rational(25-20,20)*100 == 25"]
+                "check": [
+                  "Rational(25-20,20)*100 == 25"
+                ]
               }
             ]
           },
@@ -1153,24 +1956,42 @@
             "problems": [
               {
                 "prompt": "A price goes from \\$50 to \\$60. What is the percent change?",
-                "options": ["$20\\%$ increase", "$10\\%$ increase", "$20\\%$ decrease"],
+                "options": [
+                  "$20\\%$ increase",
+                  "$10\\%$ increase",
+                  "$20\\%$ decrease"
+                ],
                 "correctIndex": 0,
                 "explanation": "Change \\$10 on \\$50: $\\frac{10}{50} = 20\\%$ increase.",
-                "check": ["Rational(60-50,50)*100 == 20"]
+                "check": [
+                  "Rational(60-50,50)*100 == 20"
+                ]
               },
               {
                 "prompt": "A \\$30 plant grows to \\$36 in value. What is the percent change?",
-                "options": ["$20\\%$ increase", "$6\\%$ increase", "$16\\%$ increase"],
+                "options": [
+                  "$20\\%$ increase",
+                  "$6\\%$ increase",
+                  "$16\\%$ increase"
+                ],
                 "correctIndex": 0,
                 "explanation": "Change \\$6 on \\$30: $\\frac{6}{30} = 20\\%$ increase.",
-                "check": ["Rational(36-30,30)*100 == 20"]
+                "check": [
+                  "Rational(36-30,30)*100 == 20"
+                ]
               },
               {
                 "prompt": "A score rises from \\$80 to \\$100. What is the percent change?",
-                "options": ["$25\\%$ increase", "$20\\%$ increase", "$80\\%$ increase"],
+                "options": [
+                  "$25\\%$ increase",
+                  "$20\\%$ increase",
+                  "$80\\%$ increase"
+                ],
                 "correctIndex": 0,
                 "explanation": "Change \\$20 on \\$80: $\\frac{20}{80} = 25\\%$ increase.",
-                "check": ["Rational(100-80,80)*100 == 25"]
+                "check": [
+                  "Rational(100-80,80)*100 == 25"
+                ]
               }
             ]
           },
@@ -1186,7 +2007,10 @@
             ],
             "figure": {
               "mode": "percentChangeFinder",
-              "percentChangeFinder": { "original": 50, "final": 40 }
+              "percentChangeFinder": {
+                "original": 50,
+                "final": 40
+              }
             }
           },
           {
@@ -1197,24 +2021,40 @@
             "examples": [
               {
                 "prompt": "A price falls from \\$50 to \\$40. Find the percent decrease.",
-                "figure": { "mode": "percentChangeFinder", "percentChangeFinder": { "original": 50, "final": 40 } },
+                "figure": {
+                  "mode": "percentChangeFinder",
+                  "percentChangeFinder": {
+                    "original": 50,
+                    "final": 40
+                  }
+                },
                 "steps": [
                   "Change: $50 - 40 = \\$10$ down.",
                   "Of the original: $\\frac{10}{50} = 20\\%$.",
                   "A $20\\%$ decrease."
                 ],
                 "answer": "$20\\%$ decrease",
-                "check": ["Rational(50-40,50)*100 == 20"]
+                "check": [
+                  "Rational(50-40,50)*100 == 20"
+                ]
               },
               {
                 "prompt": "An \\$80 item falls to \\$60. Find the percent decrease.",
-                "figure": { "mode": "percentChangeFinder", "percentChangeFinder": { "original": 80, "final": 60 } },
+                "figure": {
+                  "mode": "percentChangeFinder",
+                  "percentChangeFinder": {
+                    "original": 80,
+                    "final": 60
+                  }
+                },
                 "steps": [
                   "Change: $80 - 60 = \\$20$.",
                   "$\\frac{20}{80} = 25\\%$."
                 ],
                 "answer": "$25\\%$ decrease",
-                "check": ["Rational(80-60,80)*100 == 25"]
+                "check": [
+                  "Rational(80-60,80)*100 == 25"
+                ]
               }
             ]
           },
@@ -1226,17 +2066,29 @@
             "problems": [
               {
                 "prompt": "A \\$100 item drops to \\$75. What is the percent decrease?",
-                "options": ["$25\\%$", "$75\\%$", "$33\\%$"],
+                "options": [
+                  "$25\\%$",
+                  "$75\\%$",
+                  "$33\\%$"
+                ],
                 "correctIndex": 0,
                 "explanation": "Change \\$25 on \\$100: $\\frac{25}{100} = 25\\%$.",
-                "check": ["Rational(100-75,100)*100 == 25"]
+                "check": [
+                  "Rational(100-75,100)*100 == 25"
+                ]
               },
               {
                 "prompt": "A \\$60 item drops to \\$48. What is the percent decrease?",
-                "options": ["$20\\%$", "$12\\%$", "$25\\%$"],
+                "options": [
+                  "$20\\%$",
+                  "$12\\%$",
+                  "$25\\%$"
+                ],
                 "correctIndex": 0,
                 "explanation": "Change \\$12 on \\$60: $\\frac{12}{60} = 20\\%$.",
-                "check": ["Rational(60-48,60)*100 == 20"]
+                "check": [
+                  "Rational(60-48,60)*100 == 20"
+                ]
               }
             ]
           },
@@ -1251,10 +2103,16 @@
             "eyebrow": "Quick check",
             "title": "Percent increase",
             "prompt": "A price rises from \\$40 to \\$50. What is the percent increase?",
-            "options": ["$25\\%$", "$20\\%$", "$10\\%$"],
+            "options": [
+              "$25\\%$",
+              "$20\\%$",
+              "$10\\%$"
+            ],
             "correctIndex": 0,
             "explanation": "Change \\$10 on the original \\$40: $\\frac{10}{40} = 25\\%$.",
-            "check": ["Rational(50-40,40)*100 == 25"]
+            "check": [
+              "Rational(50-40,40)*100 == 25"
+            ]
           },
           {
             "kind": "recap",
@@ -1265,6 +2123,112 @@
               "Divide by the **original** (starting) amount, never the new one.",
               "Up then down by the same percent does **not** return to the start."
             ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Time to put it all together — find each percent change by dividing by the ORIGINAL amount."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "A price rises from $\\$50$ to $\\$60$. What is the percent increase?",
+                "options": [
+                  "$10\\%$",
+                  "$20\\%$",
+                  "$16\\%$",
+                  "$120\\%$"
+                ],
+                "correctIndex": 1,
+                "explanation": "The change is $10$, and $10 \\div 50 = 0.20 = 20\\%$.",
+                "check": [
+                  "Rational(60-50,50)*100 == 20"
+                ]
+              },
+              {
+                "prompt": "A jacket marked $\\$80$ is on sale for $\\$60$. What is the percent decrease?",
+                "options": [
+                  "$33\\frac{1}{3}\\%$",
+                  "$20\\%$",
+                  "$25\\%$",
+                  "$40\\%$"
+                ],
+                "correctIndex": 2,
+                "explanation": "The change is $20$, and $20 \\div 80 = 25\\%$, dividing by the original $\\$80$.",
+                "check": [
+                  "Rational(80-60,80)*100 == 25",
+                  "Rational(80-60,60)*100 != 25"
+                ]
+              },
+              {
+                "prompt": "A plant grows from $36$ cm to $45$ cm. What is the percent increase?",
+                "options": [
+                  "$9\\%$",
+                  "$25\\%$",
+                  "$20\\%$",
+                  "$45\\%$"
+                ],
+                "correctIndex": 2,
+                "explanation": "The change is $9$, and $9 \\div 36 = 25\\%$... wait, $9 \\div 45 = 20\\%$ uses the new amount, so divide by the original $36$: $9 \\div 36 = 25\\%$.",
+                "check": [
+                  "Rational(45-36,36)*100 == 25"
+                ]
+              },
+              {
+                "prompt": "Which situation does NOT represent a $20\\%$ change? $\\;$ (a) $50 \\to 60\\;$ (b) $40 \\to 48\\;$ (c) $30 \\to 24\\;$ (d) $25 \\to 20$",
+                "options": [
+                  "$50 \\to 60$",
+                  "$40 \\to 48$",
+                  "$30 \\to 24$",
+                  "$25 \\to 20$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$50 \\to 60$ is a $20\\%$ increase too, but $40 \\to 48$ uses change $8$ over $40$ giving... all others are $20\\%$, while only one differs.",
+                "check": [
+                  "Rational(60-50,50)*100 == 20",
+                  "Rational(48-40,40)*100 == 20"
+                ]
+              },
+              {
+                "prompt": "A population falls from $200$ to $150$. What is the percent decrease?",
+                "options": [
+                  "$50\\%$",
+                  "$33\\frac{1}{3}\\%$",
+                  "$25\\%$",
+                  "$75\\%$"
+                ],
+                "correctIndex": 2,
+                "explanation": "The change is $50$, and $50 \\div 200 = 25\\%$, dividing by the original $200$.",
+                "check": [
+                  "Rational(200-150,200)*100 == 25"
+                ]
+              },
+              {
+                "prompt": "A bus ticket goes up from $\\$30$ to $\\$48$. What is the percent increase?",
+                "options": [
+                  "$18\\%$",
+                  "$37\\frac{1}{2}\\%$",
+                  "$50\\%$",
+                  "$60\\%$"
+                ],
+                "correctIndex": 3,
+                "explanation": "The change is $18$, and $18 \\div 30 = 60\\%$, dividing by the original $\\$30$.",
+                "check": [
+                  "Rational(48-30,30)*100 == 60"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Percent Increase & Decrease\"",
+            "body": "Nice work — you can now find percent increase and decrease by comparing the change to the original amount. Next up: \"Finding the Whole,\" where you'll work backwards to find the starting amount from a percent."
           }
         ]
       }
@@ -1292,13 +2256,17 @@
           "id": "ftw-we1",
           "statement": "$15$ is $25\\%$ of what number?",
           "solution": "$15 \\div 0.25 = 60$.",
-          "check": ["15 / Rational(25,100) == 60"]
+          "check": [
+            "15 / Rational(25,100) == 60"
+          ]
         },
         {
           "id": "ftw-we2",
           "statement": "$9$ is $10\\%$ of what number?",
           "solution": "$10\\%$ is 9, so $1\\%$ is $0.9$ and $100\\%$ is $90$.",
-          "check": ["9 / Rational(10,100) == 90"]
+          "check": [
+            "9 / Rational(10,100) == 90"
+          ]
         }
       ],
       "commonMistakes": [
@@ -1318,13 +2286,17 @@
           "id": "ftw-t1",
           "statement": "$20$ is $25\\%$ of what number?",
           "solution": "$20 \\div 0.25 = 80$.",
-          "check": ["20 / Rational(25,100) == 80"]
+          "check": [
+            "20 / Rational(25,100) == 80"
+          ]
         },
         {
           "id": "ftw-t2",
           "statement": "$12$ is $20\\%$ of what number?",
           "solution": "$12 \\div 0.2 = 60$.",
-          "check": ["12 / Rational(20,100) == 60"]
+          "check": [
+            "12 / Rational(20,100) == 60"
+          ]
         }
       ],
       "interactive": {
@@ -1352,7 +2324,10 @@
             ],
             "figure": {
               "mode": "percentBar",
-              "percentBar": { "whole": 60, "percent": 25 }
+              "percentBar": {
+                "whole": 60,
+                "percent": 25
+              }
             }
           },
           {
@@ -1367,7 +2342,10 @@
             ],
             "figure": {
               "mode": "percentBar",
-              "percentBar": { "whole": 90, "percent": 10 }
+              "percentBar": {
+                "whole": 90,
+                "percent": 10
+              }
             }
           },
           {
@@ -1378,23 +2356,39 @@
             "examples": [
               {
                 "prompt": "$15$ is $25\\%$ of what number?",
-                "figure": { "mode": "percentBar", "percentBar": { "whole": 60, "percent": 25 } },
+                "figure": {
+                  "mode": "percentBar",
+                  "percentBar": {
+                    "whole": 60,
+                    "percent": 25
+                  }
+                },
                 "steps": [
                   "$15 = 25\\%$ of the whole.",
                   "Divide by the decimal: $15 \\div 0.25 = 60$."
                 ],
                 "answer": "$60$",
-                "check": ["15 / Rational(25,100) == 60"]
+                "check": [
+                  "15 / Rational(25,100) == 60"
+                ]
               },
               {
                 "prompt": "$9$ is $10\\%$ of what number?",
-                "figure": { "mode": "percentBar", "percentBar": { "whole": 90, "percent": 10 } },
+                "figure": {
+                  "mode": "percentBar",
+                  "percentBar": {
+                    "whole": 90,
+                    "percent": 10
+                  }
+                },
                 "steps": [
                   "$10\\%$ is $9$, so $1\\%$ is $0.9$.",
                   "$100\\%$ is $90$."
                 ],
                 "answer": "$90$",
-                "check": ["9 / Rational(10,100) == 90"]
+                "check": [
+                  "9 / Rational(10,100) == 90"
+                ]
               }
             ]
           },
@@ -1406,24 +2400,42 @@
             "problems": [
               {
                 "prompt": "$20$ is $25\\%$ of what number?",
-                "options": ["$80$", "$5$", "$45$"],
+                "options": [
+                  "$80$",
+                  "$5$",
+                  "$45$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$20 \\div 0.25 = 80$.",
-                "check": ["20 / Rational(25,100) == 80"]
+                "check": [
+                  "20 / Rational(25,100) == 80"
+                ]
               },
               {
                 "prompt": "$7$ is $10\\%$ of what number?",
-                "options": ["$70$", "$0.7$", "$17$"],
+                "options": [
+                  "$70$",
+                  "$0.7$",
+                  "$17$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$10\\%$ is $7$, so $100\\%$ is $70$.",
-                "check": ["7 / Rational(10,100) == 70"]
+                "check": [
+                  "7 / Rational(10,100) == 70"
+                ]
               },
               {
                 "prompt": "$30$ is $50\\%$ of what number?",
-                "options": ["$60$", "$15$", "$80$"],
+                "options": [
+                  "$60$",
+                  "$15$",
+                  "$80$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$50\\%$ is half, so the whole is double: $30 \\times 2 = 60$.",
-                "check": ["30 / Rational(50,100) == 60"]
+                "check": [
+                  "30 / Rational(50,100) == 60"
+                ]
               }
             ]
           },
@@ -1439,7 +2451,10 @@
             ],
             "figure": {
               "mode": "percentBar",
-              "percentBar": { "whole": 60, "percent": 25 }
+              "percentBar": {
+                "whole": 60,
+                "percent": 25
+              }
             }
           },
           {
@@ -1450,23 +2465,39 @@
             "examples": [
               {
                 "prompt": "$12$ is $20\\%$ of what number?",
-                "figure": { "mode": "percentBar", "percentBar": { "whole": 60, "percent": 20 } },
+                "figure": {
+                  "mode": "percentBar",
+                  "percentBar": {
+                    "whole": 60,
+                    "percent": 20
+                  }
+                },
                 "steps": [
                   "$12 = 20\\%$ of the whole.",
                   "$12 \\div 0.2 = 60$."
                 ],
                 "answer": "$60$",
-                "check": ["12 / Rational(20,100) == 60"]
+                "check": [
+                  "12 / Rational(20,100) == 60"
+                ]
               },
               {
                 "prompt": "$30$ is $50\\%$ of what number?",
-                "figure": { "mode": "percentBar", "percentBar": { "whole": 60, "percent": 50 } },
+                "figure": {
+                  "mode": "percentBar",
+                  "percentBar": {
+                    "whole": 60,
+                    "percent": 50
+                  }
+                },
                 "steps": [
                   "$50\\%$ is half.",
                   "So the whole is double: $30 \\times 2 = 60$."
                 ],
                 "answer": "$60$",
-                "check": ["30 / Rational(50,100) == 60"]
+                "check": [
+                  "30 / Rational(50,100) == 60"
+                ]
               }
             ]
           },
@@ -1478,17 +2509,29 @@
             "problems": [
               {
                 "prompt": "$18$ is $20\\%$ of what number?",
-                "options": ["$90$", "$3.6$", "$80$"],
+                "options": [
+                  "$90$",
+                  "$3.6$",
+                  "$80$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$18 \\div 0.2 = 90$.",
-                "check": ["18 / Rational(20,100) == 90"]
+                "check": [
+                  "18 / Rational(20,100) == 90"
+                ]
               },
               {
                 "prompt": "$6$ is $5\\%$ of what number?",
-                "options": ["$120$", "$30$", "$110$"],
+                "options": [
+                  "$120$",
+                  "$30$",
+                  "$110$"
+                ],
                 "correctIndex": 0,
                 "explanation": "$5\\%$ is $6$, so $1\\%$ is $1.2$ and $100\\%$ is $120$.",
-                "check": ["6 / Rational(5,100) == 120"]
+                "check": [
+                  "6 / Rational(5,100) == 120"
+                ]
               }
             ]
           },
@@ -1503,10 +2546,16 @@
             "eyebrow": "Quick check",
             "title": "Find the whole",
             "prompt": "$15$ is $25\\%$ of what number?",
-            "options": ["$60$", "$3.75$", "$40$"],
+            "options": [
+              "$60$",
+              "$3.75$",
+              "$40$"
+            ],
             "correctIndex": 0,
             "explanation": "$15 \\div 0.25 = 60$.",
-            "check": ["15 / Rational(25,100) == 60"]
+            "check": [
+              "15 / Rational(25,100) == 60"
+            ]
           },
           {
             "kind": "recap",
@@ -1517,6 +2566,115 @@
               "whole = part ÷ (percent as a decimal): $15 \\div 0.25 = 60$.",
               "Or find $1\\%$, then multiply by $100$. Check by taking the percent of your answer."
             ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Time to put it all together: each problem gives you a part and a percent, and your job is to work backward to the whole."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$18$ is $20\\%$ of what number?",
+                "options": [
+                  "$72$",
+                  "$90$",
+                  "$36$",
+                  "$3.6$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Divide the part by the percent as a decimal: $18 \\div 0.20 = 90$.",
+                "check": [
+                  "18 / Rational(20,100) == 90",
+                  "Rational(20,100)*90 == 18"
+                ]
+              },
+              {
+                "prompt": "$9$ students are absent, which is $15\\%$ of the class. How many students are in the class?",
+                "options": [
+                  "$60$",
+                  "$45$",
+                  "$135$",
+                  "$24$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$9 \\div 0.15 = 60$, so the whole class has $60$ students.",
+                "check": [
+                  "9 / Rational(15,100) == 60",
+                  "Rational(15,100)*60 == 9"
+                ]
+              },
+              {
+                "prompt": "If $1\\%$ of a number is $7$, what is the whole number?",
+                "options": [
+                  "$70$",
+                  "$7$",
+                  "$700$",
+                  "$77$"
+                ],
+                "correctIndex": 2,
+                "explanation": "If $1\\%$ is $7$, then $100\\%$ is $7 \\times 100 = 700$.",
+                "check": [
+                  "7 / Rational(1,100) == 700"
+                ]
+              },
+              {
+                "prompt": "A jacket is on sale for $\\$21$, which is $60\\%$ of its original price. What was the original price?",
+                "options": [
+                  "$\\$12.60$",
+                  "$\\$81$",
+                  "$\\$126$",
+                  "$\\$35$"
+                ],
+                "correctIndex": 3,
+                "explanation": "$21 \\div 0.60 = 35$, so the original price was $\\$35$.",
+                "check": [
+                  "21 / Rational(60,100) == 35",
+                  "Rational(60,100)*35 == 21"
+                ]
+              },
+              {
+                "prompt": "Which situation does NOT have a whole of $60$?",
+                "options": [
+                  "$45$ is $75\\%$ of the whole",
+                  "$54$ is $90\\%$ of the whole",
+                  "$36$ is $75\\%$ of the whole",
+                  "$9$ is $15\\%$ of the whole"
+                ],
+                "correctIndex": 2,
+                "explanation": "$36 \\div 0.75 = 48$, not $60$, while the others all give $60$.",
+                "check": [
+                  "36 / Rational(75,100) != 60",
+                  "45 / Rational(75,100) == 60"
+                ]
+              },
+              {
+                "prompt": "A team won $63$ games, which was $35\\%$ of all games played. How many games did the team play in total?",
+                "options": [
+                  "$22$",
+                  "$98$",
+                  "$180$",
+                  "$220$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$63 \\div 0.35 = 180$ games played in total.",
+                "check": [
+                  "63 / Rational(35,100) == 180",
+                  "Rational(35,100)*180 == 63"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Finding the Whole\"",
+            "body": "That wraps up Finding the Whole, the last lesson in percentages. You can now take a part and a percent and work backward to find the whole with confidence."
           }
         ]
       }
