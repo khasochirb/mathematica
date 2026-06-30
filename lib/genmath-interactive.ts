@@ -339,6 +339,42 @@ export interface MultiplesGridConfig {
   color?: string;
 }
 
+// Prime & composite — a 2..max grid with primes highlighted; tap any number to
+// see its factor list and the prime/composite verdict.
+export interface PrimeExplorerConfig {
+  max: number;
+  start: number; // number inspected first
+  color?: string;
+}
+
+// Greatest common factor — two adjustable numbers, their factor lists shown as
+// chips with shared factors highlighted and the greatest one ringed.
+export interface GcfFinderConfig {
+  a: number;
+  b: number;
+  min?: number;
+  max?: number;
+  color?: string;
+}
+
+// Least common multiple — two adjustable numbers, their multiples shown as
+// strips with shared multiples highlighted and the least one ringed.
+export interface LcmFinderConfig {
+  a: number;
+  b: number;
+  min?: number;
+  max?: number;
+  count?: number; // how many multiples to show per number
+  color?: string;
+}
+
+// Prime factorization — a factor tree that peels the smallest prime factor one
+// step at a time until only primes remain.
+export interface FactorTreeConfig {
+  n: number;
+  color?: string;
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -397,6 +433,10 @@ export type InteractiveStep =
   | { kind: "integerSignRule"; eyebrow?: string; title: string; teach: string; config: IntegerSignRuleConfig }
   | { kind: "factorPairs"; eyebrow?: string; title: string; teach: string; config: FactorPairsConfig }
   | { kind: "multiplesGrid"; eyebrow?: string; title: string; teach: string; config: MultiplesGridConfig }
+  | { kind: "primeExplorer"; eyebrow?: string; title: string; teach: string; config: PrimeExplorerConfig }
+  | { kind: "gcfFinder"; eyebrow?: string; title: string; teach: string; config: GcfFinderConfig }
+  | { kind: "lcmFinder"; eyebrow?: string; title: string; teach: string; config: LcmFinderConfig }
+  | { kind: "factorTree"; eyebrow?: string; title: string; teach: string; config: FactorTreeConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

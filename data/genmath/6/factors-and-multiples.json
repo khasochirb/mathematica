@@ -762,7 +762,7 @@
               {
                 "prompt": "Which number is a common multiple of both $4$ and $6$?",
                 "options": [
-                  "$12$ only if it is in both lists, but choose",
+                  "$16$",
                   "$14$",
                   "$18$",
                   "$24$"
@@ -796,6 +796,1593 @@
             "eyebrow": "Chapter complete",
             "title": "You've finished \"Multiples\"",
             "body": "Great work, you've finished the Multiples lesson. You can now list multiples by skip-counting and spot the common multiples shared by two numbers."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "prime-composite",
+      "title": "Prime & Composite Numbers",
+      "concreteComparison": "Arrange chairs into equal rows. With $12$ chairs you can make $2\\times6$, $3\\times4$, $4\\times3$ — lots of neat rectangles. With $7$ chairs the only neat rectangle is a single row, $1\\times7$. A number like $7$ that can **only** be a single row is **prime**; one like $12$ with extra arrangements is **composite**.",
+      "objective": "Classify a whole number as prime (exactly two factors: 1 and itself) or composite (more than two factors), and explain why 1 is neither.",
+      "concept": [
+        "A **prime** number has exactly **two** factors: $1$ and itself. $7$ divides only by $1$ and $7$.",
+        "A **composite** number has **more than two** factors — it can be built from smaller numbers. $12 = 2\\times6$.",
+        "**$1$ is neither** prime nor composite: it has only **one** factor, itself."
+      ],
+      "keyIdea": "Prime = exactly two factors (1 and itself). Composite = more than two. 1 is neither.",
+      "facts": [
+        {
+          "title": "Primes under 20",
+          "latex": "$2, 3, 5, 7, 11, 13, 17, 19$",
+          "explanation": "Each has only two factors."
+        },
+        {
+          "title": "The only even prime",
+          "latex": "$2$",
+          "explanation": "Every other even number also has 2 as a factor."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc-we1",
+          "statement": "Is $11$ prime or composite?",
+          "solution": "The only factors of $11$ are $1$ and $11$ — exactly two — so it is prime.",
+          "check": [
+            "isprime(11)"
+          ]
+        },
+        {
+          "id": "pc-we2",
+          "statement": "Is $15$ prime or composite?",
+          "solution": "$15 = 3\\times5$, so its factors are $1, 3, 5, 15$ — more than two. Composite.",
+          "check": [
+            "isprime(15) == False",
+            "15 % 3 == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking $1$ is prime.",
+          "correction": "$1$ has only **one** factor (itself), so it is **neither** prime nor composite.",
+          "authored": true
+        },
+        {
+          "text": "Assuming every odd number is prime.",
+          "correction": "$9$ is odd but $9 = 3\\times3$, so it is composite.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc-t1",
+          "statement": "Is $2$ prime?",
+          "solution": "Its only factors are $1$ and $2$, so yes — and it's the only even prime.",
+          "check": [
+            "isprime(2)"
+          ]
+        },
+        {
+          "id": "pc-t2",
+          "statement": "Is $21$ prime?",
+          "solution": "$21 = 3\\times7$, so no — it's composite.",
+          "check": [
+            "isprime(21) == False",
+            "21 % 7 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "primeExplorer",
+            "eyebrow": "Concept A",
+            "title": "Count the factors",
+            "teach": "Tap any number to see its factors. **Exactly two** factors — $1$ and itself — means **prime** (highlighted). **More than two** means **composite**.",
+            "config": {
+              "max": 30,
+              "start": 7,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "What makes a number prime",
+            "beats": [
+              "A **prime** has exactly two factors: $1$ and itself.",
+              "$7$ divides only by $1$ and $7$ — prime.",
+              "A **composite** has more than two factors.",
+              "$12 = 2\\times6$, so $12$ has $1,2,3,4,6,12$ — composite."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "A special case",
+            "title": "Where does 1 go?",
+            "beats": [
+              "$1$ has only **one** factor: itself.",
+              "Prime needs **two** factors, so $1$ isn't prime.",
+              "Composite needs **more than two**, so $1$ isn't composite.",
+              "$1$ is **neither** — it sits on its own."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Prime or composite?",
+            "intro": "Count the factors.",
+            "examples": [
+              {
+                "prompt": "Is $11$ prime or composite?",
+                "steps": [
+                  "Try dividing $11$: only $1$ and $11$ work.",
+                  "Exactly two factors."
+                ],
+                "answer": "Prime",
+                "check": [
+                  "isprime(11)"
+                ]
+              },
+              {
+                "prompt": "Is $15$ prime or composite?",
+                "steps": [
+                  "$15 = 3\\times5$.",
+                  "Factors $1,3,5,15$ — more than two."
+                ],
+                "answer": "Composite",
+                "check": [
+                  "isprime(15) == False",
+                  "15 % 5 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Prime or composite?",
+            "intro": "Does any smaller number divide it?",
+            "problems": [
+              {
+                "prompt": "Is $13$ prime or composite?",
+                "options": [
+                  "Prime",
+                  "Composite"
+                ],
+                "correctIndex": 0,
+                "explanation": "Nothing but $1$ and $13$ divides it.",
+                "check": [
+                  "isprime(13)"
+                ]
+              },
+              {
+                "prompt": "Is $9$ prime or composite?",
+                "options": [
+                  "Composite",
+                  "Prime"
+                ],
+                "correctIndex": 0,
+                "explanation": "$9 = 3\\times3$.",
+                "check": [
+                  "isprime(9) == False",
+                  "9 % 3 == 0"
+                ]
+              },
+              {
+                "prompt": "Is $17$ prime or composite?",
+                "options": [
+                  "Composite",
+                  "Prime"
+                ],
+                "correctIndex": 1,
+                "explanation": "Only $1$ and $17$ divide it.",
+                "check": [
+                  "isprime(17)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "A quick test",
+            "title": "Scan for a factor",
+            "beats": [
+              "Check whether a smaller number divides it evenly.",
+              "If one does, it's **composite**.",
+              "$2$ is the only even prime — every other even number has $2$ as a factor.",
+              "Quick scan: even? divisible by $3$? by $5$?"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Spotting factors fast",
+            "intro": "Look for an easy divisor first.",
+            "examples": [
+              {
+                "prompt": "Is $27$ prime?",
+                "steps": [
+                  "$2+7=9$ is divisible by $3$, so $27$ is too.",
+                  "$27 = 3\\times9$."
+                ],
+                "answer": "Composite",
+                "check": [
+                  "isprime(27) == False",
+                  "27 % 3 == 0"
+                ]
+              },
+              {
+                "prompt": "Is $23$ prime?",
+                "steps": [
+                  "Not even; not divisible by $3$ or $5$.",
+                  "Nothing up to $\\sqrt{23}$ divides it."
+                ],
+                "answer": "Prime",
+                "check": [
+                  "isprime(23)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the odd one out",
+            "intro": "Use the quick test.",
+            "problems": [
+              {
+                "prompt": "Which of these is prime?",
+                "options": [
+                  "$15$",
+                  "$21$",
+                  "$19$",
+                  "$25$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$19$ has no factor but $1$ and $19$; the others split.",
+                "check": [
+                  "isprime(19)",
+                  "isprime(15) == False"
+                ]
+              },
+              {
+                "prompt": "Which of these is composite?",
+                "options": [
+                  "$2$",
+                  "$7$",
+                  "$11$",
+                  "$9$"
+                ],
+                "correctIndex": 3,
+                "explanation": "$9 = 3\\times3$; the others are prime.",
+                "check": [
+                  "isprime(9) == False",
+                  "9 % 3 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The atoms of arithmetic",
+            "body": "Primes are the building blocks of every other number, and they never run out — the list $2, 3, 5, 7, 11, \\ldots$ goes on forever. Over $2{,}000$ years ago Euclid proved there is no largest prime, and that very fact is what keeps your online passwords safe today."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Is it prime?",
+            "prompt": "Is $29$ prime or composite?",
+            "options": [
+              "Prime",
+              "Composite"
+            ],
+            "correctIndex": 0,
+            "explanation": "No smaller number divides $29$ evenly, so it's prime.",
+            "check": [
+              "isprime(29)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Prime** = exactly two factors ($1$ and itself).",
+              "**Composite** = more than two factors.",
+              "**$1$ is neither**; **$2$ is the only even prime.**"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's review prime and composite with a mix of classify, odd-one-out, and that tricky number $1$."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Which number is prime?",
+                "options": [
+                  "$21$",
+                  "$27$",
+                  "$29$",
+                  "$33$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$29$ has no factor but $1$ and itself.",
+                "check": [
+                  "isprime(29)",
+                  "isprime(27) == False"
+                ]
+              },
+              {
+                "prompt": "Which number is composite?",
+                "options": [
+                  "$13$",
+                  "$17$",
+                  "$25$",
+                  "$31$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$25 = 5\\times5$.",
+                "check": [
+                  "isprime(25) == False",
+                  "25 % 5 == 0"
+                ]
+              },
+              {
+                "prompt": "Is $1$ prime, composite, or neither?",
+                "options": [
+                  "Prime",
+                  "Composite",
+                  "Neither"
+                ],
+                "correctIndex": 2,
+                "explanation": "$1$ has only one factor, so it is neither.",
+                "check": [
+                  "isprime(1) == False"
+                ]
+              },
+              {
+                "prompt": "Which is the only even prime number?",
+                "options": [
+                  "$2$",
+                  "$4$",
+                  "$6$",
+                  "There isn't one"
+                ],
+                "correctIndex": 0,
+                "explanation": "Every even number past $2$ has $2$ as an extra factor.",
+                "check": [
+                  "isprime(2)",
+                  "isprime(4) == False"
+                ]
+              },
+              {
+                "prompt": "Which number is NOT prime?",
+                "options": [
+                  "$2$",
+                  "$3$",
+                  "$9$",
+                  "$5$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$9 = 3\\times3$, so it is composite.",
+                "check": [
+                  "isprime(9) == False",
+                  "9 % 3 == 0"
+                ]
+              },
+              {
+                "prompt": "How many of $11, 12, 13$ are prime?",
+                "options": [
+                  "$1$",
+                  "$2$",
+                  "$3$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$11$ and $13$ are prime; $12$ is not.",
+                "check": [
+                  "isprime(11)",
+                  "isprime(13)",
+                  "isprime(12) == False"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Prime & Composite Numbers\"",
+            "body": "Great work — you can now tell primes from composites and you know $1$ is in a class of its own. Next up: Greatest Common Factor, where shared factors do the heavy lifting."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "gcf",
+      "title": "Greatest Common Factor",
+      "concreteComparison": "You have $12$ granola bars and $18$ juice boxes and want identical snack packs with nothing left over. The most packs you can make is the **greatest common factor** of $12$ and $18$ — the largest number that divides **both** ($6$ packs, each with $2$ bars and $3$ juices).",
+      "objective": "Find the greatest common factor (GCF) of two numbers by listing factors and choosing the largest one they share.",
+      "concept": [
+        "A **common factor** divides **both** numbers; $1$ is always one.",
+        "The **greatest common factor (GCF)** is the **largest** common factor.",
+        "List each number's factors, find the shared ones, and take the biggest."
+      ],
+      "keyIdea": "GCF = the largest factor two numbers share. List factors of each and pick the greatest in both lists.",
+      "facts": [
+        {
+          "title": "GCF of 12 and 18",
+          "latex": "$6$",
+          "explanation": "$12 = 6\\times2$ and $18 = 6\\times3$."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "gcf-we1",
+          "statement": "Find the GCF of $12$ and $18$.",
+          "solution": "Factors of $12$: $1,2,3,4,6,12$. Factors of $18$: $1,2,3,6,9,18$. The largest shared one is $6$.",
+          "check": [
+            "gcd(12, 18) == 6"
+          ]
+        },
+        {
+          "id": "gcf-we2",
+          "statement": "Find the GCF of $8$ and $20$.",
+          "solution": "Shared factors are $1,2,4$; the greatest is $4$.",
+          "check": [
+            "gcd(8, 20) == 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Stopping at a common factor that isn't the greatest.",
+          "correction": "$2$ divides both $12$ and $18$, but $6$ is larger — take the **greatest**.",
+          "authored": true
+        },
+        {
+          "text": "Mixing up GCF and LCM.",
+          "correction": "The GCF is a **factor** (no bigger than either number); the LCM is a **multiple** (no smaller than either).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "gcf-t1",
+          "statement": "What is the GCF of $6$ and $9$?",
+          "solution": "Shared factors are $1, 3$; the greatest is $3$.",
+          "check": [
+            "gcd(6, 9) == 3"
+          ]
+        },
+        {
+          "id": "gcf-t2",
+          "statement": "What is the GCF of $10$ and $15$?",
+          "solution": "Shared factors are $1, 5$; the greatest is $5$.",
+          "check": [
+            "gcd(10, 15) == 5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "gcfFinder",
+            "eyebrow": "Concept A",
+            "title": "Where factor lists overlap",
+            "teach": "The chips are each number's factors. The **highlighted** ones are shared, and the **ringed** chip is the largest shared factor — the GCF. Change either number and watch the overlap shift.",
+            "config": {
+              "a": 12,
+              "b": 18,
+              "min": 2,
+              "max": 24,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Step 1",
+            "title": "List the factors",
+            "beats": [
+              "Write every factor of each number.",
+              "Factors of $12$: $1,2,3,4,6,12$.",
+              "Factors of $18$: $1,2,3,6,9,18$.",
+              "Now compare the two lists."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Step 2",
+            "title": "Take the greatest shared one",
+            "beats": [
+              "Shared factors of $12$ and $18$: $1, 2, 3, 6$.",
+              "These are the **common factors**.",
+              "The largest is $6$.",
+              "So $\\text{GCF}(12, 18) = 6$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Finding the GCF",
+            "intro": "List, compare, take the greatest.",
+            "examples": [
+              {
+                "prompt": "Find the GCF of $16$ and $24$.",
+                "steps": [
+                  "Factors of $16$: $1,2,4,8,16$.",
+                  "Factors of $24$: $1,2,3,4,6,8,12,24$.",
+                  "Greatest shared: $8$."
+                ],
+                "answer": "$8$",
+                "check": [
+                  "gcd(16, 24) == 8"
+                ]
+              },
+              {
+                "prompt": "Find the GCF of $9$ and $12$.",
+                "steps": [
+                  "Shared factors: $1, 3$.",
+                  "Greatest is $3$."
+                ],
+                "answer": "$3$",
+                "check": [
+                  "gcd(9, 12) == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the GCF",
+            "intro": "Largest factor in both lists.",
+            "problems": [
+              {
+                "prompt": "GCF of $6$ and $8$?",
+                "options": [
+                  "$1$",
+                  "$2$",
+                  "$4$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Shared factors are $1, 2$; the greatest is $2$.",
+                "check": [
+                  "gcd(6, 8) == 2"
+                ]
+              },
+              {
+                "prompt": "GCF of $20$ and $30$?",
+                "options": [
+                  "$5$",
+                  "$10$",
+                  "$15$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Shared factors include $1,2,5,10$; the greatest is $10$.",
+                "check": [
+                  "gcd(20, 30) == 10"
+                ]
+              },
+              {
+                "prompt": "GCF of $14$ and $21$?",
+                "options": [
+                  "$3$",
+                  "$7$",
+                  "$14$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Both divide by $7$ and nothing larger.",
+                "check": [
+                  "gcd(14, 21) == 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "A special case",
+            "title": "When the GCF is 1",
+            "beats": [
+              "Sometimes the only shared factor is $1$.",
+              "Factors of $7$: $1, 7$. Factors of $9$: $1, 3, 9$.",
+              "The only one in both is $1$.",
+              "Then $\\text{GCF} = 1$ — the numbers are **relatively prime**."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "GCF of 1",
+            "intro": "No shared factor but 1.",
+            "examples": [
+              {
+                "prompt": "Find the GCF of $8$ and $15$.",
+                "steps": [
+                  "Factors of $8$: $1,2,4,8$.",
+                  "Factors of $15$: $1,3,5,15$.",
+                  "Only $1$ is shared."
+                ],
+                "answer": "$1$",
+                "check": [
+                  "gcd(8, 15) == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Greatest, not just common",
+            "intro": "Watch for the largest.",
+            "problems": [
+              {
+                "prompt": "Which is the GCF of $24$ and $36$?",
+                "options": [
+                  "$6$",
+                  "$12$",
+                  "$18$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$6$ is common, but $12$ is the greatest shared factor.",
+                "check": [
+                  "gcd(24, 36) == 12"
+                ]
+              },
+              {
+                "prompt": "GCF of $5$ and $9$?",
+                "options": [
+                  "$1$",
+                  "$5$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "They share only $1$.",
+                "check": [
+                  "gcd(5, 9) == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The fraction-shrinking trick",
+            "body": "Dividing the top and bottom of a fraction by their GCF reduces it in one move: $\\tfrac{12}{18}$ has $\\text{GCF}(12,18)=6$, so $\\tfrac{12}{18} = \\tfrac{2}{3}$ straight away — no step-by-step halving needed."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Greatest shared factor",
+            "prompt": "What is the GCF of $18$ and $24$?",
+            "options": [
+              "$3$",
+              "$6$",
+              "$12$"
+            ],
+            "correctIndex": 1,
+            "explanation": "Shared factors are $1,2,3,6$; the greatest is $6$.",
+            "check": [
+              "gcd(18, 24) == 6"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **common factor** divides both numbers.",
+              "The **GCF** is the **largest** of them.",
+              "List factors of each, take the greatest shared one. If only $1$ is shared, the GCF is $1$."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's review the GCF with straight finds, a watch-for-the-greatest trap, and a real-world split."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "GCF of $16$ and $24$?",
+                "options": [
+                  "$4$",
+                  "$6$",
+                  "$8$",
+                  "$12$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Both divide by $8$ and nothing larger.",
+                "check": [
+                  "gcd(16, 24) == 8"
+                ]
+              },
+              {
+                "prompt": "GCF of $9$ and $12$?",
+                "options": [
+                  "$1$",
+                  "$3$",
+                  "$6$",
+                  "$9$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Shared factors are $1, 3$; greatest is $3$.",
+                "check": [
+                  "gcd(9, 12) == 3"
+                ]
+              },
+              {
+                "prompt": "GCF of $7$ and $13$?",
+                "options": [
+                  "$1$",
+                  "$7$",
+                  "$13$",
+                  "$91$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two different primes share only $1$.",
+                "check": [
+                  "gcd(7, 13) == 1"
+                ]
+              },
+              {
+                "prompt": "$5$ is a common factor of $20$ and $30$. Is it the GCF?",
+                "options": [
+                  "Yes",
+                  "No — it is $10$",
+                  "No — it is $2$",
+                  "No — it is $30$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$10$ also divides both and is larger than $5$.",
+                "check": [
+                  "gcd(20, 30) == 10",
+                  "20 % 5 == 0"
+                ]
+              },
+              {
+                "prompt": "GCF of $24$ and $36$?",
+                "options": [
+                  "$6$",
+                  "$8$",
+                  "$12$",
+                  "$18$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$12$ is the largest factor of both.",
+                "check": [
+                  "gcd(24, 36) == 12"
+                ]
+              },
+              {
+                "prompt": "You have $15$ red and $25$ blue beads to split into identical bags with none left over. Most bags?",
+                "options": [
+                  "$3$",
+                  "$5$",
+                  "$10$",
+                  "$15$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$\\text{GCF}(15,25)=5$, so $5$ bags.",
+                "check": [
+                  "gcd(15, 25) == 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Greatest Common Factor\"",
+            "body": "Nicely done — you can list factors, spot the shared ones, and grab the greatest. Next: the Least Common Multiple, the mirror-image idea built from multiples instead of factors."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "lcm",
+      "title": "Least Common Multiple",
+      "concreteComparison": "Hot dogs come in packs of $6$ and buns in packs of $8$. To have no leftovers you need a number that is a multiple of **both** — and the smallest such number is the **least common multiple** of $6$ and $8$, which is $24$ ($4$ hot-dog packs and $3$ bun packs).",
+      "objective": "Find the least common multiple (LCM) of two numbers by listing multiples and choosing the smallest one they share.",
+      "concept": [
+        "A **common multiple** appears in **both** numbers' multiple lists.",
+        "The **least common multiple (LCM)** is the **smallest** of these.",
+        "List multiples of each, skip-counting, until one matches."
+      ],
+      "keyIdea": "LCM = the smallest multiple two numbers share. List multiples of each until one appears in both.",
+      "facts": [
+        {
+          "title": "LCM of 4 and 6",
+          "latex": "$12$",
+          "explanation": "$12 = 4\\times3 = 6\\times2$ — the first shared multiple."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "lcm-we1",
+          "statement": "Find the LCM of $4$ and $6$.",
+          "solution": "Multiples of $4$: $4,8,12$. Multiples of $6$: $6,12$. The first shared one is $12$.",
+          "check": [
+            "lcm(4, 6) == 12"
+          ]
+        },
+        {
+          "id": "lcm-we2",
+          "statement": "Find the LCM of $3$ and $5$.",
+          "solution": "$3,6,9,12,15$ and $5,10,15$ first meet at $15$.",
+          "check": [
+            "lcm(3, 5) == 15"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Always multiplying the two numbers.",
+          "correction": "$4\\times6 = 24$, but the **least** common multiple is $12$. Multiplying gives *a* common multiple, not always the smallest.",
+          "authored": true
+        },
+        {
+          "text": "Mixing up LCM and GCF.",
+          "correction": "The LCM is a **multiple** (at least as big as either number); the GCF is a **factor** (no bigger than either).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "lcm-t1",
+          "statement": "What is the LCM of $2$ and $5$?",
+          "solution": "$2,4,6,8,10$ and $5,10$ first meet at $10$.",
+          "check": [
+            "lcm(2, 5) == 10"
+          ]
+        },
+        {
+          "id": "lcm-t2",
+          "statement": "What is the LCM of $6$ and $9$?",
+          "solution": "$6,12,18$ and $9,18$ first meet at $18$.",
+          "check": [
+            "lcm(6, 9) == 18"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "lcmFinder",
+            "eyebrow": "Concept A",
+            "title": "Where skip-counts first meet",
+            "teach": "Each strip shows a number's multiples. The **highlighted** ones appear in both strips, and the **ringed** one is the first (smallest) — the LCM. Change either number and watch where the two skip-counts collide.",
+            "config": {
+              "a": 4,
+              "b": 6,
+              "min": 2,
+              "max": 12,
+              "count": 6,
+              "color": "#5b8def"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Step 1",
+            "title": "List the multiples",
+            "beats": [
+              "Skip-count each number a few times.",
+              "Multiples of $4$: $4, 8, 12, 16, \\ldots$",
+              "Multiples of $6$: $6, 12, 18, \\ldots$",
+              "Then look for the first match."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Step 2",
+            "title": "Take the smallest shared one",
+            "beats": [
+              "$12$ shows up in both lists.",
+              "It's the **first** place they meet.",
+              "So $\\text{LCM}(4, 6) = 12$.",
+              "Bigger shared multiples ($24, 36, \\ldots$) exist, but $12$ is least."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Finding the LCM",
+            "intro": "List, then take the first shared multiple.",
+            "examples": [
+              {
+                "prompt": "Find the LCM of $3$ and $4$.",
+                "steps": [
+                  "Multiples of $3$: $3,6,9,12$.",
+                  "Multiples of $4$: $4,8,12$.",
+                  "First shared: $12$."
+                ],
+                "answer": "$12$",
+                "check": [
+                  "lcm(3, 4) == 12"
+                ]
+              },
+              {
+                "prompt": "Find the LCM of $2$ and $7$.",
+                "steps": [
+                  "$2,4,6,8,10,12,14$.",
+                  "$7, 14$.",
+                  "First shared: $14$."
+                ],
+                "answer": "$14$",
+                "check": [
+                  "lcm(2, 7) == 14"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the LCM",
+            "intro": "Smallest number in both lists.",
+            "problems": [
+              {
+                "prompt": "LCM of $2$ and $3$?",
+                "options": [
+                  "$5$",
+                  "$6$",
+                  "$12$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$6$ is the first multiple of both.",
+                "check": [
+                  "lcm(2, 3) == 6"
+                ]
+              },
+              {
+                "prompt": "LCM of $4$ and $10$?",
+                "options": [
+                  "$14$",
+                  "$20$",
+                  "$40$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$20 = 4\\times5 = 10\\times2$ is the first match.",
+                "check": [
+                  "lcm(4, 10) == 20"
+                ]
+              },
+              {
+                "prompt": "LCM of $6$ and $8$?",
+                "options": [
+                  "$14$",
+                  "$24$",
+                  "$48$"
+                ],
+                "correctIndex": 1,
+                "explanation": "They first meet at $24$.",
+                "check": [
+                  "lcm(6, 8) == 24"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "A shortcut",
+            "title": "When LCM is just the product",
+            "beats": [
+              "If two numbers share no factor but $1$ ($\\text{GCF}=1$)...",
+              "...their LCM is simply the **product**.",
+              "$3$ and $5$ share only $1$, so $\\text{LCM} = 3\\times5 = 15$.",
+              "But $4$ and $6$ share a factor, so their LCM ($12$) is **less** than $24$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Product or less?",
+            "intro": "Check for a shared factor first.",
+            "examples": [
+              {
+                "prompt": "Find the LCM of $5$ and $9$.",
+                "steps": [
+                  "They share only $1$.",
+                  "So $\\text{LCM} = 5\\times9 = 45$."
+                ],
+                "answer": "$45$",
+                "check": [
+                  "lcm(5, 9) == 45"
+                ]
+              },
+              {
+                "prompt": "Find the LCM of $8$ and $12$.",
+                "steps": [
+                  "They share the factor $4$.",
+                  "Multiples meet at $24$, less than $8\\times12=96$."
+                ],
+                "answer": "$24$",
+                "check": [
+                  "lcm(8, 12) == 24"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Least, not just any",
+            "intro": "Find the first shared multiple.",
+            "problems": [
+              {
+                "prompt": "Which is the LCM of $4$ and $6$?",
+                "options": [
+                  "$12$",
+                  "$24$",
+                  "$36$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$24$ and $36$ are shared too, but $12$ is least.",
+                "check": [
+                  "lcm(4, 6) == 12"
+                ]
+              },
+              {
+                "prompt": "LCM of $3$ and $7$?",
+                "options": [
+                  "$10$",
+                  "$21$",
+                  "$1$"
+                ],
+                "correctIndex": 1,
+                "explanation": "They share only $1$, so $\\text{LCM} = 3\\times7 = 21$.",
+                "check": [
+                  "lcm(3, 7) == 21"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Adding fractions needs it",
+            "body": "To add $\\tfrac{1}{4} + \\tfrac{1}{6}$ you rewrite both over the **least common multiple** of $4$ and $6$, which is $12$: $\\tfrac{3}{12} + \\tfrac{2}{12} = \\tfrac{5}{12}$. The LCM is exactly the least common denominator."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Smallest shared multiple",
+            "prompt": "What is the LCM of $4$ and $6$?",
+            "options": [
+              "$10$",
+              "$12$",
+              "$24$"
+            ],
+            "correctIndex": 1,
+            "explanation": "$12$ is the first multiple of both $4$ and $6$.",
+            "check": [
+              "lcm(4, 6) == 12"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **common multiple** appears in both numbers' lists.",
+              "The **LCM** is the **smallest** of them.",
+              "If the numbers share no factor but $1$, the LCM is their **product**."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's review the LCM with quick finds, the product shortcut, and a real-world timing problem."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "LCM of $3$ and $4$?",
+                "options": [
+                  "$7$",
+                  "$12$",
+                  "$24$",
+                  "$1$"
+                ],
+                "correctIndex": 1,
+                "explanation": "They first meet at $12$.",
+                "check": [
+                  "lcm(3, 4) == 12"
+                ]
+              },
+              {
+                "prompt": "LCM of $5$ and $10$?",
+                "options": [
+                  "$5$",
+                  "$10$",
+                  "$50$",
+                  "$15$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$10$ is already a multiple of $5$.",
+                "check": [
+                  "lcm(5, 10) == 10"
+                ]
+              },
+              {
+                "prompt": "LCM of $4$ and $9$?",
+                "options": [
+                  "$13$",
+                  "$18$",
+                  "$36$",
+                  "$72$"
+                ],
+                "correctIndex": 2,
+                "explanation": "They share only $1$, so $\\text{LCM} = 4\\times9 = 36$.",
+                "check": [
+                  "lcm(4, 9) == 36"
+                ]
+              },
+              {
+                "prompt": "$48$ is a common multiple of $6$ and $8$. Is it the LCM?",
+                "options": [
+                  "Yes",
+                  "No — it is $24$",
+                  "No — it is $14$",
+                  "No — it is $96$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$24$ is also a common multiple and is smaller.",
+                "check": [
+                  "lcm(6, 8) == 24",
+                  "48 % 6 == 0"
+                ]
+              },
+              {
+                "prompt": "Buses leave every $10$ min and every $15$ min, together now. When together again?",
+                "options": [
+                  "$25$ min",
+                  "$30$ min",
+                  "$50$ min",
+                  "$150$ min"
+                ],
+                "correctIndex": 1,
+                "explanation": "$\\text{LCM}(10,15)=30$ minutes.",
+                "check": [
+                  "lcm(10, 15) == 30"
+                ]
+              },
+              {
+                "prompt": "LCM of $8$ and $12$?",
+                "options": [
+                  "$4$",
+                  "$24$",
+                  "$48$",
+                  "$96$"
+                ],
+                "correctIndex": 1,
+                "explanation": "They first meet at $24$.",
+                "check": [
+                  "lcm(8, 12) == 24"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Least Common Multiple\"",
+            "body": "Well done — you can list multiples, find where they first meet, and use the product shortcut when numbers share no factors. Last in this unit: Prime Factorization, where factor trees break numbers into their prime building blocks."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "prime-factorization",
+      "title": "Prime Factorization",
+      "concreteComparison": "Every whole number is built from prime “atoms.” Just as a LEGO model breaks down into individual bricks, $12$ breaks into $2\\times2\\times3$ — its **prime factorization**, the unique set of prime building blocks that multiply back to $12$.",
+      "objective": "Write a composite number as a product of primes using a factor tree, and use exponents for repeated primes.",
+      "concept": [
+        "Every composite number is a **product of primes** in exactly one way (apart from order).",
+        "Build a **factor tree**: split off a prime, then keep factoring what's left.",
+        "Write repeats with **exponents**: $12 = 2\\times2\\times3 = 2^2\\times3$."
+      ],
+      "keyIdea": "Prime factorization = a number written as a product of primes. Use a factor tree; write repeats with exponents.",
+      "facts": [
+        {
+          "title": "12 in primes",
+          "latex": "$2^2 \\times 3$",
+          "explanation": "$2\\times2\\times3 = 12$, and all three are prime."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pf-we1",
+          "statement": "Write the prime factorization of $12$.",
+          "solution": "$12 = 2\\times6$, and $6 = 2\\times3$. So $12 = 2\\times2\\times3 = 2^2\\times3$.",
+          "check": [
+            "2*2*3 == 12",
+            "factorint(12) == {2: 2, 3: 1}"
+          ]
+        },
+        {
+          "id": "pf-we2",
+          "statement": "Write the prime factorization of $18$.",
+          "solution": "$18 = 2\\times9$, and $9 = 3\\times3$. So $18 = 2\\times3^2$.",
+          "check": [
+            "2*3*3 == 18",
+            "factorint(18) == {2: 1, 3: 2}"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Stopping before every branch is prime.",
+          "correction": "Keep splitting until each end is prime: $4$ must become $2\\times2$, not stay as $4$.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting exponents are just shorthand.",
+          "correction": "$2\\times2\\times2 = 2^3$; both equal $8$ — the exponent only counts how many times the prime appears.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pf-t1",
+          "statement": "Write the prime factorization of $20$.",
+          "solution": "$20 = 2\\times2\\times5 = 2^2\\times5$.",
+          "check": [
+            "2*2*5 == 20",
+            "factorint(20) == {2: 2, 5: 1}"
+          ]
+        },
+        {
+          "id": "pf-t2",
+          "statement": "Write the prime factorization of $30$.",
+          "solution": "$30 = 2\\times3\\times5$.",
+          "check": [
+            "2*3*5 == 30",
+            "factorint(30) == {2: 1, 3: 1, 5: 1}"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "factorTree",
+            "eyebrow": "Concept A",
+            "title": "Break it into primes",
+            "teach": "Tap **Split once** to peel off the smallest prime factor, then keep going on what's left. When every end is prime (the round chips), you've found the prime factorization.",
+            "config": {
+              "n": 24,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Build a factor tree",
+            "beats": [
+              "Split the number into any two factors.",
+              "$12 = 2\\times6$.",
+              "Keep splitting any factor that isn't prime.",
+              "$6 = 2\\times3$, so $12 = 2\\times2\\times3$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Tidy it up",
+            "title": "Write repeats as powers",
+            "beats": [
+              "Count how many times each prime appears.",
+              "$12 = 2\\times2\\times3$ has two $2$s.",
+              "Write that as $2^2$.",
+              "So $12 = 2^2\\times3$ — same value, shorter."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Factoring into primes",
+            "intro": "Split until every end is prime.",
+            "examples": [
+              {
+                "prompt": "Prime factorization of $24$?",
+                "steps": [
+                  "$24 = 2\\times12$, $12 = 2\\times6$, $6 = 2\\times3$.",
+                  "$24 = 2\\times2\\times2\\times3$."
+                ],
+                "answer": "$2^3\\times3$",
+                "check": [
+                  "2*2*2*3 == 24",
+                  "factorint(24) == {2: 3, 3: 1}"
+                ]
+              },
+              {
+                "prompt": "Prime factorization of $18$?",
+                "steps": [
+                  "$18 = 2\\times9$, $9 = 3\\times3$.",
+                  "$18 = 2\\times3\\times3$."
+                ],
+                "answer": "$2\\times3^2$",
+                "check": [
+                  "2*3*3 == 18",
+                  "factorint(18) == {2: 1, 3: 2}"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the factorization",
+            "intro": "Pick the all-primes product.",
+            "problems": [
+              {
+                "prompt": "Prime factorization of $8$?",
+                "options": [
+                  "$2^2$",
+                  "$2^3$",
+                  "$2\\times4$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$8 = 2\\times2\\times2 = 2^3$.",
+                "check": [
+                  "2**3 == 8",
+                  "factorint(8) == {2: 3}"
+                ]
+              },
+              {
+                "prompt": "Prime factorization of $20$?",
+                "options": [
+                  "$4\\times5$",
+                  "$2^2\\times5$",
+                  "$2\\times10$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$4$ and $10$ aren't prime; $2^2\\times5$ is all primes.",
+                "check": [
+                  "2*2*5 == 20",
+                  "factorint(20) == {2: 2, 5: 1}"
+                ]
+              },
+              {
+                "prompt": "Prime factorization of $27$?",
+                "options": [
+                  "$3^3$",
+                  "$3\\times9$",
+                  "$9\\times3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$27 = 3\\times3\\times3 = 3^3$.",
+                "check": [
+                  "3**3 == 27",
+                  "factorint(27) == {3: 3}"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why it's special",
+            "title": "One number, one factorization",
+            "beats": [
+              "No matter how you split, you reach the **same** primes.",
+              "$36 = 4\\times9$ or $6\\times6$ — both give $2^2\\times3^2$.",
+              "Every number has exactly **one** prime factorization.",
+              "That's the Fundamental Theorem of Arithmetic."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Same answer, any path",
+            "intro": "Different first split, same primes.",
+            "examples": [
+              {
+                "prompt": "Prime factorization of $36$?",
+                "steps": [
+                  "$36 = 6\\times6 = (2\\times3)(2\\times3)$.",
+                  "$36 = 2\\times2\\times3\\times3$."
+                ],
+                "answer": "$2^2\\times3^2$",
+                "check": [
+                  "2*2*3*3 == 36",
+                  "factorint(36) == {2: 2, 3: 2}"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Spot the prime factorization",
+            "intro": "All factors must be prime.",
+            "problems": [
+              {
+                "prompt": "Which is the prime factorization of $45$?",
+                "options": [
+                  "$9\\times5$",
+                  "$3^2\\times5$",
+                  "$3\\times15$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$9$ and $15$ aren't prime; $3^2\\times5$ is.",
+                "check": [
+                  "3*3*5 == 45",
+                  "factorint(45) == {3: 2, 5: 1}"
+                ]
+              },
+              {
+                "prompt": "$2\\times2\\times7$ is the prime factorization of which number?",
+                "options": [
+                  "$14$",
+                  "$28$",
+                  "$56$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$2\\times2\\times7 = 28$.",
+                "check": [
+                  "2*2*7 == 28"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The lock on the internet",
+            "body": "Multiplying two big primes is easy, but pulling the product back apart into those primes is so slow that no computer can do it quickly. That one-way difficulty is what hides your messages and card numbers behind RSA encryption every day."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Pick the primes",
+            "prompt": "What is the prime factorization of $12$?",
+            "options": [
+              "$2\\times6$",
+              "$2^2\\times3$",
+              "$3\\times4$"
+            ],
+            "correctIndex": 1,
+            "explanation": "$2\\times6$ and $3\\times4$ still contain composites; $2^2\\times3$ is all primes.",
+            "check": [
+              "2*2*3 == 12",
+              "factorint(12) == {2: 2, 3: 1}"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Every composite number is a unique **product of primes**.",
+              "Build a **factor tree**, splitting until every end is prime.",
+              "Use **exponents** for repeats: $12 = 2^2\\times3$."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's review prime factorization with factor trees, exponents, and a spot-the-real-factorization check."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Prime factorization of $8$?",
+                "options": [
+                  "$2^2$",
+                  "$2^3$",
+                  "$2\\times4$",
+                  "$8$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$8 = 2\\times2\\times2 = 2^3$.",
+                "check": [
+                  "2**3 == 8",
+                  "factorint(8) == {2: 3}"
+                ]
+              },
+              {
+                "prompt": "Prime factorization of $45$?",
+                "options": [
+                  "$3^2\\times5$",
+                  "$9\\times5$",
+                  "$3\\times15$",
+                  "$5\\times9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Only $3^2\\times5$ is built from primes.",
+                "check": [
+                  "3*3*5 == 45",
+                  "factorint(45) == {3: 2, 5: 1}"
+                ]
+              },
+              {
+                "prompt": "Which is the prime factorization of $36$?",
+                "options": [
+                  "$6\\times6$",
+                  "$2^2\\times3^2$",
+                  "$4\\times9$",
+                  "$2\\times18$"
+                ],
+                "correctIndex": 1,
+                "explanation": "The others still hold composite numbers.",
+                "check": [
+                  "2*2*3*3 == 36",
+                  "factorint(36) == {2: 2, 3: 2}"
+                ]
+              },
+              {
+                "prompt": "$2\\times2\\times7$ is the prime factorization of which number?",
+                "options": [
+                  "$14$",
+                  "$28$",
+                  "$56$",
+                  "$21$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$2\\times2\\times7 = 28$.",
+                "check": [
+                  "2*2*7 == 28"
+                ]
+              },
+              {
+                "prompt": "Which number has prime factorization $3\\times5^2$?",
+                "options": [
+                  "$15$",
+                  "$75$",
+                  "$45$",
+                  "$50$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$3\\times5\\times5 = 75$.",
+                "check": [
+                  "3*5*5 == 75",
+                  "factorint(75) == {3: 1, 5: 2}"
+                ]
+              },
+              {
+                "prompt": "Which product is NOT a finished prime factorization?",
+                "options": [
+                  "$2\\times2\\times3$",
+                  "$2\\times6$",
+                  "$3\\times3\\times5$",
+                  "$2\\times2\\times2$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$6$ is composite, so $2\\times6$ isn't finished.",
+                "check": [
+                  "isprime(6) == False",
+                  "isprime(2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Prime Factorization\"",
+            "body": "Excellent — you can build a factor tree, write the primes with exponents, and you've seen why the answer is always unique. That wraps up Factors & Multiples!"
           }
         ]
       }
