@@ -2,47 +2,2397 @@
   "slug": "expressions-and-equations",
   "title": "Expressions and Equations",
   "grade": 6,
-  "blurb": "Placeholder — write and evaluate algebraic expressions; solve one-step equations.",
+  "blurb": "Write and evaluate expressions with exponents and variables, build equivalent expressions, and solve one-step equations.",
   "lessons": [
     {
-      "slug": "expressions-equations-intro",
-      "title": "Expressions and Equations",
-      "concreteComparison": "Placeholder — real-world opener authored in Step 3. Example: if apples cost $\\$2$ each, then $n$ apples cost $2n$ dollars.",
-      "objective": "Placeholder — write algebraic expressions and solve one-variable equations using inverse operations.",
+      "slug": "exponents",
+      "title": "Exponents",
+      "concreteComparison": "A rumor that doubles every hour: $1$ person tells $2$, who tell $4$, then $8, 16, 32, \\ldots$ After $5$ hours that's $2^5 = 32$ people. An **exponent** is shorthand for that repeated multiplication.",
+      "objective": "Write repeated multiplication using exponents and evaluate whole-number powers, naming the base and exponent.",
       "concept": [
-        "Placeholder concept paragraph. An expression like $3x + 2$ contains variables and constants. An equation sets two expressions equal: $3x + 2 = 11$."
+        "An **exponent** tells how many times to multiply the **base** by itself: $2^3 = 2\\times2\\times2 = 8$.",
+        "The **base** is the number being multiplied; the small raised **exponent** is the count.",
+        "$5^2$ is read “5 squared” ($=25$); $4^3$ is “4 cubed” ($=64$)."
+      ],
+      "keyIdea": "$b^n$ means multiply $b$ by itself $n$ times. The base is multiplied; the exponent counts.",
+      "facts": [
+        {
+          "title": "Powers of 2",
+          "latex": "$2, 4, 8, 16, 32$",
+          "explanation": "Each is the one before times 2."
+        },
+        {
+          "title": "Perfect squares",
+          "latex": "$1, 4, 9, 16, 25$",
+          "explanation": "$1^2, 2^2, 3^2, 4^2, 5^2$."
+        }
       ],
       "workedExamples": [
         {
-          "id": "ee-ex-01",
-          "statement": "Placeholder problem. Solve $x + 7 = 15$.",
-          "solution": "Placeholder solution. $x = 15 - 7 = 8$."
+          "id": "exp-we1",
+          "statement": "Write $3\\times3\\times3\\times3$ with an exponent and find its value.",
+          "solution": "Four $3$s multiplied is $3^4 = 81$.",
+          "check": [
+            "3**4 == 81"
+          ]
+        },
+        {
+          "id": "exp-we2",
+          "statement": "Evaluate $5^3$.",
+          "solution": "$5\\times5\\times5 = 125$.",
+          "check": [
+            "5**3 == 125"
+          ]
         }
       ],
       "commonMistakes": [
-        { "text": "Placeholder mistake — authored in Step 3.", "authored": false }
+        {
+          "text": "Multiplying the base by the exponent.",
+          "correction": "$2^3$ means $2\\times2\\times2 = 8$, not $2\\times3 = 6$.",
+          "authored": true
+        },
+        {
+          "text": "Thinking $b^1$ changes the number.",
+          "correction": "$7^1 = 7$ — the base is used just once.",
+          "authored": true
+        }
       ],
       "tryIt": [
         {
-          "id": "ee-try-01",
-          "statement": "Placeholder try-it. Evaluate $4y - 3$ when $y = 5$.",
-          "solution": "Placeholder solution. $4(5) - 3 = 20 - 3 = 17$."
+          "id": "exp-t1",
+          "statement": "Evaluate $2^5$.",
+          "solution": "$2\\times2\\times2\\times2\\times2 = 32$.",
+          "check": [
+            "2**5 == 32"
+          ]
+        },
+        {
+          "id": "exp-t2",
+          "statement": "Evaluate $10^2$.",
+          "solution": "$10\\times10 = 100$.",
+          "check": [
+            "10**2 == 100"
+          ]
         }
-      ]
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "exponentBuilder",
+            "eyebrow": "Concept A",
+            "title": "A power is repeated multiplication",
+            "teach": "Change the **base** and the **exponent** and watch the expansion. The exponent tells you how many copies of the base to multiply together.",
+            "config": {
+              "base": 2,
+              "exp": 4,
+              "minBase": 2,
+              "maxBase": 6,
+              "minExp": 1,
+              "maxExp": 5,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Base and exponent",
+            "beats": [
+              "In $2^3$, the **base** is $2$ and the **exponent** is $3$.",
+              "The exponent counts the copies: $2\\times2\\times2$.",
+              "That equals $8$.",
+              "So $2^3 = 8$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Names to know",
+            "title": "Squared and cubed",
+            "beats": [
+              "$5^2$ is read “5 squared” $= 25$.",
+              "$4^3$ is read “4 cubed” $= 64$.",
+              "$b^1 = b$ — one copy.",
+              "Bigger exponents grow fast."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Writing and evaluating powers",
+            "intro": "Count the copies, then multiply.",
+            "examples": [
+              {
+                "prompt": "Write $3\\times3\\times3\\times3$ as a power and evaluate.",
+                "steps": [
+                  "Four $3$s: $3^4$.",
+                  "$3\\times3\\times3\\times3 = 81$."
+                ],
+                "answer": "$3^4 = 81$",
+                "check": [
+                  "3**4 == 81"
+                ]
+              },
+              {
+                "prompt": "Evaluate $5^3$.",
+                "steps": [
+                  "$5\\times5\\times5$.",
+                  "$= 125$."
+                ],
+                "answer": "$125$",
+                "check": [
+                  "5**3 == 125"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Evaluate the power",
+            "intro": "Multiply the base that many times.",
+            "problems": [
+              {
+                "prompt": "What is $2^4$?",
+                "options": [
+                  "$8$",
+                  "$16$",
+                  "$6$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$2\\times2\\times2\\times2 = 16$.",
+                "check": [
+                  "2**4 == 16"
+                ]
+              },
+              {
+                "prompt": "What is $4^2$?",
+                "options": [
+                  "$8$",
+                  "$16$",
+                  "$6$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$4\\times4 = 16$.",
+                "check": [
+                  "4**2 == 16"
+                ]
+              },
+              {
+                "prompt": "What is $3^3$?",
+                "options": [
+                  "$9$",
+                  "$27$",
+                  "$6$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$3\\times3\\times3 = 27$.",
+                "check": [
+                  "3**3 == 27"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Watch out",
+            "title": "A common trap",
+            "beats": [
+              "$2^3$ is **not** $2\\times3$.",
+              "$2\\times3 = 6$, but $2^3 = 8$.",
+              "The exponent means **repeated multiplication**, not one multiply.",
+              "Always expand: $2\\times2\\times2$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Power or product?",
+            "intro": "Expand before you decide.",
+            "examples": [
+              {
+                "prompt": "Which is bigger, $2^3$ or $3^2$?",
+                "steps": [
+                  "$2^3 = 8$.",
+                  "$3^2 = 9$.",
+                  "$9 > 8$."
+                ],
+                "answer": "$3^2$",
+                "check": [
+                  "3**2 > 2**3"
+                ]
+              },
+              {
+                "prompt": "Evaluate $10^3$.",
+                "steps": [
+                  "$10\\times10\\times10$.",
+                  "$= 1000$."
+                ],
+                "answer": "$1000$",
+                "check": [
+                  "10**3 == 1000"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Spot the meaning",
+            "intro": "Expand the exponent.",
+            "problems": [
+              {
+                "prompt": "Which means $5\\times5\\times5$?",
+                "options": [
+                  "$5^2$",
+                  "$5^3$",
+                  "$3^5$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Three $5$s is $5^3$.",
+                "check": [
+                  "5**3 == 125"
+                ]
+              },
+              {
+                "prompt": "What is $7^1$?",
+                "options": [
+                  "$1$",
+                  "$7$",
+                  "$49$"
+                ],
+                "correctIndex": 1,
+                "explanation": "One copy of $7$ is just $7$.",
+                "check": [
+                  "7**1 == 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The doubling chessboard",
+            "body": "Put $1$ grain of rice on the first chessboard square and double it each square: $1, 2, 4, 8, \\ldots$ By the $64$th square you'd owe $2^{63}$ grains — more rice than has ever been grown on Earth. That's how fast exponents grow."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Evaluate it",
+            "prompt": "What is $3^2$?",
+            "options": [
+              "$6$",
+              "$9$",
+              "$5$"
+            ],
+            "correctIndex": 1,
+            "explanation": "$3\\times3 = 9$.",
+            "check": [
+              "3**2 == 9"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$b^n$ means multiply the **base** $b$ by itself $n$ times.",
+              "$5^2 = 25$ (squared), $4^3 = 64$ (cubed), $b^1 = b$.",
+              "$2^3 = 8$, **not** $2\\times3 = 6$."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's review powers with quick evaluations, a name check, and the classic exponent trap."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Evaluate $4^2$.",
+                "options": [
+                  "$8$",
+                  "$12$",
+                  "$16$",
+                  "$20$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$4\\times4 = 16$.",
+                "check": [
+                  "4**2 == 16"
+                ]
+              },
+              {
+                "prompt": "Which means $5\\times5\\times5$?",
+                "options": [
+                  "$5^2$",
+                  "$5^3$",
+                  "$3^5$",
+                  "$5\\times3$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Three $5$s multiplied is $5^3$.",
+                "check": [
+                  "5**3 == 125"
+                ]
+              },
+              {
+                "prompt": "Evaluate $2^4$.",
+                "options": [
+                  "$6$",
+                  "$8$",
+                  "$16$",
+                  "$32$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$2\\times2\\times2\\times2 = 16$.",
+                "check": [
+                  "2**4 == 16"
+                ]
+              },
+              {
+                "prompt": "What is $7^1$?",
+                "options": [
+                  "$1$",
+                  "$7$",
+                  "$14$",
+                  "$49$"
+                ],
+                "correctIndex": 1,
+                "explanation": "One copy of $7$ is $7$.",
+                "check": [
+                  "7**1 == 7"
+                ]
+              },
+              {
+                "prompt": "Which is greater, $2^3$ or $3^2$?",
+                "options": [
+                  "$2^3$",
+                  "$3^2$",
+                  "They're equal"
+                ],
+                "correctIndex": 1,
+                "explanation": "$8 < 9$, so $3^2$ is greater.",
+                "check": [
+                  "3**2 > 2**3"
+                ]
+              },
+              {
+                "prompt": "Evaluate $10^3$.",
+                "options": [
+                  "$30$",
+                  "$100$",
+                  "$1000$",
+                  "$300$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$10\\times10\\times10 = 1000$.",
+                "check": [
+                  "10**3 == 1000"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Exponents\"",
+            "body": "Great start — you can read powers, expand them, and dodge the $2^3\\neq2\\times3$ trap. Next: the Order of Operations, where exponents take their place in line."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "order-of-operations",
+      "title": "Order of Operations",
+      "concreteComparison": "Follow a recipe out of order — bake before you mix — and dinner is ruined. Math expressions need an agreed order too, so that $3 + 4\\times2$ means the same thing to everyone. The rule (PEMDAS) makes it exactly $11$.",
+      "objective": "Evaluate numerical expressions using the order of operations: grouping, exponents, then ×/÷ left to right, then +/− left to right.",
+      "concept": [
+        "Without a rule, $3 + 4\\times2$ could be $14$ or $11$. The agreed order makes it **11**.",
+        "Order: **P**arentheses, **E**xponents, **M**ultiply/**D**ivide (left→right), **A**dd/**S**ubtract (left→right).",
+        "Multiply and divide rank **equal** — do them left to right; the same goes for add and subtract."
+      ],
+      "keyIdea": "PEMDAS: parentheses, exponents, then ×/÷ left-to-right, then +/− left-to-right.",
+      "facts": [
+        {
+          "title": "Multiply before add",
+          "latex": "$3 + 4\\times2 = 11$",
+          "explanation": "Do $4\\times2=8$ first, then add 3."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ord-we1",
+          "statement": "Evaluate $3 + 4\\times2$.",
+          "solution": "Multiply first: $4\\times2 = 8$. Then $3 + 8 = 11$.",
+          "check": [
+            "3 + 4*2 == 11"
+          ]
+        },
+        {
+          "id": "ord-we2",
+          "statement": "Evaluate $(6-2)\\times5$.",
+          "solution": "Parentheses first: $6-2 = 4$. Then $4\\times5 = 20$.",
+          "check": [
+            "(6-2)*5 == 20"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Working strictly left to right.",
+          "correction": "$3 + 4\\times2$: the multiply comes first, giving $11$, not $14$.",
+          "authored": true
+        },
+        {
+          "text": "Ignoring parentheses.",
+          "correction": "$(2+3)\\times4 = 20$, while $2 + 3\\times4 = 14$ — the brackets change everything.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ord-t1",
+          "statement": "Evaluate $10 - 2\\times3$.",
+          "solution": "$2\\times3 = 6$, then $10 - 6 = 4$.",
+          "check": [
+            "10 - 2*3 == 4"
+          ]
+        },
+        {
+          "id": "ord-t2",
+          "statement": "Evaluate $(4+1)\\times3$.",
+          "solution": "$4+1 = 5$, then $5\\times3 = 15$.",
+          "check": [
+            "(4+1)*3 == 15"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "orderOfOps",
+            "eyebrow": "Concept A",
+            "title": "One operation at a time",
+            "teach": "Tap **Next step** to evaluate $3 + 4\\times2$ in the right order. The multiply has higher priority, so it happens before the add.",
+            "config": {
+              "stages": [
+                {
+                  "expr": "3 + 4 × 2"
+                },
+                {
+                  "expr": "3 + 8",
+                  "did": "Multiply first: 4 × 2 = 8"
+                },
+                {
+                  "expr": "11",
+                  "did": "Then add: 3 + 8 = 11"
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why bother",
+            "title": "Why we need an order",
+            "beats": [
+              "$3 + 4\\times2$ could be $14$ (left to right)...",
+              "...or $11$ (multiply first).",
+              "Mathematicians agreed on **one** order so answers match.",
+              "That order is PEMDAS."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The order",
+            "title": "PEMDAS",
+            "beats": [
+              "**P**arentheses first.",
+              "**E**xponents next.",
+              "**M**ultiply and **D**ivide, left to right.",
+              "**A**dd and **S**ubtract, left to right."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Following the order",
+            "intro": "Highest priority first.",
+            "examples": [
+              {
+                "prompt": "Evaluate $2 + 3\\times4$.",
+                "steps": [
+                  "Multiply: $3\\times4 = 12$.",
+                  "Add: $2 + 12 = 14$."
+                ],
+                "answer": "$14$",
+                "check": [
+                  "2 + 3*4 == 14"
+                ]
+              },
+              {
+                "prompt": "Evaluate $2 + 3^2$.",
+                "steps": [
+                  "Exponent: $3^2 = 9$.",
+                  "Add: $2 + 9 = 11$."
+                ],
+                "answer": "$11$",
+                "check": [
+                  "2 + 3**2 == 11"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Which comes first?",
+            "intro": "Don't just go left to right.",
+            "problems": [
+              {
+                "prompt": "Evaluate $5 + 2\\times3$.",
+                "options": [
+                  "$21$",
+                  "$11$",
+                  "$10$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$2\\times3 = 6$, then $5 + 6 = 11$.",
+                "check": [
+                  "5 + 2*3 == 11"
+                ]
+              },
+              {
+                "prompt": "Evaluate $(5+1)\\times2$.",
+                "options": [
+                  "$12$",
+                  "$7$",
+                  "$11$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5+1 = 6$, then $6\\times2 = 12$.",
+                "check": [
+                  "(5+1)*2 == 12"
+                ]
+              },
+              {
+                "prompt": "Evaluate $20 - 3\\times4$.",
+                "options": [
+                  "$68$",
+                  "$8$",
+                  "$17$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$3\\times4 = 12$, then $20 - 12 = 8$.",
+                "check": [
+                  "20 - 3*4 == 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Equal rank",
+            "title": "Same rank, go left to right",
+            "beats": [
+              "Multiply and divide are **equal** in rank.",
+              "$12 \\div 2 \\times 3$: do them left to right.",
+              "$12 \\div 2 = 6$, then $6\\times3 = 18$.",
+              "Add and subtract work the same way."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Left-to-right within a rank",
+            "intro": "Tie goes to the left.",
+            "examples": [
+              {
+                "prompt": "Evaluate $12 \\div 2 \\times 3$.",
+                "steps": [
+                  "Left first: $12\\div2 = 6$.",
+                  "Then $6\\times3 = 18$."
+                ],
+                "answer": "$18$",
+                "check": [
+                  "12/2*3 == 18"
+                ]
+              },
+              {
+                "prompt": "Evaluate $10 - 4 + 2$.",
+                "steps": [
+                  "Left first: $10-4 = 6$.",
+                  "Then $6 + 2 = 8$."
+                ],
+                "answer": "$8$",
+                "check": [
+                  "10 - 4 + 2 == 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Mind the order",
+            "intro": "Parentheses, then powers, then the rest.",
+            "problems": [
+              {
+                "prompt": "Evaluate $1 + 2^3$.",
+                "options": [
+                  "$9$",
+                  "$27$",
+                  "$7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2^3 = 8$, then $1 + 8 = 9$.",
+                "check": [
+                  "1 + 2**3 == 9"
+                ]
+              },
+              {
+                "prompt": "Evaluate $18 \\div 3 - 2$.",
+                "options": [
+                  "$4$",
+                  "$9$",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$18\\div3 = 6$, then $6 - 2 = 4$.",
+                "check": [
+                  "18/3 - 2 == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The viral math fights",
+            "body": "Those “$6 \\div 2(1+2) = ?$” posts that start internet arguments aren't really about math — they exploit sloppy notation. With clear parentheses and PEMDAS, every well-written expression has exactly **one** correct value."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Order check",
+            "prompt": "Evaluate $4 + 6 \\div 2$.",
+            "options": [
+              "$5$",
+              "$7$",
+              "$8$"
+            ],
+            "correctIndex": 1,
+            "explanation": "$6\\div2 = 3$, then $4 + 3 = 7$.",
+            "check": [
+              "4 + 6/2 == 7"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**PEMDAS**: parentheses, exponents, ×/÷, then +/−.",
+              "× and ÷ rank equal — left to right; so do + and −.",
+              "$3 + 4\\times2 = 11$, but $(3+4)\\times2 = 14$."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's review the order of operations with multiplies, parentheses, a power, and a match-the-value puzzle."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Evaluate $2 + 3\\times4$.",
+                "options": [
+                  "$20$",
+                  "$14$",
+                  "$24$",
+                  "$9$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$3\\times4 = 12$, then $2 + 12 = 14$.",
+                "check": [
+                  "2 + 3*4 == 14"
+                ]
+              },
+              {
+                "prompt": "Evaluate $(2+3)\\times4$.",
+                "options": [
+                  "$14$",
+                  "$20$",
+                  "$11$",
+                  "$24$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$2+3 = 5$, then $5\\times4 = 20$.",
+                "check": [
+                  "(2+3)*4 == 20"
+                ]
+              },
+              {
+                "prompt": "Evaluate $20 - 6 \\div 2$.",
+                "options": [
+                  "$7$",
+                  "$17$",
+                  "$14$",
+                  "$10$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$6\\div2 = 3$, then $20 - 3 = 17$.",
+                "check": [
+                  "20 - 6/2 == 17"
+                ]
+              },
+              {
+                "prompt": "Evaluate $1 + 2^3$.",
+                "options": [
+                  "$9$",
+                  "$27$",
+                  "$7$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2^3 = 8$, then $1 + 8 = 9$.",
+                "check": [
+                  "1 + 2**3 == 9"
+                ]
+              },
+              {
+                "prompt": "Evaluate $12 \\div 4 + 2$.",
+                "options": [
+                  "$2$",
+                  "$5$",
+                  "$6$",
+                  "$3$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$12\\div4 = 3$, then $3 + 2 = 5$.",
+                "check": [
+                  "12/4 + 2 == 5"
+                ]
+              },
+              {
+                "prompt": "Which expression equals $14$?",
+                "options": [
+                  "$2+3\\times4$",
+                  "$(2+3)\\times4$",
+                  "$2\\times3+4$",
+                  "$2+3+4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2+3\\times4 = 2+12 = 14$; the others give $20, 10, 9$.",
+                "check": [
+                  "2 + 3*4 == 14",
+                  "(2+3)*4 == 20"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Order of Operations\"",
+            "body": "Well done — PEMDAS is now second nature. Next we bring in letters: Variables & Expressions, where a symbol stands in for a number."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "variables-expressions",
+      "title": "Variables & Expressions",
+      "concreteComparison": "A taxi charges $\\$3$ to start plus $\\$2$ a mile. For $m$ miles the fare is $2m + 3$ dollars. A **variable** is a letter that stands in for a number — one you don't know yet, or one that can change.",
+      "objective": "Write algebraic expressions from words and identify variables, coefficients, constants, and terms.",
+      "concept": [
+        "A **variable** is a letter standing for an unknown or changing number, like $n$, $x$, or $m$.",
+        "A **coefficient** multiplies a variable: in $2m$, the coefficient is $2$ (and $2m$ means $2\\times m$).",
+        "A **constant** is a plain number; a **term** is a part separated by $+$ or $-$. $2m + 3$ has terms $2m$ and $3$.",
+        "Words become expressions: “$3$ more than $x$” $= x + 3$; “$5$ times $y$” $= 5y$."
+      ],
+      "keyIdea": "A variable stands for a number. $2m$ means $2\\times m$; an expression like $2m+3$ joins terms with + or −.",
+      "facts": [
+        {
+          "title": "Parts of $2m + 3$",
+          "latex": "$2m + 3$",
+          "explanation": "Coefficient 2, variable m, constant 3."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "var-we1",
+          "statement": "Write “seven more than a number $n$” as an expression.",
+          "solution": "“More than” means add: $n + 7$. (Check at $n=3$: $3+7 = 10$.)",
+          "check": [
+            "(n + 7).subs(n, 3) == 10"
+          ]
+        },
+        {
+          "id": "var-we2",
+          "statement": "What is the coefficient of $x$ in $4x + 5$?",
+          "solution": "The number multiplying $x$ is $4$.",
+          "check": [
+            "(4*x + 5).coeff(x) == 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading $2m$ as “twenty-something.”",
+          "correction": "$2m$ means $2\\times m$ — two times the value of $m$.",
+          "authored": true
+        },
+        {
+          "text": "Mixing up coefficient and constant.",
+          "correction": "In $3x + 5$, the **coefficient** is $3$ (it multiplies $x$); the **constant** is $5$ (it stands alone).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "var-t1",
+          "statement": "Write “twice a number $y$” as an expression.",
+          "solution": "Twice means times two: $2y$. (At $y=4$: $2\\times4 = 8$.)",
+          "check": [
+            "(2*y).subs(y, 4) == 8"
+          ]
+        },
+        {
+          "id": "var-t2",
+          "statement": "What is the constant in $6x + 9$?",
+          "solution": "The plain number is $9$.",
+          "check": [
+            "(6*x + 9).coeff(x, 0) == 9"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "algebraTiles",
+            "eyebrow": "Concept A",
+            "title": "Tiles for an expression",
+            "teach": "Each accent tile is one $x$ — an unknown amount — and each small square is $1$. Build $2x + 3$ and see what the expression's pieces mean.",
+            "config": {
+              "x": 2,
+              "units": 3,
+              "mode": "build",
+              "maxX": 5,
+              "maxUnits": 8,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "What a variable means",
+            "beats": [
+              "A **variable** is a letter for a number we don't fix yet.",
+              "$m$ could be $1$, $5$, or $100$.",
+              "$2m$ means $2\\times m$ — the coefficient $2$ multiplies it.",
+              "Change $m$ and $2m$ changes with it."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Naming the parts",
+            "title": "Coefficient, constant, term",
+            "beats": [
+              "In $2m + 3$: the **coefficient** is $2$.",
+              "The **constant** is $3$ — a plain number.",
+              "The **terms** are $2m$ and $3$ (split at the $+$).",
+              "Terms are the building blocks of an expression."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Words into expressions",
+            "intro": "Pick the operation the words describe.",
+            "examples": [
+              {
+                "prompt": "Write “$4$ more than $n$.”",
+                "steps": [
+                  "“More than” → add.",
+                  "$n + 4$."
+                ],
+                "answer": "$n + 4$",
+                "check": [
+                  "(n + 4).subs(n, 10) == 14"
+                ]
+              },
+              {
+                "prompt": "Write “$6$ times $x$.”",
+                "steps": [
+                  "“Times” → multiply.",
+                  "$6x$."
+                ],
+                "answer": "$6x$",
+                "check": [
+                  "(6*x).subs(x, 2) == 12"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Translate the words",
+            "intro": "Match the operation.",
+            "problems": [
+              {
+                "prompt": "Which expression is “$5$ more than $x$”?",
+                "options": [
+                  "$5x$",
+                  "$x + 5$",
+                  "$x - 5$"
+                ],
+                "correctIndex": 1,
+                "explanation": "“More than” means add: $x + 5$.",
+                "check": [
+                  "(x + 5).subs(x, 1) == 6"
+                ]
+              },
+              {
+                "prompt": "Which expression is “three times $y$”?",
+                "options": [
+                  "$y + 3$",
+                  "$3y$",
+                  "$y - 3$"
+                ],
+                "correctIndex": 1,
+                "explanation": "“Times” means multiply: $3y$.",
+                "check": [
+                  "(3*y).subs(y, 4) == 12"
+                ]
+              },
+              {
+                "prompt": "Which expression is “$2$ less than $n$”?",
+                "options": [
+                  "$n - 2$",
+                  "$2 - n$",
+                  "$2n$"
+                ],
+                "correctIndex": 0,
+                "explanation": "“$2$ less than $n$” takes 2 away from $n$: $n - 2$.",
+                "check": [
+                  "(n - 2).subs(n, 10) == 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Read the structure",
+            "title": "Spotting the pieces",
+            "beats": [
+              "Look at $3x + 7$.",
+              "Coefficient: $3$. Variable: $x$. Constant: $7$.",
+              "Two terms: $3x$ and $7$.",
+              "Naming the pieces helps you work with them."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Find the part",
+            "intro": "Coefficient multiplies; constant stands alone.",
+            "examples": [
+              {
+                "prompt": "Coefficient of $x$ in $7x + 2$?",
+                "steps": [
+                  "The number multiplying $x$.",
+                  "It is $7$."
+                ],
+                "answer": "$7$",
+                "check": [
+                  "(7*x + 2).coeff(x) == 7"
+                ]
+              },
+              {
+                "prompt": "Constant in $4x + 9$?",
+                "steps": [
+                  "The plain number.",
+                  "It is $9$."
+                ],
+                "answer": "$9$",
+                "check": [
+                  "(4*x + 9).coeff(x, 0) == 9"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Name the pieces",
+            "intro": "Coefficient or constant?",
+            "problems": [
+              {
+                "prompt": "What is the coefficient of $y$ in $8y + 1$?",
+                "options": [
+                  "$1$",
+                  "$8$",
+                  "$9$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$8$ multiplies $y$.",
+                "check": [
+                  "(8*y + 1).coeff(y) == 8"
+                ]
+              },
+              {
+                "prompt": "What is the constant in $2x + 7$?",
+                "options": [
+                  "$2$",
+                  "$7$",
+                  "$9$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$7$ stands alone.",
+                "check": [
+                  "(2*x + 7).coeff(x, 0) == 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why letters?",
+            "body": "The habit of using letters for unknowns took off in the 1500s, and René Descartes set the style we still use: letters near the **start** of the alphabet ($a, b, c$) for fixed numbers and letters near the **end** ($x, y, z$) for unknowns. That's why “solve for $x$” sounds so natural."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Translate it",
+            "prompt": "Which expression means “$4$ more than $x$”?",
+            "options": [
+              "$4x$",
+              "$x + 4$",
+              "$x - 4$"
+            ],
+            "correctIndex": 1,
+            "explanation": "“More than” adds: $x + 4$.",
+            "check": [
+              "(x + 4).subs(x, 6) == 10"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **variable** is a letter standing for a number; $2m$ means $2\\times m$.",
+              "**Coefficient** multiplies the variable; **constant** stands alone; **terms** split at + and −.",
+              "Words map to operations: “more than” $\\to +$, “times” $\\to \\times$, “less than” $\\to -$."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's review variables with word-to-expression translations and a few name-the-part questions."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Which expression is “$8$ more than $n$”?",
+                "options": [
+                  "$8n$",
+                  "$n + 8$",
+                  "$n - 8$",
+                  "$8 - n$"
+                ],
+                "correctIndex": 1,
+                "explanation": "“More than” means add: $n + 8$.",
+                "check": [
+                  "(n + 8).subs(n, 2) == 10"
+                ]
+              },
+              {
+                "prompt": "Which expression is “five times $x$”?",
+                "options": [
+                  "$x + 5$",
+                  "$5x$",
+                  "$x - 5$",
+                  "$5 + x$"
+                ],
+                "correctIndex": 1,
+                "explanation": "“Times” means multiply: $5x$.",
+                "check": [
+                  "(5*x).subs(x, 3) == 15"
+                ]
+              },
+              {
+                "prompt": "What is the coefficient of $x$ in $9x + 4$?",
+                "options": [
+                  "$4$",
+                  "$9$",
+                  "$13$",
+                  "$1$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$9$ multiplies $x$.",
+                "check": [
+                  "(9*x + 4).coeff(x) == 9"
+                ]
+              },
+              {
+                "prompt": "What is the constant in $3y + 7$?",
+                "options": [
+                  "$3$",
+                  "$7$",
+                  "$10$",
+                  "$0$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$7$ stands alone.",
+                "check": [
+                  "(3*y + 7).coeff(y, 0) == 7"
+                ]
+              },
+              {
+                "prompt": "Which expression is “$6$ less than $y$”?",
+                "options": [
+                  "$6 - y$",
+                  "$y - 6$",
+                  "$6y$",
+                  "$y + 6$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Take 6 away from $y$: $y - 6$.",
+                "check": [
+                  "(y - 6).subs(y, 10) == 4"
+                ]
+              },
+              {
+                "prompt": "How many terms are in $4x + 9$?",
+                "options": [
+                  "$1$",
+                  "$2$",
+                  "$3$",
+                  "$4$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$4x$ and $9$ are the two terms.",
+                "check": [
+                  "(4*x + 9).subs(x, 1) == 13"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Variables & Expressions\"",
+            "body": "Nice — you can turn words into expressions and name every part. Next: Evaluating Expressions, where you finally plug in a number and compute."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "evaluating-expressions",
+      "title": "Evaluating Expressions",
+      "concreteComparison": "The taxi fare $2m + 3$ becomes a real price once you know the miles: for $4$ miles it's $2(4) + 3 = \\$11$. **Evaluating** an expression means substituting the value and doing the arithmetic.",
+      "objective": "Evaluate algebraic expressions by substituting given values and applying the order of operations.",
+      "concept": [
+        "**Evaluate** = replace the variable with its value, then compute.",
+        "$3x + 2$ at $x = 4$ is $3(4) + 2 = 14$.",
+        "A number next to a variable means multiply, so substitute and then follow PEMDAS."
+      ],
+      "keyIdea": "To evaluate, substitute the value for the variable, then follow the order of operations.",
+      "facts": [
+        {
+          "title": "$3x+2$ at $x=4$",
+          "latex": "$3(4) + 2 = 14$",
+          "explanation": "Substitute, then compute."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ev-we1",
+          "statement": "Evaluate $3x + 2$ when $x = 4$.",
+          "solution": "$3(4) + 2 = 12 + 2 = 14$.",
+          "check": [
+            "3*4 + 2 == 14"
+          ]
+        },
+        {
+          "id": "ev-we2",
+          "statement": "Evaluate $x^2 + 1$ when $x = 3$.",
+          "solution": "$3^2 + 1 = 9 + 1 = 10$.",
+          "check": [
+            "3**2 + 1 == 10"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Sticking the digits together: $3x$ at $x=4$ giving $34$.",
+          "correction": "$3x$ means $3\\times4 = 12$, not $34$.",
+          "authored": true
+        },
+        {
+          "text": "Skipping order of operations after substituting.",
+          "correction": "$2 + 3x$ at $x=4$ is $2 + 12 = 14$ — multiply before you add.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ev-t1",
+          "statement": "Evaluate $2a + 5$ when $a = 3$.",
+          "solution": "$2(3) + 5 = 6 + 5 = 11$.",
+          "check": [
+            "2*3 + 5 == 11"
+          ]
+        },
+        {
+          "id": "ev-t2",
+          "statement": "Evaluate $10 - n$ when $n = 4$.",
+          "solution": "$10 - 4 = 6$.",
+          "check": [
+            "10 - 4 == 6"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "evaluator",
+            "eyebrow": "Concept A",
+            "title": "Plug in and compute",
+            "teach": "Drag the slider to pick a value for $x$. The expression $3x + 2$ substitutes it and shows the result. Substituting is just replace-then-calculate.",
+            "config": {
+              "a": 3,
+              "b": 2,
+              "varName": "x",
+              "min": 0,
+              "max": 10,
+              "start": 4,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Substitute, then compute",
+            "beats": [
+              "To evaluate $3x + 2$ at $x = 4$...",
+              "...replace $x$ with $4$: $3(4) + 2$.",
+              "Multiply first: $12 + 2$.",
+              "Add: $14$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Watch the multiply",
+            "title": "The hidden times sign",
+            "beats": [
+              "$3x$ means $3\\times x$.",
+              "At $x = 4$ that's $3\\times4 = 12$.",
+              "Not $34$ — it's a multiplication.",
+              "Then finish with order of operations."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Evaluating step by step",
+            "intro": "Substitute, then PEMDAS.",
+            "examples": [
+              {
+                "prompt": "Evaluate $5y - 3$ when $y = 5$.",
+                "steps": [
+                  "$5(5) - 3$.",
+                  "$25 - 3 = 22$."
+                ],
+                "answer": "$22$",
+                "check": [
+                  "5*5 - 3 == 22"
+                ]
+              },
+              {
+                "prompt": "Evaluate $x^2 + 1$ when $x = 3$.",
+                "steps": [
+                  "$3^2 + 1$.",
+                  "$9 + 1 = 10$."
+                ],
+                "answer": "$10$",
+                "check": [
+                  "3**2 + 1 == 10"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Plug in the value",
+            "intro": "Replace, then calculate.",
+            "problems": [
+              {
+                "prompt": "Evaluate $4x$ when $x = 5$.",
+                "options": [
+                  "$9$",
+                  "$20$",
+                  "$45$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$4\\times5 = 20$.",
+                "check": [
+                  "4*5 == 20"
+                ]
+              },
+              {
+                "prompt": "Evaluate $x + 8$ when $x = 6$.",
+                "options": [
+                  "$14$",
+                  "$2$",
+                  "$68$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6 + 8 = 14$.",
+                "check": [
+                  "6 + 8 == 14"
+                ]
+              },
+              {
+                "prompt": "Evaluate $2x + 1$ when $x = 3$.",
+                "options": [
+                  "$7$",
+                  "$9$",
+                  "$5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2(3) + 1 = 7$.",
+                "check": [
+                  "2*3 + 1 == 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Two operations",
+            "title": "Order still rules",
+            "beats": [
+              "$2 + 3n$ at $n = 4$.",
+              "Substitute: $2 + 3(4)$.",
+              "Multiply first: $2 + 12$.",
+              "Add: $14$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "With a power or parentheses",
+            "intro": "Substitute, then follow PEMDAS.",
+            "examples": [
+              {
+                "prompt": "Evaluate $2(x + 3)$ when $x = 4$.",
+                "steps": [
+                  "$2(4 + 3)$.",
+                  "$2(7) = 14$."
+                ],
+                "answer": "$14$",
+                "check": [
+                  "2*(4 + 3) == 14"
+                ]
+              },
+              {
+                "prompt": "Evaluate $3n - 4$ when $n = 4$.",
+                "steps": [
+                  "$3(4) - 4$.",
+                  "$12 - 4 = 8$."
+                ],
+                "answer": "$8$",
+                "check": [
+                  "3*4 - 4 == 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Finish the calculation",
+            "intro": "Mind the order after you substitute.",
+            "problems": [
+              {
+                "prompt": "Evaluate $x^2$ when $x = 5$.",
+                "options": [
+                  "$10$",
+                  "$25$",
+                  "$7$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$5^2 = 25$.",
+                "check": [
+                  "5**2 == 25"
+                ]
+              },
+              {
+                "prompt": "Evaluate $2(x + 1)$ when $x = 3$.",
+                "options": [
+                  "$7$",
+                  "$8$",
+                  "$5$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$2(3+1) = 2(4) = 8$.",
+                "check": [
+                  "2*(3 + 1) == 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Spreadsheets evaluate too",
+            "body": "Every formula cell in a spreadsheet is an expression with variables — the other cells. Type $=3\\ast A1+2$ and change $A1$, and the cell re-evaluates instantly. You've been doing algebra evaluation whenever you've used one."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Evaluate it",
+            "prompt": "Evaluate $2x + 3$ when $x = 5$.",
+            "options": [
+              "$13$",
+              "$25$",
+              "$10$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$2(5) + 3 = 10 + 3 = 13$.",
+            "check": [
+              "2*5 + 3 == 13"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Evaluate** = substitute the value, then compute.",
+              "$3x$ means $3\\times x$, so $3x$ at $x=4$ is $12$.",
+              "After substituting, follow the **order of operations**."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's review evaluating with simple substitutions, a power, and an expression with parentheses."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Evaluate $4x$ when $x = 5$.",
+                "options": [
+                  "$9$",
+                  "$20$",
+                  "$45$",
+                  "$1$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$4\\times5 = 20$.",
+                "check": [
+                  "4*5 == 20"
+                ]
+              },
+              {
+                "prompt": "Evaluate $x + 8$ when $x = 6$.",
+                "options": [
+                  "$14$",
+                  "$2$",
+                  "$48$",
+                  "$68$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6 + 8 = 14$.",
+                "check": [
+                  "6 + 8 == 14"
+                ]
+              },
+              {
+                "prompt": "Evaluate $2x + 1$ when $x = 3$.",
+                "options": [
+                  "$7$",
+                  "$9$",
+                  "$5$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2(3) + 1 = 7$.",
+                "check": [
+                  "2*3 + 1 == 7"
+                ]
+              },
+              {
+                "prompt": "Evaluate $3n - 4$ when $n = 4$.",
+                "options": [
+                  "$8$",
+                  "$12$",
+                  "$0$",
+                  "$16$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3(4) - 4 = 8$.",
+                "check": [
+                  "3*4 - 4 == 8"
+                ]
+              },
+              {
+                "prompt": "Evaluate $x^2$ when $x = 5$.",
+                "options": [
+                  "$10$",
+                  "$25$",
+                  "$7$",
+                  "$50$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$5^2 = 25$.",
+                "check": [
+                  "5**2 == 25"
+                ]
+              },
+              {
+                "prompt": "Evaluate $2(x + 3)$ when $x = 4$.",
+                "options": [
+                  "$11$",
+                  "$14$",
+                  "$10$",
+                  "$24$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$2(4+3) = 2(7) = 14$.",
+                "check": [
+                  "2*(4 + 3) == 14"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Evaluating Expressions\"",
+            "body": "Great — you can substitute and compute with order of operations in play. Next: Equivalent Expressions, where we rewrite without changing the value."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "equivalent-expressions",
+      "title": "Equivalent Expressions",
+      "concreteComparison": "$x + x + x$ and $3x$ describe the same amount — like saying “three quarters” or “$75$ cents.” **Equivalent expressions** have the same value for every value of the variable. Combining like terms and the distributive property are how we make them.",
+      "objective": "Generate equivalent expressions by combining like terms and applying the distributive property.",
+      "concept": [
+        "**Like terms** have the same variable part. $2x$ and $3x$ are like; $2x$ and $3$ are not.",
+        "**Combine like terms** by adding their coefficients: $2x + 3x = 5x$.",
+        "**Distributive property**: $a(b + c) = ab + ac$. So $2(x + 3) = 2x + 6$.",
+        "Equivalent expressions are equal for **every** value of the variable."
+      ],
+      "keyIdea": "Combine like terms ($2x+3x=5x$) and distribute ($2(x+3)=2x+6$) to rewrite an expression without changing its value.",
+      "facts": [
+        {
+          "title": "Combine like terms",
+          "latex": "$2x + 3x = 5x$",
+          "explanation": "Add the coefficients: 2 + 3 = 5."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "eq-we1",
+          "statement": "Combine like terms: $4x + 2x$.",
+          "solution": "Add coefficients: $4 + 2 = 6$, so $6x$.",
+          "check": [
+            "Eq(4*x + 2*x, 6*x)"
+          ]
+        },
+        {
+          "id": "eq-we2",
+          "statement": "Expand $3(x + 2)$.",
+          "solution": "Distribute: $3\\cdot x + 3\\cdot 2 = 3x + 6$.",
+          "check": [
+            "Eq(expand(3*(x + 2)), 3*x + 6)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Combining unlike terms.",
+          "correction": "$2x + 3$ stays $2x + 3$ — you can't add a variable term to a constant.",
+          "authored": true
+        },
+        {
+          "text": "Distributing to only the first term.",
+          "correction": "$2(x + 3) = 2x + 6$, not $2x + 3$ — multiply **both** terms inside.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "eq-t1",
+          "statement": "Combine $3a + 5a$.",
+          "solution": "$3 + 5 = 8$, so $8a$.",
+          "check": [
+            "Eq(3*a + 5*a, 8*a)"
+          ]
+        },
+        {
+          "id": "eq-t2",
+          "statement": "Expand $4(y + 1)$.",
+          "solution": "$4y + 4$.",
+          "check": [
+            "Eq(expand(4*(y + 1)), 4*y + 4)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "algebraTiles",
+            "eyebrow": "Concept A",
+            "title": "Collect the like terms",
+            "teach": "The tiles start scattered. Tap **Collect like terms** to group the $x$-tiles together and the units together — that's exactly what $3x + 4$ means, and why $x + 1 + x + x + 1 + 1 + 1$ equals it.",
+            "config": {
+              "x": 3,
+              "units": 4,
+              "mode": "collect",
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Like terms combine",
+            "beats": [
+              "**Like terms** share the same variable.",
+              "$2x$ and $3x$ are like — both count $x$'s.",
+              "Add the coefficients: $2x + 3x = 5x$.",
+              "$2x$ and $3$ are **not** like — leave them apart."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The other tool",
+            "title": "The distributive property",
+            "beats": [
+              "$a(b + c) = ab + ac$.",
+              "Multiply the outside number by **each** inside term.",
+              "$2(x + 3) = 2x + 6$.",
+              "It works because $2$ groups of $(x+3)$ is $2x$ and $6$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Combining like terms",
+            "intro": "Add the coefficients of matching terms.",
+            "examples": [
+              {
+                "prompt": "Combine $5y + 2y$.",
+                "steps": [
+                  "Both are $y$-terms.",
+                  "$5 + 2 = 7$, so $7y$."
+                ],
+                "answer": "$7y$",
+                "check": [
+                  "Eq(5*y + 2*y, 7*y)"
+                ]
+              },
+              {
+                "prompt": "Simplify $2x + 3 + 4x$.",
+                "steps": [
+                  "$x$-terms: $2x + 4x = 6x$.",
+                  "Constant: $3$.",
+                  "$6x + 3$."
+                ],
+                "answer": "$6x + 3$",
+                "check": [
+                  "Eq(2*x + 3 + 4*x, 6*x + 3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Combine them",
+            "intro": "Only like terms combine.",
+            "problems": [
+              {
+                "prompt": "Combine $3x + 4x$.",
+                "options": [
+                  "$7x$",
+                  "$12x$",
+                  "$7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3 + 4 = 7$, so $7x$.",
+                "check": [
+                  "Eq(3*x + 4*x, 7*x)"
+                ]
+              },
+              {
+                "prompt": "Simplify $6y - 2y$.",
+                "options": [
+                  "$4y$",
+                  "$8y$",
+                  "$4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6 - 2 = 4$, so $4y$.",
+                "check": [
+                  "Eq(6*y - 2*y, 4*y)"
+                ]
+              },
+              {
+                "prompt": "Simplify $2a + 5 + a$.",
+                "options": [
+                  "$3a + 5$",
+                  "$8a$",
+                  "$2a + 6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2a + a = 3a$; the $5$ stays.",
+                "check": [
+                  "Eq(2*a + 5 + a, 3*a + 5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Use distribution",
+            "title": "Expanding with the distributive property",
+            "beats": [
+              "To expand $3(x + 4)$...",
+              "...multiply $3$ by $x$ and by $4$.",
+              "$3x + 12$.",
+              "The expanded form is equivalent — same value for every $x$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Expanding",
+            "intro": "Multiply the outside by each inside term.",
+            "examples": [
+              {
+                "prompt": "Expand $2(x + 5)$.",
+                "steps": [
+                  "$2\\cdot x + 2\\cdot 5$.",
+                  "$2x + 10$."
+                ],
+                "answer": "$2x + 10$",
+                "check": [
+                  "Eq(expand(2*(x + 5)), 2*x + 10)"
+                ]
+              },
+              {
+                "prompt": "Expand $5(y + 2)$.",
+                "steps": [
+                  "$5\\cdot y + 5\\cdot 2$.",
+                  "$5y + 10$."
+                ],
+                "answer": "$5y + 10$",
+                "check": [
+                  "Eq(expand(5*(y + 2)), 5*y + 10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Expand or combine",
+            "intro": "Pick the equivalent form.",
+            "problems": [
+              {
+                "prompt": "Which equals $3(x + 4)$?",
+                "options": [
+                  "$3x + 4$",
+                  "$3x + 12$",
+                  "$x + 12$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Distribute: $3x + 12$.",
+                "check": [
+                  "Eq(expand(3*(x + 4)), 3*x + 12)"
+                ]
+              },
+              {
+                "prompt": "Which are LIKE terms?",
+                "options": [
+                  "$2x$ and $3$",
+                  "$4x$ and $7x$",
+                  "$x$ and $x^2$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$4x$ and $7x$ share the variable $x$.",
+                "check": [
+                  "Eq(4*x + 7*x, 11*x)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Same expression, many disguises",
+            "body": "$2(x + 3)$, $2x + 6$, and $x + x + 6$ all look different but are the **same** expression — they agree at $x=0, 1, 2,$ and every number in between. Algebra is largely the art of rewriting something into the disguise that's easiest to use."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Combine it",
+            "prompt": "Simplify $5x + 2x$.",
+            "options": [
+              "$7x$",
+              "$10x$",
+              "$7$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$5 + 2 = 7$, so $7x$.",
+            "check": [
+              "Eq(5*x + 2*x, 7*x)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Like terms** share a variable and combine by adding coefficients: $2x+3x=5x$.",
+              "The **distributive property** expands: $2(x+3) = 2x+6$.",
+              "**Equivalent** expressions match for every value of the variable."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's review with combining like terms, expanding, and spotting which terms are actually alike."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Combine $2x + 5x$.",
+                "options": [
+                  "$7x$",
+                  "$7$",
+                  "$10x$",
+                  "$3x$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2 + 5 = 7$, so $7x$.",
+                "check": [
+                  "Eq(2*x + 5*x, 7*x)"
+                ]
+              },
+              {
+                "prompt": "Which is equivalent to $3(x + 4)$?",
+                "options": [
+                  "$3x + 4$",
+                  "$3x + 12$",
+                  "$x + 12$",
+                  "$7x$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Distribute to both terms: $3x + 12$.",
+                "check": [
+                  "Eq(expand(3*(x + 4)), 3*x + 12)"
+                ]
+              },
+              {
+                "prompt": "Combine $6y - 2y$.",
+                "options": [
+                  "$4y$",
+                  "$8y$",
+                  "$4$",
+                  "$3y$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6 - 2 = 4$, so $4y$.",
+                "check": [
+                  "Eq(6*y - 2*y, 4*y)"
+                ]
+              },
+              {
+                "prompt": "Which are LIKE terms?",
+                "options": [
+                  "$2x$ and $3$",
+                  "$4x$ and $7x$",
+                  "$x$ and $x^2$",
+                  "$5$ and $y$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Both $4x$ and $7x$ have the variable $x$.",
+                "check": [
+                  "Eq(4*x + 7*x, 11*x)"
+                ]
+              },
+              {
+                "prompt": "Simplify $2x + 3 + 4x$.",
+                "options": [
+                  "$6x + 3$",
+                  "$9x$",
+                  "$2x + 7$",
+                  "$6x + 7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2x + 4x = 6x$; the $3$ stays.",
+                "check": [
+                  "Eq(2*x + 3 + 4*x, 6*x + 3)"
+                ]
+              },
+              {
+                "prompt": "Expand $5(y + 2)$.",
+                "options": [
+                  "$5y + 2$",
+                  "$5y + 10$",
+                  "$y + 10$",
+                  "$7y$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$5\\cdot y + 5\\cdot 2 = 5y + 10$.",
+                "check": [
+                  "Eq(expand(5*(y + 2)), 5*y + 10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Equivalent Expressions\"",
+            "body": "Excellent — you can combine like terms and distribute to rewrite expressions. Last in this unit: One-Step Equations, where we finally solve for the unknown."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "one-step-equations",
+      "title": "One-Step Equations",
+      "concreteComparison": "Picture a balance scale. If $x + 3 = 7$, the two sides weigh the same. Take $3$ off **both** pans and it stays level: $x = 4$. **Solving** an equation means undoing operations until the variable is alone.",
+      "objective": "Solve one-step equations using inverse operations (x+p=q, x−p=q, px=q, x÷p=q).",
+      "concept": [
+        "An **equation** says two expressions are equal: $x + 3 = 7$.",
+        "**Solve** = find the variable's value by **undoing** with the inverse operation.",
+        "Whatever you do to one side, do to the **other** — the balance must stay level.",
+        "$x + 3 = 7 \\to$ subtract 3 $\\to x = 4$. $4x = 20 \\to$ divide by 4 $\\to x = 5$."
+      ],
+      "keyIdea": "Undo the operation on the variable, doing the same to both sides. Add↔subtract, multiply↔divide.",
+      "facts": [
+        {
+          "title": "Inverse pairs",
+          "latex": "$+\\leftrightarrow-,\\ \\times\\leftrightarrow\\div$",
+          "explanation": "Undo with the opposite operation."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "eqn-we1",
+          "statement": "Solve $x + 6 = 10$.",
+          "solution": "Subtract 6 from both sides: $x = 4$.",
+          "check": [
+            "solve(Eq(x + 6, 10), x) == [4]"
+          ]
+        },
+        {
+          "id": "eqn-we2",
+          "statement": "Solve $5x = 35$.",
+          "solution": "Divide both sides by 5: $x = 7$.",
+          "check": [
+            "solve(Eq(5*x, 35), x) == [7]"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Changing only one side.",
+          "correction": "To keep the balance, do the same operation to **both** sides.",
+          "authored": true
+        },
+        {
+          "text": "Using the same operation instead of the inverse.",
+          "correction": "For $x + 3 = 7$ you **subtract** 3, not add — undo with the opposite.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "eqn-t1",
+          "statement": "Solve $x + 2 = 9$.",
+          "solution": "Subtract 2: $x = 7$.",
+          "check": [
+            "solve(Eq(x + 2, 9), x) == [7]"
+          ]
+        },
+        {
+          "id": "eqn-t2",
+          "statement": "Solve $3x = 12$.",
+          "solution": "Divide by 3: $x = 4$.",
+          "check": [
+            "solve(Eq(3*x, 12), x) == [4]"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "balanceScale",
+            "eyebrow": "Concept A",
+            "title": "Keep the balance",
+            "teach": "The scale shows $x + 3 = 7$. Tap **Subtract 3 from both sides** to take 3 weights off each pan — the balance holds and the $x$-box is left equal to $4$.",
+            "config": {
+              "mode": "add",
+              "b": 3,
+              "rhs": 7,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Undo with the inverse",
+            "beats": [
+              "$x + 3 = 7$ adds 3 to $x$.",
+              "Undo it: **subtract** 3.",
+              "Do it to both sides: $x + 3 - 3 = 7 - 3$.",
+              "$x = 4$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Stay balanced",
+            "title": "Both sides, every time",
+            "beats": [
+              "An equation is a balance.",
+              "Change one side only and it tips — no longer equal.",
+              "So do the same to **both** sides.",
+              "That keeps the two sides equal."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Add and subtract equations",
+            "intro": "Undo with the opposite.",
+            "examples": [
+              {
+                "prompt": "Solve $x + 6 = 10$.",
+                "steps": [
+                  "Subtract 6 from both sides.",
+                  "$x = 4$."
+                ],
+                "answer": "$x = 4$",
+                "check": [
+                  "solve(Eq(x + 6, 10), x) == [4]"
+                ]
+              },
+              {
+                "prompt": "Solve $x - 4 = 9$.",
+                "steps": [
+                  "Add 4 to both sides.",
+                  "$x = 13$."
+                ],
+                "answer": "$x = 13$",
+                "check": [
+                  "solve(Eq(x - 4, 9), x) == [13]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Solve it",
+            "intro": "Undo the operation on $x$.",
+            "problems": [
+              {
+                "prompt": "Solve $x + 5 = 12$.",
+                "options": [
+                  "$5$",
+                  "$7$",
+                  "$17$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Subtract 5: $x = 7$.",
+                "check": [
+                  "solve(Eq(x + 5, 12), x) == [7]"
+                ]
+              },
+              {
+                "prompt": "Solve $x - 3 = 8$.",
+                "options": [
+                  "$5$",
+                  "$11$",
+                  "$24$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Add 3: $x = 11$.",
+                "check": [
+                  "solve(Eq(x - 3, 8), x) == [11]"
+                ]
+              },
+              {
+                "prompt": "Solve $x + 9 = 9$.",
+                "options": [
+                  "$0$",
+                  "$9$",
+                  "$18$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Subtract 9: $x = 0$.",
+                "check": [
+                  "solve(Eq(x + 9, 9), x) == [0]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "balanceScale",
+            "eyebrow": "Multiply & divide",
+            "title": "Split into equal groups",
+            "teach": "This scale shows $4x = 20$. Tap **Divide both sides by 4** to split each pan into 4 equal groups — one $x$-box balances $5$ weights, so $x = 5$.",
+            "config": {
+              "mode": "mul",
+              "coef": 4,
+              "rhs": 20,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Multiply and divide equations",
+            "intro": "Divide to undo a multiply.",
+            "examples": [
+              {
+                "prompt": "Solve $6x = 30$.",
+                "steps": [
+                  "Divide both sides by 6.",
+                  "$x = 5$."
+                ],
+                "answer": "$x = 5$",
+                "check": [
+                  "solve(Eq(6*x, 30), x) == [5]"
+                ]
+              },
+              {
+                "prompt": "Solve $x \\div 2 = 6$.",
+                "steps": [
+                  "Multiply both sides by 2.",
+                  "$x = 12$."
+                ],
+                "answer": "$x = 12$",
+                "check": [
+                  "solve(Eq(x/2, 6), x) == [12]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Multiply or divide",
+            "intro": "Undo with the inverse.",
+            "problems": [
+              {
+                "prompt": "Solve $4x = 24$.",
+                "options": [
+                  "$6$",
+                  "$20$",
+                  "$96$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Divide by 4: $x = 6$.",
+                "check": [
+                  "solve(Eq(4*x, 24), x) == [6]"
+                ]
+              },
+              {
+                "prompt": "Solve $7x = 21$.",
+                "options": [
+                  "$3$",
+                  "$14$",
+                  "$28$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Divide by 7: $x = 3$.",
+                "check": [
+                  "solve(Eq(7*x, 21), x) == [3]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The first equals sign",
+            "body": "The symbol “$=$” was invented in 1557 by Welsh mathematician Robert Recorde, who picked two parallel lines because “no two things can be more equal.” Before that, people wrote “is equal to” out in full — every single time."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Solve it",
+            "prompt": "Solve $x + 4 = 11$.",
+            "options": [
+              "$7$",
+              "$15$",
+              "$3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Subtract 4 from both sides: $x = 7$.",
+            "check": [
+              "solve(Eq(x + 4, 11), x) == [7]"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "An **equation** balances two equal sides.",
+              "**Solve** by undoing with the inverse, doing the same to **both** sides.",
+              "Add↔subtract and multiply↔divide are the inverse pairs."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's review one-step equations across add, subtract, multiply, and divide — plus the inverse-operation idea."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Solve $x + 5 = 12$.",
+                "options": [
+                  "$5$",
+                  "$7$",
+                  "$17$",
+                  "$60$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Subtract 5: $x = 7$.",
+                "check": [
+                  "solve(Eq(x + 5, 12), x) == [7]"
+                ]
+              },
+              {
+                "prompt": "Solve $x - 3 = 8$.",
+                "options": [
+                  "$5$",
+                  "$11$",
+                  "$24$",
+                  "$-5$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Add 3: $x = 11$.",
+                "check": [
+                  "solve(Eq(x - 3, 8), x) == [11]"
+                ]
+              },
+              {
+                "prompt": "Solve $6x = 30$.",
+                "options": [
+                  "$5$",
+                  "$24$",
+                  "$36$",
+                  "$180$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Divide by 6: $x = 5$.",
+                "check": [
+                  "solve(Eq(6*x, 30), x) == [5]"
+                ]
+              },
+              {
+                "prompt": "Solve $x \\div 2 = 6$.",
+                "options": [
+                  "$3$",
+                  "$8$",
+                  "$12$",
+                  "$4$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Multiply by 2: $x = 12$.",
+                "check": [
+                  "solve(Eq(x/2, 6), x) == [12]"
+                ]
+              },
+              {
+                "prompt": "To solve $x + 7 = 10$, what do you do to both sides?",
+                "options": [
+                  "Add 7",
+                  "Subtract 7",
+                  "Multiply by 7",
+                  "Divide by 7"
+                ],
+                "correctIndex": 1,
+                "explanation": "Undo $+7$ with $-7$, giving $x = 3$.",
+                "check": [
+                  "solve(Eq(x + 7, 10), x) == [3]"
+                ]
+              },
+              {
+                "prompt": "Solve $4x = 24$.",
+                "options": [
+                  "$6$",
+                  "$20$",
+                  "$28$",
+                  "$96$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Divide by 4: $x = 6$.",
+                "check": [
+                  "solve(Eq(4*x, 24), x) == [6]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"One-Step Equations\"",
+            "body": "Fantastic — you can solve add, subtract, multiply, and divide equations by keeping the balance. That completes Expressions & Equations!"
+          }
+        ]
+      }
     }
   ],
-  "practice": [
-    {
-      "id": "ee-prac-01",
-      "statement": "Placeholder practice problem. Solve $3n = 24$.",
-      "solution": "Placeholder solution. $n = 24 \\div 3 = 8$."
-    }
-  ],
-  "testYourself": [
-    {
-      "id": "ee-test-01",
-      "statement": "Placeholder test problem. Write and solve an equation: a number doubled and decreased by 5 equals 11.",
-      "solution": "Placeholder solution. $2x - 5 = 11 \\Rightarrow 2x = 16 \\Rightarrow x = 8$."
-    }
-  ]
+  "practice": [],
+  "testYourself": [],
+  "status": "published"
 }

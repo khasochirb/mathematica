@@ -375,6 +375,58 @@ export interface FactorTreeConfig {
   color?: string;
 }
 
+// Exponents — pick a base and exponent; the repeated-multiplication expansion
+// and the value appear.
+export interface ExponentBuilderConfig {
+  base: number;
+  exp: number;
+  minBase?: number;
+  maxBase?: number;
+  minExp?: number;
+  maxExp?: number;
+  color?: string;
+}
+
+// Order of operations — step through an expression one operation at a time.
+// Each stage is the running expression plus a note on the step just taken.
+export interface OrderOfOpsConfig {
+  stages: { expr: string; did?: string }[];
+  color?: string;
+}
+
+// Algebra tiles — visualize ax + b as x-tiles and unit squares. "build" mode has
+// steppers; "collect" mode scatters then groups (combining like terms).
+export interface AlgebraTilesConfig {
+  x: number;
+  units: number;
+  mode?: "build" | "collect";
+  maxX?: number;
+  maxUnits?: number;
+  color?: string;
+}
+
+// Evaluating — a substitution slider for a·x + b: drag the variable's value and
+// watch the expression's value update.
+export interface EvaluatorConfig {
+  a: number;
+  b: number;
+  varName?: string;
+  min?: number;
+  max?: number;
+  start?: number;
+  color?: string;
+}
+
+// One-step equations — a pan balance. "add" mode solves x + b = rhs by removing
+// b from both sides; "mul" mode solves coef·x = rhs by splitting into groups.
+export interface BalanceScaleConfig {
+  mode: "add" | "mul";
+  coef?: number;
+  b?: number;
+  rhs: number;
+  color?: string;
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -437,6 +489,11 @@ export type InteractiveStep =
   | { kind: "gcfFinder"; eyebrow?: string; title: string; teach: string; config: GcfFinderConfig }
   | { kind: "lcmFinder"; eyebrow?: string; title: string; teach: string; config: LcmFinderConfig }
   | { kind: "factorTree"; eyebrow?: string; title: string; teach: string; config: FactorTreeConfig }
+  | { kind: "exponentBuilder"; eyebrow?: string; title: string; teach: string; config: ExponentBuilderConfig }
+  | { kind: "orderOfOps"; eyebrow?: string; title: string; teach: string; config: OrderOfOpsConfig }
+  | { kind: "algebraTiles"; eyebrow?: string; title: string; teach: string; config: AlgebraTilesConfig }
+  | { kind: "evaluator"; eyebrow?: string; title: string; teach: string; config: EvaluatorConfig }
+  | { kind: "balanceScale"; eyebrow?: string; title: string; teach: string; config: BalanceScaleConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {
