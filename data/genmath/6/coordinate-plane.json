@@ -2,47 +2,1951 @@
   "slug": "coordinate-plane",
   "title": "Coordinate Plane",
   "grade": 6,
-  "blurb": "Placeholder — plot and identify points in all four quadrants of the coordinate plane.",
+  "blurb": "Plot and read points in all four quadrants, reflect across the axes, measure distance, and build polygons on the grid.",
   "lessons": [
     {
-      "slug": "coordinate-plane-intro",
+      "slug": "coordinate-plane-basics",
       "title": "The Coordinate Plane",
-      "concreteComparison": "Placeholder — real-world opener authored in Step 3. Example: a city map with numbered streets and avenues is like a coordinate grid.",
-      "objective": "Placeholder — plot ordered pairs and identify quadrants on the coordinate plane.",
+      "concreteComparison": "A theatre ticket says “Row D, Seat 7” — you need **two** numbers to find one seat. The coordinate plane works the same way: an **across** number and an **up** number, written as an ordered pair $(x, y)$.",
+      "objective": "Identify the axes, origin, and quadrants of the coordinate plane and read an ordered pair (x, y).",
       "concept": [
-        "Placeholder concept paragraph. The coordinate plane is formed by a horizontal $x$-axis and a vertical $y$-axis intersecting at the origin $(0, 0)$."
+        "The **coordinate plane** is made of two number lines: the horizontal **x-axis** and the vertical **y-axis**.",
+        "They cross at the **origin**, $(0, 0)$.",
+        "A point is named by an **ordered pair** $(x, y)$: $x$ is how far **across**, $y$ is how far **up**.",
+        "The axes split the plane into four **quadrants**, numbered I–IV counter-clockwise from the top-right."
+      ],
+      "keyIdea": "A point is $(x, y)$ — across, then up. The axes meet at the origin $(0,0)$ and form four quadrants.",
+      "facts": [
+        {
+          "title": "The origin",
+          "latex": "$(0, 0)$",
+          "explanation": "Where the x-axis and y-axis cross."
+        },
+        {
+          "title": "Quadrant signs",
+          "latex": "I$(+,+)$, II$(-,+)$, III$(-,-)$, IV$(+,-)$",
+          "explanation": "Counter-clockwise from top-right."
+        }
       ],
       "workedExamples": [
         {
-          "id": "coord-ex-01",
-          "statement": "Placeholder problem. In which quadrant is the point $(-3, 4)$?",
-          "solution": "Placeholder solution. Quadrant II (negative $x$, positive $y$)."
+          "id": "cp-we1",
+          "statement": "In which quadrant is $(3, 2)$?",
+          "solution": "Both coordinates are positive, so Quadrant I.",
+          "check": [
+            "And(3 > 0, 2 > 0)"
+          ]
+        },
+        {
+          "id": "cp-we2",
+          "statement": "In which quadrant is $(-4, -1)$?",
+          "solution": "Both are negative, so Quadrant III.",
+          "check": [
+            "And(-4 < 0, -1 < 0)"
+          ]
         }
       ],
       "commonMistakes": [
-        { "text": "Placeholder mistake — authored in Step 3.", "authored": false }
+        {
+          "text": "Reading up before across.",
+          "correction": "The order is $(x, y)$: across **first**, then up. $(3,2) \\neq (2,3)$.",
+          "authored": true
+        },
+        {
+          "text": "Calling the origin Quadrant I.",
+          "correction": "The origin $(0,0)$ sits on both axes — it's in no quadrant.",
+          "authored": true
+        }
       ],
       "tryIt": [
         {
-          "id": "coord-try-01",
-          "statement": "Placeholder try-it. Plot and name the quadrant for $(5, -2)$.",
-          "solution": "Placeholder solution. Quadrant IV (positive $x$, negative $y$)."
+          "id": "cp-t1",
+          "statement": "Which quadrant holds $(2, -3)$?",
+          "solution": "$x$ positive, $y$ negative → Quadrant IV.",
+          "check": [
+            "And(2 > 0, -3 < 0)"
+          ]
+        },
+        {
+          "id": "cp-t2",
+          "statement": "Which quadrant holds $(-2, 5)$?",
+          "solution": "$x$ negative, $y$ positive → Quadrant II.",
+          "check": [
+            "And(-2 < 0, 5 > 0)"
+          ]
         }
-      ]
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "Concept A",
+            "title": "Four quadrants",
+            "teach": "The two axes split the plane into four regions called **quadrants**, numbered I–IV counter-clockwise from the top-right. The sign of each coordinate tells you which one you're in.",
+            "config": {
+              "mode": "quadrants",
+              "min": -5,
+              "max": 5,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Two axes, one origin",
+            "beats": [
+              "The horizontal line is the **x-axis**.",
+              "The vertical line is the **y-axis**.",
+              "They cross at the **origin**, $(0, 0)$.",
+              "Everything is measured from there."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Naming a point",
+            "title": "The ordered pair (x, y)",
+            "beats": [
+              "A point is written $(x, y)$.",
+              "$x$ = how far **across** (right +, left −).",
+              "$y$ = how far **up** (up +, down −).",
+              "Across always comes first."
+            ]
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "Explore",
+            "title": "Tap to read coordinates",
+            "teach": "Tap any intersection. Count **across** from the origin for $x$, then **up** for $y$ — that's the point's ordered pair.",
+            "config": {
+              "mode": "identify",
+              "min": -5,
+              "max": 5,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Which quadrant?",
+            "intro": "Check the signs of x and y.",
+            "examples": [
+              {
+                "prompt": "Which quadrant holds $(4, 3)$?",
+                "steps": [
+                  "$x = 4 > 0$, $y = 3 > 0$.",
+                  "Both positive → Quadrant I."
+                ],
+                "answer": "I",
+                "check": [
+                  "And(4 > 0, 3 > 0)"
+                ]
+              },
+              {
+                "prompt": "Which quadrant holds $(-2, 4)$?",
+                "steps": [
+                  "$x = -2 < 0$, $y = 4 > 0$.",
+                  "Left and up → Quadrant II."
+                ],
+                "answer": "II",
+                "check": [
+                  "And(-2 < 0, 4 > 0)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Name the quadrant",
+            "intro": "Signs first: (across, up).",
+            "problems": [
+              {
+                "prompt": "Which quadrant is $(5, 1)$?",
+                "options": [
+                  "I",
+                  "II",
+                  "III",
+                  "IV"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both positive → Quadrant I.",
+                "check": [
+                  "And(5 > 0, 1 > 0)"
+                ]
+              },
+              {
+                "prompt": "Which quadrant is $(-3, -4)$?",
+                "options": [
+                  "I",
+                  "II",
+                  "III",
+                  "IV"
+                ],
+                "correctIndex": 2,
+                "explanation": "Both negative → Quadrant III.",
+                "check": [
+                  "And(-3 < 0, -4 < 0)"
+                ]
+              },
+              {
+                "prompt": "Which quadrant is $(6, -2)$?",
+                "options": [
+                  "I",
+                  "II",
+                  "III",
+                  "IV"
+                ],
+                "correctIndex": 3,
+                "explanation": "Right and down → Quadrant IV.",
+                "check": [
+                  "And(6 > 0, -2 < 0)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Signs are the clue",
+            "title": "Quadrant sign rules",
+            "beats": [
+              "Quadrant I: $(+, +)$.",
+              "Quadrant II: $(-, +)$.",
+              "Quadrant III: $(-, -)$.",
+              "Quadrant IV: $(+, -)$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "From signs to quadrant",
+            "intro": "Match the sign pattern.",
+            "examples": [
+              {
+                "prompt": "A point has a negative $x$ and negative $y$. Which quadrant?",
+                "steps": [
+                  "$(-, -)$.",
+                  "That's Quadrant III."
+                ],
+                "answer": "III",
+                "check": [
+                  "And(-1 < 0, -1 < 0)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "On an axis?",
+            "intro": "Zero means on an axis, not in a quadrant.",
+            "problems": [
+              {
+                "prompt": "Where is the point $(0, 4)$?",
+                "options": [
+                  "On the x-axis",
+                  "On the y-axis",
+                  "In Quadrant I"
+                ],
+                "correctIndex": 1,
+                "explanation": "$x = 0$, so it's on the vertical y-axis.",
+                "check": [
+                  "And(0 == 0, 4 != 0)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Descartes and the fly",
+            "body": "Legend says René Descartes invented this grid while lying in bed watching a fly on the ceiling. He realized he could pin down the fly's spot with just two numbers — its distance from two walls. That idea, the coordinate plane, connected algebra and geometry forever."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Quadrant check",
+            "prompt": "Which quadrant contains $(-5, 2)$?",
+            "options": [
+              "I",
+              "II",
+              "III",
+              "IV"
+            ],
+            "correctIndex": 1,
+            "explanation": "Left and up: $(-, +)$ → Quadrant II.",
+            "check": [
+              "And(-5 < 0, 2 > 0)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "The plane has an **x-axis** (across) and **y-axis** (up) meeting at the **origin** $(0,0)$.",
+              "A point is $(x, y)$: across first, then up.",
+              "Four **quadrants**, I–IV counter-clockwise; signs tell you which."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's review the plane with quadrant IDs, a move-from-the-origin question, and an on-the-axis check."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Which quadrant is $(4, 5)$?",
+                "options": [
+                  "I",
+                  "II",
+                  "III",
+                  "IV"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both positive → I.",
+                "check": [
+                  "And(4 > 0, 5 > 0)"
+                ]
+              },
+              {
+                "prompt": "Which quadrant is $(-2, 6)$?",
+                "options": [
+                  "I",
+                  "II",
+                  "III",
+                  "IV"
+                ],
+                "correctIndex": 1,
+                "explanation": "$(-, +)$ → II.",
+                "check": [
+                  "And(-2 < 0, 6 > 0)"
+                ]
+              },
+              {
+                "prompt": "Which quadrant is $(-3, -3)$?",
+                "options": [
+                  "I",
+                  "II",
+                  "III",
+                  "IV"
+                ],
+                "correctIndex": 2,
+                "explanation": "$(-, -)$ → III.",
+                "check": [
+                  "And(-3 < 0, -3 < 0)"
+                ]
+              },
+              {
+                "prompt": "Which quadrant is $(5, -1)$?",
+                "options": [
+                  "I",
+                  "II",
+                  "III",
+                  "IV"
+                ],
+                "correctIndex": 3,
+                "explanation": "$(+, -)$ → IV.",
+                "check": [
+                  "And(5 > 0, -1 < 0)"
+                ]
+              },
+              {
+                "prompt": "From the origin, move 4 right and 3 down. Where do you land?",
+                "options": [
+                  "$(4, 3)$",
+                  "$(4, -3)$",
+                  "$(-4, 3)$",
+                  "$(-4, -3)$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Right is $+x$, down is $-y$: $(4, -3)$.",
+                "check": [
+                  "And(0 + 4 == 4, 0 - 3 == -3)"
+                ]
+              },
+              {
+                "prompt": "The point $(0, -4)$ lies where?",
+                "options": [
+                  "On the x-axis",
+                  "On the y-axis",
+                  "In Quadrant IV",
+                  "At the origin"
+                ],
+                "correctIndex": 1,
+                "explanation": "$x = 0$ (and $y \\neq 0$), so it's on the y-axis.",
+                "check": [
+                  "And(0 == 0, -4 != 0)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"The Coordinate Plane\"",
+            "body": "Great start — you know the axes, the origin, and all four quadrants. Next: Plotting Points, where you'll place and read points anywhere on the grid."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "plotting-points",
+      "title": "Plotting Points",
+      "concreteComparison": "A treasure map clue: “$3$ steps east, $2$ steps north.” **Plotting a point** is the same move — start at the origin, step across for $x$, then up for $y$, and mark the spot.",
+      "objective": "Plot points from ordered pairs and read the coordinates of plotted points in all four quadrants.",
+      "concept": [
+        "To **plot** $(x, y)$: start at the origin, go $x$ **across** (right if $+$, left if $-$), then $y$ **up** (up if $+$, down if $-$).",
+        "To **read** a point: count across for $x$, then up for $y$.",
+        "A negative $x$ goes left; a negative $y$ goes down."
+      ],
+      "keyIdea": "Plot $(x,y)$ by stepping $x$ across from the origin, then $y$ up or down. Read a point the same way.",
+      "facts": [
+        {
+          "title": "Order matters",
+          "latex": "$(3,2) \\neq (2,3)$",
+          "explanation": "Across (x) first, then up (y)."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pp-we1",
+          "statement": "Plot $(3, 2)$: describe the move from the origin.",
+          "solution": "Go $3$ right, then $2$ up — landing in Quadrant I.",
+          "check": [
+            "And(0 + 3 == 3, 0 + 2 == 2)"
+          ]
+        },
+        {
+          "id": "pp-we2",
+          "statement": "A point is $2$ left and $4$ up from the origin. Name it.",
+          "solution": "Left is $-x$, up is $+y$: $(-2, 4)$.",
+          "check": [
+            "And(0 - 2 == -2, 0 + 4 == 4)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Swapping to $(y, x)$.",
+          "correction": "Always across first, then up: $(3, 2)$ means $3$ across, $2$ up.",
+          "authored": true
+        },
+        {
+          "text": "Going right for a negative $x$.",
+          "correction": "A negative $x$ means go **left**; a negative $y$ means go **down**.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pp-t1",
+          "statement": "Where is $(-1, -3)$ from the origin?",
+          "solution": "$1$ left, $3$ down → Quadrant III.",
+          "check": [
+            "And(0 - 1 == -1, 0 - 3 == -3)"
+          ]
+        },
+        {
+          "id": "pp-t2",
+          "statement": "Which point is $5$ right and $0$ up?",
+          "solution": "$(5, 0)$ — on the x-axis.",
+          "check": [
+            "And(0 + 5 == 5, 0 == 0)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "Concept A",
+            "title": "A plotted point",
+            "teach": "This point is $(3, 2)$: from the origin, $3$ across and $2$ up. The pair is always written across-then-up.",
+            "config": {
+              "mode": "plot",
+              "min": -5,
+              "max": 5,
+              "points": [
+                {
+                  "x": 3,
+                  "y": 2,
+                  "label": "A"
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Start at the origin",
+            "beats": [
+              "Begin at the origin $(0, 0)$.",
+              "Step **across** by $x$: right for $+$, left for $-$.",
+              "Then step **up** by $y$: up for $+$, down for $-$.",
+              "Mark where you land."
+            ]
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "Explore",
+            "title": "Read points yourself",
+            "teach": "Tap intersections and read off the coordinates. Notice how moving left makes $x$ negative and moving down makes $y$ negative.",
+            "config": {
+              "mode": "identify",
+              "min": -5,
+              "max": 5,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Plotting from a pair",
+            "intro": "Across, then up.",
+            "examples": [
+              {
+                "prompt": "Where does $(4, 1)$ land?",
+                "steps": [
+                  "$4$ right.",
+                  "$1$ up → Quadrant I."
+                ],
+                "answer": "$(4, 1)$, Quadrant I",
+                "check": [
+                  "And(0 + 4 == 4, 0 + 1 == 1)"
+                ]
+              },
+              {
+                "prompt": "Where does $(-3, 2)$ land?",
+                "steps": [
+                  "$3$ left.",
+                  "$2$ up → Quadrant II."
+                ],
+                "answer": "Quadrant II",
+                "check": [
+                  "And(0 - 3 == -3, 0 + 2 == 2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Where do you land?",
+            "intro": "Follow across then up.",
+            "problems": [
+              {
+                "prompt": "Start at the origin: $2$ right, $3$ up. Which point?",
+                "options": [
+                  "$(2, 3)$",
+                  "$(3, 2)$",
+                  "$(-2, 3)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2$ across, $3$ up → $(2, 3)$.",
+                "check": [
+                  "And(0 + 2 == 2, 0 + 3 == 3)"
+                ]
+              },
+              {
+                "prompt": "Which point is $1$ left and $4$ down?",
+                "options": [
+                  "$(1, 4)$",
+                  "$(-1, -4)$",
+                  "$(-1, 4)$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Left $-x$, down $-y$: $(-1, -4)$.",
+                "check": [
+                  "And(0 - 1 == -1, 0 - 4 == -4)"
+                ]
+              },
+              {
+                "prompt": "Which point is $5$ right, $0$ up?",
+                "options": [
+                  "$(0, 5)$",
+                  "$(5, 0)$",
+                  "$(5, 5)$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$(5, 0)$ sits on the x-axis.",
+                "check": [
+                  "And(0 + 5 == 5, 0 == 0)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Negatives",
+            "title": "Left and down",
+            "beats": [
+              "A negative $x$ sends you **left** of the y-axis.",
+              "A negative $y$ sends you **down** below the x-axis.",
+              "$(-3, -2)$ is $3$ left and $2$ down.",
+              "That's Quadrant III."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Reading a location",
+            "intro": "Count from the origin.",
+            "examples": [
+              {
+                "prompt": "A point sits $4$ left and $2$ up. Name it.",
+                "steps": [
+                  "Left $\\to -4$.",
+                  "Up $\\to +2$: $(-4, 2)$."
+                ],
+                "answer": "$(-4, 2)$",
+                "check": [
+                  "And(0 - 4 == -4, 0 + 2 == 2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Name that point",
+            "intro": "Signs come from the direction.",
+            "problems": [
+              {
+                "prompt": "$3$ right and $5$ down is which point?",
+                "options": [
+                  "$(3, 5)$",
+                  "$(3, -5)$",
+                  "$(-3, -5)$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Right $+3$, down $-5$: $(3, -5)$.",
+                "check": [
+                  "And(0 + 3 == 3, 0 - 5 == -5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "You've plotted before",
+            "body": "Every game of Battleship is coordinate plotting — “B-5” is an ordered pair in disguise. So is every pixel on this screen: the phone draws each dot at its own $(x, y)$ address, millions of times a second."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Plot it",
+            "prompt": "From the origin, go $2$ left and $3$ up. Which point?",
+            "options": [
+              "$(2, 3)$",
+              "$(-2, 3)$",
+              "$(-2, -3)$"
+            ],
+            "correctIndex": 1,
+            "explanation": "Left is $-x$, up is $+y$: $(-2, 3)$.",
+            "check": [
+              "And(0 - 2 == -2, 0 + 3 == 3)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Plot** $(x, y)$: from the origin, $x$ across then $y$ up.",
+              "Negative $x$ → left; negative $y$ → down.",
+              "**Read** a point by counting across then up — order matters."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's review plotting with move-and-land questions, a reading check, and a same-point puzzle."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "From the origin, go $3$ right and $4$ up. Where?",
+                "options": [
+                  "$(3, 4)$",
+                  "$(4, 3)$",
+                  "$(-3, 4)$",
+                  "$(3, -4)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3$ across, $4$ up → $(3, 4)$.",
+                "check": [
+                  "And(0 + 3 == 3, 0 + 4 == 4)"
+                ]
+              },
+              {
+                "prompt": "Which point is $2$ left and $5$ up?",
+                "options": [
+                  "$(2, 5)$",
+                  "$(-2, 5)$",
+                  "$(2, -5)$",
+                  "$(-2, -5)$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Left $-2$, up $+5$: $(-2, 5)$.",
+                "check": [
+                  "And(0 - 2 == -2, 0 + 5 == 5)"
+                ]
+              },
+              {
+                "prompt": "Which point is $4$ right and $1$ down?",
+                "options": [
+                  "$(4, 1)$",
+                  "$(4, -1)$",
+                  "$(-4, 1)$",
+                  "$(1, 4)$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Right $+4$, down $-1$: $(4, -1)$.",
+                "check": [
+                  "And(0 + 4 == 4, 0 - 1 == -1)"
+                ]
+              },
+              {
+                "prompt": "The point $(0, 3)$ is located where?",
+                "options": [
+                  "On the x-axis",
+                  "On the y-axis",
+                  "In Quadrant I",
+                  "At the origin"
+                ],
+                "correctIndex": 1,
+                "explanation": "$x = 0$ (and $y \\neq 0$) → on the y-axis.",
+                "check": [
+                  "And(0 == 0, 3 != 0)"
+                ]
+              },
+              {
+                "prompt": "Going $6$ down from the origin lands on which point?",
+                "options": [
+                  "$(6, 0)$",
+                  "$(0, 6)$",
+                  "$(0, -6)$",
+                  "$(-6, 0)$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Down only: $x = 0$, $y = -6$.",
+                "check": [
+                  "And(0 == 0, 0 - 6 == -6)"
+                ]
+              },
+              {
+                "prompt": "Do $(2, 5)$ and $(5, 2)$ name the same point?",
+                "options": [
+                  "Yes",
+                  "No"
+                ],
+                "correctIndex": 1,
+                "explanation": "Order matters — $2$ across, $5$ up is a different spot from $5$ across, $2$ up.",
+                "check": [
+                  "2 != 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Plotting Points\"",
+            "body": "Nicely done — you can plot and read points across all four quadrants. Next: Reflections, where points hop across an axis to their mirror image."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "reflections",
+      "title": "Reflections Across the Axes",
+      "concreteComparison": "Your reflection in a mirror stands the same distance behind the glass as you are in front. Reflecting a point across an axis does exactly that — same distance, opposite side — which flips the sign of one coordinate.",
+      "objective": "Reflect a point across the x-axis or y-axis and describe how its coordinates change.",
+      "concept": [
+        "Reflecting across the **x-axis** flips up/down: $(x, y) \\to (x, -y)$.",
+        "Reflecting across the **y-axis** flips left/right: $(x, y) \\to (-x, y)$.",
+        "The image is the same distance from the axis, on the opposite side."
+      ],
+      "keyIdea": "Reflect across the x-axis → negate $y$. Reflect across the y-axis → negate $x$.",
+      "facts": [
+        {
+          "title": "Across the x-axis",
+          "latex": "$(x, y) \\to (x, -y)$",
+          "explanation": "Only the y-coordinate flips sign."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rf-we1",
+          "statement": "Reflect $(3, 4)$ across the x-axis.",
+          "solution": "Negate $y$: $(3, -4)$. The $x$ stays the same.",
+          "check": [
+            "4 + (-4) == 0"
+          ]
+        },
+        {
+          "id": "rf-we2",
+          "statement": "Reflect $(2, 5)$ across the y-axis.",
+          "solution": "Negate $x$: $(-2, 5)$. The $y$ stays the same.",
+          "check": [
+            "2 + (-2) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Flipping both coordinates.",
+          "correction": "Across the x-axis, **only** $y$ changes sign; across the y-axis, **only** $x$ does.",
+          "authored": true
+        },
+        {
+          "text": "Changing the wrong coordinate.",
+          "correction": "The x-axis is horizontal, so it flips the up/down value ($y$). The y-axis flips the left/right value ($x$).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rf-t1",
+          "statement": "Reflect $(1, 6)$ across the x-axis.",
+          "solution": "Negate $y$: $(1, -6)$.",
+          "check": [
+            "6 + (-6) == 0"
+          ]
+        },
+        {
+          "id": "rf-t2",
+          "statement": "Reflect $(-3, 2)$ across the y-axis.",
+          "solution": "Negate $x$: $(3, 2)$.",
+          "check": [
+            "-3 + 3 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "Concept A",
+            "title": "Flip across the x-axis",
+            "teach": "The point is $(3, 4)$. Tap **Reflect across the x-axis** — its image lands at $(3, -4)$, the same distance below the axis. Only the $y$-coordinate flips.",
+            "config": {
+              "mode": "reflect",
+              "min": -5,
+              "max": 5,
+              "points": [
+                {
+                  "x": 3,
+                  "y": 4
+                }
+              ],
+              "reflectAxis": "x",
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Across the x-axis",
+            "title": "Negate the y",
+            "beats": [
+              "The x-axis is the horizontal mirror.",
+              "Top and bottom swap.",
+              "$(x, y) \\to (x, -y)$.",
+              "$(3, 4) \\to (3, -4)$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Across the y-axis",
+            "title": "Negate the x",
+            "beats": [
+              "The y-axis is the vertical mirror.",
+              "Left and right swap.",
+              "$(x, y) \\to (-x, y)$.",
+              "$(2, 5) \\to (-2, 5)$."
+            ]
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "Concept B",
+            "title": "Flip across the y-axis",
+            "teach": "Now the mirror is the y-axis. Tap to reflect $(2, 3)$ — it lands at $(-2, 3)$, the same distance to the left. Only the $x$-coordinate flips.",
+            "config": {
+              "mode": "reflect",
+              "min": -5,
+              "max": 5,
+              "points": [
+                {
+                  "x": 2,
+                  "y": 3
+                }
+              ],
+              "reflectAxis": "y",
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Reflecting points",
+            "intro": "Flip the matching coordinate.",
+            "examples": [
+              {
+                "prompt": "Reflect $(5, 2)$ across the x-axis.",
+                "steps": [
+                  "x-axis flips $y$.",
+                  "$(5, -2)$."
+                ],
+                "answer": "$(5, -2)$",
+                "check": [
+                  "2 + (-2) == 0"
+                ]
+              },
+              {
+                "prompt": "Reflect $(4, 3)$ across the y-axis.",
+                "steps": [
+                  "y-axis flips $x$.",
+                  "$(-4, 3)$."
+                ],
+                "answer": "$(-4, 3)$",
+                "check": [
+                  "4 + (-4) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Reflect it",
+            "intro": "Which coordinate flips?",
+            "problems": [
+              {
+                "prompt": "Reflect $(2, 6)$ across the x-axis.",
+                "options": [
+                  "$(2, -6)$",
+                  "$(-2, 6)$",
+                  "$(-2, -6)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "x-axis flips $y$: $(2, -6)$.",
+                "check": [
+                  "6 + (-6) == 0"
+                ]
+              },
+              {
+                "prompt": "Reflect $(3, 1)$ across the y-axis.",
+                "options": [
+                  "$(3, -1)$",
+                  "$(-3, 1)$",
+                  "$(-3, -1)$"
+                ],
+                "correctIndex": 1,
+                "explanation": "y-axis flips $x$: $(-3, 1)$.",
+                "check": [
+                  "3 + (-3) == 0"
+                ]
+              },
+              {
+                "prompt": "Reflect $(-2, 4)$ across the x-axis.",
+                "options": [
+                  "$(-2, -4)$",
+                  "$(2, 4)$",
+                  "$(2, -4)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Flip $y$; $x$ stays $-2$: $(-2, -4)$.",
+                "check": [
+                  "4 + (-4) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why it works",
+            "title": "Same distance, opposite side",
+            "beats": [
+              "$(3, 4)$ is $4$ units above the x-axis.",
+              "Its reflection is $4$ units **below**.",
+              "Same distance, other side of the mirror.",
+              "That's exactly what $-y$ does."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Predict the image",
+            "intro": "Distance is kept; sign flips.",
+            "examples": [
+              {
+                "prompt": "Reflect $(-1, -5)$ across the y-axis.",
+                "steps": [
+                  "y-axis flips $x$.",
+                  "$(1, -5)$."
+                ],
+                "answer": "$(1, -5)$",
+                "check": [
+                  "-1 + 1 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Across which axis?",
+            "intro": "Match the flip to the axis.",
+            "problems": [
+              {
+                "prompt": "Reflect $(6, -2)$ across the x-axis.",
+                "options": [
+                  "$(6, 2)$",
+                  "$(-6, -2)$",
+                  "$(-6, 2)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Flip $y$: $-2 \\to 2$, giving $(6, 2)$.",
+                "check": [
+                  "-2 + 2 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Nature loves a mirror",
+            "body": "Butterflies, faces, and snowflakes are nearly symmetric — one half is the reflection of the other across a line. Designers and animators use axis reflections constantly, drawing one side of a shape and letting the computer flip it to make the rest."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Reflect it",
+            "prompt": "Reflect $(4, 2)$ across the x-axis.",
+            "options": [
+              "$(4, -2)$",
+              "$(-4, 2)$",
+              "$(-4, -2)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The x-axis flips $y$: $(4, -2)$.",
+            "check": [
+              "2 + (-2) == 0"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Across the **x-axis**: $(x, y) \\to (x, -y)$ — negate $y$.",
+              "Across the **y-axis**: $(x, y) \\to (-x, y)$ — negate $x$.",
+              "The image is the **same distance** from the axis, on the opposite side."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's review reflections across both axes, including points that already start negative."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Reflect $(4, 2)$ across the x-axis.",
+                "options": [
+                  "$(4, -2)$",
+                  "$(-4, 2)$",
+                  "$(-4, -2)$",
+                  "$(2, 4)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Flip $y$: $(4, -2)$.",
+                "check": [
+                  "2 + (-2) == 0"
+                ]
+              },
+              {
+                "prompt": "Reflect $(3, 5)$ across the y-axis.",
+                "options": [
+                  "$(3, -5)$",
+                  "$(-3, 5)$",
+                  "$(-3, -5)$",
+                  "$(5, 3)$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Flip $x$: $(-3, 5)$.",
+                "check": [
+                  "3 + (-3) == 0"
+                ]
+              },
+              {
+                "prompt": "Reflecting across the x-axis changes the sign of which coordinate?",
+                "options": [
+                  "$x$",
+                  "$y$",
+                  "both",
+                  "neither"
+                ],
+                "correctIndex": 1,
+                "explanation": "The x-axis is horizontal, so the up/down value $y$ flips.",
+                "check": [
+                  "3 + (-3) == 0"
+                ]
+              },
+              {
+                "prompt": "Reflect $(-2, 4)$ across the x-axis.",
+                "options": [
+                  "$(-2, -4)$",
+                  "$(2, 4)$",
+                  "$(2, -4)$",
+                  "$(-2, 4)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x$ stays $-2$; $y$ flips to $-4$.",
+                "check": [
+                  "4 + (-4) == 0"
+                ]
+              },
+              {
+                "prompt": "Reflect $(-1, -5)$ across the y-axis.",
+                "options": [
+                  "$(1, -5)$",
+                  "$(-1, 5)$",
+                  "$(1, 5)$",
+                  "$(-1, -5)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x$ flips to $1$; $y$ stays $-5$.",
+                "check": [
+                  "-1 + 1 == 0"
+                ]
+              },
+              {
+                "prompt": "Reflect $(6, -2)$ across the x-axis.",
+                "options": [
+                  "$(6, 2)$",
+                  "$(-6, -2)$",
+                  "$(-6, 2)$",
+                  "$(6, -2)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Flip $y$: $-2 \\to 2$.",
+                "check": [
+                  "-2 + 2 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Reflections Across the Axes\"",
+            "body": "Excellent — you can flip a point across either axis and know exactly which coordinate changes. Next: Distance, where we measure how far apart two points are."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "distance",
+      "title": "Distance on the Coordinate Plane",
+      "concreteComparison": "Two friends live on the same street. To find how far apart they are, you just count the blocks between them. On the grid, two points on the same horizontal or vertical line are a countable number of units apart — the difference of the coordinates that change.",
+      "objective": "Find the distance between two points that share an x-coordinate or a y-coordinate.",
+      "concept": [
+        "Points on the same **horizontal line** (same $y$) are $|x_1 - x_2|$ apart.",
+        "Points on the same **vertical line** (same $x$) are $|y_1 - y_2|$ apart.",
+        "Use **absolute value** so distance is never negative; across the origin, the parts add up."
+      ],
+      "keyIdea": "Same row → subtract the $x$'s; same column → subtract the $y$'s. Take the absolute value.",
+      "facts": [
+        {
+          "title": "Same column",
+          "latex": "$|y_1 - y_2|$",
+          "explanation": "When the x's match, distance is the y-difference."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ds-we1",
+          "statement": "Find the distance between $(2, 3)$ and $(2, 7)$.",
+          "solution": "Same $x$, so subtract the $y$'s: $|7 - 3| = 4$.",
+          "check": [
+            "Abs(7 - 3) == 4"
+          ]
+        },
+        {
+          "id": "ds-we2",
+          "statement": "Find the distance between $(-3, 1)$ and $(5, 1)$.",
+          "solution": "Same $y$, so subtract the $x$'s: $|5 - (-3)| = 8$.",
+          "check": [
+            "Abs(5 - (-3)) == 8"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Subtracting the coordinates that are the same.",
+          "correction": "If the $y$'s match, the points differ in $x$ — subtract the **x's**.",
+          "authored": true
+        },
+        {
+          "text": "Reporting a negative distance.",
+          "correction": "Distance is $|\\text{difference}|$ — always zero or positive.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ds-t1",
+          "statement": "Distance between $(1, 2)$ and $(1, 6)$?",
+          "solution": "Same $x$: $|6 - 2| = 4$.",
+          "check": [
+            "Abs(6 - 2) == 4"
+          ]
+        },
+        {
+          "id": "ds-t2",
+          "statement": "Distance between $(-2, 4)$ and $(3, 4)$?",
+          "solution": "Same $y$: $|3 - (-2)| = 5$.",
+          "check": [
+            "Abs(3 - (-2)) == 5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "Concept A",
+            "title": "Count the units",
+            "teach": "These two points share the same $x$, so they sit on a vertical line. The distance is just the difference of the $y$'s: $|7 - 3| = 4$.",
+            "config": {
+              "mode": "distance",
+              "min": -2,
+              "max": 8,
+              "points": [
+                {
+                  "x": 2,
+                  "y": 3
+                },
+                {
+                  "x": 2,
+                  "y": 7
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Same column",
+            "title": "Subtract the y's",
+            "beats": [
+              "Same $x$ means a **vertical** line.",
+              "Only the $y$'s differ.",
+              "Distance $= |y_1 - y_2|$.",
+              "$(2,3)$ to $(2,7)$: $|7 - 3| = 4$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Same row",
+            "title": "Subtract the x's",
+            "beats": [
+              "Same $y$ means a **horizontal** line.",
+              "Only the $x$'s differ.",
+              "Distance $= |x_1 - x_2|$.",
+              "$(1,4)$ to $(6,4)$: $|6 - 1| = 5$."
+            ]
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "Concept B",
+            "title": "Across the origin",
+            "teach": "These points share $y = 1$ but sit on opposite sides of the y-axis. The distance still works: $|5 - (-3)| = 8$.",
+            "config": {
+              "mode": "distance",
+              "min": -5,
+              "max": 6,
+              "points": [
+                {
+                  "x": -3,
+                  "y": 1
+                },
+                {
+                  "x": 5,
+                  "y": 1
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Finding distance",
+            "intro": "Subtract the coordinate that changes.",
+            "examples": [
+              {
+                "prompt": "Distance between $(4, 2)$ and $(4, 9)$?",
+                "steps": [
+                  "Same $x$.",
+                  "$|9 - 2| = 7$."
+                ],
+                "answer": "$7$",
+                "check": [
+                  "Abs(9 - 2) == 7"
+                ]
+              },
+              {
+                "prompt": "Distance between $(1, 3)$ and $(7, 3)$?",
+                "steps": [
+                  "Same $y$.",
+                  "$|7 - 1| = 6$."
+                ],
+                "answer": "$6$",
+                "check": [
+                  "Abs(7 - 1) == 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "How far apart?",
+            "intro": "Same row or same column?",
+            "problems": [
+              {
+                "prompt": "Distance between $(3, 1)$ and $(3, 5)$?",
+                "options": [
+                  "$2$",
+                  "$4$",
+                  "$8$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Same $x$: $|5 - 1| = 4$.",
+                "check": [
+                  "Abs(5 - 1) == 4"
+                ]
+              },
+              {
+                "prompt": "Distance between $(2, 6)$ and $(9, 6)$?",
+                "options": [
+                  "$5$",
+                  "$7$",
+                  "$11$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Same $y$: $|9 - 2| = 7$.",
+                "check": [
+                  "Abs(9 - 2) == 7"
+                ]
+              },
+              {
+                "prompt": "Distance between $(0, 0)$ and $(0, 5)$?",
+                "options": [
+                  "$0$",
+                  "$5$",
+                  "$10$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Same $x$: $|5 - 0| = 5$.",
+                "check": [
+                  "Abs(5 - 0) == 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Crossing zero",
+            "title": "Use absolute value",
+            "beats": [
+              "Sometimes points are on opposite sides of an axis.",
+              "$(-3, 1)$ and $(5, 1)$ share $y = 1$.",
+              "$|5 - (-3)| = |8| = 8$.",
+              "Subtracting a negative adds — that's the full width."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Across an axis",
+            "intro": "Mind the negative.",
+            "examples": [
+              {
+                "prompt": "Distance between $(-2, 3)$ and $(4, 3)$?",
+                "steps": [
+                  "Same $y$.",
+                  "$|4 - (-2)| = 6$."
+                ],
+                "answer": "$6$",
+                "check": [
+                  "Abs(4 - (-2)) == 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Spanning the origin",
+            "intro": "Watch the signs.",
+            "problems": [
+              {
+                "prompt": "Distance between $(1, -4)$ and $(1, 3)$?",
+                "options": [
+                  "$1$",
+                  "$7$",
+                  "$12$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Same $x$: $|3 - (-4)| = 7$.",
+                "check": [
+                  "Abs(3 - (-4)) == 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Taxicab distance",
+            "body": "This “count along the lines” distance is called **taxicab** or **Manhattan** distance — a cab in a grid city can't cut diagonally through buildings, so it travels the difference in streets plus the difference in avenues. Whole branches of math and computer science use it."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Measure it",
+            "prompt": "Distance between $(5, 2)$ and $(5, 8)$?",
+            "options": [
+              "$3$",
+              "$6$",
+              "$10$"
+            ],
+            "correctIndex": 1,
+            "explanation": "Same $x$: $|8 - 2| = 6$.",
+            "check": [
+              "Abs(8 - 2) == 6"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Same $y$ (a row): distance $= |x_1 - x_2|$.",
+              "Same $x$ (a column): distance $= |y_1 - y_2|$.",
+              "Use **absolute value**; across an axis the parts add."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's review distance along rows and columns, including a pair that spans the origin."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Distance between $(4, 1)$ and $(4, 6)$?",
+                "options": [
+                  "$4$",
+                  "$5$",
+                  "$7$",
+                  "$10$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Same $x$: $|6 - 1| = 5$.",
+                "check": [
+                  "Abs(6 - 1) == 5"
+                ]
+              },
+              {
+                "prompt": "Distance between $(2, 5)$ and $(8, 5)$?",
+                "options": [
+                  "$3$",
+                  "$6$",
+                  "$10$",
+                  "$13$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Same $y$: $|8 - 2| = 6$.",
+                "check": [
+                  "Abs(8 - 2) == 6"
+                ]
+              },
+              {
+                "prompt": "Distance between $(-4, 2)$ and $(3, 2)$?",
+                "options": [
+                  "$1$",
+                  "$5$",
+                  "$7$",
+                  "$12$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Same $y$: $|3 - (-4)| = 7$.",
+                "check": [
+                  "Abs(3 - (-4)) == 7"
+                ]
+              },
+              {
+                "prompt": "Distance between $(1, -2)$ and $(1, 5)$?",
+                "options": [
+                  "$3$",
+                  "$7$",
+                  "$10$",
+                  "$4$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Same $x$: $|5 - (-2)| = 7$.",
+                "check": [
+                  "Abs(5 - (-2)) == 7"
+                ]
+              },
+              {
+                "prompt": "Points $(3, 2)$ and $(3, 9)$ share the same $x$. What do you subtract?",
+                "options": [
+                  "the x's",
+                  "the y's",
+                  "both",
+                  "neither"
+                ],
+                "correctIndex": 1,
+                "explanation": "The $x$'s match, so subtract the $y$'s: $|9 - 2| = 7$.",
+                "check": [
+                  "Abs(9 - 2) == 7"
+                ]
+              },
+              {
+                "prompt": "How far is $(0, 0)$ from $(6, 0)$?",
+                "options": [
+                  "$0$",
+                  "$3$",
+                  "$6$",
+                  "$12$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Same $y$: $|6 - 0| = 6$.",
+                "check": [
+                  "Abs(6 - 0) == 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Distance on the Coordinate Plane\"",
+            "body": "Great — you can measure horizontal and vertical distances, even across an axis. Last in this unit: Polygons, where these side lengths build shapes."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "polygons",
+      "title": "Polygons on the Coordinate Plane",
+      "concreteComparison": "Laying out a rectangular garden, you hammer a stake at each corner. Given the corners' coordinates, you can find each side's length by counting units — and add them up for the fence you'll need (the perimeter).",
+      "objective": "Find side lengths and the perimeter of a rectangle drawn on the coordinate plane from its vertices.",
+      "concept": [
+        "A polygon's **vertices** are ordered pairs; plot them and connect in order.",
+        "A **horizontal side** is $|x_1 - x_2|$ long; a **vertical side** is $|y_1 - y_2|$ long.",
+        "The **perimeter** is the sum of all the side lengths."
+      ],
+      "keyIdea": "Side length = difference of the coordinate that changes. Perimeter = add up every side.",
+      "facts": [
+        {
+          "title": "Rectangle perimeter",
+          "latex": "$2\\ell + 2w$",
+          "explanation": "Opposite sides are equal."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pg-we1",
+          "statement": "A rectangle has corners $(1,1), (5,1), (5,4), (1,4)$. How long is the bottom side from $(1,1)$ to $(5,1)$?",
+          "solution": "Same $y$: $|5 - 1| = 4$.",
+          "check": [
+            "Abs(5 - 1) == 4"
+          ]
+        },
+        {
+          "id": "pg-we2",
+          "statement": "Find that rectangle's perimeter.",
+          "solution": "Length $4$, width $3$: $2(4) + 2(3) = 14$.",
+          "check": [
+            "2*Abs(5 - 1) + 2*Abs(4 - 1) == 14"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding only two sides for perimeter.",
+          "correction": "A rectangle has **four** sides; perimeter $= 2\\ell + 2w$, not $\\ell + w$.",
+          "authored": true
+        },
+        {
+          "text": "Using the wrong coordinate for a side.",
+          "correction": "For a horizontal side the $y$'s match, so measure with the $x$'s.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pg-t1",
+          "statement": "Length of the side from $(2,3)$ to $(2,8)$?",
+          "solution": "Same $x$: $|8 - 3| = 5$.",
+          "check": [
+            "Abs(8 - 3) == 5"
+          ]
+        },
+        {
+          "id": "pg-t2",
+          "statement": "Perimeter of a square whose side runs from $(0,0)$ to $(4,0)$?",
+          "solution": "Side $4$, four equal sides: $4 \\times 4 = 16$.",
+          "check": [
+            "4*4 == 16"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "Concept A",
+            "title": "A rectangle from its corners",
+            "teach": "These four vertices connect into a rectangle. The bottom runs from $(1,1)$ to $(5,1)$ — a horizontal side of length $|5-1| = 4$. The left side runs $(1,1)$ to $(1,4)$ — length $3$.",
+            "config": {
+              "mode": "plot",
+              "min": -1,
+              "max": 6,
+              "points": [
+                {
+                  "x": 1,
+                  "y": 1,
+                  "label": "A"
+                },
+                {
+                  "x": 5,
+                  "y": 1,
+                  "label": "B"
+                },
+                {
+                  "x": 5,
+                  "y": 4,
+                  "label": "C"
+                },
+                {
+                  "x": 1,
+                  "y": 4,
+                  "label": "D"
+                }
+              ],
+              "polygon": true,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "Sides from coordinates",
+            "beats": [
+              "Plot the vertices and connect them in order.",
+              "A **horizontal** side: subtract the $x$'s.",
+              "A **vertical** side: subtract the $y$'s.",
+              "Each side length is a whole number of units."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Add them up",
+            "title": "Perimeter",
+            "beats": [
+              "**Perimeter** is the total distance around.",
+              "Add every side length.",
+              "For a rectangle: $2\\ell + 2w$.",
+              "Length $4$, width $3$: $2(4)+2(3) = 14$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Side lengths",
+            "intro": "Subtract the coordinate that changes.",
+            "examples": [
+              {
+                "prompt": "Length from $(2,1)$ to $(2,6)$?",
+                "steps": [
+                  "Same $x$.",
+                  "$|6 - 1| = 5$."
+                ],
+                "answer": "$5$",
+                "check": [
+                  "Abs(6 - 1) == 5"
+                ]
+              },
+              {
+                "prompt": "Length from $(1,3)$ to $(7,3)$?",
+                "steps": [
+                  "Same $y$.",
+                  "$|7 - 1| = 6$."
+                ],
+                "answer": "$6$",
+                "check": [
+                  "Abs(7 - 1) == 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Measure a side",
+            "intro": "Which coordinate changes?",
+            "problems": [
+              {
+                "prompt": "Length from $(3,2)$ to $(3,9)$?",
+                "options": [
+                  "$6$",
+                  "$7$",
+                  "$11$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Same $x$: $|9 - 2| = 7$.",
+                "check": [
+                  "Abs(9 - 2) == 7"
+                ]
+              },
+              {
+                "prompt": "Length from $(-1,4)$ to $(5,4)$?",
+                "options": [
+                  "$4$",
+                  "$6$",
+                  "$9$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Same $y$: $|5 - (-1)| = 6$.",
+                "check": [
+                  "Abs(5 - (-1)) == 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Put it together",
+            "title": "Perimeter of a rectangle",
+            "beats": [
+              "Find the length and the width.",
+              "Opposite sides are equal.",
+              "Perimeter $= 2 \\times \\text{length} + 2 \\times \\text{width}$.",
+              "A $6 \\times 2$ rectangle: $2(6) + 2(2) = 16$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Whole-shape perimeter",
+            "intro": "Length and width, doubled.",
+            "examples": [
+              {
+                "prompt": "Rectangle with length $5$ and width $3$: perimeter?",
+                "steps": [
+                  "$2(5) + 2(3)$.",
+                  "$10 + 6 = 16$."
+                ],
+                "answer": "$16$",
+                "check": [
+                  "2*5 + 2*3 == 16"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the perimeter",
+            "intro": "Add all four sides.",
+            "problems": [
+              {
+                "prompt": "A rectangle has corners $(0,0),(4,0),(4,2),(0,2)$. Perimeter?",
+                "options": [
+                  "$8$",
+                  "$12$",
+                  "$6$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Length $4$, width $2$: $2(4)+2(2) = 12$.",
+                "check": [
+                  "2*Abs(4 - 0) + 2*Abs(2 - 0) == 12"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Coordinates build everything",
+            "body": "Every shape in a video game or animated film is stored as a list of vertex coordinates. The computer connects them into polygons and fills them in — a spaceship or a whole city is, underneath, just ordered pairs joined in the right order."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Whole way around",
+            "prompt": "A rectangle has length $6$ and width $3$. What is its perimeter?",
+            "options": [
+              "$9$",
+              "$18$",
+              "$24$"
+            ],
+            "correctIndex": 1,
+            "explanation": "$2(6) + 2(3) = 18$.",
+            "check": [
+              "2*6 + 2*3 == 18"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Vertices** are ordered pairs; connect them in order to draw the shape.",
+              "**Side length** = difference of the coordinate that changes.",
+              "**Perimeter** = sum of all sides; for a rectangle, $2\\ell + 2w$."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's review with side-length measures and a couple of full-rectangle perimeters."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Length of the side from $(2,1)$ to $(2,7)$?",
+                "options": [
+                  "$5$",
+                  "$6$",
+                  "$8$",
+                  "$9$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Same $x$: $|7 - 1| = 6$.",
+                "check": [
+                  "Abs(7 - 1) == 6"
+                ]
+              },
+              {
+                "prompt": "Length of the side from $(-2,3)$ to $(4,3)$?",
+                "options": [
+                  "$2$",
+                  "$4$",
+                  "$6$",
+                  "$8$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Same $y$: $|4 - (-2)| = 6$.",
+                "check": [
+                  "Abs(4 - (-2)) == 6"
+                ]
+              },
+              {
+                "prompt": "A rectangle has length $7$ and width $2$. Perimeter?",
+                "options": [
+                  "$9$",
+                  "$14$",
+                  "$18$",
+                  "$16$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$2(7) + 2(2) = 18$.",
+                "check": [
+                  "2*7 + 2*2 == 18"
+                ]
+              },
+              {
+                "prompt": "A rectangle has corners $(1,1),(6,1),(6,3),(1,3)$. What is its length (bottom side)?",
+                "options": [
+                  "$2$",
+                  "$5$",
+                  "$3$",
+                  "$6$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$|6 - 1| = 5$.",
+                "check": [
+                  "Abs(6 - 1) == 5"
+                ]
+              },
+              {
+                "prompt": "That same rectangle's perimeter (length $5$, width $2$)?",
+                "options": [
+                  "$7$",
+                  "$10$",
+                  "$14$",
+                  "$12$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$2(5) + 2(2) = 14$.",
+                "check": [
+                  "2*5 + 2*2 == 14"
+                ]
+              },
+              {
+                "prompt": "A square has a side from $(0,0)$ to $(0,5)$. What is its perimeter?",
+                "options": [
+                  "$10$",
+                  "$15$",
+                  "$20$",
+                  "$25$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Side $5$, four sides: $4 \\times 5 = 20$.",
+                "check": [
+                  "4*Abs(5 - 0) == 20"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Polygons on the Coordinate Plane\"",
+            "body": "Fantastic — you can build shapes from vertices and find their side lengths and perimeter. That completes the Coordinate Plane!"
+          }
+        ]
+      }
     }
   ],
-  "practice": [
-    {
-      "id": "coord-prac-01",
-      "statement": "Placeholder practice problem. What is the distance between $(0, 0)$ and $(3, 4)$?",
-      "solution": "Placeholder solution. $\\sqrt{3^2 + 4^2} = \\sqrt{25} = 5$."
-    }
-  ],
-  "testYourself": [
-    {
-      "id": "coord-test-01",
-      "statement": "Placeholder test problem. Reflect the point $(2, -3)$ across the $x$-axis. What is the new point?",
-      "solution": "Placeholder solution. $(2, 3)$."
-    }
-  ]
+  "practice": [],
+  "testYourself": [],
+  "status": "published"
 }

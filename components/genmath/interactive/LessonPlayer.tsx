@@ -49,6 +49,7 @@ import OrderOfOps from "@/components/genmath/interactive/OrderOfOps";
 import AlgebraTiles from "@/components/genmath/interactive/AlgebraTiles";
 import Evaluator from "@/components/genmath/interactive/Evaluator";
 import BalanceScale from "@/components/genmath/interactive/BalanceScale";
+import CoordinateGrid from "@/components/genmath/interactive/CoordinateGrid";
 import RatioFigure from "@/components/genmath/interactive/RatioFigure";
 import NotationToggle from "@/components/genmath/interactive/NotationToggle";
 import { type GenMathLesson } from "@/lib/genmath-lessons";
@@ -616,6 +617,16 @@ function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveSt
         <>
           <StepHeader eyebrow={step.eyebrow} title={step.title} />
           <BalanceScale config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "coordinateGrid":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <CoordinateGrid config={step.config} />
           <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
             <MathText text={step.teach} />
           </p>

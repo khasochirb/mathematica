@@ -427,6 +427,24 @@ export interface BalanceScaleConfig {
   color?: string;
 }
 
+// Coordinate plane — a reusable SVG grid with several modes:
+//  plot / identify (tap) / quadrants / reflect (across an axis) / distance.
+export interface GridPoint {
+  x: number;
+  y: number;
+  label?: string;
+  color?: string;
+}
+export interface CoordinateGridConfig {
+  min?: number;
+  max?: number;
+  mode: "plot" | "identify" | "quadrants" | "reflect" | "distance";
+  points?: GridPoint[];
+  reflectAxis?: "x" | "y";
+  polygon?: boolean; // plot mode: connect the points into a closed shape
+  color?: string;
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -494,6 +512,7 @@ export type InteractiveStep =
   | { kind: "algebraTiles"; eyebrow?: string; title: string; teach: string; config: AlgebraTilesConfig }
   | { kind: "evaluator"; eyebrow?: string; title: string; teach: string; config: EvaluatorConfig }
   | { kind: "balanceScale"; eyebrow?: string; title: string; teach: string; config: BalanceScaleConfig }
+  | { kind: "coordinateGrid"; eyebrow?: string; title: string; teach: string; config: CoordinateGridConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {
