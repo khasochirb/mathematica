@@ -12,6 +12,10 @@ import {
   clampProtractor,
   rayAngleDeg,
   crossingAngles,
+  transversalEight,
+  TRANSVERSAL_PAIRS,
+  INTERIOR_ANGLES,
+  EXTERIOR_ANGLES,
 } from "@/lib/geo";
 
 describe("segment math", () => {
@@ -102,5 +106,51 @@ describe("ray angle", () => {
     expect(rayAngleDeg({ x: 0, y: 0 }, { x: 1, y: 0 })).toBe(0);
     expect(rayAngleDeg({ x: 0, y: 0 }, { x: 0, y: 1 })).toBe(90);
     expect(rayAngleDeg({ x: 0, y: 0 }, { x: -1, y: 0 })).toBe(180);
+  });
+});
+
+describe("transversal angle relationships (the congruent-vs-supplementary bar)", () => {
+  const cases = [62, 40, 75, 90, 115];
+
+  it("eight angles: verticals equal, linear pairs supplementary", () => {
+    for (const a of cases) {
+      const m = transversalEight(a);
+      // vertical pairs equal
+      for (const [p, q] of TRANSVERSAL_PAIRS.vertical.pairs) expect(m[p]).toBe(m[q]);
+      // linear pairs sum to 180
+      for (const [p, q] of TRANSVERSAL_PAIRS.linearPair.pairs) expect(m[p] + m[q]).toBe(180);
+    }
+  });
+
+  it("when parallel: corresponding / alt-interior / alt-exterior are CONGRUENT", () => {
+    for (const a of cases) {
+      const m = transversalEight(a);
+      for (const key of ["corresponding", "altInterior", "altExterior"] as const) {
+        for (const [p, q] of TRANSVERSAL_PAIRS[key].pairs) expect(m[p]).toBe(m[q]);
+      }
+    }
+  });
+
+  it("when parallel: same-side interior angles are SUPPLEMENTARY (not congruent)", () => {
+    for (const a of cases) {
+      const m = transversalEight(a);
+      for (const [p, q] of TRANSVERSAL_PAIRS.sameSideInterior.pairs) expect(m[p] + m[q]).toBe(180);
+    }
+  });
+
+  it("interior and exterior angle sets partition 1..8 correctly", () => {
+    expect([...INTERIOR_ANGLES].sort()).toEqual([3, 4, 5, 6]);
+    expect([...EXTERIOR_ANGLES].sort()).toEqual([1, 2, 7, 8]);
+    // together they are all eight, no overlap
+    expect(new Set([...INTERIOR_ANGLES, ...EXTERIOR_ANGLES]).size).toBe(8);
+  });
+
+  it("a same-side interior pair is congruent ONLY in the right-angle case", () => {
+    // 62° → 62 and 118, not equal; 90° → 90 and 90, equal (the lone exception)
+    const m62 = transversalEight(62);
+    const [p, q] = TRANSVERSAL_PAIRS.sameSideInterior.pairs[0];
+    expect(m62[p]).not.toBe(m62[q]);
+    const m90 = transversalEight(90);
+    expect(m90[p]).toBe(m90[q]); // both 90
   });
 });

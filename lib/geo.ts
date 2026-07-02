@@ -74,3 +74,29 @@ export function rayAngleDeg(at: XY, through: XY): number {
 export function crossingAngles(deg: number): [number, number, number, number] {
   return [deg, 180 - deg, deg, 180 - deg];
 }
+
+// Two PARALLEL lines cut by a transversal making acute angle `a` with them.
+// Returns the eight standard-position angle measures, numbered 1=top-left,
+// 2=top-right, 3=bottom-left, 4=bottom-right at the top intersection, and
+// 5..8 likewise at the bottom intersection.
+export function transversalEight(a: number): Record<number, number> {
+  const o = 180 - a;
+  return { 1: o, 2: a, 3: a, 4: o, 5: o, 6: a, 7: a, 8: o };
+}
+
+// The named angle-pair relationships for a transversal cutting two lines.
+// Each entry lists the pairs of angle numbers of that type. The first four are
+// "transversal" pairs (they carry a special relationship only when the lines
+// are PARALLEL); vertical and linearPair hold at every crossing.
+export const TRANSVERSAL_PAIRS: Record<string, { pairs: [number, number][]; rel: "congruent" | "supplementary"; onlyIfParallel: boolean }> = {
+  corresponding: { pairs: [[1, 5], [2, 6], [3, 7], [4, 8]], rel: "congruent", onlyIfParallel: true },
+  altInterior: { pairs: [[3, 6], [4, 5]], rel: "congruent", onlyIfParallel: true },
+  altExterior: { pairs: [[1, 8], [2, 7]], rel: "congruent", onlyIfParallel: true },
+  sameSideInterior: { pairs: [[3, 5], [4, 6]], rel: "supplementary", onlyIfParallel: true },
+  vertical: { pairs: [[1, 4], [2, 3], [5, 8], [6, 7]], rel: "congruent", onlyIfParallel: false },
+  linearPair: { pairs: [[1, 2], [3, 4], [5, 6], [7, 8]], rel: "supplementary", onlyIfParallel: false },
+};
+
+// Interior angles lie between the two lines; exterior angles lie outside them.
+export const INTERIOR_ANGLES = [3, 4, 5, 6];
+export const EXTERIOR_ANGLES = [1, 2, 7, 8];

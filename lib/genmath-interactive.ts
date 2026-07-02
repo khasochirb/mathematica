@@ -546,6 +546,17 @@ export interface ConditionalFlipConfig {
   converseNote: string;
 }
 
+// Two lines cut by a transversal — the eight angles, with a pair highlighter
+// and a parallel toggle. The engine of the Parallel & Perpendicular unit.
+export interface TransversalConfig {
+  acute?: number; // acute angle the transversal makes with the lines (35..90)
+  highlight?: "none" | "corresponding" | "altInterior" | "altExterior" | "sameSideInterior" | "vertical" | "linearPair";
+  interactive?: boolean; // show pair selector + tilt stepper
+  showParallelToggle?: boolean; // let the student break parallelism
+  startParallel?: boolean;
+  showMeasures?: boolean; // print each angle's degree instead of its number
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -622,6 +633,7 @@ export type InteractiveStep =
   | { kind: "patternGrow"; eyebrow?: string; title: string; teach: string; config: PatternGrowConfig }
   | { kind: "conjectureTest"; eyebrow?: string; title: string; teach: string; config: ConjectureTestConfig }
   | { kind: "conditionalFlip"; eyebrow?: string; title: string; teach: string; config: ConditionalFlipConfig }
+  | { kind: "transversal"; eyebrow?: string; title: string; teach: string; config: TransversalConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

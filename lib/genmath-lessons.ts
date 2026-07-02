@@ -61,6 +61,7 @@ import geometryAreaVolume from "@/data/genmath/6/geometry-area-volume.json";
 import dataAndStatistics from "@/data/genmath/6/data-and-statistics.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
+import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -156,7 +157,7 @@ export const GEOMETRY_SPINE: GeometrySpineEntry[] = [
     title: "Parallel & Perpendicular Lines",
     blurb: "Transversals and the angle pairs they create — which are congruent, which are supplementary — and proving lines parallel.",
     buildsOn: "Angle pairs from Unit 1; the proof habits from Unit 2.",
-    live: false,
+    live: true,
   },
   {
     unit: 4,
@@ -243,6 +244,7 @@ export const GEOMETRY_SPINE: GeometrySpineEntry[] = [
 const geometryUnits: GeometryUnit[] = [
   geometryFoundations as unknown as GeometryUnit,
   geometryReasoning as unknown as GeometryUnit,
+  geometryParallel as unknown as GeometryUnit,
 ];
 
 export function getGeometrySpine(): GeometrySpineEntry[] {

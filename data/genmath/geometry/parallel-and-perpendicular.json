@@ -1,0 +1,2527 @@
+{
+  "slug": "parallel-and-perpendicular",
+  "title": "Parallel & Perpendicular Lines",
+  "unit": 3,
+  "status": "published",
+  "blurb": "Transversals and the eight angles they form; which pairs are congruent and which are supplementary; proving lines parallel; and perpendicular lines.",
+  "buildsOn": "Unit 1's angle pairs (vertical, linear, complementary, supplementary) and Unit 2's proof machinery (converses, properties of equality, the Vertical Angles Theorem).",
+  "lessons": [
+    {
+      "slug": "transversals",
+      "title": "Transversals & the Eight Angles",
+      "concreteComparison": "Picture two railway rails running side by side, never meeting — **parallel lines**. Now a road cuts straight across both tracks: that crossing road is a **transversal**. Where it slices the two rails it opens up eight angles, and this lesson is about naming them.",
+      "objective": "Recognize parallel lines and a transversal; name the eight angles it forms as corresponding, alternate interior, alternate exterior, or same-side interior pairs — by position alone.",
+      "concept": [
+        "**Parallel lines** are two lines in a plane that never meet, no matter how far they run. We mark them with matching arrowheads and write $m \\parallel n$.",
+        "A **transversal** is a line that crosses two (or more) lines at two different points, opening **eight** angles — four at each crossing.",
+        "The four angles **between** the two lines are **interior**; the four **outside** are **exterior**.",
+        "The angles pair up by **position**: **corresponding** (same corner at each crossing), **alternate interior** (between the lines, opposite sides of the transversal), **alternate exterior** (outside, opposite sides), and **same-side interior** (between the lines, same side). These names are about location — no measuring yet."
+      ],
+      "keyIdea": "A transversal cutting two lines makes 8 angles. Name each pair by position: corresponding, alternate interior/exterior, same-side interior.",
+      "facts": [
+        {
+          "title": "Parallel",
+          "latex": "$m \\parallel n$",
+          "explanation": "Two lines that never meet."
+        },
+        {
+          "title": "Interior angles",
+          "latex": "$\\angle 3, \\angle 4, \\angle 5, \\angle 6$",
+          "explanation": "The four angles between the two lines."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "tr-we1",
+          "statement": "A transversal cuts two lines. If the top crossing has angles $1,2,3,4$ and the bottom has $5,6,7,8$ (same layout), which angle corresponds to $\\angle 2$?",
+          "solution": "Corresponding angles sit in the **same corner** at each crossing. $\\angle 2$ is top-right up top, so its match is the top-right below: $\\angle 6$.",
+          "check": [
+            "2 + 4 == 6"
+          ]
+        },
+        {
+          "id": "tr-we2",
+          "statement": "Are $\\angle 3$ and $\\angle 6$ interior or exterior, and what pair type?",
+          "solution": "Both lie **between** the lines (interior) and on **opposite sides** of the transversal — that's an **alternate interior** pair.",
+          "check": [
+            "3 + 3 == 6"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking any two lines with a transversal must be parallel.",
+          "correction": "A transversal can cross **any** two lines. Parallel is a separate condition — the special angle relationships come later, and only when the lines really are parallel.",
+          "authored": true
+        },
+        {
+          "text": "Confusing interior with exterior.",
+          "correction": "**Interior** = the crowded space **between** the two lines; **exterior** = outside them.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "tr-t1",
+          "statement": "Which angle is the corresponding partner of $\\angle 3$ (bottom-left of the top crossing)?",
+          "solution": "Same corner below: bottom-left of the lower crossing is $\\angle 7$.",
+          "check": [
+            "3 + 4 == 7"
+          ]
+        },
+        {
+          "id": "tr-t2",
+          "statement": "Name the pair type of $\\angle 1$ and $\\angle 8$ (both outside the lines, opposite sides of the transversal).",
+          "solution": "Outside = exterior; opposite sides = alternate. **Alternate exterior.**",
+          "check": [
+            "1 + 7 == 8"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Two lines and a cutter",
+            "beats": [
+              "**Parallel lines** never meet — think railway rails, marked $m \\parallel n$.",
+              "A **transversal** is a line crossing two others at two points.",
+              "It opens **eight** angles: four at each crossing.",
+              "First job: learn their names — pure position, no measuring."
+            ]
+          },
+          {
+            "kind": "transversal",
+            "eyebrow": "Concept A",
+            "title": "Meet the eight angles",
+            "teach": "Here are the eight angles, numbered by corner: $1,2,3,4$ up top and $5,6,7,8$ below. Tap the pair buttons to light up each type and see where it lives. (Ignore the measures for now — this lesson is about position.)",
+            "config": {
+              "acute": 62,
+              "highlight": "corresponding",
+              "interactive": true,
+              "showParallelToggle": false,
+              "startParallel": true
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Between or outside",
+            "title": "Interior and exterior",
+            "beats": [
+              "The four angles **between** the two lines are **interior**: $\\angle 3, \\angle 4, \\angle 5, \\angle 6$.",
+              "The four **outside** are **exterior**: $\\angle 1, \\angle 2, \\angle 7, \\angle 8$.",
+              "This split matters for naming the pairs.",
+              "“Interior” = the sandwich filling between the lines."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Same corner",
+            "title": "Corresponding angles",
+            "beats": [
+              "**Corresponding** angles sit in the **same corner** at each crossing.",
+              "Top-left up top ($\\angle 1$) matches top-left below ($\\angle 5$).",
+              "The four corresponding pairs: $(1,5), (2,6), (3,7), (4,8)$.",
+              "Think of sliding one crossing straight down onto the other."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Name the corresponding partner",
+            "intro": "Same corner, other crossing.",
+            "examples": [
+              {
+                "prompt": "Corresponding partner of $\\angle 2$?",
+                "steps": [
+                  "$\\angle 2$ is top-right up top.",
+                  "Top-right below is $\\angle 6$."
+                ],
+                "answer": "$\\angle 6$",
+                "check": [
+                  "2 + 4 == 6"
+                ]
+              },
+              {
+                "prompt": "Corresponding partner of $\\angle 4$?",
+                "steps": [
+                  "$\\angle 4$ is bottom-right up top.",
+                  "Bottom-right below is $\\angle 8$."
+                ],
+                "answer": "$\\angle 8$",
+                "check": [
+                  "4 + 4 == 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Corresponding or not",
+            "intro": "Match the corner.",
+            "problems": [
+              {
+                "prompt": "The corresponding partner of $\\angle 1$ is —",
+                "options": [
+                  "$\\angle 5$",
+                  "$\\angle 4$",
+                  "$\\angle 8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same top-left corner at the lower crossing.",
+                "check": [
+                  "1 + 4 == 5"
+                ]
+              },
+              {
+                "prompt": "$\\angle 3$ and $\\angle 7$ are —",
+                "options": [
+                  "corresponding",
+                  "alternate interior",
+                  "same-side interior"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both bottom-left — same corner.",
+                "check": [
+                  "3 + 4 == 7"
+                ]
+              },
+              {
+                "prompt": "Which angle is INTERIOR (between the lines)?",
+                "options": [
+                  "$\\angle 1$",
+                  "$\\angle 4$",
+                  "$\\angle 8$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$\\angle 4$ lies between the two lines; $1$ and $8$ are outside.",
+                "check": [
+                  "4 + 4 == 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Across the transversal",
+            "title": "Alternate and same-side",
+            "beats": [
+              "**Alternate interior**: between the lines, **opposite** sides of the transversal — $(3,6)$ and $(4,5)$.",
+              "**Alternate exterior**: outside the lines, opposite sides — $(1,8)$ and $(2,7)$.",
+              "**Same-side interior**: between the lines, the **same** side — $(3,5)$ and $(4,6)$.",
+              "“Alternate” = opposite sides; “same-side” = same side. Read the position, not the size."
+            ]
+          },
+          {
+            "kind": "transversal",
+            "eyebrow": "Explore",
+            "title": "Find each pair",
+            "teach": "Cycle through the four pair types and watch which corners light up. Notice: alternate pairs sit on opposite sides of the slanted transversal; same-side pairs share a side.",
+            "config": {
+              "acute": 55,
+              "highlight": "altInterior",
+              "interactive": true,
+              "showParallelToggle": false,
+              "startParallel": true
+            }
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Name the pair type",
+            "intro": "Interior/exterior, then alternate/same-side.",
+            "problems": [
+              {
+                "prompt": "$\\angle 4$ and $\\angle 5$ (between the lines, opposite sides) are —",
+                "options": [
+                  "corresponding",
+                  "alternate interior",
+                  "alternate exterior"
+                ],
+                "correctIndex": 1,
+                "explanation": "Interior + opposite sides = alternate interior.",
+                "check": [
+                  "4 + 1 == 5"
+                ]
+              },
+              {
+                "prompt": "$\\angle 2$ and $\\angle 7$ (outside, opposite sides) are —",
+                "options": [
+                  "alternate exterior",
+                  "same-side interior",
+                  "corresponding"
+                ],
+                "correctIndex": 0,
+                "explanation": "Exterior + opposite sides = alternate exterior.",
+                "check": [
+                  "2 + 5 == 7"
+                ]
+              },
+              {
+                "prompt": "$\\angle 3$ and $\\angle 5$ (between the lines, same side) are —",
+                "options": [
+                  "alternate interior",
+                  "same-side interior",
+                  "corresponding"
+                ],
+                "correctIndex": 1,
+                "explanation": "Interior + same side = same-side interior.",
+                "check": [
+                  "3 + 2 == 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why railroads care",
+            "body": "Real train tracks stay a fixed distance apart — parallel — for the whole route, and every road or bridge that crosses is a transversal. Surveyors set the crossing angle deliberately: a shallow crossing angle stretches the intersection out and is smoother and safer for both the train and the traffic above."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Name it",
+            "prompt": "$\\angle 1$ and $\\angle 5$ sit in the same corner at each crossing. They are —",
+            "options": [
+              "corresponding",
+              "alternate interior",
+              "same-side interior"
+            ],
+            "correctIndex": 0,
+            "explanation": "Same corner = corresponding.",
+            "check": [
+              "1 + 4 == 5"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Parallel lines** ($m \\parallel n$) never meet; a **transversal** crosses two lines, making **eight** angles.",
+              "**Interior** angles ($3,4,5,6$) sit between the lines; **exterior** ($1,2,7,8$) outside.",
+              "Pairs by position: **corresponding** (same corner), **alternate interior/exterior** (opposite sides), **same-side interior** (same side)."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's practice naming — partners and pair types, all by position."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "The corresponding partner of $\\angle 4$ is —",
+                "options": [
+                  "$\\angle 5$",
+                  "$\\angle 6$",
+                  "$\\angle 8$",
+                  "$\\angle 1$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Bottom-right corner at each crossing: $\\angle 4 \\to \\angle 8$.",
+                "check": [
+                  "4 + 4 == 8"
+                ]
+              },
+              {
+                "prompt": "Which set lists the INTERIOR angles?",
+                "options": [
+                  "$1,2,7,8$",
+                  "$3,4,5,6$",
+                  "$1,3,5,7$",
+                  "$2,4,6,8$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Interior = between the two lines.",
+                "check": [
+                  "3 + 4 == 7"
+                ]
+              },
+              {
+                "prompt": "$\\angle 4$ and $\\angle 5$ are —",
+                "options": [
+                  "corresponding",
+                  "alternate interior",
+                  "same-side interior",
+                  "alternate exterior"
+                ],
+                "correctIndex": 1,
+                "explanation": "Between the lines, opposite sides.",
+                "check": [
+                  "4 + 1 == 5"
+                ]
+              },
+              {
+                "prompt": "$\\angle 1$ and $\\angle 8$ are —",
+                "options": [
+                  "alternate interior",
+                  "alternate exterior",
+                  "corresponding",
+                  "same-side interior"
+                ],
+                "correctIndex": 1,
+                "explanation": "Both exterior, opposite sides of the transversal.",
+                "check": [
+                  "1 + 7 == 8"
+                ]
+              },
+              {
+                "prompt": "$\\angle 4$ and $\\angle 6$ are —",
+                "options": [
+                  "same-side interior",
+                  "alternate interior",
+                  "corresponding",
+                  "vertical"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both interior, on the same side of the transversal.",
+                "check": [
+                  "4 + 2 == 6"
+                ]
+              },
+              {
+                "prompt": "A line crossing two others at two points is called a —",
+                "options": [
+                  "parallel",
+                  "transversal",
+                  "bisector",
+                  "vertex"
+                ],
+                "correctIndex": 1,
+                "explanation": "That's the definition of a transversal.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Transversals & the Eight Angles\"",
+            "body": "You can name all eight angles and their pairs by position. Next: what happens to those pairs when the two lines are PARALLEL — the payoff of this whole unit."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "angles-and-parallel-lines",
+      "title": "Angles & Parallel Lines",
+      "concreteComparison": "Lean a ladder against a wall, then slide it to a second rung the same wall: the angle it makes doesn't change, because the wall's edges are parallel. When a transversal cuts **parallel** lines, matching angles come out equal — and this lesson pins down exactly which are equal and which instead add to $180^\\circ$.",
+      "objective": "Apply the parallel-line angle relationships: corresponding, alternate interior, and alternate exterior angles are congruent; same-side interior angles are supplementary.",
+      "concept": [
+        "**Corresponding Angles Postulate**: if two parallel lines are cut by a transversal, each pair of **corresponding** angles is **congruent** (equal measures).",
+        "From it follow three theorems (all needing parallel lines): **alternate interior** angles are congruent, **alternate exterior** angles are congruent, and **same-side interior** angles are **supplementary** (sum $180^\\circ$).",
+        "The one to burn in: three of the four pairs are **equal**, but **same-side interior** angles are **supplementary** — they add to $180^\\circ$, they are NOT equal (except the special right-angle case).",
+        "None of this holds if the lines aren't parallel. Parallel is the price of admission."
+      ],
+      "keyIdea": "Parallel lines cut by a transversal: corresponding, alternate interior, alternate exterior → CONGRUENT. Same-side interior → SUPPLEMENTARY (180°).",
+      "facts": [
+        {
+          "title": "Congruent trio",
+          "latex": "corr. ≅, alt. int. ≅, alt. ext. ≅",
+          "explanation": "Three pair types are equal — when parallel."
+        },
+        {
+          "title": "The odd one out",
+          "latex": "same-side interior: sum $= 180^\\circ$",
+          "explanation": "Supplementary, not congruent."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pa-we1",
+          "statement": "Parallel lines are cut by a transversal; one angle is $118^\\circ$. Its corresponding angle measures —",
+          "solution": "Corresponding angles are congruent, so also $118^\\circ$.",
+          "check": [
+            "180 - 62 == 118"
+          ]
+        },
+        {
+          "id": "pa-we2",
+          "statement": "Same parallel lines: an interior angle is $118^\\circ$. Its same-side interior partner measures —",
+          "solution": "Same-side interior angles are supplementary: $180^\\circ - 118^\\circ = 62^\\circ$.",
+          "check": [
+            "180 - 118 == 62"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Calling same-side interior angles congruent.",
+          "correction": "They are **supplementary** — they sum to $180^\\circ$. Only corresponding, alternate interior, and alternate exterior pairs are equal.",
+          "authored": true
+        },
+        {
+          "text": "Using these relationships when the lines aren't parallel.",
+          "correction": "Every one of them **requires** $m \\parallel n$. No parallel, no guarantee.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pa-t1",
+          "statement": "Parallel lines; an angle is $75^\\circ$. Its alternate interior angle is —",
+          "solution": "Alternate interior angles are congruent: $75^\\circ$.",
+          "check": [
+            "75 + 30 == 105",
+            "105 - 30 == 75"
+          ]
+        },
+        {
+          "id": "pa-t2",
+          "statement": "Parallel lines; a same-side interior angle is $130^\\circ$. Its partner is —",
+          "solution": "Supplementary: $180^\\circ - 130^\\circ = 50^\\circ$.",
+          "check": [
+            "180 - 130 == 50"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "The one postulate",
+            "beats": [
+              "When the two lines are **parallel**, a transversal makes matching angles equal.",
+              "**Corresponding Angles Postulate**: corresponding pairs are **congruent**.",
+              "We accept it as a postulate (no proof) — then prove the rest from it.",
+              "Everything this lesson claims needs the lines to be parallel."
+            ]
+          },
+          {
+            "kind": "transversal",
+            "eyebrow": "Concept A",
+            "title": "Congruent — while parallel",
+            "teach": "The lines are parallel (note the matching marks). Corresponding angles $\\angle 1$ and $\\angle 5$ are equal. Try the other pair buttons: three types are equal, and one — same-side interior — instead sums to $180^\\circ$.",
+            "config": {
+              "acute": 68,
+              "highlight": "corresponding",
+              "interactive": true,
+              "showParallelToggle": false,
+              "startParallel": true
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The congruent trio",
+            "title": "Three equal pairs",
+            "beats": [
+              "**Corresponding** angles: congruent (the postulate).",
+              "**Alternate interior** angles: congruent (a theorem).",
+              "**Alternate exterior** angles: congruent (a theorem).",
+              "All three equal — when the lines are parallel."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The exception",
+            "title": "Same-side interior are supplementary",
+            "beats": [
+              "**Same-side interior** angles do NOT match.",
+              "They are **supplementary**: they add to $180^\\circ$.",
+              "$118^\\circ$ and $62^\\circ$: different, but $118 + 62 = 180$.",
+              "This is the single most-missed fact in the unit — congruent for three, $180^\\circ$ for this one."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Congruent or supplementary?",
+            "intro": "Match the pair type to its rule.",
+            "examples": [
+              {
+                "prompt": "Parallel lines; an angle is $110^\\circ$. Its corresponding angle?",
+                "steps": [
+                  "Corresponding → congruent.",
+                  "$110^\\circ$."
+                ],
+                "answer": "$110^\\circ$",
+                "check": [
+                  "180 - 70 == 110"
+                ]
+              },
+              {
+                "prompt": "Parallel lines; an interior angle is $110^\\circ$. Its same-side interior partner?",
+                "steps": [
+                  "Same-side interior → supplementary.",
+                  "$180^\\circ - 110^\\circ = 70^\\circ$."
+                ],
+                "answer": "$70^\\circ$",
+                "check": [
+                  "180 - 110 == 70"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Which rule?",
+            "intro": "Equal, or add to 180?",
+            "problems": [
+              {
+                "prompt": "Parallel lines; an angle is $65^\\circ$. Its alternate exterior angle is —",
+                "options": [
+                  "$65^\\circ$",
+                  "$115^\\circ$",
+                  "$25^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Alternate exterior → congruent.",
+                "check": [
+                  "180 - 115 == 65"
+                ]
+              },
+              {
+                "prompt": "Parallel lines; a same-side interior angle is $72^\\circ$. Its partner is —",
+                "options": [
+                  "$72^\\circ$",
+                  "$108^\\circ$",
+                  "$18^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Supplementary: $180 - 72 = 108$.",
+                "check": [
+                  "180 - 72 == 108"
+                ]
+              },
+              {
+                "prompt": "Parallel lines; an angle is $140^\\circ$. Its alternate interior angle is —",
+                "options": [
+                  "$40^\\circ$",
+                  "$140^\\circ$",
+                  "$180^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Alternate interior → congruent.",
+                "check": [
+                  "180 - 40 == 140"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "transversal",
+            "eyebrow": "See it break",
+            "title": "Only when parallel",
+            "teach": "Now tap the toggle to make the lines NOT parallel. Watch corresponding angles turn red — they're no longer equal. Parallel is exactly what makes the relationships hold.",
+            "config": {
+              "acute": 60,
+              "highlight": "corresponding",
+              "interactive": true,
+              "showParallelToggle": true,
+              "startParallel": false
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Two-step mixes",
+            "intro": "Combine with Unit 1 (vertical, linear pairs).",
+            "examples": [
+              {
+                "prompt": "Parallel lines; $\\angle 1 = 125^\\circ$. Find its same-side interior partner, then that partner's vertical angle.",
+                "steps": [
+                  "Same-side interior: $180^\\circ - 125^\\circ = 55^\\circ$.",
+                  "Vertical angle of that is also $55^\\circ$."
+                ],
+                "answer": "$55^\\circ$",
+                "check": [
+                  "180 - 125 == 55"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Name the relationship's result",
+            "intro": "Congruent trio vs the supplementary one.",
+            "problems": [
+              {
+                "prompt": "Which pair type is SUPPLEMENTARY (not congruent) on parallel lines?",
+                "options": [
+                  "corresponding",
+                  "alternate interior",
+                  "same-side interior",
+                  "alternate exterior"
+                ],
+                "correctIndex": 2,
+                "explanation": "Same-side interior angles add to $180^\\circ$.",
+                "check": [
+                  "118 + 62 == 180"
+                ]
+              },
+              {
+                "prompt": "Parallel lines; an angle is $90^\\circ$. Its same-side interior partner is —",
+                "options": [
+                  "$90^\\circ$",
+                  "$0^\\circ$",
+                  "$180^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$180 - 90 = 90$ — the one case where same-side interior angles are also equal.",
+                "check": [
+                  "180 - 90 == 90"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The illusion that isn't",
+            "body": "Op-artists draw parallel lines crossed by many short transversals at clashing angles — the famous “café wall” illusion makes the parallel lines look slanted and wonky. They're provably parallel; your visual system is just fooled by the corresponding angles. Geometry wins over the eye."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Congruent or 180?",
+            "prompt": "On parallel lines, same-side interior angles are —",
+            "options": [
+              "congruent",
+              "supplementary",
+              "complementary"
+            ],
+            "correctIndex": 1,
+            "explanation": "They add to $180^\\circ$ — supplementary.",
+            "check": [
+              "118 + 62 == 180"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Corresponding Angles Postulate** → corresponding angles congruent when parallel.",
+              "**Alternate interior** and **alternate exterior** angles are congruent too.",
+              "**Same-side interior** angles are **supplementary** ($180^\\circ$) — the exception. All of it needs parallel lines."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's drill the congruent-vs-supplementary split until it's automatic."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Parallel lines; an angle is $105^\\circ$. Its corresponding angle is —",
+                "options": [
+                  "$75^\\circ$",
+                  "$105^\\circ$",
+                  "$180^\\circ$",
+                  "$15^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Corresponding → congruent.",
+                "check": [
+                  "180 - 75 == 105"
+                ]
+              },
+              {
+                "prompt": "Parallel lines; a same-side interior angle is $105^\\circ$. Its partner is —",
+                "options": [
+                  "$105^\\circ$",
+                  "$75^\\circ$",
+                  "$95^\\circ$",
+                  "$85^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Supplementary: $180 - 105 = 75$.",
+                "check": [
+                  "180 - 105 == 75"
+                ]
+              },
+              {
+                "prompt": "Parallel lines; an angle is $48^\\circ$. Its alternate interior angle is —",
+                "options": [
+                  "$132^\\circ$",
+                  "$48^\\circ$",
+                  "$42^\\circ$",
+                  "$90^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Alternate interior → congruent.",
+                "check": [
+                  "180 - 132 == 48"
+                ]
+              },
+              {
+                "prompt": "Which relationship does NOT give equal angles on parallel lines?",
+                "options": [
+                  "corresponding",
+                  "alternate exterior",
+                  "same-side interior",
+                  "alternate interior"
+                ],
+                "correctIndex": 2,
+                "explanation": "Same-side interior are supplementary, not equal.",
+                "check": [
+                  "90 + 90 == 180"
+                ]
+              },
+              {
+                "prompt": "Parallel lines; an alternate exterior angle is $153^\\circ$. Its partner is —",
+                "options": [
+                  "$27^\\circ$",
+                  "$153^\\circ$",
+                  "$180^\\circ$",
+                  "$63^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Alternate exterior → congruent.",
+                "check": [
+                  "180 - 27 == 153"
+                ]
+              },
+              {
+                "prompt": "If a same-side interior pair are EQUAL, each must be —",
+                "options": [
+                  "$45^\\circ$",
+                  "$60^\\circ$",
+                  "$90^\\circ$",
+                  "$120^\\circ$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Equal and summing to $180^\\circ$ forces $90^\\circ$ each.",
+                "check": [
+                  "solve(Eq(x + x, 180), x) == [90]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Angles & Parallel Lines\"",
+            "body": "You know exactly which pairs are equal and which sum to $180^\\circ$. Next: use those rules to find every one of the eight angles — including with algebra."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "finding-angle-measures",
+      "title": "Finding Angle Measures",
+      "concreteComparison": "A single beam of sunlight hitting a set of parallel window blinds makes the same angle on every slat. Know one angle where a transversal meets parallel lines, and you can find all eight — this lesson turns the relationships into a tool, algebra included.",
+      "objective": "Find all eight angles formed by a transversal and parallel lines from one known angle, and solve for a variable using the relationships.",
+      "concept": [
+        "Given **one** angle on parallel lines, every other angle is either **equal** to it (corresponding, alternate interior/exterior, or vertical) or its **supplement** (linear pair or same-side interior).",
+        "So all eight angles take just **two** values: the angle and its $180^\\circ$ supplement.",
+        "When an angle is written as an **expression** in $x$, set up an equation: equal pairs give “expression = expression”; supplementary pairs give “expression + expression = $180$”. Then solve (Unit 2's algebraic proof).",
+        "Always check *which* relationship links the two angles before you write the equation — equal or sum-to-$180$."
+      ],
+      "keyIdea": "One angle fixes all eight: each is the angle or its supplement. For algebra, set equal pairs equal and supplementary pairs to 180, then solve.",
+      "facts": [
+        {
+          "title": "Just two values",
+          "latex": "$a$ and $180^\\circ - a$",
+          "explanation": "Every one of the eight angles is one of these."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "fm-we1",
+          "statement": "Parallel lines cut by a transversal; $\\angle 1 = 112^\\circ$. Find $\\angle 4$ (its vertical angle) and $\\angle 2$ (its linear pair).",
+          "solution": "$\\angle 4 = 112^\\circ$ (vertical). $\\angle 2 = 180^\\circ - 112^\\circ = 68^\\circ$ (linear pair).",
+          "check": [
+            "180 - 112 == 68"
+          ]
+        },
+        {
+          "id": "fm-we2",
+          "statement": "Corresponding angles are $(3x)^\\circ$ and $(2x + 40)^\\circ$. Solve for $x$.",
+          "solution": "Corresponding → equal: $3x = 2x + 40$, so $x = 40$.",
+          "check": [
+            "solve(Eq(3*x, 2*x + 40), x) == [40]"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Setting supplementary angles equal (or vice versa).",
+          "correction": "Check the relationship first: equal pairs → “= ”; same-side interior / linear pairs → “sum $= 180$.”",
+          "authored": true
+        },
+        {
+          "text": "Stopping after finding $x$ when asked for the angle.",
+          "correction": "If the question wants the **angle measure**, substitute $x$ back into the expression.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "fm-t1",
+          "statement": "Parallel lines; $\\angle 5 = 47^\\circ$. Its same-side interior partner $\\angle 3$ is —",
+          "solution": "Supplementary: $180^\\circ - 47^\\circ = 133^\\circ$.",
+          "check": [
+            "180 - 47 == 133"
+          ]
+        },
+        {
+          "id": "fm-t2",
+          "statement": "Alternate interior angles are $(x + 25)^\\circ$ and $(2x - 10)^\\circ$. Solve for $x$.",
+          "solution": "Alternate interior → equal: $x + 25 = 2x - 10$, so $x = 35$.",
+          "check": [
+            "solve(Eq(x + 25, 2*x - 10), x) == [35]"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "One angle, all eight",
+            "beats": [
+              "On parallel lines, every angle equals the given one or its supplement.",
+              "Equal to it: vertical, corresponding, alternate interior, alternate exterior.",
+              "Supplement of it: linear pair, same-side interior.",
+              "So the eight angles show only **two** numbers, $a$ and $180^\\circ - a$."
+            ]
+          },
+          {
+            "kind": "transversal",
+            "eyebrow": "Concept A",
+            "title": "Read every measure",
+            "teach": "This figure shows the actual degrees in each corner. There are only two values — the acute and the obtuse — and they add to $180^\\circ$. Tilt the transversal and watch both update.",
+            "config": {
+              "acute": 62,
+              "highlight": "none",
+              "interactive": true,
+              "showParallelToggle": false,
+              "startParallel": true,
+              "showMeasures": true
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "With numbers",
+            "title": "Fill in from one angle",
+            "beats": [
+              "Say $\\angle 1 = 112^\\circ$.",
+              "Its supplement is $180^\\circ - 112^\\circ = 68^\\circ$.",
+              "Every angle is now $112^\\circ$ or $68^\\circ$.",
+              "Match each by its relationship to $\\angle 1$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Find the measures",
+            "intro": "Equal, or supplement.",
+            "examples": [
+              {
+                "prompt": "$\\angle 1 = 112^\\circ$ on parallel lines. Find $\\angle 5$ (corresponding) and $\\angle 3$ (same-side interior).",
+                "steps": [
+                  "$\\angle 5$: corresponding → $112^\\circ$.",
+                  "$\\angle 3$: same-side interior → $180^\\circ - 112^\\circ = 68^\\circ$."
+                ],
+                "answer": "$\\angle 5 = 112^\\circ$, $\\angle 3 = 68^\\circ$",
+                "check": [
+                  "180 - 112 == 68"
+                ]
+              },
+              {
+                "prompt": "$\\angle 6 = 73^\\circ$. Find its alternate interior angle and its linear-pair neighbor.",
+                "steps": [
+                  "Alternate interior → $73^\\circ$.",
+                  "Linear pair → $180^\\circ - 73^\\circ = 107^\\circ$."
+                ],
+                "answer": "$73^\\circ$ and $107^\\circ$",
+                "check": [
+                  "180 - 73 == 107"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Fill in the angle",
+            "intro": "Pick equal or supplement.",
+            "problems": [
+              {
+                "prompt": "$\\angle 2 = 121^\\circ$; find its corresponding angle $\\angle 6$.",
+                "options": [
+                  "$59^\\circ$",
+                  "$121^\\circ$",
+                  "$90^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Corresponding → equal.",
+                "check": [
+                  "180 - 59 == 121"
+                ]
+              },
+              {
+                "prompt": "$\\angle 4 = 88^\\circ$; find its same-side interior partner $\\angle 6$.",
+                "options": [
+                  "$88^\\circ$",
+                  "$92^\\circ$",
+                  "$12^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Supplementary: $180 - 88 = 92$.",
+                "check": [
+                  "180 - 88 == 92"
+                ]
+              },
+              {
+                "prompt": "$\\angle 7 = 64^\\circ$; find its alternate exterior angle $\\angle 2$.",
+                "options": [
+                  "$64^\\circ$",
+                  "$116^\\circ$",
+                  "$26^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Alternate exterior → equal.",
+                "check": [
+                  "180 - 116 == 64"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Now with x",
+            "title": "Set up the equation",
+            "beats": [
+              "Two angles given as expressions? Use the relationship.",
+              "**Equal** pairs (corresponding, alternate…): set the expressions **equal**.",
+              "**Supplementary** pairs (same-side interior, linear): set their **sum to $180$**.",
+              "Solve the equation — it's the algebraic proof from Unit 2."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Solve for x",
+            "intro": "Relationship first, then equation.",
+            "examples": [
+              {
+                "prompt": "Corresponding angles $(3x)^\\circ$ and $(2x + 40)^\\circ$. Find $x$.",
+                "steps": [
+                  "Corresponding → equal: $3x = 2x + 40$.",
+                  "Subtract $2x$: $x = 40$."
+                ],
+                "answer": "$x = 40$",
+                "check": [
+                  "solve(Eq(3*x, 2*x + 40), x) == [40]"
+                ]
+              },
+              {
+                "prompt": "Same-side interior angles $(2x)^\\circ$ and $(x + 30)^\\circ$. Find $x$.",
+                "steps": [
+                  "Same-side interior → sum $180$: $2x + (x + 30) = 180$.",
+                  "$3x + 30 = 180$, so $3x = 150$, $x = 50$."
+                ],
+                "answer": "$x = 50$",
+                "check": [
+                  "solve(Eq(2*x + (x + 30), 180), x) == [50]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Algebra with the rules",
+            "intro": "Equal pairs = ; supplementary pairs sum to 180.",
+            "problems": [
+              {
+                "prompt": "Alternate interior angles $(4x - 10)^\\circ$ and $(3x + 20)^\\circ$. $x = $ —",
+                "options": [
+                  "$30$",
+                  "$10$",
+                  "$25$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal: $4x - 10 = 3x + 20 \\Rightarrow x = 30$.",
+                "check": [
+                  "solve(Eq(4*x - 10, 3*x + 20), x) == [30]"
+                ]
+              },
+              {
+                "prompt": "Same-side interior angles $(x)^\\circ$ and $(x + 50)^\\circ$. $x = $ —",
+                "options": [
+                  "$65$",
+                  "$130$",
+                  "$50$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Sum $180$: $2x + 50 = 180 \\Rightarrow x = 65$.",
+                "check": [
+                  "solve(Eq(x + (x + 50), 180), x) == [65]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Blinds, bridges, and parking lots",
+            "body": "Angled parking spaces are drawn as parallel lines cut by the transversal of the driving lane — traffic engineers pick the angle so the equal corresponding angles let cars turn in smoothly. Too steep and you can't swing in; the geometry of this lesson is literally painted on the asphalt."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Solve it",
+            "prompt": "Corresponding angles $(5x)^\\circ$ and $(3x + 50)^\\circ$. $x = $ —",
+            "options": [
+              "$25$",
+              "$20$",
+              "$10$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Equal: $5x = 3x + 50 \\Rightarrow 2x = 50 \\Rightarrow x = 25$.",
+            "check": [
+              "solve(Eq(5*x, 3*x + 50), x) == [25]"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "One angle fixes all eight — each is that angle or its $180^\\circ$ supplement.",
+              "Equal pairs: corresponding, alternate interior/exterior, vertical.",
+              "Supplementary pairs: linear pair, same-side interior. For algebra: equal → set equal; supplementary → sum to $180$; then solve."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's find measures and solve for x — the everyday work of parallel-line problems."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$\\angle 1 = 133^\\circ$ on parallel lines. Its linear-pair neighbor $\\angle 2$ is —",
+                "options": [
+                  "$47^\\circ$",
+                  "$133^\\circ$",
+                  "$57^\\circ$",
+                  "$43^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$180 - 133 = 47$.",
+                "check": [
+                  "180 - 133 == 47"
+                ]
+              },
+              {
+                "prompt": "$\\angle 3 = 78^\\circ$. Its corresponding angle $\\angle 7$ is —",
+                "options": [
+                  "$102^\\circ$",
+                  "$78^\\circ$",
+                  "$12^\\circ$",
+                  "$90^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Corresponding → equal.",
+                "check": [
+                  "180 - 102 == 78"
+                ]
+              },
+              {
+                "prompt": "Corresponding angles $(6x)^\\circ$ and $(4x + 30)^\\circ$. $x = $ —",
+                "options": [
+                  "$10$",
+                  "$15$",
+                  "$20$",
+                  "$3$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$6x = 4x + 30 \\Rightarrow 2x = 30 \\Rightarrow x = 15$.",
+                "check": [
+                  "solve(Eq(6*x, 4*x + 30), x) == [15]"
+                ]
+              },
+              {
+                "prompt": "Same-side interior angles $(3x + 10)^\\circ$ and $(2x)^\\circ$. $x = $ —",
+                "options": [
+                  "$34$",
+                  "$170$",
+                  "$38$",
+                  "$30$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Sum $180$: $5x + 10 = 180 \\Rightarrow x = 34$.",
+                "check": [
+                  "solve(Eq((3*x + 10) + 2*x, 180), x) == [34]"
+                ]
+              },
+              {
+                "prompt": "Alternate exterior angles $(x + 15)^\\circ$ and $(2x - 25)^\\circ$. $x = $ —",
+                "options": [
+                  "$40$",
+                  "$10$",
+                  "$55$",
+                  "$20$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal: $x + 15 = 2x - 25 \\Rightarrow x = 40$.",
+                "check": [
+                  "solve(Eq(x + 15, 2*x - 25), x) == [40]"
+                ]
+              },
+              {
+                "prompt": "On parallel lines, the eight angles take how many DIFFERENT values (in general)?",
+                "options": [
+                  "$1$",
+                  "$2$",
+                  "$4$",
+                  "$8$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Just the angle and its supplement — two values.",
+                "check": [
+                  "62 + 118 == 180"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Finding Angle Measures\"",
+            "body": "You can fill in all eight angles and solve for the unknown. Next: run the logic backwards — using angles to PROVE that two lines are parallel."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "proving-lines-parallel",
+      "title": "Proving Lines Parallel",
+      "concreteComparison": "A carpenter checks that two shelf brackets are parallel by measuring the angle each makes with the wall stud — if the angles match, the shelves are parallel, no need to extend the boards to infinity to see they never meet. Angle facts run **backwards** too: the right matching angles PROVE two lines are parallel.",
+      "objective": "Use the converses of the parallel-line theorems to prove two lines are parallel from an angle relationship.",
+      "concept": [
+        "Lesson 2 said: *if parallel, then the angles match.* The **converses** run the other way: *if the angles match, then parallel.*",
+        "**Converse of the Corresponding Angles Postulate**: if a transversal makes a pair of **corresponding** angles **congruent**, the two lines are **parallel**.",
+        "Likewise: congruent **alternate interior** angles ⟹ parallel; congruent **alternate exterior** angles ⟹ parallel; **supplementary same-side interior** angles ⟹ parallel.",
+        "This is exactly the converse skill from Unit 2 — and here every converse happens to be **true**, which is what lets us *prove* lines parallel."
+      ],
+      "keyIdea": "Angle facts reverse: congruent corresponding / alternate angles (or supplementary same-side interior) PROVE the lines are parallel.",
+      "facts": [
+        {
+          "title": "The reverse",
+          "latex": "matching angles $\\Rightarrow$ parallel",
+          "explanation": "The converse of each Lesson 2 theorem — all true."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pp-we1",
+          "statement": "A transversal makes corresponding angles of $70^\\circ$ and $70^\\circ$. Are the two lines parallel?",
+          "solution": "Congruent corresponding angles ⟹ parallel (converse of the postulate). Yes.",
+          "check": [
+            "70 == 70",
+            "180 - 110 == 70"
+          ]
+        },
+        {
+          "id": "pp-we2",
+          "statement": "Same-side interior angles measure $105^\\circ$ and $80^\\circ$. Parallel?",
+          "solution": "For parallel, same-side interior angles must be **supplementary**: $105 + 80 = 185 \\neq 180$. Not parallel.",
+          "check": [
+            "105 + 80 == 185",
+            "185 != 180"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Requiring same-side interior angles to be equal to prove parallel.",
+          "correction": "For same-side interior, the parallel test is **supplementary** (sum $180^\\circ$), not equal.",
+          "authored": true
+        },
+        {
+          "text": "Concluding parallel from angles that aren't a valid pair.",
+          "correction": "The two angles must actually be corresponding / alternate / same-side interior. Any old pair proves nothing.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pp-t1",
+          "statement": "Alternate interior angles are both $54^\\circ$. Parallel?",
+          "solution": "Congruent alternate interior angles ⟹ parallel. Yes.",
+          "check": [
+            "54 == 54",
+            "180 - 126 == 54"
+          ]
+        },
+        {
+          "id": "pp-t2",
+          "statement": "Same-side interior angles are $118^\\circ$ and $62^\\circ$. Parallel?",
+          "solution": "$118 + 62 = 180$ — supplementary ⟹ parallel. Yes.",
+          "check": [
+            "118 + 62 == 180"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Run the logic backwards",
+            "beats": [
+              "Lesson 2: *parallel ⟹ matching angles.*",
+              "Now the **converse**: *matching angles ⟹ parallel.*",
+              "It's the converse skill from Unit 2 — and each of these converses is **true**.",
+              "That's what lets us **prove** two lines are parallel."
+            ]
+          },
+          {
+            "kind": "conditionalFlip",
+            "eyebrow": "Concept A",
+            "title": "The converse that works",
+            "teach": "The statement and its converse are BOTH true here — the mark of a rule that runs both ways. Flip it to see the parallel-proving direction.",
+            "config": {
+              "hypothesis": "the lines are parallel",
+              "conclusion": "corresponding angles are congruent",
+              "statementTrue": true,
+              "converseTrue": true,
+              "statementNote": "The Corresponding Angles Postulate — parallel gives equal corresponding angles.",
+              "converseNote": "Its converse is also true: equal corresponding angles force the lines to be parallel. This is the tool for PROVING parallel."
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The four tests",
+            "title": "Ways to prove parallel",
+            "beats": [
+              "Congruent **corresponding** angles ⟹ parallel.",
+              "Congruent **alternate interior** angles ⟹ parallel.",
+              "Congruent **alternate exterior** angles ⟹ parallel.",
+              "**Supplementary** same-side interior angles ⟹ parallel."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Parallel or not?",
+            "intro": "Match the test, then check the numbers.",
+            "examples": [
+              {
+                "prompt": "Corresponding angles $70^\\circ$ and $70^\\circ$. Parallel?",
+                "steps": [
+                  "Congruent corresponding angles.",
+                  "Converse of the postulate ⟹ parallel."
+                ],
+                "answer": "Yes",
+                "check": [
+                  "70 == 70"
+                ]
+              },
+              {
+                "prompt": "Same-side interior angles $110^\\circ$ and $70^\\circ$. Parallel?",
+                "steps": [
+                  "The test is supplementary.",
+                  "$110 + 70 = 180$ ✓ ⟹ parallel."
+                ],
+                "answer": "Yes",
+                "check": [
+                  "110 + 70 == 180"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Apply the converse",
+            "intro": "Congruent (or supplementary, for same-side).",
+            "problems": [
+              {
+                "prompt": "Alternate interior angles $63^\\circ$ and $63^\\circ$. Parallel?",
+                "options": [
+                  "Yes — congruent alt. interior",
+                  "No"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal alternate interior angles ⟹ parallel.",
+                "check": [
+                  "63 == 63"
+                ]
+              },
+              {
+                "prompt": "Same-side interior angles $100^\\circ$ and $70^\\circ$. Parallel?",
+                "options": [
+                  "Yes",
+                  "No — they sum to $170^\\circ$, not $180^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$100 + 70 = 170 \\neq 180$ — not supplementary, so not parallel.",
+                "check": [
+                  "100 + 70 == 170",
+                  "170 != 180"
+                ]
+              },
+              {
+                "prompt": "Corresponding angles $88^\\circ$ and $92^\\circ$. Parallel?",
+                "options": [
+                  "Yes",
+                  "No — corresponding angles must be equal"
+                ],
+                "correctIndex": 1,
+                "explanation": "$88 \\neq 92$, so the corresponding-angle test fails.",
+                "check": [
+                  "88 != 92"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Solve to make parallel",
+            "title": "Find the value that works",
+            "beats": [
+              "Sometimes an angle holds a variable.",
+              "Set up the test as an equation.",
+              "Corresponding $(2x)^\\circ$ and $(x + 30)^\\circ$ parallel ⟹ equal: $2x = x + 30$.",
+              "Solve: $x = 30$. That value makes the lines parallel."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Find x for parallel",
+            "intro": "Write the test as an equation.",
+            "examples": [
+              {
+                "prompt": "For what $x$ are the lines parallel if corresponding angles are $(2x)^\\circ$ and $(x + 30)^\\circ$?",
+                "steps": [
+                  "Corresponding → equal for parallel.",
+                  "$2x = x + 30 \\Rightarrow x = 30$."
+                ],
+                "answer": "$x = 30$",
+                "check": [
+                  "solve(Eq(2*x, x + 30), x) == [30]"
+                ]
+              },
+              {
+                "prompt": "For what $x$ are the lines parallel if same-side interior angles are $(2x)^\\circ$ and $(x + 60)^\\circ$?",
+                "steps": [
+                  "Same-side interior → supplementary for parallel.",
+                  "$2x + (x + 60) = 180 \\Rightarrow 3x = 120 \\Rightarrow x = 40$."
+                ],
+                "answer": "$x = 40$",
+                "check": [
+                  "solve(Eq(2*x + (x + 60), 180), x) == [40]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Solve for parallel",
+            "intro": "Equal test → =; same-side test → 180.",
+            "problems": [
+              {
+                "prompt": "Alternate interior $(3x)^\\circ$ and $(x + 50)^\\circ$ — parallel when $x = $",
+                "options": [
+                  "$25$",
+                  "$50$",
+                  "$12.5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal: $3x = x + 50 \\Rightarrow x = 25$.",
+                "check": [
+                  "solve(Eq(3*x, x + 50), x) == [25]"
+                ]
+              },
+              {
+                "prompt": "Same-side interior $(4x)^\\circ$ and $(2x)^\\circ$ — parallel when $x = $",
+                "options": [
+                  "$30$",
+                  "$90$",
+                  "$45$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Supplementary: $6x = 180 \\Rightarrow x = 30$.",
+                "check": [
+                  "solve(Eq(4*x + 2*x, 180), x) == [30]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "How a robot vacuum stays straight",
+            "body": "Many robot vacuums drive in parallel stripes across a room. They can't see the far wall, so they check parallelism the geometry way: a gyroscope measures the angle of each pass against a fixed heading, and equal angles guarantee parallel paths — the converse theorem, running on a chip."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Prove parallel?",
+            "prompt": "A transversal makes alternate exterior angles of $120^\\circ$ and $120^\\circ$. The lines are —",
+            "options": [
+              "parallel",
+              "not parallel",
+              "perpendicular"
+            ],
+            "correctIndex": 0,
+            "explanation": "Congruent alternate exterior angles ⟹ parallel.",
+            "check": [
+              "120 == 120"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "The parallel-line theorems have **true converses**: matching angles ⟹ parallel.",
+              "Congruent corresponding / alternate interior / alternate exterior ⟹ parallel.",
+              "**Supplementary** same-side interior ⟹ parallel. Set the test as an equation to solve for a variable."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's decide parallel-or-not, and solve for the value that forces it."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Corresponding angles $95^\\circ$ and $95^\\circ$. Parallel?",
+                "options": [
+                  "Yes",
+                  "No",
+                  "Can't tell"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal corresponding angles ⟹ parallel.",
+                "check": [
+                  "95 == 95"
+                ]
+              },
+              {
+                "prompt": "Same-side interior angles $88^\\circ$ and $92^\\circ$. Parallel?",
+                "options": [
+                  "Yes — they sum to $180^\\circ$",
+                  "No"
+                ],
+                "correctIndex": 0,
+                "explanation": "$88 + 92 = 180$ — supplementary ⟹ parallel.",
+                "check": [
+                  "88 + 92 == 180"
+                ]
+              },
+              {
+                "prompt": "Alternate interior angles $60^\\circ$ and $70^\\circ$. Parallel?",
+                "options": [
+                  "Yes",
+                  "No — they must be equal"
+                ],
+                "correctIndex": 1,
+                "explanation": "$60 \\neq 70$, so not parallel.",
+                "check": [
+                  "60 != 70"
+                ]
+              },
+              {
+                "prompt": "Corresponding $(5x)^\\circ$ and $(3x + 40)^\\circ$ — parallel when $x = $",
+                "options": [
+                  "$20$",
+                  "$10$",
+                  "$5$",
+                  "$40$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5x = 3x + 40 \\Rightarrow x = 20$.",
+                "check": [
+                  "solve(Eq(5*x, 3*x + 40), x) == [20]"
+                ]
+              },
+              {
+                "prompt": "Same-side interior $(x + 20)^\\circ$ and $(x)^\\circ$ — parallel when $x = $",
+                "options": [
+                  "$80$",
+                  "$160$",
+                  "$100$",
+                  "$90$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2x + 20 = 180 \\Rightarrow x = 80$.",
+                "check": [
+                  "solve(Eq((x + 20) + x, 180), x) == [80]"
+                ]
+              },
+              {
+                "prompt": "To prove parallel from same-side interior angles, they must be —",
+                "options": [
+                  "congruent",
+                  "supplementary",
+                  "complementary",
+                  "vertical"
+                ],
+                "correctIndex": 1,
+                "explanation": "Sum to $180^\\circ$ — supplementary.",
+                "check": [
+                  "90 + 90 == 180"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Proving Lines Parallel\"",
+            "body": "You can now prove lines parallel, not just use parallelism. Next: perpendicular lines — the special case where the transversal stands at a perfect right angle."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "perpendicular-lines",
+      "title": "Perpendicular Lines",
+      "concreteComparison": "The corner where a wall meets the floor, the cross of a window frame, the intersection of two city streets on a grid — all perfect square corners. Two lines that cross at a **right angle** are **perpendicular**, the tidiest way two lines can meet.",
+      "objective": "Define perpendicular lines, use the four right angles they create, and apply the fact that two lines perpendicular to the same line are parallel.",
+      "concept": [
+        "**Perpendicular lines** meet at a **right angle** ($90^\\circ$). We write $m \\perp n$ and mark the corner with a small square.",
+        "Two perpendicular lines actually make **four** right angles — each is $90^\\circ$, because vertical angles are equal and linear pairs are supplementary ($180^\\circ - 90^\\circ = 90^\\circ$).",
+        "If a ray splits one of those right angles, the two pieces are **complementary** — they add to $90^\\circ$ (Unit 1).",
+        "A key link to parallels: **in a plane, two lines perpendicular to the same line are parallel to each other** — their equal $90^\\circ$ angles make same-side interior angles sum to $180^\\circ$."
+      ],
+      "keyIdea": "Perpendicular = meets at 90°, giving four right angles. Two lines perpendicular to the same line are parallel.",
+      "facts": [
+        {
+          "title": "Perpendicular",
+          "latex": "$m \\perp n$",
+          "explanation": "Meet at a right angle; marked with a □."
+        },
+        {
+          "title": "Four right angles",
+          "latex": "$90^\\circ \\times 4$",
+          "explanation": "One right angle forces all four."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pe-we1",
+          "statement": "Line $m \\perp$ line $n$. One of the four angles is $90^\\circ$. What are the other three?",
+          "solution": "All $90^\\circ$: vertical angles equal it, and linear pairs give $180^\\circ - 90^\\circ = 90^\\circ$.",
+          "check": [
+            "180 - 90 == 90"
+          ]
+        },
+        {
+          "id": "pe-we2",
+          "statement": "A ray splits a right angle into $(2x)^\\circ$ and $(x)^\\circ$. Find $x$.",
+          "solution": "The pieces are complementary: $2x + x = 90 \\Rightarrow 3x = 90 \\Rightarrow x = 30$.",
+          "check": [
+            "solve(Eq(2*x + x, 90), x) == [30]"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking perpendicular lines make only one right angle.",
+          "correction": "They make **four** — all $90^\\circ$.",
+          "authored": true
+        },
+        {
+          "text": "Calling the split pieces of a right angle supplementary.",
+          "correction": "Pieces of a **right** angle are **complementary** ($90^\\circ$ total). Supplementary ($180^\\circ$) is for a straight angle.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pe-t1",
+          "statement": "A ray splits a right angle so one piece is $58^\\circ$. The other is —",
+          "solution": "Complementary: $90^\\circ - 58^\\circ = 32^\\circ$.",
+          "check": [
+            "90 - 58 == 32"
+          ]
+        },
+        {
+          "id": "pe-t2",
+          "statement": "Lines $a$ and $b$ are both perpendicular to line $c$ (in a plane). How are $a$ and $b$ related?",
+          "solution": "Parallel — two lines perpendicular to the same line are parallel.",
+          "check": [
+            "90 + 90 == 180"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "A perfect corner",
+            "beats": [
+              "**Perpendicular** lines meet at a **right angle** ($90^\\circ$).",
+              "Write it $m \\perp n$; mark the corner with a small square □.",
+              "Think wall-meets-floor, or a $+$ sign.",
+              "It's the cleanest way two lines can cross."
+            ]
+          },
+          {
+            "kind": "protractor",
+            "eyebrow": "Concept A",
+            "title": "Open it to exactly 90°",
+            "teach": "Drag the ray up to $90^\\circ$ and the label reads **right** — that's the perpendicular case. At exactly $90^\\circ$ the two rays are perpendicular.",
+            "config": {
+              "initial": 55,
+              "classify": true
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "One makes four",
+            "title": "Four right angles",
+            "beats": [
+              "Suppose two lines cross and one angle is $90^\\circ$.",
+              "Its **vertical** angle is also $90^\\circ$ (Unit 1).",
+              "Each **linear-pair** neighbor is $180^\\circ - 90^\\circ = 90^\\circ$.",
+              "So all four angles are right angles — a full $+$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Right angles all around",
+            "intro": "Vertical equal, linear pair supplements.",
+            "examples": [
+              {
+                "prompt": "$m \\perp n$; one angle is $90^\\circ$. Find a neighbor.",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "O",
+                        "x": 0,
+                        "y": 0,
+                        "label": ""
+                      },
+                      {
+                        "id": "E",
+                        "x": 3,
+                        "y": 0,
+                        "label": ""
+                      },
+                      {
+                        "id": "W",
+                        "x": -3,
+                        "y": 0,
+                        "label": ""
+                      },
+                      {
+                        "id": "N",
+                        "x": 0,
+                        "y": 3,
+                        "label": ""
+                      },
+                      {
+                        "id": "S",
+                        "x": 0,
+                        "y": -3,
+                        "label": ""
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "line",
+                        "from": "W",
+                        "to": "E"
+                      },
+                      {
+                        "kind": "line",
+                        "from": "S",
+                        "to": "N"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "O",
+                        "from": "E",
+                        "to": "N",
+                        "right": true
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "Neighbor is a linear pair with the $90^\\circ$.",
+                  "$180^\\circ - 90^\\circ = 90^\\circ$."
+                ],
+                "answer": "$90^\\circ$",
+                "check": [
+                  "180 - 90 == 90"
+                ]
+              },
+              {
+                "prompt": "A ray splits a right angle into $(2x)^\\circ$ and $(x)^\\circ$. Find $x$.",
+                "steps": [
+                  "Pieces of a right angle are complementary.",
+                  "$2x + x = 90 \\Rightarrow x = 30$."
+                ],
+                "answer": "$x = 30$",
+                "check": [
+                  "solve(Eq(2*x + x, 90), x) == [30]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Right-angle arithmetic",
+            "intro": "Perpendicular → 90; split pieces → complementary.",
+            "problems": [
+              {
+                "prompt": "$m \\perp n$. How many right angles are formed?",
+                "options": [
+                  "$1$",
+                  "$2$",
+                  "$4$"
+                ],
+                "correctIndex": 2,
+                "explanation": "All four angles are $90^\\circ$.",
+                "check": [
+                  "4 == 2 + 2"
+                ]
+              },
+              {
+                "prompt": "A ray splits a right angle; one piece is $37^\\circ$. The other is —",
+                "options": [
+                  "$53^\\circ$",
+                  "$143^\\circ$",
+                  "$63^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Complementary: $90 - 37 = 53$.",
+                "check": [
+                  "90 - 37 == 53"
+                ]
+              },
+              {
+                "prompt": "Two angles that are pieces of a right angle are —",
+                "options": [
+                  "supplementary",
+                  "complementary",
+                  "vertical"
+                ],
+                "correctIndex": 1,
+                "explanation": "They add to $90^\\circ$.",
+                "check": [
+                  "50 + 40 == 90"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Link to parallel",
+            "title": "Perpendicular to the same line",
+            "beats": [
+              "Draw a line $c$. Drop two lines $a$ and $b$, each **perpendicular** to $c$.",
+              "$c$ is a transversal; $a$ and $b$ each make $90^\\circ$ with it.",
+              "Same-side interior angles: $90^\\circ + 90^\\circ = 180^\\circ$ — supplementary.",
+              "So $a \\parallel b$: two lines perpendicular to the same line are **parallel**."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Perpendicular meets parallel",
+            "intro": "Two right angles make same-side interior sum 180.",
+            "examples": [
+              {
+                "prompt": "Lines $a$ and $b$ are both perpendicular to line $c$. Why is $a \\parallel b$?",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A1",
+                        "x": 0,
+                        "y": 2.4
+                      },
+                      {
+                        "id": "A2",
+                        "x": 0,
+                        "y": -0.4
+                      },
+                      {
+                        "id": "B1",
+                        "x": 3,
+                        "y": 2.4
+                      },
+                      {
+                        "id": "B2",
+                        "x": 3,
+                        "y": -0.4
+                      },
+                      {
+                        "id": "C1",
+                        "x": -1,
+                        "y": 1
+                      },
+                      {
+                        "id": "C2",
+                        "x": 4,
+                        "y": 1
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "line",
+                        "from": "A1",
+                        "to": "A2",
+                        "color": "#e8913c"
+                      },
+                      {
+                        "kind": "line",
+                        "from": "B1",
+                        "to": "B2",
+                        "color": "#5b8def"
+                      },
+                      {
+                        "kind": "line",
+                        "from": "C1",
+                        "to": "C2"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "A2",
+                        "from": "C2",
+                        "to": "A1",
+                        "right": true
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "B2",
+                        "from": "C2",
+                        "to": "B1",
+                        "right": true
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "$c$ is a transversal; $a$ and $b$ each meet it at $90^\\circ$.",
+                  "Same-side interior: $90^\\circ + 90^\\circ = 180^\\circ$ — supplementary ⟹ parallel."
+                ],
+                "answer": "$a \\parallel b$",
+                "check": [
+                  "90 + 90 == 180"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Perpendicular and parallel",
+            "intro": "Right angles link the two ideas.",
+            "problems": [
+              {
+                "prompt": "In a plane, if $a \\perp c$ and $b \\perp c$, then $a$ and $b$ are —",
+                "options": [
+                  "perpendicular",
+                  "parallel",
+                  "the same line"
+                ],
+                "correctIndex": 1,
+                "explanation": "Two lines perpendicular to the same line are parallel.",
+                "check": [
+                  "90 + 90 == 180"
+                ]
+              },
+              {
+                "prompt": "If $m \\perp n$, the angle between them is —",
+                "options": [
+                  "$45^\\circ$",
+                  "$90^\\circ$",
+                  "$180^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Perpendicular means a right angle.",
+                "check": [
+                  "180 - 90 == 90"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The 3-4-5 shortcut",
+            "body": "Builders make perfect right angles without a protractor using a rope knotted into lengths $3$, $4$, and $5$: pulled taut into a triangle, the corner between the $3$ and $4$ sides is exactly $90^\\circ$. Egyptian rope-stretchers squared the pyramids this way — you'll prove *why* it works in Unit 8, Pythagoras."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Right angle",
+            "prompt": "Two lines are perpendicular. Each of the four angles they form measures —",
+            "options": [
+              "$45^\\circ$",
+              "$90^\\circ$",
+              "$180^\\circ$"
+            ],
+            "correctIndex": 1,
+            "explanation": "Perpendicular ⟹ four right angles.",
+            "check": [
+              "180 - 90 == 90"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Perpendicular** ($m \\perp n$): lines meeting at a **right angle**, making **four** $90^\\circ$ angles.",
+              "A ray splitting a right angle makes **complementary** pieces (sum $90^\\circ$).",
+              "In a plane, two lines **perpendicular to the same line are parallel**."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's work right angles, complementary splits, and the perpendicular-to-parallel link."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Perpendicular lines form how many right angles?",
+                "options": [
+                  "$1$",
+                  "$2$",
+                  "$4$",
+                  "$8$"
+                ],
+                "correctIndex": 2,
+                "explanation": "All four angles are $90^\\circ$.",
+                "check": [
+                  "4 == 2*2"
+                ]
+              },
+              {
+                "prompt": "A ray splits a right angle; one piece is $24^\\circ$. The other is —",
+                "options": [
+                  "$66^\\circ$",
+                  "$156^\\circ$",
+                  "$76^\\circ$",
+                  "$46^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Complementary: $90 - 24 = 66$.",
+                "check": [
+                  "90 - 24 == 66"
+                ]
+              },
+              {
+                "prompt": "A ray splits a right angle into $(3x)^\\circ$ and $(2x)^\\circ$. $x = $ —",
+                "options": [
+                  "$18$",
+                  "$36$",
+                  "$90$",
+                  "$15$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5x = 90 \\Rightarrow x = 18$.",
+                "check": [
+                  "solve(Eq(3*x + 2*x, 90), x) == [18]"
+                ]
+              },
+              {
+                "prompt": "If $a \\perp c$ and $b \\perp c$ in a plane, then $a$ and $b$ are —",
+                "options": [
+                  "perpendicular",
+                  "parallel",
+                  "intersecting at $45^\\circ$",
+                  "the same line"
+                ],
+                "correctIndex": 1,
+                "explanation": "Perpendicular to the same line ⟹ parallel.",
+                "check": [
+                  "90 + 90 == 180"
+                ]
+              },
+              {
+                "prompt": "The pieces a ray cuts a right angle into are —",
+                "options": [
+                  "supplementary",
+                  "complementary",
+                  "vertical",
+                  "equal always"
+                ],
+                "correctIndex": 1,
+                "explanation": "They add to $90^\\circ$ — complementary.",
+                "check": [
+                  "60 + 30 == 90"
+                ]
+              },
+              {
+                "prompt": "A right angle is split so one piece is $x^\\circ$ and the other is $(x + 20)^\\circ$. $x = $ —",
+                "options": [
+                  "$35$",
+                  "$55$",
+                  "$70$",
+                  "$45$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2x + 20 = 90 \\Rightarrow x = 35$.",
+                "check": [
+                  "solve(Eq(x + (x + 20), 90), x) == [35]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Perpendicular Lines\"",
+            "body": "Right angles, complementary splits, and the tie to parallels — all yours. Last in the unit: two-column proofs that put every Unit 3 fact to work."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "proofs-with-parallel-lines",
+      "title": "Proofs with Parallel Lines",
+      "concreteComparison": "You've got a full toolkit now: the parallel-line rules, their converses, the perpendicular facts, and Unit 2's proof machinery. This lesson is the workshop — two-column proofs where those tools chain together, including proving one of the parallel-line theorems from scratch.",
+      "objective": "Write two-column proofs that use the parallel-line relationships, and prove the Alternate Interior Angles Theorem from the Corresponding Angles Postulate.",
+      "concept": [
+        "Every Unit 3 fact is a licensed **reason** in a proof: the Corresponding Angles Postulate, the alternate-angle theorems, the same-side-interior rule, and their converses.",
+        "The **Alternate Interior Angles Theorem** (Lesson 2, used but not proven) can now be proven: corresponding angles are congruent (postulate), vertical angles are congruent (Unit 2), and the Transitive Property links them.",
+        "As in Unit 2, each statement earns a reason drawn only from **earlier** facts — never the theorem being proven.",
+        "The pattern repeats everywhere ahead: state what's given, chain licensed steps, reach the goal."
+      ],
+      "keyIdea": "Chain Unit 3's angle rules (and their converses) as reasons. The alternate interior theorem follows from corresponding + vertical + Transitive.",
+      "facts": [
+        {
+          "title": "Proof toolkit",
+          "latex": "postulate + theorems + converses",
+          "explanation": "All admissible reasons now."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pf-we1",
+          "statement": "Parallel lines cut by a transversal; $\\angle 1 = 118^\\circ$ and $\\angle 1, \\angle 5$ are corresponding. Prove $\\angle 5 = 118^\\circ$.",
+          "solution": "$\\angle 1 \\cong \\angle 5$ (Corresponding Angles Postulate), so $m\\angle 5 = m\\angle 1 = 118^\\circ$ (definition of congruent angles / substitution).",
+          "check": [
+            "180 - 62 == 118"
+          ]
+        },
+        {
+          "id": "pf-we2",
+          "statement": "$\\angle 3$ and $\\angle 5$ are same-side interior on parallel lines, with $m\\angle 3 = (2x)^\\circ$ and $m\\angle 5 = (x + 30)^\\circ$. Prove $x = 50$.",
+          "solution": "$m\\angle 3 + m\\angle 5 = 180^\\circ$ (same-side interior supplementary), so $2x + (x + 30) = 180$, giving $x = 50$ (algebra).",
+          "check": [
+            "solve(Eq(2*x + (x + 30), 180), x) == [50]"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using a theorem to prove itself.",
+          "correction": "To prove the Alternate Interior Angles Theorem you may cite corresponding and vertical angles — but **not** the alternate interior theorem itself.",
+          "authored": true
+        },
+        {
+          "text": "Skipping the reason on an angle step.",
+          "correction": "“$\\angle 1 \\cong \\angle 5$” needs its license: *Corresponding Angles Postulate*. No naked statements.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pf-t1",
+          "statement": "Alternate exterior angles on parallel lines are $(4x)^\\circ$ and $(2x + 50)^\\circ$. Prove $x = 25$.",
+          "solution": "Congruent (alt. exterior theorem): $4x = 2x + 50 \\Rightarrow x = 25$.",
+          "check": [
+            "solve(Eq(4*x, 2*x + 50), x) == [25]"
+          ]
+        },
+        {
+          "id": "pf-t2",
+          "statement": "In proving the Alternate Interior Angles Theorem, which property links the corresponding angle and the vertical angle?",
+          "solution": "The Transitive Property — both are congruent to the same middle angle $\\angle 1$.",
+          "check": [
+            "2 > 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "The full toolkit",
+            "beats": [
+              "Every Unit 3 rule is now a legal **reason**.",
+              "Postulate, the alternate/same-side theorems, and all the converses.",
+              "Plus Unit 2's properties of equality and the Vertical Angles Theorem.",
+              "Time to chain them into proofs."
+            ]
+          },
+          {
+            "kind": "stepProof",
+            "eyebrow": "Warm-up proof",
+            "title": "Prove ∠5 = 118°",
+            "teach": "A short chain: the postulate gives congruence, then congruence gives equal measures.",
+            "config": {
+              "given": "$m \\parallel n$ cut by a transversal; $\\angle 1$ and $\\angle 5$ are corresponding; $m\\angle 1 = 118^\\circ$.",
+              "prove": "$m\\angle 5 = 118^\\circ$",
+              "rows": [
+                {
+                  "statement": "$m \\parallel n$; $\\angle 1$, $\\angle 5$ corresponding",
+                  "reason": "Given"
+                },
+                {
+                  "statement": "$\\angle 1 \\cong \\angle 5$",
+                  "reason": "Corresponding Angles Postulate"
+                },
+                {
+                  "statement": "$m\\angle 1 = m\\angle 5$",
+                  "reason": "Definition of congruent angles"
+                },
+                {
+                  "statement": "$m\\angle 5 = 118^\\circ$",
+                  "reason": "$m\\angle 1 = 118^\\circ$ (given), substituted"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Set the stage",
+            "title": "Proving alternate interior",
+            "beats": [
+              "Goal: **prove** alternate interior angles $\\angle 3$ and $\\angle 5$ are congruent.",
+              "We may use only earlier facts: corresponding and vertical angles.",
+              "$\\angle 1$ and $\\angle 5$ are corresponding; $\\angle 1$ and $\\angle 3$ are vertical.",
+              "Both routes reach $\\angle 5$ and $\\angle 3$ through $\\angle 1$ — Transitive is loaded."
+            ]
+          },
+          {
+            "kind": "stepProof",
+            "eyebrow": "The main event",
+            "title": "The Alternate Interior Angles Theorem",
+            "teach": "You USED this in Lesson 2. Now you PROVE it — from the corresponding-angles postulate and vertical angles, exactly the way Unit 2 proved vertical angles.",
+            "config": {
+              "given": "$m \\parallel n$ cut by a transversal; $\\angle 3$ and $\\angle 5$ are alternate interior angles.",
+              "prove": "$\\angle 3 \\cong \\angle 5$",
+              "rows": [
+                {
+                  "statement": "$\\angle 1 \\cong \\angle 5$",
+                  "reason": "Corresponding Angles Postulate"
+                },
+                {
+                  "statement": "$\\angle 1 \\cong \\angle 3$",
+                  "reason": "Vertical Angles Theorem (Unit 2)"
+                },
+                {
+                  "statement": "$\\angle 3 \\cong \\angle 5$",
+                  "reason": "Transitive Property (both congruent to $\\angle 1$)"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Prove with the rules",
+            "intro": "Name the parallel-line reason.",
+            "examples": [
+              {
+                "prompt": "Alternate interior angles on parallel lines: $(3x)^\\circ$ and $(x + 40)^\\circ$. Prove $x = 20$.",
+                "steps": [
+                  "Alternate interior angles are congruent — equal measures.",
+                  "$3x = x + 40 \\Rightarrow 2x = 40 \\Rightarrow x = 20$."
+                ],
+                "answer": "$x = 20$",
+                "check": [
+                  "solve(Eq(3*x, x + 40), x) == [20]"
+                ]
+              },
+              {
+                "prompt": "Same-side interior angles $(2x + 10)^\\circ$ and $(3x)^\\circ$ on parallel lines. Prove $x = 34$.",
+                "steps": [
+                  "Same-side interior are supplementary — sum $180$.",
+                  "$(2x + 10) + 3x = 180 \\Rightarrow 5x = 170 \\Rightarrow x = 34$."
+                ],
+                "answer": "$x = 34$",
+                "check": [
+                  "solve(Eq((2*x + 10) + 3*x, 180), x) == [34]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Supply the reason",
+            "intro": "Which Unit 3 fact licenses the step?",
+            "problems": [
+              {
+                "prompt": "In the warm-up proof, what justifies $\\angle 1 \\cong \\angle 5$?",
+                "options": [
+                  "Vertical Angles Theorem",
+                  "Corresponding Angles Postulate",
+                  "Transitive Property"
+                ],
+                "correctIndex": 1,
+                "explanation": "$\\angle 1$ and $\\angle 5$ are corresponding on parallel lines.",
+                "check": [
+                  "118 == 118"
+                ]
+              },
+              {
+                "prompt": "In the alternate-interior proof, $\\angle 1 \\cong \\angle 3$ is justified by —",
+                "options": [
+                  "Corresponding Angles Postulate",
+                  "Vertical Angles Theorem",
+                  "Same-side interior rule"
+                ],
+                "correctIndex": 1,
+                "explanation": "$\\angle 1$ and $\\angle 3$ are vertical angles.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Why can't the Alternate Interior Angles Theorem be a reason inside its own proof?",
+                "options": [
+                  "It's too long",
+                  "A proof may cite only earlier facts",
+                  "Theorems can't be reasons"
+                ],
+                "correctIndex": 1,
+                "explanation": "Otherwise the reasoning is circular.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Proving parallel, formally",
+            "title": "Converses in proofs",
+            "beats": [
+              "The converses prove **lines parallel** inside a proof.",
+              "Given congruent corresponding angles as a statement…",
+              "…the reason *Converse of the Corresponding Angles Postulate* concludes $m \\parallel n$.",
+              "Same machinery, aimed at a parallel conclusion."
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Prove it parallel",
+            "intro": "Cite the converse.",
+            "problems": [
+              {
+                "prompt": "Given: alternate interior angles are congruent. The reason that concludes $m \\parallel n$ is —",
+                "options": [
+                  "Corresponding Angles Postulate",
+                  "Converse of the Alternate Interior Angles Theorem",
+                  "Vertical Angles Theorem"
+                ],
+                "correctIndex": 1,
+                "explanation": "The converse turns congruent alt. interior angles into parallel lines.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Corresponding angles $(5x)^\\circ$ and $(3x + 40)^\\circ$; find $x$ that PROVES the lines parallel.",
+                "options": [
+                  "$20$",
+                  "$40$",
+                  "$10$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Set equal (converse): $5x = 3x + 40 \\Rightarrow x = 20$.",
+                "check": [
+                  "solve(Eq(5*x, 3*x + 40), x) == [20]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Every proof you'll ever write",
+            "body": "The chain you just built — postulate, then a known theorem, then Transitive — is the skeleton of essentially every geometry proof to come. Triangle congruence, similar figures, circle theorems: all of them are longer versions of this same “license each step from what's already proven” move."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Name the reason",
+            "prompt": "On parallel lines, $\\angle 1 \\cong \\angle 5$ (same corner). The reason is the —",
+            "options": [
+              "Vertical Angles Theorem",
+              "Corresponding Angles Postulate",
+              "Transitive Property"
+            ],
+            "correctIndex": 1,
+            "explanation": "Same-corner pair on parallel lines = Corresponding Angles Postulate.",
+            "check": [
+              "2 > 1"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Every Unit 3 rule — postulate, theorems, and converses — is a legal proof **reason**.",
+              "The **Alternate Interior Angles Theorem** follows from corresponding + vertical + **Transitive**.",
+              "Converses prove lines **parallel** inside a proof. Each step cites only earlier facts."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "The unit's last practice: name reasons, prove a theorem's step, and solve within a proof."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$\\angle 1 \\cong \\angle 5$ on parallel lines (same corner). Reason?",
+                "options": [
+                  "Vertical Angles Theorem",
+                  "Corresponding Angles Postulate",
+                  "Transitive Property",
+                  "Segment Addition"
+                ],
+                "correctIndex": 1,
+                "explanation": "Corresponding pair on parallel lines.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Proving the alternate interior theorem, $\\angle 3 \\cong \\angle 5$ follows from $\\angle 1 \\cong \\angle 5$ and $\\angle 1 \\cong \\angle 3$ by the —",
+                "options": [
+                  "Corresponding Angles Postulate",
+                  "Transitive Property",
+                  "Distributive Property",
+                  "Ruler Postulate"
+                ],
+                "correctIndex": 1,
+                "explanation": "Both congruent to $\\angle 1$ ⟹ congruent to each other.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Alternate interior angles $(4x)^\\circ$ and $(x + 60)^\\circ$ on parallel lines. $x = $ —",
+                "options": [
+                  "$20$",
+                  "$15$",
+                  "$12$",
+                  "$60$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal: $4x = x + 60 \\Rightarrow x = 20$.",
+                "check": [
+                  "solve(Eq(4*x, x + 60), x) == [20]"
+                ]
+              },
+              {
+                "prompt": "Same-side interior angles $(x)^\\circ$ and $(4x)^\\circ$ on parallel lines. $x = $ —",
+                "options": [
+                  "$36$",
+                  "$45$",
+                  "$30$",
+                  "$60$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Supplementary: $5x = 180 \\Rightarrow x = 36$.",
+                "check": [
+                  "solve(Eq(x + 4*x, 180), x) == [36]"
+                ]
+              },
+              {
+                "prompt": "Given congruent corresponding angles, the reason concluding $m \\parallel n$ is the —",
+                "options": [
+                  "Corresponding Angles Postulate",
+                  "Converse of the Corresponding Angles Postulate",
+                  "Vertical Angles Theorem",
+                  "Perpendicular postulate"
+                ],
+                "correctIndex": 1,
+                "explanation": "The converse runs angles → parallel.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "A statement in a two-column proof with no reason beside it is —",
+                "options": [
+                  "fine if obvious",
+                  "not allowed",
+                  "a postulate",
+                  "a converse"
+                ],
+                "correctIndex": 1,
+                "explanation": "Every statement needs a reason — the whole discipline of proof.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Proofs with Parallel Lines\"",
+            "body": "That completes Unit 3 — you can find angles, prove lines parallel, and chain the rules into real proofs. Unit 4 turns to triangles, where these angle facts explain why every triangle's angles sum to exactly $180^\\circ$."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [],
+  "testYourself": []
+}
