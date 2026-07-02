@@ -1,0 +1,3805 @@
+{
+  "slug": "foundations",
+  "title": "Foundations: Points, Lines & Angles",
+  "unit": 1,
+  "status": "published",
+  "blurb": "Points, lines, rays, segments and planes; measuring segments and angles; angle types, angle pairs, and bisectors — geometry from absolute zero.",
+  "buildsOn": "Nothing — geometry starts here. (Numbers on a line and absolute value echo Grade 6 Integers.)",
+  "lessons": [
+    {
+      "slug": "points-lines-planes",
+      "title": "Points, Lines & Planes",
+      "concreteComparison": "Look at a city map. Each street crossing is a dot with a name — a **point**. Each straight street runs through crossing after crossing — a **line**. And the flat map sheet everything sits on — that's a **plane**. All of geometry is built out of these three ideas.",
+      "objective": "Recognize and name points, lines, and planes; know that two points determine exactly one line; tell when points are collinear.",
+      "concept": [
+        "A **point** is a location. It has no size at all — we draw a dot only so you can see it. Points are named with capital letters: point $A$.",
+        "A **line** is perfectly straight and extends forever in **both** directions. Through any **two** points there is **exactly one** line — name it by the points, $\\overleftrightarrow{AB}$, or with a script letter like $\\ell$.",
+        "A **plane** is a perfectly flat surface extending forever in every direction, like an endless tabletop. It takes **three** points (not all on one line) to pin down a plane.",
+        "Points that sit on the same line are **collinear**. Points that don't all fit on one line are **noncollinear**."
+      ],
+      "keyIdea": "Point = a location; line = straight, forever, both ways; plane = flat, forever. Two points → exactly one line.",
+      "facts": [
+        {
+          "title": "Two points, one line",
+          "latex": "$A, B \\to \\overleftrightarrow{AB}$",
+          "explanation": "Through any two points there is exactly one line."
+        },
+        {
+          "title": "Three to name a plane",
+          "latex": "$A, B, C$",
+          "explanation": "Three noncollinear points determine a plane."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "plp-we1",
+          "statement": "How many different lines pass through both point $A$ and point $B$?",
+          "solution": "Exactly one — two points determine one line. That's what makes $\\overleftrightarrow{AB}$ a well-defined name.",
+          "check": [
+            "binomial(2, 2) == 1"
+          ]
+        },
+        {
+          "id": "plp-we2",
+          "statement": "Points $P$, $Q$, $R$ are noncollinear. How many lines do they determine in pairs?",
+          "solution": "Each pair gives one line: $\\overleftrightarrow{PQ}$, $\\overleftrightarrow{PR}$, $\\overleftrightarrow{QR}$ — three pairs, so $3$ lines.",
+          "check": [
+            "binomial(3, 2) == 3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking the drawn dot IS the point.",
+          "correction": "A point has **no size**. The dot is just a picture of a location.",
+          "authored": true
+        },
+        {
+          "text": "Treating a line as if it stops at the arrows.",
+          "correction": "The arrowheads mean *keeps going forever* — a line has no ends.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "plp-t1",
+          "statement": "Points $A$, $B$, $C$ all sit on one line. How many lines pass through all three?",
+          "solution": "They're collinear, so one line already carries all three — the answer is $1$.",
+          "check": [
+            "binomial(2, 2) == 1"
+          ]
+        },
+        {
+          "id": "plp-t2",
+          "statement": "How many noncollinear points does it take to determine a plane?",
+          "solution": "Three — two points only pin a line; a third off that line fixes the flat surface.",
+          "check": [
+            "3 > 2",
+            "binomial(3, 3) == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "The three undefined terms",
+            "beats": [
+              "A **point** is a location — no size, no width. Named with a capital: point $A$.",
+              "A **line** is straight and extends forever in **both** directions.",
+              "A **plane** is a flat surface extending forever — an endless tabletop.",
+              "Everything else in geometry is built from these three."
+            ]
+          },
+          {
+            "kind": "geoCanvas",
+            "eyebrow": "Concept A",
+            "title": "Two points make a line",
+            "teach": "Drag either point anywhere. However you move them, **exactly one** straight line passes through both — that's the first fact of geometry.",
+            "config": {
+              "mode": "lineThrough"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Naming things",
+            "title": "How we write them",
+            "beats": [
+              "Point: a capital letter — $A$.",
+              "Line: two points on it, arrows both ways — $\\overleftrightarrow{AB}$ — or a script letter $\\ell$.",
+              "Plane: three noncollinear points — plane $ABC$. (**Noncollinear** is defined two pages ahead — for now: not all in a row.)",
+              "Order doesn't matter for a line: $\\overleftrightarrow{AB}$ and $\\overleftrightarrow{BA}$ are the same line."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Counting lines",
+            "intro": "Use “two points → one line.”",
+            "examples": [
+              {
+                "prompt": "How many lines pass through both $A$ and $B$?",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 1,
+                        "y": 1
+                      },
+                      {
+                        "id": "B",
+                        "x": 5,
+                        "y": 2.4
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "line",
+                        "from": "A",
+                        "to": "B"
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "Two points determine a line.",
+                  "Exactly one: $\\overleftrightarrow{AB}$."
+                ],
+                "answer": "$1$",
+                "check": [
+                  "binomial(2, 2) == 1"
+                ]
+              },
+              {
+                "prompt": "Noncollinear points $P, Q, R$: how many lines in pairs?",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "P",
+                        "x": 1,
+                        "y": 1
+                      },
+                      {
+                        "id": "Q",
+                        "x": 5,
+                        "y": 1
+                      },
+                      {
+                        "id": "R",
+                        "x": 3,
+                        "y": 3.4
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "line",
+                        "from": "P",
+                        "to": "Q"
+                      },
+                      {
+                        "kind": "line",
+                        "from": "P",
+                        "to": "R",
+                        "color": "#5b8def"
+                      },
+                      {
+                        "kind": "line",
+                        "from": "Q",
+                        "to": "R",
+                        "color": "#e8913c"
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "The pairs: $\\overleftrightarrow{PQ}$, $\\overleftrightarrow{PR}$, $\\overleftrightarrow{QR}$.",
+                  "One line per pair — $3$ lines."
+                ],
+                "answer": "$3$",
+                "check": [
+                  "binomial(3, 2) == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Points and lines",
+            "intro": "Think “how many pairs?”",
+            "problems": [
+              {
+                "prompt": "How many lines pass through two given points?",
+                "options": [
+                  "None",
+                  "Exactly one",
+                  "Infinitely many"
+                ],
+                "correctIndex": 1,
+                "explanation": "Two points determine exactly one line.",
+                "check": [
+                  "binomial(2, 2) == 1"
+                ]
+              },
+              {
+                "prompt": "Points $A, B, C$ are collinear (all on one line). How many lines through all three?",
+                "options": [
+                  "$1$",
+                  "$2$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "One line already carries all three.",
+                "check": [
+                  "binomial(2, 2) == 1"
+                ]
+              },
+              {
+                "prompt": "Noncollinear $A, B, C$ taken in pairs determine how many lines?",
+                "options": [
+                  "$1$",
+                  "$2$",
+                  "$3$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$\\overleftrightarrow{AB}$, $\\overleftrightarrow{AC}$, $\\overleftrightarrow{BC}$ — one per pair, so $3$.",
+                "check": [
+                  "binomial(3, 2) == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "On one line, or not",
+            "title": "Collinear points",
+            "beats": [
+              "Points on the **same line** are **collinear**.",
+              "Any two points are always collinear — a line runs through them.",
+              "Three points might not be: a triangle's corners are **noncollinear**.",
+              "That's why three noncollinear points pin down a **plane**."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Planes",
+            "intro": "Three noncollinear points fix a flat surface.",
+            "examples": [
+              {
+                "prompt": "How many planes contain three given noncollinear points?",
+                "steps": [
+                  "Two points allow many tilted planes through their line.",
+                  "A third point off the line locks the tilt — exactly $1$ plane."
+                ],
+                "answer": "$1$",
+                "check": [
+                  "binomial(3, 3) == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Lines and planes",
+            "intro": "How many points pin down a line? A plane?",
+            "problems": [
+              {
+                "prompt": "A camera tripod needs exactly one flat position for its 3 feet. Why 3?",
+                "options": [
+                  "3 noncollinear points determine a plane",
+                  "3 points are always collinear",
+                  "A plane needs 4 points"
+                ],
+                "correctIndex": 0,
+                "explanation": "Three noncollinear feet fix one plane — no wobble.",
+                "check": [
+                  "binomial(3, 3) == 1",
+                  "3 > 2"
+                ]
+              },
+              {
+                "prompt": "How many points does it take to determine a line?",
+                "options": [
+                  "$1$",
+                  "$2$",
+                  "$3$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Two points — that's the defining fact.",
+                "check": [
+                  "binomial(2, 2) == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The book that started it",
+            "body": "Around 300 BC, Euclid opened his *Elements* with exactly these ideas — points, lines, planes — and built all of geometry from them, one justified step at a time. It became one of the most reprinted books in history, and it's the reason a four-legged table wobbles but a three-legged stool never does."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "One line",
+            "prompt": "Through two points, how many lines can you draw?",
+            "options": [
+              "Exactly one",
+              "Two",
+              "Infinitely many"
+            ],
+            "correctIndex": 0,
+            "explanation": "Two points determine exactly one line.",
+            "check": [
+              "binomial(2, 2) == 1"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Point** = location (no size); **line** = straight, forever, both ways; **plane** = flat, forever.",
+              "Through two points there is **exactly one line**: $\\overleftrightarrow{AB}$.",
+              "**Collinear** points share a line; three **noncollinear** points determine a plane."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's lock in the basics: naming, counting lines, and collinear-or-not."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "How many lines pass through points $A$ and $B$?",
+                "options": [
+                  "$0$",
+                  "$1$",
+                  "$2$",
+                  "Infinitely many"
+                ],
+                "correctIndex": 1,
+                "explanation": "Two points determine exactly one line.",
+                "check": [
+                  "binomial(2, 2) == 1"
+                ]
+              },
+              {
+                "prompt": "Which figure extends forever in BOTH directions?",
+                "options": [
+                  "A point",
+                  "A line",
+                  "A dot",
+                  "A capital letter"
+                ],
+                "correctIndex": 1,
+                "explanation": "That's the definition of a line — arrowheads both ways.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Three noncollinear points determine how many lines (in pairs)?",
+                "options": [
+                  "$1$",
+                  "$2$",
+                  "$3$",
+                  "$6$"
+                ],
+                "correctIndex": 2,
+                "explanation": "One line per pair: $\\overleftrightarrow{AB}$, $\\overleftrightarrow{AC}$, $\\overleftrightarrow{BC}$ — that's $3$.",
+                "check": [
+                  "binomial(3, 2) == 3"
+                ]
+              },
+              {
+                "prompt": "How many noncollinear points determine a plane?",
+                "options": [
+                  "$2$",
+                  "$3$",
+                  "$4$",
+                  "$5$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Three — like a tripod's feet.",
+                "check": [
+                  "binomial(3, 3) == 1",
+                  "3 > 2"
+                ]
+              },
+              {
+                "prompt": "Points $P, Q, R$ all lie on line $\\ell$. They are —",
+                "options": [
+                  "noncollinear",
+                  "collinear",
+                  "a plane",
+                  "not on any line"
+                ],
+                "correctIndex": 1,
+                "explanation": "Collinear means on the same line.",
+                "check": [
+                  "binomial(2, 2) == 1"
+                ]
+              },
+              {
+                "prompt": "How many planes contain 3 noncollinear points?",
+                "options": [
+                  "$0$",
+                  "$1$",
+                  "$3$",
+                  "Infinitely many"
+                ],
+                "correctIndex": 1,
+                "explanation": "Exactly one — the third point locks the tilt.",
+                "check": [
+                  "binomial(3, 3) == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Points, Lines & Planes\"",
+            "body": "You've met geometry's three building blocks and its first big fact: two points, one line. Next: Segments & Rays — pieces of a line, and why direction matters."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "segments-and-rays",
+      "title": "Segments & Rays",
+      "concreteComparison": "A road stretches out of sight in both directions — a **line**. A laser beam starts at the pointer and shoots one way forever — a **ray**. A rope tied between two posts has two definite ends — a **segment**. Same straightness, three different objects.",
+      "objective": "Distinguish lines, rays, and segments; use the notations for each; understand that ray AB and ray BA are different objects.",
+      "concept": [
+        "A **segment** $\\overline{AB}$ is the part of a line **between** two points $A$ and $B$ — including both. $A$ and $B$ are its **endpoints**.",
+        "A **ray** $\\overrightarrow{AB}$ **starts** at $A$ (its endpoint), passes through $B$, and continues forever in that one direction.",
+        "Order matters for rays: $\\overrightarrow{AB}$ starts at $A$; $\\overrightarrow{BA}$ starts at $B$ and runs the other way. They are **different** rays.",
+        "Two rays from the same point in exactly opposite directions are **opposite rays** — together they form a whole line."
+      ],
+      "keyIdea": "Segment = between two endpoints. Ray = one endpoint, one direction, forever. The first letter of a ray is its start.",
+      "facts": [
+        {
+          "title": "Three notations",
+          "latex": "$\\overleftrightarrow{AB},\\ \\overrightarrow{AB},\\ \\overline{AB}$",
+          "explanation": "Line, ray, segment — the mark on top tells you which."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sr-we1",
+          "statement": "On a number line, $A$ is at $2$ and $B$ is at $5$. Is the point at $9$ on ray $\\overrightarrow{AB}$? On ray $\\overrightarrow{BA}$?",
+          "solution": "$\\overrightarrow{AB}$ starts at $2$ and runs through $5$ toward larger numbers — $9$ is on it. $\\overrightarrow{BA}$ starts at $5$ and runs toward smaller numbers — $9$ is not.",
+          "check": [
+            "9 > 5",
+            "9 > 2"
+          ]
+        },
+        {
+          "id": "sr-we2",
+          "statement": "$A$ is at $1$ and $B$ at $6$. Is the point at $4$ on segment $\\overline{AB}$?",
+          "solution": "A segment holds the points **between** its endpoints — and the endpoints themselves: $1 \\le 4 \\le 6$, so yes.",
+          "check": [
+            "And(4 > 1, 4 < 6)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Treating $\\overrightarrow{AB}$ and $\\overrightarrow{BA}$ as the same ray.",
+          "correction": "The **first** letter is the endpoint. $\\overrightarrow{AB}$ starts at $A$; $\\overrightarrow{BA}$ starts at $B$ and points the opposite way.",
+          "authored": true
+        },
+        {
+          "text": "Drawing a segment with arrowheads.",
+          "correction": "A segment **stops** at its endpoints — dots, not arrows.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sr-t1",
+          "statement": "$A$ is at $2$, $B$ at $5$. Name a number on $\\overrightarrow{BA}$ but NOT on $\\overline{AB}$.",
+          "solution": "$\\overrightarrow{BA}$ passes $A$ and keeps going: any number below $2$, like $-1$.",
+          "check": [
+            "(-1) < 2"
+          ]
+        },
+        {
+          "id": "sr-t2",
+          "statement": "How many endpoints does each have: segment, ray, line?",
+          "solution": "Segment $2$, ray $1$, line $0$ — that's the whole difference.",
+          "check": [
+            "2 > 1",
+            "1 > 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "geoCanvas",
+            "eyebrow": "Concept A",
+            "title": "One pair of points, three objects",
+            "teach": "Same two points, different objects. Toggle between them and watch the **ends**: a line never stops, a ray stops on one side only, a segment stops on both.",
+            "config": {
+              "mode": "entityToggle"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The difference is the ends",
+            "title": "Segment, ray, line",
+            "beats": [
+              "**Segment** $\\overline{AB}$: everything between $A$ and $B$. Two endpoints.",
+              "**Ray** $\\overrightarrow{AB}$: starts at $A$, through $B$, forever onward. One endpoint.",
+              "**Line** $\\overleftrightarrow{AB}$: forever both ways. No endpoints.",
+              "The little symbol on top is a picture of the object."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Direction matters",
+            "title": "Ray AB is not ray BA",
+            "beats": [
+              "The **first letter names the start**.",
+              "$\\overrightarrow{AB}$: departs from $A$, heading through $B$.",
+              "$\\overrightarrow{BA}$: departs from $B$, heading through $A$ — the other way.",
+              "Two rays from one point in opposite directions are **opposite rays**; together they make the whole line."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Who's on the ray?",
+            "intro": "Put the points on a number line and check the direction.",
+            "examples": [
+              {
+                "prompt": "$A$ at $2$, $B$ at $5$. Is $9$ on $\\overrightarrow{AB}$?",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 2,
+                        "y": 0
+                      },
+                      {
+                        "id": "B",
+                        "x": 5,
+                        "y": 0
+                      },
+                      {
+                        "id": "P",
+                        "x": 9,
+                        "y": 0,
+                        "label": "9"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "ray",
+                        "from": "A",
+                        "to": "B"
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "$\\overrightarrow{AB}$ starts at $2$ and runs through $5$, onward to bigger numbers.",
+                  "$9 > 5$, on the far side of $B$ — yes, it's on the ray."
+                ],
+                "answer": "Yes",
+                "check": [
+                  "9 > 5"
+                ]
+              },
+              {
+                "prompt": "Same points. Is $9$ on $\\overrightarrow{BA}$?",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "B",
+                        "x": 5,
+                        "y": 0
+                      },
+                      {
+                        "id": "A",
+                        "x": 2,
+                        "y": 0
+                      },
+                      {
+                        "id": "P",
+                        "x": 9,
+                        "y": 0,
+                        "label": "9"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "ray",
+                        "from": "B",
+                        "to": "A"
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "$\\overrightarrow{BA}$ starts at $5$ and runs through $2$, toward smaller numbers.",
+                  "$9$ is behind the start — not on this ray."
+                ],
+                "answer": "No",
+                "check": [
+                  "9 > 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Pick the object",
+            "intro": "Check the ends.",
+            "problems": [
+              {
+                "prompt": "Which notation means the part between $A$ and $B$ only?",
+                "options": [
+                  "$\\overline{AB}$",
+                  "$\\overrightarrow{AB}$",
+                  "$\\overleftrightarrow{AB}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The bar with no arrows — a segment, stopping at both endpoints.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "$A$ at $1$, $B$ at $6$: which number is on $\\overline{AB}$?",
+                "options": [
+                  "$4$",
+                  "$8$",
+                  "$0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4$ is between $1$ and $6$; $8$ and $0$ are outside.",
+                "check": [
+                  "And(4 > 1, 4 < 6)",
+                  "8 > 6"
+                ]
+              },
+              {
+                "prompt": "How many endpoints does a ray have?",
+                "options": [
+                  "$0$",
+                  "$1$",
+                  "$2$"
+                ],
+                "correctIndex": 1,
+                "explanation": "A ray starts somewhere — one endpoint — and never ends.",
+                "check": [
+                  "1 > 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Opposite rays",
+            "title": "Two rays, one line",
+            "beats": [
+              "Pick a point $P$ on a line.",
+              "$P$ splits the line into two rays going opposite ways.",
+              "Those are **opposite rays** — same endpoint, opposite directions.",
+              "Together they cover the whole line."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Opposite rays",
+            "intro": "Same start, opposite directions.",
+            "examples": [
+              {
+                "prompt": "$P$ is at $0$. One ray from $P$ contains $3$; its opposite contains $-3$. Which point is on BOTH rays?",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "P",
+                        "x": 0,
+                        "y": 0
+                      },
+                      {
+                        "id": "R",
+                        "x": 3,
+                        "y": 0,
+                        "label": "3"
+                      },
+                      {
+                        "id": "L",
+                        "x": -3,
+                        "y": 0,
+                        "label": "-3"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "ray",
+                        "from": "P",
+                        "to": "R"
+                      },
+                      {
+                        "kind": "ray",
+                        "from": "P",
+                        "to": "L",
+                        "color": "#5b8def"
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "One ray covers numbers $\\ge 0$, the other covers numbers $\\le 0$.",
+                  "Only their shared endpoint $P$ is on both."
+                ],
+                "answer": "Only $P$",
+                "check": [
+                  "And(3 > 0, -3 < 0)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Rays with direction",
+            "intro": "First letter = starting point.",
+            "problems": [
+              {
+                "prompt": "$A$ at $2$, $B$ at $5$. Which number is on $\\overrightarrow{BA}$ but not on $\\overline{AB}$?",
+                "options": [
+                  "$-1$",
+                  "$3$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\overrightarrow{BA}$ runs past $A$ into numbers below $2$.",
+                "check": [
+                  "(-1) < 2"
+                ]
+              },
+              {
+                "prompt": "Are $\\overrightarrow{AB}$ and $\\overrightarrow{BA}$ the same ray?",
+                "options": [
+                  "Yes",
+                  "No"
+                ],
+                "correctIndex": 1,
+                "explanation": "Different starting points, opposite directions.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "A ray you can bounce off the Moon",
+            "body": "Apollo astronauts left mirror arrays on the Moon. Scientists still fire laser rays at them — each beam starts at a telescope (its endpoint) and travels one direction, just like $\\overrightarrow{AB}$. The round trip takes about $2.5$ seconds and measures the Moon's distance to within millimetres."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the notation",
+            "prompt": "Which object starts at $A$ and never ends?",
+            "options": [
+              "$\\overline{AB}$",
+              "$\\overrightarrow{AB}$",
+              "$\\overleftrightarrow{AB}$"
+            ],
+            "correctIndex": 1,
+            "explanation": "One arrow = a ray from $A$ through $B$.",
+            "check": [
+              "1 > 0"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Segment** $\\overline{AB}$: between two endpoints. **Ray** $\\overrightarrow{AB}$: starts at $A$, forever one way. **Line**: forever both ways.",
+              "The **first letter of a ray is its endpoint** — $\\overrightarrow{AB} \\neq \\overrightarrow{BA}$.",
+              "**Opposite rays** share an endpoint and form a whole line."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's practice telling the three objects apart and putting points on the right ray."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "How many endpoints does a segment have?",
+                "options": [
+                  "$0$",
+                  "$1$",
+                  "$2$",
+                  "Infinitely many"
+                ],
+                "correctIndex": 2,
+                "explanation": "Both ends stop — two endpoints.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Which notation means a ray starting at $B$ through $A$?",
+                "options": [
+                  "$\\overline{BA}$",
+                  "$\\overrightarrow{BA}$",
+                  "$\\overrightarrow{AB}$",
+                  "$\\overleftrightarrow{AB}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "One arrow, first letter $B$ = starts at $B$.",
+                "check": [
+                  "1 > 0"
+                ]
+              },
+              {
+                "prompt": "$A$ at $2$, $B$ at $5$. Which number is on $\\overrightarrow{AB}$?",
+                "options": [
+                  "$0$",
+                  "$1$",
+                  "$9$",
+                  "$-2$"
+                ],
+                "correctIndex": 2,
+                "explanation": "The ray runs from $2$ through $5$ toward bigger numbers — $9$ qualifies.",
+                "check": [
+                  "9 > 5"
+                ]
+              },
+              {
+                "prompt": "$A$ at $1$, $B$ at $6$. Which point is on $\\overline{AB}$?",
+                "options": [
+                  "$0$",
+                  "$3$",
+                  "$7$",
+                  "$-1$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$3$ lies between the endpoints $1$ and $6$.",
+                "check": [
+                  "And(3 > 1, 3 < 6)"
+                ]
+              },
+              {
+                "prompt": "Are $\\overrightarrow{PQ}$ and $\\overrightarrow{QP}$ the same?",
+                "options": [
+                  "Yes — same two letters",
+                  "No — different start, opposite directions"
+                ],
+                "correctIndex": 1,
+                "explanation": "A ray is named start-first; these start at different points.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Two opposite rays from $P$ together form —",
+                "options": [
+                  "a segment",
+                  "a bigger ray",
+                  "a line",
+                  "a plane"
+                ],
+                "correctIndex": 2,
+                "explanation": "Opposite directions from one point cover the whole line.",
+                "check": [
+                  "And(3 > 0, -3 < 0)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Segments & Rays\"",
+            "body": "You can now tell a line from a ray from a segment at a glance — and read the notation. Next: Measuring Segments, where segments finally get a number."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "measuring-segments",
+      "title": "Measuring Segments",
+      "concreteComparison": "Measure a table with a tape measure and it doesn't matter if the table starts at the $0$ mark or at the $14$ — you read both ends and subtract. Length is a **difference of readings**, and that's exactly how geometry measures segments.",
+      "objective": "Use the Ruler Postulate to find segment lengths as |a − b|, and recognize congruent segments.",
+      "concept": [
+        "A **postulate** is a basic rule of geometry we accept as true without proof. The first one you'll use is the **Ruler Postulate**: the points on a line can be numbered like a ruler, one number per point (its **coordinate**).",
+        "The **length** of $\\overline{AB}$, written $AB$ (no bar), is the distance between the coordinates: $AB = |a - b|$.",
+        "The absolute value makes length **never negative** — reading the ends in either order gives the same answer.",
+        "Segments with **equal lengths** are **congruent**, written $\\overline{AB} \\cong \\overline{CD}$. In a figure, matching tick marks mean congruent."
+      ],
+      "keyIdea": "Number the line like a ruler; length = |difference of the end coordinates|. Equal lengths ⇒ congruent segments.",
+      "facts": [
+        {
+          "title": "Length formula",
+          "latex": "$AB = |a - b|$",
+          "explanation": "a, b are the endpoint coordinates — order doesn't matter."
+        },
+        {
+          "title": "Congruent",
+          "latex": "$\\overline{AB} \\cong \\overline{CD}$",
+          "explanation": "Same length; shown with matching tick marks."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ms-we1",
+          "statement": "$A$ is at $2$ and $B$ at $7$. Find $AB$.",
+          "solution": "$AB = |7 - 2| = 5$. (Or $|2 - 7| = |-5| = 5$ — same.)",
+          "check": [
+            "Abs(7 - 2) == 5",
+            "Abs(2 - 7) == 5"
+          ]
+        },
+        {
+          "id": "ms-we2",
+          "statement": "$C$ is at $-3$ and $D$ at $4$. Find $CD$.",
+          "solution": "$CD = |4 - (-3)| = |7| = 7$.",
+          "check": [
+            "Abs(4 - (-3)) == 7"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading the right-hand number as the length.",
+          "correction": "Unless the left end sits at $0$, you must **subtract** the two readings.",
+          "authored": true
+        },
+        {
+          "text": "Getting a negative length.",
+          "correction": "Length is $|a-b|$ — the absolute value guarantees it's never negative.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ms-t1",
+          "statement": "$P$ at $3$, $Q$ at $11$: find $PQ$.",
+          "solution": "$|11 - 3| = 8$.",
+          "check": [
+            "Abs(11 - 3) == 8"
+          ]
+        },
+        {
+          "id": "ms-t2",
+          "statement": "$\\overline{AB}$ runs from $2$ to $7$; $\\overline{CD}$ from $-1$ to $4$. Congruent?",
+          "solution": "$AB = 5$ and $CD = |4-(-1)| = 5$ — yes, $\\overline{AB} \\cong \\overline{CD}$.",
+          "check": [
+            "Abs(7 - 2) == Abs(4 - (-1))"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "segmentRuler",
+            "eyebrow": "Concept A",
+            "title": "Slide the ruler — the length holds",
+            "teach": "The segment never moves; only the ruler under it slides. The two readings keep changing, but their **difference** — the length — never does. That's the Ruler Postulate.",
+            "config": {
+              "length": 5,
+              "max": 12,
+              "start": 2
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "The Ruler Postulate",
+            "beats": [
+              "A **postulate** is a basic rule we accept as true without proof — geometry's starting rules.",
+              "The **Ruler Postulate**: match the points of a line with numbers, like a ruler. Each point gets a **coordinate**.",
+              "The length of $\\overline{AB}$ is $AB = |a - b|$.",
+              "Any placement of the ruler gives the same length."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why absolute value",
+            "title": "Length is never negative",
+            "beats": [
+              "Subtracting in the other order flips the sign: $2 - 7 = -5$.",
+              "But a length of $-5$ means nothing.",
+              "$|a - b|$ fixes it: $|2-7| = |7-2| = 5$.",
+              "Read the ends in either order — same length."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Finding lengths",
+            "intro": "Subtract the coordinates, take the absolute value.",
+            "examples": [
+              {
+                "prompt": "$A$ at $2$, $B$ at $7$: find $AB$.",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 2,
+                        "y": 0,
+                        "label": "A (2)"
+                      },
+                      {
+                        "id": "B",
+                        "x": 7,
+                        "y": 0,
+                        "label": "B (7)"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B"
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "$AB = |7 - 2|$.",
+                  "$= 5$."
+                ],
+                "answer": "$5$",
+                "check": [
+                  "Abs(7 - 2) == 5"
+                ]
+              },
+              {
+                "prompt": "$C$ at $-3$, $D$ at $4$: find $CD$.",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "C",
+                        "x": -3,
+                        "y": 0,
+                        "label": "C (-3)"
+                      },
+                      {
+                        "id": "D",
+                        "x": 4,
+                        "y": 0,
+                        "label": "D (4)"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "D"
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "$CD = |4 - (-3)| = |4 + 3|$.",
+                  "$= 7$."
+                ],
+                "answer": "$7$",
+                "check": [
+                  "Abs(4 - (-3)) == 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Measure it",
+            "intro": "Length = |difference|.",
+            "problems": [
+              {
+                "prompt": "$P$ at $3$, $Q$ at $11$: $PQ = $ ?",
+                "options": [
+                  "$8$",
+                  "$14$",
+                  "$11$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$|11 - 3| = 8$.",
+                "check": [
+                  "Abs(11 - 3) == 8"
+                ]
+              },
+              {
+                "prompt": "$E$ at $-2$, $F$ at $6$: $EF = $ ?",
+                "options": [
+                  "$4$",
+                  "$8$",
+                  "$6$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$|6 - (-2)| = 8$.",
+                "check": [
+                  "Abs(6 - (-2)) == 8"
+                ]
+              },
+              {
+                "prompt": "$G$ at $9$, $H$ at $5$: $GH = $ ?",
+                "options": [
+                  "$4$",
+                  "$-4$",
+                  "$14$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$|5 - 9| = |-4| = 4$ — never negative.",
+                "check": [
+                  "Abs(5 - 9) == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Same length",
+            "title": "Congruent segments",
+            "beats": [
+              "Two segments with the **same length** are **congruent**.",
+              "Write it $\\overline{AB} \\cong \\overline{CD}$.",
+              "Figures mark congruent segments with matching **tick marks**.",
+              "Congruent is about length — position and direction don't matter."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Congruent or not",
+            "intro": "Compute both lengths and compare.",
+            "examples": [
+              {
+                "prompt": "$\\overline{AB}$: $2$ to $7$. $\\overline{CD}$: $-1$ to $4$. Congruent?",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 2,
+                        "y": 1.4
+                      },
+                      {
+                        "id": "B",
+                        "x": 7,
+                        "y": 1.4
+                      },
+                      {
+                        "id": "C",
+                        "x": -1,
+                        "y": 0
+                      },
+                      {
+                        "id": "D",
+                        "x": 4,
+                        "y": 0
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "ticks": 1
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "D",
+                        "ticks": 1,
+                        "color": "#5b8def"
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "$AB = |7-2| = 5$.",
+                  "$CD = |4-(-1)| = 5$.",
+                  "Equal lengths $\\Rightarrow \\overline{AB} \\cong \\overline{CD}$."
+                ],
+                "answer": "Yes — both are $5$",
+                "check": [
+                  "Abs(7 - 2) == Abs(4 - (-1))"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Spot the congruent pair",
+            "intro": "Compare the lengths.",
+            "problems": [
+              {
+                "prompt": "Which segment is congruent to one from $0$ to $6$?",
+                "options": [
+                  "$3$ to $9$",
+                  "$1$ to $5$",
+                  "$-2$ to $2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$|9-3| = 6$ matches $|6-0| = 6$.",
+                "check": [
+                  "Abs(9 - 3) == Abs(6 - 0)"
+                ]
+              },
+              {
+                "prompt": "$\\overline{PQ}$ from $-4$ to $-1$: $PQ = $ ?",
+                "options": [
+                  "$3$",
+                  "$5$",
+                  "$-3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$|-1 - (-4)| = |3| = 3$.",
+                "check": [
+                  "Abs(-1 - (-4)) == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Burning an inch",
+            "body": "Carpenters often measure from the $1$-inch mark instead of the worn metal tip of a tape measure — they call it *burning an inch* — then subtract $1$ from the reading. It works for exactly the reason you just learned: length is a difference of readings, so where the ruler starts doesn't matter."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the ruler",
+            "prompt": "$A$ reads $4$, $B$ reads $10$. $AB = $ ?",
+            "options": [
+              "$6$",
+              "$10$",
+              "$14$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$|10 - 4| = 6$.",
+            "check": [
+              "Abs(10 - 4) == 6"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Ruler Postulate**: points on a line get coordinates like a ruler.",
+              "**Length** $AB = |a - b|$ — never negative, order-proof.",
+              "Equal lengths ⇒ **congruent** segments ($\\cong$), marked with matching ticks."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's measure: positive coordinates, negative ones, and a congruence check."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$A$ at $3$, $B$ at $9$: $AB = $ ?",
+                "options": [
+                  "$6$",
+                  "$12$",
+                  "$9$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$|9 - 3| = 6$.",
+                "check": [
+                  "Abs(9 - 3) == 6"
+                ]
+              },
+              {
+                "prompt": "$C$ at $-5$, $D$ at $2$: $CD = $ ?",
+                "options": [
+                  "$3$",
+                  "$7$",
+                  "$-7$",
+                  "$10$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$|2 - (-5)| = 7$.",
+                "check": [
+                  "Abs(2 - (-5)) == 7"
+                ]
+              },
+              {
+                "prompt": "$P$ at $8$, $Q$ at $1$: $PQ = $ ?",
+                "options": [
+                  "$7$",
+                  "$-7$",
+                  "$9$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$|1 - 8| = 7$ — order doesn't matter.",
+                "check": [
+                  "Abs(1 - 8) == 7"
+                ]
+              },
+              {
+                "prompt": "A segment from $-6$ to $-2$ has length —",
+                "options": [
+                  "$8$",
+                  "$4$",
+                  "$-4$",
+                  "$6$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$|-2 - (-6)| = 4$.",
+                "check": [
+                  "Abs(-2 - (-6)) == 4"
+                ]
+              },
+              {
+                "prompt": "Which is congruent to a segment of length $5$ from $2$ to $7$?",
+                "options": [
+                  "$-3$ to $2$",
+                  "$0$ to $4$",
+                  "$1$ to $7$",
+                  "$-1$ to $3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$|2 - (-3)| = 5$ — same length, congruent.",
+                "check": [
+                  "Abs(2 - (-3)) == Abs(7 - 2)"
+                ]
+              },
+              {
+                "prompt": "The ruler slides so $A$ reads $12$ instead of $4$. The length of $\\overline{AB}$ —",
+                "options": [
+                  "grows by 8",
+                  "shrinks",
+                  "doesn't change",
+                  "becomes 12"
+                ],
+                "correctIndex": 2,
+                "explanation": "Both readings shift together; the difference is unchanged.",
+                "check": [
+                  "Abs(12 - 17) == Abs(4 - 9)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Measuring Segments\"",
+            "body": "Segments have numbers now — and you can spot congruent ones. Next: Segment Addition & Midpoints, where parts add up to wholes."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "segment-addition-midpoint",
+      "title": "Segment Addition & Midpoints",
+      "concreteComparison": "You live at one end of a straight street, your friend at the other, and the bus stop is between you. Your walk to the stop plus the walk from the stop to your friend IS the whole trip — parts add to the whole. Meet exactly **halfway** and you've found the midpoint.",
+      "objective": "Use the Segment Addition Postulate (AB + BC = AC when B is between A and C) to find missing lengths, and use midpoints to halve and double.",
+      "concept": [
+        "If $B$ is **between** $A$ and $C$ (all three on one line), then $AB + BC = AC$ — the **Segment Addition Postulate**.",
+        "It works backwards too: a missing part is the whole minus the known part, $BC = AC - AB$.",
+        "The **midpoint** $M$ of $\\overline{AB}$ is the point that splits it into **two congruent halves**: $AM = MB = \\tfrac{1}{2}AB$.",
+        "On a ruler, the midpoint's coordinate is the **average** of the endpoints: $m = \\tfrac{a+b}{2}$."
+      ],
+      "keyIdea": "B between A and C ⇒ AB + BC = AC. Midpoint = the point making both halves equal (coordinate = average).",
+      "facts": [
+        {
+          "title": "Segment addition",
+          "latex": "$AB + BC = AC$",
+          "explanation": "When B is between A and C."
+        },
+        {
+          "title": "Midpoint coordinate",
+          "latex": "$m = \\frac{a + b}{2}$",
+          "explanation": "The average of the endpoint coordinates."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sa-we1",
+          "statement": "$B$ is between $A$ and $C$, $AB = 4$ and $BC = 6$. Find $AC$.",
+          "solution": "$AC = AB + BC = 4 + 6 = 10$.",
+          "check": [
+            "4 + 6 == 10"
+          ]
+        },
+        {
+          "id": "sa-we2",
+          "statement": "$M$ is the midpoint of $\\overline{PQ}$ and $PQ = 14$. Find $PM$.",
+          "solution": "The midpoint halves it: $PM = 14 \\div 2 = 7$.",
+          "check": [
+            "14/2 == 7"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding when a part is missing.",
+          "correction": "If you know the whole $AC$ and one part, **subtract**: $BC = AC - AB$.",
+          "authored": true
+        },
+        {
+          "text": "Using segment addition when B isn't between A and C.",
+          "correction": "The postulate needs $B$ **between** $A$ and $C$ on the same line — check the picture first.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sa-t1",
+          "statement": "$AC = 12$, $AB = 5$, $B$ between $A$ and $C$. Find $BC$.",
+          "solution": "$BC = 12 - 5 = 7$.",
+          "check": [
+            "12 - 5 == 7"
+          ]
+        },
+        {
+          "id": "sa-t2",
+          "statement": "$A$ at $2$, $B$ at $8$. Where is the midpoint of $\\overline{AB}$?",
+          "solution": "$m = \\frac{2+8}{2} = 5$.",
+          "check": [
+            "(2 + 8)/2 == 5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "geoCanvas",
+            "eyebrow": "Concept A",
+            "title": "Parts add to the whole",
+            "teach": "Slide $B$ anywhere between $A$ and $C$. The two parts change, but they always add back to the same whole: $AB + BC = AC$. Snap to the midpoint and both parts match.",
+            "config": {
+              "mode": "segmentAddition",
+              "total": 10,
+              "start": 3
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "How it works",
+            "title": "The Segment Addition Postulate",
+            "beats": [
+              "$B$ **between** $A$ and $C$ means all three sit on one line, $B$ inside.",
+              "Then the parts make the whole: $AB + BC = AC$.",
+              "$4 + 6 = 10$ — no gaps, no overlaps.",
+              "This is geometry's version of part + part = whole."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Work backwards",
+            "title": "Finding a missing part",
+            "beats": [
+              "Know the whole and one part? Subtract.",
+              "$AC = 12$ and $AB = 5$.",
+              "$BC = AC - AB = 12 - 5 = 7$.",
+              "Check: $5 + 7 = 12$. ✓"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Whole and parts",
+            "intro": "Add the parts — or subtract from the whole.",
+            "examples": [
+              {
+                "prompt": "$AB = 4$, $BC = 6$, $B$ between. Find $AC$.",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 0,
+                        "y": 0
+                      },
+                      {
+                        "id": "B",
+                        "x": 4,
+                        "y": 0
+                      },
+                      {
+                        "id": "C",
+                        "x": 10,
+                        "y": 0
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#e8913c"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#5b8def"
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "$AC = AB + BC$.",
+                  "$= 4 + 6 = 10$."
+                ],
+                "answer": "$10$",
+                "check": [
+                  "4 + 6 == 10"
+                ]
+              },
+              {
+                "prompt": "$AC = 12$, $AB = 5$. Find $BC$.",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 0,
+                        "y": 0
+                      },
+                      {
+                        "id": "B",
+                        "x": 5,
+                        "y": 0
+                      },
+                      {
+                        "id": "C",
+                        "x": 12,
+                        "y": 0
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#e8913c"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#5b8def"
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "$BC = AC - AB$.",
+                  "$= 12 - 5 = 7$."
+                ],
+                "answer": "$7$",
+                "check": [
+                  "12 - 5 == 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Add or subtract",
+            "intro": "Parts ↔ whole.",
+            "problems": [
+              {
+                "prompt": "$B$ is between $A$ and $C$; $AB = 3$, $BC = 9$: $AC = $ ?",
+                "options": [
+                  "$6$",
+                  "$12$",
+                  "$27$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$3 + 9 = 12$.",
+                "check": [
+                  "3 + 9 == 12"
+                ]
+              },
+              {
+                "prompt": "$B$ is between $A$ and $C$; $AC = 15$, $BC = 6$: $AB = $ ?",
+                "options": [
+                  "$9$",
+                  "$21$",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$15 - 6 = 9$.",
+                "check": [
+                  "15 - 6 == 9"
+                ]
+              },
+              {
+                "prompt": "$B$ is between $A$ and $C$; $AB = 10$, $BC = 2$: $AC = $ ?",
+                "options": [
+                  "$8$",
+                  "$12$",
+                  "$20$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$10 + 2 = 12$.",
+                "check": [
+                  "10 + 2 == 12"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Exactly half",
+            "title": "The midpoint",
+            "beats": [
+              "The **midpoint** $M$ of $\\overline{AB}$ makes $AM = MB$.",
+              "Each half is $\\tfrac{1}{2} AB$.",
+              "On a ruler: $m = \\frac{a+b}{2}$ — the average.",
+              "$A$ at $2$, $B$ at $8$: $m = \\frac{2+8}{2} = 5$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Midpoint moves",
+            "intro": "Halve the whole — or double the half.",
+            "examples": [
+              {
+                "prompt": "$M$ is the midpoint of $\\overline{AB}$, $AB = 14$. Find $AM$.",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 0,
+                        "y": 0
+                      },
+                      {
+                        "id": "M",
+                        "x": 7,
+                        "y": 0
+                      },
+                      {
+                        "id": "B",
+                        "x": 14,
+                        "y": 0
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "M",
+                        "ticks": 1,
+                        "color": "#e8913c"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "M",
+                        "to": "B",
+                        "ticks": 1,
+                        "color": "#5b8def"
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "The midpoint halves the segment.",
+                  "$AM = 14/2 = 7$."
+                ],
+                "answer": "$7$",
+                "check": [
+                  "14/2 == 7"
+                ]
+              },
+              {
+                "prompt": "$M$ is the midpoint and $AM = 9$. Find $AB$.",
+                "steps": [
+                  "The half doubles back to the whole.",
+                  "$AB = 2 \\times 9 = 18$."
+                ],
+                "answer": "$18$",
+                "check": [
+                  "2*9 == 18"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Halve and double",
+            "intro": "Midpoint = equal halves.",
+            "problems": [
+              {
+                "prompt": "$A$ at $2$, $B$ at $8$: the midpoint is at —",
+                "options": [
+                  "$5$",
+                  "$6$",
+                  "$4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(2+8)/2 = 5$.",
+                "check": [
+                  "(2 + 8)/2 == 5"
+                ]
+              },
+              {
+                "prompt": "$M$ midpoint of $\\overline{PQ}$, $PM = 6$: $PQ = $ ?",
+                "options": [
+                  "$3$",
+                  "$12$",
+                  "$6$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Double the half: $12$.",
+                "check": [
+                  "2*6 == 12"
+                ]
+              },
+              {
+                "prompt": "$B$ is between $A$ and $C$ with $AB = 7$ and $BC = 7$. What is special about $B$?",
+                "options": [
+                  "It's the midpoint of $\\overline{AC}$",
+                  "It's an endpoint",
+                  "Nothing"
+                ],
+                "correctIndex": 0,
+                "explanation": "The two parts are equal, so $B$ is the midpoint of $\\overline{AC}$.",
+                "check": [
+                  "7 + 7 == 14",
+                  "14/2 == 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Meeting in the middle",
+            "body": "Apps that pick a fair café for two friends do midpoint math on the map — averaging positions, exactly like $m = \\frac{a+b}{2}$. Railways use it too: the meeting point of two track-laying crews is set by midpoint calculations so both sides lay the same length of rail."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Parts to whole",
+            "prompt": "$AB = 5$, $BC = 8$, $B$ between $A$ and $C$. $AC = $ ?",
+            "options": [
+              "$3$",
+              "$13$",
+              "$40$"
+            ],
+            "correctIndex": 1,
+            "explanation": "$5 + 8 = 13$.",
+            "check": [
+              "5 + 8 == 13"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$B$ between $A$ and $C$ ⇒ **$AB + BC = AC$** (Segment Addition Postulate).",
+              "Missing part = whole − known part.",
+              "**Midpoint**: equal halves, $AM = MB = \\tfrac{1}{2}AB$; coordinate = average $\\tfrac{a+b}{2}$."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's mix wholes, parts, and midpoints — including one where you double back from a half."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$AB = 6$, $BC = 9$, $B$ between: $AC = $ ?",
+                "options": [
+                  "$3$",
+                  "$15$",
+                  "$54$",
+                  "$12$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$6 + 9 = 15$.",
+                "check": [
+                  "6 + 9 == 15"
+                ]
+              },
+              {
+                "prompt": "$B$ is between $A$ and $C$; $AC = 20$, $AB = 8$: $BC = $ ?",
+                "options": [
+                  "$28$",
+                  "$12$",
+                  "$8$",
+                  "$10$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$20 - 8 = 12$.",
+                "check": [
+                  "20 - 8 == 12"
+                ]
+              },
+              {
+                "prompt": "$M$ is the midpoint of $\\overline{AB}$, $AB = 22$: $AM = $ ?",
+                "options": [
+                  "$11$",
+                  "$22$",
+                  "$44$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$22/2 = 11$.",
+                "check": [
+                  "22/2 == 11"
+                ]
+              },
+              {
+                "prompt": "$A$ at $1$, $B$ at $9$: the midpoint's coordinate is —",
+                "options": [
+                  "$4$",
+                  "$5$",
+                  "$8$",
+                  "$10$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$(1+9)/2 = 5$.",
+                "check": [
+                  "(1 + 9)/2 == 5"
+                ]
+              },
+              {
+                "prompt": "$M$ is the midpoint of $\\overline{AB}$, $MB = 7$: $AB = $ ?",
+                "options": [
+                  "$3.5$",
+                  "$7$",
+                  "$14$",
+                  "$21$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Double the half: $14$.",
+                "check": [
+                  "2*7 == 14"
+                ]
+              },
+              {
+                "prompt": "$AB = 10$, $BC = 4$, $B$ between $A$ and $C$. Which equation is TRUE?",
+                "options": [
+                  "$AC = 6$",
+                  "$AC = 14$",
+                  "$AC = 40$",
+                  "$AB = AC + BC$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Parts add: $10 + 4 = 14$.",
+                "check": [
+                  "10 + 4 == 14"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Segment Addition & Midpoints\"",
+            "body": "Parts, wholes, and halves — you can now solve for any of them. Next: angles! Naming & Measuring Angles brings out the protractor."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "naming-measuring-angles",
+      "title": "Naming & Measuring Angles",
+      "concreteComparison": "Open a door. The hinge stays put while the door swings away from the frame — the wider the swing, the bigger the opening. That opening is an **angle**: two rays (door and frame) sharing one endpoint (the hinge), measured in degrees.",
+      "objective": "Define an angle as two rays with a common vertex, name it correctly (vertex in the middle), and measure it in degrees with a protractor.",
+      "concept": [
+        "An **angle** is formed by two rays with a **common endpoint**. The shared endpoint is the **vertex**; the rays are the **sides**.",
+        "Name it three ways: $\\angle ABC$ (three letters, **vertex in the middle**), $\\angle B$ (just the vertex, if unambiguous), or $\\angle 1$ (a number in the figure).",
+        "Angles are measured in **degrees**: a full turn is $360^\\circ$, so $1^\\circ$ is $\\tfrac{1}{360}$ of a turn. Write $m\\angle ABC = 40^\\circ$ for the measure.",
+        "On a **protractor**, if one side doesn't sit at $0^\\circ$, read both sides and **subtract** — just like measuring a segment."
+      ],
+      "keyIdea": "Angle = two rays + one vertex. Name it with the vertex in the middle; measure in degrees, subtracting protractor readings if needed.",
+      "facts": [
+        {
+          "title": "Measure notation",
+          "latex": "$m\\angle ABC = 40^\\circ$",
+          "explanation": "The small m means 'the measure of'."
+        },
+        {
+          "title": "Full turn",
+          "latex": "$360^\\circ$",
+          "explanation": "One complete rotation; a protractor face shows half (180°)."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "na-we1",
+          "statement": "A protractor shows one side of an angle at $20^\\circ$ and the other at $75^\\circ$. Find the measure.",
+          "solution": "Subtract the readings: $75 - 20 = 55$, so the angle measures $55^\\circ$.",
+          "check": [
+            "75 - 20 == 55"
+          ]
+        },
+        {
+          "id": "na-we2",
+          "statement": "In $\\angle PQR$, the protractor reads $25^\\circ$ for side $\\overrightarrow{QP}$ and $65^\\circ$ for side $\\overrightarrow{QR}$. Name the vertex and find $m\\angle PQR$.",
+          "solution": "The middle letter $Q$ is the vertex ($\\angle RQP$ names the same angle). Measure: $65 - 25 = 40$, so $m\\angle PQR = 40^\\circ$.",
+          "check": [
+            "65 - 25 == 40"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Writing the vertex first or last, like ∠BAC for an angle at B.",
+          "correction": "The vertex letter always goes in the **middle**: the angle at $B$ is $\\angle ABC$ or $\\angle CBA$.",
+          "authored": true
+        },
+        {
+          "text": "Reading only one protractor number.",
+          "correction": "If a side isn't on $0$, the measure is the **difference** of the two readings.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "na-t1",
+          "statement": "Sides at $30^\\circ$ and $110^\\circ$ on the protractor — the angle measures?",
+          "solution": "$110 - 30 = 80$, so $80^\\circ$.",
+          "check": [
+            "110 - 30 == 80"
+          ]
+        },
+        {
+          "id": "na-t2",
+          "statement": "One side sits on $0^\\circ$, the other on $65^\\circ$. Measure?",
+          "solution": "$65 - 0 = 65^\\circ$ — with a side on zero you can read it straight off.",
+          "check": [
+            "65 - 0 == 65"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "protractor",
+            "eyebrow": "Concept A",
+            "title": "Meet the protractor",
+            "teach": "Drag the orange ray (or step it) and read the measure live. The vertex sits at the protractor's center; one side rests on $0^\\circ$; the other side's reading IS the measure.",
+            "config": {
+              "initial": 40
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "What an angle is",
+            "title": "Two rays, one vertex",
+            "beats": [
+              "Take two rays with the **same endpoint**.",
+              "The shared endpoint is the **vertex**; the rays are the **sides**.",
+              "The angle is the opening between the sides.",
+              "A wider opening = a bigger angle — the ray lengths don't matter."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Naming",
+            "title": "Vertex in the middle",
+            "beats": [
+              "Three letters: side–vertex–side, like $\\angle ABC$ — the vertex $B$ sits in the **middle**.",
+              "$\\angle ABC$ and $\\angle CBA$ are the **same** angle.",
+              "If only one angle lives at $B$, plain $\\angle B$ works.",
+              "Figures also use numbers: $\\angle 1$, $\\angle 2$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Name that angle",
+            "intro": "Find the vertex first.",
+            "examples": [
+              {
+                "prompt": "Name the angle at vertex $Q$ with sides through $P$ and $R$.",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "Q",
+                        "x": 0,
+                        "y": 0
+                      },
+                      {
+                        "id": "P",
+                        "x": 4,
+                        "y": 0
+                      },
+                      {
+                        "id": "R",
+                        "x": 3,
+                        "y": 2.52
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "ray",
+                        "from": "Q",
+                        "to": "P"
+                      },
+                      {
+                        "kind": "ray",
+                        "from": "Q",
+                        "to": "R"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "Q",
+                        "from": "P",
+                        "to": "R",
+                        "label": "40°"
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "Vertex $Q$ goes in the middle.",
+                  "$\\angle PQR$ (or $\\angle RQP$)."
+                ],
+                "answer": "$\\angle PQR$",
+                "check": [
+                  "40 < 90"
+                ]
+              },
+              {
+                "prompt": "Protractor readings: $20^\\circ$ and $75^\\circ$. Find the measure.",
+                "steps": [
+                  "Neither side is on zero — subtract.",
+                  "$75 - 20 = 55^\\circ$."
+                ],
+                "answer": "$55^\\circ$",
+                "check": [
+                  "75 - 20 == 55"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Vertex and measure",
+            "intro": "Middle letter = vertex; subtract readings.",
+            "problems": [
+              {
+                "prompt": "In $\\angle XYZ$, the vertex is —",
+                "options": [
+                  "$X$",
+                  "$Y$",
+                  "$Z$"
+                ],
+                "correctIndex": 1,
+                "explanation": "The middle letter is always the vertex.",
+                "check": [
+                  "binomial(2, 2) == 1"
+                ]
+              },
+              {
+                "prompt": "Sides at $30^\\circ$ and $110^\\circ$: the measure is —",
+                "options": [
+                  "$80^\\circ$",
+                  "$140^\\circ$",
+                  "$110^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$110 - 30 = 80$.",
+                "check": [
+                  "110 - 30 == 80"
+                ]
+              },
+              {
+                "prompt": "Which names the SAME angle as $\\angle ABC$?",
+                "options": [
+                  "$\\angle CBA$",
+                  "$\\angle BAC$",
+                  "$\\angle ACB$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same vertex $B$ in the middle, sides in either order.",
+                "check": [
+                  "binomial(2, 2) == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Degrees",
+            "title": "How angles are counted",
+            "beats": [
+              "A **full turn** is $360^\\circ$.",
+              "So $1^\\circ$ is $\\tfrac{1}{360}$ of a turn — a very thin slice.",
+              "A protractor face shows half a turn: $0^\\circ$ to $180^\\circ$.",
+              "Write measures with the little $m$: $m\\angle ABC = 40^\\circ$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Reading a protractor",
+            "intro": "Subtract when neither side is on $0^\\circ$.",
+            "examples": [
+              {
+                "prompt": "Sides on $45^\\circ$ and $130^\\circ$: find the measure.",
+                "steps": [
+                  "$130 - 45 = 85$.",
+                  "The angle measures $85^\\circ$."
+                ],
+                "answer": "$85^\\circ$",
+                "check": [
+                  "130 - 45 == 85"
+                ]
+              },
+              {
+                "prompt": "One side on $0^\\circ$, the other on $155^\\circ$: measure?",
+                "steps": [
+                  "A side on zero: read directly.",
+                  "$155^\\circ$."
+                ],
+                "answer": "$155^\\circ$",
+                "check": [
+                  "155 - 0 == 155"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Measure it",
+            "intro": "Difference of the two readings.",
+            "problems": [
+              {
+                "prompt": "Readings $60^\\circ$ and $145^\\circ$: the angle is —",
+                "options": [
+                  "$85^\\circ$",
+                  "$95^\\circ$",
+                  "$145^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$145 - 60 = 85$.",
+                "check": [
+                  "145 - 60 == 85"
+                ]
+              },
+              {
+                "prompt": "Readings $90^\\circ$ and $25^\\circ$: the angle is —",
+                "options": [
+                  "$115^\\circ$",
+                  "$65^\\circ$",
+                  "$25^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$90 - 25 = 65$.",
+                "check": [
+                  "90 - 25 == 65"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why 360?",
+            "body": "The choice of $360$ degrees comes from ancient Babylon: their number system ran on $60$s, and a year runs close to $360$ days, so the sun seems to walk about one degree along the sky each day. $360$ also divides evenly by $2, 3, 4, 5, 6, 8, 9, 10, 12\\ldots$ — handy long before calculators."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read it",
+            "prompt": "Sides at $15^\\circ$ and $70^\\circ$: the measure is —",
+            "options": [
+              "$55^\\circ$",
+              "$85^\\circ$",
+              "$70^\\circ$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$70 - 15 = 55$.",
+            "check": [
+              "70 - 15 == 55"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Angle** = two rays (sides) + a common endpoint (**vertex**).",
+              "Name with the **vertex in the middle**: $\\angle ABC$ = $\\angle CBA$; measure written $m\\angle ABC$.",
+              "Degrees count turn ($360^\\circ$ = full turn); protractor readings **subtract** when neither side is on 0."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's practice naming and protractor arithmetic — including readings that don't start at zero."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "In $\\angle DEF$, the vertex is —",
+                "options": [
+                  "$D$",
+                  "$E$",
+                  "$F$",
+                  "impossible to tell"
+                ],
+                "correctIndex": 1,
+                "explanation": "Middle letter = vertex.",
+                "check": [
+                  "binomial(2, 2) == 1"
+                ]
+              },
+              {
+                "prompt": "Sides at $40^\\circ$ and $125^\\circ$: measure?",
+                "options": [
+                  "$85^\\circ$",
+                  "$95^\\circ$",
+                  "$165^\\circ$",
+                  "$125^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$125 - 40 = 85$.",
+                "check": [
+                  "125 - 40 == 85"
+                ]
+              },
+              {
+                "prompt": "One side on $0^\\circ$, other on $118^\\circ$: measure?",
+                "options": [
+                  "$62^\\circ$",
+                  "$118^\\circ$",
+                  "$28^\\circ$",
+                  "$180^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Side on zero — read directly: $118^\\circ$.",
+                "check": [
+                  "118 - 0 == 118"
+                ]
+              },
+              {
+                "prompt": "Which is NOT a name for the angle at vertex $M$ with sides through $L$ and $N$?",
+                "options": [
+                  "$\\angle LMN$",
+                  "$\\angle NML$",
+                  "$\\angle M$",
+                  "$\\angle LNM$"
+                ],
+                "correctIndex": 3,
+                "explanation": "$\\angle LNM$ puts $N$ in the middle — wrong vertex.",
+                "check": [
+                  "binomial(2, 2) == 1"
+                ]
+              },
+              {
+                "prompt": "A full turn is —",
+                "options": [
+                  "$90^\\circ$",
+                  "$180^\\circ$",
+                  "$270^\\circ$",
+                  "$360^\\circ$"
+                ],
+                "correctIndex": 3,
+                "explanation": "$360^\\circ$; the protractor shows half of it.",
+                "check": [
+                  "2*180 == 360"
+                ]
+              },
+              {
+                "prompt": "Readings $35^\\circ$ and $95^\\circ$ — the angle is —",
+                "options": [
+                  "$130^\\circ$",
+                  "$60^\\circ$",
+                  "$95^\\circ$",
+                  "$65^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$95 - 35 = 60$.",
+                "check": [
+                  "95 - 35 == 60"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Naming & Measuring Angles\"",
+            "body": "You can name any angle correctly and pull its measure off a protractor. Next: Classifying Angles — acute, right, obtuse, straight."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "classifying-angles",
+      "title": "Classifying Angles",
+      "concreteComparison": "Skaters already talk in angles: *doing a 180* means turning to face exactly backwards — a straight angle. A slice of pizza is a skinny **acute** angle; the corner of this screen is a perfect **right** angle; a laptop opened comfortably leans **obtuse**.",
+      "objective": "Classify angles as acute, right, obtuse, or straight from their degree measures, with 90° and 180° as exact boundaries.",
+      "concept": [
+        "**Acute**: less than $90^\\circ$ — a sharp, skinny opening.",
+        "**Right**: exactly $90^\\circ$ — a perfect corner, marked with a small square (□) instead of an arc.",
+        "**Obtuse**: between $90^\\circ$ and $180^\\circ$ — wider than a corner, not yet flat.",
+        "**Straight**: exactly $180^\\circ$ — the two sides are opposite rays, forming a line. Notice a right angle is exactly half of this: $180 \\div 2 = 90$. (Beyond $180^\\circ$ an angle is called **reflex** — you'll rarely need it yet.)"
+      ],
+      "keyIdea": "Compare to 90 and 180: under 90 acute, exactly 90 right, between right and straight obtuse, exactly 180 straight.",
+      "facts": [
+        {
+          "title": "The boundaries",
+          "latex": "$90^\\circ,\\ 180^\\circ$",
+          "explanation": "Right and straight are EXACT values, not ranges."
+        },
+        {
+          "title": "Right-angle mark",
+          "latex": "□",
+          "explanation": "A small square at the vertex means exactly 90°."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ca-we1",
+          "statement": "Classify an angle of $132^\\circ$.",
+          "solution": "$90 < 132 < 180$, so it's obtuse.",
+          "check": [
+            "And(132 > 90, 132 < 180)"
+          ]
+        },
+        {
+          "id": "ca-we2",
+          "statement": "Classify an angle of exactly $90^\\circ$.",
+          "solution": "Exactly $90^\\circ$ is a right angle — half a straight angle, since $180 \\div 2 = 90$.",
+          "check": [
+            "180/2 == 90"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Calling 90° acute (or obtuse).",
+          "correction": "$90^\\circ$ is its own category: **right**. Acute stops *below* $90$; obtuse starts *above* it.",
+          "authored": true
+        },
+        {
+          "text": "Judging by the drawing's size on the page.",
+          "correction": "Classify by the **measure**, not how long the sides are drawn.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ca-t1",
+          "statement": "Classify $47^\\circ$.",
+          "solution": "$47 < 90$: acute.",
+          "check": [
+            "47 < 90"
+          ]
+        },
+        {
+          "id": "ca-t2",
+          "statement": "Classify $180^\\circ$.",
+          "solution": "Exactly $180^\\circ$: straight — the sides are opposite rays ($2 \\times 90 = 180$).",
+          "check": [
+            "2*90 == 180"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "protractor",
+            "eyebrow": "Concept A",
+            "title": "Watch the class change",
+            "teach": "Sweep the ray and watch the label flip exactly at $90^\\circ$ and $180^\\circ$. The boundaries aren't fuzzy: $89^\\circ$ is acute, $90^\\circ$ is right, $91^\\circ$ is obtuse.",
+            "config": {
+              "initial": 65,
+              "classify": true
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The four classes",
+            "title": "Acute, right, obtuse, straight",
+            "beats": [
+              "**Acute**: $< 90^\\circ$ — sharp.",
+              "**Right**: $= 90^\\circ$ — a perfect corner, marked □.",
+              "**Obtuse**: between $90^\\circ$ and $180^\\circ$ — wide.",
+              "**Straight**: $= 180^\\circ$ — flat; the sides are opposite rays."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The boundaries are exact",
+            "title": "90 and 180 are not ranges",
+            "beats": [
+              "$89^\\circ$? Acute. $90^\\circ$? Right. $91^\\circ$? Obtuse.",
+              "Right and straight are **single values**, not families.",
+              "A right angle is exactly **half** a straight one: $180 \\div 2 = 90$.",
+              "That's why the square mark □ is special — it certifies exactly $90^\\circ$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Classify by measure",
+            "intro": "Compare with 90 and 180.",
+            "examples": [
+              {
+                "prompt": "Classify $132^\\circ$.",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "B",
+                        "x": 0,
+                        "y": 0
+                      },
+                      {
+                        "id": "C",
+                        "x": 4,
+                        "y": 0
+                      },
+                      {
+                        "id": "A",
+                        "x": -2.7,
+                        "y": 3
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "ray",
+                        "from": "B",
+                        "to": "C"
+                      },
+                      {
+                        "kind": "ray",
+                        "from": "B",
+                        "to": "A"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "B",
+                        "from": "C",
+                        "to": "A",
+                        "label": "132°"
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "$132 > 90$: more than a corner.",
+                  "$132 < 180$: not yet flat.",
+                  "Obtuse."
+                ],
+                "answer": "Obtuse",
+                "check": [
+                  "And(132 > 90, 132 < 180)"
+                ]
+              },
+              {
+                "prompt": "Classify $58^\\circ$.",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "B",
+                        "x": 0,
+                        "y": 0
+                      },
+                      {
+                        "id": "C",
+                        "x": 4,
+                        "y": 0
+                      },
+                      {
+                        "id": "A",
+                        "x": 2.1,
+                        "y": 3.4
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "ray",
+                        "from": "B",
+                        "to": "C"
+                      },
+                      {
+                        "kind": "ray",
+                        "from": "B",
+                        "to": "A"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "B",
+                        "from": "C",
+                        "to": "A",
+                        "label": "58°"
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "$58 < 90$.",
+                  "Acute."
+                ],
+                "answer": "Acute",
+                "check": [
+                  "58 < 90"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Classify these",
+            "intro": "Boundaries: 90 and 180, exactly.",
+            "problems": [
+              {
+                "prompt": "$47^\\circ$ is —",
+                "options": [
+                  "acute",
+                  "right",
+                  "obtuse"
+                ],
+                "correctIndex": 0,
+                "explanation": "$47 < 90$.",
+                "check": [
+                  "47 < 90"
+                ]
+              },
+              {
+                "prompt": "$90^\\circ$ is —",
+                "options": [
+                  "acute",
+                  "right",
+                  "obtuse"
+                ],
+                "correctIndex": 1,
+                "explanation": "Exactly $90^\\circ$ — the one and only right measure ($180/2$).",
+                "check": [
+                  "180/2 == 90"
+                ]
+              },
+              {
+                "prompt": "$155^\\circ$ is —",
+                "options": [
+                  "acute",
+                  "obtuse",
+                  "straight"
+                ],
+                "correctIndex": 1,
+                "explanation": "$90 < 155 < 180$.",
+                "check": [
+                  "And(155 > 90, 155 < 180)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Flat and beyond",
+            "title": "Straight and reflex",
+            "beats": [
+              "At exactly $180^\\circ$ the two sides point **opposite ways** — a straight angle looks like a line.",
+              "That connects to Lesson 2: the sides are **opposite rays**.",
+              "Past $180^\\circ$? Called **reflex** — like a skater's 270.",
+              "We'll mostly live between $0^\\circ$ and $180^\\circ$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Boundary calls",
+            "intro": "Exact values decide.",
+            "examples": [
+              {
+                "prompt": "An angle measures exactly half of a straight angle. Classify it.",
+                "steps": [
+                  "Half of $180^\\circ$ is $90^\\circ$.",
+                  "Exactly $90^\\circ$ = right."
+                ],
+                "answer": "Right",
+                "check": [
+                  "180/2 == 90"
+                ]
+              },
+              {
+                "prompt": "Classify $179^\\circ$ and $180^\\circ$.",
+                "steps": [
+                  "$179 < 180$: still obtuse.",
+                  "$180$ exactly: straight."
+                ],
+                "answer": "Obtuse; straight",
+                "check": [
+                  "And(179 > 90, 179 < 180)",
+                  "2*90 == 180"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Right at the edge",
+            "intro": "Watch the exact boundaries.",
+            "problems": [
+              {
+                "prompt": "$89^\\circ$ is —",
+                "options": [
+                  "acute",
+                  "right",
+                  "obtuse"
+                ],
+                "correctIndex": 0,
+                "explanation": "One degree under: still acute.",
+                "check": [
+                  "89 < 90"
+                ]
+              },
+              {
+                "prompt": "$180^\\circ$ is —",
+                "options": [
+                  "obtuse",
+                  "straight",
+                  "reflex"
+                ],
+                "correctIndex": 1,
+                "explanation": "Exactly $180^\\circ$ — the sides form a line.",
+                "check": [
+                  "2*90 == 180"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Angles in slang",
+            "body": "Skaters and snowboarders count turns in degrees: a *180* faces you backwards (straight angle), a *360* spins a full turn, and a *540* is a full turn plus a 180. When someone says a plan *did a 180*, they're doing geometry — the direction reversed exactly."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Classify it",
+            "prompt": "$120^\\circ$ is —",
+            "options": [
+              "acute",
+              "right",
+              "obtuse"
+            ],
+            "correctIndex": 2,
+            "explanation": "$90 < 120 < 180$: obtuse.",
+            "check": [
+              "And(120 > 90, 120 < 180)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Acute** $< 90^\\circ$ · **right** $= 90^\\circ$ (□) · **obtuse** strictly between $90^\\circ$ and $180^\\circ$ · **straight** $= 180^\\circ$.",
+              "The boundaries are **exact** — $90^\\circ$ and $180^\\circ$ are their own classes.",
+              "A right angle is half a straight one; a straight angle's sides are opposite rays."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's classify across the whole range — including the sneaky boundary cases."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$35^\\circ$ is —",
+                "options": [
+                  "acute",
+                  "right",
+                  "obtuse",
+                  "straight"
+                ],
+                "correctIndex": 0,
+                "explanation": "$35 < 90$.",
+                "check": [
+                  "35 < 90"
+                ]
+              },
+              {
+                "prompt": "$90^\\circ$ is —",
+                "options": [
+                  "acute",
+                  "right",
+                  "obtuse",
+                  "straight"
+                ],
+                "correctIndex": 1,
+                "explanation": "Exactly $90$: right ($= 180/2$).",
+                "check": [
+                  "180/2 == 90"
+                ]
+              },
+              {
+                "prompt": "$143^\\circ$ is —",
+                "options": [
+                  "acute",
+                  "right",
+                  "obtuse",
+                  "straight"
+                ],
+                "correctIndex": 2,
+                "explanation": "$90 < 143 < 180$.",
+                "check": [
+                  "And(143 > 90, 143 < 180)"
+                ]
+              },
+              {
+                "prompt": "$180^\\circ$ is —",
+                "options": [
+                  "obtuse",
+                  "straight",
+                  "reflex",
+                  "right"
+                ],
+                "correctIndex": 1,
+                "explanation": "Exactly flat — a straight angle.",
+                "check": [
+                  "2*90 == 180"
+                ]
+              },
+              {
+                "prompt": "Which measure is an acute angle just under the $90^\\circ$ boundary?",
+                "options": [
+                  "$89^\\circ$",
+                  "$90^\\circ$",
+                  "$91^\\circ$",
+                  "$179^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$89 < 90$, barely acute; $90$ is right, $91$ obtuse.",
+                "check": [
+                  "89 < 90"
+                ]
+              },
+              {
+                "prompt": "A door opens from shut ($0^\\circ$) to $110^\\circ$. Its final opening is —",
+                "options": [
+                  "acute",
+                  "right",
+                  "obtuse",
+                  "straight"
+                ],
+                "correctIndex": 2,
+                "explanation": "$90 < 110 < 180$: obtuse.",
+                "check": [
+                  "And(110 > 90, 110 < 180)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Classifying Angles\"",
+            "body": "Acute to straight — you can class any measure on sight. Next: Angle Pairs, where two angles team up in four famous ways."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "angle-pairs",
+      "title": "Angle Pairs",
+      "concreteComparison": "Open a pair of scissors: the two blades make one angle, the two handles make another — and those two angles are **always equal**, no matter how far you open. Crossing lines can't help it. That's a **vertical pair**, the first of four angle partnerships you'll meet.",
+      "objective": "Identify adjacent angles, vertical angles, linear pairs, and complementary/supplementary pairs — knowing which are congruent and which sum to 90° or 180°.",
+      "concept": [
+        "**Adjacent** angles share a vertex and one side, without overlapping — neighbors.",
+        "**Vertical** angles sit across from each other where two lines cross. They are always **congruent** (equal).",
+        "A **linear pair** is two adjacent angles whose outer sides form a line (opposite rays). They are **supplementary**: they sum to $180^\\circ$.",
+        "**Complementary** angles sum to $90^\\circ$; **supplementary** angles sum to $180^\\circ$. These are about **sums** — the two angles don't have to touch.",
+        "The big distinction: vertical pairs are **equal**; linear pairs **add to 180°**. Don't swap those."
+      ],
+      "keyIdea": "Vertical = congruent. Linear pair = supplementary (180°). Complementary = 90° total. Supplementary = 180° total.",
+      "facts": [
+        {
+          "title": "Vertical angles",
+          "latex": "$\\angle 1 \\cong \\angle 3$",
+          "explanation": "Across a crossing — always equal."
+        },
+        {
+          "title": "Linear pair",
+          "latex": "$\\angle 1 + \\angle 2 = 180^\\circ$",
+          "explanation": "Adjacent, outer sides form a line."
+        },
+        {
+          "title": "Complement / supplement",
+          "latex": "$90^\\circ$ / $180^\\circ$",
+          "explanation": "C comes before S; 90 comes before 180."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ap-we1",
+          "statement": "Two lines cross; one angle measures $115^\\circ$. Find the other three.",
+          "solution": "Vertical partner: also $115^\\circ$. The two neighbors are linear pairs with it: $180 - 115 = 65^\\circ$ each.",
+          "check": [
+            "180 - 115 == 65",
+            "115 + 65 == 180"
+          ]
+        },
+        {
+          "id": "ap-we2",
+          "statement": "Two angles are complementary; one is $35^\\circ$. Find the other.",
+          "solution": "Complementary means summing to $90$: $90 - 35 = 55^\\circ$.",
+          "check": [
+            "90 - 35 == 55"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Saying vertical angles are supplementary.",
+          "correction": "Vertical angles are **congruent** (equal). It's the *linear pair* that sums to $180^\\circ$.",
+          "authored": true
+        },
+        {
+          "text": "Mixing up complementary and supplementary.",
+          "correction": "Alphabetical order helps: **C**omplementary ($90$) before **S**upplementary ($180$) — just as $90 < 180$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ap-t1",
+          "statement": "An angle in a linear pair measures $48^\\circ$. Its partner?",
+          "solution": "$180 - 48 = 132^\\circ$.",
+          "check": [
+            "180 - 48 == 132"
+          ]
+        },
+        {
+          "id": "ap-t2",
+          "statement": "Two vertical angles: one is $77^\\circ$. The other?",
+          "solution": "Vertical angles are congruent: $77^\\circ$.",
+          "check": [
+            "77 == 180 - 103"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "anglePairs",
+            "eyebrow": "Concept A",
+            "title": "Where two lines cross",
+            "teach": "Rotate the line and watch all four angles. Toggle the views: **vertical** pairs (across the X) stay equal to each other; **linear** pairs (neighbors along a line) keep summing to $180^\\circ$. Both facts survive every rotation.",
+            "config": {
+              "mode": "crossing",
+              "initial": 50
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Neighbors",
+            "title": "Adjacent angles",
+            "beats": [
+              "**Adjacent** = sharing a vertex and one side, no overlap.",
+              "Think of two pizza slices side by side.",
+              "Adjacent angles simply sit next to each other —",
+              "the special sums come when more structure appears."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The crossing facts",
+            "title": "Vertical vs linear",
+            "beats": [
+              "Two crossing lines make four angles.",
+              "**Across** from each other: vertical angles — always **congruent**.",
+              "**Next to** each other along a line: a linear pair — always **supplementary** ($180^\\circ$).",
+              "Equal across, add-to-180 along. That's the whole grammar of a crossing."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "One angle unlocks all four",
+            "intro": "Vertical = copy; neighbor = 180 − it.",
+            "examples": [
+              {
+                "prompt": "Two lines cross; $\\angle 1 = 115^\\circ$. Find $\\angle 3$ (vertical) and $\\angle 2$ (linear pair).",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "O",
+                        "x": 0,
+                        "y": 0,
+                        "label": ""
+                      },
+                      {
+                        "id": "E",
+                        "x": 4,
+                        "y": 0,
+                        "label": ""
+                      },
+                      {
+                        "id": "W",
+                        "x": -4,
+                        "y": 0,
+                        "label": ""
+                      },
+                      {
+                        "id": "N",
+                        "x": -1.69,
+                        "y": 3.63,
+                        "label": ""
+                      },
+                      {
+                        "id": "S",
+                        "x": 1.69,
+                        "y": -3.63,
+                        "label": ""
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "line",
+                        "from": "W",
+                        "to": "E"
+                      },
+                      {
+                        "kind": "line",
+                        "from": "S",
+                        "to": "N"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "O",
+                        "from": "E",
+                        "to": "N",
+                        "label": "1"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "O",
+                        "from": "N",
+                        "to": "W",
+                        "label": "2",
+                        "color": "#5b8def"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "O",
+                        "from": "W",
+                        "to": "S",
+                        "label": "3"
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "$\\angle 3$ is vertical to $\\angle 1$: also $115^\\circ$.",
+                  "$\\angle 2$ makes a linear pair with $\\angle 1$: $180 - 115 = 65^\\circ$."
+                ],
+                "answer": "$\\angle 3 = 115^\\circ$, $\\angle 2 = 65^\\circ$",
+                "check": [
+                  "180 - 115 == 65"
+                ]
+              },
+              {
+                "prompt": "Complementary pair, one angle $35^\\circ$: the other?",
+                "steps": [
+                  "Complementary sums to $90^\\circ$.",
+                  "$90 - 35 = 55^\\circ$."
+                ],
+                "answer": "$55^\\circ$",
+                "check": [
+                  "90 - 35 == 55"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Which partner?",
+            "intro": "Equal across; 180 along; 90 for complements.",
+            "problems": [
+              {
+                "prompt": "Vertical to a $77^\\circ$ angle is —",
+                "options": [
+                  "$103^\\circ$",
+                  "$77^\\circ$",
+                  "$13^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Vertical angles are congruent.",
+                "check": [
+                  "180 - 103 == 77"
+                ]
+              },
+              {
+                "prompt": "Linear-pair partner of $48^\\circ$ is —",
+                "options": [
+                  "$42^\\circ$",
+                  "$132^\\circ$",
+                  "$48^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$180 - 48 = 132$.",
+                "check": [
+                  "180 - 48 == 132"
+                ]
+              },
+              {
+                "prompt": "Complement of $62^\\circ$ is —",
+                "options": [
+                  "$28^\\circ$",
+                  "$118^\\circ$",
+                  "$38^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$90 - 62 = 28$.",
+                "check": [
+                  "90 - 62 == 28"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "anglePairs",
+            "eyebrow": "Concept B",
+            "title": "Inside a right angle",
+            "teach": "A ray inside a right angle cuts it into two pieces that always total $90^\\circ$ — **complementary** angles. Move the ray: one grows exactly as the other shrinks.",
+            "config": {
+              "mode": "corner",
+              "initial": 30
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Sums of 90 and 180",
+            "intro": "Complement then supplement.",
+            "examples": [
+              {
+                "prompt": "Find the complement and the supplement of $41^\\circ$.",
+                "steps": [
+                  "Complement: $90 - 41 = 49^\\circ$.",
+                  "Supplement: $180 - 41 = 139^\\circ$."
+                ],
+                "answer": "$49^\\circ$ and $139^\\circ$",
+                "check": [
+                  "90 - 41 == 49",
+                  "180 - 41 == 139"
+                ]
+              },
+              {
+                "prompt": "Two angles are supplementary and equal. Each is —",
+                "steps": [
+                  "Equal parts of $180^\\circ$.",
+                  "$180 / 2 = 90^\\circ$ each — two right angles."
+                ],
+                "answer": "$90^\\circ$",
+                "check": [
+                  "180/2 == 90"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Complement or supplement",
+            "intro": "90 or 180 — check which is asked.",
+            "problems": [
+              {
+                "prompt": "Supplement of $105^\\circ$?",
+                "options": [
+                  "$75^\\circ$",
+                  "$85^\\circ$",
+                  "$15^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$180 - 105 = 75$.",
+                "check": [
+                  "180 - 105 == 75"
+                ]
+              },
+              {
+                "prompt": "Can a $100^\\circ$ angle have a complement?",
+                "options": [
+                  "Yes",
+                  "No"
+                ],
+                "correctIndex": 1,
+                "explanation": "A complement needs the pair to total $90^\\circ$, but $100 > 90$ already.",
+                "check": [
+                  "100 > 90"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The scissors theorem",
+            "body": "Every pair of scissors is a vertical-angles machine: blades and handles always open to equal angles, which is why cutting feels symmetric. Camera tripods, folding chairs, and scaffolding braces all lean on the same fact — crossing bars lock equal angles across the joint."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Name the pair",
+            "prompt": "Two angles share a side, and their outer sides form a straight line. They are —",
+            "options": [
+              "vertical angles",
+              "a linear pair",
+              "complementary"
+            ],
+            "correctIndex": 1,
+            "explanation": "Adjacent + outer sides forming a line = linear pair (supplementary, $180^\\circ$).",
+            "check": [
+              "90 + 90 == 180"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Adjacent**: share vertex + side. **Vertical**: across a crossing — **congruent**.",
+              "**Linear pair**: adjacent along a line — **supplementary** ($180^\\circ$).",
+              "**Complementary** sums to $90^\\circ$; **supplementary** to $180^\\circ$ — C before S, $90$ before $180$."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's work all four partnerships — and nail the equal-vs-180 distinction that trips everyone up."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Two lines cross; one angle is $60^\\circ$. Its VERTICAL partner is —",
+                "options": [
+                  "$120^\\circ$",
+                  "$60^\\circ$",
+                  "$30^\\circ$",
+                  "$90^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Vertical angles are congruent — equal, not supplementary.",
+                "check": [
+                  "180 - 120 == 60"
+                ]
+              },
+              {
+                "prompt": "Same crossing: the angle NEXT to the $60^\\circ$ one (linear pair) is —",
+                "options": [
+                  "$60^\\circ$",
+                  "$30^\\circ$",
+                  "$120^\\circ$",
+                  "$300^\\circ$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$180 - 60 = 120$.",
+                "check": [
+                  "180 - 60 == 120"
+                ]
+              },
+              {
+                "prompt": "Complement of $18^\\circ$?",
+                "options": [
+                  "$72^\\circ$",
+                  "$162^\\circ$",
+                  "$82^\\circ$",
+                  "$28^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$90 - 18 = 72$.",
+                "check": [
+                  "90 - 18 == 72"
+                ]
+              },
+              {
+                "prompt": "Supplement of $18^\\circ$?",
+                "options": [
+                  "$72^\\circ$",
+                  "$162^\\circ$",
+                  "$82^\\circ$",
+                  "$118^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$180 - 18 = 162$.",
+                "check": [
+                  "180 - 18 == 162"
+                ]
+              },
+              {
+                "prompt": "Which pair is always CONGRUENT (not just summing to something)?",
+                "options": [
+                  "Linear pair",
+                  "Complementary",
+                  "Vertical angles",
+                  "Supplementary"
+                ],
+                "correctIndex": 2,
+                "explanation": "Vertical angles are equal; the others are about sums.",
+                "check": [
+                  "180 - 115 == 65"
+                ]
+              },
+              {
+                "prompt": "Two angles are complementary; one is twice the other. The smaller is —",
+                "options": [
+                  "$30^\\circ$",
+                  "$45^\\circ$",
+                  "$60^\\circ$",
+                  "$15^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x + 2x = 90 \\Rightarrow x = 30$.",
+                "check": [
+                  "solve(Eq(x + 2*x, 90), x) == [30]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Angle Pairs\"",
+            "body": "Equal across, 180 along, 90 for complements — the four partnerships are yours. Last stop in Unit 1: Bisectors, plus your very first proof."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "bisectors",
+      "title": "Bisectors — and Your First Proof",
+      "concreteComparison": "Fold a paper corner so one edge lands exactly on the other, then unfold. The crease splits the corner into two **identical** angles — you just built an **angle bisector** with your hands. Cutting a sandwich into two equal halves does the same job for a segment.",
+      "objective": "Use segment bisectors and angle bisectors to halve and double measures — and read your first two-column proof, built from Unit 1 facts.",
+      "concept": [
+        "A **segment bisector** is any line, ray, or segment through the **midpoint** of a segment — it cuts the segment into two congruent halves (Lesson 4's midpoint, reused).",
+        "An **angle bisector** is a ray from the vertex that splits an angle into two **congruent** angles: if $\\overrightarrow{BD}$ bisects $\\angle ABC$, then $m\\angle ABD = m\\angle DBC = \\tfrac{1}{2}\\, m\\angle ABC$.",
+        "Bisector problems run both ways: **halve** the whole, or **double** the half.",
+        "Every bisector fact can be **proved** — stated as steps, each with a reason. That's where geometry is heading next."
+      ],
+      "keyIdea": "A bisector makes two congruent halves. Halve the whole ÷2; recover the whole ×2. Each claim gets a reason — that's proof.",
+      "facts": [
+        {
+          "title": "Angle bisector",
+          "latex": "$m\\angle ABD = \\tfrac{1}{2}\\, m\\angle ABC$",
+          "explanation": "When ray BD bisects angle ABC."
+        },
+        {
+          "title": "Segment bisector",
+          "latex": "$AM = MB$",
+          "explanation": "It passes through the midpoint M."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "bi-we1",
+          "statement": "$\\overrightarrow{BD}$ bisects $\\angle ABC$ and $m\\angle ABC = 84^\\circ$. Find $m\\angle ABD$.",
+          "solution": "The bisector halves it: $84 \\div 2 = 42^\\circ$.",
+          "check": [
+            "84/2 == 42"
+          ]
+        },
+        {
+          "id": "bi-we2",
+          "statement": "$\\overrightarrow{QS}$ bisects $\\angle PQR$ and $m\\angle PQS = 33^\\circ$. Find $m\\angle PQR$.",
+          "solution": "The half doubles back: $2 \\times 33 = 66^\\circ$.",
+          "check": [
+            "33*2 == 66"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Doubling when you should halve (or the reverse).",
+          "correction": "Given the **whole** angle → divide by 2. Given the **half** → multiply by 2. Say which one you have first.",
+          "authored": true
+        },
+        {
+          "text": "Assuming any ray inside the angle bisects it.",
+          "correction": "A bisector needs the two parts **equal** — look for the marks or the word *bisects*.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "bi-t1",
+          "statement": "A bisector splits a $150^\\circ$ angle. Each half measures —",
+          "solution": "$150 \\div 2 = 75^\\circ$.",
+          "check": [
+            "150/2 == 75"
+          ]
+        },
+        {
+          "id": "bi-t2",
+          "statement": "Line $\\ell$ bisects $\\overline{AB}$ at $M$ and $AM = 8$. Find $AB$.",
+          "solution": "$AB = 2 \\times 8 = 16$.",
+          "check": [
+            "2*8 == 16"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "protractor",
+            "eyebrow": "Concept A",
+            "title": "The tracking bisector",
+            "teach": "Open or close the angle — the dashed blue ray keeps itself exactly in the middle, splitting the angle into two equal halves. The two blue arcs certify the halves match.",
+            "config": {
+              "initial": 80,
+              "bisector": true
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Halving segments",
+            "title": "Segment bisectors",
+            "beats": [
+              "A **segment bisector** passes through the **midpoint**.",
+              "It splits $\\overline{AB}$ into congruent halves: $AM = MB$.",
+              "Lesson 4's midpoint facts all apply.",
+              "Half = whole $\\div\\, 2$; whole = half $\\times\\, 2$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Halving angles",
+            "title": "Angle bisectors",
+            "beats": [
+              "An **angle bisector** is a ray from the vertex making two congruent angles.",
+              "$\\overrightarrow{BD}$ bisects $\\angle ABC$ ⟹ $m\\angle ABD = m\\angle DBC$.",
+              "Each half is $\\tfrac{1}{2}$ of the whole.",
+              "Figures mark the equal halves with matching arcs."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Halve or double",
+            "intro": "Decide what you're given first.",
+            "examples": [
+              {
+                "prompt": "$\\overrightarrow{BD}$ bisects $\\angle ABC$; $m\\angle ABC = 84^\\circ$. Find $m\\angle ABD$.",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "B",
+                        "x": 0,
+                        "y": 0
+                      },
+                      {
+                        "id": "C",
+                        "x": 4,
+                        "y": 0
+                      },
+                      {
+                        "id": "A",
+                        "x": 0.6,
+                        "y": 3.8
+                      },
+                      {
+                        "id": "D",
+                        "x": 2.8,
+                        "y": 2.4
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "ray",
+                        "from": "B",
+                        "to": "C"
+                      },
+                      {
+                        "kind": "ray",
+                        "from": "B",
+                        "to": "A"
+                      },
+                      {
+                        "kind": "ray",
+                        "from": "B",
+                        "to": "D",
+                        "color": "#5b8def",
+                        "dashed": true
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "B",
+                        "from": "C",
+                        "to": "D",
+                        "label": "42°",
+                        "color": "#5b8def"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "B",
+                        "from": "D",
+                        "to": "A",
+                        "label": "42°",
+                        "color": "#5b8def",
+                        "radius": 1.05
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "Given the whole ($84^\\circ$), find a half.",
+                  "$84 \\div 2 = 42^\\circ$."
+                ],
+                "answer": "$42^\\circ$",
+                "check": [
+                  "84/2 == 42"
+                ]
+              },
+              {
+                "prompt": "$\\overrightarrow{QS}$ bisects $\\angle PQR$; $m\\angle PQS = 33^\\circ$. Find $m\\angle PQR$.",
+                "steps": [
+                  "Given a half, recover the whole.",
+                  "$2 \\times 33 = 66^\\circ$."
+                ],
+                "answer": "$66^\\circ$",
+                "check": [
+                  "33*2 == 66"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Bisector arithmetic",
+            "intro": "Whole ÷ 2, or half × 2.",
+            "problems": [
+              {
+                "prompt": "A bisector splits $150^\\circ$. Each half is —",
+                "options": [
+                  "$50^\\circ$",
+                  "$75^\\circ$",
+                  "$300^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$150/2 = 75^\\circ$.",
+                "check": [
+                  "150/2 == 75"
+                ]
+              },
+              {
+                "prompt": "A segment bisector crosses $\\overline{AB}$ at its midpoint $M$; $AM = 8$. $AB = $ ?",
+                "options": [
+                  "$4$",
+                  "$8$",
+                  "$16$"
+                ],
+                "correctIndex": 2,
+                "explanation": "Double the half: $16$.",
+                "check": [
+                  "2*8 == 16"
+                ]
+              },
+              {
+                "prompt": "$\\overrightarrow{BD}$ bisects $\\angle ABC$, $m\\angle DBC = 27^\\circ$. $m\\angle ABC = $ ?",
+                "options": [
+                  "$54^\\circ$",
+                  "$27^\\circ$",
+                  "$13.5^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2 \\times 27 = 54^\\circ$.",
+                "check": [
+                  "27*2 == 54"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "From facts to proof",
+            "title": "Say WHY, every step",
+            "beats": [
+              "You've been justifying steps all unit — quietly.",
+              "A **proof** writes it down: each **statement** paired with its **reason**. Set out in two columns — statements beside reasons — it's called a **two-column proof**.",
+              "Reasons are things we've established: *given*, *definition of midpoint*, *Segment Addition Postulate*…",
+              "Watch one built, step by step — then Unit 2 makes you fluent."
+            ]
+          },
+          {
+            "kind": "stepProof",
+            "eyebrow": "Your first proof",
+            "title": "Prove it: AB = 10",
+            "teach": "Every line is something you already know from this unit. That's all a proof is — familiar facts, placed in order, each with its reason.",
+            "config": {
+              "given": "$M$ is the midpoint of $\\overline{AB}$; $AM = 5$.",
+              "prove": "$AB = 10$",
+              "rows": [
+                {
+                  "statement": "$M$ is the midpoint of $\\overline{AB}$",
+                  "reason": "Given"
+                },
+                {
+                  "statement": "$AM = MB$",
+                  "reason": "Definition of midpoint (Lesson 4)"
+                },
+                {
+                  "statement": "$AM = 5$",
+                  "reason": "Given"
+                },
+                {
+                  "statement": "$MB = 5$",
+                  "reason": "Substitution (rows 2 and 3)"
+                },
+                {
+                  "statement": "$AM + MB = AB$",
+                  "reason": "Segment Addition Postulate (Lesson 4)"
+                },
+                {
+                  "statement": "$5 + 5 = AB$, so $AB = 10$",
+                  "reason": "Substitution and arithmetic"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Reason it out",
+            "intro": "Match the statement to its reason.",
+            "problems": [
+              {
+                "prompt": "In the proof above, which reason justifies $AM = MB$?",
+                "options": [
+                  "Segment Addition Postulate",
+                  "Definition of midpoint",
+                  "Given"
+                ],
+                "correctIndex": 1,
+                "explanation": "A midpoint makes the two halves equal — that's its definition.",
+                "check": [
+                  "5 + 5 == 10"
+                ]
+              },
+              {
+                "prompt": "$\\overrightarrow{BD}$ bisects $\\angle ABC$ and $m\\angle ABD = 42^\\circ$. What does the definition of angle bisector let you conclude?",
+                "options": [
+                  "$m\\angle DBC = 42^\\circ$",
+                  "$m\\angle DBC = 48^\\circ$",
+                  "$m\\angle ABC = 42^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Bisected halves are congruent: both $42^\\circ$ (whole $= 84^\\circ$).",
+                "check": [
+                  "42*2 == 84"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The 2,300-year-old fold",
+            "body": "Euclid bisected angles with only a compass and an unmarked straightedge — no protractor, no numbers. Today's origami engineers do it with folds: crease patterns for satellite solar panels and car airbags are built almost entirely from bisected angles."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Halve it",
+            "prompt": "A bisector splits a $120^\\circ$ angle. Each half is —",
+            "options": [
+              "$40^\\circ$",
+              "$60^\\circ$",
+              "$240^\\circ$"
+            ],
+            "correctIndex": 1,
+            "explanation": "$120/2 = 60^\\circ$.",
+            "check": [
+              "120/2 == 60"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Segment bisector** → through the midpoint: $AM = MB$. **Angle bisector** → two congruent angles.",
+              "Halve the whole ($\\div 2$); recover the whole ($\\times 2$).",
+              "A **proof** = statements + reasons, each step justified by a definition, postulate, or given. Unit 2 builds on exactly this."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Last practice of Unit 1: halves, doubles, and one double-bisection finale."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "A bisector splits $96^\\circ$. Each half is —",
+                "options": [
+                  "$48^\\circ$",
+                  "$96^\\circ$",
+                  "$192^\\circ$",
+                  "$44^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$96/2 = 48^\\circ$.",
+                "check": [
+                  "96/2 == 48"
+                ]
+              },
+              {
+                "prompt": "$M$ is the midpoint of $\\overline{PQ}$; $PM = 11$. $PQ = $ ?",
+                "options": [
+                  "$5.5$",
+                  "$11$",
+                  "$22$",
+                  "$33$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$2 \\times 11 = 22$.",
+                "check": [
+                  "2*11 == 22"
+                ]
+              },
+              {
+                "prompt": "$\\overrightarrow{BD}$ bisects $\\angle ABC$, with $m\\angle ABD = 3x^\\circ$ and $m\\angle DBC = 39^\\circ$. Find $x$.",
+                "options": [
+                  "$13$",
+                  "$39$",
+                  "$26$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Bisected halves are equal: $3x = 39 \\Rightarrow x = 13$.",
+                "check": [
+                  "solve(Eq(3*x, 39), x) == [13]"
+                ]
+              },
+              {
+                "prompt": "In a two-column proof, every statement must come with —",
+                "options": [
+                  "a diagram",
+                  "a reason",
+                  "a calculator",
+                  "a protractor"
+                ],
+                "correctIndex": 1,
+                "explanation": "Statement + reason is the whole format.",
+                "check": [
+                  "5 + 5 == 10"
+                ]
+              },
+              {
+                "prompt": "A $140^\\circ$ angle is bisected; then one half is bisected again. The smallest angle is —",
+                "options": [
+                  "$70^\\circ$",
+                  "$35^\\circ$",
+                  "$28^\\circ$",
+                  "$17.5^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$140 \\to 70 \\to 35$.",
+                "check": [
+                  "140/4 == 35"
+                ]
+              },
+              {
+                "prompt": "A segment bisector crosses $\\overline{AB}$ at $M$ with $AM = MB = 6$. Which fact proves $AB = 12$?",
+                "options": [
+                  "Definition of angle bisector",
+                  "Segment Addition Postulate",
+                  "Ruler slid to zero",
+                  "Vertical angles"
+                ],
+                "correctIndex": 1,
+                "explanation": "$AM + MB = AB$ — parts add to the whole: $6 + 6 = 12$.",
+                "check": [
+                  "6 + 6 == 12"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Bisectors — and Your First Proof\"",
+            "body": "That's Unit 1 complete: points to proofs. You've built every tool the course now runs on. Unit 2, Reasoning & Proof, turns that last page into a superpower."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [],
+  "testYourself": []
+}

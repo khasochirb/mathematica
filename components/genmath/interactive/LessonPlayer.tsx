@@ -50,6 +50,11 @@ import AlgebraTiles from "@/components/genmath/interactive/AlgebraTiles";
 import Evaluator from "@/components/genmath/interactive/Evaluator";
 import BalanceScale from "@/components/genmath/interactive/BalanceScale";
 import CoordinateGrid from "@/components/genmath/interactive/CoordinateGrid";
+import GeoCanvas from "@/components/genmath/interactive/GeoCanvas";
+import SegmentRuler from "@/components/genmath/interactive/SegmentRuler";
+import Protractor from "@/components/genmath/interactive/Protractor";
+import AnglePairFinder from "@/components/genmath/interactive/AnglePairFinder";
+import StepProof from "@/components/genmath/interactive/StepProof";
 import RatioFigure from "@/components/genmath/interactive/RatioFigure";
 import NotationToggle from "@/components/genmath/interactive/NotationToggle";
 import { type GenMathLesson } from "@/lib/genmath-lessons";
@@ -632,6 +637,58 @@ function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveSt
           </p>
         </>
       );
+    case "geoCanvas":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <GeoCanvas config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "segmentRuler":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <SegmentRuler config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "protractor":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <Protractor config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "anglePairs":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <AnglePairFinder config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "stepProof":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <StepProof config={step.config} />
+          {step.teach && (
+            <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+              <MathText text={step.teach} />
+            </p>
+          )}
+        </>
+      );
     case "tapQuestion":
       return (
         <>
@@ -724,16 +781,22 @@ export default function LessonPlayer({
   lesson,
   topicSlug,
   topicTitle,
+  baseHref,
+  crumb,
 }: {
   lesson: GenMathLesson;
   topicSlug: string;
   topicTitle: string;
+  // Where "exit" and "finish" land (defaults to the grade-6 topic page), and
+  // the breadcrumb label — lets other courses (Geometry) reuse the player.
+  baseHref?: string;
+  crumb?: string;
 }) {
   const steps = lesson.interactive?.steps ?? [];
   const [i, setI] = useState(0);
   const total = steps.length;
   const isLast = i >= total - 1;
-  const topicHref = `/math/6/${topicSlug}`;
+  const topicHref = baseHref ?? `/math/6/${topicSlug}`;
 
   if (total === 0) return null;
 
@@ -755,7 +818,7 @@ export default function LessonPlayer({
               <ArrowLeft className="h-4 w-4" />
             </Link>
             <div className="min-w-0">
-              <div className="eyebrow truncate">General Math · Grade 6 · {topicTitle}</div>
+              <div className="eyebrow truncate">{crumb ?? `General Math · Grade 6 · ${topicTitle}`}</div>
               <div className="serif truncate" style={{ fontSize: 15, color: "var(--fg)" }}>
                 {lesson.title}
               </div>

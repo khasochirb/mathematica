@@ -59,6 +59,7 @@ import expressionsAndEquations from "@/data/genmath/6/expressions-and-equations.
 import coordinatePlane from "@/data/genmath/6/coordinate-plane.json";
 import geometryAreaVolume from "@/data/genmath/6/geometry-area-volume.json";
 import dataAndStatistics from "@/data/genmath/6/data-and-statistics.json";
+import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -106,6 +107,155 @@ export function getGenMathLesson(
   const topic = getGenMathTopic(topicSlug);
   if (!topic) return null;
   return topic.lessons.find((l) => l.slug === lessonSlug) ?? null;
+}
+
+// ---------------------------------------------------------------------------
+// Geometry — a standalone subject course (single source of truth for geometry).
+// One continuous, near-linear spine; grade hubs will later LINK into units
+// rather than re-authoring them. Same lesson schema as grade-6 topics, so the
+// verify:genmath gate covers it automatically.
+// ---------------------------------------------------------------------------
+
+export interface GeometryUnit extends Omit<GenMathTopic, "grade"> {
+  unit: number;
+  buildsOn?: string; // what earlier units this one rests on
+}
+
+// The full course spine. `live` units have authored data; the rest render as
+// "coming soon" so the whole track is visible from day one.
+export interface GeometrySpineEntry {
+  unit: number;
+  slug: string;
+  title: string;
+  blurb: string;
+  buildsOn?: string;
+  live: boolean;
+}
+
+export const GEOMETRY_SPINE: GeometrySpineEntry[] = [
+  {
+    unit: 1,
+    slug: "foundations",
+    title: "Foundations: Points, Lines & Angles",
+    blurb: "Points, lines, rays, segments and planes; measuring segments and angles; angle types, angle pairs, and bisectors.",
+    buildsOn: "Nothing — geometry starts here, from zero.",
+    live: true,
+  },
+  {
+    unit: 2,
+    slug: "reasoning-and-proof",
+    title: "Reasoning & Proof",
+    blurb: "From noticing patterns to proving facts: conjectures, if-then statements, and your first two-column proofs.",
+    buildsOn: "Unit 1's definitions and the segment/angle facts you measured there.",
+    live: false,
+  },
+  {
+    unit: 3,
+    slug: "parallel-and-perpendicular",
+    title: "Parallel & Perpendicular Lines",
+    blurb: "Transversals and the angle pairs they create — which are congruent, which are supplementary — and proving lines parallel.",
+    buildsOn: "Angle pairs from Unit 1; the proof habits from Unit 2.",
+    live: false,
+  },
+  {
+    unit: 4,
+    slug: "triangles-and-congruence",
+    title: "Triangles & Congruence",
+    blurb: "Triangle types, the angle sum, the triangle inequality, and the congruence shortcuts SSS · SAS · ASA · AAS · HL.",
+    buildsOn: "Units 1–3: angles, proof, and parallel-line facts.",
+    live: false,
+  },
+  {
+    unit: 5,
+    slug: "relationships-in-triangles",
+    title: "Relationships in Triangles",
+    blurb: "Bisectors, medians, altitudes, the midsegment theorem, and inequalities inside a triangle.",
+    buildsOn: "Triangle congruence from Unit 4.",
+    live: false,
+  },
+  {
+    unit: 6,
+    slug: "quadrilaterals-and-polygons",
+    title: "Quadrilaterals & Polygons",
+    blurb: "Angle sums for any polygon; parallelograms, rectangles, rhombi, squares, trapezoids, and kites — with proofs.",
+    buildsOn: "Triangles (Unit 4) and parallel lines (Unit 3).",
+    live: false,
+  },
+  {
+    unit: 7,
+    slug: "similarity",
+    title: "Similarity",
+    blurb: "Ratio and proportion, similar polygons, the AA · SSS · SAS similarity shortcuts, and the side-splitter theorem.",
+    buildsOn: "Triangle facts from Units 4–5; ratios from Grade 6.",
+    live: false,
+  },
+  {
+    unit: 8,
+    slug: "right-triangles-and-trig",
+    title: "Right Triangles & Trigonometry",
+    blurb: "The Pythagorean theorem, special right triangles, and sine · cosine · tangent with elevation and depression.",
+    buildsOn: "Similarity (Unit 7) — trig ratios ARE similarity.",
+    live: false,
+  },
+  {
+    unit: 9,
+    slug: "circles",
+    title: "Circles",
+    blurb: "Radius, chord, tangent, secant; central and inscribed angles; arcs; and the circle relationships.",
+    buildsOn: "Angles (Unit 1), triangles (Unit 4), and right triangles (Unit 8).",
+    live: false,
+  },
+  {
+    unit: 10,
+    slug: "area-and-perimeter",
+    title: "Area & Perimeter",
+    blurb: "Areas of triangles, quadrilaterals and regular polygons; circumference, circle area, sectors, and composite figures.",
+    buildsOn: "The shape properties from Units 4, 6, and 9.",
+    live: false,
+  },
+  {
+    unit: 11,
+    slug: "surface-area-and-volume",
+    title: "Surface Area & Volume",
+    blurb: "Prisms, cylinders, pyramids, cones, and spheres — wrapping and filling 3-D solids.",
+    buildsOn: "Area formulas from Unit 10.",
+    live: false,
+  },
+  {
+    unit: 12,
+    slug: "transformations",
+    title: "Transformations",
+    blurb: "Translations, reflections, rotations, and dilations; symmetry; congruence and similarity re-seen through motion.",
+    buildsOn: "Congruence (Unit 4) and similarity (Unit 7).",
+    live: false,
+  },
+  {
+    unit: 13,
+    slug: "coordinate-geometry",
+    title: "Coordinate Geometry",
+    blurb: "Distance, midpoint, and slope; equations of lines and circles; proofs with coordinates — the course capstone.",
+    buildsOn: "Everything — algebra meets every earlier unit.",
+    live: false,
+  },
+];
+
+const geometryUnits: GeometryUnit[] = [geometryFoundations as unknown as GeometryUnit];
+
+export function getGeometrySpine(): GeometrySpineEntry[] {
+  return GEOMETRY_SPINE;
+}
+
+export function getGeometryUnit(unitSlug: string): GeometryUnit | null {
+  return geometryUnits.find((u) => u.slug === unitSlug) ?? null;
+}
+
+export function getGeometryLesson(
+  unitSlug: string,
+  lessonSlug: string
+): GenMathLesson | null {
+  const unit = getGeometryUnit(unitSlug);
+  if (!unit) return null;
+  return unit.lessons.find((l) => l.slug === lessonSlug) ?? null;
 }
 
 // ---------------------------------------------------------------------------

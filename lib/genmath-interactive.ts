@@ -112,7 +112,7 @@ export interface FigureGroupSpec {
   glyph?: string;
 }
 export interface FigureSpec {
-  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid" | "numberLine" | "decimalColumn" | "decimalArea" | "divideChain" | "percentBar" | "percentChange" | "percentChangeFinder" | "integerLine" | "integerAdd";
+  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid" | "numberLine" | "decimalColumn" | "decimalArea" | "divideChain" | "percentBar" | "percentChange" | "percentChangeFinder" | "integerLine" | "integerAdd" | "geo";
   groups?: FigureGroupSpec[];
   highlightIndex?: number; // the highlighted "part" in partToWhole (default 0)
   // "cross" — a cross-multiply diagram for a:b vs c:d (draws the two diagonals + products).
@@ -143,6 +143,8 @@ export interface FigureSpec {
   integerLine?: { min: number; max: number; points: { value: number; label?: string; color?: string }[]; highlight?: number };
   // "integerAdd" — a number-line jump from a by b, landing at a + b.
   integerAdd?: { a: number; b: number; min: number; max: number };
+  // "geo" — a static geometry diagram (points/segments/rays/lines/angle arcs).
+  geo?: GeoDiagramSpec;
 }
 
 // Fractions — a bar you split into more (equal) pieces to see equivalent fractions.
@@ -445,6 +447,83 @@ export interface CoordinateGridConfig {
   color?: string;
 }
 
+// ---------------------------------------------------------------------------
+// Geometry course — declarative diagram spec + interactive configs
+// ---------------------------------------------------------------------------
+
+// A named point in abstract diagram units (y up; the renderer flips).
+export interface GeoPointSpec {
+  id: string;
+  x: number;
+  y: number;
+  label?: string; // defaults to id; "" hides the label
+  labelDx?: number; // fine-tune label placement, in diagram units
+  labelDy?: number;
+}
+
+// A drawable object referencing points by id.
+export type GeoObjectSpec =
+  // segment: both ends fixed; ray: from → through to, extended past `to`;
+  // line: extended past both ends. `ticks` draws congruence marks at the middle.
+  | { kind: "segment" | "ray" | "line"; from: string; to: string; color?: string; ticks?: number; dashed?: boolean }
+  // angle arc at vertex `at` between rays toward `from` and `to` (small arc).
+  // `right` draws the square corner instead. `label` sits along the arc.
+  | { kind: "angle"; at: string; from: string; to: string; label?: string; color?: string; right?: boolean; radius?: number };
+
+// A complete static diagram (renders in GeoDiagram; also the figure "geo" mode).
+export interface GeoDiagramSpec {
+  points: GeoPointSpec[];
+  objects: GeoObjectSpec[];
+  hidePoints?: string[]; // point ids to use for geometry but not draw
+  height?: number; // px height cap (default 200)
+}
+
+// The interactive canvas — Unit 1's foundation. Modes:
+//  lineThrough:     two draggable points and the unique line through them.
+//  entityToggle:    same two points; switch line / ray AB / ray BA / segment.
+//  segmentAddition: B slides along AC; AB + BC = AC live, snap-to-midpoint.
+export interface GeoCanvasConfig {
+  mode: "lineThrough" | "entityToggle" | "segmentAddition";
+  total?: number; // segmentAddition: length of AC (default 10)
+  start?: number; // segmentAddition: initial AB (default 3)
+  color?: string;
+}
+
+// A fixed-length segment above a slidable ruler: the endpoint readings change,
+// their difference never does.
+export interface SegmentRulerConfig {
+  length: number; // segment length in ruler units
+  max: number; // ruler runs 0..max
+  start?: number; // initial left reading
+  color?: string;
+}
+
+// The protractor: fixed ray at 0°, draggable ray with live degree readout.
+// classify adds the acute/right/obtuse/straight label; bisector draws the
+// tracking half-angle ray with equal-angle tick arcs.
+export interface ProtractorConfig {
+  initial: number; // starting measure in degrees (0..180)
+  classify?: boolean;
+  bisector?: boolean;
+  labels?: { vertex: string; fixed: string; moving: string }; // default B / C / A → reads m∠ABC
+  color?: string;
+}
+
+// Two lines crossing (mode "crossing": vertical + linear pairs) or a right
+// angle split by a ray (mode "corner": complementary pairs).
+export interface AnglePairFinderConfig {
+  mode: "crossing" | "corner";
+  initial?: number; // crossing: tilt of line 2 (20..160); corner: middle ray (10..80)
+  color?: string;
+}
+
+// A two-column statements/reasons proof revealed one row at a time.
+export interface StepProofConfig {
+  given: string;
+  prove: string;
+  rows: { statement: string; reason: string }[];
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -513,6 +592,11 @@ export type InteractiveStep =
   | { kind: "evaluator"; eyebrow?: string; title: string; teach: string; config: EvaluatorConfig }
   | { kind: "balanceScale"; eyebrow?: string; title: string; teach: string; config: BalanceScaleConfig }
   | { kind: "coordinateGrid"; eyebrow?: string; title: string; teach: string; config: CoordinateGridConfig }
+  | { kind: "geoCanvas"; eyebrow?: string; title: string; teach: string; config: GeoCanvasConfig }
+  | { kind: "segmentRuler"; eyebrow?: string; title: string; teach: string; config: SegmentRulerConfig }
+  | { kind: "protractor"; eyebrow?: string; title: string; teach: string; config: ProtractorConfig }
+  | { kind: "anglePairs"; eyebrow?: string; title: string; teach: string; config: AnglePairFinderConfig }
+  | { kind: "stepProof"; eyebrow?: string; title: string; teach?: string; config: StepProofConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

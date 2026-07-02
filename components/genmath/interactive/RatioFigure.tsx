@@ -11,6 +11,7 @@ import PercentChangeView from "@/components/genmath/interactive/PercentChangeVie
 import PercentChangeFinderView from "@/components/genmath/interactive/PercentChangeFinderView";
 import IntegerLineView from "@/components/genmath/interactive/IntegerLineView";
 import IntegerAddView from "@/components/genmath/interactive/IntegerAddView";
+import GeoDiagram from "@/components/genmath/interactive/GeoDiagram";
 
 function Token({ color }: { color: string }) {
   return (
@@ -124,6 +125,14 @@ function CompareMixFigure({ mixes }: { mixes: { a: number; b: number; label?: st
 export default function RatioFigure({ figure }: { figure: FigureSpec }) {
   const { mode } = figure;
   const groups = figure.groups ?? [];
+
+  if (mode === "geo" && figure.geo) {
+    return (
+      <div className="w-full" style={{ maxWidth: 340 }}>
+        <GeoDiagram spec={figure.geo} />
+      </div>
+    );
+  }
 
   if (mode === "cross" && figure.cross) {
     return <CrossFigure {...figure.cross} />;
