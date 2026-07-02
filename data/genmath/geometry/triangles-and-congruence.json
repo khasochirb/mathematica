@@ -1,0 +1,2626 @@
+{
+  "slug": "triangles-and-congruence",
+  "title": "Triangles & Congruence",
+  "unit": 4,
+  "status": "published",
+  "blurb": "Classify triangles and prove the 180° angle sum; the exterior-angle theorem and triangle inequality; and the congruence shortcuts SSS, SAS, ASA, AAS, HL with CPCTC and isosceles triangles.",
+  "buildsOn": "Unit 1's angles, Unit 2's proofs, and Unit 3's parallel-line facts — the angle sum is proven straight from alternate interior angles.",
+  "lessons": [
+    {
+      "slug": "triangles-and-their-angles",
+      "title": "Triangles & Their Angles",
+      "concreteComparison": "A triangle is the sturdiest shape in engineering — bridges, roof trusses, and bike frames are built from them because a triangle can't be pushed out of shape. Part of what makes it special is a rule every triangle obeys without exception: its three angles always add to exactly $180^\\circ$.",
+      "objective": "Classify triangles by sides and by angles, and use the Triangle Angle-Sum Theorem (the three interior angles total 180°) — which follows from the parallel-line facts of Unit 3.",
+      "concept": [
+        "A **triangle** is a three-sided figure with three **vertices** and three interior angles. Classify it two ways.",
+        "**By sides**: **scalene** (all three sides different), **isosceles** (at least two sides equal), **equilateral** (all three equal).",
+        "**By angles**: **acute** (all angles $< 90^\\circ$), **right** (one angle exactly $90^\\circ$), **obtuse** (one angle $> 90^\\circ$).",
+        "**Triangle Angle-Sum Theorem**: the three interior angles add to $180^\\circ$. So the third angle is $180^\\circ$ minus the other two — and a triangle can have at most one right or obtuse angle."
+      ],
+      "keyIdea": "Every triangle's three angles total 180°. Classify by sides (scalene/isosceles/equilateral) and by angles (acute/right/obtuse).",
+      "facts": [
+        {
+          "title": "Angle sum",
+          "latex": "$\\angle A + \\angle B + \\angle C = 180^\\circ$",
+          "explanation": "True for every triangle."
+        },
+        {
+          "title": "Equilateral angles",
+          "latex": "$60^\\circ$ each",
+          "explanation": "180 ÷ 3 = 60."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ta-we1",
+          "statement": "Two angles of a triangle are $50^\\circ$ and $60^\\circ$. Find the third.",
+          "solution": "$180^\\circ - 50^\\circ - 60^\\circ = 70^\\circ$.",
+          "check": [
+            "180 - 50 - 60 == 70"
+          ]
+        },
+        {
+          "id": "ta-we2",
+          "statement": "A triangle has angles $90^\\circ$, $55^\\circ$, and $35^\\circ$. Classify it by angles.",
+          "solution": "One angle is exactly $90^\\circ$, so it is a **right** triangle. (Check: $90 + 55 + 35 = 180$.)",
+          "check": [
+            "90 + 55 + 35 == 180"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking a triangle can have two right angles.",
+          "correction": "Two right angles already use $180^\\circ$, leaving nothing for the third — impossible. A triangle has **at most one** right or obtuse angle.",
+          "authored": true
+        },
+        {
+          "text": "Confusing the two ways to classify.",
+          "correction": "**Sides**: scalene / isosceles / equilateral. **Angles**: acute / right / obtuse. A triangle has one label from each list.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ta-t1",
+          "statement": "Two angles are $40^\\circ$ and $75^\\circ$. Find the third and classify by angles.",
+          "solution": "$180 - 40 - 75 = 65^\\circ$. All three ($40, 75, 65$) are $< 90^\\circ$ → acute.",
+          "check": [
+            "180 - 40 - 75 == 65"
+          ]
+        },
+        {
+          "id": "ta-t2",
+          "statement": "Each angle of an equilateral triangle measures —",
+          "solution": "$180 \\div 3 = 60^\\circ$.",
+          "check": [
+            "180/3 == 60"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "The three-sided shape",
+            "beats": [
+              "A **triangle** has three **sides**, three **vertices**, three angles.",
+              "**By sides**: scalene (all different), isosceles (two equal), equilateral (all equal).",
+              "**By angles**: acute ($< 90^\\circ$), right ($= 90^\\circ$), obtuse ($> 90^\\circ$).",
+              "One label from each list describes any triangle."
+            ]
+          },
+          {
+            "kind": "triangleAngles",
+            "eyebrow": "Concept A",
+            "title": "The angles always total 180°",
+            "teach": "Reshape the triangle with the two base-angle steppers. No matter what shape you make, the three angles add to exactly $180^\\circ$. That's the Triangle Angle-Sum Theorem.",
+            "config": {
+              "beta": 55,
+              "gamma": 65
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why 180°?",
+            "title": "It comes from parallel lines",
+            "beats": [
+              "Draw a line through the top vertex **parallel** to the base.",
+              "The base angles reappear at the top as **alternate interior** angles (Unit 3) — equal.",
+              "Those two, plus the top angle, sit along a straight line: $180^\\circ$.",
+              "So the triangle's three angles total $180^\\circ$. We'll prove it in a moment."
+            ]
+          },
+          {
+            "kind": "stepProof",
+            "eyebrow": "The proof",
+            "title": "Why the angles total 180°",
+            "teach": "Every reason is a Unit 3 fact. This is the theorem's proof — the angle sum isn't a coincidence, it's forced by parallel lines.",
+            "config": {
+              "given": "Triangle $ABC$ with a line drawn through vertex $C$ parallel to the base $\\overline{AB}$.",
+              "prove": "$m\\angle A + m\\angle B + m\\angle C = 180^\\circ$",
+              "rows": [
+                {
+                  "statement": "Draw a line through $C$ parallel to $\\overline{AB}$",
+                  "reason": "A line parallel to a given line can be drawn through a point not on it"
+                },
+                {
+                  "statement": "The line makes two angles with the sides $\\overline{CA}$ and $\\overline{CB}$ equal to $\\angle A$ and $\\angle B$",
+                  "reason": "Alternate Interior Angles Theorem (Unit 3): $\\overline{AB}$ and the new line are parallel, cut by the sides as transversals"
+                },
+                {
+                  "statement": "Those two angles and $\\angle C$ together form a straight angle at $C$",
+                  "reason": "They lie side by side along the drawn straight line"
+                },
+                {
+                  "statement": "$m\\angle A + m\\angle B + m\\angle C = 180^\\circ$",
+                  "reason": "A straight angle measures $180^\\circ$; substitution"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Find the third angle",
+            "intro": "Subtract the two known angles from 180.",
+            "examples": [
+              {
+                "prompt": "Angles $50^\\circ$ and $60^\\circ$. Find the third.",
+                "steps": [
+                  "$180^\\circ - 50^\\circ - 60^\\circ$.",
+                  "$= 70^\\circ$."
+                ],
+                "answer": "$70^\\circ$",
+                "check": [
+                  "180 - 50 - 60 == 70"
+                ]
+              },
+              {
+                "prompt": "A right triangle has one angle of $32^\\circ$ (besides the $90^\\circ$). Find the third.",
+                "steps": [
+                  "$180^\\circ - 90^\\circ - 32^\\circ$.",
+                  "$= 58^\\circ$."
+                ],
+                "answer": "$58^\\circ$",
+                "check": [
+                  "180 - 90 - 32 == 58"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Third angle",
+            "intro": "180 minus the other two.",
+            "problems": [
+              {
+                "prompt": "Angles $70^\\circ$ and $80^\\circ$: the third is —",
+                "options": [
+                  "$30^\\circ$",
+                  "$40^\\circ$",
+                  "$50^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$180 - 70 - 80 = 30$.",
+                "check": [
+                  "180 - 70 - 80 == 30"
+                ]
+              },
+              {
+                "prompt": "Angles $45^\\circ$ and $45^\\circ$: the third is —",
+                "options": [
+                  "$45^\\circ$",
+                  "$90^\\circ$",
+                  "$100^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$180 - 45 - 45 = 90$ — a right triangle.",
+                "check": [
+                  "180 - 45 - 45 == 90"
+                ]
+              },
+              {
+                "prompt": "Angles $110^\\circ$ and $40^\\circ$: the third is —",
+                "options": [
+                  "$30^\\circ$",
+                  "$40^\\circ$",
+                  "$50^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$180 - 110 - 40 = 30$.",
+                "check": [
+                  "180 - 110 - 40 == 30"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Classify it",
+            "title": "Two labels per triangle",
+            "beats": [
+              "Sides tell you scalene / isosceles / equilateral.",
+              "Angles tell you acute / right / obtuse.",
+              "An **equilateral** triangle also has three equal angles — $60^\\circ$ each.",
+              "A triangle can hold **at most one** angle that is $90^\\circ$ or more."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Name the type",
+            "intro": "Check the biggest angle; check the sides.",
+            "examples": [
+              {
+                "prompt": "Angles $90^\\circ, 60^\\circ, 30^\\circ$. Classify by angles.",
+                "steps": [
+                  "Biggest is exactly $90^\\circ$.",
+                  "Right triangle. ($90 + 60 + 30 = 180$.)"
+                ],
+                "answer": "Right",
+                "check": [
+                  "90 + 60 + 30 == 180"
+                ]
+              },
+              {
+                "prompt": "Angles $100^\\circ, 45^\\circ, 35^\\circ$. Classify by angles.",
+                "steps": [
+                  "Biggest is $100^\\circ > 90^\\circ$.",
+                  "Obtuse triangle. ($100 + 45 + 35 = 180$.)"
+                ],
+                "answer": "Obtuse",
+                "check": [
+                  "100 + 45 + 35 == 180"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Acute, right, or obtuse?",
+            "intro": "Look at the largest angle.",
+            "problems": [
+              {
+                "prompt": "A triangle with angles $80^\\circ, 60^\\circ, 40^\\circ$ is —",
+                "options": [
+                  "acute",
+                  "right",
+                  "obtuse"
+                ],
+                "correctIndex": 0,
+                "explanation": "All three $< 90^\\circ$.",
+                "check": [
+                  "80 + 60 + 40 == 180"
+                ]
+              },
+              {
+                "prompt": "A triangle with a $120^\\circ$ angle is —",
+                "options": [
+                  "acute",
+                  "right",
+                  "obtuse"
+                ],
+                "correctIndex": 2,
+                "explanation": "$120 > 90$ → obtuse.",
+                "check": [
+                  "120 > 90"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why triangles hold up bridges",
+            "body": "Push on a square frame and it collapses into a parallelogram; push on a triangle and it doesn't budge, because fixing the three side lengths fixes all three angles (you'll see exactly why in the SSS lesson). That rigidity is why cranes, radio towers, and roof trusses are all built from triangles."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Third angle",
+            "prompt": "Two angles of a triangle are $65^\\circ$ and $85^\\circ$. The third is —",
+            "options": [
+              "$20^\\circ$",
+              "$30^\\circ$",
+              "$40^\\circ$"
+            ],
+            "correctIndex": 1,
+            "explanation": "$180 - 65 - 85 = 30$.",
+            "check": [
+              "180 - 65 - 85 == 30"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Every triangle's three angles total **$180^\\circ$** — proven from parallel lines (alternate interior angles).",
+              "Classify **by sides**: scalene / isosceles / equilateral; **by angles**: acute / right / obtuse.",
+              "At most one angle can be $\\geq 90^\\circ$; an equilateral triangle is $60^\\circ$ each."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's find third angles and classify — the bread and butter of triangle problems."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Angles $55^\\circ$ and $65^\\circ$: the third is —",
+                "options": [
+                  "$50^\\circ$",
+                  "$60^\\circ$",
+                  "$70^\\circ$",
+                  "$120^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$180 - 55 - 65 = 60$.",
+                "check": [
+                  "180 - 55 - 65 == 60"
+                ]
+              },
+              {
+                "prompt": "A right triangle's non-right angles are $47^\\circ$ and —",
+                "options": [
+                  "$43^\\circ$",
+                  "$53^\\circ$",
+                  "$90^\\circ$",
+                  "$133^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$180 - 90 - 47 = 43$.",
+                "check": [
+                  "180 - 90 - 47 == 43"
+                ]
+              },
+              {
+                "prompt": "Each angle of an equilateral triangle is —",
+                "options": [
+                  "$45^\\circ$",
+                  "$60^\\circ$",
+                  "$90^\\circ$",
+                  "$120^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$180 \\div 3 = 60$.",
+                "check": [
+                  "180/3 == 60"
+                ]
+              },
+              {
+                "prompt": "A triangle with angles $95^\\circ, 50^\\circ, 35^\\circ$ is —",
+                "options": [
+                  "acute",
+                  "right",
+                  "obtuse",
+                  "equilateral"
+                ],
+                "correctIndex": 2,
+                "explanation": "$95 > 90$ → obtuse.",
+                "check": [
+                  "95 + 50 + 35 == 180"
+                ]
+              },
+              {
+                "prompt": "Can a triangle have two $90^\\circ$ angles?",
+                "options": [
+                  "Yes",
+                  "No — that already totals $180^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$90 + 90 = 180$ leaves nothing for the third angle.",
+                "check": [
+                  "90 + 90 == 180"
+                ]
+              },
+              {
+                "prompt": "A triangle with all sides equal is classified BY SIDES as —",
+                "options": [
+                  "scalene",
+                  "isosceles",
+                  "equilateral",
+                  "right"
+                ],
+                "correctIndex": 2,
+                "explanation": "All three sides equal = equilateral.",
+                "check": [
+                  "180/3 == 60"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Triangles & Their Angles\"",
+            "body": "You can classify any triangle and find its angles — and you've proven the 180° rule. Next: the Exterior Angle Theorem, a shortcut that falls right out of the angle sum."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "exterior-angle-theorem",
+      "title": "The Exterior Angle Theorem",
+      "concreteComparison": "Walk along one side of a triangular park and turn the corner to walk the next side — the amount you turn is the **exterior angle**. Remarkably, that turn equals the sum of the two angles at the far corners you didn't touch. It's a shortcut hiding inside the $180^\\circ$ rule.",
+      "objective": "Use the Exterior Angle Theorem: an exterior angle of a triangle equals the sum of its two remote interior angles.",
+      "concept": [
+        "Extend one side of a triangle past a vertex; the angle between the extension and the next side is an **exterior angle**.",
+        "The exterior angle and the interior angle at that same vertex are a **linear pair** — they sum to $180^\\circ$ (Unit 1).",
+        "The other two interior angles are the **remote interior angles** (they're away from the exterior angle).",
+        "**Exterior Angle Theorem**: an exterior angle equals the **sum of the two remote interior angles**. It follows from the angle sum: both the exterior angle and the two remote angles equal $180^\\circ$ minus the adjacent interior angle."
+      ],
+      "keyIdea": "An exterior angle of a triangle = the sum of the two remote (non-adjacent) interior angles.",
+      "facts": [
+        {
+          "title": "Exterior Angle Theorem",
+          "latex": "ext $= $ remote$_1 + $ remote$_2$",
+          "explanation": "The exterior angle equals the two far interior angles added."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ea-we1",
+          "statement": "A triangle's two remote interior angles are $50^\\circ$ and $70^\\circ$. Find the exterior angle at the third vertex.",
+          "solution": "Exterior angle $= 50^\\circ + 70^\\circ = 120^\\circ$.",
+          "check": [
+            "50 + 70 == 120"
+          ]
+        },
+        {
+          "id": "ea-we2",
+          "statement": "An exterior angle is $125^\\circ$; one remote interior angle is $60^\\circ$. Find the other remote interior angle.",
+          "solution": "$125^\\circ - 60^\\circ = 65^\\circ$.",
+          "check": [
+            "125 - 60 == 65"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding the adjacent interior angle instead of the remote ones.",
+          "correction": "The exterior angle equals the **two far** (remote) angles — not the one next to it. (The adjacent one is its supplement.)",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the exterior + adjacent interior = 180°.",
+          "correction": "They form a **linear pair**, so exterior $= 180^\\circ - $ adjacent interior — another way to find it.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ea-t1",
+          "statement": "Remote interior angles $45^\\circ$ and $85^\\circ$. The exterior angle is —",
+          "solution": "$45 + 85 = 130^\\circ$.",
+          "check": [
+            "45 + 85 == 130"
+          ]
+        },
+        {
+          "id": "ea-t2",
+          "statement": "The interior angle at a vertex is $110^\\circ$. Its exterior angle is —",
+          "solution": "Linear pair: $180 - 110 = 70^\\circ$.",
+          "check": [
+            "180 - 110 == 70"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "The turn at a corner",
+            "beats": [
+              "Extend a side of a triangle past a vertex.",
+              "The angle between that extension and the next side is an **exterior angle**.",
+              "It and the interior angle there form a **linear pair** ($180^\\circ$).",
+              "The two interior angles far away are the **remote** interior angles."
+            ]
+          },
+          {
+            "kind": "triangleAngles",
+            "eyebrow": "Concept A",
+            "title": "Exterior equals the two remote angles",
+            "teach": "The base is extended past the right vertex; the blue exterior angle appears. Reshape the triangle and watch: the exterior angle always equals the two orange remote interior angles added together.",
+            "config": {
+              "beta": 55,
+              "gamma": 65,
+              "exterior": true
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why it works",
+            "title": "It's the angle sum in disguise",
+            "beats": [
+              "Angle sum: the three interior angles total $180^\\circ$.",
+              "So remote$_1$ + remote$_2$ = $180^\\circ - $ adjacent interior.",
+              "Linear pair: exterior $= 180^\\circ - $ adjacent interior.",
+              "Both equal the same thing, so **exterior $=$ remote$_1 +$ remote$_2$**."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Add the remote angles",
+            "intro": "Exterior = the two far interior angles.",
+            "examples": [
+              {
+                "prompt": "Remote interior angles $50^\\circ$ and $70^\\circ$. Exterior angle?",
+                "steps": [
+                  "Add the two remote angles.",
+                  "$50^\\circ + 70^\\circ = 120^\\circ$."
+                ],
+                "answer": "$120^\\circ$",
+                "check": [
+                  "50 + 70 == 120"
+                ]
+              },
+              {
+                "prompt": "Remote interior angles $40^\\circ$ and $35^\\circ$. Exterior angle?",
+                "steps": [
+                  "$40^\\circ + 35^\\circ$.",
+                  "$= 75^\\circ$."
+                ],
+                "answer": "$75^\\circ$",
+                "check": [
+                  "40 + 35 == 75"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the exterior angle",
+            "intro": "Add the two remote interior angles.",
+            "problems": [
+              {
+                "prompt": "Remote angles $60^\\circ$ and $55^\\circ$. Exterior angle?",
+                "options": [
+                  "$115^\\circ$",
+                  "$65^\\circ$",
+                  "$125^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$60 + 55 = 115$.",
+                "check": [
+                  "60 + 55 == 115"
+                ]
+              },
+              {
+                "prompt": "Remote angles $30^\\circ$ and $90^\\circ$. Exterior angle?",
+                "options": [
+                  "$60^\\circ$",
+                  "$120^\\circ$",
+                  "$150^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$30 + 90 = 120$.",
+                "check": [
+                  "30 + 90 == 120"
+                ]
+              },
+              {
+                "prompt": "The interior angle at a vertex is $75^\\circ$. Its exterior angle is —",
+                "options": [
+                  "$105^\\circ$",
+                  "$75^\\circ$",
+                  "$15^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Linear pair: $180 - 75 = 105$.",
+                "check": [
+                  "180 - 75 == 105"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Working backwards",
+            "title": "Find a missing remote angle",
+            "beats": [
+              "Know the exterior angle and one remote angle? Subtract.",
+              "Exterior $125^\\circ$, one remote $60^\\circ$.",
+              "Other remote $= 125^\\circ - 60^\\circ = 65^\\circ$.",
+              "Check: $60 + 65 = 125$. ✓"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Solve for x",
+            "intro": "Set the exterior equal to the sum of the remotes.",
+            "examples": [
+              {
+                "prompt": "An exterior angle $(4x)^\\circ$ equals remote angles $50^\\circ$ and $(2x + 10)^\\circ$. Find $x$.",
+                "steps": [
+                  "Exterior = sum of remotes: $4x = 50 + (2x + 10)$.",
+                  "$4x = 2x + 60 \\Rightarrow 2x = 60 \\Rightarrow x = 30$."
+                ],
+                "answer": "$x = 30$",
+                "check": [
+                  "solve(Eq(4*x, 50 + (2*x + 10)), x) == [30]"
+                ]
+              },
+              {
+                "prompt": "Exterior angle $130^\\circ$; remote angles $x^\\circ$ and $70^\\circ$. Find $x$.",
+                "steps": [
+                  "$x + 70 = 130$.",
+                  "$x = 60$."
+                ],
+                "answer": "$x = 60$",
+                "check": [
+                  "solve(Eq(x + 70, 130), x) == [60]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Exterior angle algebra",
+            "intro": "Exterior = remote + remote.",
+            "problems": [
+              {
+                "prompt": "Exterior $(3x)^\\circ$ = remotes $40^\\circ$ and $(x + 20)^\\circ$. $x = $ —",
+                "options": [
+                  "$30$",
+                  "$20$",
+                  "$15$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3x = 40 + x + 20 \\Rightarrow 2x = 60 \\Rightarrow x = 30$.",
+                "check": [
+                  "solve(Eq(3*x, 40 + (x + 20)), x) == [30]"
+                ]
+              },
+              {
+                "prompt": "Exterior $150^\\circ$; remote angles equal, each $x^\\circ$. $x = $ —",
+                "options": [
+                  "$75$",
+                  "$150$",
+                  "$30$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2x = 150 \\Rightarrow x = 75$.",
+                "check": [
+                  "solve(Eq(2*x, 150), x) == [75]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The turtle that draws polygons",
+            "body": "In turtle graphics, a little cursor draws a triangle by moving forward and **turning by the exterior angle** at each corner. To close any polygon the turtle must turn a full $360^\\circ$ in total — which is exactly why the three exterior angles of a triangle always sum to $360^\\circ$."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Add the remotes",
+            "prompt": "Remote interior angles $80^\\circ$ and $25^\\circ$. The exterior angle is —",
+            "options": [
+              "$75^\\circ$",
+              "$105^\\circ$",
+              "$95^\\circ$"
+            ],
+            "correctIndex": 1,
+            "explanation": "$80 + 25 = 105$.",
+            "check": [
+              "80 + 25 == 105"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "An **exterior angle** and its adjacent interior angle form a **linear pair** ($180^\\circ$).",
+              "**Exterior Angle Theorem**: exterior angle $=$ sum of the two **remote** interior angles.",
+              "It's the angle-sum rule restated — handy for finding angles fast."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's add remote angles, work backwards, and solve for x."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Remote interior angles $55^\\circ$ and $75^\\circ$. Exterior angle?",
+                "options": [
+                  "$130^\\circ$",
+                  "$50^\\circ$",
+                  "$120^\\circ$",
+                  "$110^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$55 + 75 = 130$.",
+                "check": [
+                  "55 + 75 == 130"
+                ]
+              },
+              {
+                "prompt": "Exterior angle $140^\\circ$; one remote angle $85^\\circ$. The other remote angle is —",
+                "options": [
+                  "$55^\\circ$",
+                  "$45^\\circ$",
+                  "$95^\\circ$",
+                  "$40^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$140 - 85 = 55$.",
+                "check": [
+                  "140 - 85 == 55"
+                ]
+              },
+              {
+                "prompt": "The interior angle at a vertex is $95^\\circ$. Its exterior angle is —",
+                "options": [
+                  "$85^\\circ$",
+                  "$95^\\circ$",
+                  "$5^\\circ$",
+                  "$105^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Linear pair: $180 - 95 = 85$.",
+                "check": [
+                  "180 - 95 == 85"
+                ]
+              },
+              {
+                "prompt": "Exterior $(5x)^\\circ$ = remotes $60^\\circ$ and $(3x)^\\circ$. $x = $ —",
+                "options": [
+                  "$30$",
+                  "$20$",
+                  "$15$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5x = 60 + 3x \\Rightarrow 2x = 60 \\Rightarrow x = 30$.",
+                "check": [
+                  "solve(Eq(5*x, 60 + 3*x), x) == [30]"
+                ]
+              },
+              {
+                "prompt": "An exterior angle of a triangle is always — its adjacent interior angle.",
+                "options": [
+                  "equal to",
+                  "supplementary to",
+                  "double",
+                  "half"
+                ],
+                "correctIndex": 1,
+                "explanation": "They form a linear pair, summing to $180^\\circ$.",
+                "check": [
+                  "180 - 100 == 80"
+                ]
+              },
+              {
+                "prompt": "The three exterior angles of any triangle (one per vertex) sum to —",
+                "options": [
+                  "$180^\\circ$",
+                  "$270^\\circ$",
+                  "$360^\\circ$",
+                  "$540^\\circ$"
+                ],
+                "correctIndex": 2,
+                "explanation": "A full turn — $360^\\circ$.",
+                "check": [
+                  "120 + 120 + 120 == 360"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"The Exterior Angle Theorem\"",
+            "body": "You can find any exterior angle in one step. Next: the Triangle Inequality — which three lengths can actually close into a triangle at all."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "triangle-inequality",
+      "title": "The Triangle Inequality",
+      "concreteComparison": "The straightest path between two points is a straight line — so a detour through a third point is always longer. That everyday fact IS the Triangle Inequality: the two shorter sides of a triangle must together be longer than the third, or the sides can't meet to close the shape.",
+      "objective": "Use the Triangle Inequality to decide whether three lengths can form a triangle, and find the range of a missing side.",
+      "concept": [
+        "**Triangle Inequality**: in any triangle, the sum of any two sides is **greater than** the third side.",
+        "The quick test: three lengths form a triangle exactly when the **two shorter sides add to more than the longest**. If they only equal it, the triangle collapses flat; if they're less, the sides can't reach.",
+        "For a missing third side $x$ with known sides $a$ and $b$: $x$ must be **more than $|a - b|$** and **less than $a + b$**.",
+        "So a third side is squeezed between the difference and the sum of the other two."
+      ],
+      "keyIdea": "Two sides always beat the third. Three lengths form a triangle iff the two shorter sum to more than the longest; a missing side lies between |a−b| and a+b.",
+      "facts": [
+        {
+          "title": "The test",
+          "latex": "shorter $+$ shorter $>$ longest",
+          "explanation": "Then and only then do they close."
+        },
+        {
+          "title": "Missing side range",
+          "latex": "$|a-b| < x < a+b$",
+          "explanation": "Between the difference and the sum."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ti-we1",
+          "statement": "Can sides $5$, $6$, and $9$ form a triangle?",
+          "solution": "Two shorter sides: $5 + 6 = 11 > 9$. Yes.",
+          "check": [
+            "5 + 6 > 9"
+          ]
+        },
+        {
+          "id": "ti-we2",
+          "statement": "Can sides $3$, $4$, and $8$ form a triangle?",
+          "solution": "Two shorter: $3 + 4 = 7$, which is **not** greater than $8$. No.",
+          "check": [
+            "3 + 4 <= 8"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Checking only one pair of sides.",
+          "correction": "The safe shortcut is the **two shortest** vs the longest — if that passes, all pairs pass.",
+          "authored": true
+        },
+        {
+          "text": "Allowing the sum to equal the third side.",
+          "correction": "Equal makes a **flat, degenerate** figure, not a triangle. The sum must be strictly **greater**.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ti-t1",
+          "statement": "Can $7$, $7$, and $13$ form a triangle?",
+          "solution": "$7 + 7 = 14 > 13$ — yes.",
+          "check": [
+            "7 + 7 > 13"
+          ]
+        },
+        {
+          "id": "ti-t2",
+          "statement": "Sides $6$ and $10$ are given. The third side $x$ must satisfy —",
+          "solution": "$|10 - 6| < x < 10 + 6$, i.e. $4 < x < 16$.",
+          "check": [
+            "Abs(10 - 6) == 4",
+            "10 + 6 == 16"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Can the sides even meet?",
+            "beats": [
+              "Not every trio of lengths makes a triangle.",
+              "The two shorter sides have to **reach across** the longest.",
+              "**Triangle Inequality**: any two sides sum to more than the third.",
+              "Shortcut: check the two shorter sides against the longest."
+            ]
+          },
+          {
+            "kind": "triangleInequality",
+            "eyebrow": "Concept A",
+            "title": "When the sides can close",
+            "teach": "Set the three side lengths. If the two shorter sides can span the longest, the arms swing up and meet — a triangle. Make them too short and the arms fall apart. Try $3, 4, 9$ versus $3, 4, 6$.",
+            "config": {
+              "a": 4,
+              "b": 5,
+              "c": 6
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The test",
+            "title": "Shorter two vs longest",
+            "beats": [
+              "Find the longest side.",
+              "Add the other two.",
+              "Greater than the longest? It closes.",
+              "Equal or less? No triangle."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Can these form a triangle?",
+            "intro": "Two shorter sides vs the longest.",
+            "examples": [
+              {
+                "prompt": "Sides $5$, $6$, $9$?",
+                "steps": [
+                  "Two shorter: $5 + 6 = 11$.",
+                  "$11 > 9$ ✓ — yes."
+                ],
+                "answer": "Yes",
+                "check": [
+                  "5 + 6 > 9"
+                ]
+              },
+              {
+                "prompt": "Sides $2$, $3$, $6$?",
+                "steps": [
+                  "Two shorter: $2 + 3 = 5$.",
+                  "$5 < 6$ — no."
+                ],
+                "answer": "No",
+                "check": [
+                  "2 + 3 < 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Triangle or not?",
+            "intro": "Add the two shortest; beat the longest?",
+            "problems": [
+              {
+                "prompt": "Can $4$, $5$, $8$ form a triangle?",
+                "options": [
+                  "Yes",
+                  "No"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4 + 5 = 9 > 8$ ✓.",
+                "check": [
+                  "4 + 5 > 8"
+                ]
+              },
+              {
+                "prompt": "Can $3$, $4$, $7$ form a triangle?",
+                "options": [
+                  "Yes",
+                  "No — $3+4 = 7$, not greater"
+                ],
+                "correctIndex": 1,
+                "explanation": "$3 + 4 = 7$ equals the third — it collapses flat.",
+                "check": [
+                  "3 + 4 <= 7"
+                ]
+              },
+              {
+                "prompt": "Can $6$, $8$, $10$ form a triangle?",
+                "options": [
+                  "Yes",
+                  "No"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6 + 8 = 14 > 10$ ✓ (in fact a right triangle).",
+                "check": [
+                  "6 + 8 > 10"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The missing side",
+            "title": "How big can the third side be?",
+            "beats": [
+              "Two sides $a$ and $b$ are fixed; the third is $x$.",
+              "$x$ must be **less** than $a + b$ (or the sides can't reach).",
+              "$x$ must be **more** than $|a - b|$ (or the short side folds inside).",
+              "So $|a - b| < x < a + b$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Find the range",
+            "intro": "Between the difference and the sum.",
+            "examples": [
+              {
+                "prompt": "Two sides are $6$ and $10$. Range for the third side $x$?",
+                "steps": [
+                  "Sum: $6 + 10 = 16$. Difference: $|10 - 6| = 4$.",
+                  "$4 < x < 16$."
+                ],
+                "answer": "$4 < x < 16$",
+                "check": [
+                  "10 + 6 == 16",
+                  "Abs(10 - 6) == 4"
+                ]
+              },
+              {
+                "prompt": "Two sides are $5$ and $5$. Range for the third side $x$?",
+                "steps": [
+                  "Sum: $10$. Difference: $0$.",
+                  "$0 < x < 10$."
+                ],
+                "answer": "$0 < x < 10$",
+                "check": [
+                  "5 + 5 == 10",
+                  "Abs(5 - 5) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Range of the third side",
+            "intro": "|difference| < x < sum.",
+            "problems": [
+              {
+                "prompt": "Sides $7$ and $9$: the third side $x$ satisfies —",
+                "options": [
+                  "$2 < x < 16$",
+                  "$7 < x < 9$",
+                  "$0 < x < 16$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$|9-7| = 2$ and $9+7 = 16$.",
+                "check": [
+                  "Abs(9 - 7) == 2",
+                  "9 + 7 == 16"
+                ]
+              },
+              {
+                "prompt": "Sides $4$ and $11$: the largest WHOLE-number third side is —",
+                "options": [
+                  "$14$",
+                  "$15$",
+                  "$7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x < 4 + 11 = 15$, so the largest whole number is $14$.",
+                "check": [
+                  "4 + 11 == 15",
+                  "14 < 15"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why GPS needs three towers",
+            "body": "A phone finds itself by distances to cell towers, and those distances have to obey the triangle inequality — if they didn't, no consistent location would exist. Engineers use the inequality to catch bad signal readings: a distance trio that can't form a triangle means one measurement is wrong."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Does it close?",
+            "prompt": "Can sides $5$, $12$, $13$ form a triangle?",
+            "options": [
+              "Yes",
+              "No"
+            ],
+            "correctIndex": 0,
+            "explanation": "$5 + 12 = 17 > 13$ ✓.",
+            "check": [
+              "5 + 12 > 13"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Triangle Inequality**: any two sides sum to more than the third.",
+              "Quick test: the **two shorter** sides must sum to **more than** the longest (equal = flat, not a triangle).",
+              "A missing third side lies **between $|a-b|$ and $a+b$**."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's test trios and find the range of a missing side."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Can $8$, $8$, $8$ form a triangle?",
+                "options": [
+                  "Yes",
+                  "No"
+                ],
+                "correctIndex": 0,
+                "explanation": "$8 + 8 = 16 > 8$ ✓ — equilateral.",
+                "check": [
+                  "8 + 8 > 8"
+                ]
+              },
+              {
+                "prompt": "Can $2$, $2$, $5$ form a triangle?",
+                "options": [
+                  "Yes",
+                  "No — $2+2 = 4 < 5$"
+                ],
+                "correctIndex": 1,
+                "explanation": "The two shorter sides can't reach.",
+                "check": [
+                  "2 + 2 < 5"
+                ]
+              },
+              {
+                "prompt": "Can $9$, $10$, $2$ form a triangle?",
+                "options": [
+                  "Yes",
+                  "No"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two shorter: $2 + 9 = 11 > 10$ ✓.",
+                "check": [
+                  "2 + 9 > 10"
+                ]
+              },
+              {
+                "prompt": "Sides $6$ and $6$: the third side $x$ satisfies —",
+                "options": [
+                  "$0 < x < 12$",
+                  "$6 < x < 12$",
+                  "$0 < x < 6$",
+                  "$x = 6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$|6-6| = 0$, $6+6 = 12$.",
+                "check": [
+                  "6 + 6 == 12",
+                  "Abs(6 - 6) == 0"
+                ]
+              },
+              {
+                "prompt": "Sides $10$ and $4$: the smallest WHOLE-number third side is —",
+                "options": [
+                  "$5$",
+                  "$7$",
+                  "$6$",
+                  "$14$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$x > |10-4| = 6$, so the smallest whole number is $7$.",
+                "check": [
+                  "Abs(10 - 4) == 6",
+                  "7 > 6"
+                ]
+              },
+              {
+                "prompt": "If two sides sum to EXACTLY the third side, the figure is —",
+                "options": [
+                  "a triangle",
+                  "flat / degenerate — not a triangle",
+                  "a right triangle",
+                  "impossible to draw at all"
+                ],
+                "correctIndex": 1,
+                "explanation": "It collapses onto a straight line.",
+                "check": [
+                  "3 + 4 == 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"The Triangle Inequality\"",
+            "body": "You know which lengths can close into a triangle. Next: when two triangles are truly identical — congruence, and the SSS and SAS shortcuts."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "congruence-sss-sas",
+      "title": "Congruent Triangles: SSS & SAS",
+      "concreteComparison": "Two identical steel roof trusses, stamped from the same mould, are **congruent** — same size, same shape, so one drops perfectly onto the other. You don't need to check all six parts (three sides, three angles) to be sure: this lesson's shortcuts let three well-chosen matches guarantee the rest.",
+      "objective": "Understand congruent triangles as having all corresponding parts equal, and use the SSS and SAS shortcuts to prove two triangles congruent.",
+      "concept": [
+        "**Congruent triangles** have all **corresponding parts** equal — three pairs of sides and three pairs of angles match. We write $\\triangle ABC \\cong \\triangle DEF$, listing vertices in matching order.",
+        "You don't need all six. **SSS** (Side-Side-Side): if the three sides of one triangle match the three sides of another, the triangles are congruent.",
+        "**SAS** (Side-Angle-Side): if two sides and the angle **between them** (the **included angle**) match, the triangles are congruent.",
+        "In SAS the angle must be the **included** one — the angle formed by the two marked sides. A side–side–angle with the angle *outside* is not enough (more on that next lesson)."
+      ],
+      "keyIdea": "Congruent = all corresponding parts equal. SSS (three sides) and SAS (two sides + the angle BETWEEN them) each guarantee congruence.",
+      "facts": [
+        {
+          "title": "SSS",
+          "latex": "3 sides match",
+          "explanation": "Fixing all three sides fixes the shape."
+        },
+        {
+          "title": "SAS",
+          "latex": "side–INCLUDED angle–side",
+          "explanation": "The angle sits between the two sides."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ss-we1",
+          "statement": "$\\triangle ABC$ and $\\triangle DEF$ have $AB = DE$, $BC = EF$, $CA = FD$. Are they congruent, and by what?",
+          "solution": "All three sides match, so $\\triangle ABC \\cong \\triangle DEF$ by **SSS**.",
+          "check": [
+            "3 == 3"
+          ]
+        },
+        {
+          "id": "ss-we2",
+          "statement": "Two triangles have two pairs of equal sides with the equal angle between those sides. Which shortcut applies?",
+          "solution": "Two sides and the **included** angle — **SAS**.",
+          "check": [
+            "2 + 1 == 3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using SAS when the angle isn't between the two sides.",
+          "correction": "SAS needs the **included** angle — the one the two marked sides form. Side-Side-Angle with a non-included angle does NOT prove congruence.",
+          "authored": true
+        },
+        {
+          "text": "Listing congruent vertices in the wrong order.",
+          "correction": "$\\triangle ABC \\cong \\triangle DEF$ means $A \\leftrightarrow D$, $B \\leftrightarrow E$, $C \\leftrightarrow F$. Order encodes which parts correspond.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ss-t1",
+          "statement": "Three sides of one triangle equal three sides of another. The congruence shortcut is —",
+          "solution": "SSS.",
+          "check": [
+            "3 == 3"
+          ]
+        },
+        {
+          "id": "ss-t2",
+          "statement": "In SAS, the angle must be — the two sides.",
+          "solution": "Between (included).",
+          "check": [
+            "2 + 1 == 3"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Same size, same shape",
+            "beats": [
+              "**Congruent** triangles match in all six parts: three sides, three angles.",
+              "Write $\\triangle ABC \\cong \\triangle DEF$ — vertices in corresponding order.",
+              "But you needn't check all six.",
+              "The right **three** matches force the other three."
+            ]
+          },
+          {
+            "kind": "congruentTriangles",
+            "eyebrow": "Concept A",
+            "title": "SSS — three sides",
+            "teach": "Both triangles have all three pairs of sides marked congruent (matching tick marks). Three sides pin the shape completely — tap the shortcut the marks give.",
+            "config": {
+              "sides": [
+                1,
+                2,
+                3
+              ],
+              "angles": [
+                0,
+                0,
+                0
+              ],
+              "answer": "SSS",
+              "caption": "All three sides match."
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The first shortcut",
+            "title": "Side-Side-Side (SSS)",
+            "beats": [
+              "If all **three sides** of one triangle equal the three sides of another…",
+              "…the triangles are **congruent**.",
+              "Three fixed side lengths leave only one possible shape.",
+              "That's why triangles are rigid — the SSS fact in disguise."
+            ]
+          },
+          {
+            "kind": "congruentTriangles",
+            "eyebrow": "Concept B",
+            "title": "SAS — two sides and the angle between",
+            "teach": "Here two sides are marked, and the angle BETWEEN them. That included angle locks the two sides in place, so the third side is forced. Tap the shortcut.",
+            "config": {
+              "sides": [
+                1,
+                2,
+                0
+              ],
+              "angles": [
+                0,
+                1,
+                0
+              ],
+              "answer": "SAS",
+              "caption": "Two sides and the angle between them."
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The included angle",
+            "title": "Side-Angle-Side (SAS)",
+            "beats": [
+              "**SAS**: two sides plus the **angle between them**.",
+              "The included angle fixes how wide the two sides open.",
+              "That determines the third side — congruence forced.",
+              "Watch the word **included**: the angle must sit *between* the two sides."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Which shortcut — SSS or SAS?",
+            "intro": "Count sides and check where the angle is.",
+            "examples": [
+              {
+                "prompt": "Given: $AB = DE$, $BC = EF$, $\\angle B = \\angle E$. Which shortcut?",
+                "steps": [
+                  "Two sides ($AB, BC$) meet at $B$; the marked angle is $\\angle B$ — between them.",
+                  "Two sides + included angle = SAS."
+                ],
+                "answer": "SAS",
+                "check": [
+                  "2 + 1 == 3"
+                ]
+              },
+              {
+                "prompt": "Given: $AB = DE$, $BC = EF$, $CA = FD$. Which shortcut?",
+                "steps": [
+                  "All three sides match.",
+                  "SSS."
+                ],
+                "answer": "SSS",
+                "check": [
+                  "3 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "SSS or SAS?",
+            "intro": "Three sides → SSS; two sides + included angle → SAS.",
+            "problems": [
+              {
+                "prompt": "Three pairs of sides are equal. The shortcut is —",
+                "options": [
+                  "SSS",
+                  "SAS"
+                ],
+                "correctIndex": 0,
+                "explanation": "All three sides = SSS.",
+                "check": [
+                  "3 == 3"
+                ]
+              },
+              {
+                "prompt": "Two sides and the angle between them are equal. The shortcut is —",
+                "options": [
+                  "SSS",
+                  "SAS"
+                ],
+                "correctIndex": 1,
+                "explanation": "Two sides + included angle = SAS.",
+                "check": [
+                  "2 + 1 == 3"
+                ]
+              },
+              {
+                "prompt": "In $\\triangle ABC \\cong \\triangle DEF$, side $AB$ corresponds to —",
+                "options": [
+                  "$DE$",
+                  "$EF$",
+                  "$FD$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$A \\leftrightarrow D$, $B \\leftrightarrow E$, so $AB \\leftrightarrow DE$.",
+                "check": [
+                  "1 + 1 == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why order matters",
+            "title": "Reading a congruence statement",
+            "beats": [
+              "$\\triangle ABC \\cong \\triangle DEF$ is a map: $A \\to D$, $B \\to E$, $C \\to F$.",
+              "So $\\angle A = \\angle D$, side $AB = DE$, and so on.",
+              "The statement tells you every corresponding part at a glance.",
+              "Always match the letters in order."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Read the correspondence",
+            "intro": "Match letters position by position.",
+            "examples": [
+              {
+                "prompt": "$\\triangle PQR \\cong \\triangle STU$. Which side equals $QR$?",
+                "steps": [
+                  "$Q \\to T$, $R \\to U$.",
+                  "$QR \\leftrightarrow TU$."
+                ],
+                "answer": "$TU$",
+                "check": [
+                  "2 + 1 == 3"
+                ]
+              },
+              {
+                "prompt": "$\\triangle PQR \\cong \\triangle STU$. Which angle equals $\\angle P$?",
+                "steps": [
+                  "$P \\to S$.",
+                  "$\\angle P = \\angle S$."
+                ],
+                "answer": "$\\angle S$",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Mass production runs on congruence",
+            "body": "Every phone screen, LEGO brick, and car door is made congruent to a master pattern so parts are interchangeable. Before the 1800s, each musket was hand-fitted and no two were alike; the leap to **congruent, interchangeable parts** is what made modern factories — and repairs — possible."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Name the shortcut",
+            "prompt": "Two sides and the angle BETWEEN them match. The shortcut is —",
+            "options": [
+              "SSS",
+              "SAS",
+              "neither"
+            ],
+            "correctIndex": 1,
+            "explanation": "Two sides + included angle = SAS.",
+            "check": [
+              "2 + 1 == 3"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Congruent** triangles have all corresponding parts equal; $\\triangle ABC \\cong \\triangle DEF$ lists matching vertices.",
+              "**SSS**: three pairs of sides ⟹ congruent.",
+              "**SAS**: two sides and the **included** angle ⟹ congruent. The angle must be between the two sides."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's name shortcuts and read correspondences."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Three pairs of equal sides prove congruence by —",
+                "options": [
+                  "SSS",
+                  "SAS",
+                  "AAA",
+                  "neither"
+                ],
+                "correctIndex": 0,
+                "explanation": "Side-Side-Side.",
+                "check": [
+                  "3 == 3"
+                ]
+              },
+              {
+                "prompt": "Two sides and the included angle prove congruence by —",
+                "options": [
+                  "SSS",
+                  "SAS",
+                  "SSA",
+                  "AAA"
+                ],
+                "correctIndex": 1,
+                "explanation": "Side-Angle-Side.",
+                "check": [
+                  "2 + 1 == 3"
+                ]
+              },
+              {
+                "prompt": "For SAS, the angle must be —",
+                "options": [
+                  "any angle",
+                  "between the two sides",
+                  "outside the two sides",
+                  "a right angle"
+                ],
+                "correctIndex": 1,
+                "explanation": "The included angle.",
+                "check": [
+                  "2 + 1 == 3"
+                ]
+              },
+              {
+                "prompt": "$\\triangle ABC \\cong \\triangle XYZ$. $\\angle C$ equals —",
+                "options": [
+                  "$\\angle X$",
+                  "$\\angle Y$",
+                  "$\\angle Z$",
+                  "$\\angle A$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$C \\to Z$.",
+                "check": [
+                  "3 == 3"
+                ]
+              },
+              {
+                "prompt": "$\\triangle ABC \\cong \\triangle XYZ$. Side $BC$ equals —",
+                "options": [
+                  "$XY$",
+                  "$YZ$",
+                  "$XZ$",
+                  "$ZX$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$B \\to Y$, $C \\to Z$, so $BC \\leftrightarrow YZ$.",
+                "check": [
+                  "2 + 1 == 3"
+                ]
+              },
+              {
+                "prompt": "Why is a triangle rigid (can't be pushed out of shape)?",
+                "options": [
+                  "Its angles sum to 180°",
+                  "Three fixed sides fix the shape — SSS",
+                  "It has three vertices",
+                  "It is the smallest polygon"
+                ],
+                "correctIndex": 1,
+                "explanation": "SSS: fixing the three sides leaves only one shape.",
+                "check": [
+                  "3 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Congruent Triangles: SSS & SAS\"",
+            "body": "Two shortcuts down. Next: the angle-first shortcuts ASA and AAS, the right-triangle special HL — and why AAA and SSA don't make the cut."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "congruence-asa-aas-hl",
+      "title": "Congruence: ASA, AAS & HL",
+      "concreteComparison": "A surveyor can't always measure a triangle's sides — a river or canyon may be in the way — but can measure **angles** from each end of a baseline. Angle-first shortcuts let those measurements pin down the whole triangle, and this lesson adds the last congruence tools, plus the two tempting shortcuts that secretly fail.",
+      "objective": "Use ASA, AAS, and the right-triangle shortcut HL to prove triangles congruent, and know why AAA and SSA do not.",
+      "concept": [
+        "**ASA** (Angle-Side-Angle): two angles and the side **between them** (the included side) match ⟹ congruent.",
+        "**AAS** (Angle-Angle-Side): two angles and a **non-included** side match ⟹ congruent. (It works because the third angle is forced by the $180^\\circ$ rule, turning AAS back into ASA.)",
+        "**HL** (Hypotenuse-Leg): for **right triangles only**, if the hypotenuse and one leg match, the triangles are congruent.",
+        "Two that **fail**: **AAA** fixes the shape but not the size (think two different-sized equilateral triangles), and **SSA** (two sides and a non-included angle) can give two different triangles."
+      ],
+      "keyIdea": "ASA (angles + included side), AAS (angles + any side), HL (right triangles: hypotenuse + leg) all work. AAA and SSA do NOT.",
+      "facts": [
+        {
+          "title": "Work",
+          "latex": "SSS, SAS, ASA, AAS, HL",
+          "explanation": "The five valid shortcuts."
+        },
+        {
+          "title": "Fail",
+          "latex": "AAA, SSA",
+          "explanation": "Same shape ≠ same size; two triangles possible."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "aa-we1",
+          "statement": "Two triangles share two pairs of equal angles and the side between those angles. Which shortcut?",
+          "solution": "Two angles + the **included** side — **ASA**.",
+          "check": [
+            "1 + 1 + 1 == 3"
+          ]
+        },
+        {
+          "id": "aa-we2",
+          "statement": "Two right triangles have equal hypotenuses and one equal leg. Which shortcut?",
+          "solution": "Right triangles with hypotenuse and a leg — **HL**.",
+          "check": [
+            "90 == 90"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Believing AAA proves congruence.",
+          "correction": "Equal angles only prove the same **shape** (similar), not the same **size**. Two equilateral triangles of different sizes have identical angles.",
+          "authored": true
+        },
+        {
+          "text": "Using SSA.",
+          "correction": "Two sides and a **non-included** angle can produce two different triangles — the “ambiguous case.” It is not a valid shortcut.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "aa-t1",
+          "statement": "Two angles and a non-included side match. The shortcut is —",
+          "solution": "AAS.",
+          "check": [
+            "1 + 1 + 1 == 3"
+          ]
+        },
+        {
+          "id": "aa-t2",
+          "statement": "Does AAA prove two triangles congruent?",
+          "solution": "No — same shape, possibly different size.",
+          "check": [
+            "60 + 60 + 60 == 180"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Leading with angles",
+            "beats": [
+              "SSS and SAS led with sides. Now lead with **angles**.",
+              "**ASA**: two angles and the side **between** them.",
+              "**AAS**: two angles and a side **not** between them.",
+              "Plus **HL** for right triangles — and two shortcuts that fail."
+            ]
+          },
+          {
+            "kind": "congruentTriangles",
+            "eyebrow": "Concept A",
+            "title": "ASA — angles with the side between",
+            "teach": "Two angles are marked, and the side BETWEEN them. Those two angles at the ends of a fixed side determine the whole triangle. Tap the shortcut the marks give.",
+            "config": {
+              "sides": [
+                1,
+                0,
+                0
+              ],
+              "angles": [
+                1,
+                2,
+                0
+              ],
+              "answer": "ASA",
+              "caption": "Two angles and the included side (between them)."
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Angle-Side-Angle",
+            "title": "ASA",
+            "beats": [
+              "**ASA**: two angles and the **included** side (between them).",
+              "Fix a side, and set the angle at each end.",
+              "The two angled sides meet at exactly one apex.",
+              "One triangle only — congruence guaranteed."
+            ]
+          },
+          {
+            "kind": "congruentTriangles",
+            "eyebrow": "Concept B",
+            "title": "AAS — angles and a side not between",
+            "teach": "Same two angles, but the marked side is NOT between them. It still works: the third angle is forced by the 180° rule, so AAS becomes ASA. Tap the shortcut.",
+            "config": {
+              "sides": [
+                0,
+                1,
+                0
+              ],
+              "angles": [
+                1,
+                2,
+                0
+              ],
+              "answer": "AAS",
+              "caption": "Two angles and a non-included side."
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Angle-Angle-Side",
+            "title": "AAS works via the angle sum",
+            "beats": [
+              "**AAS**: two angles and a side **not** between them.",
+              "Two angles fix the third (they sum to $180^\\circ$).",
+              "So you really know all three angles + a side = ASA.",
+              "AAS is ASA wearing a disguise — valid."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "ASA or AAS?",
+            "intro": "Is the side between the two angles?",
+            "examples": [
+              {
+                "prompt": "$\\angle A = \\angle D$, $\\angle B = \\angle E$, and side $AB = DE$ (between them). Which?",
+                "steps": [
+                  "Side $AB$ is between angles $A$ and $B$.",
+                  "Included side → ASA."
+                ],
+                "answer": "ASA",
+                "check": [
+                  "1 + 1 + 1 == 3"
+                ]
+              },
+              {
+                "prompt": "$\\angle A = \\angle D$, $\\angle B = \\angle E$, and side $BC = EF$ (not between them). Which?",
+                "steps": [
+                  "Side $BC$ is not between $A$ and $B$.",
+                  "Non-included side → AAS."
+                ],
+                "answer": "AAS",
+                "check": [
+                  "1 + 1 + 1 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Angle-based shortcuts",
+            "intro": "Included side = ASA; other side = AAS.",
+            "problems": [
+              {
+                "prompt": "Two angles + the side between them prove congruence by —",
+                "options": [
+                  "ASA",
+                  "AAS",
+                  "SSA"
+                ],
+                "correctIndex": 0,
+                "explanation": "Included side = ASA.",
+                "check": [
+                  "1 + 1 + 1 == 3"
+                ]
+              },
+              {
+                "prompt": "Two angles + a side not between them prove congruence by —",
+                "options": [
+                  "ASA",
+                  "AAS",
+                  "AAA"
+                ],
+                "correctIndex": 1,
+                "explanation": "Non-included side = AAS.",
+                "check": [
+                  "1 + 1 + 1 == 3"
+                ]
+              },
+              {
+                "prompt": "If two angles are $50^\\circ$ and $60^\\circ$, the third is forced to be —",
+                "options": [
+                  "$70^\\circ$",
+                  "$80^\\circ$",
+                  "$90^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$180 - 50 - 60 = 70$ — why AAS works.",
+                "check": [
+                  "180 - 50 - 60 == 70"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Right triangles",
+            "title": "Hypotenuse-Leg (HL)",
+            "beats": [
+              "For **right triangles only**: the longest side is the **hypotenuse** (opposite the right angle); the other two are **legs**.",
+              "**HL**: equal hypotenuse and one equal leg ⟹ congruent.",
+              "The right angle plus those two sides pin the third by Pythagoras (Unit 8).",
+              "HL is the right-triangle version of the side shortcuts."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "HL and the correspondence",
+            "intro": "Right triangle: hypotenuse + a leg.",
+            "examples": [
+              {
+                "prompt": "Two right triangles have equal hypotenuses and one pair of equal legs. Congruent by?",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 0,
+                        "y": 0
+                      },
+                      {
+                        "id": "B",
+                        "x": 3,
+                        "y": 0
+                      },
+                      {
+                        "id": "C",
+                        "x": 0,
+                        "y": 2.2
+                      },
+                      {
+                        "id": "D",
+                        "x": 5,
+                        "y": 0
+                      },
+                      {
+                        "id": "E",
+                        "x": 8,
+                        "y": 0
+                      },
+                      {
+                        "id": "F",
+                        "x": 5,
+                        "y": 2.2
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "ticks": 1
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "A",
+                        "ticks": 2
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "A",
+                        "from": "B",
+                        "to": "C",
+                        "right": true
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "D",
+                        "to": "E"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "E",
+                        "to": "F",
+                        "ticks": 1
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "F",
+                        "to": "D",
+                        "ticks": 2
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "D",
+                        "from": "E",
+                        "to": "F",
+                        "right": true
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "Right angles ✓; hypotenuses match (1 tick); a leg matches (2 ticks).",
+                  "Congruent by HL."
+                ],
+                "answer": "HL",
+                "check": [
+                  "90 == 90"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Watch out",
+            "title": "AAA and SSA fail",
+            "beats": [
+              "**AAA**: all three angles equal → same **shape**, but any **size**. Two equilateral triangles, big and small: AAA, not congruent.",
+              "**SSA**: two sides + a **non-included** angle can swing to **two** different triangles — the ambiguous case.",
+              "Valid list: SSS, SAS, ASA, AAS, HL.",
+              "Invalid: AAA, SSA."
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Works or fails?",
+            "intro": "Only five shortcuts are valid.",
+            "problems": [
+              {
+                "prompt": "Does AAA prove congruence?",
+                "options": [
+                  "Yes",
+                  "No — same shape, any size"
+                ],
+                "correctIndex": 1,
+                "explanation": "Equal angles give similarity, not congruence.",
+                "check": [
+                  "60 + 60 + 60 == 180"
+                ]
+              },
+              {
+                "prompt": "Which is a VALID shortcut for right triangles specifically?",
+                "options": [
+                  "SSA",
+                  "HL",
+                  "AAA"
+                ],
+                "correctIndex": 1,
+                "explanation": "Hypotenuse-Leg is the right-triangle shortcut.",
+                "check": [
+                  "90 == 90"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "How surveyors cross a river",
+            "body": "To measure a distance across a river without crossing, surveyors mark a baseline on their side and sight the **angles** to a landmark on the far bank from each end. Two angles and the baseline between them — pure ASA — fix the whole triangle, so the far distance falls right out. Napoleon's engineers mapped Egypt this way."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Valid or not?",
+            "prompt": "Two sides and a NON-included angle (SSA) —",
+            "options": [
+              "always prove congruence",
+              "do NOT always prove congruence"
+            ],
+            "correctIndex": 1,
+            "explanation": "SSA is the ambiguous case — it can give two triangles.",
+            "check": [
+              "2 + 1 == 3"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**ASA** (angles + included side), **AAS** (angles + other side), **HL** (right triangles: hypotenuse + leg) all prove congruence.",
+              "**AAS** works because two angles force the third; **HL** is right-triangles only.",
+              "**AAA** (shape not size) and **SSA** (ambiguous) do **not** prove congruence."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's sort the valid shortcuts from the impostors."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Two angles + the side between them: shortcut?",
+                "options": [
+                  "ASA",
+                  "AAS",
+                  "SAS",
+                  "SSA"
+                ],
+                "correctIndex": 0,
+                "explanation": "Included side = ASA.",
+                "check": [
+                  "1 + 1 + 1 == 3"
+                ]
+              },
+              {
+                "prompt": "Two angles + a non-included side: shortcut?",
+                "options": [
+                  "ASA",
+                  "AAS",
+                  "SSS",
+                  "AAA"
+                ],
+                "correctIndex": 1,
+                "explanation": "Non-included side = AAS.",
+                "check": [
+                  "1 + 1 + 1 == 3"
+                ]
+              },
+              {
+                "prompt": "Right triangles, equal hypotenuse and one leg: shortcut?",
+                "options": [
+                  "SSA",
+                  "HL",
+                  "AAA",
+                  "LL only"
+                ],
+                "correctIndex": 1,
+                "explanation": "Hypotenuse-Leg.",
+                "check": [
+                  "90 == 90"
+                ]
+              },
+              {
+                "prompt": "Which does NOT prove congruence?",
+                "options": [
+                  "SAS",
+                  "ASA",
+                  "AAA",
+                  "AAS"
+                ],
+                "correctIndex": 2,
+                "explanation": "AAA gives same shape, not size.",
+                "check": [
+                  "60 + 60 + 60 == 180"
+                ]
+              },
+              {
+                "prompt": "Two triangles have all three angles equal. They are definitely —",
+                "options": [
+                  "congruent",
+                  "the same shape (similar)",
+                  "right triangles",
+                  "equilateral"
+                ],
+                "correctIndex": 1,
+                "explanation": "Same angles = similar; size can differ.",
+                "check": [
+                  "60 + 60 + 60 == 180"
+                ]
+              },
+              {
+                "prompt": "The hypotenuse of a right triangle is —",
+                "options": [
+                  "a leg",
+                  "the side opposite the right angle",
+                  "the shortest side",
+                  "the base always"
+                ],
+                "correctIndex": 1,
+                "explanation": "It's opposite the $90^\\circ$ angle — the longest side.",
+                "check": [
+                  "90 == 90"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Congruence: ASA, AAS & HL\"",
+            "body": "You've got all five valid shortcuts — and can spot the two fakes. Last lesson: what congruence GIVES you (CPCTC) and the elegant isosceles triangle theorems."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "cpctc-and-isosceles",
+      "title": "CPCTC & Isosceles Triangles",
+      "concreteComparison": "Once you've proven two triangles are congruent, you get every remaining matching part for free — like proving two keys are identical, then knowing every notch matches without measuring. That payoff is called CPCTC, and it unlocks the elegant fact that an isosceles triangle's base angles are always equal.",
+      "objective": "Use CPCTC to conclude corresponding parts are equal after proving triangles congruent, and apply the Isosceles Triangle Theorem (base angles congruent) and its converse.",
+      "concept": [
+        "**CPCTC** — Corresponding Parts of Congruent Triangles are Congruent. Once $\\triangle ABC \\cong \\triangle DEF$ is proven, **every** remaining pair of corresponding sides and angles is equal.",
+        "CPCTC is used **after** a congruence shortcut: first prove congruent (SSS/SAS/ASA/AAS/HL), then cite CPCTC to get the specific part you want.",
+        "**Isosceles Triangle Theorem**: if two sides of a triangle are congruent, the angles **opposite** them (the **base angles**) are congruent. Its **converse** is also true: equal base angles ⟹ equal sides.",
+        "Because an **equilateral** triangle has all sides equal, all its angles are equal too — $60^\\circ$ each. Equilateral means equiangular."
+      ],
+      "keyIdea": "CPCTC: after proving triangles congruent, all corresponding parts are equal. Isosceles triangles have congruent base angles (and the converse holds).",
+      "facts": [
+        {
+          "title": "CPCTC",
+          "latex": "$\\cong$ triangles ⟹ all parts $\\cong$",
+          "explanation": "Used after a congruence proof."
+        },
+        {
+          "title": "Isosceles base angles",
+          "latex": "2 equal sides ⟹ 2 equal base angles",
+          "explanation": "And the converse."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ci-we1",
+          "statement": "An isosceles triangle has a vertex angle of $40^\\circ$. Find each base angle.",
+          "solution": "The two base angles are equal and share the rest: $(180^\\circ - 40^\\circ) \\div 2 = 70^\\circ$ each.",
+          "check": [
+            "(180 - 40)/2 == 70"
+          ]
+        },
+        {
+          "id": "ci-we2",
+          "statement": "In an isosceles triangle a base angle is $50^\\circ$. Find the vertex angle.",
+          "solution": "Both base angles are $50^\\circ$, so the vertex is $180^\\circ - 50^\\circ - 50^\\circ = 80^\\circ$.",
+          "check": [
+            "180 - 50 - 50 == 80"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using CPCTC before proving the triangles congruent.",
+          "correction": "CPCTC comes **second**: prove congruence with a shortcut first, THEN conclude the parts are equal.",
+          "authored": true
+        },
+        {
+          "text": "Assuming ALL angles of an isosceles triangle are equal.",
+          "correction": "Only the two **base angles** (opposite the equal sides) must match. That's equilateral only when all three sides are equal.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ci-t1",
+          "statement": "Isosceles triangle, vertex angle $80^\\circ$. Each base angle is —",
+          "solution": "$(180 - 80)/2 = 50^\\circ$.",
+          "check": [
+            "(180 - 80)/2 == 50"
+          ]
+        },
+        {
+          "id": "ci-t2",
+          "statement": "A triangle has two $65^\\circ$ base angles. Is it isosceles?",
+          "solution": "Yes — equal base angles ⟹ equal sides (the converse).",
+          "check": [
+            "65 == 65",
+            "180 - 65 - 65 == 50"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "The payoff of congruence",
+            "beats": [
+              "Prove two triangles congruent, and you get **all six** matching parts.",
+              "**CPCTC**: Corresponding Parts of Congruent Triangles are Congruent.",
+              "Use it **after** an SSS/SAS/ASA/AAS/HL proof.",
+              "It's how a congruence proof delivers the specific fact you need."
+            ]
+          },
+          {
+            "kind": "stepProof",
+            "eyebrow": "CPCTC in action",
+            "title": "Prove two angles equal",
+            "teach": "First a congruence shortcut, then CPCTC to reach the pair of angles we actually wanted. This two-stage pattern is everywhere.",
+            "config": {
+              "given": "$M$ is the midpoint of $\\overline{BC}$; $AB = AC$.",
+              "prove": "$\\angle B \\cong \\angle C$",
+              "rows": [
+                {
+                  "statement": "$AB = AC$ and $BM = CM$",
+                  "reason": "Given ($AB=AC$) and definition of midpoint"
+                },
+                {
+                  "statement": "$AM = AM$",
+                  "reason": "Same segment (Reflexive Property)"
+                },
+                {
+                  "statement": "$\\triangle ABM \\cong \\triangle ACM$",
+                  "reason": "SSS (three pairs of sides equal)"
+                },
+                {
+                  "statement": "$\\angle B \\cong \\angle C$",
+                  "reason": "CPCTC"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The isosceles theorem",
+            "title": "Base angles are congruent",
+            "beats": [
+              "An **isosceles** triangle has two congruent sides (the **legs**).",
+              "The angles **opposite** those sides are the **base angles**.",
+              "**Isosceles Triangle Theorem**: the base angles are **congruent**.",
+              "You just proved it — the CPCTC proof above IS the proof."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Isosceles angle arithmetic",
+            "intro": "Two equal base angles share 180 − vertex.",
+            "examples": [
+              {
+                "prompt": "Isosceles triangle, vertex angle $40^\\circ$. Each base angle?",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 0,
+                        "y": 0
+                      },
+                      {
+                        "id": "B",
+                        "x": 4,
+                        "y": 0
+                      },
+                      {
+                        "id": "C",
+                        "x": 2,
+                        "y": 3.4
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "C",
+                        "ticks": 1
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "ticks": 1
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "C",
+                        "from": "A",
+                        "to": "B",
+                        "label": "40°"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "A",
+                        "from": "B",
+                        "to": "C",
+                        "label": "?"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "B",
+                        "from": "C",
+                        "to": "A",
+                        "label": "?"
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "Base angles share $180^\\circ - 40^\\circ = 140^\\circ$.",
+                  "Each is $140 \\div 2 = 70^\\circ$."
+                ],
+                "answer": "$70^\\circ$ each",
+                "check": [
+                  "(180 - 40)/2 == 70"
+                ]
+              },
+              {
+                "prompt": "Isosceles triangle, base angle $55^\\circ$. Vertex angle?",
+                "steps": [
+                  "Both base angles $55^\\circ$.",
+                  "Vertex $= 180 - 55 - 55 = 70^\\circ$."
+                ],
+                "answer": "$70^\\circ$",
+                "check": [
+                  "180 - 55 - 55 == 70"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Isosceles angles",
+            "intro": "Base angles equal; they + vertex = 180.",
+            "problems": [
+              {
+                "prompt": "Vertex angle $100^\\circ$. Each base angle is —",
+                "options": [
+                  "$40^\\circ$",
+                  "$50^\\circ$",
+                  "$80^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(180 - 100)/2 = 40$.",
+                "check": [
+                  "(180 - 100)/2 == 40"
+                ]
+              },
+              {
+                "prompt": "Base angle $70^\\circ$. The vertex angle is —",
+                "options": [
+                  "$40^\\circ$",
+                  "$70^\\circ$",
+                  "$110^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$180 - 70 - 70 = 40$.",
+                "check": [
+                  "180 - 70 - 70 == 40"
+                ]
+              },
+              {
+                "prompt": "A triangle has base angles $48^\\circ$ and $48^\\circ$. It is —",
+                "options": [
+                  "isosceles",
+                  "scalene",
+                  "right"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal base angles ⟹ isosceles (converse).",
+                "check": [
+                  "48 == 48"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The converse & equilateral",
+            "title": "Equal angles, equal sides",
+            "beats": [
+              "**Converse**: if two **angles** of a triangle are equal, the sides opposite them are equal — it's isosceles.",
+              "Equal sides ⟺ equal base angles, both directions.",
+              "**Equilateral**: all three sides equal, so all three angles equal.",
+              "Each is $180 \\div 3 = 60^\\circ$ — equilateral means equiangular."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Solve with isosceles",
+            "intro": "Set base angles equal or use the sum.",
+            "examples": [
+              {
+                "prompt": "Isosceles: base angles $(2x)^\\circ$ and $50^\\circ$ are equal. Find $x$.",
+                "steps": [
+                  "Base angles equal: $2x = 50$.",
+                  "$x = 25$."
+                ],
+                "answer": "$x = 25$",
+                "check": [
+                  "solve(Eq(2*x, 50), x) == [25]"
+                ]
+              },
+              {
+                "prompt": "Isosceles: vertex $(3x)^\\circ$, each base angle $75^\\circ$. Find $x$.",
+                "steps": [
+                  "$3x + 75 + 75 = 180 \\Rightarrow 3x = 30$.",
+                  "$x = 10$."
+                ],
+                "answer": "$x = 10$",
+                "check": [
+                  "solve(Eq(3*x + 75 + 75, 180), x) == [10]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Converse & equilateral",
+            "intro": "Equal angles ⟹ isosceles; equilateral ⟹ 60° each.",
+            "problems": [
+              {
+                "prompt": "A triangle with two $70^\\circ$ angles must be —",
+                "options": [
+                  "isosceles",
+                  "scalene",
+                  "obtuse"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal angles ⟹ equal opposite sides.",
+                "check": [
+                  "70 == 70"
+                ]
+              },
+              {
+                "prompt": "Each angle of an equilateral triangle is —",
+                "options": [
+                  "$45^\\circ$",
+                  "$60^\\circ$",
+                  "$90^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$180 \\div 3 = 60$.",
+                "check": [
+                  "180/3 == 60"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The A-frame and the coat hanger",
+            "body": "An isosceles triangle's mirror symmetry — equal sides, equal base angles — makes loads balance evenly, which is why A-frame roofs, stepladders, and even a wire coat hanger are isosceles. The equal base angles ensure the weight splits evenly to both feet."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Base angles",
+            "prompt": "An isosceles triangle has a vertex angle of $20^\\circ$. Each base angle is —",
+            "options": [
+              "$80^\\circ$",
+              "$70^\\circ$",
+              "$160^\\circ$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(180 - 20)/2 = 80$.",
+            "check": [
+              "(180 - 20)/2 == 80"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**CPCTC**: after proving triangles congruent, every corresponding part is congruent — used second.",
+              "**Isosceles Triangle Theorem**: equal sides ⟹ equal **base angles**; the converse holds too.",
+              "**Equilateral** = equiangular: $60^\\circ$ each."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Unit's last practice: CPCTC's order, isosceles angles, and the converse."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "CPCTC is used —",
+                "options": [
+                  "to prove triangles congruent",
+                  "after proving triangles congruent, to get their parts",
+                  "instead of a shortcut",
+                  "only for right triangles"
+                ],
+                "correctIndex": 1,
+                "explanation": "Prove congruent first, then CPCTC.",
+                "check": [
+                  "3 == 3"
+                ]
+              },
+              {
+                "prompt": "Isosceles triangle, vertex angle $30^\\circ$. Each base angle is —",
+                "options": [
+                  "$75^\\circ$",
+                  "$60^\\circ$",
+                  "$150^\\circ$",
+                  "$15^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(180 - 30)/2 = 75$.",
+                "check": [
+                  "(180 - 30)/2 == 75"
+                ]
+              },
+              {
+                "prompt": "Isosceles triangle, base angle $40^\\circ$. Vertex angle is —",
+                "options": [
+                  "$40^\\circ$",
+                  "$80^\\circ$",
+                  "$100^\\circ$",
+                  "$140^\\circ$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$180 - 40 - 40 = 100$.",
+                "check": [
+                  "180 - 40 - 40 == 100"
+                ]
+              },
+              {
+                "prompt": "A triangle with two equal angles must be —",
+                "options": [
+                  "equilateral",
+                  "isosceles",
+                  "right",
+                  "scalene"
+                ],
+                "correctIndex": 1,
+                "explanation": "Converse of the isosceles theorem.",
+                "check": [
+                  "55 == 55"
+                ]
+              },
+              {
+                "prompt": "Isosceles: base angles $(3x)^\\circ$ and $60^\\circ$ equal. $x = $ —",
+                "options": [
+                  "$20$",
+                  "$60$",
+                  "$30$",
+                  "$15$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3x = 60 \\Rightarrow x = 20$.",
+                "check": [
+                  "solve(Eq(3*x, 60), x) == [20]"
+                ]
+              },
+              {
+                "prompt": "Every equilateral triangle is also —",
+                "options": [
+                  "a right triangle",
+                  "equiangular ($60^\\circ$ each)",
+                  "obtuse",
+                  "scalene"
+                ],
+                "correctIndex": 1,
+                "explanation": "Equal sides ⟹ equal angles ⟹ $60^\\circ$ each.",
+                "check": [
+                  "180/3 == 60"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"CPCTC & Isosceles Triangles\"",
+            "body": "That completes Unit 4 — you can prove triangles congruent, harvest their parts with CPCTC, and reason about isosceles and equilateral triangles. Unit 5 zooms inside the triangle: medians, altitudes, bisectors, and the points where they meet."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [],
+  "testYourself": []
+}

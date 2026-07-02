@@ -16,6 +16,12 @@ import {
   TRANSVERSAL_PAIRS,
   INTERIOR_ANGLES,
   EXTERIOR_ANGLES,
+  triangleThirdAngle,
+  exteriorAngle,
+  canFormTriangle,
+  classifyBySides,
+  classifyByAngles,
+  isoscelesBaseAngle,
 } from "@/lib/geo";
 
 describe("segment math", () => {
@@ -152,5 +158,55 @@ describe("transversal angle relationships (the congruent-vs-supplementary bar)",
     expect(m62[p]).not.toBe(m62[q]);
     const m90 = transversalEight(90);
     expect(m90[p]).toBe(m90[q]); // both 90
+  });
+});
+
+describe("triangle theorems", () => {
+  it("angle-sum: third angle completes 180°", () => {
+    expect(triangleThirdAngle(50, 60)).toBe(70);
+    expect(triangleThirdAngle(90, 45)).toBe(45);
+    for (const [a, b] of [[30, 40], [80, 20], [60, 60]]) {
+      expect(a + b + triangleThirdAngle(a, b)).toBe(180);
+    }
+  });
+
+  it("exterior angle = sum of the two remote interior angles = supplement of the adjacent one", () => {
+    for (const [a, b] of [[50, 70], [40, 65], [30, 30]]) {
+      const ext = exteriorAngle(a, b);
+      expect(ext).toBe(a + b);
+      const adjacentInterior = triangleThirdAngle(a, b);
+      expect(ext + adjacentInterior).toBe(180); // exterior & its adjacent interior are supplementary
+    }
+  });
+
+  it("triangle inequality: forms iff every pair beats the third side", () => {
+    expect(canFormTriangle(3, 4, 5)).toBe(true);
+    expect(canFormTriangle(5, 5, 5)).toBe(true);
+    expect(canFormTriangle(3, 4, 8)).toBe(false); // 3+4 = 7 < 8
+    expect(canFormTriangle(1, 1, 2)).toBe(false); // degenerate: 1+1 = 2, not > 2
+    expect(canFormTriangle(2, 3, 4)).toBe(true);
+  });
+
+  it("classify by sides", () => {
+    expect(classifyBySides(5, 5, 5)).toBe("equilateral");
+    expect(classifyBySides(5, 5, 8)).toBe("isosceles");
+    expect(classifyBySides(3, 4, 5)).toBe("scalene");
+  });
+
+  it("classify by angles with 90 as the exact boundary", () => {
+    expect(classifyByAngles(90, 60, 30)).toBe("right");
+    expect(classifyByAngles(100, 50, 30)).toBe("obtuse");
+    expect(classifyByAngles(80, 60, 40)).toBe("acute");
+    expect(classifyByAngles(60, 60, 60)).toBe("acute");
+  });
+
+  it("isosceles base angles split the remaining 180 − vertex", () => {
+    expect(isoscelesBaseAngle(40)).toBe(70);
+    expect(isoscelesBaseAngle(80)).toBe(50);
+    for (const v of [40, 80, 100]) {
+      expect(v + 2 * isoscelesBaseAngle(v)).toBe(180);
+    }
+    // equilateral is the vertex-60 case
+    expect(isoscelesBaseAngle(60)).toBe(60);
   });
 });

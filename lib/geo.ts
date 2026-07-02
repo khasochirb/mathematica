@@ -100,3 +100,46 @@ export const TRANSVERSAL_PAIRS: Record<string, { pairs: [number, number][]; rel:
 // Interior angles lie between the two lines; exterior angles lie outside them.
 export const INTERIOR_ANGLES = [3, 4, 5, 6];
 export const EXTERIOR_ANGLES = [1, 2, 7, 8];
+
+// ---------------------------------------------------------------------------
+// Triangles
+// ---------------------------------------------------------------------------
+
+// The Triangle Angle-Sum Theorem: the three interior angles total 180°, so the
+// third angle is 180 minus the other two.
+export function triangleThirdAngle(a: number, b: number): number {
+  return 180 - a - b;
+}
+
+// The Exterior Angle Theorem: an exterior angle equals the sum of the two
+// remote (non-adjacent) interior angles.
+export function exteriorAngle(remote1: number, remote2: number): number {
+  return remote1 + remote2;
+}
+
+// Triangle Inequality: three lengths close into a triangle exactly when every
+// pair sums to MORE than the third side.
+export function canFormTriangle(a: number, b: number, c: number): boolean {
+  return a + b > c && b + c > a && a + c > b;
+}
+
+// Classify a triangle by its side lengths.
+export function classifyBySides(a: number, b: number, c: number): "equilateral" | "isosceles" | "scalene" {
+  if (a === b && b === c) return "equilateral";
+  if (a === b || b === c || a === c) return "isosceles";
+  return "scalene";
+}
+
+// Classify a triangle by its angles (given the three measures).
+export function classifyByAngles(a: number, b: number, c: number): "right" | "obtuse" | "acute" {
+  const m = Math.max(a, b, c);
+  if (m === 90) return "right";
+  if (m > 90) return "obtuse";
+  return "acute";
+}
+
+// Base angle of an isosceles triangle from its vertex (apex) angle: the two
+// base angles are equal and share the remaining 180 − vertex between them.
+export function isoscelesBaseAngle(vertex: number): number {
+  return (180 - vertex) / 2;
+}

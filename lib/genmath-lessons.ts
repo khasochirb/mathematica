@@ -62,6 +62,7 @@ import dataAndStatistics from "@/data/genmath/6/data-and-statistics.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
+import geometryTriangles from "@/data/genmath/geometry/triangles-and-congruence.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -165,7 +166,7 @@ export const GEOMETRY_SPINE: GeometrySpineEntry[] = [
     title: "Triangles & Congruence",
     blurb: "Triangle types, the angle sum, the triangle inequality, and the congruence shortcuts SSS · SAS · ASA · AAS · HL.",
     buildsOn: "Units 1–3: angles, proof, and parallel-line facts.",
-    live: false,
+    live: true,
   },
   {
     unit: 5,
@@ -245,6 +246,7 @@ const geometryUnits: GeometryUnit[] = [
   geometryFoundations as unknown as GeometryUnit,
   geometryReasoning as unknown as GeometryUnit,
   geometryParallel as unknown as GeometryUnit,
+  geometryTriangles as unknown as GeometryUnit,
 ];
 
 export function getGeometrySpine(): GeometrySpineEntry[] {

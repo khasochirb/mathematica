@@ -557,6 +557,33 @@ export interface TransversalConfig {
   showMeasures?: boolean; // print each angle's degree instead of its number
 }
 
+// A triangle reshaped by its two base angles; the third completes 180°. In
+// exterior mode the base extends and the exterior angle (= sum of remote
+// interiors) is shown.
+export interface TriangleAnglesConfig {
+  beta?: number; // ∠B (bottom-left)
+  gamma?: number; // ∠C (bottom-right)
+  exterior?: boolean;
+  color?: string;
+}
+
+// Three side lengths that try to close into a triangle (Triangle Inequality).
+export interface TriangleInequalityConfig {
+  a?: number;
+  b?: number;
+  c?: number;
+  max?: number;
+}
+
+// Two congruent triangles with marked parts; the student names the shortcut.
+export interface CongruentTrianglesConfig {
+  sides?: [number, number, number]; // tick counts on AB, BC, CA
+  angles?: [number, number, number]; // arc counts at A, B, C
+  rightAngleAt?: number; // vertex index (0=A,1=B,2=C) with a right-angle square, or -1
+  answer: "SSS" | "SAS" | "ASA" | "AAS" | "HL";
+  caption?: string;
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -634,6 +661,9 @@ export type InteractiveStep =
   | { kind: "conjectureTest"; eyebrow?: string; title: string; teach: string; config: ConjectureTestConfig }
   | { kind: "conditionalFlip"; eyebrow?: string; title: string; teach: string; config: ConditionalFlipConfig }
   | { kind: "transversal"; eyebrow?: string; title: string; teach: string; config: TransversalConfig }
+  | { kind: "triangleAngles"; eyebrow?: string; title: string; teach: string; config: TriangleAnglesConfig }
+  | { kind: "triangleInequality"; eyebrow?: string; title: string; teach: string; config: TriangleInequalityConfig }
+  | { kind: "congruentTriangles"; eyebrow?: string; title: string; teach: string; config: CongruentTrianglesConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {
