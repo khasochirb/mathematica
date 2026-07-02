@@ -575,6 +575,30 @@ export interface TriangleInequalityConfig {
   max?: number;
 }
 
+// One triangle with a chosen set of concurrent special segments and the point
+// where they meet: perpendicular bisectors → circumcenter, angle bisectors →
+// incenter, medians → centroid, altitudes → orthocenter. Optionally draws the
+// circumscribed / inscribed circle. One primitive serves Unit-5 lessons 1–4.
+export interface TriangleCentersConfig {
+  center: "circumcenter" | "incenter" | "centroid" | "orthocenter";
+  triangle?: [[number, number], [number, number], [number, number]]; // A, B, C
+  showCircle?: boolean; // circumcircle / incircle where meaningful
+  caption?: string;
+  color?: string;
+}
+
+// The Midsegment Theorem, live: the segment joining two side-midpoints is
+// parallel to the third side and half as long. "one" draws a single midsegment
+// against its parallel base; "all" draws the medial triangle (four congruent
+// pieces). `base` (0,1,2 = AB, BC, CA) is the side the midsegment parallels.
+export interface MidsegmentConfig {
+  triangle?: [[number, number], [number, number], [number, number]]; // A, B, C
+  show?: "one" | "all";
+  base?: number; // which side the drawn midsegment is parallel to
+  caption?: string;
+  color?: string;
+}
+
 // Two congruent triangles with marked parts; the student names the shortcut.
 export interface CongruentTrianglesConfig {
   sides?: [number, number, number]; // tick counts on AB, BC, CA
@@ -664,6 +688,8 @@ export type InteractiveStep =
   | { kind: "triangleAngles"; eyebrow?: string; title: string; teach: string; config: TriangleAnglesConfig }
   | { kind: "triangleInequality"; eyebrow?: string; title: string; teach: string; config: TriangleInequalityConfig }
   | { kind: "congruentTriangles"; eyebrow?: string; title: string; teach: string; config: CongruentTrianglesConfig }
+  | { kind: "triangleCenters"; eyebrow?: string; title: string; teach: string; config: TriangleCentersConfig }
+  | { kind: "midsegment"; eyebrow?: string; title: string; teach: string; config: MidsegmentConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

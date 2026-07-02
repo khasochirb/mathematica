@@ -143,3 +143,92 @@ export function classifyByAngles(a: number, b: number, c: number): "right" | "ob
 export function isoscelesBaseAngle(vertex: number): number {
   return (180 - vertex) / 2;
 }
+
+// ---------------------------------------------------------------------------
+// Relationships in triangles — special segments & their centers
+// ---------------------------------------------------------------------------
+
+// Vector helpers (screen/diagram plane; callers handle the y-flip).
+export function sub(a: XY, b: XY): XY {
+  return { x: a.x - b.x, y: a.y - b.y };
+}
+export function add(a: XY, b: XY): XY {
+  return { x: a.x + b.x, y: a.y + b.y };
+}
+export function scale(a: XY, k: number): XY {
+  return { x: a.x * k, y: a.y * k };
+}
+export function dot(a: XY, b: XY): number {
+  return a.x * b.x + a.y * b.y;
+}
+
+// The foot of the perpendicular dropped from point P onto the line through A,B.
+// F = A + t·(B−A) with t chosen so PF ⟂ AB. Used for altitudes.
+export function perpFoot(p: XY, a: XY, b: XY): XY {
+  const ab = sub(b, a);
+  const t = dot(sub(p, a), ab) / dot(ab, ab);
+  return add(a, scale(ab, t));
+}
+
+// Centroid — the balance point — is the plain average of the three vertices,
+// and it lands two-thirds of the way down each median from its vertex.
+export function centroid(a: XY, b: XY, c: XY): XY {
+  return { x: (a.x + b.x + c.x) / 3, y: (a.y + b.y + c.y) / 3 };
+}
+
+// Circumcenter — equidistant from all three vertices — is where the three
+// perpendicular bisectors of the sides meet. Solved from the two circle
+// equations |P−A|² = |P−B|² and |P−A|² = |P−C|² (a linear system).
+export function circumcenter(a: XY, b: XY, c: XY): XY {
+  const d = 2 * (a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y));
+  const a2 = a.x * a.x + a.y * a.y;
+  const b2 = b.x * b.x + b.y * b.y;
+  const c2 = c.x * c.x + c.y * c.y;
+  const ux = (a2 * (b.y - c.y) + b2 * (c.y - a.y) + c2 * (a.y - b.y)) / d;
+  const uy = (a2 * (c.x - b.x) + b2 * (a.x - c.x) + c2 * (b.x - a.x)) / d;
+  return { x: ux, y: uy };
+}
+
+// Incenter — equidistant from all three sides — is where the three angle
+// bisectors meet. It is the side-length-weighted average of the vertices,
+// each vertex weighted by the length of the side OPPOSITE it.
+export function incenter(a: XY, b: XY, c: XY): XY {
+  const la = dist(b, c); // side opposite A
+  const lb = dist(c, a); // side opposite B
+  const lc = dist(a, b); // side opposite C
+  const s = la + lb + lc;
+  return {
+    x: (la * a.x + lb * b.x + lc * c.x) / s,
+    y: (la * a.y + lb * b.y + lc * c.y) / s,
+  };
+}
+
+// Orthocenter — where the three altitudes meet — via the Euler relation
+// H = A + B + C − 2·O, with O the circumcenter (exact, and cheaper/steadier
+// than intersecting two altitude lines directly).
+export function orthocenter(a: XY, b: XY, c: XY): XY {
+  const o = circumcenter(a, b, c);
+  return { x: a.x + b.x + c.x - 2 * o.x, y: a.y + b.y + c.y - 2 * o.y };
+}
+
+// The Midsegment Theorem: the segment joining the midpoints of two sides is
+// parallel to the third side and exactly half its length.
+export function midsegmentLength(thirdSide: number): number {
+  return thirdSide / 2;
+}
+
+// In ANY triangle the largest angle sits opposite the longest side (and the
+// smallest opposite the shortest). Given the three side lengths, returns the
+// index (0,1,2) of the vertex with the largest angle — the one opposite the
+// longest side. Sides are given as [oppA, oppB, oppC].
+export function largestAngleVertex(oppA: number, oppB: number, oppC: number): number {
+  if (oppA >= oppB && oppA >= oppC) return 0;
+  if (oppB >= oppA && oppB >= oppC) return 1;
+  return 2;
+}
+
+// The range of possible lengths for the third side of a triangle given two
+// sides: it must be MORE than the difference and LESS than the sum.
+export function thirdSideRange(a: number, b: number): { min: number; max: number } {
+  return { min: Math.abs(a - b), max: a + b };
+}

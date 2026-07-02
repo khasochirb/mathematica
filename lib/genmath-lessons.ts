@@ -63,6 +63,7 @@ import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
 import geometryTriangles from "@/data/genmath/geometry/triangles-and-congruence.json";
+import geometryRelationships from "@/data/genmath/geometry/relationships-in-triangles.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -174,7 +175,7 @@ export const GEOMETRY_SPINE: GeometrySpineEntry[] = [
     title: "Relationships in Triangles",
     blurb: "Bisectors, medians, altitudes, the midsegment theorem, and inequalities inside a triangle.",
     buildsOn: "Triangle congruence from Unit 4.",
-    live: false,
+    live: true,
   },
   {
     unit: 6,
@@ -247,6 +248,7 @@ const geometryUnits: GeometryUnit[] = [
   geometryReasoning as unknown as GeometryUnit,
   geometryParallel as unknown as GeometryUnit,
   geometryTriangles as unknown as GeometryUnit,
+  geometryRelationships as unknown as GeometryUnit,
 ];
 
 export function getGeometrySpine(): GeometrySpineEntry[] {

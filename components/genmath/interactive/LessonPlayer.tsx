@@ -62,6 +62,8 @@ import Transversal from "@/components/genmath/interactive/Transversal";
 import TriangleAngles from "@/components/genmath/interactive/TriangleAngles";
 import TriangleInequality from "@/components/genmath/interactive/TriangleInequality";
 import CongruentTriangles from "@/components/genmath/interactive/CongruentTriangles";
+import TriangleCenters from "@/components/genmath/interactive/TriangleCenters";
+import Midsegment from "@/components/genmath/interactive/Midsegment";
 import RatioFigure from "@/components/genmath/interactive/RatioFigure";
 import NotationToggle from "@/components/genmath/interactive/NotationToggle";
 import { type GenMathLesson } from "@/lib/genmath-lessons";
@@ -761,6 +763,26 @@ function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveSt
         <>
           <StepHeader eyebrow={step.eyebrow} title={step.title} />
           <CongruentTriangles config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "triangleCenters":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <TriangleCenters config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "midsegment":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <Midsegment config={step.config} />
           <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
             <MathText text={step.teach} />
           </p>

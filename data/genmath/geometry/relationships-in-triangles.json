@@ -1,0 +1,2582 @@
+{
+  "slug": "relationships-in-triangles",
+  "title": "Relationships in Triangles",
+  "unit": 5,
+  "status": "published",
+  "blurb": "Perpendicular bisectors and the circumcenter, angle bisectors and the incenter, medians and the centroid, altitudes and the orthocenter, the midsegment theorem, and inequalities inside one triangle.",
+  "buildsOn": "Triangle congruence from Unit 4 (SSS·SAS·ASA·AAS·HL and CPCTC power every proof here), plus midpoints, perpendiculars, and angle bisectors from Unit 1 and distance-to-a-line from Unit 3.",
+  "lessons": [
+    {
+      "slug": "perpendicular-bisectors-and-circumcenter",
+      "title": "Perpendicular Bisectors & the Circumcenter",
+      "concreteComparison": "Two neighbours want to dig a well that sits exactly the same distance from both their houses. Every spot that is equally far from two points lies on one special line — the **perpendicular bisector** of the segment joining them. Push that idea to a triangle's three corners and all three of those lines cross at a single point.",
+      "objective": "Identify the perpendicular bisector of a segment, apply the Perpendicular Bisector Theorem (a point is equidistant from the two endpoints exactly when it lies on their perpendicular bisector), and locate the circumcenter where a triangle's three perpendicular bisectors meet.",
+      "concept": [
+        "The **perpendicular bisector** of a segment is the line that passes through its **midpoint** at a right angle — it bisects the segment *and* is perpendicular to it (both ideas from Unit 1).",
+        "**Equidistant** means \"the same distance from.\" **Perpendicular Bisector Theorem**: every point on the perpendicular bisector of a segment is equidistant from the segment's two endpoints. Its **converse** is also true: any point equidistant from the two endpoints must lie on the perpendicular bisector.",
+        "A triangle has three sides, so it has three perpendicular bisectors. Remarkably, the three lines all pass through a single point — we say they are **concurrent**, and that shared point is their **point of concurrency**.",
+        "That point is the **circumcenter**. Because it is equidistant from all three vertices, a circle centred there passes through all three corners — the **circumscribed circle** (or circumcircle)."
+      ],
+      "keyIdea": "A point is equidistant from a segment's two endpoints exactly when it lies on their perpendicular bisector. A triangle's three perpendicular bisectors are concurrent at the circumcenter, which is equidistant from all three vertices.",
+      "facts": [
+        {
+          "title": "Perpendicular Bisector Theorem",
+          "latex": "on the $\\perp$ bisector $\\Leftrightarrow$ equidistant",
+          "explanation": "A point lies on the perpendicular bisector of a segment exactly when it is equidistant from the two endpoints."
+        },
+        {
+          "title": "Circumcenter",
+          "latex": "$OA = OB = OC$",
+          "explanation": "The three perpendicular bisectors meet at a point equidistant from all three vertices."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pb-we1",
+          "statement": "Point $P$ lies on the perpendicular bisector of $\\overline{AB}$. If $PA = 2x + 1$ and $PB = 11$, find $x$.",
+          "solution": "On the perpendicular bisector, $P$ is equidistant from $A$ and $B$, so $PA = PB$: $2x + 1 = 11 \\Rightarrow 2x = 10 \\Rightarrow x = 5$.",
+          "check": [
+            "solve(Eq(2*x + 1, 11), x) == [5]"
+          ]
+        },
+        {
+          "id": "pb-we2",
+          "statement": "The circumcenter of a right triangle lands on the midpoint of the hypotenuse. If the hypotenuse is $10$, find the circumradius (distance from the circumcenter to each vertex).",
+          "solution": "The circumcenter is the midpoint of the hypotenuse, so it is $10 \\div 2 = 5$ from each end of the hypotenuse — and equidistant means the third vertex is $5$ away too.",
+          "check": [
+            "10/2 == 5"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking the perpendicular bisector of a side must pass through the opposite vertex.",
+          "correction": "It passes through the side's **midpoint** at a right angle. It only reaches the opposite vertex in special (isosceles) cases.",
+          "authored": true
+        },
+        {
+          "text": "Assuming the circumcenter is always inside the triangle.",
+          "correction": "It is inside for an **acute** triangle, exactly **on the hypotenuse** for a right triangle, and **outside** for an obtuse triangle.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pb-t1",
+          "statement": "Point $Q$ is on the perpendicular bisector of $\\overline{ST}$. If $QS = 3x$ and $QT = 12$, find $x$.",
+          "solution": "Equidistant: $3x = 12 \\Rightarrow x = 4$.",
+          "check": [
+            "solve(Eq(3*x, 12), x) == [4]"
+          ]
+        },
+        {
+          "id": "pb-t2",
+          "statement": "The circumcenter $O$ satisfies $OA = 6$. What is $OC$?",
+          "solution": "The circumcenter is equidistant from all three vertices, so $OC = 6$.",
+          "check": [
+            "6 == 6"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "The points equally far from two points",
+            "beats": [
+              "Mark two points $A$ and $B$. Which points are the **same distance** from both?",
+              "The **midpoint** between them, certainly — but not only that.",
+              "Every point straight out from the midpoint, at a right angle to $\\overline{AB}$, is also equidistant.",
+              "Those points form a line: the **perpendicular bisector** of $\\overline{AB}$ — the $\\perp$ through the midpoint."
+            ]
+          },
+          {
+            "kind": "triangleCenters",
+            "eyebrow": "Concept A",
+            "title": "Three bisectors, one meeting point",
+            "teach": "Each side of the triangle has a perpendicular bisector — the dashed line crossing it at a right angle (the little square) at its midpoint (the tick marks). Tap to construct all three. They meet at one point, the **circumcenter**, and the circle through all three corners is centred exactly there.",
+            "config": {
+              "center": "circumcenter",
+              "showCircle": true
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The theorem",
+            "title": "Perpendicular Bisector Theorem",
+            "beats": [
+              "**If** a point is on the perpendicular bisector of a segment, **then** it is **equidistant** from the two endpoints.",
+              "The **converse** holds too: if a point is equidistant from the endpoints, it lies on the perpendicular bisector.",
+              "So \"on the perpendicular bisector\" and \"equally far from both ends\" mean the very same thing.",
+              "That is why the circumcenter — equally far from all three vertices — sits where the three perpendicular bisectors cross."
+            ]
+          },
+          {
+            "kind": "stepProof",
+            "eyebrow": "The proof",
+            "title": "Why a point on it is equidistant",
+            "teach": "The reasons are all Unit 1 definitions and Unit 4 congruence. This is the Perpendicular Bisector Theorem, proven.",
+            "config": {
+              "given": "Line $\\ell$ is the perpendicular bisector of $\\overline{AB}$, meeting it at midpoint $M$; point $P$ is any point on $\\ell$.",
+              "prove": "$PA = PB$",
+              "rows": [
+                {
+                  "statement": "$M$ is the midpoint of $\\overline{AB}$, so $\\overline{AM} \\cong \\overline{BM}$",
+                  "reason": "Definition of midpoint"
+                },
+                {
+                  "statement": "$\\ell \\perp \\overline{AB}$, so $\\angle PMA$ and $\\angle PMB$ are right angles and $\\angle PMA \\cong \\angle PMB$",
+                  "reason": "Perpendicular lines form right angles; all right angles are congruent"
+                },
+                {
+                  "statement": "$\\overline{PM} \\cong \\overline{PM}$",
+                  "reason": "Reflexive property"
+                },
+                {
+                  "statement": "$\\triangle PMA \\cong \\triangle PMB$",
+                  "reason": "SAS (Unit 4): two sides and the included right angle"
+                },
+                {
+                  "statement": "$\\overline{PA} \\cong \\overline{PB}$, so $PA = PB$",
+                  "reason": "CPCTC — corresponding parts of congruent triangles"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Use the theorem",
+            "intro": "On the perpendicular bisector, the two distances are equal — set them equal and solve.",
+            "examples": [
+              {
+                "prompt": "$P$ is on the perpendicular bisector of $\\overline{AB}$. $PA = 2x + 1$, $PB = 11$. Find $x$.",
+                "steps": [
+                  "Equidistant, so $PA = PB$: $2x + 1 = 11$.",
+                  "$2x = 10 \\Rightarrow x = 5$."
+                ],
+                "answer": "$x = 5$",
+                "check": [
+                  "solve(Eq(2*x + 1, 11), x) == [5]"
+                ]
+              },
+              {
+                "prompt": "$M$ is the midpoint of $\\overline{AB}$ with $AB = 14$. How far is $M$ from $A$?",
+                "steps": [
+                  "The midpoint splits the segment in half.",
+                  "$14 \\div 2 = 7$."
+                ],
+                "answer": "$7$",
+                "check": [
+                  "14/2 == 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Equidistant means equal",
+            "intro": "Set the two distances equal.",
+            "problems": [
+              {
+                "prompt": "$Q$ is on the perpendicular bisector of $\\overline{ST}$. $QS = 3x$, $QT = 12$. Then $x = $ —",
+                "options": [
+                  "$4$",
+                  "$3$",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3x = 12 \\Rightarrow x = 4$.",
+                "check": [
+                  "solve(Eq(3*x, 12), x) == [4]"
+                ]
+              },
+              {
+                "prompt": "A point equidistant from the endpoints of a segment must lie on the segment's —",
+                "options": [
+                  "perpendicular bisector",
+                  "midpoint only",
+                  "longest side"
+                ],
+                "correctIndex": 0,
+                "explanation": "That's the converse of the Perpendicular Bisector Theorem.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "$P$ is on the perpendicular bisector of $\\overline{AB}$ and $PA = 9$. Then $PB = $ —",
+                "options": [
+                  "$9$",
+                  "$18$",
+                  "$4.5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equidistant: $PB = PA = 9$.",
+                "check": [
+                  "9 == 9"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "From one line to three",
+            "title": "Where all three bisectors meet",
+            "beats": [
+              "A triangle has three sides, so three perpendicular bisectors.",
+              "Each one is the set of points equidistant from **that side's** two endpoints (two of the vertices).",
+              "The point on **all three** is therefore equidistant from **all three vertices** — the **circumcenter**.",
+              "A circle centred there passes through every vertex: the **circumscribed circle**."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Circumcenter facts",
+            "intro": "The circumcenter is equally far from all three corners.",
+            "examples": [
+              {
+                "prompt": "Circumcenter $O$ has $OA = 6$. Find $OB$ and $OC$.",
+                "steps": [
+                  "Equidistant from all three vertices.",
+                  "$OB = OC = 6$."
+                ],
+                "answer": "$6$ and $6$",
+                "check": [
+                  "6 == 6"
+                ]
+              },
+              {
+                "prompt": "A right triangle's hypotenuse is $10$. Its circumcenter is the midpoint of that hypotenuse; find the circumradius.",
+                "steps": [
+                  "Special case to memorise: a right triangle's circumcenter lands on the hypotenuse's midpoint (that midpoint turns out equidistant from all three vertices).",
+                  "Midpoint of the hypotenuse: $10 \\div 2 = 5$ from each end — so the circumradius is $5$."
+                ],
+                "answer": "$5$",
+                "check": [
+                  "10/2 == 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the circumcenter distances",
+            "intro": "Equidistant from the vertices.",
+            "problems": [
+              {
+                "prompt": "Circumcenter $O$ with $OB = 8$. Then $OA = $ —",
+                "options": [
+                  "$8$",
+                  "$16$",
+                  "$4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "All three vertex distances are equal.",
+                "check": [
+                  "8 == 8"
+                ]
+              },
+              {
+                "prompt": "In which triangle is the circumcenter OUTSIDE the triangle?",
+                "options": [
+                  "obtuse",
+                  "acute",
+                  "equilateral"
+                ],
+                "correctIndex": 0,
+                "explanation": "For an obtuse triangle the circumcenter falls outside; acute → inside; right → on the hypotenuse.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "The circumscribed circle of a triangle passes through its —",
+                "options": [
+                  "three vertices",
+                  "three midpoints",
+                  "centre only"
+                ],
+                "correctIndex": 0,
+                "explanation": "It is centred at the circumcenter and reaches every vertex.",
+                "check": [
+                  "3 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Finding the centre of a broken plate",
+            "body": "Archaeologists reconstructing a round plate from a shard use exactly this trick: pick any three points on the rim, treat them as a triangle, and build the perpendicular bisectors. Where they cross is the circumcenter — the plate's original centre — and the distance from there to the rim gives its radius."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "On the bisector",
+            "prompt": "Point $P$ is on the perpendicular bisector of $\\overline{AB}$, and $PA = 13$. What is $PB$?",
+            "options": [
+              "$13$",
+              "$26$",
+              "$6.5$"
+            ],
+            "correctIndex": 0,
+            "explanation": "On the perpendicular bisector, $P$ is equidistant from $A$ and $B$, so $PB = PA = 13$.",
+            "check": [
+              "13 == 13"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "The **perpendicular bisector** of a segment crosses it at its **midpoint** at a right angle.",
+              "**Perpendicular Bisector Theorem** (and converse): a point is on it **exactly when** it is **equidistant** from the two endpoints.",
+              "A triangle's three perpendicular bisectors are **concurrent** at the **circumcenter**, equidistant from all three vertices — the centre of the **circumscribed circle**."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's use equidistance to solve for lengths and locate circumcenters."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$P$ on the perpendicular bisector of $\\overline{AB}$: $PA = 5x$, $PB = 20$. $x = $ —",
+                "options": [
+                  "$4$",
+                  "$5$",
+                  "$100$",
+                  "$15$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5x = 20 \\Rightarrow x = 4$.",
+                "check": [
+                  "solve(Eq(5*x, 20), x) == [4]"
+                ]
+              },
+              {
+                "prompt": "The perpendicular bisector of a side meets it at the side's —",
+                "options": [
+                  "midpoint",
+                  "vertex",
+                  "longest point",
+                  "far corner"
+                ],
+                "correctIndex": 0,
+                "explanation": "By definition it bisects the side.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Circumcenter $O$ with $OA = 7$. Then $OC = $ —",
+                "options": [
+                  "$7$",
+                  "$14$",
+                  "$3.5$",
+                  "cannot tell"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equidistant from all vertices.",
+                "check": [
+                  "7 == 7"
+                ]
+              },
+              {
+                "prompt": "The circumcenter of a RIGHT triangle sits —",
+                "options": [
+                  "on the midpoint of the hypotenuse",
+                  "at the right-angle vertex",
+                  "outside the triangle",
+                  "at the midpoint of a leg"
+                ],
+                "correctIndex": 0,
+                "explanation": "A neat special case worth remembering.",
+                "check": [
+                  "10/2 == 5"
+                ]
+              },
+              {
+                "prompt": "A point equidistant from $A$ and $B$ lies on —",
+                "options": [
+                  "the perpendicular bisector of $\\overline{AB}$",
+                  "segment $\\overline{AB}$ itself",
+                  "neither"
+                ],
+                "correctIndex": 0,
+                "explanation": "Converse of the Perpendicular Bisector Theorem.",
+                "check": [
+                  "1 < 2"
+                ]
+              },
+              {
+                "prompt": "How many perpendicular bisectors must you draw to locate a circumcenter?",
+                "options": [
+                  "$2$ is enough (the third is automatic)",
+                  "$1$",
+                  "you always need all $3$",
+                  "$0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two lines already cross at one point; the third passes through it too.",
+                "check": [
+                  "2 < 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Perpendicular Bisectors & the Circumcenter\"",
+            "body": "You located a triangle's circumcenter and proved why it is equidistant from the vertices. Next: angle bisectors — and the point that is equally far from the three **sides** instead."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "angle-bisectors-and-incenter",
+      "title": "Angle Bisectors & the Incenter",
+      "concreteComparison": "A ranger wants to place a water fountain the same distance from all three straight paths that border a triangular lawn. The circumcenter was equally far from the three **corners**; this time we need equally far from the three **sides** — and that job belongs to the angle bisectors.",
+      "objective": "Apply the Angle Bisector Theorem (a point on an angle's bisector is equidistant from the two sides of the angle), and locate the incenter where a triangle's three angle bisectors meet.",
+      "concept": [
+        "An **angle bisector** is the ray that cuts an angle into two equal halves (Unit 1). The **distance from a point to a line** is the length of the perpendicular segment from the point to the line (Unit 3).",
+        "**Angle Bisector Theorem**: every point on the bisector of an angle is **equidistant from the two sides** of that angle. The **converse** holds: a point inside the angle that is equidistant from the two sides lies on the bisector.",
+        "A triangle's three angle bisectors are **concurrent** — they meet at a single point, the **incenter**.",
+        "The incenter is equidistant from all three sides, so a circle centred there just touches each side from the inside — the **inscribed circle** (incircle). Unlike the circumcenter, the incenter is **always inside** the triangle."
+      ],
+      "keyIdea": "A point is equidistant from an angle's two sides exactly when it lies on the angle bisector. A triangle's three angle bisectors are concurrent at the incenter, equidistant from all three sides — the centre of the inscribed circle.",
+      "facts": [
+        {
+          "title": "Angle Bisector Theorem",
+          "latex": "on the bisector $\\Leftrightarrow$ equidistant from the sides",
+          "explanation": "A point on an angle's bisector is the same perpendicular distance from each side of the angle."
+        },
+        {
+          "title": "Incenter",
+          "latex": "always inside",
+          "explanation": "The three angle bisectors meet inside the triangle, equidistant from all three sides."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ab-we1",
+          "statement": "Point $P$ is on the bisector of $\\angle A$. Its perpendicular distances to the two sides are $2x$ and $10$. Find $x$.",
+          "solution": "On the bisector, $P$ is equidistant from the two sides: $2x = 10 \\Rightarrow x = 5$.",
+          "check": [
+            "solve(Eq(2*x, 10), x) == [5]"
+          ]
+        },
+        {
+          "id": "ab-we2",
+          "statement": "The incenter $I$ is $4$ from side $\\overline{AB}$. How far is $I$ from side $\\overline{BC}$?",
+          "solution": "The incenter is equidistant from all three sides, so the distance to $\\overline{BC}$ is also $4$ (this common distance is the inradius).",
+          "check": [
+            "4 == 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Measuring the distance to a side along a slanted line.",
+          "correction": "Distance from a point to a line always means the **perpendicular** segment — the shortest one (Unit 3).",
+          "authored": true
+        },
+        {
+          "text": "Mixing up the incenter and circumcenter.",
+          "correction": "**Incenter**: angle bisectors, equidistant from the **sides**, always inside. **Circumcenter**: perpendicular bisectors, equidistant from the **vertices**, sometimes outside.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ab-t1",
+          "statement": "$P$ is on the bisector of an angle; its distances to the sides are $3x$ and $18$. Find $x$.",
+          "solution": "$3x = 18 \\Rightarrow x = 6$.",
+          "check": [
+            "solve(Eq(3*x, 18), x) == [6]"
+          ]
+        },
+        {
+          "id": "ab-t2",
+          "statement": "The incenter is $5$ from one side. Its distance to each of the other two sides is —",
+          "solution": "$5$ — the incenter is equidistant from all three sides.",
+          "check": [
+            "5 == 5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Equally far from two lines",
+            "beats": [
+              "Open an angle. Which interior points are the **same distance** from **both** sides?",
+              "Distance to a side means the **perpendicular** segment to it (Unit 3) — the shortest reach.",
+              "Slide out along the exact middle of the angle and both perpendicular distances stay equal.",
+              "That middle ray is the **angle bisector** — it splits the angle into two equal halves."
+            ]
+          },
+          {
+            "kind": "triangleCenters",
+            "eyebrow": "Concept A",
+            "title": "Three bisectors, one inside point",
+            "teach": "Each vertex angle has a bisector (the dashed ray splitting it, shown by the two equal arcs). Tap to draw all three. They meet at the **incenter**, and the circle centred there touches all three sides from inside — always sitting inside the triangle.",
+            "config": {
+              "center": "incenter",
+              "showCircle": true
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The theorem",
+            "title": "Angle Bisector Theorem",
+            "beats": [
+              "**If** a point is on the bisector of an angle, **then** it is **equidistant from the two sides**.",
+              "**Converse**: a point inside the angle equidistant from both sides lies on the bisector.",
+              "So \"on the bisector\" and \"equally far from both sides\" describe the same points.",
+              "The incenter — equally far from all three sides — is where the three bisectors cross."
+            ]
+          },
+          {
+            "kind": "stepProof",
+            "eyebrow": "The proof",
+            "title": "Why a point on it is equidistant",
+            "teach": "The two right triangles share the bisector as a side; AAS and CPCTC finish it — all Unit 4 tools.",
+            "config": {
+              "given": "Ray $\\overrightarrow{AP}$ bisects $\\angle A$. $\\overline{PD}$ and $\\overline{PE}$ are perpendicular to the two sides of the angle, with feet $D$ and $E$.",
+              "prove": "$PD = PE$",
+              "rows": [
+                {
+                  "statement": "$\\angle DAP \\cong \\angle EAP$",
+                  "reason": "Definition of angle bisector — it splits $\\angle A$ into two equal halves"
+                },
+                {
+                  "statement": "$\\angle ADP$ and $\\angle AEP$ are right angles, so $\\angle ADP \\cong \\angle AEP$",
+                  "reason": "$\\overline{PD}, \\overline{PE}$ are perpendicular to the sides; all right angles are congruent"
+                },
+                {
+                  "statement": "$\\overline{AP} \\cong \\overline{AP}$",
+                  "reason": "Reflexive property"
+                },
+                {
+                  "statement": "$\\triangle ADP \\cong \\triangle AEP$",
+                  "reason": "AAS (Unit 4): two angles and the non-included side $\\overline{AP}$"
+                },
+                {
+                  "statement": "$\\overline{PD} \\cong \\overline{PE}$, so $PD = PE$",
+                  "reason": "CPCTC"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Use the theorem",
+            "intro": "On the bisector, the two perpendicular distances are equal.",
+            "examples": [
+              {
+                "prompt": "$P$ is on the bisector of $\\angle A$; distances to the sides are $2x$ and $10$. Find $x$.",
+                "steps": [
+                  "Equidistant from the sides: $2x = 10$.",
+                  "$x = 5$."
+                ],
+                "answer": "$x = 5$",
+                "check": [
+                  "solve(Eq(2*x, 10), x) == [5]"
+                ]
+              },
+              {
+                "prompt": "A bisector splits a $70^\\circ$ angle. Each half measures —",
+                "steps": [
+                  "Halve the angle: $70 \\div 2$.",
+                  "$= 35^\\circ$."
+                ],
+                "answer": "$35^\\circ$",
+                "check": [
+                  "70/2 == 35"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Equidistant from the sides",
+            "intro": "Set the two distances equal.",
+            "problems": [
+              {
+                "prompt": "$P$ on the bisector; distances $3x$ and $18$. $x = $ —",
+                "options": [
+                  "$6$",
+                  "$5$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3x = 18 \\Rightarrow x = 6$.",
+                "check": [
+                  "solve(Eq(3*x, 18), x) == [6]"
+                ]
+              },
+              {
+                "prompt": "Distance from a point to a line is measured along the —",
+                "options": [
+                  "perpendicular",
+                  "longest slant",
+                  "angle bisector"
+                ],
+                "correctIndex": 0,
+                "explanation": "The perpendicular segment is the shortest distance (Unit 3).",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "A bisector cuts a $90^\\circ$ angle into two angles of —",
+                "options": [
+                  "$45^\\circ$",
+                  "$90^\\circ$",
+                  "$30^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$90 \\div 2 = 45$.",
+                "check": [
+                  "90/2 == 45"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "From one angle to three",
+            "title": "Where all three bisectors meet",
+            "beats": [
+              "A triangle has three angles, so three angle bisectors.",
+              "Each bisector holds the points equidistant from **two** of the sides.",
+              "The point on **all three** is equidistant from **all three sides** — the **incenter**.",
+              "A circle centred there touches each side once: the **inscribed circle**. The incenter is always **inside**."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Incenter facts",
+            "intro": "The incenter is equally far from all three sides.",
+            "examples": [
+              {
+                "prompt": "Incenter $I$ is $4$ from side $\\overline{AB}$. Find its distance to $\\overline{BC}$.",
+                "steps": [
+                  "Equidistant from all sides.",
+                  "Distance to $\\overline{BC}$ is $4$."
+                ],
+                "answer": "$4$",
+                "check": [
+                  "4 == 4"
+                ]
+              },
+              {
+                "prompt": "The inscribed circle has radius (inradius) $6$. How far is the incenter from each side?",
+                "steps": [
+                  "The incircle just touches each side.",
+                  "Every side is $6$ away — the inradius."
+                ],
+                "answer": "$6$",
+                "check": [
+                  "6 == 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the incenter distances",
+            "intro": "All three side-distances are equal.",
+            "problems": [
+              {
+                "prompt": "Incenter is $9$ from $\\overline{CA}$. Its distance to $\\overline{AB}$ is —",
+                "options": [
+                  "$9$",
+                  "$18$",
+                  "$4.5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equidistant from all three sides.",
+                "check": [
+                  "9 == 9"
+                ]
+              },
+              {
+                "prompt": "The incenter of a triangle is always —",
+                "options": [
+                  "inside the triangle",
+                  "outside the triangle",
+                  "on a vertex"
+                ],
+                "correctIndex": 0,
+                "explanation": "The angle bisectors cross inside every triangle.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "The inscribed circle touches —",
+                "options": [
+                  "all three sides",
+                  "all three vertices",
+                  "just one side"
+                ],
+                "correctIndex": 0,
+                "explanation": "It is tangent to each side once.",
+                "check": [
+                  "3 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The biggest circle that fits",
+            "body": "The inscribed circle is the largest circle you can draw inside a triangle without poking through a side — its centre is the incenter and its radius is the inradius. Machinists use it to find the fattest round pin that will drop into a triangular slot."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Equidistant from the sides",
+            "prompt": "The incenter of a triangle is $7$ from side $\\overline{AB}$. How far is it from side $\\overline{CA}$?",
+            "options": [
+              "$7$",
+              "$14$",
+              "$3.5$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The incenter is equidistant from all three sides, so the distance is $7$.",
+            "check": [
+              "7 == 7"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "The **angle bisector** splits an angle in half; **distance to a line** is the perpendicular segment.",
+              "**Angle Bisector Theorem** (and converse): a point is on the bisector **exactly when** it is **equidistant from the two sides**.",
+              "A triangle's three angle bisectors meet at the **incenter** — equidistant from all three sides, always inside — the centre of the **inscribed circle**."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's use equidistance-from-the-sides to solve for lengths and describe incenters."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$P$ on an angle bisector: distances $4x$ and $20$. $x = $ —",
+                "options": [
+                  "$5$",
+                  "$4$",
+                  "$80$",
+                  "$16$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4x = 20 \\Rightarrow x = 5$.",
+                "check": [
+                  "solve(Eq(4*x, 20), x) == [5]"
+                ]
+              },
+              {
+                "prompt": "The incenter is equidistant from a triangle's three —",
+                "options": [
+                  "sides",
+                  "vertices",
+                  "midpoints",
+                  "angles"
+                ],
+                "correctIndex": 0,
+                "explanation": "Sides — that's what angle bisectors balance.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Incenter $I$ is $3$ from $\\overline{BC}$. Distance to $\\overline{AB}$ is —",
+                "options": [
+                  "$3$",
+                  "$6$",
+                  "$1.5$",
+                  "cannot tell"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equidistant from all three sides.",
+                "check": [
+                  "3 == 3"
+                ]
+              },
+              {
+                "prompt": "Which centre is ALWAYS inside the triangle?",
+                "options": [
+                  "incenter",
+                  "circumcenter",
+                  "both",
+                  "neither"
+                ],
+                "correctIndex": 0,
+                "explanation": "The incenter; the circumcenter can be outside.",
+                "check": [
+                  "1 < 2"
+                ]
+              },
+              {
+                "prompt": "A bisector cuts a $50^\\circ$ angle into halves of —",
+                "options": [
+                  "$25^\\circ$",
+                  "$50^\\circ$",
+                  "$100^\\circ$",
+                  "$40^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$50 \\div 2 = 25$.",
+                "check": [
+                  "50/2 == 25"
+                ]
+              },
+              {
+                "prompt": "The inscribed circle of a triangle is tangent to —",
+                "options": [
+                  "each of the three sides",
+                  "each of the three vertices",
+                  "only the longest side",
+                  "nothing"
+                ],
+                "correctIndex": 0,
+                "explanation": "It touches all three sides from inside.",
+                "check": [
+                  "3 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Angle Bisectors & the Incenter\"",
+            "body": "You located the incenter and proved why it is equally far from the three sides. Next: segments joining each vertex to the midpoint of the opposite side — and the triangle's balance point."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "medians-and-centroid",
+      "title": "Medians & the Centroid",
+      "concreteComparison": "Cut a triangle out of stiff cardboard and try to balance it on the tip of a pencil. There is exactly one point where it sits level — the **centroid**. You can find it without any guessing by drawing a line from each corner to the middle of the opposite side.",
+      "objective": "Draw the medians of a triangle, locate the centroid where they meet, and use the fact that the centroid divides each median in a 2 : 1 ratio (twice as far from the vertex as from the midpoint).",
+      "concept": [
+        "A **median** of a triangle is a segment from a **vertex** to the **midpoint** of the opposite side. Every triangle has three medians.",
+        "The three medians are **concurrent** — they meet at one point, the **centroid**, which is the triangle's **balance point** (centre of mass).",
+        "The centroid splits each median so that the part from the **vertex** is **twice** the part to the **midpoint**: a **2 : 1 ratio**. So the vertex-to-centroid piece is $\\tfrac{2}{3}$ of the whole median, and the centroid-to-midpoint piece is $\\tfrac{1}{3}$.",
+        "There is no circle here — the centroid is about **balance**, not equal distances."
+      ],
+      "keyIdea": "A median joins a vertex to the midpoint of the opposite side. The three medians meet at the centroid — the balance point — which cuts each median in a 2 : 1 ratio (vertex piece : midpoint piece), so the vertex-to-centroid part is ⅔ of the median.",
+      "facts": [
+        {
+          "title": "Median",
+          "latex": "vertex $\\to$ opposite midpoint",
+          "explanation": "A segment from a corner to the middle of the far side."
+        },
+        {
+          "title": "Centroid ratio",
+          "latex": "$2 : 1$ (vertex : midpoint)",
+          "explanation": "The vertex piece is twice the midpoint piece, so ⅔ of the whole median."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "mc-we1",
+          "statement": "A median is $18$ long. The centroid divides it $2:1$ from the vertex. Find the vertex-to-centroid distance.",
+          "solution": "The vertex piece is $\\tfrac{2}{3}$ of the median: $\\tfrac{2}{3}(18) = 12$. (The remaining $6$ is the centroid-to-midpoint piece, and indeed $12 = 2\\times 6$.)",
+          "check": [
+            "18*2/3 == 12",
+            "18 - 12 == 6"
+          ]
+        },
+        {
+          "id": "mc-we2",
+          "statement": "The centroid-to-midpoint part of a median is $5$. Find the vertex-to-centroid part.",
+          "solution": "The vertex part is twice the midpoint part: $2 \\times 5 = 10$.",
+          "check": [
+            "2*5 == 10"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking the median hits the opposite side at a right angle.",
+          "correction": "A median goes to the **midpoint**, not necessarily at a right angle. (The perpendicular-to-the-side segment is an altitude — the next lesson.)",
+          "authored": true
+        },
+        {
+          "text": "Splitting the median in half at the centroid.",
+          "correction": "The split is **2 : 1**, not 1 : 1. The vertex side is twice as long as the midpoint side.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "mc-t1",
+          "statement": "A median is $24$. The vertex-to-centroid distance is —",
+          "solution": "$\\tfrac{2}{3}(24) = 16$.",
+          "check": [
+            "24*2/3 == 16"
+          ]
+        },
+        {
+          "id": "mc-t2",
+          "statement": "Centroid-to-midpoint is $7$. Vertex-to-centroid is —",
+          "solution": "$2 \\times 7 = 14$.",
+          "check": [
+            "2*7 == 14"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "A line to the middle of the far side",
+            "beats": [
+              "Pick a **vertex** of a triangle. Look at the side across from it.",
+              "Draw a segment from the vertex to that side's **midpoint**.",
+              "That segment is a **median**. There is one from each vertex — three in all.",
+              "A median aims at the **midpoint**, not at a right angle (that's a different segment)."
+            ]
+          },
+          {
+            "kind": "triangleCenters",
+            "eyebrow": "Concept A",
+            "title": "Three medians, one balance point",
+            "teach": "Each median (solid line) runs from a corner to the tick-marked midpoint of the opposite side. Tap to draw all three. They cross at a single point — the **centroid** — the exact spot where the cardboard triangle balances.",
+            "config": {
+              "center": "centroid"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The 2 : 1 split",
+            "title": "The centroid isn't the middle of the median",
+            "beats": [
+              "The centroid sits along each median, but not halfway.",
+              "It cuts every median in a **2 : 1 ratio** — the piece nearer the **vertex** is twice the piece nearer the **midpoint**.",
+              "So the vertex-to-centroid part is $\\tfrac{2}{3}$ of the whole median.",
+              "And the centroid-to-midpoint part is $\\tfrac{1}{3}$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reading the ratio",
+            "title": "Turning 2 : 1 into numbers",
+            "beats": [
+              "Whole median $= $ vertex piece $+$ midpoint piece $= 2$ parts $+ 1$ part $= 3$ parts.",
+              "Vertex-to-centroid $= \\tfrac{2}{3}$ of the median.",
+              "Centroid-to-midpoint $= \\tfrac{1}{3}$ of the median.",
+              "Quick check: the vertex piece is always **double** the midpoint piece."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Split the median",
+            "intro": "Vertex part is ⅔; midpoint part is ⅓ — and vertex is twice midpoint.",
+            "examples": [
+              {
+                "prompt": "Median $= 18$. Find the vertex-to-centroid distance.",
+                "steps": [
+                  "Vertex part is $\\tfrac{2}{3}$ of the median.",
+                  "$\\tfrac{2}{3}(18) = 12$."
+                ],
+                "answer": "$12$",
+                "check": [
+                  "18*2/3 == 12"
+                ]
+              },
+              {
+                "prompt": "Median $= 18$. Find the centroid-to-midpoint distance.",
+                "steps": [
+                  "Midpoint part is $\\tfrac{1}{3}$ of the median.",
+                  "$\\tfrac{1}{3}(18) = 6$."
+                ],
+                "answer": "$6$",
+                "check": [
+                  "18*1/3 == 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Use the 2 : 1 ratio",
+            "intro": "⅔ toward the vertex, ⅓ toward the midpoint.",
+            "problems": [
+              {
+                "prompt": "Median $= 24$. Vertex-to-centroid $= $ —",
+                "options": [
+                  "$16$",
+                  "$12$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{2}{3}(24) = 16$.",
+                "check": [
+                  "24*2/3 == 16"
+                ]
+              },
+              {
+                "prompt": "Median $= 24$. Centroid-to-midpoint $= $ —",
+                "options": [
+                  "$8$",
+                  "$16$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{1}{3}(24) = 8$.",
+                "check": [
+                  "24*1/3 == 8"
+                ]
+              },
+              {
+                "prompt": "The centroid divides a median in the ratio —",
+                "options": [
+                  "$2 : 1$",
+                  "$1 : 1$",
+                  "$3 : 1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Vertex piece to midpoint piece is $2 : 1$.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Working backwards",
+            "title": "Given one piece, find the other",
+            "beats": [
+              "Know the **midpoint** piece? The vertex piece is **twice** it.",
+              "Know the **vertex** piece? The midpoint piece is **half** it.",
+              "Whole median $=$ vertex piece $+$ midpoint piece.",
+              "Example: midpoint piece $5 \\Rightarrow$ vertex piece $10 \\Rightarrow$ median $15$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "From a piece to the whole",
+            "intro": "Double or halve, then add.",
+            "examples": [
+              {
+                "prompt": "Centroid-to-midpoint $= 5$. Find vertex-to-centroid and the whole median.",
+                "steps": [
+                  "Vertex piece $= 2 \\times 5 = 10$.",
+                  "Median $= 10 + 5 = 15$."
+                ],
+                "answer": "$10$ and $15$",
+                "check": [
+                  "2*5 == 10",
+                  "10 + 5 == 15"
+                ]
+              },
+              {
+                "prompt": "Vertex-to-centroid $= 14$. Find centroid-to-midpoint.",
+                "steps": [
+                  "Midpoint piece is half the vertex piece.",
+                  "$14 \\div 2 = 7$."
+                ],
+                "answer": "$7$",
+                "check": [
+                  "14/2 == 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Backwards from a piece",
+            "intro": "Vertex piece = 2 × midpoint piece.",
+            "problems": [
+              {
+                "prompt": "Centroid-to-midpoint $= 9$. Vertex-to-centroid $= $ —",
+                "options": [
+                  "$18$",
+                  "$9$",
+                  "$4.5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2 \\times 9 = 18$.",
+                "check": [
+                  "2*9 == 18"
+                ]
+              },
+              {
+                "prompt": "Vertex-to-centroid $= 20$. The whole median $= $ —",
+                "options": [
+                  "$30$",
+                  "$40$",
+                  "$20$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Midpoint piece $= 10$, so median $= 20 + 10 = 30$.",
+                "check": [
+                  "20 + 20/2 == 30"
+                ]
+              },
+              {
+                "prompt": "Vertex-to-centroid $= 12$. Centroid-to-midpoint $= $ —",
+                "options": [
+                  "$6$",
+                  "$24$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Half of $12$ is $6$.",
+                "check": [
+                  "12/2 == 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Jugglers and the centroid",
+            "body": "When you toss any object — a hammer, a phone, a triangle of toast — it spins around its centroid, the balance point. NASA tracks the centroid (centre of mass) of a rocket for the same reason: it is the one point whose motion is simple even while everything around it tumbles."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Split the median",
+            "prompt": "A median is $30$ long. How far is the centroid from the vertex?",
+            "options": [
+              "$20$",
+              "$15$",
+              "$10$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Vertex-to-centroid is $\\tfrac{2}{3}$ of the median: $\\tfrac{2}{3}(30) = 20$.",
+            "check": [
+              "30*2/3 == 20"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **median** joins a **vertex** to the **midpoint** of the opposite side; a triangle has three.",
+              "The three medians meet at the **centroid** — the **balance point**.",
+              "The centroid cuts each median in a **2 : 1 ratio**: vertex-to-centroid is **⅔** of the median, centroid-to-midpoint is **⅓**."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's split medians with the 2 : 1 ratio, forwards and backwards."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Median $= 21$. Vertex-to-centroid $= $ —",
+                "options": [
+                  "$14$",
+                  "$7$",
+                  "$10.5$",
+                  "$21$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{2}{3}(21) = 14$.",
+                "check": [
+                  "21*2/3 == 14"
+                ]
+              },
+              {
+                "prompt": "Median $= 21$. Centroid-to-midpoint $= $ —",
+                "options": [
+                  "$7$",
+                  "$14$",
+                  "$10.5$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{1}{3}(21) = 7$.",
+                "check": [
+                  "21*1/3 == 7"
+                ]
+              },
+              {
+                "prompt": "A median runs from a vertex to the opposite side's —",
+                "options": [
+                  "midpoint",
+                  "nearest corner",
+                  "perpendicular foot",
+                  "circumcenter"
+                ],
+                "correctIndex": 0,
+                "explanation": "Definition of a median.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Centroid-to-midpoint $= 11$. Vertex-to-centroid $= $ —",
+                "options": [
+                  "$22$",
+                  "$11$",
+                  "$5.5$",
+                  "$33$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Twice the midpoint piece: $2\\times 11 = 22$.",
+                "check": [
+                  "2*11 == 22"
+                ]
+              },
+              {
+                "prompt": "The centroid divides each median in the ratio —",
+                "options": [
+                  "$2 : 1$",
+                  "$1 : 2$ from the vertex",
+                  "$1 : 1$",
+                  "$3 : 2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The vertex piece is the larger, $2$ parts to $1$.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "The centroid is a triangle's —",
+                "options": [
+                  "balance point",
+                  "point equidistant from the vertices",
+                  "point equidistant from the sides",
+                  "right-angle corner"
+                ],
+                "correctIndex": 0,
+                "explanation": "Centre of mass / balance point (equidistant-from-vertices is the circumcenter).",
+                "check": [
+                  "1 < 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Medians & the Centroid\"",
+            "body": "You can find a centroid and split any median 2 : 1. Next: altitudes — the perpendicular heights — and the orthocenter where they meet."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "altitudes-and-orthocenter",
+      "title": "Altitudes & the Orthocenter",
+      "concreteComparison": "To give a mountain's height you measure straight down to sea level — not along the sloping trail. A triangle's **altitude** is exactly that straight-down height: a perpendicular drop from a vertex to the opposite side. It is also the \"height\" you use in the area formula.",
+      "objective": "Draw the altitudes of a triangle, locate the orthocenter where they meet, connect an altitude to the area formula, and recognize that altitudes (and the orthocenter) can fall outside the triangle.",
+      "concept": [
+        "An **altitude** of a triangle is a segment from a **vertex perpendicular to the opposite side** (or to the line that contains it). It is the triangle's **height** measured from that vertex.",
+        "Every triangle has three altitudes, and they are **concurrent** — they meet at a point called the **orthocenter**.",
+        "An altitude meets the opposite side at a **right angle**; a median meets it at the **midpoint**. These are usually different segments — don't confuse them.",
+        "Where the orthocenter sits depends on the triangle: **inside** for an acute triangle, exactly **on the right-angle vertex** for a right triangle, and **outside** for an obtuse triangle."
+      ],
+      "keyIdea": "An altitude is a perpendicular segment from a vertex to the opposite side (the triangle's height). The three altitudes meet at the orthocenter, which lies inside an acute triangle, on the right-angle vertex of a right triangle, and outside an obtuse triangle.",
+      "facts": [
+        {
+          "title": "Altitude",
+          "latex": "vertex $\\perp$ opposite side",
+          "explanation": "A perpendicular segment from a vertex — the height."
+        },
+        {
+          "title": "Area uses an altitude",
+          "latex": "$A = \\tfrac{1}{2} b h$",
+          "explanation": "The height $h$ is the altitude to the base $b$."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ao-we1",
+          "statement": "A triangle has base $8$ and the altitude to that base is $6$. Find the area.",
+          "solution": "Area $= \\tfrac{1}{2}bh = \\tfrac{1}{2}(8)(6) = 24$.",
+          "check": [
+            "8*6/2 == 24"
+          ]
+        },
+        {
+          "id": "ao-we2",
+          "statement": "A triangle has area $30$ and base $10$. Find the altitude to that base.",
+          "solution": "$30 = \\tfrac{1}{2}(10)h \\Rightarrow 30 = 5h \\Rightarrow h = 6$.",
+          "check": [
+            "solve(Eq(10*h/2, 30), h) == [6]"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Confusing an altitude with a median.",
+          "correction": "An **altitude** is **perpendicular** to the opposite side; a **median** hits its **midpoint**. Same start (a vertex), usually different endpoints.",
+          "authored": true
+        },
+        {
+          "text": "Assuming the orthocenter is always inside.",
+          "correction": "Only for **acute** triangles. It's **on the right-angle vertex** of a right triangle and **outside** an obtuse triangle.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ao-t1",
+          "statement": "Base $12$, altitude $5$. Area?",
+          "solution": "$\\tfrac{1}{2}(12)(5) = 30$.",
+          "check": [
+            "12*5/2 == 30"
+          ]
+        },
+        {
+          "id": "ao-t2",
+          "statement": "Area $24$, base $6$. Altitude to that base?",
+          "solution": "$\\tfrac{1}{2}(6)h = 24 \\Rightarrow 3h = 24 \\Rightarrow h = 8$.",
+          "check": [
+            "solve(Eq(6*h/2, 24), h) == [8]"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "The straight-down height",
+            "beats": [
+              "Pick a **vertex**. Look at the side across from it — call it the base.",
+              "Drop a segment from the vertex straight down to that base, meeting it at a **right angle**.",
+              "That perpendicular segment is an **altitude** — the triangle's height from that vertex.",
+              "Unlike a median, it hits the base where the **right angle** lands, not the midpoint."
+            ]
+          },
+          {
+            "kind": "triangleCenters",
+            "eyebrow": "Concept A",
+            "title": "Three altitudes, one meeting point",
+            "teach": "Each altitude (dashed) drops from a vertex to the opposite side, meeting it at a right angle (the little square). Tap to draw all three. They cross at one point — the **orthocenter**.",
+            "config": {
+              "center": "orthocenter"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Altitude vs. median",
+            "title": "Two segments from the same vertex",
+            "beats": [
+              "Both start at a vertex and reach the opposite side.",
+              "A **median** ends at the **midpoint** of that side.",
+              "An **altitude** ends where it meets the side at a **right angle**.",
+              "In a lopsided (scalene) triangle those two landing spots are different points."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Altitude = height in the area formula",
+            "intro": "Area $= \\tfrac{1}{2} \\times$ base $\\times$ altitude.",
+            "examples": [
+              {
+                "prompt": "Base $8$, altitude to it $6$. Find the area.",
+                "steps": [
+                  "$A = \\tfrac{1}{2}bh = \\tfrac{1}{2}(8)(6)$.",
+                  "$= 24$."
+                ],
+                "answer": "$24$",
+                "check": [
+                  "8*6/2 == 24"
+                ]
+              },
+              {
+                "prompt": "Base $10$, altitude $9$. Find the area.",
+                "steps": [
+                  "$\\tfrac{1}{2}(10)(9)$.",
+                  "$= 45$."
+                ],
+                "answer": "$45$",
+                "check": [
+                  "10*9/2 == 45"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Area from an altitude",
+            "intro": "Half of base times height.",
+            "problems": [
+              {
+                "prompt": "Base $12$, altitude $5$. Area $= $ —",
+                "options": [
+                  "$30$",
+                  "$60$",
+                  "$17$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{1}{2}(12)(5) = 30$.",
+                "check": [
+                  "12*5/2 == 30"
+                ]
+              },
+              {
+                "prompt": "Base $7$, altitude $4$. Area $= $ —",
+                "options": [
+                  "$14$",
+                  "$28$",
+                  "$11$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{1}{2}(7)(4) = 14$.",
+                "check": [
+                  "7*4/2 == 14"
+                ]
+              },
+              {
+                "prompt": "An altitude meets the opposite side at a —",
+                "options": [
+                  "right angle",
+                  "midpoint",
+                  "vertex"
+                ],
+                "correctIndex": 0,
+                "explanation": "Perpendicular — that's the defining feature.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Working backwards",
+            "title": "Find a missing altitude from the area",
+            "beats": [
+              "The area formula runs both ways.",
+              "Area $= \\tfrac{1}{2} \\times$ base $\\times$ altitude.",
+              "Know the area and the base? Solve for the altitude.",
+              "Example: area $30$, base $10 \\Rightarrow 30 = 5h \\Rightarrow h = 6$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Solve for the altitude",
+            "intro": "Plug into the area formula and solve.",
+            "examples": [
+              {
+                "prompt": "Area $30$, base $10$. Find the altitude.",
+                "steps": [
+                  "$\\tfrac{1}{2}(10)h = 30 \\Rightarrow 5h = 30$.",
+                  "$h = 6$."
+                ],
+                "answer": "$6$",
+                "check": [
+                  "solve(Eq(10*h/2, 30), h) == [6]"
+                ]
+              },
+              {
+                "prompt": "Area $24$, base $6$. Find the altitude.",
+                "steps": [
+                  "$\\tfrac{1}{2}(6)h = 24 \\Rightarrow 3h = 24$.",
+                  "$h = 8$."
+                ],
+                "answer": "$8$",
+                "check": [
+                  "solve(Eq(6*h/2, 24), h) == [8]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the altitude",
+            "intro": "Area = ½ · base · altitude; solve for the altitude.",
+            "problems": [
+              {
+                "prompt": "Area $20$, base $8$. Altitude $= $ —",
+                "options": [
+                  "$5$",
+                  "$4$",
+                  "$10$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{1}{2}(8)h = 20 \\Rightarrow 4h = 20 \\Rightarrow h = 5$.",
+                "check": [
+                  "solve(Eq(8*h/2, 20), h) == [5]"
+                ]
+              },
+              {
+                "prompt": "Area $18$, base $9$. Altitude $= $ —",
+                "options": [
+                  "$4$",
+                  "$2$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{1}{2}(9)h = 18 \\Rightarrow h = 4$.",
+                "check": [
+                  "solve(Eq(9*h/2, 18), h) == [4]"
+                ]
+              },
+              {
+                "prompt": "For a RIGHT triangle, the orthocenter is at the —",
+                "options": [
+                  "right-angle vertex",
+                  "centroid",
+                  "midpoint of the hypotenuse"
+                ],
+                "correctIndex": 0,
+                "explanation": "The two legs are altitudes, so they meet at the right-angle corner.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why the orthocenter can escape the triangle",
+            "body": "In an obtuse triangle two of the altitudes have to be drawn to the *extensions* of the sides, so the three of them only line up at a point outside the triangle. The orthocenter is the one famous triangle centre that happily wanders beyond the shape's own borders."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Height in disguise",
+            "prompt": "A triangle has base $14$ and the altitude to that base is $10$. What is its area?",
+            "options": [
+              "$70$",
+              "$140$",
+              "$24$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$A = \\tfrac{1}{2}(14)(10) = 70$.",
+            "check": [
+              "14*10/2 == 70"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "An **altitude** is a **perpendicular** segment from a vertex to the opposite side — the triangle's **height**.",
+              "The three altitudes meet at the **orthocenter** (inside for acute, on the right-angle vertex for right, outside for obtuse).",
+              "That height is the $h$ in **Area $= \\tfrac{1}{2}bh$** — so altitudes and area go together."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's use altitudes as heights — finding areas and missing heights."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Base $16$, altitude $5$. Area $= $ —",
+                "options": [
+                  "$40$",
+                  "$80$",
+                  "$21$",
+                  "$48$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{1}{2}(16)(5) = 40$.",
+                "check": [
+                  "16*5/2 == 40"
+                ]
+              },
+              {
+                "prompt": "Area $36$, base $12$. Altitude $= $ —",
+                "options": [
+                  "$6$",
+                  "$3$",
+                  "$12$",
+                  "$24$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{1}{2}(12)h = 36 \\Rightarrow h = 6$.",
+                "check": [
+                  "solve(Eq(12*h/2, 36), h) == [6]"
+                ]
+              },
+              {
+                "prompt": "An altitude is drawn from a vertex —",
+                "options": [
+                  "perpendicular to the opposite side",
+                  "to the opposite midpoint",
+                  "to the incenter",
+                  "along a side"
+                ],
+                "correctIndex": 0,
+                "explanation": "Perpendicular to the opposite side = altitude.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Which segment FROM A VERTEX ends at the MIDPOINT of the opposite side?",
+                "options": [
+                  "median",
+                  "altitude",
+                  "angle bisector",
+                  "an edge of the triangle"
+                ],
+                "correctIndex": 0,
+                "explanation": "A median runs from a vertex to the opposite midpoint; an altitude meets the side at a right angle instead.",
+                "check": [
+                  "1 < 2"
+                ]
+              },
+              {
+                "prompt": "The orthocenter of an OBTUSE triangle is —",
+                "options": [
+                  "outside the triangle",
+                  "inside the triangle",
+                  "on a side",
+                  "at the centroid"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two altitudes fall on side-extensions, so they meet outside.",
+                "check": [
+                  "3 > 2"
+                ]
+              },
+              {
+                "prompt": "Area $21$, base $6$. Altitude $= $ —",
+                "options": [
+                  "$7$",
+                  "$3.5$",
+                  "$14$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{1}{2}(6)h = 21 \\Rightarrow 3h = 21 \\Rightarrow h = 7$.",
+                "check": [
+                  "solve(Eq(6*h/2, 21), h) == [7]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Altitudes & the Orthocenter\"",
+            "body": "You can draw altitudes, find the orthocenter, and use height to get area. Next: the midsegment theorem — join two midpoints and read off a parallel, half-length shortcut."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-midsegment-theorem",
+      "title": "The Midsegment Theorem",
+      "concreteComparison": "Join the middles of two sides of a triangle with a straight segment. It comes out perfectly **parallel** to the third side — and exactly **half** as long. Sailmakers rely on it: a brace across the midpoints of a triangular sail runs parallel to the foot and measures half of it.",
+      "objective": "Use the Triangle Midsegment Theorem — a midsegment is parallel to the third side and half its length — to find missing lengths, and recognize the medial triangle.",
+      "concept": [
+        "A **midsegment** of a triangle is a segment that joins the **midpoints of two sides**.",
+        "**Triangle Midsegment Theorem**: a midsegment is **parallel to the third side** and **half its length**.",
+        "Because it is parallel, the midsegment makes the same **corresponding angles** with the sides that the third side does (Unit 3).",
+        "A triangle has three midsegments; together they form the **medial triangle**, which cuts the original into **four congruent** smaller triangles."
+      ],
+      "keyIdea": "A midsegment joins the midpoints of two sides; it is parallel to the third side and exactly half its length. The three midsegments form the medial triangle, splitting the original into four congruent triangles.",
+      "facts": [
+        {
+          "title": "Midsegment Theorem",
+          "latex": "midsegment $\\parallel$ third side, $= \\tfrac{1}{2}$ it",
+          "explanation": "Parallel to the third side and half as long."
+        },
+        {
+          "title": "Medial triangle",
+          "latex": "$4$ congruent triangles",
+          "explanation": "The three midsegments split the triangle into four congruent pieces."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ms-we1",
+          "statement": "A midsegment is parallel to a side of length $14$. How long is the midsegment?",
+          "solution": "Half the third side: $14 \\div 2 = 7$.",
+          "check": [
+            "14/2 == 7"
+          ]
+        },
+        {
+          "id": "ms-we2",
+          "statement": "A midsegment measures $9$. How long is the side it is parallel to?",
+          "solution": "The third side is twice the midsegment: $2 \\times 9 = 18$.",
+          "check": [
+            "2*9 == 18"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Doubling when you should halve (or vice-versa).",
+          "correction": "The **midsegment** is the **shorter** one — half the third side. The **third side** is the longer one — double the midsegment.",
+          "authored": true
+        },
+        {
+          "text": "Thinking a midsegment connects a vertex to a midpoint.",
+          "correction": "That's a **median**. A **midsegment** connects **two midpoints** — no vertex involved.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ms-t1",
+          "statement": "The third side is $20$. The midsegment parallel to it is —",
+          "solution": "$20 \\div 2 = 10$.",
+          "check": [
+            "20/2 == 10"
+          ]
+        },
+        {
+          "id": "ms-t2",
+          "statement": "A midsegment is $6$. The parallel side is —",
+          "solution": "$2 \\times 6 = 12$.",
+          "check": [
+            "2*6 == 12"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Join two midpoints",
+            "beats": [
+              "Find the **midpoint** of one side and the **midpoint** of another.",
+              "Connect them with a straight segment.",
+              "That segment is a **midsegment** — it uses two midpoints, no vertex.",
+              "Watch what it does relative to the **third** side."
+            ]
+          },
+          {
+            "kind": "midsegment",
+            "eyebrow": "Concept A",
+            "title": "Parallel, and exactly half",
+            "teach": "The orange midsegment joins two midpoints (tick marks). Tap to draw it. It runs **parallel** to the third side — see the matching arrow marks — and its length is exactly **half**. Here the base is $8$ and the midsegment is $4$.",
+            "config": {
+              "show": "one",
+              "base": 0
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The theorem",
+            "title": "Two conclusions in one",
+            "beats": [
+              "**Triangle Midsegment Theorem**: a midsegment is **parallel** to the third side.",
+              "And it is **half** the length of that third side.",
+              "So a single midsegment tells you a **direction** (parallel) and a **length** (half).",
+              "Because it's parallel, the angles it makes match the third side's — corresponding angles (Unit 3)."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Halve to get the midsegment",
+            "intro": "Midsegment = half the parallel third side.",
+            "examples": [
+              {
+                "prompt": "Third side $= 14$. Midsegment parallel to it?",
+                "steps": [
+                  "Halve the third side.",
+                  "$14 \\div 2 = 7$."
+                ],
+                "answer": "$7$",
+                "check": [
+                  "14/2 == 7"
+                ]
+              },
+              {
+                "prompt": "Third side $= 26$. Midsegment?",
+                "steps": [
+                  "$26 \\div 2$.",
+                  "$= 13$."
+                ],
+                "answer": "$13$",
+                "check": [
+                  "26/2 == 13"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the midsegment",
+            "intro": "It's half the third side.",
+            "problems": [
+              {
+                "prompt": "Third side $20$. Midsegment $= $ —",
+                "options": [
+                  "$10$",
+                  "$40$",
+                  "$20$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$20 \\div 2 = 10$.",
+                "check": [
+                  "20/2 == 10"
+                ]
+              },
+              {
+                "prompt": "Third side $18$. Midsegment $= $ —",
+                "options": [
+                  "$9$",
+                  "$36$",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$18 \\div 2 = 9$.",
+                "check": [
+                  "18/2 == 9"
+                ]
+              },
+              {
+                "prompt": "A midsegment is always ___ to the third side.",
+                "options": [
+                  "parallel",
+                  "perpendicular",
+                  "equal in length"
+                ],
+                "correctIndex": 0,
+                "explanation": "Parallel — and half the length.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Working backwards",
+            "title": "From midsegment to the third side",
+            "beats": [
+              "Know the **midsegment**? The third side is **twice** it.",
+              "Midsegment $9 \\Rightarrow$ third side $18$.",
+              "Midsegment $6 \\Rightarrow$ third side $12$.",
+              "Just remember: the midsegment is the smaller of the two."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Double to get the side",
+            "intro": "Third side = twice the midsegment.",
+            "examples": [
+              {
+                "prompt": "Midsegment $= 9$. Find the parallel side.",
+                "steps": [
+                  "Double the midsegment.",
+                  "$2 \\times 9 = 18$."
+                ],
+                "answer": "$18$",
+                "check": [
+                  "2*9 == 18"
+                ]
+              },
+              {
+                "prompt": "Midsegment $= 15$. Find the parallel side.",
+                "steps": [
+                  "$2 \\times 15$.",
+                  "$= 30$."
+                ],
+                "answer": "$30$",
+                "check": [
+                  "2*15 == 30"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the third side",
+            "intro": "Double the midsegment.",
+            "problems": [
+              {
+                "prompt": "Midsegment $6$. Parallel side $= $ —",
+                "options": [
+                  "$12$",
+                  "$3$",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2 \\times 6 = 12$.",
+                "check": [
+                  "2*6 == 12"
+                ]
+              },
+              {
+                "prompt": "Midsegment $11$. Parallel side $= $ —",
+                "options": [
+                  "$22$",
+                  "$5.5$",
+                  "$11$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2 \\times 11 = 22$.",
+                "check": [
+                  "2*11 == 22"
+                ]
+              },
+              {
+                "prompt": "A midsegment joins two —",
+                "options": [
+                  "midpoints",
+                  "vertices",
+                  "a vertex and a midpoint"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two midpoints; a vertex-to-midpoint segment is a median.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "midsegment",
+            "eyebrow": "Concept B",
+            "title": "All three: the medial triangle",
+            "teach": "Tap to join all three midpoints. The three midsegments form the **medial triangle** in the middle and split the original into **four congruent** smaller triangles — each a half-scale copy.",
+            "config": {
+              "show": "all"
+            }
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The triangle inside every triangle",
+            "body": "Keep taking medial triangles — the midpoint triangle of the midpoint triangle, and so on — and you get an endless nest of ever-smaller triangles, each parallel to the last and half its size. This self-similar shrinking is the seed of fractals like the famous Sierpiński triangle."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Half the side",
+            "prompt": "A midsegment is parallel to a side that measures $24$. How long is the midsegment?",
+            "options": [
+              "$12$",
+              "$48$",
+              "$24$"
+            ],
+            "correctIndex": 0,
+            "explanation": "A midsegment is half the third side: $24 \\div 2 = 12$.",
+            "check": [
+              "24/2 == 12"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **midsegment** joins the **midpoints of two sides**.",
+              "**Midsegment Theorem**: it is **parallel** to the third side and **half** its length.",
+              "The three midsegments form the **medial triangle**, cutting the original into **four congruent** triangles."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's halve and double between midsegments and their parallel sides."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Third side $30$. Midsegment $= $ —",
+                "options": [
+                  "$15$",
+                  "$60$",
+                  "$30$",
+                  "$10$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$30 \\div 2 = 15$.",
+                "check": [
+                  "30/2 == 15"
+                ]
+              },
+              {
+                "prompt": "Midsegment $7$. Parallel side $= $ —",
+                "options": [
+                  "$14$",
+                  "$3.5$",
+                  "$7$",
+                  "$21$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2 \\times 7 = 14$.",
+                "check": [
+                  "2*7 == 14"
+                ]
+              },
+              {
+                "prompt": "A midsegment is ___ the third side.",
+                "options": [
+                  "parallel to and half",
+                  "perpendicular to and half",
+                  "parallel to and equal to",
+                  "double"
+                ],
+                "correctIndex": 0,
+                "explanation": "Parallel and half — the two conclusions of the theorem.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "The three midsegments split a triangle into —",
+                "options": [
+                  "4 congruent triangles",
+                  "2 triangles",
+                  "3 triangles",
+                  "6 triangles"
+                ],
+                "correctIndex": 0,
+                "explanation": "Four congruent smaller triangles — the medial triangle plus three corners.",
+                "check": [
+                  "4 == 4"
+                ]
+              },
+              {
+                "prompt": "A segment joining two midpoints is a —",
+                "options": [
+                  "midsegment",
+                  "median",
+                  "altitude",
+                  "bisector"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two midpoints → midsegment.",
+                "check": [
+                  "1 < 2"
+                ]
+              },
+              {
+                "prompt": "Third side $50$. Midsegment $= $ —",
+                "options": [
+                  "$25$",
+                  "$100$",
+                  "$50$",
+                  "$12.5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$50 \\div 2 = 25$.",
+                "check": [
+                  "50/2 == 25"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"The Midsegment Theorem\"",
+            "body": "You can move between a midsegment and its parallel side in one step. Last stop for this unit: inequalities inside a single triangle — how its sides and angles are ranked."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "inequalities-in-one-triangle",
+      "title": "Inequalities in One Triangle",
+      "concreteComparison": "Open a door a little and the gap along the far edge is small; swing it wide and that gap yawns open. A triangle behaves the same way: the **bigger** the angle at a corner, the **longer** the side stretched across from it. Sides and angles are always ranked in the very same order.",
+      "objective": "Order a triangle's sides and angles (largest angle opposite the longest side, and the converse), and apply the triangle inequality to find the possible range of a third side.",
+      "concept": [
+        "In any triangle, the **longest side is opposite the largest angle**, and the **shortest side is opposite the smallest angle**. The ranking of the sides matches the ranking of the angles.",
+        "The **converse** is just as useful: if you know which side is longest, the largest angle is the one across from it.",
+        "**Triangle Inequality** (Unit 4): any two sides add to more than the third. A missing third side must lie **between the difference and the sum** of the other two: $|a - b| < x < a + b$.",
+        "One more: an **exterior angle** of a triangle is **greater than** either remote interior angle — a quick consequence of the exterior-angle theorem (an exterior angle *equals* their sum, so it beats each one alone)."
+      ],
+      "keyIdea": "Sides and angles of a triangle rank in the same order: longest side opposite the largest angle. A missing third side lies strictly between the difference and the sum of the other two.",
+      "facts": [
+        {
+          "title": "Side–angle order",
+          "latex": "largest angle $\\leftrightarrow$ longest side",
+          "explanation": "Bigger angle, longer opposite side; same order both ways."
+        },
+        {
+          "title": "Third-side range",
+          "latex": "$|a - b| < x < a + b$",
+          "explanation": "Between the difference and the sum of the other two sides."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "in-we1",
+          "statement": "A triangle has angles $50^\\circ$, $60^\\circ$, and $70^\\circ$. Which side is longest?",
+          "solution": "The longest side is opposite the largest angle, $70^\\circ$.",
+          "check": [
+            "70 > 60",
+            "70 > 50"
+          ]
+        },
+        {
+          "id": "in-we2",
+          "statement": "Two sides of a triangle are $6$ and $10$. Find the range of the third side $x$.",
+          "solution": "$|10 - 6| < x < 10 + 6$, so $4 < x < 16$.",
+          "check": [
+            "Abs(10 - 6) == 4",
+            "10 + 6 == 16"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Matching the largest angle to the side next to it.",
+          "correction": "The largest angle pairs with the side **opposite** it (across the triangle), not an adjacent side.",
+          "authored": true
+        },
+        {
+          "text": "Letting the third side equal the sum or the difference.",
+          "correction": "It must be **strictly between**: equal to the sum or the difference gives a flat, degenerate figure, not a triangle.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "in-t1",
+          "statement": "Angles $40^\\circ$, $60^\\circ$, $80^\\circ$. The shortest side is opposite which angle?",
+          "solution": "The smallest angle, $40^\\circ$.",
+          "check": [
+            "40 < 60",
+            "40 < 80"
+          ]
+        },
+        {
+          "id": "in-t2",
+          "statement": "Two sides are $7$ and $9$. The third side $x$ satisfies —",
+          "solution": "$|9 - 7| < x < 9 + 7$, i.e. $2 < x < 16$.",
+          "check": [
+            "Abs(9 - 7) == 2",
+            "9 + 7 == 16"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Bigger angle, longer opposite side",
+            "beats": [
+              "Stand at a corner of a triangle and look straight across.",
+              "The side you see is **opposite** that corner's angle.",
+              "Widen the angle and that opposite side stretches longer; pinch it and the side shrinks.",
+              "So sides and angles line up in the **same order** — largest with longest, smallest with shortest."
+            ]
+          },
+          {
+            "kind": "triangleAngles",
+            "eyebrow": "Concept A",
+            "title": "Watch the opposite side grow",
+            "teach": "Reshape the triangle with the base-angle steppers. Make one angle much bigger than the others and notice the side across from it becomes the longest. The largest angle always faces the longest side.",
+            "config": {
+              "beta": 40,
+              "gamma": 40
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Order both lists",
+            "title": "Rank the angles, rank the sides",
+            "beats": [
+              "Sort the three angles from smallest to largest.",
+              "The sides sort in the **exact same order**.",
+              "Largest angle $\\to$ longest side; smallest angle $\\to$ shortest side.",
+              "It works backwards too: longest side $\\to$ largest angle."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Longest and shortest",
+            "intro": "Opposite the largest / smallest angle.",
+            "examples": [
+              {
+                "prompt": "Angles $50^\\circ, 60^\\circ, 70^\\circ$. Which side is longest?",
+                "steps": [
+                  "Largest angle is $70^\\circ$.",
+                  "Longest side is opposite it."
+                ],
+                "answer": "opposite $70^\\circ$",
+                "check": [
+                  "70 > 60",
+                  "70 > 50"
+                ]
+              },
+              {
+                "prompt": "Angles $30^\\circ, 55^\\circ, 95^\\circ$. Which side is shortest?",
+                "steps": [
+                  "Smallest angle is $30^\\circ$.",
+                  "Shortest side is opposite it."
+                ],
+                "answer": "opposite $30^\\circ$",
+                "check": [
+                  "30 < 55",
+                  "30 < 95"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Match side to angle",
+            "intro": "Same order both ways.",
+            "problems": [
+              {
+                "prompt": "Angles $40^\\circ, 60^\\circ, 80^\\circ$. Longest side is opposite —",
+                "options": [
+                  "$80^\\circ$",
+                  "$60^\\circ$",
+                  "$40^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Largest angle → longest opposite side.",
+                "check": [
+                  "80 > 60",
+                  "80 > 40"
+                ]
+              },
+              {
+                "prompt": "A triangle's longest side is opposite its —",
+                "options": [
+                  "largest angle",
+                  "smallest angle",
+                  "right angle only"
+                ],
+                "correctIndex": 0,
+                "explanation": "The side–angle order always matches.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Angles $25^\\circ, 65^\\circ, 90^\\circ$. Shortest side opposite —",
+                "options": [
+                  "$25^\\circ$",
+                  "$65^\\circ$",
+                  "$90^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Smallest angle → shortest side.",
+                "check": [
+                  "25 < 65",
+                  "25 < 90"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "triangleInequality",
+            "eyebrow": "Concept B",
+            "title": "Which third sides can close",
+            "teach": "Fix two sides and vary the third. The triangle only closes when the third side is bigger than the difference and smaller than the sum of the other two. Push it to the edges and the shape collapses flat.",
+            "config": {
+              "a": 4,
+              "b": 5,
+              "c": 6
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The third-side range",
+            "title": "Between the difference and the sum",
+            "beats": [
+              "Two sides are $a$ and $b$; the third is $x$.",
+              "Too long and the sides can't reach: $x < a + b$.",
+              "Too short and the short side folds inside: $x > |a - b|$.",
+              "So $|a - b| < x < a + b$ — strictly between, never equal."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Find the range",
+            "intro": "|difference| < x < sum.",
+            "examples": [
+              {
+                "prompt": "Two sides $6$ and $10$. Range of the third side $x$?",
+                "steps": [
+                  "Difference $|10-6| = 4$; sum $10 + 6 = 16$.",
+                  "$4 < x < 16$."
+                ],
+                "answer": "$4 < x < 16$",
+                "check": [
+                  "Abs(10 - 6) == 4",
+                  "10 + 6 == 16"
+                ]
+              },
+              {
+                "prompt": "Two sides $8$ and $8$. Range of the third side $x$?",
+                "steps": [
+                  "Difference $0$; sum $16$.",
+                  "$0 < x < 16$."
+                ],
+                "answer": "$0 < x < 16$",
+                "check": [
+                  "Abs(8 - 8) == 0",
+                  "8 + 8 == 16"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Range of the third side",
+            "intro": "Between |a−b| and a+b.",
+            "problems": [
+              {
+                "prompt": "Sides $7$ and $9$: the third side $x$ satisfies —",
+                "options": [
+                  "$2 < x < 16$",
+                  "$7 < x < 9$",
+                  "$0 < x < 16$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$|9-7| = 2$, $9+7 = 16$.",
+                "check": [
+                  "Abs(9 - 7) == 2",
+                  "9 + 7 == 16"
+                ]
+              },
+              {
+                "prompt": "Sides $5$ and $12$: the largest WHOLE-number third side is —",
+                "options": [
+                  "$16$",
+                  "$17$",
+                  "$7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x < 5 + 12 = 17$, so the biggest whole number is $16$.",
+                "check": [
+                  "5 + 12 == 17",
+                  "16 < 17"
+                ]
+              },
+              {
+                "prompt": "Can $3, 4, 9$ form a triangle?",
+                "options": [
+                  "No — $3 + 4 < 9$",
+                  "Yes",
+                  "Only if right-angled"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3 + 4 = 7 < 9$: the sides can't reach.",
+                "check": [
+                  "3 + 4 < 9"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why a triangle is the stiffest shape",
+            "body": "The triangle inequality is what makes triangles rigid: once the three side lengths are fixed, there is exactly one triangle they can form, so it can't be flexed. That is why bridges, cranes, and bicycle frames are braced with triangles rather than squares, which can be pushed out of shape."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Longest side",
+            "prompt": "A triangle has angles $45^\\circ$, $60^\\circ$, and $75^\\circ$. Its longest side is opposite the —",
+            "options": [
+              "$75^\\circ$ angle",
+              "$60^\\circ$ angle",
+              "$45^\\circ$ angle"
+            ],
+            "correctIndex": 0,
+            "explanation": "The longest side sits opposite the largest angle, $75^\\circ$.",
+            "check": [
+              "75 > 60",
+              "75 > 45"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Sides and angles rank in the **same order**: **longest side opposite the largest angle** (and the converse).",
+              "A missing third side lies **strictly between** $|a - b|$ and $a + b$.",
+              "An **exterior angle** is greater than either remote interior angle."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's rank sides by angles and pin down the range of a third side."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Angles $35^\\circ, 65^\\circ, 80^\\circ$. Longest side opposite —",
+                "options": [
+                  "$80^\\circ$",
+                  "$65^\\circ$",
+                  "$35^\\circ$",
+                  "cannot tell"
+                ],
+                "correctIndex": 0,
+                "explanation": "Largest angle → longest side.",
+                "check": [
+                  "80 > 65",
+                  "80 > 35"
+                ]
+              },
+              {
+                "prompt": "Sides $6$ and $11$: third side $x$ satisfies —",
+                "options": [
+                  "$5 < x < 17$",
+                  "$6 < x < 11$",
+                  "$0 < x < 17$",
+                  "$5 < x < 11$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$|11-6| = 5$, $11+6 = 17$.",
+                "check": [
+                  "Abs(11 - 6) == 5",
+                  "11 + 6 == 17"
+                ]
+              },
+              {
+                "prompt": "The shortest side of a triangle is opposite its —",
+                "options": [
+                  "smallest angle",
+                  "largest angle",
+                  "right angle",
+                  "middle angle"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same order: smallest angle → shortest side.",
+                "check": [
+                  "1 < 2"
+                ]
+              },
+              {
+                "prompt": "Can sides $2, 3, 6$ form a triangle?",
+                "options": [
+                  "No",
+                  "Yes",
+                  "Only if obtuse",
+                  "Only if right"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2 + 3 = 5 < 6$ — they can't reach.",
+                "check": [
+                  "2 + 3 < 6"
+                ]
+              },
+              {
+                "prompt": "Sides $9$ and $4$: smallest WHOLE-number third side is —",
+                "options": [
+                  "$6$",
+                  "$5$",
+                  "$13$",
+                  "$4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x > |9-4| = 5$, so the smallest whole number is $6$.",
+                "check": [
+                  "Abs(9 - 4) == 5",
+                  "6 > 5"
+                ]
+              },
+              {
+                "prompt": "An exterior angle of a triangle is ___ either remote interior angle.",
+                "options": [
+                  "greater than",
+                  "equal to",
+                  "less than",
+                  "half of"
+                ],
+                "correctIndex": 0,
+                "explanation": "It equals their sum, so it exceeds each one alone.",
+                "check": [
+                  "50 + 60 > 50"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Inequalities in One Triangle\"",
+            "body": "You can rank a triangle's sides and angles and pin down a third side's range — the finale of Relationships in Triangles. Next unit: quadrilaterals and polygons, where these triangle tools pay off."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [],
+  "testYourself": []
+}

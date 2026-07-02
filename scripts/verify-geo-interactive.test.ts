@@ -22,6 +22,18 @@ import {
   classifyBySides,
   classifyByAngles,
   isoscelesBaseAngle,
+  perpFoot,
+  centroid,
+  circumcenter,
+  incenter,
+  orthocenter,
+  midsegmentLength,
+  largestAngleVertex,
+  thirdSideRange,
+  dist as distFn,
+  sub,
+  dot,
+  midpoint as midpointFn,
 } from "@/lib/geo";
 
 describe("segment math", () => {
@@ -208,5 +220,97 @@ describe("triangle theorems", () => {
     }
     // equilateral is the vertex-60 case
     expect(isoscelesBaseAngle(60)).toBe(60);
+  });
+});
+
+describe("special segments & triangle centers", () => {
+  // A convenient right triangle for exact checks.
+  const A = { x: 0, y: 0 };
+  const B = { x: 6, y: 0 };
+  const C = { x: 0, y: 8 };
+
+  it("perpFoot lands on the line and makes a right angle", () => {
+    // foot of the altitude from B onto AC (the y-axis) is A's x, B's projection
+    const f = perpFoot(B, A, C);
+    expect(f.x).toBeCloseTo(0); // AC is the y-axis
+    expect(f.y).toBeCloseTo(0); // B=(6,0) projects to (0,0)
+    // PF ⟂ AB in a slanted case
+    const p = { x: 2, y: 5 };
+    const foot = perpFoot(p, A, B); // AB is the x-axis → foot=(2,0)
+    expect(foot.x).toBeCloseTo(2);
+    expect(foot.y).toBeCloseTo(0);
+    // the leg from P to its foot is perpendicular to the base
+    expect(dot(sub(p, foot), sub(B, A))).toBeCloseTo(0);
+  });
+
+  it("centroid is the average and cuts each median 2:1 from the vertex", () => {
+    const g = centroid(A, B, C);
+    expect(g).toEqual({ x: 2, y: 8 / 3 });
+    // on the median from A to midpoint of BC: G is 2/3 of the way
+    const mBC = midpointFn(B, C);
+    expect(distFn(A, g)).toBeCloseTo((2 / 3) * distFn(A, mBC));
+    expect(distFn(g, mBC)).toBeCloseTo((1 / 3) * distFn(A, mBC));
+  });
+
+  it("circumcenter is equidistant from all three vertices", () => {
+    const o = circumcenter(A, B, C);
+    const r = distFn(o, A);
+    expect(distFn(o, B)).toBeCloseTo(r);
+    expect(distFn(o, C)).toBeCloseTo(r);
+    // right triangle: circumcenter is the midpoint of the hypotenuse BC
+    expect(o.x).toBeCloseTo(3);
+    expect(o.y).toBeCloseTo(4);
+  });
+
+  it("incenter is equidistant from all three sides", () => {
+    const i = incenter(A, B, C);
+    // distance to each side line equals the inradius; sides AB(y=0), AC(x=0)
+    const dAB = Math.abs(i.y); // to line y=0
+    const dAC = Math.abs(i.x); // to line x=0
+    // 3-4-5 scaled (6-8-10): inradius r = (a+b−c)/2 = (6+8−10)/2 = 2
+    expect(dAB).toBeCloseTo(2);
+    expect(dAC).toBeCloseTo(2);
+    // distance to BC via the foot of the perpendicular
+    const f = perpFoot(i, B, C);
+    expect(distFn(i, f)).toBeCloseTo(2);
+  });
+
+  it("orthocenter altitudes are perpendicular to the opposite sides", () => {
+    const h = orthocenter(A, B, C);
+    // right triangle at A → orthocenter is the right-angle vertex A itself
+    expect(h.x).toBeCloseTo(0);
+    expect(h.y).toBeCloseTo(0);
+    // in a scalene triangle the altitude from a vertex ⟂ the opposite side
+    const P = { x: 1, y: 0 };
+    const Q = { x: 7, y: 1 };
+    const R = { x: 3, y: 6 };
+    const hh = orthocenter(P, Q, R);
+    expect(dot(sub(hh, P), sub(R, Q))).toBeCloseTo(0); // altitude from P ⟂ QR
+    expect(dot(sub(hh, Q), sub(R, P))).toBeCloseTo(0); // altitude from Q ⟂ PR
+  });
+
+  it("midsegment is half the third side", () => {
+    expect(midsegmentLength(10)).toBe(5);
+    // built from midpoints: |mid(A,B) − mid(A,C)| = |B−C| / 2
+    const mAB = midpointFn(A, B);
+    const mAC = midpointFn(A, C);
+    expect(distFn(mAB, mAC)).toBeCloseTo(distFn(B, C) / 2);
+  });
+
+  it("largest angle sits opposite the longest side", () => {
+    expect(largestAngleVertex(3, 4, 5)).toBe(2); // longest opp C
+    expect(largestAngleVertex(9, 4, 5)).toBe(0); // longest opp A
+    expect(largestAngleVertex(4, 8, 5)).toBe(1); // longest opp B
+  });
+
+  it("third side lies strictly between the difference and the sum", () => {
+    expect(thirdSideRange(7, 4)).toEqual({ min: 3, max: 11 });
+    const { min, max } = thirdSideRange(5, 5);
+    expect(min).toBe(0);
+    expect(max).toBe(10);
+    // any length in (min,max) forms a triangle; endpoints degenerate
+    expect(canFormTriangle(7, 4, 3.01)).toBe(true);
+    expect(canFormTriangle(7, 4, 3)).toBe(false);
+    expect(canFormTriangle(7, 4, 11)).toBe(false);
   });
 });
