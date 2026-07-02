@@ -524,6 +524,28 @@ export interface StepProofConfig {
   rows: { statement: string; reason: string }[];
 }
 
+// A growing visual pattern revealed stage by stage (inductive reasoning).
+export interface PatternGrowConfig {
+  pattern: "odds" | "doubling";
+  maxSteps?: number;
+}
+
+// A conjecture on trial: tap candidates to test; one failure = counterexample.
+export interface ConjectureTestConfig {
+  conjecture: string;
+  items: { label: string; holds: boolean; note: string }[];
+}
+
+// An if-then statement whose hypothesis/conclusion swap into the converse.
+export interface ConditionalFlipConfig {
+  hypothesis: string;
+  conclusion: string;
+  statementTrue: boolean;
+  converseTrue: boolean;
+  statementNote: string;
+  converseNote: string;
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -597,6 +619,9 @@ export type InteractiveStep =
   | { kind: "protractor"; eyebrow?: string; title: string; teach: string; config: ProtractorConfig }
   | { kind: "anglePairs"; eyebrow?: string; title: string; teach: string; config: AnglePairFinderConfig }
   | { kind: "stepProof"; eyebrow?: string; title: string; teach?: string; config: StepProofConfig }
+  | { kind: "patternGrow"; eyebrow?: string; title: string; teach: string; config: PatternGrowConfig }
+  | { kind: "conjectureTest"; eyebrow?: string; title: string; teach: string; config: ConjectureTestConfig }
+  | { kind: "conditionalFlip"; eyebrow?: string; title: string; teach: string; config: ConditionalFlipConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

@@ -55,6 +55,9 @@ import SegmentRuler from "@/components/genmath/interactive/SegmentRuler";
 import Protractor from "@/components/genmath/interactive/Protractor";
 import AnglePairFinder from "@/components/genmath/interactive/AnglePairFinder";
 import StepProof from "@/components/genmath/interactive/StepProof";
+import PatternGrow from "@/components/genmath/interactive/PatternGrow";
+import ConjectureTest from "@/components/genmath/interactive/ConjectureTest";
+import ConditionalFlip from "@/components/genmath/interactive/ConditionalFlip";
 import RatioFigure from "@/components/genmath/interactive/RatioFigure";
 import NotationToggle from "@/components/genmath/interactive/NotationToggle";
 import { type GenMathLesson } from "@/lib/genmath-lessons";
@@ -687,6 +690,36 @@ function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveSt
               <MathText text={step.teach} />
             </p>
           )}
+        </>
+      );
+    case "patternGrow":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <PatternGrow config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "conjectureTest":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <ConjectureTest config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "conditionalFlip":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <ConditionalFlip config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
         </>
       );
     case "tapQuestion":

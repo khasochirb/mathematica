@@ -60,6 +60,7 @@ import coordinatePlane from "@/data/genmath/6/coordinate-plane.json";
 import geometryAreaVolume from "@/data/genmath/6/geometry-area-volume.json";
 import dataAndStatistics from "@/data/genmath/6/data-and-statistics.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
+import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -147,7 +148,7 @@ export const GEOMETRY_SPINE: GeometrySpineEntry[] = [
     title: "Reasoning & Proof",
     blurb: "From noticing patterns to proving facts: conjectures, if-then statements, and your first two-column proofs.",
     buildsOn: "Unit 1's definitions and the segment/angle facts you measured there.",
-    live: false,
+    live: true,
   },
   {
     unit: 3,
@@ -239,7 +240,10 @@ export const GEOMETRY_SPINE: GeometrySpineEntry[] = [
   },
 ];
 
-const geometryUnits: GeometryUnit[] = [geometryFoundations as unknown as GeometryUnit];
+const geometryUnits: GeometryUnit[] = [
+  geometryFoundations as unknown as GeometryUnit,
+  geometryReasoning as unknown as GeometryUnit,
+];
 
 export function getGeometrySpine(): GeometrySpineEntry[] {
   return GEOMETRY_SPINE;

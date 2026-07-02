@@ -1,0 +1,2542 @@
+{
+  "slug": "reasoning-and-proof",
+  "title": "Reasoning & Proof",
+  "unit": 2,
+  "status": "published",
+  "blurb": "From noticing patterns to proving theorems: conjectures, counterexamples, deduction, if-then statements, and your first real proofs.",
+  "buildsOn": "Unit 1's definitions and postulates — especially linear pairs, midpoints, bisectors, and the Segment Addition Postulate — plus Grade 6 equation-solving.",
+  "lessons": [
+    {
+      "slug": "inductive-reasoning",
+      "title": "Inductive Reasoning & Conjectures",
+      "concreteComparison": "The sun has risen every morning of your life, so you're sure it will rise tomorrow. You've never seen the rule written anywhere — you **noticed a pattern** and trusted it. That move, from examples to a general claim, is **inductive reasoning**, and the claim it produces is a **conjecture**.",
+      "objective": "Use inductive reasoning to extend patterns and state conjectures — and know that a conjecture is an educated guess, not yet a proven fact.",
+      "concept": [
+        "**Inductive reasoning** works from specific examples toward a general rule: see enough cases, spot the pattern, state the rule.",
+        "The rule you state is a **conjecture** — a claim you believe from the pattern, still awaiting proof.",
+        "Inductive reasoning is how discoveries START. But no pile of examples, however tall, can *prove* a conjecture — the very next case could break it.",
+        "To extend a pattern: find what changes from term to term (add the same amount? double? square?) and apply it once more."
+      ],
+      "keyIdea": "Examples → pattern → conjecture. Inductive reasoning suggests rules; it never proves them.",
+      "facts": [
+        {
+          "title": "The flow",
+          "latex": "$\\text{cases} \\to \\text{pattern} \\to \\text{conjecture}$",
+          "explanation": "From specific to general."
+        },
+        {
+          "title": "A famous one",
+          "latex": "$1 + 3 + 5 + 7 = 16 = 4^2$",
+          "explanation": "The first n odd numbers seem to total n²."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ir-we1",
+          "statement": "Find the next term: $5, 9, 13, 17, \\ldots$",
+          "solution": "Each term is $4$ more than the last, so the pattern suggests $17 + 4 = 21$.",
+          "check": [
+            "17 + 4 == 21",
+            "9 - 5 == 4"
+          ]
+        },
+        {
+          "id": "ir-we2",
+          "statement": "Compute $1+3+5$ and $1+3+5+7$. What conjecture does the pattern suggest?",
+          "solution": "$1+3+5 = 9 = 3^2$ and $1+3+5+7 = 16 = 4^2$. Conjecture: the first $n$ odd numbers add up to $n^2$.",
+          "check": [
+            "1 + 3 + 5 == 3**2",
+            "1 + 3 + 5 + 7 == 4**2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Treating a conjecture as a proven fact.",
+          "correction": "A conjecture is a **pattern-based guess**. Until it's proven, the next example could still break it.",
+          "authored": true
+        },
+        {
+          "text": "Extending a pattern from too few terms.",
+          "correction": "Two terms fit many rules ($2, 4$ could be +2 or ×2). Check several terms before conjecturing.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ir-t1",
+          "statement": "Next term: $3, 6, 12, 24, \\ldots$?",
+          "solution": "Each term doubles: $24 \\times 2 = 48$.",
+          "check": [
+            "24*2 == 48",
+            "12/6 == 2"
+          ]
+        },
+        {
+          "id": "ir-t2",
+          "statement": "Using the odd-number conjecture, what should $1+3+5+7+9$ equal?",
+          "solution": "Five odd numbers → $5^2 = 25$. (Check: it does.)",
+          "check": [
+            "1 + 3 + 5 + 7 + 9 == 5**2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "From examples to a rule",
+            "beats": [
+              "**Inductive reasoning**: look at specific cases, spot the pattern, state a general rule.",
+              "The stated rule is a **conjecture** — believed, not yet proven.",
+              "It's how nearly every discovery in math begins.",
+              "Let's watch a pattern long enough to conjecture something."
+            ]
+          },
+          {
+            "kind": "patternGrow",
+            "eyebrow": "Concept A",
+            "title": "A pattern worth conjecturing",
+            "teach": "Each stage adds the next **odd number** of dots — and the total is always a perfect square. Step through the stages until you believe the rule, then read the conjecture it suggests.",
+            "config": {
+              "pattern": "odds",
+              "maxSteps": 5
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Say it precisely",
+            "title": "Stating a conjecture",
+            "beats": [
+              "A good conjecture is a **complete, checkable sentence**.",
+              "Vague: “odd numbers make squares.”",
+              "Precise: “the sum of the first $n$ odd numbers is $n^2$.”",
+              "Precise claims can be tested — and one day proven."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Extend the pattern",
+            "intro": "Find the change, apply it once more.",
+            "examples": [
+              {
+                "prompt": "Next term of $5, 9, 13, 17, \\ldots$?",
+                "steps": [
+                  "From term to term: $+4$ each time ($9-5 = 4$).",
+                  "$17 + 4 = 21$."
+                ],
+                "answer": "$21$",
+                "check": [
+                  "17 + 4 == 21"
+                ]
+              },
+              {
+                "prompt": "Next term of $3, 6, 12, 24, \\ldots$?",
+                "steps": [
+                  "Each term doubles ($12 \\div 6 = 2$).",
+                  "$24 \\times 2 = 48$."
+                ],
+                "answer": "$48$",
+                "check": [
+                  "24*2 == 48"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "What comes next?",
+            "intro": "Spot the change between terms first.",
+            "problems": [
+              {
+                "prompt": "$2, 9, 16, 23, \\ldots$ — next?",
+                "options": [
+                  "$28$",
+                  "$30$",
+                  "$32$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$+7$ each time: $23 + 7 = 30$.",
+                "check": [
+                  "23 + 7 == 30"
+                ]
+              },
+              {
+                "prompt": "$1, 4, 9, 16, \\ldots$ — next?",
+                "options": [
+                  "$20$",
+                  "$25$",
+                  "$24$"
+                ],
+                "correctIndex": 1,
+                "explanation": "These are $1^2, 2^2, 3^2, 4^2$ — next is $5^2 = 25$.",
+                "check": [
+                  "5**2 == 25"
+                ]
+              },
+              {
+                "prompt": "$80, 40, 20, 10, \\ldots$ — next?",
+                "options": [
+                  "$5$",
+                  "$0$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Halving each time: $10 \\div 2 = 5$.",
+                "check": [
+                  "10/2 == 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The catch",
+            "title": "Patterns suggest — they don't prove",
+            "beats": [
+              "Examples can pile up forever and still not make a proof.",
+              "“It worked for $1, 2, 3, \\ldots, 1000$” leaves case $1001$ open.",
+              "Inductive reasoning finds the **candidate** rules.",
+              "Proving them takes a different tool — coming later this unit."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Conjecture from a table",
+            "intro": "Say the rule the data suggests.",
+            "examples": [
+              {
+                "prompt": "$1+3 = 4$, $1+3+5 = 9$, $1+3+5+7 = 16$. Conjecture?",
+                "steps": [
+                  "The totals are $2^2, 3^2, 4^2$.",
+                  "Conjecture: the first $n$ odd numbers sum to $n^2$."
+                ],
+                "answer": "First $n$ odds total $n^2$",
+                "check": [
+                  "1 + 3 == 2**2",
+                  "1 + 3 + 5 + 7 == 4**2"
+                ]
+              },
+              {
+                "prompt": "Predict $1+3+5+7+9+11$ using the conjecture — then verify.",
+                "steps": [
+                  "Six odd numbers → $6^2 = 36$.",
+                  "Adding directly: $36$. ✓ (One more example — still not a proof!)"
+                ],
+                "answer": "$36$",
+                "check": [
+                  "1 + 3 + 5 + 7 + 9 + 11 == 6**2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Trust the pattern?",
+            "intro": "Predictions are conjectures, not certainties.",
+            "problems": [
+              {
+                "prompt": "By the odds conjecture, the first $10$ odd numbers total —",
+                "options": [
+                  "$100$",
+                  "$55$",
+                  "$110$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$10^2 = 100$.",
+                "check": [
+                  "10**2 == 100"
+                ]
+              },
+              {
+                "prompt": "A pattern held for $500$ examples. Is the conjecture now proven?",
+                "options": [
+                  "Yes — that's plenty",
+                  "No — examples never prove it"
+                ],
+                "correctIndex": 1,
+                "explanation": "Case $501$ could still fail. Only a proof settles it.",
+                "check": [
+                  "500 + 1 == 501"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The most-checked unproven claim",
+            "body": "In 1742 Christian Goldbach conjectured that every even number greater than $2$ is the sum of two primes. Computers have verified it beyond $4{,}000{,}000{,}000{,}000{,}000{,}000$ — and it is *still* not a **theorem** (the name for a claim that has actually been proven), because nobody has proven it. That is exactly the gap between evidence and proof."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Next term",
+            "prompt": "$7, 12, 17, 22, \\ldots$ — what comes next?",
+            "options": [
+              "$25$",
+              "$27$",
+              "$29$"
+            ],
+            "correctIndex": 1,
+            "explanation": "$+5$ each time: $22 + 5 = 27$.",
+            "check": [
+              "22 + 5 == 27"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Inductive reasoning**: specific examples → pattern → general claim.",
+              "The claim is a **conjecture** — checkable, believable, not yet proven.",
+              "No number of confirming examples is a proof; the next case could break it."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's practice extending patterns, predicting with conjectures, and remembering what a conjecture can't do."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$4, 11, 18, 25, \\ldots$ — next term?",
+                "options": [
+                  "$31$",
+                  "$32$",
+                  "$33$",
+                  "$35$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$+7$ each time: $25 + 7 = 32$.",
+                "check": [
+                  "25 + 7 == 32"
+                ]
+              },
+              {
+                "prompt": "$2, 6, 18, 54, \\ldots$ — next term?",
+                "options": [
+                  "$108$",
+                  "$162$",
+                  "$156$",
+                  "$216$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Tripling: $54 \\times 3 = 162$.",
+                "check": [
+                  "54*3 == 162"
+                ]
+              },
+              {
+                "prompt": "$1, 4, 9, 16, 25, \\ldots$ — next term?",
+                "options": [
+                  "$30$",
+                  "$36$",
+                  "$35$",
+                  "$49$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Perfect squares: $6^2 = 36$.",
+                "check": [
+                  "6**2 == 36"
+                ]
+              },
+              {
+                "prompt": "By the odds conjecture, $1+3+5+\\cdots$ ($8$ terms) $= $ —",
+                "options": [
+                  "$36$",
+                  "$49$",
+                  "$64$",
+                  "$81$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$8^2 = 64$.",
+                "check": [
+                  "8**2 == 64"
+                ]
+              },
+              {
+                "prompt": "Inductive reasoning moves from —",
+                "options": [
+                  "general rules to specific cases",
+                  "specific cases to a general claim",
+                  "proof to examples",
+                  "definitions to postulates"
+                ],
+                "correctIndex": 1,
+                "explanation": "Cases → pattern → conjecture.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "A conjecture checked in $1000$ cases is —",
+                "options": [
+                  "proven",
+                  "a theorem",
+                  "still just a conjecture",
+                  "false"
+                ],
+                "correctIndex": 2,
+                "explanation": "Evidence isn't proof — case $1001$ is still open.",
+                "check": [
+                  "1000 + 1 == 1001"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Inductive Reasoning & Conjectures\"",
+            "body": "You can spot patterns and state precise conjectures — and you know their limit. Next: Counterexamples, the one-shot way to kill a false conjecture."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "counterexamples",
+      "title": "Counterexamples",
+      "concreteComparison": "“All birds can fly.” It sounds right — sparrows, eagles, pigeons all agree. Then someone points at a **penguin**, and the claim is finished. One single case that breaks a rule is a **counterexample**, and one is all it ever takes.",
+      "objective": "Disprove a false conjecture by producing a counterexample — one case that fits the conjecture's conditions but breaks its conclusion.",
+      "concept": [
+        "A **counterexample** is a specific case that fits a conjecture's conditions but breaks its conclusion.",
+        "**One counterexample disproves a conjecture** — permanently. There's no arguing with it.",
+        "The asymmetry is the whole lesson: proving needs *every* case; disproving needs *one*.",
+        "To hunt for counterexamples, test the **edge cases**: $0$, $1$, negative numbers, equal numbers — the strange citizens of the number world."
+      ],
+      "keyIdea": "One case that fits the if-part but breaks the then-part kills a conjecture. Disproving takes one; proving takes all.",
+      "facts": [
+        {
+          "title": "The asymmetry",
+          "latex": "$\\text{prove: all} \\;\\; / \\;\\; \\text{disprove: one}$",
+          "explanation": "That's why counterexamples are so powerful."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ce-we1",
+          "statement": "Disprove: “Every number divisible by $2$ is divisible by $4$.”",
+          "solution": "Try $6$: it's divisible by $2$, but $6 \\div 4$ leaves a remainder. Counterexample found — conjecture false.",
+          "check": [
+            "6 % 2 == 0",
+            "6 % 4 != 0"
+          ]
+        },
+        {
+          "id": "ce-we2",
+          "statement": "Disprove: “Every odd number greater than $1$ is prime.”",
+          "solution": "$9$ is odd, but $9 = 3 \\times 3$ is not prime. One counterexample — done.",
+          "check": [
+            "9 % 2 == 1",
+            "isprime(9) == False"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking you need several counterexamples.",
+          "correction": "**One** is mathematically fatal. More don't make the conjecture any more false.",
+          "authored": true
+        },
+        {
+          "text": "Offering a counterexample that doesn't fit the conditions.",
+          "correction": "A counterexample must **satisfy the if-part** and break the then-part. $7$ can't disprove a claim about even numbers.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ce-t1",
+          "statement": "Find a counterexample: “Squaring a number always makes it bigger.”",
+          "solution": "$1^2 = 1$ — not bigger. (So is $0$: $0^2 = 0$.)",
+          "check": [
+            "1**2 == 1"
+          ]
+        },
+        {
+          "id": "ce-t2",
+          "statement": "Find a counterexample: “Subtracting always gives a smaller answer.”",
+          "solution": "$5 - (-2) = 7$, and $7 > 5$ — subtracting a negative grows the result.",
+          "check": [
+            "5 - (-2) == 7",
+            "7 > 5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "The rule-breaker",
+            "beats": [
+              "A **counterexample** fits a conjecture's conditions but breaks its conclusion.",
+              "Finding one **disproves** the conjecture — completely and forever.",
+              "Proving needs every case. Disproving needs exactly one.",
+              "Time to put a conjecture on trial."
+            ]
+          },
+          {
+            "kind": "conjectureTest",
+            "eyebrow": "Concept A",
+            "title": "Put it on trial",
+            "teach": "Test each number against the conjecture. Three pass… and then one doesn't. The instant a case fails, the conjecture is dead — no further testing needed.",
+            "config": {
+              "conjecture": "If a number is divisible by $2$, then it is divisible by $4$.",
+              "items": [
+                {
+                  "label": "$8$",
+                  "holds": true,
+                  "note": "$8 \\div 2 = 4$ ✓ and $8 \\div 4 = 2$ ✓ — fits the claim."
+                },
+                {
+                  "label": "$12$",
+                  "holds": true,
+                  "note": "$12 \\div 2 = 6$ ✓ and $12 \\div 4 = 3$ ✓ — fits the claim."
+                },
+                {
+                  "label": "$20$",
+                  "holds": true,
+                  "note": "$20 \\div 2 = 10$ ✓ and $20 \\div 4 = 5$ ✓ — fits the claim."
+                },
+                {
+                  "label": "$6$",
+                  "holds": false,
+                  "note": "$6 \\div 2 = 3$ ✓ but $6 \\div 4 = 1.5$ ✗ — divisible by 2, NOT by 4. Counterexample!"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "What counts",
+            "title": "A valid counterexample",
+            "beats": [
+              "It must **satisfy the if-part**: for “divisible by 2 → divisible by 4,” your case must be divisible by $2$.",
+              "It must **break the then-part**: not divisible by $4$.",
+              "$6$ qualifies on both counts.",
+              "$7$ wouldn't — it fails the if-part, so it says nothing."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Hunt the counterexample",
+            "intro": "Check edge cases: 0, 1, negatives, equals.",
+            "examples": [
+              {
+                "prompt": "Disprove: “Squaring always makes a number bigger.”",
+                "steps": [
+                  "Try the edge case $1$: $1^2 = 1$.",
+                  "Not bigger — counterexample found."
+                ],
+                "answer": "$1$ (since $1^2 = 1$)",
+                "check": [
+                  "1**2 == 1"
+                ]
+              },
+              {
+                "prompt": "Disprove: “Every odd number greater than $1$ is prime.”",
+                "steps": [
+                  "$3, 5, 7$ are prime… try $9$.",
+                  "$9 = 3 \\times 3$ — odd but not prime."
+                ],
+                "answer": "$9$",
+                "check": [
+                  "isprime(9) == False",
+                  "9 % 2 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Pick the counterexample",
+            "intro": "It must fit the if-part AND break the then-part.",
+            "problems": [
+              {
+                "prompt": "“All multiples of $5$ end in $5$.” Counterexample?",
+                "options": [
+                  "$25$",
+                  "$10$",
+                  "$7$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$10$ is a multiple of $5$ but ends in $0$. ($7$ isn't even a multiple of 5.)",
+                "check": [
+                  "10 % 5 == 0"
+                ]
+              },
+              {
+                "prompt": "“If a number is divisible by $3$, it is divisible by $6$.” Counterexample?",
+                "options": [
+                  "$12$",
+                  "$9$",
+                  "$8$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$9$ is divisible by $3$ but not by $6$.",
+                "check": [
+                  "9 % 3 == 0",
+                  "9 % 6 != 0"
+                ]
+              },
+              {
+                "prompt": "“Doubling a number always makes it bigger.” Counterexample?",
+                "options": [
+                  "$3$",
+                  "$-4$",
+                  "$10$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$2 \\times (-4) = -8$, and $-8 < -4$ — doubling made it smaller.",
+                "check": [
+                  "2*(-4) == -8",
+                  "(-8) < (-4)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Geometry too",
+            "title": "Counterexamples with figures",
+            "beats": [
+              "Geometric conjectures fall the same way.",
+              "“All angles smaller than a right angle look alike”? One skinny $5^\\circ$ and one wide $85^\\circ$ — both acute, very different.",
+              "“Two acute angles always make a linear pair”? $30^\\circ + 40^\\circ = 70^\\circ \\neq 180^\\circ$. Broken.",
+              "Any figure that fits the conditions and breaks the conclusion is fair game."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Geometric counterexamples",
+            "intro": "Use the Unit 1 facts you measured.",
+            "examples": [
+              {
+                "prompt": "Disprove: “Two acute angles always form a linear pair.”",
+                "steps": [
+                  "A linear pair must total $180^\\circ$ (Unit 1).",
+                  "Take $30^\\circ$ and $40^\\circ$: $30^\\circ + 40^\\circ = 70^\\circ \\neq 180^\\circ$."
+                ],
+                "answer": "$30^\\circ$ and $40^\\circ$",
+                "check": [
+                  "30 + 40 == 70",
+                  "70 != 180"
+                ]
+              },
+              {
+                "prompt": "Disprove: “Complementary angles are always equal.”",
+                "steps": [
+                  "Complementary = sum $90^\\circ$.",
+                  "$30^\\circ + 60^\\circ = 90^\\circ$, but $30^\\circ \\neq 60^\\circ$."
+                ],
+                "answer": "$30^\\circ$ and $60^\\circ$",
+                "check": [
+                  "30 + 60 == 90",
+                  "30 != 60"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Fit or no fit?",
+            "intro": "A counterexample must satisfy the conditions.",
+            "problems": [
+              {
+                "prompt": "To disprove “every even number is divisible by 4,” which candidate actually works as a counterexample?",
+                "options": [
+                  "$9$ — it's not divisible by 4",
+                  "$14$ — even, not divisible by 4",
+                  "$16$ — even and divisible by 4"
+                ],
+                "correctIndex": 1,
+                "explanation": "$9$ fails the if-part (not even); $16$ fails to break the then-part. $14$ does both jobs.",
+                "check": [
+                  "14 % 2 == 0",
+                  "14 % 4 != 0"
+                ]
+              },
+              {
+                "prompt": "How many counterexamples does it take to disprove a conjecture?",
+                "options": [
+                  "One",
+                  "Three",
+                  "As many as the examples supporting it"
+                ],
+                "correctIndex": 0,
+                "explanation": "One case that breaks it is final.",
+                "check": [
+                  "1 > 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The black swan",
+            "body": "For two thousand years Europeans said “all swans are white” — every swan ever seen agreed. Then in 1697 Dutch explorers reached Australia and met black swans. The phrase *black swan* now means exactly this: the single case that shatters a rule everyone trusted."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Break it",
+            "prompt": "“Every prime number is odd.” Counterexample?",
+            "options": [
+              "$9$",
+              "$2$",
+              "$15$"
+            ],
+            "correctIndex": 1,
+            "explanation": "$2$ is prime and even — the only one, but one is enough.",
+            "check": [
+              "isprime(2)",
+              "2 % 2 == 0"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **counterexample** fits the conditions but breaks the conclusion.",
+              "**One** counterexample disproves a conjecture — forever.",
+              "Hunt at the edges: $0$, $1$, negatives, equal values."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's break some conjectures — and spot the candidates that don't even qualify."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Find a counterexample: “every number divisible by $5$ ends in $5$.”",
+                "options": [
+                  "$15$",
+                  "$20$",
+                  "$7$",
+                  "$55$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$20$ is divisible by $5$ but ends in $0$. ($7$ doesn't even fit the if-part.)",
+                "check": [
+                  "20 % 5 == 0"
+                ]
+              },
+              {
+                "prompt": "“If a number is divisible by $3$, it's divisible by $9$.” Counterexample?",
+                "options": [
+                  "$18$",
+                  "$27$",
+                  "$6$",
+                  "$5$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$6 = 3 \\times 2$ but $6 \\div 9$ doesn't come out even.",
+                "check": [
+                  "6 % 3 == 0",
+                  "6 % 9 != 0"
+                ]
+              },
+              {
+                "prompt": "“Squaring any number gives a bigger number.” Which breaks it?",
+                "options": [
+                  "$3$",
+                  "$1$",
+                  "$5$",
+                  "$10$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$1^2 = 1$ — no growth.",
+                "check": [
+                  "1**2 == 1"
+                ]
+              },
+              {
+                "prompt": "“Two acute angles always sum to less than $180^\\circ$.” Can you disprove it?",
+                "options": [
+                  "Yes: $89^\\circ + 89^\\circ$",
+                  "Yes: $90^\\circ + 90^\\circ$",
+                  "No — it's actually true"
+                ],
+                "correctIndex": 2,
+                "explanation": "Each acute angle is under $90^\\circ$, so the sum stays under $180^\\circ$: even $89^\\circ + 89^\\circ = 178^\\circ < 180^\\circ$. ($90^\\circ$ is a right angle, not acute — so $90^\\circ + 90^\\circ$ fails the if-part and says nothing.)",
+                "check": [
+                  "89 + 89 == 178",
+                  "178 < 180"
+                ]
+              },
+              {
+                "prompt": "A counterexample must —",
+                "options": [
+                  "break the if-part",
+                  "fit the if-part and break the then-part",
+                  "fit both parts",
+                  "be a large number"
+                ],
+                "correctIndex": 1,
+                "explanation": "Satisfy the conditions, defeat the conclusion.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "“Every even number greater than $2$ is a sum of two primes” has been checked billions of times with no counterexample. It is —",
+                "options": [
+                  "proven true",
+                  "false",
+                  "still an open conjecture"
+                ],
+                "correctIndex": 2,
+                "explanation": "No counterexample found ≠ proven — that's Goldbach's conjecture, still open.",
+                "check": [
+                  "3 + 5 == 8",
+                  "isprime(3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Counterexamples\"",
+            "body": "You can now kill a false conjecture with a single well-chosen case. Next: Deductive Reasoning — the tool that, unlike patterns, delivers certainty."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "deductive-reasoning",
+      "title": "Deductive Reasoning",
+      "concreteComparison": "In Sudoku you never guess: “this row already has $1$–$8$, so this cell **must** be $9$.” The rules force the conclusion. Reasoning from accepted rules to guaranteed conclusions is **deductive reasoning** — and unlike patterns, it delivers certainty.",
+      "objective": "Use deductive reasoning to draw guaranteed conclusions from given facts and rules, and tell deductive from inductive reasoning.",
+      "concept": [
+        "**Deductive reasoning** starts from facts and rules accepted as true and derives conclusions that **must** be true.",
+        "Contrast: **inductive** reasoning (last lessons) says “probably — the pattern suggests it.” **Deductive** says “certainly — the rules force it.”",
+        "The basic move: a rule “every X is Y” plus a fact “this is an X” forces “this is Y.”",
+        "Rules also **chain**: every X is Y, every Y is Z — so every X is Z. Chains like this are the skeleton of proofs."
+      ],
+      "keyIdea": "Rules + facts → forced conclusions. Inductive suggests; deductive guarantees.",
+      "facts": [
+        {
+          "title": "The basic move",
+          "latex": "$\\text{all X are Y},\\ x \\text{ is X} \\Rightarrow x \\text{ is Y}$",
+          "explanation": "Apply a general rule to a specific case."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "de-we1",
+          "statement": "Rule: every multiple of $6$ is a multiple of $3$. Fact: $48$ is a multiple of $6$. Conclusion?",
+          "solution": "The rule applies to $48$, so $48$ is a multiple of $3$ — guaranteed. (Indeed $48 = 3 \\times 16$.)",
+          "check": [
+            "48 % 6 == 0",
+            "48 % 3 == 0"
+          ]
+        },
+        {
+          "id": "de-we2",
+          "statement": "Chain: multiples of $8$ are multiples of $4$; multiples of $4$ are even. What follows about $40$?",
+          "solution": "$40$ is a multiple of $8$ → multiple of $4$ → even. The chain forces it.",
+          "check": [
+            "40 % 8 == 0",
+            "40 % 4 == 0",
+            "40 % 2 == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Mixing up which reasoning is which.",
+          "correction": "**Patterns and examples → inductive** (suggests). **Rules and facts → deductive** (guarantees).",
+          "authored": true
+        },
+        {
+          "text": "Applying a rule to a case it doesn't cover.",
+          "correction": "“Every multiple of 6 is even” says nothing about $9$ — the rule only speaks about multiples of 6.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "de-t1",
+          "statement": "Rule: every multiple of $10$ is a multiple of $5$. Fact: $70$ is a multiple of $10$. Conclusion?",
+          "solution": "$70$ is a multiple of $5$ — forced by the rule ($70 = 5 \\times 14$).",
+          "check": [
+            "70 % 10 == 0",
+            "70 % 5 == 0"
+          ]
+        },
+        {
+          "id": "de-t2",
+          "statement": "$\\angle A$ and $\\angle B$ form a linear pair and $m\\angle A = 110^\\circ$. What MUST $m\\angle B$ be?",
+          "solution": "Linear pairs are supplementary (Unit 1), so $m\\angle B = 180^\\circ - 110^\\circ = 70^\\circ$ — no other value possible.",
+          "check": [
+            "180 - 110 == 70"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Certainty, not suggestion",
+            "beats": [
+              "**Deductive reasoning**: accepted rules + given facts → conclusions that **must** hold.",
+              "Inductive: “every case so far…” → probably.",
+              "Deductive: “the rule covers this case” → certainly.",
+              "Geometry runs on the deductive kind."
+            ]
+          },
+          {
+            "kind": "stepProof",
+            "eyebrow": "Concept A",
+            "title": "Watch a deduction run",
+            "teach": "Each line is forced by the one before it plus a rule you already know from Unit 1. That's deduction: no guessing anywhere.",
+            "config": {
+              "given": "$\\angle 1$ and $\\angle 2$ form a linear pair; $m\\angle 1 = 110^\\circ$.",
+              "prove": "$m\\angle 2 = 70^\\circ$",
+              "rows": [
+                {
+                  "statement": "$\\angle 1$ and $\\angle 2$ form a linear pair",
+                  "reason": "Given"
+                },
+                {
+                  "statement": "$m\\angle 1 + m\\angle 2 = 180^\\circ$",
+                  "reason": "Linear pairs are supplementary (Unit 1)"
+                },
+                {
+                  "statement": "$110^\\circ + m\\angle 2 = 180^\\circ$",
+                  "reason": "$m\\angle 1 = 110^\\circ$ (given), substituted in"
+                },
+                {
+                  "statement": "$m\\angle 2 = 70^\\circ$",
+                  "reason": "Subtract $110^\\circ$ from both sides"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The basic move",
+            "title": "Rule meets fact",
+            "beats": [
+              "A rule: “**every** multiple of $6$ is a multiple of $3$.”",
+              "A fact: “$48$ is a multiple of $6$.”",
+              "Conclusion, forced: “$48$ is a multiple of $3$.”",
+              "If the rule is true and the fact is true, the conclusion cannot be false."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Apply the rule",
+            "intro": "Check the case is covered, then conclude.",
+            "examples": [
+              {
+                "prompt": "Rule: every multiple of $9$ is a multiple of $3$. Fact: $63$ is a multiple of $9$. Conclusion?",
+                "steps": [
+                  "$63$ is covered by the rule.",
+                  "So $63$ is a multiple of $3$ — certain. ($63 = 3 \\times 21$.)"
+                ],
+                "answer": "$63$ is a multiple of $3$",
+                "check": [
+                  "63 % 9 == 0",
+                  "63 % 3 == 0"
+                ]
+              },
+              {
+                "prompt": "Rule: linear pairs are supplementary. Fact: $\\angle 1$ and $\\angle 2$ form a linear pair, $m\\angle 1 = 128^\\circ$. Conclusion?",
+                "steps": [
+                  "The rule covers this pair: $m\\angle 1 + m\\angle 2 = 180^\\circ$.",
+                  "$m\\angle 2 = 180^\\circ - 128^\\circ = 52^\\circ$ — forced."
+                ],
+                "answer": "$m\\angle 2 = 52^\\circ$",
+                "check": [
+                  "180 - 128 == 52"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Draw the conclusion",
+            "intro": "What do the rules force?",
+            "problems": [
+              {
+                "prompt": "Every multiple of $10$ ends in $0$; $130$ is a multiple of $10$. So —",
+                "options": [
+                  "$130$ ends in $0$",
+                  "$130$ is prime",
+                  "nothing follows"
+                ],
+                "correctIndex": 0,
+                "explanation": "The rule covers $130$; the conclusion is forced.",
+                "check": [
+                  "130 % 10 == 0"
+                ]
+              },
+              {
+                "prompt": "$\\angle P$ and $\\angle Q$ are complementary; $m\\angle P = 25^\\circ$. What MUST $m\\angle Q$ be?",
+                "options": [
+                  "$65^\\circ$",
+                  "$155^\\circ$",
+                  "$75^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Complementary = $90^\\circ$ total: $90^\\circ - 25^\\circ = 65^\\circ$.",
+                "check": [
+                  "90 - 25 == 65"
+                ]
+              },
+              {
+                "prompt": "Rule: every multiple of $6$ is even. Fact: $9$ is NOT a multiple of $6$. What follows about $9$?",
+                "options": [
+                  "$9$ is odd",
+                  "$9$ is even",
+                  "Nothing — the rule doesn't cover $9$"
+                ],
+                "correctIndex": 2,
+                "explanation": "The rule speaks only about multiples of $6$. (9 happens to be odd, but the rule didn't tell us.)",
+                "check": [
+                  "9 % 6 != 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Chains",
+            "title": "Deductions stack",
+            "beats": [
+              "Rules connect: every X is Y; every Y is Z.",
+              "Then every X is Z — two forced steps.",
+              "Multiples of $8$ → multiples of $4$ → even.",
+              "Proofs are exactly this: chains of forced steps, each with its reason."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Chain the rules",
+            "intro": "Follow the forced steps.",
+            "examples": [
+              {
+                "prompt": "Multiples of $8$ are multiples of $4$; multiples of $4$ are even. What follows about $56$?",
+                "steps": [
+                  "$56 = 8 \\times 7$ — the first rule applies: multiple of $4$.",
+                  "The second rule applies: $56$ is even. Chain complete."
+                ],
+                "answer": "$56$ is even",
+                "check": [
+                  "56 % 8 == 0",
+                  "56 % 4 == 0",
+                  "56 % 2 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Inductive or deductive?",
+            "intro": "Suggestion vs guarantee.",
+            "problems": [
+              {
+                "prompt": "“The last four buses were late, so tomorrow's will be late.” This is —",
+                "options": [
+                  "inductive",
+                  "deductive"
+                ],
+                "correctIndex": 0,
+                "explanation": "Pattern of cases → suggestion. No rule forces tomorrow's bus.",
+                "check": [
+                  "4 > 1"
+                ]
+              },
+              {
+                "prompt": "“Linear pairs are supplementary; these two angles form a linear pair; so they total $180^\\circ$.” This is —",
+                "options": [
+                  "inductive",
+                  "deductive"
+                ],
+                "correctIndex": 1,
+                "explanation": "Rule + fact → forced conclusion.",
+                "check": [
+                  "90 + 90 == 180"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Sudoku is pure deduction",
+            "body": "A proper Sudoku never needs a guess: every number you place is forced by the rules and the digits already there. Solving one is running a few hundred tiny deductions in a row — the same mental muscle a geometry proof uses, one forced step at a time."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Forced or not",
+            "prompt": "$\\angle A$, $\\angle B$ form a linear pair; $m\\angle A = 84^\\circ$. Then $m\\angle B$ MUST be —",
+            "options": [
+              "$96^\\circ$",
+              "$84^\\circ$",
+              "$6^\\circ$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$180^\\circ - 84^\\circ = 96^\\circ$ — supplementary by the linear-pair rule.",
+            "check": [
+              "180 - 84 == 96"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Deductive reasoning**: rules + facts → conclusions that must be true.",
+              "Inductive **suggests** (patterns); deductive **guarantees** (rules).",
+              "Rules chain — and a proof is a chain of forced steps with reasons."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's practice forcing conclusions, spotting uncovered cases, and telling the two kinds of reasoning apart."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Every multiple of $12$ is a multiple of $6$; $84$ is a multiple of $12$. Conclusion?",
+                "options": [
+                  "$84$ is a multiple of $6$",
+                  "$84$ is prime",
+                  "$84$ is a multiple of $24$",
+                  "nothing follows"
+                ],
+                "correctIndex": 0,
+                "explanation": "The rule covers $84$: forced. ($84 = 6 \\times 14$.)",
+                "check": [
+                  "84 % 12 == 0",
+                  "84 % 6 == 0"
+                ]
+              },
+              {
+                "prompt": "$\\angle X$, $\\angle Y$ are supplementary; $m\\angle X = 47^\\circ$. Then $m\\angle Y = $ —",
+                "options": [
+                  "$43^\\circ$",
+                  "$133^\\circ$",
+                  "$137^\\circ$",
+                  "$313^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$180^\\circ - 47^\\circ = 133^\\circ$.",
+                "check": [
+                  "180 - 47 == 133"
+                ]
+              },
+              {
+                "prompt": "“Every square I've drawn so far has equal sides, so ALL squares do.” This reasoning is —",
+                "options": [
+                  "deductive",
+                  "inductive",
+                  "a counterexample",
+                  "a proof"
+                ],
+                "correctIndex": 1,
+                "explanation": "Generalizing from drawn examples = inductive. (The claim happens to be true — but this reasoning didn't prove it.)",
+                "check": [
+                  "4 > 1"
+                ]
+              },
+              {
+                "prompt": "Rule: all multiples of $4$ are even. Which case does the rule say NOTHING about?",
+                "options": [
+                  "$16$",
+                  "$28$",
+                  "$10$",
+                  "$44$"
+                ],
+                "correctIndex": 2,
+                "explanation": "$10$ isn't a multiple of $4$, so the rule is silent about it.",
+                "check": [
+                  "10 % 4 != 0",
+                  "16 % 4 == 0"
+                ]
+              },
+              {
+                "prompt": "Chain: multiples of $9$ are multiples of $3$; multiples of $3$ have digit-sums divisible by $3$. About $81$, the chain forces —",
+                "options": [
+                  "its digit-sum is divisible by 3",
+                  "it is even",
+                  "it is prime",
+                  "nothing"
+                ],
+                "correctIndex": 0,
+                "explanation": "$81$ is a multiple of $9$ → of $3$ → digit-sum rule applies ($8+1 = 9$).",
+                "check": [
+                  "81 % 9 == 0",
+                  "(8 + 1) % 3 == 0"
+                ]
+              },
+              {
+                "prompt": "Which delivers CERTAINTY when its inputs are true?",
+                "options": [
+                  "inductive reasoning",
+                  "deductive reasoning",
+                  "a conjecture",
+                  "a pattern"
+                ],
+                "correctIndex": 1,
+                "explanation": "Deduction's conclusions are forced by the rules.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Deductive Reasoning\"",
+            "body": "Rules in, certainty out — you've seen the engine proofs run on. Next: If-Then Statements, the standard shape geometry writes its rules in."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "if-then-statements",
+      "title": "If-Then Statements & the Converse",
+      "concreteComparison": "A coach promises: “**If** it rains, **then** practice moves indoors.” Rain → indoors, guaranteed. But if it doesn't rain, the promise says *nothing* — practice could still move indoors for other reasons. Math writes its rules in exactly this careful if-then shape.",
+      "objective": "Identify the hypothesis and conclusion of a conditional statement, write its converse, and judge each with truth values and counterexamples.",
+      "concept": [
+        "A **conditional statement** has the form “**if** (hypothesis), **then** (conclusion).” The **hypothesis** is the condition; the **conclusion** is what's promised when it holds.",
+        "Many rules hide their if-then shape: “all multiples of 4 are even” = “**if** a number is a multiple of 4, **then** it is even.”",
+        "The **converse** swaps the two parts: “if (conclusion), then (hypothesis).”",
+        "A statement and its converse are **independent claims**: the statement can be true while the converse is false. Judge the converse on its own — usually by hunting a counterexample (Lesson 2)."
+      ],
+      "keyIdea": "If hypothesis, then conclusion. The converse swaps them — and needs its own verdict.",
+      "facts": [
+        {
+          "title": "Statement",
+          "latex": "$p \\Rightarrow q$",
+          "explanation": "If hypothesis p, then conclusion q."
+        },
+        {
+          "title": "Converse",
+          "latex": "$q \\Rightarrow p$",
+          "explanation": "Swapped — true or false on its own merits."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "it-we1",
+          "statement": "Identify the hypothesis and conclusion: “If a number is a multiple of $4$, then it is even.”",
+          "solution": "Hypothesis: *a number is a multiple of $4$*. Conclusion: *it is even*. (The statement is true: $4k = 2 \\cdot 2k$.)",
+          "check": [
+            "8 % 4 == 0",
+            "8 % 2 == 0"
+          ]
+        },
+        {
+          "id": "it-we2",
+          "statement": "Write the converse and judge it: “If a number is a multiple of $4$, then it is even.”",
+          "solution": "Converse: “if a number is even, then it is a multiple of $4$.” False — $6$ is even but $6 \\div 4$ leaves a remainder.",
+          "check": [
+            "6 % 2 == 0",
+            "6 % 4 != 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Assuming the converse of a true statement is true.",
+          "correction": "Swapping the parts makes a **new claim**. “Multiples of 4 are even” is true; “evens are multiples of 4” is false ($6$).",
+          "authored": true
+        },
+        {
+          "text": "Reading a conditional backwards.",
+          "correction": "“If it rains, practice moves inside” promises nothing on a dry day — the rule only fires when the **hypothesis** holds.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "it-t1",
+          "statement": "Rewrite in if-then form: “Every multiple of $6$ is a multiple of $3$.”",
+          "solution": "If a number is a multiple of $6$, then it is a multiple of $3$. (True: $6k = 3 \\cdot 2k$.)",
+          "check": [
+            "12 % 6 == 0",
+            "12 % 3 == 0"
+          ]
+        },
+        {
+          "id": "it-t2",
+          "statement": "Converse of “if a number is a multiple of $6$, then it is a multiple of $3$” — and a verdict.",
+          "solution": "“If a number is a multiple of $3$, then it is a multiple of $6$.” False: $9$ is a multiple of $3$ but not of $6$.",
+          "check": [
+            "9 % 3 == 0",
+            "9 % 6 != 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "The if-then shape",
+            "beats": [
+              "A **conditional**: “**if** hypothesis, **then** conclusion.”",
+              "**Hypothesis** = the condition being supposed.",
+              "**Conclusion** = what's promised when the condition holds.",
+              "Geometry states almost every rule this way."
+            ]
+          },
+          {
+            "kind": "conditionalFlip",
+            "eyebrow": "Concept A",
+            "title": "Flip it and see",
+            "teach": "This statement is true. Tap **Flip to the converse** — the parts swap, and the new claim must be judged on its own. Here the converse is false, and one counterexample shows it.",
+            "config": {
+              "hypothesis": "a number is a multiple of $4$",
+              "conclusion": "it is even",
+              "statementTrue": true,
+              "converseTrue": false,
+              "statementNote": "Every multiple of $4$ splits into pairs: $4k = 2 \\times 2k$. True.",
+              "converseNote": "$6$ is even, but $6 \\div 4 = 1.5$ — not a multiple of $4$. Counterexample: false."
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Find the parts",
+            "title": "Hypothesis and conclusion",
+            "beats": [
+              "After **if** → the hypothesis. After **then** → the conclusion.",
+              "“If two angles form a linear pair, then they are supplementary.”",
+              "Hypothesis: *they form a linear pair*.",
+              "Conclusion: *they are supplementary*. (A Unit 1 rule in if-then clothes!)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Rewrite and label",
+            "intro": "Hidden conditionals become if-then.",
+            "examples": [
+              {
+                "prompt": "Rewrite: “All multiples of $10$ end in $0$.” Label the parts.",
+                "steps": [
+                  "If a number is a multiple of $10$ (hypothesis)…",
+                  "…then it ends in $0$ (conclusion)."
+                ],
+                "answer": "If a multiple of $10$, then it ends in $0$",
+                "check": [
+                  "130 % 10 == 0"
+                ]
+              },
+              {
+                "prompt": "Label the parts: “If $m\\angle A = 90^\\circ$, then $\\angle A$ is a right angle.”",
+                "steps": [
+                  "Hypothesis: $m\\angle A = 90^\\circ$.",
+                  "Conclusion: $\\angle A$ is a right angle. (True — that's the definition.)"
+                ],
+                "answer": "H: the measure is $90^\\circ$; C: it's a right angle",
+                "check": [
+                  "180/2 == 90"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Spot the hypothesis",
+            "intro": "It follows the word IF.",
+            "problems": [
+              {
+                "prompt": "“If a shape is a square, then it has $4$ sides.” The hypothesis is —",
+                "options": [
+                  "it has $4$ sides",
+                  "a shape is a square",
+                  "the whole sentence"
+                ],
+                "correctIndex": 1,
+                "explanation": "The if-part: *a shape is a square*.",
+                "check": [
+                  "4 > 3"
+                ]
+              },
+              {
+                "prompt": "“If two angles are vertical, then they have equal measures.” The conclusion is —",
+                "options": [
+                  "two angles are vertical",
+                  "they have equal measures",
+                  "they are supplementary"
+                ],
+                "correctIndex": 1,
+                "explanation": "The then-part: equal measures (the Unit 1 rule).",
+                "check": [
+                  "180 - 130 == 50"
+                ]
+              },
+              {
+                "prompt": "Rewrite “every multiple of $9$ is a multiple of $3$” in if-then form. The hypothesis is —",
+                "options": [
+                  "a number is a multiple of $9$",
+                  "a number is a multiple of $3$",
+                  "$9 > 3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "If a number is a multiple of $9$ (hypothesis), then it is a multiple of $3$.",
+                "check": [
+                  "27 % 9 == 0",
+                  "27 % 3 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The swap",
+            "title": "The converse",
+            "beats": [
+              "**Converse**: swap hypothesis and conclusion.",
+              "Statement: if multiple of $4$ → even. **True.**",
+              "Converse: if even → multiple of $4$. **False** ($6$).",
+              "Truth does NOT survive the swap automatically — judge the converse fresh."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Write the converse, then judge it",
+            "intro": "Swap, then hunt a counterexample.",
+            "examples": [
+              {
+                "prompt": "Converse of “if a number is a multiple of $10$, then it ends in $0$” — verdict?",
+                "steps": [
+                  "Converse: if a number ends in $0$, then it's a multiple of $10$.",
+                  "Hunt for a counterexample… none appears. Why can't it break? A whole number ending in $0$ is $10$ times its remaining digits ($130 = 13 \\times 10$) — a real reason, not just examples. **True both ways.**"
+                ],
+                "answer": "Converse: TRUE",
+                "check": [
+                  "20 % 10 == 0",
+                  "130 % 10 == 0"
+                ]
+              },
+              {
+                "prompt": "Converse of “if two angles are vertical, then they have equal measures” — verdict?",
+                "steps": [
+                  "Converse: if two angles have equal measures, then they are vertical.",
+                  "Counterexample: two separate $40^\\circ$ corners in different figures — equal measures, never crossing. **False.**"
+                ],
+                "answer": "Converse: FALSE",
+                "check": [
+                  "180 - 140 == 40"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Judge the converse",
+            "intro": "Swap it, then test it on its own.",
+            "problems": [
+              {
+                "prompt": "“If a number is a multiple of $8$, then it is even.” The converse is —",
+                "options": [
+                  "true",
+                  "false — e.g. $6$ is even, not a multiple of $8$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Converse: if even → multiple of $8$. $6$ breaks it.",
+                "check": [
+                  "6 % 2 == 0",
+                  "6 % 8 != 0"
+                ]
+              },
+              {
+                "prompt": "“If an angle is straight, then it measures $180^\\circ$.” The converse is —",
+                "options": [
+                  "true — $180^\\circ$ IS the straight measure",
+                  "false"
+                ],
+                "correctIndex": 0,
+                "explanation": "If it measures $180^\\circ$, it's straight — definitions work in both directions.",
+                "check": [
+                  "2*90 == 180"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Definitions are two-way streets",
+            "body": "When a statement AND its converse are both true — like “right angle ⇄ measures 90°” — mathematicians bundle them with the phrase **if and only if**. Every good definition works both ways; that's what separates definitions from ordinary one-way rules."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Flip check",
+            "prompt": "The converse of “if $P$, then $Q$” is —",
+            "options": [
+              "if $Q$, then $P$",
+              "if not $P$, then not $Q$",
+              "$P$ and $Q$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Converse = swap the hypothesis and conclusion.",
+            "check": [
+              "2 > 1"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Conditional**: if hypothesis, then conclusion.",
+              "**Converse**: swap the parts — a brand-new claim.",
+              "A true statement's converse may be true or false — judge it with its own counterexample hunt."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's label parts, flip statements, and judge converses — the exact skills proofs quietly rely on."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "“If a number is a multiple of $12$, then it is a multiple of $6$.” The hypothesis is —",
+                "options": [
+                  "multiple of $6$",
+                  "multiple of $12$",
+                  "the number is even",
+                  "$12 > 6$"
+                ],
+                "correctIndex": 1,
+                "explanation": "The if-part.",
+                "check": [
+                  "24 % 12 == 0",
+                  "24 % 6 == 0"
+                ]
+              },
+              {
+                "prompt": "That statement is TRUE. Its converse says —",
+                "options": [
+                  "if a multiple of $6$, then a multiple of $12$",
+                  "if not a multiple of $12$, then not of $6$",
+                  "the same thing"
+                ],
+                "correctIndex": 0,
+                "explanation": "Swap the parts.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Judge that converse: “if a multiple of $6$, then a multiple of $12$.”",
+                "options": [
+                  "true",
+                  "false — $18$ breaks it",
+                  "false — $24$ breaks it"
+                ],
+                "correctIndex": 1,
+                "explanation": "$18 = 6 \\times 3$ but $18 \\div 12$ isn't whole. ($24$ actually fits both.)",
+                "check": [
+                  "18 % 6 == 0",
+                  "18 % 12 != 0"
+                ]
+              },
+              {
+                "prompt": "Rewrite “all right angles measure $90^\\circ$” in if-then form:",
+                "options": [
+                  "If an angle measures $90^\\circ$, it is right",
+                  "If an angle is right, then it measures $90^\\circ$",
+                  "If $90^\\circ$, then angle"
+                ],
+                "correctIndex": 1,
+                "explanation": "“All X are Y” → “if X, then Y.”",
+                "check": [
+                  "180/2 == 90"
+                ]
+              },
+              {
+                "prompt": "Two angles in separate figures have measures adding to $180^\\circ$. For these two angles, is the HYPOTHESIS of “if two angles form a linear pair, then they are supplementary” true?",
+                "options": [
+                  "Yes — they total 180°",
+                  "No — a linear pair must be adjacent on a line"
+                ],
+                "correctIndex": 1,
+                "explanation": "Supplementary is only the conclusion; the hypothesis needs an actual linear pair (adjacent, outer sides forming a line — Unit 1).",
+                "check": [
+                  "90 + 90 == 180"
+                ]
+              },
+              {
+                "prompt": "A statement and its converse are BOTH true. Mathematicians write this as —",
+                "options": [
+                  "a conjecture",
+                  "“if and only if”",
+                  "a counterexample",
+                  "a converse"
+                ],
+                "correctIndex": 1,
+                "explanation": "True both directions = if and only if (how definitions behave).",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"If-Then Statements & the Converse\"",
+            "body": "You can dissect any rule into hypothesis and conclusion — and never trust a converse for free again. Next: Algebraic Proof, where solving an equation becomes your first full proof."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "algebraic-proof",
+      "title": "Algebraic Proof",
+      "concreteComparison": "You've been told “show your work” for years. Here's the secret: worked algebra **is already a proof**. Each line follows from the last by a rule with a name — and once you name the rules, solving $2x + 3 = 11$ becomes a certified chain of deductions.",
+      "objective": "Justify each step of solving an equation with a named property of equality, turning algebra into two-column proof.",
+      "concept": [
+        "The **properties of equality** are the legal moves of algebra. If $a = b$, then: $a + c = b + c$ (**Addition Property**), $a - c = b - c$ (**Subtraction Property**), $ac = bc$ (**Multiplication Property**), $a \\div c = b \\div c$ for $c \\neq 0$ (**Division Property**).",
+        "The **Substitution Property**: if $a = b$, you may replace $a$ with $b$ anywhere.",
+        "The **Distributive Property** (from Grade 6): $a(b + c) = ab + ac$ — a property of numbers you can cite as a reason.",
+        "An **algebraic proof** solves an equation in two-column form: every line a statement, every line justified by a named property."
+      ],
+      "keyIdea": "Every algebra move has a legal name. Naming each move turns a solution into a proof.",
+      "facts": [
+        {
+          "title": "The legal moves",
+          "latex": "$+, -, \\times, \\div$ (both sides)",
+          "explanation": "Addition / Subtraction / Multiplication / Division Properties of Equality."
+        },
+        {
+          "title": "Substitution",
+          "latex": "$a = b \\Rightarrow$ swap freely",
+          "explanation": "Replace equals with equals, anywhere."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "alg-we1",
+          "statement": "Solve $2x + 3 = 11$, naming each step's property.",
+          "solution": "$2x + 3 = 11$ (Given). $2x = 8$ (Subtraction Property — subtract $3$). $x = 4$ (Division Property — divide by $2$).",
+          "check": [
+            "solve(Eq(2*x + 3, 11), x) == [4]"
+          ]
+        },
+        {
+          "id": "alg-we2",
+          "statement": "Solve $4(x + 2) = 28$, naming each property.",
+          "solution": "$4(x+2) = 28$ (Given). $4x + 8 = 28$ (Distributive Property). $4x = 20$ (Subtraction Property). $x = 5$ (Division Property).",
+          "check": [
+            "solve(Eq(4*(x + 2), 28), x) == [5]"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Skipping steps in a proof because “it's obvious.”",
+          "correction": "In a proof, every line needs its reason — obvious to you isn't a legal justification.",
+          "authored": true
+        },
+        {
+          "text": "Naming the wrong property.",
+          "correction": "Match the move: subtracted from both sides → **Subtraction Property**; replaced a letter with its known value → **Substitution**.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "alg-t1",
+          "statement": "Solve $3x - 5 = 16$ with named steps.",
+          "solution": "$3x - 5 = 16$ (Given) → $3x = 21$ (Addition Property — add $5$) → $x = 7$ (Division Property).",
+          "check": [
+            "solve(Eq(3*x - 5, 16), x) == [7]"
+          ]
+        },
+        {
+          "id": "alg-t2",
+          "statement": "From $x = 9$ and $y = x + 2$, what does the Substitution Property give?",
+          "solution": "Replace $x$ with $9$: $y = 9 + 2 = 11$.",
+          "check": [
+            "9 + 2 == 11"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Algebra's legal moves",
+            "beats": [
+              "If $a = b$, both sides can take the same hit: add, subtract, multiply, or divide (not by $0$).",
+              "Those are the four **Properties of Equality**.",
+              "**Substitution**: replace equals with equals, anywhere.",
+              "Name the move on every line, and a solution becomes a proof."
+            ]
+          },
+          {
+            "kind": "stepProof",
+            "eyebrow": "Concept A",
+            "title": "A solution, certified",
+            "teach": "The same algebra you've always done — but now every line carries the name of the legal move that produced it. This is a complete two-column proof.",
+            "config": {
+              "given": "$2x + 3 = 11$",
+              "prove": "$x = 4$",
+              "rows": [
+                {
+                  "statement": "$2x + 3 = 11$",
+                  "reason": "Given"
+                },
+                {
+                  "statement": "$2x = 8$",
+                  "reason": "Subtraction Property of Equality (subtract 3 from both sides)"
+                },
+                {
+                  "statement": "$x = 4$",
+                  "reason": "Division Property of Equality (divide both sides by 2)"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Naming the moves",
+            "title": "Which property was that?",
+            "beats": [
+              "Subtracted $3$ from both sides → **Subtraction Property**.",
+              "Divided both sides by $2$ → **Division Property**.",
+              "Expanded $4(x+2)$ to $4x + 8$ → **Distributive Property**.",
+              "Swapped $x$ for its known value → **Substitution**."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Prove the solve",
+            "intro": "Every line, named. (The little box ∎ marks the end of a finished proof.)",
+            "examples": [
+              {
+                "prompt": "Prove: if $3x - 5 = 16$, then $x = 7$.",
+                "steps": [
+                  "$3x - 5 = 16$ — Given.",
+                  "$3x = 21$ — Addition Property (add $5$).",
+                  "$x = 7$ — Division Property (divide by $3$)."
+                ],
+                "answer": "$x = 7$ ∎",
+                "check": [
+                  "solve(Eq(3*x - 5, 16), x) == [7]"
+                ]
+              },
+              {
+                "prompt": "Prove: if $4(x + 2) = 28$, then $x = 5$.",
+                "steps": [
+                  "$4(x+2) = 28$ — Given.",
+                  "$4x + 8 = 28$ — Distributive Property.",
+                  "$4x = 20$ — Subtraction Property.",
+                  "$x = 5$ — Division Property."
+                ],
+                "answer": "$x = 5$ ∎",
+                "check": [
+                  "solve(Eq(4*(x + 2), 28), x) == [5]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Name that property",
+            "intro": "Match the move to its legal name.",
+            "problems": [
+              {
+                "prompt": "From $5x = 30$ to $x = 6$: which property?",
+                "options": [
+                  "Division Property",
+                  "Subtraction Property",
+                  "Substitution"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both sides divided by $5$: $30/5 = 6$.",
+                "check": [
+                  "30/5 == 6"
+                ]
+              },
+              {
+                "prompt": "From $x - 7 = 12$ to $x = 19$: which property?",
+                "options": [
+                  "Addition Property",
+                  "Division Property",
+                  "Distributive Property"
+                ],
+                "correctIndex": 0,
+                "explanation": "Added $7$ to both sides: $12 + 7 = 19$.",
+                "check": [
+                  "12 + 7 == 19"
+                ]
+              },
+              {
+                "prompt": "From $2(x + 5) = 2x + 10$: which property?",
+                "options": [
+                  "Substitution",
+                  "Distributive Property",
+                  "Addition Property"
+                ],
+                "correctIndex": 1,
+                "explanation": "Multiplying through the parentheses.",
+                "check": [
+                  "Eq(expand(2*(x + 5)), 2*x + 10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why bother naming",
+            "title": "The bridge to geometry",
+            "beats": [
+              "Geometry proofs use the SAME properties.",
+              "$AM + MB = AB$, then substitute known lengths — that's **Substitution**.",
+              "Angles subtracted from both sides of an equation — **Subtraction Property**.",
+              "Master the names here, and geometric proofs read like algebra."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Equations with a geometry costume",
+            "intro": "Same moves, wearing segments and angles.",
+            "examples": [
+              {
+                "prompt": "$B$ is between $A$ and $C$; $AB = 2x$, $BC = 9$, $AC = 23$. Prove $x = 7$.",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 0,
+                        "y": 0
+                      },
+                      {
+                        "id": "B",
+                        "x": 6.1,
+                        "y": 0
+                      },
+                      {
+                        "id": "C",
+                        "x": 10,
+                        "y": 0
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#e8913c"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#5b8def"
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "$AB + BC = AC$ — Segment Addition Postulate (Unit 1).",
+                  "$2x + 9 = 23$ — Substitution.",
+                  "$2x = 14$ — Subtraction Property.",
+                  "$x = 7$ — Division Property."
+                ],
+                "answer": "$x = 7$ ∎",
+                "check": [
+                  "solve(Eq(2*x + 9, 23), x) == [7]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Solve like a proof",
+            "intro": "Run the chain in your head.",
+            "problems": [
+              {
+                "prompt": "$5x + 4 = 39$. Then $x = $ —",
+                "options": [
+                  "$7$",
+                  "$8$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5x = 35$ (Subtraction), $x = 7$ (Division).",
+                "check": [
+                  "solve(Eq(5*x + 4, 39), x) == [7]"
+                ]
+              },
+              {
+                "prompt": "$\\dfrac{x}{3} = 12$. Which property finishes it, and $x = $ —",
+                "options": [
+                  "Multiplication; $x = 36$",
+                  "Division; $x = 4$",
+                  "Addition; $x = 15$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Multiply both sides by $3$: $x = 36$.",
+                "check": [
+                  "solve(Eq(x/3, 12), x) == [36]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The two-column format is a schoolhouse invention",
+            "body": "Working mathematicians rarely draw two columns — they write proofs as careful paragraphs. The two-column layout was invented in American schools around 1900 as training wheels: it forces the habit every proof needs, *no statement without a reason*. Master the habit and the columns become optional."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Name it",
+            "prompt": "From $x + 9 = 21$ to $x = 12$: which property?",
+            "options": [
+              "Subtraction Property",
+              "Division Property",
+              "Distributive Property"
+            ],
+            "correctIndex": 0,
+            "explanation": "Subtract $9$ from both sides: $21 - 9 = 12$.",
+            "check": [
+              "21 - 9 == 12"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Properties of Equality: add, subtract, multiply, divide — **both sides**, with a name.",
+              "**Substitution** swaps equals for equals; **Distributive** expands $a(b+c)$.",
+              "Solving with named reasons **is** a two-column proof — the same machine geometry uses."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's certify some solutions: solve, and name every move."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$2x + 7 = 19$. $x = $ —",
+                "options": [
+                  "$5$",
+                  "$6$",
+                  "$7$",
+                  "$13$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$2x = 12$ (Subtraction), $x = 6$ (Division).",
+                "check": [
+                  "solve(Eq(2*x + 7, 19), x) == [6]"
+                ]
+              },
+              {
+                "prompt": "From $x - 4 = 10$ to $x = 14$: which property?",
+                "options": [
+                  "Addition Property",
+                  "Subtraction Property",
+                  "Division Property",
+                  "Substitution"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4$ was added to both sides.",
+                "check": [
+                  "10 + 4 == 14"
+                ]
+              },
+              {
+                "prompt": "From $3(x + 1) = 3x + 3$: which property?",
+                "options": [
+                  "Substitution",
+                  "Division Property",
+                  "Distributive Property",
+                  "Addition Property"
+                ],
+                "correctIndex": 2,
+                "explanation": "Multiplying through the parentheses.",
+                "check": [
+                  "Eq(expand(3*(x + 1)), 3*x + 3)"
+                ]
+              },
+              {
+                "prompt": "$4x = 52$. $x = $ —",
+                "options": [
+                  "$12$",
+                  "$13$",
+                  "$14$",
+                  "$48$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Division Property: $52/4 = 13$.",
+                "check": [
+                  "solve(Eq(4*x, 52), x) == [13]"
+                ]
+              },
+              {
+                "prompt": "Given $y = 6$ and $x = y + 5$: the Substitution Property gives $x = $ —",
+                "options": [
+                  "$11$",
+                  "$30$",
+                  "$1$",
+                  "$65$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Replace $y$ with $6$: $x = 6 + 5 = 11$.",
+                "check": [
+                  "6 + 5 == 11"
+                ]
+              },
+              {
+                "prompt": "$m\\angle A + 35^\\circ = 90^\\circ$ (complementary). Then $m\\angle A = $ —",
+                "options": [
+                  "$55^\\circ$",
+                  "$65^\\circ$",
+                  "$145^\\circ$",
+                  "$35^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Subtraction Property: $90^\\circ - 35^\\circ = 55^\\circ$.",
+                "check": [
+                  "90 - 35 == 55"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Algebraic Proof\"",
+            "body": "Your algebra now comes with a certificate — every move named and legal. Final lesson: full geometric proofs, including the theorem you've been using since Unit 1."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "geometric-proofs",
+      "title": "Your First Geometric Proofs",
+      "concreteComparison": "In a courtroom, a verdict needs evidence admitted under rules. You now hold the whole evidence locker: Unit 1's definitions and postulates, Lesson 5's properties of equality, and deduction to chain them. Time to convict your first theorem.",
+      "objective": "Read and complete two-column geometric proofs — including a full proof that vertical angles are congruent.",
+      "concept": [
+        "A **theorem** is a statement that has been **proven** — unlike a postulate (accepted without proof, Unit 1) or a conjecture (not yet settled, Lesson 1).",
+        "Geometric proofs chain what you own: **definitions** (midpoint, bisector, right angle…), **postulates** (Ruler, Segment Addition), and **properties of equality** (Lesson 5).",
+        "Angles are **congruent** when they have the same measure — the angle version of Unit 1's congruent segments.",
+        "One more legal move: the **Transitive Property** — if $a = b$ and $b = c$, then $a = c$. Two things equal to the same thing are equal to each other.",
+        "Today's prize: the **Vertical Angles Theorem**. You *measured* it in Unit 1; now you'll *prove* it — so it holds for every crossing that will ever exist."
+      ],
+      "keyIdea": "Theorem = proven. Chain definitions, postulates, and equality properties until the claim is forced.",
+      "facts": [
+        {
+          "title": "Three kinds of statement",
+          "latex": "$\\text{conjecture · postulate · theorem}$",
+          "explanation": "Guessed · accepted without proof · proven."
+        },
+        {
+          "title": "Transitive Property",
+          "latex": "$a = b,\\ b = c \\Rightarrow a = c$",
+          "explanation": "Equal to the same thing → equal to each other."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "gp-we1",
+          "statement": "$B$ is between $A$ and $C$; $AB = 5$, $AC = 12$. Prove $BC = 7$.",
+          "solution": "$AB + BC = AC$ (Segment Addition Postulate). $5 + BC = 12$ (Substitution). $BC = 7$ (Subtraction Property).",
+          "check": [
+            "12 - 5 == 7"
+          ]
+        },
+        {
+          "id": "gp-we2",
+          "statement": "Two lines cross, so $\\angle 1$ and $\\angle 2$ form a linear pair, as do $\\angle 2$ and $\\angle 3$. If $m\\angle 1 = 115^\\circ$, find $m\\angle 3$ — with reasons.",
+          "solution": "$m\\angle 1 + m\\angle 2 = 180^\\circ$ and $m\\angle 2 + m\\angle 3 = 180^\\circ$ (linear pairs are supplementary). So $m\\angle 2 = 65^\\circ$, then $m\\angle 3 = 180^\\circ - 65^\\circ = 115^\\circ$ — equal to $m\\angle 1$, exactly the pattern the Vertical Angles Theorem (proven in this lesson) captures.",
+          "check": [
+            "180 - 115 == 65",
+            "180 - 65 == 115"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Citing the claim you're proving as its own reason.",
+          "correction": "You can't use the Vertical Angles Theorem **inside** its own proof — only earlier facts are admissible.",
+          "authored": true
+        },
+        {
+          "text": "Leaving out the postulate that justifies an equation.",
+          "correction": "$5 + BC = 12$ doesn't come from nowhere — it needs $AB + BC = AC$ (Segment Addition) first.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "gp-t1",
+          "statement": "$B$ between $A$ and $C$; $AB = 9$, $AC = 20$. Prove-style: $BC = $ ?",
+          "solution": "$AB + BC = AC$ (Seg. Add. Post.) → $9 + BC = 20$ (Substitution) → $BC = 11$ (Subtraction Prop.).",
+          "check": [
+            "20 - 9 == 11"
+          ]
+        },
+        {
+          "id": "gp-t2",
+          "statement": "If $m\\angle 1 = 40^\\circ$, $m\\angle 2 = 40^\\circ$ makes $m\\angle 1 = m\\angle 2$; and $m\\angle 2 = m\\angle 3$. What property gives $m\\angle 1 = m\\angle 3$?",
+          "solution": "The Transitive Property of Equality — both equal the same middle quantity, here $40^\\circ$.",
+          "check": [
+            "180 - 140 == 40",
+            "2 > 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Conjecture, postulate, theorem",
+            "beats": [
+              "**Conjecture**: believed from patterns — not settled (Lesson 1).",
+              "**Postulate**: accepted as a starting rule, no proof (Unit 1).",
+              "**Theorem**: PROVEN from definitions, postulates, and earlier theorems.",
+              "Proving promotes a claim to permanent, every-case truth."
+            ]
+          },
+          {
+            "kind": "stepProof",
+            "eyebrow": "Warm-up proof",
+            "title": "A missing part, certified",
+            "teach": "The same three-step engine every segment proof uses: postulate → substitution → equality property.",
+            "config": {
+              "given": "$B$ is between $A$ and $C$; $AB = 5$, $AC = 12$.",
+              "prove": "$BC = 7$",
+              "rows": [
+                {
+                  "statement": "$AB + BC = AC$",
+                  "reason": "Segment Addition Postulate (Unit 1)"
+                },
+                {
+                  "statement": "$5 + BC = 12$",
+                  "reason": "Substitution ($AB = 5$, $AC = 12$, given)"
+                },
+                {
+                  "statement": "$BC = 7$",
+                  "reason": "Subtraction Property of Equality"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "One more legal move",
+            "title": "The Transitive Property",
+            "beats": [
+              "If $a = b$ and $b = c$, then $a = c$.",
+              "Two quantities equal to the **same** thing are equal to each other.",
+              "Both angles equal $180^\\circ$ minus the same neighbor? Then they're equal.",
+              "That's the key that unlocks vertical angles."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Set the stage",
+            "title": "What we know at a crossing",
+            "beats": [
+              "Two lines cross, making $\\angle 1, \\angle 2, \\angle 3, \\angle 4$.",
+              "$\\angle 1$ and $\\angle 2$ are adjacent with outer sides forming a line: a **linear pair** → sum $180^\\circ$ (Unit 1).",
+              "$\\angle 2$ and $\\angle 3$ are the same: another linear pair → sum $180^\\circ$.",
+              "Both sums equal $180^\\circ$… the Transitive Property is loaded."
+            ]
+          },
+          {
+            "kind": "stepProof",
+            "eyebrow": "The main event",
+            "title": "The Vertical Angles Theorem",
+            "teach": "You measured this in Unit 1 and it always held. This proof is WHY it always holds — for every pair of crossing lines that will ever exist, without measuring a single one.",
+            "config": {
+              "given": "$\\angle 1$ and $\\angle 2$ form a linear pair; $\\angle 2$ and $\\angle 3$ form a linear pair.",
+              "prove": "$m\\angle 1 = m\\angle 3$ (vertical angles are congruent)",
+              "rows": [
+                {
+                  "statement": "$m\\angle 1 + m\\angle 2 = 180^\\circ$",
+                  "reason": "Linear pairs are supplementary (Unit 1)"
+                },
+                {
+                  "statement": "$m\\angle 2 + m\\angle 3 = 180^\\circ$",
+                  "reason": "Linear pairs are supplementary (Unit 1)"
+                },
+                {
+                  "statement": "$m\\angle 1 + m\\angle 2 = m\\angle 2 + m\\angle 3$",
+                  "reason": "Transitive Property (both equal $180^\\circ$)"
+                },
+                {
+                  "statement": "$m\\angle 1 = m\\angle 3$",
+                  "reason": "Subtraction Property of Equality (subtract $m\\angle 2$)"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Use your new theorem",
+            "intro": "Proven once — use forever.",
+            "examples": [
+              {
+                "prompt": "Two lines cross; one angle measures $115^\\circ$. Justify the measure across from it.",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "O",
+                        "x": 0,
+                        "y": 0,
+                        "label": ""
+                      },
+                      {
+                        "id": "E",
+                        "x": 4,
+                        "y": 0,
+                        "label": ""
+                      },
+                      {
+                        "id": "W",
+                        "x": -4,
+                        "y": 0,
+                        "label": ""
+                      },
+                      {
+                        "id": "N",
+                        "x": -1.69,
+                        "y": 3.63,
+                        "label": ""
+                      },
+                      {
+                        "id": "S",
+                        "x": 1.69,
+                        "y": -3.63,
+                        "label": ""
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "line",
+                        "from": "W",
+                        "to": "E"
+                      },
+                      {
+                        "kind": "line",
+                        "from": "S",
+                        "to": "N"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "O",
+                        "from": "E",
+                        "to": "N",
+                        "label": "115°"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "O",
+                        "from": "W",
+                        "to": "S",
+                        "label": "?",
+                        "color": "#5b8def"
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "The two angles are vertical.",
+                  "Vertical Angles **Theorem** (just proven!): they're congruent.",
+                  "So the measure is $115^\\circ$ — no measuring needed."
+                ],
+                "answer": "$115^\\circ$, by the Vertical Angles Theorem",
+                "check": [
+                  "180 - 65 == 115"
+                ]
+              },
+              {
+                "prompt": "In the same figure, justify the measure of a neighbor angle.",
+                "steps": [
+                  "Neighbors along a line form a **linear pair**.",
+                  "$180^\\circ - 115^\\circ = 65^\\circ$ — by the linear-pair rule."
+                ],
+                "answer": "$65^\\circ$",
+                "check": [
+                  "180 - 115 == 65"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Supply the reason",
+            "intro": "Every statement earns its line.",
+            "problems": [
+              {
+                "prompt": "In the warm-up proof, what justifies $5 + BC = 12$?",
+                "options": [
+                  "Segment Addition Postulate",
+                  "Substitution",
+                  "Division Property"
+                ],
+                "correctIndex": 1,
+                "explanation": "Known values were substituted into $AB + BC = AC$.",
+                "check": [
+                  "5 + 7 == 12"
+                ]
+              },
+              {
+                "prompt": "$m\\angle 1 + m\\angle 2 = m\\angle 2 + m\\angle 3$ came from both sums equaling $180^\\circ$. Which property?",
+                "options": [
+                  "Transitive Property",
+                  "Distributive Property",
+                  "Definition of midpoint"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two things equal to the same thing are equal to each other.",
+                "check": [
+                  "115 + 65 == 180",
+                  "65 + 115 == 180"
+                ]
+              },
+              {
+                "prompt": "Why can't the Vertical Angles Theorem appear as a reason INSIDE its own proof?",
+                "options": [
+                  "It's too long",
+                  "Only already-established facts are admissible",
+                  "Theorems are never reasons"
+                ],
+                "correctIndex": 1,
+                "explanation": "A proof may only cite what came before it — otherwise it's circular.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "What you've earned",
+            "title": "From measured to proven",
+            "beats": [
+              "In Unit 1 the protractor **suggested** vertical angles match.",
+              "Today deduction **guaranteed** it — for all crossings, forever.",
+              "That's the whole geometry game: notice (induction), then prove (deduction).",
+              "Every unit ahead plays it: parallel lines, triangles, circles…"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Lincoln's study partner",
+            "body": "Abraham Lincoln carried a copy of Euclid's *Elements* on the judicial circuit and worked through the first six books by candlelight — he said he did it to learn what it truly means to *demonstrate* something. The proof you just read is a direct descendant of the ones he studied."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Rank them",
+            "prompt": "A statement that has been PROVEN is a —",
+            "options": [
+              "conjecture",
+              "postulate",
+              "theorem"
+            ],
+            "correctIndex": 2,
+            "explanation": "Proven = theorem. Postulates are accepted; conjectures await judgment.",
+            "check": [
+              "2 > 1"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Theorem** = proven from definitions, postulates, properties, and earlier theorems.",
+              "**Transitive Property**: $a = b$, $b = c$ ⟹ $a = c$.",
+              "The **Vertical Angles Theorem** is yours now — proven, not just observed."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "The last practice of the unit: reasons, ranks, and one full chain from given to proven."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$B$ between $A$ and $C$; $AB = 8$, $AC = 19$. $BC = $ —",
+                "options": [
+                  "$27$",
+                  "$11$",
+                  "$9$",
+                  "$12$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Seg. Add. → $8 + BC = 19$ → $BC = 11$ (Subtraction Prop.).",
+                "check": [
+                  "19 - 8 == 11"
+                ]
+              },
+              {
+                "prompt": "Two lines cross; one angle is $73^\\circ$. The angle vertical to it is —",
+                "options": [
+                  "$107^\\circ$",
+                  "$73^\\circ$",
+                  "$17^\\circ$",
+                  "$117^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Vertical Angles Theorem: congruent.",
+                "check": [
+                  "180 - 107 == 73"
+                ]
+              },
+              {
+                "prompt": "Same crossing: an angle adjacent to the $73^\\circ$ one (linear pair) is —",
+                "options": [
+                  "$73^\\circ$",
+                  "$107^\\circ$",
+                  "$90^\\circ$",
+                  "$127^\\circ$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$180 - 73 = 107$.",
+                "check": [
+                  "180 - 73 == 107"
+                ]
+              },
+              {
+                "prompt": "If $AB = CD$ and $CD = EF$, then $AB = EF$ by the —",
+                "options": [
+                  "Distributive Property",
+                  "Transitive Property",
+                  "Segment Addition Postulate",
+                  "Ruler Postulate"
+                ],
+                "correctIndex": 1,
+                "explanation": "Equal to the same thing → equal to each other.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Which is accepted WITHOUT proof?",
+                "options": [
+                  "theorem",
+                  "postulate",
+                  "the Vertical Angles Theorem",
+                  "a proven conjecture"
+                ],
+                "correctIndex": 1,
+                "explanation": "Postulates are the starting rules; theorems must be proven.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "$\\overrightarrow{BD}$ bisects $\\angle ABC$; $m\\angle ABD = 4x^\\circ$, $m\\angle DBC = 36^\\circ$. By the definition of angle bisector + Division Property, $x = $ —",
+                "options": [
+                  "$9$",
+                  "$36$",
+                  "$18$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Halves equal: $4x = 36$ → $x = 9$.",
+                "check": [
+                  "solve(Eq(4*x, 36), x) == [9]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Your First Geometric Proofs\"",
+            "body": "That completes Unit 2 — you've gone from noticing patterns to proving theorems. Unit 3 aims this machinery at parallel lines, where a single transversal lights up eight angles at once."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [],
+  "testYourself": []
+}
