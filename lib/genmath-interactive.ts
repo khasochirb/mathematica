@@ -333,6 +333,15 @@ export interface FactorPairsConfig {
   color?: string;
 }
 
+// Factor finder — steps through candidate divisors 1, 2, 3, … testing each,
+// pairing every divisor d with n/d, and building the ordered list of ALL
+// factors, then draws a "factor rainbow" of the pairs. Teaches the METHOD of
+// listing factors in order (and why you can stop at √n).
+export interface FactorFinderConfig {
+  n: number;
+  color?: string;
+}
+
 // Multiples — a 1..max number grid where the multiples of a chosen number light
 // up, making skip-counting visible.
 export interface MultiplesGridConfig {
@@ -882,6 +891,7 @@ export type InteractiveStep =
   | { kind: "integerSubtract"; eyebrow?: string; title: string; teach: string; config: IntegerAddConfig }
   | { kind: "integerSignRule"; eyebrow?: string; title: string; teach: string; config: IntegerSignRuleConfig }
   | { kind: "factorPairs"; eyebrow?: string; title: string; teach: string; config: FactorPairsConfig }
+  | { kind: "factorFinder"; eyebrow?: string; title: string; teach: string; config: FactorFinderConfig }
   | { kind: "multiplesGrid"; eyebrow?: string; title: string; teach: string; config: MultiplesGridConfig }
   | { kind: "primeExplorer"; eyebrow?: string; title: string; teach: string; config: PrimeExplorerConfig }
   | { kind: "gcfFinder"; eyebrow?: string; title: string; teach: string; config: GcfFinderConfig }

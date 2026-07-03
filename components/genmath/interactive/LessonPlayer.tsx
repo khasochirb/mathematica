@@ -39,6 +39,7 @@ import IntegerAdd from "@/components/genmath/interactive/IntegerAdd";
 import IntegerSubtract from "@/components/genmath/interactive/IntegerSubtract";
 import IntegerSignRule from "@/components/genmath/interactive/IntegerSignRule";
 import FactorPairs from "@/components/genmath/interactive/FactorPairs";
+import FactorFinder from "@/components/genmath/interactive/FactorFinder";
 import MultiplesGrid from "@/components/genmath/interactive/MultiplesGrid";
 import PrimeExplorer from "@/components/genmath/interactive/PrimeExplorer";
 import GcfFinder from "@/components/genmath/interactive/GcfFinder";
@@ -556,6 +557,16 @@ function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveSt
         <>
           <StepHeader eyebrow={step.eyebrow} title={step.title} />
           <FactorPairs config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "factorFinder":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <FactorFinder config={step.config} />
           <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
             <MathText text={step.teach} />
           </p>

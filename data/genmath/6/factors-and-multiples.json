@@ -185,11 +185,20 @@
             "eyebrow": "Be systematic",
             "title": "Listing all factors in order",
             "beats": [
-              "Start at $1$ and work up, checking each number.",
-              "Each time one divides evenly, write it **and** its partner.",
-              "$18$: $1\\times18, 2\\times9, 3\\times6$ → $1, 2, 3, 6, 9, 18$.",
-              "Stop when the pair starts to repeat."
+              "Go through the numbers $1, 2, 3, \\dots$ in order, testing each one.",
+              "Every number that divides evenly is a factor — write it **and** its partner $n \\div d$.",
+              "$18$: $1\\times18,\\ 2\\times9,\\ 3\\times6$, so the factors are $1, 2, 3, 6, 9, 18$.",
+              "You can stop once a number times itself passes $18$ (just past $4$): after that the pairs only repeat."
             ]
+          },
+          {
+            "kind": "factorFinder",
+            "eyebrow": "Concept B",
+            "title": "The method, step by step",
+            "teach": "Tap **Test the next number** to try each divisor in turn. Every number that divides $18$ evenly is a factor — and it drags its partner in with it. Once you pass $\\sqrt{18}\\approx 4.2$ the pairs only repeat, so you can stop. The **factor rainbow** joins each pair that multiplies to $18$.",
+            "config": {
+              "n": 18
+            }
           },
           {
             "kind": "workedSet",
@@ -489,6 +498,17 @@
               "That lands you on $4, 8, 12, 16, \\ldots$",
               "The list never ends — there are infinitely many.",
               "The number itself ($4$) is its smallest nonzero multiple."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why it matters",
+            "title": "Counting in equal groups",
+            "beats": [
+              "A multiple is what you get by counting in **equal groups**.",
+              "$3$ eggs per row: $1$ row is $3$, $2$ rows is $6$, $3$ rows is $9$ — the multiples of $3$.",
+              "So a number's multiples are just its **times-table**: $3, 6, 9, 12, \\ldots$",
+              "Because the list is built by multiplying, every multiple of $3$ has $3$ as a **factor** — the flip side of the coin."
             ]
           },
           {
@@ -895,6 +915,17 @@
               "$7$ divides only by $1$ and $7$ — prime.",
               "A **composite** has more than two factors.",
               "$12 = 2\\times6$, so $12$ has $1,2,3,4,6,12$ — composite."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The big idea",
+            "title": "Primes are the building blocks",
+            "beats": [
+              "A **composite** number can be broken into a product of smaller numbers.",
+              "A **prime** cannot be broken down — its only factors are $1$ and itself.",
+              "So primes are the **building blocks** every whole number is made from.",
+              "$12 = 2\\times 2\\times 3$ — all primes; $7$ is already a single block."
             ]
           },
           {
