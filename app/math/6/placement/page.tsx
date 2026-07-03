@@ -145,7 +145,7 @@ function Quiz({
         {options.map((opt, i) => {
           const isCorrect = answered && i === correctIndex;
           const isYours = answered && i === picked;
-          const isWrong = isYours && i !== q.correctIndex;
+          const isWrong = isYours && i !== correctIndex;
           let bg = "var(--bg-2)", border = "var(--line)", color = "var(--fg)";
           if (isCorrect) { bg = "rgba(63,178,127,0.14)"; border = "#3fb27f"; }
           else if (isWrong) { bg = "rgba(215,80,63,0.10)"; border = "rgba(215,80,63,0.5)"; color = "var(--fg-2)"; }
