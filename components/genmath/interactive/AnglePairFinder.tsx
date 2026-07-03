@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { ArrowHead, arcPath, GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
+import { useAnimatedValue } from "@/components/genmath/interactive/useAnimatedValue";
 import { crossingAngles, complement } from "@/lib/geo";
 import { type AnglePairFinderConfig } from "@/lib/genmath-interactive";
 
@@ -43,6 +44,8 @@ function Crossing({ initial, color }: { initial: number; color: string }) {
   const cy = 105;
   const [deg, setDeg] = useState(Math.min(160, Math.max(20, initial)));
   const [view, setView] = useState<"vertical" | "linear">("vertical");
+  // drawing follows a stiff spring; the measure readouts stay exact
+  const degDraw = useAnimatedValue(deg, { stiffness: 320, damping: 30 });
   const [a1, a2, a3, a4] = crossingAngles(deg);
 
   const drag = useAngleDrag(cx, cy, (d) => setDeg(Math.min(160, Math.max(20, d))));
@@ -53,10 +56,10 @@ function Crossing({ initial, color }: { initial: number; color: string }) {
 
   // angle arcs sit between the two lines: regions [0,deg],[deg,180],[180,180+deg],[180+deg,360]
   const arcs = [
-    { from: 0, to: deg, num: 1 },
-    { from: deg, to: 180, num: 2 },
-    { from: 180, to: 180 + deg, num: 3 },
-    { from: 180 + deg, to: 360, num: 4 },
+    { from: 0, to: degDraw, num: 1 },
+    { from: degDraw, to: 180, num: 2 },
+    { from: 180, to: 180 + degDraw, num: 3 },
+    { from: 180 + degDraw, to: 360, num: 4 },
   ];
   const measures: Record<number, number> = { 1: a1, 2: a2, 3: a3, 4: a4 };
   const groupA = view === "vertical" ? [1, 3] : [1, 2];
@@ -84,13 +87,13 @@ function Crossing({ initial, color }: { initial: number; color: string }) {
         <ArrowHead x={cx - L} y={cy} deg={180} color="var(--fg-1)" />
         {/* line 2 — rotatable */}
         {(() => {
-          const p = pt(deg, L);
-          const q = pt(deg + 180, L);
+          const p = pt(degDraw, L);
+          const q = pt(degDraw + 180, L);
           return (
             <>
               <line x1={q.x} y1={q.y} x2={p.x} y2={p.y} stroke="var(--fg-1)" strokeWidth={2.2} />
-              <ArrowHead x={p.x} y={p.y} deg={-deg} color="var(--fg-1)" />
-              <ArrowHead x={q.x} y={q.y} deg={-deg + 180} color="var(--fg-1)" />
+              <ArrowHead x={p.x} y={p.y} deg={-degDraw} color="var(--fg-1)" />
+              <ArrowHead x={q.x} y={q.y} deg={-degDraw + 180} color="var(--fg-1)" />
               <circle cx={p.x} cy={p.y} r={15} fill="transparent" style={{ cursor: "grab" }} />
               <circle cx={p.x} cy={p.y} r={4.5} fill="var(--fg-1)" />
             </>
@@ -189,13 +192,16 @@ function Corner({ initial, color }: { initial: number; color: string }) {
   const cy = H - 40;
   const [deg, setDeg] = useState(Math.min(80, Math.max(10, initial)));
   const other = complement(deg);
+  // drawing follows a stiff spring; the measure readouts stay exact
+  const degDraw = useAnimatedValue(deg, { stiffness: 320, damping: 30 });
+  const otherDraw = 90 - degDraw;
 
   const drag = useAngleDrag(cx, cy, (d) => setDeg(Math.min(80, Math.max(10, d))));
 
   const rad = (v: number) => (v * Math.PI) / 180;
   const pt = (d: number, r: number) => ({ x: cx + r * Math.cos(rad(d)), y: cy - r * Math.sin(rad(d)) });
   const L = 150;
-  const mid = pt(deg, L - 12);
+  const mid = pt(degDraw, L - 12);
 
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
@@ -222,16 +228,16 @@ function Corner({ initial, color }: { initial: number; color: string }) {
 
         {/* middle ray */}
         <line x1={cx} y1={cy} x2={mid.x} y2={mid.y} stroke={color} strokeWidth={2.4} />
-        <ArrowHead x={mid.x} y={mid.y} deg={-deg} color={color} />
+        <ArrowHead x={mid.x} y={mid.y} deg={-degDraw} color={color} />
         <circle cx={mid.x} cy={mid.y} r={15} fill="transparent" style={{ cursor: "grab" }} />
         <circle cx={mid.x} cy={mid.y} r={4.5} fill={color} />
 
         {/* the two complementary angles */}
-        <path d={arcPath(cx, cy, 34, 0, -deg)} fill="none" stroke={color} strokeWidth={2.2} />
-        <path d={arcPath(cx, cy, 42, -deg, -90)} fill="none" stroke={GEO_BLUE} strokeWidth={2.2} />
+        <path d={arcPath(cx, cy, 34, 0, -degDraw)} fill="none" stroke={color} strokeWidth={2.2} />
+        <path d={arcPath(cx, cy, 42, -degDraw, -90)} fill="none" stroke={GEO_BLUE} strokeWidth={2.2} />
         {(() => {
-          const p1 = pt(deg / 2, 58);
-          const p2 = pt(deg + other / 2, 64);
+          const p1 = pt(degDraw / 2, 58);
+          const p2 = pt(degDraw + otherDraw / 2, 64);
           return (
             <>
               <text x={p1.x} y={p1.y + 4} fontSize="12" textAnchor="middle" fill={color} fontWeight={700}>

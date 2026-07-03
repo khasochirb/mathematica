@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { arcPath, GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
 import { pointOnCircle, inscribedAngle } from "@/lib/geo";
+import { useAnimatedValue } from "@/components/genmath/interactive/useAnimatedValue";
 import { type CircleAngleConfig } from "@/lib/genmath-interactive";
 
 // A circle with an adjustable central angle AOB. The intercepted arc AB always
@@ -21,12 +22,14 @@ export default function CircleAngle({ config }: { config: CircleAngleConfig }) {
     return i < 0 ? 3 : i;
   });
   const theta = STEPS[ti];
+  // A and B glide around the circle between steps; readouts stay exact
+  const thetaDraw = useAnimatedValue(theta, { stiffness: 160, damping: 22 });
 
   const cx = W / 2, cy = H / 2 - 4, R = 100;
   const O = { x: cx, y: cy };
   // A and B on the circle, arc centred at the top (screen: up = -y)
-  const A = { x: cx + R * Math.cos(((-90 - theta / 2) * Math.PI) / 180), y: cy + R * Math.sin(((-90 - theta / 2) * Math.PI) / 180) };
-  const B = { x: cx + R * Math.cos(((-90 + theta / 2) * Math.PI) / 180), y: cy + R * Math.sin(((-90 + theta / 2) * Math.PI) / 180) };
+  const A = { x: cx + R * Math.cos(((-90 - thetaDraw / 2) * Math.PI) / 180), y: cy + R * Math.sin(((-90 - thetaDraw / 2) * Math.PI) / 180) };
+  const B = { x: cx + R * Math.cos(((-90 + thetaDraw / 2) * Math.PI) / 180), y: cy + R * Math.sin(((-90 + thetaDraw / 2) * Math.PI) / 180) };
   const C = { x: cx + R * Math.cos((90 * Math.PI) / 180), y: cy + R * Math.sin((90 * Math.PI) / 180) }; // bottom
   const degS = (from: any, to: any) => (Math.atan2(to.y - from.y, to.x - from.x) * 180) / Math.PI;
   void pointOnCircle;

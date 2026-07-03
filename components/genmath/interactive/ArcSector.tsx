@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { arcPath, GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
 import { arcLength, sectorArea } from "@/lib/geo";
+import { useAnimatedValue } from "@/components/genmath/interactive/useAnimatedValue";
 import { type ArcSectorConfig } from "@/lib/genmath-interactive";
 
 // A circle with an adjustable central angle θ. The shaded sector's arc length is
@@ -20,14 +21,16 @@ export default function ArcSector({ config }: { config: ArcSectorConfig }) {
     return i < 0 ? 3 : i;
   });
   const theta = STEPS[ti];
+  // the drawn sector glides between steps; every readout uses the exact theta
+  const thetaDraw = useAnimatedValue(theta, { stiffness: 160, damping: 22 });
   const cx = W / 2, cy = H / 2 - 4, R = 100;
 
   // sector from angle -90 (top) sweeping clockwise on screen... use start at right (0) going CCW in math but screen y down. We'll draw from 0° sweeping by theta.
   const start = -90; // start at top (screen)
   const p1 = { x: cx + R * Math.cos((start * Math.PI) / 180), y: cy + R * Math.sin((start * Math.PI) / 180) };
-  const end = start + theta;
+  const end = start + thetaDraw;
   const p2 = { x: cx + R * Math.cos((end * Math.PI) / 180), y: cy + R * Math.sin((end * Math.PI) / 180) };
-  const large = theta > 180 ? 1 : 0;
+  const large = thetaDraw > 180 ? 1 : 0;
   const sectorPath = `M ${cx} ${cy} L ${p1.x} ${p1.y} A ${R} ${R} 0 ${large} 1 ${p2.x} ${p2.y} Z`;
 
   // exact multiples of π, reduced

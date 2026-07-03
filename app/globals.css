@@ -504,7 +504,30 @@
   40%, 80% { transform: translateX(5px); }
 }
 .gm-shake { animation: gm-shake 0.4s ease both; }
+/* Geometry figures: an angle arc "sweeps" open when it appears. Set
+   pathLength={1} on the path so the dash math is size-independent. */
+@keyframes gm-arc-sweep {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+.gm-arc-sweep {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  animation: gm-arc-sweep 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+/* Highlighted-wedge fill fades in just after the arc sweeps. */
+@keyframes gm-wash-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.gm-wash-in { animation: gm-wash-in 0.45s ease 0.12s both; }
+/* Soft breathing pulse for the "look here" marks in a figure. */
+@keyframes gm-beacon {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+.gm-beacon { animation: gm-beacon 1.6s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) {
-  .gm-step, .gm-pop, .gm-fade, .gm-shake { animation: none; }
+  .gm-step, .gm-pop, .gm-fade, .gm-shake, .gm-arc-sweep, .gm-wash-in, .gm-beacon { animation: none; }
   .gm-press { transition: none; }
 }

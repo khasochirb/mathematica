@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
 import { dilate } from "@/lib/geo";
+import { useAnimatedValue } from "@/components/genmath/interactive/useAnimatedValue";
 import { type DilationConfig } from "@/lib/genmath-interactive";
 
 // A triangle and its dilation image from a center O. Each image vertex lies on
@@ -21,10 +22,12 @@ export default function Dilation({ config }: { config: DilationConfig }) {
     return i < 0 ? 3 : i;
   });
   const k = KS[ki];
+  // the image triangle glides along the dilation rays between steps
+  const kDraw = useAnimatedValue(k, { stiffness: 150, damping: 22 });
 
   const O = { x: 1, y: 1 };
   const pre = [{ x: 4, y: 2 }, { x: 6, y: 5 }, { x: 3, y: 5 }];
-  const img = pre.map((p) => dilate(p, O, k));
+  const img = pre.map((p) => dilate(p, O, kDraw));
 
   const all = [O, ...pre, ...img];
   const minX = Math.min(...all.map((p) => p.x)) - 1, maxX = Math.max(...all.map((p) => p.x)) + 1;

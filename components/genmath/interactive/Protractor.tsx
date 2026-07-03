@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { ArrowHead, arcPath, GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
 import { classifyAngle, clampProtractor, bisect } from "@/lib/geo";
+import { useAnimatedValue } from "@/components/genmath/interactive/useAnimatedValue";
 import { type ProtractorConfig } from "@/lib/genmath-interactive";
 
 // The interactive protractor. A fixed ray points right (0°); drag the other
@@ -37,10 +38,14 @@ export default function Protractor({ config }: { config: ProtractorConfig }) {
     setDeg(clampProtractor(a));
   };
 
-  const moving = pt(deg, rayLen);
-  const movingDir = -deg; // svg rotation for the arrowhead
+  // Draw from a stiff spring: drags track 1:1, the ±5° steppers glide.
+  // All text reads the exact target `deg`, never the in-flight value.
+  const degDraw = useAnimatedValue(deg, { stiffness: 320, damping: 30 });
+  const halfDraw = bisect(degDraw);
+  const moving = pt(degDraw, rayLen);
+  const movingDir = -degDraw; // svg rotation for the arrowhead
   const half = bisect(deg);
-  const bisPt = pt(half, rayLen - 12);
+  const bisPt = pt(halfDraw, rayLen - 12);
   const kind = classifyAngle(Math.max(1, deg));
   const kindLabel = deg === 0 ? "zero" : kind;
 
@@ -81,14 +86,14 @@ export default function Protractor({ config }: { config: ProtractorConfig }) {
         })}
 
         {/* swept angle fill */}
-        <path d={`M ${cx} ${cy} L ${pt(0, 42).x} ${pt(0, 42).y} ${arcPath(cx, cy, 42, 0, -deg)} Z`} fill={`${color}22`} stroke="none" />
-        <path d={arcPath(cx, cy, 42, 0, -deg)} fill="none" stroke={color} strokeWidth={2} />
+        <path d={`M ${cx} ${cy} L ${pt(0, 42).x} ${pt(0, 42).y} ${arcPath(cx, cy, 42, 0, -degDraw)} Z`} fill={`${color}22`} stroke="none" />
+        <path d={arcPath(cx, cy, 42, 0, -degDraw)} fill="none" stroke={color} strokeWidth={2} />
 
         {/* bisector equal-angle arcs */}
         {bisector && deg >= 8 && (
           <>
-            <path d={arcPath(cx, cy, 30, 0, -half)} fill="none" stroke={GEO_BLUE} strokeWidth={1.8} />
-            <path d={arcPath(cx, cy, 34, -half, -deg)} fill="none" stroke={GEO_BLUE} strokeWidth={1.8} />
+            <path d={arcPath(cx, cy, 30, 0, -halfDraw)} fill="none" stroke={GEO_BLUE} strokeWidth={1.8} />
+            <path d={arcPath(cx, cy, 34, -halfDraw, -degDraw)} fill="none" stroke={GEO_BLUE} strokeWidth={1.8} />
           </>
         )}
 
@@ -105,7 +110,7 @@ export default function Protractor({ config }: { config: ProtractorConfig }) {
         {bisector && deg >= 8 && (
           <>
             <line x1={cx} y1={cy} x2={bisPt.x} y2={bisPt.y} stroke={GEO_BLUE} strokeWidth={2} strokeDasharray="6 4" />
-            <ArrowHead x={bisPt.x} y={bisPt.y} deg={-half} color={GEO_BLUE} />
+            <ArrowHead x={bisPt.x} y={bisPt.y} deg={-halfDraw} color={GEO_BLUE} />
           </>
         )}
 

@@ -57,6 +57,22 @@ export function arcPath(cx: number, cy: number, r: number, a1: number, a2: numbe
   return `M ${x1} ${y1} A ${r} ${r} 0 ${large} ${sweep} ${x2} ${y2}`;
 }
 
+// Filled pie wedge for the same arc — used to wash a highlighted angle's
+// interior so there is no ambiguity about WHICH angle is meant.
+export function sectorPath(cx: number, cy: number, r: number, a1: number, a2: number): string {
+  let d = a2 - a1;
+  while (d < -180) d += 360;
+  while (d > 180) d -= 360;
+  const end = a1 + d;
+  const rad = (v: number) => (v * Math.PI) / 180;
+  const x1 = cx + r * Math.cos(rad(a1));
+  const y1 = cy + r * Math.sin(rad(a1));
+  const x2 = cx + r * Math.cos(rad(end));
+  const y2 = cy + r * Math.sin(rad(end));
+  const sweep = d > 0 ? 1 : 0;
+  return `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 0 ${sweep} ${x2} ${y2} Z`;
+}
+
 // Congruence tick marks across the midpoint of a segment.
 export function Ticks({ x1, y1, x2, y2, count, color }: { x1: number; y1: number; x2: number; y2: number; count: number; color: string }) {
   const mx = (x1 + x2) / 2;
