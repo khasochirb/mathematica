@@ -1,0 +1,2626 @@
+{
+  "slug": "circles",
+  "title": "Circles",
+  "unit": 9,
+  "status": "published",
+  "blurb": "Parts of a circle and central angles; arcs and chords; inscribed angles; tangents; the chord/secant/tangent angle relationships; and arc length and sector area.",
+  "buildsOn": "Angles and angle pairs (Unit 1), triangle congruence including HL (Unit 4), and the Pythagorean theorem (Unit 8) for tangent lengths.",
+  "lessons": [
+    {
+      "slug": "circle-basics",
+      "title": "Circle Basics: Parts, Central Angles & Arcs",
+      "concreteComparison": "A wheel, a clock face, a pizza — every circle is the set of points the same distance from a single center. Once you can name a circle's parts and measure its angles and arcs, the rest of this unit falls into place.",
+      "objective": "Identify the parts of a circle (radius, diameter, chord, secant, tangent), and measure central angles and their intercepted arcs.",
+      "concept": [
+        "A **circle** is all points a fixed distance — the **radius** $r$ — from a **center**. A **diameter** is a chord through the center, and it is twice the radius: $d = 2r$.",
+        "A **chord** joins two points on the circle; a **secant** is a line that cuts the circle at two points; a **tangent** is a line that touches the circle at exactly one point.",
+        "An **arc** is a piece of the circle between two points. A **central angle** has its vertex at the center, and the arc it cuts off — its **intercepted arc** — has the **same measure** as the central angle.",
+        "A full circle measures $360^\\circ$; a **semicircle** is $180^\\circ$. A **minor arc** is less than $180^\\circ$; a **major arc** is more than $180^\\circ$."
+      ],
+      "keyIdea": "A circle is points at radius r from a center; a diameter is 2r. A central angle equals the measure of the arc it intercepts; the whole circle is 360°.",
+      "facts": [
+        {
+          "title": "Diameter",
+          "latex": "$d = 2r$",
+          "explanation": "A diameter is twice the radius."
+        },
+        {
+          "title": "Central angle = arc",
+          "latex": "central $=$ arc",
+          "explanation": "A central angle equals its intercepted arc."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cb-we1",
+          "statement": "A circle has radius $7$. Find its diameter.",
+          "solution": "$d = 2r = 2 \\cdot 7 = 14$.",
+          "check": [
+            "2*7 == 14"
+          ]
+        },
+        {
+          "id": "cb-we2",
+          "statement": "A central angle measures $110^\\circ$. What is its intercepted arc?",
+          "solution": "The arc equals the central angle: $110^\\circ$.",
+          "check": [
+            "110 == 110"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Confusing a chord, a secant, and a tangent.",
+          "correction": "A **chord** is a segment with both ends on the circle; a **secant** is the whole line through two points; a **tangent** touches at just **one** point.",
+          "authored": true
+        },
+        {
+          "text": "Thinking the radius equals the diameter.",
+          "correction": "The **diameter is twice** the radius ($d = 2r$); the radius is half the diameter.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cb-t1",
+          "statement": "Radius $9$. Diameter?",
+          "solution": "$2 \\cdot 9 = 18$.",
+          "check": [
+            "2*9 == 18"
+          ]
+        },
+        {
+          "id": "cb-t2",
+          "statement": "A central angle is $75^\\circ$. Its intercepted arc is —",
+          "solution": "$75^\\circ$.",
+          "check": [
+            "75 == 75"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "The parts of a circle",
+            "beats": [
+              "A **circle**: all points the same distance (the **radius**) from a **center**.",
+              "A **chord** joins two points on the circle; a **diameter** is a chord through the center.",
+              "A **secant** is a line through two points; a **tangent** touches at exactly one.",
+              "An **arc** is a slice of the circle between two points."
+            ]
+          },
+          {
+            "kind": "circleAngle",
+            "eyebrow": "Concept A",
+            "title": "A central angle equals its arc",
+            "teach": "A **central angle** sits at the center. The arc it opens onto — the **intercepted arc** — has exactly the same measure. Change the angle and the arc changes with it, always matching.",
+            "config": {
+              "mode": "central",
+              "start": 100
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Radius and diameter",
+            "title": "One is double the other",
+            "beats": [
+              "The **radius** $r$ reaches from center to circle.",
+              "The **diameter** $d$ crosses through the center, end to end.",
+              "$d = 2r$ — the diameter is two radii.",
+              "So $r = \\tfrac{d}{2}$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Radius & diameter",
+            "intro": "Double or halve.",
+            "examples": [
+              {
+                "prompt": "Radius $7$. Diameter?",
+                "steps": [
+                  "$d = 2r = 2 \\cdot 7$.",
+                  "$= 14$."
+                ],
+                "answer": "$14$",
+                "check": [
+                  "2*7 == 14"
+                ]
+              },
+              {
+                "prompt": "Diameter $20$. Radius?",
+                "steps": [
+                  "$r = d/2 = 20/2$.",
+                  "$= 10$."
+                ],
+                "answer": "$10$",
+                "check": [
+                  "20/2 == 10"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Radius & diameter",
+            "intro": "d = 2r.",
+            "problems": [
+              {
+                "prompt": "Radius $12$. Diameter?",
+                "options": [
+                  "$24$",
+                  "$6$",
+                  "$14$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2 \\cdot 12 = 24$.",
+                "check": [
+                  "2*12 == 24"
+                ]
+              },
+              {
+                "prompt": "Diameter $18$. Radius?",
+                "options": [
+                  "$9$",
+                  "$36$",
+                  "$18$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$18/2 = 9$.",
+                "check": [
+                  "18/2 == 9"
+                ]
+              },
+              {
+                "prompt": "A chord through the center is a —",
+                "options": [
+                  "diameter",
+                  "tangent",
+                  "secant"
+                ],
+                "correctIndex": 0,
+                "explanation": "That's the definition of a diameter.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Central angles & arcs",
+            "title": "They share a measure",
+            "beats": [
+              "A **central angle**'s vertex is the center.",
+              "Its **intercepted arc** is the arc between where its sides cross the circle.",
+              "**Central angle = arc measure.**",
+              "The whole circle is $360^\\circ$; a semicircle $180^\\circ$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Central angle = arc",
+            "intro": "Read the arc straight off the angle.",
+            "examples": [
+              {
+                "prompt": "Central angle $110^\\circ$. Intercepted arc?",
+                "steps": [
+                  "Arc = central angle.",
+                  "$= 110^\\circ$."
+                ],
+                "answer": "$110^\\circ$",
+                "check": [
+                  "110 == 110"
+                ]
+              },
+              {
+                "prompt": "An arc is $140^\\circ$. Its central angle?",
+                "steps": [
+                  "Central angle = arc.",
+                  "$= 140^\\circ$."
+                ],
+                "answer": "$140^\\circ$",
+                "check": [
+                  "140 == 140"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Arcs from central angles",
+            "intro": "Same measure.",
+            "problems": [
+              {
+                "prompt": "Central angle $85^\\circ$. Arc?",
+                "options": [
+                  "$85^\\circ$",
+                  "$170^\\circ$",
+                  "$42.5^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Arc = central angle.",
+                "check": [
+                  "85 == 85"
+                ]
+              },
+              {
+                "prompt": "The whole circle measures —",
+                "options": [
+                  "$360^\\circ$",
+                  "$180^\\circ$",
+                  "$90^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "A full turn.",
+                "check": [
+                  "4*90 == 360"
+                ]
+              },
+              {
+                "prompt": "A semicircle measures —",
+                "options": [
+                  "$180^\\circ$",
+                  "$360^\\circ$",
+                  "$90^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Half of $360^\\circ$.",
+                "check": [
+                  "360/2 == 180"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Finding a missing arc",
+            "title": "The circle totals 360°",
+            "beats": [
+              "All the arcs around the circle add to $360^\\circ$.",
+              "Know some arcs? Subtract from $360^\\circ$ for the rest.",
+              "A semicircle (from a diameter) splits it into two $180^\\circ$ halves.",
+              "Minor arc $< 180^\\circ$; major arc $> 180^\\circ$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Missing arc",
+            "intro": "Subtract from 360.",
+            "examples": [
+              {
+                "prompt": "Two arcs of a circle are $120^\\circ$ and $140^\\circ$. The rest of the circle is —",
+                "steps": [
+                  "$360 - 120 - 140$.",
+                  "$= 100^\\circ$."
+                ],
+                "answer": "$100^\\circ$",
+                "check": [
+                  "360 - 120 - 140 == 100"
+                ]
+              },
+              {
+                "prompt": "A diameter cuts off one $70^\\circ$ arc on one side. The rest of that semicircle is —",
+                "steps": [
+                  "Semicircle $= 180^\\circ$.",
+                  "$180 - 70 = 110^\\circ$."
+                ],
+                "answer": "$110^\\circ$",
+                "check": [
+                  "180 - 70 == 110"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why there are 360 degrees",
+            "body": "Babylonian astronomers, working in base 60 and tracking the sun's roughly $360$-day journey around the sky, divided the circle into $360$ parts. The number stuck because $360$ divides evenly so many ways — by $2, 3, 4, 5, 6, 8, 9, 10, 12$ — making circle arithmetic unusually friendly."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Central angle",
+            "prompt": "A central angle intercepts an arc of $95^\\circ$. What is the central angle's measure?",
+            "options": [
+              "$95^\\circ$",
+              "$190^\\circ$",
+              "$47.5^\\circ$"
+            ],
+            "correctIndex": 0,
+            "explanation": "A central angle equals its intercepted arc: $95^\\circ$.",
+            "check": [
+              "95 == 95"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **circle** is points at radius $r$ from a center; **diameter** $d = 2r$.",
+              "**Chord** (segment), **secant** (line through two points), **tangent** (touches once).",
+              "A **central angle equals its intercepted arc**; the whole circle is $360^\\circ$."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's name parts, convert radius and diameter, and read arcs from central angles."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Radius $15$. Diameter?",
+                "options": [
+                  "$30$",
+                  "$7.5$",
+                  "$17$",
+                  "$45$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2 \\cdot 15 = 30$.",
+                "check": [
+                  "2*15 == 30"
+                ]
+              },
+              {
+                "prompt": "Central angle $130^\\circ$. Intercepted arc?",
+                "options": [
+                  "$130^\\circ$",
+                  "$65^\\circ$",
+                  "$260^\\circ$",
+                  "$230^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Arc = central angle.",
+                "check": [
+                  "130 == 130"
+                ]
+              },
+              {
+                "prompt": "A line touching a circle at exactly one point is a —",
+                "options": [
+                  "tangent",
+                  "chord",
+                  "secant",
+                  "diameter"
+                ],
+                "correctIndex": 0,
+                "explanation": "Tangent.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Two arcs are $100^\\circ$ and $150^\\circ$. The remaining arc is —",
+                "options": [
+                  "$110^\\circ$",
+                  "$250^\\circ$",
+                  "$50^\\circ$",
+                  "$100^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$360 - 100 - 150 = 110$.",
+                "check": [
+                  "360 - 100 - 150 == 110"
+                ]
+              },
+              {
+                "prompt": "Diameter $26$. Radius?",
+                "options": [
+                  "$13$",
+                  "$52$",
+                  "$26$",
+                  "$6.5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$26/2 = 13$.",
+                "check": [
+                  "26/2 == 13"
+                ]
+              },
+              {
+                "prompt": "A minor arc measures —",
+                "options": [
+                  "less than $180^\\circ$",
+                  "exactly $180^\\circ$",
+                  "more than $180^\\circ$",
+                  "$360^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Minor $< 180^\\circ <$ major.",
+                "check": [
+                  "170 < 180"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Circle Basics\"",
+            "body": "You can name a circle's parts and measure central angles and arcs. Next: how chords and arcs relate — equal chords cut equal arcs."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "arcs-and-chords",
+      "title": "Arcs & Chords",
+      "concreteComparison": "Cut two slits of the same length across a paper plate, each the same distance from the center, and they carve out identical curved pieces. Chords and the arcs they cut off travel together: equal chords give equal arcs.",
+      "objective": "Relate congruent chords to congruent arcs, add adjacent arcs, and use the fact that a diameter perpendicular to a chord bisects the chord and its arc.",
+      "concept": [
+        "In the same circle, **congruent chords cut off congruent arcs** — and the reverse: congruent arcs come from congruent chords.",
+        "**Arc Addition**: adjacent arcs add up. Arc $ABC = $ arc $AB + $ arc $BC$.",
+        "A **diameter (or radius) perpendicular to a chord bisects both the chord and its arc** — it passes through the chord's midpoint and splits the arc in half.",
+        "All the arcs around a circle still total $360^\\circ$."
+      ],
+      "keyIdea": "Congruent chords intercept congruent arcs (both ways). Adjacent arcs add. A diameter perpendicular to a chord bisects the chord and its arc.",
+      "facts": [
+        {
+          "title": "Equal chords, equal arcs",
+          "latex": "chord $\\cong$ chord $\\Leftrightarrow$ arc $\\cong$ arc",
+          "explanation": "In the same circle, they go together."
+        },
+        {
+          "title": "Arc addition",
+          "latex": "arc $AB +$ arc $BC =$ arc $ABC$",
+          "explanation": "Adjacent arcs add."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ac-we1",
+          "statement": "Two congruent chords cut arcs; one arc is $80^\\circ$. What is the other?",
+          "solution": "Congruent chords cut congruent arcs, so the other arc is also $80^\\circ$.",
+          "check": [
+            "80 == 80"
+          ]
+        },
+        {
+          "id": "ac-we2",
+          "statement": "Arc $AB = 50^\\circ$ and arc $BC = 70^\\circ$ are adjacent. Find arc $ABC$.",
+          "solution": "Arc addition: $50 + 70 = 120^\\circ$.",
+          "check": [
+            "50 + 70 == 120"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Assuming chords of different lengths cut equal arcs.",
+          "correction": "Only **congruent** chords cut congruent arcs. A longer chord cuts a **bigger** arc.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the perpendicular diameter bisects BOTH.",
+          "correction": "A diameter $\\perp$ a chord bisects the **chord** and its **arc** — not just one of them.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ac-t1",
+          "statement": "A chord congruent to one cutting a $95^\\circ$ arc cuts an arc of —",
+          "solution": "$95^\\circ$.",
+          "check": [
+            "95 == 95"
+          ]
+        },
+        {
+          "id": "ac-t2",
+          "statement": "Adjacent arcs $40^\\circ$ and $85^\\circ$. Combined arc?",
+          "solution": "$40 + 85 = 125^\\circ$.",
+          "check": [
+            "40 + 85 == 125"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Chords and their arcs",
+            "beats": [
+              "A **chord** joins two points on a circle and cuts off an **arc**.",
+              "A longer chord cuts a bigger arc; a shorter chord a smaller arc.",
+              "**Equal chords** cut **equal arcs**.",
+              "And equal arcs come from equal chords."
+            ]
+          },
+          {
+            "kind": "circleFigure",
+            "eyebrow": "Concept A",
+            "title": "Congruent chords, congruent arcs",
+            "teach": "Two chords with the same length (matching tick marks) cut off arcs of the same measure. The top arc here is $80^\\circ$; the equal chord below cuts an equal $80^\\circ$ arc.",
+            "config": {
+              "radius": 5,
+              "points": [
+                {
+                  "id": "A",
+                  "deg": 130
+                },
+                {
+                  "id": "B",
+                  "deg": 50
+                },
+                {
+                  "id": "C",
+                  "deg": 310
+                },
+                {
+                  "id": "D",
+                  "deg": 230
+                }
+              ],
+              "objects": [
+                {
+                  "kind": "chord",
+                  "from": "A",
+                  "to": "B",
+                  "ticks": 1
+                },
+                {
+                  "kind": "chord",
+                  "from": "C",
+                  "to": "D",
+                  "ticks": 1
+                }
+              ],
+              "arcs": [
+                {
+                  "from": "B",
+                  "to": "A",
+                  "label": "80°"
+                },
+                {
+                  "from": "D",
+                  "to": "C",
+                  "label": "80°"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Arc addition",
+            "title": "Neighbours add up",
+            "beats": [
+              "Two arcs that share an endpoint are **adjacent**.",
+              "Their measures **add**: arc $AB +$ arc $BC =$ arc $ABC$.",
+              "Just like segment addition, but around the circle.",
+              "All arcs around the circle total $360^\\circ$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Add adjacent arcs",
+            "intro": "Sum the pieces.",
+            "examples": [
+              {
+                "prompt": "Arc $AB = 50^\\circ$, arc $BC = 70^\\circ$. Arc $ABC$?",
+                "steps": [
+                  "$50 + 70$.",
+                  "$= 120^\\circ$."
+                ],
+                "answer": "$120^\\circ$",
+                "check": [
+                  "50 + 70 == 120"
+                ]
+              },
+              {
+                "prompt": "Arc $ABC = 150^\\circ$ and arc $AB = 60^\\circ$. Find arc $BC$.",
+                "steps": [
+                  "$150 - 60$.",
+                  "$= 90^\\circ$."
+                ],
+                "answer": "$90^\\circ$",
+                "check": [
+                  "150 - 60 == 90"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Arc addition",
+            "intro": "Adjacent arcs add.",
+            "problems": [
+              {
+                "prompt": "Adjacent arcs $40^\\circ$ and $85^\\circ$. Combined?",
+                "options": [
+                  "$125^\\circ$",
+                  "$45^\\circ$",
+                  "$120^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$40 + 85 = 125$.",
+                "check": [
+                  "40 + 85 == 125"
+                ]
+              },
+              {
+                "prompt": "Arc $ABC = 200^\\circ$, arc $BC = 120^\\circ$. Arc $AB$?",
+                "options": [
+                  "$80^\\circ$",
+                  "$320^\\circ$",
+                  "$100^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$200 - 120 = 80$.",
+                "check": [
+                  "200 - 120 == 80"
+                ]
+              },
+              {
+                "prompt": "All the arcs around a circle total —",
+                "options": [
+                  "$360^\\circ$",
+                  "$180^\\circ$",
+                  "$720^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "A full circle.",
+                "check": [
+                  "360 == 360"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Equal chords, equal arcs",
+            "title": "The two-way link",
+            "beats": [
+              "In one circle, **congruent chords $\\Leftrightarrow$ congruent arcs**.",
+              "Given equal chords, the arcs are equal.",
+              "Given equal arcs, the chords are equal.",
+              "A longer chord always cuts a larger arc."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Use congruent chords",
+            "intro": "Equal chords → equal arcs.",
+            "examples": [
+              {
+                "prompt": "A chord cuts a $75^\\circ$ arc. A congruent chord cuts an arc of —",
+                "steps": [
+                  "Congruent chords cut congruent arcs.",
+                  "$= 75^\\circ$."
+                ],
+                "answer": "$75^\\circ$",
+                "check": [
+                  "75 == 75"
+                ]
+              },
+              {
+                "prompt": "Two arcs are congruent; one is $110^\\circ$. The chords are — (equal or unequal)?",
+                "steps": [
+                  "Congruent arcs come from congruent chords.",
+                  "Equal."
+                ],
+                "answer": "Equal",
+                "check": [
+                  "110 == 110"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Congruent chords & arcs",
+            "intro": "They match.",
+            "problems": [
+              {
+                "prompt": "A chord congruent to a $95^\\circ$-arc chord cuts an arc of —",
+                "options": [
+                  "$95^\\circ$",
+                  "$47.5^\\circ$",
+                  "$190^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal chords, equal arcs.",
+                "check": [
+                  "95 == 95"
+                ]
+              },
+              {
+                "prompt": "A diameter perpendicular to a chord — the chord.",
+                "options": [
+                  "bisects",
+                  "is parallel to",
+                  "is equal to"
+                ],
+                "correctIndex": 0,
+                "explanation": "It bisects the chord and its arc.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "A longer chord cuts a — arc.",
+                "options": [
+                  "bigger",
+                  "smaller",
+                  "equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "Chord length and arc grow together.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Finding the center of a circle with a set square",
+            "body": "Because a perpendicular from the center bisects any chord, you can find a circle's center with two chords: draw each chord's perpendicular bisector, and they cross at the center. Machinists use this to re-center a worn gear or a broken wheel from just its rim."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Add the arcs",
+            "prompt": "Adjacent arcs measure $65^\\circ$ and $80^\\circ$. What is the measure of the combined arc?",
+            "options": [
+              "$145^\\circ$",
+              "$15^\\circ$",
+              "$72.5^\\circ$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Arc addition: $65 + 80 = 145^\\circ$.",
+            "check": [
+              "65 + 80 == 145"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "In the same circle, **congruent chords $\\Leftrightarrow$ congruent arcs**.",
+              "**Arc addition**: adjacent arcs add to the whole.",
+              "A **diameter perpendicular to a chord bisects** the chord and its arc."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's add arcs and use the equal-chords-equal-arcs link."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Adjacent arcs $55^\\circ$ and $95^\\circ$. Combined?",
+                "options": [
+                  "$150^\\circ$",
+                  "$40^\\circ$",
+                  "$75^\\circ$",
+                  "$210^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$55 + 95 = 150$.",
+                "check": [
+                  "55 + 95 == 150"
+                ]
+              },
+              {
+                "prompt": "A chord cuts a $120^\\circ$ arc. A congruent chord cuts —",
+                "options": [
+                  "$120^\\circ$",
+                  "$60^\\circ$",
+                  "$240^\\circ$",
+                  "cannot tell"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal chords, equal arcs.",
+                "check": [
+                  "120 == 120"
+                ]
+              },
+              {
+                "prompt": "Arc $ABC = 170^\\circ$, arc $AB = 90^\\circ$. Arc $BC$?",
+                "options": [
+                  "$80^\\circ$",
+                  "$260^\\circ$",
+                  "$100^\\circ$",
+                  "$85^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$170 - 90 = 80$.",
+                "check": [
+                  "170 - 90 == 80"
+                ]
+              },
+              {
+                "prompt": "Congruent arcs are cut by — chords.",
+                "options": [
+                  "congruent",
+                  "perpendicular",
+                  "longer",
+                  "shorter"
+                ],
+                "correctIndex": 0,
+                "explanation": "The link runs both ways.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "A diameter perpendicular to a chord bisects —",
+                "options": [
+                  "the chord and its arc",
+                  "only the chord",
+                  "only the arc",
+                  "neither"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Three arcs of $100^\\circ$, $140^\\circ$, and $x$ make a full circle. $x = $ —",
+                "options": [
+                  "$120^\\circ$",
+                  "$60^\\circ$",
+                  "$240^\\circ$",
+                  "$100^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$360 - 100 - 140 = 120$.",
+                "check": [
+                  "360 - 100 - 140 == 120"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Arcs & Chords\"",
+            "body": "You can move between chords and arcs and add arcs. Next: inscribed angles — vertices on the circle — and the half-the-arc rule."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "inscribed-angles",
+      "title": "Inscribed Angles",
+      "concreteComparison": "Stand anywhere on the far rim of a circular arena and look at the same two flags across the field: the angle between your lines of sight is the same wherever you stand — and always exactly half the angle measured from the center. That's the Inscribed Angle Theorem.",
+      "objective": "Use the Inscribed Angle Theorem — an inscribed angle is half its intercepted arc (and half the central angle on that arc) — including the semicircle right-angle case.",
+      "concept": [
+        "An **inscribed angle** has its vertex **on** the circle; its two sides are chords that cut off an **intercepted arc**.",
+        "**Inscribed Angle Theorem**: an inscribed angle is **half** its intercepted arc — and half the central angle standing on the same arc.",
+        "Two inscribed angles that intercept the **same arc are equal** (they're both half of it).",
+        "An angle **inscribed in a semicircle is a right angle** ($90^\\circ$), because it intercepts a $180^\\circ$ arc and $\\tfrac{180}{2} = 90$."
+      ],
+      "keyIdea": "An inscribed angle equals half its intercepted arc (and half the central angle on that arc). Same-arc inscribed angles are equal; an angle in a semicircle is 90°.",
+      "facts": [
+        {
+          "title": "Inscribed Angle Theorem",
+          "latex": "inscribed $= \\tfrac12$ arc",
+          "explanation": "Half the intercepted arc (and half the central angle)."
+        },
+        {
+          "title": "Semicircle",
+          "latex": "$= 90^\\circ$",
+          "explanation": "An angle inscribed in a semicircle is a right angle."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ia-we1",
+          "statement": "An inscribed angle intercepts a $120^\\circ$ arc. Find the inscribed angle.",
+          "solution": "Half the arc: $\\tfrac{120}{2} = 60^\\circ$.",
+          "check": [
+            "120/2 == 60"
+          ]
+        },
+        {
+          "id": "ia-we2",
+          "statement": "An inscribed angle measures $35^\\circ$. Find its intercepted arc.",
+          "solution": "The arc is twice the inscribed angle: $2 \\cdot 35 = 70^\\circ$.",
+          "check": [
+            "2*35 == 70"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Setting the inscribed angle equal to the arc.",
+          "correction": "An inscribed angle is **half** its arc. Only a **central** angle equals the arc.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the semicircle gives $90^\\circ$.",
+          "correction": "An angle inscribed in a semicircle intercepts a $180^\\circ$ arc, so it is always a **right angle**.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ia-t1",
+          "statement": "Inscribed angle intercepting a $90^\\circ$ arc?",
+          "solution": "$90/2 = 45^\\circ$.",
+          "check": [
+            "90/2 == 45"
+          ]
+        },
+        {
+          "id": "ia-t2",
+          "statement": "Inscribed angle $50^\\circ$. Intercepted arc?",
+          "solution": "$2 \\cdot 50 = 100^\\circ$.",
+          "check": [
+            "2*50 == 100"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "The vertex sits on the circle",
+            "beats": [
+              "An **inscribed angle** has its vertex **on** the circle.",
+              "Its two sides are **chords** to two other points.",
+              "Between those points is the **intercepted arc**.",
+              "There's a clean rule linking the angle to that arc."
+            ]
+          },
+          {
+            "kind": "circleAngle",
+            "eyebrow": "Concept A",
+            "title": "Inscribed = half the central",
+            "teach": "The inscribed angle at $C$ and the central angle at $O$ open onto the **same arc** $AB$. The inscribed angle is always **half** the central angle. Change the arc and the halving holds.",
+            "config": {
+              "mode": "inscribed",
+              "start": 100
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Inscribed Angle Theorem",
+            "title": "Half the arc",
+            "beats": [
+              "**Inscribed angle $= \\tfrac12 \\times$ intercepted arc.**",
+              "It's also half the central angle on that arc.",
+              "Arc $120^\\circ \\Rightarrow$ inscribed $60^\\circ$.",
+              "Backward: inscribed $35^\\circ \\Rightarrow$ arc $70^\\circ$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Inscribed from arc",
+            "intro": "Halve the arc.",
+            "examples": [
+              {
+                "prompt": "Intercepted arc $120^\\circ$. Inscribed angle?",
+                "steps": [
+                  "Half the arc.",
+                  "$120/2 = 60^\\circ$."
+                ],
+                "answer": "$60^\\circ$",
+                "check": [
+                  "120/2 == 60"
+                ]
+              },
+              {
+                "prompt": "Intercepted arc $100^\\circ$. Inscribed angle?",
+                "steps": [
+                  "$100/2$.",
+                  "$= 50^\\circ$."
+                ],
+                "answer": "$50^\\circ$",
+                "check": [
+                  "100/2 == 50"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Half the arc",
+            "intro": "Inscribed = arc ÷ 2.",
+            "problems": [
+              {
+                "prompt": "Arc $90^\\circ$. Inscribed angle?",
+                "options": [
+                  "$45^\\circ$",
+                  "$90^\\circ$",
+                  "$180^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$90/2 = 45$.",
+                "check": [
+                  "90/2 == 45"
+                ]
+              },
+              {
+                "prompt": "Arc $140^\\circ$. Inscribed angle?",
+                "options": [
+                  "$70^\\circ$",
+                  "$140^\\circ$",
+                  "$280^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$140/2 = 70$.",
+                "check": [
+                  "140/2 == 70"
+                ]
+              },
+              {
+                "prompt": "An inscribed angle equals — the central angle on the same arc.",
+                "options": [
+                  "half",
+                  "twice",
+                  "the same as"
+                ],
+                "correctIndex": 0,
+                "explanation": "Half.",
+                "check": [
+                  "100/2 == 50"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Working backward & the semicircle",
+            "title": "Double it; the diameter case",
+            "beats": [
+              "Know the inscribed angle? The **arc is double** it.",
+              "Inscribed $40^\\circ \\Rightarrow$ arc $80^\\circ$.",
+              "An angle **inscribed in a semicircle** intercepts a $180^\\circ$ arc.",
+              "So it is $\\tfrac{180}{2} = 90^\\circ$ — a right angle."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Arc from inscribed; semicircle",
+            "intro": "Double the angle; semicircle → 90°.",
+            "examples": [
+              {
+                "prompt": "Inscribed angle $35^\\circ$. Intercepted arc?",
+                "steps": [
+                  "Double it.",
+                  "$2 \\cdot 35 = 70^\\circ$."
+                ],
+                "answer": "$70^\\circ$",
+                "check": [
+                  "2*35 == 70"
+                ]
+              },
+              {
+                "prompt": "An angle inscribed in a semicircle measures —",
+                "steps": [
+                  "Intercepts a $180^\\circ$ arc.",
+                  "$180/2 = 90^\\circ$."
+                ],
+                "answer": "$90^\\circ$",
+                "check": [
+                  "180/2 == 90"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Backward & semicircle",
+            "intro": "Arc = 2 × inscribed.",
+            "problems": [
+              {
+                "prompt": "Inscribed angle $60^\\circ$. Intercepted arc?",
+                "options": [
+                  "$120^\\circ$",
+                  "$30^\\circ$",
+                  "$60^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2 \\cdot 60 = 120$.",
+                "check": [
+                  "2*60 == 120"
+                ]
+              },
+              {
+                "prompt": "An angle inscribed in a semicircle is —",
+                "options": [
+                  "$90^\\circ$",
+                  "$180^\\circ$",
+                  "$45^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Intercepts $180^\\circ$, so $90^\\circ$.",
+                "check": [
+                  "180/2 == 90"
+                ]
+              },
+              {
+                "prompt": "Two inscribed angles on the SAME arc are —",
+                "options": [
+                  "equal",
+                  "supplementary",
+                  "complementary"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both are half the same arc.",
+                "check": [
+                  "120/2 == 60"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Thales' theorem, 2,600 years old",
+            "body": "The semicircle right-angle fact is called Thales' theorem, one of the oldest results in geometry. It means you can draw a perfect right angle anywhere: put the corner on a circle and stretch its sides to the ends of a diameter — the angle is guaranteed to be exactly $90^\\circ$."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Half the arc",
+            "prompt": "An inscribed angle intercepts an arc of $150^\\circ$. What is the inscribed angle?",
+            "options": [
+              "$75^\\circ$",
+              "$150^\\circ$",
+              "$300^\\circ$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Inscribed angle is half the arc: $150/2 = 75^\\circ$.",
+            "check": [
+              "150/2 == 75"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "An **inscribed angle** (vertex on the circle) is **half** its intercepted arc.",
+              "It's also **half the central angle** on the same arc; same-arc inscribed angles are **equal**.",
+              "An angle **inscribed in a semicircle is $90^\\circ$**."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's halve arcs, double inscribed angles, and use the semicircle rule."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Arc $160^\\circ$. Inscribed angle?",
+                "options": [
+                  "$80^\\circ$",
+                  "$160^\\circ$",
+                  "$320^\\circ$",
+                  "$40^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$160/2 = 80$.",
+                "check": [
+                  "160/2 == 80"
+                ]
+              },
+              {
+                "prompt": "Inscribed angle $45^\\circ$. Intercepted arc?",
+                "options": [
+                  "$90^\\circ$",
+                  "$22.5^\\circ$",
+                  "$45^\\circ$",
+                  "$135^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2 \\cdot 45 = 90$.",
+                "check": [
+                  "2*45 == 90"
+                ]
+              },
+              {
+                "prompt": "An angle inscribed in a semicircle is —",
+                "options": [
+                  "$90^\\circ$",
+                  "$180^\\circ$",
+                  "$45^\\circ$",
+                  "$60^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Thales' theorem.",
+                "check": [
+                  "180/2 == 90"
+                ]
+              },
+              {
+                "prompt": "A central angle is $100^\\circ$. An inscribed angle on the same arc is —",
+                "options": [
+                  "$50^\\circ$",
+                  "$100^\\circ$",
+                  "$200^\\circ$",
+                  "$25^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Half the central angle.",
+                "check": [
+                  "100/2 == 50"
+                ]
+              },
+              {
+                "prompt": "Arc $50^\\circ$. Inscribed angle?",
+                "options": [
+                  "$25^\\circ$",
+                  "$50^\\circ$",
+                  "$100^\\circ$",
+                  "$12.5^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$50/2 = 25$.",
+                "check": [
+                  "50/2 == 25"
+                ]
+              },
+              {
+                "prompt": "An inscribed angle is — its intercepted arc.",
+                "options": [
+                  "half",
+                  "equal to",
+                  "twice",
+                  "a third of"
+                ],
+                "correctIndex": 0,
+                "explanation": "Half.",
+                "check": [
+                  "120/2 == 60"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Inscribed Angles\"",
+            "body": "You can halve and double between inscribed angles and arcs. Next: tangents — lines that touch the circle once — and their right-angle property."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "tangents-to-a-circle",
+      "title": "Tangents to a Circle",
+      "concreteComparison": "A bicycle wheel touches the road at just one point, and the spoke to that point stands perfectly upright — at a right angle to the road. That's the key fact about tangents: the radius to the point of contact is always perpendicular to the tangent line.",
+      "objective": "Use the tangent–radius right angle (and the Pythagorean theorem) and the fact that two tangents drawn from an external point are congruent.",
+      "concept": [
+        "A **tangent** is a line that touches a circle at exactly one point, the **point of tangency**.",
+        "**Tangent–Radius Theorem**: the radius drawn to the point of tangency is **perpendicular** to the tangent line. That right angle lets you use the Pythagorean theorem (Unit 8).",
+        "From a point **outside** the circle you can draw exactly **two** tangents, and the two **tangent segments are congruent** (equal length).",
+        "So a right triangle forms: radius (leg) ⟂ tangent (leg), with the line from the center to the external point as the hypotenuse."
+      ],
+      "keyIdea": "A tangent is perpendicular to the radius at the point of tangency, forming a right triangle you can solve with Pythagoras. Two tangents from the same external point are congruent.",
+      "facts": [
+        {
+          "title": "Tangent ⟂ radius",
+          "latex": "$90^\\circ$ at the point of tangency",
+          "explanation": "The radius meets the tangent at a right angle."
+        },
+        {
+          "title": "Two tangents",
+          "latex": "$PA = PB$",
+          "explanation": "Tangent segments from one external point are equal."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "tg-we1",
+          "statement": "A tangent touches a circle of radius $6$. The distance from the center to the external point is $10$. Find the tangent length.",
+          "solution": "Right triangle: tangent $= \\sqrt{10^2 - 6^2} = \\sqrt{100 - 36} = \\sqrt{64} = 8$.",
+          "check": [
+            "sqrt(10**2 - 6**2) == 8"
+          ]
+        },
+        {
+          "id": "tg-we2",
+          "statement": "Two tangents from an external point: one is $12$. Find the other.",
+          "solution": "Tangent segments from a point are congruent, so the other is $12$.",
+          "check": [
+            "12 == 12"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Forgetting the tangent–radius angle is $90^\\circ$.",
+          "correction": "The radius to the point of tangency is **perpendicular** to the tangent — that's what makes a right triangle.",
+          "authored": true
+        },
+        {
+          "text": "Adding radius and tangent as if they were the hypotenuse.",
+          "correction": "The **radius and tangent are the legs**; the center-to-external-point distance is the **hypotenuse**.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "tg-t1",
+          "statement": "Radius $5$, center-to-point distance $13$. Tangent length?",
+          "solution": "$\\sqrt{13^2 - 5^2} = \\sqrt{144} = 12$.",
+          "check": [
+            "sqrt(13**2 - 5**2) == 12"
+          ]
+        },
+        {
+          "id": "tg-t2",
+          "statement": "One tangent from a point is $9$. The other tangent from the same point is —",
+          "solution": "$9$ (congruent).",
+          "check": [
+            "9 == 9"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "A line that just touches",
+            "beats": [
+              "A **tangent** meets a circle at exactly **one** point.",
+              "That's the **point of tangency**.",
+              "The **radius** drawn there stands at a **right angle** to the tangent.",
+              "From an outside point you can draw two of them."
+            ]
+          },
+          {
+            "kind": "tangentCircle",
+            "eyebrow": "Concept A",
+            "title": "Right angles and equal tangents",
+            "teach": "Tap to draw the two tangents from $P$. Each meets its radius at a right angle (the little square), and the two tangent segments $PA$ and $PB$ are always equal.",
+            "config": {}
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Tangent ⟂ radius",
+            "title": "A built-in right triangle",
+            "beats": [
+              "The radius to the point of tangency $\\perp$ the tangent.",
+              "So center $O$, point of tangency $A$, and external point $P$ make a **right triangle** (right angle at $A$).",
+              "Radius and tangent are the **legs**; $OP$ is the **hypotenuse**.",
+              "Use the Pythagorean theorem to find a missing length."
+            ]
+          },
+          {
+            "kind": "stepProof",
+            "eyebrow": "The proof",
+            "title": "Why two tangents are equal",
+            "teach": "The two right triangles share the hypotenuse $OP$ and have equal radii; HL congruence (Unit 4) gives equal tangent segments.",
+            "config": {
+              "given": "Tangents from external point $P$ touch the circle at $A$ and $B$; $O$ is the center.",
+              "prove": "$\\overline{PA} \\cong \\overline{PB}$",
+              "rows": [
+                {
+                  "statement": "$\\angle OAP$ and $\\angle OBP$ are right angles",
+                  "reason": "A radius is perpendicular to the tangent at the point of tangency"
+                },
+                {
+                  "statement": "$\\overline{OA} \\cong \\overline{OB}$",
+                  "reason": "All radii of a circle are congruent"
+                },
+                {
+                  "statement": "$\\overline{OP} \\cong \\overline{OP}$",
+                  "reason": "Reflexive property (shared hypotenuse)"
+                },
+                {
+                  "statement": "$\\triangle OAP \\cong \\triangle OBP$",
+                  "reason": "HL (Unit 4): right angle, hypotenuse, leg"
+                },
+                {
+                  "statement": "$\\overline{PA} \\cong \\overline{PB}$",
+                  "reason": "CPCTC"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Tangent length by Pythagoras",
+            "intro": "Legs = radius & tangent; hypotenuse = OP.",
+            "examples": [
+              {
+                "prompt": "Radius $6$, $OP = 10$. Tangent length?",
+                "steps": [
+                  "$\\sqrt{10^2 - 6^2} = \\sqrt{64}$.",
+                  "$= 8$."
+                ],
+                "answer": "$8$",
+                "check": [
+                  "sqrt(10**2 - 6**2) == 8"
+                ]
+              },
+              {
+                "prompt": "Radius $8$, $OP = 17$. Tangent length?",
+                "steps": [
+                  "$\\sqrt{17^2 - 8^2} = \\sqrt{225}$.",
+                  "$= 15$."
+                ],
+                "answer": "$15$",
+                "check": [
+                  "sqrt(17**2 - 8**2) == 15"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the tangent",
+            "intro": "√(OP² − r²).",
+            "problems": [
+              {
+                "prompt": "Radius $5$, $OP = 13$. Tangent?",
+                "options": [
+                  "$12$",
+                  "$18$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{169 - 25} = 12$.",
+                "check": [
+                  "sqrt(13**2 - 5**2) == 12"
+                ]
+              },
+              {
+                "prompt": "Radius $9$, $OP = 15$. Tangent?",
+                "options": [
+                  "$12$",
+                  "$6$",
+                  "$24$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{225 - 81} = \\sqrt{144} = 12$.",
+                "check": [
+                  "sqrt(15**2 - 9**2) == 12"
+                ]
+              },
+              {
+                "prompt": "The radius meets the tangent at —",
+                "options": [
+                  "$90^\\circ$",
+                  "$45^\\circ$",
+                  "$180^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "A right angle.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Two equal tangents",
+            "title": "Same point, same length",
+            "beats": [
+              "From one external point, both tangent segments are **congruent**.",
+              "Know one? The other is equal.",
+              "This makes 'kite'-shaped figures around a circle.",
+              "It follows from the two right triangles being congruent (HL)."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Use equal tangents",
+            "intro": "The two are the same length.",
+            "examples": [
+              {
+                "prompt": "One tangent from $P$ is $12$. The other?",
+                "steps": [
+                  "Tangent segments are congruent.",
+                  "$= 12$."
+                ],
+                "answer": "$12$",
+                "check": [
+                  "12 == 12"
+                ]
+              },
+              {
+                "prompt": "Tangents $3x$ and $18$ from the same point are equal. Find $x$.",
+                "steps": [
+                  "$3x = 18$.",
+                  "$x = 6$."
+                ],
+                "answer": "$x = 6$",
+                "check": [
+                  "solve(Eq(3*x, 18), x) == [6]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Equal tangents",
+            "intro": "Set them equal.",
+            "problems": [
+              {
+                "prompt": "One tangent is $7$; the other from the same point is —",
+                "options": [
+                  "$7$",
+                  "$14$",
+                  "$3.5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Congruent.",
+                "check": [
+                  "7 == 7"
+                ]
+              },
+              {
+                "prompt": "Tangents $5x$ and $20$ (same point) are equal. $x = $ —",
+                "options": [
+                  "$4$",
+                  "$5$",
+                  "$100$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5x = 20 \\Rightarrow x = 4$.",
+                "check": [
+                  "solve(Eq(5*x, 20), x) == [4]"
+                ]
+              },
+              {
+                "prompt": "Two tangents from an external point are always —",
+                "options": [
+                  "congruent",
+                  "perpendicular",
+                  "parallel"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal in length.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "How a belt wraps a pulley",
+            "body": "The straight stretch of a belt between two pulleys is tangent to both wheels, meeting each radius at a right angle. Engineers use the tangent–radius right angle and the Pythagorean theorem to compute exactly how long a belt or bike chain must be to span two gears."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Tangent length",
+            "prompt": "A tangent touches a circle of radius $8$; the center is $10$ from the external point. Find the tangent length.",
+            "options": [
+              "$6$",
+              "$8$",
+              "$12$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\sqrt{10^2 - 8^2} = \\sqrt{36} = 6$.",
+            "check": [
+              "sqrt(10**2 - 8**2) == 6"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **tangent** touches at one point; the **radius there is perpendicular** to it ($90^\\circ$).",
+              "That right angle builds a right triangle — use **Pythagoras** (legs radius & tangent, hypotenuse $OP$).",
+              "**Two tangents from an external point are congruent**."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's find tangent lengths with Pythagoras and use equal tangents."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Radius $6$, $OP = 10$. Tangent?",
+                "options": [
+                  "$8$",
+                  "$4$",
+                  "$16$",
+                  "$14$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{100 - 36} = 8$.",
+                "check": [
+                  "sqrt(10**2 - 6**2) == 8"
+                ]
+              },
+              {
+                "prompt": "Radius $7$, $OP = 25$. Tangent?",
+                "options": [
+                  "$24$",
+                  "$18$",
+                  "$26$",
+                  "$20$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{625 - 49} = \\sqrt{576} = 24$.",
+                "check": [
+                  "sqrt(25**2 - 7**2) == 24"
+                ]
+              },
+              {
+                "prompt": "One tangent from $P$ is $15$; the other is —",
+                "options": [
+                  "$15$",
+                  "$30$",
+                  "$7.5$",
+                  "cannot tell"
+                ],
+                "correctIndex": 0,
+                "explanation": "Congruent.",
+                "check": [
+                  "15 == 15"
+                ]
+              },
+              {
+                "prompt": "The radius to the point of tangency is — the tangent.",
+                "options": [
+                  "perpendicular to",
+                  "parallel to",
+                  "equal to",
+                  "twice"
+                ],
+                "correctIndex": 0,
+                "explanation": "$90^\\circ$.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Tangents $4x$ and $24$ from a point are equal. $x = $ —",
+                "options": [
+                  "$6$",
+                  "$4$",
+                  "$96$",
+                  "$20$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4x = 24 \\Rightarrow x = 6$.",
+                "check": [
+                  "solve(Eq(4*x, 24), x) == [6]"
+                ]
+              },
+              {
+                "prompt": "In the tangent right triangle, the hypotenuse is —",
+                "options": [
+                  "the center-to-external-point distance",
+                  "the radius",
+                  "the tangent",
+                  "the diameter"
+                ],
+                "correctIndex": 0,
+                "explanation": "$OP$ is opposite the right angle.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Tangents to a Circle\"",
+            "body": "You can use the tangent–radius right angle and equal tangents. Next: the angles that chords, secants, and tangents make — half the sum or half the difference of arcs."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "angle-relationships-in-circles",
+      "title": "Angle Relationships in Circles",
+      "concreteComparison": "Lines that meet a circle carve out arcs, and the angle they form is set by those arcs. Meet INSIDE the circle and the angle is the average (half the sum) of the two arcs; meet OUTSIDE and it's half their difference. Two rules cover every case.",
+      "objective": "Find angles formed by two chords meeting inside a circle (half the sum of the intercepted arcs) and by two secants or tangents meeting outside (half the difference).",
+      "concept": [
+        "**Inside the circle** (two chords crossing): the angle equals **half the SUM** of the two intercepted arcs: $\\text{angle} = \\tfrac12(\\text{arc}_1 + \\text{arc}_2)$.",
+        "**Outside the circle** (two secants, two tangents, or a secant and a tangent from an external point): the angle equals **half the DIFFERENCE** of the far and near arcs: $\\text{angle} = \\tfrac12(\\text{far} - \\text{near})$.",
+        "These extend the inscribed-angle idea: an inscribed angle (vertex ON the circle) is the boundary case, half of a single arc.",
+        "Remember the pattern: **inside → sum, outside → difference**, always halved."
+      ],
+      "keyIdea": "Two chords crossing inside a circle make an angle equal to half the sum of the intercepted arcs; two secants/tangents meeting outside make an angle equal to half the difference of the arcs.",
+      "facts": [
+        {
+          "title": "Inside (chords)",
+          "latex": "$\\tfrac12(\\text{arc}_1 + \\text{arc}_2)$",
+          "explanation": "Half the sum of the two arcs."
+        },
+        {
+          "title": "Outside (secants)",
+          "latex": "$\\tfrac12(\\text{far} - \\text{near})$",
+          "explanation": "Half the difference of the arcs."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ar-we1",
+          "statement": "Two chords cross inside a circle, intercepting arcs of $80^\\circ$ and $40^\\circ$. Find the angle.",
+          "solution": "Inside → half the sum: $\\tfrac12(80 + 40) = \\tfrac12(120) = 60^\\circ$.",
+          "check": [
+            "(80 + 40)/2 == 60"
+          ]
+        },
+        {
+          "id": "ar-we2",
+          "statement": "Two secants from an external point intercept arcs of $100^\\circ$ (far) and $40^\\circ$ (near). Find the angle.",
+          "solution": "Outside → half the difference: $\\tfrac12(100 - 40) = \\tfrac12(60) = 30^\\circ$.",
+          "check": [
+            "(100 - 40)/2 == 30"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the difference inside, or the sum outside.",
+          "correction": "**Inside → SUM**, **outside → DIFFERENCE**. Both are then halved.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting to divide by 2.",
+          "correction": "Every one of these circle angles is **half** the sum or difference — don't skip the halving.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ar-t1",
+          "statement": "Chords cross inside; arcs $70^\\circ$ and $50^\\circ$. Angle?",
+          "solution": "$\\tfrac12(70 + 50) = 60^\\circ$.",
+          "check": [
+            "(70 + 50)/2 == 60"
+          ]
+        },
+        {
+          "id": "ar-t2",
+          "statement": "Two secants outside; arcs $120^\\circ$ and $30^\\circ$. Angle?",
+          "solution": "$\\tfrac12(120 - 30) = 45^\\circ$.",
+          "check": [
+            "(120 - 30)/2 == 45"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Where the lines meet decides the rule",
+            "beats": [
+              "Chords, secants, and tangents cut a circle into **arcs**.",
+              "The angle they make depends on **where they meet**.",
+              "**Inside** the circle → half the **sum** of the arcs.",
+              "**Outside** the circle → half the **difference**."
+            ]
+          },
+          {
+            "kind": "circleFigure",
+            "eyebrow": "Concept A",
+            "title": "Two chords make half the sum",
+            "teach": "Two chords $AB$ and $CD$ cross inside the circle. The angle where they cross equals half the SUM of the two arcs they intercept — here $\\tfrac12(\\text{arc }AC + \\text{arc }BD)$.",
+            "config": {
+              "radius": 5,
+              "points": [
+                {
+                  "id": "A",
+                  "deg": 150
+                },
+                {
+                  "id": "C",
+                  "deg": 60
+                },
+                {
+                  "id": "B",
+                  "deg": 300
+                },
+                {
+                  "id": "D",
+                  "deg": 230
+                }
+              ],
+              "objects": [
+                {
+                  "kind": "chord",
+                  "from": "A",
+                  "to": "B"
+                },
+                {
+                  "kind": "chord",
+                  "from": "C",
+                  "to": "D"
+                }
+              ],
+              "arcs": [
+                {
+                  "from": "A",
+                  "to": "C",
+                  "label": "arc"
+                },
+                {
+                  "from": "B",
+                  "to": "D",
+                  "label": "arc"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Inside: half the sum",
+            "title": "Average the two arcs",
+            "beats": [
+              "Two **chords crossing inside** make vertical angles.",
+              "Each equals **half the sum** of its two intercepted arcs.",
+              "$\\text{angle} = \\tfrac12(\\text{arc}_1 + \\text{arc}_2)$.",
+              "Arcs $80^\\circ$ and $40^\\circ \\Rightarrow \\tfrac12(120) = 60^\\circ$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Inside angle",
+            "intro": "Half the sum of the arcs.",
+            "examples": [
+              {
+                "prompt": "Chords cross; arcs $80^\\circ$ and $40^\\circ$. Angle?",
+                "steps": [
+                  "$\\tfrac12(80 + 40)$.",
+                  "$= \\tfrac12(120) = 60^\\circ$."
+                ],
+                "answer": "$60^\\circ$",
+                "check": [
+                  "(80 + 40)/2 == 60"
+                ]
+              },
+              {
+                "prompt": "Chords cross; arcs $110^\\circ$ and $50^\\circ$. Angle?",
+                "steps": [
+                  "$\\tfrac12(110 + 50)$.",
+                  "$= \\tfrac12(160) = 80^\\circ$."
+                ],
+                "answer": "$80^\\circ$",
+                "check": [
+                  "(110 + 50)/2 == 80"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Inside angles",
+            "intro": "½ (sum of arcs).",
+            "problems": [
+              {
+                "prompt": "Arcs $70^\\circ$ and $50^\\circ$ (chords cross). Angle?",
+                "options": [
+                  "$60^\\circ$",
+                  "$120^\\circ$",
+                  "$10^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(120) = 60$.",
+                "check": [
+                  "(70 + 50)/2 == 60"
+                ]
+              },
+              {
+                "prompt": "Arcs $100^\\circ$ and $60^\\circ$. Angle?",
+                "options": [
+                  "$80^\\circ$",
+                  "$160^\\circ$",
+                  "$20^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(160) = 80$.",
+                "check": [
+                  "(100 + 60)/2 == 80"
+                ]
+              },
+              {
+                "prompt": "An angle from two chords crossing inside is half the — of the arcs.",
+                "options": [
+                  "sum",
+                  "difference",
+                  "product"
+                ],
+                "correctIndex": 0,
+                "explanation": "Inside → sum.",
+                "check": [
+                  "(80+40)/2 == 60"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Outside: half the difference",
+            "title": "Subtract, then halve",
+            "beats": [
+              "Two **secants (or tangents) from outside** cut a **far** arc and a **near** arc.",
+              "The angle equals **half the difference**: $\\tfrac12(\\text{far} - \\text{near})$.",
+              "Arcs $100^\\circ$ (far) and $40^\\circ$ (near) $\\Rightarrow \\tfrac12(60) = 30^\\circ$.",
+              "Inside sum, outside difference — always halved."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Outside angle",
+            "intro": "Half the difference of the arcs.",
+            "examples": [
+              {
+                "prompt": "Secants from outside; arcs $100^\\circ$ and $40^\\circ$. Angle?",
+                "steps": [
+                  "$\\tfrac12(100 - 40)$.",
+                  "$= \\tfrac12(60) = 30^\\circ$."
+                ],
+                "answer": "$30^\\circ$",
+                "check": [
+                  "(100 - 40)/2 == 30"
+                ]
+              },
+              {
+                "prompt": "Secants from outside; arcs $120^\\circ$ and $30^\\circ$. Angle?",
+                "steps": [
+                  "$\\tfrac12(120 - 30)$.",
+                  "$= \\tfrac12(90) = 45^\\circ$."
+                ],
+                "answer": "$45^\\circ$",
+                "check": [
+                  "(120 - 30)/2 == 45"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Outside angles",
+            "intro": "½ (far − near).",
+            "problems": [
+              {
+                "prompt": "Arcs $110^\\circ$ (far) and $30^\\circ$ (near). Angle?",
+                "options": [
+                  "$40^\\circ$",
+                  "$70^\\circ$",
+                  "$140^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(80) = 40$.",
+                "check": [
+                  "(110 - 30)/2 == 40"
+                ]
+              },
+              {
+                "prompt": "Arcs $150^\\circ$ and $50^\\circ$. Angle?",
+                "options": [
+                  "$50^\\circ$",
+                  "$100^\\circ$",
+                  "$200^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(100) = 50$.",
+                "check": [
+                  "(150 - 50)/2 == 50"
+                ]
+              },
+              {
+                "prompt": "An angle from two secants outside is half the — of the arcs.",
+                "options": [
+                  "difference",
+                  "sum",
+                  "product"
+                ],
+                "correctIndex": 0,
+                "explanation": "Outside → difference.",
+                "check": [
+                  "(100-40)/2 == 30"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "How far can you see from a mountain?",
+            "body": "Your line of sight to the horizon is a tangent to the round Earth, and the angle it makes with straight down is set by circle geometry. The same half-the-difference reasoning tells sailors and pilots exactly how far the horizon sits — about $5$ km from a $2$-metre-tall person, and much farther from a peak."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which rule?",
+            "prompt": "Two chords cross INSIDE a circle, cutting arcs of $90^\\circ$ and $50^\\circ$. The angle is —",
+            "options": [
+              "$70^\\circ$",
+              "$20^\\circ$",
+              "$140^\\circ$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Inside → half the sum: $\\tfrac12(90 + 50) = 70^\\circ$.",
+            "check": [
+              "(90 + 50)/2 == 70"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Inside** (two chords): angle $= \\tfrac12(\\text{sum of arcs})$.",
+              "**Outside** (two secants/tangents): angle $= \\tfrac12(\\text{difference of arcs})$.",
+              "Pattern: **inside sum, outside difference** — always halved."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's compute inside (sum) and outside (difference) circle angles."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Chords cross; arcs $60^\\circ$ and $80^\\circ$. Angle?",
+                "options": [
+                  "$70^\\circ$",
+                  "$140^\\circ$",
+                  "$10^\\circ$",
+                  "$20^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(140) = 70$.",
+                "check": [
+                  "(60 + 80)/2 == 70"
+                ]
+              },
+              {
+                "prompt": "Secants outside; arcs $130^\\circ$ and $50^\\circ$. Angle?",
+                "options": [
+                  "$40^\\circ$",
+                  "$90^\\circ$",
+                  "$180^\\circ$",
+                  "$80^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(80) = 40$.",
+                "check": [
+                  "(130 - 50)/2 == 40"
+                ]
+              },
+              {
+                "prompt": "Inside the circle, use half the —",
+                "options": [
+                  "sum",
+                  "difference",
+                  "product",
+                  "quotient"
+                ],
+                "correctIndex": 0,
+                "explanation": "Inside → sum.",
+                "check": [
+                  "(80+40)/2 == 60"
+                ]
+              },
+              {
+                "prompt": "Chords cross; arcs $45^\\circ$ and $95^\\circ$. Angle?",
+                "options": [
+                  "$70^\\circ$",
+                  "$140^\\circ$",
+                  "$25^\\circ$",
+                  "$50^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(140) = 70$.",
+                "check": [
+                  "(45 + 95)/2 == 70"
+                ]
+              },
+              {
+                "prompt": "Secants outside; arcs $160^\\circ$ and $60^\\circ$. Angle?",
+                "options": [
+                  "$50^\\circ$",
+                  "$100^\\circ$",
+                  "$110^\\circ$",
+                  "$220^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(100) = 50$.",
+                "check": [
+                  "(160 - 60)/2 == 50"
+                ]
+              },
+              {
+                "prompt": "Outside the circle, use half the —",
+                "options": [
+                  "difference",
+                  "sum",
+                  "product",
+                  "quotient"
+                ],
+                "correctIndex": 0,
+                "explanation": "Outside → difference.",
+                "check": [
+                  "(100-40)/2 == 30"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Angle Relationships in Circles\"",
+            "body": "You can find every chord, secant, and tangent angle. Last stop: measuring pieces of the circle itself — arc length and sector area."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "arc-length-and-sector-area",
+      "title": "Arc Length & Sector Area",
+      "concreteComparison": "A slice of pizza is a sector: its curved crust is an arc, and the cheese is the sector's area. Both are just a fraction — θ out of 360° — of the whole pizza's circumference and area. That single fraction is the whole idea.",
+      "objective": "Find the arc length (θ/360 of the circumference) and the sector area (θ/360 of the circle's area) for a given central angle.",
+      "concept": [
+        "A **sector** is the pie-slice region between two radii and their arc. The central angle $\\theta$ says what **fraction** of the whole circle you have: $\\tfrac{\\theta}{360}$.",
+        "**Arc length** $= \\tfrac{\\theta}{360} \\times 2\\pi r$ — that fraction of the full circumference.",
+        "**Sector area** $= \\tfrac{\\theta}{360} \\times \\pi r^2$ — that fraction of the full circle's area.",
+        "A quarter circle ($\\theta = 90^\\circ$) is $\\tfrac14$ of each; a semicircle ($180^\\circ$) is $\\tfrac12$; the whole circle ($360^\\circ$) is all of it."
+      ],
+      "keyIdea": "A central angle θ gives the fraction θ/360 of the circle. Arc length = (θ/360)·2πr; sector area = (θ/360)·πr².",
+      "facts": [
+        {
+          "title": "Arc length",
+          "latex": "$\\dfrac{\\theta}{360}\\cdot 2\\pi r$",
+          "explanation": "That fraction of the circumference."
+        },
+        {
+          "title": "Sector area",
+          "latex": "$\\dfrac{\\theta}{360}\\cdot \\pi r^2$",
+          "explanation": "That fraction of the circle's area."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "as-we1",
+          "statement": "A circle has radius $6$. Find the arc length of a $90^\\circ$ sector.",
+          "solution": "$\\tfrac{90}{360}\\cdot 2\\pi(6) = \\tfrac14 \\cdot 12\\pi = 3\\pi \\approx 9.42$.",
+          "check": [
+            "90*2*pi*6/360 == 3*pi"
+          ]
+        },
+        {
+          "id": "as-we2",
+          "statement": "Same circle (radius $6$). Find the area of the $90^\\circ$ sector.",
+          "solution": "$\\tfrac{90}{360}\\cdot \\pi(6)^2 = \\tfrac14 \\cdot 36\\pi = 9\\pi \\approx 28.27$.",
+          "check": [
+            "90*pi*6**2/360 == 9*pi"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the area formula for arc length (or vice versa).",
+          "correction": "**Arc length** uses the **circumference** $2\\pi r$; **sector area** uses the **area** $\\pi r^2$. Same fraction, different base.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the θ/360 fraction.",
+          "correction": "Always scale by $\\tfrac{\\theta}{360}$ — you only want that slice, not the whole circle.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "as-t1",
+          "statement": "Radius $4$, central angle $90^\\circ$. Arc length?",
+          "solution": "$\\tfrac14 \\cdot 2\\pi(4) = 2\\pi$.",
+          "check": [
+            "90*2*pi*4/360 == 2*pi"
+          ]
+        },
+        {
+          "id": "as-t2",
+          "statement": "Radius $10$, central angle $180^\\circ$. Sector area?",
+          "solution": "$\\tfrac12 \\cdot \\pi(10)^2 = 50\\pi$.",
+          "check": [
+            "180*pi*10**2/360 == 50*pi"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "A slice is a fraction of the whole",
+            "beats": [
+              "A **sector** is a pie slice: two radii and the arc between them.",
+              "The central angle $\\theta$ tells you the **fraction** of the circle: $\\tfrac{\\theta}{360}$.",
+              "Take that fraction of the **circumference** for the arc length.",
+              "Take that fraction of the **area** for the sector area."
+            ]
+          },
+          {
+            "kind": "arcSector",
+            "eyebrow": "Concept A",
+            "title": "Arc length and sector area",
+            "teach": "Change the central angle $\\theta$. The arc length is $\\tfrac{\\theta}{360}$ of the circumference $2\\pi r$, and the sector area is $\\tfrac{\\theta}{360}$ of the area $\\pi r^2$. At $90^\\circ$ (a quarter) both are $\\tfrac14$ of the whole.",
+            "config": {
+              "start": 90,
+              "radius": 6
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Arc length",
+            "title": "Fraction of the circumference",
+            "beats": [
+              "Full circumference $= 2\\pi r$.",
+              "Arc length $= \\tfrac{\\theta}{360}\\times 2\\pi r$.",
+              "$\\theta = 90^\\circ$, $r = 6$: $\\tfrac14 \\cdot 12\\pi = 3\\pi$.",
+              "That's the length of the curved edge."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Find the arc length",
+            "intro": "θ/360 × 2πr.",
+            "examples": [
+              {
+                "prompt": "$r = 6$, $\\theta = 90^\\circ$. Arc length?",
+                "steps": [
+                  "$\\tfrac{90}{360}\\cdot 2\\pi(6) = \\tfrac14 \\cdot 12\\pi$.",
+                  "$= 3\\pi$."
+                ],
+                "answer": "$3\\pi$",
+                "check": [
+                  "90*2*pi*6/360 == 3*pi"
+                ]
+              },
+              {
+                "prompt": "$r = 9$, $\\theta = 120^\\circ$. Arc length?",
+                "steps": [
+                  "$\\tfrac{120}{360}\\cdot 2\\pi(9) = \\tfrac13 \\cdot 18\\pi$.",
+                  "$= 6\\pi$."
+                ],
+                "answer": "$6\\pi$",
+                "check": [
+                  "120*2*pi*9/360 == 6*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Arc length",
+            "intro": "θ/360 of 2πr.",
+            "problems": [
+              {
+                "prompt": "$r = 4$, $\\theta = 90^\\circ$. Arc length?",
+                "options": [
+                  "$2\\pi$",
+                  "$4\\pi$",
+                  "$8\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac14 \\cdot 8\\pi = 2\\pi$.",
+                "check": [
+                  "90*2*pi*4/360 == 2*pi"
+                ]
+              },
+              {
+                "prompt": "$r = 6$, $\\theta = 180^\\circ$. Arc length?",
+                "options": [
+                  "$6\\pi$",
+                  "$12\\pi$",
+                  "$3\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12 \\cdot 12\\pi = 6\\pi$.",
+                "check": [
+                  "180*2*pi*6/360 == 6*pi"
+                ]
+              },
+              {
+                "prompt": "Arc length uses the —",
+                "options": [
+                  "circumference $2\\pi r$",
+                  "area $\\pi r^2$",
+                  "diameter only"
+                ],
+                "correctIndex": 0,
+                "explanation": "It's part of the circumference.",
+                "check": [
+                  "2*pi*3 == 6*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Sector area",
+            "title": "Fraction of the area",
+            "beats": [
+              "Full area $= \\pi r^2$.",
+              "Sector area $= \\tfrac{\\theta}{360}\\times \\pi r^2$.",
+              "$\\theta = 90^\\circ$, $r = 6$: $\\tfrac14 \\cdot 36\\pi = 9\\pi$.",
+              "That's the area of the slice."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Find the sector area",
+            "intro": "θ/360 × πr².",
+            "examples": [
+              {
+                "prompt": "$r = 6$, $\\theta = 90^\\circ$. Sector area?",
+                "steps": [
+                  "$\\tfrac{90}{360}\\cdot \\pi(6)^2 = \\tfrac14 \\cdot 36\\pi$.",
+                  "$= 9\\pi$."
+                ],
+                "answer": "$9\\pi$",
+                "check": [
+                  "90*pi*6**2/360 == 9*pi"
+                ]
+              },
+              {
+                "prompt": "$r = 10$, $\\theta = 180^\\circ$. Sector area?",
+                "steps": [
+                  "$\\tfrac12 \\cdot \\pi(10)^2 = \\tfrac12 \\cdot 100\\pi$.",
+                  "$= 50\\pi$."
+                ],
+                "answer": "$50\\pi$",
+                "check": [
+                  "180*pi*10**2/360 == 50*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Sector area",
+            "intro": "θ/360 of πr².",
+            "problems": [
+              {
+                "prompt": "$r = 4$, $\\theta = 90^\\circ$. Sector area?",
+                "options": [
+                  "$4\\pi$",
+                  "$16\\pi$",
+                  "$2\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac14 \\cdot 16\\pi = 4\\pi$.",
+                "check": [
+                  "90*pi*4**2/360 == 4*pi"
+                ]
+              },
+              {
+                "prompt": "$r = 6$, $\\theta = 120^\\circ$. Sector area?",
+                "options": [
+                  "$12\\pi$",
+                  "$36\\pi$",
+                  "$6\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac13 \\cdot 36\\pi = 12\\pi$.",
+                "check": [
+                  "120*pi*6**2/360 == 12*pi"
+                ]
+              },
+              {
+                "prompt": "Sector area uses the —",
+                "options": [
+                  "area $\\pi r^2$",
+                  "circumference $2\\pi r$",
+                  "radius only"
+                ],
+                "correctIndex": 0,
+                "explanation": "It's part of the area.",
+                "check": [
+                  "pi*2**2 == 4*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Radians are just this idea",
+            "body": "Higher up in math, angles get measured in radians instead of degrees precisely to make these formulas simpler: in radians, arc length is just $r\\theta$ and sector area is $\\tfrac12 r^2\\theta$ — no $360$ needed. Radians are defined so that the fraction-of-the-circle bookkeeping disappears."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Sector area",
+            "prompt": "A circle has radius $8$. Find the area of a $90^\\circ$ sector.",
+            "options": [
+              "$16\\pi$",
+              "$64\\pi$",
+              "$8\\pi$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tfrac{90}{360}\\cdot \\pi(8)^2 = \\tfrac14 \\cdot 64\\pi = 16\\pi$.",
+            "check": [
+              "90*pi*8**2/360 == 16*pi"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A central angle $\\theta$ gives the fraction $\\tfrac{\\theta}{360}$ of the circle.",
+              "**Arc length** $= \\tfrac{\\theta}{360}\\cdot 2\\pi r$; **sector area** $= \\tfrac{\\theta}{360}\\cdot \\pi r^2$.",
+              "Arc length uses the **circumference**; sector area uses the **area**."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's compute arc lengths and sector areas from the θ/360 fraction."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$r = 6$, $\\theta = 60^\\circ$. Arc length?",
+                "options": [
+                  "$2\\pi$",
+                  "$6\\pi$",
+                  "$12\\pi$",
+                  "$\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac16 \\cdot 12\\pi = 2\\pi$.",
+                "check": [
+                  "60*2*pi*6/360 == 2*pi"
+                ]
+              },
+              {
+                "prompt": "$r = 3$, $\\theta = 120^\\circ$. Sector area?",
+                "options": [
+                  "$3\\pi$",
+                  "$9\\pi$",
+                  "$6\\pi$",
+                  "$\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac13 \\cdot 9\\pi = 3\\pi$.",
+                "check": [
+                  "120*pi*3**2/360 == 3*pi"
+                ]
+              },
+              {
+                "prompt": "$r = 10$, $\\theta = 90^\\circ$. Arc length?",
+                "options": [
+                  "$5\\pi$",
+                  "$25\\pi$",
+                  "$10\\pi$",
+                  "$20\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac14 \\cdot 20\\pi = 5\\pi$.",
+                "check": [
+                  "90*2*pi*10/360 == 5*pi"
+                ]
+              },
+              {
+                "prompt": "A $180^\\circ$ sector is — of the circle.",
+                "options": [
+                  "half",
+                  "a quarter",
+                  "a third",
+                  "all"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{180}{360} = \\tfrac12$.",
+                "check": [
+                  "180/360 == 1/2"
+                ]
+              },
+              {
+                "prompt": "$r = 12$, $\\theta = 90^\\circ$. Sector area?",
+                "options": [
+                  "$36\\pi$",
+                  "$144\\pi$",
+                  "$18\\pi$",
+                  "$72\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac14 \\cdot 144\\pi = 36\\pi$.",
+                "check": [
+                  "90*pi*12**2/360 == 36*pi"
+                ]
+              },
+              {
+                "prompt": "A full circle ($\\theta = 360^\\circ$) sector area equals —",
+                "options": [
+                  "$\\pi r^2$",
+                  "$2\\pi r$",
+                  "$\\tfrac12\\pi r^2$",
+                  "$0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The whole area.",
+                "check": [
+                  "360*pi*5**2/360 == pi*5**2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Arc Length & Sector Area\"",
+            "body": "You can measure arcs and slices of any circle — the finale of Circles. Next unit: area and perimeter across all the shapes you've met, including composite figures."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [],
+  "testYourself": []
+}

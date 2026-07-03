@@ -351,3 +351,50 @@ export function thirtySixtyTriangle(short: number): { short: number; long: numbe
 export function rightTriangleRatios(opp: number, adj: number, hyp: number): { sin: number; cos: number; tan: number } {
   return { sin: opp / hyp, cos: adj / hyp, tan: opp / adj };
 }
+
+// ---------------------------------------------------------------------------
+// Circles — arcs, angles, arc length, sector area
+// ---------------------------------------------------------------------------
+
+// Circumference (perimeter) and area of a circle of radius r.
+export function circumference(r: number): number {
+  return 2 * Math.PI * r;
+}
+export function circleArea(r: number): number {
+  return Math.PI * r * r;
+}
+
+// A point on a circle: centre (cx, cy), radius r, at `deg` measured
+// counter-clockwise from the positive x-axis (math convention, y up).
+export function pointOnCircle(cx: number, cy: number, r: number, deg: number): XY {
+  const rad = (deg * Math.PI) / 180;
+  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+}
+
+// Inscribed Angle Theorem: an inscribed angle is HALF its intercepted arc (and
+// half the central angle standing on the same arc).
+export function inscribedAngle(arc: number): number {
+  return arc / 2;
+}
+
+// Arc length: the fraction θ/360 of the full circumference.
+export function arcLength(theta: number, r: number): number {
+  return (theta / 360) * circumference(r);
+}
+
+// Sector area: the fraction θ/360 of the full circle's area.
+export function sectorArea(theta: number, r: number): number {
+  return (theta / 360) * circleArea(r);
+}
+
+// Two chords crossing INSIDE a circle: the angle equals HALF the SUM of the two
+// intercepted arcs.
+export function chordsAngle(arc1: number, arc2: number): number {
+  return (arc1 + arc2) / 2;
+}
+
+// Two secants/tangents meeting OUTSIDE a circle: the angle equals HALF the
+// DIFFERENCE of the far and near intercepted arcs.
+export function secantsAngle(farArc: number, nearArc: number): number {
+  return (farArc - nearArc) / 2;
+}

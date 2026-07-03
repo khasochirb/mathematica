@@ -72,6 +72,10 @@ import Dilation from "@/components/genmath/interactive/Dilation";
 import PythagoreanSquares from "@/components/genmath/interactive/PythagoreanSquares";
 import SpecialTriangle from "@/components/genmath/interactive/SpecialTriangle";
 import TrigRatios from "@/components/genmath/interactive/TrigRatios";
+import CircleFigure from "@/components/genmath/interactive/CircleFigure";
+import CircleAngle from "@/components/genmath/interactive/CircleAngle";
+import TangentCircle from "@/components/genmath/interactive/TangentCircle";
+import ArcSector from "@/components/genmath/interactive/ArcSector";
 import RatioFigure from "@/components/genmath/interactive/RatioFigure";
 import NotationToggle from "@/components/genmath/interactive/NotationToggle";
 import { type GenMathLesson } from "@/lib/genmath-lessons";
@@ -871,6 +875,46 @@ function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveSt
         <>
           <StepHeader eyebrow={step.eyebrow} title={step.title} />
           <TrigRatios config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "circleFigure":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <CircleFigure config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "circleAngle":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <CircleAngle config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "tangentCircle":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <TangentCircle config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "arcSector":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <ArcSector config={step.config} />
           <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
             <MathText text={step.teach} />
           </p>

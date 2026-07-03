@@ -67,6 +67,7 @@ import geometryRelationships from "@/data/genmath/geometry/relationships-in-tria
 import geometryQuadrilaterals from "@/data/genmath/geometry/quadrilaterals-and-polygons.json";
 import geometrySimilarity from "@/data/genmath/geometry/similarity.json";
 import geometryRightTriangles from "@/data/genmath/geometry/right-triangles-and-trig.json";
+import geometryCircles from "@/data/genmath/geometry/circles.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -210,7 +211,7 @@ export const GEOMETRY_SPINE: GeometrySpineEntry[] = [
     title: "Circles",
     blurb: "Radius, chord, tangent, secant; central and inscribed angles; arcs; and the circle relationships.",
     buildsOn: "Angles (Unit 1), triangles (Unit 4), and right triangles (Unit 8).",
-    live: false,
+    live: true,
   },
   {
     unit: 10,
@@ -255,6 +256,7 @@ const geometryUnits: GeometryUnit[] = [
   geometryQuadrilaterals as unknown as GeometryUnit,
   geometrySimilarity as unknown as GeometryUnit,
   geometryRightTriangles as unknown as GeometryUnit,
+  geometryCircles as unknown as GeometryUnit,
 ];
 
 export function getGeometrySpine(): GeometrySpineEntry[] {

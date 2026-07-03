@@ -674,6 +674,51 @@ export interface TrigRatiosConfig {
   color?: string;
 }
 
+// A declarative circle diagram: centre O, labelled points placed on the circle
+// by angle, and objects between them (chords, radii, diameters, secants,
+// tangents), plus angle marks and a highlighted arc with its measure. The
+// static circle renderer for the Circles unit.
+export interface CirclePointSpec { id: string; deg: number; label?: string }
+export type CircleObjectSpec =
+  | { kind: "chord" | "radius" | "diameter" | "secant"; from: string; to: string; color?: string; ticks?: number; dashed?: boolean }
+  | { kind: "tangent"; at: string; color?: string }; // tangent line at a point on the circle
+export interface CircleAngleMark { at: string; from: string; to: string; label?: string; right?: boolean; color?: string }
+export interface CircleArcMark { from: string; to: string; label?: string; color?: string }
+export interface CircleFigureConfig {
+  radius?: number;
+  points?: CirclePointSpec[];
+  objects?: CircleObjectSpec[];
+  angles?: CircleAngleMark[];
+  arcs?: CircleArcMark[];
+  external?: { id: string; deg: number; dist: number; label?: string; tangents?: boolean; secantTo?: [string, string] };
+  showCenter?: boolean;
+  caption?: string;
+}
+
+// A circle with an adjustable central angle. "central" mode shows the central
+// angle equal to its intercepted arc; "inscribed" mode adds an inscribed angle
+// on the same arc, always half the central angle (Inscribed Angle Theorem).
+export interface CircleAngleConfig {
+  mode: "central" | "inscribed";
+  start?: number; // central angle in degrees
+  color?: string;
+}
+
+// A circle with an external point and the two tangent lines from it: each
+// tangent meets the radius at a right angle, and the two tangent segments are
+// equal. Reveals on tap.
+export interface TangentCircleConfig {
+  color?: string;
+}
+
+// A circle with an adjustable central angle showing the sector's arc length
+// (θ/360 of the circumference) and area (θ/360 of the circle's area).
+export interface ArcSectorConfig {
+  start?: number; // central angle
+  radius?: number; // the labelled radius value
+  color?: string;
+}
+
 // Two congruent triangles with marked parts; the student names the shortcut.
 export interface CongruentTrianglesConfig {
   sides?: [number, number, number]; // tick counts on AB, BC, CA
@@ -773,6 +818,10 @@ export type InteractiveStep =
   | { kind: "pythagoreanSquares"; eyebrow?: string; title: string; teach: string; config: PythagoreanSquaresConfig }
   | { kind: "specialTriangle"; eyebrow?: string; title: string; teach: string; config: SpecialTriangleConfig }
   | { kind: "trigRatios"; eyebrow?: string; title: string; teach: string; config: TrigRatiosConfig }
+  | { kind: "circleFigure"; eyebrow?: string; title: string; teach: string; config: CircleFigureConfig }
+  | { kind: "circleAngle"; eyebrow?: string; title: string; teach: string; config: CircleAngleConfig }
+  | { kind: "tangentCircle"; eyebrow?: string; title: string; teach: string; config: TangentCircleConfig }
+  | { kind: "arcSector"; eyebrow?: string; title: string; teach: string; config: ArcSectorConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

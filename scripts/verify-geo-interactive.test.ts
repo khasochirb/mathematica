@@ -52,6 +52,14 @@ import {
   fortyFiveTriangle,
   thirtySixtyTriangle,
   rightTriangleRatios,
+  circumference,
+  circleArea,
+  pointOnCircle,
+  inscribedAngle,
+  arcLength,
+  sectorArea,
+  chordsAngle,
+  secantsAngle,
 } from "@/lib/geo";
 
 describe("segment math", () => {
@@ -471,5 +479,56 @@ describe("right triangles & trigonometry", () => {
     expect(r.sin * r.sin + r.cos * r.cos).toBeCloseTo(1);
     // tan = sin / cos
     expect(r.tan).toBeCloseTo(r.sin / r.cos);
+  });
+});
+
+describe("circles — arcs, angles, arc length, sector area", () => {
+  it("circumference and area scale with r and r²", () => {
+    expect(circumference(1)).toBeCloseTo(2 * Math.PI);
+    expect(circumference(5)).toBeCloseTo(10 * Math.PI);
+    expect(circleArea(1)).toBeCloseTo(Math.PI);
+    expect(circleArea(3)).toBeCloseTo(9 * Math.PI);
+  });
+
+  it("pointOnCircle lands on the circle at the right places", () => {
+    const p0 = pointOnCircle(0, 0, 5, 0);
+    expect(p0.x).toBeCloseTo(5);
+    expect(p0.y).toBeCloseTo(0);
+    const p90 = pointOnCircle(0, 0, 5, 90);
+    expect(p90.x).toBeCloseTo(0);
+    expect(p90.y).toBeCloseTo(5);
+    // always radius r from the centre
+    for (const d of [37, 120, 200, 315]) {
+      const p = pointOnCircle(2, 3, 4, d);
+      expect(distFn({ x: 2, y: 3 }, p)).toBeCloseTo(4);
+    }
+  });
+
+  it("inscribed angle is half its arc / central angle", () => {
+    expect(inscribedAngle(120)).toBe(60);
+    expect(inscribedAngle(180)).toBe(90); // angle in a semicircle is a right angle
+    expect(inscribedAngle(90)).toBe(45);
+  });
+
+  it("arc length and sector area are the θ/360 fraction", () => {
+    // quarter circle, r = 8
+    expect(arcLength(90, 8)).toBeCloseTo((1 / 4) * 2 * Math.PI * 8);
+    expect(arcLength(90, 8)).toBeCloseTo(4 * Math.PI);
+    expect(sectorArea(90, 8)).toBeCloseTo(16 * Math.PI);
+    // full circle recovers circumference and area
+    expect(arcLength(360, 5)).toBeCloseTo(circumference(5));
+    expect(sectorArea(360, 5)).toBeCloseTo(circleArea(5));
+    // half circle, r = 6
+    expect(arcLength(180, 6)).toBeCloseTo(6 * Math.PI);
+    expect(sectorArea(180, 6)).toBeCloseTo(18 * Math.PI);
+  });
+
+  it("angles from chords (inside) and secants (outside)", () => {
+    // two chords crossing: half the SUM of the arcs
+    expect(chordsAngle(80, 40)).toBe(60);
+    expect(chordsAngle(100, 50)).toBe(75);
+    // two secants outside: half the DIFFERENCE
+    expect(secantsAngle(100, 40)).toBe(30);
+    expect(secantsAngle(120, 30)).toBe(45);
   });
 });
