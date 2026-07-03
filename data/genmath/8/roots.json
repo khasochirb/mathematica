@@ -1,0 +1,1523 @@
+{
+  "slug": "roots",
+  "title": "Square & Cube Roots",
+  "grade": 8,
+  "blurb": "Square roots and cube roots, perfect squares and cubes, and solving equations like x² = 49 and x³ = 8.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "square-roots",
+      "title": "Square Roots",
+      "concreteComparison": "A square rug covers $49$ square feet. How long is each side? You need the number that, multiplied by itself, gives $49$ — that's $7$, because $7^2=49$. Finding that number is taking a **square root**: $\\sqrt{49}=7$. Squaring builds the area; the square root recovers the side.",
+      "objective": "Understand the square root as the inverse of squaring, evaluate roots of perfect squares, and use the radical symbol correctly.",
+      "concept": [
+        "**Squaring** a number multiplies it by itself: $7^2=49$. The **square root** undoes that: $\\sqrt{49}=7$. The symbol $\\sqrt{\\ }$ is called a **radical**.",
+        "A **perfect square** is a whole number that is some whole number squared: $1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, \\ldots$ Their square roots come out even.",
+        "Every positive number actually has **two** square roots — $7^2=49$ and $(-7)^2=49$. But the radical symbol $\\sqrt{49}$ means the **principal** (positive) root: $7$, never $-7$.",
+        "Square roots of fractions work part by part: $\\sqrt{\\frac{9}{16}} = \\frac{\\sqrt{9}}{\\sqrt{16}} = \\frac{3}{4}$."
+      ],
+      "keyIdea": "$\\sqrt{a}$ is the nonnegative number whose square is $a$: $\\sqrt{49}=7$ because $7^2=49$.",
+      "facts": [
+        {
+          "title": "Perfect squares to 144",
+          "latex": "$1,4,9,16,25,36,49,64,81,100,121,144$",
+          "explanation": "Know these cold — roots come out even."
+        },
+        {
+          "title": "Principal root",
+          "latex": "$\\sqrt{49} = 7$ (not $-7$)",
+          "explanation": "The radical symbol means the positive root."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rt1-we1",
+          "statement": "Evaluate $\\sqrt{81}$.",
+          "solution": "$9^2=81$, so $\\sqrt{81}=9$.",
+          "check": [
+            "sqrt(81) == 9"
+          ]
+        },
+        {
+          "id": "rt1-we2",
+          "statement": "Evaluate $\\sqrt{144}$.",
+          "solution": "$12^2=144$, so $\\sqrt{144}=12$.",
+          "check": [
+            "sqrt(144) == 12"
+          ]
+        },
+        {
+          "id": "rt1-we3",
+          "statement": "Evaluate $\\sqrt{\\frac{9}{16}}$.",
+          "solution": "$\\frac{\\sqrt{9}}{\\sqrt{16}}=\\frac{3}{4}$.",
+          "check": [
+            "sqrt(Rational(9,16)) == Rational(3,4)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Halving instead of rooting.",
+          "correction": "$\\sqrt{100}=10$, not $50$ — find the number that multiplies by itself to give 100.",
+          "authored": true
+        },
+        {
+          "text": "Giving $\\pm$ for the radical symbol.",
+          "correction": "$\\sqrt{49}=7$ only. The equation $x^2=49$ has two solutions, but the symbol $\\sqrt{\\ }$ names just the positive one.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rt1-t1",
+          "statement": "Evaluate $\\sqrt{64}$.",
+          "solution": "$8^2=64$, so $\\sqrt{64}=8$.",
+          "check": [
+            "sqrt(64) == 8"
+          ]
+        },
+        {
+          "id": "rt1-t2",
+          "statement": "Evaluate $\\sqrt{\\frac{25}{36}}$.",
+          "solution": "$\\frac{5}{6}$.",
+          "check": [
+            "sqrt(Rational(25,36)) == Rational(5,6)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Undoing a square",
+            "beats": [
+              "$7^2 = 49$: squaring $7$ gives $49$.",
+              "$\\sqrt{49} = 7$: the square root goes back.",
+              "Read $\\sqrt{49}$ as “the square root of 49”.",
+              "Squaring and rooting are **inverse** operations."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The list to know",
+            "title": "Perfect squares",
+            "beats": [
+              "$1, 4, 9, 16, 25, 36, 49, 64$…",
+              "…$81, 100, 121, 144$.",
+              "These are $1^2$ through $12^2$.",
+              "Spot one under a radical and the root is instant."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Root it",
+            "prompt": "What is $\\sqrt{81}$?",
+            "options": [
+              "$9$",
+              "$40.5$",
+              "$81/2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$9\\times9=81$, so $\\sqrt{81}=9$ — rooting is not halving!",
+            "check": [
+              "sqrt(81) == 9"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "A subtlety",
+            "title": "Two squares, one symbol",
+            "beats": [
+              "$7^2=49$ **and** $(-7)^2=49$.",
+              "So $49$ has two square roots: $7$ and $-7$.",
+              "But the symbol $\\sqrt{49}$ means the **positive** one.",
+              "$\\sqrt{49}=7$. Write $-\\sqrt{49}$ if you mean $-7$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Evaluating square roots",
+            "intro": "Ask: what times itself gives this?",
+            "examples": [
+              {
+                "prompt": "Evaluate $\\sqrt{121}$.",
+                "steps": [
+                  "$11\\times11=121$.",
+                  "So $\\sqrt{121}=11$."
+                ],
+                "answer": "$11$",
+                "check": [
+                  "sqrt(121) == 11"
+                ]
+              },
+              {
+                "prompt": "Evaluate $\\sqrt{\\frac{4}{25}}$.",
+                "steps": [
+                  "Root top and bottom.",
+                  "$\\frac{\\sqrt{4}}{\\sqrt{25}}=\\frac{2}{5}$."
+                ],
+                "answer": "$\\frac{2}{5}$",
+                "check": [
+                  "sqrt(Rational(4,25)) == Rational(2,5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the root",
+            "intro": "Perfect squares only — no calculator needed.",
+            "problems": [
+              {
+                "prompt": "What is $\\sqrt{36}$?",
+                "options": [
+                  "$6$",
+                  "$18$",
+                  "$1296$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6^2=36$.",
+                "check": [
+                  "sqrt(36) == 6"
+                ]
+              },
+              {
+                "prompt": "What is $\\sqrt{100}$?",
+                "options": [
+                  "$10$",
+                  "$50$",
+                  "$25$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$10^2=100$ — not $100\\div2$.",
+                "check": [
+                  "sqrt(100) == 10"
+                ]
+              },
+              {
+                "prompt": "What is $\\sqrt{\\frac{1}{9}}$?",
+                "options": [
+                  "$\\frac{1}{3}$",
+                  "$\\frac{1}{81}$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\left(\\frac13\\right)^2=\\frac19$.",
+                "check": [
+                  "sqrt(Rational(1,9)) == Rational(1,3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The oldest math homework",
+            "body": "A Babylonian clay tablet nearly 4,000 years old (YBC 7289) shows a square with its diagonal labelled — and their estimate of $\\sqrt{2}$ is accurate to six decimal places. Students were practicing square roots two millennia before algebra had symbols."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$\\sqrt{a}$ undoes squaring: $\\sqrt{49}=7$.",
+              "Memorize the perfect squares $1$–$144$.",
+              "The radical symbol always means the **positive** root."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "cube-roots",
+      "title": "Cube Roots",
+      "concreteComparison": "A shipping box holds $64$ cubic feet and is a perfect cube. How tall is it? You need the number that multiplies by itself **three** times to give $64$: that's $4$, since $4^3=64$. That's a **cube root**: $\\sqrt[3]{64}=4$. Volume builds up in three dimensions; the cube root brings you back to the edge.",
+      "objective": "Evaluate cube roots of perfect cubes — including negative numbers — and contrast them with square roots.",
+      "concept": [
+        "**Cubing** uses three copies: $4^3=4\\times4\\times4=64$. The **cube root** undoes it: $\\sqrt[3]{64}=4$. The little $3$ is the **index** of the radical.",
+        "**Perfect cubes**: $1, 8, 27, 64, 125, 216, 343, 512, 729, 1000$ — that's $1^3$ through $10^3$.",
+        "Big difference from square roots: **negatives are allowed**. $(-2)^3=-8$, so $\\sqrt[3]{-8}=-2$. A cube of a negative stays negative, so every number — positive or negative — has exactly **one** real cube root.",
+        "Compare: $\\sqrt{64}=8$ but $\\sqrt[3]{64}=4$. Same radicand, different index, different question."
+      ],
+      "keyIdea": "$\\sqrt[3]{a}$ is the number whose cube is $a$ — and unlike square roots, $a$ may be negative: $\\sqrt[3]{-8}=-2$.",
+      "facts": [
+        {
+          "title": "Perfect cubes to 1000",
+          "latex": "$1,8,27,64,125,216,343,512,729,1000$",
+          "explanation": "These are $1^3$ through $10^3$."
+        },
+        {
+          "title": "Negatives allowed",
+          "latex": "$\\sqrt[3]{-8} = -2$",
+          "explanation": "$(-2)^3=-8$ — a cube keeps the sign."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rt2-we1",
+          "statement": "Evaluate $\\sqrt[3]{27}$.",
+          "solution": "$3^3=27$, so $\\sqrt[3]{27}=3$.",
+          "check": [
+            "cbrt(27) == 3",
+            "3**3 == 27"
+          ]
+        },
+        {
+          "id": "rt2-we2",
+          "statement": "Evaluate $\\sqrt[3]{-8}$.",
+          "solution": "$(-2)^3=-8$, so $\\sqrt[3]{-8}=-2$.",
+          "check": [
+            "(-2)**3 == -8"
+          ]
+        },
+        {
+          "id": "rt2-we3",
+          "statement": "Evaluate $\\sqrt[3]{125}$.",
+          "solution": "$5^3=125$, so $\\sqrt[3]{125}=5$.",
+          "check": [
+            "cbrt(125) == 5"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Confusing the index: $\\sqrt[3]{64}=8$.",
+          "correction": "$\\sqrt[3]{64}=4$ (since $4^3=64$); it's $\\sqrt{64}$ that equals $8$.",
+          "authored": true
+        },
+        {
+          "text": "Saying $\\sqrt[3]{-27}$ is impossible.",
+          "correction": "It's fine: $(-3)^3=-27$, so $\\sqrt[3]{-27}=-3$. Only EVEN roots reject negatives.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rt2-t1",
+          "statement": "Evaluate $\\sqrt[3]{8}$.",
+          "solution": "$2^3=8$, so $\\sqrt[3]{8}=2$.",
+          "check": [
+            "cbrt(8) == 2"
+          ]
+        },
+        {
+          "id": "rt2-t2",
+          "statement": "Evaluate $\\sqrt[3]{-64}$.",
+          "solution": "$(-4)^3=-64$, so $\\sqrt[3]{-64}=-4$.",
+          "check": [
+            "(-4)**3 == -64"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Three copies",
+            "title": "The cube root",
+            "beats": [
+              "$4^3 = 4\\times4\\times4 = 64$.",
+              "$\\sqrt[3]{64} = 4$ — the cube root goes back.",
+              "The small $3$ is the **index**.",
+              "No index written means index $2$ (square root)."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Know the cubes",
+            "title": "Perfect cubes",
+            "beats": [
+              "$1, 8, 27, 64, 125$…",
+              "…$216, 343, 512, 729, 1000$.",
+              "That's $1^3$ through $10^3$.",
+              "Far fewer than squares — easy to memorize."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which root?",
+            "prompt": "What is $\\sqrt[3]{64}$?",
+            "options": [
+              "$4$",
+              "$8$",
+              "$21\\frac13$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$4^3=64$. ($\\sqrt{64}=8$ is the SQUARE root — watch the index.)",
+            "check": [
+              "cbrt(64) == 4"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The sign survives",
+            "title": "Cube roots of negatives",
+            "beats": [
+              "$(-2)^3 = -2\\times-2\\times-2 = -8$.",
+              "Two negatives make $+4$, times $-2$ gives $-8$.",
+              "So $\\sqrt[3]{-8} = -2$ — perfectly legal.",
+              "Squares can't do this: no real number squares to $-8$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Evaluating cube roots",
+            "intro": "What number, cubed, gives this?",
+            "examples": [
+              {
+                "prompt": "Evaluate $\\sqrt[3]{216}$.",
+                "steps": [
+                  "$6^3 = 216$.",
+                  "So $\\sqrt[3]{216}=6$."
+                ],
+                "answer": "$6$",
+                "check": [
+                  "cbrt(216) == 6"
+                ]
+              },
+              {
+                "prompt": "Evaluate $\\sqrt[3]{-125}$.",
+                "steps": [
+                  "$(-5)^3 = -125$.",
+                  "So $\\sqrt[3]{-125}=-5$."
+                ],
+                "answer": "$-5$",
+                "check": [
+                  "(-5)**3 == -125"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Cube roots",
+            "intro": "Watch the sign and the index.",
+            "problems": [
+              {
+                "prompt": "What is $\\sqrt[3]{1000}$?",
+                "options": [
+                  "$10$",
+                  "$100$",
+                  "$333$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$10^3=1000$.",
+                "check": [
+                  "cbrt(1000) == 10"
+                ]
+              },
+              {
+                "prompt": "What is $\\sqrt[3]{-27}$?",
+                "options": [
+                  "$-3$",
+                  "$3$",
+                  "impossible"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(-3)^3=-27$ — cube roots accept negatives.",
+                "check": [
+                  "(-3)**3 == -27"
+                ]
+              },
+              {
+                "prompt": "Which is bigger, $\\sqrt{64}$ or $\\sqrt[3]{64}$?",
+                "options": [
+                  "$\\sqrt{64}$",
+                  "$\\sqrt[3]{64}$",
+                  "Equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{64}=8$ beats $\\sqrt[3]{64}=4$.",
+                "check": [
+                  "sqrt(64) > cbrt(64)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The duplication of the cube",
+            "body": "Legend: the citizens of Delos asked the oracle how to stop a plague, and were told to double the volume of their cubic altar. Doubling the EDGE makes volume $8\\times$ bigger — what they needed was an edge of $\\sqrt[3]{2}$ times the original, a length the Greeks proved impossible to construct with compass and straightedge alone. One plague, two thousand years of mathematics."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$\\sqrt[3]{a}$ undoes cubing: $\\sqrt[3]{64}=4$.",
+              "Perfect cubes: $1,8,27,64,125,\\ldots,1000$.",
+              "Negatives are fine: $\\sqrt[3]{-8}=-2$."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "estimating-roots",
+      "title": "Estimating Roots",
+      "concreteComparison": "Your garden plot is $70$ square feet, and you want it square-ish. $\\sqrt{70}$ isn't a whole number — but $8^2=64$ and $9^2=81$, so the side is between $8$ and $9$ feet, and since $70$ is closer to $64$, it's a bit over $8$. Squeezing a root between two perfect squares (or cubes) turns an ugly number into a usable estimate.",
+      "objective": "Estimate square and cube roots of non-perfect squares and cubes by trapping them between consecutive integers and refining to the nearest tenth.",
+      "concept": [
+        "To estimate $\\sqrt{70}$: find the perfect squares around $70$. $8^2=64<70<81=9^2$, so $8<\\sqrt{70}<9$.",
+        "**Refine by testing tenths**: $8.3^2=68.89$ and $8.4^2=70.56$. Since $68.89<70<70.56$, the root is between $8.3$ and $8.4$, and $70.56$ is closer — call it $\\sqrt{70}\\approx 8.4$.",
+        "Cube roots work the same with perfect cubes. $\\sqrt[3]{100}$: since $4^3=64<100<125=5^3$, we get $4<\\sqrt[3]{100}<5$.",
+        "The closer the radicand is to one of the bounding perfect powers, the closer the root lies to that end."
+      ],
+      "keyIdea": "Trap the root between consecutive perfect powers, then test tenths to sharpen the estimate.",
+      "facts": [
+        {
+          "title": "Square-root trap",
+          "latex": "$8 < \\sqrt{70} < 9$",
+          "explanation": "Because $64 < 70 < 81$."
+        },
+        {
+          "title": "Cube-root trap",
+          "latex": "$4 < \\sqrt[3]{100} < 5$",
+          "explanation": "Because $64 < 100 < 125$."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rt3-we1",
+          "statement": "Between which whole numbers is $\\sqrt{70}$?",
+          "solution": "$8^2=64<70<81=9^2$, so $8<\\sqrt{70}<9$.",
+          "check": [
+            "8 < sqrt(70)",
+            "sqrt(70) < 9"
+          ]
+        },
+        {
+          "id": "rt3-we2",
+          "statement": "Estimate $\\sqrt{70}$ to the nearest tenth.",
+          "solution": "$8.3^2=68.89$, $8.4^2=70.56$; $70$ sits between, closer to $70.56$, so $\\sqrt{70}\\approx 8.4$.",
+          "check": [
+            "sqrt(70) > Rational(83,10)",
+            "sqrt(70) < Rational(84,10)"
+          ]
+        },
+        {
+          "id": "rt3-we3",
+          "statement": "Between which whole numbers is $\\sqrt[3]{100}$?",
+          "solution": "$4^3=64<100<125=5^3$, so $4<\\sqrt[3]{100}<5$.",
+          "check": [
+            "4 < cbrt(100)",
+            "cbrt(100) < 5"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dividing by 2 (or 3) to estimate a root.",
+          "correction": "$\\sqrt{70}$ is about $8.4$, nowhere near $35$ — trap it between perfect squares instead.",
+          "authored": true
+        },
+        {
+          "text": "Using perfect squares to trap a CUBE root.",
+          "correction": "For $\\sqrt[3]{100}$ use cubes ($64$ and $125$), not squares — the bounds come from the same power you're undoing.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rt3-t1",
+          "statement": "Between which whole numbers is $\\sqrt{45}$?",
+          "solution": "$6^2=36<45<49=7^2$, so $6<\\sqrt{45}<7$.",
+          "check": [
+            "6 < sqrt(45)",
+            "sqrt(45) < 7"
+          ]
+        },
+        {
+          "id": "rt3-t2",
+          "statement": "Between which whole numbers is $\\sqrt[3]{20}$?",
+          "solution": "$2^3=8<20<27=3^3$, so $2<\\sqrt[3]{20}<3$.",
+          "check": [
+            "2 < cbrt(20)",
+            "cbrt(20) < 3"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The trap",
+            "title": "Between two perfect squares",
+            "beats": [
+              "Estimate $\\sqrt{70}$: it's not a perfect square.",
+              "Neighbors: $8^2=64$ and $9^2=81$.",
+              "$64 < 70 < 81$, so $8 < \\sqrt{70} < 9$.",
+              "$70$ is nearer $64$, so the root is nearer $8$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Sharpen it",
+            "title": "Test the tenths",
+            "beats": [
+              "Try $8.3$: $8.3^2 = 68.89$ — too small.",
+              "Try $8.4$: $8.4^2 = 70.56$ — just past.",
+              "So $8.3 < \\sqrt{70} < 8.4$.",
+              "$70$ is closer to $70.56$: $\\sqrt{70}\\approx 8.4$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Trap it",
+            "prompt": "Between which whole numbers is $\\sqrt{45}$?",
+            "options": [
+              "$6$ and $7$",
+              "$5$ and $6$",
+              "$22$ and $23$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$36<45<49$, so $6<\\sqrt{45}<7$.",
+            "check": [
+              "6 < sqrt(45)",
+              "sqrt(45) < 7"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Cube roots too",
+            "title": "Same trick, different powers",
+            "beats": [
+              "Estimate $\\sqrt[3]{100}$.",
+              "Cubes nearby: $4^3=64$ and $5^3=125$.",
+              "$64<100<125$, so $4<\\sqrt[3]{100}<5$.",
+              "$100$ is nearer $125$ — the root is nearer $5$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Trap and refine",
+            "intro": "Bound it, then test a tenth if needed.",
+            "examples": [
+              {
+                "prompt": "Between which whole numbers is $\\sqrt{110}$?",
+                "steps": [
+                  "$10^2=100$, $11^2=121$.",
+                  "$100<110<121$.",
+                  "So $10<\\sqrt{110}<11$."
+                ],
+                "answer": "between $10$ and $11$",
+                "check": [
+                  "10 < sqrt(110)",
+                  "sqrt(110) < 11"
+                ]
+              },
+              {
+                "prompt": "Between which whole numbers is $\\sqrt[3]{50}$?",
+                "steps": [
+                  "$3^3=27$, $4^3=64$.",
+                  "$27<50<64$.",
+                  "So $3<\\sqrt[3]{50}<4$."
+                ],
+                "answer": "between $3$ and $4$",
+                "check": [
+                  "3 < cbrt(50)",
+                  "cbrt(50) < 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Estimate the root",
+            "intro": "Choose the right perfect powers.",
+            "problems": [
+              {
+                "prompt": "Between which whole numbers is $\\sqrt{28}$?",
+                "options": [
+                  "$5$ and $6$",
+                  "$4$ and $5$",
+                  "$13$ and $15$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$25<28<36$, so $5<\\sqrt{28}<6$.",
+                "check": [
+                  "5 < sqrt(28)",
+                  "sqrt(28) < 6"
+                ]
+              },
+              {
+                "prompt": "$\\sqrt{28}$ is closest to which tenth?",
+                "options": [
+                  "$5.3$",
+                  "$5.9$",
+                  "$5.0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5.3^2=28.09$ — almost exactly $28$.",
+                "check": [
+                  "sqrt(28) > Rational(52,10)",
+                  "sqrt(28) < Rational(53,10)"
+                ]
+              },
+              {
+                "prompt": "Between which whole numbers is $\\sqrt[3]{200}$?",
+                "options": [
+                  "$5$ and $6$",
+                  "$14$ and $15$",
+                  "$6$ and $7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5^3=125<200<216=6^3$.",
+                "check": [
+                  "5 < cbrt(200)",
+                  "cbrt(200) < 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "How calculators do it",
+            "body": "Your calculator doesn't “know” $\\sqrt{70}$ — it runs the same squeeze you just did, only faster. Newton's method starts with a guess and improves it: average your guess with $70\\div\\text{guess}$, repeat. Three rounds from a guess of $8$ already gives $8.3666$, correct to four digits."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Trap: $64<70<81$ gives $8<\\sqrt{70}<9$.",
+              "Refine with tenths: $\\sqrt{70}\\approx 8.4$.",
+              "Cube roots use perfect cubes the same way."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "solving-root-equations",
+      "title": "Solving x² = k and x³ = k",
+      "concreteComparison": "You know a square banner's area must be $49$ square feet, and you're solving for the side: $x^2=49$. Algebra says there are **two** numbers that work — $7$ and $-7$ — even though only $7$ makes sense for a banner. Equations with squares come with a $\\pm$; equations with cubes don't. Knowing which is which keeps your answers complete.",
+      "objective": "Solve equations of the form $x^2=k$ (two solutions, $x=\\pm\\sqrt{k}$) and $x^3=k$ (one solution, $x=\\sqrt[3]{k}$), and know when to keep or drop the negative root.",
+      "concept": [
+        "**$x^2=k$ has two solutions** (for $k>0$): $x=\\sqrt{k}$ and $x=-\\sqrt{k}$, written $x=\\pm\\sqrt{k}$. Both check: $7^2=49$ and $(-7)^2=49$.",
+        "**$x^3=k$ has exactly one real solution**: $x=\\sqrt[3]{k}$. Cubing keeps the sign, so no second answer appears: $x^3=8$ gives only $x=2$, and $x^3=-8$ gives only $x=-2$.",
+        "In **word problems**, context can rule out the negative: a side length, a distance, an age must be positive. State $x=\\pm$ first, then discard what the situation forbids.",
+        "If $k$ isn't a perfect square or cube, the answer stays exact in radical form: $x^2=50$ gives $x=\\pm\\sqrt{50}$."
+      ],
+      "keyIdea": "$x^2=k \\Rightarrow x=\\pm\\sqrt{k}$ (two answers); $x^3=k \\Rightarrow x=\\sqrt[3]{k}$ (one answer, sign preserved).",
+      "facts": [
+        {
+          "title": "Square equation",
+          "latex": "$x^2=49 \\Rightarrow x=\\pm 7$",
+          "explanation": "Two solutions — don't lose the negative."
+        },
+        {
+          "title": "Cube equation",
+          "latex": "$x^3=8 \\Rightarrow x=2$",
+          "explanation": "One solution — the sign survives cubing."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rt4-we1",
+          "statement": "Solve $x^2=49$.",
+          "solution": "$x=\\pm\\sqrt{49}=\\pm 7$. Check: $7^2=49$ and $(-7)^2=49$.",
+          "check": [
+            "7**2 == 49",
+            "(-7)**2 == 49"
+          ]
+        },
+        {
+          "id": "rt4-we2",
+          "statement": "Solve $x^3=8$.",
+          "solution": "$x=\\sqrt[3]{8}=2$ — the only real solution.",
+          "check": [
+            "2**3 == 8"
+          ]
+        },
+        {
+          "id": "rt4-we3",
+          "statement": "Solve $x^3=-27$.",
+          "solution": "$x=\\sqrt[3]{-27}=-3$.",
+          "check": [
+            "(-3)**3 == -27"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Forgetting the negative solution of $x^2=k$.",
+          "correction": "$x^2=25$ has BOTH $x=5$ and $x=-5$; write $x=\\pm5$.",
+          "authored": true
+        },
+        {
+          "text": "Adding a $\\pm$ to cube equations.",
+          "correction": "$x^3=8$ has only $x=2$; $(-2)^3=-8\\neq 8$. Cubes keep the sign, so no second root.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rt4-t1",
+          "statement": "Solve $x^2=121$.",
+          "solution": "$x=\\pm 11$.",
+          "check": [
+            "11**2 == 121",
+            "(-11)**2 == 121"
+          ]
+        },
+        {
+          "id": "rt4-t2",
+          "statement": "Solve $x^3=125$.",
+          "solution": "$x=5$.",
+          "check": [
+            "5**3 == 125"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Two answers",
+            "title": "Solving x² = k",
+            "beats": [
+              "$x^2=49$: which numbers square to $49$?",
+              "$7^2=49$ ✓ and $(-7)^2=49$ ✓.",
+              "So $x=\\pm 7$ — **both** count.",
+              "Rule: $x^2=k \\Rightarrow x=\\pm\\sqrt{k}$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Don't lose one",
+            "prompt": "Solve $x^2=25$.",
+            "options": [
+              "$x=\\pm 5$",
+              "$x=5$ only",
+              "$x=12.5$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$5^2=25$ and $(-5)^2=25$ — two solutions.",
+            "check": [
+              "5**2 == 25",
+              "(-5)**2 == 25"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "One answer",
+            "title": "Solving x³ = k",
+            "beats": [
+              "$x^3=8$: which numbers cube to $8$?",
+              "$2^3=8$ ✓, but $(-2)^3=-8$ ✗.",
+              "Only $x=2$. Cubing keeps the sign.",
+              "Rule: $x^3=k \\Rightarrow x=\\sqrt[3]{k}$, one solution."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Square vs cube equations",
+            "intro": "Count the solutions before you write them.",
+            "examples": [
+              {
+                "prompt": "Solve $x^2=64$.",
+                "steps": [
+                  "$x=\\pm\\sqrt{64}$.",
+                  "$=\\pm 8$.",
+                  "Check: $8^2=64$, $(-8)^2=64$."
+                ],
+                "answer": "$x=\\pm 8$",
+                "check": [
+                  "8**2 == 64",
+                  "(-8)**2 == 64"
+                ]
+              },
+              {
+                "prompt": "Solve $x^3=-64$.",
+                "steps": [
+                  "$x=\\sqrt[3]{-64}$.",
+                  "$(-4)^3=-64$.",
+                  "$x=-4$ — the only one."
+                ],
+                "answer": "$x=-4$",
+                "check": [
+                  "(-4)**3 == -64"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Solve them",
+            "intro": "±  for squares; a single signed answer for cubes.",
+            "problems": [
+              {
+                "prompt": "Solve $x^2=100$.",
+                "options": [
+                  "$x=\\pm10$",
+                  "$x=10$ only",
+                  "$x=50$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$10^2=(-10)^2=100$.",
+                "check": [
+                  "10**2 == 100",
+                  "(-10)**2 == 100"
+                ]
+              },
+              {
+                "prompt": "Solve $x^3=27$.",
+                "options": [
+                  "$x=3$",
+                  "$x=\\pm3$",
+                  "$x=9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Only $3^3=27$; $(-3)^3=-27$.",
+                "check": [
+                  "3**3 == 27"
+                ]
+              },
+              {
+                "prompt": "A square patio has area $81$ m². Its side is…",
+                "options": [
+                  "$9$ m",
+                  "$\\pm 9$ m",
+                  "$40.5$ m"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x^2=81$ gives $x=\\pm9$, but a length must be positive: $9$ m.",
+                "check": [
+                  "9**2 == 81"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why ± matters",
+            "body": "In 1545 Cardano published solutions to cubic equations and stumbled onto square roots of NEGATIVE numbers along the way. Mathematicians called them “imaginary” as an insult — yet today those numbers run electrical engineering, quantum physics, and the graphics in your games. Keeping track of every root, even the weird ones, turned out to matter."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$x^2=k$: two solutions, $x=\\pm\\sqrt{k}$.",
+              "$x^3=k$: one solution, $x=\\sqrt[3]{k}$ — sign kept.",
+              "Context (lengths, distances) may discard the negative."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "simplifying-square-roots",
+      "title": "Simplifying Square Roots",
+      "concreteComparison": "$\\sqrt{50}$ looks like a dead end — $50$ isn't a perfect square. But $50=25\\times 2$, and $25$ IS one. Pull it out: $\\sqrt{50}=\\sqrt{25}\\cdot\\sqrt{2}=5\\sqrt{2}$. Same number, tidier form — like reducing a fraction, but for radicals.",
+      "objective": "Use the product property $\\sqrt{ab}=\\sqrt{a}\\cdot\\sqrt{b}$ to write square roots in simplest radical form.",
+      "concept": [
+        "**Product property:** $\\sqrt{ab}=\\sqrt{a}\\cdot\\sqrt{b}$. For example $\\sqrt{36}=\\sqrt{4\\cdot 9}=\\sqrt{4}\\cdot\\sqrt{9}=2\\cdot3=6$ — both routes agree.",
+        "**To simplify:** find the largest perfect-square factor. $\\sqrt{50}=\\sqrt{25\\cdot 2}=5\\sqrt{2}$. $\\sqrt{12}=\\sqrt{4\\cdot 3}=2\\sqrt{3}$.",
+        "A root is in **simplest form** when nothing under the radical has a perfect-square factor left: $5\\sqrt{2}$ is done, because $2$ has none.",
+        "The property runs both ways — you can also combine: $\\sqrt{2}\\cdot\\sqrt{8}=\\sqrt{16}=4$."
+      ],
+      "keyIdea": "Pull perfect-square factors out: $\\sqrt{50}=\\sqrt{25\\cdot2}=5\\sqrt{2}$.",
+      "facts": [
+        {
+          "title": "Product property",
+          "latex": "$\\sqrt{ab}=\\sqrt{a}\\,\\sqrt{b}$",
+          "explanation": "Split (or combine) under one radical."
+        },
+        {
+          "title": "Simplest form",
+          "latex": "$\\sqrt{50}=5\\sqrt{2}$",
+          "explanation": "No perfect-square factor stays inside."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rt5-we1",
+          "statement": "Simplify $\\sqrt{50}$.",
+          "solution": "$\\sqrt{50}=\\sqrt{25\\cdot2}=\\sqrt{25}\\cdot\\sqrt{2}=5\\sqrt{2}$.",
+          "check": [
+            "sqrt(50) == 5*sqrt(2)"
+          ]
+        },
+        {
+          "id": "rt5-we2",
+          "statement": "Simplify $\\sqrt{12}$.",
+          "solution": "$\\sqrt{12}=\\sqrt{4\\cdot3}=2\\sqrt{3}$.",
+          "check": [
+            "sqrt(12) == 2*sqrt(3)"
+          ]
+        },
+        {
+          "id": "rt5-we3",
+          "statement": "Compute $\\sqrt{2}\\cdot\\sqrt{8}$.",
+          "solution": "$\\sqrt{2\\cdot8}=\\sqrt{16}=4$.",
+          "check": [
+            "sqrt(2)*sqrt(8) == 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Splitting over addition: $\\sqrt{9+16}=\\sqrt{9}+\\sqrt{16}$.",
+          "correction": "False! $\\sqrt{25}=5$, but $3+4=7$. The property works for MULTIPLICATION only.",
+          "authored": true
+        },
+        {
+          "text": "Stopping too early: $\\sqrt{72}=\\sqrt{9}\\sqrt{8}=3\\sqrt{8}$.",
+          "correction": "$8$ still hides a $4$: $3\\sqrt{8}=3\\cdot2\\sqrt2=6\\sqrt{2}$. Hunt the LARGEST square factor.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rt5-t1",
+          "statement": "Simplify $\\sqrt{18}$.",
+          "solution": "$\\sqrt{9\\cdot2}=3\\sqrt{2}$.",
+          "check": [
+            "sqrt(18) == 3*sqrt(2)"
+          ]
+        },
+        {
+          "id": "rt5-t2",
+          "statement": "Simplify $\\sqrt{75}$.",
+          "solution": "$\\sqrt{25\\cdot3}=5\\sqrt{3}$.",
+          "check": [
+            "sqrt(75) == 5*sqrt(3)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The tool",
+            "title": "The product property",
+            "beats": [
+              "$\\sqrt{ab} = \\sqrt{a}\\cdot\\sqrt{b}$.",
+              "Test it: $\\sqrt{36}=\\sqrt{4\\cdot9}=2\\cdot3=6$ ✓.",
+              "It lets you split a radical into factors…",
+              "…and pull perfect squares OUT."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The method",
+            "title": "Simplify √50",
+            "beats": [
+              "Factor with a perfect square: $50=25\\cdot2$.",
+              "Split: $\\sqrt{50}=\\sqrt{25}\\cdot\\sqrt{2}$.",
+              "Evaluate the square part: $=5\\sqrt{2}$.",
+              "$5\\sqrt2\\approx 7.07$ — same value, cleaner form."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Pull it out",
+            "prompt": "Simplify $\\sqrt{12}$.",
+            "options": [
+              "$2\\sqrt{3}$",
+              "$3\\sqrt{2}$",
+              "$6$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$12=4\\cdot3$, so $\\sqrt{12}=2\\sqrt{3}$.",
+            "check": [
+              "sqrt(12) == 2*sqrt(3)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Warning",
+            "title": "No splitting over +",
+            "beats": [
+              "$\\sqrt{9+16} = \\sqrt{25} = 5$.",
+              "$\\sqrt{9}+\\sqrt{16} = 3+4 = 7$.",
+              "$5 \\neq 7$ — the property is for **products only**.",
+              "Never split a radical across a plus sign."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Simplest radical form",
+            "intro": "Find the largest perfect-square factor.",
+            "examples": [
+              {
+                "prompt": "Simplify $\\sqrt{72}$.",
+                "steps": [
+                  "Largest square in $72$: $36$.",
+                  "$\\sqrt{72}=\\sqrt{36\\cdot2}$.",
+                  "$=6\\sqrt{2}$."
+                ],
+                "answer": "$6\\sqrt{2}$",
+                "check": [
+                  "sqrt(72) == 6*sqrt(2)"
+                ]
+              },
+              {
+                "prompt": "Compute $\\sqrt{18}\\cdot\\sqrt{2}$.",
+                "steps": [
+                  "Combine: $\\sqrt{18\\cdot2}=\\sqrt{36}$.",
+                  "$=6$."
+                ],
+                "answer": "$6$",
+                "check": [
+                  "sqrt(18)*sqrt(2) == 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Simplify",
+            "intro": "Hunt the largest square factor.",
+            "problems": [
+              {
+                "prompt": "Simplify $\\sqrt{20}$.",
+                "options": [
+                  "$2\\sqrt{5}$",
+                  "$4\\sqrt{5}$",
+                  "$5\\sqrt{2}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$20=4\\cdot5$, so $2\\sqrt5$.",
+                "check": [
+                  "sqrt(20) == 2*sqrt(5)"
+                ]
+              },
+              {
+                "prompt": "Simplify $\\sqrt{45}$.",
+                "options": [
+                  "$3\\sqrt{5}$",
+                  "$9\\sqrt{5}$",
+                  "$5\\sqrt{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$45=9\\cdot5$, so $3\\sqrt5$.",
+                "check": [
+                  "sqrt(45) == 3*sqrt(5)"
+                ]
+              },
+              {
+                "prompt": "Which equals $\\sqrt{9+16}$?",
+                "options": [
+                  "$5$",
+                  "$7$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Add FIRST: $\\sqrt{25}=5$. (Not $3+4$!)",
+                "check": [
+                  "sqrt(9+16) == 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why exact beats decimal",
+            "body": "Engineers and mathematicians prefer $5\\sqrt2$ over $7.07$ because it's **exact** — decimals round, radicals don't. Squaring $5\\sqrt2$ gives exactly $50$; squaring $7.07$ gives $49.9849$. Tiny errors compound, so the radical form survives all the way to the final step."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$\\sqrt{ab}=\\sqrt a\\,\\sqrt b$ — products only, never sums.",
+              "Pull out the largest square: $\\sqrt{50}=5\\sqrt2$.",
+              "Simplest form leaves no square factor inside."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "roots-in-formulas",
+      "title": "Roots in Formulas",
+      "concreteComparison": "A landscaper knows a square lawn's area ($A=s^2$), a shipper knows a cubic crate's volume ($V=e^3$) — but each actually needs the **side**, not the area or volume. Real formulas constantly run backwards: from $A$ to $s=\\sqrt{A}$, from $V$ to $e=\\sqrt[3]{V}$. Roots are how you drive a formula in reverse.",
+      "objective": "Use square and cube roots to solve for sides and edges in area and volume formulas, keeping exact radical answers when needed.",
+      "concept": [
+        "**Square area:** $A=s^2$, so $s=\\sqrt{A}$. A square of area $81$ m² has side $\\sqrt{81}=9$ m.",
+        "**Cube volume:** $V=e^3$, so $e=\\sqrt[3]{V}$. A cube of volume $216$ cm³ has edge $\\sqrt[3]{216}=6$ cm.",
+        "If the number isn't a perfect power, answer exactly with a radical — side $=\\sqrt{50}=5\\sqrt{2}$ m — or estimate: $5\\sqrt2\\approx 7.1$ m.",
+        "Lengths are positive, so formulas take only the positive root — the $\\pm$ from $x^2=k$ collapses to $+$."
+      ],
+      "keyIdea": "Run formulas in reverse: $s=\\sqrt{A}$ for squares, $e=\\sqrt[3]{V}$ for cubes — positive roots only.",
+      "facts": [
+        {
+          "title": "Side from area",
+          "latex": "$s=\\sqrt{A}$",
+          "explanation": "Area 81 → side 9."
+        },
+        {
+          "title": "Edge from volume",
+          "latex": "$e=\\sqrt[3]{V}$",
+          "explanation": "Volume 216 → edge 6."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rt6-we1",
+          "statement": "A square field has area $144$ m². Find its side.",
+          "solution": "$s=\\sqrt{144}=12$ m.",
+          "check": [
+            "sqrt(144) == 12"
+          ]
+        },
+        {
+          "id": "rt6-we2",
+          "statement": "A cubic tank holds $343$ ft³. Find its edge.",
+          "solution": "$e=\\sqrt[3]{343}=7$ ft.",
+          "check": [
+            "cbrt(343) == 7"
+          ]
+        },
+        {
+          "id": "rt6-we3",
+          "statement": "A square patio has area $50$ m². Give the exact side length.",
+          "solution": "$s=\\sqrt{50}=5\\sqrt{2}$ m $\\approx 7.1$ m.",
+          "check": [
+            "sqrt(50) == 5*sqrt(2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using a square root on a volume.",
+          "correction": "Volume is three-dimensional: $V=e^3$ needs the CUBE root, $e=\\sqrt[3]{V}$.",
+          "authored": true
+        },
+        {
+          "text": "Reporting $\\pm$ for a length.",
+          "correction": "The algebra gives $s=\\pm\\sqrt{A}$, but a side length is positive — keep only $+\\sqrt{A}$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rt6-t1",
+          "statement": "A square sticker has area $25$ cm². Find its side.",
+          "solution": "$\\sqrt{25}=5$ cm.",
+          "check": [
+            "sqrt(25) == 5"
+          ]
+        },
+        {
+          "id": "rt6-t2",
+          "statement": "A cube has volume $1000$ cm³. Find its edge.",
+          "solution": "$\\sqrt[3]{1000}=10$ cm.",
+          "check": [
+            "cbrt(1000) == 10"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Formulas backwards",
+            "title": "From area to side",
+            "beats": [
+              "Forward: side $9$ → area $9^2=81$.",
+              "Backward: area $81$ → side $\\sqrt{81}=9$.",
+              "$A=s^2 \\iff s=\\sqrt{A}$.",
+              "Lengths are positive, so no $\\pm$ here."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Reverse it",
+            "prompt": "A square rug covers $64$ ft². Each side is…",
+            "options": [
+              "$8$ ft",
+              "$32$ ft",
+              "$16$ ft"
+            ],
+            "correctIndex": 0,
+            "explanation": "$s=\\sqrt{64}=8$ ft.",
+            "check": [
+              "sqrt(64) == 8"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Three dimensions",
+            "title": "From volume to edge",
+            "beats": [
+              "A cube's volume: $V=e^3$.",
+              "Backward: $e=\\sqrt[3]{V}$.",
+              "Volume $216$ → edge $\\sqrt[3]{216}=6$.",
+              "Wrong tool ($\\sqrt{216}\\approx14.7$) gives nonsense."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Solve for the side or edge",
+            "intro": "Match the root to the power in the formula.",
+            "examples": [
+              {
+                "prompt": "A square garden has area $121$ m². Find the side.",
+                "steps": [
+                  "$s=\\sqrt{A}$.",
+                  "$=\\sqrt{121}=11$ m."
+                ],
+                "answer": "$11$ m",
+                "check": [
+                  "sqrt(121) == 11"
+                ]
+              },
+              {
+                "prompt": "A storage cube holds $512$ ft³. Find the edge.",
+                "steps": [
+                  "$e=\\sqrt[3]{V}$.",
+                  "$=\\sqrt[3]{512}=8$ ft."
+                ],
+                "answer": "$8$ ft",
+                "check": [
+                  "cbrt(512) == 8"
+                ]
+              },
+              {
+                "prompt": "A square courtyard has area $72$ m². Exact side?",
+                "steps": [
+                  "$s=\\sqrt{72}$.",
+                  "$=\\sqrt{36\\cdot2}=6\\sqrt{2}$ m."
+                ],
+                "answer": "$6\\sqrt{2}$ m",
+                "check": [
+                  "sqrt(72) == 6*sqrt(2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Formulas in reverse",
+            "intro": "Square root for areas, cube root for volumes.",
+            "problems": [
+              {
+                "prompt": "A square window has area $36$ ft². Side?",
+                "options": [
+                  "$6$ ft",
+                  "$18$ ft",
+                  "$9$ ft"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{36}=6$.",
+                "check": [
+                  "sqrt(36) == 6"
+                ]
+              },
+              {
+                "prompt": "A cubic box holds $27$ L (27 dm³). Edge?",
+                "options": [
+                  "$3$ dm",
+                  "$9$ dm",
+                  "$13.5$ dm"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt[3]{27}=3$.",
+                "check": [
+                  "cbrt(27) == 3"
+                ]
+              },
+              {
+                "prompt": "A square plot has area $45$ m². Its exact side is…",
+                "options": [
+                  "$3\\sqrt{5}$ m",
+                  "$5\\sqrt{3}$ m",
+                  "$22.5$ m"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{45}=\\sqrt{9\\cdot5}=3\\sqrt5$ m.",
+                "check": [
+                  "sqrt(45) == 3*sqrt(5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "You own the radicals",
+            "body": "You can evaluate, estimate, simplify, and solve with square and cube roots — forwards and backwards."
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished “Square & Cube Roots”",
+            "body": "You can undo any square or cube: evaluate perfect roots, trap the messy ones between integers, simplify radicals, and drive area and volume formulas in reverse. Next: **Linear Equations** — multi-step solving, variables on both sides, and the strange equations with no solution at all."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "rt-pr1",
+      "statement": "Evaluate $\\sqrt{169}$.",
+      "solution": "$13$, since $13^2=169$.",
+      "check": [
+        "sqrt(169) == 13"
+      ]
+    },
+    {
+      "id": "rt-pr2",
+      "statement": "Evaluate $\\sqrt[3]{729}$.",
+      "solution": "$9$, since $9^3=729$.",
+      "check": [
+        "cbrt(729) == 9"
+      ]
+    },
+    {
+      "id": "rt-pr3",
+      "statement": "Evaluate $\\sqrt[3]{-1000}$.",
+      "solution": "$-10$, since $(-10)^3=-1000$.",
+      "check": [
+        "(-10)**3 == -1000"
+      ]
+    },
+    {
+      "id": "rt-pr4",
+      "statement": "Between which whole numbers is $\\sqrt{90}$?",
+      "solution": "$9<\\sqrt{90}<10$, since $81<90<100$.",
+      "check": [
+        "9 < sqrt(90)",
+        "sqrt(90) < 10"
+      ]
+    },
+    {
+      "id": "rt-pr5",
+      "statement": "Between which whole numbers is $\\sqrt[3]{40}$?",
+      "solution": "$3<\\sqrt[3]{40}<4$, since $27<40<64$.",
+      "check": [
+        "3 < cbrt(40)",
+        "cbrt(40) < 4"
+      ]
+    },
+    {
+      "id": "rt-pr6",
+      "statement": "Solve $x^2=144$.",
+      "solution": "$x=\\pm12$.",
+      "check": [
+        "12**2 == 144",
+        "(-12)**2 == 144"
+      ]
+    },
+    {
+      "id": "rt-pr7",
+      "statement": "Solve $x^3=216$.",
+      "solution": "$x=6$.",
+      "check": [
+        "6**3 == 216"
+      ]
+    },
+    {
+      "id": "rt-pr8",
+      "statement": "Simplify $\\sqrt{32}$.",
+      "solution": "$\\sqrt{16\\cdot2}=4\\sqrt{2}$.",
+      "check": [
+        "sqrt(32) == 4*sqrt(2)"
+      ]
+    },
+    {
+      "id": "rt-pr9",
+      "statement": "Simplify $\\sqrt{27}$.",
+      "solution": "$\\sqrt{9\\cdot3}=3\\sqrt{3}$.",
+      "check": [
+        "sqrt(27) == 3*sqrt(3)"
+      ]
+    },
+    {
+      "id": "rt-pr10",
+      "statement": "A cube has volume $125$ in³. Find its edge.",
+      "solution": "$\\sqrt[3]{125}=5$ in.",
+      "check": [
+        "cbrt(125) == 5"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "rt-ty1",
+      "statement": "Evaluate $\\sqrt{196}$.",
+      "solution": "$14$.",
+      "check": [
+        "sqrt(196) == 14"
+      ]
+    },
+    {
+      "id": "rt-ty2",
+      "statement": "Evaluate $\\sqrt[3]{-216}$.",
+      "solution": "$-6$.",
+      "check": [
+        "(-6)**3 == -216"
+      ]
+    },
+    {
+      "id": "rt-ty3",
+      "statement": "Estimate $\\sqrt{60}$ to the nearest tenth.",
+      "solution": "$7.7^2=59.29$, $7.8^2=60.84$: $\\sqrt{60}\\approx 7.7$.",
+      "check": [
+        "sqrt(60) > Rational(77,10)",
+        "sqrt(60) < Rational(78,10)"
+      ]
+    },
+    {
+      "id": "rt-ty4",
+      "statement": "Solve $x^2=81$ and give ALL solutions.",
+      "solution": "$x=\\pm 9$.",
+      "check": [
+        "9**2 == 81",
+        "(-9)**2 == 81"
+      ]
+    },
+    {
+      "id": "rt-ty5",
+      "statement": "Solve $x^3=-8$.",
+      "solution": "$x=-2$.",
+      "check": [
+        "(-2)**3 == -8"
+      ]
+    },
+    {
+      "id": "rt-ty6",
+      "statement": "Simplify $\\sqrt{98}$.",
+      "solution": "$\\sqrt{49\\cdot2}=7\\sqrt{2}$.",
+      "check": [
+        "sqrt(98) == 7*sqrt(2)"
+      ]
+    },
+    {
+      "id": "rt-ty7",
+      "statement": "A square field has area $200$ m². Give the exact side.",
+      "solution": "$\\sqrt{200}=10\\sqrt{2}$ m.",
+      "check": [
+        "sqrt(200) == 10*sqrt(2)"
+      ]
+    }
+  ]
+}

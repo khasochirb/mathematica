@@ -62,6 +62,7 @@ import dataAndStatistics from "@/data/genmath/6/data-and-statistics.json";
 // Grade 8 topic JSON imports (added as each topic is authored + published).
 import realNumberSystem from "@/data/genmath/8/the-real-number-system.json";
 import exponentsScientific from "@/data/genmath/8/exponents-and-scientific-notation.json";
+import roots from "@/data/genmath/8/roots.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -119,7 +120,7 @@ export const GRADE8_SPINE: GradeSpineEntry[] = [
     slug: "roots",
     title: "Square & Cube Roots",
     blurb: "Square roots and cube roots, perfect squares and cubes, and solving equations like x² = 49 and x³ = 8.",
-    live: false,
+    live: true,
   },
   {
     slug: "linear-equations",
@@ -150,6 +151,7 @@ export const GRADE8_SPINE: GradeSpineEntry[] = [
 const grade8Topics: GenMathTopic[] = [
   realNumberSystem as GenMathTopic,
   exponentsScientific as GenMathTopic,
+  roots as GenMathTopic,
 ];
 
 // Every authored General-Math topic across grades. Topic slugs are unique
