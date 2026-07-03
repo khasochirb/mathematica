@@ -1007,7 +1007,7 @@
       "commonMistakes": [
         {
           "text": "Thinking one pair of sides merely PARALLEL is enough.",
-          "correction": "One pair parallel alone gives only a **trapezoid**. You need that pair to also be **congruent** (condition 5), or a second condition.",
+          "correction": "One pair parallel alone gives only a shape with a single parallel pair (a *trapezoid*, studied next). You need that pair to also be **congruent** (condition 5), or a second condition.",
           "authored": true
         },
         {
@@ -1124,7 +1124,7 @@
               {
                 "prompt": "Only one pair of opposite sides is parallel (nothing else). Parallelogram?",
                 "steps": [
-                  "One pair parallel alone is just a trapezoid.",
+                  "One parallel pair alone doesn't force the other pair to be parallel.",
                   "Not guaranteed."
                 ],
                 "answer": "No",
@@ -1326,13 +1326,13 @@
               {
                 "prompt": "Only ONE pair of sides parallel, nothing else. Parallelogram?",
                 "options": [
-                  "No — just a trapezoid",
+                  "No — only one pair is parallel",
                   "Yes",
                   "Always",
                   "Only if a square"
                 ],
                 "correctIndex": 0,
-                "explanation": "One parallel pair alone is a trapezoid.",
+                "explanation": "One parallel pair alone isn't enough — that shape is a trapezoid, coming next lesson.",
                 "check": [
                   "1 < 2"
                 ]
@@ -2346,7 +2346,7 @@
       "tryIt": [
         {
           "id": "qf-t1",
-          "statement": "A parallelogram with perpendicular diagonals and four equal sides is a —",
+          "statement": "A parallelogram with four equal sides (but no right angles) is a —",
           "solution": "a rhombus.",
           "check": [
             "2 > 1"
