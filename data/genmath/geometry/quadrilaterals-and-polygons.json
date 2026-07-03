@@ -1,0 +1,2705 @@
+{
+  "slug": "quadrilaterals-and-polygons",
+  "title": "Quadrilaterals & Polygons",
+  "unit": 6,
+  "status": "published",
+  "blurb": "Interior and exterior angle sums for any polygon; parallelograms and how to prove them; rectangles, rhombi, squares, trapezoids, and kites; and the quadrilateral family tree.",
+  "buildsOn": "Triangle congruence and the 180° angle sum (Unit 4), parallel-line angle facts (Unit 3), and the midsegment idea (Unit 5) — every quadrilateral proof splits the shape into triangles.",
+  "lessons": [
+    {
+      "slug": "angles-of-polygons",
+      "title": "Angles of Polygons",
+      "concreteComparison": "A stop sign has eight sides, a honeycomb cell has six, home plate in baseball has five. However many sides a polygon has, the corners always add up to a total you can predict from the side count alone — no protractor needed.",
+      "objective": "Find the interior angle sum (n − 2)·180° of any polygon, use the fact that the exterior angles of any convex polygon total 360°, and find each interior and exterior angle of a regular polygon.",
+      "concept": [
+        "A **polygon** is a closed figure made of straight **sides**; an $n$-gon has $n$ sides and $n$ **vertices**. A polygon is **convex** if it has no dents, and **regular** if all its sides are equal AND all its angles are equal.",
+        "A **diagonal** joins two vertices that are not next to each other. Drawing all the diagonals from a single vertex slices the polygon into triangles.",
+        "From one vertex, an $n$-gon splits into exactly $n - 2$ triangles. Each triangle's angles total $180^\\circ$ (Unit 4), so the **interior angle sum $= (n - 2)\\cdot 180^\\circ$**.",
+        "The **exterior angles** of any convex polygon — one turn at each vertex — always total $360^\\circ$. For a **regular** $n$-gon, each exterior angle is $\\tfrac{360^\\circ}{n}$ and each interior angle is $\\tfrac{(n-2)\\cdot 180^\\circ}{n}$."
+      ],
+      "keyIdea": "An n-gon's interior angles sum to (n − 2)·180° because it splits into n − 2 triangles from one vertex. The exterior angles always total 360°, so a regular n-gon has 360/n at each exterior angle.",
+      "facts": [
+        {
+          "title": "Interior angle sum",
+          "latex": "$(n-2)\\cdot 180^\\circ$",
+          "explanation": "An n-gon splits into n − 2 triangles from one vertex."
+        },
+        {
+          "title": "Exterior angle sum",
+          "latex": "$360^\\circ$",
+          "explanation": "True for every convex polygon, no matter how many sides."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pa-we1",
+          "statement": "Find the interior angle sum of a hexagon ($n = 6$).",
+          "solution": "$(6 - 2)\\cdot 180^\\circ = 4 \\cdot 180^\\circ = 720^\\circ$.",
+          "check": [
+            "(6-2)*180 == 720"
+          ]
+        },
+        {
+          "id": "pa-we2",
+          "statement": "Find each interior angle of a REGULAR octagon ($n = 8$).",
+          "solution": "Sum $= (8-2)\\cdot 180 = 1080^\\circ$; share evenly: $1080 \\div 8 = 135^\\circ$.",
+          "check": [
+            "(8-2)*180/8 == 135"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Multiplying $n \\times 180$ instead of $(n-2)\\times 180$.",
+          "correction": "It's $n - 2$ triangles, not $n$. Always subtract 2 first.",
+          "authored": true
+        },
+        {
+          "text": "Dividing the interior sum by $n$ for a polygon that isn't regular.",
+          "correction": "Only a **regular** polygon shares the sum evenly. An irregular polygon's angles can differ.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pa-t1",
+          "statement": "Interior angle sum of a pentagon ($n = 5$)?",
+          "solution": "$(5-2)\\cdot 180 = 540^\\circ$.",
+          "check": [
+            "(5-2)*180 == 540"
+          ]
+        },
+        {
+          "id": "pa-t2",
+          "statement": "Each exterior angle of a regular hexagon?",
+          "solution": "$360 \\div 6 = 60^\\circ$.",
+          "check": [
+            "360/6 == 60"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Cut the polygon into triangles",
+            "beats": [
+              "A **polygon** is a closed shape with straight **sides**; count them to name it ($5 =$ pentagon, $6 =$ hexagon…).",
+              "A **diagonal** connects two corners that aren't neighbours.",
+              "From one corner, draw every diagonal — the polygon falls into **triangles**.",
+              "Each triangle holds $180^\\circ$, so we just count triangles."
+            ]
+          },
+          {
+            "kind": "polygonAngles",
+            "eyebrow": "Concept A",
+            "title": "The interior angle sum",
+            "teach": "Change the number of sides. From one corner, the polygon splits into $n - 2$ triangles, so the angles total $(n - 2)\\times 180^\\circ$. A quadrilateral gives $2$ triangles = $360^\\circ$; a pentagon gives $3$ = $540^\\circ$.",
+            "config": {
+              "start": 5,
+              "mode": "interior"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why n − 2",
+            "title": "Counting the triangles",
+            "beats": [
+              "Pick one vertex. You can draw a diagonal to every other vertex except itself and its two neighbours.",
+              "Those diagonals fan the polygon into **$n - 2$** triangles.",
+              "Each triangle contributes $180^\\circ$ (Triangle Angle-Sum, Unit 4).",
+              "Total $= (n - 2)\\times 180^\\circ$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Interior angle sum",
+            "intro": "Subtract 2, then multiply by 180.",
+            "examples": [
+              {
+                "prompt": "Quadrilateral ($n = 4$). Interior sum?",
+                "steps": [
+                  "$(4 - 2)\\times 180$.",
+                  "$= 2 \\times 180 = 360^\\circ$."
+                ],
+                "answer": "$360^\\circ$",
+                "check": [
+                  "(4-2)*180 == 360"
+                ]
+              },
+              {
+                "prompt": "Octagon ($n = 8$). Interior sum?",
+                "steps": [
+                  "$(8 - 2)\\times 180$.",
+                  "$= 6 \\times 180 = 1080^\\circ$."
+                ],
+                "answer": "$1080^\\circ$",
+                "check": [
+                  "(8-2)*180 == 1080"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the sum",
+            "intro": "(n − 2) × 180.",
+            "problems": [
+              {
+                "prompt": "Pentagon ($n = 5$). Interior sum?",
+                "options": [
+                  "$540^\\circ$",
+                  "$360^\\circ$",
+                  "$720^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(5-2)\\times 180 = 540$.",
+                "check": [
+                  "(5-2)*180 == 540"
+                ]
+              },
+              {
+                "prompt": "Heptagon ($n = 7$). Interior sum?",
+                "options": [
+                  "$900^\\circ$",
+                  "$1080^\\circ$",
+                  "$720^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(7-2)\\times 180 = 900$.",
+                "check": [
+                  "(7-2)*180 == 900"
+                ]
+              },
+              {
+                "prompt": "A decagon has $n = 10$. Interior sum?",
+                "options": [
+                  "$1440^\\circ$",
+                  "$1800^\\circ$",
+                  "$1260^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(10-2)\\times 180 = 1440$.",
+                "check": [
+                  "(10-2)*180 == 1440"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Regular polygons",
+            "title": "Share the sum evenly",
+            "beats": [
+              "A **regular** polygon has all angles equal.",
+              "So each interior angle $= \\dfrac{(n-2)\\times 180^\\circ}{n}$.",
+              "Regular pentagon: $540 \\div 5 = 108^\\circ$ each.",
+              "Regular hexagon: $720 \\div 6 = 120^\\circ$ each."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Each angle of a regular polygon",
+            "intro": "Find the sum, divide by n.",
+            "examples": [
+              {
+                "prompt": "Each interior angle of a regular hexagon ($n = 6$).",
+                "steps": [
+                  "Sum $= (6-2)\\times 180 = 720$.",
+                  "$720 \\div 6 = 120^\\circ$."
+                ],
+                "answer": "$120^\\circ$",
+                "check": [
+                  "(6-2)*180/6 == 120"
+                ]
+              },
+              {
+                "prompt": "Each interior angle of a regular pentagon ($n = 5$).",
+                "steps": [
+                  "Sum $= 540$.",
+                  "$540 \\div 5 = 108^\\circ$."
+                ],
+                "answer": "$108^\\circ$",
+                "check": [
+                  "(5-2)*180/5 == 108"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Regular interior angles",
+            "intro": "Sum ÷ n.",
+            "problems": [
+              {
+                "prompt": "Each interior angle of a regular octagon ($n = 8$)?",
+                "options": [
+                  "$135^\\circ$",
+                  "$120^\\circ$",
+                  "$144^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$1080 \\div 8 = 135$.",
+                "check": [
+                  "(8-2)*180/8 == 135"
+                ]
+              },
+              {
+                "prompt": "Each interior angle of a regular quadrilateral (a square)?",
+                "options": [
+                  "$90^\\circ$",
+                  "$60^\\circ$",
+                  "$120^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$360 \\div 4 = 90$.",
+                "check": [
+                  "(4-2)*180/4 == 90"
+                ]
+              },
+              {
+                "prompt": "Each interior angle of an equilateral triangle ($n = 3$)?",
+                "options": [
+                  "$60^\\circ$",
+                  "$90^\\circ$",
+                  "$45^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$180 \\div 3 = 60$.",
+                "check": [
+                  "(3-2)*180/3 == 60"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "polygonAngles",
+            "eyebrow": "Concept B",
+            "title": "The exterior angles total 360°",
+            "teach": "Switch to exterior mode. At each corner, turn from one side to the next — that's an exterior angle. Walk all the way around and you've turned a full $360^\\circ$, for ANY number of sides. So a regular $n$-gon has $\\tfrac{360}{n}$ at each corner.",
+            "config": {
+              "start": 5,
+              "mode": "exterior"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Exterior angles",
+            "title": "Always a full turn",
+            "beats": [
+              "Walk around the polygon; at each corner you turn by the **exterior angle**.",
+              "One lap = one full turn = $360^\\circ$, no matter how many sides.",
+              "Regular $n$-gon: each exterior angle $= \\dfrac{360^\\circ}{n}$.",
+              "And interior $+$ exterior $= 180^\\circ$ at every corner (a linear pair)."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Exterior angles",
+            "intro": "360 ÷ n for a regular polygon.",
+            "examples": [
+              {
+                "prompt": "Each exterior angle of a regular hexagon ($n = 6$)?",
+                "steps": [
+                  "$360 \\div 6$.",
+                  "$= 60^\\circ$."
+                ],
+                "answer": "$60^\\circ$",
+                "check": [
+                  "360/6 == 60"
+                ]
+              },
+              {
+                "prompt": "A regular polygon has each exterior angle $= 40^\\circ$. How many sides?",
+                "steps": [
+                  "$360 \\div n = 40 \\Rightarrow n = 360 \\div 40$.",
+                  "$n = 9$."
+                ],
+                "answer": "$9$ sides",
+                "check": [
+                  "360/40 == 9"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Exterior angle work",
+            "intro": "Exterior sum is always 360.",
+            "problems": [
+              {
+                "prompt": "Each exterior angle of a regular pentagon?",
+                "options": [
+                  "$72^\\circ$",
+                  "$60^\\circ$",
+                  "$108^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$360 \\div 5 = 72$.",
+                "check": [
+                  "360/5 == 72"
+                ]
+              },
+              {
+                "prompt": "A regular polygon's exterior angle is $30^\\circ$. Number of sides?",
+                "options": [
+                  "$12$",
+                  "$10$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$360 \\div 30 = 12$.",
+                "check": [
+                  "360/30 == 12"
+                ]
+              },
+              {
+                "prompt": "The exterior angles of a $100$-sided convex polygon total —",
+                "options": [
+                  "$360^\\circ$",
+                  "$36000^\\circ$",
+                  "$180^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Always $360^\\circ$, for any convex polygon.",
+                "check": [
+                  "360 == 360"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why honeycombs are hexagons",
+            "body": "Bees tile their comb with regular hexagons because $120^\\circ$ corners fit together perfectly — three hexagons meet at a point ($3 \\times 120 = 360^\\circ$) with no gaps and no overlap. Only triangles, squares, and hexagons tile the plane by themselves, and the hexagon uses the least wax for the most storage."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Interior sum",
+            "prompt": "What is the sum of the interior angles of a nonagon ($n = 9$)?",
+            "options": [
+              "$1260^\\circ$",
+              "$1440^\\circ$",
+              "$1080^\\circ$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(9 - 2)\\times 180 = 7 \\times 180 = 1260^\\circ$.",
+            "check": [
+              "(9-2)*180 == 1260"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Interior angle sum of an $n$-gon $= (n - 2)\\times 180^\\circ$ — it splits into $n - 2$ triangles.",
+              "**Regular** polygon: each interior angle $= \\dfrac{(n-2)\\times 180^\\circ}{n}$.",
+              "Exterior angles of any convex polygon total **$360^\\circ$**; each is $\\dfrac{360^\\circ}{n}$ when regular."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's compute interior sums, each regular angle, and work backwards from exterior angles."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Interior angle sum of a heptagon ($n = 7$)?",
+                "options": [
+                  "$900^\\circ$",
+                  "$1080^\\circ$",
+                  "$720^\\circ$",
+                  "$1260^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(7-2)\\times 180 = 900$.",
+                "check": [
+                  "(7-2)*180 == 900"
+                ]
+              },
+              {
+                "prompt": "Each interior angle of a regular decagon ($n = 10$)?",
+                "options": [
+                  "$144^\\circ$",
+                  "$140^\\circ$",
+                  "$135^\\circ$",
+                  "$150^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$1440 \\div 10 = 144$.",
+                "check": [
+                  "(10-2)*180/10 == 144"
+                ]
+              },
+              {
+                "prompt": "Each exterior angle of a regular octagon?",
+                "options": [
+                  "$45^\\circ$",
+                  "$40^\\circ$",
+                  "$60^\\circ$",
+                  "$135^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$360 \\div 8 = 45$.",
+                "check": [
+                  "360/8 == 45"
+                ]
+              },
+              {
+                "prompt": "A regular polygon has each exterior angle $60^\\circ$. It has — sides.",
+                "options": [
+                  "$6$",
+                  "$5$",
+                  "$8$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$360 \\div 60 = 6$.",
+                "check": [
+                  "360/60 == 6"
+                ]
+              },
+              {
+                "prompt": "The interior angles of an $n$-gon sum to $1080^\\circ$. Find $n$.",
+                "options": [
+                  "$8$",
+                  "$6$",
+                  "$9$",
+                  "$7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(n-2)\\times 180 = 1080 \\Rightarrow n - 2 = 6 \\Rightarrow n = 8$.",
+                "check": [
+                  "solve(Eq((n-2)*180, 1080), n) == [8]"
+                ]
+              },
+              {
+                "prompt": "For a $20$-gon, the exterior angles total —",
+                "options": [
+                  "$360^\\circ$",
+                  "$3240^\\circ$",
+                  "$7200^\\circ$",
+                  "$180^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Always $360^\\circ$.",
+                "check": [
+                  "360 == 360"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Angles of Polygons\"",
+            "body": "You can find the angle total of any polygon and every angle of a regular one. Next: the most useful four-sided shape of all — the parallelogram — and the properties that make it special."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "parallelograms",
+      "title": "Parallelograms & Their Properties",
+      "concreteComparison": "An extending mirror, a scissor lift, a pantograph arm — they all stay useful because each cell keeps its shape as a **parallelogram**: opposite sides stay parallel and equal as it folds. Those guarantees are the properties we prove here.",
+      "objective": "Identify a parallelogram and use its four properties: opposite sides congruent, opposite angles congruent, consecutive angles supplementary, and diagonals that bisect each other.",
+      "concept": [
+        "A **quadrilateral** is a four-sided polygon. A **parallelogram** is a quadrilateral with **both pairs of opposite sides parallel**.",
+        "**Opposite sides are congruent** and **opposite angles are congruent** — the pairs across from each other are equal.",
+        "**Consecutive angles are supplementary**: two angles that share a side sum to $180^\\circ$ (they are same-side interior angles between the parallel sides, Unit 3).",
+        "The **diagonals bisect each other** — they cross at their shared midpoint, cutting each other into two equal halves."
+      ],
+      "keyIdea": "A parallelogram has both pairs of opposite sides parallel. Then opposite sides and opposite angles are congruent, consecutive angles are supplementary, and the diagonals bisect each other.",
+      "facts": [
+        {
+          "title": "Opposite sides & angles",
+          "latex": "opposite parts are $\\cong$",
+          "explanation": "Sides across from each other are equal; so are the angles."
+        },
+        {
+          "title": "Consecutive angles",
+          "latex": "sum to $180^\\circ$",
+          "explanation": "Neighbouring angles are supplementary."
+        },
+        {
+          "title": "Diagonals",
+          "latex": "bisect each other",
+          "explanation": "They cross at their common midpoint."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pg-we1",
+          "statement": "In parallelogram $ABCD$, side $AB = 9$. Find the opposite side $DC$.",
+          "solution": "Opposite sides are congruent, so $DC = 9$.",
+          "check": [
+            "9 == 9"
+          ]
+        },
+        {
+          "id": "pg-we2",
+          "statement": "One angle of a parallelogram is $70^\\circ$. Find a consecutive angle.",
+          "solution": "Consecutive angles are supplementary: $180 - 70 = 110^\\circ$.",
+          "check": [
+            "180 - 70 == 110"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking ALL four sides of a parallelogram are equal.",
+          "correction": "Only **opposite** sides must be equal. All four equal is the special case of a **rhombus** (a later lesson).",
+          "authored": true
+        },
+        {
+          "text": "Treating consecutive angles as congruent.",
+          "correction": "**Opposite** angles are congruent; **consecutive** angles are supplementary (sum $180^\\circ$).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pg-t1",
+          "statement": "In a parallelogram, one angle is $115^\\circ$. Its opposite angle is —",
+          "solution": "Opposite angles are congruent: $115^\\circ$.",
+          "check": [
+            "115 == 115"
+          ]
+        },
+        {
+          "id": "pg-t2",
+          "statement": "A parallelogram's diagonal is $16$; the diagonals bisect each other, so each half is —",
+          "solution": "$16 \\div 2 = 8$.",
+          "check": [
+            "16/2 == 8"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "A quadrilateral with parallel sides",
+            "beats": [
+              "A **quadrilateral** is any four-sided polygon.",
+              "A **parallelogram** has **both** pairs of opposite sides parallel.",
+              "The arrow marks show which sides are parallel — one pair single, one pair double.",
+              "From that single definition, four handy properties follow."
+            ]
+          },
+          {
+            "kind": "quadShape",
+            "eyebrow": "Concept A",
+            "title": "The four properties, marked",
+            "teach": "Opposite sides are equal (matching tick marks) and opposite angles are equal (matching arcs). Tap to reveal the diagonals — they cross at their shared midpoint, cutting each other exactly in half.",
+            "config": {
+              "type": "parallelogram",
+              "showDiagonals": true
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reading the marks",
+            "title": "What's equal to what",
+            "beats": [
+              "**Opposite sides** congruent: $AB = DC$ and $BC = AD$.",
+              "**Opposite angles** congruent: $\\angle A = \\angle C$ and $\\angle B = \\angle D$.",
+              "**Consecutive angles** supplementary: $\\angle A + \\angle B = 180^\\circ$.",
+              "**Diagonals** bisect each other at the centre."
+            ]
+          },
+          {
+            "kind": "stepProof",
+            "eyebrow": "The proof",
+            "title": "Why opposite sides are congruent",
+            "teach": "Draw one diagonal and the parallelogram becomes two triangles. Alternate interior angles (Unit 3) plus ASA (Unit 4) finish it.",
+            "config": {
+              "given": "Parallelogram $ABCD$ with diagonal $\\overline{AC}$ drawn ($\\overline{AB} \\parallel \\overline{DC}$ and $\\overline{AD} \\parallel \\overline{BC}$).",
+              "prove": "$\\overline{AB} \\cong \\overline{DC}$",
+              "rows": [
+                {
+                  "statement": "$\\angle BAC \\cong \\angle DCA$",
+                  "reason": "Alternate interior angles: $\\overline{AB} \\parallel \\overline{DC}$ cut by transversal $\\overline{AC}$ (Unit 3)"
+                },
+                {
+                  "statement": "$\\angle BCA \\cong \\angle DAC$",
+                  "reason": "Alternate interior angles: $\\overline{AD} \\parallel \\overline{BC}$ cut by transversal $\\overline{AC}$"
+                },
+                {
+                  "statement": "$\\overline{AC} \\cong \\overline{AC}$",
+                  "reason": "Reflexive property (the shared diagonal)"
+                },
+                {
+                  "statement": "$\\triangle BAC \\cong \\triangle DCA$",
+                  "reason": "ASA (Unit 4): two angles and the included side $\\overline{AC}$"
+                },
+                {
+                  "statement": "$\\overline{AB} \\cong \\overline{DC}$",
+                  "reason": "CPCTC"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Opposite sides & angles",
+            "intro": "Across-from pairs are equal.",
+            "examples": [
+              {
+                "prompt": "Parallelogram $ABCD$: $AB = 12$. Find $DC$.",
+                "steps": [
+                  "Opposite sides are congruent.",
+                  "$DC = 12$."
+                ],
+                "answer": "$12$",
+                "check": [
+                  "12 == 12"
+                ]
+              },
+              {
+                "prompt": "One angle is $65^\\circ$. Find the opposite angle.",
+                "steps": [
+                  "Opposite angles are congruent.",
+                  "$= 65^\\circ$."
+                ],
+                "answer": "$65^\\circ$",
+                "check": [
+                  "65 == 65"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Use opposite pairs",
+            "intro": "Opposite sides/angles are equal.",
+            "problems": [
+              {
+                "prompt": "Parallelogram with $BC = 7$. The opposite side $AD = $ —",
+                "options": [
+                  "$7$",
+                  "$14$",
+                  "$3.5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Opposite sides congruent.",
+                "check": [
+                  "7 == 7"
+                ]
+              },
+              {
+                "prompt": "One angle is $130^\\circ$; the opposite angle is —",
+                "options": [
+                  "$130^\\circ$",
+                  "$50^\\circ$",
+                  "$65^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Opposite angles congruent.",
+                "check": [
+                  "130 == 130"
+                ]
+              },
+              {
+                "prompt": "In a parallelogram, opposite sides are always —",
+                "options": [
+                  "parallel and congruent",
+                  "perpendicular",
+                  "congruent but not parallel"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both parallel (definition) and congruent (property).",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Consecutive angles",
+            "title": "Neighbours add to 180°",
+            "beats": [
+              "Two angles sharing a side are **consecutive**.",
+              "They sit as same-side interior angles between parallel sides.",
+              "So they are **supplementary**: they sum to $180^\\circ$.",
+              "Know one angle $\\Rightarrow$ subtract from $180$ for its neighbour."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Consecutive angles",
+            "intro": "Subtract from 180.",
+            "examples": [
+              {
+                "prompt": "One angle of a parallelogram is $70^\\circ$. Find a consecutive angle.",
+                "steps": [
+                  "Consecutive angles are supplementary.",
+                  "$180 - 70 = 110^\\circ$."
+                ],
+                "answer": "$110^\\circ$",
+                "check": [
+                  "180 - 70 == 110"
+                ]
+              },
+              {
+                "prompt": "One angle is $105^\\circ$. Find a consecutive angle.",
+                "steps": [
+                  "$180 - 105$.",
+                  "$= 75^\\circ$."
+                ],
+                "answer": "$75^\\circ$",
+                "check": [
+                  "180 - 105 == 75"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Neighbour angles",
+            "intro": "Consecutive → sum to 180.",
+            "problems": [
+              {
+                "prompt": "One angle is $85^\\circ$; a consecutive angle is —",
+                "options": [
+                  "$95^\\circ$",
+                  "$85^\\circ$",
+                  "$105^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$180 - 85 = 95$.",
+                "check": [
+                  "180 - 85 == 95"
+                ]
+              },
+              {
+                "prompt": "Consecutive angles of a parallelogram always —",
+                "options": [
+                  "sum to $180^\\circ$",
+                  "are equal",
+                  "sum to $90^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "They are supplementary.",
+                "check": [
+                  "90 + 90 == 180"
+                ]
+              },
+              {
+                "prompt": "A diagonal is $20$ and diagonals bisect each other, so half is —",
+                "options": [
+                  "$10$",
+                  "$20$",
+                  "$40$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$20 \\div 2 = 10$.",
+                "check": [
+                  "20/2 == 10"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The pantograph and the parallelogram",
+            "body": "A pantograph — the linkage that copies or enlarges drawings, and the arm that presses a train against overhead power lines — is built from parallelograms precisely because opposite sides stay parallel and equal as the arms swing. The geometry guarantees the tracing point mirrors the guiding point exactly."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Consecutive angle",
+            "prompt": "One angle of a parallelogram measures $120^\\circ$. A consecutive (neighbouring) angle measures —",
+            "options": [
+              "$60^\\circ$",
+              "$120^\\circ$",
+              "$30^\\circ$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Consecutive angles are supplementary: $180 - 120 = 60^\\circ$.",
+            "check": [
+              "180 - 120 == 60"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **parallelogram** has both pairs of opposite sides **parallel**.",
+              "**Opposite sides and opposite angles are congruent**; **consecutive angles are supplementary**.",
+              "The **diagonals bisect each other** — proven with alternate interior angles + ASA + CPCTC."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's use opposite pairs, consecutive supplements, and bisected diagonals."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Parallelogram $ABCD$: $AB = 15$. $DC = $ —",
+                "options": [
+                  "$15$",
+                  "$30$",
+                  "$7.5$",
+                  "cannot tell"
+                ],
+                "correctIndex": 0,
+                "explanation": "Opposite sides congruent.",
+                "check": [
+                  "15 == 15"
+                ]
+              },
+              {
+                "prompt": "One angle is $40^\\circ$; the opposite angle is —",
+                "options": [
+                  "$40^\\circ$",
+                  "$140^\\circ$",
+                  "$50^\\circ$",
+                  "$20^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Opposite angles congruent.",
+                "check": [
+                  "40 == 40"
+                ]
+              },
+              {
+                "prompt": "One angle is $110^\\circ$; a consecutive angle is —",
+                "options": [
+                  "$70^\\circ$",
+                  "$110^\\circ$",
+                  "$90^\\circ$",
+                  "$55^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$180 - 110 = 70$.",
+                "check": [
+                  "180 - 110 == 70"
+                ]
+              },
+              {
+                "prompt": "A parallelogram's diagonals —",
+                "options": [
+                  "bisect each other",
+                  "are always equal",
+                  "are perpendicular",
+                  "are parallel"
+                ],
+                "correctIndex": 0,
+                "explanation": "They cross at their common midpoint.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "A diagonal of length $24$ is bisected by the other. Each half is —",
+                "options": [
+                  "$12$",
+                  "$24$",
+                  "$48$",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$24 \\div 2 = 12$.",
+                "check": [
+                  "24/2 == 12"
+                ]
+              },
+              {
+                "prompt": "The four angles of any parallelogram sum to —",
+                "options": [
+                  "$360^\\circ$",
+                  "$180^\\circ$",
+                  "$540^\\circ$",
+                  "$720^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Every quadrilateral totals $(4-2)\\times 180 = 360$.",
+                "check": [
+                  "(4-2)*180 == 360"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Parallelograms & Their Properties\"",
+            "body": "You know what a parallelogram guarantees. Next: the reverse question — which clues PROVE a four-sided shape really is a parallelogram."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "proving-parallelograms",
+      "title": "Proving a Quadrilateral Is a Parallelogram",
+      "concreteComparison": "A carpenter nails together four boards and wants to be sure the frame is a true parallelogram before mounting it. There are five different checks — pass any ONE of them and the shape is guaranteed to be a parallelogram, no need to test the rest.",
+      "objective": "Use the five conditions that prove a quadrilateral is a parallelogram — each the converse of a property from the previous lesson.",
+      "concept": [
+        "A quadrilateral is a parallelogram if it passes **any one** of these tests (each is the converse of a Lesson-2 property):",
+        "**1.** Both pairs of opposite sides are **parallel** (the definition). **2.** Both pairs of opposite sides are **congruent**.",
+        "**3.** Both pairs of opposite angles are **congruent**. **4.** The **diagonals bisect each other**.",
+        "**5.** **One** pair of opposite sides is **both parallel and congruent** — this single pair is enough."
+      ],
+      "keyIdea": "Five converse tests each prove a quadrilateral is a parallelogram: both pairs of opposite sides parallel, or both pairs congruent, or both pairs of opposite angles congruent, or diagonals bisecting each other, or one pair of sides both parallel and congruent.",
+      "facts": [
+        {
+          "title": "Five conditions",
+          "latex": "any ONE is enough",
+          "explanation": "Opposite sides ∥, or opposite sides ≅, or opposite angles ≅, or diagonals bisect, or one pair ∥ and ≅."
+        },
+        {
+          "title": "The shortcut",
+          "latex": "one pair $\\parallel$ AND $\\cong$",
+          "explanation": "A single pair that is both parallel and equal proves it."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pp-we1",
+          "statement": "A quadrilateral has both pairs of opposite sides congruent ($AB = DC$ and $BC = AD$). Is it a parallelogram?",
+          "solution": "Yes — condition 2 (both pairs of opposite sides congruent) guarantees it.",
+          "check": [
+            "2 > 1"
+          ]
+        },
+        {
+          "id": "pp-we2",
+          "statement": "In quadrilateral $ABCD$, the diagonals bisect each other, cutting into halves of $5, 5$ and $8, 8$. Parallelogram?",
+          "solution": "Yes — condition 4: the diagonals bisect each other ($5 = 5$, $8 = 8$).",
+          "check": [
+            "5 == 5",
+            "8 == 8"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking one pair of sides merely PARALLEL is enough.",
+          "correction": "One pair parallel alone gives only a **trapezoid**. You need that pair to also be **congruent** (condition 5), or a second condition.",
+          "authored": true
+        },
+        {
+          "text": "Requiring all five tests to pass.",
+          "correction": "**Any one** condition is sufficient — you never need to check more than one.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pp-t1",
+          "statement": "One pair of opposite sides is both parallel and congruent. Parallelogram?",
+          "solution": "Yes — condition 5.",
+          "check": [
+            "2 > 1"
+          ]
+        },
+        {
+          "id": "pp-t2",
+          "statement": "Diagonals bisect each other with halves $x$ and $6$ equal. Then $x = $ —",
+          "solution": "$x = 6$ (bisected means the halves match).",
+          "check": [
+            "6 == 6"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Turning properties into tests",
+            "beats": [
+              "Lesson 2 said: *if* it's a parallelogram, *then* these properties hold.",
+              "Now run it backwards: *if* a property holds, is it *forced* to be a parallelogram?",
+              "For these five, yes — each **converse** is true.",
+              "Passing any **one** test guarantees a parallelogram."
+            ]
+          },
+          {
+            "kind": "quadShape",
+            "eyebrow": "Concept A",
+            "title": "The clues that guarantee it",
+            "teach": "Any one of these marked patterns is enough: both pairs of opposite sides equal, both pairs of opposite angles equal, or the diagonals bisecting each other. Tap the diagonals — equal half-marks are a guarantee all by themselves.",
+            "config": {
+              "type": "parallelogram",
+              "showDiagonals": true
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The five conditions",
+            "title": "Any one is enough",
+            "beats": [
+              "**1.** Both pairs of opposite sides **parallel**.",
+              "**2.** Both pairs of opposite sides **congruent**.",
+              "**3.** Both pairs of opposite angles **congruent**.",
+              "**4.** Diagonals **bisect each other**. **5.** One pair of sides **parallel AND congruent**."
+            ]
+          },
+          {
+            "kind": "stepProof",
+            "eyebrow": "The proof",
+            "title": "Why 'one pair parallel and congruent' works",
+            "teach": "Draw a diagonal, use the one parallel pair for alternate interior angles, then SAS and CPCTC show the OTHER pair of sides is parallel too.",
+            "config": {
+              "given": "Quadrilateral $ABCD$ with $\\overline{AB} \\parallel \\overline{DC}$ and $\\overline{AB} \\cong \\overline{DC}$; diagonal $\\overline{AC}$ drawn.",
+              "prove": "$ABCD$ is a parallelogram",
+              "rows": [
+                {
+                  "statement": "$\\angle BAC \\cong \\angle DCA$",
+                  "reason": "Alternate interior angles: $\\overline{AB} \\parallel \\overline{DC}$ cut by transversal $\\overline{AC}$"
+                },
+                {
+                  "statement": "$\\overline{AB} \\cong \\overline{DC}$",
+                  "reason": "Given"
+                },
+                {
+                  "statement": "$\\overline{AC} \\cong \\overline{AC}$",
+                  "reason": "Reflexive property"
+                },
+                {
+                  "statement": "$\\triangle BAC \\cong \\triangle DCA$",
+                  "reason": "SAS (Unit 4)"
+                },
+                {
+                  "statement": "$\\angle BCA \\cong \\angle DAC$, so $\\overline{BC} \\parallel \\overline{AD}$",
+                  "reason": "CPCTC gives equal alternate interior angles, which prove the lines parallel (Unit 3 converse)"
+                },
+                {
+                  "statement": "$ABCD$ is a parallelogram",
+                  "reason": "Both pairs of opposite sides are now parallel (definition)"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Is it guaranteed?",
+            "intro": "Match the clue to a condition.",
+            "examples": [
+              {
+                "prompt": "Both pairs of opposite sides congruent. Parallelogram?",
+                "steps": [
+                  "That is condition 2.",
+                  "Yes — guaranteed."
+                ],
+                "answer": "Yes",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Only one pair of opposite sides is parallel (nothing else). Parallelogram?",
+                "steps": [
+                  "One pair parallel alone is just a trapezoid.",
+                  "Not guaranteed."
+                ],
+                "answer": "No",
+                "check": [
+                  "1 < 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Guaranteed or not?",
+            "intro": "Any one of the five conditions is enough.",
+            "problems": [
+              {
+                "prompt": "Diagonals bisect each other. Parallelogram?",
+                "options": [
+                  "Yes",
+                  "No"
+                ],
+                "correctIndex": 0,
+                "explanation": "Condition 4.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Both pairs of opposite angles congruent. Parallelogram?",
+                "options": [
+                  "Yes",
+                  "No"
+                ],
+                "correctIndex": 0,
+                "explanation": "Condition 3.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "One pair of sides parallel, a different pair congruent. Guaranteed?",
+                "options": [
+                  "No — that's not one of the five",
+                  "Yes"
+                ],
+                "correctIndex": 0,
+                "explanation": "The parallel-and-congruent must be the SAME pair (condition 5). Mixed clues aren't enough.",
+                "check": [
+                  "1 < 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Solving for values",
+            "title": "Make a condition hold",
+            "beats": [
+              "Often you're given expressions and asked to **force** a parallelogram.",
+              "Set opposite sides equal (condition 2), or set diagonal halves equal (condition 4).",
+              "Solve the equation for the unknown.",
+              "Example: diagonal halves $2x$ and $10$ bisect $\\Rightarrow 2x = 10 \\Rightarrow x = 5$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Solve to guarantee it",
+            "intro": "Set the matching parts equal, then solve.",
+            "examples": [
+              {
+                "prompt": "Opposite sides $3x$ and $18$ must be equal (condition 2). Find $x$.",
+                "steps": [
+                  "$3x = 18$.",
+                  "$x = 6$."
+                ],
+                "answer": "$x = 6$",
+                "check": [
+                  "solve(Eq(3*x, 18), x) == [6]"
+                ]
+              },
+              {
+                "prompt": "Diagonal halves $y + 2$ and $9$ must match (condition 4). Find $y$.",
+                "steps": [
+                  "$y + 2 = 9$.",
+                  "$y = 7$."
+                ],
+                "answer": "$y = 7$",
+                "check": [
+                  "solve(Eq(y + 2, 9), y) == [7]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the value",
+            "intro": "Equal parts → solve.",
+            "problems": [
+              {
+                "prompt": "Opposite sides $5x$ and $20$ equal. $x = $ —",
+                "options": [
+                  "$4$",
+                  "$5$",
+                  "$100$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5x = 20 \\Rightarrow x = 4$.",
+                "check": [
+                  "solve(Eq(5*x, 20), x) == [4]"
+                ]
+              },
+              {
+                "prompt": "Diagonal halves $2y$ and $14$ match. $y = $ —",
+                "options": [
+                  "$7$",
+                  "$14$",
+                  "$28$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2y = 14 \\Rightarrow y = 7$.",
+                "check": [
+                  "solve(Eq(2*y, 14), y) == [7]"
+                ]
+              },
+              {
+                "prompt": "Opposite angles $(4x)^\\circ$ and $80^\\circ$ equal. $x = $ —",
+                "options": [
+                  "$20$",
+                  "$80$",
+                  "$40$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4x = 80 \\Rightarrow x = 20$.",
+                "check": [
+                  "solve(Eq(4*x, 80), x) == [20]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The surveyor's shortcut",
+            "body": "To confirm a plot of land is a true parallelogram, a surveyor doesn't measure every angle — they just check that the two diagonals cross at their shared midpoints. That single test (condition 4) is faster in the field and, by the converse we proved, completely settles it."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Enough to guarantee?",
+            "prompt": "A quadrilateral has one pair of opposite sides that are BOTH parallel AND congruent. Is it necessarily a parallelogram?",
+            "options": [
+              "Yes — condition 5",
+              "No, need all sides"
+            ],
+            "correctIndex": 0,
+            "explanation": "One pair of sides both parallel and congruent is sufficient (condition 5).",
+            "check": [
+              "2 > 1"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Five conditions** each prove a parallelogram; passing **any one** is enough.",
+              "They are the **converses** of the Lesson-2 properties (opposite sides/angles, diagonals).",
+              "The neat shortcut: **one pair of sides both parallel and congruent**."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's decide what's guaranteed and solve for values that force a parallelogram."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Both pairs of opposite sides congruent. Parallelogram?",
+                "options": [
+                  "Yes",
+                  "No",
+                  "Only if also a rectangle",
+                  "Need the angles too"
+                ],
+                "correctIndex": 0,
+                "explanation": "Condition 2.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Only ONE pair of sides parallel, nothing else. Parallelogram?",
+                "options": [
+                  "No — just a trapezoid",
+                  "Yes",
+                  "Always",
+                  "Only if a square"
+                ],
+                "correctIndex": 0,
+                "explanation": "One parallel pair alone is a trapezoid.",
+                "check": [
+                  "1 < 2"
+                ]
+              },
+              {
+                "prompt": "Diagonals bisect each other. Parallelogram?",
+                "options": [
+                  "Yes",
+                  "No",
+                  "Only if equal diagonals",
+                  "Only if perpendicular"
+                ],
+                "correctIndex": 0,
+                "explanation": "Condition 4.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Opposite sides $6x$ and $30$ equal. $x = $ —",
+                "options": [
+                  "$5$",
+                  "$6$",
+                  "$180$",
+                  "$24$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6x = 30 \\Rightarrow x = 5$.",
+                "check": [
+                  "solve(Eq(6*x, 30), x) == [5]"
+                ]
+              },
+              {
+                "prompt": "Which is the SHORTCUT condition (a single pair suffices)?",
+                "options": [
+                  "one pair parallel and congruent",
+                  "one pair parallel",
+                  "one pair congruent",
+                  "one right angle"
+                ],
+                "correctIndex": 0,
+                "explanation": "Condition 5 — parallel AND congruent, same pair.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Diagonal halves $3y$ and $21$ match. $y = $ —",
+                "options": [
+                  "$7$",
+                  "$21$",
+                  "$3$",
+                  "$63$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3y = 21 \\Rightarrow y = 7$.",
+                "check": [
+                  "solve(Eq(3*y, 21), y) == [7]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Proving a Quadrilateral Is a Parallelogram\"",
+            "body": "You can now certify a parallelogram from a single clue. Next: the special parallelograms — rectangles, rhombi, and squares — and what makes each one extra."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "rectangles-rhombi-squares",
+      "title": "Rectangles, Rhombi & Squares",
+      "concreteComparison": "A door is a rectangle, a baseball diamond is a square, a diamond playing-card suit is a rhombus. All three are parallelograms with something extra — a right angle, equal sides, or both — and each extra adds a new guarantee about the diagonals.",
+      "objective": "Use the special properties of rectangles (four right angles, congruent diagonals), rhombi (four congruent sides, perpendicular diagonals that bisect the angles), and squares (all of the above).",
+      "concept": [
+        "A **rectangle** is a parallelogram with **four right angles**. Its extra diagonal property: the **diagonals are congruent** (equal length).",
+        "A **rhombus** is a parallelogram with **four congruent sides**. Its extra diagonal property: the **diagonals are perpendicular**, and each diagonal **bisects a pair of angles**.",
+        "A **square** is a parallelogram that is **both** a rectangle and a rhombus: four right angles AND four equal sides, so its diagonals are **congruent AND perpendicular**.",
+        "All three are parallelograms, so they **inherit every parallelogram property** (opposite sides/angles congruent, diagonals bisect each other) on top of their own."
+      ],
+      "keyIdea": "Rectangle = parallelogram + 4 right angles (congruent diagonals). Rhombus = parallelogram + 4 equal sides (perpendicular diagonals that bisect the angles). Square = both at once.",
+      "facts": [
+        {
+          "title": "Rectangle",
+          "latex": "diagonals $\\cong$",
+          "explanation": "Four right angles; the two diagonals are equal in length."
+        },
+        {
+          "title": "Rhombus",
+          "latex": "diagonals $\\perp$",
+          "explanation": "Four equal sides; diagonals meet at right angles and bisect the angles."
+        },
+        {
+          "title": "Square",
+          "latex": "$\\cong$ AND $\\perp$",
+          "explanation": "Rectangle and rhombus together."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sp-we1",
+          "statement": "A rectangle's diagonal $AC = 13$. Find the other diagonal $BD$.",
+          "solution": "A rectangle's diagonals are congruent, so $BD = 13$.",
+          "check": [
+            "13 == 13"
+          ]
+        },
+        {
+          "id": "sp-we2",
+          "statement": "A rhombus has side length $7$. Find its perimeter.",
+          "solution": "All four sides are equal: $4 \\times 7 = 28$.",
+          "check": [
+            "4*7 == 28"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking a rhombus has congruent diagonals like a rectangle.",
+          "correction": "A rhombus's diagonals are **perpendicular**, usually NOT equal. Equal diagonals belong to the **rectangle**; only the **square** has both.",
+          "authored": true
+        },
+        {
+          "text": "Believing every rectangle is a square.",
+          "correction": "A square is a **special** rectangle (also needs equal sides). Every square is a rectangle, but not every rectangle is a square.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sp-t1",
+          "statement": "A rhombus has side $9$. Its perimeter is —",
+          "solution": "$4 \\times 9 = 36$.",
+          "check": [
+            "4*9 == 36"
+          ]
+        },
+        {
+          "id": "sp-t2",
+          "statement": "A rectangle's diagonals are $2x$ and $16$, and must be equal. Find $x$.",
+          "solution": "$2x = 16 \\Rightarrow x = 8$.",
+          "check": [
+            "solve(Eq(2*x, 16), x) == [8]"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Parallelograms with a bonus",
+            "beats": [
+              "Start from a parallelogram — it already has all four properties from Lesson 2.",
+              "Add **four right angles** → a **rectangle**.",
+              "Add **four equal sides** → a **rhombus**.",
+              "Add **both** → a **square**. Each bonus changes the diagonals."
+            ]
+          },
+          {
+            "kind": "quadShape",
+            "eyebrow": "Concept A",
+            "title": "The rectangle: equal diagonals",
+            "teach": "Four right-angle corners. Tap the diagonals — they still bisect each other (it's a parallelogram) AND they come out equal in length, the rectangle's signature.",
+            "config": {
+              "type": "rectangle",
+              "showDiagonals": true
+            }
+          },
+          {
+            "kind": "quadShape",
+            "eyebrow": "Concept B",
+            "title": "The rhombus: perpendicular diagonals",
+            "teach": "Four equal sides (single ticks all round). Tap the diagonals — they cross at a right angle, the rhombus's signature, and each one bisects a pair of the rhombus's angles.",
+            "config": {
+              "type": "rhombus",
+              "showDiagonals": true
+            }
+          },
+          {
+            "kind": "stepProof",
+            "eyebrow": "The proof",
+            "title": "Why a rectangle's diagonals are equal",
+            "teach": "A rectangle is a parallelogram, so opposite sides are congruent; the right angles plus SAS and CPCTC give equal diagonals.",
+            "config": {
+              "given": "Rectangle $ABCD$ (a parallelogram with four right angles); diagonals $\\overline{AC}$ and $\\overline{BD}$.",
+              "prove": "$\\overline{AC} \\cong \\overline{BD}$",
+              "rows": [
+                {
+                  "statement": "$\\overline{AB} \\cong \\overline{DC}$",
+                  "reason": "Opposite sides of a parallelogram are congruent (Lesson 2)"
+                },
+                {
+                  "statement": "$\\angle ABC$ and $\\angle DCB$ are right angles, so $\\angle ABC \\cong \\angle DCB$",
+                  "reason": "All four angles of a rectangle are right angles; all right angles are congruent"
+                },
+                {
+                  "statement": "$\\overline{BC} \\cong \\overline{CB}$",
+                  "reason": "Reflexive property"
+                },
+                {
+                  "statement": "$\\triangle ABC \\cong \\triangle DCB$",
+                  "reason": "SAS (Unit 4)"
+                },
+                {
+                  "statement": "$\\overline{AC} \\cong \\overline{BD}$",
+                  "reason": "CPCTC — the diagonals are corresponding parts"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Rectangle & rhombus facts",
+            "intro": "Equal diagonals (rectangle); equal sides (rhombus).",
+            "examples": [
+              {
+                "prompt": "A rectangle's diagonal is $20$. The other diagonal?",
+                "steps": [
+                  "Rectangle diagonals are congruent.",
+                  "$= 20$."
+                ],
+                "answer": "$20$",
+                "check": [
+                  "20 == 20"
+                ]
+              },
+              {
+                "prompt": "A rhombus has side $11$. Its perimeter?",
+                "steps": [
+                  "Four equal sides.",
+                  "$4 \\times 11 = 44$."
+                ],
+                "answer": "$44$",
+                "check": [
+                  "4*11 == 44"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Special-parallelogram facts",
+            "intro": "Match the property to the shape.",
+            "problems": [
+              {
+                "prompt": "A rhombus of side $6$ has perimeter —",
+                "options": [
+                  "$24$",
+                  "$12$",
+                  "$36$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4 \\times 6 = 24$.",
+                "check": [
+                  "4*6 == 24"
+                ]
+              },
+              {
+                "prompt": "Which shape has PERPENDICULAR diagonals?",
+                "options": [
+                  "rhombus",
+                  "rectangle",
+                  "neither"
+                ],
+                "correctIndex": 0,
+                "explanation": "Rhombus (and square). A plain rectangle does not.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Which shape has CONGRUENT diagonals?",
+                "options": [
+                  "rectangle",
+                  "rhombus",
+                  "neither"
+                ],
+                "correctIndex": 0,
+                "explanation": "Rectangle (and square).",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The square has both",
+            "title": "Rectangle and rhombus at once",
+            "beats": [
+              "A **square** is a parallelogram with four right angles **and** four equal sides.",
+              "So it is a rectangle (equal diagonals) **and** a rhombus (perpendicular diagonals).",
+              "Its diagonals are therefore **congruent AND perpendicular**, and they bisect each other.",
+              "Every square is a rectangle and a rhombus; the reverse isn't true."
+            ]
+          },
+          {
+            "kind": "quadShape",
+            "eyebrow": "Concept C",
+            "title": "The square: both signatures",
+            "teach": "Equal sides, right-angle corners. Tap the diagonals — congruent AND perpendicular, bisecting each other. The square inherits every property of the parallelogram, rectangle, and rhombus.",
+            "config": {
+              "type": "square",
+              "showDiagonals": true
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Square & solve",
+            "intro": "Use both signatures; set equal and solve.",
+            "examples": [
+              {
+                "prompt": "A square has side $5$. Perimeter?",
+                "steps": [
+                  "Four equal sides.",
+                  "$4 \\times 5 = 20$."
+                ],
+                "answer": "$20$",
+                "check": [
+                  "4*5 == 20"
+                ]
+              },
+              {
+                "prompt": "A rectangle's diagonals are $3x$ and $18$ (equal). Find $x$.",
+                "steps": [
+                  "$3x = 18$.",
+                  "$x = 6$."
+                ],
+                "answer": "$x = 6$",
+                "check": [
+                  "solve(Eq(3*x, 18), x) == [6]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Squares & values",
+            "intro": "Congruent + perpendicular; equal sides.",
+            "problems": [
+              {
+                "prompt": "A square of side $8$ has perimeter —",
+                "options": [
+                  "$32$",
+                  "$16$",
+                  "$64$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4 \\times 8 = 32$.",
+                "check": [
+                  "4*8 == 32"
+                ]
+              },
+              {
+                "prompt": "A square's diagonals are —",
+                "options": [
+                  "congruent and perpendicular",
+                  "congruent only",
+                  "perpendicular only"
+                ],
+                "correctIndex": 0,
+                "explanation": "It's both a rectangle and a rhombus.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Rectangle diagonals $4x$ and $24$ are equal. $x = $ —",
+                "options": [
+                  "$6$",
+                  "$4$",
+                  "$96$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4x = 24 \\Rightarrow x = 6$.",
+                "check": [
+                  "solve(Eq(4*x, 24), x) == [6]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why builders measure the diagonals",
+            "body": "To check a door frame or a deck is square, carpenters measure both diagonals: if the two diagonals are equal, the corners are true right angles (that's the rectangle property in reverse). It's faster and more reliable than trying to measure a $90^\\circ$ corner directly."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Whose diagonals?",
+            "prompt": "Which special parallelogram has diagonals that are perpendicular but NOT necessarily equal?",
+            "options": [
+              "rhombus",
+              "rectangle",
+              "square"
+            ],
+            "correctIndex": 0,
+            "explanation": "A rhombus has perpendicular diagonals; they're equal only when it's also a square.",
+            "check": [
+              "2 > 1"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Rectangle**: parallelogram + four right angles → **congruent diagonals**.",
+              "**Rhombus**: parallelogram + four equal sides → **perpendicular diagonals** that bisect the angles.",
+              "**Square**: both at once → diagonals **congruent AND perpendicular**; it inherits every property above it."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's use equal/perpendicular diagonals and equal sides across the three special shapes."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "A rhombus of side $10$ has perimeter —",
+                "options": [
+                  "$40$",
+                  "$20$",
+                  "$100$",
+                  "$30$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4 \\times 10 = 40$.",
+                "check": [
+                  "4*10 == 40"
+                ]
+              },
+              {
+                "prompt": "A rectangle's diagonal is $15$; the other diagonal is —",
+                "options": [
+                  "$15$",
+                  "$30$",
+                  "$7.5$",
+                  "cannot tell"
+                ],
+                "correctIndex": 0,
+                "explanation": "Rectangle diagonals are congruent.",
+                "check": [
+                  "15 == 15"
+                ]
+              },
+              {
+                "prompt": "Perpendicular diagonals are the signature of a —",
+                "options": [
+                  "rhombus",
+                  "rectangle",
+                  "general parallelogram",
+                  "trapezoid"
+                ],
+                "correctIndex": 0,
+                "explanation": "Rhombus (and square).",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Every square is also a —",
+                "options": [
+                  "rectangle and a rhombus",
+                  "trapezoid only",
+                  "kite only",
+                  "neither"
+                ],
+                "correctIndex": 0,
+                "explanation": "It has right angles (rectangle) and equal sides (rhombus).",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "A square of side $12$ has perimeter —",
+                "options": [
+                  "$48$",
+                  "$24$",
+                  "$144$",
+                  "$36$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4 \\times 12 = 48$.",
+                "check": [
+                  "4*12 == 48"
+                ]
+              },
+              {
+                "prompt": "Rectangle diagonals $5x$ and $35$ are equal. $x = $ —",
+                "options": [
+                  "$7$",
+                  "$5$",
+                  "$175$",
+                  "$30$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5x = 35 \\Rightarrow x = 7$.",
+                "check": [
+                  "solve(Eq(5*x, 35), x) == [7]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Rectangles, Rhombi & Squares\"",
+            "body": "You know the special parallelograms and their diagonals. Next: the quadrilaterals that are NOT parallelograms — trapezoids and kites."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "trapezoids-and-kites",
+      "title": "Trapezoids & Kites",
+      "concreteComparison": "A flower-pot silhouette and a bucket's cross-section are trapezoids — one pair of parallel sides, one not. A flying kite is, well, a kite — two pairs of equal sides meeting at the tips. Neither is a parallelogram, but each has its own tidy rules.",
+      "objective": "Identify trapezoids (exactly one pair of parallel sides), isosceles trapezoids (congruent legs, congruent base angles and diagonals), the trapezoid midsegment (average of the bases), and kites (two pairs of consecutive congruent sides, perpendicular diagonals).",
+      "concept": [
+        "A **trapezoid** has **exactly one pair of parallel sides**, called the **bases**; the other two sides are the **legs**.",
+        "An **isosceles trapezoid** has congruent legs. Then its **base angles are congruent** (each base has a matching pair) and its **diagonals are congruent**.",
+        "The **midsegment** of a trapezoid joins the midpoints of the two legs. Its length is the **average of the two bases**: $\\tfrac{b_1 + b_2}{2}$.",
+        "A **kite** has **two pairs of consecutive congruent sides** (adjacent, not opposite). Its **diagonals are perpendicular**, and one diagonal bisects the other."
+      ],
+      "keyIdea": "A trapezoid has exactly one pair of parallel sides; its midsegment is the average of the two bases. An isosceles trapezoid adds congruent legs, base angles, and diagonals. A kite has two pairs of consecutive equal sides and perpendicular diagonals.",
+      "facts": [
+        {
+          "title": "Trapezoid midsegment",
+          "latex": "$\\dfrac{b_1 + b_2}{2}$",
+          "explanation": "The average of the two parallel bases."
+        },
+        {
+          "title": "Kite diagonals",
+          "latex": "$\\perp$",
+          "explanation": "The diagonals of a kite meet at a right angle."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "tk-we1",
+          "statement": "A trapezoid has bases $8$ and $12$. Find its midsegment.",
+          "solution": "Average of the bases: $\\tfrac{8 + 12}{2} = \\tfrac{20}{2} = 10$.",
+          "check": [
+            "(8+12)/2 == 10"
+          ]
+        },
+        {
+          "id": "tk-we2",
+          "statement": "An isosceles trapezoid has a bottom base angle of $72^\\circ$. Find the other bottom base angle.",
+          "solution": "Base angles at the same base are congruent, so it is also $72^\\circ$.",
+          "check": [
+            "72 == 72"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Calling a parallelogram a trapezoid (or vice versa).",
+          "correction": "A trapezoid has **exactly one** pair of parallel sides. A parallelogram has **two** — so it is not a trapezoid under this definition.",
+          "authored": true
+        },
+        {
+          "text": "Thinking a kite's equal sides are opposite each other.",
+          "correction": "A kite's congruent sides are **consecutive** (they share a vertex). Opposite congruent sides would make a parallelogram.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "tk-t1",
+          "statement": "A trapezoid has bases $6$ and $14$. Its midsegment is —",
+          "solution": "$\\tfrac{6 + 14}{2} = 10$.",
+          "check": [
+            "(6+14)/2 == 10"
+          ]
+        },
+        {
+          "id": "tk-t2",
+          "statement": "A kite's diagonals meet at —",
+          "solution": "a right angle (they are perpendicular).",
+          "check": [
+            "2 > 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Not every quadrilateral is a parallelogram",
+            "beats": [
+              "A **trapezoid** has **exactly one** pair of parallel sides — the **bases**.",
+              "The two non-parallel sides are the **legs**.",
+              "A **kite** has two pairs of **consecutive** (side-by-side) equal sides.",
+              "Each shape has its own special rules, different from a parallelogram's."
+            ]
+          },
+          {
+            "kind": "quadShape",
+            "eyebrow": "Concept A",
+            "title": "The trapezoid: one parallel pair",
+            "teach": "Just one pair of sides is parallel — the arrow marks show the two bases. The other two sides, the legs, are not parallel. This is what separates a trapezoid from a parallelogram.",
+            "config": {
+              "type": "trapezoid"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The midsegment",
+            "title": "Average the two bases",
+            "beats": [
+              "Join the **midpoints** of the two legs — that's the trapezoid's **midsegment**.",
+              "Its length is the **average** of the two bases.",
+              "Midsegment $= \\dfrac{b_1 + b_2}{2}$.",
+              "Bases $8$ and $12$: midsegment $= \\dfrac{8 + 12}{2} = 10$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Midsegment of a trapezoid",
+            "intro": "Add the bases, divide by 2.",
+            "examples": [
+              {
+                "prompt": "Bases $10$ and $16$. Midsegment?",
+                "steps": [
+                  "$\\dfrac{10 + 16}{2}$.",
+                  "$= \\dfrac{26}{2} = 13$."
+                ],
+                "answer": "$13$",
+                "check": [
+                  "(10+16)/2 == 13"
+                ]
+              },
+              {
+                "prompt": "Bases $5$ and $9$. Midsegment?",
+                "steps": [
+                  "$\\dfrac{5 + 9}{2}$.",
+                  "$= 7$."
+                ],
+                "answer": "$7$",
+                "check": [
+                  "(5+9)/2 == 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the midsegment",
+            "intro": "Average of the bases.",
+            "problems": [
+              {
+                "prompt": "Bases $6$ and $14$. Midsegment $= $ —",
+                "options": [
+                  "$10$",
+                  "$20$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{6+14}{2} = 10$.",
+                "check": [
+                  "(6+14)/2 == 10"
+                ]
+              },
+              {
+                "prompt": "Bases $12$ and $12$. Midsegment $= $ —",
+                "options": [
+                  "$12$",
+                  "$24$",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{12+12}{2} = 12$.",
+                "check": [
+                  "(12+12)/2 == 12"
+                ]
+              },
+              {
+                "prompt": "Midsegment $9$, one base $6$. The other base is —",
+                "options": [
+                  "$12$",
+                  "$3$",
+                  "$15$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{6 + x}{2} = 9 \\Rightarrow 6 + x = 18 \\Rightarrow x = 12$.",
+                "check": [
+                  "solve(Eq((6+x)/2, 9), x) == [12]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Isosceles trapezoids",
+            "title": "When the legs match",
+            "beats": [
+              "An **isosceles trapezoid** has congruent **legs**.",
+              "Then the two **base angles** on each base are **congruent**.",
+              "The two **diagonals** are **congruent** as well.",
+              "The angles along one leg (top + bottom) are supplementary — they sum to $180^\\circ$."
+            ]
+          },
+          {
+            "kind": "quadShape",
+            "eyebrow": "Concept B",
+            "title": "The isosceles trapezoid",
+            "teach": "The legs carry matching ticks (congruent), the base angles carry matching arcs (congruent). Tap the diagonals — in an isosceles trapezoid they come out equal in length, just like a rectangle's.",
+            "config": {
+              "type": "isosceles-trapezoid",
+              "showDiagonals": true
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Isosceles trapezoid angles",
+            "intro": "Base angles equal; along a leg they sum to 180.",
+            "examples": [
+              {
+                "prompt": "A bottom base angle is $75^\\circ$. The other bottom base angle?",
+                "steps": [
+                  "Base angles on the same base are congruent.",
+                  "$= 75^\\circ$."
+                ],
+                "answer": "$75^\\circ$",
+                "check": [
+                  "75 == 75"
+                ]
+              },
+              {
+                "prompt": "A bottom base angle is $75^\\circ$. The top angle on that same leg?",
+                "steps": [
+                  "Along a leg the angles are supplementary.",
+                  "$180 - 75 = 105^\\circ$."
+                ],
+                "answer": "$105^\\circ$",
+                "check": [
+                  "180 - 75 == 105"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Isosceles trapezoid facts",
+            "intro": "Congruent legs, base angles, diagonals.",
+            "problems": [
+              {
+                "prompt": "One bottom base angle is $68^\\circ$; the other bottom base angle is —",
+                "options": [
+                  "$68^\\circ$",
+                  "$112^\\circ$",
+                  "$34^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Base angles are congruent.",
+                "check": [
+                  "68 == 68"
+                ]
+              },
+              {
+                "prompt": "In an isosceles trapezoid the diagonals are —",
+                "options": [
+                  "congruent",
+                  "perpendicular",
+                  "bisecting each other"
+                ],
+                "correctIndex": 0,
+                "explanation": "Congruent, like a rectangle's.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "A bottom base angle is $80^\\circ$; the top angle on the same leg is —",
+                "options": [
+                  "$100^\\circ$",
+                  "$80^\\circ$",
+                  "$10^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$180 - 80 = 100$ (supplementary along a leg).",
+                "check": [
+                  "180 - 80 == 100"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "quadShape",
+            "eyebrow": "Concept C",
+            "title": "The kite",
+            "teach": "Two pairs of consecutive equal sides — the top pair (single ticks) and the bottom pair (double ticks). Tap the diagonals: they cross at a right angle. A kite is not a parallelogram, but its diagonals are always perpendicular.",
+            "config": {
+              "type": "kite",
+              "showDiagonals": true
+            }
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why a real kite flies",
+            "body": "A flying kite is built as a geometric kite because its perpendicular diagonals — the spars — split it into four right triangles that share the load evenly and keep the sail taut. The line attaches near where the diagonals cross, on the axis of symmetry, so the wind balances left and right."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Average the bases",
+            "prompt": "A trapezoid has bases of length $7$ and $15$. How long is its midsegment?",
+            "options": [
+              "$11$",
+              "$22$",
+              "$8$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The midsegment is the average of the bases: $\\tfrac{7 + 15}{2} = 11$.",
+            "check": [
+              "(7+15)/2 == 11"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **trapezoid** has **exactly one** pair of parallel sides; its **midsegment** $= \\dfrac{b_1 + b_2}{2}$.",
+              "An **isosceles trapezoid** has congruent **legs**, **base angles**, and **diagonals**.",
+              "A **kite** has two pairs of **consecutive** congruent sides and **perpendicular** diagonals."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's average bases, use base angles, and apply the kite's right-angle diagonals."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Trapezoid bases $9$ and $17$. Midsegment $= $ —",
+                "options": [
+                  "$13$",
+                  "$26$",
+                  "$8$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{9+17}{2} = 13$.",
+                "check": [
+                  "(9+17)/2 == 13"
+                ]
+              },
+              {
+                "prompt": "A trapezoid has how many pairs of parallel sides?",
+                "options": [
+                  "exactly one",
+                  "two",
+                  "none",
+                  "three"
+                ],
+                "correctIndex": 0,
+                "explanation": "Exactly one — that's the definition.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Midsegment $11$, one base $8$. The other base is —",
+                "options": [
+                  "$14$",
+                  "$3$",
+                  "$22$",
+                  "$19$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{8+x}{2} = 11 \\Rightarrow x = 14$.",
+                "check": [
+                  "solve(Eq((8+x)/2, 11), x) == [14]"
+                ]
+              },
+              {
+                "prompt": "A kite's diagonals are —",
+                "options": [
+                  "perpendicular",
+                  "congruent",
+                  "parallel",
+                  "equal halves"
+                ],
+                "correctIndex": 0,
+                "explanation": "They meet at a right angle.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "An isosceles trapezoid's diagonals are —",
+                "options": [
+                  "congruent",
+                  "perpendicular",
+                  "parallel",
+                  "unequal"
+                ],
+                "correctIndex": 0,
+                "explanation": "Congruent.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "A kite's congruent sides are —",
+                "options": [
+                  "consecutive (adjacent)",
+                  "opposite",
+                  "all four equal",
+                  "parallel"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two pairs of adjacent equal sides.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Trapezoids & Kites\"",
+            "body": "You've met every member of the quadrilateral family. Last stop: fitting them all into one family tree and naming any quadrilateral as precisely as possible."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-quadrilateral-family",
+      "title": "The Quadrilateral Family",
+      "concreteComparison": "Think of a family tree. A square is a kind of rectangle, which is a kind of parallelogram, which is a kind of quadrilateral. The further DOWN the tree you go, the more special the shape — and it inherits every property from every relative above it.",
+      "objective": "Place any quadrilateral in the family hierarchy, name it as specifically as possible, and reason about which properties a shape must, might, or can never have.",
+      "concept": [
+        "The **quadrilateral family**: every four-sided shape is a **quadrilateral**. Special branches are the **parallelogram**, the **trapezoid**, and the **kite**.",
+        "Down the **parallelogram** branch: a **rectangle** (right angles) and a **rhombus** (equal sides) are special parallelograms, and the **square** is both at once — the most special of all.",
+        "A shape has **every property of each type above it** in the tree. A square, for instance, has all the properties of a rhombus, a rectangle, a parallelogram, and a quadrilateral.",
+        "Name a shape by its **most specific** type, and use \"always / sometimes / never\" to reason: a square is *always* a rectangle, a rectangle is *sometimes* a square, a trapezoid is *never* a parallelogram."
+      ],
+      "keyIdea": "Quadrilaterals form a hierarchy: square ⊂ rectangle & rhombus ⊂ parallelogram ⊂ quadrilateral, with trapezoids and kites on separate branches. A shape inherits every property of every type above it; name it by its most specific type.",
+      "facts": [
+        {
+          "title": "Inheritance",
+          "latex": "special $\\Rightarrow$ has all general properties",
+          "explanation": "A shape keeps every property of the types above it."
+        },
+        {
+          "title": "Most specific name",
+          "latex": "name the narrowest type",
+          "explanation": "Call a square a square, not just a parallelogram."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "qf-we1",
+          "statement": "A quadrilateral has four right angles and four equal sides. Name it as specifically as possible.",
+          "solution": "Four right angles + four equal sides = a **square** (the most specific type).",
+          "check": [
+            "(4-2)*180/4 == 90"
+          ]
+        },
+        {
+          "id": "qf-we2",
+          "statement": "True or false: every rhombus is a parallelogram.",
+          "solution": "True — a rhombus is a parallelogram with four equal sides, so it is always a parallelogram.",
+          "check": [
+            "2 > 1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Naming a shape by a general type when a specific one fits.",
+          "correction": "Use the **most specific** name. A shape with four right angles and equal sides is a **square**, not just a 'parallelogram'.",
+          "authored": true
+        },
+        {
+          "text": "Saying 'a rectangle is a square'.",
+          "correction": "A rectangle is **sometimes** a square (only when its sides are also equal). But a square is **always** a rectangle.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "qf-t1",
+          "statement": "A parallelogram with perpendicular diagonals and four equal sides is a —",
+          "solution": "a rhombus.",
+          "check": [
+            "2 > 1"
+          ]
+        },
+        {
+          "id": "qf-t2",
+          "statement": "Every square is a rectangle: always, sometimes, or never?",
+          "solution": "Always.",
+          "check": [
+            "2 > 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "A family tree of shapes",
+            "beats": [
+              "Every four-sided shape is a **quadrilateral** — the top of the tree.",
+              "Branches: **parallelogram**, **trapezoid**, **kite**.",
+              "Down the parallelogram branch: **rectangle**, **rhombus**, then **square**.",
+              "The lower you go, the more special — and the more properties you carry."
+            ]
+          },
+          {
+            "kind": "quadShape",
+            "eyebrow": "Concept A",
+            "title": "The most special: the square",
+            "teach": "The square sits at the bottom of the parallelogram branch. Tap the diagonals — congruent (from being a rectangle) AND perpendicular (from being a rhombus), bisecting each other (from being a parallelogram). It inherits everything above it.",
+            "config": {
+              "type": "square",
+              "showDiagonals": true
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Inheritance",
+            "title": "Properties flow downhill",
+            "beats": [
+              "A **square** is a rectangle, a rhombus, a parallelogram, and a quadrilateral all at once.",
+              "So it has **every** property those types have.",
+              "A **rectangle** is a parallelogram, so it has all parallelogram properties **plus** its own.",
+              "You never lose a property going down — you only gain more."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Name it most specifically",
+            "intro": "Use the narrowest type that fits.",
+            "examples": [
+              {
+                "prompt": "Four right angles, four equal sides. Name it.",
+                "steps": [
+                  "Right angles → rectangle; equal sides → rhombus.",
+                  "Both → **square**."
+                ],
+                "answer": "Square",
+                "check": [
+                  "(4-2)*180/4 == 90"
+                ]
+              },
+              {
+                "prompt": "A parallelogram with four right angles but sides $5$ and $8$. Name it.",
+                "steps": [
+                  "Right angles → rectangle.",
+                  "Sides not all equal → not a square. It's a **rectangle**."
+                ],
+                "answer": "Rectangle",
+                "check": [
+                  "5 < 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Most specific name",
+            "intro": "Narrowest type that fits.",
+            "problems": [
+              {
+                "prompt": "A parallelogram with four equal sides (no right angles) is a —",
+                "options": [
+                  "rhombus",
+                  "rectangle",
+                  "square"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal sides without right angles = rhombus.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "A quadrilateral with exactly one pair of parallel sides is a —",
+                "options": [
+                  "trapezoid",
+                  "parallelogram",
+                  "kite"
+                ],
+                "correctIndex": 0,
+                "explanation": "Exactly one parallel pair = trapezoid.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Four right angles AND four equal sides is a —",
+                "options": [
+                  "square",
+                  "rectangle only",
+                  "rhombus only"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both conditions → square.",
+                "check": [
+                  "(4-2)*180/4 == 90"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Always / sometimes / never",
+            "title": "Reasoning up and down the tree",
+            "beats": [
+              "Going **down** is 'always': a square is **always** a rectangle.",
+              "Going **up** is 'sometimes': a rectangle is **sometimes** a square.",
+              "Across separate branches is 'never': a trapezoid is **never** a parallelogram.",
+              "Ask: is the second shape always higher in the same branch?"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Always, sometimes, or never?",
+            "intro": "Check the direction on the tree.",
+            "examples": [
+              {
+                "prompt": "A square is ___ a rhombus.",
+                "steps": [
+                  "Square is below rhombus on the branch.",
+                  "Going down → **always**."
+                ],
+                "answer": "Always",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "A parallelogram is ___ a rectangle.",
+                "steps": [
+                  "Rectangle is a special parallelogram (below it).",
+                  "Going up → **sometimes**."
+                ],
+                "answer": "Sometimes",
+                "check": [
+                  "1 < 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Hierarchy reasoning",
+            "intro": "Down = always, up = sometimes, other branch = never.",
+            "problems": [
+              {
+                "prompt": "A square is ___ a parallelogram.",
+                "options": [
+                  "always",
+                  "sometimes",
+                  "never"
+                ],
+                "correctIndex": 0,
+                "explanation": "A square is a special parallelogram — always.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "A rhombus is ___ a square.",
+                "options": [
+                  "sometimes",
+                  "always",
+                  "never"
+                ],
+                "correctIndex": 0,
+                "explanation": "Only when it also has right angles.",
+                "check": [
+                  "1 < 2"
+                ]
+              },
+              {
+                "prompt": "A kite is ___ a parallelogram.",
+                "options": [
+                  "never (in general)",
+                  "always",
+                  "sometimes only when a square"
+                ],
+                "correctIndex": 0,
+                "explanation": "A general kite has no parallel sides, so it isn't a parallelogram.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why definitions are worth arguing about",
+            "body": "Mathematicians actually debate whether a trapezoid should be defined as 'exactly one' or 'at least one' pair of parallel sides. Under 'at least one', a parallelogram would count as a special trapezoid — reshaping the whole family tree. We use 'exactly one', which keeps the branches separate. Good definitions are choices, made to keep the logic tidy."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Most specific",
+            "prompt": "A parallelogram has four right angles and four congruent sides. Its most specific name is —",
+            "options": [
+              "square",
+              "rectangle",
+              "rhombus"
+            ],
+            "correctIndex": 0,
+            "explanation": "Four right angles AND four equal sides make it a square — the most specific type.",
+            "check": [
+              "(4-2)*180/4 == 90"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Quadrilaterals form a **hierarchy**: square ⊂ (rectangle & rhombus) ⊂ parallelogram ⊂ quadrilateral; trapezoids and kites branch off separately.",
+              "A shape **inherits every property** of the types above it — name it by its **most specific** type.",
+              "Reason with **always / sometimes / never** by direction on the tree."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's name shapes precisely and settle always/sometimes/never claims."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "A parallelogram with equal sides but no right angles is a —",
+                "options": [
+                  "rhombus",
+                  "rectangle",
+                  "square",
+                  "trapezoid"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal sides, no right angles → rhombus.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "A square is ___ a rectangle.",
+                "options": [
+                  "always",
+                  "sometimes",
+                  "never",
+                  "only if large"
+                ],
+                "correctIndex": 0,
+                "explanation": "A square is a special rectangle.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "A rectangle is ___ a rhombus.",
+                "options": [
+                  "sometimes (when a square)",
+                  "always",
+                  "never",
+                  "only if small"
+                ],
+                "correctIndex": 0,
+                "explanation": "They overlap only at the square.",
+                "check": [
+                  "1 < 2"
+                ]
+              },
+              {
+                "prompt": "Exactly one pair of parallel sides means a —",
+                "options": [
+                  "trapezoid",
+                  "parallelogram",
+                  "rhombus",
+                  "kite"
+                ],
+                "correctIndex": 0,
+                "explanation": "Trapezoid.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "A shape with four right angles and four equal sides is most specifically a —",
+                "options": [
+                  "square",
+                  "rectangle",
+                  "rhombus",
+                  "parallelogram"
+                ],
+                "correctIndex": 0,
+                "explanation": "Square.",
+                "check": [
+                  "(4-2)*180/4 == 90"
+                ]
+              },
+              {
+                "prompt": "A trapezoid is ___ a parallelogram.",
+                "options": [
+                  "never",
+                  "always",
+                  "sometimes",
+                  "usually"
+                ],
+                "correctIndex": 0,
+                "explanation": "Exactly one parallel pair rules out a parallelogram.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"The Quadrilateral Family\"",
+            "body": "You can place and name any quadrilateral and reason across the whole family — the finale of Quadrilaterals & Polygons. Next unit: similarity, where shapes keep their form but change size."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [],
+  "testYourself": []
+}

@@ -599,6 +599,28 @@ export interface MidsegmentConfig {
   color?: string;
 }
 
+// A regular n-gon whose vertex count the student changes. "interior" mode
+// fan-triangulates from one vertex (n − 2 triangles) to show the interior sum
+// (n − 2)·180°; "exterior" mode shows the turn arrows that always total 360°.
+export interface PolygonAnglesConfig {
+  start?: number; // initial number of sides (3..10)
+  minSides?: number;
+  maxSides?: number;
+  mode?: "interior" | "exterior";
+  color?: string;
+}
+
+// A canonical quadrilateral of a chosen type, drawn with the property marks
+// that define it (parallel arrows, congruence ticks, right-angle squares,
+// equal-angle arcs) and, on tap, its diagonals and their properties. One
+// primitive serves the whole quadrilateral family.
+export interface QuadShapeConfig {
+  type: "parallelogram" | "rectangle" | "rhombus" | "square" | "trapezoid" | "isosceles-trapezoid" | "kite";
+  showDiagonals?: boolean;
+  caption?: string;
+  color?: string;
+}
+
 // Two congruent triangles with marked parts; the student names the shortcut.
 export interface CongruentTrianglesConfig {
   sides?: [number, number, number]; // tick counts on AB, BC, CA
@@ -690,6 +712,8 @@ export type InteractiveStep =
   | { kind: "congruentTriangles"; eyebrow?: string; title: string; teach: string; config: CongruentTrianglesConfig }
   | { kind: "triangleCenters"; eyebrow?: string; title: string; teach: string; config: TriangleCentersConfig }
   | { kind: "midsegment"; eyebrow?: string; title: string; teach: string; config: MidsegmentConfig }
+  | { kind: "polygonAngles"; eyebrow?: string; title: string; teach: string; config: PolygonAnglesConfig }
+  | { kind: "quadShape"; eyebrow?: string; title: string; teach: string; config: QuadShapeConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

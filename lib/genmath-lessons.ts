@@ -64,6 +64,7 @@ import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json"
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
 import geometryTriangles from "@/data/genmath/geometry/triangles-and-congruence.json";
 import geometryRelationships from "@/data/genmath/geometry/relationships-in-triangles.json";
+import geometryQuadrilaterals from "@/data/genmath/geometry/quadrilaterals-and-polygons.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -183,7 +184,7 @@ export const GEOMETRY_SPINE: GeometrySpineEntry[] = [
     title: "Quadrilaterals & Polygons",
     blurb: "Angle sums for any polygon; parallelograms, rectangles, rhombi, squares, trapezoids, and kites — with proofs.",
     buildsOn: "Triangles (Unit 4) and parallel lines (Unit 3).",
-    live: false,
+    live: true,
   },
   {
     unit: 7,
@@ -249,6 +250,7 @@ const geometryUnits: GeometryUnit[] = [
   geometryParallel as unknown as GeometryUnit,
   geometryTriangles as unknown as GeometryUnit,
   geometryRelationships as unknown as GeometryUnit,
+  geometryQuadrilaterals as unknown as GeometryUnit,
 ];
 
 export function getGeometrySpine(): GeometrySpineEntry[] {

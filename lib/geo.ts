@@ -232,3 +232,42 @@ export function largestAngleVertex(oppA: number, oppB: number, oppC: number): nu
 export function thirdSideRange(a: number, b: number): { min: number; max: number } {
   return { min: Math.abs(a - b), max: a + b };
 }
+
+// ---------------------------------------------------------------------------
+// Quadrilaterals & polygons — angle sums and quadrilateral measures
+// ---------------------------------------------------------------------------
+
+// The interior angles of a convex n-gon sum to (n − 2)·180°, because any n-gon
+// splits into n − 2 triangles by drawing diagonals from one vertex.
+export function polygonInteriorSum(n: number): number {
+  return (n - 2) * 180;
+}
+
+// One interior angle of a REGULAR n-gon (all angles equal): the total shared
+// evenly among the n vertices.
+export function regularInteriorAngle(n: number): number {
+  return polygonInteriorSum(n) / n;
+}
+
+// One exterior angle of a REGULAR n-gon. The exterior angles of ANY convex
+// polygon sum to 360°, so a regular one has 360/n at each vertex.
+export function regularExteriorAngle(n: number): number {
+  return 360 / n;
+}
+
+// The number of diagonals you can draw from a SINGLE vertex of an n-gon: you
+// can reach every vertex except itself and its two neighbours.
+export function diagonalsFromVertex(n: number): number {
+  return n - 3;
+}
+
+// The total number of diagonals in an n-gon.
+export function polygonDiagonals(n: number): number {
+  return (n * (n - 3)) / 2;
+}
+
+// The midsegment (median) of a trapezoid joins the midpoints of the two legs;
+// its length is the AVERAGE of the two parallel bases.
+export function trapezoidMidsegment(base1: number, base2: number): number {
+  return (base1 + base2) / 2;
+}

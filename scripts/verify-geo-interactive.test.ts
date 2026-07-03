@@ -34,6 +34,12 @@ import {
   sub,
   dot,
   midpoint as midpointFn,
+  polygonInteriorSum,
+  regularInteriorAngle,
+  regularExteriorAngle,
+  diagonalsFromVertex,
+  polygonDiagonals,
+  trapezoidMidsegment,
 } from "@/lib/geo";
 
 describe("segment math", () => {
@@ -312,5 +318,51 @@ describe("special segments & triangle centers", () => {
     expect(canFormTriangle(7, 4, 3.01)).toBe(true);
     expect(canFormTriangle(7, 4, 3)).toBe(false);
     expect(canFormTriangle(7, 4, 11)).toBe(false);
+  });
+});
+
+describe("polygon angle sums & quadrilateral measures", () => {
+  it("interior angle sum is (n − 2)·180", () => {
+    expect(polygonInteriorSum(3)).toBe(180);
+    expect(polygonInteriorSum(4)).toBe(360);
+    expect(polygonInteriorSum(5)).toBe(540);
+    expect(polygonInteriorSum(6)).toBe(720);
+    expect(polygonInteriorSum(8)).toBe(1080);
+  });
+
+  it("a regular polygon's interior angle is the sum shared evenly", () => {
+    expect(regularInteriorAngle(3)).toBe(60); // equilateral triangle
+    expect(regularInteriorAngle(4)).toBe(90); // square
+    expect(regularInteriorAngle(6)).toBe(120); // regular hexagon
+    // interior and exterior are supplementary at every vertex
+    for (const n of [3, 4, 5, 6, 8, 12]) {
+      expect(regularInteriorAngle(n) + regularExteriorAngle(n)).toBe(180);
+    }
+  });
+
+  it("exterior angles of any convex polygon total 360", () => {
+    for (const n of [3, 4, 5, 6, 10]) {
+      expect(regularExteriorAngle(n) * n).toBe(360);
+    }
+  });
+
+  it("diagonals: from one vertex n − 3, total n(n − 3)/2", () => {
+    expect(diagonalsFromVertex(4)).toBe(1);
+    expect(diagonalsFromVertex(5)).toBe(2);
+    expect(diagonalsFromVertex(6)).toBe(3);
+    expect(polygonDiagonals(4)).toBe(2);
+    expect(polygonDiagonals(5)).toBe(5);
+    expect(polygonDiagonals(6)).toBe(9);
+    // from one vertex, n − 3 diagonals cut the n-gon into n − 2 triangles
+    for (const n of [3, 4, 5, 6, 8]) {
+      expect(diagonalsFromVertex(n) + 1).toBe(n - 2);
+      expect(polygonInteriorSum(n)).toBe((diagonalsFromVertex(n) + 1) * 180);
+    }
+  });
+
+  it("trapezoid midsegment is the average of the two bases", () => {
+    expect(trapezoidMidsegment(8, 12)).toBe(10);
+    expect(trapezoidMidsegment(6, 6)).toBe(6);
+    expect(trapezoidMidsegment(5, 15)).toBe(10);
   });
 });
