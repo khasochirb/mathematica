@@ -719,6 +719,49 @@ export interface ArcSectorConfig {
   color?: string;
 }
 
+// A shape with its base/height (or diagonals) labelled and its area computed
+// live from an adjustable set of dimensions. Serves the area lessons for
+// parallelograms, triangles, trapezoids, and rhombi.
+export interface AreaShapeConfig {
+  shape: "rectangle" | "parallelogram" | "triangle" | "trapezoid" | "rhombus";
+  base?: number;
+  height?: number;
+  base2?: number; // trapezoid top base
+  d1?: number; // rhombus horizontal diagonal
+  d2?: number; // rhombus vertical diagonal
+  color?: string;
+}
+
+// A regular polygon whose side count the student changes, split into n triangles
+// from the centre. The apothem is each triangle's height, so the area is
+// ½ · apothem · perimeter. For the regular-polygon area lesson.
+export interface ApothemPolygonConfig {
+  start?: number; // initial number of sides
+  side?: number; // side length (label)
+  color?: string;
+}
+
+// A composite figure built from positioned rectangles, triangles, and
+// circles/semicircles, each added or subtracted. Areas are authored (exact) so
+// the breakdown readout is honest; the renderer just draws and tallies.
+export interface CompositePart {
+  kind: "rect" | "triangle" | "circle" | "semicircle";
+  op?: "add" | "subtract";
+  x?: number; y?: number; w?: number; h?: number; // rect
+  pts?: [number, number][]; // triangle
+  cx?: number; cy?: number; r?: number; half?: "top" | "bottom" | "left" | "right"; // circle / semicircle
+  area?: string; // authored area label (e.g. "24" or "8π")
+  label?: string;
+  color?: string;
+}
+export interface CompositeAreaConfig {
+  width: number;
+  height: number;
+  parts: CompositePart[];
+  total?: string; // authored total-area label
+  caption?: string;
+}
+
 // Two congruent triangles with marked parts; the student names the shortcut.
 export interface CongruentTrianglesConfig {
   sides?: [number, number, number]; // tick counts on AB, BC, CA
@@ -822,6 +865,9 @@ export type InteractiveStep =
   | { kind: "circleAngle"; eyebrow?: string; title: string; teach: string; config: CircleAngleConfig }
   | { kind: "tangentCircle"; eyebrow?: string; title: string; teach: string; config: TangentCircleConfig }
   | { kind: "arcSector"; eyebrow?: string; title: string; teach: string; config: ArcSectorConfig }
+  | { kind: "areaShape"; eyebrow?: string; title: string; teach: string; config: AreaShapeConfig }
+  | { kind: "apothemPolygon"; eyebrow?: string; title: string; teach: string; config: ApothemPolygonConfig }
+  | { kind: "compositeArea"; eyebrow?: string; title: string; teach: string; config: CompositeAreaConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

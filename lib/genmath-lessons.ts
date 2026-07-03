@@ -68,6 +68,7 @@ import geometryQuadrilaterals from "@/data/genmath/geometry/quadrilaterals-and-p
 import geometrySimilarity from "@/data/genmath/geometry/similarity.json";
 import geometryRightTriangles from "@/data/genmath/geometry/right-triangles-and-trig.json";
 import geometryCircles from "@/data/genmath/geometry/circles.json";
+import geometryAreaPerimeter from "@/data/genmath/geometry/area-and-perimeter.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -219,7 +220,7 @@ export const GEOMETRY_SPINE: GeometrySpineEntry[] = [
     title: "Area & Perimeter",
     blurb: "Areas of triangles, quadrilaterals and regular polygons; circumference, circle area, sectors, and composite figures.",
     buildsOn: "The shape properties from Units 4, 6, and 9.",
-    live: false,
+    live: true,
   },
   {
     unit: 11,
@@ -257,6 +258,7 @@ const geometryUnits: GeometryUnit[] = [
   geometrySimilarity as unknown as GeometryUnit,
   geometryRightTriangles as unknown as GeometryUnit,
   geometryCircles as unknown as GeometryUnit,
+  geometryAreaPerimeter as unknown as GeometryUnit,
 ];
 
 export function getGeometrySpine(): GeometrySpineEntry[] {

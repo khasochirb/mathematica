@@ -398,3 +398,36 @@ export function chordsAngle(arc1: number, arc2: number): number {
 export function secantsAngle(farArc: number, nearArc: number): number {
   return (farArc - nearArc) / 2;
 }
+
+// ---------------------------------------------------------------------------
+// Area & perimeter
+// ---------------------------------------------------------------------------
+
+// Area of a rectangle (length × width) and a parallelogram (base × height).
+export function rectangleArea(length: number, width: number): number {
+  return length * width;
+}
+export function parallelogramArea(base: number, height: number): number {
+  return base * height;
+}
+
+// Area of a triangle: half the base times the height.
+export function triangleArea(base: number, height: number): number {
+  return (base * height) / 2;
+}
+
+// Area of a trapezoid: the average of the two parallel bases times the height.
+export function trapezoidArea(base1: number, base2: number, height: number): number {
+  return ((base1 + base2) / 2) * height;
+}
+
+// Area of a rhombus or kite: half the product of the two diagonals.
+export function rhombusArea(diag1: number, diag2: number): number {
+  return (diag1 * diag2) / 2;
+}
+
+// Area of a regular polygon: half the apothem times the perimeter (the polygon
+// is n triangles, each with base = a side and height = the apothem).
+export function regularPolygonArea(apothem: number, perimeter: number): number {
+  return (apothem * perimeter) / 2;
+}

@@ -60,6 +60,12 @@ import {
   sectorArea,
   chordsAngle,
   secantsAngle,
+  rectangleArea,
+  parallelogramArea,
+  triangleArea,
+  trapezoidArea,
+  rhombusArea,
+  regularPolygonArea,
 } from "@/lib/geo";
 
 describe("segment math", () => {
@@ -530,5 +536,42 @@ describe("circles — arcs, angles, arc length, sector area", () => {
     // two secants outside: half the DIFFERENCE
     expect(secantsAngle(100, 40)).toBe(30);
     expect(secantsAngle(120, 30)).toBe(45);
+  });
+});
+
+describe("area & perimeter", () => {
+  it("rectangle and parallelogram areas", () => {
+    expect(rectangleArea(5, 3)).toBe(15);
+    expect(parallelogramArea(6, 4)).toBe(24);
+    // a parallelogram shears from a rectangle of the same base & height → equal area
+    expect(parallelogramArea(6, 4)).toBe(rectangleArea(6, 4));
+  });
+
+  it("triangle area is half base times height", () => {
+    expect(triangleArea(8, 3)).toBe(12);
+    expect(triangleArea(10, 6)).toBe(30);
+    // a triangle is half its bounding parallelogram
+    expect(triangleArea(8, 3)).toBe(parallelogramArea(8, 3) / 2);
+  });
+
+  it("trapezoid area is the average base times height", () => {
+    expect(trapezoidArea(6, 10, 4)).toBe(32);
+    expect(trapezoidArea(5, 7, 2)).toBe(12);
+    // equal bases → a parallelogram
+    expect(trapezoidArea(6, 6, 4)).toBe(parallelogramArea(6, 4));
+  });
+
+  it("rhombus / kite area is half the product of the diagonals", () => {
+    expect(rhombusArea(6, 8)).toBe(24);
+    expect(rhombusArea(10, 10)).toBe(50);
+    expect(rhombusArea(12, 5)).toBe(30);
+  });
+
+  it("regular polygon area is half apothem times perimeter", () => {
+    // regular hexagon, side 6, apothem 3√3, perimeter 36
+    expect(regularPolygonArea(3 * Math.sqrt(3), 36)).toBeCloseTo(54 * Math.sqrt(3));
+    // a square of side 4: apothem 2, perimeter 16 → area 16
+    expect(regularPolygonArea(2, 16)).toBe(16);
+    expect(regularPolygonArea(2, 16)).toBe(rectangleArea(4, 4));
   });
 });

@@ -1,0 +1,2551 @@
+{
+  "slug": "area-and-perimeter",
+  "title": "Area & Perimeter",
+  "unit": 10,
+  "status": "published",
+  "blurb": "Areas of parallelograms, triangles, trapezoids, rhombi and kites; regular polygons via the apothem; circles and sectors; and composite and shaded figures.",
+  "buildsOn": "Quadrilateral properties (Unit 6), the apothem's right triangle (Unit 8), and circle measures (Unit 9); plus area/perimeter from Grade 6.",
+  "lessons": [
+    {
+      "slug": "area-of-parallelograms-and-triangles",
+      "title": "Area of Parallelograms & Triangles",
+      "concreteComparison": "To carpet a room you need its **area**; to fence it you need its **perimeter**. Area counts the square units inside. A parallelogram is just a rectangle pushed over — same base, same height, same area — and a triangle is exactly half of one.",
+      "objective": "Find the area of a parallelogram (base × height) and a triangle (½ × base × height), using the perpendicular height rather than a slanted side.",
+      "concept": [
+        "**Area** counts the square units a shape covers; **perimeter** is the distance around its edge. Area is measured in square units (like $\\text{cm}^2$).",
+        "A **parallelogram**'s area is **base × height**. The **height** is the perpendicular distance between the two bases — NOT the length of the slanted side. (Shear a rectangle sideways and its area doesn't change.)",
+        "A **triangle** is exactly **half** of a parallelogram with the same base and height, so its area is **$\\tfrac12 \\times \\text{base} \\times \\text{height}$**.",
+        "Always measure the **height perpendicular** to the base you chose."
+      ],
+      "keyIdea": "Parallelogram area = base × height; triangle area = ½ × base × height. The height is the perpendicular distance to the base, never the slanted side.",
+      "facts": [
+        {
+          "title": "Parallelogram",
+          "latex": "$A = bh$",
+          "explanation": "Base times perpendicular height."
+        },
+        {
+          "title": "Triangle",
+          "latex": "$A = \\tfrac12 bh$",
+          "explanation": "Half of the base-height rectangle."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pt-we1",
+          "statement": "A parallelogram has base $8$ and height $5$. Find its area.",
+          "solution": "$A = bh = 8 \\times 5 = 40$.",
+          "check": [
+            "8*5 == 40"
+          ]
+        },
+        {
+          "id": "pt-we2",
+          "statement": "A triangle has base $10$ and height $6$. Find its area.",
+          "solution": "$A = \\tfrac12 bh = \\tfrac12(10)(6) = 30$.",
+          "check": [
+            "10*6/2 == 30"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the slanted side as the height.",
+          "correction": "The **height is perpendicular** to the base — the straight-across distance, not the tilted edge.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the $\\tfrac12$ for a triangle.",
+          "correction": "A triangle is **half** its base-height rectangle. Always include the $\\tfrac12$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pt-t1",
+          "statement": "Parallelogram, base $12$, height $4$. Area?",
+          "solution": "$12 \\times 4 = 48$.",
+          "check": [
+            "12*4 == 48"
+          ]
+        },
+        {
+          "id": "pt-t2",
+          "statement": "Triangle, base $9$, height $8$. Area?",
+          "solution": "$\\tfrac12(9)(8) = 36$.",
+          "check": [
+            "9*8/2 == 36"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Area vs perimeter",
+            "beats": [
+              "**Area** = the square units a shape covers (measured in $\\text{cm}^2$, $\\text{m}^2$…).",
+              "**Perimeter** = the distance around the outside.",
+              "A rectangle's area is length × width.",
+              "Push a rectangle over into a **parallelogram** — the area stays the same."
+            ]
+          },
+          {
+            "kind": "areaShape",
+            "eyebrow": "Concept A",
+            "title": "Parallelogram: base × height",
+            "teach": "Change the base and height. The area is always base × height — and the **height** is the straight-up perpendicular distance (the dashed line), not the slanted side. A $8 \\times 5$ parallelogram has area $40$.",
+            "config": {
+              "shape": "parallelogram",
+              "base": 8,
+              "height": 5
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Parallelogram area",
+            "title": "Base times perpendicular height",
+            "beats": [
+              "$A = b \\times h$.",
+              "$b$ is the base; $h$ is the **perpendicular** height to it.",
+              "The tilted side is longer than $h$ — don't use it.",
+              "Base $8$, height $5$: $A = 40$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Parallelogram area",
+            "intro": "Multiply base by perpendicular height.",
+            "examples": [
+              {
+                "prompt": "Base $8$, height $5$. Area?",
+                "steps": [
+                  "$A = bh = 8 \\times 5$.",
+                  "$= 40$."
+                ],
+                "answer": "$40$",
+                "check": [
+                  "8*5 == 40"
+                ]
+              },
+              {
+                "prompt": "Base $12$, height $7$. Area?",
+                "steps": [
+                  "$12 \\times 7$.",
+                  "$= 84$."
+                ],
+                "answer": "$84$",
+                "check": [
+                  "12*7 == 84"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Parallelogram practice",
+            "intro": "A = bh.",
+            "problems": [
+              {
+                "prompt": "Base $9$, height $4$. Area?",
+                "options": [
+                  "$36$",
+                  "$13$",
+                  "$18$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$9 \\times 4 = 36$.",
+                "check": [
+                  "9*4 == 36"
+                ]
+              },
+              {
+                "prompt": "Base $10$, height $6$. Area?",
+                "options": [
+                  "$60$",
+                  "$16$",
+                  "$30$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$10 \\times 6 = 60$.",
+                "check": [
+                  "10*6 == 60"
+                ]
+              },
+              {
+                "prompt": "The height of a parallelogram is measured —",
+                "options": [
+                  "perpendicular to the base",
+                  "along the slanted side",
+                  "diagonally"
+                ],
+                "correctIndex": 0,
+                "explanation": "Straight across, perpendicular.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "areaShape",
+            "eyebrow": "Concept B",
+            "title": "Triangle: half of that",
+            "teach": "A triangle is exactly half a parallelogram with the same base and height. So its area is $\\tfrac12 \\times \\text{base} \\times \\text{height}$. Base $8$, height $5$ gives $\\tfrac12(40) = 20$.",
+            "config": {
+              "shape": "triangle",
+              "base": 8,
+              "height": 5
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Triangle area",
+            "title": "Half the base-height rectangle",
+            "beats": [
+              "Two copies of a triangle make a parallelogram.",
+              "So the triangle is **half**: $A = \\tfrac12 bh$.",
+              "Base $10$, height $6$: $\\tfrac12(60) = 30$.",
+              "Still use the **perpendicular** height."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Triangle area",
+            "intro": "Half of base × height.",
+            "examples": [
+              {
+                "prompt": "Base $10$, height $6$. Area?",
+                "steps": [
+                  "$\\tfrac12 bh = \\tfrac12(10)(6)$.",
+                  "$= 30$."
+                ],
+                "answer": "$30$",
+                "check": [
+                  "10*6/2 == 30"
+                ]
+              },
+              {
+                "prompt": "Base $14$, height $5$. Area?",
+                "steps": [
+                  "$\\tfrac12(14)(5)$.",
+                  "$= 35$."
+                ],
+                "answer": "$35$",
+                "check": [
+                  "14*5/2 == 35"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Triangle practice",
+            "intro": "A = ½bh.",
+            "problems": [
+              {
+                "prompt": "Base $9$, height $8$. Area?",
+                "options": [
+                  "$36$",
+                  "$72$",
+                  "$17$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(72) = 36$.",
+                "check": [
+                  "9*8/2 == 36"
+                ]
+              },
+              {
+                "prompt": "Base $6$, height $10$. Area?",
+                "options": [
+                  "$30$",
+                  "$60$",
+                  "$16$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(60) = 30$.",
+                "check": [
+                  "6*10/2 == 30"
+                ]
+              },
+              {
+                "prompt": "A triangle's area is — a parallelogram with the same base and height.",
+                "options": [
+                  "half",
+                  "double",
+                  "equal to"
+                ],
+                "correctIndex": 0,
+                "explanation": "Half.",
+                "check": [
+                  "8*5/2 == 20"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why rooftops and bridges love triangles for area too",
+            "body": "Land surveyors split any oddly-shaped plot into triangles and add their areas — because a triangle's area needs only a base and a height, both easy to measure in the field. Break a shape into triangles and you can find the area of almost anything."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Triangle area",
+            "prompt": "A triangle has base $12$ and height $9$. What is its area?",
+            "options": [
+              "$54$",
+              "$108$",
+              "$21$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tfrac12(12)(9) = \\tfrac12(108) = 54$.",
+            "check": [
+              "12*9/2 == 54"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Area** counts square units inside; **perimeter** is the distance around.",
+              "**Parallelogram**: $A = bh$. **Triangle**: $A = \\tfrac12 bh$.",
+              "The **height is perpendicular** to the base — never the slanted side."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's find parallelogram and triangle areas with base and perpendicular height."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Parallelogram, base $7$, height $6$. Area?",
+                "options": [
+                  "$42$",
+                  "$13$",
+                  "$21$",
+                  "$36$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$7 \\times 6 = 42$.",
+                "check": [
+                  "7*6 == 42"
+                ]
+              },
+              {
+                "prompt": "Triangle, base $8$, height $5$. Area?",
+                "options": [
+                  "$20$",
+                  "$40$",
+                  "$13$",
+                  "$26$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(40) = 20$.",
+                "check": [
+                  "8*5/2 == 20"
+                ]
+              },
+              {
+                "prompt": "Parallelogram, base $15$, height $4$. Area?",
+                "options": [
+                  "$60$",
+                  "$19$",
+                  "$30$",
+                  "$120$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$15 \\times 4 = 60$.",
+                "check": [
+                  "15*4 == 60"
+                ]
+              },
+              {
+                "prompt": "Triangle, base $16$, height $7$. Area?",
+                "options": [
+                  "$56$",
+                  "$112$",
+                  "$23$",
+                  "$28$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(112) = 56$.",
+                "check": [
+                  "16*7/2 == 56"
+                ]
+              },
+              {
+                "prompt": "The height of a triangle must be —",
+                "options": [
+                  "perpendicular to the base",
+                  "the longest side",
+                  "any side",
+                  "the slant"
+                ],
+                "correctIndex": 0,
+                "explanation": "Perpendicular to the base.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "A triangle with base $10$, height $10$. Area?",
+                "options": [
+                  "$50$",
+                  "$100$",
+                  "$20$",
+                  "$25$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(100) = 50$.",
+                "check": [
+                  "10*10/2 == 50"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Area of Parallelograms & Triangles\"",
+            "body": "You can find parallelogram and triangle areas. Next: trapezoids (average the bases) and rhombi and kites (half the diagonals)."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "area-of-trapezoids-rhombi-kites",
+      "title": "Area of Trapezoids, Rhombi & Kites",
+      "concreteComparison": "A trapezoid is a parallelogram with a mismatched top and bottom — so you average the two bases before multiplying by the height. A rhombus or kite is measured a totally different way: half the product of its two diagonals.",
+      "objective": "Find the area of a trapezoid using ½(b₁+b₂)·h and the area of a rhombus or kite using ½·d₁·d₂.",
+      "concept": [
+        "A **trapezoid** has two parallel bases $b_1$ and $b_2$. Its area is the **average of the bases times the height**: $A = \\tfrac12(b_1 + b_2)h$.",
+        "A **rhombus** or **kite** has **perpendicular diagonals**; its area is **half the product of the diagonals**: $A = \\tfrac12 d_1 d_2$.",
+        "The trapezoid formula reuses base and perpendicular height; the diagonal formula is a different route that fits shapes with crossing diagonals.",
+        "If the two bases of a trapezoid are equal, it's a parallelogram — and $\\tfrac12(b + b)h = bh$ agrees."
+      ],
+      "keyIdea": "Trapezoid area = ½(b₁+b₂)·h (average base × height). Rhombus/kite area = ½·d₁·d₂ (half the product of the diagonals).",
+      "facts": [
+        {
+          "title": "Trapezoid",
+          "latex": "$A = \\tfrac12(b_1 + b_2)h$",
+          "explanation": "Average of the bases times the height."
+        },
+        {
+          "title": "Rhombus / kite",
+          "latex": "$A = \\tfrac12 d_1 d_2$",
+          "explanation": "Half the product of the diagonals."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "tr-we1",
+          "statement": "A trapezoid has bases $6$ and $10$ and height $4$. Find its area.",
+          "solution": "$A = \\tfrac12(6 + 10)(4) = \\tfrac12(16)(4) = 32$.",
+          "check": [
+            "(6+10)/2*4 == 32"
+          ]
+        },
+        {
+          "id": "tr-we2",
+          "statement": "A rhombus has diagonals $8$ and $6$. Find its area.",
+          "solution": "$A = \\tfrac12 d_1 d_2 = \\tfrac12(8)(6) = 24$.",
+          "check": [
+            "8*6/2 == 24"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Forgetting to average the two bases.",
+          "correction": "A trapezoid uses $\\tfrac12(b_1 + b_2)$ — the **average** of the two bases, not just one.",
+          "authored": true
+        },
+        {
+          "text": "Multiplying the full diagonals for a rhombus.",
+          "correction": "It's **half** the product: $\\tfrac12 d_1 d_2$. Don't skip the $\\tfrac12$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "tr-t1",
+          "statement": "Trapezoid, bases $5$ and $9$, height $6$. Area?",
+          "solution": "$\\tfrac12(14)(6) = 42$.",
+          "check": [
+            "(5+9)/2*6 == 42"
+          ]
+        },
+        {
+          "id": "tr-t2",
+          "statement": "Kite, diagonals $10$ and $12$. Area?",
+          "solution": "$\\tfrac12(10)(12) = 60$.",
+          "check": [
+            "10*12/2 == 60"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Two more area recipes",
+            "beats": [
+              "A **trapezoid** has two parallel bases of different lengths.",
+              "Average them, then multiply by the height.",
+              "A **rhombus** or **kite** has crossing perpendicular diagonals.",
+              "Its area comes from those diagonals instead."
+            ]
+          },
+          {
+            "kind": "areaShape",
+            "eyebrow": "Concept A",
+            "title": "Trapezoid: average the bases",
+            "teach": "Change the bottom base, top base, and height. The area is $\\tfrac12(b_1 + b_2)h$ — the **average** of the two bases times the height. Bases $8$ and $4$, height $5$: $\\tfrac12(12)(5) = 30$.",
+            "config": {
+              "shape": "trapezoid",
+              "base": 8,
+              "base2": 4,
+              "height": 5
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Trapezoid area",
+            "title": "Average base × height",
+            "beats": [
+              "$A = \\tfrac12(b_1 + b_2)\\,h$.",
+              "Add the two parallel bases, halve, times the height.",
+              "Bases $6$ and $10$, height $4$: $\\tfrac12(16)(4) = 32$.",
+              "Equal bases give a parallelogram: $\\tfrac12(b + b)h = bh$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Trapezoid area",
+            "intro": "Average the bases, then × height.",
+            "examples": [
+              {
+                "prompt": "Bases $6$ and $10$, height $4$. Area?",
+                "steps": [
+                  "$\\tfrac12(6 + 10)(4) = \\tfrac12(16)(4)$.",
+                  "$= 32$."
+                ],
+                "answer": "$32$",
+                "check": [
+                  "(6+10)/2*4 == 32"
+                ]
+              },
+              {
+                "prompt": "Bases $8$ and $12$, height $5$. Area?",
+                "steps": [
+                  "$\\tfrac12(20)(5)$.",
+                  "$= 50$."
+                ],
+                "answer": "$50$",
+                "check": [
+                  "(8+12)/2*5 == 50"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Trapezoid practice",
+            "intro": "½ (b₁ + b₂) h.",
+            "problems": [
+              {
+                "prompt": "Bases $5$ and $9$, height $6$. Area?",
+                "options": [
+                  "$42$",
+                  "$84$",
+                  "$20$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(14)(6) = 42$.",
+                "check": [
+                  "(5+9)/2*6 == 42"
+                ]
+              },
+              {
+                "prompt": "Bases $4$ and $10$, height $3$. Area?",
+                "options": [
+                  "$21$",
+                  "$42$",
+                  "$14$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(14)(3) = 21$.",
+                "check": [
+                  "(4+10)/2*3 == 21"
+                ]
+              },
+              {
+                "prompt": "A trapezoid's area uses the — of the two bases.",
+                "options": [
+                  "average",
+                  "sum",
+                  "product"
+                ],
+                "correctIndex": 0,
+                "explanation": "Average, then × height.",
+                "check": [
+                  "(6+10)/2 == 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "areaShape",
+            "eyebrow": "Concept B",
+            "title": "Rhombus & kite: half the diagonals",
+            "teach": "A rhombus (and a kite) has perpendicular diagonals. Its area is $\\tfrac12 d_1 d_2$ — half the product of the two diagonals. Diagonals $8$ and $6$ give $\\tfrac12(48) = 24$.",
+            "config": {
+              "shape": "rhombus",
+              "d1": 8,
+              "d2": 6
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Rhombus & kite area",
+            "title": "Half the product of diagonals",
+            "beats": [
+              "The diagonals cross at right angles.",
+              "$A = \\tfrac12 d_1 d_2$.",
+              "Diagonals $8$ and $6$: $\\tfrac12(48) = 24$.",
+              "The same formula works for a **kite**."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Rhombus / kite area",
+            "intro": "Half the product of the diagonals.",
+            "examples": [
+              {
+                "prompt": "Rhombus, diagonals $8$ and $6$. Area?",
+                "steps": [
+                  "$\\tfrac12 d_1 d_2 = \\tfrac12(8)(6)$.",
+                  "$= 24$."
+                ],
+                "answer": "$24$",
+                "check": [
+                  "8*6/2 == 24"
+                ]
+              },
+              {
+                "prompt": "Kite, diagonals $10$ and $14$. Area?",
+                "steps": [
+                  "$\\tfrac12(10)(14)$.",
+                  "$= 70$."
+                ],
+                "answer": "$70$",
+                "check": [
+                  "10*14/2 == 70"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Diagonal areas",
+            "intro": "½ d₁ d₂.",
+            "problems": [
+              {
+                "prompt": "Rhombus, diagonals $12$ and $5$. Area?",
+                "options": [
+                  "$30$",
+                  "$60$",
+                  "$17$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(60) = 30$.",
+                "check": [
+                  "12*5/2 == 30"
+                ]
+              },
+              {
+                "prompt": "Kite, diagonals $10$ and $12$. Area?",
+                "options": [
+                  "$60$",
+                  "$120$",
+                  "$22$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(120) = 60$.",
+                "check": [
+                  "10*12/2 == 60"
+                ]
+              },
+              {
+                "prompt": "The rhombus area formula uses the two —",
+                "options": [
+                  "diagonals",
+                  "sides",
+                  "bases"
+                ],
+                "correctIndex": 0,
+                "explanation": "Half the product of the diagonals.",
+                "check": [
+                  "8*6/2 == 24"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why land was once measured by diagonals",
+            "body": "Surveyors of irregular four-sided plots often measured the two diagonals rather than wrestle with slanted sides — because for kite- and rhombus-shaped fields the half-the-diagonals formula gives the area directly. It's faster than dropping perpendiculars in a muddy field."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Trapezoid area",
+            "prompt": "A trapezoid has bases $7$ and $13$ and height $4$. What is its area?",
+            "options": [
+              "$40$",
+              "$80$",
+              "$24$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tfrac12(7 + 13)(4) = \\tfrac12(20)(4) = 40$.",
+            "check": [
+              "(7+13)/2*4 == 40"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Trapezoid**: $A = \\tfrac12(b_1 + b_2)h$ — average the bases, times the height.",
+              "**Rhombus / kite**: $A = \\tfrac12 d_1 d_2$ — half the product of the diagonals.",
+              "Equal bases turn the trapezoid formula into $bh$ (a parallelogram)."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's average bases for trapezoids and multiply diagonals for rhombi and kites."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Trapezoid, bases $6$ and $14$, height $5$. Area?",
+                "options": [
+                  "$50$",
+                  "$100$",
+                  "$25$",
+                  "$70$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(20)(5) = 50$.",
+                "check": [
+                  "(6+14)/2*5 == 50"
+                ]
+              },
+              {
+                "prompt": "Rhombus, diagonals $9$ and $8$. Area?",
+                "options": [
+                  "$36$",
+                  "$72$",
+                  "$17$",
+                  "$18$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(72) = 36$.",
+                "check": [
+                  "9*8/2 == 36"
+                ]
+              },
+              {
+                "prompt": "Trapezoid, bases $3$ and $7$, height $8$. Area?",
+                "options": [
+                  "$40$",
+                  "$80$",
+                  "$20$",
+                  "$56$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(10)(8) = 40$.",
+                "check": [
+                  "(3+7)/2*8 == 40"
+                ]
+              },
+              {
+                "prompt": "Kite, diagonals $6$ and $16$. Area?",
+                "options": [
+                  "$48$",
+                  "$96$",
+                  "$22$",
+                  "$24$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(96) = 48$.",
+                "check": [
+                  "6*16/2 == 48"
+                ]
+              },
+              {
+                "prompt": "A trapezoid with equal bases $b$ is a parallelogram with area —",
+                "options": [
+                  "$bh$",
+                  "$\\tfrac12 bh$",
+                  "$2bh$",
+                  "$b + h$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(b+b)h = bh$.",
+                "check": [
+                  "(6+6)/2*5 == 6*5"
+                ]
+              },
+              {
+                "prompt": "Rhombus, diagonals $10$ and $10$. Area?",
+                "options": [
+                  "$50$",
+                  "$100$",
+                  "$20$",
+                  "$25$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(100) = 50$.",
+                "check": [
+                  "10*10/2 == 50"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Area of Trapezoids, Rhombi & Kites\"",
+            "body": "You can find areas of the trickier quadrilaterals. Next: regular polygons — split into triangles from the center — using the apothem."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "area-of-regular-polygons",
+      "title": "Area of Regular Polygons",
+      "concreteComparison": "Slice a regular hexagon from its center and you get six identical triangles, like a pie. Add up their areas and the whole thing comes out to half the apothem times the perimeter — one formula for any regular polygon.",
+      "objective": "Find the area of a regular polygon using ½ × apothem × perimeter.",
+      "concept": [
+        "The **apothem** ($a$) is the perpendicular distance from the center of a regular polygon to the middle of a side.",
+        "Split a regular $n$-gon into **$n$ triangles** from the center. Each triangle has base = one **side** and height = the **apothem**.",
+        "Adding them: $A = n \\times \\tfrac12(\\text{side})(a) = \\tfrac12 \\, a \\times (n \\cdot \\text{side}) = \\tfrac12 \\, a \\, P$, where $P$ is the **perimeter**.",
+        "So **$A = \\tfrac12 a P$** — half the apothem times the perimeter."
+      ],
+      "keyIdea": "A regular polygon splits into n triangles from the center, each with base = side and height = apothem. Total area = ½ · apothem · perimeter.",
+      "facts": [
+        {
+          "title": "Apothem",
+          "latex": "center $\\to$ side midpoint",
+          "explanation": "The perpendicular distance from center to a side."
+        },
+        {
+          "title": "Regular polygon area",
+          "latex": "$A = \\tfrac12 a P$",
+          "explanation": "Half the apothem times the perimeter."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rp-we1",
+          "statement": "A regular polygon has apothem $6$ and perimeter $40$. Find its area.",
+          "solution": "$A = \\tfrac12 a P = \\tfrac12(6)(40) = 120$.",
+          "check": [
+            "6*40/2 == 120"
+          ]
+        },
+        {
+          "id": "rp-we2",
+          "statement": "A regular hexagon has side $10$ and apothem $9$ (rounded). Find its area.",
+          "solution": "Perimeter $= 6 \\times 10 = 60$; $A = \\tfrac12(9)(60) = 270$.",
+          "check": [
+            "9*(6*10)/2 == 270"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using a full side or a diagonal instead of the apothem.",
+          "correction": "The height of each triangle is the **apothem** — center to the **middle of a side**, at a right angle.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting to find the perimeter first.",
+          "correction": "$P = n \\times \\text{side}$. Multiply the side by the number of sides before using $\\tfrac12 aP$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rp-t1",
+          "statement": "Apothem $5$, perimeter $30$. Area?",
+          "solution": "$\\tfrac12(5)(30) = 75$.",
+          "check": [
+            "5*30/2 == 75"
+          ]
+        },
+        {
+          "id": "rp-t2",
+          "statement": "Regular pentagon, side $8$, apothem $6$ (rounded). Area?",
+          "solution": "$P = 40$; $\\tfrac12(6)(40) = 120$.",
+          "check": [
+            "6*(5*8)/2 == 120"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Slice it into triangles",
+            "beats": [
+              "A **regular polygon** has equal sides and equal angles.",
+              "Draw lines from the center to each vertex — you get **$n$ triangles**.",
+              "Each triangle's base is a **side**; its height is the **apothem**.",
+              "Add them all up for the total area."
+            ]
+          },
+          {
+            "kind": "apothemPolygon",
+            "eyebrow": "Concept A",
+            "title": "n triangles, height = apothem",
+            "teach": "Change the number of sides. The polygon splits into $n$ equal triangles from the center; the **apothem** (blue, meeting the side at a right angle) is each triangle's height. The total area is $\\tfrac12 \\times \\text{apothem} \\times \\text{perimeter}$.",
+            "config": {
+              "start": 6,
+              "side": 6
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The apothem",
+            "title": "Center to the middle of a side",
+            "beats": [
+              "The **apothem** $a$ runs from the center to the **midpoint** of a side.",
+              "It meets the side at a **right angle**.",
+              "It's the height of each little triangle.",
+              "Not to be confused with the radius (center to a vertex)."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Use ½ a P",
+            "intro": "Half apothem times perimeter.",
+            "examples": [
+              {
+                "prompt": "Apothem $6$, perimeter $40$. Area?",
+                "steps": [
+                  "$A = \\tfrac12 a P = \\tfrac12(6)(40)$.",
+                  "$= 120$."
+                ],
+                "answer": "$120$",
+                "check": [
+                  "6*40/2 == 120"
+                ]
+              },
+              {
+                "prompt": "Apothem $10$, perimeter $50$. Area?",
+                "steps": [
+                  "$\\tfrac12(10)(50)$.",
+                  "$= 250$."
+                ],
+                "answer": "$250$",
+                "check": [
+                  "10*50/2 == 250"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Area from a and P",
+            "intro": "½ a P.",
+            "problems": [
+              {
+                "prompt": "Apothem $5$, perimeter $30$. Area?",
+                "options": [
+                  "$75$",
+                  "$150$",
+                  "$35$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(150) = 75$.",
+                "check": [
+                  "5*30/2 == 75"
+                ]
+              },
+              {
+                "prompt": "Apothem $8$, perimeter $24$. Area?",
+                "options": [
+                  "$96$",
+                  "$192$",
+                  "$32$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(192) = 96$.",
+                "check": [
+                  "8*24/2 == 96"
+                ]
+              },
+              {
+                "prompt": "The apothem goes from the center to the —",
+                "options": [
+                  "middle of a side",
+                  "a vertex",
+                  "the opposite corner"
+                ],
+                "correctIndex": 0,
+                "explanation": "Midpoint of a side, perpendicular.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Find the perimeter first",
+            "title": "P = n × side",
+            "beats": [
+              "Often you're given the **side** and the **apothem**.",
+              "First find the perimeter: $P = n \\times \\text{side}$.",
+              "Then $A = \\tfrac12 a P$.",
+              "Hexagon, side $10$: $P = 60$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "From side & apothem",
+            "intro": "Perimeter first, then ½ a P.",
+            "examples": [
+              {
+                "prompt": "Regular hexagon, side $10$, apothem $9$. Area?",
+                "steps": [
+                  "$P = 6 \\times 10 = 60$.",
+                  "$A = \\tfrac12(9)(60) = 270$."
+                ],
+                "answer": "$270$",
+                "check": [
+                  "9*(6*10)/2 == 270"
+                ]
+              },
+              {
+                "prompt": "Regular pentagon, side $8$, apothem $6$. Area?",
+                "steps": [
+                  "$P = 5 \\times 8 = 40$.",
+                  "$A = \\tfrac12(6)(40) = 120$."
+                ],
+                "answer": "$120$",
+                "check": [
+                  "6*(5*8)/2 == 120"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Side & apothem",
+            "intro": "P = n·side, then ½ a P.",
+            "problems": [
+              {
+                "prompt": "Square, side $4$, apothem $2$. Area?",
+                "options": [
+                  "$16$",
+                  "$8$",
+                  "$32$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$P = 16$; $\\tfrac12(2)(16) = 16$.",
+                "check": [
+                  "2*(4*4)/2 == 16"
+                ]
+              },
+              {
+                "prompt": "Regular octagon, side $5$, apothem $6$. Area?",
+                "options": [
+                  "$120$",
+                  "$240$",
+                  "$60$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$P = 40$; $\\tfrac12(6)(40) = 120$.",
+                "check": [
+                  "6*(8*5)/2 == 120"
+                ]
+              },
+              {
+                "prompt": "For a hexagon, the perimeter is — the side.",
+                "options": [
+                  "6 times",
+                  "3 times",
+                  "half"
+                ],
+                "correctIndex": 0,
+                "explanation": "$P = 6 \\times$ side.",
+                "check": [
+                  "6*10 == 60"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why bubbles and beehives are hexagons",
+            "body": "Among all regular polygons that tile the plane, the hexagon encloses the most area for the least perimeter — so bees building comb and soap bubbles packing together both settle into hexagons to save wax and surface. The apothem-and-perimeter area formula is exactly what makes that efficiency measurable."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Polygon area",
+            "prompt": "A regular polygon has apothem $7$ and perimeter $40$. What is its area?",
+            "options": [
+              "$140$",
+              "$280$",
+              "$47$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$A = \\tfrac12 a P = \\tfrac12(7)(40) = 140$.",
+            "check": [
+              "7*40/2 == 140"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A regular $n$-gon splits into **$n$ triangles** from the center.",
+              "Each has base = **side**, height = **apothem** (center to a side's midpoint).",
+              "**Area $= \\tfrac12 a P$** — half the apothem times the perimeter ($P = n \\times$ side)."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's use ½ · apothem · perimeter, finding the perimeter first when needed."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Apothem $6$, perimeter $30$. Area?",
+                "options": [
+                  "$90$",
+                  "$180$",
+                  "$36$",
+                  "$45$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(180) = 90$.",
+                "check": [
+                  "6*30/2 == 90"
+                ]
+              },
+              {
+                "prompt": "Regular hexagon, side $8$, apothem $7$. Area?",
+                "options": [
+                  "$168$",
+                  "$336$",
+                  "$56$",
+                  "$84$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$P = 48$; $\\tfrac12(7)(48) = 168$.",
+                "check": [
+                  "7*(6*8)/2 == 168"
+                ]
+              },
+              {
+                "prompt": "The apothem is the — of each of the n triangles.",
+                "options": [
+                  "height",
+                  "base",
+                  "hypotenuse",
+                  "vertex"
+                ],
+                "correctIndex": 0,
+                "explanation": "It's the perpendicular height.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Apothem $9$, perimeter $60$. Area?",
+                "options": [
+                  "$270$",
+                  "$540$",
+                  "$69$",
+                  "$135$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(540) = 270$.",
+                "check": [
+                  "9*60/2 == 270"
+                ]
+              },
+              {
+                "prompt": "Regular pentagon, side $6$, apothem $4$. Area?",
+                "options": [
+                  "$60$",
+                  "$120$",
+                  "$30$",
+                  "$40$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$P = 30$; $\\tfrac12(4)(30) = 60$.",
+                "check": [
+                  "4*(5*6)/2 == 60"
+                ]
+              },
+              {
+                "prompt": "For a square of side $s$, the perimeter is —",
+                "options": [
+                  "$4s$",
+                  "$2s$",
+                  "$s^2$",
+                  "$s$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Four equal sides.",
+                "check": [
+                  "4*4 == 16"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Area of Regular Polygons\"",
+            "body": "You can find any regular polygon's area with ½ a P. Next: circles — circumference, area, and the sector slice."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "circumference-circle-area-sectors",
+      "title": "Circumference, Circle Area & Sectors",
+      "concreteComparison": "The distance around a circle is its **circumference**; the space inside is its **area**. A pizza slice — a **sector** — is just a fraction of each. Every circle measurement flows from $\\pi$, the ratio of a circle's circumference to its diameter.",
+      "objective": "Find the circumference (2πr), the area of a circle (πr²), and the area of a sector ((θ/360)·πr²), leaving answers in terms of π.",
+      "concept": [
+        "**Circumference** (the distance around) $= 2\\pi r = \\pi d$.",
+        "**Area of a circle** (the space inside) $= \\pi r^2$.",
+        "A **sector** is a pie slice — the fraction $\\tfrac{\\theta}{360}$ of the whole circle. **Sector area** $= \\tfrac{\\theta}{360}\\,\\pi r^2$.",
+        "Answers are usually left **in terms of $\\pi$** (like $16\\pi$) unless a decimal is asked for."
+      ],
+      "keyIdea": "Circumference = 2πr; circle area = πr². A sector is the θ/360 fraction of the circle, so its area is (θ/360)·πr².",
+      "facts": [
+        {
+          "title": "Circumference",
+          "latex": "$C = 2\\pi r$",
+          "explanation": "The distance around the circle."
+        },
+        {
+          "title": "Circle area",
+          "latex": "$A = \\pi r^2$",
+          "explanation": "The space inside."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ca-we1",
+          "statement": "A circle has radius $5$. Find its circumference and area (in terms of π).",
+          "solution": "$C = 2\\pi(5) = 10\\pi$; $A = \\pi(5)^2 = 25\\pi$.",
+          "check": [
+            "2*pi*5 == 10*pi",
+            "pi*5**2 == 25*pi"
+          ]
+        },
+        {
+          "id": "ca-we2",
+          "statement": "A $90^\\circ$ sector of a circle of radius $8$. Find its area.",
+          "solution": "$\\tfrac{90}{360}\\pi(8)^2 = \\tfrac14(64\\pi) = 16\\pi$.",
+          "check": [
+            "90*pi*8**2/360 == 16*pi"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the diameter as $r$ in the area formula.",
+          "correction": "The area uses the **radius**: $\\pi r^2$. If given the diameter, halve it first.",
+          "authored": true
+        },
+        {
+          "text": "Squaring in the circumference formula.",
+          "correction": "**Circumference** is $2\\pi r$ (no square); only the **area** squares the radius.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ca-t1",
+          "statement": "Radius $3$. Area (in terms of π)?",
+          "solution": "$\\pi(3)^2 = 9\\pi$.",
+          "check": [
+            "pi*3**2 == 9*pi"
+          ]
+        },
+        {
+          "id": "ca-t2",
+          "statement": "Radius $6$. Circumference (in terms of π)?",
+          "solution": "$2\\pi(6) = 12\\pi$.",
+          "check": [
+            "2*pi*6 == 12*pi"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Around and inside",
+            "beats": [
+              "**Circumference** is the distance around a circle: $C = 2\\pi r$.",
+              "**Area** is the space inside: $A = \\pi r^2$.",
+              "$\\pi \\approx 3.14$, the ratio of circumference to diameter.",
+              "A **sector** is a slice — a fraction of the whole."
+            ]
+          },
+          {
+            "kind": "arcSector",
+            "eyebrow": "Concept A",
+            "title": "The sector is a fraction",
+            "teach": "A sector is the fraction $\\tfrac{\\theta}{360}$ of the circle. Change $\\theta$: the arc length is that fraction of the circumference $2\\pi r$, and the sector area is that fraction of the area $\\pi r^2$. At $90^\\circ$ both are $\\tfrac14$.",
+            "config": {
+              "start": 90,
+              "radius": 6
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Circumference & area",
+            "title": "Two formulas",
+            "beats": [
+              "**Circumference** $= 2\\pi r$ (or $\\pi d$).",
+              "**Area** $= \\pi r^2$ — the radius is **squared**.",
+              "Given a diameter? Halve it to get $r$ first.",
+              "Leave answers as multiples of $\\pi$ unless told otherwise."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Circumference & area",
+            "intro": "2πr and πr².",
+            "examples": [
+              {
+                "prompt": "Radius $5$. Circumference and area?",
+                "steps": [
+                  "$C = 2\\pi(5) = 10\\pi$.",
+                  "$A = \\pi(5)^2 = 25\\pi$."
+                ],
+                "answer": "$10\\pi$ and $25\\pi$",
+                "check": [
+                  "2*pi*5 == 10*pi",
+                  "pi*5**2 == 25*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $4$. Area?",
+                "steps": [
+                  "$\\pi(4)^2$.",
+                  "$= 16\\pi$."
+                ],
+                "answer": "$16\\pi$",
+                "check": [
+                  "pi*4**2 == 16*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Circle basics",
+            "intro": "2πr, πr².",
+            "problems": [
+              {
+                "prompt": "Radius $3$. Area?",
+                "options": [
+                  "$9\\pi$",
+                  "$6\\pi$",
+                  "$3\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\pi(3)^2 = 9\\pi$.",
+                "check": [
+                  "pi*3**2 == 9*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $6$. Circumference?",
+                "options": [
+                  "$12\\pi$",
+                  "$36\\pi$",
+                  "$6\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2\\pi(6) = 12\\pi$.",
+                "check": [
+                  "2*pi*6 == 12*pi"
+                ]
+              },
+              {
+                "prompt": "Diameter $10$. Area?",
+                "options": [
+                  "$25\\pi$",
+                  "$100\\pi$",
+                  "$10\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$r = 5$; $\\pi(5)^2 = 25\\pi$.",
+                "check": [
+                  "pi*5**2 == 25*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Sector area",
+            "title": "A fraction of the circle",
+            "beats": [
+              "A **sector** is the fraction $\\tfrac{\\theta}{360}$ of the circle.",
+              "**Sector area** $= \\tfrac{\\theta}{360}\\,\\pi r^2$.",
+              "$\\theta = 90^\\circ$, $r = 8$: $\\tfrac14(64\\pi) = 16\\pi$.",
+              "A semicircle ($180^\\circ$) is half; a quarter ($90^\\circ$) is a fourth."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Sector area",
+            "intro": "θ/360 × πr².",
+            "examples": [
+              {
+                "prompt": "$90^\\circ$ sector, radius $8$. Area?",
+                "steps": [
+                  "$\\tfrac{90}{360}\\pi(8)^2 = \\tfrac14(64\\pi)$.",
+                  "$= 16\\pi$."
+                ],
+                "answer": "$16\\pi$",
+                "check": [
+                  "90*pi*8**2/360 == 16*pi"
+                ]
+              },
+              {
+                "prompt": "$120^\\circ$ sector, radius $6$. Area?",
+                "steps": [
+                  "$\\tfrac{120}{360}\\pi(6)^2 = \\tfrac13(36\\pi)$.",
+                  "$= 12\\pi$."
+                ],
+                "answer": "$12\\pi$",
+                "check": [
+                  "120*pi*6**2/360 == 12*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Sector practice",
+            "intro": "The θ/360 fraction of πr².",
+            "problems": [
+              {
+                "prompt": "$90^\\circ$ sector, radius $4$. Area?",
+                "options": [
+                  "$4\\pi$",
+                  "$16\\pi$",
+                  "$2\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac14(16\\pi) = 4\\pi$.",
+                "check": [
+                  "90*pi*4**2/360 == 4*pi"
+                ]
+              },
+              {
+                "prompt": "$180^\\circ$ sector, radius $10$. Area?",
+                "options": [
+                  "$50\\pi$",
+                  "$100\\pi$",
+                  "$25\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(100\\pi) = 50\\pi$.",
+                "check": [
+                  "180*pi*10**2/360 == 50*pi"
+                ]
+              },
+              {
+                "prompt": "A $60^\\circ$ sector is — of the circle.",
+                "options": [
+                  "a sixth",
+                  "a third",
+                  "a quarter"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{60}{360} = \\tfrac16$.",
+                "check": [
+                  "60/360 == 1/6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "How π sneaks into everything round",
+            "body": "Because area is $\\pi r^2$, doubling a pizza's radius quadruples the food — a $16$-inch pizza has four times the area of an $8$-inch one, not twice. That's why the big pizza is almost always the better deal per dollar: area grows with the square of the radius."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Circle area",
+            "prompt": "A circle has radius $7$. What is its area (in terms of π)?",
+            "options": [
+              "$49\\pi$",
+              "$14\\pi$",
+              "$7\\pi$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$A = \\pi(7)^2 = 49\\pi$.",
+            "check": [
+              "pi*7**2 == 49*pi"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Circumference** $= 2\\pi r$; **circle area** $= \\pi r^2$ (radius squared).",
+              "A **sector** is the fraction $\\tfrac{\\theta}{360}$ of the circle: area $= \\tfrac{\\theta}{360}\\pi r^2$.",
+              "Leave answers **in terms of $\\pi$** unless a decimal is asked for."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's find circumferences, circle areas, and sector areas in terms of π."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Radius $8$. Area?",
+                "options": [
+                  "$64\\pi$",
+                  "$16\\pi$",
+                  "$8\\pi$",
+                  "$32\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\pi(8)^2 = 64\\pi$.",
+                "check": [
+                  "pi*8**2 == 64*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $9$. Circumference?",
+                "options": [
+                  "$18\\pi$",
+                  "$81\\pi$",
+                  "$9\\pi$",
+                  "$36\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2\\pi(9) = 18\\pi$.",
+                "check": [
+                  "2*pi*9 == 18*pi"
+                ]
+              },
+              {
+                "prompt": "$90^\\circ$ sector, radius $6$. Area?",
+                "options": [
+                  "$9\\pi$",
+                  "$36\\pi$",
+                  "$18\\pi$",
+                  "$3\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac14(36\\pi) = 9\\pi$.",
+                "check": [
+                  "90*pi*6**2/360 == 9*pi"
+                ]
+              },
+              {
+                "prompt": "Diameter $12$. Area?",
+                "options": [
+                  "$36\\pi$",
+                  "$144\\pi$",
+                  "$12\\pi$",
+                  "$6\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$r = 6$; $\\pi(6)^2 = 36\\pi$.",
+                "check": [
+                  "pi*6**2 == 36*pi"
+                ]
+              },
+              {
+                "prompt": "$120^\\circ$ sector, radius $3$. Area?",
+                "options": [
+                  "$3\\pi$",
+                  "$9\\pi$",
+                  "$6\\pi$",
+                  "$\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac13(9\\pi) = 3\\pi$.",
+                "check": [
+                  "120*pi*3**2/360 == 3*pi"
+                ]
+              },
+              {
+                "prompt": "Circumference uses which formula?",
+                "options": [
+                  "$2\\pi r$",
+                  "$\\pi r^2$",
+                  "$\\tfrac12 r^2$",
+                  "$\\pi d^2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "No square for circumference.",
+                "check": [
+                  "2*pi*5 == 10*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Circumference, Circle Area & Sectors\"",
+            "body": "You can measure any circle and its slices. Next: composite figures — shapes built from several simple pieces added together."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "composite-figures",
+      "title": "Composite Figures",
+      "concreteComparison": "A house-shaped sign is a rectangle with a triangle roof; an L-shaped garden is two rectangles; a running track is a rectangle with two semicircle ends. Break a complex figure into simple shapes, find each area, and add them up.",
+      "objective": "Find the area of a composite figure by decomposing it into rectangles, triangles, and circles, then adding the parts.",
+      "concept": [
+        "A **composite figure** is made of several simple shapes joined together.",
+        "**Decompose** it into rectangles, triangles, semicircles, and so on.",
+        "Find each piece's area with its own formula.",
+        "**Add** the pieces to get the total area. (Watch which lengths belong to which piece.)"
+      ],
+      "keyIdea": "To find a composite area, split the figure into simple shapes, find each area, and add them up.",
+      "facts": [
+        {
+          "title": "Decompose",
+          "latex": "split into simple shapes",
+          "explanation": "Rectangles, triangles, semicircles…"
+        },
+        {
+          "title": "Add the parts",
+          "latex": "total $=$ sum of areas",
+          "explanation": "Combine the pieces for the whole."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cf-we1",
+          "statement": "A figure is a rectangle $12 \\times 5$ with a triangle (base $12$, height $3$) on top. Find the total area.",
+          "solution": "Rectangle $= 12 \\times 5 = 60$; triangle $= \\tfrac12(12)(3) = 18$; total $= 60 + 18 = 78$.",
+          "check": [
+            "12*5 + 12*3/2 == 78"
+          ]
+        },
+        {
+          "id": "cf-we2",
+          "statement": "An L-shape is a $6 \\times 4$ rectangle plus a $3 \\times 2$ rectangle. Find the total area.",
+          "solution": "$6 \\times 4 = 24$ and $3 \\times 2 = 6$; total $= 24 + 6 = 30$.",
+          "check": [
+            "6*4 + 3*2 == 30"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Double-counting an overlapping length.",
+          "correction": "Split cleanly so pieces don't overlap; use each length for exactly **one** piece.",
+          "authored": true
+        },
+        {
+          "text": "Mixing up a piece's own base and height.",
+          "correction": "Use the dimensions that belong to **that piece** — a triangle's height isn't the whole figure's height.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cf-t1",
+          "statement": "Rectangle $10 \\times 4$ plus triangle base $10$ height $6$. Total area?",
+          "solution": "$40 + 30 = 70$.",
+          "check": [
+            "10*4 + 10*6/2 == 70"
+          ]
+        },
+        {
+          "id": "cf-t2",
+          "statement": "Two rectangles $5 \\times 3$ and $2 \\times 3$. Total area?",
+          "solution": "$15 + 6 = 21$.",
+          "check": [
+            "5*3 + 2*3 == 21"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Break it into simple shapes",
+            "beats": [
+              "A **composite figure** is several simple shapes stuck together.",
+              "**Decompose** it — draw lines to split it into rectangles and triangles.",
+              "Find each piece's area on its own.",
+              "**Add** them for the total."
+            ]
+          },
+          {
+            "kind": "compositeArea",
+            "eyebrow": "Concept A",
+            "title": "Rectangle + triangle",
+            "teach": "This 'house' splits into a rectangle ($12 \\times 5 = 60$) and a triangle on top (base $12$, height $3$, area $18$). Add them: $60 + 18 = 78$.",
+            "config": {
+              "width": 12,
+              "height": 8,
+              "parts": [
+                {
+                  "kind": "rect",
+                  "x": 0,
+                  "y": 0,
+                  "w": 12,
+                  "h": 5,
+                  "area": "60",
+                  "label": "rectangle 12×5"
+                },
+                {
+                  "kind": "triangle",
+                  "pts": [
+                    [
+                      0,
+                      5
+                    ],
+                    [
+                      12,
+                      5
+                    ],
+                    [
+                      6,
+                      8
+                    ]
+                  ],
+                  "area": "18",
+                  "label": "triangle b12 h3"
+                }
+              ],
+              "total": "78"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Decompose & add",
+            "title": "One piece at a time",
+            "beats": [
+              "Draw a line to cut the figure into shapes you know.",
+              "Find each area with its formula.",
+              "Keep track of which length belongs to which piece.",
+              "**Add** all the piece areas."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Add the pieces",
+            "intro": "Each shape's area, then sum.",
+            "examples": [
+              {
+                "prompt": "Rectangle $12 \\times 5$ with a triangle (base $12$, height $3$) on top. Total?",
+                "steps": [
+                  "Rectangle $= 60$; triangle $= \\tfrac12(12)(3) = 18$.",
+                  "$60 + 18 = 78$."
+                ],
+                "answer": "$78$",
+                "check": [
+                  "12*5 + 12*3/2 == 78"
+                ]
+              },
+              {
+                "prompt": "L-shape: $6 \\times 4$ plus $3 \\times 2$. Total?",
+                "steps": [
+                  "$24$ and $6$.",
+                  "$24 + 6 = 30$."
+                ],
+                "answer": "$30$",
+                "check": [
+                  "6*4 + 3*2 == 30"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Composite areas",
+            "intro": "Decompose, then add.",
+            "problems": [
+              {
+                "prompt": "Rectangle $10 \\times 4$ + triangle base $10$ height $6$. Total?",
+                "options": [
+                  "$70$",
+                  "$100$",
+                  "$54$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$40 + 30 = 70$.",
+                "check": [
+                  "10*4 + 10*6/2 == 70"
+                ]
+              },
+              {
+                "prompt": "Two rectangles $5 \\times 3$ and $2 \\times 3$. Total?",
+                "options": [
+                  "$21$",
+                  "$30$",
+                  "$16$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$15 + 6 = 21$.",
+                "check": [
+                  "5*3 + 2*3 == 21"
+                ]
+              },
+              {
+                "prompt": "A composite figure's area is the — of its pieces.",
+                "options": [
+                  "sum",
+                  "difference",
+                  "product"
+                ],
+                "correctIndex": 0,
+                "explanation": "Add the parts.",
+                "check": [
+                  "60 + 18 == 78"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Rectangle + semicircle",
+            "title": "Mixing straight and round",
+            "beats": [
+              "Some figures add a **semicircle** to a rectangle (a window, a track end).",
+              "Rectangle area is straightforward.",
+              "Semicircle area is **half** a circle: $\\tfrac12 \\pi r^2$.",
+              "Add them — often left in terms of $\\pi$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Rectangle + semicircle",
+            "intro": "Add a half-circle.",
+            "examples": [
+              {
+                "prompt": "Rectangle $10 \\times 4$ with a semicircle (radius $2$) on one end. Total?",
+                "steps": [
+                  "Rectangle $= 40$; semicircle $= \\tfrac12 \\pi(2)^2 = 2\\pi$.",
+                  "$40 + 2\\pi$."
+                ],
+                "answer": "$40 + 2\\pi$",
+                "check": [
+                  "10*4 + pi*2**2/2 == 40 + 2*pi"
+                ]
+              },
+              {
+                "prompt": "Rectangle $8 \\times 6$ with a semicircle (radius $3$) on top. Total?",
+                "steps": [
+                  "$48$ and $\\tfrac12\\pi(3)^2 = \\tfrac{9\\pi}{2}$.",
+                  "$48 + \\tfrac{9\\pi}{2}$."
+                ],
+                "answer": "$48 + \\tfrac{9\\pi}{2}$",
+                "check": [
+                  "8*6 + pi*3**2/2 == 48 + 9*pi/2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Straight + round",
+            "intro": "Add the semicircle.",
+            "problems": [
+              {
+                "prompt": "Rectangle $6 \\times 5$ + semicircle radius $3$. Total?",
+                "options": [
+                  "$30 + \\tfrac{9\\pi}{2}$",
+                  "$30 + 9\\pi$",
+                  "$30 + 3\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$30 + \\tfrac12\\pi(9) = 30 + \\tfrac{9\\pi}{2}$.",
+                "check": [
+                  "6*5 + pi*3**2/2 == 30 + 9*pi/2"
+                ]
+              },
+              {
+                "prompt": "A semicircle's area is — a full circle.",
+                "options": [
+                  "half",
+                  "a quarter",
+                  "twice"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12\\pi r^2$.",
+                "check": [
+                  "pi*4**2/2 == 8*pi"
+                ]
+              },
+              {
+                "prompt": "Rectangle $12 \\times 3$ + semicircle radius $2$. Total?",
+                "options": [
+                  "$36 + 2\\pi$",
+                  "$36 + 4\\pi$",
+                  "$36 + \\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$36 + \\tfrac12\\pi(4) = 36 + 2\\pi$.",
+                "check": [
+                  "12*3 + pi*2**2/2 == 36 + 2*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Every floor plan is a composite figure",
+            "body": "Architects and flooring installers compute room areas exactly this way — splitting an irregular floor into rectangles and triangles, finding each, and adding. It's why a quote for tiling an L-shaped kitchen comes back as the sum of two rectangle areas."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Total area",
+            "prompt": "A figure is a $9 \\times 4$ rectangle with a triangle (base $9$, height $6$) on top. What is the total area?",
+            "options": [
+              "$63$",
+              "$90$",
+              "$54$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Rectangle $36$ + triangle $\\tfrac12(9)(6) = 27$; total $= 63$.",
+            "check": [
+              "9*4 + 9*6/2 == 63"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **composite figure** is made of simple shapes joined together.",
+              "**Decompose** into rectangles, triangles, semicircles; find each area.",
+              "**Add** the parts for the total (semicircle $= \\tfrac12\\pi r^2$)."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's decompose figures and add up the pieces."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Rectangle $8 \\times 5$ + triangle base $8$ height $4$. Total?",
+                "options": [
+                  "$56$",
+                  "$72$",
+                  "$48$",
+                  "$40$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$40 + 16 = 56$.",
+                "check": [
+                  "8*5 + 8*4/2 == 56"
+                ]
+              },
+              {
+                "prompt": "L-shape: $7 \\times 3$ plus $4 \\times 2$. Total?",
+                "options": [
+                  "$29$",
+                  "$21$",
+                  "$8$",
+                  "$35$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$21 + 8 = 29$.",
+                "check": [
+                  "7*3 + 4*2 == 29"
+                ]
+              },
+              {
+                "prompt": "Rectangle $10 \\times 6$ + semicircle radius $3$. Total?",
+                "options": [
+                  "$60 + \\tfrac{9\\pi}{2}$",
+                  "$60 + 9\\pi$",
+                  "$60 + 3\\pi$",
+                  "$60 + 6\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$60 + \\tfrac12\\pi(9)$.",
+                "check": [
+                  "10*6 + pi*3**2/2 == 60 + 9*pi/2"
+                ]
+              },
+              {
+                "prompt": "Two rectangles $6 \\times 5$ and $6 \\times 2$. Total?",
+                "options": [
+                  "$42$",
+                  "$30$",
+                  "$12$",
+                  "$36$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$30 + 12 = 42$.",
+                "check": [
+                  "6*5 + 6*2 == 42"
+                ]
+              },
+              {
+                "prompt": "A composite figure is best found by —",
+                "options": [
+                  "decomposing and adding",
+                  "measuring the diagonal",
+                  "using only perimeter",
+                  "guessing"
+                ],
+                "correctIndex": 0,
+                "explanation": "Split into pieces, add.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Rectangle $5 \\times 4$ + triangle base $5$ height $4$. Total?",
+                "options": [
+                  "$30$",
+                  "$40$",
+                  "$20$",
+                  "$25$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$20 + 10 = 30$.",
+                "check": [
+                  "5*4 + 5*4/2 == 30"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Composite Figures\"",
+            "body": "You can add up areas of combined shapes. Last stop: shaded regions — where you SUBTRACT one area from another."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "shaded-regions-and-applications",
+      "title": "Shaded Regions & Applications",
+      "concreteComparison": "A round rug on a square floor, a washer (a metal ring), a picture inside a frame — the region you want is often what's LEFT after removing a smaller shape from a bigger one. Instead of adding, you subtract.",
+      "objective": "Find the area of a shaded region by subtracting an inner shape from an outer one, including rings (annuli), and apply area to real problems.",
+      "concept": [
+        "A **shaded region** is often a larger shape with a smaller shape **removed** from it.",
+        "Find the **outer** area and the **inner** area, then **subtract**: shaded $=$ outer $-$ inner.",
+        "A **ring (annulus)** is a big circle minus a small circle: $\\pi R^2 - \\pi r^2$.",
+        "Real problems — flooring left after a rug, a path around a pool, a matted photo — are area subtractions."
+      ],
+      "keyIdea": "A shaded region = outer area − inner area. A ring is πR² − πr². Real 'leftover' area problems are subtractions.",
+      "facts": [
+        {
+          "title": "Shaded region",
+          "latex": "outer $-$ inner",
+          "explanation": "Subtract the removed shape."
+        },
+        {
+          "title": "Ring (annulus)",
+          "latex": "$\\pi R^2 - \\pi r^2$",
+          "explanation": "Big circle minus small circle."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sr-we1",
+          "statement": "A square of side $10$ has a circle of radius $3$ cut out. Find the shaded area (in terms of π).",
+          "solution": "Square $= 10^2 = 100$; circle $= \\pi(3)^2 = 9\\pi$; shaded $= 100 - 9\\pi$.",
+          "check": [
+            "10**2 - pi*3**2 == 100 - 9*pi"
+          ]
+        },
+        {
+          "id": "sr-we2",
+          "statement": "A ring has outer radius $5$ and inner radius $3$. Find its area (in terms of π).",
+          "solution": "$\\pi(5)^2 - \\pi(3)^2 = 25\\pi - 9\\pi = 16\\pi$.",
+          "check": [
+            "pi*5**2 - pi*3**2 == 16*pi"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding when you should subtract.",
+          "correction": "For a **removed** shape, subtract: shaded $=$ outer $-$ inner. Only combine (add) when both pieces are kept.",
+          "authored": true
+        },
+        {
+          "text": "Subtracting the radii instead of the areas.",
+          "correction": "For a ring, subtract the **areas**: $\\pi R^2 - \\pi r^2$, not $\\pi(R - r)^2$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sr-t1",
+          "statement": "Square side $8$ with a circle radius $2$ removed. Shaded area?",
+          "solution": "$64 - 4\\pi$.",
+          "check": [
+            "8**2 - pi*2**2 == 64 - 4*pi"
+          ]
+        },
+        {
+          "id": "sr-t2",
+          "statement": "Ring, outer radius $6$, inner radius $4$. Area?",
+          "solution": "$36\\pi - 16\\pi = 20\\pi$.",
+          "check": [
+            "pi*6**2 - pi*4**2 == 20*pi"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "What's left after removing",
+            "beats": [
+              "A **shaded region** is often a big shape with a hole cut out.",
+              "Find the **outer** area.",
+              "Find the **inner** (removed) area.",
+              "**Subtract**: shaded $=$ outer $-$ inner."
+            ]
+          },
+          {
+            "kind": "compositeArea",
+            "eyebrow": "Concept A",
+            "title": "Square minus a circle",
+            "teach": "The shaded region is a $10 \\times 10$ square ($100$) with a circle of radius $3$ removed ($9\\pi$). Subtract: $100 - 9\\pi$. The removed circle is drawn hollow (dashed).",
+            "config": {
+              "width": 10,
+              "height": 10,
+              "parts": [
+                {
+                  "kind": "rect",
+                  "x": 0,
+                  "y": 0,
+                  "w": 10,
+                  "h": 10,
+                  "area": "100",
+                  "label": "square 10×10"
+                },
+                {
+                  "kind": "circle",
+                  "cx": 5,
+                  "cy": 5,
+                  "r": 3,
+                  "op": "subtract",
+                  "area": "9π",
+                  "label": "circle r3 removed"
+                }
+              ],
+              "total": "100 − 9π"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Subtract the inner shape",
+            "title": "Outer minus inner",
+            "beats": [
+              "Compute the outer shape's area.",
+              "Compute the removed shape's area.",
+              "**Shaded $=$ outer $-$ inner.**",
+              "Leave $\\pi$ in the answer if a circle is involved."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Outer minus inner",
+            "intro": "Subtract the removed area.",
+            "examples": [
+              {
+                "prompt": "Square side $10$, circle radius $3$ removed. Shaded?",
+                "steps": [
+                  "Square $= 100$; circle $= 9\\pi$.",
+                  "$100 - 9\\pi$."
+                ],
+                "answer": "$100 - 9\\pi$",
+                "check": [
+                  "10**2 - pi*3**2 == 100 - 9*pi"
+                ]
+              },
+              {
+                "prompt": "Rectangle $12 \\times 8$ with a $4 \\times 3$ rectangle removed. Shaded?",
+                "steps": [
+                  "$96 - 12$.",
+                  "$= 84$."
+                ],
+                "answer": "$84$",
+                "check": [
+                  "12*8 - 4*3 == 84"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Shaded regions",
+            "intro": "Outer − inner.",
+            "problems": [
+              {
+                "prompt": "Square side $8$, circle radius $2$ removed. Shaded?",
+                "options": [
+                  "$64 - 4\\pi$",
+                  "$64 - 2\\pi$",
+                  "$64 - 16\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$64 - \\pi(2)^2 = 64 - 4\\pi$.",
+                "check": [
+                  "8**2 - pi*2**2 == 64 - 4*pi"
+                ]
+              },
+              {
+                "prompt": "Rectangle $10 \\times 6$ with a $5 \\times 2$ hole. Shaded?",
+                "options": [
+                  "$50$",
+                  "$60$",
+                  "$40$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$60 - 10 = 50$.",
+                "check": [
+                  "10*6 - 5*2 == 50"
+                ]
+              },
+              {
+                "prompt": "For a removed shape you — its area.",
+                "options": [
+                  "subtract",
+                  "add",
+                  "double"
+                ],
+                "correctIndex": 0,
+                "explanation": "Outer − inner.",
+                "check": [
+                  "100 - 9 == 91"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Rings (annuli)",
+            "title": "A circle with a circular hole",
+            "beats": [
+              "A **ring** is a big circle with a smaller circle removed.",
+              "Outer area $= \\pi R^2$; inner area $= \\pi r^2$.",
+              "**Ring area $= \\pi R^2 - \\pi r^2$.**",
+              "Subtract the **areas**, not the radii."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Ring area",
+            "intro": "πR² − πr².",
+            "examples": [
+              {
+                "prompt": "Outer radius $5$, inner radius $3$. Ring area?",
+                "steps": [
+                  "$\\pi(5)^2 - \\pi(3)^2 = 25\\pi - 9\\pi$.",
+                  "$= 16\\pi$."
+                ],
+                "answer": "$16\\pi$",
+                "check": [
+                  "pi*5**2 - pi*3**2 == 16*pi"
+                ]
+              },
+              {
+                "prompt": "Outer radius $6$, inner radius $4$. Ring area?",
+                "steps": [
+                  "$36\\pi - 16\\pi$.",
+                  "$= 20\\pi$."
+                ],
+                "answer": "$20\\pi$",
+                "check": [
+                  "pi*6**2 - pi*4**2 == 20*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Ring practice",
+            "intro": "Subtract the circle areas.",
+            "problems": [
+              {
+                "prompt": "Outer radius $4$, inner radius $2$. Ring area?",
+                "options": [
+                  "$12\\pi$",
+                  "$4\\pi$",
+                  "$8\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$16\\pi - 4\\pi = 12\\pi$.",
+                "check": [
+                  "pi*4**2 - pi*2**2 == 12*pi"
+                ]
+              },
+              {
+                "prompt": "Outer radius $10$, inner radius $6$. Ring area?",
+                "options": [
+                  "$64\\pi$",
+                  "$16\\pi$",
+                  "$100\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$100\\pi - 36\\pi = 64\\pi$.",
+                "check": [
+                  "pi*10**2 - pi*6**2 == 64*pi"
+                ]
+              },
+              {
+                "prompt": "A ring's area is $\\pi R^2 - \\pi r^2$, NOT —",
+                "options": [
+                  "$\\pi(R - r)^2$",
+                  "outer − inner",
+                  "$\\pi R^2 - \\pi r^2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Subtract the areas, not the radii.",
+                "check": [
+                  "pi*5**2 - pi*3**2 == 16*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why a washer works",
+            "body": "A metal washer is a real annulus — its material area is $\\pi R^2 - \\pi r^2$, the big disk minus the bolt hole. Engineers use exactly this subtraction to compute how much metal a washer contains and how much pressure it can spread under a bolt."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Shaded area",
+            "prompt": "A square of side $6$ has a circle of radius $2$ removed. What is the shaded area (in terms of π)?",
+            "options": [
+              "$36 - 4\\pi$",
+              "$36 - 2\\pi$",
+              "$36 - 16\\pi$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Square $36$ − circle $\\pi(2)^2 = 4\\pi$: $36 - 4\\pi$.",
+            "check": [
+              "6**2 - pi*2**2 == 36 - 4*pi"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **shaded region** $=$ **outer area − inner area** (the removed shape).",
+              "A **ring (annulus)** $= \\pi R^2 - \\pi r^2$ — subtract the areas, not the radii.",
+              "Real 'leftover' problems (rugs, paths, washers) are area subtractions."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's subtract inner shapes and compute rings."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Square side $12$, circle radius $4$ removed. Shaded?",
+                "options": [
+                  "$144 - 16\\pi$",
+                  "$144 - 4\\pi$",
+                  "$144 - 8\\pi$",
+                  "$144 - 64\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$144 - \\pi(4)^2 = 144 - 16\\pi$.",
+                "check": [
+                  "12**2 - pi*4**2 == 144 - 16*pi"
+                ]
+              },
+              {
+                "prompt": "Ring, outer radius $7$, inner radius $5$. Area?",
+                "options": [
+                  "$24\\pi$",
+                  "$12\\pi$",
+                  "$4\\pi$",
+                  "$49\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$49\\pi - 25\\pi = 24\\pi$.",
+                "check": [
+                  "pi*7**2 - pi*5**2 == 24*pi"
+                ]
+              },
+              {
+                "prompt": "Rectangle $9 \\times 5$ with a $3 \\times 2$ hole. Shaded?",
+                "options": [
+                  "$39$",
+                  "$45$",
+                  "$6$",
+                  "$51$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$45 - 6 = 39$.",
+                "check": [
+                  "9*5 - 3*2 == 39"
+                ]
+              },
+              {
+                "prompt": "For a shape that is REMOVED, you —",
+                "options": [
+                  "subtract its area",
+                  "add its area",
+                  "double it",
+                  "ignore it"
+                ],
+                "correctIndex": 0,
+                "explanation": "Outer − inner.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Square side $10$, circle radius $5$ removed. Shaded?",
+                "options": [
+                  "$100 - 25\\pi$",
+                  "$100 - 5\\pi$",
+                  "$100 - 10\\pi$",
+                  "$100 - 50\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$100 - \\pi(5)^2 = 100 - 25\\pi$.",
+                "check": [
+                  "10**2 - pi*5**2 == 100 - 25*pi"
+                ]
+              },
+              {
+                "prompt": "A ring area is found by subtracting the two —",
+                "options": [
+                  "circle areas",
+                  "radii",
+                  "diameters",
+                  "circumferences"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\pi R^2 - \\pi r^2$.",
+                "check": [
+                  "pi*6**2 - pi*4**2 == 20*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Shaded Regions & Applications\"",
+            "body": "You can find leftover and ring areas by subtracting — the finale of Area & Perimeter. Next unit: surface area and volume, where these area skills wrap and fill 3-D solids."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [],
+  "testYourself": []
+}
