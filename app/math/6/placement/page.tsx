@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, X, Sparkles, RotateCcw } from "lucide-react";
 import MathText from "@/components/esh/MathText";
 import { useAuth } from "@/lib/auth-context";
-import { getPlacementBank, type PlacementQuestion } from "@/lib/placement-bank";
+import { getPlacementBank, displayQuestion, type PlacementQuestion } from "@/lib/placement-bank";
 import {
   initPlacement,
   pickNext,
@@ -31,6 +31,7 @@ export default function PlacementPage() {
 
   const total = totalQuestions(state);
   const answered = state.answers.length;
+  const disp = useMemo(() => (current ? displayQuestion(current) : null), [current]);
 
   function start() {
     const fresh = initPlacement(bank, 2);
@@ -47,8 +48,8 @@ export default function PlacementPage() {
   }
 
   function next() {
-    if (current === null || picked === null) return;
-    const advanced = applyAnswer(state, current, picked);
+    if (current === null || picked === null || disp === null) return;
+    const advanced = applyAnswer(state, current, disp.toOriginal[picked]);
     setState(advanced);
     setPicked(null);
     if (isComplete(advanced)) {
@@ -73,8 +74,8 @@ export default function PlacementPage() {
         </div>
 
         {phase === "intro" && <Intro onStart={start} total={total} isAuthed={!!user} />}
-        {phase === "quiz" && current && (
-          <Quiz q={current} picked={picked} onChoose={choose} onNext={next} index={answered} total={total} level={state.level} />
+        {phase === "quiz" && current && disp && (
+          <Quiz q={current} options={disp.options} correctIndex={disp.correctIndex} picked={picked} onChoose={choose} onNext={next} index={answered} total={total} level={state.level} />
         )}
         {phase === "done" && result && <Results result={result} onRetake={start} />}
       </div>
@@ -117,9 +118,9 @@ function Intro({ onStart, total, isAuthed }: { onStart: () => void; total: numbe
 }
 
 function Quiz({
-  q, picked, onChoose, onNext, index, total, level,
+  q, options, correctIndex, picked, onChoose, onNext, index, total, level,
 }: {
-  q: PlacementQuestion; picked: number | null; onChoose: (i: number) => void; onNext: () => void; index: number; total: number; level: number;
+  q: PlacementQuestion; options: string[]; correctIndex: number; picked: number | null; onChoose: (i: number) => void; onNext: () => void; index: number; total: number; level: number;
 }) {
   const pct = total > 0 ? (index / total) * 100 : 0;
   const answered = picked !== null;
@@ -141,8 +142,8 @@ function Quiz({
       </p>
 
       <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
-        {q.options.map((opt, i) => {
-          const isCorrect = answered && i === q.correctIndex;
+        {options.map((opt, i) => {
+          const isCorrect = answered && i === correctIndex;
           const isYours = answered && i === picked;
           const isWrong = isYours && i !== q.correctIndex;
           let bg = "var(--bg-2)", border = "var(--line)", color = "var(--fg)";

@@ -10,6 +10,7 @@ export type Answered = { qid: string; topicSlug: string; difficulty: number; cor
 
 export type PlacementState = {
   level: number; // current adaptive difficulty, 1..3
+  wrongStreak: number; // consecutive misses at the current level
   perTopicTarget: number; // how many questions to ask per topic
   askedIds: string[];
   answers: Answered[];
@@ -19,7 +20,7 @@ export type PlacementState = {
 export function initPlacement(bank: PlacementQuestion[], perTopicTarget = 2): PlacementState {
   const topics: string[] = [];
   for (const q of bank) if (!topics.includes(q.topicSlug)) topics.push(q.topicSlug);
-  return { level: 1, perTopicTarget, askedIds: [], answers: [], topics };
+  return { level: 1, wrongStreak: 0, perTopicTarget, askedIds: [], answers: [], topics };
 }
 
 function seenCount(state: PlacementState, slug: string): number {
@@ -37,7 +38,9 @@ export function isComplete(state: PlacementState): boolean {
 }
 
 // Choose the next question: from the least-sampled topic still needing coverage,
-// pick the unused question whose difficulty is closest to the current level.
+// pick the unused question AT the current difficulty level (exact match first,
+// then the nearest available tier) so the difficulty the learner sees tracks
+// their level.
 export function pickNext(state: PlacementState, bank: PlacementQuestion[]): PlacementQuestion | null {
   if (isComplete(state)) return null;
   const needing = state.topics
@@ -50,6 +53,7 @@ export function pickNext(state: PlacementState, bank: PlacementQuestion[]): Plac
     pool.sort(
       (a, b) =>
         Math.abs(a.difficulty - state.level) - Math.abs(b.difficulty - state.level) ||
+        a.difficulty - b.difficulty ||
         a.id.localeCompare(b.id)
     );
     return pool[0];
@@ -57,12 +61,28 @@ export function pickNext(state: PlacementState, bank: PlacementQuestion[]): Plac
   return null;
 }
 
+// A correct answer nudges the level UP. A single miss HOLDS the level (missing
+// one medium question shouldn't drop you back to easy); only two misses in a
+// row eases the level down a step. This settles a learner at their true ceiling
+// instead of bouncing.
 export function applyAnswer(state: PlacementState, q: PlacementQuestion, choiceIndex: number): PlacementState {
   const correct = choiceIndex === q.correctIndex;
-  const level = correct ? Math.min(3, state.level + 1) : Math.max(1, state.level - 1);
+  let level = state.level;
+  let wrongStreak = state.wrongStreak;
+  if (correct) {
+    level = Math.min(3, level + 1);
+    wrongStreak = 0;
+  } else {
+    wrongStreak += 1;
+    if (wrongStreak >= 2) {
+      level = Math.max(1, level - 1);
+      wrongStreak = 0;
+    }
+  }
   return {
     ...state,
     level,
+    wrongStreak,
     askedIds: [...state.askedIds, q.id],
     answers: [...state.answers, { qid: q.id, topicSlug: q.topicSlug, difficulty: q.difficulty, correct }],
   };

@@ -8,7 +8,7 @@ import {
   summarize,
   type PlacementState,
 } from "@/lib/placement-engine";
-import { getPlacementBank, placementTopics, type PlacementQuestion } from "@/lib/placement-bank";
+import { getPlacementBank, displayQuestion, placementTopics, type PlacementQuestion } from "@/lib/placement-bank";
 
 // A small synthetic bank: 2 topics × 3 difficulties.
 function synthBank(): PlacementQuestion[] {
@@ -20,7 +20,6 @@ function synthBank(): PlacementQuestion[] {
           id: `${slug}:d${d}:${k}`,
           topicSlug: slug,
           topicTitle: title,
-          lessonSlug: "l",
           difficulty: d,
           prompt: `${slug} d${d} #${k}`,
           options: ["right", "wrong"],
@@ -62,19 +61,24 @@ describe("placement engine", () => {
     }
   });
 
-  it("difficulty rises after correct answers, falls after wrong ones", () => {
+  it("level rises on correct, HOLDS on a single miss, eases only after two misses", () => {
     const bank = synthBank();
-    let state = initPlacement(bank, 2);
-    expect(state.level).toBe(1);
-    const q1 = pickNext(state, bank)!;
-    state = applyAnswer(state, q1, q1.correctIndex); // correct
-    expect(state.level).toBe(2);
-    const q2 = pickNext(state, bank)!;
-    state = applyAnswer(state, q2, q2.correctIndex); // correct
-    expect(state.level).toBe(3);
-    const q3 = pickNext(state, bank)!;
-    state = applyAnswer(state, q3, 1); // wrong (correct is 0)
-    expect(state.level).toBe(2);
+    const q = bank[0]; // options ["right","wrong"], correctIndex 0
+    let s = initPlacement(bank, 9);
+    expect(s.level).toBe(1);
+    s = applyAnswer(s, q, 0); // correct
+    expect(s.level).toBe(2);
+    s = applyAnswer(s, q, 0); // correct
+    expect(s.level).toBe(3);
+    s = applyAnswer(s, q, 1); // one miss — HOLD (this is the fix)
+    expect(s.level).toBe(3);
+    expect(s.wrongStreak).toBe(1);
+    s = applyAnswer(s, q, 1); // second miss in a row — ease down one
+    expect(s.level).toBe(2);
+    expect(s.wrongStreak).toBe(0);
+    s = applyAnswer(s, q, 0); // correct resets the streak and climbs
+    expect(s.level).toBe(3);
+    expect(s.wrongStreak).toBe(0);
   });
 
   it("an all-correct learner places Advanced with no priority topics", () => {
@@ -110,21 +114,46 @@ describe("placement engine", () => {
   });
 });
 
-describe("placement bank (real content harvest)", () => {
-  it("harvests a large, well-formed pool across most Grade-6 topics", () => {
+describe("placement bank (curated tiers)", () => {
+  it("has exactly three genuine difficulty tiers for every topic", () => {
     const bank = getPlacementBank();
-    expect(bank.length).toBeGreaterThan(300);
-    // every question is machine-gradeable
-    for (const q of bank.slice(0, 50)) {
+    const topics = placementTopics(bank);
+    expect(topics.length).toBe(10);
+    for (const t of topics) {
+      const diffs = bank.filter((q) => q.topicSlug === t.slug).map((q) => q.difficulty).sort();
+      expect(diffs).toEqual([1, 2, 3]);
+    }
+    for (const q of bank) {
       expect(q.options.length).toBeGreaterThanOrEqual(2);
       expect(q.correctIndex).toBeGreaterThanOrEqual(0);
       expect(q.correctIndex).toBeLessThan(q.options.length);
-      expect([1, 2, 3]).toContain(q.difficulty);
     }
-    const topics = placementTopics(bank);
-    expect(topics.length).toBeGreaterThanOrEqual(8);
-    // each covered topic has enough questions to sample at least twice
-    expect(topics.every((t) => t.count >= 2)).toBe(true);
+  });
+
+  it("displayQuestion shuffles options but preserves the correct answer", () => {
+    const bank = getPlacementBank();
+    for (const q of bank) {
+      const d = displayQuestion(q);
+      expect(d.options.length).toBe(q.options.length);
+      expect(d.options[d.correctIndex]).toBe(q.options[q.correctIndex]);
+      expect(d.toOriginal[d.correctIndex]).toBe(q.correctIndex);
+      expect([...d.toOriginal].sort((a, b) => a - b)).toEqual(q.options.map((_, i) => i));
+    }
+  });
+
+  it("curated answers are correct (spot checks)", () => {
+    const byId = new Map(getPlacementBank().map((q) => [q.id, q]));
+    const answer = (id: string) => {
+      const q = byId.get(id)!;
+      return q.options[q.correctIndex];
+    };
+    expect(answer("expressions-and-equations:d1")).toContain("5"); // x+5=10
+    expect(answer("expressions-and-equations:d2")).toContain("2"); // 2x+7x=18 → x=2
+    expect(answer("expressions-and-equations:d3")).toContain("4"); // 2x+3=11 → x=4
+    expect(answer("fractions:d3")).toContain("3"); // 2/3 ÷ 4/9 = 3/2
+    expect(answer("integers:d3")).toContain("14"); // -4×-3+2
+    expect(answer("data-and-statistics:d2")).toContain("5"); // median of 3,7,5,9,1
+    expect(answer("ratios-and-rates:d3")).toContain("250"); // 150 mi / 3 h × 5
   });
 
   it("a full adaptive run over the real bank completes and summarizes", () => {
