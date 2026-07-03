@@ -2392,7 +2392,121 @@
       }
     }
   ],
-  "practice": [],
-  "testYourself": [],
+  "practice": [
+    {
+      "id": "pr-1",
+      "statement": "Evaluate $3^3$.",
+      "solution": "$27$.",
+      "check": [
+        "3**3 == 27"
+      ]
+    },
+    {
+      "id": "pr-2",
+      "statement": "Evaluate $20 - 6 \\div 2$.",
+      "solution": "$17$ — divide first.",
+      "check": [
+        "20 - Rational(6,2) == 17"
+      ]
+    },
+    {
+      "id": "pr-3",
+      "statement": "Evaluate $2 \\times (5 + 3)$.",
+      "solution": "$16$ — brackets first.",
+      "check": [
+        "2*(5+3) == 16"
+      ]
+    },
+    {
+      "id": "pr-4",
+      "statement": "Evaluate $4x - 1$ when $x = 3$.",
+      "solution": "$11$.",
+      "check": [
+        "4*3 - 1 == 11"
+      ]
+    },
+    {
+      "id": "pr-5",
+      "statement": "Evaluate $a^2 + b$ when $a = 3$ and $b = 5$.",
+      "solution": "$14$.",
+      "check": [
+        "3**2 + 5 == 14"
+      ]
+    },
+    {
+      "id": "pr-6",
+      "statement": "Solve $x - 4 = 9$.",
+      "solution": "$x = 13$.",
+      "check": [
+        "13 - 4 == 9"
+      ]
+    },
+    {
+      "id": "pr-7",
+      "statement": "Solve $3x = 21$.",
+      "solution": "$x = 7$.",
+      "check": [
+        "3*7 == 21"
+      ]
+    },
+    {
+      "id": "pr-8",
+      "statement": "Are $3(x+2)$ and $3x + 6$ equivalent?",
+      "solution": "Yes (check at $x=4$: both $18$).",
+      "check": [
+        "3*(4+2) == 3*4+6"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "ty-1",
+      "statement": "Evaluate $2^4$.",
+      "solution": "$16$.",
+      "check": [
+        "2**4 == 16"
+      ]
+    },
+    {
+      "id": "ty-2",
+      "statement": "Evaluate $3 + 4 \\times 2$ (order of operations).",
+      "solution": "$11$ — multiply first.",
+      "check": [
+        "3 + 4*2 == 11"
+      ]
+    },
+    {
+      "id": "ty-3",
+      "statement": "Write an expression for \"$5$ more than a number $n$\", then find its value when $n = 3$.",
+      "solution": "$n + 5$; when $n=3$ it is $8$.",
+      "check": [
+        "3 + 5 == 8"
+      ]
+    },
+    {
+      "id": "ty-4",
+      "statement": "Evaluate $3x + 2$ when $x = 4$.",
+      "solution": "$14$.",
+      "check": [
+        "3*4 + 2 == 14"
+      ]
+    },
+    {
+      "id": "ty-5",
+      "statement": "Are $2(x+3)$ and $2x + 6$ equivalent?",
+      "solution": "Yes — distributing gives $2x+6$ (check at $x=5$: both $16$).",
+      "check": [
+        "2*(5+3) == 2*5+6"
+      ]
+    },
+    {
+      "id": "ty-6",
+      "statement": "Solve $x + 7 = 12$.",
+      "solution": "$x = 5$.",
+      "check": [
+        "5 + 7 == 12"
+      ]
+    }
+  ],
   "status": "published"
 }

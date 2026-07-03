@@ -2680,6 +2680,120 @@
       }
     }
   ],
-  "practice": [],
-  "testYourself": []
+  "practice": [
+    {
+      "id": "pr-1",
+      "statement": "Write $75\\%$ as a fraction in simplest form.",
+      "solution": "$\\tfrac{3}{4}$.",
+      "check": [
+        "Rational(75,100) == Rational(3,4)"
+      ]
+    },
+    {
+      "id": "pr-2",
+      "statement": "Find $40\\%$ of $90$.",
+      "solution": "$36$.",
+      "check": [
+        "Rational(40,100)*90 == 36"
+      ]
+    },
+    {
+      "id": "pr-3",
+      "statement": "What percent is $18$ out of $24$?",
+      "solution": "$75\\%$.",
+      "check": [
+        "Rational(18,24)*100 == 75"
+      ]
+    },
+    {
+      "id": "pr-4",
+      "statement": "Find $15\\%$ of $200$.",
+      "solution": "$30$.",
+      "check": [
+        "Rational(15,100)*200 == 30"
+      ]
+    },
+    {
+      "id": "pr-5",
+      "statement": "Decrease $80$ by $25\\%$.",
+      "solution": "$60$.",
+      "check": [
+        "80 - Rational(25,100)*80 == 60"
+      ]
+    },
+    {
+      "id": "pr-6",
+      "statement": "$45$ is $90\\%$ of what number?",
+      "solution": "$50$.",
+      "check": [
+        "Rational(45,1)/Rational(90,100) == 50"
+      ]
+    },
+    {
+      "id": "pr-7",
+      "statement": "Write $60\\%$ as a fraction in simplest form.",
+      "solution": "$\\tfrac{3}{5}$.",
+      "check": [
+        "Rational(60,100) == Rational(3,5)"
+      ]
+    },
+    {
+      "id": "pr-8",
+      "statement": "$12$ is what percent of $48$?",
+      "solution": "$25\\%$.",
+      "check": [
+        "Rational(12,48)*100 == 25"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "ty-1",
+      "statement": "Write $25\\%$ as a fraction in simplest form.",
+      "solution": "$\\tfrac{1}{4}$.",
+      "check": [
+        "Rational(25,100) == Rational(1,4)"
+      ]
+    },
+    {
+      "id": "ty-2",
+      "statement": "Find $20\\%$ of $60$.",
+      "solution": "$12$.",
+      "check": [
+        "Rational(20,100)*60 == 12"
+      ]
+    },
+    {
+      "id": "ty-3",
+      "statement": "What percent is $15$ out of $60$?",
+      "solution": "$25\\%$.",
+      "check": [
+        "Rational(15,60)*100 == 25"
+      ]
+    },
+    {
+      "id": "ty-4",
+      "statement": "A $\\$40$ shirt is $10\\%$ off. How much is the discount?",
+      "solution": "$\\$4$.",
+      "check": [
+        "Rational(10,100)*40 == 4"
+      ]
+    },
+    {
+      "id": "ty-5",
+      "statement": "Increase $50$ by $20\\%$.",
+      "solution": "$60$.",
+      "check": [
+        "50 + Rational(20,100)*50 == 60"
+      ]
+    },
+    {
+      "id": "ty-6",
+      "statement": "$30$ is $25\\%$ of what number?",
+      "solution": "$120$.",
+      "check": [
+        "Rational(30,1)/Rational(25,100) == 120"
+      ]
+    }
+  ]
 }

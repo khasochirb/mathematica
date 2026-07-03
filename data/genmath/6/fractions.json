@@ -3425,8 +3425,122 @@
       }
     }
   ],
-  "practice": [],
-  "testYourself": [],
+  "practice": [
+    {
+      "id": "pr-1",
+      "statement": "Simplify $\\tfrac{9}{12}$.",
+      "solution": "$\\tfrac{3}{4}$.",
+      "check": [
+        "Rational(9,12) == Rational(3,4)"
+      ]
+    },
+    {
+      "id": "pr-2",
+      "statement": "Which is greater, $\\tfrac{5}{6}$ or $\\tfrac{7}{9}$?",
+      "solution": "$\\tfrac{5}{6}$.",
+      "check": [
+        "Rational(5,6) > Rational(7,9)"
+      ]
+    },
+    {
+      "id": "pr-3",
+      "statement": "Add: $\\tfrac{2}{5} + \\tfrac{1}{10}$.",
+      "solution": "$\\tfrac{1}{2}$.",
+      "check": [
+        "Rational(2,5)+Rational(1,10) == Rational(1,2)"
+      ]
+    },
+    {
+      "id": "pr-4",
+      "statement": "Subtract: $\\tfrac{5}{6} - \\tfrac{1}{3}$.",
+      "solution": "$\\tfrac{1}{2}$.",
+      "check": [
+        "Rational(5,6)-Rational(1,3) == Rational(1,2)"
+      ]
+    },
+    {
+      "id": "pr-5",
+      "statement": "Multiply: $\\tfrac{3}{4} \\times \\tfrac{8}{9}$.",
+      "solution": "$\\tfrac{2}{3}$.",
+      "check": [
+        "Rational(3,4)*Rational(8,9) == Rational(2,3)"
+      ]
+    },
+    {
+      "id": "pr-6",
+      "statement": "Divide: $\\tfrac{4}{5} \\div \\tfrac{2}{5}$.",
+      "solution": "$2$.",
+      "check": [
+        "Rational(4,5)/Rational(2,5) == 2"
+      ]
+    },
+    {
+      "id": "pr-7",
+      "statement": "Simplify $\\tfrac{15}{20}$.",
+      "solution": "$\\tfrac{3}{4}$.",
+      "check": [
+        "Rational(15,20) == Rational(3,4)"
+      ]
+    },
+    {
+      "id": "pr-8",
+      "statement": "Add: $\\tfrac{1}{2} + \\tfrac{1}{3} + \\tfrac{1}{6}$.",
+      "solution": "$1$ whole.",
+      "check": [
+        "Rational(1,2)+Rational(1,3)+Rational(1,6) == 1"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "ty-1",
+      "statement": "Write $\\tfrac{6}{8}$ in simplest form.",
+      "solution": "$\\tfrac{3}{4}$ (divide top and bottom by $2$).",
+      "check": [
+        "Rational(6,8) == Rational(3,4)"
+      ]
+    },
+    {
+      "id": "ty-2",
+      "statement": "Which is greater, $\\tfrac{3}{5}$ or $\\tfrac{2}{3}$?",
+      "solution": "$\\tfrac{2}{3}$ (it's $\\tfrac{10}{15}$ vs $\\tfrac{9}{15}$).",
+      "check": [
+        "Rational(2,3) > Rational(3,5)"
+      ]
+    },
+    {
+      "id": "ty-3",
+      "statement": "Add: $\\tfrac{1}{4} + \\tfrac{3}{8}$.",
+      "solution": "$\\tfrac{5}{8}$ (common denominator $8$).",
+      "check": [
+        "Rational(1,4)+Rational(3,8) == Rational(5,8)"
+      ]
+    },
+    {
+      "id": "ty-4",
+      "statement": "Multiply: $\\tfrac{2}{3} \\times \\tfrac{3}{5}$.",
+      "solution": "$\\tfrac{2}{5}$.",
+      "check": [
+        "Rational(2,3)*Rational(3,5) == Rational(2,5)"
+      ]
+    },
+    {
+      "id": "ty-5",
+      "statement": "Divide: $\\tfrac{3}{4} \\div \\tfrac{1}{2}$.",
+      "solution": "$\\tfrac{3}{2}$ (multiply by the reciprocal $\\tfrac{2}{1}$).",
+      "check": [
+        "Rational(3,4)/Rational(1,2) == Rational(3,2)"
+      ]
+    },
+    {
+      "id": "ty-6",
+      "statement": "A recipe uses $\\tfrac{2}{3}$ cup of flour. You make it twice. How much flour?",
+      "solution": "$\\tfrac{4}{3}$ cups.",
+      "check": [
+        "2*Rational(2,3) == Rational(4,3)"
+      ]
+    }
+  ],
   "_lessonDraft_dividing-fractions": {
     "slug": "dividing-fractions",
     "title": "Dividing Fractions",

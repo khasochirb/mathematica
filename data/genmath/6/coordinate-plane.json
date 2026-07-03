@@ -2054,7 +2054,118 @@
       }
     }
   ],
-  "practice": [],
-  "testYourself": [],
+  "practice": [
+    {
+      "id": "pr-1",
+      "statement": "Which quadrant is $(6, -1)$ in?",
+      "solution": "Quadrant **IV** (right, down).",
+      "check": [
+        "6 > 0",
+        "-1 < 0"
+      ]
+    },
+    {
+      "id": "pr-2",
+      "statement": "Which quadrant is $(-4, -4)$ in?",
+      "solution": "Quadrant **III** (left, down).",
+      "check": [
+        "-4 < 0"
+      ]
+    },
+    {
+      "id": "pr-3",
+      "statement": "Reflect $(-2, 5)$ over the y-axis.",
+      "solution": "$(2, 5)$ — the x-coordinate flips sign.",
+      "check": [
+        "-(-2) == 2",
+        "5 == 5"
+      ]
+    },
+    {
+      "id": "pr-4",
+      "statement": "Reflect $(7, -3)$ over the x-axis.",
+      "solution": "$(7, 3)$.",
+      "check": [
+        "-(-3) == 3"
+      ]
+    },
+    {
+      "id": "pr-5",
+      "statement": "Find the distance from $(1, 2)$ to $(9, 2)$.",
+      "solution": "$8$.",
+      "check": [
+        "Abs(9-1) == 8"
+      ]
+    },
+    {
+      "id": "pr-6",
+      "statement": "Find the distance from $(-3, 0)$ to $(5, 0)$.",
+      "solution": "$8$.",
+      "check": [
+        "Abs(5-(-3)) == 8"
+      ]
+    },
+    {
+      "id": "pr-7",
+      "statement": "Every point on the x-axis has what y-coordinate?",
+      "solution": "$0$.",
+      "check": [
+        "0 == 0"
+      ]
+    },
+    {
+      "id": "pr-8",
+      "statement": "A rectangle has corners $(0,0),(4,0),(4,6),(0,6)$. Find its area.",
+      "solution": "$24$.",
+      "check": [
+        "4*6 == 24"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "ty-1",
+      "statement": "Which quadrant is $(-3, 5)$ in?",
+      "solution": "Quadrant **II** (left, up).",
+      "check": [
+        "-3 < 0",
+        "5 > 0"
+      ]
+    },
+    {
+      "id": "ty-2",
+      "statement": "To plot $(4, -2)$, how far and which way do you move from the origin?",
+      "solution": "$4$ right, then $2$ down.",
+      "check": [
+        "4 > 0",
+        "-2 < 0"
+      ]
+    },
+    {
+      "id": "ty-3",
+      "statement": "Reflect $(3, 4)$ over the x-axis.",
+      "solution": "$(3, -4)$ — the y-coordinate flips sign.",
+      "check": [
+        "3 == 3",
+        "-(4) == -4"
+      ]
+    },
+    {
+      "id": "ty-4",
+      "statement": "Find the distance from $(2, 1)$ to $(2, 7)$.",
+      "solution": "$6$ — same x, so subtract the y's.",
+      "check": [
+        "Abs(7-1) == 6"
+      ]
+    },
+    {
+      "id": "ty-5",
+      "statement": "A rectangle has corners $(0,0),(5,0),(5,3),(0,3)$. Find its perimeter.",
+      "solution": "$16$ — two sides of $5$ and two of $3$.",
+      "check": [
+        "2*(5+3) == 16"
+      ]
+    }
+  ],
   "status": "published"
 }
