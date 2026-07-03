@@ -106,6 +106,10 @@ export function Ticks({ x1, y1, x2, y2, count, color }: { x1: number; y1: number
 
 export default function GeoDiagram({ spec }: { spec: GeoDiagramSpec }) {
   const { points, objects, hidePoints = [], height = 200 } = spec;
+  // entrance choreography timing: each object draws in ~0.1s after the last;
+  // point dots and labels pop once the strokes are on screen
+  const delay = (i: number, extra = 0) => ({ animationDelay: `${(i * 0.1 + extra).toFixed(2)}s` } as React.CSSProperties);
+  const dotDelay = objects.length * 0.1 + 0.15;
   const byId = new Map(points.map((p) => [p.id, p]));
   const get = (id: string): GeoPointSpec => byId.get(id) ?? { id, x: 0, y: 0 };
 
@@ -146,7 +150,7 @@ export default function GeoDiagram({ spec }: { spec: GeoDiagramSpec }) {
         const p1 = { x: c.x + u1.x * s, y: c.y + u1.y * s };
         const p2 = { x: c.x + (u1.x + u2.x) * s, y: c.y + (u1.y + u2.y) * s };
         const p3 = { x: c.x + u2.x * s, y: c.y + u2.y * s };
-        return <path key={i} d={`M ${p1.x} ${p1.y} L ${p2.x} ${p2.y} L ${p3.x} ${p3.y}`} fill="none" stroke={color} strokeWidth={1.6} />;
+        return <path key={i} className="gm-arc-sweep" pathLength={1} style={delay(i)} d={`M ${p1.x} ${p1.y} L ${p2.x} ${p2.y} L ${p3.x} ${p3.y}`} fill="none" stroke={color} strokeWidth={1.6} />;
       }
       // label position: middle of the arc, a bit outside
       let d = a2 - a1;
@@ -155,9 +159,11 @@ export default function GeoDiagram({ spec }: { spec: GeoDiagramSpec }) {
       const mid = ((a1 + a1 + d) / 2 * Math.PI) / 180;
       return (
         <g key={i}>
-          <path d={arcPath(px(at.x), py(at.y), Math.min(r, 22), a1, a2)} fill="none" stroke={color} strokeWidth={1.8} />
+          <path className="gm-arc-sweep" pathLength={1} style={delay(i)} d={arcPath(px(at.x), py(at.y), Math.min(r, 22), a1, a2)} fill="none" stroke={color} strokeWidth={1.8} />
           {o.label && (
             <text
+              className="gm-fade"
+              style={delay(i, 0.3)}
               x={px(at.x) + Math.cos(mid) * (Math.min(r, 22) + 11)}
               y={py(at.y) + Math.sin(mid) * (Math.min(r, 22) + 11) + 4}
               fontSize="11"
@@ -180,8 +186,10 @@ export default function GeoDiagram({ spec }: { spec: GeoDiagramSpec }) {
     if (o.kind === "segment") {
       return (
         <g key={i}>
-          <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeWidth={2} strokeDasharray={dash} />
-          {o.ticks ? <Ticks x1={x1} y1={y1} x2={x2} y2={y2} count={o.ticks} color={color} /> : null}
+          {dash
+            ? <line className="gm-fade" style={delay(i)} x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeWidth={2} strokeDasharray={dash} />
+            : <line className="gm-arc-sweep" pathLength={1} style={delay(i)} x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeWidth={2} />}
+          {o.ticks ? <g className="gm-fade" style={delay(i, 0.3)}><Ticks x1={x1} y1={y1} x2={x2} y2={y2} count={o.ticks} color={color} /></g> : null}
         </g>
       );
     }
@@ -192,8 +200,10 @@ export default function GeoDiagram({ spec }: { spec: GeoDiagramSpec }) {
       const ay = y2 + Math.sin((deg * Math.PI) / 180) * 26;
       return (
         <g key={i}>
-          <line x1={x1} y1={y1} x2={ax} y2={ay} stroke={color} strokeWidth={2} strokeDasharray={dash} />
-          <ArrowHead x={ax} y={ay} deg={deg} color={color} />
+          {dash
+            ? <line className="gm-fade" style={delay(i)} x1={x1} y1={y1} x2={ax} y2={ay} stroke={color} strokeWidth={2} strokeDasharray={dash} />
+            : <line className="gm-arc-sweep" pathLength={1} style={delay(i)} x1={x1} y1={y1} x2={ax} y2={ay} stroke={color} strokeWidth={2} />}
+          <g className="gm-fade" style={delay(i, 0.25)}><ArrowHead x={ax} y={ay} deg={deg} color={color} /></g>
         </g>
       );
     }
@@ -205,9 +215,11 @@ export default function GeoDiagram({ spec }: { spec: GeoDiagramSpec }) {
     const ay1 = y1 - Math.sin((degF * Math.PI) / 180) * 26;
     return (
       <g key={i}>
-        <line x1={ax1} y1={ay1} x2={ax2} y2={ay2} stroke={color} strokeWidth={2} strokeDasharray={dash} />
-        <ArrowHead x={ax2} y={ay2} deg={degF} color={color} />
-        <ArrowHead x={ax1} y={ay1} deg={degF + 180} color={color} />
+        {dash
+          ? <line className="gm-fade" style={delay(i)} x1={ax1} y1={ay1} x2={ax2} y2={ay2} stroke={color} strokeWidth={2} strokeDasharray={dash} />
+          : <line className="gm-arc-sweep" pathLength={1} style={delay(i)} x1={ax1} y1={ay1} x2={ax2} y2={ay2} stroke={color} strokeWidth={2} />}
+        <g className="gm-fade" style={delay(i, 0.25)}><ArrowHead x={ax2} y={ay2} deg={degF} color={color} /></g>
+        <g className="gm-fade" style={delay(i, 0.25)}><ArrowHead x={ax1} y={ay1} deg={degF + 180} color={color} /></g>
       </g>
     );
   };
@@ -218,7 +230,9 @@ export default function GeoDiagram({ spec }: { spec: GeoDiagramSpec }) {
       {points
         .filter((p) => !hidePoints.includes(p.id) && p.label !== "")
         .map((p) => (
-          <PointDot key={p.id} x={px(p.x)} y={py(p.y)} label={p.label ?? p.id} dx={(p.labelDx ?? 0) * scale * 0.1} dy={-(p.labelDy ?? 0) * scale * 0.1} />
+          <g key={p.id} className="gm-fade" style={{ animationDelay: `${dotDelay.toFixed(2)}s` }}>
+            <PointDot x={px(p.x)} y={py(p.y)} label={p.label ?? p.id} dx={(p.labelDx ?? 0) * scale * 0.1} dy={-(p.labelDy ?? 0) * scale * 0.1} />
+          </g>
         ))}
     </svg>
   );

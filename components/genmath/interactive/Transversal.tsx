@@ -74,7 +74,7 @@ export default function Transversal({ config }: { config: TransversalConfig }) {
 
   // Spring-animate the transversal tilt and line n's tilt so every change —
   // button taps and the parallel toggle alike — glides instead of jumping.
-  const a = useAnimatedValue(aTarget, { stiffness: 150, damping: 20 });
+  const a = useAnimatedValue(aTarget, { stiffness: 150, damping: 20, from: a0 - 16 }); // swings into place on entry
   const tilt = useAnimatedValue(parallel ? 0 : -14, { stiffness: 150, damping: 20 }); // line n math-angle
 
   // geometry: line m horizontal through P=(PW, 95); transversal through P at

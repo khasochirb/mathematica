@@ -731,6 +731,12 @@ export interface ArcSectorConfig {
   color?: string;
 }
 
+// A circle rolling one full turn along a line, unrolling its circumference —
+// π played out as "a little more than 3 diameters". Auto-plays with a replay.
+export interface CircleUnrollConfig {
+  color?: string;
+}
+
 // A shape with its base/height (or diagonals) labelled and its area computed
 // live from an adjustable set of dimensions. Serves the area lessons for
 // parallelograms, triangles, trapezoids, and rhombi.
@@ -929,6 +935,7 @@ export type InteractiveStep =
   | { kind: "circleAngle"; eyebrow?: string; title: string; teach: string; config: CircleAngleConfig }
   | { kind: "tangentCircle"; eyebrow?: string; title: string; teach: string; config: TangentCircleConfig }
   | { kind: "arcSector"; eyebrow?: string; title: string; teach: string; config: ArcSectorConfig }
+  | { kind: "circleUnroll"; eyebrow?: string; title: string; teach: string; config: CircleUnrollConfig }
   | { kind: "areaShape"; eyebrow?: string; title: string; teach: string; config: AreaShapeConfig }
   | { kind: "apothemPolygon"; eyebrow?: string; title: string; teach: string; config: ApothemPolygonConfig }
   | { kind: "compositeArea"; eyebrow?: string; title: string; teach: string; config: CompositeAreaConfig }

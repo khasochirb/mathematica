@@ -40,7 +40,7 @@ export default function Protractor({ config }: { config: ProtractorConfig }) {
 
   // Draw from a stiff spring: drags track 1:1, the ±5° steppers glide.
   // All text reads the exact target `deg`, never the in-flight value.
-  const degDraw = useAnimatedValue(deg, { stiffness: 320, damping: 30 });
+  const degDraw = useAnimatedValue(deg, { stiffness: 320, damping: 30, from: 0 }); // the ray sweeps up from 0° on entry
   const halfDraw = bisect(degDraw);
   const moving = pt(degDraw, rayLen);
   const movingDir = -degDraw; // svg rotation for the arrowhead

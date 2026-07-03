@@ -23,7 +23,7 @@ export default function CircleAngle({ config }: { config: CircleAngleConfig }) {
   });
   const theta = STEPS[ti];
   // A and B glide around the circle between steps; readouts stay exact
-  const thetaDraw = useAnimatedValue(theta, { stiffness: 160, damping: 22 });
+  const thetaDraw = useAnimatedValue(theta, { stiffness: 160, damping: 22, from: 0 }); // A and B glide apart on entry
 
   const cx = W / 2, cy = H / 2 - 4, R = 100;
   const O = { x: cx, y: cy };

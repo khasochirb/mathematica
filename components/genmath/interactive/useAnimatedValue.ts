@@ -6,10 +6,13 @@ import { useEffect, useRef, useState } from "react";
 // value (tilt an angle, grow a polygon, widen an arc) renders from the animated
 // value instead of the raw state, so controls feel physical instead of jumpy.
 // Critically-damped-ish spring; respects prefers-reduced-motion (snaps).
-export function useAnimatedValue(target: number, opts?: { stiffness?: number; damping?: number }) {
-  const { stiffness = 170, damping = 24 } = opts ?? {};
-  const [value, setValue] = useState(target);
-  const anim = useRef({ v: target, vel: 0, raf: 0, last: 0 });
+// `from` (optional) is the value the spring STARTS at on mount, so a figure can
+// animate itself into place the moment it appears — a protractor ray sweeping
+// up from 0°, a dilation image growing out of the pre-image. Ignored after mount.
+export function useAnimatedValue(target: number, opts?: { stiffness?: number; damping?: number; from?: number }) {
+  const { stiffness = 170, damping = 24, from } = opts ?? {};
+  const [value, setValue] = useState(from ?? target);
+  const anim = useRef({ v: from ?? target, vel: 0, raf: 0, last: 0 });
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
 import { pythagoreanHypotenuse } from "@/lib/geo";
+import { useAnimatedValue } from "@/components/genmath/interactive/useAnimatedValue";
 import { type PythagoreanSquaresConfig } from "@/lib/genmath-interactive";
 
 // The classic Pythagorean picture: a right triangle with a square built on each
@@ -17,13 +18,16 @@ export default function PythagoreanSquares({ config }: { config: PythagoreanSqua
   const [a, setA] = useState(config.a ?? 3);
   const [b, setB] = useState(config.b ?? 4);
   const c = pythagoreanHypotenuse(a, b);
+  // geometry follows springs (squares morph smoothly); every number shown is exact
+  const ad = useAnimatedValue(a, { stiffness: 140, damping: 20 });
+  const bd = useAnimatedValue(b, { stiffness: 140, damping: 20 });
 
   // right angle at C=(0,0); B=(a,0); A=(0,b) in math coords (y up)
-  const C = { x: 0, y: 0 }, B = { x: a, y: 0 }, A = { x: 0, y: b };
+  const C = { x: 0, y: 0 }, B = { x: ad, y: 0 }, A = { x: 0, y: bd };
   // squares (corners in math coords)
-  const sqA = [C, B, { x: a, y: -a }, { x: 0, y: -a }]; // on leg a (below)
-  const sqB = [C, A, { x: -b, y: b }, { x: -b, y: 0 }]; // on leg b (left)
-  const sqC = [B, A, { x: b, y: a + b }, { x: a + b, y: a }]; // on hypotenuse (outward)
+  const sqA = [C, B, { x: ad, y: -ad }, { x: 0, y: -ad }]; // on leg a (below)
+  const sqB = [C, A, { x: -bd, y: bd }, { x: -bd, y: 0 }]; // on leg b (left)
+  const sqC = [B, A, { x: bd, y: ad + bd }, { x: ad + bd, y: ad }]; // on hypotenuse (outward)
 
   const allPts = [...sqA, ...sqB, ...sqC];
   const minX = Math.min(...allPts.map((p) => p.x)) - 0.6;
@@ -42,16 +46,16 @@ export default function PythagoreanSquares({ config }: { config: PythagoreanSqua
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340, display: "block", margin: "0 auto" }}>
-        <path d={path(sqA)} fill={`${color}22`} stroke={color} strokeWidth={1.5} />
-        <path d={path(sqB)} fill={`${GEO_BLUE}22`} stroke={GEO_BLUE} strokeWidth={1.5} />
-        <path d={path(sqC)} fill="rgba(63,160,106,0.14)" stroke="#3fa06a" strokeWidth={1.5} />
+        <g className="gm-fade"><path d={path(sqA)} fill={`${color}22`} stroke={color} strokeWidth={1.5} /></g>
+        <g className="gm-fade" style={{ animationDelay: "0.3s" }}><path d={path(sqB)} fill={`${GEO_BLUE}22`} stroke={GEO_BLUE} strokeWidth={1.5} /></g>
+        <g className="gm-fade" style={{ animationDelay: "0.6s" }}><path d={path(sqC)} fill="rgba(63,160,106,0.14)" stroke="#3fa06a" strokeWidth={1.5} /></g>
         {/* the triangle */}
         <path d={path([C, B, A])} fill="rgba(120,120,120,0.10)" stroke="var(--fg-1)" strokeWidth={2} />
         {/* right-angle square at C */}
         <path d={`M ${sx(0.5)} ${sy(0)} L ${sx(0.5)} ${sy(0.5)} L ${sx(0)} ${sy(0.5)}`} fill="none" stroke="var(--fg-2)" strokeWidth={1.2} />
-        <text x={sx(ca.x)} y={sy(ca.y) + 4} fontSize="12" textAnchor="middle" fill={color} fontWeight={700}>{a}² = {a * a}</text>
-        <text x={sx(cb.x)} y={sy(cb.y) + 4} fontSize="12" textAnchor="middle" fill={GEO_BLUE} fontWeight={700}>{b}² = {b * b}</text>
-        <text x={sx(cc.x)} y={sy(cc.y) + 4} fontSize="12" textAnchor="middle" fill="#3fa06a" fontWeight={700}>c² = {a * a + b * b}</text>
+        <text className="gm-fade" style={{ animationDelay: "0.15s" }} x={sx(ca.x)} y={sy(ca.y) + 4} fontSize="12" textAnchor="middle" fill={color} fontWeight={700}>{a}² = {a * a}</text>
+        <text className="gm-fade" style={{ animationDelay: "0.45s" }} x={sx(cb.x)} y={sy(cb.y) + 4} fontSize="12" textAnchor="middle" fill={GEO_BLUE} fontWeight={700}>{b}² = {b * b}</text>
+        <text className="gm-fade" style={{ animationDelay: "0.75s" }} x={sx(cc.x)} y={sy(cc.y) + 4} fontSize="12" textAnchor="middle" fill="#3fa06a" fontWeight={700}>c² = {a * a + b * b}</text>
       </svg>
 
       <div className="mt-2 rounded-xl p-3 text-center text-[15px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>

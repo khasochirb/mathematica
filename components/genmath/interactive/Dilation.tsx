@@ -23,7 +23,7 @@ export default function Dilation({ config }: { config: DilationConfig }) {
   });
   const k = KS[ki];
   // the image triangle glides along the dilation rays between steps
-  const kDraw = useAnimatedValue(k, { stiffness: 150, damping: 22 });
+  const kDraw = useAnimatedValue(k, { stiffness: 150, damping: 22, from: 1 }); // the image grows out of the pre-image on entry
 
   const O = { x: 1, y: 1 };
   const pre = [{ x: 4, y: 2 }, { x: 6, y: 5 }, { x: 3, y: 5 }];

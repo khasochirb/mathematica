@@ -22,7 +22,7 @@ export default function ArcSector({ config }: { config: ArcSectorConfig }) {
   });
   const theta = STEPS[ti];
   // the drawn sector glides between steps; every readout uses the exact theta
-  const thetaDraw = useAnimatedValue(theta, { stiffness: 160, damping: 22 });
+  const thetaDraw = useAnimatedValue(theta, { stiffness: 160, damping: 22, from: 0 }); // the sector unfurls on entry
   const cx = W / 2, cy = H / 2 - 4, R = 100;
 
   // sector from angle -90 (top) sweeping clockwise on screen... use start at right (0) going CCW in math but screen y down. We'll draw from 0° sweeping by theta.
