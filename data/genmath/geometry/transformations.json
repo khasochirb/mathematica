@@ -1,0 +1,2810 @@
+{
+  "slug": "transformations",
+  "title": "Transformations",
+  "unit": 12,
+  "status": "published",
+  "blurb": "Translations, reflections, rotations, dilations; symmetry; and congruence and similarity re-seen through motion.",
+  "buildsOn": "Congruence (Unit 4) and similarity (Unit 7); coordinates from Grade 6.",
+  "lessons": [
+    {
+      "slug": "translations",
+      "title": "Translations (Slides)",
+      "concreteComparison": "Slide a book straight across a table without turning it — every corner moves the same distance in the same direction, and the book stays exactly the same size and shape. That is a **translation**: a slide.",
+      "objective": "Translate a figure by a vector, writing the rule (x, y) → (x + a, y + b), and see that a slide preserves size and shape.",
+      "concept": [
+        "A **transformation** takes a figure (the **preimage**) to a new figure (the **image**). We mark image points with a prime: $A \\to A'$ (read \"A prime\").",
+        "A **translation** slides every point the same distance in the same direction — described by a **vector** $\\langle a, b \\rangle$: $a$ right, $b$ up (negatives go left / down).",
+        "In coordinates, a translation is $(x, y) \\to (x + a, y + b)$. Add the vector to every vertex.",
+        "A translation is a **rigid motion**: the image is **congruent** to the preimage — same lengths, same angles, just moved."
+      ],
+      "keyIdea": "A translation slides every point by the same vector ⟨a, b⟩: (x, y) → (x + a, y + b). It is a rigid motion, so the image is congruent to the original.",
+      "facts": [
+        {
+          "title": "Translation rule",
+          "latex": "$(x, y) \\to (x+a,\\, y+b)$",
+          "explanation": "Add the vector to each vertex."
+        },
+        {
+          "title": "Rigid motion",
+          "latex": "image $\\cong$ preimage",
+          "explanation": "Size and shape are preserved."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "tr-we1",
+          "statement": "Translate the point $(2, 3)$ by the vector $\\langle 4, 1 \\rangle$.",
+          "solution": "Add: $(2+4,\\ 3+1) = (6, 4)$.",
+          "check": [
+            "2+4 == 6",
+            "3+1 == 4"
+          ]
+        },
+        {
+          "id": "tr-we2",
+          "statement": "Translate $(5, -2)$ left $3$ and up $6$ — the vector $\\langle -3, 6 \\rangle$.",
+          "solution": "$(5 + (-3),\\ -2 + 6) = (2, 4)$.",
+          "check": [
+            "5+(-3) == 2",
+            "-2+6 == 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Swapping the two components of the vector.",
+          "correction": "The **first** number moves you horizontally (x), the **second** vertically (y): $\\langle a, b \\rangle$ means $+a$ to x, $+b$ to y.",
+          "authored": true
+        },
+        {
+          "text": "Thinking a slide changes the figure's size.",
+          "correction": "A translation is **rigid** — every length and angle is unchanged. The image is **congruent**.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "tr-t1",
+          "statement": "Translate $(1, 4)$ by $\\langle 2, -3 \\rangle$.",
+          "solution": "$(1+2,\\ 4-3) = (3, 1)$.",
+          "check": [
+            "1+2 == 3",
+            "4-3 == 1"
+          ]
+        },
+        {
+          "id": "tr-t2",
+          "statement": "Translate $(-2, 0)$ by $\\langle 5, 2 \\rangle$.",
+          "solution": "$(-2+5,\\ 0+2) = (3, 2)$.",
+          "check": [
+            "-2+5 == 3",
+            "0+2 == 2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Every point moves the same way",
+            "beats": [
+              "A **transformation** moves a figure to a new position.",
+              "The starting figure is the **preimage**; the result is the **image**.",
+              "A **translation** is a **slide** — same distance, same direction, for every point.",
+              "The figure keeps its size and shape."
+            ]
+          },
+          {
+            "kind": "transformPlane",
+            "eyebrow": "Concept A",
+            "title": "A slide by a vector",
+            "teach": "Tap **Apply** to slide triangle $ABC$ by the vector $\\langle 3, 2 \\rangle$ — 3 right and 2 up. Watch every vertex move the same way, and read how each coordinate changes. The image $A'B'C'$ is the same size and shape.",
+            "config": {
+              "transform": "translate",
+              "dx": 3,
+              "dy": 2,
+              "shape": [
+                {
+                  "x": 1,
+                  "y": 1
+                },
+                {
+                  "x": 3,
+                  "y": 1
+                },
+                {
+                  "x": 1,
+                  "y": 2
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The translation rule",
+            "title": "Add the vector",
+            "beats": [
+              "A vector $\\langle a, b \\rangle$ means: $a$ right, $b$ up.",
+              "The rule is $(x, y) \\to (x + a,\\ y + b)$.",
+              "Add $a$ to every x-coordinate, $b$ to every y-coordinate.",
+              "Negative $a$ slides left; negative $b$ slides down."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Translating a point",
+            "intro": "Add the vector to the point.",
+            "examples": [
+              {
+                "prompt": "$(2, 3)$ by $\\langle 4, 1 \\rangle$?",
+                "steps": [
+                  "$(2+4,\\ 3+1)$.",
+                  "$= (6, 4)$."
+                ],
+                "answer": "$(6, 4)$",
+                "check": [
+                  "2+4 == 6",
+                  "3+1 == 4"
+                ]
+              },
+              {
+                "prompt": "$(5, -2)$ by $\\langle -3, 6 \\rangle$?",
+                "steps": [
+                  "$(5-3,\\ -2+6)$.",
+                  "$= (2, 4)$."
+                ],
+                "answer": "$(2, 4)$",
+                "check": [
+                  "5-3 == 2",
+                  "-2+6 == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Translation practice",
+            "intro": "Add the vector to each coordinate.",
+            "problems": [
+              {
+                "prompt": "$(1, 4)$ by $\\langle 2, -3 \\rangle$?",
+                "options": [
+                  "$(3, 1)$",
+                  "$(3, 7)$",
+                  "$(-1, 1)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(1+2,\\ 4-3) = (3, 1)$.",
+                "check": [
+                  "1+2 == 3",
+                  "4-3 == 1"
+                ]
+              },
+              {
+                "prompt": "$(-2, 0)$ by $\\langle 5, 2 \\rangle$?",
+                "options": [
+                  "$(3, 2)$",
+                  "$(-7, 2)$",
+                  "$(3, -2)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(-2+5,\\ 0+2) = (3, 2)$.",
+                "check": [
+                  "-2+5 == 3",
+                  "0+2 == 2"
+                ]
+              },
+              {
+                "prompt": "The vector $\\langle a, b \\rangle$ moves a point —",
+                "options": [
+                  "$a$ right, $b$ up",
+                  "$a$ up, $b$ right",
+                  "$a$ left, $b$ down"
+                ],
+                "correctIndex": 0,
+                "explanation": "First component is horizontal, second vertical.",
+                "check": [
+                  "3+0 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "transformPlane",
+            "eyebrow": "Concept B",
+            "title": "Slides can go any direction",
+            "teach": "Here the vector is $\\langle -4, 1 \\rangle$ — 4 left and 1 up. Negatives just reverse the direction. Every vertex still moves identically, so the image stays congruent.",
+            "config": {
+              "transform": "translate",
+              "dx": -4,
+              "dy": 1,
+              "shape": [
+                {
+                  "x": 2,
+                  "y": 1
+                },
+                {
+                  "x": 5,
+                  "y": 1
+                },
+                {
+                  "x": 2,
+                  "y": 3
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "A rigid motion",
+            "title": "Size and shape survive",
+            "beats": [
+              "A translation is a **rigid motion** — a slide that moves without distorting.",
+              "Lengths, angles, and area are all unchanged.",
+              "The image is **congruent** to the preimage: $ABC \\cong A'B'C'$.",
+              "Only the position changes."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Translating a figure",
+            "intro": "Slide every vertex by the same vector.",
+            "examples": [
+              {
+                "prompt": "Translate $A(1, 1)$, $B(3, 1)$, $C(1, 2)$ by $\\langle 2, 3 \\rangle$. Find $B'$.",
+                "steps": [
+                  "$B' = (3+2,\\ 1+3)$.",
+                  "$= (5, 4)$."
+                ],
+                "answer": "$(5, 4)$",
+                "check": [
+                  "3+2 == 5",
+                  "1+3 == 4"
+                ]
+              },
+              {
+                "prompt": "Same triangle and vector. Find $C'$.",
+                "steps": [
+                  "$C' = (1+2,\\ 2+3)$.",
+                  "$= (3, 5)$."
+                ],
+                "answer": "$(3, 5)$",
+                "check": [
+                  "1+2 == 3",
+                  "2+3 == 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Figure practice",
+            "intro": "Every vertex uses the same vector.",
+            "problems": [
+              {
+                "prompt": "Translate $(4, 2)$ by $\\langle -1, -1 \\rangle$?",
+                "options": [
+                  "$(3, 1)$",
+                  "$(5, 3)$",
+                  "$(3, 3)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(4-1,\\ 2-1) = (3, 1)$.",
+                "check": [
+                  "4-1 == 3",
+                  "2-1 == 1"
+                ]
+              },
+              {
+                "prompt": "A translation maps a triangle to one that is —",
+                "options": [
+                  "congruent",
+                  "larger",
+                  "smaller"
+                ],
+                "correctIndex": 0,
+                "explanation": "Rigid motion: same size and shape.",
+                "check": [
+                  "5-1 == 4"
+                ]
+              },
+              {
+                "prompt": "$(0, 0)$ by $\\langle 6, -4 \\rangle$?",
+                "options": [
+                  "$(6, -4)$",
+                  "$(-6, 4)$",
+                  "$(6, 4)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(0+6,\\ 0-4) = (6, -4)$.",
+                "check": [
+                  "0+6 == 6",
+                  "0-4 == -4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Wallpaper and honeycombs",
+            "body": "A pattern that repeats by sliding — wallpaper, floor tiles, a honeycomb — is built entirely from translations of one tile. Mathematicians proved there are exactly 17 essentially different ways to fill the plane with a repeating pattern, and translations are the engine behind every one of them."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Translate a point",
+            "prompt": "What is the image of $(3, -1)$ under the translation $\\langle 2, 5 \\rangle$?",
+            "options": [
+              "$(5, 4)$",
+              "$(1, -6)$",
+              "$(5, -6)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(3+2,\\ -1+5) = (5, 4)$.",
+            "check": [
+              "3+2 == 5",
+              "-1+5 == 4"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **translation** slides every point by a vector $\\langle a, b \\rangle$: $(x, y) \\to (x+a,\\ y+b)$.",
+              "The **first** component moves x (horizontal), the **second** moves y (vertical).",
+              "It is a **rigid motion** — the image is **congruent** to the preimage."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's slide points and figures by vectors."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$(2, 3)$ by $\\langle 4, 1 \\rangle$?",
+                "options": [
+                  "$(6, 4)$",
+                  "$(6, 3)$",
+                  "$(2, 4)$",
+                  "$(-2, 2)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(2+4,\\ 3+1) = (6, 4)$.",
+                "check": [
+                  "2+4 == 6",
+                  "3+1 == 4"
+                ]
+              },
+              {
+                "prompt": "$(5, -2)$ by $\\langle -3, 6 \\rangle$?",
+                "options": [
+                  "$(2, 4)$",
+                  "$(8, 4)$",
+                  "$(2, -8)$",
+                  "$(-3, 6)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(5-3,\\ -2+6) = (2, 4)$.",
+                "check": [
+                  "5-3 == 2",
+                  "-2+6 == 4"
+                ]
+              },
+              {
+                "prompt": "$(0, 5)$ by $\\langle 3, -5 \\rangle$?",
+                "options": [
+                  "$(3, 0)$",
+                  "$(3, 10)$",
+                  "$(-3, 0)$",
+                  "$(3, 5)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(0+3,\\ 5-5) = (3, 0)$.",
+                "check": [
+                  "0+3 == 3",
+                  "5-5 == 0"
+                ]
+              },
+              {
+                "prompt": "A translation preserves —",
+                "options": [
+                  "length and angle",
+                  "length only",
+                  "angle only",
+                  "neither"
+                ],
+                "correctIndex": 0,
+                "explanation": "It's a rigid motion.",
+                "check": [
+                  "4-0 == 4"
+                ]
+              },
+              {
+                "prompt": "$(-1, -1)$ by $\\langle 5, 5 \\rangle$?",
+                "options": [
+                  "$(4, 4)$",
+                  "$(-6, -6)$",
+                  "$(4, -6)$",
+                  "$(6, 6)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(-1+5,\\ -1+5) = (4, 4)$.",
+                "check": [
+                  "-1+5 == 4"
+                ]
+              },
+              {
+                "prompt": "The image of a point is written —",
+                "options": [
+                  "with a prime, like $A'$",
+                  "in lowercase",
+                  "with a bar",
+                  "with a star"
+                ],
+                "correctIndex": 0,
+                "explanation": "$A \\to A'$.",
+                "check": [
+                  "1+1 == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Translations (Slides)\"",
+            "body": "You can slide any figure by a vector. Next: reflections — flipping a figure across a line."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "reflections",
+      "title": "Reflections (Flips)",
+      "concreteComparison": "Hold a shape up to a mirror and you see it flipped — left and right swap, but it's the same size. A **reflection** flips a figure across a line, the **line of reflection**, which acts exactly like that mirror.",
+      "objective": "Reflect a figure over the x-axis, the y-axis, and the line y = x, using the coordinate rules, and see that a flip is a rigid motion.",
+      "concept": [
+        "A **reflection** flips a figure across a **line of reflection**. Each point and its image are the same distance from that line, on opposite sides.",
+        "Over the **x-axis**: $(x, y) \\to (x, -y)$ — the y-coordinate flips sign.",
+        "Over the **y-axis**: $(x, y) \\to (-x, y)$ — the x-coordinate flips sign.",
+        "Over the line **y = x**: $(x, y) \\to (y, x)$ — the two coordinates swap. A reflection is a **rigid motion**, so the image is **congruent**."
+      ],
+      "keyIdea": "A reflection flips a figure across a line. Over the x-axis (x, y)→(x, −y); over the y-axis (x, y)→(−x, y); over y = x (x, y)→(y, x). It is a rigid motion.",
+      "facts": [
+        {
+          "title": "Over the x-axis",
+          "latex": "$(x, y) \\to (x, -y)$",
+          "explanation": "Negate y."
+        },
+        {
+          "title": "Over the y-axis",
+          "latex": "$(x, y) \\to (-x, y)$",
+          "explanation": "Negate x."
+        },
+        {
+          "title": "Over y = x",
+          "latex": "$(x, y) \\to (y, x)$",
+          "explanation": "Swap the coordinates."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rf-we1",
+          "statement": "Reflect $(4, 3)$ over the x-axis.",
+          "solution": "Negate y: $(4, -3)$.",
+          "check": [
+            "4 == 4",
+            "0-3 == -3"
+          ]
+        },
+        {
+          "id": "rf-we2",
+          "statement": "Reflect $(4, 3)$ over the line $y = x$.",
+          "solution": "Swap: $(3, 4)$.",
+          "check": [
+            "3 == 3",
+            "4 == 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Negating the wrong coordinate.",
+          "correction": "Over the **x-axis** you flip **y** (points move up/down across it); over the **y-axis** you flip **x**.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting to swap for y = x.",
+          "correction": "Reflecting over $y = x$ **swaps** the coordinates: $(x, y) \\to (y, x)$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rf-t1",
+          "statement": "Reflect $(2, -5)$ over the y-axis.",
+          "solution": "Negate x: $(-2, -5)$.",
+          "check": [
+            "0-2 == -2",
+            "-5 == -5"
+          ]
+        },
+        {
+          "id": "rf-t2",
+          "statement": "Reflect $(-1, 6)$ over y = x.",
+          "solution": "Swap: $(6, -1)$.",
+          "check": [
+            "6 == 6",
+            "0-1 == -1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Flip across a line",
+            "beats": [
+              "A **reflection** flips a figure across a line — the **line of reflection**.",
+              "It works like a mirror: same size, but reversed.",
+              "Each point and its image are equally far from the line.",
+              "We'll flip over the x-axis, the y-axis, and the line $y = x$."
+            ]
+          },
+          {
+            "kind": "transformPlane",
+            "eyebrow": "Concept A",
+            "title": "Flip over the x-axis",
+            "teach": "Tap **Apply** to flip triangle $ABC$ over the **x-axis** (the bold horizontal line acts as the mirror). Each point keeps its x but its y flips sign: $(x, y) \\to (x, -y)$.",
+            "config": {
+              "transform": "reflectX",
+              "shape": [
+                {
+                  "x": 1,
+                  "y": 1
+                },
+                {
+                  "x": 4,
+                  "y": 1
+                },
+                {
+                  "x": 2,
+                  "y": 3
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Over the x-axis",
+            "title": "Negate the y-coordinate",
+            "beats": [
+              "The x-axis is the mirror.",
+              "A point above it lands the same distance below.",
+              "Rule: $(x, y) \\to (x, -y)$.",
+              "$(4, 3) \\to (4, -3)$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Reflecting over the x-axis",
+            "intro": "Keep x, negate y.",
+            "examples": [
+              {
+                "prompt": "$(4, 3)$ over the x-axis?",
+                "steps": [
+                  "Keep x, negate y.",
+                  "$(4, -3)$."
+                ],
+                "answer": "$(4, -3)$",
+                "check": [
+                  "4 == 4",
+                  "0-3 == -3"
+                ]
+              },
+              {
+                "prompt": "$(-2, 5)$ over the x-axis?",
+                "steps": [
+                  "Keep x, negate y.",
+                  "$(-2, -5)$."
+                ],
+                "answer": "$(-2, -5)$",
+                "check": [
+                  "-2 == -2",
+                  "0-5 == -5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "x-axis practice",
+            "intro": "(x, y) → (x, −y).",
+            "problems": [
+              {
+                "prompt": "$(3, 7)$ over the x-axis?",
+                "options": [
+                  "$(3, -7)$",
+                  "$(-3, 7)$",
+                  "$(7, 3)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Negate y.",
+                "check": [
+                  "3 == 3",
+                  "0-7 == -7"
+                ]
+              },
+              {
+                "prompt": "$(6, -1)$ over the x-axis?",
+                "options": [
+                  "$(6, 1)$",
+                  "$(-6, -1)$",
+                  "$(6, -1)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$-(-1) = 1$.",
+                "check": [
+                  "6 == 6",
+                  "-(-1) == 1"
+                ]
+              },
+              {
+                "prompt": "Reflecting over the x-axis flips the sign of —",
+                "options": [
+                  "y",
+                  "x",
+                  "both"
+                ],
+                "correctIndex": 0,
+                "explanation": "The y-coordinate.",
+                "check": [
+                  "2 == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "transformPlane",
+            "eyebrow": "Concept B",
+            "title": "Flip over the y-axis",
+            "teach": "Now the **y-axis** is the mirror. Each point keeps its y but its x flips sign: $(x, y) \\to (-x, y)$. Tap **Apply**.",
+            "config": {
+              "transform": "reflectY",
+              "shape": [
+                {
+                  "x": 1,
+                  "y": 1
+                },
+                {
+                  "x": 4,
+                  "y": 1
+                },
+                {
+                  "x": 2,
+                  "y": 3
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Over the y-axis",
+            "title": "Negate the x-coordinate",
+            "beats": [
+              "The y-axis is the mirror.",
+              "Left and right swap; up/down stays.",
+              "Rule: $(x, y) \\to (-x, y)$.",
+              "$(4, 3) \\to (-4, 3)$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Reflecting over the y-axis",
+            "intro": "Negate x, keep y.",
+            "examples": [
+              {
+                "prompt": "$(4, 3)$ over the y-axis?",
+                "steps": [
+                  "Negate x, keep y.",
+                  "$(-4, 3)$."
+                ],
+                "answer": "$(-4, 3)$",
+                "check": [
+                  "0-4 == -4",
+                  "3 == 3"
+                ]
+              },
+              {
+                "prompt": "$(-2, -5)$ over the y-axis?",
+                "steps": [
+                  "$-(-2) = 2$, keep y.",
+                  "$(2, -5)$."
+                ],
+                "answer": "$(2, -5)$",
+                "check": [
+                  "-(-2) == 2",
+                  "-5 == -5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "transformPlane",
+            "eyebrow": "Concept C",
+            "title": "Flip over the line y = x",
+            "teach": "The mirror can be a slanted line. Over $y = x$ (the blue diagonal), the coordinates **swap**: $(x, y) \\to (y, x)$. A point already on the line doesn't move.",
+            "config": {
+              "transform": "reflectYeqX",
+              "shape": [
+                {
+                  "x": 1,
+                  "y": 1
+                },
+                {
+                  "x": 3,
+                  "y": 1
+                },
+                {
+                  "x": 1,
+                  "y": 2
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Over y = x",
+            "title": "Swap the coordinates",
+            "beats": [
+              "The line $y = x$ runs diagonally through the origin.",
+              "Reflecting over it **swaps** x and y.",
+              "Rule: $(x, y) \\to (y, x)$.",
+              "$(4, 3) \\to (3, 4)$."
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "y-axis & y = x practice",
+            "intro": "Negate x, or swap.",
+            "problems": [
+              {
+                "prompt": "$(2, -5)$ over the y-axis?",
+                "options": [
+                  "$(-2, -5)$",
+                  "$(2, 5)$",
+                  "$(-5, 2)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Negate x.",
+                "check": [
+                  "0-2 == -2",
+                  "-5 == -5"
+                ]
+              },
+              {
+                "prompt": "$(-1, 6)$ over $y = x$?",
+                "options": [
+                  "$(6, -1)$",
+                  "$(1, -6)$",
+                  "$(-6, 1)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Swap the coordinates.",
+                "check": [
+                  "6 == 6",
+                  "-1 == -1"
+                ]
+              },
+              {
+                "prompt": "Reflecting over $y = x$ —",
+                "options": [
+                  "swaps x and y",
+                  "negates x",
+                  "negates y"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(x, y) \\to (y, x)$.",
+                "check": [
+                  "3 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Your face isn't symmetric",
+            "body": "A reflection over a vertical line is what a mirror does — which is why your mirror image parts its hair on the 'wrong' side. Photos of a face made by mirroring one half onto the other look subtly wrong to us: no real face is perfectly symmetric, and our brains notice the too-perfect flip."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Reflect a point",
+            "prompt": "What is the image of $(5, 2)$ reflected over the x-axis?",
+            "options": [
+              "$(5, -2)$",
+              "$(-5, 2)$",
+              "$(2, 5)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Over the x-axis, negate y: $(5, -2)$.",
+            "check": [
+              "5 == 5",
+              "0-2 == -2"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **reflection** flips a figure across a line; it is a **rigid motion** (congruent image).",
+              "Over the **x-axis**: $(x, y) \\to (x, -y)$. Over the **y-axis**: $(x, y) \\to (-x, y)$.",
+              "Over **y = x**: $(x, y) \\to (y, x)$ — swap the coordinates."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's reflect points over the x-axis, the y-axis, and y = x."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$(4, 3)$ over the x-axis?",
+                "options": [
+                  "$(4, -3)$",
+                  "$(-4, 3)$",
+                  "$(3, 4)$",
+                  "$(-4, -3)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Negate y.",
+                "check": [
+                  "4 == 4",
+                  "0-3 == -3"
+                ]
+              },
+              {
+                "prompt": "$(4, 3)$ over the y-axis?",
+                "options": [
+                  "$(-4, 3)$",
+                  "$(4, -3)$",
+                  "$(3, 4)$",
+                  "$(-4, -3)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Negate x.",
+                "check": [
+                  "0-4 == -4",
+                  "3 == 3"
+                ]
+              },
+              {
+                "prompt": "$(4, 3)$ over $y = x$?",
+                "options": [
+                  "$(3, 4)$",
+                  "$(4, -3)$",
+                  "$(-4, 3)$",
+                  "$(-3, -4)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Swap.",
+                "check": [
+                  "3 == 3",
+                  "4 == 4"
+                ]
+              },
+              {
+                "prompt": "$(-6, 2)$ over the y-axis?",
+                "options": [
+                  "$(6, 2)$",
+                  "$(-6, -2)$",
+                  "$(2, -6)$",
+                  "$(6, -2)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$-(-6) = 6$.",
+                "check": [
+                  "-(-6) == 6",
+                  "2 == 2"
+                ]
+              },
+              {
+                "prompt": "$(0, -4)$ over the x-axis?",
+                "options": [
+                  "$(0, 4)$",
+                  "$(0, -4)$",
+                  "$(4, 0)$",
+                  "$(-4, 0)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Negate y.",
+                "check": [
+                  "0 == 0",
+                  "-(-4) == 4"
+                ]
+              },
+              {
+                "prompt": "A reflection produces an image that is —",
+                "options": [
+                  "congruent",
+                  "similar but larger",
+                  "smaller"
+                ],
+                "correctIndex": 0,
+                "explanation": "Rigid motion.",
+                "check": [
+                  "2 == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Reflections (Flips)\"",
+            "body": "You can flip a figure over any of the three key lines. Next: rotations — turning a figure about a point."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "rotations",
+      "title": "Rotations (Turns)",
+      "concreteComparison": "The hands of a clock turn about the center pin; a Ferris wheel turns about its hub. A **rotation** turns a figure about a fixed point — the **center of rotation** — by a certain angle, without changing its size.",
+      "objective": "Rotate a figure 90°, 180°, and 270° about the origin using the coordinate rules, and see that a turn is a rigid motion.",
+      "concept": [
+        "A **rotation** turns a figure about a fixed **center of rotation** by an angle. We measure angles **counterclockwise** unless told otherwise.",
+        "About the **origin**, the quarter-turn rules are: $90°: (x, y) \\to (-y, x)$; $180°: (x, y) \\to (-x, -y)$; $270°: (x, y) \\to (y, -x)$.",
+        "A $180°$ turn sends every point straight through the origin to the opposite side — the same as reflecting through the origin.",
+        "A rotation is a **rigid motion**: the image is **congruent** to the preimage."
+      ],
+      "keyIdea": "A rotation about the origin: 90° → (−y, x); 180° → (−x, −y); 270° → (y, −x). It is a rigid motion, so the image is congruent.",
+      "facts": [
+        {
+          "title": "90° about O",
+          "latex": "$(x, y) \\to (-y, x)$",
+          "explanation": "Quarter turn counterclockwise."
+        },
+        {
+          "title": "180° about O",
+          "latex": "$(x, y) \\to (-x, -y)$",
+          "explanation": "Half turn — both signs flip."
+        },
+        {
+          "title": "270° about O",
+          "latex": "$(x, y) \\to (y, -x)$",
+          "explanation": "Three-quarter turn."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ro-we1",
+          "statement": "Rotate $(4, 1)$ by $90°$ about the origin.",
+          "solution": "$(x, y) \\to (-y, x)$: $(-1, 4)$.",
+          "check": [
+            "0-1 == -1",
+            "4 == 4"
+          ]
+        },
+        {
+          "id": "ro-we2",
+          "statement": "Rotate $(4, 1)$ by $180°$ about the origin.",
+          "solution": "$(x, y) \\to (-x, -y)$: $(-4, -1)$.",
+          "check": [
+            "0-4 == -4",
+            "0-1 == -1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Forgetting to swap x and y for a 90° turn.",
+          "correction": "A $90°$ turn **swaps** the coordinates and negates the new first one: $(x, y) \\to (-y, x)$.",
+          "authored": true
+        },
+        {
+          "text": "Only flipping one sign for a 180° turn.",
+          "correction": "A $180°$ turn flips **both** signs: $(x, y) \\to (-x, -y)$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ro-t1",
+          "statement": "Rotate $(2, 5)$ by $90°$ about the origin.",
+          "solution": "$(-5, 2)$.",
+          "check": [
+            "0-5 == -5",
+            "2 == 2"
+          ]
+        },
+        {
+          "id": "ro-t2",
+          "statement": "Rotate $(3, -2)$ by $270°$ about the origin.",
+          "solution": "$(x, y) \\to (y, -x)$: $(-2, -3)$.",
+          "check": [
+            "-2 == -2",
+            "0-3 == -3"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Turn about a point",
+            "beats": [
+              "A **rotation** turns a figure about a fixed **center**.",
+              "We'll always turn about the **origin**.",
+              "Angles are measured **counterclockwise**.",
+              "The size and shape never change."
+            ]
+          },
+          {
+            "kind": "transformPlane",
+            "eyebrow": "Concept A",
+            "title": "A quarter turn (90°)",
+            "teach": "Tap **Apply** to turn triangle $ABC$ by $90°$ counterclockwise about the origin (the blue dot). The rule is $(x, y) \\to (-y, x)$ — swap, then negate the new first coordinate.",
+            "config": {
+              "transform": "rotate",
+              "deg": 90,
+              "shape": [
+                {
+                  "x": 1,
+                  "y": 1
+                },
+                {
+                  "x": 3,
+                  "y": 1
+                },
+                {
+                  "x": 1,
+                  "y": 2
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "90° about the origin",
+            "title": "Swap and negate",
+            "beats": [
+              "A $90°$ counterclockwise turn: $(x, y) \\to (-y, x)$.",
+              "Swap the two coordinates, then negate the first.",
+              "$(4, 1) \\to (-1, 4)$.",
+              "Four $90°$ turns bring you all the way around."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Rotating 90°",
+            "intro": "(x, y) → (−y, x).",
+            "examples": [
+              {
+                "prompt": "$(4, 1)$ by $90°$?",
+                "steps": [
+                  "$(x, y) \\to (-y, x)$.",
+                  "$(-1, 4)$."
+                ],
+                "answer": "$(-1, 4)$",
+                "check": [
+                  "0-1 == -1",
+                  "4 == 4"
+                ]
+              },
+              {
+                "prompt": "$(2, 5)$ by $90°$?",
+                "steps": [
+                  "$(-5, 2)$."
+                ],
+                "answer": "$(-5, 2)$",
+                "check": [
+                  "0-5 == -5",
+                  "2 == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "90° practice",
+            "intro": "Swap, negate the first.",
+            "problems": [
+              {
+                "prompt": "$(3, 2)$ by $90°$?",
+                "options": [
+                  "$(-2, 3)$",
+                  "$(2, 3)$",
+                  "$(-3, 2)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(-y, x) = (-2, 3)$.",
+                "check": [
+                  "0-2 == -2",
+                  "3 == 3"
+                ]
+              },
+              {
+                "prompt": "$(-1, 4)$ by $90°$?",
+                "options": [
+                  "$(-4, -1)$",
+                  "$(4, -1)$",
+                  "$(-4, 1)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(-y, x) = (-4, -1)$.",
+                "check": [
+                  "0-4 == -4",
+                  "-1 == -1"
+                ]
+              },
+              {
+                "prompt": "Rotations are measured — unless stated otherwise.",
+                "options": [
+                  "counterclockwise",
+                  "clockwise",
+                  "either way"
+                ],
+                "correctIndex": 0,
+                "explanation": "Positive angles turn counterclockwise.",
+                "check": [
+                  "2 == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "transformPlane",
+            "eyebrow": "Concept B",
+            "title": "A half turn (180°)",
+            "teach": "A $180°$ turn sends each point straight through the center to the opposite side: $(x, y) \\to (-x, -y)$. Both signs flip. Tap **Apply**.",
+            "config": {
+              "transform": "rotate",
+              "deg": 180,
+              "shape": [
+                {
+                  "x": 1,
+                  "y": 1
+                },
+                {
+                  "x": 3,
+                  "y": 1
+                },
+                {
+                  "x": 1,
+                  "y": 2
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "180° about the origin",
+            "title": "Flip both signs",
+            "beats": [
+              "A $180°$ turn: $(x, y) \\to (-x, -y)$.",
+              "Every point goes through the origin to the far side.",
+              "$(4, 1) \\to (-4, -1)$.",
+              "It's the same forwards and backwards — clockwise or counter."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Rotating 180° and 270°",
+            "intro": "Half turn / three-quarter turn.",
+            "examples": [
+              {
+                "prompt": "$(4, 1)$ by $180°$?",
+                "steps": [
+                  "$(-x, -y)$.",
+                  "$(-4, -1)$."
+                ],
+                "answer": "$(-4, -1)$",
+                "check": [
+                  "0-4 == -4",
+                  "0-1 == -1"
+                ]
+              },
+              {
+                "prompt": "$(3, -2)$ by $270°$?",
+                "steps": [
+                  "$(x, y) \\to (y, -x)$.",
+                  "$(-2, -3)$."
+                ],
+                "answer": "$(-2, -3)$",
+                "check": [
+                  "-2 == -2",
+                  "0-3 == -3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "180° & 270° practice",
+            "intro": "Both signs flip, or (y, −x).",
+            "problems": [
+              {
+                "prompt": "$(2, 5)$ by $180°$?",
+                "options": [
+                  "$(-2, -5)$",
+                  "$(2, -5)$",
+                  "$(-5, -2)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both signs flip.",
+                "check": [
+                  "0-2 == -2",
+                  "0-5 == -5"
+                ]
+              },
+              {
+                "prompt": "$(4, 1)$ by $270°$?",
+                "options": [
+                  "$(1, -4)$",
+                  "$(-1, 4)$",
+                  "$(-1, -4)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(y, -x) = (1, -4)$.",
+                "check": [
+                  "1 == 1",
+                  "0-4 == -4"
+                ]
+              },
+              {
+                "prompt": "A $180°$ rotation flips —",
+                "options": [
+                  "both signs",
+                  "only x",
+                  "only y"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(-x, -y)$.",
+                "check": [
+                  "3 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why S, N and Z look the same upside down",
+            "body": "Rotate the letters S, N, Z, H, I, O, or X by $180°$ and they land back on themselves. That's why the word 'SWIMS' reads the same rotated a half-turn, and why some playing cards look identical no matter which end is up."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Rotate a point",
+            "prompt": "What is the image of $(5, 2)$ rotated $90°$ about the origin?",
+            "options": [
+              "$(-2, 5)$",
+              "$(2, -5)$",
+              "$(-5, -2)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(x, y) \\to (-y, x) = (-2, 5)$.",
+            "check": [
+              "0-2 == -2",
+              "5 == 5"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **rotation** turns a figure about a center; about the origin the rules are $90°: (-y, x)$, $180°: (-x, -y)$, $270°: (y, -x)$.",
+              "Angles are **counterclockwise** unless stated otherwise.",
+              "It is a **rigid motion** — the image is **congruent**."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's rotate points 90°, 180°, and 270° about the origin."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$(4, 1)$ by $90°$?",
+                "options": [
+                  "$(-1, 4)$",
+                  "$(1, -4)$",
+                  "$(-4, -1)$",
+                  "$(1, 4)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(-y, x)$.",
+                "check": [
+                  "0-1 == -1",
+                  "4 == 4"
+                ]
+              },
+              {
+                "prompt": "$(4, 1)$ by $180°$?",
+                "options": [
+                  "$(-4, -1)$",
+                  "$(-1, 4)$",
+                  "$(4, -1)$",
+                  "$(1, -4)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(-x, -y)$.",
+                "check": [
+                  "0-4 == -4",
+                  "0-1 == -1"
+                ]
+              },
+              {
+                "prompt": "$(4, 1)$ by $270°$?",
+                "options": [
+                  "$(1, -4)$",
+                  "$(-1, 4)$",
+                  "$(-4, -1)$",
+                  "$(-1, -4)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(y, -x)$.",
+                "check": [
+                  "1 == 1",
+                  "0-4 == -4"
+                ]
+              },
+              {
+                "prompt": "$(-3, 2)$ by $180°$?",
+                "options": [
+                  "$(3, -2)$",
+                  "$(-3, -2)$",
+                  "$(2, -3)$",
+                  "$(3, 2)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both signs flip.",
+                "check": [
+                  "-(-3) == 3",
+                  "0-2 == -2"
+                ]
+              },
+              {
+                "prompt": "$(0, 5)$ by $90°$?",
+                "options": [
+                  "$(-5, 0)$",
+                  "$(5, 0)$",
+                  "$(0, -5)$",
+                  "$(0, 5)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(-y, x) = (-5, 0)$.",
+                "check": [
+                  "0-5 == -5",
+                  "0 == 0"
+                ]
+              },
+              {
+                "prompt": "A rotation produces an image that is —",
+                "options": [
+                  "congruent",
+                  "larger",
+                  "smaller"
+                ],
+                "correctIndex": 0,
+                "explanation": "Rigid motion.",
+                "check": [
+                  "2 == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Rotations (Turns)\"",
+            "body": "You can turn a figure about the origin. Next: symmetry — when a figure maps onto itself."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "symmetry",
+      "title": "Symmetry",
+      "concreteComparison": "A butterfly's two wings match across its body; a snowflake looks the same after a small turn. **Symmetry** is when a transformation maps a figure exactly onto itself — a reflection or a rotation that leaves the figure looking unchanged.",
+      "objective": "Identify line (reflection) symmetry and rotational symmetry, count lines of symmetry, and give the order of rotational symmetry.",
+      "concept": [
+        "A figure has **line symmetry** (reflection symmetry) if some line divides it so one half is the mirror image of the other. That line is a **line of symmetry**.",
+        "A figure can have several lines of symmetry: a rectangle has $2$, an equilateral triangle has $3$, and a square has $4$. A regular $n$-gon has $n$.",
+        "A figure has **rotational symmetry** if a rotation of less than $360°$ about its center maps it onto itself. The **order** is how many times it matches in one full turn.",
+        "A regular $n$-gon has rotational symmetry of **order $n$** (it matches every $360°/n$). A figure with order-$2$ rotational symmetry is said to have **point symmetry** (it maps onto itself under a $180°$ turn)."
+      ],
+      "keyIdea": "Line symmetry: a reflection maps the figure onto itself (count the mirror lines). Rotational symmetry: a turn under 360° maps it onto itself; the order is how many matches in a full turn. A regular n-gon has n of each.",
+      "facts": [
+        {
+          "title": "Line of symmetry",
+          "latex": "reflection onto itself",
+          "explanation": "One half mirrors the other."
+        },
+        {
+          "title": "Order of rotation",
+          "latex": "$360° \\div$ (smallest turn)",
+          "explanation": "Matches per full turn."
+        },
+        {
+          "title": "Regular n-gon",
+          "latex": "$n$ lines, order $n$",
+          "explanation": "Square: 4 and 4."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sy-we1",
+          "statement": "How many lines of symmetry does a square have?",
+          "solution": "A square (regular $4$-gon) has $4$: two through opposite sides, two through opposite corners.",
+          "check": [
+            "4 == 4"
+          ]
+        },
+        {
+          "id": "sy-we2",
+          "statement": "What is the order of rotational symmetry of a regular hexagon?",
+          "solution": "A regular $n$-gon has order $n$, so a hexagon has order $6$ (it matches every $360°/6 = 60°$).",
+          "check": [
+            "360/6 == 60",
+            "6 == 6"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Counting a full 360° turn as rotational symmetry.",
+          "correction": "Every figure looks the same after $360°$. Rotational symmetry needs a match at **less than** $360°$.",
+          "authored": true
+        },
+        {
+          "text": "Assuming every figure with line symmetry has the same number of lines.",
+          "correction": "Count carefully: a rectangle has $2$ lines, not $4$ — its diagonals are **not** lines of symmetry.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sy-t1",
+          "statement": "How many lines of symmetry does an equilateral triangle have?",
+          "solution": "$3$ — one from each vertex through the opposite side.",
+          "check": [
+            "3 == 3"
+          ]
+        },
+        {
+          "id": "sy-t2",
+          "statement": "A regular pentagon matches every how many degrees when rotated?",
+          "solution": "$360/5 = 72°$.",
+          "check": [
+            "360/5 == 72"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Mapping a figure onto itself",
+            "beats": [
+              "**Symmetry** = a transformation that leaves a figure looking unchanged.",
+              "**Line symmetry**: a reflection maps the figure onto itself.",
+              "**Rotational symmetry**: a turn (under $360°$) maps it onto itself.",
+              "We'll count lines of symmetry and orders of rotation."
+            ]
+          },
+          {
+            "kind": "transformPlane",
+            "eyebrow": "Concept A",
+            "title": "Line symmetry",
+            "teach": "This triangle is symmetric about the **y-axis**. Tap **Apply** to reflect it over the y-axis — the image lands exactly on the original. That overlap IS the symmetry: the y-axis is a line of symmetry.",
+            "config": {
+              "transform": "reflectY",
+              "shape": [
+                {
+                  "x": -2,
+                  "y": 0
+                },
+                {
+                  "x": 2,
+                  "y": 0
+                },
+                {
+                  "x": 0,
+                  "y": 3
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Line of symmetry",
+            "title": "One half mirrors the other",
+            "beats": [
+              "A **line of symmetry** splits a figure into mirror-image halves.",
+              "Reflecting across it maps the figure onto itself.",
+              "A rectangle has $2$; an equilateral triangle has $3$.",
+              "A square has $4$; a regular $n$-gon has $n$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Counting lines of symmetry",
+            "intro": "How many mirror lines?",
+            "examples": [
+              {
+                "prompt": "A square?",
+                "steps": [
+                  "Two through opposite sides, two through opposite corners.",
+                  "$4$."
+                ],
+                "answer": "$4$",
+                "check": [
+                  "4 == 4"
+                ]
+              },
+              {
+                "prompt": "A rectangle (not a square)?",
+                "steps": [
+                  "Only through the midpoints of opposite sides.",
+                  "$2$ (the diagonals are NOT lines of symmetry)."
+                ],
+                "answer": "$2$",
+                "check": [
+                  "2 == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Line symmetry practice",
+            "intro": "Count the mirror lines.",
+            "problems": [
+              {
+                "prompt": "An equilateral triangle has how many lines of symmetry?",
+                "options": [
+                  "$3$",
+                  "$1$",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "One from each vertex.",
+                "check": [
+                  "3 == 3"
+                ]
+              },
+              {
+                "prompt": "A regular hexagon has how many lines of symmetry?",
+                "options": [
+                  "$6$",
+                  "$3$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "A regular $n$-gon has $n$.",
+                "check": [
+                  "6 == 6"
+                ]
+              },
+              {
+                "prompt": "A rectangle's diagonals are —",
+                "options": [
+                  "not lines of symmetry",
+                  "both lines of symmetry",
+                  "the only lines of symmetry"
+                ],
+                "correctIndex": 0,
+                "explanation": "Reflecting a non-square rectangle over a diagonal does not map it onto itself.",
+                "check": [
+                  "2 == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "transformPlane",
+            "eyebrow": "Concept B",
+            "title": "Rotational symmetry",
+            "teach": "This parallelogram maps onto itself under a $180°$ turn about the origin. Tap **Apply** — the image lands back on the original. That's rotational symmetry of order $2$ (point symmetry).",
+            "config": {
+              "transform": "rotate",
+              "deg": 180,
+              "shape": [
+                {
+                  "x": -3,
+                  "y": -1
+                },
+                {
+                  "x": -1,
+                  "y": 1
+                },
+                {
+                  "x": 3,
+                  "y": 1
+                },
+                {
+                  "x": 1,
+                  "y": -1
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Rotational symmetry",
+            "title": "Matches within one turn",
+            "beats": [
+              "A figure has **rotational symmetry** if a turn under $360°$ maps it onto itself.",
+              "The **order** = how many times it matches in a full turn.",
+              "It matches every $360° \\div \\text{order}$.",
+              "Order $2$ (a $180°$ match) is called **point symmetry**."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Order of rotational symmetry",
+            "intro": "360° ÷ smallest turn.",
+            "examples": [
+              {
+                "prompt": "A regular hexagon — what order?",
+                "steps": [
+                  "A regular $n$-gon has order $n$.",
+                  "Order $6$; it matches every $360/6 = 60°$."
+                ],
+                "answer": "order $6$",
+                "check": [
+                  "360/6 == 60"
+                ]
+              },
+              {
+                "prompt": "A parallelogram (not special) — what order?",
+                "steps": [
+                  "It matches at $180°$ only.",
+                  "Order $2$ (point symmetry)."
+                ],
+                "answer": "order $2$",
+                "check": [
+                  "360/2 == 180"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Rotational symmetry practice",
+            "intro": "Order = matches per full turn.",
+            "problems": [
+              {
+                "prompt": "A square has rotational symmetry of order —",
+                "options": [
+                  "$4$",
+                  "$2$",
+                  "$1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Matches every $90°$: $360/90 = 4$.",
+                "check": [
+                  "360/90 == 4"
+                ]
+              },
+              {
+                "prompt": "A regular pentagon matches every — degrees.",
+                "options": [
+                  "$72$",
+                  "$60$",
+                  "$108$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$360/5 = 72$.",
+                "check": [
+                  "360/5 == 72"
+                ]
+              },
+              {
+                "prompt": "'Point symmetry' means a figure maps onto itself under a — turn.",
+                "options": [
+                  "$180°$",
+                  "$90°$",
+                  "$360°$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Order-2 rotational symmetry.",
+                "check": [
+                  "360/2 == 180"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Snowflakes and the number six",
+            "body": "Every snowflake has six-fold symmetry — order-6 rotational symmetry and six lines of symmetry — because water molecules lock into a hexagonal lattice as they freeze. No two snowflakes are identical, yet every one obeys the same symmetry, matching itself every $60°$."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Order of symmetry",
+            "prompt": "A regular octagon (8 sides) has rotational symmetry of what order?",
+            "options": [
+              "$8$",
+              "$4$",
+              "$16$"
+            ],
+            "correctIndex": 0,
+            "explanation": "A regular $n$-gon has order $n$, so order $8$ (matches every $360/8 = 45°$).",
+            "check": [
+              "360/8 == 45",
+              "8 == 8"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Line symmetry**: a reflection maps the figure onto itself — count the mirror lines.",
+              "**Rotational symmetry**: a turn under $360°$ maps it onto itself; the **order** is matches per full turn.",
+              "A regular $n$-gon has $n$ lines of symmetry and rotational symmetry of order $n$."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's count lines of symmetry and orders of rotation."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Lines of symmetry of a square?",
+                "options": [
+                  "$4$",
+                  "$2$",
+                  "$1$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Regular 4-gon.",
+                "check": [
+                  "4 == 4"
+                ]
+              },
+              {
+                "prompt": "Lines of symmetry of a rectangle (not square)?",
+                "options": [
+                  "$2$",
+                  "$4$",
+                  "$1$",
+                  "$0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Diagonals don't count.",
+                "check": [
+                  "2 == 2"
+                ]
+              },
+              {
+                "prompt": "Order of rotational symmetry of an equilateral triangle?",
+                "options": [
+                  "$3$",
+                  "$2$",
+                  "$6$",
+                  "$1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Matches every $120°$.",
+                "check": [
+                  "360/3 == 120"
+                ]
+              },
+              {
+                "prompt": "A regular decagon (10 sides) matches every — degrees.",
+                "options": [
+                  "$36$",
+                  "$10$",
+                  "$72$",
+                  "$45$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$360/10 = 36$.",
+                "check": [
+                  "360/10 == 36"
+                ]
+              },
+              {
+                "prompt": "'Point symmetry' is rotational symmetry of order —",
+                "options": [
+                  "$2$",
+                  "$1$",
+                  "$4$",
+                  "$180$"
+                ],
+                "correctIndex": 0,
+                "explanation": "A $180°$ match.",
+                "check": [
+                  "360/180 == 2"
+                ]
+              },
+              {
+                "prompt": "How many lines of symmetry does a regular octagon have?",
+                "options": [
+                  "$8$",
+                  "$4$",
+                  "$16$",
+                  "$2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Regular $n$-gon has $n$.",
+                "check": [
+                  "8 == 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Symmetry\"",
+            "body": "You can spot both kinds of symmetry. Next: dilations — the one transformation that changes size."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "dilations",
+      "title": "Dilations (Resizing)",
+      "concreteComparison": "A projector throws a small slide onto a big screen — same picture, scaled up. Zooming a photo does the same. A **dilation** resizes a figure by a **scale factor** from a center point, keeping its shape but changing its size.",
+      "objective": "Dilate a figure from the origin by a scale factor k, using (x, y) → (kx, ky), and see that the image is similar (not congruent) unless k = 1.",
+      "concept": [
+        "A **dilation** resizes a figure from a **center** by a **scale factor** $k$. From the origin, the rule is $(x, y) \\to (kx, ky)$ — multiply both coordinates by $k$.",
+        "If $k > 1$ the figure **enlarges**; if $0 < k < 1$ it **reduces**; if $k = 1$ it is unchanged.",
+        "A dilation is **NOT** a rigid motion (unless $k = 1$): lengths scale by $k$, so the image is **similar** to the preimage — same shape, different size — with all angles preserved.",
+        "This is the similarity of Unit 7 seen as a motion: every image side is $k$ times the matching original side and parallel to it."
+      ],
+      "keyIdea": "A dilation from the origin multiplies both coordinates by the scale factor k: (x, y) → (kx, ky). k > 1 enlarges, 0 < k < 1 reduces. The image is similar to the original (angles kept, lengths ×k).",
+      "facts": [
+        {
+          "title": "Dilation rule",
+          "latex": "$(x, y) \\to (kx,\\, ky)$",
+          "explanation": "Multiply both coordinates by k."
+        },
+        {
+          "title": "Similar, not congruent",
+          "latex": "sides $\\times k$",
+          "explanation": "Shape kept, size scaled."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "di-we1",
+          "statement": "Dilate $(3, 2)$ from the origin by scale factor $k = 2$.",
+          "solution": "$(2 \\cdot 3,\\ 2 \\cdot 2) = (6, 4)$.",
+          "check": [
+            "2*3 == 6",
+            "2*2 == 4"
+          ]
+        },
+        {
+          "id": "di-we2",
+          "statement": "Dilate $(8, 4)$ from the origin by $k = \\tfrac12$.",
+          "solution": "$(\\tfrac12 \\cdot 8,\\ \\tfrac12 \\cdot 4) = (4, 2)$.",
+          "check": [
+            "8/2 == 4",
+            "4/2 == 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding the scale factor instead of multiplying.",
+          "correction": "A dilation **multiplies**: $(x, y) \\to (kx, ky)$. Adding would be a translation, not a resize.",
+          "authored": true
+        },
+        {
+          "text": "Calling the image congruent.",
+          "correction": "Unless $k = 1$, a dilation changes size, so the image is **similar**, not congruent.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "di-t1",
+          "statement": "Dilate $(2, 5)$ from the origin by $k = 3$.",
+          "solution": "$(6, 15)$.",
+          "check": [
+            "3*2 == 6",
+            "3*5 == 15"
+          ]
+        },
+        {
+          "id": "di-t2",
+          "statement": "Dilate $(10, 6)$ from the origin by $k = \\tfrac12$.",
+          "solution": "$(5, 3)$.",
+          "check": [
+            "10/2 == 5",
+            "6/2 == 3"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Resize from a center",
+            "beats": [
+              "A **dilation** changes a figure's **size** but not its shape.",
+              "It works from a **center** by a **scale factor** $k$.",
+              "We'll dilate from the **origin**.",
+              "This is similarity (Unit 7) seen as a motion."
+            ]
+          },
+          {
+            "kind": "transformPlane",
+            "eyebrow": "Concept A",
+            "title": "An enlargement (k = 2)",
+            "teach": "Tap **Apply** to dilate triangle $ABC$ from the origin by $k = 2$. Each vertex moves to twice its distance from the origin along the ray from O: $(x, y) \\to (2x, 2y)$. The image is twice as big — similar, not congruent.",
+            "config": {
+              "transform": "dilate",
+              "k": 2,
+              "shape": [
+                {
+                  "x": 1,
+                  "y": 1
+                },
+                {
+                  "x": 3,
+                  "y": 1
+                },
+                {
+                  "x": 1,
+                  "y": 2
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The dilation rule",
+            "title": "Multiply by the scale factor",
+            "beats": [
+              "From the origin: $(x, y) \\to (kx,\\ ky)$.",
+              "Multiply BOTH coordinates by $k$.",
+              "$k = 2$: $(3, 2) \\to (6, 4)$.",
+              "$k > 1$ enlarges; $0 < k < 1$ reduces."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Dilating a point",
+            "intro": "Multiply both coordinates by k.",
+            "examples": [
+              {
+                "prompt": "$(3, 2)$ by $k = 2$?",
+                "steps": [
+                  "$(2 \\cdot 3,\\ 2 \\cdot 2)$.",
+                  "$= (6, 4)$."
+                ],
+                "answer": "$(6, 4)$",
+                "check": [
+                  "2*3 == 6",
+                  "2*2 == 4"
+                ]
+              },
+              {
+                "prompt": "$(8, 4)$ by $k = \\tfrac12$?",
+                "steps": [
+                  "$(\\tfrac12 \\cdot 8,\\ \\tfrac12 \\cdot 4)$.",
+                  "$= (4, 2)$."
+                ],
+                "answer": "$(4, 2)$",
+                "check": [
+                  "8/2 == 4",
+                  "4/2 == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Dilation practice",
+            "intro": "(x, y) → (kx, ky).",
+            "problems": [
+              {
+                "prompt": "$(2, 5)$ by $k = 3$?",
+                "options": [
+                  "$(6, 15)$",
+                  "$(5, 8)$",
+                  "$(2, 15)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(3 \\cdot 2,\\ 3 \\cdot 5)$.",
+                "check": [
+                  "3*2 == 6",
+                  "3*5 == 15"
+                ]
+              },
+              {
+                "prompt": "$(10, 6)$ by $k = \\tfrac12$?",
+                "options": [
+                  "$(5, 3)$",
+                  "$(20, 12)$",
+                  "$(5, 6)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Halve both.",
+                "check": [
+                  "10/2 == 5",
+                  "6/2 == 3"
+                ]
+              },
+              {
+                "prompt": "A dilation with $k = 2$ makes the figure —",
+                "options": [
+                  "larger",
+                  "smaller",
+                  "the same size"
+                ],
+                "correctIndex": 0,
+                "explanation": "$k > 1$ enlarges.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "transformPlane",
+            "eyebrow": "Concept B",
+            "title": "A reduction (k = ½)",
+            "teach": "With $0 < k < 1$ the figure shrinks toward the center. Here $k = \\tfrac12$: each vertex moves to half its distance from O. Tap **Apply**.",
+            "config": {
+              "transform": "dilate",
+              "k": 0.5,
+              "shape": [
+                {
+                  "x": 2,
+                  "y": 2
+                },
+                {
+                  "x": 6,
+                  "y": 2
+                },
+                {
+                  "x": 2,
+                  "y": 4
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Similar, not congruent",
+            "title": "Shape kept, size changed",
+            "beats": [
+              "A dilation (with $k \\ne 1$) is NOT a rigid motion.",
+              "Every length is multiplied by $k$; angles are unchanged.",
+              "So the image is **similar** to the preimage: $ABC \\sim A'B'C'$.",
+              "Image sides are $k \\times$ the originals and parallel to them."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Scale factor and size",
+            "intro": "Lengths scale by k.",
+            "examples": [
+              {
+                "prompt": "A side of length $5$ is dilated by $k = 3$. New length?",
+                "steps": [
+                  "$5 \\times 3$.",
+                  "$= 15$."
+                ],
+                "answer": "$15$",
+                "check": [
+                  "5*3 == 15"
+                ]
+              },
+              {
+                "prompt": "$(4, 6)$ dilated by $k = \\tfrac14$?",
+                "steps": [
+                  "$(4/4,\\ 6/4)$.",
+                  "$= (1, 1.5)$."
+                ],
+                "answer": "$(1, 1.5)$",
+                "check": [
+                  "4/4 == 1",
+                  "6/4 == Rational(3,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Similarity practice",
+            "intro": "Multiply; the image is similar.",
+            "problems": [
+              {
+                "prompt": "$(1, 3)$ by $k = 4$?",
+                "options": [
+                  "$(4, 12)$",
+                  "$(5, 7)$",
+                  "$(4, 3)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(4 \\cdot 1,\\ 4 \\cdot 3)$.",
+                "check": [
+                  "4*1 == 4",
+                  "4*3 == 12"
+                ]
+              },
+              {
+                "prompt": "A dilation (with $k \\ne 1$) makes an image that is —",
+                "options": [
+                  "similar",
+                  "congruent",
+                  "neither"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same shape, different size.",
+                "check": [
+                  "3 > 1"
+                ]
+              },
+              {
+                "prompt": "A side of length $12$ dilated by $k = \\tfrac13$ becomes —",
+                "options": [
+                  "$4$",
+                  "$36$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$12/3 = 4$.",
+                "check": [
+                  "12/3 == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Scale models and blueprints",
+            "body": "An architect's blueprint is a dilation of a real building with a tiny scale factor — say $k = \\tfrac{1}{100}$ — and a movie's scale-model spaceship is a dilation the other way. Because dilations keep every angle and proportion, the small copy tells you exactly what the full-size version will look like."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Dilate a point",
+            "prompt": "What is the image of $(5, 3)$ dilated from the origin by $k = 2$?",
+            "options": [
+              "$(10, 6)$",
+              "$(7, 5)$",
+              "$(2.5, 1.5)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(2 \\cdot 5,\\ 2 \\cdot 3) = (10, 6)$.",
+            "check": [
+              "2*5 == 10",
+              "2*3 == 6"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **dilation** from the origin: $(x, y) \\to (kx,\\ ky)$ — multiply both coordinates by $k$.",
+              "$k > 1$ **enlarges**, $0 < k < 1$ **reduces**, $k = 1$ leaves it unchanged.",
+              "The image is **similar** (not congruent): angles kept, lengths $\\times k$."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's dilate points from the origin and track the scale factor."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$(3, 2)$ by $k = 2$?",
+                "options": [
+                  "$(6, 4)$",
+                  "$(5, 4)$",
+                  "$(3, 4)$",
+                  "$(1.5, 1)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Multiply both by 2.",
+                "check": [
+                  "2*3 == 6",
+                  "2*2 == 4"
+                ]
+              },
+              {
+                "prompt": "$(8, 4)$ by $k = \\tfrac12$?",
+                "options": [
+                  "$(4, 2)$",
+                  "$(16, 8)$",
+                  "$(4, 4)$",
+                  "$(8, 2)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Halve both.",
+                "check": [
+                  "8/2 == 4",
+                  "4/2 == 2"
+                ]
+              },
+              {
+                "prompt": "$(2, 5)$ by $k = 3$?",
+                "options": [
+                  "$(6, 15)$",
+                  "$(5, 8)$",
+                  "$(6, 5)$",
+                  "$(2, 15)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Multiply both by 3.",
+                "check": [
+                  "3*2 == 6",
+                  "3*5 == 15"
+                ]
+              },
+              {
+                "prompt": "A dilation with $k \\ne 1$ produces an image that is —",
+                "options": [
+                  "similar",
+                  "congruent",
+                  "identical",
+                  "smaller always"
+                ],
+                "correctIndex": 0,
+                "explanation": "Shape kept, size changed.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "A length of $9$ dilated by $k = \\tfrac13$ becomes —",
+                "options": [
+                  "$3$",
+                  "$27$",
+                  "$6$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$9/3 = 3$.",
+                "check": [
+                  "9/3 == 3"
+                ]
+              },
+              {
+                "prompt": "The rule for a dilation from the origin is —",
+                "options": [
+                  "$(kx, ky)$",
+                  "$(x+k, y+k)$",
+                  "$(-x, -y)$",
+                  "$(y, x)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Multiply by k.",
+                "check": [
+                  "2*2 == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Dilations (Resizing)\"",
+            "body": "You can resize a figure by any scale factor. Next: combining transformations — and how they explain congruence and similarity."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "compositions",
+      "title": "Compositions, Congruence & Similarity",
+      "concreteComparison": "You can slide a figure, then flip it, then turn it — one move after another. A sequence of transformations is a **composition**. Doing several rigid motions in a row is how we PROVE two figures are congruent; adding a dilation is how we prove they're similar.",
+      "objective": "Apply a composition of two transformations in order, and connect rigid motions to congruence and dilations to similarity.",
+      "concept": [
+        "A **composition** applies one transformation, then another, to the result. Order matters: do the **first** transformation, then apply the **second** to its image.",
+        "A composition of **rigid motions** (slides, flips, turns) is itself a rigid motion — the final image is **congruent** to the original.",
+        "Two figures are **congruent** exactly when a sequence of rigid motions maps one onto the other. This is the modern definition of congruence, matching Unit 4.",
+        "Two figures are **similar** exactly when a sequence of rigid motions **and a dilation** maps one onto the other — same shape, possibly different size (Unit 7)."
+      ],
+      "keyIdea": "A composition does one transformation then another (order matters). Rigid motions compose to a rigid motion → the figures are congruent. Allowing a dilation too → the figures are similar.",
+      "facts": [
+        {
+          "title": "Congruent",
+          "latex": "rigid motions map one to the other",
+          "explanation": "Same size and shape."
+        },
+        {
+          "title": "Similar",
+          "latex": "rigid motions + a dilation",
+          "explanation": "Same shape, scaled size."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cm-we1",
+          "statement": "Translate $(2, 3)$ by $\\langle 1, 1 \\rangle$, then reflect the result over the x-axis. Final image?",
+          "solution": "First: $(2+1,\\ 3+1) = (3, 4)$. Then negate y: $(3, -4)$.",
+          "check": [
+            "2+1 == 3",
+            "-(3+1) == -4"
+          ]
+        },
+        {
+          "id": "cm-we2",
+          "statement": "Reflect $(4, 1)$ over the y-axis, then rotate $180°$ about the origin. Final image?",
+          "solution": "First: $(-4, 1)$. Then $(-x, -y)$: $(4, -1)$.",
+          "check": [
+            "-(-4) == 4",
+            "-(1) == -1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Doing the transformations in the wrong order.",
+          "correction": "Apply the **first** transformation, then the **second** to that image. Reversing the order can change the result.",
+          "authored": true
+        },
+        {
+          "text": "Calling figures related by a dilation 'congruent'.",
+          "correction": "A dilation changes size, so figures related by it are **similar**. Congruence needs rigid motions only.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cm-t1",
+          "statement": "Translate $(1, 2)$ by $\\langle 3, 0 \\rangle$, then reflect over the x-axis.",
+          "solution": "$(4, 2) \\to (4, -2)$.",
+          "check": [
+            "1+3 == 4",
+            "-(2) == -2"
+          ]
+        },
+        {
+          "id": "cm-t2",
+          "statement": "Two triangles are related by a translation and a reflection only. Congruent or similar?",
+          "solution": "Rigid motions only → **congruent**.",
+          "check": [
+            "1 == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "One move after another",
+            "beats": [
+              "A **composition** does several transformations in sequence.",
+              "Apply the **first**, then the **second** to its image.",
+              "**Order matters** — the result can depend on it.",
+              "This ties transformations back to congruence and similarity."
+            ]
+          },
+          {
+            "kind": "transformPlane",
+            "eyebrow": "Concept A",
+            "title": "Step 1 of a composition",
+            "teach": "We'll translate triangle $ABC$ by $\\langle 2, 1 \\rangle$ first. Tap **Apply** to see this first image — then imagine flipping THAT over the x-axis for step 2.",
+            "config": {
+              "transform": "translate",
+              "dx": 2,
+              "dy": 1,
+              "shape": [
+                {
+                  "x": 1,
+                  "y": 1
+                },
+                {
+                  "x": 3,
+                  "y": 1
+                },
+                {
+                  "x": 1,
+                  "y": 2
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Composing two moves",
+            "title": "First, then second",
+            "beats": [
+              "Do the first transformation to the preimage.",
+              "Then apply the second to the resulting image.",
+              "Example: translate $(2,3)$ by $\\langle 1,1 \\rangle \\to (3,4)$.",
+              "Then reflect over the x-axis $\\to (3, -4)$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Composition of two transformations",
+            "intro": "First transformation, then the second.",
+            "examples": [
+              {
+                "prompt": "$(2, 3)$: translate $\\langle 1, 1 \\rangle$, then reflect over the x-axis.",
+                "steps": [
+                  "$(2+1,\\ 3+1) = (3, 4)$.",
+                  "Negate y: $(3, -4)$."
+                ],
+                "answer": "$(3, -4)$",
+                "check": [
+                  "2+1 == 3",
+                  "-(3+1) == -4"
+                ]
+              },
+              {
+                "prompt": "$(4, 1)$: reflect over the y-axis, then rotate $180°$.",
+                "steps": [
+                  "$(-4, 1)$.",
+                  "$(-x, -y) = (4, -1)$."
+                ],
+                "answer": "$(4, -1)$",
+                "check": [
+                  "-(-4) == 4",
+                  "-(1) == -1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Composition practice",
+            "intro": "Order matters — first, then second.",
+            "problems": [
+              {
+                "prompt": "$(1, 2)$: translate $\\langle 3, 0 \\rangle$, then reflect over the x-axis?",
+                "options": [
+                  "$(4, -2)$",
+                  "$(4, 2)$",
+                  "$(-4, 2)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(4, 2) \\to (4, -2)$.",
+                "check": [
+                  "1+3 == 4",
+                  "-(2) == -2"
+                ]
+              },
+              {
+                "prompt": "$(3, 5)$: reflect over the x-axis, then translate $\\langle 0, 2 \\rangle$?",
+                "options": [
+                  "$(3, -3)$",
+                  "$(3, 7)$",
+                  "$(3, -7)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(3, -5) \\to (3, -5+2) = (3, -3)$.",
+                "check": [
+                  "-(5) == -5",
+                  "-5+2 == -3"
+                ]
+              },
+              {
+                "prompt": "In a composition you apply the — transformation first.",
+                "options": [
+                  "first-named (to the preimage)",
+                  "second-named",
+                  "larger"
+                ],
+                "correctIndex": 0,
+                "explanation": "Then the second acts on that image.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Rigid motions → congruence",
+            "title": "Same size and shape",
+            "beats": [
+              "Slides, flips, and turns are **rigid motions**.",
+              "Any composition of them is still rigid.",
+              "So the final image is **congruent** to the original.",
+              "Two figures are **congruent** ⟺ rigid motions map one onto the other."
+            ]
+          },
+          {
+            "kind": "transformPlane",
+            "eyebrow": "Concept B",
+            "title": "Add a dilation → similarity",
+            "teach": "A dilation changes size. If a sequence includes one, the figures are **similar**, not congruent. Here the triangle is dilated by $k = 2$: same shape, twice the size. Tap **Apply**.",
+            "config": {
+              "transform": "dilate",
+              "k": 2,
+              "shape": [
+                {
+                  "x": 1,
+                  "y": 1
+                },
+                {
+                  "x": 3,
+                  "y": 1
+                },
+                {
+                  "x": 1,
+                  "y": 2
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Dilation → similarity",
+            "title": "Same shape, scaled size",
+            "beats": [
+              "Allow a **dilation** in the sequence and size can change.",
+              "Then the image is **similar** to the original, not congruent.",
+              "Two figures are **similar** ⟺ rigid motions AND a dilation map one onto the other.",
+              "This is exactly the similarity of Unit 7."
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Congruent or similar?",
+            "intro": "Rigid only → congruent; with a dilation → similar.",
+            "problems": [
+              {
+                "prompt": "Figures related by a rotation and a translation only are —",
+                "options": [
+                  "congruent",
+                  "similar but not congruent",
+                  "neither"
+                ],
+                "correctIndex": 0,
+                "explanation": "Rigid motions only.",
+                "check": [
+                  "1 == 1"
+                ]
+              },
+              {
+                "prompt": "Figures related by a reflection then a dilation ($k=3$) are —",
+                "options": [
+                  "similar",
+                  "congruent",
+                  "identical"
+                ],
+                "correctIndex": 0,
+                "explanation": "A dilation changes size.",
+                "check": [
+                  "3 > 1"
+                ]
+              },
+              {
+                "prompt": "Every rigid motion produces an image that is — to the original.",
+                "options": [
+                  "congruent",
+                  "similar only",
+                  "larger"
+                ],
+                "correctIndex": 0,
+                "explanation": "Rigid = congruent.",
+                "check": [
+                  "2 == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Congruence, redefined by motion",
+            "body": "For centuries 'congruent' meant 'same measurements.' Modern geometry flips it around: two figures are congruent precisely when one can be slid, flipped, and turned onto the other. It's the same idea a child uses stacking shape blocks — and it makes every congruence proof a story about motion."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Compose two moves",
+            "prompt": "Translate $(2, 2)$ by $\\langle 3, 1 \\rangle$, then reflect over the x-axis. What is the final image?",
+            "options": [
+              "$(5, -3)$",
+              "$(5, 3)$",
+              "$(-5, 3)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(2+3,\\ 2+1) = (5, 3)$, then negate y: $(5, -3)$.",
+            "check": [
+              "2+3 == 5",
+              "-(2+1) == -3"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **composition** does one transformation then another; **order matters**.",
+              "A composition of **rigid motions** is rigid → the figures are **congruent**.",
+              "Allowing a **dilation** too → the figures are **similar** (same shape, scaled size)."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's compose transformations and classify congruent vs similar."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$(2, 3)$: translate $\\langle 1, 1 \\rangle$, then reflect over the x-axis?",
+                "options": [
+                  "$(3, -4)$",
+                  "$(3, 4)$",
+                  "$(-3, 4)$",
+                  "$(4, -3)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(3,4) \\to (3,-4)$.",
+                "check": [
+                  "2+1 == 3",
+                  "-(3+1) == -4"
+                ]
+              },
+              {
+                "prompt": "$(4, 1)$: reflect over the y-axis, then rotate $180°$?",
+                "options": [
+                  "$(4, -1)$",
+                  "$(-4, 1)$",
+                  "$(4, 1)$",
+                  "$(-4, -1)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(-4,1) \\to (4,-1)$.",
+                "check": [
+                  "-(-4) == 4",
+                  "-(1) == -1"
+                ]
+              },
+              {
+                "prompt": "Figures related by rigid motions only are —",
+                "options": [
+                  "congruent",
+                  "similar but not congruent",
+                  "neither",
+                  "always in the same place"
+                ],
+                "correctIndex": 0,
+                "explanation": "Rigid motions keep size and shape, so the figures are congruent.",
+                "check": [
+                  "1 == 1"
+                ]
+              },
+              {
+                "prompt": "Figures related by a dilation (and rigid motions) are —",
+                "options": [
+                  "similar",
+                  "congruent",
+                  "unrelated",
+                  "the same size"
+                ],
+                "correctIndex": 0,
+                "explanation": "Size can change.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "$(0, 5)$: rotate $90°$, then translate $\\langle 2, 0 \\rangle$?",
+                "options": [
+                  "$(-3, 0)$",
+                  "$(3, 0)$",
+                  "$(-5, 2)$",
+                  "$(2, 5)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(0,5) \\to (-5,0) \\to (-5+2, 0) = (-3, 0)$.",
+                "check": [
+                  "0-5+2 == -3",
+                  "0 == 0"
+                ]
+              },
+              {
+                "prompt": "In a composition, changing the order can —",
+                "options": [
+                  "change the result",
+                  "never matter",
+                  "only shift left",
+                  "double the size"
+                ],
+                "correctIndex": 0,
+                "explanation": "Order matters.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Transformations\"",
+            "body": "You can slide, flip, turn, resize, and combine — and you can say exactly when figures are congruent or similar. That completes transformations. One unit left: Coordinate Geometry, the course capstone."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [],
+  "testYourself": []
+}

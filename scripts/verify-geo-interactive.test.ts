@@ -76,6 +76,13 @@ import {
   coneSurface,
   sphereVolume,
   sphereSurface,
+  translate,
+  reflectX,
+  reflectY,
+  reflectYeqX,
+  rotate,
+  dilateOrigin,
+  mapFigure,
 } from "@/lib/geo";
 
 describe("segment math", () => {
@@ -625,5 +632,41 @@ describe("surface area & volume of solids", () => {
     // r=6 → SA = 4π(36) = 144π
     expect(sphereSurface(6)).toBeCloseTo(144 * Math.PI);
     expect(sphereVolume(6)).toBeCloseTo(288 * Math.PI);
+  });
+});
+
+describe("transformations", () => {
+  it("translation slides by a vector", () => {
+    expect(translate({ x: 2, y: 3 }, 4, -1)).toEqual({ x: 6, y: 2 });
+    // a translation preserves shape and size: every point moves the same way
+    const tri = [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 0, y: 3 }];
+    expect(mapFigure(tri, (p) => translate(p, 5, 5))).toEqual([
+      { x: 5, y: 5 }, { x: 7, y: 5 }, { x: 5, y: 8 },
+    ]);
+  });
+
+  it("reflections flip across an axis or y = x", () => {
+    expect(reflectX({ x: 3, y: 4 })).toEqual({ x: 3, y: -4 });
+    expect(reflectY({ x: 3, y: 4 })).toEqual({ x: -3, y: 4 });
+    expect(reflectYeqX({ x: 3, y: 4 })).toEqual({ x: 4, y: 3 });
+    // reflecting twice over the same line returns the original point
+    expect(reflectX(reflectX({ x: 3, y: 4 }))).toEqual({ x: 3, y: 4 });
+  });
+
+  it("rotations about the origin by 90/180/270", () => {
+    expect(rotate({ x: 4, y: 1 }, 90)).toEqual({ x: -1, y: 4 });
+    expect(rotate({ x: 4, y: 1 }, 180)).toEqual({ x: -4, y: -1 });
+    expect(rotate({ x: 4, y: 1 }, 270)).toEqual({ x: 1, y: -4 });
+    // four 90° turns return to start
+    expect(rotate(rotate(rotate(rotate({ x: 4, y: 1 }, 90), 90), 90), 90)).toEqual({ x: 4, y: 1 });
+    // two 90° turns equal one 180° turn
+    expect(rotate(rotate({ x: 4, y: 1 }, 90), 90)).toEqual(rotate({ x: 4, y: 1 }, 180));
+  });
+
+  it("dilation from the origin scales coordinates", () => {
+    expect(dilateOrigin({ x: 2, y: 3 }, 2)).toEqual({ x: 4, y: 6 });
+    expect(dilateOrigin({ x: 4, y: 6 }, 0.5)).toEqual({ x: 2, y: 3 });
+    // scale factor 1 leaves a point where it is
+    expect(dilateOrigin({ x: 5, y: -7 }, 1)).toEqual({ x: 5, y: -7 });
   });
 });

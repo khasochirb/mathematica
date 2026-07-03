@@ -70,6 +70,7 @@ import geometryRightTriangles from "@/data/genmath/geometry/right-triangles-and-
 import geometryCircles from "@/data/genmath/geometry/circles.json";
 import geometryAreaPerimeter from "@/data/genmath/geometry/area-and-perimeter.json";
 import geometrySurfaceVolume from "@/data/genmath/geometry/surface-area-and-volume.json";
+import geometryTransformations from "@/data/genmath/geometry/transformations.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -237,7 +238,7 @@ export const GEOMETRY_SPINE: GeometrySpineEntry[] = [
     title: "Transformations",
     blurb: "Translations, reflections, rotations, and dilations; symmetry; congruence and similarity re-seen through motion.",
     buildsOn: "Congruence (Unit 4) and similarity (Unit 7).",
-    live: false,
+    live: true,
   },
   {
     unit: 13,
@@ -261,6 +262,7 @@ const geometryUnits: GeometryUnit[] = [
   geometryCircles as unknown as GeometryUnit,
   geometryAreaPerimeter as unknown as GeometryUnit,
   geometrySurfaceVolume as unknown as GeometryUnit,
+  geometryTransformations as unknown as GeometryUnit,
 ];
 
 export function getGeometrySpine(): GeometrySpineEntry[] {

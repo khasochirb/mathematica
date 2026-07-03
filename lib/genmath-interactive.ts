@@ -784,6 +784,19 @@ export interface SolidNetConfig {
   color?: string;
 }
 
+// One figure and its image under a single transformation on the coordinate
+// plane: a slide, flip, turn, or resize. Tapping reveals the image and the
+// per-vertex coordinate mapping.
+export interface TransformPlaneConfig {
+  transform: "translate" | "reflectX" | "reflectY" | "reflectYeqX" | "rotate" | "dilate";
+  shape?: { x: number; y: number }[]; // preimage vertices; default a right triangle
+  dx?: number; dy?: number; // translation vector
+  deg?: 90 | 180 | 270; // rotation about the origin
+  k?: number; // dilation scale factor
+  min?: number; max?: number; // grid extent (default -6..6)
+  color?: string;
+}
+
 // Two congruent triangles with marked parts; the student names the shortcut.
 export interface CongruentTrianglesConfig {
   sides?: [number, number, number]; // tick counts on AB, BC, CA
@@ -892,6 +905,7 @@ export type InteractiveStep =
   | { kind: "compositeArea"; eyebrow?: string; title: string; teach: string; config: CompositeAreaConfig }
   | { kind: "solid3d"; eyebrow?: string; title: string; teach: string; config: Solid3DConfig }
   | { kind: "solidNet"; eyebrow?: string; title: string; teach: string; config: SolidNetConfig }
+  | { kind: "transformPlane"; eyebrow?: string; title: string; teach: string; config: TransformPlaneConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

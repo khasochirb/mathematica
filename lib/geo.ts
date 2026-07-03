@@ -480,3 +480,46 @@ export function sphereVolume(r: number): number {
 export function sphereSurface(r: number): number {
   return 4 * Math.PI * r * r;
 }
+
+// ---------------------------------------------------------------------------
+// Transformations — rigid motions (translate, reflect, rotate) and dilation,
+// all on the coordinate plane. Preimage point → image point.
+// ---------------------------------------------------------------------------
+
+// Translation (a slide): add the vector (dx, dy) to every point.
+export function translate(p: XY, dx: number, dy: number): XY {
+  return { x: p.x + dx, y: p.y + dy };
+}
+
+// Reflection over the x-axis: (x, y) → (x, −y). The x-coordinate is unchanged.
+export function reflectX(p: XY): XY {
+  return { x: p.x, y: -p.y };
+}
+
+// Reflection over the y-axis: (x, y) → (−x, y). The y-coordinate is unchanged.
+export function reflectY(p: XY): XY {
+  return { x: -p.x, y: p.y };
+}
+
+// Reflection over the line y = x: (x, y) → (y, x). The coordinates swap.
+export function reflectYeqX(p: XY): XY {
+  return { x: p.y, y: p.x };
+}
+
+// Rotation about the origin by 90°, 180°, or 270° counterclockwise.
+// 90°: (x, y) → (−y, x); 180°: (x, y) → (−x, −y); 270°: (x, y) → (y, −x).
+export function rotate(p: XY, deg: 90 | 180 | 270): XY {
+  if (deg === 90) return { x: -p.y, y: p.x };
+  if (deg === 180) return { x: -p.x, y: -p.y };
+  return { x: p.y, y: -p.x }; // 270
+}
+
+// Dilation centered at the origin by scale factor k: (x, y) → (kx, ky).
+export function dilateOrigin(p: XY, k: number): XY {
+  return { x: k * p.x, y: k * p.y };
+}
+
+// Apply a transformation to every vertex of a figure.
+export function mapFigure(pts: XY[], f: (p: XY) => XY): XY[] {
+  return pts.map(f);
+}
