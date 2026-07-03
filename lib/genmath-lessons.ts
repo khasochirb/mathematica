@@ -61,6 +61,7 @@ import geometryAreaVolume from "@/data/genmath/6/geometry-area-volume.json";
 import dataAndStatistics from "@/data/genmath/6/data-and-statistics.json";
 // Grade 8 topic JSON imports (added as each topic is authored + published).
 import realNumberSystem from "@/data/genmath/8/the-real-number-system.json";
+import exponentsScientific from "@/data/genmath/8/exponents-and-scientific-notation.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -112,7 +113,7 @@ export const GRADE8_SPINE: GradeSpineEntry[] = [
     slug: "exponents-and-scientific-notation",
     title: "Exponents & Scientific Notation",
     blurb: "The laws of exponents, zero and negative powers, and writing huge and tiny numbers in scientific notation.",
-    live: false,
+    live: true,
   },
   {
     slug: "roots",
@@ -148,6 +149,7 @@ export const GRADE8_SPINE: GradeSpineEntry[] = [
 
 const grade8Topics: GenMathTopic[] = [
   realNumberSystem as GenMathTopic,
+  exponentsScientific as GenMathTopic,
 ];
 
 // Every authored General-Math topic across grades. Topic slugs are unique

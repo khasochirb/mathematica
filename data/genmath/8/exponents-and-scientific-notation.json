@@ -1,0 +1,1496 @@
+{
+  "slug": "exponents-and-scientific-notation",
+  "title": "Exponents & Scientific Notation",
+  "grade": 8,
+  "blurb": "The laws of exponents, zero and negative powers, and writing huge and tiny numbers in scientific notation.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "multiplying-and-dividing-powers",
+      "title": "Multiplying & Dividing Powers",
+      "concreteComparison": "You already know $2^3 = 2\\times2\\times2$. So what is $2^3\\times2^4$? Just line up the copies: three $2$s and four more $2$s make **seven** $2$s — that's $2^7$. Instead of counting every time, exponents give you a shortcut: when the base is the same, **add** the exponents to multiply and **subtract** them to divide.",
+      "objective": "Use the product rule $a^m\\cdot a^n=a^{m+n}$ and the quotient rule $\\frac{a^m}{a^n}=a^{m-n}$ to multiply and divide powers with the same base.",
+      "concept": [
+        "A **power** like $2^3$ means repeated multiplication: $2\\times2\\times2$. The **base** is what's multiplied; the **exponent** counts the copies.",
+        "**Product rule:** to multiply powers with the **same base**, add the exponents. $a^m\\cdot a^n = a^{m+n}$. For example $2^3\\cdot2^4 = 2^{7}$, because you're just gathering $3+4=7$ copies of $2$.",
+        "**Quotient rule:** to divide powers with the same base, subtract the exponents. $\\frac{a^m}{a^n}=a^{m-n}$. For example $\\frac{3^5}{3^2}=3^{3}$ — two of the five $3$s cancel.",
+        "These only work when the **bases match**. $2^3\\cdot 5^2$ can't be combined into one power, because $2$ and $5$ are different."
+      ],
+      "keyIdea": "Same base: add exponents to multiply, subtract to divide.",
+      "facts": [
+        {
+          "title": "Product rule",
+          "latex": "$a^m\\cdot a^n = a^{m+n}$",
+          "explanation": "Add the exponents."
+        },
+        {
+          "title": "Quotient rule",
+          "latex": "$\\dfrac{a^m}{a^n} = a^{m-n}$",
+          "explanation": "Subtract the exponents."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "exp1-we1",
+          "statement": "Simplify $2^3\\cdot 2^4$ as a single power and evaluate.",
+          "solution": "Add exponents: $2^{3+4}=2^7=128$.",
+          "check": [
+            "2**3 * 2**4 == 2**7",
+            "2**7 == 128"
+          ]
+        },
+        {
+          "id": "exp1-we2",
+          "statement": "Simplify $\\frac{3^5}{3^2}$ as a single power.",
+          "solution": "Subtract exponents: $3^{5-2}=3^3=27$.",
+          "check": [
+            "3**5 / 3**2 == 3**3",
+            "3**3 == 27"
+          ]
+        },
+        {
+          "id": "exp1-we3",
+          "statement": "Simplify $5^2\\cdot 5^3$.",
+          "solution": "$5^{2+3}=5^5=3125$.",
+          "check": [
+            "5**2 * 5**3 == 5**5"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Multiplying the exponents in $a^m\\cdot a^n$.",
+          "correction": "You ADD them: $2^3\\cdot2^4=2^{7}$, not $2^{12}$.",
+          "authored": true
+        },
+        {
+          "text": "Combining different bases.",
+          "correction": "$2^3\\cdot 5^2$ stays as is — the product rule needs the SAME base.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "exp1-t1",
+          "statement": "Simplify $4^2\\cdot 4^3$ as a single power.",
+          "solution": "$4^{2+3}=4^5=1024$.",
+          "check": [
+            "4**2 * 4**3 == 4**5"
+          ]
+        },
+        {
+          "id": "exp1-t2",
+          "statement": "Simplify $\\frac{2^6}{2^2}$.",
+          "solution": "$2^{6-2}=2^4=16$.",
+          "check": [
+            "2**6 / 2**2 == 2**4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "exponentBuilder",
+            "eyebrow": "Warm up",
+            "title": "A power is repeated multiplication",
+            "teach": "Drag the base and exponent. The exponent counts how many copies of the base multiply together.",
+            "config": {
+              "base": 2,
+              "exp": 3,
+              "color": "#e8913c",
+              "minBase": 2,
+              "maxBase": 6,
+              "minExp": 1,
+              "maxExp": 6
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Multiplying",
+            "title": "The product rule",
+            "beats": [
+              "$2^3\\cdot2^4$ is $(2\\cdot2\\cdot2)(2\\cdot2\\cdot2\\cdot2)$.",
+              "That's **seven** $2$s in a row.",
+              "So $2^3\\cdot2^4 = 2^{3+4} = 2^7$.",
+              "Same base? **Add** the exponents."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Add or multiply?",
+            "prompt": "Simplify $2^3\\cdot 2^4$.",
+            "options": [
+              "$2^7$",
+              "$2^{12}$",
+              "$4^7$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Same base, so add: $2^{3+4}=2^7$. Don't multiply the exponents or the bases.",
+            "check": [
+              "2**3 * 2**4 == 2**7"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Dividing",
+            "title": "The quotient rule",
+            "beats": [
+              "$\\frac{3^5}{3^2}$: write out five $3$s over two $3$s.",
+              "Two of them cancel, top and bottom.",
+              "Three $3$s remain: $3^{5-2}=3^3$.",
+              "Same base? **Subtract** the exponents."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Combine into one power",
+            "intro": "Match the bases, then add or subtract.",
+            "examples": [
+              {
+                "prompt": "Simplify $5^2\\cdot 5^3$.",
+                "steps": [
+                  "Same base $5$.",
+                  "Add exponents: $2+3=5$.",
+                  "$=5^5$."
+                ],
+                "answer": "$5^5$",
+                "check": [
+                  "5**2 * 5**3 == 5**5"
+                ]
+              },
+              {
+                "prompt": "Simplify $\\frac{2^6}{2^2}$.",
+                "steps": [
+                  "Same base $2$.",
+                  "Subtract: $6-2=4$.",
+                  "$=2^4=16$."
+                ],
+                "answer": "$2^4$",
+                "check": [
+                  "2**6 / 2**2 == 2**4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Add or subtract the exponents",
+            "intro": "Keep the base, adjust the exponent.",
+            "problems": [
+              {
+                "prompt": "Simplify $10^4\\cdot 10^3$.",
+                "options": [
+                  "$10^7$",
+                  "$10^{12}$",
+                  "$20^7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$10^{4+3}=10^7$.",
+                "check": [
+                  "10**4 * 10**3 == 10**7"
+                ]
+              },
+              {
+                "prompt": "Simplify $\\frac{7^5}{7^3}$.",
+                "options": [
+                  "$7^2$",
+                  "$7^8$",
+                  "$1^2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$7^{5-3}=7^2$.",
+                "check": [
+                  "7**5 / 7**3 == 7**2"
+                ]
+              },
+              {
+                "prompt": "Which can be combined into one power?",
+                "options": [
+                  "$3^2\\cdot 5^2$",
+                  "$3^2\\cdot 3^4$",
+                  "$3^2 + 3^4$"
+                ],
+                "correctIndex": 1,
+                "explanation": "Only same-base products combine: $3^2\\cdot3^4=3^6$.",
+                "check": [
+                  "3**2 * 3**4 == 3**6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "How exponents were born",
+            "body": "Before exponent notation, mathematicians wrote out \"$2$ times $2$ times $2$ …\" in full sentences. René Descartes popularized writing $2^3$ in the 1630s. That tiny raised number turned pages of repeated multiplication into a single symbol — and made rules like \"add the exponents\" possible to even see."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Product rule:** same base, add exponents. $2^3\\cdot2^4=2^7$.",
+              "**Quotient rule:** same base, subtract. $\\frac{3^5}{3^2}=3^3$.",
+              "The bases must **match** to combine."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "powers-of-powers-and-products",
+      "title": "Powers of Powers & Products",
+      "concreteComparison": "What does $(2^3)^2$ mean? It's $2^3$ used twice: $2^3\\cdot 2^3$. By the product rule that's $2^6$ — and notice $3\\times2=6$. When you raise a power to a power, you **multiply** the exponents. And when a whole product is raised to a power, the exponent lands on **each** factor.",
+      "objective": "Apply the power-of-a-power rule $(a^m)^n=a^{mn}$ and the power-of-a-product rule $(ab)^n=a^n b^n$.",
+      "concept": [
+        "**Power of a power:** $(a^m)^n = a^{mn}$. Raising a power to another power means the base is multiplied $m\\times n$ times total, so you multiply the exponents. $(2^3)^2 = 2^{6}$.",
+        "**Power of a product:** $(ab)^n = a^n b^n$. The outer exponent applies to every factor inside. $(2\\cdot5)^3 = 2^3\\cdot 5^3$.",
+        "Watch the difference: $(a^m)^n$ **multiplies** exponents, while $a^m\\cdot a^n$ (same base) **adds** them. $(2^3)^2 = 2^6$, but $2^3\\cdot 2^2 = 2^5$.",
+        "These rules chain together. $(2^2\\cdot 3)^2 = 2^4\\cdot 3^2$: square each factor, multiplying the inner exponent by the outer one."
+      ],
+      "keyIdea": "Power of a power → multiply exponents; power of a product → give the exponent to each factor.",
+      "facts": [
+        {
+          "title": "Power of a power",
+          "latex": "$(a^m)^n = a^{mn}$",
+          "explanation": "Multiply the exponents."
+        },
+        {
+          "title": "Power of a product",
+          "latex": "$(ab)^n = a^n b^n$",
+          "explanation": "Distribute the exponent."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "exp2-we1",
+          "statement": "Simplify $(2^3)^2$ as a single power.",
+          "solution": "Multiply exponents: $2^{3\\cdot2}=2^6=64$.",
+          "check": [
+            "(2**3)**2 == 2**6",
+            "2**6 == 64"
+          ]
+        },
+        {
+          "id": "exp2-we2",
+          "statement": "Expand $(2\\cdot5)^3$ using the power-of-a-product rule.",
+          "solution": "$(2\\cdot5)^3 = 2^3\\cdot 5^3 = 8\\cdot125 = 1000$.",
+          "check": [
+            "(2*5)**3 == 2**3 * 5**3",
+            "(2*5)**3 == 1000"
+          ]
+        },
+        {
+          "id": "exp2-we3",
+          "statement": "Simplify $(3^2)^3$.",
+          "solution": "$3^{2\\cdot3}=3^6=729$.",
+          "check": [
+            "(3**2)**3 == 3**6"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding exponents in $(a^m)^n$.",
+          "correction": "Power of a power MULTIPLIES: $(2^3)^2=2^{6}$, not $2^5$.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting a factor in $(ab)^n$.",
+          "correction": "The exponent hits every factor: $(2\\cdot5)^3=2^3\\cdot5^3$, not $2\\cdot5^3$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "exp2-t1",
+          "statement": "Simplify $(5^2)^2$.",
+          "solution": "$5^{2\\cdot2}=5^4=625$.",
+          "check": [
+            "(5**2)**2 == 5**4"
+          ]
+        },
+        {
+          "id": "exp2-t2",
+          "statement": "Expand $(3\\cdot2)^2$.",
+          "solution": "$3^2\\cdot 2^2 = 9\\cdot4 = 36$.",
+          "check": [
+            "(3*2)**2 == 3**2 * 2**2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Power of a power",
+            "title": "Multiply the exponents",
+            "beats": [
+              "$(2^3)^2$ means $2^3$ times itself.",
+              "$2^3\\cdot 2^3 = 2^{3+3} = 2^6$.",
+              "Notice $3\\times 2 = 6$ — multiply the exponents.",
+              "So $(a^m)^n = a^{mn}$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which rule?",
+            "prompt": "Simplify $(3^2)^3$.",
+            "options": [
+              "$3^6$",
+              "$3^5$",
+              "$9^3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Power of a power multiplies: $3^{2\\cdot3}=3^6$.",
+            "check": [
+              "(3**2)**3 == 3**6"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Power of a product",
+            "title": "Give it to every factor",
+            "beats": [
+              "$(2\\cdot5)^3$ = $(2\\cdot5)(2\\cdot5)(2\\cdot5)$.",
+              "Regroup: three $2$s and three $5$s.",
+              "$= 2^3\\cdot 5^3$.",
+              "So $(ab)^n = a^n b^n$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Apply the two rules",
+            "intro": "Multiply exponents, or distribute to each factor.",
+            "examples": [
+              {
+                "prompt": "Simplify $(2^3)^2$.",
+                "steps": [
+                  "Power of a power.",
+                  "Multiply: $3\\cdot2=6$.",
+                  "$=2^6=64$."
+                ],
+                "answer": "$2^6$",
+                "check": [
+                  "(2**3)**2 == 2**6"
+                ]
+              },
+              {
+                "prompt": "Expand $(3\\cdot2)^2$.",
+                "steps": [
+                  "Exponent on each factor.",
+                  "$3^2\\cdot 2^2$.",
+                  "$=9\\cdot4=36$."
+                ],
+                "answer": "$3^2\\cdot 2^2$",
+                "check": [
+                  "(3*2)**2 == 3**2 * 2**2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Multiply or distribute",
+            "intro": "Spot which rule applies.",
+            "problems": [
+              {
+                "prompt": "Simplify $(10^2)^3$.",
+                "options": [
+                  "$10^6$",
+                  "$10^5$",
+                  "$10^8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$10^{2\\cdot3}=10^6$.",
+                "check": [
+                  "(10**2)**3 == 10**6"
+                ]
+              },
+              {
+                "prompt": "Expand $(2\\cdot3)^3$.",
+                "options": [
+                  "$2^3\\cdot 3^3$",
+                  "$2\\cdot 3^3$",
+                  "$6^1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(2\\cdot3)^3=2^3\\cdot3^3=216$.",
+                "check": [
+                  "(2*3)**3 == 2**3 * 3**3"
+                ]
+              },
+              {
+                "prompt": "Which equals $2^6$?",
+                "options": [
+                  "$(2^3)^2$",
+                  "$2^3\\cdot 2^2$",
+                  "$(2^2)^2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(2^3)^2=2^{6}$; the others give $2^5$ and $2^4$.",
+                "check": [
+                  "(2**3)**2 == 2**6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Stacking powers stacks fast",
+            "body": "A \"power tower\" like $(((2^2)^2)^2)^2$ multiplies exponents each layer: $2^{2\\cdot2\\cdot2\\cdot2}=2^{16}=65536$. Only four layers, yet already tens of thousands. Multiplying exponents is how numbers reach the astronomical."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Power of a power:** $(a^m)^n=a^{mn}$ — multiply.",
+              "**Power of a product:** $(ab)^n=a^n b^n$ — distribute.",
+              "Don't confuse these with the add-exponents product rule."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "zero-and-negative-exponents",
+      "title": "Zero & Negative Exponents",
+      "concreteComparison": "Watch the pattern shrink: $2^3=8$, $2^2=4$, $2^1=2$… each step **divides by 2**. Keep going: $2^0$ should be $2\\div2=1$, and $2^{-1}=\\tfrac12$, $2^{-2}=\\tfrac14$. That's exactly what the exponent rules force: anything to the zero power is $1$, and a negative exponent means \"one over\" the positive power.",
+      "objective": "Evaluate zero and negative exponents using $a^0=1$ and $a^{-n}=\\frac{1}{a^n}$, and see why they follow from the quotient rule.",
+      "concept": [
+        "**Zero exponent:** $a^0 = 1$ for any nonzero $a$. Why? By the quotient rule $\\frac{a^n}{a^n}=a^{n-n}=a^0$, but any number over itself is $1$. So $a^0=1$.",
+        "**Negative exponent:** $a^{-n}=\\frac{1}{a^n}$. A negative exponent flips the power into a fraction. $2^{-3}=\\frac{1}{2^3}=\\frac{1}{8}$.",
+        "The pattern makes it feel natural: dividing by the base each time takes you $\\ldots,2^2=4,\\;2^1=2,\\;2^0=1,\\;2^{-1}=\\tfrac12,\\;2^{-2}=\\tfrac14,\\ldots$",
+        "A negative exponent does **not** make the number negative. $2^{-3}=\\frac18$ is positive — it's just small."
+      ],
+      "keyIdea": "$a^0=1$; a negative exponent means one over the positive power: $a^{-n}=\\frac{1}{a^n}$.",
+      "facts": [
+        {
+          "title": "Zero power",
+          "latex": "$a^0 = 1$",
+          "explanation": "Any nonzero base to the 0 is 1."
+        },
+        {
+          "title": "Negative power",
+          "latex": "$a^{-n} = \\dfrac{1}{a^n}$",
+          "explanation": "Flip to a fraction."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "exp3-we1",
+          "statement": "Evaluate $5^0$.",
+          "solution": "Any nonzero base to the zero power is $1$, so $5^0=1$.",
+          "check": [
+            "5**0 == 1"
+          ]
+        },
+        {
+          "id": "exp3-we2",
+          "statement": "Evaluate $2^{-3}$.",
+          "solution": "$2^{-3}=\\frac{1}{2^3}=\\frac{1}{8}$.",
+          "check": [
+            "2**(-3) == Rational(1,8)"
+          ]
+        },
+        {
+          "id": "exp3-we3",
+          "statement": "Evaluate $10^{-2}$.",
+          "solution": "$10^{-2}=\\frac{1}{10^2}=\\frac{1}{100}$.",
+          "check": [
+            "10**(-2) == Rational(1,100)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking $a^0=0$.",
+          "correction": "$a^0=1$ for any nonzero $a$, not $0$.",
+          "authored": true
+        },
+        {
+          "text": "Making a negative exponent give a negative number.",
+          "correction": "$2^{-3}=\\frac18$, a positive fraction — the sign flips the power to the denominator, not the value.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "exp3-t1",
+          "statement": "Evaluate $9^0$.",
+          "solution": "$9^0=1$.",
+          "check": [
+            "9**0 == 1"
+          ]
+        },
+        {
+          "id": "exp3-t2",
+          "statement": "Evaluate $3^{-2}$.",
+          "solution": "$3^{-2}=\\frac{1}{9}$.",
+          "check": [
+            "3**(-2) == Rational(1,9)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Follow the pattern down",
+            "title": "Where zero comes from",
+            "beats": [
+              "$2^3=8$, $2^2=4$, $2^1=2$.",
+              "Each step divides by $2$.",
+              "Next: $2^0 = 2\\div2 = 1$.",
+              "So $a^0=1$ for any nonzero $a$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Zero power",
+            "prompt": "What is $7^0$?",
+            "options": [
+              "$0$",
+              "$1$",
+              "$7$"
+            ],
+            "correctIndex": 1,
+            "explanation": "Any nonzero base to the zero power is $1$.",
+            "check": [
+              "7**0 == 1"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Going negative",
+            "title": "Flip to a fraction",
+            "beats": [
+              "Keep dividing: $2^0=1$, then $2^{-1}=\\tfrac12$.",
+              "$2^{-2}=\\tfrac14$, $2^{-3}=\\tfrac18$.",
+              "A negative exponent means $a^{-n}=\\frac{1}{a^n}$.",
+              "The value stays **positive**, just small."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Evaluate the powers",
+            "intro": "Zero → 1; negative → reciprocal.",
+            "examples": [
+              {
+                "prompt": "Evaluate $4^0$.",
+                "steps": [
+                  "Nonzero base.",
+                  "To the zero power.",
+                  "$=1$."
+                ],
+                "answer": "$1$",
+                "check": [
+                  "4**0 == 1"
+                ]
+              },
+              {
+                "prompt": "Evaluate $2^{-4}$.",
+                "steps": [
+                  "Negative exponent flips it.",
+                  "$=\\frac{1}{2^4}$.",
+                  "$=\\frac{1}{16}$."
+                ],
+                "answer": "$\\frac{1}{16}$",
+                "check": [
+                  "2**(-4) == Rational(1,16)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Zero and negative powers",
+            "intro": "Remember: zero → 1, negative → fraction.",
+            "problems": [
+              {
+                "prompt": "What is $12^0$?",
+                "options": [
+                  "$1$",
+                  "$0$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Any nonzero base to the zero is $1$.",
+                "check": [
+                  "12**0 == 1"
+                ]
+              },
+              {
+                "prompt": "Evaluate $5^{-2}$.",
+                "options": [
+                  "$\\frac{1}{25}$",
+                  "$-25$",
+                  "$-10$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5^{-2}=\\frac{1}{5^2}=\\frac{1}{25}$.",
+                "check": [
+                  "5**(-2) == Rational(1,25)"
+                ]
+              },
+              {
+                "prompt": "Which equals $\\frac{1}{8}$?",
+                "options": [
+                  "$2^{-3}$",
+                  "$2^3$",
+                  "$-2^3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2^{-3}=\\frac{1}{2^3}=\\frac18$.",
+                "check": [
+                  "2**(-3) == Rational(1,8)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Zero to the zero?",
+            "body": "Every nonzero number to the zero power is $1$ — but $0^0$ is famously debated. Depending on the context, mathematicians leave it undefined or define it as $1$ for convenience. It's one of the rare spots where the rules politely disagree."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$a^0=1$ for any nonzero base.",
+              "$a^{-n}=\\frac{1}{a^n}$ — flip to a fraction.",
+              "Negative exponents give small **positive** numbers."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "scientific-notation",
+      "title": "Scientific Notation",
+      "concreteComparison": "The Sun is about $150{,}000{,}000$ km away, and a virus is about $0.00000012$ m wide. Writing all those zeros is error-prone. **Scientific notation** packs them into a power of ten: $1.5\\times10^8$ km and $1.2\\times10^{-7}$ m. One tidy number times a power of $10$ replaces a runway of zeros.",
+      "objective": "Write large and small numbers in scientific notation $a\\times10^n$ with $1\\le a<10$, and convert back to standard form.",
+      "concept": [
+        "**Scientific notation** writes a number as $a\\times10^n$, where $1\\le a<10$ and $n$ is an integer. The $a$ carries the digits; the power of ten fixes the size.",
+        "For a **large** number, count how many places you move the decimal point left to get a single digit in front. $150{,}000{,}000 = 1.5\\times10^8$ — the point moved $8$ places, so $n=8$.",
+        "For a **small** number, move the decimal point right until one nonzero digit sits in front, and use a **negative** power. $0.0004 = 4\\times10^{-4}$ — moved $4$ places right, so $n=-4$.",
+        "To convert back, let the exponent tell you which way and how far the point moves: positive $n$ makes it bigger (right), negative $n$ makes it smaller (left)."
+      ],
+      "keyIdea": "$a\\times10^n$ with $1\\le a<10$: positive $n$ for big numbers, negative $n$ for small ones.",
+      "facts": [
+        {
+          "title": "Large numbers",
+          "latex": "$150{,}000{,}000 = 1.5\\times10^8$",
+          "explanation": "Point moves left; exponent positive."
+        },
+        {
+          "title": "Small numbers",
+          "latex": "$0.0004 = 4\\times10^{-4}$",
+          "explanation": "Point moves right; exponent negative."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "exp4-we1",
+          "statement": "Write $4200$ in scientific notation.",
+          "solution": "Move the point $3$ places: $4.2\\times10^3$. Check: $4.2\\times1000=4200$.",
+          "check": [
+            "Rational(42,10) * 10**3 == 4200"
+          ]
+        },
+        {
+          "id": "exp4-we2",
+          "statement": "Write $0.0004$ in scientific notation.",
+          "solution": "Move the point $4$ places right: $4\\times10^{-4}$.",
+          "check": [
+            "4 * 10**(-4) == Rational(4,10000)"
+          ]
+        },
+        {
+          "id": "exp4-we3",
+          "statement": "Write $56{,}000$ in scientific notation.",
+          "solution": "$5.6\\times10^4$. Check: $5.6\\times10000=56000$.",
+          "check": [
+            "Rational(56,10) * 10**4 == 56000"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Leaving the front number outside $1\\le a<10$.",
+          "correction": "$42\\times10^2$ isn't standard form — make it $4.2\\times10^3$ so the leading part is between 1 and 10.",
+          "authored": true
+        },
+        {
+          "text": "Using the wrong sign on the exponent.",
+          "correction": "Big numbers get a positive power; small numbers (less than 1) get a negative power.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "exp4-t1",
+          "statement": "Write $7000$ in scientific notation.",
+          "solution": "$7\\times10^3$.",
+          "check": [
+            "7 * 10**3 == 7000"
+          ]
+        },
+        {
+          "id": "exp4-t2",
+          "statement": "Write $0.003$ in scientific notation.",
+          "solution": "$3\\times10^{-3}$.",
+          "check": [
+            "3 * 10**(-3) == Rational(3,1000)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Why we need it",
+            "title": "Taming the zeros",
+            "beats": [
+              "The Sun is $150{,}000{,}000$ km away.",
+              "That's a lot of zeros to copy correctly.",
+              "Scientific notation writes it as $1.5\\times10^8$.",
+              "One neat number times a power of ten."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Big numbers",
+            "title": "Move the point left",
+            "beats": [
+              "Start at $150{,}000{,}000.$",
+              "Slide the point until one digit is in front: $1.5$.",
+              "Count the moves: $8$ places.",
+              "So $150{,}000{,}000 = 1.5\\times10^8$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Big number",
+            "prompt": "Write $4200$ in scientific notation.",
+            "options": [
+              "$4.2\\times10^3$",
+              "$42\\times10^2$",
+              "$4.2\\times10^{-3}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$4.2\\times10^3=4200$, and the front number is between 1 and 10.",
+            "check": [
+              "Rational(42,10) * 10**3 == 4200"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Small numbers",
+            "title": "Move the point right",
+            "beats": [
+              "Start at $0.0004$.",
+              "Slide the point right to $4$: that's $4$ moves.",
+              "Moving right means a **negative** power.",
+              "So $0.0004 = 4\\times10^{-4}$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Both directions",
+            "intro": "Count the moves; choose the sign.",
+            "examples": [
+              {
+                "prompt": "Write $56{,}000$ in scientific notation.",
+                "steps": [
+                  "Point moves left to $5.6$.",
+                  "$4$ places.",
+                  "$=5.6\\times10^4$."
+                ],
+                "answer": "$5.6\\times10^4$",
+                "check": [
+                  "Rational(56,10) * 10**4 == 56000"
+                ]
+              },
+              {
+                "prompt": "Write $0.007$ in scientific notation.",
+                "steps": [
+                  "Point moves right to $7$.",
+                  "$3$ places → negative.",
+                  "$=7\\times10^{-3}$."
+                ],
+                "answer": "$7\\times10^{-3}$",
+                "check": [
+                  "7 * 10**(-3) == Rational(7,1000)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Into scientific notation",
+            "intro": "Leading part between 1 and 10; sign for size.",
+            "problems": [
+              {
+                "prompt": "Write $9000$ in scientific notation.",
+                "options": [
+                  "$9\\times10^3$",
+                  "$9\\times10^{-3}$",
+                  "$90\\times10^2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$9\\times10^3=9000$.",
+                "check": [
+                  "9 * 10**3 == 9000"
+                ]
+              },
+              {
+                "prompt": "Write $0.0006$ in scientific notation.",
+                "options": [
+                  "$6\\times10^{-4}$",
+                  "$6\\times10^4$",
+                  "$0.6\\times10^{-3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Move right $4$ places → $6\\times10^{-4}$.",
+                "check": [
+                  "6 * 10**(-4) == Rational(6,10000)"
+                ]
+              },
+              {
+                "prompt": "Which is written correctly in scientific notation?",
+                "options": [
+                  "$3.4\\times10^5$",
+                  "$34\\times10^4$",
+                  "$0.34\\times10^6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Only $3.4\\times10^5$ has $1\\le a<10$.",
+                "check": [
+                  "Rational(34,10) * 10**5 == 340000"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Numbers too big for a page",
+            "body": "A googol is $1$ followed by $100$ zeros — $10^{100}$. Written out it wouldn't fit in this sentence, but in scientific notation it's just $10^{100}$. The search engine Google is a (mis)spelling of it, chosen to suggest the vastness of the web."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Scientific notation: $a\\times10^n$ with $1\\le a<10$.",
+              "Big number → positive exponent; small → negative.",
+              "The exponent counts how far the decimal point moved."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "converting-and-comparing-scientific-notation",
+      "title": "Converting & Comparing",
+      "concreteComparison": "Which is more massive: a number written $3\\times10^8$ or $9\\times10^6$? You don't need to expand them fully — the **power of ten** decides the ballpark. $10^8$ beats $10^6$ by a hundredfold, so $3\\times10^8$ wins even though $9>3$. Scientific notation makes comparing wildly different sizes quick.",
+      "objective": "Convert between scientific and standard form, and compare numbers in scientific notation by their powers of ten first.",
+      "concept": [
+        "**Scientific to standard:** the exponent says how far to move the decimal point. $3.2\\times10^5$: move the point $5$ places right → $320{,}000$. $4\\times10^{-3}$: move $3$ places left → $0.004$.",
+        "**Comparing:** first compare the powers of ten. A bigger exponent means a bigger number, no matter the leading digits (as long as both are in proper form). $3\\times10^8 > 9\\times10^6$ because $10^8>10^6$.",
+        "**Same power?** Then compare the leading numbers. $7\\times10^5$ vs $4\\times10^5$: same $10^5$, and $7>4$, so $7\\times10^5$ is larger.",
+        "This is why scientists love the notation: to rank the distance to a star against the size of an atom, you just read the exponents."
+      ],
+      "keyIdea": "Compare the powers of ten first; only if they tie do the leading numbers decide.",
+      "facts": [
+        {
+          "title": "To standard form",
+          "latex": "$3.2\\times10^5 = 320{,}000$",
+          "explanation": "Move the point n places."
+        },
+        {
+          "title": "Compare by exponent",
+          "latex": "$3\\times10^8 > 9\\times10^6$",
+          "explanation": "Bigger power wins."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "exp5-we1",
+          "statement": "Write $3.2\\times10^5$ in standard form.",
+          "solution": "Move the point $5$ places right: $320{,}000$.",
+          "check": [
+            "Rational(32,10) * 10**5 == 320000"
+          ]
+        },
+        {
+          "id": "exp5-we2",
+          "statement": "Which is greater, $3\\times10^8$ or $9\\times10^6$?",
+          "solution": "$10^8>10^6$, so $3\\times10^8$ is greater (it's $300{,}000{,}000$ vs $9{,}000{,}000$).",
+          "check": [
+            "3 * 10**8 > 9 * 10**6"
+          ]
+        },
+        {
+          "id": "exp5-we3",
+          "statement": "Write $4\\times10^{-3}$ in standard form.",
+          "solution": "Move $3$ places left: $0.004$.",
+          "check": [
+            "4 * 10**(-3) == Rational(4,1000)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Comparing leading numbers before exponents.",
+          "correction": "$9\\times10^6 < 3\\times10^8$: check the power of ten first, not the front digit.",
+          "authored": true
+        },
+        {
+          "text": "Moving the decimal the wrong way.",
+          "correction": "Positive exponent → point moves right (bigger); negative → left (smaller).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "exp5-t1",
+          "statement": "Write $6\\times10^4$ in standard form.",
+          "solution": "$60{,}000$.",
+          "check": [
+            "6 * 10**4 == 60000"
+          ]
+        },
+        {
+          "id": "exp5-t2",
+          "statement": "Which is greater, $5\\times10^3$ or $8\\times10^2$?",
+          "solution": "$10^3>10^2$, so $5\\times10^3=5000$ beats $8\\times10^2=800$.",
+          "check": [
+            "5 * 10**3 > 8 * 10**2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Back to standard form",
+            "title": "Let the exponent move the point",
+            "beats": [
+              "$3.2\\times10^5$: exponent $5$ is positive.",
+              "Move the decimal $5$ places right.",
+              "$3.2 \\to 320{,}000$.",
+              "Negative exponent would move it left instead."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Expand it",
+            "prompt": "Write $3.2\\times10^5$ in standard form.",
+            "options": [
+              "$320{,}000$",
+              "$32{,}000$",
+              "$0.000032$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Move the point $5$ places right: $320{,}000$.",
+            "check": [
+              "Rational(32,10) * 10**5 == 320000"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Comparing sizes",
+            "title": "Powers of ten first",
+            "beats": [
+              "To compare $3\\times10^8$ and $9\\times10^6$…",
+              "Look at the exponents: $8$ vs $6$.",
+              "$10^8$ is $100$ times bigger than $10^6$.",
+              "So $3\\times10^8$ wins, even though $9>3$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Convert and compare",
+            "intro": "Exponent moves the point; exponent ranks the size.",
+            "examples": [
+              {
+                "prompt": "Write $7\\times10^{-4}$ in standard form.",
+                "steps": [
+                  "Negative exponent → move left.",
+                  "$4$ places.",
+                  "$=0.0007$."
+                ],
+                "answer": "$0.0007$",
+                "check": [
+                  "7 * 10**(-4) == Rational(7,10000)"
+                ]
+              },
+              {
+                "prompt": "Which is greater, $2\\times10^7$ or $6\\times10^5$?",
+                "steps": [
+                  "Compare exponents: $7>5$.",
+                  "Bigger power wins.",
+                  "$2\\times10^7$ is greater."
+                ],
+                "answer": "$2\\times10^7$",
+                "check": [
+                  "2 * 10**7 > 6 * 10**5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Convert and compare",
+            "intro": "Read the exponent, then decide.",
+            "problems": [
+              {
+                "prompt": "Write $8\\times10^3$ in standard form.",
+                "options": [
+                  "$8000$",
+                  "$800$",
+                  "$0.008$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Move $3$ right: $8000$.",
+                "check": [
+                  "8 * 10**3 == 8000"
+                ]
+              },
+              {
+                "prompt": "Which is greater, $4\\times10^6$ or $9\\times10^5$?",
+                "options": [
+                  "$4\\times10^6$",
+                  "$9\\times10^5$",
+                  "Equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "$10^6>10^5$, so $4\\times10^6=4{,}000{,}000$ wins.",
+                "check": [
+                  "4 * 10**6 > 9 * 10**5"
+                ]
+              },
+              {
+                "prompt": "Which is greater, $7\\times10^4$ or $5\\times10^4$?",
+                "options": [
+                  "$7\\times10^4$",
+                  "$5\\times10^4$",
+                  "Equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same power, so $7>5$ decides.",
+                "check": [
+                  "7 * 10**4 > 5 * 10**4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "From atoms to galaxies",
+            "body": "Scientists measure across $40$-plus powers of ten: a proton is about $10^{-15}$ m, a galaxy about $10^{21}$ m. Scientific notation is the only comfortable way to write a range that spans the tiniest particle to the widest structures in the universe."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Exponent moves the decimal: right for +, left for −.",
+              "Compare powers of ten first.",
+              "Same power? The leading number breaks the tie."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "operations-in-scientific-notation",
+      "title": "Operations in Scientific Notation",
+      "concreteComparison": "To multiply $(6\\times10^5)(3\\times10^2)$, handle the two parts separately: multiply the fronts $6\\times3=18$, and add the exponents $10^{5}\\cdot10^{2}=10^{7}$. That gives $18\\times10^7$, then tidy it to $1.8\\times10^8$. The exponent rules you already know do all the heavy lifting.",
+      "objective": "Multiply and divide numbers in scientific notation by combining the leading numbers and applying the exponent rules, then rewrite in proper form.",
+      "concept": [
+        "**Multiplying:** multiply the leading numbers and **add** the exponents. $(6\\times10^5)(3\\times10^2) = (6\\cdot3)\\times10^{5+2} = 18\\times10^7$.",
+        "**Dividing:** divide the leading numbers and **subtract** the exponents. $\\frac{8\\times10^6}{2\\times10^2} = (8\\div2)\\times10^{6-2} = 4\\times10^4$.",
+        "**Fix the form:** if the leading number isn't between $1$ and $10$, adjust. $18\\times10^7 = 1.8\\times10^8$ — one extra factor of ten moves from the front into the exponent.",
+        "This is just the product and quotient rules wearing a new hat: the powers of ten follow $a^m\\cdot a^n=a^{m+n}$ exactly as before."
+      ],
+      "keyIdea": "Combine the leading numbers, add/subtract the exponents, then restore $1\\le a<10$.",
+      "facts": [
+        {
+          "title": "Multiply",
+          "latex": "$(a\\times10^m)(b\\times10^n)=ab\\times10^{m+n}$",
+          "explanation": "Multiply fronts, add exponents."
+        },
+        {
+          "title": "Divide",
+          "latex": "$\\dfrac{a\\times10^m}{b\\times10^n}=\\dfrac{a}{b}\\times10^{m-n}$",
+          "explanation": "Divide fronts, subtract exponents."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "exp6-we1",
+          "statement": "Multiply $(6\\times10^5)(3\\times10^2)$.",
+          "solution": "$18\\times10^7 = 1.8\\times10^8$.",
+          "check": [
+            "(6*10**5)*(3*10**2) == 18*10**7",
+            "18*10**7 == Rational(18,10)*10**8"
+          ]
+        },
+        {
+          "id": "exp6-we2",
+          "statement": "Divide $\\frac{8\\times10^6}{2\\times10^2}$.",
+          "solution": "$(8\\div2)\\times10^{6-2}=4\\times10^4$.",
+          "check": [
+            "(8*10**6)/(2*10**2) == 4*10**4"
+          ]
+        },
+        {
+          "id": "exp6-we3",
+          "statement": "Multiply $(2\\times10^3)(4\\times10^4)$.",
+          "solution": "$8\\times10^7$.",
+          "check": [
+            "(2*10**3)*(4*10**4) == 8*10**7"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Multiplying the exponents.",
+          "correction": "When multiplying powers of ten you ADD the exponents: $10^5\\cdot10^2=10^7$.",
+          "authored": true
+        },
+        {
+          "text": "Leaving an out-of-range leading number.",
+          "correction": "$18\\times10^7$ should be tidied to $1.8\\times10^8$ so $1\\le a<10$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "exp6-t1",
+          "statement": "Multiply $(3\\times10^2)(2\\times10^3)$.",
+          "solution": "$6\\times10^5$.",
+          "check": [
+            "(3*10**2)*(2*10**3) == 6*10**5"
+          ]
+        },
+        {
+          "id": "exp6-t2",
+          "statement": "Divide $\\frac{9\\times10^8}{3\\times10^3}$.",
+          "solution": "$3\\times10^5$.",
+          "check": [
+            "(9*10**8)/(3*10**3) == 3*10**5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Multiplying",
+            "title": "Fronts times, exponents add",
+            "beats": [
+              "$(6\\times10^5)(3\\times10^2)$.",
+              "Multiply the fronts: $6\\times3=18$.",
+              "Add the exponents: $10^{5+2}=10^7$.",
+              "$=18\\times10^7$ — almost done."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Tidying up",
+            "title": "Restore proper form",
+            "beats": [
+              "$18$ isn't between $1$ and $10$.",
+              "$18 = 1.8\\times10^1$.",
+              "So $18\\times10^7 = 1.8\\times10^{8}$.",
+              "One factor of ten hops into the exponent."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Multiply",
+            "prompt": "Multiply $(2\\times10^3)(4\\times10^4)$.",
+            "options": [
+              "$8\\times10^7$",
+              "$8\\times10^{12}$",
+              "$6\\times10^7$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Fronts: $2\\times4=8$. Exponents add: $10^{3+4}=10^7$.",
+            "check": [
+              "(2*10**3)*(4*10**4) == 8*10**7"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Dividing",
+            "title": "Fronts divide, exponents subtract",
+            "beats": [
+              "$\\frac{8\\times10^6}{2\\times10^2}$.",
+              "Divide the fronts: $8\\div2=4$.",
+              "Subtract exponents: $10^{6-2}=10^4$.",
+              "$=4\\times10^4$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Multiply and divide",
+            "intro": "Combine fronts, adjust the exponent, tidy.",
+            "examples": [
+              {
+                "prompt": "Multiply $(5\\times10^2)(3\\times10^3)$.",
+                "steps": [
+                  "Fronts: $5\\times3=15$.",
+                  "Exponents: $10^{2+3}=10^5$.",
+                  "$15\\times10^5=1.5\\times10^6$."
+                ],
+                "answer": "$1.5\\times10^6$",
+                "check": [
+                  "(5*10**2)*(3*10**3) == 15*10**5",
+                  "15*10**5 == Rational(15,10)*10**6"
+                ]
+              },
+              {
+                "prompt": "Divide $\\frac{6\\times10^9}{2\\times10^4}$.",
+                "steps": [
+                  "Fronts: $6\\div2=3$.",
+                  "Exponents: $10^{9-4}=10^5$.",
+                  "$=3\\times10^5$."
+                ],
+                "answer": "$3\\times10^5$",
+                "check": [
+                  "(6*10**9)/(2*10**4) == 3*10**5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Operate in scientific notation",
+            "intro": "Fronts, then exponents, then tidy.",
+            "problems": [
+              {
+                "prompt": "Multiply $(4\\times10^3)(2\\times10^5)$.",
+                "options": [
+                  "$8\\times10^8$",
+                  "$8\\times10^{15}$",
+                  "$6\\times10^8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4\\times2=8$; $10^{3+5}=10^8$.",
+                "check": [
+                  "(4*10**3)*(2*10**5) == 8*10**8"
+                ]
+              },
+              {
+                "prompt": "Divide $\\frac{9\\times10^7}{3\\times10^2}$.",
+                "options": [
+                  "$3\\times10^5$",
+                  "$3\\times10^9$",
+                  "$6\\times10^5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$9\\div3=3$; $10^{7-2}=10^5$.",
+                "check": [
+                  "(9*10**7)/(3*10**2) == 3*10**5"
+                ]
+              },
+              {
+                "prompt": "Tidy $12\\times10^6$ into proper form.",
+                "options": [
+                  "$1.2\\times10^7$",
+                  "$12\\times10^6$",
+                  "$1.2\\times10^5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$12=1.2\\times10^1$, so $12\\times10^6=1.2\\times10^7$.",
+                "check": [
+                  "12*10**6 == Rational(12,10)*10**7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "You've mastered the powers",
+            "body": "You can combine, expand, and shrink powers, and move fluently in and out of scientific notation."
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished “Exponents & Scientific Notation”",
+            "body": "You can wield every exponent law, handle zero and negative powers, and compute with numbers from the astronomically large to the vanishingly small. Next: **Square & Cube Roots**, the operation that undoes an exponent."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "exp-pr1",
+      "statement": "Simplify $3^2\\cdot 3^4$ as a single power.",
+      "solution": "$3^{2+4}=3^6=729$.",
+      "check": [
+        "3**2 * 3**4 == 3**6"
+      ]
+    },
+    {
+      "id": "exp-pr2",
+      "statement": "Simplify $\\frac{5^6}{5^2}$.",
+      "solution": "$5^{6-2}=5^4=625$.",
+      "check": [
+        "5**6 / 5**2 == 5**4"
+      ]
+    },
+    {
+      "id": "exp-pr3",
+      "statement": "Simplify $(2^4)^2$.",
+      "solution": "$2^{4\\cdot2}=2^8=256$.",
+      "check": [
+        "(2**4)**2 == 2**8"
+      ]
+    },
+    {
+      "id": "exp-pr4",
+      "statement": "Evaluate $8^0$.",
+      "solution": "$1$.",
+      "check": [
+        "8**0 == 1"
+      ]
+    },
+    {
+      "id": "exp-pr5",
+      "statement": "Evaluate $4^{-2}$.",
+      "solution": "$\\frac{1}{16}$.",
+      "check": [
+        "4**(-2) == Rational(1,16)"
+      ]
+    },
+    {
+      "id": "exp-pr6",
+      "statement": "Write $73{,}000$ in scientific notation.",
+      "solution": "$7.3\\times10^4$.",
+      "check": [
+        "Rational(73,10) * 10**4 == 73000"
+      ]
+    },
+    {
+      "id": "exp-pr7",
+      "statement": "Write $0.00025$ in scientific notation.",
+      "solution": "$2.5\\times10^{-4}$.",
+      "check": [
+        "Rational(25,10) * 10**(-4) == Rational(25,100000)"
+      ]
+    },
+    {
+      "id": "exp-pr8",
+      "statement": "Multiply $(3\\times10^4)(2\\times10^3)$.",
+      "solution": "$6\\times10^7$.",
+      "check": [
+        "(3*10**4)*(2*10**3) == 6*10**7"
+      ]
+    },
+    {
+      "id": "exp-pr9",
+      "statement": "Which is greater, $5\\times10^6$ or $8\\times10^5$?",
+      "solution": "$5\\times10^6$, since $10^6>10^5$.",
+      "check": [
+        "5 * 10**6 > 8 * 10**5"
+      ]
+    },
+    {
+      "id": "exp-pr10",
+      "statement": "Divide $\\frac{6\\times10^8}{3\\times10^2}$.",
+      "solution": "$2\\times10^6$.",
+      "check": [
+        "(6*10**8)/(3*10**2) == 2*10**6"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "exp-ty1",
+      "statement": "Simplify $2^5\\cdot 2^3$.",
+      "solution": "$2^8=256$.",
+      "check": [
+        "2**5 * 2**3 == 2**8"
+      ]
+    },
+    {
+      "id": "exp-ty2",
+      "statement": "Simplify $(3^2\\cdot 3)^2$ as a single power of 3.",
+      "solution": "$(3^3)^2=3^6=729$.",
+      "check": [
+        "(3**2 * 3)**2 == 3**6"
+      ]
+    },
+    {
+      "id": "exp-ty3",
+      "statement": "Evaluate $10^0 + 2^{-2}$.",
+      "solution": "$1 + \\frac14 = \\frac54$.",
+      "check": [
+        "10**0 + 2**(-2) == Rational(5,4)"
+      ]
+    },
+    {
+      "id": "exp-ty4",
+      "statement": "Write $6{,}200{,}000$ in scientific notation.",
+      "solution": "$6.2\\times10^6$.",
+      "check": [
+        "Rational(62,10) * 10**6 == 6200000"
+      ]
+    },
+    {
+      "id": "exp-ty5",
+      "statement": "Write $0.00009$ in scientific notation.",
+      "solution": "$9\\times10^{-5}$.",
+      "check": [
+        "9 * 10**(-5) == Rational(9,100000)"
+      ]
+    },
+    {
+      "id": "exp-ty6",
+      "statement": "Multiply $(4\\times10^6)(5\\times10^3)$ and tidy.",
+      "solution": "$20\\times10^9 = 2\\times10^{10}$.",
+      "check": [
+        "(4*10**6)*(5*10**3) == 2*10**10"
+      ]
+    },
+    {
+      "id": "exp-ty7",
+      "statement": "Divide $\\frac{9\\times10^{10}}{3\\times10^4}$.",
+      "solution": "$3\\times10^6$.",
+      "check": [
+        "(9*10**10)/(3*10**4) == 3*10**6"
+      ]
+    }
+  ]
+}
