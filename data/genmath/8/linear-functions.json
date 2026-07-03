@@ -1,0 +1,1563 @@
+{
+  "slug": "linear-functions",
+  "title": "Linear Functions",
+  "grade": 8,
+  "blurb": "Slope and rate of change, y = mx + b, and reading a line four ways: table, graph, equation, and words.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "what-is-a-function",
+      "title": "What Is a Function?",
+      "concreteComparison": "A vending machine: press B4, get the same granola bar every time. Press it tomorrow — same bar. A machine that sometimes dropped chips and sometimes soda for the SAME button would be broken. A **function** is exactly that promise in math: each input gets **one** guaranteed output.",
+      "objective": "Recognize a function as a rule assigning exactly one output to each input, read function tables, and spot non-functions.",
+      "concept": [
+        "A **function** is a rule that takes an **input** and produces exactly **one output**. Input 3 into the rule “double it, add 1” and you always get $7$ — never sometimes $7$, sometimes $9$.",
+        "Functions often appear as **tables** of input–output pairs. The rule $y=2x+1$ makes the table $(1,3), (2,5), (3,7), (4,9)$.",
+        "**Not** every table is a function: if the SAME input appears with two DIFFERENT outputs — like $(2,5)$ and $(2,8)$ — the rule is broken. (Repeated outputs are fine; repeated inputs with different outputs are not.)",
+        "The set of inputs is what you feed the rule; each input owns exactly one output — that's the whole definition."
+      ],
+      "keyIdea": "One input → exactly one output. Same input can never give two different outputs.",
+      "facts": [
+        {
+          "title": "The promise",
+          "latex": "each input → one output",
+          "explanation": "That's what makes a rule a function."
+        },
+        {
+          "title": "Table check",
+          "latex": "$(2,5)$ and $(2,8)$ together = not a function",
+          "explanation": "One input, two outputs — broken."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "lf1-we1",
+          "statement": "The rule is $y=2x+1$. Find the output for input $x=3$.",
+          "solution": "$y=2(3)+1=7$.",
+          "check": [
+            "2*3 + 1 == 7"
+          ]
+        },
+        {
+          "id": "lf1-we2",
+          "statement": "The rule is $y=5x-2$. Complete the pair $(4, \\;?)$.",
+          "solution": "$y=5(4)-2=18$.",
+          "check": [
+            "5*4 - 2 == 18"
+          ]
+        },
+        {
+          "id": "lf1-we3",
+          "statement": "A table holds $(1,4), (2,7), (3,10)$. Verify the rule $y=3x+1$ fits every row.",
+          "solution": "$3(1)+1=4$ ✓, $3(2)+1=7$ ✓, $3(3)+1=10$ ✓.",
+          "check": [
+            "3*1 + 1 == 4",
+            "3*2 + 1 == 7",
+            "3*3 + 1 == 10"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Rejecting a function because two inputs share an output.",
+          "correction": "$(1,5)$ and $(2,5)$ is fine — different inputs may agree. Only a repeated INPUT with different outputs breaks a function.",
+          "authored": true
+        },
+        {
+          "text": "Treating a function as one fixed number.",
+          "correction": "A function is the whole RULE — the machine, not one snack. $y=2x+1$ describes every pair at once.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "lf1-t1",
+          "statement": "Rule: $y=4x-3$. What is the output for $x=5$?",
+          "solution": "$4(5)-3=17$.",
+          "check": [
+            "4*5 - 3 == 17"
+          ]
+        },
+        {
+          "id": "lf1-t2",
+          "statement": "Does $y=x+6$ fit the pairs $(2,8)$ and $(5,11)$?",
+          "solution": "Yes: $2+6=8$ and $5+6=11$.",
+          "check": [
+            "2 + 6 == 8",
+            "5 + 6 == 11"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The machine",
+            "title": "Input → rule → output",
+            "beats": [
+              "A **function** is a rule-machine.",
+              "Feed it an input, it returns ONE output.",
+              "Rule $y=2x+1$: input $3$ → output $7$.",
+              "Same input tomorrow → same $7$. Always."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "As a table",
+            "title": "Pairs the rule produces",
+            "beats": [
+              "$y=2x+1$ builds the table:",
+              "$(1,3),\\ (2,5),\\ (3,7),\\ (4,9)$.",
+              "Each row: input on the left, its one output on the right.",
+              "Different rules build different tables."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Run the machine",
+            "prompt": "The rule is $y=3x-2$. Input $x=4$ gives…",
+            "options": [
+              "$10$",
+              "$14$",
+              "$5$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$3(4)-2=10$.",
+            "check": [
+              "3*4 - 2 == 10"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Broken machines",
+            "title": "When it's NOT a function",
+            "beats": [
+              "$(2,5)$ and $(2,8)$ in one table?",
+              "Input $2$ has TWO outputs — broken machine.",
+              "But $(1,5)$ and $(3,5)$ is fine —",
+              "different inputs may share an output."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Check the rule",
+            "intro": "Substitute each input; expect its one output.",
+            "examples": [
+              {
+                "prompt": "Rule $y=5x-2$: find the outputs for $x=1$ and $x=4$.",
+                "steps": [
+                  "$5(1)-2=3$.",
+                  "$5(4)-2=18$.",
+                  "Pairs: $(1,3)$ and $(4,18)$."
+                ],
+                "answer": "$3$ and $18$",
+                "check": [
+                  "5*1 - 2 == 3",
+                  "5*4 - 2 == 18"
+                ]
+              },
+              {
+                "prompt": "Does $y=3x+1$ fit $(2,7)$ and $(5,16)$?",
+                "steps": [
+                  "$3(2)+1=7$ ✓.",
+                  "$3(5)+1=16$ ✓.",
+                  "Both rows check out."
+                ],
+                "answer": "yes",
+                "check": [
+                  "3*2 + 1 == 7",
+                  "3*5 + 1 == 16"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Function or not?",
+            "intro": "One input, one output — always.",
+            "problems": [
+              {
+                "prompt": "Rule $y=2x+5$: the output for input $6$ is…",
+                "options": [
+                  "$17$",
+                  "$13$",
+                  "$22$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2(6)+5=17$.",
+                "check": [
+                  "2*6 + 5 == 17"
+                ]
+              },
+              {
+                "prompt": "Which table is NOT a function?",
+                "options": [
+                  "$(3,1),(3,9)$",
+                  "$(1,4),(2,4)$",
+                  "$(1,2),(2,3)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Input $3$ appears with two different outputs — broken.",
+                "check": [
+                  "1 != 9"
+                ]
+              },
+              {
+                "prompt": "Rule $y=x^2$: the output for input $5$ is…",
+                "options": [
+                  "$25$",
+                  "$10$",
+                  "$7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5^2=25$ — still one output per input, so still a function.",
+                "check": [
+                  "5**2 == 25"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Functions run your life",
+            "body": "Your phone bill is a function of data used. Cooking time is a function of a turkey's weight. A song's pitch is a function of time. The idea of “one input, one guaranteed output” is so useful that all of physics is written in functions."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A function assigns each input exactly **one** output.",
+              "Tables show a function as input–output pairs.",
+              "Repeated input with different outputs = not a function."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "slope-and-rate-of-change",
+      "title": "Slope & Rate of Change",
+      "concreteComparison": "Two ramps into a building: one rises $2$ ft over a $10$ ft run, the other rises $2$ ft over just $4$ ft. The second is much steeper — you feel it in your legs. **Slope** puts a number on steepness: rise divided by run. The wheelchair-ramp rule in many building codes is a slope of at most $\\frac{1}{12}$ — one foot up for every twelve along.",
+      "objective": "Compute slope as rise over run between two points, interpret it as a rate of change, and read positive, negative, zero slopes from a graph.",
+      "concept": [
+        "**Slope** measures steepness: $m=\\dfrac{\\text{rise}}{\\text{run}}=\\dfrac{y_2-y_1}{x_2-x_1}$ between any two points on a line.",
+        "From $(1,1)$ to $(4,3)$: rise $=3-1=2$, run $=4-1=3$, so $m=\\frac{2}{3}$.",
+        "Slope is a **rate of change**: dollars per GB, km per hour, candies per bag. “$y$ changes by $m$ each time $x$ grows by 1.”",
+        "Signs tell the story: **positive** slope climbs left-to-right, **negative** falls, **zero** is flat (a horizontal line). On a LINE, any two points give the same slope — that's what makes it a line."
+      ],
+      "keyIdea": "$m=\\frac{y_2-y_1}{x_2-x_1}$ — how much $y$ changes per 1 step of $x$.",
+      "facts": [
+        {
+          "title": "The formula",
+          "latex": "$m=\\dfrac{y_2-y_1}{x_2-x_1}$",
+          "explanation": "Rise over run."
+        },
+        {
+          "title": "Read the sign",
+          "latex": "up ↗ positive · down ↘ negative · flat → zero",
+          "explanation": "Left to right."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "lf2-we1",
+          "statement": "Find the slope through $(1,1)$ and $(4,3)$.",
+          "solution": "$m=\\frac{3-1}{4-1}=\\frac{2}{3}$.",
+          "check": [
+            "Rational(3-1, 4-1) == Rational(2,3)"
+          ]
+        },
+        {
+          "id": "lf2-we2",
+          "statement": "Find the slope through $(2,7)$ and $(5,1)$.",
+          "solution": "$m=\\frac{1-7}{5-2}=\\frac{-6}{3}=-2$ — the line falls.",
+          "check": [
+            "Rational(1-7, 5-2) == -2"
+          ]
+        },
+        {
+          "id": "lf2-we3",
+          "statement": "A ramp rises $2$ ft over a $24$ ft run. Its slope?",
+          "solution": "$m=\\frac{2}{24}=\\frac{1}{12}$ — exactly the accessibility limit.",
+          "check": [
+            "Rational(2,24) == Rational(1,12)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Putting run over rise.",
+          "correction": "Slope is $\\frac{\\text{rise}}{\\text{run}}$ — the $y$-change on TOP.",
+          "authored": true
+        },
+        {
+          "text": "Mixing the subtraction order.",
+          "correction": "$\\frac{y_2-y_1}{x_2-x_1}$ or $\\frac{y_1-y_2}{x_1-x_2}$ both work, but mixing them ($\\frac{y_2-y_1}{x_1-x_2}$) flips the sign.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "lf2-t1",
+          "statement": "Slope through $(0,0)$ and $(2,6)$?",
+          "solution": "$m=\\frac{6-0}{2-0}=3$.",
+          "check": [
+            "Rational(6-0, 2-0) == 3"
+          ]
+        },
+        {
+          "id": "lf2-t2",
+          "statement": "Slope through $(1,8)$ and $(5,0)$?",
+          "solution": "$m=\\frac{0-8}{5-1}=-2$.",
+          "check": [
+            "Rational(0-8, 5-1) == -2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "coordGeo",
+            "eyebrow": "See it",
+            "title": "Rise over run, live",
+            "teach": "Drag either point. The triangle shows the **rise** and the **run**; the slope is their ratio — and it stays the same anywhere on the line.",
+            "config": {
+              "mode": "slope",
+              "a": {
+                "x": 1,
+                "y": 1
+              },
+              "b": {
+                "x": 4,
+                "y": 3
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The formula",
+            "title": "Two points → one number",
+            "beats": [
+              "Pick two points: $(1,1)$ and $(4,3)$.",
+              "Rise: $3-1=2$. Run: $4-1=3$.",
+              "$m=\\frac{2}{3}$.",
+              "Every 3 steps right, the line climbs 2."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Compute it",
+            "prompt": "The slope through $(2,3)$ and $(4,9)$ is…",
+            "options": [
+              "$3$",
+              "$\\frac{1}{3}$",
+              "$6$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$m=\\frac{9-3}{4-2}=\\frac{6}{2}=3$.",
+            "check": [
+              "Rational(9-3, 4-2) == 3"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Rate of change",
+            "title": "Slope with units",
+            "beats": [
+              "A plan costs \\$3 per GB: slope $3$ dollars/GB.",
+              "A tank drains 2 L per minute: slope $-2$ L/min.",
+              "“Per” is the giveaway — slope IS the per.",
+              "Positive grows, negative shrinks, zero stays flat."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Slopes of all signs",
+            "intro": "Subtract consistently; watch the sign.",
+            "examples": [
+              {
+                "prompt": "Slope through $(0,2)$ and $(3,11)$?",
+                "steps": [
+                  "Rise: $11-2=9$.",
+                  "Run: $3-0=3$.",
+                  "$m=3$."
+                ],
+                "answer": "$3$",
+                "check": [
+                  "Rational(11-2, 3-0) == 3"
+                ]
+              },
+              {
+                "prompt": "Slope through $(1,5)$ and $(6,5)$?",
+                "steps": [
+                  "Rise: $5-5=0$.",
+                  "Run: $6-1=5$.",
+                  "$m=0$ — a horizontal line."
+                ],
+                "answer": "$0$",
+                "check": [
+                  "Rational(5-5, 6-1) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the slope",
+            "intro": "Rise on top, run on the bottom.",
+            "problems": [
+              {
+                "prompt": "Through $(2,1)$ and $(6,9)$:",
+                "options": [
+                  "$2$",
+                  "$\\frac{1}{2}$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{9-1}{6-2}=\\frac{8}{4}=2$.",
+                "check": [
+                  "Rational(9-1, 6-2) == 2"
+                ]
+              },
+              {
+                "prompt": "Through $(0,6)$ and $(3,0)$:",
+                "options": [
+                  "$-2$",
+                  "$2$",
+                  "$-\\frac{1}{2}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{0-6}{3-0}=-2$ — it falls.",
+                "check": [
+                  "Rational(0-6, 3-0) == -2"
+                ]
+              },
+              {
+                "prompt": "A climb of 3 m over a run of 12 m has slope…",
+                "options": [
+                  "$\\frac{1}{4}$",
+                  "$4$",
+                  "$36$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{3}{12}=\\frac14$.",
+                "check": [
+                  "Rational(3,12) == Rational(1,4)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The steepest street on Earth",
+            "body": "Baldwin Street in New Zealand climbs about $1$ m for every $2.86$ m along — a slope of $0.35$, or $35\\%$. Cars park sideways, and every year runners race straight up it. For comparison, highway builders try to keep slopes under $6\\%$."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$m=\\frac{y_2-y_1}{x_2-x_1}$ — rise over run.",
+              "Slope is a rate: the change in $y$ per 1 of $x$.",
+              "Positive climbs, negative falls, zero is flat."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "slope-intercept-form",
+      "title": "Slope-Intercept Form",
+      "concreteComparison": "A gym: $\\$20$ to join, then $\\$15$ a month. Total cost after $x$ months: $y=15x+20$. Two numbers tell the whole story — $15$ (the monthly rate: the **slope**) and $20$ (the starting cost: the **y-intercept**). Every line works the same way: $y=mx+b$, a rate plus a starting point.",
+      "objective": "Read the slope $m$ and y-intercept $b$ from $y=mx+b$, evaluate points on the line, and match equations to their meaning.",
+      "concept": [
+        "**Slope-intercept form**: $y=mx+b$. The coefficient $m$ is the **slope**; the constant $b$ is the **y-intercept** — where the line crosses the $y$-axis (at $x=0$: $y=m\\cdot0+b=b$).",
+        "In $y=2x+1$: slope $2$, intercept $1$. The line starts at $(0,1)$ and climbs $2$ for every $1$ right.",
+        "In stories, $b$ is the **starting amount** and $m$ the **rate**: $y=15x+20$ is “\\$20 up front, \\$15 per month.”",
+        "Watch signs and missing parts: $y=x-4$ has $m=1$, $b=-4$; $y=3x$ has $b=0$; $y=5$ has $m=0$ (flat line)."
+      ],
+      "keyIdea": "$y=mx+b$: $m$ = rate/steepness, $b$ = where the line starts on the y-axis.",
+      "facts": [
+        {
+          "title": "Read it",
+          "latex": "$y=2x+1$: $m=2$, $b=1$",
+          "explanation": "Coefficient is slope; constant is intercept."
+        },
+        {
+          "title": "At x = 0",
+          "latex": "$y=b$",
+          "explanation": "The intercept is the starting value."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "lf3-we1",
+          "statement": "For $y=2x+1$: give the slope, the intercept, and the point at $x=3$.",
+          "solution": "$m=2$, $b=1$; at $x=3$, $y=2(3)+1=7$, the point $(3,7)$.",
+          "check": [
+            "2*3 + 1 == 7",
+            "2*0 + 1 == 1"
+          ]
+        },
+        {
+          "id": "lf3-we2",
+          "statement": "A phone plan: $y=10x+30$. What do the numbers mean, and what's the cost at $x=6$ months?",
+          "solution": "\\$30 up-front, \\$10 per month; $y=10(6)+30=90$ dollars.",
+          "check": [
+            "10*6 + 30 == 90"
+          ]
+        },
+        {
+          "id": "lf3-we3",
+          "statement": "Is the point $(4,5)$ on the line $y=2x-3$?",
+          "solution": "$2(4)-3=5$ ✓ — yes, it satisfies the equation.",
+          "check": [
+            "2*4 - 3 == 5"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading $b$ as the slope.",
+          "correction": "In $y=3x+7$ the slope is the number ON $x$ ($3$); the lone $7$ is the intercept.",
+          "authored": true
+        },
+        {
+          "text": "Missing a negative intercept.",
+          "correction": "$y=2x-5$ has $b=-5$, not $5$ — the sign belongs to it.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "lf3-t1",
+          "statement": "In $y=4x-2$, what are $m$ and $b$? What is $y$ at $x=2$?",
+          "solution": "$m=4$, $b=-2$; $y=4(2)-2=6$.",
+          "check": [
+            "4*2 - 2 == 6"
+          ]
+        },
+        {
+          "id": "lf3-t2",
+          "statement": "Is $(3,10)$ on $y=3x+1$?",
+          "solution": "$3(3)+1=10$ ✓ yes.",
+          "check": [
+            "3*3 + 1 == 10"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "coordGeo",
+            "eyebrow": "See it",
+            "title": "m and b, live",
+            "teach": "This is $y=2x+1$. Adjust the slope and intercept: $b$ slides the line up and down; $m$ tilts it. Two dials control every line.",
+            "config": {
+              "mode": "line",
+              "m": 2,
+              "yint": 1
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Two dials",
+            "title": "What m and b do",
+            "beats": [
+              "$y=mx+b$ — every (non-vertical) line.",
+              "$b$: where it crosses the $y$-axis $(0,b)$.",
+              "$m$: how fast it climbs — rise per 1 run.",
+              "$y=2x+1$: start at $(0,1)$, up 2 per step."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the equation",
+            "prompt": "In $y=5x-3$, the slope and intercept are…",
+            "options": [
+              "$m=5$, $b=-3$",
+              "$m=-3$, $b=5$",
+              "$m=5$, $b=3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The coefficient of $x$ is the slope; the constant (with its sign!) is the intercept.",
+            "check": [
+              "5*0 - 3 == -3"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "In a story",
+            "title": "Start plus rate",
+            "beats": [
+              "Gym: \\$20 to join, \\$15 per month.",
+              "$y = 15x + 20$.",
+              "$b=20$: the cost before any months pass.",
+              "$m=15$: what each month adds."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Points from equations",
+            "intro": "Substitute x; read m and b by position.",
+            "examples": [
+              {
+                "prompt": "For $y=3x+2$: the points at $x=0$ and $x=4$?",
+                "steps": [
+                  "$x=0$: $y=2$ → $(0,2)$ — the intercept.",
+                  "$x=4$: $y=3(4)+2=14$ → $(4,14)$."
+                ],
+                "answer": "$(0,2)$ and $(4,14)$",
+                "check": [
+                  "3*0 + 2 == 2",
+                  "3*4 + 2 == 14"
+                ]
+              },
+              {
+                "prompt": "Is $(2,1)$ on $y=-2x+5$?",
+                "steps": [
+                  "$-2(2)+5=1$ ✓.",
+                  "Yes — the point satisfies the equation."
+                ],
+                "answer": "yes",
+                "check": [
+                  "-2*2 + 5 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Read and use y = mx + b",
+            "intro": "Coefficient = slope; constant = intercept.",
+            "problems": [
+              {
+                "prompt": "The line $y=x+4$ has…",
+                "options": [
+                  "$m=1$, $b=4$",
+                  "$m=0$, $b=4$",
+                  "$m=4$, $b=1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x$ means $1x$: slope 1, intercept 4.",
+                "check": [
+                  "1*0 + 4 == 4"
+                ]
+              },
+              {
+                "prompt": "On $y=2x-1$, the point at $x=5$ is…",
+                "options": [
+                  "$(5,9)$",
+                  "$(5,11)$",
+                  "$(5,4)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2(5)-1=9$.",
+                "check": [
+                  "2*5 - 1 == 9"
+                ]
+              },
+              {
+                "prompt": "A scooter rental: $\\$5$ unlock + $\\$2$ per km. Which equation?",
+                "options": [
+                  "$y=2x+5$",
+                  "$y=5x+2$",
+                  "$y=7x$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Rate \\$2 rides on $x$; the \\$5 unlock is the intercept.",
+                "check": [
+                  "2*3 + 5 == 11"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why the letter m?",
+            "body": "Nobody knows for sure why slope is called $m$ — the most popular theory points to the French verb **monter**… except mathematicians can't find a French text that actually used it. It remains one of math's small unsolved mysteries. The $b$? Probably just “the next letter after a” in $ax+b$."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$y=mx+b$: slope $m$, y-intercept $b$.",
+              "$b$ is the value at $x=0$ — the start.",
+              "In stories: $b$ = one-time amount, $m$ = the rate."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "graphing-lines",
+      "title": "Graphing Lines",
+      "concreteComparison": "GPS doesn't store a million dots for a straight road — it stores a starting point and a direction. Lines work the same: to draw $y=\\frac{1}{2}x+1$, plant a dot at the intercept $(0,1)$, then walk the slope — up $1$, right $2$ — and connect. Start plus direction draws the whole line.",
+      "objective": "Graph a line from slope-intercept form (start at b, walk the slope), and recognize horizontal lines and negative slopes on the grid.",
+      "concept": [
+        "**To graph $y=mx+b$:** ① plant the intercept $(0,b)$; ② from there use the slope as directions — $m=\\frac{1}{2}$ means up $1$, right $2$; ③ connect the dots with a straight line.",
+        "**Negative slope** walks down: $m=-2$ means down $2$, right $1$. $y=-2x+3$ starts at $(0,3)$ and falls.",
+        "**Horizontal lines**: $y=5$ has $m=0$ — no climb at all, a flat line through $(0,5)$.",
+        "Check any graph by testing a point: on $y=\\frac12 x+1$, at $x=4$: $y=3$. If $(4,3)$ is on your drawn line, it's right."
+      ],
+      "keyIdea": "Plant the intercept, walk the slope, connect — and verify with one substituted point.",
+      "facts": [
+        {
+          "title": "The recipe",
+          "latex": "dot at $(0,b)$, then rise/run",
+          "explanation": "Two points make the line."
+        },
+        {
+          "title": "Flat lines",
+          "latex": "$y=5$: slope $0$",
+          "explanation": "Horizontal through $(0,5)$."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "lf4-we1",
+          "statement": "Graph $y=\\frac{1}{2}x+1$: give two points to plot.",
+          "solution": "Intercept $(0,1)$; slope up 1 right 2 gives $(2,2)$. Check $x=4$: $y=3$.",
+          "check": [
+            "Rational(1,2)*0 + 1 == 1",
+            "Rational(1,2)*2 + 1 == 2",
+            "Rational(1,2)*4 + 1 == 3"
+          ]
+        },
+        {
+          "id": "lf4-we2",
+          "statement": "Graph $y=-2x+3$: give two points.",
+          "solution": "Intercept $(0,3)$; down 2 right 1 gives $(1,1)$.",
+          "check": [
+            "-2*0 + 3 == 3",
+            "-2*1 + 3 == 1"
+          ]
+        },
+        {
+          "id": "lf4-we3",
+          "statement": "Which points lie on the horizontal line $y=4$?",
+          "solution": "Every point with $y$-coordinate 4: $(0,4), (3,4), (-5,4), \\ldots$",
+          "check": [
+            "0*7 + 4 == 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Walking the slope from the origin instead of the intercept.",
+          "correction": "The walk starts at $(0,b)$ — for $y=2x+3$ that's $(0,3)$, not $(0,0)$.",
+          "authored": true
+        },
+        {
+          "text": "Reading $m=\\frac{1}{2}$ as “right 1, up 2”.",
+          "correction": "Rise is on top: $\\frac12$ = up 1, right 2. (Up 2 right 1 is slope 2.)",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "lf4-t1",
+          "statement": "Give two points on $y=3x-2$.",
+          "solution": "$(0,-2)$ and $(1,1)$.",
+          "check": [
+            "3*0 - 2 == -2",
+            "3*1 - 2 == 1"
+          ]
+        },
+        {
+          "id": "lf4-t2",
+          "statement": "Give two points on $y=-x+5$.",
+          "solution": "$(0,5)$ and $(1,4)$.",
+          "check": [
+            "-1*0 + 5 == 5",
+            "-1*1 + 5 == 4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "coordGeo",
+            "eyebrow": "See it",
+            "title": "Start at b, walk the slope",
+            "teach": "This line is $y=\\frac{1}{2}x+1$: it crosses the $y$-axis at $1$ and climbs 1 for every 2 right. Change $m$ and $b$ and watch the drawing recipe play out.",
+            "config": {
+              "mode": "line",
+              "m": 0.5,
+              "yint": 1
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The recipe",
+            "title": "Three moves",
+            "beats": [
+              "① Dot at the intercept $(0,b)$.",
+              "② Walk the slope: rise, then run.",
+              "③ Connect with a straight edge.",
+              "$y=2x+1$: dot $(0,1)$, up 2 right 1 → $(1,3)$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Second point",
+            "prompt": "Graphing $y=3x+2$: after the dot at $(0,2)$, the slope walk lands on…",
+            "options": [
+              "$(1,5)$",
+              "$(3,2)$",
+              "$(1,2)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Up 3, right 1 from $(0,2)$ → $(1,5)$.",
+            "check": [
+              "3*1 + 2 == 5"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Downhill and flat",
+            "title": "Negative and zero slopes",
+            "beats": [
+              "$y=-2x+3$: from $(0,3)$ walk DOWN 2, right 1.",
+              "The line falls left-to-right.",
+              "$y=5$: slope 0 — no walk, just flat.",
+              "A horizontal line through every $(x, 5)$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Points to plot",
+            "intro": "Intercept first, slope-walk second.",
+            "examples": [
+              {
+                "prompt": "Two points on $y=2x-4$?",
+                "steps": [
+                  "Intercept: $(0,-4)$.",
+                  "Up 2 right 1: $(1,-2)$.",
+                  "Check $x=3$: $y=2$."
+                ],
+                "answer": "$(0,-4)$ and $(1,-2)$",
+                "check": [
+                  "2*0 - 4 == -4",
+                  "2*1 - 4 == -2",
+                  "2*3 - 4 == 2"
+                ]
+              },
+              {
+                "prompt": "Two points on $y=-3x+6$?",
+                "steps": [
+                  "Intercept: $(0,6)$.",
+                  "Down 3 right 1: $(1,3)$."
+                ],
+                "answer": "$(0,6)$ and $(1,3)$",
+                "check": [
+                  "-3*0 + 6 == 6",
+                  "-3*1 + 6 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Walk the line",
+            "intro": "Watch the slope's sign.",
+            "problems": [
+              {
+                "prompt": "Which point is on $y=\\frac{1}{2}x+3$?",
+                "options": [
+                  "$(4,5)$",
+                  "$(4,7)$",
+                  "$(2,8)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac12(4)+3=5$.",
+                "check": [
+                  "Rational(1,2)*4 + 3 == 5"
+                ]
+              },
+              {
+                "prompt": "$y=-x+2$ passes through…",
+                "options": [
+                  "$(3,-1)$",
+                  "$(3,5)$",
+                  "$(-1,-3)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$-(3)+2=-1$.",
+                "check": [
+                  "-1*3 + 2 == -1"
+                ]
+              },
+              {
+                "prompt": "The line $y=-2$ is…",
+                "options": [
+                  "horizontal",
+                  "vertical",
+                  "rising"
+                ],
+                "correctIndex": 0,
+                "explanation": "Slope 0 — flat through $(0,-2)$.",
+                "check": [
+                  "0*9 - 2 == -2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "One equation, infinite dots",
+            "body": "A line's equation is a compression trick: instead of listing infinitely many points, $y=2x+1$ stores them ALL in five symbols. Computer graphics does exactly this — your screen never stores a line's points; it stores the equation and computes pixels on demand."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Dot at $(0,b)$, walk $m$ as rise/run, connect.",
+              "Negative slope walks down; $m=0$ is horizontal.",
+              "Verify with one substituted point."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "proportional-relationships",
+      "title": "Proportional or Not?",
+      "concreteComparison": "Apples cost $\\$2$ per pound: zero pounds, zero dollars — the graph starts at the origin. A taxi costs $\\$2$ per mile **plus a $\\$5$ flag fee**: zero miles already costs $\\$5$. Both are lines with slope $2$, but only the apples are **proportional** — doubling the pounds doubles the price. The taxi's flat fee breaks that doubling.",
+      "objective": "Distinguish proportional relationships ($y=mx$, through the origin) from other linear ones ($y=mx+b$, $b\\neq0$), and use the constant of proportionality.",
+      "concept": [
+        "A **proportional** relationship is $y=mx$ — a line through the **origin** $(0,0)$. The slope $m$ is also called the **constant of proportionality** (unit rate).",
+        "Test a table: if every $\\frac{y}{x}$ is the same number, it's proportional. $(2,4), (3,6), (5,10)$: ratios all $2$ ✓.",
+        "$y=mx+b$ with $b\\neq0$ is linear but NOT proportional: $(0,0)$ isn't on it, and doubling $x$ doesn't double $y$.",
+        "Shortcut: proportional ⟺ the graph is a line through the origin ⟺ $y\\div x$ is constant."
+      ],
+      "keyIdea": "Proportional = $y=mx$ = a line through the origin = constant $\\frac{y}{x}$.",
+      "facts": [
+        {
+          "title": "Proportional",
+          "latex": "$y=mx$, through $(0,0)$",
+          "explanation": "Doubling x doubles y."
+        },
+        {
+          "title": "The test",
+          "latex": "$\\frac{y}{x}$ constant",
+          "explanation": "Same ratio in every row."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "lf5-we1",
+          "statement": "Is the table $(2,4), (3,6), (5,10)$ proportional? Find the constant.",
+          "solution": "$\\frac42=\\frac63=\\frac{10}{5}=2$ — yes, $y=2x$ with constant $2$.",
+          "check": [
+            "Rational(4,2) == 2",
+            "Rational(6,3) == 2",
+            "Rational(10,5) == 2"
+          ]
+        },
+        {
+          "id": "lf5-we2",
+          "statement": "Apples: $y=2x$. Cost of $7$ pounds — and is it double the cost of $3.5$… of $14$ pounds vs $7$?",
+          "solution": "$y=2(7)=14$; doubling to 14 lb gives $28$ — exactly double. Proportional.",
+          "check": [
+            "2*7 == 14",
+            "2*14 == 28"
+          ]
+        },
+        {
+          "id": "lf5-we3",
+          "statement": "Taxi: $y=2x+5$. Is it proportional?",
+          "solution": "At $x=0$, $y=5\\neq0$ — not through the origin, so no. (And $\\frac{y}{x}$: $\\frac{7}{1}\\neq\\frac{9}{2}$.)",
+          "check": [
+            "2*0 + 5 == 5",
+            "Rational(7,1) != Rational(9,2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Calling every line proportional.",
+          "correction": "Linear just means straight. Proportional additionally requires passing through $(0,0)$ — no flat fee, no head start.",
+          "authored": true
+        },
+        {
+          "text": "Testing with differences instead of ratios.",
+          "correction": "Equal JUMPS make it linear; equal RATIOS $\\frac{y}{x}$ make it proportional.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "lf5-t1",
+          "statement": "Is $(1,3), (2,6), (4,12)$ proportional?",
+          "solution": "$\\frac31=\\frac62=\\frac{12}{4}=3$ ✓ yes — $y=3x$.",
+          "check": [
+            "Rational(3,1) == 3",
+            "Rational(6,2) == 3",
+            "Rational(12,4) == 3"
+          ]
+        },
+        {
+          "id": "lf5-t2",
+          "statement": "Is $y=4x+1$ proportional?",
+          "solution": "No: at $x=0$, $y=1\\neq0$.",
+          "check": [
+            "4*0 + 1 == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "coordGeo",
+            "eyebrow": "See it",
+            "title": "Through the origin",
+            "teach": "This is $y=2x$ — proportional, so the line passes exactly through $(0,0)$. Give it an intercept and the proportionality breaks.",
+            "config": {
+              "mode": "line",
+              "m": 2,
+              "yint": 0
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The special case",
+            "title": "y = mx",
+            "beats": [
+              "Proportional: $y=mx$ — no $+b$.",
+              "At $x=0$: $y=0$. The line owns the origin.",
+              "Double the input → double the output.",
+              "$m$ is the **constant of proportionality**."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Spot it",
+            "prompt": "Which equation is proportional?",
+            "options": [
+              "$y=3x$",
+              "$y=3x+2$",
+              "$y=x+3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Only $y=3x$ passes through the origin.",
+            "check": [
+              "3*0 == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The ratio test",
+            "title": "Check a table",
+            "beats": [
+              "$(2,4), (3,6), (5,10)$.",
+              "Ratios: $\\frac42=2$, $\\frac63=2$, $\\frac{10}{5}=2$.",
+              "All equal → proportional, $y=2x$.",
+              "One mismatch → not proportional."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Proportional or just linear?",
+            "intro": "Origin + constant ratio = proportional.",
+            "examples": [
+              {
+                "prompt": "Table $(1,5), (2,10), (6,30)$: proportional?",
+                "steps": [
+                  "$\\frac51=5$, $\\frac{10}{2}=5$, $\\frac{30}{6}=5$.",
+                  "Constant ratio 5.",
+                  "Yes: $y=5x$."
+                ],
+                "answer": "yes, $y=5x$",
+                "check": [
+                  "Rational(5,1) == 5",
+                  "Rational(10,2) == 5",
+                  "Rational(30,6) == 5"
+                ]
+              },
+              {
+                "prompt": "Gym $y=15x+20$: proportional?",
+                "steps": [
+                  "At $x=0$, $y=20\\neq0$.",
+                  "The join fee breaks doubling.",
+                  "No — linear but not proportional."
+                ],
+                "answer": "no",
+                "check": [
+                  "15*0 + 20 == 20"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Judge each one",
+            "intro": "Look for the origin and constant ratios.",
+            "problems": [
+              {
+                "prompt": "$(3,9), (5,15), (8,24)$ is…",
+                "options": [
+                  "proportional, $y=3x$",
+                  "not proportional",
+                  "not a function"
+                ],
+                "correctIndex": 0,
+                "explanation": "All ratios equal 3.",
+                "check": [
+                  "Rational(9,3) == 3",
+                  "Rational(15,5) == 3",
+                  "Rational(24,8) == 3"
+                ]
+              },
+              {
+                "prompt": "$y=\\frac{1}{2}x$ is…",
+                "options": [
+                  "proportional",
+                  "not proportional",
+                  "not linear"
+                ],
+                "correctIndex": 0,
+                "explanation": "$y=mx$ form with $m=\\frac12$ — through the origin.",
+                "check": [
+                  "Rational(1,2)*0 == 0"
+                ]
+              },
+              {
+                "prompt": "A ride: $\\$1.50$ unlock + $\\$0.25$/min. Proportional?",
+                "options": [
+                  "No — the unlock fee",
+                  "Yes",
+                  "Only for long rides"
+                ],
+                "correctIndex": 0,
+                "explanation": "At 0 minutes you already owe \\$1.50 — not through the origin.",
+                "check": [
+                  "Rational(150,100) != 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The unit-rate superpower",
+            "body": "Proportional relationships are why unit prices work: if 5 lb costs \\$10, then 1 lb costs \\$2, and ANY amount is just $2x$. Stores must post unit prices by law in many countries precisely so shoppers can compare proportional relationships at a glance."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Proportional: $y=mx$, through the origin.",
+              "Test: $\\frac{y}{x}$ constant in every row.",
+              "A $+b$ (fee, head start) breaks proportionality."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "four-views-of-a-line",
+      "title": "Four Views of a Line",
+      "concreteComparison": "The same phone plan can be described four ways: a sentence (“\\$30 up front plus \\$10 a month”), a table of months and costs, a graph climbing across the page, or the equation $y=10x+30$. Same plan, four costumes. The skill isn't picking a favorite — it's **translating** between them, because every test question hands you one view and asks about another.",
+      "objective": "Translate a linear relationship between words, table, graph, and equation — and compare two functions given in different views.",
+      "concept": [
+        "**Words → equation**: find the rate ($m$) and the starting amount ($b$). “\\$30 plus \\$10 per month” → $y=10x+30$.",
+        "**Table → equation**: the jump in $y$ per 1 step of $x$ is $m$; the value at $x=0$ (or walked back to it) is $b$. Rows $(0,30),(1,40),(2,50)$ → $y=10x+30$.",
+        "**Graph → equation**: read $b$ where the line crosses the $y$-axis; count rise/run for $m$.",
+        "**Comparing across views**: to decide which of two plans grows faster, extract each slope — whatever the costume. A table jumping $12$ per month beats a graph climbing $10$ per month."
+      ],
+      "keyIdea": "Every view hides the same two numbers, m and b — learn to extract them from any costume.",
+      "facts": [
+        {
+          "title": "All four",
+          "latex": "words · table · graph · equation",
+          "explanation": "One line, four representations."
+        },
+        {
+          "title": "Compare by m",
+          "latex": "bigger slope = faster growth",
+          "explanation": "Extract m from each view first."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "lf6-we1",
+          "statement": "Table: $(0,30), (1,40), (2,50)$. Find the equation.",
+          "solution": "Jump $+10$ per step → $m=10$; at $x=0$, $y=30$ → $b=30$. $y=10x+30$.",
+          "check": [
+            "10*0 + 30 == 30",
+            "10*1 + 30 == 40",
+            "10*2 + 30 == 50"
+          ]
+        },
+        {
+          "id": "lf6-we2",
+          "statement": "“A candle is 20 cm tall and burns 2 cm per hour.” Equation and height after 6 h?",
+          "solution": "$y=-2x+20$; at $x=6$: $y=8$ cm.",
+          "check": [
+            "-2*6 + 20 == 8",
+            "-2*0 + 20 == 20"
+          ]
+        },
+        {
+          "id": "lf6-we3",
+          "statement": "Plan A: $y=12x$. Plan B's table jumps $(1,15),(2,25),(3,35)$. Which grows faster per month?",
+          "solution": "B's jump is $10$ per month; A's slope is $12$. A grows faster.",
+          "check": [
+            "Rational(25-15, 2-1) == 10",
+            "12 > 10"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading a table's first y-value as b when x doesn't start at 0.",
+          "correction": "Rows $(2,50),(3,60)$: m=10, but b is $y$ at $x=0$ — walk back: $50-2\\cdot10=30$.",
+          "authored": true
+        },
+        {
+          "text": "Comparing functions by a single point instead of slope.",
+          "correction": "The plan that's cheaper in month 1 may grow faster and overtake — compare $m$ for growth, points for a specific moment.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "lf6-t1",
+          "statement": "Table $(0,5), (1,8), (2,11)$: find the equation.",
+          "solution": "$m=3$, $b=5$: $y=3x+5$.",
+          "check": [
+            "3*0 + 5 == 5",
+            "3*1 + 5 == 8",
+            "3*2 + 5 == 11"
+          ]
+        },
+        {
+          "id": "lf6-t2",
+          "statement": "“A tank holds 50 L and drains 5 L per minute.” Empty when?",
+          "solution": "$y=-5x+50=0$ at $x=10$ minutes.",
+          "check": [
+            "-5*10 + 50 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The four costumes",
+            "title": "Same line, four looks",
+            "beats": [
+              "**Words**: “\\$30 up front, \\$10 a month.”",
+              "**Table**: $(0,30), (1,40), (2,50)$.",
+              "**Graph**: a line starting at 30, climbing 10.",
+              "**Equation**: $y=10x+30$. All the same plan."
+            ]
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "See it",
+            "title": "The graph view",
+            "teach": "A plan with a $\\$3$ start fee and $\\$2$ per month, as a graph: it crosses the $y$-axis at $3$ and climbs $2$ per step. Reading $m$ and $b$ off a graph is just this picture in reverse.",
+            "config": {
+              "mode": "line",
+              "m": 2,
+              "yint": 3
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Table to equation",
+            "prompt": "A table reads $(0,7), (1,9), (2,11)$. The equation is…",
+            "options": [
+              "$y=2x+7$",
+              "$y=7x+2$",
+              "$y=2x+9$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Jump of 2 per step ($m=2$); value 7 at $x=0$ ($b=7$).",
+            "check": [
+              "2*0 + 7 == 7",
+              "2*1 + 7 == 9",
+              "2*2 + 7 == 11"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Walking back to b",
+            "title": "When the table skips x = 0",
+            "beats": [
+              "Rows: $(2,50), (3,60), (4,70)$.",
+              "Slope: jump 10 per step.",
+              "Walk back: $x=1$ → 40, $x=0$ → 30.",
+              "$b=30$, so $y=10x+30$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Translate and compare",
+            "intro": "Extract m and b from each costume.",
+            "examples": [
+              {
+                "prompt": "“A plant is 4 cm tall and grows 3 cm per week.” Equation + height at 5 weeks?",
+                "steps": [
+                  "$m=3$, $b=4$: $y=3x+4$.",
+                  "At $x=5$: $y=19$ cm."
+                ],
+                "answer": "$y=3x+4$; $19$ cm",
+                "check": [
+                  "3*5 + 4 == 19",
+                  "3*0 + 4 == 4"
+                ]
+              },
+              {
+                "prompt": "Which grows faster: $y=8x+1$, or the table $(1,10),(2,16),(3,22)$?",
+                "steps": [
+                  "Equation slope: 8.",
+                  "Table jump: $\\frac{16-10}{2-1}=6$.",
+                  "The equation grows faster."
+                ],
+                "answer": "$y=8x+1$",
+                "check": [
+                  "Rational(16-10, 2-1) == 6",
+                  "8 > 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Switch costumes",
+            "intro": "Find m and b first, always.",
+            "problems": [
+              {
+                "prompt": "“Bike rental: \\$6 plus \\$4 per hour” as an equation:",
+                "options": [
+                  "$y=4x+6$",
+                  "$y=6x+4$",
+                  "$y=10x$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Rate 4 on $x$, one-time 6 as the intercept.",
+                "check": [
+                  "4*2 + 6 == 14"
+                ]
+              },
+              {
+                "prompt": "Table $(0,-2), (1,1), (2,4)$ →",
+                "options": [
+                  "$y=3x-2$",
+                  "$y=-2x+3$",
+                  "$y=3x+1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Jump 3, start $-2$.",
+                "check": [
+                  "3*0 - 2 == -2",
+                  "3*2 - 2 == 4"
+                ]
+              },
+              {
+                "prompt": "Line P has slope 5; line Q's table jumps 7 per step. Which climbs faster?",
+                "options": [
+                  "Q",
+                  "P",
+                  "Equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "$7>5$ — extract the slopes, then compare.",
+                "check": [
+                  "7 > 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "You can read every costume",
+            "body": "Words, tables, graphs, equations — you can pull $m$ and $b$ out of any of them and translate freely."
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished “Linear Functions”",
+            "body": "Functions, slope, $y=mx+b$, graphing, proportionality, and all four views of a line — the core language of algebra is yours. Next: **Systems of Linear Equations**, where TWO lines share one plane and their crossing point answers real questions."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "lf-pr1",
+      "statement": "Rule $y=3x+4$: output for input $6$?",
+      "solution": "$3(6)+4=22$.",
+      "check": [
+        "3*6 + 4 == 22"
+      ]
+    },
+    {
+      "id": "lf-pr2",
+      "statement": "Slope through $(1,2)$ and $(5,10)$?",
+      "solution": "$\\frac{10-2}{5-1}=2$.",
+      "check": [
+        "Rational(10-2, 5-1) == 2"
+      ]
+    },
+    {
+      "id": "lf-pr3",
+      "statement": "Slope through $(0,9)$ and $(3,0)$?",
+      "solution": "$\\frac{0-9}{3-0}=-3$.",
+      "check": [
+        "Rational(0-9, 3-0) == -3"
+      ]
+    },
+    {
+      "id": "lf-pr4",
+      "statement": "In $y=7x-5$: give $m$, $b$, and $y$ at $x=2$.",
+      "solution": "$m=7$, $b=-5$, $y=9$.",
+      "check": [
+        "7*2 - 5 == 9"
+      ]
+    },
+    {
+      "id": "lf-pr5",
+      "statement": "Is $(3,7)$ on $y=2x+1$?",
+      "solution": "$2(3)+1=7$ ✓ yes.",
+      "check": [
+        "2*3 + 1 == 7"
+      ]
+    },
+    {
+      "id": "lf-pr6",
+      "statement": "Two points on $y=-2x+8$?",
+      "solution": "$(0,8)$ and $(1,6)$.",
+      "check": [
+        "-2*0 + 8 == 8",
+        "-2*1 + 8 == 6"
+      ]
+    },
+    {
+      "id": "lf-pr7",
+      "statement": "Is $(2,6), (3,9), (7,21)$ proportional?",
+      "solution": "Ratios all 3 — yes, $y=3x$.",
+      "check": [
+        "Rational(6,2) == 3",
+        "Rational(9,3) == 3",
+        "Rational(21,7) == 3"
+      ]
+    },
+    {
+      "id": "lf-pr8",
+      "statement": "Table $(0,12), (1,15), (2,18)$: the equation?",
+      "solution": "$y=3x+12$.",
+      "check": [
+        "3*0 + 12 == 12",
+        "3*2 + 12 == 18"
+      ]
+    },
+    {
+      "id": "lf-pr9",
+      "statement": "“\\$25 sign-up plus \\$8 per month” as an equation; cost at 4 months?",
+      "solution": "$y=8x+25$; $57$.",
+      "check": [
+        "8*4 + 25 == 57"
+      ]
+    },
+    {
+      "id": "lf-pr10",
+      "statement": "Which grows faster: $y=6x+2$ or a table jumping 9 per step?",
+      "solution": "The table: $9>6$.",
+      "check": [
+        "9 > 6"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "lf-ty1",
+      "statement": "Rule $y=4x-1$: complete $(3, ?)$.",
+      "solution": "$4(3)-1=11$.",
+      "check": [
+        "4*3 - 1 == 11"
+      ]
+    },
+    {
+      "id": "lf-ty2",
+      "statement": "Slope through $(2,3)$ and $(6,15)$?",
+      "solution": "$\\frac{15-3}{6-2}=3$.",
+      "check": [
+        "Rational(15-3, 6-2) == 3"
+      ]
+    },
+    {
+      "id": "lf-ty3",
+      "statement": "In $y=-3x+7$: slope, intercept, and $y$ at $x=4$?",
+      "solution": "$m=-3$, $b=7$, $y=-5$.",
+      "check": [
+        "-3*4 + 7 == -5"
+      ]
+    },
+    {
+      "id": "lf-ty4",
+      "statement": "Two points on $y=\\frac{1}{2}x-1$?",
+      "solution": "$(0,-1)$ and $(2,0)$.",
+      "check": [
+        "Rational(1,2)*0 - 1 == -1",
+        "Rational(1,2)*2 - 1 == 0"
+      ]
+    },
+    {
+      "id": "lf-ty5",
+      "statement": "Is $y=5x+3$ proportional?",
+      "solution": "No — at $x=0$, $y=3\\neq0$.",
+      "check": [
+        "5*0 + 3 == 3"
+      ]
+    },
+    {
+      "id": "lf-ty6",
+      "statement": "Table $(1,9), (2,14), (3,19)$: equation?",
+      "solution": "Jump 5; walk back to $b=4$: $y=5x+4$.",
+      "check": [
+        "5*1 + 4 == 9",
+        "5*3 + 4 == 19"
+      ]
+    },
+    {
+      "id": "lf-ty7",
+      "statement": "“A 30 cm candle burns 2 cm/h.” When is it 10 cm tall?",
+      "solution": "$-2x+30=10$ at $x=10$ h.",
+      "check": [
+        "-2*10 + 30 == 10"
+      ]
+    }
+  ]
+}

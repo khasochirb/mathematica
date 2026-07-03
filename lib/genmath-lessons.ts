@@ -64,6 +64,7 @@ import realNumberSystem from "@/data/genmath/8/the-real-number-system.json";
 import exponentsScientific from "@/data/genmath/8/exponents-and-scientific-notation.json";
 import roots from "@/data/genmath/8/roots.json";
 import linearEquations from "@/data/genmath/8/linear-equations.json";
+import linearFunctions from "@/data/genmath/8/linear-functions.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -133,7 +134,7 @@ export const GRADE8_SPINE: GradeSpineEntry[] = [
     slug: "linear-functions",
     title: "Linear Functions",
     blurb: "Slope and rate of change, y = mx + b, and reading a line four ways: table, graph, equation, and words.",
-    live: false,
+    live: true,
   },
   {
     slug: "systems-of-linear-equations",
@@ -154,6 +155,7 @@ const grade8Topics: GenMathTopic[] = [
   exponentsScientific as GenMathTopic,
   roots as GenMathTopic,
   linearEquations as GenMathTopic,
+  linearFunctions as GenMathTopic,
 ];
 
 // Every authored General-Math topic across grades. Topic slugs are unique
