@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, Sparkles, Lightbulb } from "lucide-react";
 import MathText from "@/components/esh/MathText";
@@ -231,6 +231,11 @@ function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveSt
               <MathText text={step.intro} />
             </p>
           )}
+          {step.grid && (
+            <div className="mb-3">
+              <CoordinateGrid config={step.grid} />
+            </div>
+          )}
           <div className="space-y-3">
             {step.problems.map((p, i) => (
               <TapQuestion
@@ -240,6 +245,7 @@ function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveSt
                 correctIndex={p.correctIndex}
                 explanation={p.explanation}
                 figure={p.figure}
+                grid={p.grid}
               />
             ))}
           </div>
@@ -1006,6 +1012,7 @@ function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveSt
             options={step.options}
             correctIndex={step.correctIndex}
             explanation={step.explanation}
+            grid={step.grid}
           />
         </>
       );
@@ -1105,6 +1112,14 @@ export default function LessonPlayer({
   const total = steps.length;
   const isLast = i >= total - 1;
   const topicHref = baseHref ?? `/math/6/${topicSlug}`;
+
+  // On every step change, bring the page back to the top so the learner starts
+  // the next step at its heading instead of wherever they'd scrolled to answer.
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
+  }, [i]);
 
   if (total === 0) return null;
 

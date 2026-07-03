@@ -4,7 +4,8 @@ import { useState } from "react";
 import { Check, X } from "lucide-react";
 import MathText from "@/components/esh/MathText";
 import RatioFigure from "@/components/genmath/interactive/RatioFigure";
-import { type FigureSpec } from "@/lib/genmath-interactive";
+import CoordinateGrid from "@/components/genmath/interactive/CoordinateGrid";
+import { type FigureSpec, type CoordinateGridConfig } from "@/lib/genmath-interactive";
 
 export default function TapQuestion({
   prompt,
@@ -12,12 +13,14 @@ export default function TapQuestion({
   correctIndex,
   explanation,
   figure,
+  grid,
 }: {
   prompt: string;
   options: string[];
   correctIndex: number;
   explanation: string;
   figure?: FigureSpec;
+  grid?: CoordinateGridConfig;
 }) {
   const [solved, setSolved] = useState(false);
   const [wrong, setWrong] = useState<number[]>([]);
@@ -44,6 +47,12 @@ export default function TapQuestion({
       {figure && (
         <div className="mt-3 flex justify-center">
           <RatioFigure figure={figure} />
+        </div>
+      )}
+
+      {grid && (
+        <div className="mt-3">
+          <CoordinateGrid config={grid} />
         </div>
       )}
 

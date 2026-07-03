@@ -202,7 +202,13 @@
                   "And(6 > 0, -2 < 0)"
                 ]
               }
-            ]
+            ],
+            "grid": {
+              "mode": "identify",
+              "showQuadrants": true,
+              "min": -5,
+              "max": 5
+            }
           },
           {
             "kind": "teach",
@@ -253,7 +259,13 @@
                   "And(0 == 0, 4 != 0)"
                 ]
               }
-            ]
+            ],
+            "grid": {
+              "mode": "identify",
+              "showQuadrants": true,
+              "min": -5,
+              "max": 5
+            }
           },
           {
             "kind": "funFact",
@@ -276,7 +288,13 @@
             "explanation": "Left and up: $(-, +)$ → Quadrant II.",
             "check": [
               "And(-5 < 0, 2 > 0)"
-            ]
+            ],
+            "grid": {
+              "mode": "identify",
+              "showQuadrants": true,
+              "min": -5,
+              "max": 5
+            }
           },
           {
             "kind": "recap",
@@ -384,7 +402,13 @@
                   "And(0 == 0, -4 != 0)"
                 ]
               }
-            ]
+            ],
+            "grid": {
+              "mode": "identify",
+              "showQuadrants": true,
+              "min": -5,
+              "max": 5
+            }
           },
           {
             "kind": "funFact",
@@ -580,7 +604,12 @@
                   "And(0 + 5 == 5, 0 == 0)"
                 ]
               }
-            ]
+            ],
+            "grid": {
+              "mode": "identify",
+              "min": -5,
+              "max": 5
+            }
           },
           {
             "kind": "teach",
@@ -631,7 +660,12 @@
                   "And(0 + 3 == 3, 0 - 5 == -5)"
                 ]
               }
-            ]
+            ],
+            "grid": {
+              "mode": "identify",
+              "min": -5,
+              "max": 5
+            }
           },
           {
             "kind": "funFact",
@@ -653,7 +687,12 @@
             "explanation": "Left is $-x$, up is $+y$: $(-2, 3)$.",
             "check": [
               "And(0 - 2 == -2, 0 + 3 == 3)"
-            ]
+            ],
+            "grid": {
+              "mode": "identify",
+              "min": -5,
+              "max": 5
+            }
           },
           {
             "kind": "recap",
@@ -759,7 +798,12 @@
                   "2 != 5"
                 ]
               }
-            ]
+            ],
+            "grid": {
+              "mode": "identify",
+              "min": -5,
+              "max": 5
+            }
           },
           {
             "kind": "funFact",
@@ -973,7 +1017,13 @@
                   "4 + (-4) == 0"
                 ]
               }
-            ]
+            ],
+            "grid": {
+              "mode": "identify",
+              "showQuadrants": true,
+              "min": -5,
+              "max": 5
+            }
           },
           {
             "kind": "teach",
@@ -1024,7 +1074,13 @@
                   "-2 + 2 == 0"
                 ]
               }
-            ]
+            ],
+            "grid": {
+              "mode": "identify",
+              "showQuadrants": true,
+              "min": -5,
+              "max": 5
+            }
           },
           {
             "kind": "funFact",
@@ -1046,7 +1102,13 @@
             "explanation": "The x-axis flips $y$: $(4, -2)$.",
             "check": [
               "2 + (-2) == 0"
-            ]
+            ],
+            "grid": {
+              "mode": "identify",
+              "showQuadrants": true,
+              "min": -5,
+              "max": 5
+            }
           },
           {
             "kind": "recap",
@@ -1154,7 +1216,13 @@
                   "-2 + 2 == 0"
                 ]
               }
-            ]
+            ],
+            "grid": {
+              "mode": "identify",
+              "showQuadrants": true,
+              "min": -5,
+              "max": 5
+            }
           },
           {
             "kind": "funFact",
@@ -1374,7 +1442,12 @@
                   "Abs(5 - 0) == 5"
                 ]
               }
-            ]
+            ],
+            "grid": {
+              "mode": "identify",
+              "min": -2,
+              "max": 8
+            }
           },
           {
             "kind": "teach",
@@ -1425,7 +1498,12 @@
                   "Abs(3 - (-4)) == 7"
                 ]
               }
-            ]
+            ],
+            "grid": {
+              "mode": "identify",
+              "min": -2,
+              "max": 8
+            }
           },
           {
             "kind": "funFact",
@@ -1447,7 +1525,12 @@
             "explanation": "Same $x$: $|8 - 2| = 6$.",
             "check": [
               "Abs(8 - 2) == 6"
-            ]
+            ],
+            "grid": {
+              "mode": "identify",
+              "min": -2,
+              "max": 8
+            }
           },
           {
             "kind": "recap",
@@ -1555,7 +1638,12 @@
                   "Abs(6 - 0) == 6"
                 ]
               }
-            ]
+            ],
+            "grid": {
+              "mode": "identify",
+              "min": -2,
+              "max": 8
+            }
           },
           {
             "kind": "funFact",
@@ -1753,7 +1841,12 @@
                   "Abs(5 - (-1)) == 6"
                 ]
               }
-            ]
+            ],
+            "grid": {
+              "mode": "identify",
+              "min": -1,
+              "max": 6
+            }
           },
           {
             "kind": "teach",
@@ -1804,7 +1897,12 @@
                   "2*Abs(4 - 0) + 2*Abs(2 - 0) == 12"
                 ]
               }
-            ]
+            ],
+            "grid": {
+              "mode": "identify",
+              "min": -1,
+              "max": 6
+            }
           },
           {
             "kind": "funFact",
@@ -1826,7 +1924,12 @@
             "explanation": "$2(6) + 2(3) = 18$.",
             "check": [
               "2*6 + 2*3 == 18"
-            ]
+            ],
+            "grid": {
+              "mode": "identify",
+              "min": -1,
+              "max": 6
+            }
           },
           {
             "kind": "recap",
@@ -1934,7 +2037,12 @@
                   "4*Abs(5 - 0) == 20"
                 ]
               }
-            ]
+            ],
+            "grid": {
+              "mode": "identify",
+              "min": -1,
+              "max": 6
+            }
           },
           {
             "kind": "funFact",

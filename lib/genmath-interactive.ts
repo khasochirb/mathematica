@@ -444,6 +444,9 @@ export interface CoordinateGridConfig {
   points?: GridPoint[];
   reflectAxis?: "x" | "y";
   polygon?: boolean; // plot mode: connect the points into a closed shape
+  // identify mode: also shade + label the four quadrants, and report which
+  // quadrant (or axis) the tapped point falls in — a "which quadrant" playground.
+  showQuadrants?: boolean;
   color?: string;
 }
 
@@ -835,6 +838,7 @@ export interface WorkedItem {
 export interface TryItItem {
   prompt: string;
   figure?: FigureSpec;
+  grid?: CoordinateGridConfig; // an interactive coordinate plane to reason with
   options: string[];
   correctIndex: number;
   explanation: string;
@@ -846,7 +850,7 @@ export type InteractiveStep =
   | { kind: "teach"; eyebrow?: string; title: string; body?: string; beats?: string[]; figure?: FigureSpec }
   | { kind: "notationToggle"; eyebrow?: string; title: string; teach: string; config: NotationToggleConfig }
   | { kind: "workedSet"; eyebrow?: string; title: string; intro?: string; examples: WorkedItem[] }
-  | { kind: "tryItSet"; eyebrow?: string; title: string; intro?: string; problems: TryItItem[] }
+  | { kind: "tryItSet"; eyebrow?: string; title: string; intro?: string; grid?: CoordinateGridConfig; problems: TryItItem[] }
   | { kind: "scaler"; eyebrow?: string; title: string; teach: string; config: ScalerConfig }
   | { kind: "orderFlip"; eyebrow?: string; title: string; teach: string; config: OrderFlipConfig }
   | { kind: "compareToggle"; eyebrow?: string; title: string; teach: string; config: CompareToggleConfig }
@@ -929,6 +933,7 @@ export type InteractiveStep =
       eyebrow?: string;
       title: string;
       prompt: string;
+      grid?: CoordinateGridConfig; // an interactive coordinate plane to reason with
       options: string[];
       correctIndex: number;
       explanation: string;

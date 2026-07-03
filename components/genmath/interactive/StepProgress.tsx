@@ -45,12 +45,13 @@ export default function StepProgress({
               }}
             />
           );
-          return onJump && i <= current ? (
+          return onJump ? (
             <button
               key={i}
               type="button"
               onClick={() => onJump(i)}
               aria-label={`Go to step ${i + 1}`}
+              aria-current={active ? "step" : undefined}
               className="gm-press grid place-items-center"
               style={{ width: 20, height: 20 }}
             >

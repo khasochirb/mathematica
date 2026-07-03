@@ -11,9 +11,22 @@ import { type CoordinateGridConfig } from "@/lib/genmath-interactive";
 //  - reflect:   shows a point and, on tap, its mirror image across an axis.
 //  - distance:  shows two points sharing a row/column and counts the units.
 export default function CoordinateGrid({ config }: { config: CoordinateGridConfig }) {
-  const { min = -5, max = 5, mode, points = [], reflectAxis = "x", polygon = false, color = "#e8913c" } = config;
+  const { min = -5, max = 5, mode, points = [], reflectAxis = "x", polygon = false, showQuadrants = false, color = "#e8913c" } = config;
   const [sel, setSel] = useState<{ x: number; y: number } | null>(null);
   const [revealed, setRevealed] = useState(false);
+
+  // Name the quadrant (or axis) a point falls in — used by the identify
+  // playground so tapping a point answers "which quadrant?".
+  const quadrantOf = (p: { x: number; y: number }): string => {
+    if (p.x === 0 && p.y === 0) return "the origin";
+    if (p.x === 0) return "on the y-axis";
+    if (p.y === 0) return "on the x-axis";
+    if (p.x > 0 && p.y > 0) return "Quadrant I";
+    if (p.x < 0 && p.y > 0) return "Quadrant II";
+    if (p.x < 0 && p.y < 0) return "Quadrant III";
+    return "Quadrant IV";
+  };
+  const quadShade = mode === "quadrants" || (mode === "identify" && showQuadrants);
 
   const N = max - min;
   const cell = 30;
@@ -38,7 +51,7 @@ export default function CoordinateGrid({ config }: { config: CoordinateGridConfi
       <div className="flex justify-center">
         <svg viewBox={`0 0 ${W} ${W}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label="Coordinate grid">
           {/* Quadrant shading */}
-          {mode === "quadrants" && (
+          {quadShade && (
             <>
               <rect x={px(0)} y={py(max)} width={size / 2} height={size / 2} fill={`${ACCENT}14`} />
               <rect x={px(min)} y={py(max)} width={size / 2} height={size / 2} fill={`${BLUE}14`} />
@@ -77,6 +90,13 @@ export default function CoordinateGrid({ config }: { config: CoordinateGridConfi
           {/* Identify mode: clickable lattice points + selection */}
           {mode === "identify" && (
             <>
+              {/* any reference points the question wants pre-marked */}
+              {points.map((p, i) => (
+                <g key={`ip${i}`}>
+                  <circle cx={px(p.x)} cy={py(p.y)} r={5.5} fill={p.color || BLUE} />
+                  <text x={px(p.x) + 8} y={py(p.y) - 8} fontSize="10" fill="var(--fg-1)">{p.label ? `${p.label} ` : ""}({p.x}, {p.y})</text>
+                </g>
+              ))}
               {ints.map((gx) => ints.map((gy) => (
                 <circle
                   key={`p${gx}-${gy}`}
@@ -151,9 +171,16 @@ export default function CoordinateGrid({ config }: { config: CoordinateGridConfi
       {mode === "identify" && (
         <div className="mt-3 text-center text-[15px]" style={{ color: "var(--fg-1)" }}>
           {sel ? (
-            <>Point: <b className="serif tabular" style={{ color: "var(--accent)" }}>({sel.x}, {sel.y})</b> — {sel.x} across, {sel.y} up</>
+            <>
+              Point: <b className="serif tabular" style={{ color: "var(--accent)" }}>({sel.x}, {sel.y})</b> — {sel.x} across, {sel.y} up
+              {showQuadrants && (
+                <div className="mt-1 text-[14px]" style={{ color: "var(--fg-1)" }}>
+                  in <b style={{ color: BLUE }}>{quadrantOf(sel)}</b>
+                </div>
+              )}
+            </>
           ) : (
-            <span style={{ color: "var(--fg-3)" }}>Tap a grid intersection to read its coordinates.</span>
+            <span style={{ color: "var(--fg-3)" }}>Tap a grid intersection{showQuadrants ? " to see its coordinates and quadrant." : " to read its coordinates."}</span>
           )}
         </div>
       )}
