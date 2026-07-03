@@ -8,7 +8,7 @@ import {
   summarize,
   type PlacementState,
 } from "@/lib/placement-engine";
-import { getPlacementBank, displayQuestion, placementTopics, type PlacementQuestion } from "@/lib/placement-bank";
+import { getPlacementBank, getGeometryPlacementBank, displayQuestion, placementTopics, type PlacementQuestion } from "@/lib/placement-bank";
 
 // A small synthetic bank: 2 topics × 3 difficulties.
 function synthBank(): PlacementQuestion[] {
@@ -154,6 +154,35 @@ describe("placement bank (curated tiers)", () => {
     expect(answer("integers:d3")).toContain("14"); // -4×-3+2
     expect(answer("data-and-statistics:d2")).toContain("5"); // median of 3,7,5,9,1
     expect(answer("ratios-and-rates:d3")).toContain("250"); // 150 mi / 3 h × 5
+  });
+
+  it("geometry bank has three tiers for all 13 units, with correct spot-check answers", () => {
+    const bank = getGeometryPlacementBank();
+    const topics = placementTopics(bank);
+    expect(topics.length).toBe(13);
+    for (const t of topics) {
+      const diffs = bank.filter((q) => q.topicSlug === t.slug).map((q) => q.difficulty).sort();
+      expect(diffs).toEqual([1, 2, 3]);
+      // every unit has a real title (not just the slug)
+      expect(t.title.length).toBeGreaterThan(0);
+      expect(t.title).not.toBe(t.slug);
+    }
+    const byId = new Map(bank.map((q) => [q.id, q]));
+    const ans = (id: string) => {
+      const q = byId.get(id)!;
+      return q.options[q.correctIndex];
+    };
+    expect(ans("right-triangles-and-trig:d1")).toContain("5"); // 3-4-5
+    expect(ans("right-triangles-and-trig:d3")).toContain("\\sqrt{2}"); // 5√2
+    expect(ans("circles:d3")).toContain("50"); // inscribed = half of 100
+    expect(ans("coordinate-geometry:d3")).toContain("3"); // slope
+    expect(ans("transformations:d3")).toContain("(-1, 3)"); // rotate 90
+    expect(ans("area-and-perimeter:d3")).toContain("9\\pi"); // circle area
+    expect(ans("quadrilaterals-and-polygons:d2")).toContain("540"); // pentagon
+    for (const q of bank) {
+      expect(q.correctIndex).toBeGreaterThanOrEqual(0);
+      expect(q.correctIndex).toBeLessThan(q.options.length);
+    }
   });
 
   it("a full adaptive run over the real bank completes and summarizes", () => {

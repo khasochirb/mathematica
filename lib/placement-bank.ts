@@ -5,7 +5,7 @@
 // ramps up. Example, Equations: x+5=10 (easy) → 2x+7x=18 (medium) →
 // 2x+3=11 (hard, two-step).
 
-import { getGrade6Topics } from "@/lib/genmath-lessons";
+import { getGrade6Topics, getGeometrySpine } from "@/lib/genmath-lessons";
 
 export type PlacementQuestion = {
   id: string;
@@ -83,13 +83,91 @@ const CURATED: Curated[] = [
   Q("data-and-statistics", 3, "Find the mean of $4, 8, 10, 2$.", ["$6$", "$8$", "$24$", "$5$"], 0, "$(4+8+10+2)\\div 4 = 24\\div 4 = 6$."),
 ];
 
+// ---------------------------------------------------------------------------
+// Geometry course — one tiered question per difficulty for each of the 13 units.
+// ---------------------------------------------------------------------------
+const GEO_CURATED: Curated[] = [
+  // 1. Foundations: Points, Lines & Angles
+  Q("foundations", 1, "An angle measures $40^\\circ$. What type of angle is it?", ["Acute", "Right", "Obtuse", "Straight"], 0, "An angle below $90^\\circ$ is acute."),
+  Q("foundations", 2, "Two angles are complementary and one is $35^\\circ$. What is the other?", ["$55^\\circ$", "$65^\\circ$", "$145^\\circ$", "$325^\\circ$"], 0, "Complementary angles add to $90^\\circ$: $90 - 35 = 55$."),
+  Q("foundations", 3, "Ray $OC$ bisects $\\angle AOB = 80^\\circ$. What is $m\\angle AOC$?", ["$40^\\circ$", "$160^\\circ$", "$20^\\circ$", "$80^\\circ$"], 0, "A bisector halves the angle: $80 \\div 2 = 40$."),
+
+  // 2. Reasoning & Proof
+  Q("reasoning-and-proof", 1, "In \"If it rains, then the ground is wet,\" what is the hypothesis?", ["It rains", "The ground is wet", "It is dry", "There is no hypothesis"], 0, "The hypothesis is the \"if\" part."),
+  Q("reasoning-and-proof", 2, "A single example that makes a statement false is called a —", ["Counterexample", "Conjecture", "Theorem", "Postulate"], 0, "One counterexample disproves a general claim."),
+  Q("reasoning-and-proof", 3, "What is the converse of \"If $p$, then $q$\"?", ["If $q$, then $p$", "If not $p$, then not $q$", "If not $q$, then not $p$", "If $p$, then not $q$"], 0, "The converse swaps hypothesis and conclusion."),
+
+  // 3. Parallel & Perpendicular Lines
+  Q("parallel-and-perpendicular", 1, "Two parallel lines are cut by a transversal. Corresponding angles are —", ["Equal", "Supplementary", "Complementary", "Unrelated"], 0, "Corresponding angles are congruent."),
+  Q("parallel-and-perpendicular", 2, "Parallel lines cut by a transversal make one interior angle $70^\\circ$. Its same-side interior angle is —", ["$110^\\circ$", "$70^\\circ$", "$20^\\circ$", "$90^\\circ$"], 0, "Same-side interior angles are supplementary: $180 - 70 = 110$."),
+  Q("parallel-and-perpendicular", 3, "Alternate interior angles measure $3x$ and $x + 40$. Find $x$.", ["$20$", "$10$", "$40$", "$30$"], 0, "They're equal: $3x = x + 40 \\Rightarrow x = 20$."),
+
+  // 4. Triangles & Congruence
+  Q("triangles-and-congruence", 1, "The three angles of a triangle add up to —", ["$180^\\circ$", "$360^\\circ$", "$90^\\circ$", "$270^\\circ$"], 0, "Every triangle's angles sum to $180^\\circ$."),
+  Q("triangles-and-congruence", 2, "A triangle has angles $50^\\circ$ and $60^\\circ$. The third angle is —", ["$70^\\circ$", "$80^\\circ$", "$90^\\circ$", "$110^\\circ$"], 0, "$180 - 50 - 60 = 70$."),
+  Q("triangles-and-congruence", 3, "Which shortcut proves congruence from two sides and the angle BETWEEN them?", ["SAS", "SSA", "AAA", "ASA"], 0, "Side-Angle-Side: the angle is included between the two sides."),
+
+  // 5. Relationships in Triangles
+  Q("relationships-in-triangles", 1, "A segment from a vertex to the midpoint of the opposite side is a —", ["Median", "Altitude", "Angle bisector", "Tangent"], 0, "A median goes to the midpoint of the opposite side."),
+  Q("relationships-in-triangles", 2, "A triangle's midsegment is how long compared to the third side?", ["Half", "Equal", "Twice", "One third"], 0, "The midsegment is half the length of the parallel side."),
+  Q("relationships-in-triangles", 3, "In any triangle, the longest side is opposite the —", ["Largest angle", "Smallest angle", "Right angle", "Midpoint"], 0, "Bigger angle → longer opposite side."),
+
+  // 6. Quadrilaterals & Polygons
+  Q("quadrilaterals-and-polygons", 1, "The four angles of a quadrilateral add up to —", ["$360^\\circ$", "$180^\\circ$", "$540^\\circ$", "$90^\\circ$"], 0, "A quadrilateral splits into two triangles: $2 \\times 180 = 360$."),
+  Q("quadrilaterals-and-polygons", 2, "What is the interior angle sum of a pentagon ($5$ sides)?", ["$540^\\circ$", "$360^\\circ$", "$720^\\circ$", "$450^\\circ$"], 0, "$(5-2)\\times 180 = 540$."),
+  Q("quadrilaterals-and-polygons", 3, "Opposite angles of a parallelogram are $3x$ and $x + 50$. Find $x$.", ["$25$", "$20$", "$50$", "$30$"], 0, "Opposite angles are equal: $3x = x + 50 \\Rightarrow x = 25$."),
+
+  // 7. Similarity
+  Q("similarity", 1, "Similar figures always have the same shape but may differ in —", ["Size", "Angle measures", "Number of sides", "Type"], 0, "Similar = same shape (equal angles), possibly different size."),
+  Q("similarity", 2, "Two similar triangles have scale factor $3$. A side of $4$ in the small one becomes —", ["$12$", "$7$", "$\\tfrac{4}{3}$", "$1$"], 0, "$4 \\times 3 = 12$."),
+  Q("similarity", 3, "Similar triangles give $\\tfrac{6}{9} = \\tfrac{8}{x}$. Find $x$.", ["$12$", "$5$", "$6$", "$11$"], 0, "Cross-multiply: $6x = 72 \\Rightarrow x = 12$."),
+
+  // 8. Right Triangles & Trigonometry
+  Q("right-triangles-and-trig", 1, "A right triangle has legs $3$ and $4$. The hypotenuse is —", ["$5$", "$7$", "$1$", "$12$"], 0, "$\\sqrt{3^2+4^2} = \\sqrt{25} = 5$."),
+  Q("right-triangles-and-trig", 2, "A right triangle has legs $5$ and $12$. The hypotenuse is —", ["$13$", "$17$", "$7$", "$60$"], 0, "$\\sqrt{25+144} = \\sqrt{169} = 13$."),
+  Q("right-triangles-and-trig", 3, "A $45\\text{-}45\\text{-}90$ triangle has legs of $5$. The hypotenuse is —", ["$5\\sqrt{2}$", "$10$", "$5$", "$25$"], 0, "In a $45\\text{-}45\\text{-}90$, hypotenuse $=$ leg $\\times \\sqrt{2}$."),
+
+  // 9. Circles
+  Q("circles", 1, "The distance straight across a circle through its center is the —", ["Diameter", "Radius", "Chord", "Arc"], 0, "The diameter passes through the center."),
+  Q("circles", 2, "A central angle of $80^\\circ$ cuts off an arc measuring —", ["$80^\\circ$", "$40^\\circ$", "$160^\\circ$", "$100^\\circ$"], 0, "A central angle equals its intercepted arc."),
+  Q("circles", 3, "An inscribed angle intercepts an arc of $100^\\circ$. The angle measures —", ["$50^\\circ$", "$100^\\circ$", "$200^\\circ$", "$25^\\circ$"], 0, "An inscribed angle is half its arc: $100 \\div 2 = 50$."),
+
+  // 10. Area & Perimeter
+  Q("area-and-perimeter", 1, "The area of a $5$-by-$6$ rectangle is —", ["$30$", "$11$", "$22$", "$36$"], 0, "Area $= 5 \\times 6 = 30$."),
+  Q("area-and-perimeter", 2, "A triangle has base $10$ and height $8$. Its area is —", ["$40$", "$80$", "$18$", "$20$"], 0, "Area $= \\tfrac12 \\times 10 \\times 8 = 40$."),
+  Q("area-and-perimeter", 3, "The area of a circle with radius $3$ (in terms of $\\pi$) is —", ["$9\\pi$", "$6\\pi$", "$3\\pi$", "$9$"], 0, "Area $= \\pi r^2 = 9\\pi$."),
+
+  // 11. Surface Area & Volume
+  Q("surface-area-and-volume", 1, "The volume of a $2 \\times 3 \\times 5$ box is —", ["$30$", "$10$", "$31$", "$25$"], 0, "Volume $= 2 \\times 3 \\times 5 = 30$."),
+  Q("surface-area-and-volume", 2, "A cylinder has radius $2$ and height $5$. Its volume (in terms of $\\pi$) is —", ["$20\\pi$", "$10\\pi$", "$40\\pi$", "$20$"], 0, "$V = \\pi r^2 h = \\pi(4)(5) = 20\\pi$."),
+  Q("surface-area-and-volume", 3, "A cone has radius $3$ and height $4$. Its volume (in terms of $\\pi$) is —", ["$12\\pi$", "$36\\pi$", "$4\\pi$", "$24\\pi$"], 0, "$V = \\tfrac13 \\pi r^2 h = \\tfrac13\\pi(9)(4) = 12\\pi$."),
+
+  // 12. Transformations
+  Q("transformations", 1, "Sliding a figure without turning or flipping it is a —", ["Translation", "Rotation", "Reflection", "Dilation"], 0, "A translation is a slide."),
+  Q("transformations", 2, "Reflect the point $(4, 2)$ over the x-axis.", ["$(4, -2)$", "$(-4, 2)$", "$(2, 4)$", "$(-4, -2)$"], 0, "Over the x-axis the y-coordinate flips sign."),
+  Q("transformations", 3, "Rotate the point $(3, 1)$ by $90^\\circ$ about the origin.", ["$(-1, 3)$", "$(1, -3)$", "$(-3, -1)$", "$(3, -1)$"], 0, "$(x, y) \\to (-y, x)$, so $(3,1) \\to (-1,3)$."),
+
+  // 13. Coordinate Geometry
+  Q("coordinate-geometry", 1, "The distance from $(0,0)$ to $(3,4)$ is —", ["$5$", "$7$", "$25$", "$1$"], 0, "$\\sqrt{3^2+4^2} = 5$."),
+  Q("coordinate-geometry", 2, "The midpoint of $(2,4)$ and $(8,10)$ is —", ["$(5, 7)$", "$(10, 14)$", "$(3, 2)$", "$(6, 6)$"], 0, "Average each coordinate: $(5, 7)$."),
+  Q("coordinate-geometry", 3, "The slope of the line through $(1,2)$ and $(4,11)$ is —", ["$3$", "$\\tfrac{1}{3}$", "$-3$", "$9$"], 0, "$\\tfrac{11-2}{4-1} = \\tfrac{9}{3} = 3$."),
+];
+
 let cache: PlacementQuestion[] | null = null;
+let geoCache: PlacementQuestion[] | null = null;
 
 export function getPlacementBank(): PlacementQuestion[] {
   if (cache) return cache;
   const titleBySlug = new Map(getGrade6Topics().map((t) => [t.slug, t.title]));
   cache = CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
   return cache;
+}
+
+export function getGeometryPlacementBank(): PlacementQuestion[] {
+  if (geoCache) return geoCache;
+  const titleBySlug = new Map(getGeometrySpine().map((u) => [u.slug, u.title]));
+  geoCache = GEO_CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
+  return geoCache;
 }
 
 // A stable, per-question shuffle of the answer options (the source keeps the
