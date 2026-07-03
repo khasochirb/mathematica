@@ -1,0 +1,1475 @@
+{
+  "slug": "linear-equations",
+  "title": "Linear Equations",
+  "grade": 8,
+  "blurb": "Multi-step equations, variables on both sides, and equations with no solution or infinitely many.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "two-step-equations",
+      "title": "Two-Step Equations",
+      "concreteComparison": "A taxi charges a $\\$3$ flat fee plus $\\$2$ per mile, and your ride cost $\\$11$. How many miles? The equation is $2x+3=11$. To find $x$, peel the costs off in **reverse order**: first remove the flat fee ($11-3=8$), then undo the per-mile rate ($8\\div2=4$). Four miles — solved by working backwards.",
+      "objective": "Solve two-step equations like $2x+3=11$ by undoing addition/subtraction first, then multiplication/division — and check by substituting back.",
+      "concept": [
+        "A **two-step equation** wraps $x$ in two operations: $2x+3=11$ multiplies by $2$, then adds $3$. Solving **unwraps in reverse**: subtract $3$ first, then divide by $2$.",
+        "Every move must hit **both sides** — an equation is a balanced scale, and whatever you do to one pan you must do to the other.",
+        "$2x+3=11 \\;\\to\\; 2x=8 \\;\\to\\; x=4$.",
+        "**Always check**: substitute back. $2(4)+3=11$ ✓. A ten-second check catches nearly every slip."
+      ],
+      "keyIdea": "Undo in reverse order — add/subtract first, then multiply/divide — doing the same to both sides.",
+      "facts": [
+        {
+          "title": "Reverse order",
+          "latex": "$2x+3=11 \\to 2x=8 \\to x=4$",
+          "explanation": "Strip the +3 before the ×2."
+        },
+        {
+          "title": "Both sides",
+          "latex": "balanced scale",
+          "explanation": "Every operation applies to both pans."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "le1-we1",
+          "statement": "Solve $2x+3=11$.",
+          "solution": "Subtract 3: $2x=8$. Divide by 2: $x=4$. Check: $2(4)+3=11$ ✓.",
+          "check": [
+            "2*4 + 3 == 11"
+          ]
+        },
+        {
+          "id": "le1-we2",
+          "statement": "Solve $3x-5=16$.",
+          "solution": "Add 5: $3x=21$. Divide by 3: $x=7$.",
+          "check": [
+            "3*7 - 5 == 16"
+          ]
+        },
+        {
+          "id": "le1-we3",
+          "statement": "Solve $\\frac{x}{4}+2=7$.",
+          "solution": "Subtract 2: $\\frac{x}{4}=5$. Multiply by 4: $x=20$.",
+          "check": [
+            "20/4 + 2 == 7"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dividing before subtracting.",
+          "correction": "In $2x+3=11$, dividing everything by 2 first forces fractions ($x+1.5=5.5$) — legal but messy. Strip the +3 first.",
+          "authored": true
+        },
+        {
+          "text": "Doing an operation to only one side.",
+          "correction": "$2x+3=11 \\to 2x=11-3$ is fine, but forgetting to change the right side breaks the balance.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "le1-t1",
+          "statement": "Solve $5x+2=17$.",
+          "solution": "$5x=15$, so $x=3$.",
+          "check": [
+            "5*3 + 2 == 17"
+          ]
+        },
+        {
+          "id": "le1-t2",
+          "statement": "Solve $4x-7=13$.",
+          "solution": "$4x=20$, so $x=5$.",
+          "check": [
+            "4*5 - 7 == 13"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "balanceScale",
+            "eyebrow": "Warm up",
+            "title": "The scale never lies",
+            "teach": "The scale shows $x+3=7$. Take $3$ off **both** pans and the box alone balances $4$ — that's the whole idea of solving.",
+            "config": {
+              "mode": "add",
+              "rhs": 7,
+              "color": "#e8913c",
+              "b": 3
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Two wrappers",
+            "title": "Unwrap in reverse",
+            "beats": [
+              "$2x+3=11$: the $x$ was **×2**, then **+3**.",
+              "To free it, undo in reverse: **−3**, then **÷2**.",
+              "$2x+3=11 \\to 2x=8 \\to x=4$.",
+              "Like unwrapping a gift: last layer on, first layer off."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "First move?",
+            "prompt": "Solving $3x+5=20$ — what's the FIRST step?",
+            "options": [
+              "Subtract 5 from both sides",
+              "Divide both sides by 3",
+              "Add 5 to both sides"
+            ],
+            "correctIndex": 0,
+            "explanation": "Strip the +5 first: $3x=15$, then divide to get $x=5$.",
+            "check": [
+              "3*5 + 5 == 20"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Two steps, both sides",
+            "intro": "Undo the add/subtract, then the multiply/divide.",
+            "examples": [
+              {
+                "prompt": "Solve $4x-9=11$.",
+                "steps": [
+                  "Add 9 to both sides: $4x=20$.",
+                  "Divide by 4: $x=5$.",
+                  "Check: $4(5)-9=11$ ✓."
+                ],
+                "answer": "$x=5$",
+                "check": [
+                  "4*5 - 9 == 11"
+                ]
+              },
+              {
+                "prompt": "Solve $\\frac{x}{3}-2=4$.",
+                "steps": [
+                  "Add 2: $\\frac{x}{3}=6$.",
+                  "Multiply by 3: $x=18$."
+                ],
+                "answer": "$x=18$",
+                "check": [
+                  "18/3 - 2 == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Solve in two steps",
+            "intro": "Reverse order; both sides; check.",
+            "problems": [
+              {
+                "prompt": "Solve $2x+7=19$.",
+                "options": [
+                  "$x=6$",
+                  "$x=13$",
+                  "$x=26$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2x=12$, so $x=6$.",
+                "check": [
+                  "2*6 + 7 == 19"
+                ]
+              },
+              {
+                "prompt": "Solve $6x-4=26$.",
+                "options": [
+                  "$x=5$",
+                  "$x=\\frac{11}{3}$",
+                  "$x=30$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6x=30$, so $x=5$.",
+                "check": [
+                  "6*5 - 4 == 26"
+                ]
+              },
+              {
+                "prompt": "Solve $\\frac{x}{5}+1=4$.",
+                "options": [
+                  "$x=15$",
+                  "$x=25$",
+                  "$x=1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{x}{5}=3$, so $x=15$.",
+                "check": [
+                  "15/5 + 1 == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "al-jabr",
+            "body": "The word **algebra** comes from “al-jabr” — “the reunion of broken parts” — in the title of a 9th-century book by al-Khwarizmi of Baghdad. His method was exactly what you just did: restore balance by doing the same thing to both sides. His own name, Latinized, became the word **algorithm**."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Two-step equations unwrap in **reverse order**.",
+              "Every move applies to **both sides**.",
+              "Substitute back to check: $2(4)+3=11$ ✓."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "simplify-before-solving",
+      "title": "Simplify Before Solving",
+      "concreteComparison": "Two friends split a job: one folds $2$ boxes a minute, the other $7$. Together they folded $18$ boxes: $2x+7x=18$. Before touching both sides, tidy the left: $2x+7x$ is just $9x$. Then $9x=18$ falls in one step: $x=2$ minutes. **Combine like terms first**, and a messy equation becomes a short one.",
+      "objective": "Combine like terms on each side before solving, turning cluttered equations like $2x+7x=18$ or $5x-2x+4=13$ into one- or two-step equations.",
+      "concept": [
+        "**Like terms** share the same variable part: $2x$ and $7x$ are like terms; $2x$ and $7$ are not. Combine them by adding coefficients: $2x+7x=9x$.",
+        "**Simplify each side first**, then solve. $2x+7x=18 \\to 9x=18 \\to x=2$.",
+        "Watch subtraction: $5x-2x+4=13 \\to 3x+4=13 \\to 3x=9 \\to x=3$. The sign belongs to the term after it.",
+        "Constants combine with constants: $4x+3+5=20 \\to 4x+8=20$."
+      ],
+      "keyIdea": "Tidy each side first — combine like terms — then unwrap as usual.",
+      "facts": [
+        {
+          "title": "Like terms",
+          "latex": "$2x+7x = 9x$",
+          "explanation": "Same variable part → add the coefficients."
+        },
+        {
+          "title": "Then solve",
+          "latex": "$9x=18 \\to x=2$",
+          "explanation": "The tidied equation is one step."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "le2-we1",
+          "statement": "Solve $2x+7x=18$.",
+          "solution": "Combine: $9x=18$. Divide: $x=2$. Check: $2(2)+7(2)=4+14=18$ ✓.",
+          "check": [
+            "2*2 + 7*2 == 18"
+          ]
+        },
+        {
+          "id": "le2-we2",
+          "statement": "Solve $5x-2x+4=13$.",
+          "solution": "Combine: $3x+4=13$, so $3x=9$, $x=3$.",
+          "check": [
+            "5*3 - 2*3 + 4 == 13"
+          ]
+        },
+        {
+          "id": "le2-we3",
+          "statement": "Solve $6x+3-2x=15$.",
+          "solution": "Combine: $4x+3=15$, so $4x=12$, $x=3$.",
+          "check": [
+            "6*3 + 3 - 2*3 == 15"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Combining unlike terms: $2x+7=9x$.",
+          "correction": "$2x$ and $7$ aren't like terms — one has an $x$, one doesn't. Only $2x+7x$ makes $9x$.",
+          "authored": true
+        },
+        {
+          "text": "Dropping a sign while combining.",
+          "correction": "$5x-2x=3x$, not $7x$ — the minus travels with the $2x$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "le2-t1",
+          "statement": "Solve $3x+4x=21$.",
+          "solution": "$7x=21$, so $x=3$.",
+          "check": [
+            "3*3 + 4*3 == 21"
+          ]
+        },
+        {
+          "id": "le2-t2",
+          "statement": "Solve $8x-3x+2=22$.",
+          "solution": "$5x+2=22$, so $5x=20$, $x=4$.",
+          "check": [
+            "8*4 - 3*4 + 2 == 22"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Tidy first",
+            "title": "Like terms combine",
+            "beats": [
+              "$2x+7x$: both are “$x$-terms”.",
+              "Two $x$s plus seven $x$s = nine $x$s: $9x$.",
+              "But $2x+7$ stays as is — $7$ has no $x$.",
+              "Rule: add coefficients of the **same** variable part."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Combine",
+            "prompt": "Simplify $4x+5x$.",
+            "options": [
+              "$9x$",
+              "$9x^2$",
+              "$20x$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Add the coefficients: $4+5=9$, keep the $x$.",
+            "check": [
+              "4*3 + 5*3 == 9*3"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Now solve",
+            "title": "The equation shrinks",
+            "beats": [
+              "$2x+7x=18$.",
+              "Combine: $9x=18$.",
+              "Divide by 9: $x=2$.",
+              "Check: $2(2)+7(2)=18$ ✓."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Simplify, then unwrap",
+            "intro": "Combine like terms on each side first.",
+            "examples": [
+              {
+                "prompt": "Solve $7x-4x=27$.",
+                "steps": [
+                  "Combine: $3x=27$.",
+                  "Divide: $x=9$."
+                ],
+                "answer": "$x=9$",
+                "check": [
+                  "7*9 - 4*9 == 27"
+                ]
+              },
+              {
+                "prompt": "Solve $2x+5x+3=24$.",
+                "steps": [
+                  "Combine: $7x+3=24$.",
+                  "Subtract 3: $7x=21$.",
+                  "Divide: $x=3$."
+                ],
+                "answer": "$x=3$",
+                "check": [
+                  "2*3 + 5*3 + 3 == 24"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Combine, then solve",
+            "intro": "Watch the signs.",
+            "problems": [
+              {
+                "prompt": "Solve $5x+3x=32$.",
+                "options": [
+                  "$x=4$",
+                  "$x=8$",
+                  "$x=2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$8x=32$, so $x=4$.",
+                "check": [
+                  "5*4 + 3*4 == 32"
+                ]
+              },
+              {
+                "prompt": "Solve $9x-4x+1=26$.",
+                "options": [
+                  "$x=5$",
+                  "$x=2$",
+                  "$x=27$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5x+1=26$, so $5x=25$, $x=5$.",
+                "check": [
+                  "9*5 - 4*5 + 1 == 26"
+                ]
+              },
+              {
+                "prompt": "Which simplifies to $6x+2$?",
+                "options": [
+                  "$4x+2x+2$",
+                  "$4x+2x^2$",
+                  "$8x-2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4x+2x=6x$; the constant $2$ rides along.",
+                "check": [
+                  "4*3 + 2*3 + 2 == 6*3 + 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why mathematicians are lazy (on purpose)",
+            "body": "Combining $2x+7x$ into $9x$ before solving isn't just neatness — it's a core habit called **reducing the problem**. Great problem-solvers spend their first minutes making the problem smaller, not attacking it. One tidy line often saves ten messy ones."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Like terms share a variable part: $2x+7x=9x$.",
+              "Simplify each side **before** unwrapping.",
+              "Signs travel with their terms: $5x-2x=3x$."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "variables-on-both-sides",
+      "title": "Variables on Both Sides",
+      "concreteComparison": "Two phone plans: Plan A costs $\\$5$ up front plus $\\$3$ per GB; Plan B costs $\\$15$ plus $\\$1$ per GB. When do they cost the same? $3x+5=x+15$. There's an $x$ on **each side** — so first herd all the $x$s to one side, all the numbers to the other, and the crossover point appears: $x=5$ GB.",
+      "objective": "Solve equations with variables on both sides by collecting variable terms on one side and constants on the other.",
+      "concept": [
+        "When $x$ appears on both sides, **collect** first: subtract the smaller variable term from both sides. $3x+5=x+15 \\to 2x+5=15$.",
+        "Then it's a familiar two-step: $2x=10$, so $x=5$.",
+        "Choosing to remove the **smaller** $x$-term keeps the coefficient positive — fewer sign slips.",
+        "Check in the ORIGINAL equation: $3(5)+5=20$ and $5+15=20$ ✓ — both sides agree."
+      ],
+      "keyIdea": "Move all $x$s to one side and all constants to the other, then unwrap.",
+      "facts": [
+        {
+          "title": "Collect variables",
+          "latex": "$3x+5=x+15 \\to 2x+5=15$",
+          "explanation": "Subtract the smaller x-term from both sides."
+        },
+        {
+          "title": "Then two-step",
+          "latex": "$2x=10 \\to x=5$",
+          "explanation": "The rest is familiar."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "le3-we1",
+          "statement": "Solve $3x+5=x+15$.",
+          "solution": "Subtract $x$: $2x+5=15$. Subtract 5: $2x=10$. So $x=5$. Check: $3(5)+5=20=5+15$ ✓.",
+          "check": [
+            "3*5 + 5 == 5 + 15"
+          ]
+        },
+        {
+          "id": "le3-we2",
+          "statement": "Solve $7x-4=2x+16$.",
+          "solution": "Subtract $2x$: $5x-4=16$. Add 4: $5x=20$. So $x=4$.",
+          "check": [
+            "7*4 - 4 == 2*4 + 16"
+          ]
+        },
+        {
+          "id": "le3-we3",
+          "statement": "Solve $6x+9=9x$.",
+          "solution": "Subtract $6x$: $9=3x$. So $x=3$.",
+          "check": [
+            "6*3 + 9 == 9*3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Combining terms ACROSS the equals sign.",
+          "correction": "In $3x+5=x+15$ you can't add $3x$ and $x$ directly — they're on different sides. Move one first.",
+          "authored": true
+        },
+        {
+          "text": "Moving a term without flipping its sign.",
+          "correction": "Bringing $x$ across turns it into $-x$: $3x+5=x+15$ becomes $3x-x+5=15$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "le3-t1",
+          "statement": "Solve $5x+2=3x+10$.",
+          "solution": "$2x=8$, so $x=4$.",
+          "check": [
+            "5*4 + 2 == 3*4 + 10"
+          ]
+        },
+        {
+          "id": "le3-t2",
+          "statement": "Solve $8x-3=5x+9$.",
+          "solution": "$3x=12$, so $x=4$.",
+          "check": [
+            "8*4 - 3 == 5*4 + 9"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The setup",
+            "title": "An x on each side",
+            "beats": [
+              "$3x+5 = x+15$ — both sides hold $x$s.",
+              "Goal: all $x$s on one side, numbers on the other.",
+              "Subtract $x$ from both sides: $2x+5=15$.",
+              "Now it's a two-step you already know."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "First collection",
+            "prompt": "Solving $5x+2=3x+10$, a good first move is…",
+            "options": [
+              "Subtract $3x$ from both sides",
+              "Add $3x$ to both sides",
+              "Divide both sides by 5"
+            ],
+            "correctIndex": 0,
+            "explanation": "Removing the smaller x-term gives $2x+2=10$ — positive coefficient, smooth sailing.",
+            "check": [
+              "5*4 + 2 == 3*4 + 10"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Finish it",
+            "title": "Collect, then unwrap",
+            "beats": [
+              "$2x+5=15$ (after subtracting $x$).",
+              "Subtract 5: $2x=10$.",
+              "Divide by 2: $x=5$.",
+              "Check BOTH sides: $3(5)+5=20$, $5+15=20$ ✓."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Herd the x's",
+            "intro": "Subtract the smaller variable term first.",
+            "examples": [
+              {
+                "prompt": "Solve $7x-4=2x+16$.",
+                "steps": [
+                  "Subtract $2x$: $5x-4=16$.",
+                  "Add 4: $5x=20$.",
+                  "Divide: $x=4$."
+                ],
+                "answer": "$x=4$",
+                "check": [
+                  "7*4 - 4 == 2*4 + 16"
+                ]
+              },
+              {
+                "prompt": "Solve $4x+6=10x$.",
+                "steps": [
+                  "Subtract $4x$: $6=6x$.",
+                  "Divide: $x=1$."
+                ],
+                "answer": "$x=1$",
+                "check": [
+                  "4*1 + 6 == 10*1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Both-sides equations",
+            "intro": "Collect x's, collect numbers, unwrap.",
+            "problems": [
+              {
+                "prompt": "Solve $6x+1=4x+9$.",
+                "options": [
+                  "$x=4$",
+                  "$x=1$",
+                  "$x=5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2x=8$, so $x=4$.",
+                "check": [
+                  "6*4 + 1 == 4*4 + 9"
+                ]
+              },
+              {
+                "prompt": "Solve $9x-2=5x+14$.",
+                "options": [
+                  "$x=4$",
+                  "$x=3$",
+                  "$x=12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4x=16$, so $x=4$.",
+                "check": [
+                  "9*4 - 2 == 5*4 + 14"
+                ]
+              },
+              {
+                "prompt": "Plans: $\\$3$/GB + $\\$5$ vs $\\$1$/GB + $\\$15$. Equal when…",
+                "options": [
+                  "$x=5$ GB",
+                  "$x=10$ GB",
+                  "$x=2$ GB"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3x+5=x+15$ gives $2x=10$, $x=5$.",
+                "check": [
+                  "3*5 + 5 == 1*5 + 15"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The break-even instinct",
+            "body": "“When do two deals cost the same?” is one of the most-used equations in real life — phone plans, gym memberships, rent vs buy, print vs digital. Businesses call the crossover the **break-even point**, and it's always a variables-on-both-sides equation."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Collect $x$s on one side, constants on the other.",
+              "Remove the **smaller** x-term to stay positive.",
+              "Check both sides of the ORIGINAL equation."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "equations-with-parentheses",
+      "title": "Equations with Parentheses",
+      "concreteComparison": "Three gift bags, each holding a mystery toy plus $2$ candies, weigh $15$ oz total: $3(x+2)=15$. You can't touch the $x$ while it's locked in parentheses — so **distribute** first: $3x+6=15$. Now it's a plain two-step. Parentheses open, then the equation surrenders.",
+      "objective": "Use the distributive property to clear parentheses, then solve — including equations that need distributing on both sides.",
+      "concept": [
+        "**Distributive property:** $a(b+c)=ab+ac$. The outside number multiplies EVERY term inside: $3(x+2)=3x+6$.",
+        "Then solve normally: $3x+6=15 \\to 3x=9 \\to x=3$.",
+        "A negative distributes its sign: $-2(x-4)=-2x+8$ — both products flip.",
+        "Shortcut when the outside divides the other side evenly: $3(x+2)=15$ → divide both sides by 3 first: $x+2=5$, so $x=3$. Same answer, fewer steps."
+      ],
+      "keyIdea": "Open the parentheses with the distributive property, then unwrap as usual.",
+      "facts": [
+        {
+          "title": "Distribute",
+          "latex": "$3(x+2) = 3x+6$",
+          "explanation": "The 3 hits every term inside."
+        },
+        {
+          "title": "Negative distributes",
+          "latex": "$-2(x-4) = -2x+8$",
+          "explanation": "Both signs flip."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "le4-we1",
+          "statement": "Solve $3(x+2)=15$.",
+          "solution": "Distribute: $3x+6=15$. Then $3x=9$, so $x=3$. Check: $3(3+2)=15$ ✓.",
+          "check": [
+            "3*(3+2) == 15"
+          ]
+        },
+        {
+          "id": "le4-we2",
+          "statement": "Solve $2(x-5)=8$.",
+          "solution": "Distribute: $2x-10=8$, so $2x=18$, $x=9$.",
+          "check": [
+            "2*(9-5) == 8"
+          ]
+        },
+        {
+          "id": "le4-we3",
+          "statement": "Solve $4(x+1)=2(x+5)$.",
+          "solution": "Distribute both: $4x+4=2x+10$. Collect: $2x=6$, so $x=3$.",
+          "check": [
+            "4*(3+1) == 2*(3+5)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Distributing to only the first term.",
+          "correction": "$3(x+2)=3x+2$ is wrong — the 3 multiplies BOTH terms: $3x+6$.",
+          "authored": true
+        },
+        {
+          "text": "Losing the negative: $-2(x-4)=-2x-8$.",
+          "correction": "The negative hits both terms: $-2\\cdot x=-2x$ and $-2\\cdot(-4)=+8$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "le4-t1",
+          "statement": "Solve $5(x+1)=25$.",
+          "solution": "$5x+5=25$, so $5x=20$, $x=4$.",
+          "check": [
+            "5*(4+1) == 25"
+          ]
+        },
+        {
+          "id": "le4-t2",
+          "statement": "Solve $2(x-3)=10$.",
+          "solution": "$2x-6=10$, so $2x=16$, $x=8$.",
+          "check": [
+            "2*(8-3) == 10"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The key",
+            "title": "Distribute to open",
+            "beats": [
+              "$3(x+2)$: the 3 multiplies **everything** inside.",
+              "$3\\cdot x + 3\\cdot 2 = 3x+6$.",
+              "Picture 3 bags, each with an $x$ and 2 candies:",
+              "3 $x$s and 6 candies total."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Open it",
+            "prompt": "Expand $4(x+3)$.",
+            "options": [
+              "$4x+12$",
+              "$4x+3$",
+              "$x+12$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The 4 hits both terms: $4x$ and $12$.",
+            "check": [
+              "4*(2+3) == 4*2 + 12"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Careful with minus",
+            "title": "Negatives distribute too",
+            "beats": [
+              "$-2(x-4)$: distribute the **whole** $-2$.",
+              "$-2\\cdot x = -2x$.",
+              "$-2\\cdot(-4) = +8$.",
+              "So $-2(x-4) = -2x+8$ — sign flips inside."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Open, then solve",
+            "intro": "Distribute first; both sides if needed.",
+            "examples": [
+              {
+                "prompt": "Solve $3(x+2)=15$.",
+                "steps": [
+                  "Distribute: $3x+6=15$.",
+                  "Subtract 6: $3x=9$.",
+                  "Divide: $x=3$."
+                ],
+                "answer": "$x=3$",
+                "check": [
+                  "3*(3+2) == 15"
+                ]
+              },
+              {
+                "prompt": "Solve $4(x+1)=2(x+5)$.",
+                "steps": [
+                  "Distribute: $4x+4=2x+10$.",
+                  "Subtract $2x$: $2x+4=10$.",
+                  "So $2x=6$, $x=3$."
+                ],
+                "answer": "$x=3$",
+                "check": [
+                  "4*(3+1) == 2*(3+5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Parentheses equations",
+            "intro": "Distribute to every term.",
+            "problems": [
+              {
+                "prompt": "Solve $2(x+4)=18$.",
+                "options": [
+                  "$x=5$",
+                  "$x=7$",
+                  "$x=13$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2x+8=18$, so $2x=10$, $x=5$.",
+                "check": [
+                  "2*(5+4) == 18"
+                ]
+              },
+              {
+                "prompt": "Solve $3(x-2)=x+8$.",
+                "options": [
+                  "$x=7$",
+                  "$x=5$",
+                  "$x=3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3x-6=x+8$, so $2x=14$, $x=7$.",
+                "check": [
+                  "3*(7-2) == 7 + 8"
+                ]
+              },
+              {
+                "prompt": "Expand $-3(x-5)$.",
+                "options": [
+                  "$-3x+15$",
+                  "$-3x-15$",
+                  "$3x-15$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$-3\\cdot(-5)=+15$ — the sign flips.",
+                "check": [
+                  "-3*(2-5) == -3*2 + 15"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why “distribute”?",
+            "body": "The name is literal: the outside number gets **distributed** — handed out — to every term inside, like dealing cards to every player. Skip a player and the game (or the algebra) breaks. It's the single most-used law in all of algebra."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$a(b+c)=ab+ac$ — hit EVERY inside term.",
+              "Negatives distribute their sign: $-2(x-4)=-2x+8$.",
+              "Open parentheses first, then solve as usual."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "one-none-or-infinite",
+      "title": "One, None, or Infinitely Many",
+      "concreteComparison": "Simplify an equation and sometimes the $x$ **vanishes**. If you're left with $5=5$ — always true — EVERY number works: infinitely many solutions. If you're left with $2=7$ — never true — NO number works. An equation isn't just a puzzle with one answer; it can be an identity, or an impossibility, and the algebra tells you which.",
+      "objective": "Recognize when a linear equation has exactly one solution, no solution, or infinitely many — by simplifying and reading what remains.",
+      "concept": [
+        "**One solution** (the usual case): the $x$s survive. $2x+3=11$ leaves $x=4$ — exactly one number works.",
+        "**No solution**: the $x$s cancel and what's left is FALSE. $x+5=x+9 \\to 5=9$ ✗. No number can make it true.",
+        "**Infinitely many**: the $x$s cancel and what's left is TRUE. $2(x+3)=2x+6 \\to 6=6$ ✓ for every $x$ — the two sides were the same expression in disguise (an **identity**).",
+        "Strategy: solve normally. If $x$ disappears, judge the leftover statement — true means all numbers, false means none."
+      ],
+      "keyIdea": "If the x's cancel: leftover TRUE → infinitely many; leftover FALSE → no solution.",
+      "facts": [
+        {
+          "title": "No solution",
+          "latex": "$x+5=x+9 \\to 5=9$ ✗",
+          "explanation": "A false leftover — nothing works."
+        },
+        {
+          "title": "Infinitely many",
+          "latex": "$2(x+3)=2x+6 \\to 6=6$ ✓",
+          "explanation": "A true leftover — everything works."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "le5-we1",
+          "statement": "Solve $x+5=x+9$.",
+          "solution": "Subtract $x$: $5=9$ — false. **No solution.**",
+          "check": [
+            "5 != 9"
+          ]
+        },
+        {
+          "id": "le5-we2",
+          "statement": "Solve $2(x+3)=2x+6$.",
+          "solution": "Distribute: $2x+6=2x+6$ — identical sides. **Infinitely many solutions** (e.g. $x=1$: $8=8$; $x=10$: $26=26$).",
+          "check": [
+            "2*(1+3) == 2*1 + 6",
+            "2*(10+3) == 2*10 + 6"
+          ]
+        },
+        {
+          "id": "le5-we3",
+          "statement": "Solve $3x+2=2x+7$.",
+          "solution": "Subtract $2x$: $x+2=7$, so $x=5$ — exactly **one solution**.",
+          "check": [
+            "3*5 + 2 == 2*5 + 7"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Writing x=0 when the x's cancel.",
+          "correction": "$5=9$ has no $x$ left to equal zero — the verdict is about the leftover statement, not $x=0$.",
+          "authored": true
+        },
+        {
+          "text": "Calling a true leftover 'no solution'.",
+          "correction": "$6=6$ means every $x$ works (infinitely many), the OPPOSITE of no solution.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "le5-t1",
+          "statement": "Solve $4x+1=4x+9$. How many solutions?",
+          "solution": "Subtract $4x$: $1=9$ — false. No solution.",
+          "check": [
+            "1 != 9"
+          ]
+        },
+        {
+          "id": "le5-t2",
+          "statement": "Solve $3(x+2)=3x+6$. How many solutions?",
+          "solution": "Distribute: $3x+6=3x+6$ — always true. Infinitely many. (Check $x=4$: $18=18$.)",
+          "check": [
+            "3*(4+2) == 3*4 + 6"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The usual case",
+            "title": "One solution",
+            "beats": [
+              "$2x+3=11$ → $x=4$. One number works.",
+              "Most equations you've met are like this.",
+              "But two other endings exist…",
+              "…and both start with the $x$s **cancelling**."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Ending 2",
+            "title": "No solution",
+            "beats": [
+              "$x+5 = x+9$: subtract $x$ from both sides.",
+              "Left: $5=9$. That's **false** — always.",
+              "No value of $x$ can rescue it.",
+              "Verdict: **no solution**."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Judge it",
+            "prompt": "Solving $2x+1=2x+5$ leaves $1=5$. How many solutions?",
+            "options": [
+              "None",
+              "One ($x=0$)",
+              "Infinitely many"
+            ],
+            "correctIndex": 0,
+            "explanation": "$1=5$ is false no matter what $x$ is — no solution. (Not $x=0$: check $1=5$ has no $x$ at all.)",
+            "check": [
+              "1 != 5"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Ending 3",
+            "title": "Infinitely many",
+            "beats": [
+              "$2(x+3) = 2x+6$: distribute the left.",
+              "$2x+6 = 2x+6$ — the SAME expression twice.",
+              "Any $x$ works: try $x=1$ ($8=8$), $x=100$ ($206=206$).",
+              "Verdict: **infinitely many** — an identity."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Count the solutions",
+            "intro": "Solve; if x vanishes, judge the leftover.",
+            "examples": [
+              {
+                "prompt": "How many solutions: $5x-2=5x+7$?",
+                "steps": [
+                  "Subtract $5x$: $-2=7$.",
+                  "False.",
+                  "**No solution.**"
+                ],
+                "answer": "none",
+                "check": [
+                  "-2 != 7"
+                ]
+              },
+              {
+                "prompt": "How many solutions: $4(x+2)=4x+8$?",
+                "steps": [
+                  "Distribute: $4x+8=4x+8$.",
+                  "Always true.",
+                  "**Infinitely many.**"
+                ],
+                "answer": "infinitely many",
+                "check": [
+                  "4*(5+2) == 4*5 + 8"
+                ]
+              },
+              {
+                "prompt": "How many solutions: $6x+2=4x+10$?",
+                "steps": [
+                  "Subtract $4x$: $2x+2=10$.",
+                  "$2x=8$, $x=4$.",
+                  "**One solution.**"
+                ],
+                "answer": "one ($x=4$)",
+                "check": [
+                  "6*4 + 2 == 4*4 + 10"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "One, none, or all?",
+            "intro": "Simplify and read the leftovers.",
+            "problems": [
+              {
+                "prompt": "$3x+4=3x+4$ has…",
+                "options": [
+                  "Infinitely many solutions",
+                  "No solution",
+                  "One solution"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both sides are identical — every $x$ works.",
+                "check": [
+                  "3*7 + 4 == 3*7 + 4"
+                ]
+              },
+              {
+                "prompt": "$2x+3=2x-1$ has…",
+                "options": [
+                  "No solution",
+                  "One solution",
+                  "Infinitely many"
+                ],
+                "correctIndex": 0,
+                "explanation": "Subtracting $2x$ leaves $3=-1$ — false.",
+                "check": [
+                  "3 != -1"
+                ]
+              },
+              {
+                "prompt": "$5(x-1)=5x-5$ has…",
+                "options": [
+                  "Infinitely many solutions",
+                  "No solution",
+                  "$x=1$ only"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5x-5=5x-5$ — an identity.",
+                "check": [
+                  "5*(3-1) == 5*3 - 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Parallel lines in disguise",
+            "body": "Next topic you'll graph both sides of an equation as two lines. One solution = the lines **cross once**. No solution = they're **parallel** (never meet). Infinitely many = they're the **same line**. The three endings you just learned are secretly a geometry fact."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$x$ survives → one solution.",
+              "$x$ cancels, leftover false → **no** solution.",
+              "$x$ cancels, leftover true → **infinitely many**."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "from-words-to-equations",
+      "title": "From Words to Equations",
+      "concreteComparison": "“A gym charges a $\\$20$ sign-up fee plus $\\$15$ a month. You've paid $\\$95$ so far — how many months have you been a member?” No equation in sight — until you build one: $15m+20=95$. Translating words into algebra is the real superpower; the solving part you already own.",
+      "objective": "Translate real situations into linear equations — identifying the unknown, the rate, and the constant — then solve and interpret the answer.",
+      "concept": [
+        "**Name the unknown** first: let $m$ = months. A one-letter summary of what you're hunting.",
+        "**Find the structure**: a per-something rate multiplies the unknown ($15m$), a one-time amount stands alone ($+20$), and the total sits on the other side ($=95$).",
+        "Solve as usual: $15m+20=95 \\to 15m=75 \\to m=5$ months.",
+        "**Interpret**: does 5 months make sense? Positive, whole, reasonable ✓. An answer like $-3$ months would mean the setup — not the algebra — needs another look."
+      ],
+      "keyIdea": "rate × unknown + one-time amount = total; then solve and sanity-check the answer.",
+      "facts": [
+        {
+          "title": "The template",
+          "latex": "$\\text{rate}\\cdot x + \\text{fee} = \\text{total}$",
+          "explanation": "Most money/count stories fit it."
+        },
+        {
+          "title": "Interpret",
+          "latex": "$m=5$ months ✓",
+          "explanation": "The answer must make sense in the story."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "le6-we1",
+          "statement": "A gym charges $\\$20$ to join plus $\\$15$/month. Total paid: $\\$95$. How many months?",
+          "solution": "$15m+20=95 \\to 15m=75 \\to m=5$ months.",
+          "check": [
+            "15*5 + 20 == 95"
+          ]
+        },
+        {
+          "id": "le6-we2",
+          "statement": "Three consecutive integers sum to $48$. Find them.",
+          "solution": "$n+(n+1)+(n+2)=48 \\to 3n+3=48 \\to n=15$: the integers are $15,16,17$.",
+          "check": [
+            "15 + 16 + 17 == 48"
+          ]
+        },
+        {
+          "id": "le6-we3",
+          "statement": "Two tutors: A charges $\\$25$/hr; B charges $\\$10$/hr plus a $\\$45$ materials fee. When do they cost the same?",
+          "solution": "$25h=10h+45 \\to 15h=45 \\to h=3$ hours.",
+          "check": [
+            "25*3 == 10*3 + 45"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Putting the one-time fee on the rate.",
+          "correction": "$\\$20$ to join is NOT $20m$ — it doesn't repeat monthly. Rates multiply the unknown; one-time amounts stand alone.",
+          "authored": true
+        },
+        {
+          "text": "Answering the wrong question.",
+          "correction": "If the problem asks for the LARGEST of three integers, $n=15$ isn't the answer — $n+2=17$ is. Reread the question at the end.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "le6-t1",
+          "statement": "A taxi costs $\\$4$ plus $\\$2$ per mile. The fare was $\\$18$. How many miles?",
+          "solution": "$2m+4=18 \\to 2m=14 \\to m=7$ miles.",
+          "check": [
+            "2*7 + 4 == 18"
+          ]
+        },
+        {
+          "id": "le6-t2",
+          "statement": "Two consecutive integers sum to $33$. Find the smaller one.",
+          "solution": "$n+(n+1)=33 \\to 2n=32 \\to n=16$.",
+          "check": [
+            "16 + 17 == 33"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The translation",
+            "title": "Words → symbols",
+            "beats": [
+              "“$\\$15$ per month” → $15m$ (rate × unknown).",
+              "“$\\$20$ sign-up fee” → $+20$ (one time).",
+              "“paid $\\$95$ total” → $=95$.",
+              "Equation: $15m+20=95$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Build it",
+            "prompt": "A phone plan: $\\$30$ up front plus $\\$10$/month, $\\$80$ total. The equation is…",
+            "options": [
+              "$10m+30=80$",
+              "$30m+10=80$",
+              "$40m=80$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\$10$ repeats monthly ($10m$); $\\$30$ happens once ($+30$).",
+            "check": [
+              "10*5 + 30 == 80"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Solve + interpret",
+            "title": "Finish the story",
+            "beats": [
+              "$15m+20=95$.",
+              "Subtract 20: $15m=75$.",
+              "Divide: $m=5$ — five months.",
+              "Sanity check: 5 months at \\$15 is \\$75, plus \\$20 = \\$95 ✓."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Story to solution",
+            "intro": "Name the unknown, build, solve, interpret.",
+            "examples": [
+              {
+                "prompt": "Consecutive integers: three in a row sum to $48$. Find them.",
+                "steps": [
+                  "Let $n$ = smallest: $n+(n+1)+(n+2)=48$.",
+                  "$3n+3=48$, so $3n=45$, $n=15$.",
+                  "They are $15, 16, 17$."
+                ],
+                "answer": "$15, 16, 17$",
+                "check": [
+                  "15 + 16 + 17 == 48"
+                ]
+              },
+              {
+                "prompt": "Tutor A: $\\$25$/hr. Tutor B: $\\$10$/hr + $\\$45$ fee. Equal cost when?",
+                "steps": [
+                  "$25h = 10h+45$.",
+                  "$15h=45$.",
+                  "$h=3$ hours."
+                ],
+                "answer": "$3$ hours",
+                "check": [
+                  "25*3 == 10*3 + 45"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Translate and solve",
+            "intro": "Rate × unknown + fee = total.",
+            "problems": [
+              {
+                "prompt": "Bike rental: $\\$8$ plus $\\$3$/hour. You paid $\\$23$. Hours?",
+                "options": [
+                  "$5$",
+                  "$3$",
+                  "$7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3h+8=23 \\to 3h=15 \\to h=5$.",
+                "check": [
+                  "3*5 + 8 == 23"
+                ]
+              },
+              {
+                "prompt": "Two consecutive integers sum to $41$. The larger is…",
+                "options": [
+                  "$21$",
+                  "$20$",
+                  "$41$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$n+(n+1)=41 \\to n=20$; the larger is $21$.",
+                "check": [
+                  "20 + 21 == 41"
+                ]
+              },
+              {
+                "prompt": "Streaming: $\\$12$/month vs $\\$8$/month + $\\$20$ box. Equal after…",
+                "options": [
+                  "$5$ months",
+                  "$4$ months",
+                  "$10$ months"
+                ],
+                "correctIndex": 0,
+                "explanation": "$12m=8m+20 \\to 4m=20 \\to m=5$.",
+                "check": [
+                  "12*5 == 8*5 + 20"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "You solve equations now",
+            "body": "Two-step, cluttered, both-sides, parenthesized, special-case, and straight out of a story — all of them fall to the same moves."
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished “Linear Equations”",
+            "body": "You can unwrap any linear equation — and diagnose the strange ones with no solution or infinitely many. Next: **Linear Functions**, where these equations become LINES and slope enters the picture."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "le-pr1",
+      "statement": "Solve $3x+4=19$.",
+      "solution": "$3x=15$, so $x=5$.",
+      "check": [
+        "3*5 + 4 == 19"
+      ]
+    },
+    {
+      "id": "le-pr2",
+      "statement": "Solve $\\frac{x}{2}-3=7$.",
+      "solution": "$\\frac{x}{2}=10$, so $x=20$.",
+      "check": [
+        "20/2 - 3 == 7"
+      ]
+    },
+    {
+      "id": "le-pr3",
+      "statement": "Solve $4x+3x=35$.",
+      "solution": "$7x=35$, so $x=5$.",
+      "check": [
+        "4*5 + 3*5 == 35"
+      ]
+    },
+    {
+      "id": "le-pr4",
+      "statement": "Solve $7x+2=4x+17$.",
+      "solution": "$3x=15$, so $x=5$.",
+      "check": [
+        "7*5 + 2 == 4*5 + 17"
+      ]
+    },
+    {
+      "id": "le-pr5",
+      "statement": "Solve $2(x+6)=22$.",
+      "solution": "$2x+12=22$, so $x=5$.",
+      "check": [
+        "2*(5+6) == 22"
+      ]
+    },
+    {
+      "id": "le-pr6",
+      "statement": "Solve $5(x-2)=3x+4$.",
+      "solution": "$5x-10=3x+4$, so $2x=14$, $x=7$.",
+      "check": [
+        "5*(7-2) == 3*7 + 4"
+      ]
+    },
+    {
+      "id": "le-pr7",
+      "statement": "How many solutions: $6x+3=6x-5$?",
+      "solution": "$3=-5$ is false — no solution.",
+      "check": [
+        "3 != -5"
+      ]
+    },
+    {
+      "id": "le-pr8",
+      "statement": "How many solutions: $2(3x+1)=6x+2$?",
+      "solution": "$6x+2=6x+2$ — infinitely many.",
+      "check": [
+        "2*(3*4+1) == 6*4 + 2"
+      ]
+    },
+    {
+      "id": "le-pr9",
+      "statement": "A movie plan costs $\\$6$ plus $\\$3$ per rental; you paid $\\$27$. How many rentals?",
+      "solution": "$3r+6=27$, so $r=7$.",
+      "check": [
+        "3*7 + 6 == 27"
+      ]
+    },
+    {
+      "id": "le-pr10",
+      "statement": "Solve $9x-4x+7=32$.",
+      "solution": "$5x+7=32$, so $5x=25$, $x=5$.",
+      "check": [
+        "9*5 - 4*5 + 7 == 32"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "le-ty1",
+      "statement": "Solve $6x-11=25$.",
+      "solution": "$6x=36$, so $x=6$.",
+      "check": [
+        "6*6 - 11 == 25"
+      ]
+    },
+    {
+      "id": "le-ty2",
+      "statement": "Solve $8x-3x+4=29$.",
+      "solution": "$5x=25$, so $x=5$.",
+      "check": [
+        "8*5 - 3*5 + 4 == 29"
+      ]
+    },
+    {
+      "id": "le-ty3",
+      "statement": "Solve $10x-7=6x+13$.",
+      "solution": "$4x=20$, so $x=5$.",
+      "check": [
+        "10*5 - 7 == 6*5 + 13"
+      ]
+    },
+    {
+      "id": "le-ty4",
+      "statement": "Solve $3(2x-4)=18$.",
+      "solution": "$6x-12=18$, so $6x=30$, $x=5$.",
+      "check": [
+        "3*(2*5-4) == 18"
+      ]
+    },
+    {
+      "id": "le-ty5",
+      "statement": "How many solutions does $4(x+3)=4x+12$ have?",
+      "solution": "Infinitely many — both sides are identical.",
+      "check": [
+        "4*(6+3) == 4*6 + 12"
+      ]
+    },
+    {
+      "id": "le-ty6",
+      "statement": "How many solutions does $5x+9=5x+2$ have?",
+      "solution": "None — $9=2$ is false.",
+      "check": [
+        "9 != 2"
+      ]
+    },
+    {
+      "id": "le-ty7",
+      "statement": "Three consecutive integers sum to $72$. Find the largest.",
+      "solution": "$3n+3=72$, $n=23$; the largest is $25$.",
+      "check": [
+        "23 + 24 + 25 == 72"
+      ]
+    }
+  ]
+}

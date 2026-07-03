@@ -63,6 +63,7 @@ import dataAndStatistics from "@/data/genmath/6/data-and-statistics.json";
 import realNumberSystem from "@/data/genmath/8/the-real-number-system.json";
 import exponentsScientific from "@/data/genmath/8/exponents-and-scientific-notation.json";
 import roots from "@/data/genmath/8/roots.json";
+import linearEquations from "@/data/genmath/8/linear-equations.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -126,7 +127,7 @@ export const GRADE8_SPINE: GradeSpineEntry[] = [
     slug: "linear-equations",
     title: "Linear Equations",
     blurb: "Multi-step equations, variables on both sides, and equations with no solution or infinitely many.",
-    live: false,
+    live: true,
   },
   {
     slug: "linear-functions",
@@ -152,6 +153,7 @@ const grade8Topics: GenMathTopic[] = [
   realNumberSystem as GenMathTopic,
   exponentsScientific as GenMathTopic,
   roots as GenMathTopic,
+  linearEquations as GenMathTopic,
 ];
 
 // Every authored General-Math topic across grades. Topic slugs are unique
