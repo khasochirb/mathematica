@@ -621,6 +621,34 @@ export interface QuadShapeConfig {
   color?: string;
 }
 
+// Two similar triangles side by side with an adjustable scale factor k. Same
+// shape, different size: corresponding angles stay equal, every side is k times
+// its match, the perimeter scales by k and the area by k². Serves Unit-7
+// lessons on similar figures, similarity shortcuts, and perimeter/area ratios.
+export interface SimilarFiguresConfig {
+  start?: number; // initial scale factor (×10 internally is avoided; use halves)
+  show?: "sides" | "measures"; // readout emphasis: side ratio, or perimeter+area
+  color?: string;
+}
+
+// A triangle cut by a line parallel to its base (the Side-Splitter setup). A
+// slider slides the parallel line; the two sides are always split in the same
+// ratio — the Triangle Proportionality Theorem, live.
+export interface SideSplitterConfig {
+  ab?: number; // length of the left side AB
+  ac?: number; // length of the right side AC
+  start?: number; // initial fraction of the way down (0..1)
+  color?: string;
+}
+
+// A figure and its dilation image from a center, with an adjustable scale
+// factor k. The image lies on the rays from the center, k times as far; k > 1
+// enlarges, 0 < k < 1 reduces. For the dilations lesson.
+export interface DilationConfig {
+  start?: number; // initial k
+  color?: string;
+}
+
 // Two congruent triangles with marked parts; the student names the shortcut.
 export interface CongruentTrianglesConfig {
   sides?: [number, number, number]; // tick counts on AB, BC, CA
@@ -714,6 +742,9 @@ export type InteractiveStep =
   | { kind: "midsegment"; eyebrow?: string; title: string; teach: string; config: MidsegmentConfig }
   | { kind: "polygonAngles"; eyebrow?: string; title: string; teach: string; config: PolygonAnglesConfig }
   | { kind: "quadShape"; eyebrow?: string; title: string; teach: string; config: QuadShapeConfig }
+  | { kind: "similarFigures"; eyebrow?: string; title: string; teach: string; config: SimilarFiguresConfig }
+  | { kind: "sideSplitter"; eyebrow?: string; title: string; teach: string; config: SideSplitterConfig }
+  | { kind: "dilation"; eyebrow?: string; title: string; teach: string; config: DilationConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

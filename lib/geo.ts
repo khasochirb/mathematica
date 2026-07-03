@@ -271,3 +271,39 @@ export function polygonDiagonals(n: number): number {
 export function trapezoidMidsegment(base1: number, base2: number): number {
   return (base1 + base2) / 2;
 }
+
+// ---------------------------------------------------------------------------
+// Similarity — proportions, scale factor, dilation
+// ---------------------------------------------------------------------------
+
+// The scale factor between two corresponding lengths (image ÷ pre-image).
+export function scaleFactor(image: number, original: number): number {
+  return image / original;
+}
+
+// Solve the proportion a/b = c/x for the missing fourth term x = (b·c)/a.
+export function solveProportion(a: number, b: number, c: number): number {
+  return (b * c) / a;
+}
+
+// For similar figures with scale factor k: the ratio of PERIMETERS is k, and
+// the ratio of AREAS is k². (Length scales once, area scales twice.)
+export function perimeterScale(k: number): number {
+  return k;
+}
+export function areaScale(k: number): number {
+  return k * k;
+}
+
+// Dilate point p from a center by scale factor k: the image sits k times as far
+// from the center along the same ray. image = center + k·(p − center).
+export function dilate(p: XY, center: XY, k: number): XY {
+  return { x: center.x + k * (p.x - center.x), y: center.y + k * (p.y - center.y) };
+}
+
+// Triangle Proportionality (side-splitter): a line parallel to one side of a
+// triangle cuts the other two sides proportionally, AD/DB = AE/EC. Given AD,
+// DB, AE, the matching piece EC = AE·DB / AD.
+export function splitProportional(ad: number, db: number, ae: number): number {
+  return (ae * db) / ad;
+}

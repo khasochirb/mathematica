@@ -40,6 +40,12 @@ import {
   diagonalsFromVertex,
   polygonDiagonals,
   trapezoidMidsegment,
+  scaleFactor,
+  solveProportion,
+  perimeterScale,
+  areaScale,
+  dilate,
+  splitProportional,
 } from "@/lib/geo";
 
 describe("segment math", () => {
@@ -364,5 +370,53 @@ describe("polygon angle sums & quadrilateral measures", () => {
     expect(trapezoidMidsegment(8, 12)).toBe(10);
     expect(trapezoidMidsegment(6, 6)).toBe(6);
     expect(trapezoidMidsegment(5, 15)).toBe(10);
+  });
+});
+
+describe("similarity — proportions, scale factor, dilation", () => {
+  it("scale factor is image ÷ pre-image", () => {
+    expect(scaleFactor(12, 8)).toBe(1.5);
+    expect(scaleFactor(6, 6)).toBe(1);
+    expect(scaleFactor(4, 8)).toBe(0.5);
+  });
+
+  it("solveProportion finds the missing fourth term", () => {
+    // 3/4 = 9/x → x = 12
+    expect(solveProportion(3, 4, 9)).toBe(12);
+    // 5/2 = 15/x → x = 6
+    expect(solveProportion(5, 2, 15)).toBe(6);
+    // cross products match
+    expect(3 * solveProportion(3, 4, 9)).toBe(4 * 9);
+  });
+
+  it("perimeter scales by k, area scales by k²", () => {
+    expect(perimeterScale(3)).toBe(3);
+    expect(areaScale(3)).toBe(9);
+    expect(areaScale(2)).toBe(4);
+    expect(areaScale(0.5)).toBe(0.25);
+    // area ratio is always the square of the length ratio
+    for (const k of [2, 3, 4, 1.5]) expect(areaScale(k)).toBeCloseTo(perimeterScale(k) ** 2);
+  });
+
+  it("dilation places the image k times as far along the same ray", () => {
+    const center = { x: 0, y: 0 };
+    expect(dilate({ x: 2, y: 3 }, center, 2)).toEqual({ x: 4, y: 6 });
+    expect(dilate({ x: 4, y: 4 }, center, 0.5)).toEqual({ x: 2, y: 2 });
+    // k = 1 is the identity; the center maps to itself for any k
+    expect(dilate({ x: 5, y: 7 }, center, 1)).toEqual({ x: 5, y: 7 });
+    expect(dilate(center, center, 4)).toEqual(center);
+    // dilation from a non-origin center
+    expect(dilate({ x: 6, y: 2 }, { x: 2, y: 2 }, 3)).toEqual({ x: 14, y: 2 });
+    // the image, center, and pre-image are collinear and distances scale by k
+    const c = { x: 1, y: 1 }, p = { x: 4, y: 5 }, img = dilate(p, c, 2);
+    expect(distFn(c, img)).toBeCloseTo(2 * distFn(c, p));
+  });
+
+  it("side-splitter cuts the other two sides proportionally", () => {
+    // AD/DB = AE/EC → EC = AE·DB/AD; AD=4,DB=6,AE=6 → EC=9
+    expect(splitProportional(4, 6, 6)).toBe(9);
+    expect(splitProportional(3, 3, 5)).toBe(5); // midsegment case, halves → equal
+    // the two ratios match
+    expect(4 / 6).toBeCloseTo(6 / splitProportional(4, 6, 6));
   });
 });

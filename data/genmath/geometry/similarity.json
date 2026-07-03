@@ -1,0 +1,2652 @@
+{
+  "slug": "similarity",
+  "title": "Similarity",
+  "unit": 7,
+  "status": "published",
+  "blurb": "Ratio, proportion and scale factor; similar polygons; the AA·SSS·SAS similarity shortcuts; the side-splitter theorem; perimeter and area ratios; and dilations with indirect measurement.",
+  "buildsOn": "Triangle congruence and the angle sum (Unit 4), parallel-line angle facts (Unit 3), the midsegment (Unit 5), and ratios & proportions from Grade 6.",
+  "lessons": [
+    {
+      "slug": "ratio-proportion-scale-factor",
+      "title": "Ratio, Proportion & Scale Factor",
+      "concreteComparison": "A map's scale, a recipe doubled for twice the guests, a die-cast model car — each shrinks or grows real sizes by the same **factor**. Nail that factor and the copy keeps the shape of the original; get it wrong and the model looks stretched. This is the engine behind everything in this unit.",
+      "objective": "Write and simplify ratios, solve proportions using cross products, and use a scale factor to relate two sizes of the same shape.",
+      "concept": [
+        "A **ratio** compares two quantities by division, written $a : b$ or $\\tfrac{a}{b}$ (from Grade 6). A **proportion** states that two ratios are equal: $\\tfrac{a}{b} = \\tfrac{c}{d}$.",
+        "In a true proportion the **cross products are equal**: $\\tfrac{a}{b} = \\tfrac{c}{d}$ exactly when $a\\,d = b\\,c$. That lets you solve for a missing term.",
+        "A **scale factor** is the ratio of a new length to the matching original length ($\\text{image} \\div \\text{original}$). Multiply every length by it to resize a shape.",
+        "A scale factor greater than $1$ **enlarges**, one between $0$ and $1$ **shrinks**, and exactly $1$ keeps the same size."
+      ],
+      "keyIdea": "A proportion sets two ratios equal; its cross products are equal (ad = bc), which solves for a missing term. A scale factor (image ÷ original) resizes every length by the same multiple.",
+      "facts": [
+        {
+          "title": "Cross products",
+          "latex": "$\\tfrac{a}{b} = \\tfrac{c}{d} \\Leftrightarrow ad = bc$",
+          "explanation": "Equal ratios have equal cross products."
+        },
+        {
+          "title": "Scale factor",
+          "latex": "$k = \\dfrac{\\text{image}}{\\text{original}}$",
+          "explanation": "Multiply each length by k to resize."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rp-we1",
+          "statement": "Simplify the ratio $12 : 8$.",
+          "solution": "Divide both by their GCF, $4$: $12 : 8 = 3 : 2$.",
+          "check": [
+            "12/8 == 3/2"
+          ]
+        },
+        {
+          "id": "rp-we2",
+          "statement": "Solve the proportion $\\tfrac{3}{4} = \\tfrac{9}{x}$.",
+          "solution": "Cross products: $3x = 36 \\Rightarrow x = 12$.",
+          "check": [
+            "solve(Eq(3/4, 9/x), x) == [12]"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding to compare instead of dividing.",
+          "correction": "A ratio compares by **division**. $6:4$ simplifies to $3:2$ (divide by 2), it doesn't become $2$ (subtract).",
+          "authored": true
+        },
+        {
+          "text": "Cross-multiplying across an equals sign the wrong way.",
+          "correction": "For $\\tfrac{a}{b} = \\tfrac{c}{d}$, multiply each numerator by the OTHER denominator: $a\\,d = b\\,c$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rp-t1",
+          "statement": "Simplify $10 : 15$.",
+          "solution": "Divide by $5$: $2 : 3$.",
+          "check": [
+            "10/15 == 2/3"
+          ]
+        },
+        {
+          "id": "rp-t2",
+          "statement": "Solve $\\tfrac{5}{2} = \\tfrac{15}{x}$.",
+          "solution": "$5x = 30 \\Rightarrow x = 6$.",
+          "check": [
+            "solve(Eq(5/2, 15/x), x) == [6]"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Same shape, resized",
+            "beats": [
+              "A **ratio** compares two amounts by dividing: $6 : 4$ means $6$ for every $4$.",
+              "A **proportion** says two ratios are equal: $\\tfrac{6}{4} = \\tfrac{3}{2}$.",
+              "The number you multiply every length by to resize is the **scale factor**.",
+              "Keep the scale factor the same on every side and the shape is preserved."
+            ]
+          },
+          {
+            "kind": "similarFigures",
+            "eyebrow": "Concept A",
+            "title": "One factor resizes every side",
+            "teach": "The image is the original scaled by $k$. Step the scale factor up and down: every side is multiplied by the same $k$, and the angles never change. That single number IS the scale factor.",
+            "config": {
+              "start": 2,
+              "show": "sides"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Cross products",
+            "title": "Solving a proportion",
+            "beats": [
+              "A proportion $\\tfrac{a}{b} = \\tfrac{c}{d}$ is true exactly when $a\\,d = b\\,c$.",
+              "To solve for a missing term, set the cross products equal.",
+              "$\\tfrac{3}{4} = \\tfrac{9}{x} \\Rightarrow 3x = 36 \\Rightarrow x = 12$.",
+              "Always multiply each numerator by the opposite denominator."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Simplify ratios",
+            "intro": "Divide both parts by their common factor.",
+            "examples": [
+              {
+                "prompt": "Simplify $12 : 8$.",
+                "steps": [
+                  "GCF is $4$.",
+                  "$12 : 8 = 3 : 2$."
+                ],
+                "answer": "$3 : 2$",
+                "check": [
+                  "12/8 == 3/2"
+                ]
+              },
+              {
+                "prompt": "Simplify $9 : 15$.",
+                "steps": [
+                  "GCF is $3$.",
+                  "$9 : 15 = 3 : 5$."
+                ],
+                "answer": "$3 : 5$",
+                "check": [
+                  "9/15 == 3/5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Simplify",
+            "intro": "Divide by the GCF.",
+            "problems": [
+              {
+                "prompt": "$10 : 15$ simplifies to —",
+                "options": [
+                  "$2 : 3$",
+                  "$5 : 3$",
+                  "$10 : 15$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Divide by $5$.",
+                "check": [
+                  "10/15 == 2/3"
+                ]
+              },
+              {
+                "prompt": "$6 : 4$ simplifies to —",
+                "options": [
+                  "$3 : 2$",
+                  "$2 : 1$",
+                  "$6 : 4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Divide by $2$.",
+                "check": [
+                  "6/4 == 3/2"
+                ]
+              },
+              {
+                "prompt": "$20 : 5$ simplifies to —",
+                "options": [
+                  "$4 : 1$",
+                  "$5 : 1$",
+                  "$2 : 1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Divide by $5$.",
+                "check": [
+                  "20/5 == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Solve proportions",
+            "intro": "Set the cross products equal, then solve.",
+            "examples": [
+              {
+                "prompt": "$\\tfrac{3}{4} = \\tfrac{9}{x}$. Find $x$.",
+                "steps": [
+                  "Cross products: $3x = 4 \\cdot 9 = 36$.",
+                  "$x = 12$."
+                ],
+                "answer": "$x = 12$",
+                "check": [
+                  "solve(Eq(3/4, 9/x), x) == [12]"
+                ]
+              },
+              {
+                "prompt": "$\\tfrac{x}{6} = \\tfrac{10}{15}$. Find $x$.",
+                "steps": [
+                  "$15x = 60$.",
+                  "$x = 4$."
+                ],
+                "answer": "$x = 4$",
+                "check": [
+                  "solve(Eq(x/6, 10/15), x) == [4]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the missing term",
+            "intro": "Cross products, then divide.",
+            "problems": [
+              {
+                "prompt": "$\\tfrac{5}{2} = \\tfrac{15}{x}$. $x = $ —",
+                "options": [
+                  "$6$",
+                  "$5$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5x = 30 \\Rightarrow x = 6$.",
+                "check": [
+                  "solve(Eq(5/2, 15/x), x) == [6]"
+                ]
+              },
+              {
+                "prompt": "$\\tfrac{2}{3} = \\tfrac{x}{12}$. $x = $ —",
+                "options": [
+                  "$8$",
+                  "$6$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3x = 24 \\Rightarrow x = 8$.",
+                "check": [
+                  "solve(Eq(2/3, x/12), x) == [8]"
+                ]
+              },
+              {
+                "prompt": "$\\tfrac{4}{x} = \\tfrac{8}{10}$. $x = $ —",
+                "options": [
+                  "$5$",
+                  "$4$",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$8x = 40 \\Rightarrow x = 5$.",
+                "check": [
+                  "solve(Eq(4/x, 8/10), x) == [5]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Scale factor",
+            "title": "The resizing number",
+            "beats": [
+              "**Scale factor** $= \\dfrac{\\text{new length}}{\\text{original length}}$.",
+              "From $6$ to $15$: scale factor $= \\tfrac{15}{6} = \\tfrac{5}{2} = 2.5$.",
+              "Bigger than $1$ enlarges; between $0$ and $1$ shrinks.",
+              "Multiply every original length by the scale factor to get the new one."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Find and use a scale factor",
+            "intro": "New ÷ original; then multiply.",
+            "examples": [
+              {
+                "prompt": "A side grows from $8$ to $12$. Scale factor?",
+                "steps": [
+                  "$\\tfrac{12}{8}$.",
+                  "$= \\tfrac{3}{2} = 1.5$."
+                ],
+                "answer": "$\\tfrac{3}{2}$",
+                "check": [
+                  "12/8 == 3/2"
+                ]
+              },
+              {
+                "prompt": "Scale factor $3$. A side of $5$ becomes —",
+                "steps": [
+                  "Multiply by $3$.",
+                  "$5 \\times 3 = 15$."
+                ],
+                "answer": "$15$",
+                "check": [
+                  "5*3 == 15"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Scale factors",
+            "intro": "New ÷ original, or multiply through.",
+            "problems": [
+              {
+                "prompt": "From $10$ to $25$: scale factor is —",
+                "options": [
+                  "$\\tfrac{5}{2}$",
+                  "$\\tfrac{2}{5}$",
+                  "$15$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{25}{10} = \\tfrac{5}{2}$.",
+                "check": [
+                  "25/10 == 5/2"
+                ]
+              },
+              {
+                "prompt": "Scale factor $\\tfrac{1}{2}$: a side of $14$ becomes —",
+                "options": [
+                  "$7$",
+                  "$28$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$14 \\times \\tfrac{1}{2} = 7$ (a reduction).",
+                "check": [
+                  "14*(1/2) == 7"
+                ]
+              },
+              {
+                "prompt": "A scale factor of $1$ means the copy is —",
+                "options": [
+                  "the same size (congruent)",
+                  "twice as big",
+                  "half as big"
+                ],
+                "correctIndex": 0,
+                "explanation": "No change — congruent.",
+                "check": [
+                  "5*1 == 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "How map scales work",
+            "body": "A map scale like $1 : 100{,}000$ is just a ratio: $1$ cm on the map is $100{,}000$ cm ($1$ km) on the ground. To find a real distance you set up a proportion and cross-multiply — the exact skill in this lesson. Architects and machinists read scale drawings the same way."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Solve it",
+            "prompt": "Solve the proportion $\\tfrac{6}{9} = \\tfrac{x}{15}$.",
+            "options": [
+              "$10$",
+              "$12$",
+              "$9$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$9x = 90 \\Rightarrow x = 10$.",
+            "check": [
+              "solve(Eq(6/9, x/15), x) == [10]"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **proportion** sets two ratios equal; it holds exactly when the **cross products** are equal ($ad = bc$).",
+              "A **scale factor** $= \\dfrac{\\text{image}}{\\text{original}}$ resizes every length by the same multiple.",
+              "$k > 1$ enlarges, $0 < k < 1$ shrinks, $k = 1$ keeps it congruent."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's simplify ratios, solve proportions, and work with scale factors."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Simplify $18 : 12$.",
+                "options": [
+                  "$3 : 2$",
+                  "$2 : 3$",
+                  "$6 : 4$",
+                  "$9 : 6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Divide by $6$.",
+                "check": [
+                  "18/12 == 3/2"
+                ]
+              },
+              {
+                "prompt": "$\\tfrac{4}{5} = \\tfrac{x}{20}$. $x = $ —",
+                "options": [
+                  "$16$",
+                  "$15$",
+                  "$25$",
+                  "$100$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5x = 80 \\Rightarrow x = 16$.",
+                "check": [
+                  "solve(Eq(4/5, x/20), x) == [16]"
+                ]
+              },
+              {
+                "prompt": "$\\tfrac{7}{x} = \\tfrac{21}{9}$. $x = $ —",
+                "options": [
+                  "$3$",
+                  "$7$",
+                  "$9$",
+                  "$21$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$21x = 63 \\Rightarrow x = 3$.",
+                "check": [
+                  "solve(Eq(7/x, 21/9), x) == [3]"
+                ]
+              },
+              {
+                "prompt": "A side goes from $9$ to $12$. Scale factor?",
+                "options": [
+                  "$\\tfrac{4}{3}$",
+                  "$\\tfrac{3}{4}$",
+                  "$3$",
+                  "$\\tfrac{9}{12}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{12}{9} = \\tfrac{4}{3}$.",
+                "check": [
+                  "12/9 == 4/3"
+                ]
+              },
+              {
+                "prompt": "Scale factor $\\tfrac{2}{3}$: a side of $9$ becomes —",
+                "options": [
+                  "$6$",
+                  "$13.5$",
+                  "$3$",
+                  "$18$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$9 \\times \\tfrac{2}{3} = 6$.",
+                "check": [
+                  "9*(2/3) == 6"
+                ]
+              },
+              {
+                "prompt": "A proportion $\\tfrac{a}{b} = \\tfrac{c}{d}$ is true exactly when —",
+                "options": [
+                  "$ad = bc$",
+                  "$a + d = b + c$",
+                  "$ab = cd$",
+                  "$a = c$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal cross products.",
+                "check": [
+                  "3*8 == 4*6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Ratio, Proportion & Scale Factor\"",
+            "body": "You can solve any proportion and read a scale factor. Next: what it means for two whole shapes to be similar — equal angles and proportional sides."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "similar-polygons",
+      "title": "Similar Polygons",
+      "concreteComparison": "A wallet photo and a poster of the same picture are **similar**: every angle is identical and every length is blown up by the same factor. Stretch only the width, though, and the face looks wrong — that's what breaks similarity. Similar means same shape, any size.",
+      "objective": "Identify similar polygons (corresponding angles congruent and corresponding sides proportional), read a similarity statement, and use the scale factor to find a missing side.",
+      "concept": [
+        "Two polygons are **similar** (written $\\sim$) when **both** hold: their **corresponding angles are congruent**, and their **corresponding sides are proportional** (in the same ratio).",
+        "That common ratio is the **scale factor**. A **similarity statement** such as $\\triangle ABC \\sim \\triangle DEF$ lists vertices in matching order, so $\\dfrac{AB}{DE} = \\dfrac{BC}{EF} = \\dfrac{CA}{FD}$.",
+        "**Congruent** figures are just the special case of similar with scale factor $1$ (same shape AND same size).",
+        "To find a missing side, match it with its corresponding side and set up a **proportion**."
+      ],
+      "keyIdea": "Similar polygons have congruent corresponding angles AND proportional corresponding sides (a common scale factor). The similarity statement lists vertices in matching order; use a proportion to find missing sides.",
+      "facts": [
+        {
+          "title": "Similar",
+          "latex": "angles $\\cong$, sides proportional",
+          "explanation": "BOTH must hold for similarity."
+        },
+        {
+          "title": "Similarity statement",
+          "latex": "$\\triangle ABC \\sim \\triangle DEF$",
+          "explanation": "Order shows which parts correspond."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sp-we1",
+          "statement": "$\\triangle ABC \\sim \\triangle DEF$ with $AB = 6$, $DE = 9$. Find the scale factor from $ABC$ to $DEF$.",
+          "solution": "Scale factor $= \\tfrac{DE}{AB} = \\tfrac{9}{6} = \\tfrac{3}{2}$.",
+          "check": [
+            "9/6 == 3/2"
+          ]
+        },
+        {
+          "id": "sp-we2",
+          "statement": "$\\triangle ABC \\sim \\triangle DEF$, $\\tfrac{AB}{DE} = \\tfrac{4}{6}$, and $BC = 5$. Find $EF$.",
+          "solution": "$\\tfrac{4}{6} = \\tfrac{5}{EF} \\Rightarrow 4\\,EF = 30 \\Rightarrow EF = 7.5$.",
+          "check": [
+            "solve(Eq(4/6, 5/x), x) == [Rational(15,2)]"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Assuming equal angles alone make polygons similar.",
+          "correction": "For polygons with more than 3 sides you need **both** equal angles AND proportional sides. (A square and a non-square rectangle have equal angles but aren't similar.)",
+          "authored": true
+        },
+        {
+          "text": "Pairing sides in the wrong order.",
+          "correction": "Use the **similarity statement's order**: $\\triangle ABC \\sim \\triangle DEF$ pairs $AB$ with $DE$, $BC$ with $EF$, and so on.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sp-t1",
+          "statement": "$\\triangle ABC \\sim \\triangle DEF$, $AB = 4$, $DE = 10$. Scale factor $ABC \\to DEF$?",
+          "solution": "$\\tfrac{10}{4} = \\tfrac{5}{2}$.",
+          "check": [
+            "10/4 == 5/2"
+          ]
+        },
+        {
+          "id": "sp-t2",
+          "statement": "In similar triangles $\\tfrac{AB}{DE} = \\tfrac{2}{3}$ and $AB = 8$. Find $DE$.",
+          "solution": "$\\tfrac{2}{3} = \\tfrac{8}{DE} \\Rightarrow DE = 12$.",
+          "check": [
+            "solve(Eq(2/3, 8/x), x) == [12]"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Two things must match",
+            "beats": [
+              "Two polygons are **similar** when they have the same **shape**.",
+              "That needs **two** things: all **corresponding angles equal**...",
+              "...and all **corresponding sides in the same ratio** (proportional).",
+              "The shared ratio is the **scale factor**."
+            ]
+          },
+          {
+            "kind": "similarFigures",
+            "eyebrow": "Concept A",
+            "title": "Angles fixed, sides in ratio",
+            "teach": "As you rescale, notice the two conditions of similarity at once: the marked corresponding angles stay equal, and every side keeps the same ratio $k$ to its partner. Same shape, any size.",
+            "config": {
+              "start": 1.5,
+              "show": "sides"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Similarity statements",
+            "title": "Order tells you the pairs",
+            "beats": [
+              "$\\triangle ABC \\sim \\triangle DEF$ pairs the vertices **in order**.",
+              "$A \\leftrightarrow D$, $B \\leftrightarrow E$, $C \\leftrightarrow F$.",
+              "So $\\dfrac{AB}{DE} = \\dfrac{BC}{EF} = \\dfrac{CA}{FD}$.",
+              "Match sides by their letters, then set up a proportion."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Find the scale factor",
+            "intro": "Corresponding image side ÷ original side.",
+            "examples": [
+              {
+                "prompt": "$\\triangle ABC \\sim \\triangle DEF$: $AB = 6$, $DE = 9$. Scale factor $ABC \\to DEF$?",
+                "steps": [
+                  "$\\tfrac{DE}{AB} = \\tfrac{9}{6}$.",
+                  "$= \\tfrac{3}{2}$."
+                ],
+                "answer": "$\\tfrac{3}{2}$",
+                "check": [
+                  "9/6 == 3/2"
+                ]
+              },
+              {
+                "prompt": "$AB = 5$, $DE = 15$. Scale factor $ABC \\to DEF$?",
+                "steps": [
+                  "$\\tfrac{15}{5}$.",
+                  "$= 3$."
+                ],
+                "answer": "$3$",
+                "check": [
+                  "15/5 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Scale factor of similar figures",
+            "intro": "Match, then divide.",
+            "problems": [
+              {
+                "prompt": "$AB = 4$, $DE = 10$. Scale factor $ABC \\to DEF$?",
+                "options": [
+                  "$\\tfrac{5}{2}$",
+                  "$\\tfrac{2}{5}$",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{10}{4} = \\tfrac{5}{2}$.",
+                "check": [
+                  "10/4 == 5/2"
+                ]
+              },
+              {
+                "prompt": "For similarity, corresponding angles must be —",
+                "options": [
+                  "congruent",
+                  "supplementary",
+                  "right angles"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal corresponding angles.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "For similarity, corresponding sides must be —",
+                "options": [
+                  "proportional",
+                  "equal",
+                  "perpendicular"
+                ],
+                "correctIndex": 0,
+                "explanation": "In the same ratio.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Missing sides",
+            "title": "Set up a proportion",
+            "beats": [
+              "Similar sides share the **same ratio** $k$.",
+              "Match the known side with its partner, and the unknown with its partner.",
+              "Write $\\dfrac{\\text{side}_1}{\\text{match}_1} = \\dfrac{\\text{side}_2}{\\text{match}_2}$.",
+              "Cross-multiply and solve."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Find a missing side",
+            "intro": "Proportion from matched sides.",
+            "examples": [
+              {
+                "prompt": "$\\tfrac{AB}{DE} = \\tfrac{3}{5}$ and $AB = 3$, so $DE = 5$. If $BC = 6$, find $EF$.",
+                "steps": [
+                  "$\\tfrac{3}{5} = \\tfrac{6}{EF}$.",
+                  "$3\\,EF = 30 \\Rightarrow EF = 10$."
+                ],
+                "answer": "$10$",
+                "check": [
+                  "solve(Eq(3/5, 6/x), x) == [10]"
+                ]
+              },
+              {
+                "prompt": "$\\tfrac{2}{3} = \\tfrac{8}{DE}$. Find $DE$.",
+                "steps": [
+                  "$2\\,DE = 24$.",
+                  "$DE = 12$."
+                ],
+                "answer": "$12$",
+                "check": [
+                  "solve(Eq(2/3, 8/x), x) == [12]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Missing side",
+            "intro": "Match, cross-multiply, solve.",
+            "problems": [
+              {
+                "prompt": "$\\tfrac{4}{6} = \\tfrac{6}{x}$. $x = $ —",
+                "options": [
+                  "$9$",
+                  "$8$",
+                  "$4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4x = 36 \\Rightarrow x = 9$.",
+                "check": [
+                  "solve(Eq(4/6, 6/x), x) == [9]"
+                ]
+              },
+              {
+                "prompt": "$\\tfrac{5}{2} = \\tfrac{x}{6}$. $x = $ —",
+                "options": [
+                  "$15$",
+                  "$12$",
+                  "$10$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2x = 30 \\Rightarrow x = 15$.",
+                "check": [
+                  "solve(Eq(5/2, x/6), x) == [15]"
+                ]
+              },
+              {
+                "prompt": "Congruent figures have scale factor —",
+                "options": [
+                  "$1$",
+                  "$0$",
+                  "$2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same size means factor $1$.",
+                "check": [
+                  "7*1 == 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Similar triangles measured the Earth",
+            "body": "Around 240 BC, Eratosthenes found Earth's circumference using similar triangles and shadows in two cities — no satellites, just proportions. His answer was within a few percent of the modern value. Similar figures turn a measurement you *can* reach into one you can't."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Missing side",
+            "prompt": "$\\triangle ABC \\sim \\triangle DEF$ with $\\tfrac{AB}{DE} = \\tfrac{3}{4}$ and $AB = 9$. Find $DE$.",
+            "options": [
+              "$12$",
+              "$6$",
+              "$27$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tfrac{3}{4} = \\tfrac{9}{DE} \\Rightarrow 3\\,DE = 36 \\Rightarrow DE = 12$.",
+            "check": [
+              "solve(Eq(3/4, 9/x), x) == [12]"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Similar** polygons: corresponding **angles congruent** AND corresponding **sides proportional**.",
+              "The **similarity statement** lists vertices in matching order, giving the side pairs.",
+              "Use a **proportion** from matched sides to find a missing length; congruent = scale factor $1$."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's find scale factors and missing sides in similar figures."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$AB = 8$, $DE = 12$. Scale factor $ABC \\to DEF$?",
+                "options": [
+                  "$\\tfrac{3}{2}$",
+                  "$\\tfrac{2}{3}$",
+                  "$4$",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{12}{8} = \\tfrac{3}{2}$.",
+                "check": [
+                  "12/8 == 3/2"
+                ]
+              },
+              {
+                "prompt": "$\\tfrac{3}{7} = \\tfrac{9}{x}$. $x = $ —",
+                "options": [
+                  "$21$",
+                  "$18$",
+                  "$16$",
+                  "$27$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3x = 63 \\Rightarrow x = 21$.",
+                "check": [
+                  "solve(Eq(3/7, 9/x), x) == [21]"
+                ]
+              },
+              {
+                "prompt": "Similar polygons must have corresponding sides that are —",
+                "options": [
+                  "proportional",
+                  "congruent",
+                  "perpendicular",
+                  "parallel"
+                ],
+                "correctIndex": 0,
+                "explanation": "In the same ratio.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "$\\tfrac{5}{8} = \\tfrac{x}{24}$. $x = $ —",
+                "options": [
+                  "$15$",
+                  "$12$",
+                  "$18$",
+                  "$20$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$8x = 120 \\Rightarrow x = 15$.",
+                "check": [
+                  "solve(Eq(5/8, x/24), x) == [15]"
+                ]
+              },
+              {
+                "prompt": "Congruent triangles are similar with scale factor —",
+                "options": [
+                  "$1$",
+                  "$0$",
+                  "$2$",
+                  "any"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same size = factor $1$.",
+                "check": [
+                  "9*1 == 9"
+                ]
+              },
+              {
+                "prompt": "In $\\triangle ABC \\sim \\triangle DEF$, side $BC$ corresponds to —",
+                "options": [
+                  "$EF$",
+                  "$DE$",
+                  "$FD$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Match the middle letters: $B\\leftrightarrow E$, $C\\leftrightarrow F$.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Similar Polygons\"",
+            "body": "You can spot similar figures and find missing sides. Next: the shortcuts — AA, SSS, and SAS — that prove two TRIANGLES similar without checking everything."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "proving-triangles-similar",
+      "title": "Proving Triangles Similar",
+      "concreteComparison": "You don't need every measurement to know two triangles are the same shape. Just as SSS and SAS shortcut congruence, three quick shortcuts — AA, SSS, and SAS — settle similarity from just a clue or two.",
+      "objective": "Use the AA, SSS, and SAS similarity shortcuts to decide whether two triangles are similar.",
+      "concept": [
+        "**AA (Angle-Angle)**: if two angles of one triangle are congruent to two angles of another, the triangles are **similar**. (The third pair matches automatically by the $180^\\circ$ angle sum.)",
+        "**SSS similarity**: if all three pairs of corresponding sides are in the **same ratio**, the triangles are similar.",
+        "**SAS similarity**: if two pairs of sides are in the same ratio and the **included angles** are congruent, the triangles are similar.",
+        "Similar is **not** the same as congruent: congruence needs equal sizes (scale factor $1$), while similarity allows any scale factor."
+      ],
+      "keyIdea": "Three shortcuts prove triangles similar: AA (two equal angle pairs), SSS~ (three sides in the same ratio), and SAS~ (two sides in ratio with congruent included angles). Similarity allows any scale factor; congruence forces factor 1.",
+      "facts": [
+        {
+          "title": "AA",
+          "latex": "two angles $\\cong$",
+          "explanation": "The most-used shortcut — two matching angles is enough."
+        },
+        {
+          "title": "SSS~ / SAS~",
+          "latex": "sides in a common ratio",
+          "explanation": "Three sides proportional, or two sides proportional with an equal included angle."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ps-we1",
+          "statement": "Two triangles have angle pairs $50^\\circ, 60^\\circ$ in common. Are they similar?",
+          "solution": "Yes — two pairs of congruent angles means **AA** similarity. (The third angles are both $70^\\circ$.)",
+          "check": [
+            "180 - 50 - 60 == 70"
+          ]
+        },
+        {
+          "id": "ps-we2",
+          "statement": "Triangle 1 has sides $3, 4, 5$; triangle 2 has $6, 8, 10$. Similar?",
+          "solution": "Each ratio is $\\tfrac{6}{3} = \\tfrac{8}{4} = \\tfrac{10}{5} = 2$. All equal → **SSS** similarity.",
+          "check": [
+            "6/3 == 2",
+            "8/4 == 2",
+            "10/5 == 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking you need all three angles for AA.",
+          "correction": "**Two** pairs are enough — the third is forced by the angle sum. That's why it's AA, not AAA.",
+          "authored": true
+        },
+        {
+          "text": "Calling similar triangles congruent.",
+          "correction": "Similar means same **shape**; congruent means same shape AND **size** (scale factor exactly $1$).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ps-t1",
+          "statement": "Two triangles share angles $40^\\circ$ and $80^\\circ$. Similar? By which rule?",
+          "solution": "Yes, by **AA**.",
+          "check": [
+            "180 - 40 - 80 == 60"
+          ]
+        },
+        {
+          "id": "ps-t2",
+          "statement": "Sides $2, 3, 4$ and $6, 9, 12$: are the ratios equal?",
+          "solution": "$\\tfrac{6}{2} = \\tfrac{9}{3} = \\tfrac{12}{4} = 3$ — yes, SSS similarity.",
+          "check": [
+            "6/2 == 3",
+            "9/3 == 3",
+            "12/4 == 3"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Shortcuts for same-shape",
+            "beats": [
+              "To prove two triangles **similar**, you rarely need all six measurements.",
+              "**AA**: two matching angles.",
+              "**SSS**: three sides in the same ratio.",
+              "**SAS**: two sides in ratio with the angle between them matching."
+            ]
+          },
+          {
+            "kind": "similarFigures",
+            "eyebrow": "Concept A",
+            "title": "Angles stay; that's why AA works",
+            "teach": "Rescale the triangle — the angles never change, only the size. So if two triangles already share two angles, they must be the same shape at some scale factor. That is the AA shortcut.",
+            "config": {
+              "start": 2,
+              "show": "sides"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "AA — the workhorse",
+            "title": "Two angles is enough",
+            "beats": [
+              "If two angles of one triangle equal two of another, the third pair is forced (angle sum $= 180^\\circ$).",
+              "All three angles match → same shape → **similar**.",
+              "This is the most common way to prove similarity.",
+              "Look for parallel lines and shared angles — they hand you equal angles."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Use AA",
+            "intro": "Two matching angles → similar.",
+            "examples": [
+              {
+                "prompt": "Triangles share $50^\\circ$ and $60^\\circ$. Similar?",
+                "steps": [
+                  "Two angle pairs match.",
+                  "AA → similar. (Third angle: $180 - 50 - 60 = 70$.)"
+                ],
+                "answer": "Yes (AA)",
+                "check": [
+                  "180 - 50 - 60 == 70"
+                ]
+              },
+              {
+                "prompt": "Both triangles are right-angled and share another angle of $35^\\circ$. Similar?",
+                "steps": [
+                  "$90^\\circ$ and $35^\\circ$ match.",
+                  "AA → similar."
+                ],
+                "answer": "Yes (AA)",
+                "check": [
+                  "180 - 90 - 35 == 55"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Is it AA?",
+            "intro": "Two equal angle pairs settle it.",
+            "problems": [
+              {
+                "prompt": "Triangles share angles $40^\\circ$ and $80^\\circ$. Similar?",
+                "options": [
+                  "Yes, by AA",
+                  "No"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two matching angles = AA.",
+                "check": [
+                  "180 - 40 - 80 == 60"
+                ]
+              },
+              {
+                "prompt": "How many pairs of equal angles does AA need?",
+                "options": [
+                  "$2$",
+                  "$3$",
+                  "$1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two — the third is automatic.",
+                "check": [
+                  "2 < 3"
+                ]
+              },
+              {
+                "prompt": "Two triangles each have a $90^\\circ$ and a $45^\\circ$ angle. Similar?",
+                "options": [
+                  "Yes (AA)",
+                  "No"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two angles match → AA.",
+                "check": [
+                  "180 - 90 - 45 == 45"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "SSS and SAS for similarity",
+            "title": "Ratios instead of equal lengths",
+            "beats": [
+              "**SSS~**: all three side ratios equal → similar.",
+              "**SAS~**: two side ratios equal AND the **included** angles equal → similar.",
+              "These mirror the congruence shortcuts, but use **equal ratios** instead of equal lengths.",
+              "Check every ratio reduces to the **same** number."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Use SSS and SAS",
+            "intro": "Compare the ratios.",
+            "examples": [
+              {
+                "prompt": "Sides $3,4,5$ and $6,8,10$. Similar?",
+                "steps": [
+                  "$\\tfrac{6}{3} = \\tfrac{8}{4} = \\tfrac{10}{5} = 2$.",
+                  "All equal → SSS similarity."
+                ],
+                "answer": "Yes (SSS)",
+                "check": [
+                  "6/3 == 2",
+                  "8/4 == 2",
+                  "10/5 == 2"
+                ]
+              },
+              {
+                "prompt": "Two sides ratio $\\tfrac{4}{6} = \\tfrac{6}{9}$ with equal included angles. Similar?",
+                "steps": [
+                  "$\\tfrac{4}{6} = \\tfrac{2}{3}$ and $\\tfrac{6}{9} = \\tfrac{2}{3}$ — equal ratios.",
+                  "Included angles equal → SAS similarity."
+                ],
+                "answer": "Yes (SAS)",
+                "check": [
+                  "4/6 == 6/9"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "SSS or SAS?",
+            "intro": "Ratios must all match.",
+            "problems": [
+              {
+                "prompt": "Sides $2,3,4$ and $6,9,12$. Similar?",
+                "options": [
+                  "Yes (SSS)",
+                  "No"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{6}{2}=\\tfrac{9}{3}=\\tfrac{12}{4}=3$.",
+                "check": [
+                  "6/2 == 3",
+                  "9/3 == 3",
+                  "12/4 == 3"
+                ]
+              },
+              {
+                "prompt": "Ratios $\\tfrac{3}{6}$ and $\\tfrac{4}{8}$ with equal included angle. Rule?",
+                "options": [
+                  "SAS",
+                  "AA",
+                  "not similar"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two equal side ratios + included angle = SAS.",
+                "check": [
+                  "3/6 == 4/8"
+                ]
+              },
+              {
+                "prompt": "Sides $2,3,4$ and $4,6,7$. Similar?",
+                "options": [
+                  "No — ratios differ",
+                  "Yes (SSS)"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{4}{2}=2$ but $\\tfrac{7}{4}<2$, so the ratios aren't all equal.",
+                "check": [
+                  "4/2 == 2",
+                  "7/4 < 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why every 3-4-5 triangle looks the same",
+            "body": "All triangles with sides in the ratio $3 : 4 : 5$ are similar by SSS — from a tiny drafting triangle to a builder's giant $30$-$40$-$50$ layout rope. That is why the $3$-$4$-$5$ trick reliably makes a right angle at any size: the shape is fixed by the ratios."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which rule?",
+            "prompt": "Two triangles have two pairs of congruent angles. They are similar by —",
+            "options": [
+              "AA",
+              "SSS",
+              "SAS"
+            ],
+            "correctIndex": 0,
+            "explanation": "Two matching angle pairs is the AA similarity shortcut.",
+            "check": [
+              "180 - 60 - 70 == 50"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**AA**: two pairs of congruent angles prove similarity (third is automatic).",
+              "**SSS~**: all three side ratios equal. **SAS~**: two side ratios equal with congruent **included** angles.",
+              "Similar allows any scale factor; **congruent** is the scale-factor-$1$ case."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's name the shortcut — AA, SSS, or SAS — that proves each pair similar."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Triangles share angles $55^\\circ$ and $65^\\circ$. Rule?",
+                "options": [
+                  "AA",
+                  "SSS",
+                  "SAS",
+                  "not similar"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two matching angles = AA.",
+                "check": [
+                  "180 - 55 - 65 == 60"
+                ]
+              },
+              {
+                "prompt": "Sides $5,12,13$ and $10,24,26$. Similar?",
+                "options": [
+                  "Yes (SSS)",
+                  "No",
+                  "Only AA",
+                  "Congruent"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{10}{5}=\\tfrac{24}{12}=\\tfrac{26}{13}=2$.",
+                "check": [
+                  "10/5 == 2",
+                  "24/12 == 2",
+                  "26/13 == 2"
+                ]
+              },
+              {
+                "prompt": "AA similarity needs how many equal angle pairs?",
+                "options": [
+                  "$2$",
+                  "$3$",
+                  "$1$",
+                  "$0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two — the third follows.",
+                "check": [
+                  "2 < 3"
+                ]
+              },
+              {
+                "prompt": "Two side ratios equal plus the included angle equal is —",
+                "options": [
+                  "SAS",
+                  "SSS",
+                  "AA",
+                  "HL"
+                ],
+                "correctIndex": 0,
+                "explanation": "SAS similarity.",
+                "check": [
+                  "4/8 == 3/6"
+                ]
+              },
+              {
+                "prompt": "Sides $2,4,5$ and $4,8,9$. Similar?",
+                "options": [
+                  "No — ratios differ",
+                  "Yes (SSS)",
+                  "Yes (AA)",
+                  "Congruent"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{4}{2}=2$ but $\\tfrac{9}{5}<2$, so not all ratios match.",
+                "check": [
+                  "4/2 == 2",
+                  "9/5 < 2"
+                ]
+              },
+              {
+                "prompt": "Similar triangles always have —",
+                "options": [
+                  "equal corresponding angles",
+                  "equal side lengths",
+                  "the same area",
+                  "the same perimeter"
+                ],
+                "correctIndex": 0,
+                "explanation": "Angles are preserved; sizes may differ.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Proving Triangles Similar\"",
+            "body": "You can prove similarity with AA, SSS, or SAS. Next: what happens when a line runs parallel to one side of a triangle — the side-splitter theorem, straight from AA."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "triangle-proportionality",
+      "title": "The Triangle Proportionality Theorem",
+      "concreteComparison": "Tie a rope across a triangular sail parallel to its bottom edge. Wherever you tie it, it cuts the two slanted sides into the SAME proportion — a third of the way up one side is a third of the way up the other. That is the side-splitter theorem, and it falls straight out of AA similarity.",
+      "objective": "Use the Triangle Proportionality (Side-Splitter) Theorem — a line parallel to one side of a triangle divides the other two sides proportionally — together with its converse.",
+      "concept": [
+        "**Triangle Proportionality Theorem**: if a line is parallel to one side of a triangle and crosses the other two sides, it divides those two sides **proportionally**: $\\dfrac{AD}{DB} = \\dfrac{AE}{EC}$.",
+        "Why it works: the small top triangle is **similar** to the whole triangle (shared angle at $A$ plus equal corresponding angles from the parallel line — **AA**), so their sides are proportional.",
+        "The **converse** holds too: if a line divides two sides of a triangle proportionally, then it is **parallel** to the third side.",
+        "The triangle **midsegment** (Unit 5) is the special case where the parallel line hits the **midpoints** — the split ratio is $1 : 1$."
+      ],
+      "keyIdea": "A line parallel to one side of a triangle splits the other two sides in the same ratio (AD/DB = AE/EC), because it creates a smaller similar triangle by AA. The converse proves parallelism from a proportional split.",
+      "facts": [
+        {
+          "title": "Side-Splitter",
+          "latex": "$\\dfrac{AD}{DB} = \\dfrac{AE}{EC}$",
+          "explanation": "A parallel line cuts the two sides proportionally."
+        },
+        {
+          "title": "Converse",
+          "latex": "proportional $\\Rightarrow$ parallel",
+          "explanation": "A proportional split forces the line parallel to the third side."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ss-we1",
+          "statement": "In $\\triangle ABC$, $DE \\parallel BC$ with $AD = 4$, $DB = 6$, $AE = 6$. Find $EC$.",
+          "solution": "$\\tfrac{AD}{DB} = \\tfrac{AE}{EC} \\Rightarrow \\tfrac{4}{6} = \\tfrac{6}{EC} \\Rightarrow 4\\,EC = 36 \\Rightarrow EC = 9$.",
+          "check": [
+            "solve(Eq(4/6, 6/x), x) == [9]"
+          ]
+        },
+        {
+          "id": "ss-we2",
+          "statement": "$DE \\parallel BC$; $AD = 5$, $DB = 10$, $AE = 4$. Find $EC$.",
+          "solution": "$\\tfrac{5}{10} = \\tfrac{4}{EC} \\Rightarrow 5\\,EC = 40 \\Rightarrow EC = 8$.",
+          "check": [
+            "solve(Eq(5/10, 4/x), x) == [8]"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Splitting the WHOLE side against a piece.",
+          "correction": "Match the pieces consistently: top piece to bottom piece, $\\tfrac{AD}{DB} = \\tfrac{AE}{EC}$ — don't mix $AD$ (a part) with $AC$ (the whole).",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the line must be parallel.",
+          "correction": "The proportion only holds when the cutting line is **parallel** to the third side. No parallel, no guarantee.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ss-t1",
+          "statement": "$DE \\parallel BC$: $AD = 3$, $DB = 6$, $AE = 4$. Find $EC$.",
+          "solution": "$\\tfrac{3}{6} = \\tfrac{4}{EC} \\Rightarrow EC = 8$.",
+          "check": [
+            "solve(Eq(3/6, 4/x), x) == [8]"
+          ]
+        },
+        {
+          "id": "ss-t2",
+          "statement": "A parallel line hits both midpoints. The split ratio is —",
+          "solution": "$1 : 1$ (the midsegment case).",
+          "check": [
+            "3/3 == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "A parallel cut splits proportionally",
+            "beats": [
+              "Draw a line across a triangle **parallel** to one side.",
+              "It crosses the other two sides at points $D$ and $E$.",
+              "It cuts those two sides in the **same ratio**: $\\tfrac{AD}{DB} = \\tfrac{AE}{EC}$.",
+              "This works wherever the parallel line sits."
+            ]
+          },
+          {
+            "kind": "sideSplitter",
+            "eyebrow": "Concept A",
+            "title": "Same ratio, wherever it sits",
+            "teach": "Slide the parallel line up and down. The two side-ratios $AD/DB$ and $AE/EC$ stay equal at every height — the green check never turns off. That's the Triangle Proportionality Theorem.",
+            "config": {
+              "ab": 8,
+              "ac": 12,
+              "start": 0.5
+            }
+          },
+          {
+            "kind": "stepProof",
+            "eyebrow": "The proof",
+            "title": "Why the split is proportional",
+            "teach": "The parallel line makes a smaller triangle similar to the whole one (AA), and similar triangles have proportional sides.",
+            "config": {
+              "given": "$\\triangle ABC$ with $D$ on $\\overline{AB}$, $E$ on $\\overline{AC}$, and $\\overline{DE} \\parallel \\overline{BC}$.",
+              "prove": "$\\dfrac{AD}{DB} = \\dfrac{AE}{EC}$",
+              "rows": [
+                {
+                  "statement": "$\\angle ADE \\cong \\angle ABC$ and $\\angle AED \\cong \\angle ACB$",
+                  "reason": "Corresponding angles: $\\overline{DE} \\parallel \\overline{BC}$ cut by the sides as transversals (Unit 3)"
+                },
+                {
+                  "statement": "$\\angle A \\cong \\angle A$",
+                  "reason": "Reflexive (the shared angle at $A$)"
+                },
+                {
+                  "statement": "$\\triangle ADE \\sim \\triangle ABC$",
+                  "reason": "AA similarity (Lesson 3)"
+                },
+                {
+                  "statement": "$\\dfrac{AD}{AB} = \\dfrac{AE}{AC}$",
+                  "reason": "Corresponding sides of similar triangles are proportional"
+                },
+                {
+                  "statement": "$\\dfrac{AD}{DB} = \\dfrac{AE}{EC}$",
+                  "reason": "A property of proportions: subtracting the shared part converts whole-to-whole into part-to-part"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Find the missing piece",
+            "intro": "Set up AD/DB = AE/EC and solve.",
+            "examples": [
+              {
+                "prompt": "$DE \\parallel BC$: $AD = 4$, $DB = 6$, $AE = 6$. Find $EC$.",
+                "steps": [
+                  "$\\tfrac{4}{6} = \\tfrac{6}{EC}$.",
+                  "$4\\,EC = 36 \\Rightarrow EC = 9$."
+                ],
+                "answer": "$9$",
+                "check": [
+                  "solve(Eq(4/6, 6/x), x) == [9]"
+                ]
+              },
+              {
+                "prompt": "$DE \\parallel BC$: $AD = 6$, $DB = 4$, $AE = 9$. Find $EC$.",
+                "steps": [
+                  "$\\tfrac{6}{4} = \\tfrac{9}{EC}$.",
+                  "$6\\,EC = 36 \\Rightarrow EC = 6$."
+                ],
+                "answer": "$6$",
+                "check": [
+                  "solve(Eq(6/4, 9/x), x) == [6]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Use the theorem",
+            "intro": "Match parts, cross-multiply.",
+            "problems": [
+              {
+                "prompt": "$AD = 3$, $DB = 6$, $AE = 4$. Find $EC$.",
+                "options": [
+                  "$8$",
+                  "$2$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{3}{6} = \\tfrac{4}{EC} \\Rightarrow EC = 8$.",
+                "check": [
+                  "solve(Eq(3/6, 4/x), x) == [8]"
+                ]
+              },
+              {
+                "prompt": "$AD = 8$, $DB = 4$, $AE = 6$. Find $EC$.",
+                "options": [
+                  "$3$",
+                  "$12$",
+                  "$2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{8}{4} = \\tfrac{6}{EC} \\Rightarrow EC = 3$.",
+                "check": [
+                  "solve(Eq(8/4, 6/x), x) == [3]"
+                ]
+              },
+              {
+                "prompt": "The theorem needs the cutting line to be —",
+                "options": [
+                  "parallel to the third side",
+                  "perpendicular",
+                  "a median"
+                ],
+                "correctIndex": 0,
+                "explanation": "Parallel — that's the hypothesis.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The converse",
+            "title": "Proportional means parallel",
+            "beats": [
+              "Run the theorem backwards.",
+              "If a line splits two sides so that $\\tfrac{AD}{DB} = \\tfrac{AE}{EC}$...",
+              "...then that line **must be parallel** to the third side.",
+              "It's a quick way to prove two segments parallel."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Use the converse",
+            "intro": "Equal ratios ⇒ parallel.",
+            "examples": [
+              {
+                "prompt": "$AD = 4$, $DB = 8$, $AE = 3$, $EC = 6$. Is $DE \\parallel BC$?",
+                "steps": [
+                  "$\\tfrac{4}{8} = \\tfrac{1}{2}$ and $\\tfrac{3}{6} = \\tfrac{1}{2}$.",
+                  "Ratios equal → yes, parallel."
+                ],
+                "answer": "Yes",
+                "check": [
+                  "4/8 == 3/6"
+                ]
+              },
+              {
+                "prompt": "$AD = 2$, $DB = 5$, $AE = 4$, $EC = 10$. Parallel?",
+                "steps": [
+                  "$\\tfrac{2}{5}$ and $\\tfrac{4}{10} = \\tfrac{2}{5}$.",
+                  "Equal → parallel."
+                ],
+                "answer": "Yes",
+                "check": [
+                  "2/5 == 4/10"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Parallel or not?",
+            "intro": "Compare the two ratios.",
+            "problems": [
+              {
+                "prompt": "$\\tfrac{AD}{DB} = \\tfrac{3}{4}$ and $\\tfrac{AE}{EC} = \\tfrac{6}{8}$. Is $DE \\parallel BC$?",
+                "options": [
+                  "Yes",
+                  "No"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{6}{8} = \\tfrac{3}{4}$ — equal, so parallel.",
+                "check": [
+                  "3/4 == 6/8"
+                ]
+              },
+              {
+                "prompt": "$\\tfrac{AD}{DB} = \\tfrac{2}{3}$ and $\\tfrac{AE}{EC} = \\tfrac{3}{4}$. Parallel?",
+                "options": [
+                  "No — ratios differ",
+                  "Yes"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{2}{3} \\ne \\tfrac{3}{4}$.",
+                "check": [
+                  "2/3 < 3/4"
+                ]
+              },
+              {
+                "prompt": "A midsegment splits the sides in the ratio —",
+                "options": [
+                  "$1 : 1$",
+                  "$2 : 1$",
+                  "$1 : 2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Midpoints → equal halves.",
+                "check": [
+                  "5/5 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Dividing a board into equal strips",
+            "body": "Woodworkers use the converse trick to split a board into equal widths without measuring: lay a ruler diagonally across it, mark equal spacings, and draw lines parallel to the end. The parallel lines cut the board proportionally — equal marks on the ruler give equal strips on the board."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Find EC",
+            "prompt": "In $\\triangle ABC$, $DE \\parallel BC$ with $AD = 6$, $DB = 9$, $AE = 8$. Find $EC$.",
+            "options": [
+              "$12$",
+              "$10$",
+              "$6$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tfrac{6}{9} = \\tfrac{8}{EC} \\Rightarrow 6\\,EC = 72 \\Rightarrow EC = 12$.",
+            "check": [
+              "solve(Eq(6/9, 8/x), x) == [12]"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Triangle Proportionality**: a line parallel to one side splits the other two **proportionally** ($\\tfrac{AD}{DB} = \\tfrac{AE}{EC}$).",
+              "It follows from **AA similarity** — the small triangle is similar to the whole.",
+              "The **converse** turns a proportional split into a proof of **parallel**; the midsegment is the $1:1$ case."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's find missing pieces and test for parallel lines."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$DE \\parallel BC$: $AD = 4$, $DB = 8$, $AE = 5$. Find $EC$.",
+                "options": [
+                  "$10$",
+                  "$8$",
+                  "$2.5$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{4}{8} = \\tfrac{5}{EC} \\Rightarrow EC = 10$.",
+                "check": [
+                  "solve(Eq(4/8, 5/x), x) == [10]"
+                ]
+              },
+              {
+                "prompt": "$DE \\parallel BC$: $AD = 10$, $DB = 5$, $AE = 8$. Find $EC$.",
+                "options": [
+                  "$4$",
+                  "$16$",
+                  "$2$",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{10}{5} = \\tfrac{8}{EC} \\Rightarrow EC = 4$.",
+                "check": [
+                  "solve(Eq(10/5, 8/x), x) == [4]"
+                ]
+              },
+              {
+                "prompt": "$\\tfrac{AD}{DB} = \\tfrac{5}{10}$, $\\tfrac{AE}{EC} = \\tfrac{3}{6}$. Is $DE \\parallel BC$?",
+                "options": [
+                  "Yes",
+                  "No",
+                  "Only if a midsegment",
+                  "Cannot tell"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both equal $\\tfrac{1}{2}$.",
+                "check": [
+                  "5/10 == 3/6"
+                ]
+              },
+              {
+                "prompt": "The Side-Splitter Theorem is proven using —",
+                "options": [
+                  "AA similarity",
+                  "SSS congruence",
+                  "the Pythagorean theorem",
+                  "the midsegment"
+                ],
+                "correctIndex": 0,
+                "explanation": "The small triangle is similar to the whole by AA.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "A parallel line through the midpoints splits each side —",
+                "options": [
+                  "in half ($1:1$)",
+                  "$2:1$",
+                  "$3:1$",
+                  "unevenly"
+                ],
+                "correctIndex": 0,
+                "explanation": "The midsegment case.",
+                "check": [
+                  "6/6 == 1"
+                ]
+              },
+              {
+                "prompt": "The converse says a proportional split makes the line —",
+                "options": [
+                  "parallel to the third side",
+                  "perpendicular",
+                  "a median",
+                  "an altitude"
+                ],
+                "correctIndex": 0,
+                "explanation": "Proportional ⇒ parallel.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"The Triangle Proportionality Theorem\"",
+            "body": "You can split sides proportionally and prove parallels. Next: what similarity does to a whole figure's perimeter and area — one scales by k, the other by k²."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "perimeters-and-areas-of-similar-figures",
+      "title": "Perimeters & Areas of Similar Figures",
+      "concreteComparison": "Double every side of a photo and the frame around it (perimeter) doubles — but the amount of ink to fill it (area) quadruples. Length grows once; area grows twice. Missing that difference is why a pizza twice the diameter is FOUR times the food.",
+      "objective": "Use the fact that similar figures with scale factor k have perimeters in the ratio k and areas in the ratio k².",
+      "concept": [
+        "For similar figures with **scale factor $k$**, the ratio of **perimeters** is $k$ — perimeter is a length, so it scales once.",
+        "The ratio of **areas** is $k^2$ — area is length $\\times$ length, so it scales **twice**.",
+        "Backwards: if the **area ratio** is known, the scale factor is its **square root**. Area ratio $9 \\Rightarrow k = \\sqrt{9} = 3$.",
+        "Example: scale factor $k = 3$ means perimeter $\\times 3$ and area $\\times 9$."
+      ],
+      "keyIdea": "Similar figures with scale factor k have perimeters in ratio k and areas in ratio k². To recover k from an area ratio, take the square root.",
+      "facts": [
+        {
+          "title": "Perimeter ratio",
+          "latex": "$k$",
+          "explanation": "Length scales once."
+        },
+        {
+          "title": "Area ratio",
+          "latex": "$k^2$",
+          "explanation": "Area scales twice — the square of the scale factor."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pa-we1",
+          "statement": "Two similar triangles have scale factor $3$. If the small perimeter is $12$, find the large perimeter.",
+          "solution": "Perimeter scales by $k$: $12 \\times 3 = 36$.",
+          "check": [
+            "12*3 == 36"
+          ]
+        },
+        {
+          "id": "pa-we2",
+          "statement": "Scale factor $2$; the small area is $5$. Find the large area.",
+          "solution": "Area scales by $k^2 = 4$: $5 \\times 4 = 20$.",
+          "check": [
+            "5*(2**2) == 20"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Scaling area by $k$ instead of $k^2$.",
+          "correction": "Area scales by the **square** of the scale factor. Double the sides → **four** times the area, not double.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting to square-root when going from area ratio to scale factor.",
+          "correction": "If areas are in ratio $25$, the scale factor is $\\sqrt{25} = 5$, not $25$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pa-t1",
+          "statement": "Scale factor $4$; small perimeter $10$. Large perimeter?",
+          "solution": "$10 \\times 4 = 40$.",
+          "check": [
+            "10*4 == 40"
+          ]
+        },
+        {
+          "id": "pa-t2",
+          "statement": "Scale factor $3$; small area $6$. Large area?",
+          "solution": "$6 \\times 3^2 = 6 \\times 9 = 54$.",
+          "check": [
+            "6*(3**2) == 54"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Length once, area twice",
+            "beats": [
+              "Similar figures differ by a **scale factor** $k$.",
+              "**Perimeter** is a length, so it scales by $k$.",
+              "**Area** is length $\\times$ length, so it scales by $k \\times k = k^2$.",
+              "Double the size → perimeter $\\times 2$, area $\\times 4$."
+            ]
+          },
+          {
+            "kind": "similarFigures",
+            "eyebrow": "Concept A",
+            "title": "Perimeter ×k, area ×k²",
+            "teach": "Step the scale factor. Watch the two readouts: the perimeter multiplies by $k$, but the area multiplies by $k^2$. At $k = 2$ the area is already $4$ times bigger.",
+            "config": {
+              "start": 2,
+              "show": "measures"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why area squares",
+            "title": "Two directions grow",
+            "beats": [
+              "A shape scaled by $k$ gets $k$ times as **wide** and $k$ times as **tall**.",
+              "Area depends on both, so it grows by $k \\times k = k^2$.",
+              "Perimeter follows just the outline — one direction of length — so it grows by $k$.",
+              "That's why $k = 3$ gives area $\\times 9$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Scale the perimeter",
+            "intro": "Perimeter ratio is k.",
+            "examples": [
+              {
+                "prompt": "Scale factor $3$, small perimeter $12$. Large perimeter?",
+                "steps": [
+                  "Perimeter $\\times k$.",
+                  "$12 \\times 3 = 36$."
+                ],
+                "answer": "$36$",
+                "check": [
+                  "12*3 == 36"
+                ]
+              },
+              {
+                "prompt": "Scale factor $\\tfrac{1}{2}$, large perimeter $20$. Small perimeter?",
+                "steps": [
+                  "$\\times \\tfrac{1}{2}$.",
+                  "$20 \\times \\tfrac{1}{2} = 10$."
+                ],
+                "answer": "$10$",
+                "check": [
+                  "20*(1/2) == 10"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Perimeter ratio",
+            "intro": "Multiply by k.",
+            "problems": [
+              {
+                "prompt": "Scale factor $4$, small perimeter $10$. Large?",
+                "options": [
+                  "$40$",
+                  "$14$",
+                  "$160$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$10 \\times 4 = 40$.",
+                "check": [
+                  "10*4 == 40"
+                ]
+              },
+              {
+                "prompt": "Scale factor $5$, small perimeter $6$. Large?",
+                "options": [
+                  "$30$",
+                  "$11$",
+                  "$150$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6 \\times 5 = 30$.",
+                "check": [
+                  "6*5 == 30"
+                ]
+              },
+              {
+                "prompt": "Perimeters of similar figures are in the ratio —",
+                "options": [
+                  "$k$",
+                  "$k^2$",
+                  "$2k$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Length scales once.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Scale the area",
+            "intro": "Area ratio is k².",
+            "examples": [
+              {
+                "prompt": "Scale factor $2$, small area $5$. Large area?",
+                "steps": [
+                  "Area $\\times k^2 = \\times 4$.",
+                  "$5 \\times 4 = 20$."
+                ],
+                "answer": "$20$",
+                "check": [
+                  "5*(2**2) == 20"
+                ]
+              },
+              {
+                "prompt": "Scale factor $3$, small area $7$. Large area?",
+                "steps": [
+                  "$\\times 9$.",
+                  "$7 \\times 9 = 63$."
+                ],
+                "answer": "$63$",
+                "check": [
+                  "7*(3**2) == 63"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Area ratio",
+            "intro": "Multiply by k².",
+            "problems": [
+              {
+                "prompt": "Scale factor $2$, small area $9$. Large?",
+                "options": [
+                  "$36$",
+                  "$18$",
+                  "$11$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$9 \\times 4 = 36$.",
+                "check": [
+                  "9*(2**2) == 36"
+                ]
+              },
+              {
+                "prompt": "Scale factor $4$, small area $3$. Large?",
+                "options": [
+                  "$48$",
+                  "$12$",
+                  "$24$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3 \\times 16 = 48$.",
+                "check": [
+                  "3*(4**2) == 48"
+                ]
+              },
+              {
+                "prompt": "Areas of similar figures are in the ratio —",
+                "options": [
+                  "$k^2$",
+                  "$k$",
+                  "$2k$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Area scales twice.",
+                "check": [
+                  "3**2 == 9"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Working backwards",
+            "title": "From area ratio to scale factor",
+            "beats": [
+              "Given the **area ratio**, undo the square: take the **square root**.",
+              "Area ratio $9 \\Rightarrow k = \\sqrt{9} = 3$.",
+              "Area ratio $25 \\Rightarrow k = \\sqrt{25} = 5$.",
+              "Then the perimeter ratio is that same $k$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Recover the scale factor",
+            "intro": "Square-root the area ratio.",
+            "examples": [
+              {
+                "prompt": "Similar figures have area ratio $16$. Scale factor?",
+                "steps": [
+                  "$k = \\sqrt{16}$.",
+                  "$= 4$."
+                ],
+                "answer": "$4$",
+                "check": [
+                  "sqrt(16) == 4"
+                ]
+              },
+              {
+                "prompt": "Area ratio $9$; the perimeter ratio is —",
+                "steps": [
+                  "$k = \\sqrt{9} = 3$.",
+                  "Perimeter ratio $= k = 3$."
+                ],
+                "answer": "$3$",
+                "check": [
+                  "sqrt(9) == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Backwards from area",
+            "intro": "Take the square root.",
+            "problems": [
+              {
+                "prompt": "Area ratio $25$. Scale factor?",
+                "options": [
+                  "$5$",
+                  "$25$",
+                  "$12.5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{25} = 5$.",
+                "check": [
+                  "sqrt(25) == 5"
+                ]
+              },
+              {
+                "prompt": "Area ratio $36$. Scale factor?",
+                "options": [
+                  "$6$",
+                  "$18$",
+                  "$36$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{36} = 6$.",
+                "check": [
+                  "sqrt(36) == 6"
+                ]
+              },
+              {
+                "prompt": "Area ratio $4$. Perimeter ratio?",
+                "options": [
+                  "$2$",
+                  "$4$",
+                  "$16$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$k = \\sqrt{4} = 2$; perimeter ratio is $k$.",
+                "check": [
+                  "sqrt(4) == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why a giant can't be just a big human",
+            "body": "Scale a person up 10 times and their weight (which grows with volume, $k^3$) rises 1000-fold, but their bone cross-sections (an area, $k^2$) grow only 100-fold. The bones would be crushed. This square-cube reasoning — the same $k^2$ idea — is why elephants have thick legs and insects can be spindly."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Area jump",
+            "prompt": "Two similar figures have scale factor $5$. The larger area is how many times the smaller?",
+            "options": [
+              "$25$",
+              "$5$",
+              "$10$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Area scales by $k^2 = 5^2 = 25$.",
+            "check": [
+              "5**2 == 25"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Similar figures, scale factor $k$: **perimeter ratio $= k$**, **area ratio $= k^2$**.",
+              "Area scales **twice** because it is length $\\times$ length.",
+              "To get $k$ from an area ratio, take the **square root**."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's scale perimeters by k, areas by k², and recover k from area ratios."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Scale factor $3$, small perimeter $8$. Large perimeter?",
+                "options": [
+                  "$24$",
+                  "$11$",
+                  "$72$",
+                  "$16$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$8 \\times 3 = 24$.",
+                "check": [
+                  "8*3 == 24"
+                ]
+              },
+              {
+                "prompt": "Scale factor $2$, small area $7$. Large area?",
+                "options": [
+                  "$28$",
+                  "$14$",
+                  "$9$",
+                  "$49$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$7 \\times 4 = 28$.",
+                "check": [
+                  "7*(2**2) == 28"
+                ]
+              },
+              {
+                "prompt": "Area ratio $49$. Scale factor?",
+                "options": [
+                  "$7$",
+                  "$49$",
+                  "$24.5$",
+                  "$14$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{49} = 7$.",
+                "check": [
+                  "sqrt(49) == 7"
+                ]
+              },
+              {
+                "prompt": "Scale factor $4$: area grows by a factor of —",
+                "options": [
+                  "$16$",
+                  "$4$",
+                  "$8$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4^2 = 16$.",
+                "check": [
+                  "4**2 == 16"
+                ]
+              },
+              {
+                "prompt": "Scale factor $\\tfrac{1}{3}$: area shrinks to — of the original.",
+                "options": [
+                  "$\\tfrac{1}{9}$",
+                  "$\\tfrac{1}{3}$",
+                  "$\\tfrac{1}{6}$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(\\tfrac{1}{3})^2 = \\tfrac{1}{9}$.",
+                "check": [
+                  "(1/3)**2 == 1/9"
+                ]
+              },
+              {
+                "prompt": "Perimeter ratio $6$ means the area ratio is —",
+                "options": [
+                  "$36$",
+                  "$6$",
+                  "$12$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$k = 6 \\Rightarrow k^2 = 36$.",
+                "check": [
+                  "6**2 == 36"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Perimeters & Areas of Similar Figures\"",
+            "body": "You can scale perimeter and area correctly. Last stop: dilations — the transformation that produces similar figures — and using similar triangles to measure the unreachable."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "dilations-and-indirect-measurement",
+      "title": "Dilations & Indirect Measurement",
+      "concreteComparison": "A projector throws a small slide onto a big screen: every point moves out from the bulb by the same factor. That's a **dilation**. The same idea lets you find a flagpole's height from its shadow — measure what you can reach, then scale up with a proportion.",
+      "objective": "Describe a dilation by its center and scale factor, and use similar triangles for indirect measurement (shadows and mirrors).",
+      "concept": [
+        "A **dilation** resizes a figure from a fixed **center** by a **scale factor $k$**: each image point lies on the ray from the center, $k$ times as far.",
+        "$k > 1$ is an **enlargement**, $0 < k < 1$ a **reduction**. The image is **similar** to the original — angles preserved, each length $\\times k$, and image sides **parallel** to the originals.",
+        "**Indirect measurement**: a tall object and its shadow form a triangle **similar** to a short object and its shadow (same sun angle), so a proportion finds the unknown height.",
+        "Example: a $6$-ft person casts a $4$-ft shadow while a flagpole casts a $20$-ft shadow. Then $\\dfrac{6}{4} = \\dfrac{h}{20} \\Rightarrow h = 30$ ft."
+      ],
+      "keyIdea": "A dilation enlarges (k>1) or reduces (0<k<1) a figure from a center, producing a similar image with lengths ×k. Similar triangles from shadows or mirrors let you measure heights indirectly with a proportion.",
+      "facts": [
+        {
+          "title": "Dilation",
+          "latex": "image $= k \\times$ original from a center",
+          "explanation": "k > 1 enlarges, 0 < k < 1 reduces; the image is similar."
+        },
+        {
+          "title": "Indirect measurement",
+          "latex": "$\\dfrac{\\text{height}}{\\text{shadow}}$ is shared",
+          "explanation": "Similar triangles let a shadow reveal a height."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "di-we1",
+          "statement": "A triangle is dilated from the origin by scale factor $2$. A side of length $5$ becomes —",
+          "solution": "Each length is multiplied by $k$: $5 \\times 2 = 10$.",
+          "check": [
+            "5*2 == 10"
+          ]
+        },
+        {
+          "id": "di-we2",
+          "statement": "A $6$-ft person casts a $4$-ft shadow; a nearby tree casts a $20$-ft shadow. Find the tree's height $h$.",
+          "solution": "Similar triangles: $\\tfrac{6}{4} = \\tfrac{h}{20} \\Rightarrow 4h = 120 \\Rightarrow h = 30$ ft.",
+          "check": [
+            "solve(Eq(6/4, h/20), h) == [30]"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking a dilation changes the shape's angles.",
+          "correction": "A dilation only changes **size**. Angles stay equal and the image is **similar** to the original.",
+          "authored": true
+        },
+        {
+          "text": "Setting up the shadow proportion inconsistently.",
+          "correction": "Keep it height-over-shadow on both sides: $\\tfrac{\\text{height}_1}{\\text{shadow}_1} = \\tfrac{\\text{height}_2}{\\text{shadow}_2}$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "di-t1",
+          "statement": "Dilation scale factor $3$; a side of $4$ becomes —",
+          "solution": "$4 \\times 3 = 12$.",
+          "check": [
+            "4*3 == 12"
+          ]
+        },
+        {
+          "id": "di-t2",
+          "statement": "A $5$-ft sign casts a $2$-ft shadow; a pole casts an $8$-ft shadow. Pole height?",
+          "solution": "$\\tfrac{5}{2} = \\tfrac{h}{8} \\Rightarrow h = 20$ ft.",
+          "check": [
+            "solve(Eq(5/2, h/8), h) == [20]"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Resize from a center",
+            "beats": [
+              "A **dilation** pushes every point out from (or in toward) a fixed **center**.",
+              "Each image point sits on the ray from the center, $k$ times as far.",
+              "$k > 1$ makes it bigger; $0 < k < 1$ makes it smaller.",
+              "The image is **similar** — same shape, sides $\\times k$."
+            ]
+          },
+          {
+            "kind": "dilation",
+            "eyebrow": "Concept A",
+            "title": "Enlarge and reduce from O",
+            "teach": "Step the scale factor. Every vertex moves along its ray from the center $O$, landing $k$ times as far. At $k = 2$ the image is twice the size; at $k = 0.5$ it's half. Angles never change.",
+            "config": {
+              "start": 2
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Dilations make similar figures",
+            "title": "Size changes, shape doesn't",
+            "beats": [
+              "A dilation multiplies every length by $k$.",
+              "Angles stay the same, so the image is **similar** to the original.",
+              "Image sides come out **parallel** to their originals.",
+              "Scale factor $k$ is exactly the similarity scale factor from earlier lessons."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Dilate a length",
+            "intro": "Multiply by the scale factor.",
+            "examples": [
+              {
+                "prompt": "Scale factor $2$: a side of $5$ becomes —",
+                "steps": [
+                  "$5 \\times 2$.",
+                  "$= 10$."
+                ],
+                "answer": "$10$",
+                "check": [
+                  "5*2 == 10"
+                ]
+              },
+              {
+                "prompt": "Scale factor $\\tfrac{1}{2}$: a side of $14$ becomes —",
+                "steps": [
+                  "$14 \\times \\tfrac{1}{2}$.",
+                  "$= 7$ (a reduction)."
+                ],
+                "answer": "$7$",
+                "check": [
+                  "14*(1/2) == 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Dilation lengths",
+            "intro": "Length × k.",
+            "problems": [
+              {
+                "prompt": "Scale factor $3$: a side of $4$ becomes —",
+                "options": [
+                  "$12$",
+                  "$7$",
+                  "$1.3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4 \\times 3 = 12$.",
+                "check": [
+                  "4*3 == 12"
+                ]
+              },
+              {
+                "prompt": "A dilation with $k = \\tfrac{1}{2}$ is a —",
+                "options": [
+                  "reduction",
+                  "enlargement",
+                  "no change"
+                ],
+                "correctIndex": 0,
+                "explanation": "Between $0$ and $1$ → smaller.",
+                "check": [
+                  "14*(1/2) == 7"
+                ]
+              },
+              {
+                "prompt": "A dilated image is always ___ the original.",
+                "options": [
+                  "similar to",
+                  "congruent to",
+                  "perpendicular to"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same shape, resized.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Indirect measurement",
+            "title": "Reach the unreachable",
+            "beats": [
+              "The sun casts shadows at the same angle for everything nearby.",
+              "So a tall object + its shadow is **similar** to a short object + its shadow.",
+              "Set up height-over-shadow on both sides: $\\tfrac{h_1}{s_1} = \\tfrac{h_2}{s_2}$.",
+              "Solve the proportion for the height you can't reach."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Shadow proportions",
+            "intro": "Height/shadow equal on both sides.",
+            "examples": [
+              {
+                "prompt": "A $6$-ft person: $4$-ft shadow. Tree: $20$-ft shadow. Tree height?",
+                "steps": [
+                  "$\\tfrac{6}{4} = \\tfrac{h}{20}$.",
+                  "$4h = 120 \\Rightarrow h = 30$ ft."
+                ],
+                "answer": "$30$ ft",
+                "check": [
+                  "solve(Eq(6/4, h/20), h) == [30]"
+                ]
+              },
+              {
+                "prompt": "A $5$-ft sign: $3$-ft shadow. Pole: $12$-ft shadow. Pole height?",
+                "steps": [
+                  "$\\tfrac{5}{3} = \\tfrac{h}{12}$.",
+                  "$3h = 60 \\Rightarrow h = 20$ ft."
+                ],
+                "answer": "$20$ ft",
+                "check": [
+                  "solve(Eq(5/3, h/12), h) == [20]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Measure indirectly",
+            "intro": "Set up height/shadow = height/shadow.",
+            "problems": [
+              {
+                "prompt": "$5$-ft sign, $2$-ft shadow; pole casts $8$-ft shadow. Pole height?",
+                "options": [
+                  "$20$ ft",
+                  "$16$ ft",
+                  "$10$ ft"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{5}{2} = \\tfrac{h}{8} \\Rightarrow h = 20$.",
+                "check": [
+                  "solve(Eq(5/2, h/8), h) == [20]"
+                ]
+              },
+              {
+                "prompt": "$4$-ft child, $3$-ft shadow; flag casts $12$-ft shadow. Flag height?",
+                "options": [
+                  "$16$ ft",
+                  "$12$ ft",
+                  "$9$ ft"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{4}{3} = \\tfrac{h}{12} \\Rightarrow h = 16$.",
+                "check": [
+                  "solve(Eq(4/3, h/12), h) == [16]"
+                ]
+              },
+              {
+                "prompt": "Shadow triangles are similar because the sun's angle is —",
+                "options": [
+                  "the same for both",
+                  "always $45^\\circ$",
+                  "a right angle"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal sun angle gives AA similarity.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "How Thales measured a pyramid",
+            "body": "Legend says the Greek mathematician Thales found the height of the Great Pyramid by waiting until his own shadow equalled his height — then the pyramid's shadow equalled ITS height. It's the shadow proportion with scale factor $1$, and it worked without climbing a single step."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Shadow height",
+            "prompt": "A $6$-ft man casts an $8$-ft shadow while a tree casts a $40$-ft shadow. How tall is the tree?",
+            "options": [
+              "$30$ ft",
+              "$53$ ft",
+              "$48$ ft"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tfrac{6}{8} = \\tfrac{h}{40} \\Rightarrow 8h = 240 \\Rightarrow h = 30$ ft.",
+            "check": [
+              "solve(Eq(6/8, h/40), h) == [30]"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **dilation** resizes from a **center** by scale factor $k$ ($>1$ enlarge, $0<k<1$ reduce); the image is **similar**, sides $\\times k$ and parallel.",
+              "**Indirect measurement** uses **similar triangles** from shadows or mirrors.",
+              "Set up **height/shadow = height/shadow** and solve the proportion."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's dilate lengths and measure heights with shadow proportions."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Scale factor $4$: a side of $3$ becomes —",
+                "options": [
+                  "$12$",
+                  "$7$",
+                  "$0.75$",
+                  "$16$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3 \\times 4 = 12$.",
+                "check": [
+                  "3*4 == 12"
+                ]
+              },
+              {
+                "prompt": "A dilation with $k = 3$ is an —",
+                "options": [
+                  "enlargement",
+                  "reduction",
+                  "no change",
+                  "reflection"
+                ],
+                "correctIndex": 0,
+                "explanation": "$k > 1$ enlarges.",
+                "check": [
+                  "3 > 1"
+                ]
+              },
+              {
+                "prompt": "$6$-ft person, $4$-ft shadow; pole casts $10$-ft shadow. Pole height?",
+                "options": [
+                  "$15$ ft",
+                  "$12$ ft",
+                  "$8$ ft",
+                  "$20$ ft"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{6}{4} = \\tfrac{h}{10} \\Rightarrow h = 15$.",
+                "check": [
+                  "solve(Eq(6/4, h/10), h) == [15]"
+                ]
+              },
+              {
+                "prompt": "A dilation's image is ___ to the original.",
+                "options": [
+                  "similar",
+                  "congruent",
+                  "perpendicular",
+                  "unrelated"
+                ],
+                "correctIndex": 0,
+                "explanation": "Resized but same shape.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Scale factor $\\tfrac{1}{4}$: a side of $20$ becomes —",
+                "options": [
+                  "$5$",
+                  "$80$",
+                  "$16$",
+                  "$24$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$20 \\times \\tfrac{1}{4} = 5$.",
+                "check": [
+                  "20*(1/4) == 5"
+                ]
+              },
+              {
+                "prompt": "$3$-ft post, $2$-ft shadow; building casts $30$-ft shadow. Building height?",
+                "options": [
+                  "$45$ ft",
+                  "$20$ ft",
+                  "$60$ ft",
+                  "$22.5$ ft"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{3}{2} = \\tfrac{h}{30} \\Rightarrow h = 45$.",
+                "check": [
+                  "solve(Eq(3/2, h/30), h) == [45]"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Dilations & Indirect Measurement\"",
+            "body": "You can dilate figures and measure the unreachable with similar triangles — the finale of Similarity. Next unit: right triangles and trigonometry, where similarity becomes the sine, cosine, and tangent."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [],
+  "testYourself": []
+}

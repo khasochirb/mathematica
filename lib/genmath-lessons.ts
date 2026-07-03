@@ -65,6 +65,7 @@ import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular
 import geometryTriangles from "@/data/genmath/geometry/triangles-and-congruence.json";
 import geometryRelationships from "@/data/genmath/geometry/relationships-in-triangles.json";
 import geometryQuadrilaterals from "@/data/genmath/geometry/quadrilaterals-and-polygons.json";
+import geometrySimilarity from "@/data/genmath/geometry/similarity.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -192,7 +193,7 @@ export const GEOMETRY_SPINE: GeometrySpineEntry[] = [
     title: "Similarity",
     blurb: "Ratio and proportion, similar polygons, the AA · SSS · SAS similarity shortcuts, and the side-splitter theorem.",
     buildsOn: "Triangle facts from Units 4–5; ratios from Grade 6.",
-    live: false,
+    live: true,
   },
   {
     unit: 8,
@@ -251,6 +252,7 @@ const geometryUnits: GeometryUnit[] = [
   geometryTriangles as unknown as GeometryUnit,
   geometryRelationships as unknown as GeometryUnit,
   geometryQuadrilaterals as unknown as GeometryUnit,
+  geometrySimilarity as unknown as GeometryUnit,
 ];
 
 export function getGeometrySpine(): GeometrySpineEntry[] {
