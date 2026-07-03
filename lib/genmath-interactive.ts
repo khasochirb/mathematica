@@ -762,6 +762,28 @@ export interface CompositeAreaConfig {
   caption?: string;
 }
 
+// A 3-D solid drawn in oblique projection with adjustable dimensions and live
+// volume + surface-area readouts. One primitive covers prisms, cylinders,
+// pyramids, cones, and spheres.
+export interface Solid3DConfig {
+  solid: "rectPrism" | "triangularPrism" | "cylinder" | "pyramid" | "cone" | "sphere";
+  l?: number; w?: number; h?: number; // box / prism
+  r?: number; // cylinder / cone / sphere radius
+  slant?: number; // cone slant height (for surface area)
+  base?: number; // pyramid base side
+  color?: string;
+}
+
+// A solid unfolded into its flat net, so surface area reads as the sum of the
+// face areas. Supports the rectangular prism (6 rectangles) and the cylinder
+// (two circles + a wrapped rectangle).
+export interface SolidNetConfig {
+  solid: "rectPrism" | "cylinder";
+  l?: number; w?: number; h?: number;
+  r?: number;
+  color?: string;
+}
+
 // Two congruent triangles with marked parts; the student names the shortcut.
 export interface CongruentTrianglesConfig {
   sides?: [number, number, number]; // tick counts on AB, BC, CA
@@ -868,6 +890,8 @@ export type InteractiveStep =
   | { kind: "areaShape"; eyebrow?: string; title: string; teach: string; config: AreaShapeConfig }
   | { kind: "apothemPolygon"; eyebrow?: string; title: string; teach: string; config: ApothemPolygonConfig }
   | { kind: "compositeArea"; eyebrow?: string; title: string; teach: string; config: CompositeAreaConfig }
+  | { kind: "solid3d"; eyebrow?: string; title: string; teach: string; config: Solid3DConfig }
+  | { kind: "solidNet"; eyebrow?: string; title: string; teach: string; config: SolidNetConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

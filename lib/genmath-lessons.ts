@@ -69,6 +69,7 @@ import geometrySimilarity from "@/data/genmath/geometry/similarity.json";
 import geometryRightTriangles from "@/data/genmath/geometry/right-triangles-and-trig.json";
 import geometryCircles from "@/data/genmath/geometry/circles.json";
 import geometryAreaPerimeter from "@/data/genmath/geometry/area-and-perimeter.json";
+import geometrySurfaceVolume from "@/data/genmath/geometry/surface-area-and-volume.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -228,7 +229,7 @@ export const GEOMETRY_SPINE: GeometrySpineEntry[] = [
     title: "Surface Area & Volume",
     blurb: "Prisms, cylinders, pyramids, cones, and spheres — wrapping and filling 3-D solids.",
     buildsOn: "Area formulas from Unit 10.",
-    live: false,
+    live: true,
   },
   {
     unit: 12,
@@ -259,6 +260,7 @@ const geometryUnits: GeometryUnit[] = [
   geometryRightTriangles as unknown as GeometryUnit,
   geometryCircles as unknown as GeometryUnit,
   geometryAreaPerimeter as unknown as GeometryUnit,
+  geometrySurfaceVolume as unknown as GeometryUnit,
 ];
 
 export function getGeometrySpine(): GeometrySpineEntry[] {

@@ -66,6 +66,16 @@ import {
   trapezoidArea,
   rhombusArea,
   regularPolygonArea,
+  prismVolume,
+  rectPrismVolume,
+  rectPrismSurface,
+  cylinderVolume,
+  cylinderSurface,
+  pyramidVolume,
+  coneVolume,
+  coneSurface,
+  sphereVolume,
+  sphereSurface,
 } from "@/lib/geo";
 
 describe("segment math", () => {
@@ -573,5 +583,47 @@ describe("area & perimeter", () => {
     // a square of side 4: apothem 2, perimeter 16 → area 16
     expect(regularPolygonArea(2, 16)).toBe(16);
     expect(regularPolygonArea(2, 16)).toBe(rectangleArea(4, 4));
+  });
+});
+
+describe("surface area & volume of solids", () => {
+  it("rectangular prism volume and surface area", () => {
+    expect(rectPrismVolume(2, 3, 4)).toBe(24);
+    expect(rectPrismSurface(2, 3, 4)).toBe(52); // 2(6+8+12)
+    // a cube of side 5: V = 125, SA = 150
+    expect(rectPrismVolume(5, 5, 5)).toBe(125);
+    expect(rectPrismSurface(5, 5, 5)).toBe(150);
+    // any prism: base area × height
+    expect(prismVolume(6, 4)).toBe(24); // 2×3 base × 4
+    expect(prismVolume(6, 4)).toBe(rectPrismVolume(2, 3, 4));
+  });
+
+  it("cylinder volume and surface area", () => {
+    expect(cylinderVolume(3, 5)).toBeCloseTo(45 * Math.PI); // πr²h
+    expect(cylinderSurface(3, 5)).toBeCloseTo(2 * Math.PI * 9 + 2 * Math.PI * 15); // 18π + 30π = 48π
+    expect(cylinderSurface(3, 5)).toBeCloseTo(48 * Math.PI);
+  });
+
+  it("a pyramid/cone is one third of its prism/cylinder", () => {
+    // pyramid: base area 36, height 10 → 120 = ⅓ of 360
+    expect(pyramidVolume(36, 10)).toBe(120);
+    expect(pyramidVolume(36, 10)).toBeCloseTo(prismVolume(36, 10) / 3);
+    // cone r=3 h=4 → ⅓π(9)(4) = 12π = ⅓ of the cylinder
+    expect(coneVolume(3, 4)).toBeCloseTo(12 * Math.PI);
+    expect(coneVolume(3, 4)).toBeCloseTo(cylinderVolume(3, 4) / 3);
+  });
+
+  it("cone surface area is base plus lateral", () => {
+    // r=3, slant=5 → π(9) + π(3)(5) = 9π + 15π = 24π
+    expect(coneSurface(3, 5)).toBeCloseTo(24 * Math.PI);
+  });
+
+  it("sphere volume and surface area", () => {
+    // r=3 → V = (4/3)π(27) = 36π, SA = 4π(9) = 36π
+    expect(sphereVolume(3)).toBeCloseTo(36 * Math.PI);
+    expect(sphereSurface(3)).toBeCloseTo(36 * Math.PI);
+    // r=6 → SA = 4π(36) = 144π
+    expect(sphereSurface(6)).toBeCloseTo(144 * Math.PI);
+    expect(sphereVolume(6)).toBeCloseTo(288 * Math.PI);
   });
 });

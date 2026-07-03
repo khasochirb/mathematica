@@ -431,3 +431,52 @@ export function rhombusArea(diag1: number, diag2: number): number {
 export function regularPolygonArea(apothem: number, perimeter: number): number {
   return (apothem * perimeter) / 2;
 }
+
+// ---------------------------------------------------------------------------
+// Surface area & volume of 3-D solids
+// ---------------------------------------------------------------------------
+
+// A prism holds "base area × height" worth of volume; ANY prism (or cylinder)
+// works this way.
+export function prismVolume(baseArea: number, height: number): number {
+  return baseArea * height;
+}
+
+// Rectangular prism (box): volume l·w·h, surface area 2(lw + lh + wh).
+export function rectPrismVolume(l: number, w: number, h: number): number {
+  return l * w * h;
+}
+export function rectPrismSurface(l: number, w: number, h: number): number {
+  return 2 * (l * w + l * h + w * h);
+}
+
+// Cylinder: volume πr²h; surface area = two circles + the wrapped rectangle,
+// 2πr² + 2πrh.
+export function cylinderVolume(r: number, h: number): number {
+  return Math.PI * r * r * h;
+}
+export function cylinderSurface(r: number, h: number): number {
+  return 2 * Math.PI * r * r + 2 * Math.PI * r * h;
+}
+
+// A pyramid (or cone) holds ONE THIRD the volume of the prism (or cylinder)
+// with the same base and height.
+export function pyramidVolume(baseArea: number, height: number): number {
+  return (baseArea * height) / 3;
+}
+
+// Cone: volume ⅓πr²h; surface area = base circle + lateral, πr² + πr·(slant).
+export function coneVolume(r: number, h: number): number {
+  return (Math.PI * r * r * h) / 3;
+}
+export function coneSurface(r: number, slant: number): number {
+  return Math.PI * r * r + Math.PI * r * slant;
+}
+
+// Sphere: volume (4/3)πr³; surface area 4πr².
+export function sphereVolume(r: number): number {
+  return (4 / 3) * Math.PI * r * r * r;
+}
+export function sphereSurface(r: number): number {
+  return 4 * Math.PI * r * r;
+}

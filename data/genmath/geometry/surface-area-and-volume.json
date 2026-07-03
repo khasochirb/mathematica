@@ -1,0 +1,2546 @@
+{
+  "slug": "surface-area-and-volume",
+  "title": "Surface Area & Volume",
+  "unit": 11,
+  "status": "published",
+  "blurb": "Prisms, cylinders, pyramids, cones, and spheres — wrapping and filling 3-D solids, then combining them into composite figures.",
+  "buildsOn": "Area formulas from Unit 10; the Pythagorean theorem (Unit 8) for slant heights; circle measures from Unit 9.",
+  "lessons": [
+    {
+      "slug": "prisms-surface-area-and-volume",
+      "title": "Prisms: Surface Area & Volume",
+      "concreteComparison": "A cereal box, a brick, a stick of butter — all prisms. To find how much cereal fits inside you need its **volume**; to find how much cardboard wraps it you need its **surface area**. Volume fills the space; surface area covers the outside.",
+      "objective": "Find the volume (base area × height) and the surface area of a prism, using a net to see all the faces.",
+      "concept": [
+        "A **prism** has two identical parallel **bases** joined by rectangular **lateral faces**. A box is a **rectangular prism**, and a **cube** is a rectangular prism whose length, width, and height are all equal.",
+        "**Volume** measures how much space a solid fills, in **cubic units**. For any prism, $V = (\\text{base area}) \\times (\\text{height})$; for a box, $V = l \\times w \\times h$.",
+        "**Surface area** is the total area of all the faces, in **square units**. A **net** unfolds the solid flat so you can add up every face.",
+        "A rectangular prism's six faces come in three matching pairs, so $SA = 2(lw + lh + wh)$."
+      ],
+      "keyIdea": "Prism volume = base area × height (cubic units). Surface area = the sum of all faces; for a box, SA = 2(lw + lh + wh).",
+      "facts": [
+        {
+          "title": "Prism volume",
+          "latex": "$V = Bh$",
+          "explanation": "Base area B times the height h."
+        },
+        {
+          "title": "Box surface area",
+          "latex": "$SA = 2(lw + lh + wh)$",
+          "explanation": "Three matching pairs of faces."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pr-we1",
+          "statement": "A box is $2 \\times 3 \\times 4$. Find its volume.",
+          "solution": "$V = lwh = 2 \\times 3 \\times 4 = 24$ cubic units.",
+          "check": [
+            "2*3*4 == 24"
+          ]
+        },
+        {
+          "id": "pr-we2",
+          "statement": "Find the surface area of the same $2 \\times 3 \\times 4$ box.",
+          "solution": "$SA = 2(lw + lh + wh) = 2(6 + 8 + 12) = 2(26) = 52$.",
+          "check": [
+            "2*(2*3 + 2*4 + 3*4) == 52"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Mixing up cubic and square units.",
+          "correction": "**Volume** is in **cubic** units ($\\text{cm}^3$); **surface area** is in **square** units ($\\text{cm}^2$).",
+          "authored": true
+        },
+        {
+          "text": "Forgetting a pair of faces in surface area.",
+          "correction": "A box has **6** faces in **3 pairs** — include all of them: $2(lw + lh + wh)$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pr-t1",
+          "statement": "Box $3 \\times 4 \\times 5$. Volume?",
+          "solution": "$3 \\times 4 \\times 5 = 60$.",
+          "check": [
+            "3*4*5 == 60"
+          ]
+        },
+        {
+          "id": "pr-t2",
+          "statement": "Box $2 \\times 2 \\times 5$. Surface area?",
+          "solution": "$2(4 + 10 + 10) = 48$.",
+          "check": [
+            "2*(2*2 + 2*5 + 2*5) == 48"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Fill it or wrap it",
+            "beats": [
+              "A **prism** has two identical **bases** joined by rectangular sides.",
+              "**Volume** = how much space it fills (cubic units).",
+              "**Surface area** = the total area of its outside faces (square units).",
+              "A box (rectangular prism) is the simplest example."
+            ]
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "Concept A",
+            "title": "Volume = base × height",
+            "teach": "A prism's volume is the **base area** times the **height**. For this box, $V = l \\times w \\times h$. Change the dimensions and watch the volume (and surface area) update.",
+            "config": {
+              "solid": "rectPrism",
+              "l": 4,
+              "w": 3,
+              "h": 5
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Prism volume",
+            "title": "Base area times height",
+            "beats": [
+              "$V = (\\text{base area}) \\times (\\text{height})$.",
+              "For a box, the base is $l \\times w$, so $V = lwh$.",
+              "$2 \\times 3 \\times 4 = 24$ cubic units.",
+              "This works for ANY prism — just find the base area first."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Prism volume",
+            "intro": "Base area × height.",
+            "examples": [
+              {
+                "prompt": "Box $2 \\times 3 \\times 4$. Volume?",
+                "steps": [
+                  "$V = lwh = 2 \\times 3 \\times 4$.",
+                  "$= 24$."
+                ],
+                "answer": "$24$",
+                "check": [
+                  "2*3*4 == 24"
+                ]
+              },
+              {
+                "prompt": "A prism with base area $15$ and height $6$. Volume?",
+                "steps": [
+                  "$V = Bh = 15 \\times 6$.",
+                  "$= 90$."
+                ],
+                "answer": "$90$",
+                "check": [
+                  "15*6 == 90"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Volume practice",
+            "intro": "V = base area × height.",
+            "problems": [
+              {
+                "prompt": "Box $3 \\times 4 \\times 5$. Volume?",
+                "options": [
+                  "$60$",
+                  "$12$",
+                  "$47$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3 \\times 4 \\times 5 = 60$.",
+                "check": [
+                  "3*4*5 == 60"
+                ]
+              },
+              {
+                "prompt": "Base area $20$, height $7$. Volume?",
+                "options": [
+                  "$140$",
+                  "$27$",
+                  "$70$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$20 \\times 7 = 140$.",
+                "check": [
+                  "20*7 == 140"
+                ]
+              },
+              {
+                "prompt": "Volume is measured in — units.",
+                "options": [
+                  "cubic",
+                  "square",
+                  "linear"
+                ],
+                "correctIndex": 0,
+                "explanation": "Cubic units for 3-D space.",
+                "check": [
+                  "2*2*2 == 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "solidNet",
+            "eyebrow": "Concept B",
+            "title": "The net shows every face",
+            "teach": "Unfold the box flat and you see all 6 faces. Add them up for the surface area — they come in 3 matching pairs: $2(lw + lh + wh)$. Here $2(12 + 20 + 15) = 94$.",
+            "config": {
+              "solid": "rectPrism",
+              "l": 4,
+              "w": 3,
+              "h": 5
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Surface area",
+            "title": "Add up the faces",
+            "beats": [
+              "**Surface area** = the total area of all the faces.",
+              "A box has 6 faces in 3 pairs; a **cube** is a box with all sides equal, so all 6 faces match.",
+              "$SA = 2(lw + lh + wh)$.",
+              "$2(6 + 8 + 12) = 52$ for a $2 \\times 3 \\times 4$ box."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Surface area",
+            "intro": "2(lw + lh + wh).",
+            "examples": [
+              {
+                "prompt": "Box $2 \\times 3 \\times 4$. Surface area?",
+                "steps": [
+                  "$2(2\\cdot3 + 2\\cdot4 + 3\\cdot4) = 2(6 + 8 + 12)$.",
+                  "$= 2(26) = 52$."
+                ],
+                "answer": "$52$",
+                "check": [
+                  "2*(2*3 + 2*4 + 3*4) == 52"
+                ]
+              },
+              {
+                "prompt": "Cube with side $5$. Surface area?",
+                "steps": [
+                  "All faces $5\\times5 = 25$; six of them.",
+                  "$6 \\times 25 = 150$."
+                ],
+                "answer": "$150$",
+                "check": [
+                  "6*5**2 == 150"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Surface area practice",
+            "intro": "Add all the faces.",
+            "problems": [
+              {
+                "prompt": "Box $3 \\times 4 \\times 5$. Surface area?",
+                "options": [
+                  "$94$",
+                  "$60$",
+                  "$47$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2(12 + 15 + 20) = 94$.",
+                "check": [
+                  "2*(3*4 + 3*5 + 4*5) == 94"
+                ]
+              },
+              {
+                "prompt": "Cube side $4$. Surface area?",
+                "options": [
+                  "$96$",
+                  "$64$",
+                  "$16$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6 \\times 16 = 96$.",
+                "check": [
+                  "6*4**2 == 96"
+                ]
+              },
+              {
+                "prompt": "Surface area is measured in — units.",
+                "options": [
+                  "square",
+                  "cubic",
+                  "linear"
+                ],
+                "correctIndex": 0,
+                "explanation": "Area is square units.",
+                "check": [
+                  "4**2 == 16"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why big animals lose heat slowly",
+            "body": "Volume grows faster than surface area as things get bigger (cubes vs squares). A large animal has lots of volume making heat but relatively little skin to lose it through — which is why elephants overheat and mice must eat constantly to stay warm. It's the surface-area-to-volume ratio from this lesson."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Box volume",
+            "prompt": "A rectangular box measures $5 \\times 6 \\times 2$. What is its volume?",
+            "options": [
+              "$60$",
+              "$44$",
+              "$13$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$V = lwh = 5 \\times 6 \\times 2 = 60$ cubic units.",
+            "check": [
+              "5*6*2 == 60"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Prism volume** $= (\\text{base area}) \\times (\\text{height})$; for a box, $V = lwh$ (cubic units).",
+              "**Surface area** = the total of all faces; a box is $2(lw + lh + wh)$ (square units).",
+              "A **net** unfolds the solid so you can add every face."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's find prism volumes and surface areas."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Box $2 \\times 5 \\times 6$. Volume?",
+                "options": [
+                  "$60$",
+                  "$13$",
+                  "$62$",
+                  "$30$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2 \\times 5 \\times 6 = 60$.",
+                "check": [
+                  "2*5*6 == 60"
+                ]
+              },
+              {
+                "prompt": "Box $2 \\times 3 \\times 4$. Surface area?",
+                "options": [
+                  "$52$",
+                  "$24$",
+                  "$26$",
+                  "$48$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2(6 + 8 + 12) = 52$.",
+                "check": [
+                  "2*(2*3 + 2*4 + 3*4) == 52"
+                ]
+              },
+              {
+                "prompt": "Prism, base area $18$, height $10$. Volume?",
+                "options": [
+                  "$180$",
+                  "$28$",
+                  "$90$",
+                  "$36$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$18 \\times 10 = 180$.",
+                "check": [
+                  "18*10 == 180"
+                ]
+              },
+              {
+                "prompt": "Cube side $3$. Volume?",
+                "options": [
+                  "$27$",
+                  "$9$",
+                  "$54$",
+                  "$18$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3^3 = 27$.",
+                "check": [
+                  "3**3 == 27"
+                ]
+              },
+              {
+                "prompt": "Cube side $6$. Surface area?",
+                "options": [
+                  "$216$",
+                  "$36$",
+                  "$126$",
+                  "$72$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6 \\times 36 = 216$.",
+                "check": [
+                  "6*6**2 == 216"
+                ]
+              },
+              {
+                "prompt": "Volume uses — units; surface area uses — units.",
+                "options": [
+                  "cubic; square",
+                  "square; cubic",
+                  "cubic; cubic",
+                  "linear; square"
+                ],
+                "correctIndex": 0,
+                "explanation": "3-D fill vs 2-D cover.",
+                "check": [
+                  "2*2*2 == 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Prisms: Surface Area & Volume\"",
+            "body": "You can fill and wrap any prism. Next: cylinders — prisms with a circular base."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "cylinders",
+      "title": "Cylinders",
+      "concreteComparison": "A soup can is a cylinder. Its volume is the circular base times the height; its surface is two circle lids plus the label wrapped around — a rectangle exactly as wide as the circle's circumference.",
+      "objective": "Find the volume (πr²h) and surface area (2πr² + 2πrh) of a cylinder.",
+      "concept": [
+        "A **cylinder** is like a prism, but its base is a **circle** instead of a polygon.",
+        "**Volume** $= (\\text{base area}) \\times h = \\pi r^2 h$ — the circle area times the height.",
+        "**Surface area** $= $ two circles $+$ the wrapped label: $2\\pi r^2 + 2\\pi r h$. The label is a rectangle $2\\pi r$ wide (the **circumference**) by $h$ tall.",
+        "Leave answers **in terms of $\\pi$** unless a decimal is asked for."
+      ],
+      "keyIdea": "Cylinder volume = πr²h (circle base × height). Surface area = 2πr² (two circles) + 2πrh (the wrapped label of width 2πr, height h).",
+      "facts": [
+        {
+          "title": "Cylinder volume",
+          "latex": "$V = \\pi r^2 h$",
+          "explanation": "Circle base area times height."
+        },
+        {
+          "title": "Cylinder surface area",
+          "latex": "$SA = 2\\pi r^2 + 2\\pi r h$",
+          "explanation": "Two circles plus the wrapped rectangle."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cy-we1",
+          "statement": "A cylinder has radius $3$ and height $5$. Find its volume (in terms of π).",
+          "solution": "$V = \\pi r^2 h = \\pi(3)^2(5) = 45\\pi$.",
+          "check": [
+            "pi*3**2*5 == 45*pi"
+          ]
+        },
+        {
+          "id": "cy-we2",
+          "statement": "Find its surface area (in terms of π).",
+          "solution": "$SA = 2\\pi(3)^2 + 2\\pi(3)(5) = 18\\pi + 30\\pi = 48\\pi$.",
+          "check": [
+            "2*pi*3**2 + 2*pi*3*5 == 48*pi"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Forgetting to square the radius in the volume.",
+          "correction": "Volume uses the **circle area** $\\pi r^2$, so the radius is **squared**: $\\pi r^2 h$.",
+          "authored": true
+        },
+        {
+          "text": "Leaving out the two circle ends in surface area.",
+          "correction": "Surface area is the label ($2\\pi r h$) **plus** the two circle lids ($2\\pi r^2$).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cy-t1",
+          "statement": "Cylinder, radius $2$, height $6$. Volume?",
+          "solution": "$\\pi(2)^2(6) = 24\\pi$.",
+          "check": [
+            "pi*2**2*6 == 24*pi"
+          ]
+        },
+        {
+          "id": "cy-t2",
+          "statement": "Cylinder, radius $4$, height $5$. Surface area?",
+          "solution": "$2\\pi(16) + 2\\pi(4)(5) = 32\\pi + 40\\pi = 72\\pi$.",
+          "check": [
+            "2*pi*4**2 + 2*pi*4*5 == 72*pi"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "A can-shaped solid",
+            "beats": [
+              "A **cylinder** is a prism with a **circle** for its base.",
+              "**Volume** = circle area × height = $\\pi r^2 h$.",
+              "**Surface area** = two circle ends + the wrapped side.",
+              "The wrapped side is a rectangle as wide as the circumference."
+            ]
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "Concept A",
+            "title": "Volume = circle × height",
+            "teach": "The volume is the circle base ($\\pi r^2$) times the height $h$: $V = \\pi r^2 h$. Radius $3$, height $5$ gives $45\\pi$. Change the dimensions.",
+            "config": {
+              "solid": "cylinder",
+              "r": 3,
+              "h": 5
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Cylinder volume",
+            "title": "πr² times h",
+            "beats": [
+              "Base area is the circle: $\\pi r^2$.",
+              "$V = \\pi r^2 h$.",
+              "Radius $3$, height $5$: $\\pi(9)(5) = 45\\pi$.",
+              "The radius is squared; the height is not."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Cylinder volume",
+            "intro": "πr²h.",
+            "examples": [
+              {
+                "prompt": "Radius $3$, height $5$. Volume?",
+                "steps": [
+                  "$\\pi(3)^2(5) = \\pi(9)(5)$.",
+                  "$= 45\\pi$."
+                ],
+                "answer": "$45\\pi$",
+                "check": [
+                  "pi*3**2*5 == 45*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $2$, height $10$. Volume?",
+                "steps": [
+                  "$\\pi(4)(10)$.",
+                  "$= 40\\pi$."
+                ],
+                "answer": "$40\\pi$",
+                "check": [
+                  "pi*2**2*10 == 40*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Volume practice",
+            "intro": "πr²h.",
+            "problems": [
+              {
+                "prompt": "Radius $2$, height $6$. Volume?",
+                "options": [
+                  "$24\\pi$",
+                  "$12\\pi$",
+                  "$48\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\pi(4)(6) = 24\\pi$.",
+                "check": [
+                  "pi*2**2*6 == 24*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $5$, height $4$. Volume?",
+                "options": [
+                  "$100\\pi$",
+                  "$40\\pi$",
+                  "$20\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\pi(25)(4) = 100\\pi$.",
+                "check": [
+                  "pi*5**2*4 == 100*pi"
+                ]
+              },
+              {
+                "prompt": "Cylinder volume uses the — of the base.",
+                "options": [
+                  "area",
+                  "circumference",
+                  "diameter"
+                ],
+                "correctIndex": 0,
+                "explanation": "Circle area $\\pi r^2$.",
+                "check": [
+                  "pi*3**2 == 9*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "solidNet",
+            "eyebrow": "Concept B",
+            "title": "Unwrap the surface",
+            "teach": "Unroll a cylinder and you get two circles ($\\pi r^2$ each) and a rectangle. The rectangle is $2\\pi r$ wide (the circumference) by $h$ tall, area $2\\pi r h$. Total $SA = 2\\pi r^2 + 2\\pi r h$.",
+            "config": {
+              "solid": "cylinder",
+              "r": 3,
+              "h": 5
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Cylinder surface area",
+            "title": "Two circles + a wrapped rectangle",
+            "beats": [
+              "Two circle ends: $2 \\times \\pi r^2 = 2\\pi r^2$.",
+              "The label unrolls to a rectangle $2\\pi r$ wide, $h$ tall: $2\\pi r h$.",
+              "$SA = 2\\pi r^2 + 2\\pi r h$.",
+              "Radius $3$, height $5$: $18\\pi + 30\\pi = 48\\pi$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Cylinder surface area",
+            "intro": "2πr² + 2πrh.",
+            "examples": [
+              {
+                "prompt": "Radius $3$, height $5$. Surface area?",
+                "steps": [
+                  "$2\\pi(9) + 2\\pi(3)(5) = 18\\pi + 30\\pi$.",
+                  "$= 48\\pi$."
+                ],
+                "answer": "$48\\pi$",
+                "check": [
+                  "2*pi*3**2 + 2*pi*3*5 == 48*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $2$, height $3$. Surface area?",
+                "steps": [
+                  "$2\\pi(4) + 2\\pi(2)(3) = 8\\pi + 12\\pi$.",
+                  "$= 20\\pi$."
+                ],
+                "answer": "$20\\pi$",
+                "check": [
+                  "2*pi*2**2 + 2*pi*2*3 == 20*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Surface area practice",
+            "intro": "2πr² + 2πrh.",
+            "problems": [
+              {
+                "prompt": "Radius $4$, height $5$. Surface area?",
+                "options": [
+                  "$72\\pi$",
+                  "$40\\pi$",
+                  "$32\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$32\\pi + 40\\pi = 72\\pi$.",
+                "check": [
+                  "2*pi*4**2 + 2*pi*4*5 == 72*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $1$, height $5$. Surface area?",
+                "options": [
+                  "$12\\pi$",
+                  "$10\\pi$",
+                  "$2\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2\\pi + 10\\pi = 12\\pi$.",
+                "check": [
+                  "2*pi*1**2 + 2*pi*1*5 == 12*pi"
+                ]
+              },
+              {
+                "prompt": "The wrapped label's width equals the circle's —",
+                "options": [
+                  "circumference",
+                  "area",
+                  "radius"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2\\pi r$.",
+                "check": [
+                  "2*pi*3 == 6*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why cans are the shape they are",
+            "body": "For a fixed volume, a can shaped so its height equals its diameter uses the least metal — the minimum surface area. Real cans are a bit taller than that ideal because the top and bottom seams need extra material, but the trade-off between volume and surface area is exactly this lesson's math, run by every packaging engineer."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Cylinder volume",
+            "prompt": "A cylinder has radius $2$ and height $9$. What is its volume (in terms of π)?",
+            "options": [
+              "$36\\pi$",
+              "$18\\pi$",
+              "$81\\pi$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$V = \\pi(2)^2(9) = \\pi(4)(9) = 36\\pi$.",
+            "check": [
+              "pi*2**2*9 == 36*pi"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Cylinder volume** $= \\pi r^2 h$ — circle base times height.",
+              "**Surface area** $= 2\\pi r^2 + 2\\pi r h$ — two circles plus the wrapped rectangle.",
+              "The label's width is the **circumference** $2\\pi r$."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's find cylinder volumes and surface areas in terms of π."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Radius $3$, height $4$. Volume?",
+                "options": [
+                  "$36\\pi$",
+                  "$12\\pi$",
+                  "$48\\pi$",
+                  "$24\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\pi(9)(4) = 36\\pi$.",
+                "check": [
+                  "pi*3**2*4 == 36*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $2$, height $5$. Surface area?",
+                "options": [
+                  "$28\\pi$",
+                  "$20\\pi$",
+                  "$8\\pi$",
+                  "$40\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$8\\pi + 20\\pi = 28\\pi$.",
+                "check": [
+                  "2*pi*2**2 + 2*pi*2*5 == 28*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $5$, height $2$. Volume?",
+                "options": [
+                  "$50\\pi$",
+                  "$20\\pi$",
+                  "$100\\pi$",
+                  "$25\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\pi(25)(2) = 50\\pi$.",
+                "check": [
+                  "pi*5**2*2 == 50*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $3$, height $3$. Surface area?",
+                "options": [
+                  "$36\\pi$",
+                  "$18\\pi$",
+                  "$27\\pi$",
+                  "$54\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$18\\pi + 18\\pi = 36\\pi$.",
+                "check": [
+                  "2*pi*3**2 + 2*pi*3*3 == 36*pi"
+                ]
+              },
+              {
+                "prompt": "Cylinder volume $= $ —",
+                "options": [
+                  "$\\pi r^2 h$",
+                  "$2\\pi r h$",
+                  "$\\tfrac13\\pi r^2 h$",
+                  "$4\\pi r^2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Circle base × height.",
+                "check": [
+                  "pi*2**2*6 == 24*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $1$, height $10$. Volume?",
+                "options": [
+                  "$10\\pi$",
+                  "$20\\pi$",
+                  "$\\pi$",
+                  "$100\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\pi(1)(10) = 10\\pi$.",
+                "check": [
+                  "pi*1**2*10 == 10*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Cylinders\"",
+            "body": "You can fill and wrap a cylinder. Next: pyramids — which hold exactly a THIRD of their prism."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "pyramids",
+      "title": "Pyramids",
+      "concreteComparison": "The Great Pyramid of Giza, a tent, a glass paperweight — a pyramid narrows from a flat base up to a single point, the apex. Its volume is exactly ONE THIRD of the prism with the same base and height.",
+      "objective": "Find the volume of a pyramid (⅓ × base area × height) and describe its surface area (base + triangular faces).",
+      "concept": [
+        "A **pyramid** has a polygon **base** and triangular faces that meet at a single point, the **apex**.",
+        "**Volume** $= \\tfrac13 (\\text{base area}) \\times h$ — exactly **one third** of the prism with the same base and height.",
+        "The **height** $h$ is the perpendicular distance from the apex straight down to the base (not the slanted edge).",
+        "**Surface area** $= $ the base $+$ the triangular **lateral faces**, and each triangle's height is the **slant height** of the pyramid."
+      ],
+      "keyIdea": "Pyramid volume = ⅓ × base area × height — one third of the matching prism. Surface area = base + the triangular lateral faces.",
+      "facts": [
+        {
+          "title": "Pyramid volume",
+          "latex": "$V = \\tfrac13 Bh$",
+          "explanation": "One third of base area × height."
+        },
+        {
+          "title": "One third",
+          "latex": "prism $\\div 3$",
+          "explanation": "Three pyramids fill their prism."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "py-we1",
+          "statement": "A pyramid has a square base of side $6$ and height $10$. Find its volume.",
+          "solution": "Base area $= 6^2 = 36$; $V = \\tfrac13(36)(10) = \\tfrac13(360) = 120$.",
+          "check": [
+            "6**2*10/3 == 120"
+          ]
+        },
+        {
+          "id": "py-we2",
+          "statement": "A pyramid with base area $27$ and height $5$. Find its volume.",
+          "solution": "$V = \\tfrac13(27)(5) = \\tfrac13(135) = 45$.",
+          "check": [
+            "27*5/3 == 45"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Forgetting the $\\tfrac13$.",
+          "correction": "A pyramid is **one third** of its prism. Always multiply by $\\tfrac13$ (or divide by 3).",
+          "authored": true
+        },
+        {
+          "text": "Using the slant edge as the height.",
+          "correction": "The **height** is the perpendicular distance apex-to-base; the slanted edge is longer.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "py-t1",
+          "statement": "Square base side $3$, height $8$. Volume?",
+          "solution": "$\\tfrac13(9)(8) = 24$.",
+          "check": [
+            "3**2*8/3 == 24"
+          ]
+        },
+        {
+          "id": "py-t2",
+          "statement": "Base area $30$, height $6$. Volume?",
+          "solution": "$\\tfrac13(30)(6) = 60$.",
+          "check": [
+            "30*6/3 == 60"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Narrowing to a point",
+            "beats": [
+              "A **pyramid** has a flat **base** and triangular sides.",
+              "They meet at a single point, the **apex**.",
+              "The **height** goes straight from the apex down to the base.",
+              "Its volume is a fraction of the matching prism."
+            ]
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "Concept A",
+            "title": "A third of the prism",
+            "teach": "A pyramid holds exactly **one third** the volume of the prism with the same base and height: $V = \\tfrac13(\\text{base area})h$. Square base $6$, height $5$: $\\tfrac13(36)(5) = 60$.",
+            "config": {
+              "solid": "pyramid",
+              "base": 6,
+              "h": 5
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Pyramid volume",
+            "title": "One third of base × height",
+            "beats": [
+              "$V = \\tfrac13 (\\text{base area}) \\times h$.",
+              "Three pyramids exactly fill their prism.",
+              "Square base $6$, height $10$: base area $36$, $V = \\tfrac13(360) = 120$.",
+              "Find the base area first, then take a third."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Pyramid volume",
+            "intro": "⅓ × base area × height.",
+            "examples": [
+              {
+                "prompt": "Square base side $6$, height $10$. Volume?",
+                "steps": [
+                  "Base area $= 36$; $V = \\tfrac13(36)(10)$.",
+                  "$= \\tfrac13(360) = 120$."
+                ],
+                "answer": "$120$",
+                "check": [
+                  "6**2*10/3 == 120"
+                ]
+              },
+              {
+                "prompt": "Base area $27$, height $5$. Volume?",
+                "steps": [
+                  "$\\tfrac13(27)(5) = \\tfrac13(135)$.",
+                  "$= 45$."
+                ],
+                "answer": "$45$",
+                "check": [
+                  "27*5/3 == 45"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Volume practice",
+            "intro": "⅓ base area × height.",
+            "problems": [
+              {
+                "prompt": "Square base side $3$, height $8$. Volume?",
+                "options": [
+                  "$24$",
+                  "$72$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac13(9)(8) = 24$.",
+                "check": [
+                  "3**2*8/3 == 24"
+                ]
+              },
+              {
+                "prompt": "Base area $30$, height $6$. Volume?",
+                "options": [
+                  "$60$",
+                  "$180$",
+                  "$36$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac13(180) = 60$.",
+                "check": [
+                  "30*6/3 == 60"
+                ]
+              },
+              {
+                "prompt": "A pyramid's volume is — the prism with the same base and height.",
+                "options": [
+                  "one third of",
+                  "half of",
+                  "equal to"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac13$.",
+                "check": [
+                  "36*3/3 == 36"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The height matters",
+            "title": "Perpendicular, not slanted",
+            "beats": [
+              "The volume uses the **perpendicular height** — apex straight down to the base.",
+              "The **slant height** (down a triangular face) is longer.",
+              "Slant height is used for **surface area**, not volume.",
+              "Keep the two straight."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Base area first",
+            "intro": "Find the base, then ⅓·B·h.",
+            "examples": [
+              {
+                "prompt": "Square base side $9$, height $12$. Volume?",
+                "steps": [
+                  "Base area $= 81$; $V = \\tfrac13(81)(12)$.",
+                  "$= \\tfrac13(972) = 324$."
+                ],
+                "answer": "$324$",
+                "check": [
+                  "9**2*12/3 == 324"
+                ]
+              },
+              {
+                "prompt": "Rectangular base $4 \\times 6$, height $10$. Volume?",
+                "steps": [
+                  "Base area $= 24$; $V = \\tfrac13(24)(10)$.",
+                  "$= 80$."
+                ],
+                "answer": "$80$",
+                "check": [
+                  "4*6*10/3 == 80"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "More volumes",
+            "intro": "⅓ base area × height.",
+            "problems": [
+              {
+                "prompt": "Square base side $6$, height $4$. Volume?",
+                "options": [
+                  "$48$",
+                  "$144$",
+                  "$24$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac13(36)(4) = 48$.",
+                "check": [
+                  "6**2*4/3 == 48"
+                ]
+              },
+              {
+                "prompt": "Rectangular base $3 \\times 5$, height $8$. Volume?",
+                "options": [
+                  "$40$",
+                  "$120$",
+                  "$60$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac13(15)(8) = 40$.",
+                "check": [
+                  "3*5*8/3 == 40"
+                ]
+              },
+              {
+                "prompt": "The surface area of a pyramid uses the — height.",
+                "options": [
+                  "slant",
+                  "perpendicular",
+                  "base"
+                ],
+                "correctIndex": 0,
+                "explanation": "Slant height for the triangular faces.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Three pyramids fill a cube",
+            "body": "You can cut a cube into exactly three identical square pyramids, each with the cube's base and height — a hands-on proof that a pyramid is one third of its prism. Ancient builders and modern packaging designers both rely on this $\\tfrac13$ to estimate material and fill."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Pyramid volume",
+            "prompt": "A pyramid has a square base of side $5$ and height $9$. What is its volume?",
+            "options": [
+              "$75$",
+              "$225$",
+              "$45$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Base area $= 25$; $V = \\tfrac13(25)(9) = \\tfrac13(225) = 75$.",
+            "check": [
+              "5**2*9/3 == 75"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Pyramid volume** $= \\tfrac13 (\\text{base area}) \\times h$ — one third of the matching prism.",
+              "The **height** is perpendicular (apex to base); the **slant height** is for surface area.",
+              "**Surface area** $= $ base $+$ triangular lateral faces."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's find pyramid volumes — base area, then a third."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Square base side $6$, height $10$. Volume?",
+                "options": [
+                  "$120$",
+                  "$360$",
+                  "$60$",
+                  "$100$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac13(36)(10) = 120$.",
+                "check": [
+                  "6**2*10/3 == 120"
+                ]
+              },
+              {
+                "prompt": "Base area $21$, height $4$. Volume?",
+                "options": [
+                  "$28$",
+                  "$84$",
+                  "$14$",
+                  "$42$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac13(84) = 28$.",
+                "check": [
+                  "21*4/3 == 28"
+                ]
+              },
+              {
+                "prompt": "A pyramid is — of its prism.",
+                "options": [
+                  "one third",
+                  "half",
+                  "twice",
+                  "equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac13$.",
+                "check": [
+                  "9*3/3 == 9"
+                ]
+              },
+              {
+                "prompt": "Square base side $12$, height $5$. Volume?",
+                "options": [
+                  "$240$",
+                  "$720$",
+                  "$120$",
+                  "$60$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac13(144)(5) = 240$.",
+                "check": [
+                  "12**2*5/3 == 240"
+                ]
+              },
+              {
+                "prompt": "Rectangular base $2 \\times 9$, height $10$. Volume?",
+                "options": [
+                  "$60$",
+                  "$180$",
+                  "$30$",
+                  "$90$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac13(18)(10) = 60$.",
+                "check": [
+                  "2*9*10/3 == 60"
+                ]
+              },
+              {
+                "prompt": "The perpendicular height of a pyramid runs from the apex to —",
+                "options": [
+                  "the base",
+                  "a base corner",
+                  "a slanted edge",
+                  "the circumference"
+                ],
+                "correctIndex": 0,
+                "explanation": "Straight down to the base.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Pyramids\"",
+            "body": "You can find any pyramid's volume. Next: cones — round pyramids with a circular base."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "cones",
+      "title": "Cones",
+      "concreteComparison": "An ice-cream cone, a party hat, a traffic cone — a cone narrows from a circular base up to a single point. Just like a pyramid is a third of its prism, a cone is exactly ONE THIRD of the cylinder with the same base and height.",
+      "objective": "Find the volume (⅓πr²h) and surface area (πr² + πrℓ) of a cone, and find the slant height with the Pythagorean theorem.",
+      "concept": [
+        "A **cone** is like a pyramid, but its base is a **circle**. It narrows from the base to a single point, the **apex**.",
+        "**Volume** $= \\tfrac13 \\pi r^2 h$ — exactly **one third** of the cylinder with the same base and height.",
+        "The **slant height** $\\ell$ runs from the apex down the side to the edge of the base. It is the hypotenuse of a right triangle with legs $r$ and $h$, so $\\ell = \\sqrt{r^2 + h^2}$ (Pythagoras, from Unit 8).",
+        "**Surface area** $= \\pi r^2$ (the circular base) $+ \\pi r \\ell$ (the curved side)."
+      ],
+      "keyIdea": "Cone volume = ⅓πr²h — a third of its cylinder. Surface area = πr² + πrℓ, where the slant height ℓ = √(r² + h²).",
+      "facts": [
+        {
+          "title": "Cone volume",
+          "latex": "$V = \\tfrac13 \\pi r^2 h$",
+          "explanation": "One third of the cylinder."
+        },
+        {
+          "title": "Cone surface area",
+          "latex": "$SA = \\pi r^2 + \\pi r \\ell$",
+          "explanation": "Base circle plus curved side."
+        },
+        {
+          "title": "Slant height",
+          "latex": "$\\ell = \\sqrt{r^2 + h^2}$",
+          "explanation": "Pythagoras on r and h."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "co-we1",
+          "statement": "A cone has radius $3$ and height $4$. Find its volume (in terms of π).",
+          "solution": "$V = \\tfrac13 \\pi r^2 h = \\tfrac13 \\pi (9)(4) = \\tfrac13(36\\pi) = 12\\pi$.",
+          "check": [
+            "pi*3**2*4/3 == 12*pi"
+          ]
+        },
+        {
+          "id": "co-we2",
+          "statement": "The same cone (radius $3$, height $4$). Find its slant height, then its surface area.",
+          "solution": "$\\ell = \\sqrt{3^2 + 4^2} = \\sqrt{25} = 5$. $SA = \\pi r^2 + \\pi r \\ell = 9\\pi + \\pi(3)(5) = 9\\pi + 15\\pi = 24\\pi$.",
+          "check": [
+            "sqrt(3**2 + 4**2) == 5",
+            "pi*3**2 + pi*3*5 == 24*pi"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Forgetting the $\\tfrac13$ in the cone volume.",
+          "correction": "A cone is **one third** of its cylinder: $V = \\tfrac13 \\pi r^2 h$, not $\\pi r^2 h$.",
+          "authored": true
+        },
+        {
+          "text": "Using the height instead of the slant height for surface area.",
+          "correction": "The curved side uses the **slant height** $\\ell = \\sqrt{r^2 + h^2}$, not the vertical height $h$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "co-t1",
+          "statement": "Cone, radius $3$, height $6$. Volume?",
+          "solution": "$\\tfrac13 \\pi(9)(6) = 18\\pi$.",
+          "check": [
+            "pi*3**2*6/3 == 18*pi"
+          ]
+        },
+        {
+          "id": "co-t2",
+          "statement": "Cone, radius $6$, height $8$. Slant height?",
+          "solution": "$\\sqrt{6^2 + 8^2} = \\sqrt{100} = 10$.",
+          "check": [
+            "sqrt(6**2 + 8**2) == 10"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "A round pyramid",
+            "beats": [
+              "A **cone** narrows from a **circular** base to a point.",
+              "It is the round version of a pyramid.",
+              "**Volume** = one third of its cylinder: $\\tfrac13 \\pi r^2 h$.",
+              "The **slant height** runs down the side to the base edge."
+            ]
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "Concept A",
+            "title": "A third of the cylinder",
+            "teach": "A cone holds exactly **one third** the volume of the cylinder with the same base and height: $V = \\tfrac13 \\pi r^2 h$. Radius $3$, height $4$: $\\tfrac13\\pi(9)(4) = 12\\pi$. The readout also shows the slant height ℓ.",
+            "config": {
+              "solid": "cone",
+              "r": 3,
+              "h": 4,
+              "slant": 5
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Cone volume",
+            "title": "One third of πr²h",
+            "beats": [
+              "$V = \\tfrac13 \\pi r^2 h$.",
+              "Three cones exactly fill their cylinder.",
+              "Radius $3$, height $4$: $\\tfrac13\\pi(9)(4) = 12\\pi$.",
+              "Find $\\pi r^2 h$ first, then take a third."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Cone volume",
+            "intro": "⅓πr²h.",
+            "examples": [
+              {
+                "prompt": "Radius $3$, height $4$. Volume?",
+                "steps": [
+                  "$\\tfrac13\\pi(3)^2(4) = \\tfrac13\\pi(36)$.",
+                  "$= 12\\pi$."
+                ],
+                "answer": "$12\\pi$",
+                "check": [
+                  "pi*3**2*4/3 == 12*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $2$, height $9$. Volume?",
+                "steps": [
+                  "$\\tfrac13\\pi(4)(9) = \\tfrac13\\pi(36)$.",
+                  "$= 12\\pi$."
+                ],
+                "answer": "$12\\pi$",
+                "check": [
+                  "pi*2**2*9/3 == 12*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Volume practice",
+            "intro": "⅓πr²h.",
+            "problems": [
+              {
+                "prompt": "Radius $3$, height $6$. Volume?",
+                "options": [
+                  "$18\\pi$",
+                  "$54\\pi$",
+                  "$6\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac13\\pi(9)(6) = 18\\pi$.",
+                "check": [
+                  "pi*3**2*6/3 == 18*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $6$, height $3$. Volume?",
+                "options": [
+                  "$36\\pi$",
+                  "$108\\pi$",
+                  "$12\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac13\\pi(36)(3) = 36\\pi$.",
+                "check": [
+                  "pi*6**2*3/3 == 36*pi"
+                ]
+              },
+              {
+                "prompt": "A cone is — the cylinder with the same base and height.",
+                "options": [
+                  "one third of",
+                  "half of",
+                  "equal to"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac13$, like a pyramid.",
+                "check": [
+                  "9*3/3 == 9"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "Concept B",
+            "title": "Slant height + surface area",
+            "teach": "For the surface area you need the **slant height** ℓ — the distance down the side. It is the hypotenuse of a right triangle with legs $r$ and $h$: $\\ell = \\sqrt{r^2 + h^2}$. Here $\\sqrt{9+16} = 5$, so $SA = \\pi r^2 + \\pi r\\ell = 9\\pi + 15\\pi = 24\\pi$.",
+            "config": {
+              "solid": "cone",
+              "r": 3,
+              "h": 4,
+              "slant": 5
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Slant height",
+            "title": "Pythagoras on r and h",
+            "beats": [
+              "The slant height, radius, and height form a **right triangle**.",
+              "Legs $r$ and $h$; hypotenuse $\\ell$.",
+              "$\\ell = \\sqrt{r^2 + h^2}$ (Unit 8).",
+              "$r=3$, $h=4$: $\\ell = \\sqrt{25} = 5$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Cone surface area",
+            "intro": "πr² + πrℓ (find ℓ first).",
+            "examples": [
+              {
+                "prompt": "Radius $3$, height $4$. Surface area?",
+                "steps": [
+                  "$\\ell = \\sqrt{9+16} = 5$.",
+                  "$SA = 9\\pi + \\pi(3)(5) = 9\\pi + 15\\pi = 24\\pi$."
+                ],
+                "answer": "$24\\pi$",
+                "check": [
+                  "sqrt(3**2+4**2) == 5",
+                  "pi*3**2 + pi*3*5 == 24*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $6$, slant height $10$. Surface area?",
+                "steps": [
+                  "$SA = \\pi(36) + \\pi(6)(10)$.",
+                  "$= 36\\pi + 60\\pi = 96\\pi$."
+                ],
+                "answer": "$96\\pi$",
+                "check": [
+                  "pi*6**2 + pi*6*10 == 96*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Surface area practice",
+            "intro": "πr² + πrℓ.",
+            "problems": [
+              {
+                "prompt": "Radius $6$, height $8$. Slant height?",
+                "options": [
+                  "$10$",
+                  "$14$",
+                  "$48$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{36+64} = \\sqrt{100} = 10$.",
+                "check": [
+                  "sqrt(6**2+8**2) == 10"
+                ]
+              },
+              {
+                "prompt": "Radius $3$, slant height $7$. Surface area?",
+                "options": [
+                  "$30\\pi$",
+                  "$21\\pi$",
+                  "$9\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$9\\pi + 21\\pi = 30\\pi$.",
+                "check": [
+                  "pi*3**2 + pi*3*7 == 30*pi"
+                ]
+              },
+              {
+                "prompt": "The curved side of a cone uses the — height.",
+                "options": [
+                  "slant",
+                  "vertical",
+                  "base"
+                ],
+                "correctIndex": 0,
+                "explanation": "Slant height $\\ell$.",
+                "check": [
+                  "sqrt(3**2+4**2) == 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "An hourglass of sand",
+            "body": "Fill a cone-shaped cup and pour it into a cylinder of the same radius and height — you'll need to fill and pour exactly three times to fill the cylinder. That physical fact is the $\\tfrac13$ in the cone (and pyramid) volume formula, and it's how ancient granaries estimated stored grain."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Cone volume",
+            "prompt": "A cone has radius $2$ and height $6$. What is its volume (in terms of π)?",
+            "options": [
+              "$8\\pi$",
+              "$24\\pi$",
+              "$12\\pi$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$V = \\tfrac13\\pi(2)^2(6) = \\tfrac13\\pi(24) = 8\\pi$.",
+            "check": [
+              "pi*2**2*6/3 == 8*pi"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Cone volume** $= \\tfrac13 \\pi r^2 h$ — one third of its cylinder.",
+              "**Slant height** $\\ell = \\sqrt{r^2 + h^2}$ (Pythagoras on $r$ and $h$).",
+              "**Surface area** $= \\pi r^2 + \\pi r \\ell$ — base circle plus curved side."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's find cone volumes, slant heights, and surface areas."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Radius $3$, height $4$. Volume?",
+                "options": [
+                  "$12\\pi$",
+                  "$36\\pi$",
+                  "$4\\pi$",
+                  "$48\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac13\\pi(9)(4) = 12\\pi$.",
+                "check": [
+                  "pi*3**2*4/3 == 12*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $3$, height $4$. Slant height?",
+                "options": [
+                  "$5$",
+                  "$7$",
+                  "$25$",
+                  "$1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{9+16} = 5$.",
+                "check": [
+                  "sqrt(3**2+4**2) == 5"
+                ]
+              },
+              {
+                "prompt": "Radius $3$, slant height $5$. Surface area?",
+                "options": [
+                  "$24\\pi$",
+                  "$15\\pi$",
+                  "$9\\pi$",
+                  "$45\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$9\\pi + 15\\pi = 24\\pi$.",
+                "check": [
+                  "pi*3**2 + pi*3*5 == 24*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $6$, height $3$. Volume?",
+                "options": [
+                  "$36\\pi$",
+                  "$108\\pi$",
+                  "$18\\pi$",
+                  "$12\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac13\\pi(36)(3) = 36\\pi$.",
+                "check": [
+                  "pi*6**2*3/3 == 36*pi"
+                ]
+              },
+              {
+                "prompt": "A cone's volume is — of its cylinder.",
+                "options": [
+                  "one third",
+                  "half",
+                  "twice",
+                  "equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac13$.",
+                "check": [
+                  "9*3/3 == 9"
+                ]
+              },
+              {
+                "prompt": "Radius $5$, slant height $12$. Surface area?",
+                "options": [
+                  "$85\\pi$",
+                  "$60\\pi$",
+                  "$25\\pi$",
+                  "$120\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$25\\pi + 60\\pi = 85\\pi$.",
+                "check": [
+                  "pi*5**2 + pi*5*12 == 85*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Cones\"",
+            "body": "You can fill and wrap a cone. Next: spheres — the roundest solid of all."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "spheres",
+      "title": "Spheres",
+      "concreteComparison": "A basketball, a globe, a drop of water — a sphere is the set of all points the same distance (the radius) from a center. It's the most symmetric solid there is, and its volume and surface area depend on nothing but the radius.",
+      "objective": "Find the volume (4⁄3πr³) and surface area (4πr²) of a sphere, and handle a hemisphere as half a sphere.",
+      "concept": [
+        "A **sphere** is the set of all points a fixed distance — the **radius** $r$ — from a **center**. Think of a ball.",
+        "**Volume** $= \\tfrac43 \\pi r^3$. The radius is **cubed**, so doubling the radius multiplies the volume by $8$.",
+        "**Surface area** $= 4 \\pi r^2$ — exactly four times the area of a flat circle with the same radius.",
+        "A **hemisphere** is half a sphere, so its volume is $\\tfrac12 \\cdot \\tfrac43 \\pi r^3 = \\tfrac23 \\pi r^3$."
+      ],
+      "keyIdea": "Sphere volume = 4⁄3πr³ (radius cubed). Surface area = 4πr² (four circles). A hemisphere is half a sphere: ⅔πr³.",
+      "facts": [
+        {
+          "title": "Sphere volume",
+          "latex": "$V = \\tfrac43 \\pi r^3$",
+          "explanation": "Radius cubed."
+        },
+        {
+          "title": "Sphere surface area",
+          "latex": "$SA = 4 \\pi r^2$",
+          "explanation": "Four times a flat circle."
+        },
+        {
+          "title": "Hemisphere volume",
+          "latex": "$V = \\tfrac23 \\pi r^3$",
+          "explanation": "Half a sphere."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sp-we1",
+          "statement": "A sphere has radius $3$. Find its volume (in terms of π).",
+          "solution": "$V = \\tfrac43 \\pi r^3 = \\tfrac43 \\pi (27) = 36\\pi$.",
+          "check": [
+            "4*pi*3**3/3 == 36*pi"
+          ]
+        },
+        {
+          "id": "sp-we2",
+          "statement": "The same sphere (radius $3$). Find its surface area.",
+          "solution": "$SA = 4\\pi r^2 = 4\\pi(9) = 36\\pi$.",
+          "check": [
+            "4*pi*3**2 == 36*pi"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Squaring the radius in the volume instead of cubing it.",
+          "correction": "Volume is 3-D: the radius is **cubed** — $\\tfrac43 \\pi r^3$. Surface area squares it.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the $4$ in the surface area.",
+          "correction": "Sphere surface area is $4\\pi r^2$ — four circles' worth, not one.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sp-t1",
+          "statement": "Sphere, radius $6$. Volume?",
+          "solution": "$\\tfrac43\\pi(216) = 288\\pi$.",
+          "check": [
+            "4*pi*6**3/3 == 288*pi"
+          ]
+        },
+        {
+          "id": "sp-t2",
+          "statement": "Sphere, radius $5$. Surface area?",
+          "solution": "$4\\pi(25) = 100\\pi$.",
+          "check": [
+            "4*pi*5**2 == 100*pi"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "The roundest solid",
+            "beats": [
+              "A **sphere** is all points a fixed distance $r$ from a center.",
+              "Everything about it depends only on the **radius**.",
+              "**Volume** $= \\tfrac43 \\pi r^3$ (radius cubed).",
+              "**Surface area** $= 4\\pi r^2$ (radius squared)."
+            ]
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "Concept A",
+            "title": "Volume = 4⁄3πr³",
+            "teach": "A sphere's volume is $\\tfrac43\\pi r^3$ — the radius is **cubed**. Radius $3$: $\\tfrac43\\pi(27) = 36\\pi$. Because of the cube, doubling the radius makes the volume $8$ times as big.",
+            "config": {
+              "solid": "sphere",
+              "r": 3
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Sphere volume",
+            "title": "Four thirds π r cubed",
+            "beats": [
+              "$V = \\tfrac43 \\pi r^3$.",
+              "Cube the radius, then multiply by $\\tfrac43\\pi$.",
+              "Radius $3$: $r^3 = 27$, $V = \\tfrac43\\pi(27) = 36\\pi$.",
+              "Doubling $r$ multiplies volume by $2^3 = 8$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Sphere volume",
+            "intro": "4⁄3πr³.",
+            "examples": [
+              {
+                "prompt": "Radius $3$. Volume?",
+                "steps": [
+                  "$r^3 = 27$; $V = \\tfrac43\\pi(27)$.",
+                  "$= 36\\pi$."
+                ],
+                "answer": "$36\\pi$",
+                "check": [
+                  "4*pi*3**3/3 == 36*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $6$. Volume?",
+                "steps": [
+                  "$r^3 = 216$; $V = \\tfrac43\\pi(216)$.",
+                  "$= 288\\pi$."
+                ],
+                "answer": "$288\\pi$",
+                "check": [
+                  "4*pi*6**3/3 == 288*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Volume practice",
+            "intro": "4⁄3πr³.",
+            "problems": [
+              {
+                "prompt": "Radius $1$. Volume?",
+                "options": [
+                  "$\\tfrac43\\pi$",
+                  "$4\\pi$",
+                  "$\\tfrac13\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac43\\pi(1) = \\tfrac43\\pi$.",
+                "check": [
+                  "4*pi*1**3/3 == 4*pi/3"
+                ]
+              },
+              {
+                "prompt": "Radius $2$. Volume?",
+                "options": [
+                  "$\\tfrac{32}{3}\\pi$",
+                  "$32\\pi$",
+                  "$\\tfrac83\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac43\\pi(8) = \\tfrac{32}{3}\\pi$.",
+                "check": [
+                  "4*pi*2**3/3 == 32*pi/3"
+                ]
+              },
+              {
+                "prompt": "In the sphere volume the radius is —",
+                "options": [
+                  "cubed",
+                  "squared",
+                  "left alone"
+                ],
+                "correctIndex": 0,
+                "explanation": "$r^3$ — it's a 3-D measure.",
+                "check": [
+                  "3**3 == 27"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "Concept B",
+            "title": "Surface area = 4πr²",
+            "teach": "A sphere's surface area is $4\\pi r^2$ — exactly four times a flat circle of the same radius. Radius $3$: $4\\pi(9) = 36\\pi$. (For this radius the volume and surface area happen to share the number $36\\pi$ — a coincidence, not a rule.)",
+            "config": {
+              "solid": "sphere",
+              "r": 3
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Sphere surface area",
+            "title": "Four flat circles",
+            "beats": [
+              "$SA = 4\\pi r^2$.",
+              "That's four times the area of a circle with radius $r$.",
+              "Radius $3$: $4\\pi(9) = 36\\pi$.",
+              "Surface area **squares** the radius; volume cubes it."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Sphere surface area",
+            "intro": "4πr².",
+            "examples": [
+              {
+                "prompt": "Radius $3$. Surface area?",
+                "steps": [
+                  "$4\\pi(3)^2 = 4\\pi(9)$.",
+                  "$= 36\\pi$."
+                ],
+                "answer": "$36\\pi$",
+                "check": [
+                  "4*pi*3**2 == 36*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $5$. Surface area?",
+                "steps": [
+                  "$4\\pi(25)$.",
+                  "$= 100\\pi$."
+                ],
+                "answer": "$100\\pi$",
+                "check": [
+                  "4*pi*5**2 == 100*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Surface area & hemisphere",
+            "intro": "4πr²; half a sphere is ⅔πr³.",
+            "problems": [
+              {
+                "prompt": "Radius $2$. Surface area?",
+                "options": [
+                  "$16\\pi$",
+                  "$8\\pi$",
+                  "$4\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4\\pi(4) = 16\\pi$.",
+                "check": [
+                  "4*pi*2**2 == 16*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $6$. Surface area?",
+                "options": [
+                  "$144\\pi$",
+                  "$288\\pi$",
+                  "$36\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4\\pi(36) = 144\\pi$.",
+                "check": [
+                  "4*pi*6**2 == 144*pi"
+                ]
+              },
+              {
+                "prompt": "A hemisphere (half a sphere) of radius $3$ has volume —",
+                "options": [
+                  "$18\\pi$",
+                  "$36\\pi$",
+                  "$12\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(36\\pi) = 18\\pi$.",
+                "check": [
+                  "4*pi*3**3/3/2 == 18*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why bubbles are round",
+            "body": "A soap bubble holds a fixed volume of air with the least possible surface, and the sphere is the unique shape that wins that contest — the most volume for the least surface area. Surface tension pulls every bubble toward that minimum, which is why free-floating bubbles are always spheres."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Sphere volume",
+            "prompt": "A sphere has radius $3$. What is its volume (in terms of π)?",
+            "options": [
+              "$36\\pi$",
+              "$27\\pi$",
+              "$12\\pi$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$V = \\tfrac43\\pi(3)^3 = \\tfrac43\\pi(27) = 36\\pi$.",
+            "check": [
+              "4*pi*3**3/3 == 36*pi"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Sphere volume** $= \\tfrac43 \\pi r^3$ — the radius is **cubed**.",
+              "**Surface area** $= 4\\pi r^2$ — four flat circles' worth.",
+              "A **hemisphere** is half a sphere: $\\tfrac23 \\pi r^3$."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's find sphere volumes and surface areas in terms of π."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Radius $3$. Volume?",
+                "options": [
+                  "$36\\pi$",
+                  "$27\\pi$",
+                  "$9\\pi$",
+                  "$108\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac43\\pi(27) = 36\\pi$.",
+                "check": [
+                  "4*pi*3**3/3 == 36*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $3$. Surface area?",
+                "options": [
+                  "$36\\pi$",
+                  "$12\\pi$",
+                  "$9\\pi$",
+                  "$18\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4\\pi(9) = 36\\pi$.",
+                "check": [
+                  "4*pi*3**2 == 36*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $6$. Volume?",
+                "options": [
+                  "$288\\pi$",
+                  "$144\\pi$",
+                  "$216\\pi$",
+                  "$72\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac43\\pi(216) = 288\\pi$.",
+                "check": [
+                  "4*pi*6**3/3 == 288*pi"
+                ]
+              },
+              {
+                "prompt": "Radius $6$. Surface area?",
+                "options": [
+                  "$144\\pi$",
+                  "$288\\pi$",
+                  "$36\\pi$",
+                  "$72\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4\\pi(36) = 144\\pi$.",
+                "check": [
+                  "4*pi*6**2 == 144*pi"
+                ]
+              },
+              {
+                "prompt": "Sphere volume $= $ —",
+                "options": [
+                  "$\\tfrac43\\pi r^3$",
+                  "$4\\pi r^2$",
+                  "$\\pi r^2 h$",
+                  "$\\tfrac13\\pi r^2 h$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Radius cubed.",
+                "check": [
+                  "4*pi*3**3/3 == 36*pi"
+                ]
+              },
+              {
+                "prompt": "Hemisphere, radius $6$. Volume?",
+                "options": [
+                  "$144\\pi$",
+                  "$288\\pi$",
+                  "$72\\pi$",
+                  "$216\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac12(288\\pi) = 144\\pi$.",
+                "check": [
+                  "4*pi*6**3/3/2 == 144*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Spheres\"",
+            "body": "You can fill and wrap a sphere. Next: composite solids — combining everything you've learned."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "composite-solids",
+      "title": "Composite Solids & Applications",
+      "concreteComparison": "An ice-cream cone topped with a scoop, a silo that is a cylinder capped by a dome, a pencil (cylinder + cone) — real objects are built from simple solids joined together. To find the total volume, break the object into pieces, find each piece, and add (or subtract for a hollow).",
+      "objective": "Find the volume and surface area of composite solids by decomposing them into prisms, cylinders, pyramids, cones, and spheres.",
+      "concept": [
+        "A **composite solid** is made of two or more simple solids joined together.",
+        "**Volume of a composite** = add the volumes of the pieces. For a **hollow** (a hole or a scoop removed), **subtract** the missing piece.",
+        "**Surface area of a composite** is trickier: only count the faces on the **outside**. Where two pieces join, those faces are hidden and don't count.",
+        "The method never changes: **identify each piece, apply its formula, then combine.** Every formula from this unit is a tool you now have."
+      ],
+      "keyIdea": "Break a composite solid into simple pieces, find each volume, and add — or subtract a removed piece. For surface area, count only the outside faces.",
+      "facts": [
+        {
+          "title": "Combine",
+          "latex": "$V = V_1 + V_2$",
+          "explanation": "Add the pieces (subtract a hollow)."
+        },
+        {
+          "title": "Cylinder + hemisphere",
+          "latex": "$\\pi r^2 h + \\tfrac23\\pi r^3$",
+          "explanation": "A dome-capped tank."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cs-we1",
+          "statement": "A silo is a cylinder of radius $3$ and height $10$ topped by a hemisphere of radius $3$. Find the total volume (in terms of π).",
+          "solution": "Cylinder $= \\pi(9)(10) = 90\\pi$. Hemisphere $= \\tfrac23\\pi(27) = 18\\pi$. Total $= 90\\pi + 18\\pi = 108\\pi$.",
+          "check": [
+            "pi*3**2*10 + 4*pi*3**3/3/2 == 108*pi"
+          ]
+        },
+        {
+          "id": "cs-we2",
+          "statement": "A block is a $5 \\times 4 \\times 6$ box with a $2 \\times 4 \\times 6$ rectangular notch cut out. Find the remaining volume.",
+          "solution": "Box $= 5\\cdot4\\cdot6 = 120$. Notch $= 2\\cdot4\\cdot6 = 48$. Remaining $= 120 - 48 = 72$.",
+          "check": [
+            "5*4*6 - 2*4*6 == 72"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Counting a hidden face where two solids join.",
+          "correction": "For **surface area**, drop the faces that touch inside; only the **outside** is exposed.",
+          "authored": true
+        },
+        {
+          "text": "Adding when you should subtract.",
+          "correction": "A **hole or scoop removed** means **subtract** that piece's volume from the whole.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cs-t1",
+          "statement": "A cylinder (r $2$, h $5$) topped by a cone (r $2$, h $3$). Total volume?",
+          "solution": "$\\pi(4)(5) + \\tfrac13\\pi(4)(3) = 20\\pi + 4\\pi = 24\\pi$.",
+          "check": [
+            "pi*2**2*5 + pi*2**2*3/3 == 24*pi"
+          ]
+        },
+        {
+          "id": "cs-t2",
+          "statement": "A $4 \\times 4 \\times 4$ cube with a $2 \\times 2 \\times 4$ hole drilled through. Remaining volume?",
+          "solution": "$64 - 16 = 48$.",
+          "check": [
+            "4**3 - 2*2*4 == 48"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Solids made of solids",
+            "beats": [
+              "A **composite solid** is built from simple pieces joined together.",
+              "A silo = cylinder + dome; a pencil = cylinder + cone.",
+              "**Volume**: find each piece, then **add** (subtract a hollow).",
+              "The formulas are all ones you already know."
+            ]
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "Concept A",
+            "title": "Piece 1: the cylinder",
+            "teach": "Picture a grain silo: a cylinder with a dome on top. First the cylinder — radius $3$, height $10$: $V = \\pi(9)(10) = 90\\pi$. We'll add the dome next.",
+            "config": {
+              "solid": "cylinder",
+              "r": 3,
+              "h": 10
+            }
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "Concept B",
+            "title": "Piece 2: the dome",
+            "teach": "The dome is a **hemisphere** of radius $3$ — half a sphere: $\\tfrac12 \\cdot \\tfrac43\\pi(27) = 18\\pi$. Add it to the cylinder: $90\\pi + 18\\pi = 108\\pi$ total.",
+            "config": {
+              "solid": "sphere",
+              "r": 3
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Add the pieces",
+            "title": "Decompose, compute, combine",
+            "beats": [
+              "Cylinder: $\\pi(9)(10) = 90\\pi$.",
+              "Hemisphere: $\\tfrac23\\pi(27) = 18\\pi$.",
+              "Total volume $= 90\\pi + 18\\pi = 108\\pi$.",
+              "Identify each piece, apply its formula, add."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Adding volumes",
+            "intro": "Find each piece, then add.",
+            "examples": [
+              {
+                "prompt": "Cylinder (r $3$, h $10$) + hemisphere (r $3$). Total?",
+                "steps": [
+                  "$90\\pi + 18\\pi$.",
+                  "$= 108\\pi$."
+                ],
+                "answer": "$108\\pi$",
+                "check": [
+                  "pi*3**2*10 + 4*pi*3**3/3/2 == 108*pi"
+                ]
+              },
+              {
+                "prompt": "Cylinder (r $2$, h $5$) + cone (r $2$, h $3$) on top. Total?",
+                "steps": [
+                  "$20\\pi + \\tfrac13\\pi(4)(3) = 20\\pi + 4\\pi$.",
+                  "$= 24\\pi$."
+                ],
+                "answer": "$24\\pi$",
+                "check": [
+                  "pi*2**2*5 + pi*2**2*3/3 == 24*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Adding practice",
+            "intro": "Combine the pieces.",
+            "problems": [
+              {
+                "prompt": "Cube (side $4$) + square pyramid (base $4$, height $3$) on top. Total?",
+                "options": [
+                  "$80$",
+                  "$64$",
+                  "$16$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$64 + \\tfrac13(16)(3) = 64 + 16 = 80$.",
+                "check": [
+                  "4**3 + 4**2*3/3 == 80"
+                ]
+              },
+              {
+                "prompt": "Cylinder (r $1$, h $4$) + hemisphere (r $1$). Total?",
+                "options": [
+                  "$\\tfrac{14}{3}\\pi$",
+                  "$4\\pi$",
+                  "$6\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4\\pi + \\tfrac23\\pi = \\tfrac{14}{3}\\pi$.",
+                "check": [
+                  "pi*1**2*4 + 4*pi*1**3/3/2 == 14*pi/3"
+                ]
+              },
+              {
+                "prompt": "To combine two joined solids' volumes you —",
+                "options": [
+                  "add them",
+                  "multiply them",
+                  "subtract them"
+                ],
+                "correctIndex": 0,
+                "explanation": "Add the pieces (subtract only a hollow).",
+                "check": [
+                  "90+18 == 108"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Subtracting a hollow",
+            "title": "Holes and scoops",
+            "beats": [
+              "When a piece is **removed**, subtract its volume.",
+              "A box with a hole drilled through: box $-$ hole.",
+              "$5\\times4\\times6 = 120$, notch $2\\times4\\times6 = 48$, left $= 72$.",
+              "Same idea, opposite sign."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Subtracting a hollow",
+            "intro": "Whole minus the removed piece.",
+            "examples": [
+              {
+                "prompt": "$5 \\times 4 \\times 6$ box with a $2 \\times 4 \\times 6$ notch removed. Remaining?",
+                "steps": [
+                  "$120 - 48$.",
+                  "$= 72$."
+                ],
+                "answer": "$72$",
+                "check": [
+                  "5*4*6 - 2*4*6 == 72"
+                ]
+              },
+              {
+                "prompt": "Cube side $4$ with a $2 \\times 2 \\times 4$ hole drilled through. Remaining?",
+                "steps": [
+                  "$64 - 16$.",
+                  "$= 48$."
+                ],
+                "answer": "$48$",
+                "check": [
+                  "4**3 - 2*2*4 == 48"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Subtracting practice",
+            "intro": "Whole minus hole.",
+            "problems": [
+              {
+                "prompt": "$6 \\times 6 \\times 6$ cube with a $6 \\times 2 \\times 2$ hole. Remaining?",
+                "options": [
+                  "$192$",
+                  "$216$",
+                  "$24$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$216 - 24 = 192$.",
+                "check": [
+                  "6**3 - 6*2*2 == 192"
+                ]
+              },
+              {
+                "prompt": "A $10 \\times 10 \\times 2$ slab with a $4 \\times 4 \\times 2$ square hole. Remaining?",
+                "options": [
+                  "$168$",
+                  "$200$",
+                  "$32$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$200 - 32 = 168$.",
+                "check": [
+                  "10*10*2 - 4*4*2 == 168"
+                ]
+              },
+              {
+                "prompt": "For a scoop removed from a solid, you — its volume.",
+                "options": [
+                  "subtract",
+                  "add",
+                  "double"
+                ],
+                "correctIndex": 0,
+                "explanation": "Remove = subtract.",
+                "check": [
+                  "120-48 == 72"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The surface-area catch",
+            "body": "When you glue two solids together, the faces where they touch vanish from the OUTSIDE — so a composite's surface area is less than the sum of its parts. That's why engineers designing a fuel tank (cylinder + two hemispheres) never just add the whole formulas: the flat circle ends where the caps meet the tube are hidden and don't count."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Composite volume",
+            "prompt": "A cylinder (radius $2$, height $6$) is topped by a cone (radius $2$, height $9$). What is the total volume (in terms of π)?",
+            "options": [
+              "$36\\pi$",
+              "$24\\pi$",
+              "$60\\pi$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Cylinder $= \\pi(4)(6) = 24\\pi$; cone $= \\tfrac13\\pi(4)(9) = 12\\pi$; total $= 24\\pi + 12\\pi = 36\\pi$.",
+            "check": [
+              "pi*2**2*6 + pi*2**2*9/3 == 36*pi"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **composite solid** breaks into simple pieces — find each, then combine.",
+              "**Add** joined pieces; **subtract** a hole or scoop that's removed.",
+              "For **surface area**, count only the faces on the outside."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's decompose composite solids and combine the pieces."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Cylinder (r $3$, h $10$) + hemisphere (r $3$). Volume?",
+                "options": [
+                  "$108\\pi$",
+                  "$90\\pi$",
+                  "$126\\pi$",
+                  "$18\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$90\\pi + 18\\pi = 108\\pi$.",
+                "check": [
+                  "pi*3**2*10 + 4*pi*3**3/3/2 == 108*pi"
+                ]
+              },
+              {
+                "prompt": "Cube side $4$ + square pyramid (base $4$, height $3$). Volume?",
+                "options": [
+                  "$80$",
+                  "$64$",
+                  "$96$",
+                  "$16$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$64 + 16 = 80$.",
+                "check": [
+                  "4**3 + 4**2*3/3 == 80"
+                ]
+              },
+              {
+                "prompt": "$5 \\times 4 \\times 6$ box with a $2 \\times 4 \\times 6$ notch removed. Remaining?",
+                "options": [
+                  "$72$",
+                  "$120$",
+                  "$48$",
+                  "$168$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$120 - 48 = 72$.",
+                "check": [
+                  "5*4*6 - 2*4*6 == 72"
+                ]
+              },
+              {
+                "prompt": "Cylinder (r $2$, h $5$) + cone (r $2$, h $3$). Volume?",
+                "options": [
+                  "$24\\pi$",
+                  "$20\\pi$",
+                  "$28\\pi$",
+                  "$4\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$20\\pi + 4\\pi = 24\\pi$.",
+                "check": [
+                  "pi*2**2*5 + pi*2**2*3/3 == 24*pi"
+                ]
+              },
+              {
+                "prompt": "When two solids are joined, the touching faces are —",
+                "options": [
+                  "hidden",
+                  "doubled",
+                  "the biggest",
+                  "counted twice"
+                ],
+                "correctIndex": 0,
+                "explanation": "Inside, so not part of the surface.",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Cube side $4$ with a $2 \\times 2 \\times 4$ hole drilled through. Remaining?",
+                "options": [
+                  "$48$",
+                  "$64$",
+                  "$16$",
+                  "$56$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$64 - 16 = 48$.",
+                "check": [
+                  "4**3 - 2*2*4 == 48"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Surface Area & Volume\"",
+            "body": "You can now fill and wrap prisms, cylinders, pyramids, cones, spheres — and any solid built from them. That completes 3-D measurement. Next unit: Transformations."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [],
+  "testYourself": []
+}

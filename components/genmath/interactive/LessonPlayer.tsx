@@ -79,6 +79,8 @@ import ArcSector from "@/components/genmath/interactive/ArcSector";
 import AreaShape from "@/components/genmath/interactive/AreaShape";
 import ApothemPolygon from "@/components/genmath/interactive/ApothemPolygon";
 import CompositeArea from "@/components/genmath/interactive/CompositeArea";
+import Solid3D from "@/components/genmath/interactive/Solid3D";
+import SolidNet from "@/components/genmath/interactive/SolidNet";
 import RatioFigure from "@/components/genmath/interactive/RatioFigure";
 import NotationToggle from "@/components/genmath/interactive/NotationToggle";
 import { type GenMathLesson } from "@/lib/genmath-lessons";
@@ -948,6 +950,26 @@ function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveSt
         <>
           <StepHeader eyebrow={step.eyebrow} title={step.title} />
           <CompositeArea config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "solid3d":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <Solid3D config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "solidNet":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <SolidNet config={step.config} />
           <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
             <MathText text={step.teach} />
           </p>
