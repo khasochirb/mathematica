@@ -1,0 +1,2666 @@
+{
+  "slug": "coordinate-geometry",
+  "title": "Coordinate Geometry",
+  "unit": 13,
+  "status": "published",
+  "blurb": "Distance, midpoint, and slope; equations of lines and circles; proofs with coordinates — the course capstone.",
+  "buildsOn": "Everything — the Pythagorean theorem (Unit 8), similarity (Unit 7), rotations (Unit 12), circles (Unit 9), and two-column proof (Unit 2), on the Grade-6 coordinate plane.",
+  "lessons": [
+    {
+      "slug": "distance-formula",
+      "title": "The Distance Formula",
+      "concreteComparison": "Two campsites sit at $(-2, -1)$ and $(6, 5)$ on a map marked in kilometers. How far apart are they as the crow flies? Draw a right triangle under the segment and the answer is just the **Pythagorean theorem** (Unit 8): they are exactly $10$ km apart.",
+      "objective": "Find the exact straight-line distance between two points with $d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$, and see it is the Pythagorean theorem applied to the horizontal and vertical gaps.",
+      "concept": [
+        "Any two points define a **right triangle**: the horizontal gap $|x_2-x_1|$ is one leg, the vertical gap $|y_2-y_1|$ is the other, and the straight-line distance is the **hypotenuse**.",
+        "So the distance formula is just $a^2 + b^2 = c^2$ solved for $c$: $d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$ — no new idea, only new notation.",
+        "The three-step machine: **subtract** to get each leg, **square** each leg, then **add and take the square root**. Squaring erases signs, so the subtraction order never changes the answer, and distance is always positive.",
+        "Horizontal and vertical segments are the easy cases: if the $y$'s match, $d = |x_2-x_1|$; if the $x$'s match, $d = |y_2-y_1|$ — no square root needed."
+      ],
+      "keyIdea": "Distance IS the hypotenuse of the right triangle whose legs are the horizontal and vertical gaps: d = √((x₂−x₁)² + (y₂−y₁)²) — the Pythagorean theorem solved for c.",
+      "facts": [
+        {
+          "title": "Distance formula",
+          "latex": "$d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$",
+          "explanation": "Hypotenuse of the leg triangle."
+        },
+        {
+          "title": "It's Pythagoras",
+          "latex": "$a^2 + b^2 = c^2$",
+          "explanation": "Legs = the coordinate gaps."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "di-we1",
+          "statement": "Find the distance from $(0, 0)$ to $(3, 4)$.",
+          "solution": "Legs $3$ and $4$: $d = \\sqrt{3^2 + 4^2} = \\sqrt{9+16} = \\sqrt{25} = 5$.",
+          "check": [
+            "sqrt((3-0)**2 + (4-0)**2) == 5"
+          ]
+        },
+        {
+          "id": "di-we2",
+          "statement": "Find the distance from $(-2, -1)$ to $(6, 5)$.",
+          "solution": "Legs $6-(-2)=8$ and $5-(-1)=6$: $d = \\sqrt{8^2 + 6^2} = \\sqrt{64+36} = \\sqrt{100} = 10$.",
+          "check": [
+            "sqrt((6-(-2))**2 + (5-(-1))**2) == 10"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding the legs instead of squaring first.",
+          "correction": "$3 + 4 = 7$ is wrong. Square, add, then root: $\\sqrt{9+16} = 5$. The distance is **less** than the leg sum.",
+          "authored": true
+        },
+        {
+          "text": "Stopping at the sum of squares.",
+          "correction": "$9 + 16 = 25$ is $d^2$, not $d$. Take the square root: $d = 5$.",
+          "authored": true
+        },
+        {
+          "text": "Sign slips on negative coordinates.",
+          "correction": "$6 - (-2) = 8$, not $4$ — subtracting a negative **adds**.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "di-t1",
+          "statement": "Distance from $(1, 2)$ to $(13, 7)$?",
+          "solution": "Legs $12$ and $5$: $\\sqrt{144+25} = \\sqrt{169} = 13$.",
+          "check": [
+            "sqrt((13-1)**2 + (7-2)**2) == 13"
+          ]
+        },
+        {
+          "id": "di-t2",
+          "statement": "Distance from $(2, 3)$ to $(2, 10)$?",
+          "solution": "Same $x$, so $d = |10-3| = 7$.",
+          "check": [
+            "sqrt((2-2)**2 + (10-3)**2) == 7"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Distance is a hypotenuse",
+            "beats": [
+              "Between any two points, draw a **horizontal** leg and a **vertical** leg.",
+              "They meet at a right angle — a **right triangle**.",
+              "The straight-line distance is the **hypotenuse**.",
+              "So we can find it with the Pythagorean theorem from Unit 8."
+            ]
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "Concept A",
+            "title": "The 3-4-5 triangle",
+            "teach": "Here are $(0, 0)$ and $(3, 4)$. Tap **Show the distance** to reveal the legs ($3$ and $4$) and the hypotenuse. It's the classic $3$-$4$-$5$ right triangle: $d = \\sqrt{3^2+4^2} = 5$.",
+            "config": {
+              "mode": "distance",
+              "a": {
+                "x": 0,
+                "y": 0
+              },
+              "b": {
+                "x": 3,
+                "y": 4
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The formula",
+            "title": "Subtract, square, add, root",
+            "beats": [
+              "Legs come from **subtracting**: $|x_2-x_1|$ and $|y_2-y_1|$.",
+              "$d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$.",
+              "$(0,0)$ to $(3,4)$: $\\sqrt{9 + 16} = \\sqrt{25} = 5$.",
+              "Squaring erases signs, so order never matters."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Finding distance",
+            "intro": "Subtract → square → add → root.",
+            "examples": [
+              {
+                "prompt": "$(0,0)$ to $(3,4)$?",
+                "steps": [
+                  "Legs $3$, $4$: $\\sqrt{9+16}$.",
+                  "$= \\sqrt{25} = 5$."
+                ],
+                "answer": "$5$",
+                "check": [
+                  "sqrt((3-0)**2 + (4-0)**2) == 5"
+                ]
+              },
+              {
+                "prompt": "$(1,2)$ to $(13,7)$?",
+                "steps": [
+                  "Legs $12$, $5$: $\\sqrt{144+25}$.",
+                  "$= \\sqrt{169} = 13$."
+                ],
+                "answer": "$13$",
+                "check": [
+                  "sqrt((13-1)**2 + (7-2)**2) == 13"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Distance practice",
+            "intro": "d = √(leg² + leg²).",
+            "problems": [
+              {
+                "prompt": "$(0,0)$ to $(6,8)$?",
+                "options": [
+                  "$10$",
+                  "$14$",
+                  "$100$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{36+64} = \\sqrt{100} = 10$. ($14$ adds the legs; $100$ forgets the root.)",
+                "check": [
+                  "sqrt(6**2 + 8**2) == 10"
+                ]
+              },
+              {
+                "prompt": "$(0,0)$ to $(5,12)$?",
+                "options": [
+                  "$13$",
+                  "$17$",
+                  "$169$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{25+144} = \\sqrt{169} = 13$.",
+                "check": [
+                  "sqrt(5**2 + 12**2) == 13"
+                ]
+              },
+              {
+                "prompt": "In $d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$, the two gaps are the — of a right triangle.",
+                "options": [
+                  "legs",
+                  "hypotenuses",
+                  "angles"
+                ],
+                "correctIndex": 0,
+                "explanation": "Distance is the hypotenuse; the gaps are the legs.",
+                "check": [
+                  "3**2 + 4**2 == 25"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "Concept B",
+            "title": "Off the origin, with negatives",
+            "teach": "Now $(-2, -1)$ and $(6, 5)$ — the campsites. Tap to reveal. The legs are $6-(-2)=8$ and $5-(-1)=6$, so $d = \\sqrt{64+36} = \\sqrt{100} = 10$ km. Subtracting a negative adds.",
+            "config": {
+              "mode": "distance",
+              "a": {
+                "x": -2,
+                "y": -1
+              },
+              "b": {
+                "x": 6,
+                "y": 5
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Watch the negatives",
+            "title": "Subtracting a negative adds",
+            "beats": [
+              "$(-2,-1)$ to $(6,5)$: horizontal gap $6-(-2) = 8$.",
+              "Vertical gap $5-(-1) = 6$.",
+              "$d = \\sqrt{8^2 + 6^2} = \\sqrt{100} = 10$.",
+              "A common slip is $6-(-2) = 4$ — it's $8$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Negatives and vertical",
+            "intro": "Careful with the signs.",
+            "examples": [
+              {
+                "prompt": "$(-2,-1)$ to $(6,5)$?",
+                "steps": [
+                  "Legs $8$, $6$: $\\sqrt{64+36}$.",
+                  "$= \\sqrt{100} = 10$."
+                ],
+                "answer": "$10$",
+                "check": [
+                  "sqrt((6-(-2))**2 + (5-(-1))**2) == 10"
+                ]
+              },
+              {
+                "prompt": "$(2,3)$ to $(2,10)$ (same $x$)?",
+                "steps": [
+                  "Vertical only: $|10-3|$.",
+                  "$= 7$, no root needed."
+                ],
+                "answer": "$7$",
+                "check": [
+                  "sqrt((2-2)**2 + (10-3)**2) == 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "More distance",
+            "intro": "Mind the signs.",
+            "problems": [
+              {
+                "prompt": "$(1,2)$ to $(9,17)$?",
+                "options": [
+                  "$17$",
+                  "$23$",
+                  "$289$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Legs $8$, $15$: $\\sqrt{64+225} = \\sqrt{289} = 17$.",
+                "check": [
+                  "sqrt((9-1)**2 + (17-2)**2) == 17"
+                ]
+              },
+              {
+                "prompt": "$(-3,0)$ to $(0,4)$?",
+                "options": [
+                  "$5$",
+                  "$7$",
+                  "$1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Legs $3$, $4$: $\\sqrt{9+16} = 5$.",
+                "check": [
+                  "sqrt((0-(-3))**2 + (4-0)**2) == 5"
+                ]
+              },
+              {
+                "prompt": "$(-1,2)$ to $(-1,9)$?",
+                "options": [
+                  "$7$",
+                  "$8$",
+                  "$11$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same $x$: $|9-2| = 7$.",
+                "check": [
+                  "sqrt((-1-(-1))**2 + (9-2)**2) == 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Presidents and the world's most-proven theorem",
+            "body": "The distance formula is the Pythagorean theorem in disguise — and that theorem is the most-proven fact in all of mathematics, with over 350 published proofs. One was found in 1876 by James Garfield, a U.S. Congressman who became President five years later. Every time your phone shows how far you are from a place, it runs this 2,500-year-old idea."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Find the distance",
+            "prompt": "What is the distance from $(0, 0)$ to $(8, 15)$?",
+            "options": [
+              "$17$",
+              "$23$",
+              "$289$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\sqrt{8^2 + 15^2} = \\sqrt{64+225} = \\sqrt{289} = 17$. ($23$ adds the legs; $289$ forgets the root.)",
+            "check": [
+              "sqrt(8**2 + 15**2) == 17"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Distance** $= \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$ — the hypotenuse of the leg triangle.",
+              "**Subtract, square, add, root.** Squaring erases signs, so order never matters.",
+              "Same $x$ or same $y$? The distance is just one absolute difference — no root."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's find straight-line distances between points."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$(0,0)$ to $(3,4)$?",
+                "options": [
+                  "$5$",
+                  "$7$",
+                  "$25$",
+                  "$1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{9+16} = 5$.",
+                "check": [
+                  "sqrt(3**2 + 4**2) == 5"
+                ]
+              },
+              {
+                "prompt": "$(1,2)$ to $(13,7)$?",
+                "options": [
+                  "$13$",
+                  "$17$",
+                  "$169$",
+                  "$7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Legs $12$, $5$: $\\sqrt{169} = 13$.",
+                "check": [
+                  "sqrt((13-1)**2 + (7-2)**2) == 13"
+                ]
+              },
+              {
+                "prompt": "$(-2,-1)$ to $(6,5)$?",
+                "options": [
+                  "$10$",
+                  "$14$",
+                  "$100$",
+                  "$4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Legs $8$, $6$: $\\sqrt{100} = 10$.",
+                "check": [
+                  "sqrt((6-(-2))**2 + (5-(-1))**2) == 10"
+                ]
+              },
+              {
+                "prompt": "$(2,3)$ to $(2,10)$?",
+                "options": [
+                  "$7$",
+                  "$13$",
+                  "$49$",
+                  "$5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same $x$: $|10-3| = 7$.",
+                "check": [
+                  "sqrt((2-2)**2 + (10-3)**2) == 7"
+                ]
+              },
+              {
+                "prompt": "The distance formula comes from —",
+                "options": [
+                  "the Pythagorean theorem",
+                  "the midpoint formula",
+                  "the slope formula",
+                  "the area formula"
+                ],
+                "correctIndex": 0,
+                "explanation": "$a^2+b^2=c^2$ solved for $c$.",
+                "check": [
+                  "3**2+4**2 == 5**2"
+                ]
+              },
+              {
+                "prompt": "$(0,0)$ to $(9,12)$?",
+                "options": [
+                  "$15$",
+                  "$21$",
+                  "$225$",
+                  "$11$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Legs $9$, $12$: $\\sqrt{81+144} = \\sqrt{225} = 15$.",
+                "check": [
+                  "sqrt(9**2 + 12**2) == 15"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"The Distance Formula\"",
+            "body": "You can measure any segment on the plane. Next: the midpoint — the exact center of a segment."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "midpoint-formula",
+      "title": "The Midpoint Formula",
+      "concreteComparison": "Two friends live at $(2, 3)$ and $(8, 7)$ and want to meet exactly halfway. The fair spot is the **midpoint** — the average of their positions: $(5, 5)$. Where distance **subtracts** the coordinates, the midpoint **adds** and halves them.",
+      "objective": "Find the midpoint of a segment by averaging the endpoints, $M = \\left(\\tfrac{x_1+x_2}{2}, \\tfrac{y_1+y_2}{2}\\right)$, and run it backward to recover a missing endpoint.",
+      "concept": [
+        "The **midpoint** is the balance point of a segment, and the balance point of two numbers is their **average**: $M = \\left(\\tfrac{x_1+x_2}{2},\\ \\tfrac{y_1+y_2}{2}\\right)$.",
+        "**Add** the coordinates and **halve** — the opposite first move from the distance formula, which subtracts. Handle $x$ and $y$ separately.",
+        "A midpoint can land on a clean half like $\\tfrac{5}{2} = 2.5$. That is exact and correct, not an error.",
+        "Run it **backward**: if you know the midpoint $M$ and one endpoint $A$, the other endpoint is $B = (2M_x - A_x,\\ 2M_y - A_y)$ — the far end is twice as far as the middle."
+      ],
+      "keyIdea": "The midpoint is the average of the endpoints: add the x's and halve, add the y's and halve, each coordinate on its own. It ADDS where distance SUBTRACTS.",
+      "facts": [
+        {
+          "title": "Midpoint formula",
+          "latex": "$M = \\left(\\tfrac{x_1+x_2}{2},\\ \\tfrac{y_1+y_2}{2}\\right)$",
+          "explanation": "Average each coordinate."
+        },
+        {
+          "title": "Run it backward",
+          "latex": "$B = 2M - A$",
+          "explanation": "Recover a missing endpoint."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "mi-we1",
+          "statement": "Find the midpoint of $(2, 3)$ and $(8, 7)$.",
+          "solution": "$\\left(\\tfrac{2+8}{2},\\ \\tfrac{3+7}{2}\\right) = (5, 5)$.",
+          "check": [
+            "(2+8)/2 == 5",
+            "(3+7)/2 == 5"
+          ]
+        },
+        {
+          "id": "mi-we2",
+          "statement": "$A(2,3)$ and midpoint $M(5,5)$ are known. Find endpoint $B$.",
+          "solution": "$B = (2\\cdot5 - 2,\\ 2\\cdot5 - 3) = (8, 7)$.",
+          "check": [
+            "2*5-2 == 8",
+            "2*5-3 == 7"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Subtracting instead of adding.",
+          "correction": "The midpoint **adds**: $\\tfrac{2+8}{2} = 5$. Subtracting (the distance move) gives the wrong $(3, 2)$.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting to divide by 2.",
+          "correction": "$(2+8, 3+7) = (10, 10)$ is the sum, not the midpoint. **Halve** it: $(5, 5)$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "mi-t1",
+          "statement": "Midpoint of $(-4, 1)$ and $(6, 9)$?",
+          "solution": "$\\left(\\tfrac{-4+6}{2}, \\tfrac{1+9}{2}\\right) = (1, 5)$.",
+          "check": [
+            "(-4+6)/2 == 1",
+            "(1+9)/2 == 5"
+          ]
+        },
+        {
+          "id": "mi-t2",
+          "statement": "Midpoint of $(1, 2)$ and $(4, 6)$?",
+          "solution": "$\\left(\\tfrac{5}{2}, 4\\right) = (2.5, 4)$.",
+          "check": [
+            "(1+4)/2 == Rational(5,2)",
+            "(2+6)/2 == 4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "The exact center",
+            "beats": [
+              "The **midpoint** is the point exactly halfway along a segment.",
+              "Halfway between two numbers is their **average**.",
+              "So average the $x$'s and average the $y$'s.",
+              "Distance subtracts; the midpoint **adds** and halves."
+            ]
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "Concept A",
+            "title": "Average the endpoints",
+            "teach": "Here are $(2, 3)$ and $(8, 7)$. Tap **Show the midpoint** to mark $M$. It sits at the average: $\\left(\\tfrac{2+8}{2}, \\tfrac{3+7}{2}\\right) = (5, 5)$, splitting the segment into two equal halves.",
+            "config": {
+              "mode": "midpoint",
+              "a": {
+                "x": 2,
+                "y": 3
+              },
+              "b": {
+                "x": 8,
+                "y": 7
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The formula",
+            "title": "Add and halve",
+            "beats": [
+              "$M = \\left(\\tfrac{x_1+x_2}{2},\\ \\tfrac{y_1+y_2}{2}\\right)$.",
+              "Add the two $x$'s, halve; add the two $y$'s, halve.",
+              "$(2,3)$ & $(8,7)$: $\\left(\\tfrac{10}{2}, \\tfrac{10}{2}\\right) = (5, 5)$.",
+              "Each coordinate is handled on its own."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Finding the midpoint",
+            "intro": "Average each coordinate.",
+            "examples": [
+              {
+                "prompt": "$(2,3)$ & $(8,7)$?",
+                "steps": [
+                  "$\\left(\\tfrac{2+8}{2}, \\tfrac{3+7}{2}\\right)$.",
+                  "$= (5, 5)$."
+                ],
+                "answer": "$(5, 5)$",
+                "check": [
+                  "(2+8)/2 == 5",
+                  "(3+7)/2 == 5"
+                ]
+              },
+              {
+                "prompt": "$(-5,-2)$ & $(5,8)$?",
+                "steps": [
+                  "$\\left(\\tfrac{-5+5}{2}, \\tfrac{-2+8}{2}\\right)$.",
+                  "$= (0, 3)$."
+                ],
+                "answer": "$(0, 3)$",
+                "check": [
+                  "(-5+5)/2 == 0",
+                  "(-2+8)/2 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Midpoint practice",
+            "intro": "Add the pair, halve.",
+            "problems": [
+              {
+                "prompt": "$(-4,1)$ & $(6,9)$?",
+                "options": [
+                  "$(1, 5)$",
+                  "$(-5, 4)$",
+                  "$(2, 10)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\left(\\tfrac{2}{2}, \\tfrac{10}{2}\\right) = (1, 5)$.",
+                "check": [
+                  "(-4+6)/2 == 1",
+                  "(1+9)/2 == 5"
+                ]
+              },
+              {
+                "prompt": "$(0,0)$ & $(10,6)$?",
+                "options": [
+                  "$(5, 3)$",
+                  "$(10, 6)$",
+                  "$(5, 6)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(5, 3)$. ($(10,6)$ forgot to halve.)",
+                "check": [
+                  "(0+10)/2 == 5",
+                  "(0+6)/2 == 3"
+                ]
+              },
+              {
+                "prompt": "The midpoint formula — the coordinates.",
+                "options": [
+                  "adds",
+                  "subtracts",
+                  "multiplies"
+                ],
+                "correctIndex": 0,
+                "explanation": "Add and halve — the opposite of distance.",
+                "check": [
+                  "(2+8)/2 == 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "Concept B",
+            "title": "A clean-half midpoint",
+            "teach": "The midpoint of $(1, 2)$ and $(4, 6)$ is $\\left(\\tfrac{5}{2}, 4\\right) = (2.5, 4)$. A half-coordinate like $2.5$ is exact and correct — not every midpoint lands on a grid corner.",
+            "config": {
+              "mode": "midpoint",
+              "a": {
+                "x": 1,
+                "y": 2
+              },
+              "b": {
+                "x": 4,
+                "y": 6
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Run it backward",
+            "title": "From midpoint to endpoint",
+            "beats": [
+              "Know the midpoint $M$ and one endpoint $A$? Find the other.",
+              "The far end is twice as far: $B = (2M_x - A_x,\\ 2M_y - A_y)$.",
+              "$A(2,3)$, $M(5,5)$: $B = (10-2,\\ 10-3) = (8, 7)$.",
+              "Check: $\\tfrac{2+8}{2} = 5$, $\\tfrac{3+7}{2} = 5$. ✓"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Working backward",
+            "intro": "B = 2M − A.",
+            "examples": [
+              {
+                "prompt": "$A(2,3)$, midpoint $M(5,5)$. Find $B$.",
+                "steps": [
+                  "$B = (2\\cdot5 - 2,\\ 2\\cdot5 - 3)$.",
+                  "$= (8, 7)$."
+                ],
+                "answer": "$(8, 7)$",
+                "check": [
+                  "2*5-2 == 8",
+                  "2*5-3 == 7"
+                ]
+              },
+              {
+                "prompt": "$A(1,4)$, midpoint $M(3,3)$. Find $B$.",
+                "steps": [
+                  "$B = (2\\cdot3 - 1,\\ 2\\cdot3 - 4)$.",
+                  "$= (5, 2)$."
+                ],
+                "answer": "$(5, 2)$",
+                "check": [
+                  "2*3-1 == 5",
+                  "2*3-4 == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Forward and back",
+            "intro": "Average, or B = 2M − A.",
+            "problems": [
+              {
+                "prompt": "Midpoint of $(3,1)$ & $(9,7)$?",
+                "options": [
+                  "$(6, 4)$",
+                  "$(12, 8)$",
+                  "$(3, 3)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(6, 4)$.",
+                "check": [
+                  "(3+9)/2 == 6",
+                  "(1+7)/2 == 4"
+                ]
+              },
+              {
+                "prompt": "$A(0,0)$, midpoint $M(4,3)$. Find $B$.",
+                "options": [
+                  "$(8, 6)$",
+                  "$(2, 1.5)$",
+                  "$(4, 3)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$B = (8, 6)$; the midpoint of $(0,0)$ and $(8,6)$ is $(4,3)$.",
+                "check": [
+                  "2*4-0 == 8",
+                  "2*3-0 == 6"
+                ]
+              },
+              {
+                "prompt": "Midpoint of $(2,2)$ & $(5,2)$?",
+                "options": [
+                  "$(3.5, 2)$",
+                  "$(3, 2)$",
+                  "$(7, 4)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\left(\\tfrac{7}{2}, 2\\right) = (3.5, 2)$.",
+                "check": [
+                  "(2+5)/2 == Rational(7,2)",
+                  "(2+2)/2 == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The center of a country",
+            "body": "Averaging coordinates doesn't stop at two points. Average all three corners of a triangle and you land on its **centroid** — the exact spot where a cardboard triangle balances on a pin (the balance point from Unit 5). Geographers estimate the center of a whole country, like Mongolia, in a similar spirit: averaging many points spread across its area. The midpoint formula is just the two-point version of finding an average position."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Find the midpoint",
+            "prompt": "What is the midpoint of $(-3, 4)$ and $(7, 10)$?",
+            "options": [
+              "$(2, 7)$",
+              "$(4, 14)$",
+              "$(5, 3)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\left(\\tfrac{-3+7}{2}, \\tfrac{4+10}{2}\\right) = (2, 7)$. ($(4,14)$ forgot to halve.)",
+            "check": [
+              "(-3+7)/2 == 2",
+              "(4+10)/2 == 7"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Midpoint** $= \\left(\\tfrac{x_1+x_2}{2},\\ \\tfrac{y_1+y_2}{2}\\right)$ — average each coordinate.",
+              "It **adds and halves**, the opposite of the distance formula.",
+              "Backward: $B = 2M - A$ recovers a missing endpoint."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's find midpoints — and work a few backward."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Midpoint of $(2,3)$ & $(8,7)$?",
+                "options": [
+                  "$(5, 5)$",
+                  "$(10, 10)$",
+                  "$(3, 2)$",
+                  "$(6, 4)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(5, 5)$.",
+                "check": [
+                  "(2+8)/2 == 5",
+                  "(3+7)/2 == 5"
+                ]
+              },
+              {
+                "prompt": "Midpoint of $(-4,1)$ & $(6,9)$?",
+                "options": [
+                  "$(1, 5)$",
+                  "$(2, 10)$",
+                  "$(-5, 4)$",
+                  "$(5, 4)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(1, 5)$.",
+                "check": [
+                  "(-4+6)/2 == 1",
+                  "(1+9)/2 == 5"
+                ]
+              },
+              {
+                "prompt": "Midpoint of $(1,2)$ & $(4,6)$?",
+                "options": [
+                  "$(2.5, 4)$",
+                  "$(3, 4)$",
+                  "$(5, 8)$",
+                  "$(1.5, 2)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\left(\\tfrac{5}{2}, 4\\right)$.",
+                "check": [
+                  "(1+4)/2 == Rational(5,2)",
+                  "(2+6)/2 == 4"
+                ]
+              },
+              {
+                "prompt": "$A(2,3)$, midpoint $M(5,5)$. Endpoint $B$?",
+                "options": [
+                  "$(8, 7)$",
+                  "$(3.5, 4)$",
+                  "$(7, 8)$",
+                  "$(3, 2)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$B = 2M - A = (8, 7)$.",
+                "check": [
+                  "2*5-2 == 8",
+                  "2*5-3 == 7"
+                ]
+              },
+              {
+                "prompt": "The midpoint formula uses which operation first?",
+                "options": [
+                  "addition",
+                  "subtraction",
+                  "square root",
+                  "multiplication"
+                ],
+                "correctIndex": 0,
+                "explanation": "Add, then halve.",
+                "check": [
+                  "(4+6)/2 == 5"
+                ]
+              },
+              {
+                "prompt": "Midpoint of $(-5,-2)$ & $(5,8)$?",
+                "options": [
+                  "$(0, 3)$",
+                  "$(0, 5)$",
+                  "$(10, 10)$",
+                  "$(-5, 3)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(0, 3)$.",
+                "check": [
+                  "(-5+5)/2 == 0",
+                  "(-2+8)/2 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"The Midpoint Formula\"",
+            "body": "You can find the exact center of any segment. Next: slope — how steep a line is, and which way it tilts."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "slope",
+      "title": "Slope: Rise Over Run",
+      "concreteComparison": "A wheelchair ramp that rises $1$ unit for every $12$ units forward has a **slope** of $\\tfrac{1}{12}$ — the legal maximum. Slope measures both how **steep** a line is and which **direction** it tilts: it's the rise (vertical change) over the run (horizontal change).",
+      "objective": "Compute slope as $m = \\dfrac{\\text{rise}}{\\text{run}} = \\dfrac{y_2-y_1}{x_2-x_1}$, and classify it as positive, negative, zero, or undefined.",
+      "concept": [
+        "**Slope** measures steepness and direction: $m = \\dfrac{\\text{rise}}{\\text{run}} = \\dfrac{y_2-y_1}{x_2-x_1}$ — vertical change over horizontal change.",
+        "Keep the subtraction order **consistent**: whichever point's $y$ is on top, that same point's $x$ goes on the bottom.",
+        "Every slope triangle you can draw on one line is **similar** to every other (Unit 7), so they all give the same ratio — that's why a line has a single slope.",
+        "**Sign tells direction**: positive slope climbs left-to-right, negative falls. A **horizontal** line has rise $0$, so slope $0$; a **vertical** line has run $0$, so slope is **undefined** (never divide by zero). Zero and undefined are not the same."
+      ],
+      "keyIdea": "Slope = rise/run = (y₂−y₁)/(x₂−x₁), the y-difference on top and the x-difference on the bottom in a matching order. Horizontal → 0; vertical → undefined.",
+      "facts": [
+        {
+          "title": "Slope",
+          "latex": "$m = \\dfrac{y_2-y_1}{x_2-x_1}$",
+          "explanation": "Rise over run."
+        },
+        {
+          "title": "Two special lines",
+          "latex": "$0$ vs undefined",
+          "explanation": "Horizontal 0; vertical undefined."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sl-we1",
+          "statement": "Find the slope through $(1, 2)$ and $(4, 11)$.",
+          "solution": "$m = \\dfrac{11-2}{4-1} = \\dfrac{9}{3} = 3$.",
+          "check": [
+            "(11-2)/(4-1) == 3"
+          ]
+        },
+        {
+          "id": "sl-we2",
+          "statement": "Find the slope through $(2, 7)$ and $(5, 1)$.",
+          "solution": "$m = \\dfrac{1-7}{5-2} = \\dfrac{-6}{3} = -2$ (a falling line).",
+          "check": [
+            "(1-7)/(5-2) == -2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Flipping to run over rise.",
+          "correction": "Rise is always on **top**: from $(1,2)$ to $(4,11)$, $m = \\tfrac{9}{3} = 3$, never $\\tfrac{3}{9}$.",
+          "authored": true
+        },
+        {
+          "text": "Mismatched subtraction order.",
+          "correction": "If $y_2-y_1$ is on top, use $x_2-x_1$ on the bottom. Mixing them flips the sign.",
+          "authored": true
+        },
+        {
+          "text": "Calling a vertical line 'slope 0'.",
+          "correction": "Vertical is **undefined** (run $0$). Only a **horizontal** line has slope $0$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sl-t1",
+          "statement": "Slope through $(-2, 1)$ and $(2, 3)$?",
+          "solution": "$\\dfrac{3-1}{2-(-2)} = \\dfrac{2}{4} = \\dfrac{1}{2}$.",
+          "check": [
+            "(3-1)/(2-(-2)) == Rational(1,2)"
+          ]
+        },
+        {
+          "id": "sl-t2",
+          "statement": "Slope through $(0, 5)$ and $(4, 5)$?",
+          "solution": "$\\dfrac{5-5}{4-0} = \\dfrac{0}{4} = 0$ (horizontal).",
+          "check": [
+            "(5-5)/(4-0) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Steepness and direction",
+            "beats": [
+              "**Slope** tells how steep a line is and which way it leans.",
+              "It's the **rise** (up/down) over the **run** (left/right).",
+              "$m = \\dfrac{y_2-y_1}{x_2-x_1}$.",
+              "Uphill is positive; downhill is negative."
+            ]
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "Concept A",
+            "title": "Rise over run",
+            "teach": "Here are $(1, 2)$ and $(4, 11)$. Tap **Show the slope** to draw the staircase: the line rises $9$ and runs $3$, so $m = \\tfrac{9}{3} = 3$. A steep, uphill line.",
+            "config": {
+              "mode": "slope",
+              "a": {
+                "x": 1,
+                "y": 2
+              },
+              "b": {
+                "x": 4,
+                "y": 11
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The formula",
+            "title": "y-difference over x-difference",
+            "beats": [
+              "$m = \\dfrac{y_2-y_1}{x_2-x_1}$ — rise on top, run on the bottom.",
+              "$(1,2)$ to $(4,11)$: $\\tfrac{11-2}{4-1} = \\tfrac{9}{3} = 3$.",
+              "Keep the order matched to avoid a sign flip.",
+              "Rise is ALWAYS on top — never $\\tfrac{3}{9}$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Finding slope",
+            "intro": "Rise over run.",
+            "examples": [
+              {
+                "prompt": "$(1,2)$ to $(4,11)$?",
+                "steps": [
+                  "$\\tfrac{11-2}{4-1} = \\tfrac{9}{3}$.",
+                  "$= 3$."
+                ],
+                "answer": "$3$",
+                "check": [
+                  "(11-2)/(4-1) == 3"
+                ]
+              },
+              {
+                "prompt": "$(-2,1)$ to $(2,3)$?",
+                "steps": [
+                  "$\\tfrac{3-1}{2-(-2)} = \\tfrac{2}{4}$.",
+                  "$= \\tfrac{1}{2}$."
+                ],
+                "answer": "$\\tfrac{1}{2}$",
+                "check": [
+                  "(3-1)/(2-(-2)) == Rational(1,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Slope practice",
+            "intro": "Rise ÷ run.",
+            "problems": [
+              {
+                "prompt": "$(0,0)$ to $(2,6)$?",
+                "options": [
+                  "$3$",
+                  "$\\tfrac{1}{3}$",
+                  "$-3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{6}{2} = 3$. Rise on top ($\\tfrac13$ flips it; $-3$ flips the sign).",
+                "check": [
+                  "(6-0)/(2-0) == 3"
+                ]
+              },
+              {
+                "prompt": "$(1,1)$ to $(5,3)$?",
+                "options": [
+                  "$\\tfrac{1}{2}$",
+                  "$2$",
+                  "$-\\tfrac{1}{2}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{3-1}{5-1} = \\tfrac{2}{4} = \\tfrac{1}{2}$. ($2$ flips it; $-\\tfrac12$ flips the sign.)",
+                "check": [
+                  "(3-1)/(5-1) == Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "In $m = \\tfrac{\\text{rise}}{\\text{run}}$, which is on top?",
+                "options": [
+                  "rise (the $y$-change)",
+                  "run (the $x$-change)",
+                  "either one"
+                ],
+                "correctIndex": 0,
+                "explanation": "Rise, the vertical change — and $\\tfrac{\\text{rise}}{\\text{run}} \\ne \\tfrac{\\text{run}}{\\text{rise}}$.",
+                "check": [
+                  "(6-0)/(2-0) != (2-0)/(6-0)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "Concept B",
+            "title": "A downhill line",
+            "teach": "Now $(2, 7)$ and $(5, 1)$. Tap to reveal: the line rises $-6$ (it drops) over a run of $3$, so $m = \\tfrac{-6}{3} = -2$. A **negative** slope falls left-to-right.",
+            "config": {
+              "mode": "slope",
+              "a": {
+                "x": 2,
+                "y": 7
+              },
+              "b": {
+                "x": 5,
+                "y": 1
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Sign and special lines",
+            "title": "Zero vs undefined",
+            "beats": [
+              "**Positive** slope climbs; **negative** slope falls.",
+              "**Horizontal** line: rise $0$, so $m = 0$.",
+              "**Vertical** line: run $0$, so $m$ is **undefined** (no dividing by zero).",
+              "Zero and undefined are different things."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Direction and special cases",
+            "intro": "Sign, zero, undefined.",
+            "examples": [
+              {
+                "prompt": "$(2,7)$ to $(5,1)$?",
+                "steps": [
+                  "$\\tfrac{1-7}{5-2} = \\tfrac{-6}{3}$.",
+                  "$= -2$ (falls)."
+                ],
+                "answer": "$-2$",
+                "check": [
+                  "(1-7)/(5-2) == -2"
+                ]
+              },
+              {
+                "prompt": "$(3,1)$ to $(3,7)$ (same $x$)?",
+                "steps": [
+                  "Run $= 3-3 = 0$.",
+                  "Divide by zero → **undefined** (vertical)."
+                ],
+                "answer": "undefined",
+                "check": [
+                  "(3-3) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Sign & special practice",
+            "intro": "Watch the direction.",
+            "problems": [
+              {
+                "prompt": "$(0,4)$ to $(3,0)$?",
+                "options": [
+                  "$-\\tfrac{4}{3}$",
+                  "$\\tfrac{4}{3}$",
+                  "$-\\tfrac{3}{4}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{0-4}{3-0} = -\\tfrac{4}{3}$ (falls).",
+                "check": [
+                  "(0-4)/(3-0) == Rational(-4,3)"
+                ]
+              },
+              {
+                "prompt": "$(1,6)$ to $(5,6)$?",
+                "options": [
+                  "$0$",
+                  "undefined",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same $y$: horizontal, slope $0$.",
+                "check": [
+                  "(6-6)/(5-1) == 0"
+                ]
+              },
+              {
+                "prompt": "A vertical line has slope —",
+                "options": [
+                  "undefined",
+                  "$0$",
+                  "$1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Run $0$ → division by zero → undefined.",
+                "check": [
+                  "(4-4) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The world's steepest street",
+            "body": "Road-grade signs are slope written as a percent: a $6\\%$ grade rises $6$ units per $100$ of run, a slope of $0.06$. Baldwin Street in Dunedin, New Zealand — long listed among the world's steepest — reaches a slope of about $0.35$ (a $35\\%$ grade). Wheelchair-ramp law caps slope at $\\tfrac{1}{12} \\approx 0.083$, so that street is more than four times too steep to ever be a legal ramp."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Find the slope",
+            "prompt": "What is the slope of the line through $(2, 1)$ and $(6, 9)$?",
+            "options": [
+              "$2$",
+              "$\\tfrac{1}{2}$",
+              "$-2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\dfrac{9-1}{6-2} = \\dfrac{8}{4} = 2$. (Flipping gives $\\tfrac{1}{2}$; rise is on top.)",
+            "check": [
+              "(9-1)/(6-2) == 2"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Slope** $= \\dfrac{\\text{rise}}{\\text{run}} = \\dfrac{y_2-y_1}{x_2-x_1}$ — rise on top, matched order.",
+              "Positive climbs, negative falls; it's constant because slope triangles are **similar**.",
+              "**Horizontal** → $0$; **vertical** → **undefined**. They are not the same."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's find slopes — and name the zero and undefined cases."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$(1,2)$ to $(4,11)$?",
+                "options": [
+                  "$3$",
+                  "$\\tfrac{1}{3}$",
+                  "$-3$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{9}{3} = 3$.",
+                "check": [
+                  "(11-2)/(4-1) == 3"
+                ]
+              },
+              {
+                "prompt": "$(2,7)$ to $(5,1)$?",
+                "options": [
+                  "$-2$",
+                  "$2$",
+                  "$-\\tfrac{1}{2}$",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{-6}{3} = -2$.",
+                "check": [
+                  "(1-7)/(5-2) == -2"
+                ]
+              },
+              {
+                "prompt": "$(-2,1)$ to $(2,3)$?",
+                "options": [
+                  "$\\tfrac{1}{2}$",
+                  "$2$",
+                  "$-\\tfrac{1}{2}$",
+                  "$4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{2}{4} = \\tfrac{1}{2}$.",
+                "check": [
+                  "(3-1)/(2-(-2)) == Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "$(0,5)$ to $(4,5)$?",
+                "options": [
+                  "$0$",
+                  "undefined",
+                  "$5$",
+                  "$\\tfrac{5}{4}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Horizontal: slope $0$.",
+                "check": [
+                  "(5-5)/(4-0) == 0"
+                ]
+              },
+              {
+                "prompt": "$(3,1)$ to $(3,7)$?",
+                "options": [
+                  "undefined",
+                  "$0$",
+                  "$6$",
+                  "$1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Vertical: run $0$, undefined.",
+                "check": [
+                  "(3-3) == 0"
+                ]
+              },
+              {
+                "prompt": "Slope is constant on a line because its slope triangles are all —",
+                "options": [
+                  "similar",
+                  "congruent",
+                  "right",
+                  "isosceles"
+                ],
+                "correctIndex": 0,
+                "explanation": "Similar triangles share the ratio, so two triangles on one line give the same slope (Unit 7).",
+                "check": [
+                  "(6-0)/(2-0) == (3-0)/(1-0)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Slope: Rise Over Run\"",
+            "body": "You can measure any line's tilt. Next: using slope to tell parallel from perpendicular."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "parallel-and-perpendicular-lines",
+      "title": "Parallel & Perpendicular Lines",
+      "concreteComparison": "Two train rails run at the same tilt and never meet — **parallel** lines have **equal slopes**. Where two streets cross at a perfect right angle, their slopes are **negative reciprocals**: flip the fraction and change the sign, so the slopes multiply to $-1$.",
+      "objective": "Use slopes to decide whether two lines are parallel, perpendicular, or neither, and find a perpendicular slope with the negative-reciprocal rule.",
+      "concept": [
+        "**Parallel** lines have **equal slopes** ($m_1 = m_2$): same steepness, different position, never meeting.",
+        "**Perpendicular** lines have slopes that are **negative reciprocals** — flip the fraction **and** change the sign — so $m_1 \\cdot m_2 = -1$. That's two operations, not one.",
+        "Why? Rotating a slope triangle $90°$ (Unit 12) turns its run into a rise and its rise into a run with a sign flip, so a slope of $\\tfrac{a}{b}$ becomes $-\\tfrac{b}{a}$ — the rule is derived, not memorized.",
+        "One exception the product rule can't reach: a **horizontal** line (slope $0$) and a **vertical** line (undefined slope) are perpendicular, even though $0 \\times$ undefined is meaningless. Recognize that pair by sight."
+      ],
+      "keyIdea": "Compare slopes. Equal slopes → parallel. Negative reciprocals (flip and negate, product −1) → perpendicular. A horizontal and a vertical line are perpendicular by sight.",
+      "facts": [
+        {
+          "title": "Parallel",
+          "latex": "$m_1 = m_2$",
+          "explanation": "Equal slopes."
+        },
+        {
+          "title": "Perpendicular",
+          "latex": "$m_1 \\cdot m_2 = -1$",
+          "explanation": "Negative reciprocals."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pp-we1",
+          "statement": "Line $AB$ through $(1,1),(4,3)$ and line $CD$ through $(0,5),(3,7)$. Parallel, perpendicular, or neither?",
+          "solution": "$m_{AB} = \\tfrac{3-1}{4-1} = \\tfrac{2}{3}$; $m_{CD} = \\tfrac{7-5}{3-0} = \\tfrac{2}{3}$. Equal slopes → **parallel**.",
+          "check": [
+            "(3-1)/(4-1) == (7-5)/(3-0)"
+          ]
+        },
+        {
+          "id": "pp-we2",
+          "statement": "A line has slope $\\tfrac{2}{3}$. What slope is perpendicular to it?",
+          "solution": "Flip and negate: $-\\tfrac{3}{2}$. Check: $\\tfrac{2}{3} \\cdot \\left(-\\tfrac{3}{2}\\right) = -1$.",
+          "check": [
+            "Rational(2,3) * Rational(-3,2) == -1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Taking the reciprocal but forgetting the sign.",
+          "correction": "Perpendicular to $\\tfrac{2}{3}$ is $-\\tfrac{3}{2}$, not $\\tfrac{3}{2}$ — flip **and** negate.",
+          "authored": true
+        },
+        {
+          "text": "Negating without flipping.",
+          "correction": "$-\\tfrac{2}{3}$ is wrong; you must invert too. And slopes $2$ and $-2$ give a product of $-4$, not $-1$ — not perpendicular.",
+          "authored": true
+        },
+        {
+          "text": "Calling equal-slope lines perpendicular.",
+          "correction": "Equal slopes mean **parallel**. Perpendicular needs the product $-1$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pp-t1",
+          "statement": "Perpendicular slope to $m = 4$?",
+          "solution": "$-\\tfrac{1}{4}$ (flip $4 = \\tfrac41$ and negate). Check $4 \\cdot -\\tfrac14 = -1$.",
+          "check": [
+            "4 * Rational(-1,4) == -1"
+          ]
+        },
+        {
+          "id": "pp-t2",
+          "statement": "Lines of slope $\\tfrac{3}{5}$ and $\\tfrac{3}{5}$ are —?",
+          "solution": "Equal slopes → parallel.",
+          "check": [
+            "Rational(3,5) == Rational(3,5)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Compare the slopes",
+            "beats": [
+              "To relate two lines, look only at their **slopes**.",
+              "**Equal** slopes → the lines are **parallel**.",
+              "**Negative-reciprocal** slopes → **perpendicular**.",
+              "Everything here is a slope comparison."
+            ]
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "Concept A",
+            "title": "Parallel: equal slopes",
+            "teach": "This line through $(1,1)$ and $(4,3)$ has slope $\\tfrac{2}{3}$ (tap to see the rise $2$, run $3$). Any line with the SAME slope $\\tfrac23$ is parallel to it — same tilt, shifted over, never crossing.",
+            "config": {
+              "mode": "slope",
+              "a": {
+                "x": 1,
+                "y": 1
+              },
+              "b": {
+                "x": 4,
+                "y": 3
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Parallel lines",
+            "title": "Same slope",
+            "beats": [
+              "Parallel lines have **equal** slopes: $m_1 = m_2$.",
+              "$AB$ through $(1,1),(4,3)$: $m = \\tfrac{2}{3}$.",
+              "$CD$ through $(0,5),(3,7)$: $m = \\tfrac{2}{3}$.",
+              "Equal → parallel."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Parallel check",
+            "intro": "Compare the two slopes.",
+            "examples": [
+              {
+                "prompt": "$(1,1),(4,3)$ vs $(0,5),(3,7)$?",
+                "steps": [
+                  "Both slopes $= \\tfrac{2}{3}$.",
+                  "Equal → parallel."
+                ],
+                "answer": "parallel",
+                "check": [
+                  "(3-1)/(4-1) == (7-5)/(3-0)"
+                ]
+              },
+              {
+                "prompt": "$(0,0),(1,2)$ vs $(3,1),(5,5)$?",
+                "steps": [
+                  "Slopes $2$ and $2$.",
+                  "Equal → parallel."
+                ],
+                "answer": "parallel",
+                "check": [
+                  "(2-0)/(1-0) == (5-1)/(5-3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Parallel practice",
+            "intro": "Equal slopes → parallel.",
+            "problems": [
+              {
+                "prompt": "Slopes $\\tfrac{3}{4}$ and $\\tfrac{3}{4}$ are —",
+                "options": [
+                  "parallel",
+                  "perpendicular",
+                  "neither"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal slopes.",
+                "check": [
+                  "Rational(3,4) == Rational(3,4)"
+                ]
+              },
+              {
+                "prompt": "A line parallel to slope $5$ has slope —",
+                "options": [
+                  "$5$",
+                  "$-\\tfrac{1}{5}$",
+                  "$\\tfrac{1}{5}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Parallel reuses the slope.",
+                "check": [
+                  "5 == 5"
+                ]
+              },
+              {
+                "prompt": "Parallel lines have — slopes.",
+                "options": [
+                  "equal",
+                  "negative-reciprocal",
+                  "opposite"
+                ],
+                "correctIndex": 0,
+                "explanation": "$m_1 = m_2$.",
+                "check": [
+                  "2 == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "Concept B",
+            "title": "Perpendicular: negative reciprocals",
+            "teach": "This line through $(0,0)$ and $(2,6)$ has slope $3$. A line perpendicular to it has slope $-\\tfrac{1}{3}$ — flip $3 = \\tfrac31$ and negate. Their product is $3 \\cdot (-\\tfrac13) = -1$.",
+            "config": {
+              "mode": "slope",
+              "a": {
+                "x": 0,
+                "y": 0
+              },
+              "b": {
+                "x": 2,
+                "y": 6
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Perpendicular lines",
+            "title": "Flip and negate",
+            "beats": [
+              "Perpendicular slopes are **negative reciprocals**: $m_1 \\cdot m_2 = -1$.",
+              "Flip the fraction AND change the sign.",
+              "Perpendicular to $3$: $-\\tfrac{1}{3}$. To $\\tfrac{2}{3}$: $-\\tfrac{3}{2}$.",
+              "Rotating a slope triangle $90°$ (Unit 12) is exactly why."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Perpendicular check",
+            "intro": "Flip and negate; product −1.",
+            "examples": [
+              {
+                "prompt": "Perpendicular slope to $\\tfrac{2}{3}$?",
+                "steps": [
+                  "Flip → $\\tfrac{3}{2}$; negate → $-\\tfrac{3}{2}$.",
+                  "Check $\\tfrac23 \\cdot -\\tfrac32 = -1$."
+                ],
+                "answer": "$-\\tfrac{3}{2}$",
+                "check": [
+                  "Rational(2,3) * Rational(-3,2) == -1"
+                ]
+              },
+              {
+                "prompt": "Are slopes $3$ and $-\\tfrac{1}{3}$ perpendicular?",
+                "steps": [
+                  "Product $= 3 \\cdot -\\tfrac13 = -1$.",
+                  "Yes — perpendicular."
+                ],
+                "answer": "yes",
+                "check": [
+                  "3 * Rational(-1,3) == -1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Perpendicular practice",
+            "intro": "Product must be −1.",
+            "problems": [
+              {
+                "prompt": "Perpendicular slope to $5$?",
+                "options": [
+                  "$-\\tfrac{1}{5}$",
+                  "$\\tfrac{1}{5}$",
+                  "$-5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Flip and negate: $-\\tfrac15$.",
+                "check": [
+                  "5 * Rational(-1,5) == -1"
+                ]
+              },
+              {
+                "prompt": "Perpendicular slope to $-\\tfrac{3}{4}$?",
+                "options": [
+                  "$\\tfrac{4}{3}$",
+                  "$-\\tfrac{4}{3}$",
+                  "$\\tfrac{3}{4}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Flip to $-\\tfrac43$, negate to $\\tfrac43$. Check $-\\tfrac34 \\cdot \\tfrac43 = -1$.",
+                "check": [
+                  "Rational(-3,4) * Rational(4,3) == -1"
+                ]
+              },
+              {
+                "prompt": "Slopes $2$ and $-2$ are —",
+                "options": [
+                  "neither (product $-4$)",
+                  "perpendicular",
+                  "parallel"
+                ],
+                "correctIndex": 0,
+                "explanation": "Perpendicular needs product $-1$, not just opposite signs.",
+                "check": [
+                  "2 * (-2) == -4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The parallel postulate that broke geometry",
+            "body": "For over 2,000 years mathematicians treated 'parallel lines never meet' as an unquestionable truth — Euclid's fifth postulate. In the 1800s a few dared to assume it false and discovered curved, non-Euclidean geometries where parallels can cross. That 'impossible' math is exactly what Einstein later needed to describe how gravity bends space — and it's baked into the GPS corrections your phone makes every second."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Perpendicular slope",
+            "prompt": "What slope is perpendicular to a line of slope $-\\tfrac{2}{5}$?",
+            "options": [
+              "$\\tfrac{5}{2}$",
+              "$-\\tfrac{5}{2}$",
+              "$\\tfrac{2}{5}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Flip to $-\\tfrac{5}{2}$, negate to $\\tfrac{5}{2}$. Check $-\\tfrac25 \\cdot \\tfrac52 = -1$.",
+            "check": [
+              "Rational(-2,5) * Rational(5,2) == -1"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Parallel** ⟺ equal slopes ($m_1 = m_2$).",
+              "**Perpendicular** ⟺ negative reciprocals (flip and negate, so $m_1 m_2 = -1$).",
+              "A **horizontal** and a **vertical** line are perpendicular by sight."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's classify pairs of lines and find perpendicular slopes."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Slopes $\\tfrac{2}{3}$ and $\\tfrac{2}{3}$?",
+                "options": [
+                  "parallel",
+                  "perpendicular",
+                  "neither",
+                  "vertical"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal → parallel.",
+                "check": [
+                  "Rational(2,3) == Rational(2,3)"
+                ]
+              },
+              {
+                "prompt": "Perpendicular slope to $\\tfrac{2}{3}$?",
+                "options": [
+                  "$-\\tfrac{3}{2}$",
+                  "$-\\tfrac{2}{3}$",
+                  "$\\tfrac{3}{2}$",
+                  "$\\tfrac{2}{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Flip and negate.",
+                "check": [
+                  "Rational(2,3) * Rational(-3,2) == -1"
+                ]
+              },
+              {
+                "prompt": "Slopes $4$ and $-\\tfrac{1}{4}$?",
+                "options": [
+                  "perpendicular",
+                  "parallel",
+                  "neither",
+                  "the same line"
+                ],
+                "correctIndex": 0,
+                "explanation": "Product $-1$.",
+                "check": [
+                  "4 * Rational(-1,4) == -1"
+                ]
+              },
+              {
+                "prompt": "Perpendicular slope to $-6$?",
+                "options": [
+                  "$\\tfrac{1}{6}$",
+                  "$-\\tfrac{1}{6}$",
+                  "$6$",
+                  "$-6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Flip to $-\\tfrac16$, negate to $\\tfrac16$.",
+                "check": [
+                  "-6 * Rational(1,6) == -1"
+                ]
+              },
+              {
+                "prompt": "Slopes $2$ and $-2$ are —",
+                "options": [
+                  "neither",
+                  "perpendicular",
+                  "parallel",
+                  "both"
+                ],
+                "correctIndex": 0,
+                "explanation": "Product $-4 \\ne -1$.",
+                "check": [
+                  "2 * (-2) == -4"
+                ]
+              },
+              {
+                "prompt": "A horizontal and a vertical line are —",
+                "options": [
+                  "perpendicular",
+                  "parallel",
+                  "neither",
+                  "the same"
+                ],
+                "correctIndex": 0,
+                "explanation": "They meet at $90°$ (the special case).",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Parallel & Perpendicular Lines\"",
+            "body": "You can classify any pair of lines by slope. Next: writing a line's full equation, y = mx + b."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "equations-of-lines",
+      "title": "Equations of Lines",
+      "concreteComparison": "A taxi charges a $\\$3$ base fare plus $\\$2$ a mile: $y = 2x + 3$. That's a line in **slope-intercept form** $y = mx + b$ — the slope $m$ is the per-mile rate and $b$ is the starting amount. Two numbers pin down a whole infinite line.",
+      "objective": "Write a line as $y = mx + b$ from a slope and a point or from two points, use point-slope form, and apply the parallel/perpendicular conditions.",
+      "concept": [
+        "**Slope-intercept form** $y = mx + b$ packs a line into two numbers: $m$ is the **slope** (rate of change) and $b$ is the **y-intercept** (the value when $x = 0$, the starting amount).",
+        "It comes straight from the slope definition: for the point $(x, y)$ and the intercept $(0, b)$, $\\text{slope} = \\tfrac{y - b}{x - 0} = m$ rearranges to $y = mx + b$.",
+        "From a slope and one point, use **point-slope form** $y - y_1 = m(x - x_1)$, then expand. From **two points**, find $m$ first, then substitute one point to solve $b = y - mx$.",
+        "Combine with the slope rules: a **parallel** line reuses $m$; a **perpendicular** line uses the negative-reciprocal $m$; then one point fixes $b$. Horizontal lines are $y = c$; vertical lines are $x = c$ (no $y = mx + b$ form)."
+      ],
+      "keyIdea": "Every non-vertical line is y = mx + b. Find the slope m first, then use one known point to solve for b — two numbers fix the whole line.",
+      "facts": [
+        {
+          "title": "Slope-intercept",
+          "latex": "$y = mx + b$",
+          "explanation": "m = slope, b = y-intercept."
+        },
+        {
+          "title": "Point-slope",
+          "latex": "$y - y_1 = m(x - x_1)$",
+          "explanation": "Build from a slope and a point."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "eq-we1",
+          "statement": "Write the equation of the line through $(1, 3)$ and $(4, 9)$.",
+          "solution": "$m = \\tfrac{9-3}{4-1} = 2$; then $3 = 2(1) + b \\Rightarrow b = 1$. So $y = 2x + 1$.",
+          "check": [
+            "(9-3)/(4-1) == 2",
+            "3 - 2*1 == 1"
+          ]
+        },
+        {
+          "id": "eq-we2",
+          "statement": "Write the line through $(2, 5)$ with slope $4$ (point-slope).",
+          "solution": "$y - 5 = 4(x - 2) \\Rightarrow y = 4x - 8 + 5 = 4x - 3$.",
+          "check": [
+            "5 - 4*2 == -3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Swapping $m$ and $b$.",
+          "correction": "$m$ **multiplies** $x$; $b$ stands alone. In $y = 2x + 3$, $2$ is the slope and $3$ is the intercept.",
+          "authored": true
+        },
+        {
+          "text": "Stopping at $y = mx$.",
+          "correction": "After finding the slope, use a point to solve for $b$ — don't leave it out.",
+          "authored": true
+        },
+        {
+          "text": "Sign errors in point-slope.",
+          "correction": "$y - 5 = 4(x-2)$ gives $y = 4x - 8 + 5 = 4x - 3$, not $4x + 3$; and $3 = 2(1) + b$ gives $b = 1$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "eq-t1",
+          "statement": "Line through $(2, 3)$ and $(4, 7)$?",
+          "solution": "$m = \\tfrac{7-3}{4-2} = 2$; $3 = 2(2)+b \\Rightarrow b = -1$. $y = 2x - 1$.",
+          "check": [
+            "(7-3)/(4-2) == 2",
+            "3 - 2*2 == -1"
+          ]
+        },
+        {
+          "id": "eq-t2",
+          "statement": "Line parallel to $y = 2x - 1$ through $(0, 4)$?",
+          "solution": "Same slope $2$, intercept $4$: $y = 2x + 4$.",
+          "check": [
+            "4 - 2*0 == 4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "A line in two numbers",
+            "beats": [
+              "The most useful form is $y = mx + b$.",
+              "$m$ is the **slope** (how fast $y$ changes).",
+              "$b$ is the **y-intercept** ($y$ when $x = 0$).",
+              "Know $m$ and $b$ and you know the whole line."
+            ]
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "Concept A",
+            "title": "Reading y = mx + b",
+            "teach": "This is $y = 2x + 3$. Tap **Show the equation** to see the y-intercept at $(0, 3)$ and the slope triangle (rise $2$, run $1$). The line crosses the $y$-axis at $b = 3$ and climbs $2$ for every $1$ across.",
+            "config": {
+              "mode": "line",
+              "m": 2,
+              "yint": 3
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Slope-intercept form",
+            "title": "m tilts, b shifts",
+            "beats": [
+              "$y = mx + b$: $m$ is the slope, $b$ the y-intercept.",
+              "$y = 2x + 3$ crosses the $y$-axis at $(0, 3)$.",
+              "From there it rises $2$ per $1$ across (slope $2$).",
+              "$m$ multiplies $x$; $b$ stands alone."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "From two points",
+            "intro": "Find m, then solve for b.",
+            "examples": [
+              {
+                "prompt": "Through $(1,3)$ and $(4,9)$?",
+                "steps": [
+                  "$m = \\tfrac{9-3}{4-1} = 2$.",
+                  "$3 = 2(1)+b \\Rightarrow b = 1$. So $y = 2x + 1$."
+                ],
+                "answer": "$y = 2x + 1$",
+                "check": [
+                  "(9-3)/(4-1) == 2",
+                  "3 - 2*1 == 1"
+                ]
+              },
+              {
+                "prompt": "Through $(2,3)$ and $(4,7)$?",
+                "steps": [
+                  "$m = \\tfrac{7-3}{4-2} = 2$.",
+                  "$3 = 2(2)+b \\Rightarrow b = -1$. So $y = 2x - 1$."
+                ],
+                "answer": "$y = 2x - 1$",
+                "check": [
+                  "(7-3)/(4-2) == 2",
+                  "3 - 2*2 == -1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Equation practice",
+            "intro": "m first, then b.",
+            "problems": [
+              {
+                "prompt": "Through $(0,1)$ and $(2,5)$?",
+                "options": [
+                  "$y = 2x + 1$",
+                  "$y = 2x - 1$",
+                  "$y = x + 1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$m = 2$, $b = 1$.",
+                "check": [
+                  "(5-1)/(2-0) == 2",
+                  "1 - 2*0 == 1"
+                ]
+              },
+              {
+                "prompt": "Through $(1,1)$ and $(3,7)$?",
+                "options": [
+                  "$y = 3x - 2$",
+                  "$y = 3x + 2$",
+                  "$y = 2x - 1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$m = 3$; $1 = 3(1)+b \\Rightarrow b = -2$.",
+                "check": [
+                  "(7-1)/(3-1) == 3",
+                  "1 - 3*1 == -2"
+                ]
+              },
+              {
+                "prompt": "In $y = mx + b$, the y-intercept is —",
+                "options": [
+                  "$b$",
+                  "$m$",
+                  "$x$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$b$ is where $x = 0$.",
+                "check": [
+                  "2*0 + 3 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "Concept B",
+            "title": "The two-point line",
+            "teach": "The line through $(1, 3)$ and $(4, 9)$ works out to $y = 2x + 1$. Tap to see it: slope $2$, crossing the $y$-axis at $(0, 1)$. Find the slope first, then one point unlocks $b$.",
+            "config": {
+              "mode": "line",
+              "m": 2,
+              "yint": 1
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Point-slope, parallel, perpendicular",
+            "title": "Two more moves",
+            "beats": [
+              "**Point-slope**: $y - y_1 = m(x - x_1)$; expand to $y = mx + b$.",
+              "$(2,5)$, slope $4$: $y - 5 = 4(x-2) \\Rightarrow y = 4x - 3$.",
+              "**Parallel** reuses $m$; **perpendicular** uses $-\\tfrac1m$.",
+              "Then a point fixes $b$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Point-slope & parallel/perp",
+            "intro": "Build, then a point fixes b.",
+            "examples": [
+              {
+                "prompt": "Point $(2,5)$, slope $4$ (point-slope)?",
+                "steps": [
+                  "$y - 5 = 4(x-2)$.",
+                  "$y = 4x - 8 + 5 = 4x - 3$."
+                ],
+                "answer": "$y = 4x - 3$",
+                "check": [
+                  "5 - 4*2 == -3"
+                ]
+              },
+              {
+                "prompt": "Perpendicular to $y = 2x$ through $(0, 3)$?",
+                "steps": [
+                  "Perpendicular slope $-\\tfrac12$; intercept $3$.",
+                  "$y = -\\tfrac12 x + 3$."
+                ],
+                "answer": "$y = -\\tfrac{1}{2}x + 3$",
+                "check": [
+                  "2 * Rational(-1,2) == -1",
+                  "3 - Rational(-1,2)*0 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Build the equation",
+            "intro": "Slope rule, then a point.",
+            "problems": [
+              {
+                "prompt": "Parallel to $y = 3x + 1$ through $(0, -2)$?",
+                "options": [
+                  "$y = 3x - 2$",
+                  "$y = -3x - 2$",
+                  "$y = 3x + 2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same slope $3$, intercept $-2$.",
+                "check": [
+                  "-2 - 3*0 == -2"
+                ]
+              },
+              {
+                "prompt": "Point $(1, 4)$, slope $2$ (point-slope)?",
+                "options": [
+                  "$y = 2x + 2$",
+                  "$y = 2x + 4$",
+                  "$y = 2x - 2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4 = 2(1)+b \\Rightarrow b = 2$.",
+                "check": [
+                  "4 - 2*1 == 2"
+                ]
+              },
+              {
+                "prompt": "A vertical line like $x = -2$ —",
+                "options": [
+                  "has no $y = mx + b$ form",
+                  "is $y = -2x$",
+                  "has slope $0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Vertical slope is undefined; it's $x = c$.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The line that predicted 60 years of chips",
+            "body": "A taxi fare is a real $y = mx + b$: the base fare is $b$ (what you owe before moving) and the per-mile rate is $m$. On a grander scale, in 1965 Gordon Moore drew a straight line through a handful of data points and predicted transistor counts would keep doubling. 'Moore's Law' held for nearly $60$ years and guided a trillion-dollar industry — a well-chosen line can forecast the future."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Write the line",
+            "prompt": "What is the equation of the line through $(2, 3)$ and $(4, 7)$?",
+            "options": [
+              "$y = 2x - 1$",
+              "$y = 2x + 1$",
+              "$y = 2x + 3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$m = \\tfrac{7-3}{4-2} = 2$; $3 = 2(2)+b \\Rightarrow b = -1$. So $y = 2x - 1$.",
+            "check": [
+              "(7-3)/(4-2) == 2",
+              "3 - 2*2 == -1"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Slope-intercept**: $y = mx + b$ — $m$ is the slope, $b$ the y-intercept.",
+              "From two points: find $m$, then solve $b = y - mx$ with one point.",
+              "**Parallel** reuses $m$; **perpendicular** uses $-\\tfrac1m$; a point fixes $b$."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's write equations of lines from points and conditions."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Through $(1,3)$ and $(4,9)$?",
+                "options": [
+                  "$y = 2x + 1$",
+                  "$y = 2x - 1$",
+                  "$y = 3x$",
+                  "$y = x + 2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$m = 2$, $b = 1$.",
+                "check": [
+                  "(9-3)/(4-1) == 2",
+                  "3 - 2*1 == 1"
+                ]
+              },
+              {
+                "prompt": "Point $(2,5)$, slope $4$?",
+                "options": [
+                  "$y = 4x - 3$",
+                  "$y = 4x + 3$",
+                  "$y = 4x - 8$",
+                  "$y = 4x + 5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$y - 5 = 4(x-2)$.",
+                "check": [
+                  "5 - 4*2 == -3"
+                ]
+              },
+              {
+                "prompt": "In $y = -3x + 5$, the slope is —",
+                "options": [
+                  "$-3$",
+                  "$5$",
+                  "$3$",
+                  "$-5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$m$ multiplies $x$; the slope between two points of the line is $-3$.",
+                "check": [
+                  "((-3*2 + 5) - (-3*0 + 5))/(2 - 0) == -3"
+                ]
+              },
+              {
+                "prompt": "Parallel to $y = 2x - 1$ through $(0, 4)$?",
+                "options": [
+                  "$y = 2x + 4$",
+                  "$y = -\\tfrac{1}{2}x + 4$",
+                  "$y = 2x - 1$",
+                  "$y = 4x + 2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same slope $2$, intercept $4$.",
+                "check": [
+                  "4 - 2*0 == 4"
+                ]
+              },
+              {
+                "prompt": "Perpendicular to $y = 2x$ through $(0, 3)$?",
+                "options": [
+                  "$y = -\\tfrac{1}{2}x + 3$",
+                  "$y = 2x + 3$",
+                  "$y = \\tfrac{1}{2}x + 3$",
+                  "$y = -2x + 3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Perpendicular slope $-\\tfrac12$.",
+                "check": [
+                  "2 * Rational(-1,2) == -1"
+                ]
+              },
+              {
+                "prompt": "The y-intercept of $y = 5x - 7$ is —",
+                "options": [
+                  "$-7$",
+                  "$5$",
+                  "$7$",
+                  "$-5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$b = -7$.",
+                "check": [
+                  "5*0 - 7 == -7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Equations of Lines\"",
+            "body": "You can write any line's equation. Last stop: circles — and a proof that ties the whole unit together."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "equations-of-circles-and-coordinate-proofs",
+      "title": "Circles & Coordinate Proofs",
+      "concreteComparison": "A radio tower reaches every point within $5$ km — a **circle** of radius $5$. Its equation, $(x-h)^2 + (y-k)^2 = r^2$, is just the distance formula from Lesson 1, squared. In this final lesson that toolkit — distance, midpoint, slope — comes together to **prove** a real theorem with coordinates.",
+      "objective": "Write and read a circle's equation $(x-h)^2 + (y-k)^2 = r^2$, test whether a point lies on it, and write a coordinate proof that fuses distance, midpoint, and slope.",
+      "concept": [
+        "A **circle** is all points a fixed distance $r$ from a **center** $(h, k)$. Applying the distance formula and squaring both sides gives $(x-h)^2 + (y-k)^2 = r^2$ — the distance formula from Lesson 1, with the root cleared.",
+        "**Watch the signs**: the center $(h, k)$ appears as $(x - h)$ and $(y - k)$, so a center of $(2, -3)$ gives $(x-2)^2 + (y+3)^2$ (subtracting a negative adds). The right side is $r^2$, not $r$ — radius $4$ means $16$.",
+        "**Point test**: plug a point in. If $(x-h)^2 + (y-k)^2$ equals $r^2$ the point is **on** the circle; less is inside, greater is outside — exactly how a signal-range check works.",
+        "A **coordinate proof** mirrors the two-column proofs of Unit 2: place the figure legally on convenient axes (right angle at the origin, a side on an axis) without assuming the conclusion, then match each claim to a tool — equal length → distance, midpoint/center → midpoint, parallel/perpendicular → slope."
+      ],
+      "keyIdea": "A circle's equation is 'distance from the center = r' squared: (x−h)² + (y−k)² = r². The same distance–midpoint–slope toolkit proves classic theorems by turning a picture into coordinates.",
+      "facts": [
+        {
+          "title": "Circle equation",
+          "latex": "$(x-h)^2 + (y-k)^2 = r^2$",
+          "explanation": "Center (h, k), radius r."
+        },
+        {
+          "title": "It's the distance formula",
+          "latex": "squared",
+          "explanation": "Distance from center = r."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cp-we1",
+          "statement": "Write the equation of the circle with center $(2, -3)$ and radius $4$.",
+          "solution": "$(x-2)^2 + (y-(-3))^2 = 4^2$, i.e. $(x-2)^2 + (y+3)^2 = 16$.",
+          "check": [
+            "(2-2)**2 + (-3+3)**2 == 0",
+            "4**2 == 16"
+          ]
+        },
+        {
+          "id": "cp-we2",
+          "statement": "Capstone: right triangle $A(0,0)$, $B(6,0)$, $C(0,8)$. Show the midpoint $M$ of hypotenuse $BC$ is the same distance from all three vertices.",
+          "solution": "$M = \\left(\\tfrac{6+0}{2}, \\tfrac{0+8}{2}\\right) = (3,4)$. $MA = \\sqrt{3^2+4^2} = 5$; $MB = \\sqrt{(3-6)^2+4^2} = 5$; $MC = \\sqrt{3^2+(4-8)^2} = 5$. So $MA = MB = MC = 5$.",
+          "check": [
+            "sqrt((3-0)**2+(4-0)**2) == 5",
+            "sqrt((3-6)**2+(4-0)**2) == 5",
+            "sqrt((3-0)**2+(4-8)**2) == 5"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Getting the center's sign wrong.",
+          "correction": "Center $(2, -3)$ gives $(y+3)$, not $(y-3)$ — the form is $(y - k)$, and $-(-3) = +3$.",
+          "authored": true
+        },
+        {
+          "text": "Confusing $r$ with $r^2$.",
+          "correction": "The right side stores $r^2$: radius $4$ means $= 16$, and $= 49$ means radius $7$.",
+          "authored": true
+        },
+        {
+          "text": "Choosing coordinates that assume the conclusion.",
+          "correction": "Place a figure **legally** and generally (e.g. right angle at the origin) — don't force the result by how you draw it.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cp-t1",
+          "statement": "Center $(0,0)$, radius $5$. Equation? Is $(3,4)$ on it?",
+          "solution": "$x^2 + y^2 = 25$; $(3,4)$: $9 + 16 = 25$ ✓ — yes.",
+          "check": [
+            "(3-0)**2 + (4-0)**2 == 25"
+          ]
+        },
+        {
+          "id": "cp-t2",
+          "statement": "From $(x+1)^2 + (y-4)^2 = 36$, name the center and radius.",
+          "solution": "Center $(-1, 4)$, radius $\\sqrt{36} = 6$.",
+          "check": [
+            "(-1+1)**2 + (4-4)**2 == 0",
+            "6**2 == 36"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "A circle is a distance",
+            "beats": [
+              "A **circle** is every point a fixed distance $r$ from a center $(h,k)$.",
+              "'Distance from center $= r$', squared, is the equation.",
+              "$(x-h)^2 + (y-k)^2 = r^2$.",
+              "Then we'll use the whole unit to prove a theorem."
+            ]
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "Concept A",
+            "title": "The circle equation",
+            "teach": "Center $(2, -3)$, radius $4$. Tap **Show the equation**: $(x-2)^2 + (y+3)^2 = 16$. The center's signs flip inside the parentheses ($-(-3) = +3$), and the right side is $r^2 = 16$, not $4$.",
+            "config": {
+              "mode": "circle",
+              "center": {
+                "x": 2,
+                "y": -3
+              },
+              "r": 4,
+              "min": -8,
+              "max": 8
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reading the equation",
+            "title": "Signs and r²",
+            "beats": [
+              "$(x-h)^2 + (y-k)^2 = r^2$.",
+              "Center $(2,-3)$: $(x-2)^2 + (y+3)^2$ — the $-3$ becomes $+3$.",
+              "Right side is $r^2$: radius $4 \\Rightarrow 16$.",
+              "Reading backward, $= 49$ means radius $7$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Circle equations",
+            "intro": "Mind the signs and r².",
+            "examples": [
+              {
+                "prompt": "Center $(0,0)$, radius $5$?",
+                "steps": [
+                  "$(x-0)^2 + (y-0)^2 = 5^2$.",
+                  "$x^2 + y^2 = 25$."
+                ],
+                "answer": "$x^2 + y^2 = 25$",
+                "check": [
+                  "5**2 == 25"
+                ]
+              },
+              {
+                "prompt": "$(x+1)^2 + (y-4)^2 = 36$ — center and radius?",
+                "steps": [
+                  "$-h = +1 \\Rightarrow h = -1$; $k = 4$.",
+                  "$r = \\sqrt{36} = 6$. Center $(-1,4)$, $r=6$."
+                ],
+                "answer": "center $(-1,4)$, $r = 6$",
+                "check": [
+                  "(-1+1)**2 + (4-4)**2 == 0",
+                  "6**2 == 36"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Circle practice",
+            "intro": "Center (h,k), right side r².",
+            "problems": [
+              {
+                "prompt": "Center $(0,0)$, radius $5$. Is $(3,4)$ on the circle?",
+                "options": [
+                  "yes ($9+16=25$)",
+                  "no",
+                  "only if $r=7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3^2+4^2 = 25 = r^2$.",
+                "check": [
+                  "(3-0)**2 + (4-0)**2 == 25"
+                ]
+              },
+              {
+                "prompt": "Center $(2,-3)$, radius $4$. Equation?",
+                "options": [
+                  "$(x-2)^2+(y+3)^2=16$",
+                  "$(x-2)^2+(y-3)^2=16$",
+                  "$(x-2)^2+(y+3)^2=4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$-(-3)=+3$; right side $16$. (The center $(2,-3)$ makes the left side $0$.)",
+                "check": [
+                  "(2-2)**2 + (-3+3)**2 == 0",
+                  "4**2 == 16"
+                ]
+              },
+              {
+                "prompt": "From $(x-3)^2+(y+2)^2=49$, the radius is —",
+                "options": [
+                  "$7$",
+                  "$49$",
+                  "$24.5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$r = \\sqrt{49} = 7$.",
+                "check": [
+                  "7**2 == 49"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "A coordinate proof",
+            "title": "Turn a picture into numbers",
+            "beats": [
+              "A **coordinate proof** places a figure on axes and computes.",
+              "Match each claim to a tool: length → **distance**, center → **midpoint**, right angle → **slope**.",
+              "Place it **legally** — assume only what's given, not the conclusion.",
+              "Our theorem: the midpoint of a right triangle's hypotenuse is equidistant from all three vertices."
+            ]
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "Proof · step 1",
+            "title": "Midpoint of the hypotenuse",
+            "teach": "Place the right angle at the origin: $A(0,0)$, $B(6,0)$, $C(0,8)$. The hypotenuse is $BC$. Tap to mark its midpoint $M = \\left(\\tfrac{6+0}{2}, \\tfrac{0+8}{2}\\right) = (3, 4)$ (Midpoint Formula, Lesson 2).",
+            "config": {
+              "mode": "midpoint",
+              "a": {
+                "x": 6,
+                "y": 0
+              },
+              "b": {
+                "x": 0,
+                "y": 8
+              },
+              "min": -2,
+              "max": 10
+            }
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "Proof · step 2",
+            "title": "M is 5 from every vertex",
+            "teach": "Now measure $M(3,4)$ to a vertex. Tap: $MA = \\sqrt{3^2 + 4^2} = 5$ (Distance Formula, Lesson 1). The same computation gives $MB = 5$ and $MC = 5$ — so $MA = MB = MC$.",
+            "config": {
+              "mode": "distance",
+              "a": {
+                "x": 3,
+                "y": 4
+              },
+              "b": {
+                "x": 0,
+                "y": 0
+              },
+              "min": -2,
+              "max": 10
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The two-column proof",
+            "title": "Every reason names a lesson",
+            "beats": [
+              "1. $A(0,0), B(6,0), C(0,8)$; slope $AB = 0$ and slope $AC$ undefined, so the legs are perpendicular and $\\angle A$ is right — **Slope** (L3–L4).",
+              "2. $M = (3,4)$ — **Midpoint** Formula (L2).",
+              "3. $MA = MB = MC = \\sqrt{9+16} = 5$ — **Distance** Formula (L1).",
+              "4. So $M$ is equidistant from $A$, $B$, $C$. ∎"
+            ]
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "Proof · step 3",
+            "title": "So the vertices lie on one circle",
+            "teach": "Since all three vertices are $5$ from $M(3,4)$, they all satisfy $(x-3)^2 + (y-4)^2 = 25$. Tap to see the circle: it passes through $A$, $B$, and $C$. The hypotenuse $BC = 10$ is a **diameter** — this is Thales' theorem from Unit 9, read backward.",
+            "config": {
+              "mode": "circle",
+              "center": {
+                "x": 3,
+                "y": 4
+              },
+              "r": 5,
+              "min": -2,
+              "max": 10
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "The capstone numbers",
+            "intro": "Distance + midpoint + circle in one figure.",
+            "examples": [
+              {
+                "prompt": "Midpoint of $B(6,0)$ and $C(0,8)$?",
+                "steps": [
+                  "$\\left(\\tfrac{6+0}{2}, \\tfrac{0+8}{2}\\right)$.",
+                  "$= (3, 4)$."
+                ],
+                "answer": "$(3, 4)$",
+                "check": [
+                  "(6+0)/2 == 3",
+                  "(0+8)/2 == 4"
+                ]
+              },
+              {
+                "prompt": "Is $C(0,8)$ on $(x-3)^2+(y-4)^2=25$?",
+                "steps": [
+                  "$(0-3)^2 + (8-4)^2 = 9 + 16$.",
+                  "$= 25$ ✓ — yes."
+                ],
+                "answer": "yes",
+                "check": [
+                  "(0-3)**2 + (8-4)**2 == 25"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Your GPS uses this exact idea",
+            "body": "The capstone theorem is secretly about circles: because the midpoint of a right triangle's hypotenuse is equidistant from all three corners, it's the center of a circle through them, and the hypotenuse is a diameter — that's **Thales' theorem** (Unit 9). The same 'circle = range' idea lets seismologists pinpoint an earthquake where three circles cross, exactly the trilateration your phone's GPS runs with satellites."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "On the circle?",
+            "prompt": "Does the point $(6, 0)$ lie on the circle $(x-3)^2 + (y-4)^2 = 25$?",
+            "options": [
+              "yes ($9 + 16 = 25$)",
+              "no",
+              "only if $r = 10$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(6-3)^2 + (0-4)^2 = 9 + 16 = 25 = r^2$, so yes — it's vertex $B$ of the proof.",
+            "check": [
+              "(6-3)**2 + (0-4)**2 == 25"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **circle** is $(x-h)^2 + (y-k)^2 = r^2$ — the distance from the center, squared.",
+              "Center signs flip inside; the right side is $r^2$ (radius $4 \\Rightarrow 16$).",
+              "A **coordinate proof** fuses distance, midpoint, and slope — the whole unit in one figure."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's write circle equations and finish the capstone proof."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Center $(0,0)$, radius $5$?",
+                "options": [
+                  "$x^2+y^2=25$",
+                  "$x^2+y^2=5$",
+                  "$x^2+y^2=10$",
+                  "$(x-5)^2+y^2=0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Right side $r^2 = 25$.",
+                "check": [
+                  "5**2 == 25"
+                ]
+              },
+              {
+                "prompt": "Center $(2,-3)$, radius $4$?",
+                "options": [
+                  "$(x-2)^2+(y+3)^2=16$",
+                  "$(x-2)^2+(y-3)^2=16$",
+                  "$(x+2)^2+(y-3)^2=16$",
+                  "$(x-2)^2+(y+3)^2=4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$-(-3)=+3$; $r^2=16$.",
+                "check": [
+                  "(2-2)**2 + (-3+3)**2 == 0",
+                  "4**2 == 16"
+                ]
+              },
+              {
+                "prompt": "From $(x+1)^2+(y-4)^2=36$, the center is —",
+                "options": [
+                  "$(-1, 4)$",
+                  "$(1, -4)$",
+                  "$(1, 4)$",
+                  "$(-1, -4)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$-h = +1 \\Rightarrow h = -1$; $k = 4$. Plugging $(-1,4)$ into the left side gives $0$.",
+                "check": [
+                  "(-1+1)**2 + (4-4)**2 == 0"
+                ]
+              },
+              {
+                "prompt": "Midpoint of the hypotenuse $B(6,0)$, $C(0,8)$?",
+                "options": [
+                  "$(3, 4)$",
+                  "$(6, 8)$",
+                  "$(3, 8)$",
+                  "$(4, 3)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Average: $(3, 4)$.",
+                "check": [
+                  "(6+0)/2 == 3",
+                  "(0+8)/2 == 4"
+                ]
+              },
+              {
+                "prompt": "$MA$ from $M(3,4)$ to $A(0,0)$?",
+                "options": [
+                  "$5$",
+                  "$7$",
+                  "$25$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{9+16} = 5$.",
+                "check": [
+                  "sqrt((3-0)**2+(4-0)**2) == 5"
+                ]
+              },
+              {
+                "prompt": "In a coordinate proof, 'right angle' is checked with —",
+                "options": [
+                  "slope",
+                  "distance",
+                  "midpoint",
+                  "area"
+                ],
+                "correctIndex": 0,
+                "explanation": "Perpendicular slopes / horizontal-vertical.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Coordinate Geometry\"",
+            "body": "You've fused algebra with every earlier unit — distance, midpoint, slope, lines, circles, and a real proof. That's the whole Geometry course, from a point on a page to a theorem you proved yourself. Congratulations."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [],
+  "testYourself": []
+}

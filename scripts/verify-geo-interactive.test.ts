@@ -83,6 +83,15 @@ import {
   rotate,
   dilateOrigin,
   mapFigure,
+  legs,
+  slope,
+  isParallelSlope,
+  isPerpendicularSlope,
+  negativeReciprocal,
+  yIntercept,
+  lineY,
+  circleRadius,
+  isOnCircle,
 } from "@/lib/geo";
 
 describe("segment math", () => {
@@ -668,5 +677,60 @@ describe("transformations", () => {
     expect(dilateOrigin({ x: 4, y: 6 }, 0.5)).toEqual({ x: 2, y: 3 });
     // scale factor 1 leaves a point where it is
     expect(dilateOrigin({ x: 5, y: -7 }, 1)).toEqual({ x: 5, y: -7 });
+  });
+});
+
+describe("coordinate geometry", () => {
+  it("distance is the hypotenuse of the run/rise legs (Pythagoras)", () => {
+    // (0,0) to (3,4): legs 3 and 4, distance 5
+    expect(legs({ x: 0, y: 0 }, { x: 3, y: 4 })).toEqual({ run: 3, rise: 4 });
+    expect(dist({ x: 0, y: 0 }, { x: 3, y: 4 })).toBe(5);
+    // (1,2) to (13,7): legs 12 and 5, distance 13
+    expect(dist({ x: 1, y: 2 }, { x: 13, y: 7 })).toBe(13);
+    // (-2,-3) to (6,12): legs 8 and 15, distance 17
+    expect(dist({ x: -2, y: -3 }, { x: 6, y: 12 })).toBe(17);
+  });
+
+  it("midpoint averages the coordinates", () => {
+    expect(midpoint({ x: 2, y: 4 }, { x: 8, y: 10 })).toEqual({ x: 5, y: 7 });
+    expect(midpoint({ x: -3, y: 1 }, { x: 5, y: 9 })).toEqual({ x: 1, y: 5 });
+    // clean-half midpoint
+    expect(midpoint({ x: 1, y: 2 }, { x: 4, y: 6 })).toEqual({ x: 2.5, y: 4 });
+  });
+
+  it("slope is rise over run; vertical is undefined (null)", () => {
+    expect(slope({ x: 1, y: 2 }, { x: 4, y: 8 })).toBe(2); // 6/3
+    expect(slope({ x: 0, y: 5 }, { x: 5, y: 0 })).toBe(-1); // -5/5
+    expect(slope({ x: 2, y: 3 }, { x: 6, y: 3 })).toBe(0); // horizontal
+    expect(slope({ x: 4, y: 1 }, { x: 4, y: 9 })).toBeNull(); // vertical
+  });
+
+  it("parallel lines have equal slopes; perpendicular slopes multiply to -1", () => {
+    expect(isParallelSlope(2, 2)).toBe(true);
+    expect(isParallelSlope(2, -2)).toBe(false);
+    expect(isPerpendicularSlope(2, -0.5)).toBe(true); // 2 * (-1/2) = -1
+    expect(isPerpendicularSlope(3, 3)).toBe(false);
+    expect(negativeReciprocal(2)).toBe(-0.5);
+    expect(negativeReciprocal(-4)).toBe(0.25);
+    expect(negativeReciprocal(0)).toBeNull(); // perpendicular to horizontal is vertical
+  });
+
+  it("line equation: y-intercept and evaluation", () => {
+    // slope 2 through (1,5): b = 5 - 2*1 = 3, so y = 2x + 3
+    expect(yIntercept(2, { x: 1, y: 5 })).toBe(3);
+    expect(lineY(2, 3, 0)).toBe(3);
+    expect(lineY(2, 3, 4)).toBe(11);
+    // slope -1 through (2,1): b = 1 - (-1)(2) = 3
+    expect(yIntercept(-1, { x: 2, y: 1 })).toBe(3);
+  });
+
+  it("circle: radius from center to a point, and membership", () => {
+    // center (0,0) through (3,4): radius 5
+    expect(circleRadius({ x: 0, y: 0 }, { x: 3, y: 4 })).toBe(5);
+    expect(isOnCircle({ x: 0, y: 0 }, 5, { x: -4, y: 3 })).toBe(true);
+    expect(isOnCircle({ x: 0, y: 0 }, 5, { x: 5, y: 0 })).toBe(true);
+    expect(isOnCircle({ x: 0, y: 0 }, 5, { x: 2, y: 2 })).toBe(false);
+    // center (2,-1) radius 5 through (5,3): (5-2)²+(3+1)² = 9+16 = 25
+    expect(isOnCircle({ x: 2, y: -1 }, 5, { x: 5, y: 3 })).toBe(true);
   });
 });

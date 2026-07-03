@@ -784,6 +784,21 @@ export interface SolidNetConfig {
   color?: string;
 }
 
+// A coordinate-geometry figure on the plane with a tap-to-reveal computation:
+// distance (via the run/rise right triangle), midpoint, slope (rise/run), a
+// line y = mx + b, or a circle (x−h)²+(y−k)²=r².
+export interface CoordGeoConfig {
+  mode: "distance" | "midpoint" | "slope" | "line" | "circle";
+  a?: { x: number; y: number }; // first point (distance / midpoint / slope)
+  b?: { x: number; y: number }; // second point
+  m?: number; // line slope
+  yint?: number; // line y-intercept
+  center?: { x: number; y: number }; // circle center
+  r?: number; // circle radius
+  min?: number; max?: number; // grid extent (default -6..6)
+  color?: string;
+}
+
 // One figure and its image under a single transformation on the coordinate
 // plane: a slide, flip, turn, or resize. Tapping reveals the image and the
 // per-vertex coordinate mapping.
@@ -906,6 +921,7 @@ export type InteractiveStep =
   | { kind: "solid3d"; eyebrow?: string; title: string; teach: string; config: Solid3DConfig }
   | { kind: "solidNet"; eyebrow?: string; title: string; teach: string; config: SolidNetConfig }
   | { kind: "transformPlane"; eyebrow?: string; title: string; teach: string; config: TransformPlaneConfig }
+  | { kind: "coordGeo"; eyebrow?: string; title: string; teach: string; config: CoordGeoConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

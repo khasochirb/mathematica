@@ -523,3 +523,63 @@ export function dilateOrigin(p: XY, k: number): XY {
 export function mapFigure(pts: XY[], f: (p: XY) => XY): XY[] {
   return pts.map(f);
 }
+
+// ---------------------------------------------------------------------------
+// Coordinate geometry — distance, midpoint, slope, lines, and circles on the
+// plane. (dist and midpoint are defined at the top of this file.)
+// ---------------------------------------------------------------------------
+
+// The two legs of the right triangle under a segment: the horizontal run and
+// the vertical rise. The distance is the hypotenuse, sqrt(run² + rise²) — this
+// is the Pythagorean theorem (Unit 8) applied to coordinates.
+export function legs(a: XY, b: XY): { run: number; rise: number } {
+  return { run: b.x - a.x, rise: b.y - a.y };
+}
+
+// Slope of the line through two points: rise over run. Returns null when the
+// line is vertical (run = 0), where the slope is undefined.
+export function slope(a: XY, b: XY): number | null {
+  if (b.x - a.x === 0) return null;
+  return (b.y - a.y) / (b.x - a.x);
+}
+
+// Two nonvertical lines are parallel exactly when their slopes are equal.
+export function isParallelSlope(m1: number, m2: number): boolean {
+  return m1 === m2;
+}
+
+// Two nonvertical lines are perpendicular exactly when the product of their
+// slopes is −1 (each slope is the negative reciprocal of the other).
+export function isPerpendicularSlope(m1: number, m2: number): boolean {
+  return m1 * m2 === -1;
+}
+
+// The negative reciprocal of a slope — the slope of any line perpendicular to
+// one with slope m. Returns null for m = 0 (perpendicular would be vertical).
+export function negativeReciprocal(m: number): number | null {
+  if (m === 0) return null;
+  return -1 / m;
+}
+
+// The y-intercept b of the line with slope m through point (x, y): from
+// y = mx + b, b = y − mx.
+export function yIntercept(m: number, p: XY): number {
+  return p.y - m * p.x;
+}
+
+// Evaluate y on the line y = mx + b at a given x.
+export function lineY(m: number, b: number, x: number): number {
+  return m * x + b;
+}
+
+// The radius of the circle centered at `center` passing through `p`.
+export function circleRadius(center: XY, p: XY): number {
+  return dist(center, p);
+}
+
+// Whether point p lies exactly on the circle of radius r centered at `center`:
+// (x − h)² + (y − k)² = r². (pointOnCircle above returns the point AT an angle;
+// this tests membership.)
+export function isOnCircle(center: XY, r: number, p: XY): boolean {
+  return (p.x - center.x) ** 2 + (p.y - center.y) ** 2 === r * r;
+}

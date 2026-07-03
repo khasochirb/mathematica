@@ -71,6 +71,7 @@ import geometryCircles from "@/data/genmath/geometry/circles.json";
 import geometryAreaPerimeter from "@/data/genmath/geometry/area-and-perimeter.json";
 import geometrySurfaceVolume from "@/data/genmath/geometry/surface-area-and-volume.json";
 import geometryTransformations from "@/data/genmath/geometry/transformations.json";
+import geometryCoordinate from "@/data/genmath/geometry/coordinate-geometry.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -246,7 +247,7 @@ export const GEOMETRY_SPINE: GeometrySpineEntry[] = [
     title: "Coordinate Geometry",
     blurb: "Distance, midpoint, and slope; equations of lines and circles; proofs with coordinates — the course capstone.",
     buildsOn: "Everything — algebra meets every earlier unit.",
-    live: false,
+    live: true,
   },
 ];
 
@@ -263,6 +264,7 @@ const geometryUnits: GeometryUnit[] = [
   geometryAreaPerimeter as unknown as GeometryUnit,
   geometrySurfaceVolume as unknown as GeometryUnit,
   geometryTransformations as unknown as GeometryUnit,
+  geometryCoordinate as unknown as GeometryUnit,
 ];
 
 export function getGeometrySpine(): GeometrySpineEntry[] {
