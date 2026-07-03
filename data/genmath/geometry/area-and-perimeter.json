@@ -292,7 +292,7 @@
           {
             "kind": "funFact",
             "eyebrow": "Fun fact",
-            "title": "Why rooftops and bridges love triangles for area too",
+            "title": "Why surveyors split land into triangles",
             "body": "Land surveyors split any oddly-shaped plot into triangles and add their areas — because a triangle's area needs only a base and a height, both easy to measure in the field. Break a shape into triangles and you can find the area of almost anything."
           },
           {
@@ -431,7 +431,7 @@
     {
       "slug": "area-of-trapezoids-rhombi-kites",
       "title": "Area of Trapezoids, Rhombi & Kites",
-      "concreteComparison": "A trapezoid is a parallelogram with a mismatched top and bottom — so you average the two bases before multiplying by the height. A rhombus or kite is measured a totally different way: half the product of its two diagonals.",
+      "concreteComparison": "A trapezoid has a wide base and a narrower top — so you average the two before multiplying by the height. A rhombus or kite is measured a totally different way: half the product of its two diagonals.",
       "objective": "Find the area of a trapezoid using ½(b₁+b₂)·h and the area of a rhombus or kite using ½·d₁·d₂.",
       "concept": [
         "A **trapezoid** has two parallel bases $b_1$ and $b_2$. Its area is the **average of the bases times the height**: $A = \\tfrac12(b_1 + b_2)h$.",
@@ -932,7 +932,7 @@
             "beats": [
               "A **regular polygon** has equal sides and equal angles.",
               "Draw lines from the center to each vertex — you get **$n$ triangles**.",
-              "Each triangle's base is a **side**; its height is the **apothem**.",
+              "Each triangle's base is a **side**; its height is the **apothem** (the distance from the center to the middle of a side).",
               "Add them all up for the total area."
             ]
           },
@@ -1052,7 +1052,7 @@
             "intro": "Perimeter first, then ½ a P.",
             "examples": [
               {
-                "prompt": "Regular hexagon, side $10$, apothem $9$. Area?",
+                "prompt": "Regular hexagon, side $10$, apothem $9$ (rounded). Area?",
                 "steps": [
                   "$P = 6 \\times 10 = 60$.",
                   "$A = \\tfrac12(9)(60) = 270$."
@@ -1063,7 +1063,7 @@
                 ]
               },
               {
-                "prompt": "Regular pentagon, side $8$, apothem $6$. Area?",
+                "prompt": "Regular pentagon, side $8$, apothem $6$ (rounded). Area?",
                 "steps": [
                   "$P = 5 \\times 8 = 40$.",
                   "$A = \\tfrac12(6)(40) = 120$."
@@ -1095,7 +1095,7 @@
                 ]
               },
               {
-                "prompt": "Regular octagon, side $5$, apothem $6$. Area?",
+                "prompt": "Regular octagon, side $5$, apothem $6$ (rounded). Area?",
                 "options": [
                   "$120$",
                   "$240$",
@@ -1181,7 +1181,7 @@
                 ]
               },
               {
-                "prompt": "Regular hexagon, side $8$, apothem $7$. Area?",
+                "prompt": "Regular hexagon, side $8$, apothem $7$ (rounded). Area?",
                 "options": [
                   "$168$",
                   "$336$",
@@ -1223,7 +1223,7 @@
                 ]
               },
               {
-                "prompt": "Regular pentagon, side $6$, apothem $4$. Area?",
+                "prompt": "Regular pentagon, side $6$, apothem $4$ (rounded). Area?",
                 "options": [
                   "$60$",
                   "$120$",
@@ -1677,7 +1677,7 @@
       "slug": "composite-figures",
       "title": "Composite Figures",
       "concreteComparison": "A house-shaped sign is a rectangle with a triangle roof; an L-shaped garden is two rectangles; a running track is a rectangle with two semicircle ends. Break a complex figure into simple shapes, find each area, and add them up.",
-      "objective": "Find the area of a composite figure by decomposing it into rectangles, triangles, and circles, then adding the parts.",
+      "objective": "Find the area of a composite figure by decomposing it into rectangles, triangles, and semicircles, then adding the parts.",
       "concept": [
         "A **composite figure** is made of several simple shapes joined together.",
         "**Decompose** it into rectangles, triangles, semicircles, and so on.",
@@ -2392,14 +2392,14 @@
                 ]
               },
               {
-                "prompt": "A ring's area is $\\pi R^2 - \\pi r^2$, NOT —",
+                "prompt": "Which is the CORRECT area formula for a ring (outer radius $R$, inner radius $r$)?",
                 "options": [
+                  "$\\pi R^2 - \\pi r^2$",
                   "$\\pi(R - r)^2$",
-                  "outer − inner",
-                  "$\\pi R^2 - \\pi r^2$"
+                  "$2\\pi(R - r)$"
                 ],
                 "correctIndex": 0,
-                "explanation": "Subtract the areas, not the radii.",
+                "explanation": "Subtract the two circle AREAS: $\\pi R^2 - \\pi r^2$ — not $\\pi(R-r)^2$.",
                 "check": [
                   "pi*5**2 - pi*3**2 == 16*pi"
                 ]
