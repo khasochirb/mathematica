@@ -1576,7 +1576,7 @@
                 "options": [
                   "$\\tfrac{3}{5}$",
                   "$\\tfrac{4}{5}$",
-                  "$\\tfrac{9}{15}$ only",
+                  "$\\tfrac{3}{4}$",
                   "$\\tfrac{5}{3}$"
                 ],
                 "correctIndex": 0,
@@ -1667,7 +1667,7 @@
       "facts": [
         {
           "title": "Pick the ratio",
-          "latex": "opp·hyp→sin, adj·hyp→cos, opp·adj→tan",
+          "latex": "$\\sin=\\tfrac{o}{h}$ · $\\cos=\\tfrac{a}{h}$ · $\\tan=\\tfrac{o}{a}$",
           "explanation": "Match the two sides involved to the right ratio."
         },
         {
@@ -1749,7 +1749,7 @@
           {
             "kind": "teach",
             "eyebrow": "Set up and solve",
-            "title": "Ratio = known ÷ unknown",
+            "title": "Match the ratio to the two sides",
             "beats": [
               "Have opp, want hyp (or vice-versa) → **sine**.",
               "Have adj, want hyp → **cosine**.",
@@ -2088,7 +2088,7 @@
       "workedExamples": [
         {
           "id": "ed-we1",
-          "statement": "From $10$ m away, a flagpole's top is level with a $45^\\circ$ line of sight ($\\text{opp} = 10$, $\\text{adj} = 10$). Find the angle of elevation.",
+          "statement": "You stand $10$ m from a flagpole and the top is $10$ m above your eye level ($\\text{opp} = 10$, $\\text{adj} = 10$). Find the angle of elevation to the top.",
           "solution": "$\\tan\\theta = \\tfrac{10}{10} = 1 \\Rightarrow \\theta = \\tan^{-1}(1) = 45^\\circ$.",
           "check": [
             "atan(1)*180/pi == 45"
@@ -2261,7 +2261,7 @@
             "intro": "Model a right triangle, use tan or its inverse.",
             "examples": [
               {
-                "prompt": "From $10$ m away, the top of a pole needs a $45^\\circ$ look-up; the pole is $10$ m tall. Confirm the elevation angle.",
+                "prompt": "A pole is $10$ m tall; you stand $10$ m from its base. Find the angle of elevation to the top.",
                 "steps": [
                   "$\\tan\\theta = \\text{height}/\\text{distance} = 10/10 = 1$.",
                   "$\\theta = \\tan^{-1}(1) = 45^\\circ$."
