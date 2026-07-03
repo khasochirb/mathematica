@@ -2,8 +2,9 @@
 
 import PlacementRunner from "@/components/placement/PlacementRunner";
 import { getGeometryPlacementBank } from "@/lib/placement-bank";
+import ContentGate from "@/components/genmath/ContentGate";
 
-export default function GeometryPlacementPage() {
+function GeometryPlacementPageInner() {
   return (
     <PlacementRunner
       config={{
@@ -17,5 +18,14 @@ export default function GeometryPlacementPage() {
         title: "Place into the Geometry course",
       }}
     />
+  );
+}
+
+// Content requires an account; the hub pages above stay public.
+export default function GeometryPlacementPage() {
+  return (
+    <ContentGate backHref={"/math/geometry"} backLabel="Back to Geometry">
+      <GeometryPlacementPageInner />
+    </ContentGate>
   );
 }

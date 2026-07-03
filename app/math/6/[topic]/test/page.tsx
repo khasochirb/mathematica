@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import RevealProblemCard from "@/components/lesson/RevealProblemCard";
 import { getGenMathTopic } from "@/lib/genmath-lessons";
+import ContentGate from "@/components/genmath/ContentGate";
 
 const REVEAL_LABELS = {
   reveal: "Show solution",
@@ -13,7 +14,7 @@ const REVEAL_LABELS = {
   hideAria: "Hide solution",
 };
 
-export default function GenMathTestPage() {
+function GenMathTestPageInner() {
   const params = useParams();
   const topicSlug = params.topic as string;
   const topic = getGenMathTopic(topicSlug);
@@ -86,5 +87,16 @@ export default function GenMathTestPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Content requires an account; the hub and topic pages above stay public.
+export default function GenMathTestPage() {
+  const params = useParams();
+  const topicSlug = params.topic as string;
+  return (
+    <ContentGate backHref={`/math/6/${topicSlug}`} backLabel="Back to topic">
+      <GenMathTestPageInner />
+    </ContentGate>
   );
 }

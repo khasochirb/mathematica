@@ -11,6 +11,7 @@ import RevealProblemCard from "@/components/lesson/RevealProblemCard";
 import CommonMistakesList from "@/components/lesson/CommonMistakesList";
 import { getGenMathTopic, getGenMathLesson } from "@/lib/genmath-lessons";
 import LessonPlayer from "@/components/genmath/interactive/LessonPlayer";
+import ContentGate from "@/components/genmath/ContentGate";
 
 const REVEAL_LABELS = {
   reveal: "Show solution",
@@ -19,7 +20,7 @@ const REVEAL_LABELS = {
   hideAria: "Hide solution",
 };
 
-export default function GenMathLessonPage() {
+function GenMathLessonPageInner() {
   const params = useParams();
   const topicSlug = params.topic as string;
   const lessonSlug = params.lesson as string;
@@ -180,5 +181,16 @@ export default function GenMathLessonPage() {
         </Section>
       </div>
     </div>
+  );
+}
+
+// Content requires an account; the hub and topic pages above stay public.
+export default function GenMathLessonPage() {
+  const params = useParams();
+  const topicSlug = params.topic as string;
+  return (
+    <ContentGate backHref={`/math/6/${topicSlug}`} backLabel="Back to topic">
+      <GenMathLessonPageInner />
+    </ContentGate>
   );
 }

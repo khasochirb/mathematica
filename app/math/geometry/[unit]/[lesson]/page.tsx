@@ -5,10 +5,11 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { getGeometryUnit, getGeometryLesson } from "@/lib/genmath-lessons";
 import LessonPlayer from "@/components/genmath/interactive/LessonPlayer";
+import ContentGate from "@/components/genmath/ContentGate";
 
 // A Geometry lesson — the same paced interactive player the grade hubs use,
 // pointed at the geometry course's units.
-export default function GeometryLessonPage() {
+function GeometryLessonPageInner() {
   const params = useParams();
   const unitSlug = params.unit as string;
   const lessonSlug = params.lesson as string;
@@ -39,5 +40,16 @@ export default function GeometryLessonPage() {
       baseHref={`/math/geometry/${unitSlug}`}
       crumb={`Geometry · Unit ${unit.unit} · ${unit.title}`}
     />
+  );
+}
+
+// Content requires an account; the hub and unit pages above stay public.
+export default function GeometryLessonPage() {
+  const params = useParams();
+  const unitSlug = params.unit as string;
+  return (
+    <ContentGate backHref={`/math/geometry/${unitSlug}`} backLabel="Back to unit">
+      <GeometryLessonPageInner />
+    </ContentGate>
   );
 }
