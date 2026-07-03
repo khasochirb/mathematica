@@ -1,7 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { listGrades } from "@/lib/genmath-lessons";
+import { listGrades, getGrade6Topics, getGrade8Spine } from "@/lib/genmath-lessons";
+
+const TOPIC_COUNTS: Record<number, number> = {
+  6: getGrade6Topics().length,
+  8: getGrade8Spine().length,
+};
 
 export default function MathLandingPage() {
   const grades = listGrades();
@@ -101,7 +106,7 @@ export default function MathLandingPage() {
                   Grade {grade}
                 </span>
                 <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-                  10 topics
+                  {TOPIC_COUNTS[grade] ?? 0} topics
                 </span>
               </Link>
             ) : (

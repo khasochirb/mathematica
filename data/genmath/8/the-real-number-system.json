@@ -1,0 +1,1460 @@
+{
+  "slug": "the-real-number-system",
+  "title": "The Real Number System",
+  "grade": 8,
+  "blurb": "Rational vs. irrational numbers, terminating and repeating decimals, classifying the real numbers, and placing any number on the line.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "rational-numbers",
+      "title": "Rational Numbers",
+      "concreteComparison": "Slice a pizza into 8 equal pieces and take 3 of them. You just wrote a number as a ratio: $\\frac{3}{8}$. Any number you can write as one whole number over another — a **ratio** — is called a **rational** number. Fractions, decimals you can pin down, and even plain whole numbers all live in this family.",
+      "objective": "Recognize a rational number as any number that can be written as a ratio $\\frac{a}{b}$ of two integers (with $b\\neq 0$), and see why integers and terminating decimals qualify.",
+      "concept": [
+        "A **rational number** is any number that can be written as a fraction $\\frac{a}{b}$, where $a$ and $b$ are integers and $b\\neq 0$. The word **rational** comes from **ratio**.",
+        "Every integer is rational: $5 = \\frac{5}{1}$ and $-7 = \\frac{-7}{1}$. You just put it over $1$.",
+        "Terminating decimals are rational too. $0.75 = \\frac{75}{100} = \\frac{3}{4}$, and $0.6 = \\frac{6}{10} = \\frac{3}{5}$.",
+        "The denominator can never be $0$ — dividing by zero has no meaning, so $\\frac{a}{0}$ is never a number."
+      ],
+      "keyIdea": "If you can write it as $\\frac{\\text{integer}}{\\text{integer}}$ (bottom not zero), it's rational.",
+      "facts": [
+        {
+          "title": "Integers are rational",
+          "latex": "$5 = \\frac{5}{1}$",
+          "explanation": "Put any integer over 1."
+        },
+        {
+          "title": "Terminating decimals are rational",
+          "latex": "$0.75 = \\frac{3}{4}$",
+          "explanation": "Read the place value, then simplify."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rns1-we1",
+          "statement": "Write $0.75$ as a fraction in lowest terms.",
+          "solution": "$0.75 = \\frac{75}{100} = \\frac{3}{4}$.",
+          "check": [
+            "Rational(75,100) == Rational(3,4)"
+          ]
+        },
+        {
+          "id": "rns1-we2",
+          "statement": "Show that $-6$ is rational by writing it as a ratio.",
+          "solution": "$-6 = \\frac{-6}{1}$ — an integer over an integer.",
+          "check": [
+            "Rational(-6,1) == -6"
+          ]
+        },
+        {
+          "id": "rns1-we3",
+          "statement": "Write $0.35$ as a fraction in lowest terms.",
+          "solution": "$0.35 = \\frac{35}{100} = \\frac{7}{20}$.",
+          "check": [
+            "Rational(35,100) == Rational(7,20)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking only fractions are rational.",
+          "correction": "Integers and terminating decimals are rational too — $5=\\frac{5}{1}$ and $0.5=\\frac{1}{2}$.",
+          "authored": true
+        },
+        {
+          "text": "Allowing a zero denominator.",
+          "correction": "$\\frac{a}{b}$ is only rational when $b\\neq 0$; division by zero is undefined.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rns1-t1",
+          "statement": "Write $0.4$ as a fraction in lowest terms.",
+          "solution": "$0.4 = \\frac{4}{10} = \\frac{2}{5}$.",
+          "check": [
+            "Rational(4,10) == Rational(2,5)"
+          ]
+        },
+        {
+          "id": "rns1-t2",
+          "statement": "Write $12$ as a ratio of two integers.",
+          "solution": "$12 = \\frac{12}{1}$.",
+          "check": [
+            "Rational(12,1) == 12"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "What it means",
+            "title": "Ratio of two integers",
+            "beats": [
+              "A **rational** number is a ratio $\\frac{a}{b}$ of two integers.",
+              "The bottom $b$ can be anything **except** $0$.",
+              "$\\frac{3}{8}$, $\\frac{-2}{5}$, and $\\frac{9}{9}$ are all rational.",
+              "The name literally comes from **ratio**."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Hidden fractions",
+            "title": "Integers are rational",
+            "beats": [
+              "Every integer is secretly a fraction.",
+              "$5 = \\frac{5}{1}$, and $-7 = \\frac{-7}{1}$.",
+              "Put it over $1$ and the ratio rule is satisfied.",
+              "So $\\ldots,-2,-1,0,1,2,\\ldots$ are all rational."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Is it rational?",
+            "prompt": "Which of these is **not** automatically written as a ratio of integers yet?",
+            "options": [
+              "$\\frac{3}{4}$",
+              "$-9$",
+              "$0.75$"
+            ],
+            "correctIndex": 2,
+            "explanation": "All three ARE rational, but $0.75$ needs a step: $0.75=\\frac{3}{4}$. The first two are already ratios.",
+            "check": [
+              "Rational(75,100) == Rational(3,4)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Turning decimals into ratios",
+            "intro": "Read the place value, then simplify.",
+            "examples": [
+              {
+                "prompt": "Write $0.6$ as a fraction in lowest terms.",
+                "steps": [
+                  "$0.6 = \\frac{6}{10}$.",
+                  "Divide top and bottom by $2$.",
+                  "$= \\frac{3}{5}$."
+                ],
+                "answer": "$\\frac{3}{5}$",
+                "check": [
+                  "Rational(6,10) == Rational(3,5)"
+                ]
+              },
+              {
+                "prompt": "Write $0.25$ as a fraction in lowest terms.",
+                "steps": [
+                  "$0.25 = \\frac{25}{100}$.",
+                  "Divide top and bottom by $25$.",
+                  "$= \\frac{1}{4}$."
+                ],
+                "answer": "$\\frac{1}{4}$",
+                "check": [
+                  "Rational(25,100) == Rational(1,4)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Rational or not?",
+            "intro": "Every one of these can be written as a ratio.",
+            "problems": [
+              {
+                "prompt": "Write $0.8$ as a fraction in lowest terms.",
+                "options": [
+                  "$\\frac{4}{5}$",
+                  "$\\frac{8}{100}$",
+                  "$\\frac{1}{8}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$0.8 = \\frac{8}{10} = \\frac{4}{5}$.",
+                "check": [
+                  "Rational(8,10) == Rational(4,5)"
+                ]
+              },
+              {
+                "prompt": "Which equals $\\frac{-10}{1}$?",
+                "options": [
+                  "$10$",
+                  "$-10$",
+                  "$\\frac{1}{10}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$\\frac{-10}{1} = -10$.",
+                "check": [
+                  "Rational(-10,1) == -10"
+                ]
+              },
+              {
+                "prompt": "Write $0.05$ as a fraction in lowest terms.",
+                "options": [
+                  "$\\frac{1}{20}$",
+                  "$\\frac{5}{10}$",
+                  "$\\frac{1}{5}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$0.05 = \\frac{5}{100} = \\frac{1}{20}$.",
+                "check": [
+                  "Rational(5,100) == Rational(1,20)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why “rational”?",
+            "body": "The word has nothing to do with being sensible. It comes straight from **ratio** — a comparison of two whole amounts. Ancient Greek mathematicians believed **every** length was a ratio of whole numbers… until one number broke that belief. You'll meet it soon."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **rational** number is a ratio $\\frac{a}{b}$ of integers, $b\\neq 0$.",
+              "Integers are rational: $5=\\frac{5}{1}$.",
+              "Terminating decimals are rational: $0.75=\\frac{3}{4}$."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "terminating-and-repeating-decimals",
+      "title": "Terminating & Repeating Decimals",
+      "concreteComparison": "Type $1\\div 3$ into a calculator and it spills out $0.3333\\ldots$ forever. Type $3\\div 8$ and it stops cleanly at $0.375$. Both come from fractions, so both are rational — one just **terminates** while the other **repeats**. Every rational number does exactly one of these two things.",
+      "objective": "Convert fractions to decimals by dividing, tell terminating from repeating decimals, and see that every rational number is one or the other.",
+      "concept": [
+        "To turn a fraction into a decimal, **divide the top by the bottom**. $\\frac{3}{8} = 3\\div 8 = 0.375$.",
+        "A **terminating** decimal stops: $0.375$, $0.5$, $0.24$. A **repeating** decimal has a block that goes on forever: $\\frac{1}{3}=0.333\\ldots$, $\\frac{2}{11}=0.1818\\ldots$",
+        "We mark the repeating block with a bar: $0.\\overline{3}$ means $0.333\\ldots$, and $0.\\overline{18}$ means $0.181818\\ldots$",
+        "Here's the big fact: **every rational number is either terminating or repeating.** Long division can only produce so many different remainders, so eventually the pattern must stop or cycle."
+      ],
+      "keyIdea": "Every rational number, written as a decimal, either terminates or repeats — never random forever.",
+      "facts": [
+        {
+          "title": "Terminating",
+          "latex": "$\\frac{3}{8} = 0.375$",
+          "explanation": "The division stops."
+        },
+        {
+          "title": "Repeating",
+          "latex": "$\\frac{1}{3} = 0.\\overline{3}$",
+          "explanation": "A block repeats forever."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rns2-we1",
+          "statement": "Write $\\frac{7}{20}$ as a decimal.",
+          "solution": "$7\\div 20 = 0.35$ — it terminates.",
+          "check": [
+            "Rational(7,20) == Rational(35,100)"
+          ]
+        },
+        {
+          "id": "rns2-we2",
+          "statement": "Is $\\frac{1}{3}$ terminating or repeating? Check that $3\\times\\frac{1}{3}=1$.",
+          "solution": "$\\frac{1}{3}=0.\\overline{3}$ repeats; and $3\\times\\frac{1}{3}=1$.",
+          "check": [
+            "Rational(1,3)*3 == 1"
+          ]
+        },
+        {
+          "id": "rns2-we3",
+          "statement": "Write $\\frac{5}{8}$ as a decimal.",
+          "solution": "$5\\div 8 = 0.625$ — terminating.",
+          "check": [
+            "Rational(5,8) == Rational(625,1000)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking a repeating decimal is irrational.",
+          "correction": "$0.\\overline{3}=\\frac{1}{3}$ is perfectly rational — repeating is fine, as long as it repeats a pattern.",
+          "authored": true
+        },
+        {
+          "text": "Rounding a repeating decimal and calling it exact.",
+          "correction": "$0.33$ is not $\\frac{1}{3}$; only $0.\\overline{3}$ (forever) equals $\\frac{1}{3}$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rns2-t1",
+          "statement": "Write $\\frac{9}{20}$ as a decimal.",
+          "solution": "$9\\div 20 = 0.45$.",
+          "check": [
+            "Rational(9,20) == Rational(45,100)"
+          ]
+        },
+        {
+          "id": "rns2-t2",
+          "statement": "Check: does $\\frac{2}{11}$ times $11$ give $2$?",
+          "solution": "Yes: $\\frac{2}{11}\\times 11 = 2$, confirming $\\frac{2}{11}=0.\\overline{18}$ is rational.",
+          "check": [
+            "Rational(2,11)*11 == 2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The method",
+            "title": "Fraction to decimal",
+            "beats": [
+              "To convert $\\frac{a}{b}$ to a decimal, compute $a\\div b$.",
+              "$\\frac{3}{8} = 3\\div 8 = 0.375$.",
+              "Sometimes the division **stops** — that's terminating.",
+              "Sometimes it **cycles** forever — that's repeating."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Two outcomes",
+            "title": "Terminate or repeat",
+            "beats": [
+              "$\\frac{1}{4}=0.25$ stops. **Terminating.**",
+              "$\\frac{1}{3}=0.333\\ldots$ cycles. **Repeating.**",
+              "We write the repeat with a bar: $0.\\overline{3}$.",
+              "There is no third option for a fraction."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which kind?",
+            "prompt": "What kind of decimal is $\\frac{1}{3}$?",
+            "options": [
+              "Terminating",
+              "Repeating",
+              "Neither"
+            ],
+            "correctIndex": 1,
+            "explanation": "$\\frac{1}{3}=0.333\\ldots=0.\\overline{3}$ repeats forever.",
+            "check": [
+              "Rational(1,3)*3 == 1"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Dividing it out",
+            "intro": "Divide top by bottom and watch what happens.",
+            "examples": [
+              {
+                "prompt": "Write $\\frac{7}{20}$ as a decimal.",
+                "steps": [
+                  "$7\\div 20$.",
+                  "$=0.35$.",
+                  "It stops — terminating."
+                ],
+                "answer": "$0.35$",
+                "check": [
+                  "Rational(7,20) == Rational(35,100)"
+                ]
+              },
+              {
+                "prompt": "Write $\\frac{5}{8}$ as a decimal.",
+                "steps": [
+                  "$5\\div 8$.",
+                  "$=0.625$.",
+                  "Terminating."
+                ],
+                "answer": "$0.625$",
+                "check": [
+                  "Rational(5,8) == Rational(625,1000)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Terminate or repeat?",
+            "intro": "Divide, then decide.",
+            "problems": [
+              {
+                "prompt": "Write $\\frac{3}{4}$ as a decimal.",
+                "options": [
+                  "$0.75$",
+                  "$0.34$",
+                  "$0.\\overline{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3\\div 4 = 0.75$, terminating.",
+                "check": [
+                  "Rational(3,4) == Rational(75,100)"
+                ]
+              },
+              {
+                "prompt": "Which fraction gives a repeating decimal?",
+                "options": [
+                  "$\\frac{1}{2}$",
+                  "$\\frac{1}{3}$",
+                  "$\\frac{1}{4}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$\\frac{1}{3}=0.\\overline{3}$; the others terminate.",
+                "check": [
+                  "Rational(1,3)*3 == 1"
+                ]
+              },
+              {
+                "prompt": "Write $\\frac{1}{8}$ as a decimal.",
+                "options": [
+                  "$0.125$",
+                  "$0.18$",
+                  "$0.\\overline{1}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$1\\div 8 = 0.125$.",
+                "check": [
+                  "Rational(1,8) == Rational(125,1000)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "A famous surprise",
+            "body": "Here's something that feels wrong but is true: $0.\\overline{9} = 1$. Exactly. Since $\\frac{1}{3}=0.\\overline{3}$, multiply both sides by $3$: $1 = 0.\\overline{9}$. A repeating $9$ forever **is** one whole. Repeating decimals hide neat secrets."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Convert a fraction by dividing top by bottom.",
+              "Every rational decimal **terminates** or **repeats**.",
+              "Mark repeats with a bar: $0.\\overline{3}=\\frac{1}{3}$."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "irrational-numbers",
+      "title": "Irrational Numbers",
+      "concreteComparison": "Draw a square one unit on each side and stretch a string across its diagonal. How long is that string? It's $\\sqrt{2}=1.41421356\\ldots$ — a decimal that never stops and never repeats. No fraction of whole numbers hits it exactly. Numbers like this are **irrational**, and they were a genuine shock when first discovered.",
+      "objective": "Recognize an irrational number as one that cannot be written as a ratio of integers — its decimal never terminates and never repeats — and identify common examples like $\\sqrt{2}$ and $\\pi$.",
+      "concept": [
+        "An **irrational** number **cannot** be written as $\\frac{a}{b}$ for any integers. Its decimal goes on forever with **no repeating pattern**.",
+        "The square root of any whole number that isn't a perfect square is irrational: $\\sqrt{2}$, $\\sqrt{3}$, $\\sqrt{5}$, $\\sqrt{10}$. But $\\sqrt{9}=3$ is rational — $9$ is a perfect square.",
+        "The most famous irrational is $\\pi = 3.14159\\ldots$, the ratio of a circle's circumference to its diameter. It never terminates or repeats.",
+        "Careful: $\\pi \\approx \\frac{22}{7}$ is only an **approximation**. $\\frac{22}{7}=3.142857\\ldots$ is close, but not equal to $\\pi$."
+      ],
+      "keyIdea": "Irrational = never terminates, never repeats, and can't be written as a fraction of integers.",
+      "facts": [
+        {
+          "title": "Non-perfect square roots",
+          "latex": "$\\sqrt{2},\\ \\sqrt{3},\\ \\sqrt{5}$",
+          "explanation": "Irrational unless the number is a perfect square."
+        },
+        {
+          "title": "Pi",
+          "latex": "$\\pi = 3.14159\\ldots$",
+          "explanation": "Never ends, never repeats."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rns3-we1",
+          "statement": "Is $\\sqrt{9}$ rational or irrational?",
+          "solution": "$\\sqrt{9}=3=\\frac{3}{1}$, so it's rational — $9$ is a perfect square.",
+          "check": [
+            "sqrt(9) == 3"
+          ]
+        },
+        {
+          "id": "rns3-we2",
+          "statement": "Show $\\sqrt{2}$ sits between $1$ and $2$.",
+          "solution": "$1^2=1$ and $2^2=4$, and $2$ is between them, so $1<\\sqrt{2}<2$.",
+          "check": [
+            "sqrt(2) > 1",
+            "sqrt(2) < 2"
+          ]
+        },
+        {
+          "id": "rns3-we3",
+          "statement": "Is $\\sqrt{16}$ rational or irrational?",
+          "solution": "$\\sqrt{16}=4$, rational — $16$ is a perfect square.",
+          "check": [
+            "sqrt(16) == 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking every square root is irrational.",
+          "correction": "$\\sqrt{9}=3$ and $\\sqrt{16}=4$ are rational; only non-perfect squares give irrationals.",
+          "authored": true
+        },
+        {
+          "text": "Writing $\\pi = \\frac{22}{7}$.",
+          "correction": "$\\frac{22}{7}$ is just a close approximation. $\\pi$ is irrational and equals no fraction.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rns3-t1",
+          "statement": "Between which two whole numbers does $\\sqrt{5}$ lie?",
+          "solution": "$2^2=4<5<9=3^2$, so $2<\\sqrt{5}<3$.",
+          "check": [
+            "sqrt(5) > 2",
+            "sqrt(5) < 3"
+          ]
+        },
+        {
+          "id": "rns3-t2",
+          "statement": "Is $\\sqrt{25}$ rational?",
+          "solution": "Yes: $\\sqrt{25}=5=\\frac{5}{1}$.",
+          "check": [
+            "sqrt(25) == 5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "A new kind of number",
+            "title": "Never ending, never repeating",
+            "beats": [
+              "An **irrational** number can't be written as $\\frac{a}{b}$.",
+              "Its decimal runs forever with **no pattern**.",
+              "$\\sqrt{2}=1.41421356\\ldots$ is the classic example.",
+              "So is $\\pi = 3.14159\\ldots$"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Which roots?",
+            "title": "Perfect squares stay rational",
+            "beats": [
+              "$\\sqrt{9}=3$ — rational, because $9=3^2$.",
+              "$\\sqrt{16}=4$ — rational, because $16=4^2$.",
+              "$\\sqrt{2}$, $\\sqrt{3}$, $\\sqrt{5}$ — irrational.",
+              "Rule: root of a **non**-perfect square is irrational."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Rational root?",
+            "prompt": "Which square root is **rational**?",
+            "options": [
+              "$\\sqrt{2}$",
+              "$\\sqrt{5}$",
+              "$\\sqrt{9}$"
+            ],
+            "correctIndex": 2,
+            "explanation": "$\\sqrt{9}=3$. The others are non-perfect squares, so irrational.",
+            "check": [
+              "sqrt(9) == 3"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Trapping a root between integers",
+            "intro": "Find the perfect squares on either side.",
+            "examples": [
+              {
+                "prompt": "Between which whole numbers is $\\sqrt{2}$?",
+                "steps": [
+                  "$1^2=1$, $2^2=4$.",
+                  "$2$ is between $1$ and $4$.",
+                  "So $1<\\sqrt{2}<2$."
+                ],
+                "answer": "between $1$ and $2$",
+                "check": [
+                  "sqrt(2) > 1",
+                  "sqrt(2) < 2"
+                ]
+              },
+              {
+                "prompt": "Between which whole numbers is $\\sqrt{5}$?",
+                "steps": [
+                  "$2^2=4$, $3^2=9$.",
+                  "$5$ is between $4$ and $9$.",
+                  "So $2<\\sqrt{5}<3$."
+                ],
+                "answer": "between $2$ and $3$",
+                "check": [
+                  "sqrt(5) > 2",
+                  "sqrt(5) < 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Rational or irrational?",
+            "intro": "Perfect square → rational.",
+            "problems": [
+              {
+                "prompt": "Is $\\sqrt{3}$ rational or irrational?",
+                "options": [
+                  "Rational",
+                  "Irrational",
+                  "Neither"
+                ],
+                "correctIndex": 1,
+                "explanation": "$3$ is not a perfect square, so $\\sqrt{3}$ is irrational.",
+                "check": [
+                  "sqrt(3) > 1",
+                  "sqrt(3) < 2"
+                ]
+              },
+              {
+                "prompt": "Is $\\sqrt{36}$ rational or irrational?",
+                "options": [
+                  "Rational",
+                  "Irrational",
+                  "Neither"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{36}=6$, rational.",
+                "check": [
+                  "sqrt(36) == 6"
+                ]
+              },
+              {
+                "prompt": "Which number is irrational?",
+                "options": [
+                  "$0.\\overline{3}$",
+                  "$\\pi$",
+                  "$\\frac{7}{2}$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$\\pi$ never terminates or repeats; the others are rational.",
+                "check": [
+                  "pi > 3",
+                  "pi < Rational(22,7)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The number that broke the rules",
+            "body": "Legend says the Greek who proved $\\sqrt{2}$ is irrational — that it can't be any fraction — was cast off a ship for it. The Pythagoreans believed the universe was built from whole-number ratios, and this one number shattered that belief. Today we know irrationals **outnumber** rationals infinitely."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Irrational** = no fraction, decimal never repeats.",
+              "$\\sqrt{2},\\sqrt{3},\\sqrt{5}$ and $\\pi$ are irrational.",
+              "Roots of perfect squares ($\\sqrt{9}=3$) stay rational."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "classifying-real-numbers",
+      "title": "Classifying Real Numbers",
+      "concreteComparison": "Think of numbers like nested boxes. The smallest box holds the counting numbers $1,2,3$. A bigger box adds $0$ and the negatives. A bigger one still adds all the fractions. And the biggest box — the **real numbers** — throws in the irrationals like $\\sqrt{2}$ and $\\pi$. Every number belongs to one or more of these boxes.",
+      "objective": "Sort numbers into the nested sets — natural, whole, integer, rational, irrational — and see how they fit inside the real numbers.",
+      "concept": [
+        "**Natural numbers**: the counting numbers $1,2,3,\\ldots$ **Whole numbers**: the naturals plus $0$. **Integers**: whole numbers and their negatives $\\ldots,-2,-1,0,1,2,\\ldots$",
+        "**Rational numbers** include every integer plus all fractions and terminating/repeating decimals. **Irrational numbers** are the ones that aren't rational, like $\\sqrt{2}$ and $\\pi$.",
+        "Together, the rationals and irrationals make up the **real numbers** — every number on the number line.",
+        "The sets nest: every natural number is whole, every whole number is an integer, every integer is rational, and every rational is real. But rational and irrational never overlap — a number is one or the other, never both."
+      ],
+      "keyIdea": "Naturals ⊂ Wholes ⊂ Integers ⊂ Rationals ⊂ Reals; irrationals fill the rest of the reals.",
+      "facts": [
+        {
+          "title": "The nesting",
+          "latex": "$\\mathbb{N}\\subset\\mathbb{W}\\subset\\mathbb{Z}\\subset\\mathbb{Q}\\subset\\mathbb{R}$",
+          "explanation": "Each set sits inside the next."
+        },
+        {
+          "title": "No overlap",
+          "latex": "rational vs. irrational",
+          "explanation": "A real number is exactly one of the two."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rns4-we1",
+          "statement": "Classify $-4$ as fully as possible.",
+          "solution": "$-4$ is an integer and rational (and real), since $-4=\\frac{-4}{1}$. It is not whole or natural.",
+          "check": [
+            "Rational(-4,1) == -4"
+          ]
+        },
+        {
+          "id": "rns4-we2",
+          "statement": "Classify $\\sqrt{2}$.",
+          "solution": "$\\sqrt{2}$ is irrational and real; it is not rational. Note $\\sqrt{2}\\cdot\\sqrt{2}=2$.",
+          "check": [
+            "sqrt(2)*sqrt(2) == 2"
+          ]
+        },
+        {
+          "id": "rns4-we3",
+          "statement": "Classify $7$ as fully as possible.",
+          "solution": "$7$ is natural, whole, integer, rational, and real.",
+          "check": [
+            "Rational(7,1) == 7"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Calling $0$ a natural number.",
+          "correction": "$0$ is a whole number and an integer, but the naturals start at $1$.",
+          "authored": true
+        },
+        {
+          "text": "Thinking a number can be both rational and irrational.",
+          "correction": "Every real number is exactly one of the two — the sets never overlap.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rns4-t1",
+          "statement": "Is $-3$ a whole number?",
+          "solution": "No. $-3$ is an integer and rational, but whole numbers are $0,1,2,\\ldots$",
+          "check": [
+            "Rational(-3,1) == -3"
+          ]
+        },
+        {
+          "id": "rns4-t2",
+          "statement": "Classify $\\sqrt{16}$.",
+          "solution": "$\\sqrt{16}=4$: natural, whole, integer, rational, real.",
+          "check": [
+            "sqrt(16) == 4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The families",
+            "title": "Five names to know",
+            "beats": [
+              "**Natural**: $1,2,3,\\ldots$ (counting).",
+              "**Whole**: naturals plus $0$.",
+              "**Integer**: wholes plus negatives.",
+              "**Rational** vs **Irrational**, together the **Reals**."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Nested boxes",
+            "title": "Each set sits inside the next",
+            "beats": [
+              "Every natural number is also whole.",
+              "Every whole number is also an integer.",
+              "Every integer is also rational.",
+              "Every rational — and every irrational — is real."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Name that number",
+            "prompt": "Which is the **most complete** description of $-5$?",
+            "options": [
+              "Natural",
+              "Whole",
+              "Integer & rational"
+            ],
+            "correctIndex": 2,
+            "explanation": "$-5$ is negative, so not natural or whole; it is an integer and rational.",
+            "check": [
+              "Rational(-5,1) == -5"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Full classification",
+            "intro": "List every family a number belongs to.",
+            "examples": [
+              {
+                "prompt": "Classify $8$.",
+                "steps": [
+                  "$8$ counts → natural.",
+                  "Also whole, integer, rational.",
+                  "And real."
+                ],
+                "answer": "natural, whole, integer, rational, real",
+                "check": [
+                  "Rational(8,1) == 8"
+                ]
+              },
+              {
+                "prompt": "Classify $\\sqrt{5}$.",
+                "steps": [
+                  "$5$ isn't a perfect square.",
+                  "So $\\sqrt{5}$ is irrational.",
+                  "And therefore real."
+                ],
+                "answer": "irrational, real",
+                "check": [
+                  "sqrt(5)*sqrt(5) == 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Sort them",
+            "intro": "Watch for negatives and roots.",
+            "problems": [
+              {
+                "prompt": "Which set does $0$ belong to but the naturals don't include it?",
+                "options": [
+                  "Whole numbers",
+                  "Irrationals",
+                  "None"
+                ],
+                "correctIndex": 0,
+                "explanation": "$0$ is whole and an integer, but not natural.",
+                "check": [
+                  "Rational(0,1) == 0"
+                ]
+              },
+              {
+                "prompt": "Classify $\\frac{2}{3}$.",
+                "options": [
+                  "Integer",
+                  "Rational",
+                  "Irrational"
+                ],
+                "correctIndex": 1,
+                "explanation": "$\\frac{2}{3}$ is a ratio of integers → rational.",
+                "check": [
+                  "Rational(2,3)*3 == 2"
+                ]
+              },
+              {
+                "prompt": "Classify $\\pi$.",
+                "options": [
+                  "Rational",
+                  "Integer",
+                  "Irrational"
+                ],
+                "correctIndex": 2,
+                "explanation": "$\\pi$ never repeats → irrational.",
+                "check": [
+                  "pi > 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Bigger than infinity?",
+            "body": "There are infinitely many rational numbers — but infinitely **more** irrationals. Mathematician Georg Cantor proved the irrationals are a “bigger” infinity than the rationals. If you threw a dart at the number line, you'd almost certainly hit an irrational."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Naturals ⊂ wholes ⊂ integers ⊂ rationals ⊂ reals.",
+              "Irrationals fill the rest of the real line.",
+              "Rational and irrational never overlap."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "comparing-and-ordering-real-numbers",
+      "title": "Comparing & Ordering Real Numbers",
+      "concreteComparison": "You're comparing prices: is $\\frac{3}{4}$ of a dollar more than $0.7$? To line up numbers of different types — fractions, decimals, and roots — the trick is to convert them to a common form (usually decimals) so you can see which is truly bigger. Even an irrational like $\\sqrt{2}$ can be pinned between decimals and ordered.",
+      "objective": "Compare and order rational and irrational numbers by converting to a common form and estimating roots.",
+      "concept": [
+        "To compare numbers, put them in the **same form** — decimals work well. $\\frac{3}{4}=0.75$ and $0.75>0.7$, so $\\frac{3}{4}>0.7$.",
+        "To place an irrational root, trap it between whole numbers. $\\sqrt{50}$: since $7^2=49$ and $8^2=64$, we get $7<\\sqrt{50}<8$, and it's just above $7$.",
+        "For a finer estimate, test decimals: $7.1^2=50.41$, which is already past $50$, so $\\sqrt{50}\\approx 7.07$.",
+        "Once everything is a decimal (exact or estimated), order from least to greatest just like a number line."
+      ],
+      "keyIdea": "Convert to a common form, estimate roots between perfect squares, then order on the line.",
+      "facts": [
+        {
+          "title": "Common form wins",
+          "latex": "$\\frac{3}{4}=0.75$",
+          "explanation": "Compare decimals directly."
+        },
+        {
+          "title": "Trap a root",
+          "latex": "$7<\\sqrt{50}<8$",
+          "explanation": "Use the nearest perfect squares."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rns5-we1",
+          "statement": "Which is greater, $\\frac{3}{4}$ or $\\frac{4}{5}$?",
+          "solution": "$\\frac{3}{4}=0.75$, $\\frac{4}{5}=0.8$, and $0.8>0.75$, so $\\frac{4}{5}$ is greater.",
+          "check": [
+            "Rational(3,4) < Rational(4,5)"
+          ]
+        },
+        {
+          "id": "rns5-we2",
+          "statement": "Between which whole numbers is $\\sqrt{50}$?",
+          "solution": "$7^2=49<50<64=8^2$, so $7<\\sqrt{50}<8$.",
+          "check": [
+            "7 < sqrt(50)",
+            "sqrt(50) < 8"
+          ]
+        },
+        {
+          "id": "rns5-we3",
+          "statement": "Which is greater, $\\sqrt{2}$ or $1.5$?",
+          "solution": "$\\sqrt{2}\\approx 1.414$, and $1.414<1.5$, so $1.5$ is greater.",
+          "check": [
+            "sqrt(2) < Rational(3,2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Comparing a fraction and a decimal without converting.",
+          "correction": "Put them in the same form first: $\\frac{3}{4}=0.75$, then compare.",
+          "authored": true
+        },
+        {
+          "text": "Assuming $\\sqrt{50}$ is about $25$.",
+          "correction": "A square root is much smaller than the number — $\\sqrt{50}\\approx 7.07$, not $25$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rns5-t1",
+          "statement": "Which is greater, $\\frac{5}{8}$ or $0.6$?",
+          "solution": "$\\frac{5}{8}=0.625>0.6$, so $\\frac{5}{8}$ is greater.",
+          "check": [
+            "Rational(5,8) > Rational(6,10)"
+          ]
+        },
+        {
+          "id": "rns5-t2",
+          "statement": "Between which whole numbers is $\\sqrt{30}$?",
+          "solution": "$5^2=25<30<36=6^2$, so $5<\\sqrt{30}<6$.",
+          "check": [
+            "5 < sqrt(30)",
+            "sqrt(30) < 6"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The strategy",
+            "title": "Same form, then compare",
+            "beats": [
+              "Convert everything to one form — usually decimals.",
+              "$\\frac{3}{4}=0.75$, then compare digit by digit.",
+              "$0.75 > 0.7$, so $\\frac{3}{4} > 0.7$.",
+              "For roots, estimate between perfect squares."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Trapping a root",
+            "title": "Squeeze between squares",
+            "beats": [
+              "$\\sqrt{50}$: nearest squares are $49$ and $64$.",
+              "$7^2=49$, $8^2=64$, so $7<\\sqrt{50}<8$.",
+              "$50$ is barely above $49$, so $\\sqrt{50}\\approx 7.07$.",
+              "Now it can be ordered with any decimal."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Bigger one?",
+            "prompt": "Which is greater, $\\frac{3}{4}$ or $0.7$?",
+            "options": [
+              "$\\frac{3}{4}$",
+              "$0.7$",
+              "Equal"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\frac{3}{4}=0.75>0.7$.",
+            "check": [
+              "Rational(3,4) > Rational(7,10)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Ordering a mixed list",
+            "intro": "Convert, estimate, then line up.",
+            "examples": [
+              {
+                "prompt": "Order $\\frac{1}{2}$, $0.6$, $\\frac{3}{5}$ from least to greatest.",
+                "steps": [
+                  "$\\frac{1}{2}=0.5$, $\\frac{3}{5}=0.6$.",
+                  "So the list is $0.5,\\ 0.6,\\ 0.6$.",
+                  "$\\frac{1}{2}<0.6=\\frac{3}{5}$."
+                ],
+                "answer": "$\\frac{1}{2} < 0.6 = \\frac{3}{5}$",
+                "check": [
+                  "Rational(1,2) < Rational(3,5)",
+                  "Rational(3,5) == Rational(6,10)"
+                ]
+              },
+              {
+                "prompt": "Which is greater, $\\sqrt{10}$ or $3$?",
+                "steps": [
+                  "$3^2=9$, and $10>9$.",
+                  "So $\\sqrt{10}>\\sqrt{9}=3$.",
+                  "$\\sqrt{10}\\approx 3.16$."
+                ],
+                "answer": "$\\sqrt{10}$",
+                "check": [
+                  "sqrt(10) > 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Compare and order",
+            "intro": "Same form first.",
+            "problems": [
+              {
+                "prompt": "Which is greater, $\\sqrt{3}$ or $1.7$?",
+                "options": [
+                  "$\\sqrt{3}$",
+                  "$1.7$",
+                  "Equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{3}\\approx 1.732 > 1.7$.",
+                "check": [
+                  "sqrt(3) > Rational(17,10)"
+                ]
+              },
+              {
+                "prompt": "Between which whole numbers is $\\sqrt{20}$?",
+                "options": [
+                  "$3$ and $4$",
+                  "$4$ and $5$",
+                  "$9$ and $10$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$4^2=16<20<25=5^2$.",
+                "check": [
+                  "4 < sqrt(20)",
+                  "sqrt(20) < 5"
+                ]
+              },
+              {
+                "prompt": "Which is greatest?",
+                "options": [
+                  "$\\frac{7}{8}$",
+                  "$0.8$",
+                  "$\\frac{4}{5}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{7}{8}=0.875$, bigger than $0.8=\\frac{4}{5}$.",
+                "check": [
+                  "Rational(7,8) > Rational(4,5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Close, but no cigar",
+            "body": "For centuries people hunted better fractions for $\\pi$: $\\frac{22}{7}$, then $\\frac{355}{113}$ (correct to 6 decimals!). None is exact, because $\\pi$ is irrational. But $\\frac{355}{113}$ is so good it was used in ancient China over a thousand years ago."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Convert to a common form (decimals) to compare.",
+              "Trap a root between perfect squares to estimate.",
+              "Then order everything on the number line."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-real-number-line",
+      "title": "The Real Number Line",
+      "concreteComparison": "Picture a ruler with no gaps — not just the whole-inch marks, but every point in between. That's the **real number line**: every real number, rational or irrational, has exactly one home on it, and every point on it is some real number. There are no holes. $\\sqrt{2}$ sits at a real spot, a hair past $1.41$.",
+      "objective": "See that every real number corresponds to a point on the number line, locate irrationals by estimating, and understand that the reals fill the line completely.",
+      "concept": [
+        "The **real number line** matches every real number to exactly one point, and every point to exactly one real number. Rationals and irrationals together leave no gaps.",
+        "To place an irrational, estimate it. $\\sqrt{2}\\approx 1.41$ sits between $1.4$ and $1.5$, closer to $1.4$. $\\pi\\approx 3.14$ sits just past $3$.",
+        "Between any two real numbers there's always another — in fact, infinitely many. The reals are **dense**: no matter how close two numbers are, more numbers hide between them.",
+        "This is why we can always find a decimal approximation as accurate as we like: we just zoom in on the line."
+      ],
+      "keyIdea": "Every real number is a point on the line, every point is a real number, and there are no gaps.",
+      "facts": [
+        {
+          "title": "No gaps",
+          "latex": "reals fill the line",
+          "explanation": "Rationals + irrationals leave nothing out."
+        },
+        {
+          "title": "Place by estimating",
+          "latex": "$\\sqrt{2}\\approx 1.41$",
+          "explanation": "Put irrationals near their decimal value."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rns6-we1",
+          "statement": "Where does $\\sqrt{2}$ sit relative to $1.4$ and $1.5$?",
+          "solution": "$1.4^2=1.96<2$ and $1.5^2=2.25>2$, so $1.4<\\sqrt{2}<1.5$.",
+          "check": [
+            "sqrt(2) > Rational(14,10)",
+            "sqrt(2) < Rational(15,10)"
+          ]
+        },
+        {
+          "id": "rns6-we2",
+          "statement": "Give a whole-number estimate for $\\pi$.",
+          "solution": "$\\pi\\approx 3.14$, which rounds to $3$; and $3<\\pi<4$.",
+          "check": [
+            "pi > 3",
+            "pi < 4"
+          ]
+        },
+        {
+          "id": "rns6-we3",
+          "statement": "Where does $\\sqrt{8}$ sit between two whole numbers?",
+          "solution": "$2^2=4<8<9=3^2$? No, $9>8$ so $2<\\sqrt{8}<3$; actually $\\sqrt{8}\\approx 2.83$.",
+          "check": [
+            "2 < sqrt(8)",
+            "sqrt(8) < 3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking irrationals don't fit on the line.",
+          "correction": "They do — $\\sqrt{2}$ and $\\pi$ each mark one exact point; we just estimate to draw them.",
+          "authored": true
+        },
+        {
+          "text": "Believing there's a 'next' real number after a given one.",
+          "correction": "There isn't — between any two reals lie infinitely many more. The line is dense.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rns6-t1",
+          "statement": "Between which two tenths does $\\sqrt{2}$ fall?",
+          "solution": "$1.4<\\sqrt{2}<1.5$, since $1.4^2=1.96$ and $1.5^2=2.25$.",
+          "check": [
+            "sqrt(2) > Rational(14,10)",
+            "sqrt(2) < Rational(15,10)"
+          ]
+        },
+        {
+          "id": "rns6-t2",
+          "statement": "Estimate $\\sqrt{18}$ to the nearest whole number.",
+          "solution": "$4^2=16$, $5^2=25$; $18$ is closer to $16$, so $\\sqrt{18}\\approx 4$.",
+          "check": [
+            "4 < sqrt(18)",
+            "sqrt(18) < 5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "A line with no holes",
+            "title": "Every point is a real number",
+            "beats": [
+              "The **real number line** has no gaps.",
+              "Every real number sits at exactly one point.",
+              "Every point stands for exactly one real number.",
+              "Rationals and irrationals together fill it completely."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Placing irrationals",
+            "title": "Estimate, then mark",
+            "beats": [
+              "$\\sqrt{2}\\approx 1.41$ — just past $1.4$.",
+              "$\\pi\\approx 3.14$ — just past $3$.",
+              "Use the decimal value to find the spot.",
+              "The mark is exact even though we round to draw it."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Where's the root?",
+            "prompt": "Between which tenths does $\\sqrt{2}$ fall?",
+            "options": [
+              "$1.3$ and $1.4$",
+              "$1.4$ and $1.5$",
+              "$1.7$ and $1.8$"
+            ],
+            "correctIndex": 1,
+            "explanation": "$1.4^2=1.96$ and $1.5^2=2.25$, so $1.4<\\sqrt{2}<1.5$.",
+            "check": [
+              "sqrt(2) > Rational(14,10)",
+              "sqrt(2) < Rational(15,10)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Locating numbers",
+            "intro": "Estimate the value, then place it.",
+            "examples": [
+              {
+                "prompt": "Between which whole numbers does $\\pi$ sit?",
+                "steps": [
+                  "$\\pi\\approx 3.14$.",
+                  "$3<3.14<4$.",
+                  "So $\\pi$ is between $3$ and $4$."
+                ],
+                "answer": "between $3$ and $4$",
+                "check": [
+                  "pi > 3",
+                  "pi < 4"
+                ]
+              },
+              {
+                "prompt": "Between which whole numbers does $\\sqrt{8}$ sit?",
+                "steps": [
+                  "$2^2=4$, $3^2=9$.",
+                  "$4<8<9$.",
+                  "So $2<\\sqrt{8}<3$."
+                ],
+                "answer": "between $2$ and $3$",
+                "check": [
+                  "2 < sqrt(8)",
+                  "sqrt(8) < 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the spot",
+            "intro": "Estimate to place each number.",
+            "problems": [
+              {
+                "prompt": "Between which whole numbers is $\\sqrt{15}$?",
+                "options": [
+                  "$2$ and $3$",
+                  "$3$ and $4$",
+                  "$7$ and $8$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$3^2=9<15<16=4^2$.",
+                "check": [
+                  "3 < sqrt(15)",
+                  "sqrt(15) < 4"
+                ]
+              },
+              {
+                "prompt": "Which point is closest to $\\sqrt{2}$?",
+                "options": [
+                  "$1.4$",
+                  "$1.7$",
+                  "$2.0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{2}\\approx 1.41$, closest to $1.4$.",
+                "check": [
+                  "sqrt(2) < Rational(15,10)"
+                ]
+              },
+              {
+                "prompt": "How many real numbers lie between $1$ and $2$?",
+                "options": [
+                  "Exactly $9$",
+                  "Infinitely many",
+                  "None"
+                ],
+                "correctIndex": 1,
+                "explanation": "The reals are dense — infinitely many between any two.",
+                "check": [
+                  "Rational(3,2) > 1",
+                  "Rational(3,2) < 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Zoom forever",
+            "body": "The real line is **infinitely detailed**. Pick any tiny stretch — say between $1.414$ and $1.415$ — and it still holds infinitely many numbers, including $\\sqrt{2}$. You can zoom in forever and never run out of room. That endless density is what makes the reals 'continuous.'"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "You've mapped the reals",
+            "body": "You can now sort every number into its family, estimate irrationals, and place any real number on the line."
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished “The Real Number System”",
+            "body": "You can tell rational from irrational, convert and compare across forms, and locate any number on the line. Next up: **Exponents & Scientific Notation**, where a handful of rules tame huge and tiny numbers."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "rns-pr1",
+      "statement": "Write $0.45$ as a fraction in lowest terms.",
+      "solution": "$0.45=\\frac{45}{100}=\\frac{9}{20}$.",
+      "check": [
+        "Rational(45,100) == Rational(9,20)"
+      ]
+    },
+    {
+      "id": "rns-pr2",
+      "statement": "Write $\\frac{5}{8}$ as a decimal.",
+      "solution": "$5\\div 8 = 0.625$.",
+      "check": [
+        "Rational(5,8) == Rational(625,1000)"
+      ]
+    },
+    {
+      "id": "rns-pr3",
+      "statement": "Is $\\sqrt{49}$ rational or irrational?",
+      "solution": "$\\sqrt{49}=7$, rational.",
+      "check": [
+        "sqrt(49) == 7"
+      ]
+    },
+    {
+      "id": "rns-pr4",
+      "statement": "Between which whole numbers is $\\sqrt{40}$?",
+      "solution": "$6^2=36<40<49=7^2$, so $6<\\sqrt{40}<7$.",
+      "check": [
+        "6 < sqrt(40)",
+        "sqrt(40) < 7"
+      ]
+    },
+    {
+      "id": "rns-pr5",
+      "statement": "Which is greater, $\\frac{7}{10}$ or $\\frac{3}{4}$?",
+      "solution": "$\\frac{7}{10}=0.7<0.75=\\frac{3}{4}$.",
+      "check": [
+        "Rational(7,10) < Rational(3,4)"
+      ]
+    },
+    {
+      "id": "rns-pr6",
+      "statement": "Classify $-\\frac{2}{3}$.",
+      "solution": "Rational and real (not an integer).",
+      "check": [
+        "Rational(-2,3)*3 == -2"
+      ]
+    },
+    {
+      "id": "rns-pr7",
+      "statement": "Which is greater, $\\sqrt{2}$ or $\\frac{7}{5}$?",
+      "solution": "$\\sqrt{2}\\approx 1.414 > 1.4 = \\frac{7}{5}$.",
+      "check": [
+        "sqrt(2) > Rational(7,5)"
+      ]
+    },
+    {
+      "id": "rns-pr8",
+      "statement": "Between which tenths does $\\pi$ fall?",
+      "solution": "$3.1<\\pi<3.2$ since $\\pi\\approx 3.14$.",
+      "check": [
+        "pi > Rational(31,10)",
+        "pi < Rational(32,10)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "rns-ty1",
+      "statement": "Write $0.16$ as a fraction in lowest terms.",
+      "solution": "$0.16=\\frac{16}{100}=\\frac{4}{25}$.",
+      "check": [
+        "Rational(16,100) == Rational(4,25)"
+      ]
+    },
+    {
+      "id": "rns-ty2",
+      "statement": "Is $0.\\overline{6}$ rational? Justify with a product.",
+      "solution": "Yes: $0.\\overline{6}=\\frac{2}{3}$ and $3\\times\\frac{2}{3}=2$.",
+      "check": [
+        "Rational(2,3)*3 == 2"
+      ]
+    },
+    {
+      "id": "rns-ty3",
+      "statement": "Rational or irrational: $\\sqrt{12}$?",
+      "solution": "Irrational; $12$ isn't a perfect square. $3<\\sqrt{12}<4$.",
+      "check": [
+        "3 < sqrt(12)",
+        "sqrt(12) < 4"
+      ]
+    },
+    {
+      "id": "rns-ty4",
+      "statement": "Order $\\frac{1}{2}$, $\\sqrt{2}$, $1$ from least to greatest.",
+      "solution": "$\\frac{1}{2}<1<\\sqrt{2}$ (since $\\sqrt{2}\\approx 1.41$).",
+      "check": [
+        "Rational(1,2) < 1",
+        "1 < sqrt(2)"
+      ]
+    },
+    {
+      "id": "rns-ty5",
+      "statement": "Classify $\\sqrt{64}$ fully.",
+      "solution": "$\\sqrt{64}=8$: natural, whole, integer, rational, real.",
+      "check": [
+        "sqrt(64) == 8"
+      ]
+    },
+    {
+      "id": "rns-ty6",
+      "statement": "Between which whole numbers is $\\sqrt{90}$?",
+      "solution": "$9^2=81<90<100=10^2$, so $9<\\sqrt{90}<10$.",
+      "check": [
+        "9 < sqrt(90)",
+        "sqrt(90) < 10"
+      ]
+    }
+  ]
+}

@@ -59,6 +59,8 @@ import expressionsAndEquations from "@/data/genmath/6/expressions-and-equations.
 import coordinatePlane from "@/data/genmath/6/coordinate-plane.json";
 import geometryAreaVolume from "@/data/genmath/6/geometry-area-volume.json";
 import dataAndStatistics from "@/data/genmath/6/data-and-statistics.json";
+// Grade 8 topic JSON imports (added as each topic is authored + published).
+import realNumberSystem from "@/data/genmath/8/the-real-number-system.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -87,13 +89,79 @@ const grade6Topics: GenMathTopic[] = [
 ];
 
 // ---------------------------------------------------------------------------
+// Grade 8 — built incrementally, one topic at a time (same schema + gate).
+// GRADE8_SPINE shows the whole roadmap from day one; `live` topics have
+// authored data and link in, the rest render as "coming soon".
+// ---------------------------------------------------------------------------
+
+export interface GradeSpineEntry {
+  slug: string;
+  title: string;
+  blurb: string;
+  live: boolean;
+}
+
+export const GRADE8_SPINE: GradeSpineEntry[] = [
+  {
+    slug: "the-real-number-system",
+    title: "The Real Number System",
+    blurb: "Rational vs. irrational numbers, terminating and repeating decimals, classifying the reals, and placing any number on the line.",
+    live: true,
+  },
+  {
+    slug: "exponents-and-scientific-notation",
+    title: "Exponents & Scientific Notation",
+    blurb: "The laws of exponents, zero and negative powers, and writing huge and tiny numbers in scientific notation.",
+    live: false,
+  },
+  {
+    slug: "roots",
+    title: "Square & Cube Roots",
+    blurb: "Square roots and cube roots, perfect squares and cubes, and solving equations like x² = 49 and x³ = 8.",
+    live: false,
+  },
+  {
+    slug: "linear-equations",
+    title: "Linear Equations",
+    blurb: "Multi-step equations, variables on both sides, and equations with no solution or infinitely many.",
+    live: false,
+  },
+  {
+    slug: "linear-functions",
+    title: "Linear Functions",
+    blurb: "Slope and rate of change, y = mx + b, and reading a line four ways: table, graph, equation, and words.",
+    live: false,
+  },
+  {
+    slug: "systems-of-linear-equations",
+    title: "Systems of Linear Equations",
+    blurb: "Two lines at once — solving by graphing, substitution, and elimination, and what the intersection means.",
+    live: false,
+  },
+  {
+    slug: "scatter-plots-and-bivariate-data",
+    title: "Scatter Plots & Bivariate Data",
+    blurb: "Plotting paired data, spotting correlation, fitting a trend line, and reading two-way tables.",
+    live: false,
+  },
+];
+
+const grade8Topics: GenMathTopic[] = [
+  realNumberSystem as GenMathTopic,
+];
+
+// Every authored General-Math topic across grades. Topic slugs are unique
+// across grades, so slug lookups stay unambiguous.
+const allGenMathTopics: GenMathTopic[] = [...grade6Topics, ...grade8Topics];
+
+// ---------------------------------------------------------------------------
 // Public API
 // ---------------------------------------------------------------------------
 
 const ALL_GRADES: GradeInfo[] = [
   { grade: 6, active: true },
   { grade: 7, active: false },
-  { grade: 8, active: false },
+  { grade: 8, active: true },
   { grade: 9, active: false },
   { grade: 10, active: false },
   { grade: 11, active: false },
@@ -108,8 +176,16 @@ export function getGrade6Topics(): GenMathTopic[] {
   return grade6Topics;
 }
 
+export function getGrade8Topics(): GenMathTopic[] {
+  return grade8Topics;
+}
+
+export function getGrade8Spine(): GradeSpineEntry[] {
+  return GRADE8_SPINE;
+}
+
 export function getGenMathTopic(topicSlug: string): GenMathTopic | null {
-  return grade6Topics.find((t) => t.slug === topicSlug) ?? null;
+  return allGenMathTopics.find((t) => t.slug === topicSlug) ?? null;
 }
 
 export function getGenMathLesson(
