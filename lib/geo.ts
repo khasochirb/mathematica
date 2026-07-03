@@ -307,3 +307,47 @@ export function dilate(p: XY, center: XY, k: number): XY {
 export function splitProportional(ad: number, db: number, ae: number): number {
   return (ae * db) / ad;
 }
+
+// ---------------------------------------------------------------------------
+// Right triangles & trigonometry
+// ---------------------------------------------------------------------------
+
+// The hypotenuse of a right triangle from its two legs: c = √(a² + b²).
+export function pythagoreanHypotenuse(a: number, b: number): number {
+  return Math.sqrt(a * a + b * b);
+}
+
+// A missing leg from the hypotenuse and the other leg: b = √(c² − a²).
+export function pythagoreanLeg(hyp: number, leg: number): number {
+  return Math.sqrt(hyp * hyp - leg * leg);
+}
+
+// Classify a triangle by comparing a² + b² to c² (c the LONGEST side): equal →
+// right, greater → acute, less → obtuse. The converse of the Pythagorean
+// theorem. Inputs may be in any order; the longest is treated as c.
+export function classifyByPythagoras(x: number, y: number, z: number): "right" | "acute" | "obtuse" {
+  const [a, b, c] = [x, y, z].sort((p, q) => p - q); // c is largest
+  const lhs = a * a + b * b;
+  const rhs = c * c;
+  if (lhs === rhs) return "right";
+  return lhs > rhs ? "acute" : "obtuse";
+}
+
+// The three side lengths of a 45-45-90 triangle from a leg: the two legs are
+// equal and the hypotenuse is leg·√2.
+export function fortyFiveTriangle(leg: number): { leg: number; hyp: number } {
+  return { leg, hyp: leg * Math.SQRT2 };
+}
+
+// The three side lengths of a 30-60-90 triangle from the SHORT leg (opposite
+// 30°): short = x, long (opposite 60°) = x·√3, hypotenuse = 2x.
+export function thirtySixtyTriangle(short: number): { short: number; long: number; hyp: number } {
+  return { short, long: short * Math.sqrt(3), hyp: 2 * short };
+}
+
+// The three primary trig ratios for an acute angle of a right triangle, given
+// the side lengths opposite it, adjacent to it, and the hypotenuse
+// (SOH-CAH-TOA): sin = opp/hyp, cos = adj/hyp, tan = opp/adj.
+export function rightTriangleRatios(opp: number, adj: number, hyp: number): { sin: number; cos: number; tan: number } {
+  return { sin: opp / hyp, cos: adj / hyp, tan: opp / adj };
+}

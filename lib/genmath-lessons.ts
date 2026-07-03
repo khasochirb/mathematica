@@ -66,6 +66,7 @@ import geometryTriangles from "@/data/genmath/geometry/triangles-and-congruence.
 import geometryRelationships from "@/data/genmath/geometry/relationships-in-triangles.json";
 import geometryQuadrilaterals from "@/data/genmath/geometry/quadrilaterals-and-polygons.json";
 import geometrySimilarity from "@/data/genmath/geometry/similarity.json";
+import geometryRightTriangles from "@/data/genmath/geometry/right-triangles-and-trig.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -201,7 +202,7 @@ export const GEOMETRY_SPINE: GeometrySpineEntry[] = [
     title: "Right Triangles & Trigonometry",
     blurb: "The Pythagorean theorem, special right triangles, and sine · cosine · tangent with elevation and depression.",
     buildsOn: "Similarity (Unit 7) — trig ratios ARE similarity.",
-    live: false,
+    live: true,
   },
   {
     unit: 9,
@@ -253,6 +254,7 @@ const geometryUnits: GeometryUnit[] = [
   geometryRelationships as unknown as GeometryUnit,
   geometryQuadrilaterals as unknown as GeometryUnit,
   geometrySimilarity as unknown as GeometryUnit,
+  geometryRightTriangles as unknown as GeometryUnit,
 ];
 
 export function getGeometrySpine(): GeometrySpineEntry[] {

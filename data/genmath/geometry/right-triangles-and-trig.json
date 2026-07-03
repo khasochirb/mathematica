@@ -1,0 +1,2476 @@
+{
+  "slug": "right-triangles-and-trig",
+  "title": "Right Triangles & Trigonometry",
+  "unit": 8,
+  "status": "published",
+  "blurb": "The Pythagorean theorem and its converse; classifying triangles; special right triangles; the SOH-CAH-TOA trig ratios; finding sides; and angles of elevation and depression with inverse trig.",
+  "buildsOn": "Similarity (Unit 7) — the trig ratios are fixed BECAUSE same-angle right triangles are similar; plus the triangle angle sum (Unit 4) and parallel-line angles (Unit 3).",
+  "lessons": [
+    {
+      "slug": "the-pythagorean-theorem",
+      "title": "The Pythagorean Theorem",
+      "concreteComparison": "A carpenter checks a corner is truly square by measuring $3$ ft along one edge and $4$ ft along the other: if the diagonal between those marks is exactly $5$ ft, the corner is a perfect right angle. That $3$-$4$-$5$ trick is the Pythagorean theorem doing real work.",
+      "objective": "Use a² + b² = c² to find a missing side of a right triangle, and recognize Pythagorean triples.",
+      "concept": [
+        "In a **right triangle**, the two shorter sides are the **legs** ($a$ and $b$) and the longest side — opposite the right angle — is the **hypotenuse** ($c$). They satisfy the **Pythagorean theorem**: $a^2 + b^2 = c^2$.",
+        "To find the **hypotenuse**: $c = \\sqrt{a^2 + b^2}$. To find a missing **leg**: $a = \\sqrt{c^2 - b^2}$.",
+        "A **Pythagorean triple** is three whole numbers that fit exactly: $3, 4, 5$; $5, 12, 13$; $8, 15, 17$ — and any multiple, like $6, 8, 10$.",
+        "The hypotenuse is always the **longest** side and sits **opposite** the right angle — never a leg."
+      ],
+      "keyIdea": "In a right triangle, legs a, b and hypotenuse c satisfy a² + b² = c². Find the hypotenuse with √(a²+b²) and a leg with √(c²−b²). Whole-number solutions are Pythagorean triples.",
+      "facts": [
+        {
+          "title": "Pythagorean theorem",
+          "latex": "$a^2 + b^2 = c^2$",
+          "explanation": "Legs squared add to the hypotenuse squared."
+        },
+        {
+          "title": "Common triples",
+          "latex": "$3$-$4$-$5$, $5$-$12$-$13$, $8$-$15$-$17$",
+          "explanation": "Whole-number right triangles (and their multiples)."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "py-we1",
+          "statement": "A right triangle has legs $6$ and $8$. Find the hypotenuse.",
+          "solution": "$c = \\sqrt{6^2 + 8^2} = \\sqrt{36 + 64} = \\sqrt{100} = 10$.",
+          "check": [
+            "sqrt(6**2 + 8**2) == 10"
+          ]
+        },
+        {
+          "id": "py-we2",
+          "statement": "A right triangle has hypotenuse $13$ and one leg $5$. Find the other leg.",
+          "solution": "$b = \\sqrt{13^2 - 5^2} = \\sqrt{169 - 25} = \\sqrt{144} = 12$.",
+          "check": [
+            "sqrt(13**2 - 5**2) == 12"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the hypotenuse formula to find a leg.",
+          "correction": "For a **leg**, SUBTRACT: $a = \\sqrt{c^2 - b^2}$. Only the hypotenuse uses a sum.",
+          "authored": true
+        },
+        {
+          "text": "Treating a leg as the hypotenuse.",
+          "correction": "The hypotenuse is the **longest** side, opposite the right angle. Put the largest value as $c$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "py-t1",
+          "statement": "Legs $9$ and $12$. Find the hypotenuse.",
+          "solution": "$\\sqrt{81 + 144} = \\sqrt{225} = 15$.",
+          "check": [
+            "sqrt(9**2 + 12**2) == 15"
+          ]
+        },
+        {
+          "id": "py-t2",
+          "statement": "Hypotenuse $17$, one leg $8$. Find the other leg.",
+          "solution": "$\\sqrt{289 - 64} = \\sqrt{225} = 15$.",
+          "check": [
+            "sqrt(17**2 - 8**2) == 15"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "The sides of a right triangle",
+            "beats": [
+              "A **right triangle** has one $90^\\circ$ angle.",
+              "The two sides forming it are the **legs** ($a$, $b$).",
+              "The side across from the right angle — the longest — is the **hypotenuse** ($c$).",
+              "A fixed relationship ties them together."
+            ]
+          },
+          {
+            "kind": "pythagoreanSquares",
+            "eyebrow": "Concept A",
+            "title": "a² + b² = c², as areas",
+            "teach": "A square is built on each side. The area on leg $a$ plus the area on leg $b$ always exactly fills the area on the hypotenuse $c$. Change the legs — the two smaller squares always add to the biggest. That's $a^2 + b^2 = c^2$.",
+            "config": {
+              "a": 3,
+              "b": 4
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The theorem",
+            "title": "Squares add up",
+            "beats": [
+              "**$a^2 + b^2 = c^2$** for every right triangle.",
+              "Hypotenuse: $c = \\sqrt{a^2 + b^2}$.",
+              "Leg: $a = \\sqrt{c^2 - b^2}$.",
+              "The hypotenuse is always the longest side."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Find the hypotenuse",
+            "intro": "Add the squared legs, then square-root.",
+            "examples": [
+              {
+                "prompt": "Legs $6$ and $8$. Hypotenuse?",
+                "steps": [
+                  "$6^2 + 8^2 = 36 + 64 = 100$.",
+                  "$c = \\sqrt{100} = 10$."
+                ],
+                "answer": "$10$",
+                "check": [
+                  "sqrt(6**2 + 8**2) == 10"
+                ]
+              },
+              {
+                "prompt": "Legs $5$ and $12$. Hypotenuse?",
+                "steps": [
+                  "$25 + 144 = 169$.",
+                  "$c = \\sqrt{169} = 13$."
+                ],
+                "answer": "$13$",
+                "check": [
+                  "sqrt(5**2 + 12**2) == 13"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Hypotenuse practice",
+            "intro": "√(a² + b²).",
+            "problems": [
+              {
+                "prompt": "Legs $9$ and $12$. Hypotenuse?",
+                "options": [
+                  "$15$",
+                  "$21$",
+                  "$13$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{81 + 144} = \\sqrt{225} = 15$.",
+                "check": [
+                  "sqrt(9**2 + 12**2) == 15"
+                ]
+              },
+              {
+                "prompt": "Legs $8$ and $15$. Hypotenuse?",
+                "options": [
+                  "$17$",
+                  "$23$",
+                  "$16$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{64 + 225} = \\sqrt{289} = 17$.",
+                "check": [
+                  "sqrt(8**2 + 15**2) == 17"
+                ]
+              },
+              {
+                "prompt": "Legs $3$ and $4$. Hypotenuse?",
+                "options": [
+                  "$5$",
+                  "$7$",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{9 + 16} = 5$.",
+                "check": [
+                  "sqrt(3**2 + 4**2) == 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Finding a leg",
+            "title": "Subtract instead of add",
+            "beats": [
+              "If you know the hypotenuse and one leg, rearrange.",
+              "$a^2 = c^2 - b^2$.",
+              "$a = \\sqrt{c^2 - b^2}$.",
+              "Subtract the known leg's square from the hypotenuse's square."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Find a leg",
+            "intro": "Subtract the squares, then square-root.",
+            "examples": [
+              {
+                "prompt": "Hypotenuse $13$, leg $5$. Other leg?",
+                "steps": [
+                  "$13^2 - 5^2 = 169 - 25 = 144$.",
+                  "$\\sqrt{144} = 12$."
+                ],
+                "answer": "$12$",
+                "check": [
+                  "sqrt(13**2 - 5**2) == 12"
+                ]
+              },
+              {
+                "prompt": "Hypotenuse $10$, leg $6$. Other leg?",
+                "steps": [
+                  "$100 - 36 = 64$.",
+                  "$\\sqrt{64} = 8$."
+                ],
+                "answer": "$8$",
+                "check": [
+                  "sqrt(10**2 - 6**2) == 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Missing leg",
+            "intro": "√(c² − b²).",
+            "problems": [
+              {
+                "prompt": "Hypotenuse $17$, leg $8$. Other leg?",
+                "options": [
+                  "$15$",
+                  "$19$",
+                  "$13$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{289 - 64} = \\sqrt{225} = 15$.",
+                "check": [
+                  "sqrt(17**2 - 8**2) == 15"
+                ]
+              },
+              {
+                "prompt": "Hypotenuse $25$, leg $7$. Other leg?",
+                "options": [
+                  "$24$",
+                  "$18$",
+                  "$20$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{625 - 49} = \\sqrt{576} = 24$.",
+                "check": [
+                  "sqrt(25**2 - 7**2) == 24"
+                ]
+              },
+              {
+                "prompt": "Hypotenuse $5$, leg $3$. Other leg?",
+                "options": [
+                  "$4$",
+                  "$2$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{25 - 9} = 4$.",
+                "check": [
+                  "sqrt(5**2 - 3**2) == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The rope with 12 knots",
+            "body": "Ancient Egyptian surveyors carried a loop of rope with $12$ evenly spaced knots. Pulled taut into a $3$-$4$-$5$ triangle, it forced a perfect right angle — no protractor needed — letting them reset field boundaries after the Nile's floods. The Pythagorean triple was a tool long before it was a theorem."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Find c",
+            "prompt": "A right triangle has legs $20$ and $21$. What is the hypotenuse?",
+            "options": [
+              "$29$",
+              "$31$",
+              "$28$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\sqrt{400 + 441} = \\sqrt{841} = 29$.",
+            "check": [
+              "sqrt(20**2 + 21**2) == 29"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**$a^2 + b^2 = c^2$** in every right triangle; $c$ is the hypotenuse (longest, opposite the right angle).",
+              "Hypotenuse $= \\sqrt{a^2 + b^2}$; a leg $= \\sqrt{c^2 - b^2}$.",
+              "**Pythagorean triples** like $3$-$4$-$5$ and $5$-$12$-$13$ are whole-number right triangles."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's find hypotenuses and legs with the Pythagorean theorem."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Legs $6$ and $8$. Hypotenuse?",
+                "options": [
+                  "$10$",
+                  "$14$",
+                  "$12$",
+                  "$48$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{36+64} = 10$.",
+                "check": [
+                  "sqrt(6**2 + 8**2) == 10"
+                ]
+              },
+              {
+                "prompt": "Hypotenuse $13$, leg $12$. Other leg?",
+                "options": [
+                  "$5$",
+                  "$7$",
+                  "$1$",
+                  "$25$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{169-144} = \\sqrt{25} = 5$.",
+                "check": [
+                  "sqrt(13**2 - 12**2) == 5"
+                ]
+              },
+              {
+                "prompt": "Legs $7$ and $24$. Hypotenuse?",
+                "options": [
+                  "$25$",
+                  "$31$",
+                  "$23$",
+                  "$17$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{49+576} = \\sqrt{625} = 25$.",
+                "check": [
+                  "sqrt(7**2 + 24**2) == 25"
+                ]
+              },
+              {
+                "prompt": "Which is a Pythagorean triple?",
+                "options": [
+                  "$9, 40, 41$",
+                  "$2, 3, 4$",
+                  "$5, 6, 8$",
+                  "$1, 2, 3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$81 + 1600 = 1681 = 41^2$.",
+                "check": [
+                  "9**2 + 40**2 == 41**2"
+                ]
+              },
+              {
+                "prompt": "The hypotenuse of a right triangle is always —",
+                "options": [
+                  "the longest side",
+                  "the shortest side",
+                  "a leg",
+                  "opposite the smallest angle"
+                ],
+                "correctIndex": 0,
+                "explanation": "Longest, opposite the $90^\\circ$ angle.",
+                "check": [
+                  "5 > 4"
+                ]
+              },
+              {
+                "prompt": "Hypotenuse $15$, leg $9$. Other leg?",
+                "options": [
+                  "$12$",
+                  "$6$",
+                  "$18$",
+                  "$24$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{225-81} = \\sqrt{144} = 12$.",
+                "check": [
+                  "sqrt(15**2 - 9**2) == 12"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"The Pythagorean Theorem\"",
+            "body": "You can find any side of a right triangle. Next: running the theorem backwards to TEST for a right angle — and to tell acute from obtuse."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "converse-and-classifying",
+      "title": "The Converse & Classifying Triangles",
+      "concreteComparison": "The $3$-$4$-$5$ rope works because the theorem runs both ways: if three sides HAPPEN to satisfy $a^2 + b^2 = c^2$, the triangle is forced to be right. And when they don't quite fit, the size of the gap tells you whether the triangle is acute or obtuse.",
+      "objective": "Use the converse of the Pythagorean theorem to test whether three sides form a right triangle, and classify a triangle by comparing a² + b² to c².",
+      "concept": [
+        "**Converse of the Pythagorean Theorem**: if the three sides satisfy $a^2 + b^2 = c^2$ (with $c$ the **longest**), then the triangle is a **right** triangle.",
+        "If $a^2 + b^2 > c^2$: the longest side is 'too short' to open a right angle, so the triangle is **acute**.",
+        "If $a^2 + b^2 < c^2$: the longest side is 'too long', so the triangle is **obtuse**.",
+        "Always compare using the **longest** side as $c$ — that's the side opposite the largest angle."
+      ],
+      "keyIdea": "Test three sides with the longest as c: a²+b² = c² → right; a²+b² > c² → acute; a²+b² < c² → obtuse.",
+      "facts": [
+        {
+          "title": "Converse",
+          "latex": "$a^2 + b^2 = c^2 \\Rightarrow$ right",
+          "explanation": "If the sides fit, the triangle is right-angled."
+        },
+        {
+          "title": "Classify",
+          "latex": "$>$ acute · $<$ obtuse",
+          "explanation": "Compare a²+b² to c² (c the longest side)."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cv-we1",
+          "statement": "Do sides $6, 8, 10$ form a right triangle?",
+          "solution": "$6^2 + 8^2 = 36 + 64 = 100 = 10^2$. Yes — a right triangle.",
+          "check": [
+            "6**2 + 8**2 == 10**2"
+          ]
+        },
+        {
+          "id": "cv-we2",
+          "statement": "Classify a triangle with sides $4, 5, 6$.",
+          "solution": "$4^2 + 5^2 = 16 + 25 = 41$; $6^2 = 36$. Since $41 > 36$, it is **acute**.",
+          "check": [
+            "4**2 + 5**2 > 6**2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Comparing with the wrong side as $c$.",
+          "correction": "Always square the **longest** side for $c$. Using a shorter side scrambles the test.",
+          "authored": true
+        },
+        {
+          "text": "Mixing up which way acute vs obtuse goes.",
+          "correction": "$a^2 + b^2$ **bigger** than $c^2$ → **acute**; **smaller** → **obtuse**. (Equal is the right-angle boundary.)",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cv-t1",
+          "statement": "Do $5, 12, 13$ form a right triangle?",
+          "solution": "$25 + 144 = 169 = 13^2$ — yes.",
+          "check": [
+            "5**2 + 12**2 == 13**2"
+          ]
+        },
+        {
+          "id": "cv-t2",
+          "statement": "Classify sides $4, 5, 7$.",
+          "solution": "$16 + 25 = 41 < 49 = 7^2$ → obtuse.",
+          "check": [
+            "4**2 + 5**2 < 7**2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "The theorem in reverse",
+            "beats": [
+              "Forward: a right triangle **gives** $a^2 + b^2 = c^2$.",
+              "Backward (**converse**): if $a^2 + b^2 = c^2$, the triangle **must be** right.",
+              "So three side lengths alone can prove a right angle.",
+              "And near-misses tell you acute or obtuse."
+            ]
+          },
+          {
+            "kind": "pythagoreanSquares",
+            "eyebrow": "Concept A",
+            "title": "When the squares match exactly",
+            "teach": "When $a^2 + b^2$ exactly equals $c^2$, the two leg-squares fill the hypotenuse-square with nothing left over — a right angle. Try $3, 4$ (fills to $25 = 5^2$) versus other legs.",
+            "config": {
+              "a": 3,
+              "b": 4
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The test",
+            "title": "Compare a² + b² to c²",
+            "beats": [
+              "Pick the **longest** side as $c$.",
+              "Compute $a^2 + b^2$ and compare with $c^2$.",
+              "**Equal** → right. **Greater** → acute. **Less** → obtuse.",
+              "Equal is the exact boundary between acute and obtuse."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Right triangle or not?",
+            "intro": "Check whether a² + b² = c² (c longest).",
+            "examples": [
+              {
+                "prompt": "Sides $6, 8, 10$. Right?",
+                "steps": [
+                  "$36 + 64 = 100$.",
+                  "$= 10^2$ ✓ — right."
+                ],
+                "answer": "Yes",
+                "check": [
+                  "6**2 + 8**2 == 10**2"
+                ]
+              },
+              {
+                "prompt": "Sides $7, 24, 25$. Right?",
+                "steps": [
+                  "$49 + 576 = 625$.",
+                  "$= 25^2$ ✓ — right."
+                ],
+                "answer": "Yes",
+                "check": [
+                  "7**2 + 24**2 == 25**2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Is it right-angled?",
+            "intro": "a² + b² vs c², longest as c.",
+            "problems": [
+              {
+                "prompt": "Do $9, 12, 15$ form a right triangle?",
+                "options": [
+                  "Yes",
+                  "No"
+                ],
+                "correctIndex": 0,
+                "explanation": "$81 + 144 = 225 = 15^2$ ✓.",
+                "check": [
+                  "9**2 + 12**2 == 15**2"
+                ]
+              },
+              {
+                "prompt": "Do $5, 6, 8$ form a right triangle?",
+                "options": [
+                  "No",
+                  "Yes"
+                ],
+                "correctIndex": 0,
+                "explanation": "$25 + 36 = 61 \\ne 64$.",
+                "check": [
+                  "5**2 + 6**2 < 8**2"
+                ]
+              },
+              {
+                "prompt": "Do $8, 15, 17$ form a right triangle?",
+                "options": [
+                  "Yes",
+                  "No"
+                ],
+                "correctIndex": 0,
+                "explanation": "$64 + 225 = 289 = 17^2$ ✓.",
+                "check": [
+                  "8**2 + 15**2 == 17**2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Acute or obtuse?",
+            "title": "Read the gap",
+            "beats": [
+              "If it's not exactly right, the comparison classifies it.",
+              "$a^2 + b^2 > c^2$: the sides 'over-close' → **acute**.",
+              "$a^2 + b^2 < c^2$: the longest side wins → **obtuse**.",
+              "Always with $c$ as the longest side."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Classify by the comparison",
+            "intro": "Bigger → acute; smaller → obtuse.",
+            "examples": [
+              {
+                "prompt": "Sides $4, 5, 6$. Classify.",
+                "steps": [
+                  "$16 + 25 = 41$; $6^2 = 36$.",
+                  "$41 > 36$ → acute."
+                ],
+                "answer": "Acute",
+                "check": [
+                  "4**2 + 5**2 > 6**2"
+                ]
+              },
+              {
+                "prompt": "Sides $4, 5, 7$. Classify.",
+                "steps": [
+                  "$16 + 25 = 41$; $7^2 = 49$.",
+                  "$41 < 49$ → obtuse."
+                ],
+                "answer": "Obtuse",
+                "check": [
+                  "4**2 + 5**2 < 7**2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Acute, right, or obtuse?",
+            "intro": "Compare a² + b² to c².",
+            "problems": [
+              {
+                "prompt": "Sides $6, 7, 8$ form a(n) — triangle.",
+                "options": [
+                  "acute",
+                  "right",
+                  "obtuse"
+                ],
+                "correctIndex": 0,
+                "explanation": "$36 + 49 = 85 > 64$ → acute.",
+                "check": [
+                  "6**2 + 7**2 > 8**2"
+                ]
+              },
+              {
+                "prompt": "Sides $5, 7, 9$ form a(n) — triangle.",
+                "options": [
+                  "obtuse",
+                  "right",
+                  "acute"
+                ],
+                "correctIndex": 0,
+                "explanation": "$25 + 49 = 74 < 81$ → obtuse.",
+                "check": [
+                  "5**2 + 7**2 < 9**2"
+                ]
+              },
+              {
+                "prompt": "Sides $3, 4, 5$ form a(n) — triangle.",
+                "options": [
+                  "right",
+                  "acute",
+                  "obtuse"
+                ],
+                "correctIndex": 0,
+                "explanation": "$9 + 16 = 25 = 5^2$ → right.",
+                "check": [
+                  "3**2 + 4**2 == 5**2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "How a builder finds a wall out of square",
+            "body": "Measure a wall's diagonal and its two sides, then check $a^2 + b^2$ against the diagonal squared. If the diagonal is too long, the corner is obtuse (splayed open); too short, it's acute (pinched). The converse turns a tape measure into a right-angle detector."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Classify it",
+            "prompt": "A triangle has sides $8, 9, 10$. It is —",
+            "options": [
+              "acute",
+              "right",
+              "obtuse"
+            ],
+            "correctIndex": 0,
+            "explanation": "$64 + 81 = 145 > 100$, so acute.",
+            "check": [
+              "8**2 + 9**2 > 10**2"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Converse**: $a^2 + b^2 = c^2$ (c longest) ⇒ a **right** triangle.",
+              "$a^2 + b^2 > c^2$ → **acute**; $a^2 + b^2 < c^2$ → **obtuse**.",
+              "Always test with the **longest** side as $c$."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's test for right angles and classify by comparison."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Do $10, 24, 26$ form a right triangle?",
+                "options": [
+                  "Yes",
+                  "No",
+                  "Only acute",
+                  "Only obtuse"
+                ],
+                "correctIndex": 0,
+                "explanation": "$100 + 576 = 676 = 26^2$ ✓.",
+                "check": [
+                  "10**2 + 24**2 == 26**2"
+                ]
+              },
+              {
+                "prompt": "Sides $5, 5, 6$ form a(n) — triangle.",
+                "options": [
+                  "acute",
+                  "right",
+                  "obtuse",
+                  "impossible"
+                ],
+                "correctIndex": 0,
+                "explanation": "$25 + 25 = 50 > 36$ → acute.",
+                "check": [
+                  "5**2 + 5**2 > 6**2"
+                ]
+              },
+              {
+                "prompt": "Sides $6, 8, 11$ form a(n) — triangle.",
+                "options": [
+                  "obtuse",
+                  "right",
+                  "acute",
+                  "impossible"
+                ],
+                "correctIndex": 0,
+                "explanation": "$36 + 64 = 100 < 121$ → obtuse.",
+                "check": [
+                  "6**2 + 8**2 < 11**2"
+                ]
+              },
+              {
+                "prompt": "Which side do you square as $c$ in the test?",
+                "options": [
+                  "the longest",
+                  "the shortest",
+                  "either leg",
+                  "any side"
+                ],
+                "correctIndex": 0,
+                "explanation": "The longest — opposite the biggest angle.",
+                "check": [
+                  "5 > 3"
+                ]
+              },
+              {
+                "prompt": "If $a^2 + b^2 = c^2$ exactly, the triangle is —",
+                "options": [
+                  "right",
+                  "acute",
+                  "obtuse",
+                  "equilateral"
+                ],
+                "correctIndex": 0,
+                "explanation": "The converse gives a right triangle.",
+                "check": [
+                  "3**2 + 4**2 == 5**2"
+                ]
+              },
+              {
+                "prompt": "Do $9, 40, 41$ form a right triangle?",
+                "options": [
+                  "Yes",
+                  "No",
+                  "Acute",
+                  "Obtuse"
+                ],
+                "correctIndex": 0,
+                "explanation": "$81 + 1600 = 1681 = 41^2$ ✓.",
+                "check": [
+                  "9**2 + 40**2 == 41**2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"The Converse & Classifying Triangles\"",
+            "body": "You can test any three sides and classify the triangle. Next: two right triangles so common their side ratios are worth memorizing — the 45-45-90 and 30-60-90."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "special-right-triangles",
+      "title": "Special Right Triangles",
+      "concreteComparison": "Cut a square in half along its diagonal and you get a 45-45-90 triangle; cut an equilateral triangle down the middle and you get a 30-60-90. These two shapes appear so often — in drafting, tiling, and roof framing — that their side ratios are worth memorizing so you never re-derive them.",
+      "objective": "Use the 45-45-90 ratio (leg : leg : leg√2) and the 30-60-90 ratio (x : x√3 : 2x) to find sides without recomputing.",
+      "concept": [
+        "A **45-45-90** triangle (half a square) is isosceles: the two legs are equal, and the **hypotenuse is a leg $\\times \\sqrt2$**. Leg $5 \\Rightarrow$ hypotenuse $5\\sqrt2$.",
+        "A **30-60-90** triangle (half an equilateral triangle): with the **short leg** (opposite $30^\\circ$) $= x$, the **long leg** (opposite $60^\\circ$) $= x\\sqrt3$, and the **hypotenuse** $= 2x$.",
+        "Both ratios come straight from the Pythagorean theorem — they're just worth memorizing so a calculation becomes a lookup.",
+        "Match each side to its position: in 30-60-90 the hypotenuse is **twice the short leg**, and the long leg is the short leg times $\\sqrt3$."
+      ],
+      "keyIdea": "45-45-90: legs equal, hypotenuse = leg·√2. 30-60-90: short leg x, long leg x√3, hypotenuse 2x. Memorize the ratios instead of re-deriving.",
+      "facts": [
+        {
+          "title": "45-45-90",
+          "latex": "$x : x : x\\sqrt2$",
+          "explanation": "Equal legs; hypotenuse is a leg times √2."
+        },
+        {
+          "title": "30-60-90",
+          "latex": "$x : x\\sqrt3 : 2x$",
+          "explanation": "Short leg x, long leg x√3, hypotenuse 2x."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sr-we1",
+          "statement": "A 45-45-90 triangle has legs of $7$. Find the hypotenuse.",
+          "solution": "Hypotenuse $= 7\\sqrt2$. (Check: $(7\\sqrt2)^2 = 98 = 7^2 + 7^2$.)",
+          "check": [
+            "(7*sqrt(2))**2 == 7**2 + 7**2"
+          ]
+        },
+        {
+          "id": "sr-we2",
+          "statement": "A 30-60-90 triangle has short leg $6$. Find the hypotenuse and long leg.",
+          "solution": "Hypotenuse $= 2 \\cdot 6 = 12$; long leg $= 6\\sqrt3$.",
+          "check": [
+            "2*6 == 12",
+            "(6*sqrt(3))**2 == 3*6**2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Multiplying the wrong leg by √3 in a 30-60-90.",
+          "correction": "The **long** leg is the **short** leg times $\\sqrt3$. Start from the short leg (opposite $30^\\circ$).",
+          "authored": true
+        },
+        {
+          "text": "Using √2 for a 30-60-90 or √3 for a 45-45-90.",
+          "correction": "$\\sqrt2$ belongs to **45-45-90**; $\\sqrt3$ (and the doubling) belong to **30-60-90**. Don't swap them.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sr-t1",
+          "statement": "A 45-45-90 triangle has legs $10$. Hypotenuse?",
+          "solution": "$10\\sqrt2$.",
+          "check": [
+            "(10*sqrt(2))**2 == 2*10**2"
+          ]
+        },
+        {
+          "id": "sr-t2",
+          "statement": "A 30-60-90 triangle has short leg $5$. Hypotenuse?",
+          "solution": "$2 \\cdot 5 = 10$.",
+          "check": [
+            "2*5 == 10"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Two shapes worth memorizing",
+            "beats": [
+              "Some right triangles show up again and again.",
+              "**45-45-90**: half a square — two equal legs.",
+              "**30-60-90**: half an equilateral triangle.",
+              "Their side ratios never change, only the size."
+            ]
+          },
+          {
+            "kind": "specialTriangle",
+            "eyebrow": "Concept A",
+            "title": "45-45-90: leg, leg, leg√2",
+            "teach": "Both legs are equal; the hypotenuse is always a leg times $\\sqrt2 \\approx 1.41$. Change the size $x$ — the shape and ratio stay the same, which is why you can just memorize it.",
+            "config": {
+              "type": "45-45-90",
+              "start": 3
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The 45-45-90 rule",
+            "title": "Multiply a leg by √2",
+            "beats": [
+              "The two legs are equal (it's isosceles).",
+              "Hypotenuse $= $ leg $\\times \\sqrt2$.",
+              "Leg $7 \\Rightarrow$ hypotenuse $7\\sqrt2$.",
+              "Going backward: leg $= $ hypotenuse $\\div \\sqrt2$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "45-45-90 sides",
+            "intro": "Hypotenuse = leg × √2.",
+            "examples": [
+              {
+                "prompt": "Legs $7$. Hypotenuse?",
+                "steps": [
+                  "Leg $\\times \\sqrt2$.",
+                  "$= 7\\sqrt2$."
+                ],
+                "answer": "$7\\sqrt2$",
+                "check": [
+                  "(7*sqrt(2))**2 == 2*7**2"
+                ]
+              },
+              {
+                "prompt": "Legs $9$. Hypotenuse?",
+                "steps": [
+                  "$9 \\times \\sqrt2$.",
+                  "$= 9\\sqrt2$."
+                ],
+                "answer": "$9\\sqrt2$",
+                "check": [
+                  "(9*sqrt(2))**2 == 2*9**2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "45-45-90 practice",
+            "intro": "Leg × √2 for the hypotenuse.",
+            "problems": [
+              {
+                "prompt": "Legs $10$. Hypotenuse?",
+                "options": [
+                  "$10\\sqrt2$",
+                  "$20$",
+                  "$10\\sqrt3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Leg × √2.",
+                "check": [
+                  "(10*sqrt(2))**2 == 2*10**2"
+                ]
+              },
+              {
+                "prompt": "In a 45-45-90, the two legs are —",
+                "options": [
+                  "equal",
+                  "in ratio $1:2$",
+                  "in ratio $1:\\sqrt3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "It's isosceles.",
+                "check": [
+                  "5 == 5"
+                ]
+              },
+              {
+                "prompt": "Legs $3$. Hypotenuse?",
+                "options": [
+                  "$3\\sqrt2$",
+                  "$6$",
+                  "$3\\sqrt3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3\\sqrt2$.",
+                "check": [
+                  "(3*sqrt(2))**2 == 2*3**2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "specialTriangle",
+            "eyebrow": "Concept B",
+            "title": "30-60-90: x, x√3, 2x",
+            "teach": "The short leg (opposite $30^\\circ$) is $x$, the hypotenuse is $2x$, and the long leg (opposite $60^\\circ$) is $x\\sqrt3 \\approx 1.73x$. Resize it — the $1 : \\sqrt3 : 2$ ratio holds.",
+            "config": {
+              "type": "30-60-90",
+              "start": 3
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The 30-60-90 rule",
+            "title": "Double, and √3",
+            "beats": [
+              "Start from the **short** leg $x$ (opposite $30^\\circ$).",
+              "Hypotenuse $= 2x$ (double the short leg).",
+              "Long leg $= x\\sqrt3$ (opposite $60^\\circ$).",
+              "So the sides are $x : x\\sqrt3 : 2x$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "30-60-90 sides",
+            "intro": "Short x → hyp 2x, long x√3.",
+            "examples": [
+              {
+                "prompt": "Short leg $6$. Hypotenuse and long leg?",
+                "steps": [
+                  "Hypotenuse $= 2 \\cdot 6 = 12$.",
+                  "Long leg $= 6\\sqrt3$."
+                ],
+                "answer": "$12$ and $6\\sqrt3$",
+                "check": [
+                  "2*6 == 12",
+                  "(6*sqrt(3))**2 == 3*6**2"
+                ]
+              },
+              {
+                "prompt": "Short leg $8$. Hypotenuse?",
+                "steps": [
+                  "$2 \\cdot 8$.",
+                  "$= 16$."
+                ],
+                "answer": "$16$",
+                "check": [
+                  "2*8 == 16"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "30-60-90 practice",
+            "intro": "Hyp = 2·short; long = short·√3.",
+            "problems": [
+              {
+                "prompt": "Short leg $5$. Hypotenuse?",
+                "options": [
+                  "$10$",
+                  "$5\\sqrt2$",
+                  "$5\\sqrt3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2 \\cdot 5 = 10$.",
+                "check": [
+                  "2*5 == 10"
+                ]
+              },
+              {
+                "prompt": "Short leg $4$. Long leg?",
+                "options": [
+                  "$4\\sqrt3$",
+                  "$8$",
+                  "$4\\sqrt2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Short × √3.",
+                "check": [
+                  "(4*sqrt(3))**2 == 3*4**2"
+                ]
+              },
+              {
+                "prompt": "In a 30-60-90, the hypotenuse is — the short leg.",
+                "options": [
+                  "twice",
+                  "√2 times",
+                  "√3 times"
+                ],
+                "correctIndex": 0,
+                "explanation": "Hypotenuse $= 2x$.",
+                "check": [
+                  "2*7 == 14"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why drafting sets have two triangles",
+            "body": "A classic drafting kit holds exactly two set squares: a 45-45-90 and a 30-60-90. Between them they draw angles of $30, 45, 60, 90$ — and, by stacking, $15, 75, 105$ and more — which is why these two special triangles are the workhorses of technical drawing."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Special ratio",
+            "prompt": "A 30-60-90 triangle has a short leg of $9$. What is its hypotenuse?",
+            "options": [
+              "$18$",
+              "$9\\sqrt3$",
+              "$9\\sqrt2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The hypotenuse is twice the short leg: $2 \\cdot 9 = 18$.",
+            "check": [
+              "2*9 == 18"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**45-45-90**: equal legs; hypotenuse $= $ leg $\\times \\sqrt2$.",
+              "**30-60-90**: short leg $x$, long leg $x\\sqrt3$, hypotenuse $2x$.",
+              "Memorize the ratios — $\\sqrt2$ for the isosceles one, doubling & $\\sqrt3$ for the other."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's find sides in 45-45-90 and 30-60-90 triangles from the ratios."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "45-45-90 with legs $12$. Hypotenuse?",
+                "options": [
+                  "$12\\sqrt2$",
+                  "$24$",
+                  "$12\\sqrt3$",
+                  "$6\\sqrt2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Leg × √2.",
+                "check": [
+                  "(12*sqrt(2))**2 == 2*12**2"
+                ]
+              },
+              {
+                "prompt": "30-60-90 with short leg $10$. Hypotenuse?",
+                "options": [
+                  "$20$",
+                  "$10\\sqrt3$",
+                  "$10\\sqrt2$",
+                  "$5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2 \\cdot 10 = 20$.",
+                "check": [
+                  "2*10 == 20"
+                ]
+              },
+              {
+                "prompt": "30-60-90 with short leg $7$. Long leg?",
+                "options": [
+                  "$7\\sqrt3$",
+                  "$14$",
+                  "$7\\sqrt2$",
+                  "$3.5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Short × √3.",
+                "check": [
+                  "(7*sqrt(3))**2 == 3*7**2"
+                ]
+              },
+              {
+                "prompt": "The $\\sqrt2$ ratio belongs to a — triangle.",
+                "options": [
+                  "45-45-90",
+                  "30-60-90",
+                  "3-4-5",
+                  "equilateral"
+                ],
+                "correctIndex": 0,
+                "explanation": "45-45-90.",
+                "check": [
+                  "(1*sqrt(2))**2 == 2"
+                ]
+              },
+              {
+                "prompt": "In a 30-60-90, the LONG leg is opposite the — angle.",
+                "options": [
+                  "$60^\\circ$",
+                  "$30^\\circ$",
+                  "$90^\\circ$",
+                  "$45^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Bigger angle → longer side.",
+                "check": [
+                  "60 > 30"
+                ]
+              },
+              {
+                "prompt": "45-45-90 with legs $5$. Hypotenuse?",
+                "options": [
+                  "$5\\sqrt2$",
+                  "$10$",
+                  "$5\\sqrt3$",
+                  "$25$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5\\sqrt2$.",
+                "check": [
+                  "(5*sqrt(2))**2 == 2*5**2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Special Right Triangles\"",
+            "body": "You can read off the sides of the two special triangles instantly. Next: trigonometry — sine, cosine, and tangent — which handles EVERY right triangle, not just the special two."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "trigonometric-ratios",
+      "title": "Trigonometric Ratios (SOH-CAH-TOA)",
+      "concreteComparison": "Every right triangle with the same acute angle is similar (Unit 7), so its side RATIOS are locked in by that angle alone. Trigonometry just gives those three ratios names — sine, cosine, tangent — turning an angle into a number you can compute with.",
+      "objective": "Name the sides of a right triangle relative to an angle (opposite, adjacent, hypotenuse) and compute sine, cosine, and tangent from the side lengths (SOH-CAH-TOA).",
+      "concept": [
+        "For an acute angle $\\theta$ in a right triangle, label the three sides **relative to $\\theta$**: the **opposite** side (across from $\\theta$), the **adjacent** side (next to $\\theta$, not the hypotenuse), and the **hypotenuse** (opposite the right angle).",
+        "**SOH-CAH-TOA**: $\\sin\\theta = \\dfrac{\\text{opp}}{\\text{hyp}}$, $\\cos\\theta = \\dfrac{\\text{adj}}{\\text{hyp}}$, $\\tan\\theta = \\dfrac{\\text{opp}}{\\text{adj}}$.",
+        "Because all right triangles with the same acute angle are **similar**, these ratios depend only on the angle — not the triangle's size. That is why $\\sin30^\\circ$ is one fixed number.",
+        "To compute a ratio: identify opp / adj / hyp for the angle, then divide."
+      ],
+      "keyIdea": "Relative to an acute angle θ: sin θ = opp/hyp, cos θ = adj/hyp, tan θ = opp/adj. The ratios depend only on the angle because same-angle right triangles are similar.",
+      "facts": [
+        {
+          "title": "SOH-CAH-TOA",
+          "latex": "$\\sin=\\tfrac{o}{h},\\ \\cos=\\tfrac{a}{h},\\ \\tan=\\tfrac{o}{a}$",
+          "explanation": "The three primary trig ratios."
+        },
+        {
+          "title": "Why it's fixed",
+          "latex": "same angle ⇒ similar",
+          "explanation": "The ratio depends only on the angle, not the size."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "tr-we1",
+          "statement": "In a right triangle, the side opposite $\\theta$ is $6$ and the hypotenuse is $10$. Find $\\sin\\theta$.",
+          "solution": "$\\sin\\theta = \\dfrac{\\text{opp}}{\\text{hyp}} = \\dfrac{6}{10} = \\dfrac{3}{5}$.",
+          "check": [
+            "6/10 == 3/5"
+          ]
+        },
+        {
+          "id": "tr-we2",
+          "statement": "The side adjacent to $\\theta$ is $4$, the opposite is $3$. Find $\\tan\\theta$.",
+          "solution": "$\\tan\\theta = \\dfrac{\\text{opp}}{\\text{adj}} = \\dfrac{3}{4}$.",
+          "check": [
+            "3/4 == 3/4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Calling the hypotenuse the 'adjacent' side.",
+          "correction": "The **adjacent** is the leg next to $\\theta$. The **hypotenuse** (opposite the right angle) is never the adjacent side.",
+          "authored": true
+        },
+        {
+          "text": "Mixing up which ratio is which.",
+          "correction": "Chant **SOH-CAH-TOA**: Sine = Opp/Hyp, Cosine = Adj/Hyp, Tangent = Opp/Adj.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "tr-t1",
+          "statement": "Opposite $\\theta$ is $5$, hypotenuse $13$. Find $\\sin\\theta$.",
+          "solution": "$\\tfrac{5}{13}$.",
+          "check": [
+            "5/13 == 5/13"
+          ]
+        },
+        {
+          "id": "tr-t2",
+          "statement": "Adjacent $8$, hypotenuse $17$. Find $\\cos\\theta$.",
+          "solution": "$\\tfrac{8}{17}$.",
+          "check": [
+            "8/17 == 8/17"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "Name the sides by the angle",
+            "beats": [
+              "Pick an acute angle $\\theta$ in a right triangle.",
+              "**Opposite**: the side across from $\\theta$.",
+              "**Adjacent**: the leg next to $\\theta$ (not the hypotenuse).",
+              "**Hypotenuse**: the longest side, across from the right angle."
+            ]
+          },
+          {
+            "kind": "trigRatios",
+            "eyebrow": "Concept A",
+            "title": "The three ratios, live",
+            "teach": "For the angle $\\theta$, watch $\\sin$, $\\cos$, and $\\tan$ — each is a ratio of two sides (opp/hyp, adj/hyp, opp/adj). Change $\\theta$ and the ratios change; keep $\\theta$ fixed and they stay put no matter the size.",
+            "config": {
+              "start": 40
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "SOH-CAH-TOA",
+            "title": "The memory hook",
+            "beats": [
+              "**SOH**: $\\sin = \\dfrac{\\text{Opp}}{\\text{Hyp}}$.",
+              "**CAH**: $\\cos = \\dfrac{\\text{Adj}}{\\text{Hyp}}$.",
+              "**TOA**: $\\tan = \\dfrac{\\text{Opp}}{\\text{Adj}}$.",
+              "Identify the sides, then divide."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Compute the ratio",
+            "intro": "Pick opp/adj/hyp, then divide.",
+            "examples": [
+              {
+                "prompt": "Opp $6$, hyp $10$. $\\sin\\theta$?",
+                "steps": [
+                  "$\\sin = \\text{opp}/\\text{hyp}$.",
+                  "$= 6/10 = 3/5$."
+                ],
+                "answer": "$\\tfrac{3}{5}$",
+                "check": [
+                  "6/10 == 3/5"
+                ]
+              },
+              {
+                "prompt": "Adj $8$, hyp $10$. $\\cos\\theta$?",
+                "steps": [
+                  "$\\cos = \\text{adj}/\\text{hyp}$.",
+                  "$= 8/10 = 4/5$."
+                ],
+                "answer": "$\\tfrac{4}{5}$",
+                "check": [
+                  "8/10 == 4/5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Which ratio?",
+            "intro": "SOH-CAH-TOA.",
+            "problems": [
+              {
+                "prompt": "Opp $3$, adj $4$. $\\tan\\theta$?",
+                "options": [
+                  "$\\tfrac{3}{4}$",
+                  "$\\tfrac{4}{3}$",
+                  "$\\tfrac{3}{5}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tan = \\text{opp}/\\text{adj} = 3/4$.",
+                "check": [
+                  "3/4 == 3/4"
+                ]
+              },
+              {
+                "prompt": "Opp $5$, hyp $13$. $\\sin\\theta$?",
+                "options": [
+                  "$\\tfrac{5}{13}$",
+                  "$\\tfrac{12}{13}$",
+                  "$\\tfrac{5}{12}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "opp/hyp.",
+                "check": [
+                  "5/13 == 5/13"
+                ]
+              },
+              {
+                "prompt": "$\\cos\\theta$ is the ratio —",
+                "options": [
+                  "adj/hyp",
+                  "opp/hyp",
+                  "opp/adj"
+                ],
+                "correctIndex": 0,
+                "explanation": "CAH.",
+                "check": [
+                  "8/10 == 4/5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The same triangle, both angles",
+            "title": "Opp and adj swap",
+            "beats": [
+              "A right triangle has two acute angles.",
+              "A side that is **opposite** one is **adjacent** to the other.",
+              "So $\\sin$ of one angle equals $\\cos$ of the other.",
+              "Always name the sides relative to the angle you're using."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "From a 3-4-5 triangle",
+            "intro": "opp, adj, hyp = 3, 4, 5 for the angle at the ‘4’ vertex.",
+            "examples": [
+              {
+                "prompt": "In a 3-4-5 right triangle, for the angle with opp $3$, adj $4$: find $\\cos$.",
+                "steps": [
+                  "$\\cos = \\text{adj}/\\text{hyp} = 4/5$."
+                ],
+                "answer": "$\\tfrac{4}{5}$",
+                "check": [
+                  "4/5 == 4/5"
+                ]
+              },
+              {
+                "prompt": "Same triangle: find $\\tan$.",
+                "steps": [
+                  "$\\tan = \\text{opp}/\\text{adj} = 3/4$."
+                ],
+                "answer": "$\\tfrac{3}{4}$",
+                "check": [
+                  "3/4 == 3/4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "3-4-5 ratios",
+            "intro": "opp 3, adj 4, hyp 5.",
+            "problems": [
+              {
+                "prompt": "$\\sin\\theta$ for opp $3$, hyp $5$?",
+                "options": [
+                  "$\\tfrac{3}{5}$",
+                  "$\\tfrac{4}{5}$",
+                  "$\\tfrac{3}{4}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "opp/hyp.",
+                "check": [
+                  "3/5 == 3/5"
+                ]
+              },
+              {
+                "prompt": "$\\cos\\theta$ for adj $4$, hyp $5$?",
+                "options": [
+                  "$\\tfrac{4}{5}$",
+                  "$\\tfrac{3}{5}$",
+                  "$\\tfrac{4}{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "adj/hyp.",
+                "check": [
+                  "4/5 == 4/5"
+                ]
+              },
+              {
+                "prompt": "$\\tan\\theta$ for opp $3$, adj $4$?",
+                "options": [
+                  "$\\tfrac{3}{4}$",
+                  "$\\tfrac{4}{3}$",
+                  "$\\tfrac{3}{5}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "opp/adj.",
+                "check": [
+                  "3/4 == 3/4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Trig ratios are older than algebra",
+            "body": "Astronomers were tabulating chord and sine values over $1{,}500$ years ago — long before modern algebra existed — to predict the positions of the sun and planets. Every value in those tables is just opp/hyp for some angle, the same SOH you're learning now."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Pick the ratio",
+            "prompt": "The side opposite $\\theta$ is $7$ and the adjacent side is $24$. What is $\\tan\\theta$?",
+            "options": [
+              "$\\tfrac{7}{24}$",
+              "$\\tfrac{24}{7}$",
+              "$\\tfrac{7}{25}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tan = \\text{opp}/\\text{adj} = 7/24$.",
+            "check": [
+              "7/24 == 7/24"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Name sides relative to $\\theta$: **opposite**, **adjacent**, **hypotenuse**.",
+              "**SOH-CAH-TOA**: $\\sin = \\tfrac{o}{h}$, $\\cos = \\tfrac{a}{h}$, $\\tan = \\tfrac{o}{a}$.",
+              "The ratios depend only on the **angle** — because same-angle right triangles are **similar**."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's identify sides and compute sine, cosine, and tangent."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Opp $6$, hyp $10$. $\\sin\\theta$?",
+                "options": [
+                  "$\\tfrac{3}{5}$",
+                  "$\\tfrac{4}{5}$",
+                  "$\\tfrac{3}{4}$",
+                  "$\\tfrac{5}{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "opp/hyp $= 3/5$.",
+                "check": [
+                  "6/10 == 3/5"
+                ]
+              },
+              {
+                "prompt": "Adj $9$, hyp $15$. $\\cos\\theta$?",
+                "options": [
+                  "$\\tfrac{3}{5}$",
+                  "$\\tfrac{4}{5}$",
+                  "$\\tfrac{9}{15}$ only",
+                  "$\\tfrac{5}{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$9/15 = 3/5$.",
+                "check": [
+                  "9/15 == 3/5"
+                ]
+              },
+              {
+                "prompt": "$\\tan\\theta = $ —",
+                "options": [
+                  "opp/adj",
+                  "adj/opp",
+                  "opp/hyp",
+                  "hyp/opp"
+                ],
+                "correctIndex": 0,
+                "explanation": "TOA.",
+                "check": [
+                  "3/4 == 3/4"
+                ]
+              },
+              {
+                "prompt": "Opp $8$, adj $6$. $\\tan\\theta$?",
+                "options": [
+                  "$\\tfrac{4}{3}$",
+                  "$\\tfrac{3}{4}$",
+                  "$\\tfrac{4}{5}$",
+                  "$\\tfrac{6}{8}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$8/6 = 4/3$.",
+                "check": [
+                  "8/6 == 4/3"
+                ]
+              },
+              {
+                "prompt": "The ratios of a right triangle depend on —",
+                "options": [
+                  "only the angle",
+                  "only the size",
+                  "the area",
+                  "the perimeter"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same angle → similar → same ratios.",
+                "check": [
+                  "3/5 == 6/10"
+                ]
+              },
+              {
+                "prompt": "Opp $5$, hyp $13$. $\\sin\\theta$?",
+                "options": [
+                  "$\\tfrac{5}{13}$",
+                  "$\\tfrac{12}{13}$",
+                  "$\\tfrac{5}{12}$",
+                  "$\\tfrac{13}{5}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "opp/hyp.",
+                "check": [
+                  "5/13 == 5/13"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Trigonometric Ratios\"",
+            "body": "You can compute sine, cosine, and tangent from the sides. Next: use them the other way — knowing an angle and a side to find a missing side."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "finding-sides-with-trig",
+      "title": "Finding Missing Sides with Trig",
+      "concreteComparison": "Know one side and one angle of a right triangle and trig hands you the rest — how high a ladder reaches, how far a ramp rises, how wide a river is. Pick the ratio that links what you know to what you want, and solve.",
+      "objective": "Use sine, cosine, or tangent to find a missing side of a right triangle from a known side and angle, including the exact values at 30°, 45°, and 60°.",
+      "concept": [
+        "Choose the ratio that connects the **known side**, the **unknown side**, and the angle: **opp & hyp** → sine, **adj & hyp** → cosine, **opp & adj** → tangent.",
+        "Set up the equation, e.g. $\\sin\\theta = \\dfrac{\\text{opp}}{\\text{hyp}}$, substitute the known values, and solve for the unknown.",
+        "At the special angles the values are exact: $\\sin30^\\circ = \\tfrac12$, $\\cos60^\\circ = \\tfrac12$, $\\tan45^\\circ = 1$, $\\sin45^\\circ = \\cos45^\\circ = \\tfrac{\\sqrt2}{2}$, and $\\sin60^\\circ = \\cos30^\\circ = \\tfrac{\\sqrt3}{2}$.",
+        "For any other angle you read the ratio from a calculator, then solve the same way."
+      ],
+      "keyIdea": "To find a missing side, pick the ratio (sin/cos/tan) linking the known side, unknown side, and angle; substitute and solve. The 30°/45°/60° values are exact.",
+      "facts": [
+        {
+          "title": "Pick the ratio",
+          "latex": "opp·hyp→sin, adj·hyp→cos, opp·adj→tan",
+          "explanation": "Match the two sides involved to the right ratio."
+        },
+        {
+          "title": "Exact values",
+          "latex": "$\\sin30=\\tfrac12,\\ \\tan45=1,\\ \\sin60=\\tfrac{\\sqrt3}{2}$",
+          "explanation": "Memorize the special-angle values."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "fs-we1",
+          "statement": "A right triangle has hypotenuse $10$ and an angle of $30^\\circ$. Find the side opposite the $30^\\circ$ angle.",
+          "solution": "$\\sin30^\\circ = \\dfrac{\\text{opp}}{10} \\Rightarrow \\text{opp} = 10\\sin30^\\circ = 10 \\cdot \\tfrac12 = 5$.",
+          "check": [
+            "10*sin(pi/6) == 5"
+          ]
+        },
+        {
+          "id": "fs-we2",
+          "statement": "A ramp rises from the ground at $45^\\circ$; its horizontal run (adjacent) is $8$. How high does it rise (opposite)?",
+          "solution": "$\\tan45^\\circ = \\dfrac{\\text{opp}}{8} \\Rightarrow \\text{opp} = 8\\tan45^\\circ = 8 \\cdot 1 = 8$.",
+          "check": [
+            "8*tan(pi/4) == 8"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Choosing a ratio that uses a side you don't have.",
+          "correction": "Pick the ratio built from the **two sides in play** (the known and the unknown). If you have opp and want hyp, use **sine**.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the exact special-angle values.",
+          "correction": "$\\sin30 = \\cos60 = \\tfrac12$, $\\tan45 = 1$. Knowing these turns a special-angle problem into arithmetic.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "fs-t1",
+          "statement": "Hypotenuse $12$, angle $30^\\circ$. Side opposite the $30^\\circ$?",
+          "solution": "$12\\sin30^\\circ = 12 \\cdot \\tfrac12 = 6$.",
+          "check": [
+            "12*sin(pi/6) == 6"
+          ]
+        },
+        {
+          "id": "fs-t2",
+          "statement": "Adjacent $9$, angle $45^\\circ$. Opposite side?",
+          "solution": "$9\\tan45^\\circ = 9$.",
+          "check": [
+            "9*tan(pi/4) == 9"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "One side, one angle, find the rest",
+            "beats": [
+              "You know an **angle** and **one side**.",
+              "You want a **different side**.",
+              "Pick the ratio that links those two sides to the angle.",
+              "Substitute and solve."
+            ]
+          },
+          {
+            "kind": "trigRatios",
+            "eyebrow": "Concept A",
+            "title": "The ratio links two sides",
+            "teach": "For angle $\\theta$: $\\sin$ links opp & hyp, $\\cos$ links adj & hyp, $\\tan$ links opp & adj. Read off which two sides your problem involves, then use that ratio.",
+            "config": {
+              "start": 30
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Set up and solve",
+            "title": "Ratio = known ÷ unknown",
+            "beats": [
+              "Have opp, want hyp (or vice-versa) → **sine**.",
+              "Have adj, want hyp → **cosine**.",
+              "Have opp & adj → **tangent**.",
+              "Write $\\sin\\theta = \\frac{\\text{opp}}{\\text{hyp}}$ (etc.), plug in, solve."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Use the special angles",
+            "intro": "sin30 = ½, cos60 = ½, tan45 = 1.",
+            "examples": [
+              {
+                "prompt": "Hypotenuse $10$, angle $30^\\circ$. Opposite side?",
+                "steps": [
+                  "$\\sin30 = \\text{opp}/10$.",
+                  "$\\text{opp} = 10 \\cdot \\tfrac12 = 5$."
+                ],
+                "answer": "$5$",
+                "check": [
+                  "10*sin(pi/6) == 5"
+                ]
+              },
+              {
+                "prompt": "Hypotenuse $20$, angle $60^\\circ$. Adjacent side?",
+                "steps": [
+                  "$\\cos60 = \\text{adj}/20$.",
+                  "$\\text{adj} = 20 \\cdot \\tfrac12 = 10$."
+                ],
+                "answer": "$10$",
+                "check": [
+                  "20*cos(pi/3) == 10"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Special-angle sides",
+            "intro": "Use the exact values.",
+            "problems": [
+              {
+                "prompt": "Hypotenuse $12$, angle $30^\\circ$. Opposite?",
+                "options": [
+                  "$6$",
+                  "$12$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$12\\sin30 = 12 \\cdot \\tfrac12 = 6$.",
+                "check": [
+                  "12*sin(pi/6) == 6"
+                ]
+              },
+              {
+                "prompt": "Adjacent $7$, angle $45^\\circ$. Opposite?",
+                "options": [
+                  "$7$",
+                  "$14$",
+                  "$3.5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$7\\tan45 = 7 \\cdot 1 = 7$.",
+                "check": [
+                  "7*tan(pi/4) == 7"
+                ]
+              },
+              {
+                "prompt": "Hypotenuse $16$, angle $60^\\circ$. Adjacent?",
+                "options": [
+                  "$8$",
+                  "$16$",
+                  "$4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$16\\cos60 = 16 \\cdot \\tfrac12 = 8$.",
+                "check": [
+                  "16*cos(pi/3) == 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Which side is which",
+            "title": "Match before you compute",
+            "beats": [
+              "First identify the sides **relative to the given angle**.",
+              "Decide which is known and which you want.",
+              "That pair picks the ratio.",
+              "Then substitute the exact value (or calculator value) and solve."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Tangent problems",
+            "intro": "tan θ = opp / adj.",
+            "examples": [
+              {
+                "prompt": "Adjacent $5$, angle $60^\\circ$. Opposite?",
+                "steps": [
+                  "$\\tan60 = \\text{opp}/5$; $\\tan60 = \\sqrt3$.",
+                  "$\\text{opp} = 5\\sqrt3$."
+                ],
+                "answer": "$5\\sqrt3$",
+                "check": [
+                  "5*tan(pi/3) == 5*sqrt(3)"
+                ]
+              },
+              {
+                "prompt": "Opposite $6$, angle $45^\\circ$. Adjacent?",
+                "steps": [
+                  "$\\tan45 = 6/\\text{adj}$; $\\tan45 = 1$.",
+                  "$\\text{adj} = 6$."
+                ],
+                "answer": "$6$",
+                "check": [
+                  "6/tan(pi/4) == 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the side",
+            "intro": "Choose sin, cos, or tan.",
+            "problems": [
+              {
+                "prompt": "Adjacent $10$, angle $45^\\circ$. Opposite?",
+                "options": [
+                  "$10$",
+                  "$20$",
+                  "$5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$10\\tan45 = 10$.",
+                "check": [
+                  "10*tan(pi/4) == 10"
+                ]
+              },
+              {
+                "prompt": "Hypotenuse $8$, angle $30^\\circ$. Opposite?",
+                "options": [
+                  "$4$",
+                  "$8$",
+                  "$16$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$8\\sin30 = 4$.",
+                "check": [
+                  "8*sin(pi/6) == 4"
+                ]
+              },
+              {
+                "prompt": "Adjacent $4$, angle $60^\\circ$. Opposite?",
+                "options": [
+                  "$4\\sqrt3$",
+                  "$8$",
+                  "$4\\sqrt2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4\\tan60 = 4\\sqrt3$.",
+                "check": [
+                  "4*tan(pi/3) == 4*sqrt(3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "How tall is that mountain?",
+            "body": "Surveyors find the height of a peak they can't climb by measuring a base distance and the angle up to the summit, then computing height $= $ distance $\\times \\tan(\\text{angle})$. The same one-line trig fixes the height of trees, towers, and clouds — anything too tall to reach with a tape."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Find the side",
+            "prompt": "A right triangle has hypotenuse $14$ and a $30^\\circ$ angle. The side opposite the $30^\\circ$ angle is —",
+            "options": [
+              "$7$",
+              "$14$",
+              "$28$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$14\\sin30^\\circ = 14 \\cdot \\tfrac12 = 7$.",
+            "check": [
+              "14*sin(pi/6) == 7"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Pick the ratio linking the **known** and **unknown** sides: sin (opp·hyp), cos (adj·hyp), tan (opp·adj).",
+              "Substitute and solve; the **special angles** $30, 45, 60$ have exact values.",
+              "$\\sin30 = \\cos60 = \\tfrac12$, $\\tan45 = 1$, $\\tan60 = \\sqrt3$."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's find missing sides using sine, cosine, and tangent."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "Hypotenuse $10$, angle $60^\\circ$. Adjacent?",
+                "options": [
+                  "$5$",
+                  "$10$",
+                  "$8$",
+                  "$20$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$10\\cos60 = 5$.",
+                "check": [
+                  "10*cos(pi/3) == 5"
+                ]
+              },
+              {
+                "prompt": "Adjacent $12$, angle $45^\\circ$. Opposite?",
+                "options": [
+                  "$12$",
+                  "$24$",
+                  "$6$",
+                  "$12\\sqrt2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$12\\tan45 = 12$.",
+                "check": [
+                  "12*tan(pi/4) == 12"
+                ]
+              },
+              {
+                "prompt": "Hypotenuse $18$, angle $30^\\circ$. Opposite?",
+                "options": [
+                  "$9$",
+                  "$18$",
+                  "$6$",
+                  "$36$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$18\\sin30 = 9$.",
+                "check": [
+                  "18*sin(pi/6) == 9"
+                ]
+              },
+              {
+                "prompt": "To find the hypotenuse from the opposite side and the angle, use —",
+                "options": [
+                  "sine",
+                  "cosine",
+                  "tangent",
+                  "Pythagoras only"
+                ],
+                "correctIndex": 0,
+                "explanation": "Sine links opp and hyp.",
+                "check": [
+                  "10*sin(pi/6) == 5"
+                ]
+              },
+              {
+                "prompt": "Adjacent $6$, angle $60^\\circ$. Opposite?",
+                "options": [
+                  "$6\\sqrt3$",
+                  "$12$",
+                  "$6\\sqrt2$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6\\tan60 = 6\\sqrt3$.",
+                "check": [
+                  "6*tan(pi/3) == 6*sqrt(3)"
+                ]
+              },
+              {
+                "prompt": "$\\tan45^\\circ = $ —",
+                "options": [
+                  "$1$",
+                  "$\\tfrac12$",
+                  "$\\sqrt3$",
+                  "$\\tfrac{\\sqrt2}{2}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal legs → ratio $1$.",
+                "check": [
+                  "tan(pi/4) == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Finding Missing Sides with Trig\"",
+            "body": "You can find any side from an angle and a side. Last stop: finding the ANGLE itself with inverse trig, and the elevation/depression problems that use it."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "elevation-depression-inverse-trig",
+      "title": "Angles of Elevation & Depression",
+      "concreteComparison": "Look up at the top of a building and your line of sight makes an angle of ELEVATION with the horizontal; look down from a cliff to a boat and it's an angle of DEPRESSION. With one distance and one height, trig runs backward to find that angle — using inverse sine, cosine, and tangent.",
+      "objective": "Find an unknown angle with inverse trig (arcsin, arccos, arctan), and solve angle-of-elevation and angle-of-depression problems.",
+      "concept": [
+        "To find an **angle** from a known ratio, use the **inverse** trig functions: if $\\tan\\theta = \\tfrac{\\text{opp}}{\\text{adj}}$, then $\\theta = \\tan^{-1}\\!\\big(\\tfrac{\\text{opp}}{\\text{adj}}\\big)$ (and likewise $\\sin^{-1}$, $\\cos^{-1}$).",
+        "An **angle of elevation** is measured **upward** from the horizontal to a line of sight; an **angle of depression** is measured **downward** from the horizontal.",
+        "The angle of depression from a high point equals the angle of elevation from the low point — they are **alternate interior angles** between two horizontal (parallel) lines (Unit 3).",
+        "Set up the right triangle (height = opposite, ground distance = adjacent), then use $\\tan$ or its inverse to find the side or the angle."
+      ],
+      "keyIdea": "Inverse trig (arcsin/arccos/arctan) turns a side ratio into an angle. Angles of elevation (up) and depression (down) are equal alternate interior angles; model the situation as a right triangle and apply tan or its inverse.",
+      "facts": [
+        {
+          "title": "Inverse trig",
+          "latex": "$\\theta = \\tan^{-1}\\!\\big(\\tfrac{o}{a}\\big)$",
+          "explanation": "Undo the ratio to recover the angle."
+        },
+        {
+          "title": "Elevation = depression",
+          "latex": "equal (alt. interior)",
+          "explanation": "Between parallel horizontals, the two angles match."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ed-we1",
+          "statement": "From $10$ m away, a flagpole's top is level with a $45^\\circ$ line of sight ($\\text{opp} = 10$, $\\text{adj} = 10$). Find the angle of elevation.",
+          "solution": "$\\tan\\theta = \\tfrac{10}{10} = 1 \\Rightarrow \\theta = \\tan^{-1}(1) = 45^\\circ$.",
+          "check": [
+            "atan(1)*180/pi == 45"
+          ]
+        },
+        {
+          "id": "ed-we2",
+          "statement": "A ramp rises $1$ m over a horizontal run of $\\sqrt3$ m. Find its angle of elevation.",
+          "solution": "$\\tan\\theta = \\tfrac{1}{\\sqrt3} \\Rightarrow \\theta = \\tan^{-1}\\!\\big(\\tfrac{1}{\\sqrt3}\\big) = 30^\\circ$.",
+          "check": [
+            "atan(1/sqrt(3))*180/pi == 30"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using $\\sin$ instead of $\\sin^{-1}$ to find an angle.",
+          "correction": "To go from a **ratio to an angle**, use the **inverse** ($\\sin^{-1}$, $\\cos^{-1}$, $\\tan^{-1}$). Plain $\\sin$ goes the other way.",
+          "authored": true
+        },
+        {
+          "text": "Measuring depression from the vertical.",
+          "correction": "Both elevation and depression are measured from the **horizontal**, not the vertical.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ed-t1",
+          "statement": "$\\tan\\theta = 1$. Find $\\theta$.",
+          "solution": "$\\theta = \\tan^{-1}(1) = 45^\\circ$.",
+          "check": [
+            "atan(1)*180/pi == 45"
+          ]
+        },
+        {
+          "id": "ed-t2",
+          "statement": "$\\sin\\theta = \\tfrac12$. Find $\\theta$.",
+          "solution": "$\\theta = \\sin^{-1}(\\tfrac12) = 30^\\circ$.",
+          "check": [
+            "asin(Rational(1,2))*180/pi == 30"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Start here",
+            "title": "From a ratio back to an angle",
+            "beats": [
+              "Trig turns an **angle** into a **ratio**.",
+              "**Inverse trig** turns a **ratio** back into an **angle**.",
+              "$\\tan^{-1}$, $\\sin^{-1}$, $\\cos^{-1}$ do the undoing.",
+              "$\\tan\\theta = 1 \\Rightarrow \\theta = \\tan^{-1}(1) = 45^\\circ$."
+            ]
+          },
+          {
+            "kind": "trigRatios",
+            "eyebrow": "Concept A",
+            "title": "Read the angle from the ratio",
+            "teach": "For each angle $\\theta$, the readout shows its ratios. Inverse trig runs this backward: given a ratio like $\\tan\\theta = 1$, it returns the angle ($45^\\circ$). Match the ratio to find the angle.",
+            "config": {
+              "start": 45
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Finding the angle",
+            "title": "Use the inverse",
+            "beats": [
+              "Have opp & adj → $\\theta = \\tan^{-1}(\\text{opp}/\\text{adj})$.",
+              "Have opp & hyp → $\\theta = \\sin^{-1}(\\text{opp}/\\text{hyp})$.",
+              "Have adj & hyp → $\\theta = \\cos^{-1}(\\text{adj}/\\text{hyp})$.",
+              "The special ratios give exact angles: $\\tan^{-1}(1) = 45^\\circ$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Find the angle",
+            "intro": "Inverse of the matching ratio.",
+            "examples": [
+              {
+                "prompt": "$\\tan\\theta = 1$. Find $\\theta$.",
+                "steps": [
+                  "$\\theta = \\tan^{-1}(1)$.",
+                  "$= 45^\\circ$."
+                ],
+                "answer": "$45^\\circ$",
+                "check": [
+                  "atan(1)*180/pi == 45"
+                ]
+              },
+              {
+                "prompt": "$\\sin\\theta = \\tfrac12$. Find $\\theta$.",
+                "steps": [
+                  "$\\theta = \\sin^{-1}(\\tfrac12)$.",
+                  "$= 30^\\circ$."
+                ],
+                "answer": "$30^\\circ$",
+                "check": [
+                  "asin(Rational(1,2))*180/pi == 30"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Inverse trig",
+            "intro": "Ratio → angle.",
+            "problems": [
+              {
+                "prompt": "$\\cos\\theta = \\tfrac12$. $\\theta = $ —",
+                "options": [
+                  "$60^\\circ$",
+                  "$30^\\circ$",
+                  "$45^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\cos^{-1}(\\tfrac12) = 60^\\circ$.",
+                "check": [
+                  "acos(Rational(1,2))*180/pi == 60"
+                ]
+              },
+              {
+                "prompt": "$\\tan\\theta = \\sqrt3$. $\\theta = $ —",
+                "options": [
+                  "$60^\\circ$",
+                  "$30^\\circ$",
+                  "$45^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tan^{-1}(\\sqrt3) = 60^\\circ$.",
+                "check": [
+                  "atan(sqrt(3))*180/pi == 60"
+                ]
+              },
+              {
+                "prompt": "To find an angle from a ratio you use —",
+                "options": [
+                  "inverse trig",
+                  "the ratio itself",
+                  "the Pythagorean theorem"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sin^{-1}$, $\\cos^{-1}$, $\\tan^{-1}$.",
+                "check": [
+                  "atan(1)*180/pi == 45"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Elevation and depression",
+            "title": "Up and down from the horizontal",
+            "beats": [
+              "**Elevation**: look **up** — angle from the horizontal to the line of sight.",
+              "**Depression**: look **down** — angle below the horizontal.",
+              "From a high point down to a low point and back up: the two angles are **equal** (alternate interior angles between parallel horizontals, Unit 3).",
+              "Model it as a right triangle: height = opposite, ground = adjacent."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Elevation problems",
+            "intro": "Model a right triangle, use tan or its inverse.",
+            "examples": [
+              {
+                "prompt": "From $10$ m away, the top of a pole needs a $45^\\circ$ look-up; the pole is $10$ m tall. Confirm the elevation angle.",
+                "steps": [
+                  "$\\tan\\theta = \\text{height}/\\text{distance} = 10/10 = 1$.",
+                  "$\\theta = \\tan^{-1}(1) = 45^\\circ$."
+                ],
+                "answer": "$45^\\circ$",
+                "check": [
+                  "atan(10/10)*180/pi == 45"
+                ]
+              },
+              {
+                "prompt": "A kite string $20$ m long makes a $30^\\circ$ elevation. How high is the kite?",
+                "steps": [
+                  "$\\sin30 = \\text{height}/20$.",
+                  "height $= 20 \\cdot \\tfrac12 = 10$ m."
+                ],
+                "answer": "$10$ m",
+                "check": [
+                  "20*sin(pi/6) == 10"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Elevation & depression",
+            "intro": "Set up the triangle, then solve.",
+            "problems": [
+              {
+                "prompt": "Height $6$, ground distance $6$. Angle of elevation?",
+                "options": [
+                  "$45^\\circ$",
+                  "$30^\\circ$",
+                  "$60^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tan^{-1}(6/6) = 45^\\circ$.",
+                "check": [
+                  "atan(6/6)*180/pi == 45"
+                ]
+              },
+              {
+                "prompt": "The angle of depression from a cliff to a boat equals the boat's angle of — to the cliff top.",
+                "options": [
+                  "elevation",
+                  "depression",
+                  "reflection"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal alternate interior angles.",
+                "check": [
+                  "atan(1)*180/pi == 45"
+                ]
+              },
+              {
+                "prompt": "String $12$ m at $30^\\circ$ elevation. Kite height?",
+                "options": [
+                  "$6$ m",
+                  "$12$ m",
+                  "$24$ m"
+                ],
+                "correctIndex": 0,
+                "explanation": "$12\\sin30 = 6$.",
+                "check": [
+                  "12*sin(pi/6) == 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Pilots and the glide slope",
+            "body": "An aircraft on a standard approach follows a $3^\\circ$ angle of depression to the runway — gentle enough for a smooth landing. Air-traffic and instrument-landing systems are built around this trig: distance out times $\\tan(3^\\circ)$ gives exactly how high the plane should be at each point."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Find the angle",
+            "prompt": "A ramp rises $5$ m over a horizontal run of $5$ m. What is its angle of elevation?",
+            "options": [
+              "$45^\\circ$",
+              "$30^\\circ$",
+              "$60^\\circ$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tan\\theta = 5/5 = 1$, so $\\theta = \\tan^{-1}(1) = 45^\\circ$.",
+            "check": [
+              "atan(5/5)*180/pi == 45"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Inverse trig** ($\\sin^{-1}, \\cos^{-1}, \\tan^{-1}$) turns a ratio back into an **angle**.",
+              "**Elevation** is up from the horizontal, **depression** is down; the two are **equal** (alternate interior angles).",
+              "Model the situation as a right triangle, then use $\\tan$ (or its inverse) to find a side or the angle."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Let's find angles with inverse trig and solve elevation/depression problems."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "A little of everything you learned.",
+            "problems": [
+              {
+                "prompt": "$\\tan\\theta = 1$. $\\theta = $ —",
+                "options": [
+                  "$45^\\circ$",
+                  "$30^\\circ$",
+                  "$60^\\circ$",
+                  "$90^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tan^{-1}(1) = 45^\\circ$.",
+                "check": [
+                  "atan(1)*180/pi == 45"
+                ]
+              },
+              {
+                "prompt": "$\\sin\\theta = \\tfrac12$. $\\theta = $ —",
+                "options": [
+                  "$30^\\circ$",
+                  "$45^\\circ$",
+                  "$60^\\circ$",
+                  "$15^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sin^{-1}(\\tfrac12) = 30^\\circ$.",
+                "check": [
+                  "asin(Rational(1,2))*180/pi == 30"
+                ]
+              },
+              {
+                "prompt": "Height $8$, ground $8$. Angle of elevation?",
+                "options": [
+                  "$45^\\circ$",
+                  "$30^\\circ$",
+                  "$60^\\circ$",
+                  "$90^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tan^{-1}(1) = 45^\\circ$.",
+                "check": [
+                  "atan(8/8)*180/pi == 45"
+                ]
+              },
+              {
+                "prompt": "$\\cos\\theta = \\tfrac12$. $\\theta = $ —",
+                "options": [
+                  "$60^\\circ$",
+                  "$30^\\circ$",
+                  "$45^\\circ$",
+                  "$90^\\circ$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\cos^{-1}(\\tfrac12) = 60^\\circ$.",
+                "check": [
+                  "acos(Rational(1,2))*180/pi == 60"
+                ]
+              },
+              {
+                "prompt": "Elevation and depression angles between two parallel horizontals are —",
+                "options": [
+                  "equal",
+                  "supplementary",
+                  "complementary",
+                  "unrelated"
+                ],
+                "correctIndex": 0,
+                "explanation": "Alternate interior angles.",
+                "check": [
+                  "atan(1)*180/pi == 45"
+                ]
+              },
+              {
+                "prompt": "String $16$ m at $30^\\circ$. Kite height?",
+                "options": [
+                  "$8$ m",
+                  "$16$ m",
+                  "$4$ m",
+                  "$32$ m"
+                ],
+                "correctIndex": 0,
+                "explanation": "$16\\sin30 = 8$.",
+                "check": [
+                  "16*sin(pi/6) == 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Angles of Elevation & Depression\"",
+            "body": "You can find angles with inverse trig and solve real elevation and depression problems — the finale of Right Triangles & Trigonometry. Next unit: circles, where angles and arcs meet."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [],
+  "testYourself": []
+}

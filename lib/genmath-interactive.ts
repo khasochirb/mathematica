@@ -649,6 +649,31 @@ export interface DilationConfig {
   color?: string;
 }
 
+// A right triangle with a square drawn on each side, so the areas make
+// a² + b² = c² literal (the classic Pythagorean picture). The two legs are
+// adjustable. For the Pythagorean-theorem lessons.
+export interface PythagoreanSquaresConfig {
+  a?: number; // horizontal leg
+  b?: number; // vertical leg
+  color?: string;
+}
+
+// A 45-45-90 or 30-60-90 triangle with its fixed side ratios labelled and a
+// size stepper. For the special-right-triangles lesson.
+export interface SpecialTriangleConfig {
+  type: "45-45-90" | "30-60-90";
+  start?: number; // the base length x
+  color?: string;
+}
+
+// A right triangle with an adjustable acute angle θ. Labels the opposite,
+// adjacent, and hypotenuse relative to θ and shows sin, cos, tan (SOH-CAH-TOA)
+// with live values. For the trigonometry lessons.
+export interface TrigRatiosConfig {
+  start?: number; // initial angle in degrees
+  color?: string;
+}
+
 // Two congruent triangles with marked parts; the student names the shortcut.
 export interface CongruentTrianglesConfig {
   sides?: [number, number, number]; // tick counts on AB, BC, CA
@@ -745,6 +770,9 @@ export type InteractiveStep =
   | { kind: "similarFigures"; eyebrow?: string; title: string; teach: string; config: SimilarFiguresConfig }
   | { kind: "sideSplitter"; eyebrow?: string; title: string; teach: string; config: SideSplitterConfig }
   | { kind: "dilation"; eyebrow?: string; title: string; teach: string; config: DilationConfig }
+  | { kind: "pythagoreanSquares"; eyebrow?: string; title: string; teach: string; config: PythagoreanSquaresConfig }
+  | { kind: "specialTriangle"; eyebrow?: string; title: string; teach: string; config: SpecialTriangleConfig }
+  | { kind: "trigRatios"; eyebrow?: string; title: string; teach: string; config: TrigRatiosConfig }
   | { kind: "worked"; eyebrow?: string; title: string; problemId: string }
   | { kind: "tryIt"; eyebrow?: string; title: string; problemId: string }
   | {

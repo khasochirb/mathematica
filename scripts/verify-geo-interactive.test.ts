@@ -46,6 +46,12 @@ import {
   areaScale,
   dilate,
   splitProportional,
+  pythagoreanHypotenuse,
+  pythagoreanLeg,
+  classifyByPythagoras,
+  fortyFiveTriangle,
+  thirtySixtyTriangle,
+  rightTriangleRatios,
 } from "@/lib/geo";
 
 describe("segment math", () => {
@@ -418,5 +424,52 @@ describe("similarity — proportions, scale factor, dilation", () => {
     expect(splitProportional(3, 3, 5)).toBe(5); // midsegment case, halves → equal
     // the two ratios match
     expect(4 / 6).toBeCloseTo(6 / splitProportional(4, 6, 6));
+  });
+});
+
+describe("right triangles & trigonometry", () => {
+  it("Pythagorean hypotenuse and leg on the classic triples", () => {
+    expect(pythagoreanHypotenuse(3, 4)).toBe(5);
+    expect(pythagoreanHypotenuse(6, 8)).toBe(10);
+    expect(pythagoreanHypotenuse(5, 12)).toBe(13);
+    expect(pythagoreanHypotenuse(8, 15)).toBe(17);
+    expect(pythagoreanLeg(5, 3)).toBe(4);
+    expect(pythagoreanLeg(13, 5)).toBe(12);
+    expect(pythagoreanLeg(10, 6)).toBe(8);
+  });
+
+  it("classifies a triangle by the converse of Pythagoras", () => {
+    expect(classifyByPythagoras(3, 4, 5)).toBe("right");
+    expect(classifyByPythagoras(5, 4, 3)).toBe("right"); // order-independent
+    expect(classifyByPythagoras(4, 5, 6)).toBe("acute"); // 16+25=41 > 36
+    expect(classifyByPythagoras(4, 5, 7)).toBe("obtuse"); // 41 < 49
+    expect(classifyByPythagoras(6, 8, 10)).toBe("right");
+  });
+
+  it("45-45-90: legs equal, hypotenuse leg·√2", () => {
+    const t = fortyFiveTriangle(5);
+    expect(t.leg).toBe(5);
+    expect(t.hyp).toBeCloseTo(5 * Math.SQRT2);
+    expect(t.hyp * t.hyp).toBeCloseTo(2 * t.leg * t.leg); // hyp² = 2·leg²
+  });
+
+  it("30-60-90: short x, long x√3, hyp 2x", () => {
+    const t = thirtySixtyTriangle(4);
+    expect(t.short).toBe(4);
+    expect(t.hyp).toBe(8); // exactly 2x
+    expect(t.long * t.long).toBeCloseTo(3 * t.short * t.short); // long² = 3·short²
+    // the three obey Pythagoras: short² + long² = hyp²
+    expect(t.short * t.short + t.long * t.long).toBeCloseTo(t.hyp * t.hyp);
+  });
+
+  it("SOH-CAH-TOA ratios on a 3-4-5 right triangle", () => {
+    const r = rightTriangleRatios(3, 4, 5); // opp=3, adj=4, hyp=5
+    expect(r.sin).toBeCloseTo(0.6);
+    expect(r.cos).toBeCloseTo(0.8);
+    expect(r.tan).toBeCloseTo(0.75);
+    // sin² + cos² = 1 (Pythagorean identity)
+    expect(r.sin * r.sin + r.cos * r.cos).toBeCloseTo(1);
+    // tan = sin / cos
+    expect(r.tan).toBeCloseTo(r.sin / r.cos);
   });
 });
