@@ -72,6 +72,7 @@ import polynomialsAndFactoring from "@/data/genmath/10/polynomials-and-factoring
 import quadraticEquations from "@/data/genmath/10/quadratic-equations.json";
 import quadraticFunctions from "@/data/genmath/10/quadratic-functions.json";
 import rationalExpressions from "@/data/genmath/10/rational-expressions.json";
+import radicalsRationalExponents from "@/data/genmath/10/radicals-and-rational-exponents.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -186,7 +187,7 @@ export const GRADE10_SPINE: GradeSpineEntry[] = [
     slug: "radicals-and-rational-exponents",
     title: "Radicals & Rational Exponents",
     blurb: "Operations with radicals, rationalizing, fractional exponents, and solving radical equations.",
-    live: false,
+    live: true,
   },
   {
     slug: "exponential-functions",
@@ -207,6 +208,7 @@ const grade10Topics: GenMathTopic[] = [
   quadraticEquations as GenMathTopic,
   quadraticFunctions as GenMathTopic,
   rationalExpressions as GenMathTopic,
+  radicalsRationalExponents as GenMathTopic,
 ];
 
 const grade8Topics: GenMathTopic[] = [

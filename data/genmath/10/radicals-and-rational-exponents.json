@@ -1,0 +1,1678 @@
+{
+  "slug": "radicals-and-rational-exponents",
+  "title": "Radicals & Rational Exponents",
+  "grade": 10,
+  "blurb": "Operations with radicals, rationalizing, fractional exponents, and solving radical equations.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "simplifying-radicals",
+      "title": "Simplifying Radicals",
+      "concreteComparison": "A carpenter cuts a diagonal brace for a $5 \\times 5$ frame: the length is $\\sqrt{50}$. Useless on a tape measure — until you notice $50 = 25 \\cdot 2$ and rewrite it as $5\\sqrt{2}$: \"five times about $1.414$\", or just over $7$. **Simplifying radicals** is pulling the perfect squares out front so the number becomes readable.",
+      "objective": "Simplify square roots (and cube roots) by factoring out perfect squares (and cubes), using $\\sqrt{ab} = \\sqrt{a}\\sqrt{b}$.",
+      "concept": [
+        "The product rule: $\\sqrt{ab} = \\sqrt{a} \\cdot \\sqrt{b}$ (for nonnegative $a, b$). Check: $\\sqrt{4 \\cdot 9} = \\sqrt{36} = 6 = 2 \\cdot 3$ ✓.",
+        "To simplify $\\sqrt{50}$: hunt the largest perfect-square factor. $50 = 25 \\cdot 2$, so $\\sqrt{50} = \\sqrt{25}\\sqrt{2} = 5\\sqrt{2}$. \"Simplified\" means nothing under the root is divisible by a perfect square.",
+        "The same rule handles quotients: $\\sqrt{\\tfrac{a}{b}} = \\tfrac{\\sqrt{a}}{\\sqrt{b}}$, so $\\sqrt{\\tfrac{49}{4}} = \\tfrac{7}{2}$.",
+        "Cube roots use perfect cubes: $\\sqrt[3]{54} = \\sqrt[3]{27 \\cdot 2} = 3\\sqrt[3]{2}$. And watch the sum trap: $\\sqrt{9+16} = \\sqrt{25} = 5$, NOT $3 + 4 = 7$ — the rule splits products, never sums."
+      ],
+      "keyIdea": "√(ab) = √a·√b: pull the largest perfect square out front. Products split; sums never do.",
+      "facts": [
+        {
+          "title": "Product rule",
+          "latex": "\\sqrt{ab} = \\sqrt{a}\\,\\sqrt{b}",
+          "explanation": "Splits multiplication only."
+        },
+        {
+          "title": "The sum trap",
+          "latex": "\\sqrt{a+b} \\neq \\sqrt{a} + \\sqrt{b}",
+          "explanation": "√(9+16) = 5, not 7. Never split a sum."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rd1-we1",
+          "statement": "Simplify $\\sqrt{50}$.",
+          "solution": "$50 = 25 \\cdot 2$: $\\sqrt{50} = 5\\sqrt{2}$.",
+          "check": [
+            "sqrt(50) == 5*sqrt(2)"
+          ]
+        },
+        {
+          "id": "rd1-we2",
+          "statement": "Simplify $\\sqrt{72}$.",
+          "solution": "$72 = 36 \\cdot 2$: $\\sqrt{72} = 6\\sqrt{2}$. (Using $9 \\cdot 8$ works too, but takes two passes.)",
+          "check": [
+            "sqrt(72) == 6*sqrt(2)"
+          ]
+        },
+        {
+          "id": "rd1-we3",
+          "statement": "Simplify $\\sqrt[3]{54}$.",
+          "solution": "$54 = 27 \\cdot 2$: $\\sqrt[3]{54} = 3\\sqrt[3]{2}$.",
+          "check": [
+            "cbrt(54) == 3*cbrt(2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Splitting a SUM: $\\sqrt{9+16} = 3 + 4 = 7$.",
+          "correction": "$\\sqrt{9+16} = \\sqrt{25} = 5$. The product rule splits $\\sqrt{ab}$ only — sums must be added first.",
+          "authored": true
+        },
+        {
+          "text": "Stopping at a small square factor: $\\sqrt{72} = 3\\sqrt{8}$ and calling it done.",
+          "correction": "$\\sqrt{8}$ still hides a 4: finish the job — $3\\sqrt{8} = 3 \\cdot 2\\sqrt{2} = 6\\sqrt{2}$. Hunt the LARGEST square.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rd1-t1",
+          "statement": "Simplify $\\sqrt{45}$.",
+          "solution": "$45 = 9 \\cdot 5$: $3\\sqrt{5}$.",
+          "check": [
+            "sqrt(45) == 3*sqrt(5)"
+          ]
+        },
+        {
+          "id": "rd1-t2",
+          "statement": "Simplify $\\sqrt{\\frac{25}{16}}$.",
+          "solution": "$\\tfrac{\\sqrt{25}}{\\sqrt{16}} = \\tfrac{5}{4}$.",
+          "check": [
+            "sqrt(Rational(25,16)) == Rational(5,4)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "An unreadable number",
+            "title": "√50 on a tape measure",
+            "beats": [
+              "Diagonal of a $5\\times5$ frame: $\\sqrt{50}$. How long IS that?",
+              "Spot the square inside: $50 = 25 \\cdot 2$.",
+              "$\\sqrt{50} = \\sqrt{25}\\cdot\\sqrt{2} = 5\\sqrt{2}$.",
+              "Five times $1.414\\ldots$ — just over 7. Now it's readable."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The one rule",
+            "title": "Products split",
+            "beats": [
+              "$\\sqrt{ab} = \\sqrt{a}\\,\\sqrt{b}$ — verify: $\\sqrt{36} = \\sqrt{4}\\sqrt{9} = 2\\cdot3$ ✓.",
+              "Strategy: factor out the LARGEST perfect square.",
+              "$\\sqrt{72}$: $72 = 36 \\cdot 2 \\to 6\\sqrt{2}$.",
+              "Perfect squares to know: $4, 9, 16, 25, 36, 49, 64, 81, 100$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Pull the square",
+            "prompt": "$\\sqrt{48}$ simplifies to…",
+            "options": [
+              "$4\\sqrt{3}$",
+              "$2\\sqrt{12}$",
+              "$16\\sqrt{3}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$48 = 16 \\cdot 3$: $4\\sqrt{3}$. ($2\\sqrt{12}$ isn't finished — $12$ still hides a $4$.)",
+            "check": [
+              "sqrt(48) == 4*sqrt(3)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The sum trap",
+            "title": "Never split addition",
+            "beats": [
+              "$\\sqrt{9+16}$: tempting to write $3 + 4 = 7$…",
+              "But $\\sqrt{9+16} = \\sqrt{25} = 5$. Not 7.",
+              "The rule is $\\sqrt{ab} = \\sqrt a\\sqrt b$ — PRODUCTS only.",
+              "Sums get added first, then rooted. No exceptions."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Trap check",
+            "title": "Sum vs product",
+            "prompt": "$\\sqrt{36 + 64}$ equals…",
+            "options": [
+              "$10$",
+              "$14$",
+              "$6 + 8 = 14$… wait, that's the same"
+            ],
+            "correctIndex": 0,
+            "explanation": "$36 + 64 = 100$, and $\\sqrt{100} = 10$. Splitting would give $6+8 = 14$ — wrong. Add first.",
+            "check": [
+              "sqrt(36+64) == 10"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Square-hunting",
+            "intro": "Largest square factor, out front.",
+            "examples": [
+              {
+                "prompt": "Simplify $\\sqrt{98}$.",
+                "steps": [
+                  "$98 = 49 \\cdot 2$.",
+                  "$\\sqrt{98} = 7\\sqrt{2}$."
+                ],
+                "answer": "$7\\sqrt{2}$",
+                "check": [
+                  "sqrt(98) == 7*sqrt(2)"
+                ]
+              },
+              {
+                "prompt": "Simplify $\\sqrt{300}$.",
+                "steps": [
+                  "$300 = 100 \\cdot 3$.",
+                  "$\\sqrt{300} = 10\\sqrt{3}$."
+                ],
+                "answer": "$10\\sqrt{3}$",
+                "check": [
+                  "sqrt(300) == 10*sqrt(3)"
+                ]
+              },
+              {
+                "prompt": "Simplify $\\sqrt[3]{40}$.",
+                "steps": [
+                  "$40 = 8 \\cdot 5$ — 8 is a perfect CUBE.",
+                  "$\\sqrt[3]{40} = 2\\sqrt[3]{5}$."
+                ],
+                "answer": "$2\\sqrt[3]{5}$",
+                "check": [
+                  "cbrt(40) == 2*cbrt(5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Radical cleanup",
+            "intro": "Hunt the largest square (or cube).",
+            "problems": [
+              {
+                "prompt": "$\\sqrt{27}$ = …",
+                "options": [
+                  "$3\\sqrt{3}$",
+                  "$9\\sqrt{3}$",
+                  "$3\\sqrt{9}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$27 = 9 \\cdot 3$: $3\\sqrt{3}$.",
+                "check": [
+                  "sqrt(27) == 3*sqrt(3)"
+                ]
+              },
+              {
+                "prompt": "$\\sqrt{200}$ = …",
+                "options": [
+                  "$10\\sqrt{2}$",
+                  "$2\\sqrt{10}$",
+                  "$100\\sqrt{2}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$200 = 100 \\cdot 2$: $10\\sqrt{2}$.",
+                "check": [
+                  "sqrt(200) == 10*sqrt(2)"
+                ]
+              },
+              {
+                "prompt": "$\\sqrt{16 + 9}$ = …",
+                "options": [
+                  "$5$",
+                  "$7$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Add first: $\\sqrt{25} = 5$. The split-the-sum answer ($4+3=7$) is the trap.",
+                "check": [
+                  "sqrt(16+9) == 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The number that broke a brotherhood",
+            "body": "Legend says the Pythagoreans — who believed all numbers were fractions — were so scandalized when Hippasus proved $\\sqrt{2}$ is IRRATIONAL (no fraction equals it, ever) that they threw him off a boat. The diagonal of a unit square carries history's most dangerous math result. You simplify its cousins for homework."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$\\sqrt{ab} = \\sqrt a\\sqrt b$: pull the largest perfect square out front.",
+              "Quotients split too; cube roots use perfect cubes.",
+              "$\\sqrt{a+b} \\neq \\sqrt a + \\sqrt b$ — never split a sum."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "operations-with-radicals",
+      "title": "Operations with Radicals",
+      "concreteComparison": "You already know $3x + 5x = 8x$ — like terms combine. Radicals play the identical game: $3\\sqrt{2} + 5\\sqrt{2} = 8\\sqrt{2}$, because both terms are \"so-many copies of $\\sqrt{2}$\". Different radicals ($\\sqrt{2}$ vs $\\sqrt{3}$) are different variables: they sit side by side, uncombined. Multiplication is friendlier — any two radicals multiply.",
+      "objective": "Add and subtract like radicals (simplifying first when needed), and multiply radicals including distributed products.",
+      "concept": [
+        "**Like radicals** — same number under the root — combine like like terms: $3\\sqrt{2} + 5\\sqrt{2} = 8\\sqrt{2}$; $7\\sqrt{5} - 2\\sqrt{5} = 5\\sqrt{5}$. Unlike radicals ($4\\sqrt{2} + 3\\sqrt{3}$) stay as they are.",
+        "Sometimes likeness HIDES: $\\sqrt{8} + \\sqrt{2}$ looks unlike — but $\\sqrt{8} = 2\\sqrt{2}$, so it's $3\\sqrt{2}$. Simplify every radical first, then look again.",
+        "Multiplying: $\\sqrt{a} \\cdot \\sqrt{b} = \\sqrt{ab}$ — any radicals, like or not. $\\sqrt{2} \\cdot \\sqrt{8} = \\sqrt{16} = 4$; and $(3\\sqrt{2})(4\\sqrt{5}) = 12\\sqrt{10}$ — numbers with numbers, roots with roots.",
+        "Distribute as usual: $\\sqrt{3}(\\sqrt{3} + 5) = 3 + 5\\sqrt{3}$; $(1+\\sqrt{2})(3-\\sqrt{2}) = 3 - \\sqrt{2} + 3\\sqrt{2} - 2 = 1 + 2\\sqrt{2}$ — FOIL works on radicals too."
+      ],
+      "keyIdea": "Same root = like terms: combine the counts. Multiply anything: numbers×numbers, roots×roots.",
+      "facts": [
+        {
+          "title": "Add/subtract",
+          "latex": "3\\sqrt2 + 5\\sqrt2 = 8\\sqrt2",
+          "explanation": "Only LIKE radicals combine — simplify first."
+        },
+        {
+          "title": "Multiply",
+          "latex": "(a\\sqrt{m})(b\\sqrt{n}) = ab\\sqrt{mn}",
+          "explanation": "Any two radicals multiply."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rd2-we1",
+          "statement": "Add $3\\sqrt{2} + 5\\sqrt{2}$.",
+          "solution": "Like radicals: $8\\sqrt{2}$.",
+          "check": [
+            "3*sqrt(2) + 5*sqrt(2) == 8*sqrt(2)"
+          ]
+        },
+        {
+          "id": "rd2-we2",
+          "statement": "Simplify $\\sqrt{8} + \\sqrt{18}$.",
+          "solution": "$2\\sqrt{2} + 3\\sqrt{2} = 5\\sqrt{2}$ — likeness was hiding.",
+          "check": [
+            "sqrt(8) + sqrt(18) == 5*sqrt(2)"
+          ]
+        },
+        {
+          "id": "rd2-we3",
+          "statement": "Expand $(1+\\sqrt{2})(3-\\sqrt{2})$.",
+          "solution": "$3 - \\sqrt{2} + 3\\sqrt{2} - 2 = 1 + 2\\sqrt{2}$.",
+          "check": [
+            "expand((1+sqrt(2))*(3-sqrt(2))) == 1 + 2*sqrt(2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding unlike radicals: $\\sqrt{2} + \\sqrt{3} = \\sqrt{5}$.",
+          "correction": "Numbers say no: $1.41 + 1.73 = 3.15$, but $\\sqrt5 = 2.24$. Unlike radicals just sit side by side.",
+          "authored": true
+        },
+        {
+          "text": "Multiplying the counts into the root: $(3\\sqrt{2})(4\\sqrt{5}) = \\sqrt{120}$.",
+          "correction": "Numbers multiply OUTSIDE, roots inside: $12\\sqrt{10}$. The 3 and 4 never go under the root.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rd2-t1",
+          "statement": "Simplify $6\\sqrt{7} - 2\\sqrt{7}$.",
+          "solution": "$4\\sqrt{7}$.",
+          "check": [
+            "6*sqrt(7) - 2*sqrt(7) == 4*sqrt(7)"
+          ]
+        },
+        {
+          "id": "rd2-t2",
+          "statement": "Multiply $(2\\sqrt{3})(5\\sqrt{3})$.",
+          "solution": "$10 \\cdot 3 = 30$.",
+          "check": [
+            "2*sqrt(3)*5*sqrt(3) == 30"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Deja vu",
+            "title": "Radicals are like terms",
+            "beats": [
+              "$3x + 5x = 8x$. You've known this for years.",
+              "$3\\sqrt2 + 5\\sqrt2 = 8\\sqrt2$ — same move.",
+              "Both are \"3 copies + 5 copies of the same thing\".",
+              "$\\sqrt2$ vs $\\sqrt3$? Different things. No combining."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Hidden likeness",
+            "title": "Simplify first",
+            "beats": [
+              "$\\sqrt8 + \\sqrt2$ — unlike? Look closer.",
+              "$\\sqrt8 = 2\\sqrt2$.",
+              "So it's $2\\sqrt2 + \\sqrt2 = 3\\sqrt2$.",
+              "Rule: simplify every radical BEFORE judging likeness."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Combine or not?",
+            "prompt": "$\\sqrt{12} + \\sqrt{27}$ = …",
+            "options": [
+              "$5\\sqrt{3}$",
+              "$\\sqrt{39}$",
+              "they can't combine"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\sqrt{12} = 2\\sqrt3$ and $\\sqrt{27} = 3\\sqrt3$: like after all → $5\\sqrt3$.",
+            "check": [
+              "sqrt(12) + sqrt(27) == 5*sqrt(3)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Multiplication is friendlier",
+            "title": "Anything multiplies",
+            "beats": [
+              "$\\sqrt a \\cdot \\sqrt b = \\sqrt{ab}$ — like or unlike.",
+              "$\\sqrt2 \\cdot \\sqrt8 = \\sqrt{16} = 4$. Radicals can vanish!",
+              "$(3\\sqrt2)(4\\sqrt5)$: numbers together, roots together:",
+              "$12\\sqrt{10}$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Multiply through",
+            "title": "FOIL with roots",
+            "prompt": "$\\sqrt{3}(\\sqrt{3} + 5)$ = …",
+            "options": [
+              "$3 + 5\\sqrt{3}$",
+              "$\\sqrt{3} + 5\\sqrt{3}$",
+              "$8\\sqrt{3}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\sqrt3\\cdot\\sqrt3 = 3$ and $\\sqrt3\\cdot5 = 5\\sqrt3$: $3 + 5\\sqrt3$.",
+            "check": [
+              "expand(sqrt(3)*(sqrt(3)+5)) == 3 + 5*sqrt(3)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Radical arithmetic",
+            "intro": "Simplify, sort into likes, multiply across.",
+            "examples": [
+              {
+                "prompt": "Simplify $\\sqrt{50} - \\sqrt{32}$.",
+                "steps": [
+                  "$\\sqrt{50} = 5\\sqrt2$; $\\sqrt{32} = 4\\sqrt2$.",
+                  "$5\\sqrt2 - 4\\sqrt2 = \\sqrt2$."
+                ],
+                "answer": "$\\sqrt{2}$",
+                "check": [
+                  "sqrt(50) - sqrt(32) == sqrt(2)"
+                ]
+              },
+              {
+                "prompt": "Multiply $(2\\sqrt{6})(3\\sqrt{2})$.",
+                "steps": [
+                  "Numbers: $2\\cdot3 = 6$. Roots: $\\sqrt{12}$.",
+                  "$6\\sqrt{12} = 6\\cdot2\\sqrt3 = 12\\sqrt3$."
+                ],
+                "answer": "$12\\sqrt{3}$",
+                "check": [
+                  "2*sqrt(6)*3*sqrt(2) == 12*sqrt(3)"
+                ]
+              },
+              {
+                "prompt": "Expand $(\\sqrt{5}+2)^2$.",
+                "steps": [
+                  "$(\\sqrt5)^2 + 2\\cdot2\\sqrt5 + 4$.",
+                  "$5 + 4\\sqrt5 + 4 = 9 + 4\\sqrt5$."
+                ],
+                "answer": "$9 + 4\\sqrt{5}$",
+                "check": [
+                  "expand((sqrt(5)+2)**2) == 9 + 4*sqrt(5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Like-term discipline",
+            "intro": "Numbers outside, roots inside.",
+            "problems": [
+              {
+                "prompt": "$4\\sqrt{5} + 3\\sqrt{5} - \\sqrt{5}$ = …",
+                "options": [
+                  "$6\\sqrt{5}$",
+                  "$7\\sqrt{5}$",
+                  "$6\\sqrt{15}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4 + 3 - 1 = 6$ copies of $\\sqrt5$.",
+                "check": [
+                  "4*sqrt(5) + 3*sqrt(5) - sqrt(5) == 6*sqrt(5)"
+                ]
+              },
+              {
+                "prompt": "$\\sqrt{2} \\cdot \\sqrt{18}$ = …",
+                "options": [
+                  "$6$",
+                  "$\\sqrt{20}$",
+                  "$2\\sqrt{18}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{36} = 6$. Multiplying radicals can produce whole numbers.",
+                "check": [
+                  "sqrt(2)*sqrt(18) == 6"
+                ]
+              },
+              {
+                "prompt": "$\\sqrt{2} + \\sqrt{7}$ = …",
+                "options": [
+                  "already simplest — unlike radicals",
+                  "$\\sqrt{9}$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Different roots don't merge. ($\\sqrt9 = 3$ would need $\\sqrt{2+7}$ — the sum trap again.)",
+                "check": [
+                  "sqrt(2)*sqrt(2) == 2",
+                  "sqrt(7)*sqrt(7) == 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Treat every radical as a variable",
+            "body": "Mid-problem, mentally rename $\\sqrt2 \\to x$ and $\\sqrt3 \\to y$. Then $3\\sqrt2 + 5\\sqrt2$ is just $3x+5x$, and $\\sqrt2 + \\sqrt3$ is $x + y$ (stuck). Your like-terms instincts already know every rule of this lesson."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Like radicals combine: $3\\sqrt2 + 5\\sqrt2 = 8\\sqrt2$. Unlike sit tight.",
+              "Simplify first — likeness often hides ($\\sqrt8 = 2\\sqrt2$).",
+              "Multiply anything: numbers×numbers, roots×roots; FOIL works."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "rationalizing-denominators",
+      "title": "Rationalizing Denominators",
+      "concreteComparison": "Before calculators, dividing by $\\sqrt{3} = 1.7320508\\ldots$ by hand was misery — but dividing by $3$ was easy. So mathematicians moved the radical UPSTAIRS: $\\tfrac{1}{\\sqrt{3}} = \\tfrac{\\sqrt{3}}{3}$. The habit stuck as the standard finished form: **no radicals in the denominator**.",
+      "objective": "Rationalize denominators — single radicals by multiplying by themselves, binomials like $\\sqrt{5}-2$ by their conjugates.",
+      "concept": [
+        "The move: multiply top and bottom by the same thing (that's multiplying by $1$ — value unchanged). For $\\tfrac{1}{\\sqrt{3}}$: multiply by $\\tfrac{\\sqrt3}{\\sqrt3}$ → $\\tfrac{\\sqrt3}{3}$. The bottom is now rational.",
+        "With extra bags: $\\tfrac{6}{\\sqrt{2}} = \\tfrac{6\\sqrt2}{2} = 3\\sqrt{2}$ — simplify after rationalizing.",
+        "Binomial bottoms like $\\sqrt{5} - 2$ need the **conjugate**: flip the middle sign. $(\\sqrt5-2)(\\sqrt5+2) = 5 - 4 = 1$ — the difference of squares kills the radical.",
+        "So $\\tfrac{3}{\\sqrt5 - 2} = \\tfrac{3(\\sqrt5+2)}{1} = 3\\sqrt5 + 6$. The conjugate trick is FOIL's conjugate pattern $(a-b)(a+b) = a^2 - b^2$, hired for cleanup duty."
+      ],
+      "keyIdea": "Multiply top and bottom by √n (single) or the conjugate (binomial) — ×1 in disguise; the bottom goes rational.",
+      "facts": [
+        {
+          "title": "Single radical",
+          "latex": "\\tfrac{1}{\\sqrt n} = \\tfrac{\\sqrt n}{n}",
+          "explanation": "Multiply by √n over √n."
+        },
+        {
+          "title": "Conjugate",
+          "latex": "(\\sqrt a - b)(\\sqrt a + b) = a - b^2",
+          "explanation": "Difference of squares deletes the root."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rd3-we1",
+          "statement": "Rationalize $\\frac{1}{\\sqrt{3}}$.",
+          "solution": "$\\tfrac{1}{\\sqrt3}\\cdot\\tfrac{\\sqrt3}{\\sqrt3} = \\tfrac{\\sqrt3}{3}$.",
+          "check": [
+            "1/sqrt(3) == sqrt(3)/3"
+          ]
+        },
+        {
+          "id": "rd3-we2",
+          "statement": "Rationalize and simplify $\\frac{6}{\\sqrt{2}}$.",
+          "solution": "$\\tfrac{6\\sqrt2}{2} = 3\\sqrt2$.",
+          "check": [
+            "6/sqrt(2) == 3*sqrt(2)"
+          ]
+        },
+        {
+          "id": "rd3-we3",
+          "statement": "Rationalize $\\frac{3}{\\sqrt{5}-2}$.",
+          "solution": "Conjugate $\\sqrt5+2$: bottom $(\\sqrt5)^2 - 4 = 1$; top $3(\\sqrt5+2)$. Answer: $3\\sqrt5+6$.",
+          "check": [
+            "expand((sqrt(5)-2)*(sqrt(5)+2)) == 1",
+            "expand((3*sqrt(5)+6)*(sqrt(5)-2)) == 3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Multiplying only the denominator by $\\sqrt{3}$.",
+          "correction": "Top AND bottom — otherwise you changed the value. $\\tfrac{1}{\\sqrt3} \\to \\tfrac{1}{3}$ is a different (wrong) number; $\\tfrac{\\sqrt3}{3}$ is the same one.",
+          "authored": true
+        },
+        {
+          "text": "Using the same sign instead of the conjugate: multiplying $\\sqrt5-2$ by $\\sqrt5-2$.",
+          "correction": "$(\\sqrt5-2)^2 = 9 - 4\\sqrt5$ — the radical SURVIVES. Only the sign-flipped conjugate triggers $a^2-b^2$ and kills it.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rd3-t1",
+          "statement": "Rationalize $\\frac{5}{\\sqrt{5}}$.",
+          "solution": "$\\tfrac{5\\sqrt5}{5} = \\sqrt5$.",
+          "check": [
+            "5/sqrt(5) == sqrt(5)"
+          ]
+        },
+        {
+          "id": "rd3-t2",
+          "statement": "Rationalize $\\frac{2}{\\sqrt{3}+1}$.",
+          "solution": "Conjugate $\\sqrt3-1$: bottom $3-1=2$; answer $\\tfrac{2(\\sqrt3-1)}{2} = \\sqrt3-1$.",
+          "check": [
+            "expand((sqrt(3)+1)*(sqrt(3)-1)) == 2",
+            "expand((sqrt(3)-1)*(sqrt(3)+1)) == 2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Why upstairs?",
+            "title": "A pre-calculator habit with a point",
+            "beats": [
+              "Dividing by $1.7320508\\ldots$ by hand: misery.",
+              "Dividing by $3$: easy.",
+              "$\\tfrac{1}{\\sqrt3}$ and $\\tfrac{\\sqrt3}{3}$ are the SAME number —",
+              "the second is just… civilized. That's the finished form."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The move",
+            "title": "Multiply by 1, cleverly",
+            "beats": [
+              "$\\tfrac{1}{\\sqrt3} \\cdot \\tfrac{\\sqrt3}{\\sqrt3}$ — that's $\\times 1$: value unchanged.",
+              "Bottom: $\\sqrt3\\cdot\\sqrt3 = 3$. Rational!",
+              "Top: $\\sqrt3$. Answer: $\\tfrac{\\sqrt3}{3}$.",
+              "One multiplication, radical relocated."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Relocate the root",
+            "prompt": "$\\frac{10}{\\sqrt{5}}$ rationalizes to…",
+            "options": [
+              "$2\\sqrt{5}$",
+              "$\\tfrac{10\\sqrt5}{5}$… unsimplified",
+              "$\\sqrt{2}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tfrac{10\\sqrt5}{5} = 2\\sqrt5$ — rationalize, then simplify the fraction.",
+            "check": [
+              "10/sqrt(5) == 2*sqrt(5)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Binomial bottoms",
+            "title": "Enter the conjugate",
+            "beats": [
+              "$\\tfrac{3}{\\sqrt5-2}$: multiplying by $\\sqrt5$ won't clear this.",
+              "Use the **conjugate** — flip the sign: $\\sqrt5+2$.",
+              "$(\\sqrt5-2)(\\sqrt5+2) = 5-4 = 1$. Radical annihilated.",
+              "Answer: $3(\\sqrt5+2) = 3\\sqrt5+6$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Conjugate drill",
+            "title": "Pick the partner",
+            "prompt": "To rationalize $\\frac{4}{\\sqrt{7}+\\sqrt{3}}$, multiply top and bottom by…",
+            "options": [
+              "$\\sqrt{7}-\\sqrt{3}$",
+              "$\\sqrt{7}+\\sqrt{3}$",
+              "$\\sqrt{21}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The conjugate flips the middle sign: $(\\sqrt7+\\sqrt3)(\\sqrt7-\\sqrt3) = 7-3 = 4$. Same-sign squaring keeps the radical alive.",
+            "check": [
+              "expand((sqrt(7)+sqrt(3))*(sqrt(7)-sqrt(3))) == 4"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Cleanup duty",
+            "intro": "×1 in disguise; conjugates for binomials.",
+            "examples": [
+              {
+                "prompt": "Rationalize $\\frac{7}{\\sqrt{7}}$.",
+                "steps": [
+                  "$\\tfrac{7\\sqrt7}{7}$.",
+                  "$= \\sqrt7$."
+                ],
+                "answer": "$\\sqrt{7}$",
+                "check": [
+                  "7/sqrt(7) == sqrt(7)"
+                ]
+              },
+              {
+                "prompt": "Rationalize $\\frac{4}{\\sqrt{6}-2}$.",
+                "steps": [
+                  "Conjugate $\\sqrt6+2$: bottom $6-4 = 2$.",
+                  "Top: $4(\\sqrt6+2)$.",
+                  "$\\tfrac{4(\\sqrt6+2)}{2} = 2\\sqrt6+4$."
+                ],
+                "answer": "$2\\sqrt{6}+4$",
+                "check": [
+                  "expand((sqrt(6)-2)*(sqrt(6)+2)) == 2",
+                  "expand((2*sqrt(6)+4)*(sqrt(6)-2)) == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Send them upstairs",
+            "intro": "Single root: itself. Binomial: conjugate.",
+            "problems": [
+              {
+                "prompt": "$\\frac{1}{\\sqrt{2}}$ = …",
+                "options": [
+                  "$\\tfrac{\\sqrt2}{2}$",
+                  "$\\tfrac{1}{2}$",
+                  "$\\sqrt{2}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Multiply by $\\tfrac{\\sqrt2}{\\sqrt2}$: $\\tfrac{\\sqrt2}{2} \\approx 0.707$ — same value, rational bottom.",
+                "check": [
+                  "1/sqrt(2) == sqrt(2)/2"
+                ]
+              },
+              {
+                "prompt": "$\\frac{9}{\\sqrt{3}}$ = …",
+                "options": [
+                  "$3\\sqrt{3}$",
+                  "$9\\sqrt{3}$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{9\\sqrt3}{3} = 3\\sqrt3$.",
+                "check": [
+                  "9/sqrt(3) == 3*sqrt(3)"
+                ]
+              },
+              {
+                "prompt": "$\\frac{1}{\\sqrt{2}+1}$ = …",
+                "options": [
+                  "$\\sqrt{2}-1$",
+                  "$\\sqrt{2}+1$",
+                  "$\\tfrac{\\sqrt2+1}{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Conjugate $\\sqrt2-1$; bottom $2-1 = 1$: answer $\\sqrt2-1 \\approx 0.414$ ✓.",
+                "check": [
+                  "expand((sqrt(2)+1)*(sqrt(2)-1)) == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The conjugate's day job",
+            "body": "Conjugates aren't just cleanup crew. The same $(a+b)(a-b)$ pattern computes $53 \\times 47$ in your head ($2500 - 9$), powers the quadratic formula's two roots ($-b \\pm \\ldots$ are conjugates!), and later divides complex numbers. Learn the sign-flip once; collect the payoff for years."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Rationalize = multiply top AND bottom (×1 in disguise).",
+              "Single radical: multiply by itself. Binomial: by the conjugate.",
+              "$(\\sqrt a - b)(\\sqrt a + b) = a - b^2$ — the radical-killer."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "rational-exponents",
+      "title": "Rational Exponents",
+      "concreteComparison": "You know $x^2$, $x^3$, even $x^{-1}$. But what could $x^{1/2}$ possibly mean — half a multiplication? The exponent laws themselves answer: $9^{1/2} \\cdot 9^{1/2} = 9^{1/2+1/2} = 9^1 = 9$. So $9^{1/2}$ is a number that squares to $9$… that's $\\sqrt{9} = 3$. **Fractional exponents ARE radicals**, and every exponent law you know comes along free.",
+      "objective": "Convert between radical and exponent notation ($x^{m/n} = \\sqrt[n]{x^m}$) and compute with rational exponents using the exponent laws.",
+      "concept": [
+        "Definition forced by the laws: $x^{1/2} = \\sqrt{x}$, $x^{1/3} = \\sqrt[3]{x}$, and generally $x^{1/n} = \\sqrt[n]{x}$ — because $(x^{1/n})^n = x^{n/n} = x^1$.",
+        "General form: $x^{m/n} = (\\sqrt[n]{x})^m$ — denominator is the **root**, numerator is the **power**. $8^{2/3} = (\\sqrt[3]{8})^2 = 2^2 = 4$. Root first keeps numbers small.",
+        "All exponent laws survive: $x^{1/2} \\cdot x^{1/3} = x^{5/6}$; $(x^{1/2})^4 = x^2$; $\\tfrac{x^{3/4}}{x^{1/4}} = x^{1/2}$. Add, multiply, subtract exponents exactly as with integers.",
+        "Negative rational exponents chain the rules: $16^{-1/2} = \\tfrac{1}{16^{1/2}} = \\tfrac14$. And the notation earns its keep in science — friction, growth laws, and Kepler's planetary $T = r^{3/2}$ all speak fractional exponents."
+      ],
+      "keyIdea": "x^(m/n) = (ⁿ√x)^m — bottom is the root, top is the power. Every exponent law still applies.",
+      "facts": [
+        {
+          "title": "Dictionary",
+          "latex": "x^{1/n} = \\sqrt[n]{x}, \\quad x^{m/n} = (\\sqrt[n]{x})^m",
+          "explanation": "Bottom roots, top powers."
+        },
+        {
+          "title": "Laws survive",
+          "latex": "x^a \\cdot x^b = x^{a+b} \\quad (x^a)^b = x^{ab}",
+          "explanation": "Fractions in the exponent change nothing."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rd4-we1",
+          "statement": "Evaluate $9^{1/2}$ and $8^{1/3}$.",
+          "solution": "$9^{1/2} = \\sqrt9 = 3$; $8^{1/3} = \\sqrt[3]8 = 2$.",
+          "check": [
+            "9**Rational(1,2) == 3",
+            "8**Rational(1,3) == 2"
+          ]
+        },
+        {
+          "id": "rd4-we2",
+          "statement": "Evaluate $8^{2/3}$.",
+          "solution": "Root first: $\\sqrt[3]8 = 2$; then power: $2^2 = 4$.",
+          "check": [
+            "8**Rational(2,3) == 4"
+          ]
+        },
+        {
+          "id": "rd4-we3",
+          "statement": "Evaluate $16^{-1/2}$ and $27^{2/3}$.",
+          "solution": "$16^{-1/2} = \\tfrac{1}{\\sqrt{16}} = \\tfrac14$; $27^{2/3} = 3^2 = 9$.",
+          "check": [
+            "16**Rational(-1,2) == Rational(1,4)",
+            "27**Rational(2,3) == 9"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading $x^{m/n}$ upside down — root from the top, power from the bottom.",
+          "correction": "The DENOMINATOR is the root (it sits down low, like the root index): $8^{2/3}$ is the cube root, squared — $4$. Flipping gives $\\sqrt{8^3} = \\sqrt{512}$… same value but a monstrous path, and flipped on evaluation errors.",
+          "authored": true
+        },
+        {
+          "text": "Treating $x^{1/2}$ as $\\tfrac{x}{2}$.",
+          "correction": "$9^{1/2} = 3$, not $4.5$. A fractional exponent is a ROOT, never division by the denominator.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rd4-t1",
+          "statement": "Evaluate $25^{1/2}$ and $64^{1/3}$.",
+          "solution": "$5$ and $4$.",
+          "check": [
+            "25**Rational(1,2) == 5",
+            "64**Rational(1,3) == 4"
+          ]
+        },
+        {
+          "id": "rd4-t2",
+          "statement": "Evaluate $16^{3/4}$.",
+          "solution": "$\\sqrt[4]{16} = 2$, cubed: $8$.",
+          "check": [
+            "16**Rational(3,4) == 8"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "A strange exponent",
+            "title": "What is x to the half?",
+            "beats": [
+              "$x^2$, $x^3$, $x^{-1}$ — fine. But $x^{1/2}$?",
+              "Let the laws decide: $9^{1/2} \\cdot 9^{1/2} = 9^{1/2+1/2} = 9$.",
+              "So $9^{1/2}$ SQUARES to 9. That's… $\\sqrt9 = 3$.",
+              "Fractional exponents are radicals. Forced, not chosen."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The dictionary",
+            "title": "m over n",
+            "beats": [
+              "$x^{1/n} = \\sqrt[n]{x}$: bottom = root.",
+              "$x^{m/n} = (\\sqrt[n]{x})^m$: top = power.",
+              "$8^{2/3}$: cube root of 8 is 2, squared: **4**.",
+              "Root FIRST — the numbers stay small."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Translate",
+            "prompt": "$27^{2/3}$ = …",
+            "options": [
+              "$9$",
+              "$18$",
+              "$3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\sqrt[3]{27} = 3$, then $3^2 = 9$. (Answer $18$ is the $\\tfrac{x\\cdot2}{3}$ misread.)",
+            "check": [
+              "27**Rational(2,3) == 9"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The laws ride along",
+            "title": "Same rules, new fuel",
+            "beats": [
+              "$x^{1/2} \\cdot x^{1/3} = x^{1/2+1/3} = x^{5/6}$.",
+              "$(x^{1/2})^4 = x^{4/2} = x^2$.",
+              "$\\tfrac{x^{3/4}}{x^{1/4}} = x^{2/4} = x^{1/2} = \\sqrt x$.",
+              "Every law from Grade 8, unchanged. Just add fractions."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Laws in action",
+            "title": "Combine exponents",
+            "prompt": "$4^{1/2} \\cdot 4^{3/2}$ = …",
+            "options": [
+              "$16$",
+              "$8$",
+              "$4^{3/4}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Add exponents: $4^{1/2+3/2} = 4^2 = 16$. (Or: $2 \\cdot 8 = 16$ ✓.)",
+            "check": [
+              "4**Rational(1,2) * 4**Rational(3,2) == 16"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Both directions",
+            "intro": "Radical ↔ exponent, laws throughout.",
+            "examples": [
+              {
+                "prompt": "Evaluate $32^{2/5}$.",
+                "steps": [
+                  "$\\sqrt[5]{32} = 2$.",
+                  "$2^2 = 4$."
+                ],
+                "answer": "$4$",
+                "check": [
+                  "32**Rational(2,5) == 4"
+                ]
+              },
+              {
+                "prompt": "Evaluate $100^{-1/2} + 8^{-1/3}$.",
+                "steps": [
+                  "$100^{-1/2} = \\tfrac{1}{10}$.",
+                  "$8^{-1/3} = \\tfrac12$.",
+                  "$\\tfrac1{10} + \\tfrac12 = \\tfrac{6}{10} = \\tfrac35$."
+                ],
+                "answer": "$\\tfrac{3}{5}$",
+                "check": [
+                  "100**Rational(-1,2) + 8**Rational(-1,3) == Rational(3,5)"
+                ]
+              },
+              {
+                "prompt": "Write $\\sqrt{x} \\cdot \\sqrt[3]{x}$ as one power (check at $x = 64$).",
+                "steps": [
+                  "$x^{1/2} \\cdot x^{1/3} = x^{5/6}$.",
+                  "At 64: $8 \\cdot 4 = 32 = 64^{5/6}$ ✓."
+                ],
+                "answer": "$x^{5/6}$",
+                "check": [
+                  "64**Rational(1,2) * 64**Rational(1,3) == 64**Rational(5,6)",
+                  "64**Rational(5,6) == 32"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Fraction fuel",
+            "intro": "Bottom roots, top powers, laws as usual.",
+            "problems": [
+              {
+                "prompt": "$49^{1/2}$ = …",
+                "options": [
+                  "$7$",
+                  "$24.5$",
+                  "$\\tfrac{49}{2}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Half-exponent = square root: $7$. (Never divide by the 2.)",
+                "check": [
+                  "49**Rational(1,2) == 7"
+                ]
+              },
+              {
+                "prompt": "$81^{3/4}$ = …",
+                "options": [
+                  "$27$",
+                  "$3$",
+                  "$243$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt[4]{81} = 3$, cubed: $27$.",
+                "check": [
+                  "81**Rational(3,4) == 27"
+                ]
+              },
+              {
+                "prompt": "$(9^{1/2})^3$ = …",
+                "options": [
+                  "$27$",
+                  "$9^{7/2}$",
+                  "$81$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Multiply exponents: $9^{3/2} = 3^3 = 27$.",
+                "check": [
+                  "(9**Rational(1,2))**3 == 27"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Kepler speaks in three-halves",
+            "body": "Kepler's Third Law: a planet's year is $T = r^{3/2}$ (in the right units) — orbit 4 times farther out, take $4^{3/2} = 8$ times longer. Mars, Jupiter, every exoplanet discovered last decade: all obeying a rational exponent. NASA mission planners evaluate $r^{3/2}$ the exact way you just did: root, then power."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$x^{1/n} = \\sqrt[n]{x}$; $x^{m/n} = (\\sqrt[n]{x})^m$ — root first.",
+              "All exponent laws work unchanged with fraction exponents.",
+              "$x^{-m/n}$: reciprocal, then the usual routine."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "solving-radical-equations",
+      "title": "Solving Radical Equations",
+      "concreteComparison": "A radical equation holds its variable hostage under a root: $\\sqrt{x+3} = 5$. The rescue is direct — **square both sides** and the root is gone: $x + 3 = 25$, so $x = 22$. But squaring is a dangerous weapon: it can mint fake answers (squaring makes $-3 = 3$ look 'true': $9 = 9$). Like last unit: solve boldly, then CHECK.",
+      "objective": "Solve radical equations by isolating the radical and squaring both sides, always checking for extraneous solutions.",
+      "concept": [
+        "The routine: **(1)** isolate the radical on one side; **(2)** square both sides; **(3)** solve what remains; **(4)** CHECK in the original.",
+        "$\\sqrt{x+3} = 5$ → $x+3 = 25$ → $x = 22$. Check: $\\sqrt{25} = 5$ ✓.",
+        "Isolate FIRST: $\\sqrt{2x} + 3 = 7$ → $\\sqrt{2x} = 4$ → $2x = 16$ → $x = 8$. Squaring while the $+3$ is still attached creates a cross-term mess.",
+        "Why checks matter: squaring erases signs. $\\sqrt{x} = x - 2$ → $x = x^2 - 4x + 4$ → $x^2 - 5x + 4 = 0$ → $x = 4$ or $x = 1$. Check $4$: $2 = 2$ ✓. Check $1$: $1 \\neq -1$ ✗ — extraneous. One real solution: $x = 4$."
+      ],
+      "keyIdea": "Isolate the radical, square both sides, solve — then check every answer in the ORIGINAL equation.",
+      "facts": [
+        {
+          "title": "The weapon",
+          "latex": "\\sqrt{A} = B \\Rightarrow A = B^2",
+          "explanation": "Squaring deletes the root."
+        },
+        {
+          "title": "Its recoil",
+          "latex": "\\text{squaring erases signs}",
+          "explanation": "Fake answers appear; the check removes them."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rd5-we1",
+          "statement": "Solve $\\sqrt{x+3} = 5$.",
+          "solution": "Square: $x + 3 = 25$ → $x = 22$. Check: $\\sqrt{25} = 5$ ✓.",
+          "check": [
+            "sqrt(22+3) == 5"
+          ]
+        },
+        {
+          "id": "rd5-we2",
+          "statement": "Solve $\\sqrt{2x} + 3 = 7$.",
+          "solution": "Isolate: $\\sqrt{2x} = 4$. Square: $2x = 16$ → $x = 8$. Check: $4 + 3 = 7$ ✓.",
+          "check": [
+            "sqrt(2*8) + 3 == 7"
+          ]
+        },
+        {
+          "id": "rd5-we3",
+          "statement": "Solve $\\sqrt{x} = x - 2$.",
+          "solution": "Square: $x = x^2 - 4x + 4$ → $(x-4)(x-1) = 0$. Check: $x=4$ ✓ ($2=2$); $x=1$ ✗ ($1 \\neq -1$). Answer: $x = 4$.",
+          "check": [
+            "sqrt(4) == 4 - 2",
+            "sqrt(1) != 1 - 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Squaring before isolating: $(\\sqrt{2x} + 3)^2 = 2x + 9$.",
+          "correction": "$(\\sqrt{2x}+3)^2 = 2x + 6\\sqrt{2x} + 9$ — the radical SURVIVES in the cross-term. Isolate first; then squaring kills it clean.",
+          "authored": true
+        },
+        {
+          "text": "Skipping the check because the algebra 'looks right'.",
+          "correction": "The algebra IS right — and still mints fakes. $x=1$ in $\\sqrt x = x-2$ arrives by flawless steps and fails the original. The check is part of the method.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rd5-t1",
+          "statement": "Solve $\\sqrt{x-1} = 6$.",
+          "solution": "$x - 1 = 36$ → $x = 37$. Check: $\\sqrt{36} = 6$ ✓.",
+          "check": [
+            "sqrt(37-1) == 6"
+          ]
+        },
+        {
+          "id": "rd5-t2",
+          "statement": "Solve $\\sqrt{3x} - 2 = 4$.",
+          "solution": "$\\sqrt{3x} = 6$ → $3x = 36$ → $x = 12$. Check ✓.",
+          "check": [
+            "sqrt(3*12) - 2 == 4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Hostage rescue",
+            "title": "Square the root away",
+            "beats": [
+              "$\\sqrt{x+3} = 5$: the $x$ is trapped under the root.",
+              "Square both sides: $x + 3 = 25$.",
+              "Free! $x = 22$.",
+              "Check in the original: $\\sqrt{25} = 5$ ✓. Done."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Isolate first",
+            "title": "Clear the bodyguards",
+            "beats": [
+              "$\\sqrt{2x} + 3 = 7$ — DON'T square yet.",
+              "$(\\sqrt{2x}+3)^2$ keeps the root in a cross-term. Mess.",
+              "First: $\\sqrt{2x} = 4$. NOW square: $2x = 16$.",
+              "$x = 8$. Isolate, then strike."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Order of operations",
+            "prompt": "To solve $\\sqrt{x} + 5 = 9$, the FIRST move is…",
+            "options": [
+              "subtract 5 from both sides",
+              "square both sides",
+              "divide by 5"
+            ],
+            "correctIndex": 0,
+            "explanation": "Isolate the radical: $\\sqrt x = 4$, then square → $x = 16$. Squaring first tangles the 5 into a cross-term.",
+            "check": [
+              "sqrt(16) + 5 == 9"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The recoil",
+            "title": "Squaring mints fakes",
+            "beats": [
+              "Squaring erases signs: $(-3)^2 = 3^2$.",
+              "$\\sqrt x = x-2$ → square → $x^2-5x+4 = 0$ → $x = 4$ or $1$.",
+              "Check 4: $\\sqrt4 = 2 = 4-2$ ✓. Check 1: $\\sqrt1 = 1 \\neq -1$ ✗.",
+              "$x=1$ solved the SQUARED equation, not the original. Reject."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Fake patrol",
+            "title": "Check both candidates",
+            "prompt": "Solving $\\sqrt{x+7} = x+1$ yields $x = 2$ and $x = -3$. The true solution set is…",
+            "options": [
+              "$x = 2$ only",
+              "both",
+              "$x = -3$ only"
+            ],
+            "correctIndex": 0,
+            "explanation": "$x=2$: $\\sqrt9 = 3 = 3$ ✓. $x=-3$: $\\sqrt4 = 2$, but $x+1 = -2$ ✗ — squaring faked it.",
+            "check": [
+              "sqrt(2+7) == 2+1",
+              "sqrt(-3+7) != -3+1"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Rescue missions",
+            "intro": "Isolate → square → solve → check.",
+            "examples": [
+              {
+                "prompt": "Solve $\\sqrt{5x-1} = 7$.",
+                "steps": [
+                  "Square: $5x - 1 = 49$.",
+                  "$x = 10$. Check: $\\sqrt{49} = 7$ ✓."
+                ],
+                "answer": "$x = 10$",
+                "check": [
+                  "sqrt(5*10-1) == 7"
+                ]
+              },
+              {
+                "prompt": "Solve $2\\sqrt{x} = x$ (find every solution).",
+                "steps": [
+                  "Square: $4x = x^2$ → $x(x-4) = 0$.",
+                  "$x = 0$ or $4$. Check both: $0=0$ ✓, $4=4$ ✓.",
+                  "Both survive!"
+                ],
+                "answer": "$x = 0$ and $x = 4$",
+                "check": [
+                  "2*sqrt(0) == 0",
+                  "2*sqrt(4) == 4"
+                ]
+              },
+              {
+                "prompt": "Solve $\\sqrt{x+11} = x - 1$.",
+                "steps": [
+                  "Square: $x + 11 = x^2 - 2x + 1$ → $x^2 - 3x - 10 = 0$.",
+                  "$(x-5)(x+2) = 0$: candidates $5, -2$.",
+                  "Check: $x=5$ → $4 = 4$ ✓. $x=-2$ → $3 \\neq -3$ ✗. Answer: $5$."
+                ],
+                "answer": "$x = 5$",
+                "check": [
+                  "sqrt(5+11) == 5-1",
+                  "sqrt(-2+11) != -2-1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Solve and audit",
+            "intro": "Every candidate faces the original.",
+            "problems": [
+              {
+                "prompt": "$\\sqrt{x} = 9$ → $x$ = …",
+                "options": [
+                  "$81$",
+                  "$3$",
+                  "$18$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Square: $x = 81$. ($3$ answers the wrong question — that's $\\sqrt9$.)",
+                "check": [
+                  "sqrt(81) == 9"
+                ]
+              },
+              {
+                "prompt": "$\\sqrt{4x+5} = 5$ → $x$ = …",
+                "options": [
+                  "$5$",
+                  "$10$",
+                  "$\\tfrac{25}{4}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4x + 5 = 25$ → $x = 5$. Check: $\\sqrt{25} = 5$ ✓.",
+                "check": [
+                  "sqrt(4*5+5) == 5"
+                ]
+              },
+              {
+                "prompt": "A candidate $x = c$ fails the check in the original equation. It is…",
+                "options": [
+                  "extraneous — discard it",
+                  "still a solution",
+                  "a sign the algebra was wrong"
+                ],
+                "correctIndex": 0,
+                "explanation": "Perfect algebra + squaring can still mint fakes. Failing the original is the verdict: discard.",
+                "check": [
+                  "(-3)**2 == 3**2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why squaring lies",
+            "body": "Squaring is a two-to-one function: both $3$ and $-3$ land on $9$. When you square an equation you merge its truth with a mirror equation's truth ($\\sqrt x = -(x-2)$ in our example) — and some 'solutions' belong to the mirror. The check simply asks each candidate: which equation did YOU solve?"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Isolate the radical → square → solve → CHECK the original.",
+              "Squaring erases signs, so fakes can appear — reject them.",
+              "Cross-terms punish early squaring; isolate first, always."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "radical-formulas-in-the-wild",
+      "title": "Radical Formulas in the Wild",
+      "concreteComparison": "A crash investigator measures $45$ m of skid marks and announces the car's speed. No radar, no witnesses — just $v = \\sqrt{20d}$: skid length in, speed out ($\\sqrt{900} = 30$ m/s ≈ 108 km/h — busted). Physics hands you radical formulas constantly; this lesson is about driving them in both directions.",
+      "objective": "Evaluate radical formulas from science, and invert them (solve radical equations) to answer backwards questions.",
+      "concept": [
+        "Forward use is evaluation: skid-mark speed $v = \\sqrt{20d}$ at $d = 45$: $v = \\sqrt{900} = 30$ m/s. Falling time $t = \\sqrt{h/5}$ from $h = 45$ m: $t = \\sqrt9 = 3$ s.",
+        "Backward use is a radical equation: how much skid distance at $v = 20$ m/s? $20 = \\sqrt{20d}$ → square → $400 = 20d$ → $d = 20$ m. Same squaring routine as last lesson.",
+        "Doubling logic lives under the root: to double the speed you need $4\\times$ the skid distance ($v$ scales with $\\sqrt d$). Square-root growth is SLOW growth — a hallmark to recognize.",
+        "Sanity-check answers against the world: negative distances, 500 m/s city cars, or 45-second falls from a rooftop mean an algebra slip — the model knows the units."
+      ],
+      "keyIdea": "Radical formulas run forwards by evaluating and backwards by squaring — and under a root, doubling the output costs 4× the input.",
+      "facts": [
+        {
+          "title": "Skid marks",
+          "latex": "v = \\sqrt{20d}",
+          "explanation": "Speed (m/s) from skid length (m)."
+        },
+        {
+          "title": "Free fall",
+          "latex": "t = \\sqrt{h/5}",
+          "explanation": "Seconds to fall h meters."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rd6-we1",
+          "statement": "Skid marks: $v = \\sqrt{20d}$. Find $v$ when $d = 45$ m.",
+          "solution": "$v = \\sqrt{900} = 30$ m/s (≈ 108 km/h).",
+          "check": [
+            "sqrt(20*45) == 30"
+          ]
+        },
+        {
+          "id": "rd6-we2",
+          "statement": "Free fall: $t = \\sqrt{h/5}$. How long to fall $80$ m?",
+          "solution": "$t = \\sqrt{16} = 4$ s.",
+          "check": [
+            "sqrt(Rational(80,5)) == 4"
+          ]
+        },
+        {
+          "id": "rd6-we3",
+          "statement": "Backwards: with $v = \\sqrt{20d}$, what skid length gives $v = 40$ m/s?",
+          "solution": "$40 = \\sqrt{20d}$ → $1600 = 20d$ → $d = 80$ m. Check: $\\sqrt{1600} = 40$ ✓.",
+          "check": [
+            "sqrt(20*80) == 40"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Expecting doubled input to double the output.",
+          "correction": "Under a root, $2\\times$ the skid gives $\\sqrt2 \\approx 1.41\\times$ the speed. To DOUBLE the speed you need $4\\times$ the distance — check: $\\sqrt{20 \\cdot 80} = 40 = 2 \\cdot \\sqrt{20\\cdot20}$.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting to square when driving a formula backwards.",
+          "correction": "$30 = \\sqrt{20d}$ needs squaring BEFORE dividing: $900 = 20d$ → $d = 45$. Dividing first ($1.5 = \\sqrt d$?) muddles the model.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rd6-t1",
+          "statement": "With $t = \\sqrt{h/5}$: how long does a $125$ m fall take?",
+          "solution": "$t = \\sqrt{25} = 5$ s.",
+          "check": [
+            "sqrt(Rational(125,5)) == 5"
+          ]
+        },
+        {
+          "id": "rd6-t2",
+          "statement": "With $v = \\sqrt{20d}$: what $d$ gives $v = 10$ m/s?",
+          "solution": "$100 = 20d$ → $d = 5$ m.",
+          "check": [
+            "sqrt(20*5) == 10"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "No radar needed",
+            "title": "The skid-mark formula",
+            "beats": [
+              "Crash site: $45$ m of rubber on the road.",
+              "$v = \\sqrt{20d} = \\sqrt{20 \\cdot 45} = \\sqrt{900}$.",
+              "$= 30$ m/s $\\approx 108$ km/h. In a 60 zone. Busted.",
+              "Physics wrote the formula; you just evaluated it."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Forward gear",
+            "prompt": "With $t = \\sqrt{h/5}$, a $20$ m drop takes…",
+            "options": [
+              "$2$ s",
+              "$4$ s",
+              "$\\sqrt{20}$ s"
+            ],
+            "correctIndex": 0,
+            "explanation": "$t = \\sqrt{20/5} = \\sqrt4 = 2$ s.",
+            "check": [
+              "sqrt(Rational(20,5)) == 2"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reverse gear",
+            "title": "Backwards = radical equation",
+            "beats": [
+              "How much skid at $40$ m/s? Unknown INSIDE the root:",
+              "$40 = \\sqrt{20d}$.",
+              "Square: $1600 = 20d$ → $d = 80$ m.",
+              "Last lesson's routine, wearing a lab coat."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Reverse drill",
+            "title": "Solve for the inside",
+            "prompt": "With $v = \\sqrt{20d}$: skid length for $v = 20$ m/s?",
+            "options": [
+              "$20$ m",
+              "$40$ m",
+              "$400$ m"
+            ],
+            "correctIndex": 0,
+            "explanation": "$400 = 20d$ → $d = 20$ m. (Squaring first — never divide into the radical.)",
+            "check": [
+              "sqrt(20*20) == 20"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Slow growth",
+            "title": "The 4-for-2 rule",
+            "beats": [
+              "$\\sqrt{20 \\cdot 20} = 20$ m/s. $\\sqrt{20 \\cdot 80} = 40$ m/s.",
+              "$4\\times$ the skid → only $2\\times$ the speed.",
+              "Root growth is SLOW: to double the output,",
+              "quadruple the input. Recognize the shape."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Formulas at work",
+            "intro": "Forward: evaluate. Backward: square.",
+            "examples": [
+              {
+                "prompt": "A pendulum swings with period $T = \\sqrt{L}$ seconds ($L$ in a lab unit). Find $T$ for $L = 49$.",
+                "steps": [
+                  "$T = \\sqrt{49} = 7$ s."
+                ],
+                "answer": "$7$ s",
+                "check": [
+                  "sqrt(49) == 7"
+                ]
+              },
+              {
+                "prompt": "Same pendulum: what $L$ gives $T = 3$ s?",
+                "steps": [
+                  "$3 = \\sqrt L$ → square → $L = 9$."
+                ],
+                "answer": "$L = 9$",
+                "check": [
+                  "sqrt(9) == 3"
+                ]
+              },
+              {
+                "prompt": "Fall time $t = \\sqrt{h/5}$: from what height is a $6$-second fall?",
+                "steps": [
+                  "$6 = \\sqrt{h/5}$ → $36 = h/5$.",
+                  "$h = 180$ m."
+                ],
+                "answer": "$180$ m",
+                "check": [
+                  "sqrt(Rational(180,5)) == 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Both gears",
+            "intro": "Evaluate forward; square backward.",
+            "problems": [
+              {
+                "prompt": "$v = \\sqrt{20d}$ at $d = 125$: the speed is…",
+                "options": [
+                  "$50$ m/s",
+                  "$25$ m/s",
+                  "$2500$ m/s"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{2500} = 50$ m/s. (A 2500 m/s road car fails the sanity check by a lot.)",
+                "check": [
+                  "sqrt(20*125) == 50"
+                ]
+              },
+              {
+                "prompt": "$t = \\sqrt{h/5}$: a $10$-second fall starts from…",
+                "options": [
+                  "$500$ m",
+                  "$50$ m",
+                  "$100$ m"
+                ],
+                "correctIndex": 0,
+                "explanation": "$100 = h/5$ → $h = 500$ m (a skydive, not a rooftop — sanity holds).",
+                "check": [
+                  "sqrt(Rational(500,5)) == 10"
+                ]
+              },
+              {
+                "prompt": "To DOUBLE a skid-formula speed, the distance must be…",
+                "options": [
+                  "$4\\times$ as long",
+                  "$2\\times$ as long",
+                  "$\\sqrt2\\times$ as long"
+                ],
+                "correctIndex": 0,
+                "explanation": "Speed rides $\\sqrt d$: doubling the output squares to a $4\\times$ input. Root growth is slow.",
+                "check": [
+                  "sqrt(20*80) == 2*sqrt(20*20)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The formula that writes speeding tickets",
+            "body": "Real accident investigators use $v = \\sqrt{254 \\cdot f \\cdot d}$ (km/h; $f$ = road friction). It comes straight from kinetic energy $\\tfrac12mv^2$ burning into friction work — the mass CANCELS, so the same skid means the same speed for a smart car or a truck. Court-admissible algebra, and you can run it."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Forward: substitute and evaluate the radical.",
+              "Backward: isolate, square, solve — the radical-equation routine.",
+              "Root growth is slow: double output = quadruple input."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "rd-pr1",
+      "statement": "Simplify $\\sqrt{75}$.",
+      "solution": "$75 = 25\\cdot3$: $5\\sqrt3$.",
+      "check": [
+        "sqrt(75) == 5*sqrt(3)"
+      ]
+    },
+    {
+      "id": "rd-pr2",
+      "statement": "Simplify $\\sqrt{128}$.",
+      "solution": "$128 = 64\\cdot2$: $8\\sqrt2$.",
+      "check": [
+        "sqrt(128) == 8*sqrt(2)"
+      ]
+    },
+    {
+      "id": "rd-pr3",
+      "statement": "Combine $\\sqrt{12} + 5\\sqrt{3}$.",
+      "solution": "$2\\sqrt3 + 5\\sqrt3 = 7\\sqrt3$.",
+      "check": [
+        "sqrt(12) + 5*sqrt(3) == 7*sqrt(3)"
+      ]
+    },
+    {
+      "id": "rd-pr4",
+      "statement": "Multiply $(3\\sqrt{2})(2\\sqrt{6})$.",
+      "solution": "$6\\sqrt{12} = 12\\sqrt3$.",
+      "check": [
+        "3*sqrt(2)*2*sqrt(6) == 12*sqrt(3)"
+      ]
+    },
+    {
+      "id": "rd-pr5",
+      "statement": "Expand $(\\sqrt{3}+1)(\\sqrt{3}-1)$.",
+      "solution": "$3 - 1 = 2$ — conjugates.",
+      "check": [
+        "expand((sqrt(3)+1)*(sqrt(3)-1)) == 2"
+      ]
+    },
+    {
+      "id": "rd-pr6",
+      "statement": "Rationalize $\\frac{8}{\\sqrt{2}}$.",
+      "solution": "$\\tfrac{8\\sqrt2}{2} = 4\\sqrt2$.",
+      "check": [
+        "8/sqrt(2) == 4*sqrt(2)"
+      ]
+    },
+    {
+      "id": "rd-pr7",
+      "statement": "Evaluate $64^{2/3}$.",
+      "solution": "$\\sqrt[3]{64} = 4$; $4^2 = 16$.",
+      "check": [
+        "64**Rational(2,3) == 16"
+      ]
+    },
+    {
+      "id": "rd-pr8",
+      "statement": "Evaluate $25^{-1/2}$.",
+      "solution": "$\\tfrac{1}{\\sqrt{25}} = \\tfrac15$.",
+      "check": [
+        "25**Rational(-1,2) == Rational(1,5)"
+      ]
+    },
+    {
+      "id": "rd-pr9",
+      "statement": "Solve $\\sqrt{x+5} = 4$.",
+      "solution": "$x + 5 = 16$ → $x = 11$. Check ✓.",
+      "check": [
+        "sqrt(11+5) == 4"
+      ]
+    },
+    {
+      "id": "rd-pr10",
+      "statement": "Solve $\\sqrt{x} = x - 6$ (audit your candidates).",
+      "solution": "Square: $x^2-13x+36 = 0$ → $(x-9)(x-4)$. Check: $9$ ✓ ($3=3$); $4$ ✗ ($2 \\neq -2$). Answer: $9$.",
+      "check": [
+        "sqrt(9) == 9-6",
+        "sqrt(4) != 4-6"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "rd-ty1",
+      "statement": "Simplify $\\sqrt{180}$.",
+      "solution": "$180 = 36\\cdot5$: $6\\sqrt5$.",
+      "check": [
+        "sqrt(180) == 6*sqrt(5)"
+      ]
+    },
+    {
+      "id": "rd-ty2",
+      "statement": "Combine $\\sqrt{50} + \\sqrt{18} - \\sqrt{8}$.",
+      "solution": "$5\\sqrt2 + 3\\sqrt2 - 2\\sqrt2 = 6\\sqrt2$.",
+      "check": [
+        "sqrt(50) + sqrt(18) - sqrt(8) == 6*sqrt(2)"
+      ]
+    },
+    {
+      "id": "rd-ty3",
+      "statement": "Expand $(2+\\sqrt{7})(2-\\sqrt{7})$.",
+      "solution": "$4 - 7 = -3$.",
+      "check": [
+        "expand((2+sqrt(7))*(2-sqrt(7))) == -3"
+      ]
+    },
+    {
+      "id": "rd-ty4",
+      "statement": "Rationalize $\\frac{6}{\\sqrt{7}-1}$.",
+      "solution": "Conjugate: bottom $7-1 = 6$; answer $\\sqrt7+1$.",
+      "check": [
+        "expand((sqrt(7)-1)*(sqrt(7)+1)) == 6",
+        "expand((sqrt(7)+1)*(sqrt(7)-1)) == 6"
+      ]
+    },
+    {
+      "id": "rd-ty5",
+      "statement": "Evaluate $16^{3/4} + 27^{1/3}$.",
+      "solution": "$8 + 3 = 11$.",
+      "check": [
+        "16**Rational(3,4) + 27**Rational(1,3) == 11"
+      ]
+    },
+    {
+      "id": "rd-ty6",
+      "statement": "Solve $\\sqrt{2x-3} + 4 = 9$.",
+      "solution": "$\\sqrt{2x-3} = 5$ → $2x - 3 = 25$ → $x = 14$. Check ✓.",
+      "check": [
+        "sqrt(2*14-3) + 4 == 9"
+      ]
+    },
+    {
+      "id": "rd-ty7",
+      "statement": "Free-fall time is $t = \\sqrt{h/5}$. A stone takes $8$ s to fall — from what height?",
+      "solution": "$64 = h/5$ → $h = 320$ m.",
+      "check": [
+        "sqrt(Rational(320,5)) == 8"
+      ]
+    }
+  ]
+}
