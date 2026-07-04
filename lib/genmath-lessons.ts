@@ -71,6 +71,7 @@ import scatterPlots from "@/data/genmath/8/scatter-plots-and-bivariate-data.json
 import polynomialsAndFactoring from "@/data/genmath/10/polynomials-and-factoring.json";
 import quadraticEquations from "@/data/genmath/10/quadratic-equations.json";
 import quadraticFunctions from "@/data/genmath/10/quadratic-functions.json";
+import rationalExpressions from "@/data/genmath/10/rational-expressions.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -179,7 +180,7 @@ export const GRADE10_SPINE: GradeSpineEntry[] = [
     slug: "rational-expressions",
     title: "Rational Expressions & Equations",
     blurb: "Simplifying, multiplying, and adding algebraic fractions; solving rational equations and spotting excluded values.",
-    live: false,
+    live: true,
   },
   {
     slug: "radicals-and-rational-exponents",
@@ -205,6 +206,7 @@ const grade10Topics: GenMathTopic[] = [
   polynomialsAndFactoring as GenMathTopic,
   quadraticEquations as GenMathTopic,
   quadraticFunctions as GenMathTopic,
+  rationalExpressions as GenMathTopic,
 ];
 
 const grade8Topics: GenMathTopic[] = [

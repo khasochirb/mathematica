@@ -1,0 +1,1665 @@
+{
+  "slug": "rational-expressions",
+  "title": "Rational Expressions & Equations",
+  "grade": 10,
+  "blurb": "Simplifying, multiplying, and adding algebraic fractions; solving rational equations and spotting excluded values.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "meet-rational-expressions",
+      "title": "Meet Rational Expressions",
+      "concreteComparison": "Share a $60 pizza bill among $x$ friends: each pays $\\tfrac{60}{x}$. Perfectly sensible for $x = 3$ or $x = 6$… and complete nonsense for $x = 0$. A polynomial divided by a polynomial is a **rational expression**, and its one house rule is the same as that bill's: the bottom must never be zero.",
+      "objective": "Evaluate rational expressions and find their excluded values — the inputs that make the denominator zero.",
+      "concept": [
+        "A **rational expression** is a fraction of polynomials: $\\tfrac{60}{x}$, $\\tfrac{x+1}{x-3}$, $\\tfrac{x^2-9}{x^2+5x+6}$. \"Rational\" as in **ratio** — the same word as rational numbers.",
+        "Evaluating is substitution, top and bottom: $\\tfrac{x+1}{x-3}$ at $x = 5$ is $\\tfrac{6}{2} = 3$.",
+        "The house rule: the denominator can't be $0$ — division by zero is undefined. Values of $x$ that zero the bottom are **excluded values**. For $\\tfrac{x+1}{x-3}$: set $x - 3 = 0$, so $x = 3$ is excluded.",
+        "Factoring finds them all: $\\tfrac{5}{x^2-x-6} = \\tfrac{5}{(x-3)(x+2)}$ excludes BOTH $x = 3$ and $x = -2$. Only the denominator matters — a zero on top is fine ($\\tfrac{0}{7} = 0$)."
+      ],
+      "keyIdea": "Rational expression = polynomial ÷ polynomial. Excluded values are where the DENOMINATOR is zero.",
+      "facts": [
+        {
+          "title": "The rule",
+          "latex": "\\text{denominator} \\neq 0",
+          "explanation": "Division by zero is undefined — always."
+        },
+        {
+          "title": "Finding them",
+          "latex": "\\text{set the bottom} = 0, \\text{ solve}",
+          "explanation": "Factor the denominator; each root is excluded."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "re1-we1",
+          "statement": "Evaluate $\\frac{x+1}{x-3}$ at $x = 5$ and at $x = -1$.",
+          "solution": "At $5$: $\\tfrac{6}{2} = 3$. At $-1$: $\\tfrac{0}{-4} = 0$ — a zero top is fine.",
+          "check": [
+            "(5+1)/(5-3) == 3",
+            "(-1+1)/(-1-3) == 0"
+          ]
+        },
+        {
+          "id": "re1-we2",
+          "statement": "Find the excluded value(s) of $\\frac{x+1}{x-3}$.",
+          "solution": "$x - 3 = 0$ at $x = 3$: excluded. (Everything else is allowed — even $x=-1$, which just gives $0$.)",
+          "check": [
+            "3 - 3 == 0",
+            "(-1+1)/(-1-3) == 0"
+          ]
+        },
+        {
+          "id": "re1-we3",
+          "statement": "Find all excluded values of $\\frac{5}{x^2 - x - 6}$.",
+          "solution": "Factor: $(x-3)(x+2)$. Zero at $x = 3$ and $x = -2$ — both excluded.",
+          "check": [
+            "3**2 - 3 - 6 == 0",
+            "(-2)**2 - (-2) - 6 == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Excluding values that zero the NUMERATOR.",
+          "correction": "$\\tfrac{x-4}{x+1}$ at $x = 4$ is just $\\tfrac{0}{5} = 0$ — a fine answer. Only the bottom ($x = -1$) is excluded.",
+          "authored": true
+        },
+        {
+          "text": "Stopping at one excluded value when the denominator is quadratic.",
+          "correction": "$x^2 - x - 6$ has TWO roots: factor to $(x-3)(x+2)$ and exclude both $3$ and $-2$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "re1-t1",
+          "statement": "Evaluate $\\frac{x^2-1}{x+2}$ at $x = 3$.",
+          "solution": "$\\tfrac{9-1}{5} = \\tfrac{8}{5}$.",
+          "check": [
+            "(3**2-1)/(3+2) == Rational(8,5)"
+          ]
+        },
+        {
+          "id": "re1-t2",
+          "statement": "Excluded values of $\\frac{7}{x^2-16}$?",
+          "solution": "$(x+4)(x-4)$: $x = 4$ and $x = -4$.",
+          "check": [
+            "4**2 - 16 == 0",
+            "(-4)**2 - 16 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Fractions grow up",
+            "title": "Polynomials on both floors",
+            "beats": [
+              "$\\tfrac{60}{x}$: the pizza bill per friend.",
+              "$\\tfrac{x+1}{x-3}$, $\\tfrac{x^2-9}{x^2+5x+6}$: same species.",
+              "Polynomial over polynomial = **rational expression**.",
+              "\"Rational\" = ratio. Fractions with algebra inside."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Evaluate like always",
+            "title": "Top and bottom",
+            "beats": [
+              "$\\tfrac{x+1}{x-3}$ at $x = 5$:",
+              "Top: $5+1 = 6$. Bottom: $5-3 = 2$.",
+              "$\\tfrac{6}{2} = 3$. Done.",
+              "At $x = -1$: $\\tfrac{0}{-4} = 0$ — zero on top is legal."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Plug it in",
+            "prompt": "$\\frac{x^2+2}{x-1}$ at $x = 3$ equals…",
+            "options": [
+              "$\\tfrac{11}{2}$",
+              "$11$",
+              "$\\tfrac{9}{2}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Top $9+2 = 11$, bottom $3-1 = 2$: $\\tfrac{11}{2}$.",
+            "check": [
+              "(3**2+2)/(3-1) == Rational(11,2)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The house rule",
+            "title": "Excluded values",
+            "beats": [
+              "One input is forbidden: whatever zeroes the BOTTOM.",
+              "$\\tfrac{x+1}{x-3}$: bottom dies at $x = 3$. Excluded.",
+              "Try it: $\\tfrac{4}{0}$ — undefined. No answer exists.",
+              "Everything else is fair game."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Find the landmine",
+            "title": "Quadratic bottom",
+            "prompt": "The excluded values of $\\frac{x}{x^2-25}$ are…",
+            "options": [
+              "$5$ and $-5$",
+              "$5$ only",
+              "$0$, $5$, and $-5$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(x+5)(x-5) = 0$ at $\\pm 5$. ($x = 0$ just makes the whole thing $0$ — allowed.)",
+            "check": [
+              "5**2 - 25 == 0",
+              "(-5)**2 - 25 == 0",
+              "0/(0**2-25) == 0"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Evaluate + exclude",
+            "intro": "Substitute carefully; factor the bottom.",
+            "examples": [
+              {
+                "prompt": "Evaluate $\\frac{2x-3}{x+4}$ at $x = 2$, then find its excluded value.",
+                "steps": [
+                  "At $2$: $\\tfrac{4-3}{6} = \\tfrac{1}{6}$.",
+                  "Bottom zero: $x + 4 = 0$ → $x = -4$ excluded."
+                ],
+                "answer": "$\\tfrac16$; exclude $-4$",
+                "check": [
+                  "(2*2-3)/(2+4) == Rational(1,6)",
+                  "-4 + 4 == 0"
+                ]
+              },
+              {
+                "prompt": "All excluded values of $\\frac{x+1}{x^2+3x}$?",
+                "steps": [
+                  "Factor: $x(x+3)$.",
+                  "Zero at $x = 0$ and $x = -3$. Both excluded."
+                ],
+                "answer": "$0$ and $-3$",
+                "check": [
+                  "0*(0+3) == 0",
+                  "-3*(-3+3) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "House-rule patrol",
+            "intro": "Only the bottom can disqualify.",
+            "problems": [
+              {
+                "prompt": "$\\frac{x-7}{x+2}$ is undefined at…",
+                "options": [
+                  "$x = -2$",
+                  "$x = 7$",
+                  "$x = 2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Bottom zero: $x = -2$. ($x = 7$ gives $0$ — fine.)",
+                "check": [
+                  "-2 + 2 == 0",
+                  "(7-7)/(7+2) == 0"
+                ]
+              },
+              {
+                "prompt": "$\\frac{x^2-4}{x-1}$ at $x = 4$ equals…",
+                "options": [
+                  "$4$",
+                  "$12$",
+                  "$\\tfrac{4}{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{16-4}{3} = \\tfrac{12}{3} = 4$.",
+                "check": [
+                  "(4**2-4)/(4-1) == 4"
+                ]
+              },
+              {
+                "prompt": "How many excluded values does $\\frac{3}{x^2+9}$ have?",
+                "options": [
+                  "none",
+                  "two",
+                  "one"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x^2 + 9$ is always at least $9$ — it never reaches zero. Every real $x$ is allowed.",
+                "check": [
+                  "0**2 + 9 == 9",
+                  "3**2 + 9 == 18"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The most famous forbidden value",
+            "body": "Why can't you divide by zero? Because division answers \"how many fit?\" — and asking how many zeros fit into 4 has no answer (a million zeros still total 0). Calculators politely say ERROR; algebra says **excluded**; and the internet's favorite 'proof' that 1 = 2 hides a division by zero in its middle step. Always."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Rational expression = polynomial over polynomial.",
+              "Evaluate top and bottom separately, then divide.",
+              "Excluded values zero the DENOMINATOR — factor to find them all."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "simplifying-rational-expressions",
+      "title": "Simplifying Rational Expressions",
+      "concreteComparison": "You wouldn't leave $\\tfrac{8}{12}$ unreduced — you'd divide top and bottom by $4$ and write $\\tfrac{2}{3}$. Same instinct here: $\\tfrac{x^2-9}{x^2+5x+6}$ hides a common factor of $(x+3)$ in both floors. Factor, cancel it, and the expression slims to $\\tfrac{x-3}{x+2}$ — same values, half the clutter.",
+      "objective": "Simplify rational expressions by factoring numerator and denominator and canceling common FACTORS — never terms.",
+      "concept": [
+        "Simplifying a fraction = dividing top and bottom by a common factor. $\\tfrac{8}{12} = \\tfrac{2 \\cdot 4}{3 \\cdot 4} = \\tfrac{2}{3}$. With algebra the common factor is a polynomial: factor first, then cancel.",
+        "$\\tfrac{x^2-9}{x^2+5x+6} = \\tfrac{(x+3)(x-3)}{(x+3)(x+2)} = \\tfrac{x-3}{x+2}$. The $(x+3)$'s divide to $1$ — that's what canceling IS.",
+        "The cardinal sin: canceling **terms**. In $\\tfrac{x+3}{3}$ nothing cancels — the $3$ on top is glued into a SUM. Test with numbers: at $x=3$, $\\tfrac{6}{3} = 2$, but the \"canceled\" answer $x = 3$. Different: illegal.",
+        "Excluded values are set by the ORIGINAL denominator and survive simplifying: $\\tfrac{x-3}{x+2}$ above still excludes $x = -3$ (and $-2$), because the original did."
+      ],
+      "keyIdea": "Factor top and bottom; cancel whole FACTORS only. Terms in a sum never cancel.",
+      "facts": [
+        {
+          "title": "The move",
+          "latex": "\\tfrac{A \\cdot C}{B \\cdot C} = \\tfrac{A}{B}",
+          "explanation": "A common FACTOR divides out to 1."
+        },
+        {
+          "title": "The sin",
+          "latex": "\\tfrac{x+3}{3} \\neq x",
+          "explanation": "The 3 is inside a sum — glued, not free."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "re2-we1",
+          "statement": "Simplify $\\frac{x^2-9}{x^2+5x+6}$.",
+          "solution": "$\\tfrac{(x+3)(x-3)}{(x+3)(x+2)} = \\tfrac{x-3}{x+2}$. (Check $x=1$: $\\tfrac{-8}{12} = \\tfrac{-2}{3}$ both ways ✓.)",
+          "check": [
+            "(1**2-9)/(1**2+5*1+6) == (1-3)/(1+2)",
+            "Rational(-8,12) == Rational(-2,3)"
+          ]
+        },
+        {
+          "id": "re2-we2",
+          "statement": "Simplify $\\frac{3x+12}{6x}$.",
+          "solution": "$\\tfrac{3(x+4)}{6x} = \\tfrac{x+4}{2x}$. (Check $x=2$: $\\tfrac{18}{12} = \\tfrac{6}{4} = \\tfrac32$ ✓.)",
+          "check": [
+            "(3*2+12)/(6*2) == (2+4)/(2*2)",
+            "Rational(18,12) == Rational(3,2)"
+          ]
+        },
+        {
+          "id": "re2-we3",
+          "statement": "Simplify $\\frac{x^2-4x}{x^2-16}$.",
+          "solution": "$\\tfrac{x(x-4)}{(x+4)(x-4)} = \\tfrac{x}{x+4}$. (Check $x=1$: $\\tfrac{-3}{-15} = \\tfrac15$ both ways ✓.)",
+          "check": [
+            "(1**2-4*1)/(1**2-16) == 1/(1+4)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Canceling terms: $\\tfrac{x+3}{3} \\to x$ or $\\tfrac{x^2+5}{x} \\to x + 5$.",
+          "correction": "Only FACTORS (things multiplied) cancel. Numbers expose the lie: $\\tfrac{3+3}{3} = 2$, not $3$.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the original excluded values after simplifying.",
+          "correction": "$\\tfrac{(x+3)(x-3)}{(x+3)(x+2)}$ simplifies to $\\tfrac{x-3}{x+2}$, but $x = -3$ is STILL excluded — the original bottom died there.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "re2-t1",
+          "statement": "Simplify $\\frac{5x+10}{5x}$.",
+          "solution": "$\\tfrac{5(x+2)}{5x} = \\tfrac{x+2}{x}$. (At $x=5$: $\\tfrac{35}{25} = \\tfrac{7}{5}$ ✓.)",
+          "check": [
+            "(5*5+10)/(5*5) == (5+2)/5"
+          ]
+        },
+        {
+          "id": "re2-t2",
+          "statement": "Simplify $\\frac{x^2-1}{x^2+2x+1}$.",
+          "solution": "$\\tfrac{(x+1)(x-1)}{(x+1)^2} = \\tfrac{x-1}{x+1}$. (At $x=2$: $\\tfrac{3}{9} = \\tfrac13$ ✓.)",
+          "check": [
+            "(2**2-1)/(2**2+2*2+1) == (2-1)/(2+1)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Same instinct, bigger fractions",
+            "title": "Reduce it",
+            "beats": [
+              "$\\tfrac{8}{12}$: divide both floors by 4 → $\\tfrac{2}{3}$.",
+              "$\\tfrac{x^2-9}{x^2+5x+6}$: same move, but the common",
+              "factor is hiding. **Factor first**:",
+              "$\\tfrac{(x+3)(x-3)}{(x+3)(x+2)}$ — there it is: $(x+3)$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Cancel = divide to 1",
+            "title": "Why canceling works",
+            "beats": [
+              "$\\tfrac{(x+3)(x-3)}{(x+3)(x+2)} = \\tfrac{x+3}{x+3} \\cdot \\tfrac{x-3}{x+2}$.",
+              "$\\tfrac{x+3}{x+3} = 1$ (wherever it's defined).",
+              "So the whole thing is $1 \\cdot \\tfrac{x-3}{x+2}$.",
+              "Canceling isn't erasing — it's dividing to 1."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Spot the factor",
+            "prompt": "Simplify $\\frac{4x+8}{4x}$.",
+            "options": [
+              "$\\tfrac{x+2}{x}$",
+              "$8$",
+              "$x+2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tfrac{4(x+2)}{4x}$: the FACTOR 4 cancels → $\\tfrac{x+2}{x}$. (The lone $4x$'s $x$ does not — the top's $x$ is in a sum.)",
+            "check": [
+              "(4*3+8)/(4*3) == (3+2)/3"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The cardinal sin",
+            "title": "Terms don't cancel",
+            "beats": [
+              "$\\tfrac{x+3}{3}$ — tempting to slash the 3's…",
+              "Numbers catch it: at $x=3$, $\\tfrac{3+3}{3} = 2$. Not $3$.",
+              "The top's $3$ is glued into a SUM. Not a factor. No cancel.",
+              "Rule of thumb: if it isn't multiplied, it isn't cancellable."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Sin patrol",
+            "title": "Legal or not?",
+            "prompt": "Which cancellation is LEGAL?",
+            "options": [
+              "$\\tfrac{5(x-2)}{5x} \\to \\tfrac{x-2}{x}$",
+              "$\\tfrac{x+7}{7} \\to x$",
+              "$\\tfrac{x^2+3}{x} \\to x+3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Only the first: 5 is a genuine factor of top and bottom. The others slash terms out of sums — numbers would expose both.",
+            "check": [
+              "(5*(4-2))/(5*4) == (4-2)/4",
+              "(7+7)/7 == 2"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Factor, then cancel",
+            "intro": "Every cancellation must be a factor.",
+            "examples": [
+              {
+                "prompt": "Simplify $\\frac{x^2+7x+10}{x^2-4}$.",
+                "steps": [
+                  "Top: $(x+2)(x+5)$. Bottom: $(x+2)(x-2)$.",
+                  "Cancel $(x+2)$: $\\tfrac{x+5}{x-2}$."
+                ],
+                "answer": "$\\tfrac{x+5}{x-2}$",
+                "check": [
+                  "(1**2+7*1+10)/(1**2-4) == (1+5)/(1-2)",
+                  "(3**2+7*3+10)/(3**2-4) == (3+5)/(3-2)"
+                ]
+              },
+              {
+                "prompt": "Simplify $\\frac{2x^2-8x}{2x^2}$.",
+                "steps": [
+                  "Top: $2x(x-4)$. Bottom: $2x \\cdot x$.",
+                  "Cancel $2x$: $\\tfrac{x-4}{x}$."
+                ],
+                "answer": "$\\tfrac{x-4}{x}$",
+                "check": [
+                  "(2*3**2-8*3)/(2*3**2) == (3-4)/3",
+                  "(2*5**2-8*5)/(2*5**2) == (5-4)/5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Slim them down",
+            "intro": "Factor both floors first.",
+            "problems": [
+              {
+                "prompt": "Simplify $\\frac{6x+18}{6}$.",
+                "options": [
+                  "$x+3$",
+                  "$x+18$",
+                  "$6x+3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{6(x+3)}{6} = x+3$. The 6 was a factor of the WHOLE top.",
+                "check": [
+                  "(6*2+18)/6 == 2+3"
+                ]
+              },
+              {
+                "prompt": "Simplify $\\frac{x^2-25}{x+5}$.",
+                "options": [
+                  "$x-5$",
+                  "$x+5$",
+                  "$x-25$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{(x+5)(x-5)}{x+5} = x-5$ (with $x = -5$ still excluded).",
+                "check": [
+                  "(2**2-25)/(2+5) == 2-5",
+                  "(6**2-25)/(6+5) == 6-5"
+                ]
+              },
+              {
+                "prompt": "$\\frac{x+4}{4}$ simplifies to…",
+                "options": [
+                  "it's already simplest",
+                  "$x$",
+                  "$x+1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The 4 on top lives inside a sum — nothing is a common factor. Check $x=4$: $\\tfrac{8}{4}=2 \\neq 4$ and $\\neq 5$.",
+                "check": [
+                  "(4+4)/4 == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Test with a number",
+            "body": "Unsure whether a cancellation was legal? Plug ONE number (avoiding excluded values) into the before and the after. Same output = legal; different = you slashed a term. $\\tfrac{x+3}{3}$ vs $x$ at $x=3$: $2$ vs $3$ — busted in five seconds."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Simplify = factor top and bottom, cancel common FACTORS.",
+              "Terms in sums never cancel — numbers expose illegal slashes.",
+              "Excluded values come from the ORIGINAL denominator and stay."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "multiplying-and-dividing",
+      "title": "Multiplying & Dividing",
+      "concreteComparison": "Multiplying fractions was the EASY operation: $\\tfrac{2}{3} \\cdot \\tfrac{9}{4} = \\tfrac{18}{12}$ — straight across, then reduce (or cancel early: $\\tfrac{2}{3} \\cdot \\tfrac{9}{4} = \\tfrac{1}{1} \\cdot \\tfrac{3}{2}$). Rational expressions keep both habits: multiply across, and cancel **diagonally before** multiplying so nothing balloons. Division? Same old flip.",
+      "objective": "Multiply rational expressions by factoring and cross-canceling; divide by flipping the second fraction and multiplying.",
+      "concept": [
+        "Multiply straight across: $\\tfrac{A}{B} \\cdot \\tfrac{C}{D} = \\tfrac{AC}{BD}$. But factor everything FIRST and cancel any factor on any top against any bottom — cross-canceling keeps the arithmetic tiny.",
+        "$\\tfrac{x^2-9}{4x} \\cdot \\tfrac{8x^2}{x+3}$: factor → $\\tfrac{(x+3)(x-3)}{4x} \\cdot \\tfrac{8x^2}{x+3}$. Cancel $(x+3)$, cancel $4x$ into $8x^2$: left with $\\tfrac{(x-3) \\cdot 2x}{1} = 2x(x-3)$.",
+        "Dividing = multiplying by the reciprocal: $\\tfrac{A}{B} \\div \\tfrac{C}{D} = \\tfrac{A}{B} \\cdot \\tfrac{D}{C}$ — **keep, change, flip**. Then it's a multiplication problem you already know.",
+        "Excluded values pile up from every denominator that ever appears — including the flipped one's top (it was a bottom before the flip)."
+      ],
+      "keyIdea": "Factor → cross-cancel → multiply across. Divide = keep, change, flip, then multiply.",
+      "facts": [
+        {
+          "title": "Multiply",
+          "latex": "\\tfrac{A}{B} \\cdot \\tfrac{C}{D} = \\tfrac{AC}{BD}",
+          "explanation": "Across the top, across the bottom."
+        },
+        {
+          "title": "Divide",
+          "latex": "\\tfrac{A}{B} \\div \\tfrac{C}{D} = \\tfrac{A}{B} \\cdot \\tfrac{D}{C}",
+          "explanation": "Keep, change, flip."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "re3-we1",
+          "statement": "Multiply $\\frac{3x}{x+2} \\cdot \\frac{x+2}{6}$.",
+          "solution": "Cancel $(x+2)$ and $\\tfrac{3}{6}$: $\\tfrac{x}{2}$. (Check $x=4$: $\\tfrac{12}{6} \\cdot \\tfrac{6}{6} = 2 = \\tfrac42$ ✓.)",
+          "check": [
+            "(3*4)/(4+2) * (4+2)/6 == 4/2"
+          ]
+        },
+        {
+          "id": "re3-we2",
+          "statement": "Multiply $\\frac{x^2-9}{4x} \\cdot \\frac{8x^2}{x+3}$.",
+          "solution": "$\\tfrac{(x+3)(x-3)}{4x} \\cdot \\tfrac{8x^2}{x+3} = 2x(x-3)$. (Check $x=2$: $\\tfrac{-5}{8} \\cdot \\tfrac{32}{5} = -4 = 2(2)(-1)$ ✓.)",
+          "check": [
+            "(2**2-9)/(4*2) * (8*2**2)/(2+3) == 2*2*(2-3)"
+          ]
+        },
+        {
+          "id": "re3-we3",
+          "statement": "Divide $\\frac{x^2-4}{x} \\div \\frac{x+2}{x^2}$.",
+          "solution": "Flip: $\\tfrac{(x+2)(x-2)}{x} \\cdot \\tfrac{x^2}{x+2} = x(x-2)$. (Check $x=3$: $\\tfrac{5}{3} \\div \\tfrac{5}{9} = 3 = 3(1)$ ✓.)",
+          "check": [
+            "(3**2-4)/3 / ((3+2)/3**2) == 3*(3-2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Flipping the FIRST fraction when dividing.",
+          "correction": "Keep the first, flip the SECOND: $\\tfrac{A}{B} \\div \\tfrac{C}{D} = \\tfrac{A}{B} \\cdot \\tfrac{D}{C}$. Flipping the wrong one gives the reciprocal of the answer.",
+          "authored": true
+        },
+        {
+          "text": "Multiplying straight across without factoring, then facing a monster.",
+          "correction": "$\\tfrac{x^2-9}{4x} \\cdot \\tfrac{8x^2}{x+3}$ multiplied blind is a degree-4 mess. Factor and cross-cancel FIRST — the answer is two factors long.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "re3-t1",
+          "statement": "Multiply $\\frac{x}{x-1} \\cdot \\frac{x-1}{5}$.",
+          "solution": "$(x-1)$ cancels: $\\tfrac{x}{5}$.",
+          "check": [
+            "3/(3-1) * (3-1)/5 == Rational(3,5)"
+          ]
+        },
+        {
+          "id": "re3-t2",
+          "statement": "Divide $\\frac{x+1}{3} \\div \\frac{x+1}{6}$.",
+          "solution": "$\\tfrac{x+1}{3} \\cdot \\tfrac{6}{x+1} = 2$.",
+          "check": [
+            "(4+1)/3 * 6/(4+1) == 2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The easy operation",
+            "title": "Multiply straight across",
+            "beats": [
+              "$\\tfrac{A}{B} \\cdot \\tfrac{C}{D} = \\tfrac{AC}{BD}$ — tops together, bottoms together.",
+              "No common denominator needed. Ever.",
+              "But blind multiplying builds monsters…",
+              "…so we cancel BEFORE we multiply."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Cross-canceling",
+            "title": "Shrink before you grow",
+            "beats": [
+              "$\\tfrac{(x+3)(x-3)}{4x} \\cdot \\tfrac{8x^2}{x+3}$ — everything factored.",
+              "Any top factor cancels any bottom factor:",
+              "$(x+3)$ dies diagonally; $\\tfrac{8x^2}{4x} = 2x$.",
+              "Left: $2x(x-3)$. Never multiplied anything big."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Cancel first",
+            "prompt": "$\\frac{5x}{x+1} \\cdot \\frac{x+1}{10}$ simplifies to…",
+            "options": [
+              "$\\tfrac{x}{2}$",
+              "$\\tfrac{5x(x+1)}{10(x+1)}$ — can't simplify",
+              "$\\tfrac{x+1}{2}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(x+1)$ cancels diagonally, $\\tfrac{5}{10} = \\tfrac12$: answer $\\tfrac{x}{2}$.",
+            "check": [
+              "(5*3)/(3+1) * (3+1)/10 == Rational(3,2)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Division: one extra beat",
+            "title": "Keep, change, flip",
+            "beats": [
+              "$\\tfrac{A}{B} \\div \\tfrac{C}{D}$: dividing by a fraction…",
+              "…is multiplying by its flip: $\\tfrac{A}{B} \\cdot \\tfrac{D}{C}$.",
+              "KEEP the first, CHANGE ÷ to ×, FLIP the second.",
+              "Then run the multiplication playbook."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Flip check",
+            "title": "Which flips?",
+            "prompt": "$\\frac{x}{3} \\div \\frac{x}{6}$ equals…",
+            "options": [
+              "$2$",
+              "$\\tfrac{x^2}{18}$",
+              "$\\tfrac12$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tfrac{x}{3} \\cdot \\tfrac{6}{x} = \\tfrac{6}{3} = 2$. (Flipping the FIRST instead gives $\\tfrac12$ — the classic wrong answer.)",
+            "check": [
+              "4/3 * 6/4 == 2"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Factor–cancel–multiply",
+            "intro": "Division becomes multiplication on beat one.",
+            "examples": [
+              {
+                "prompt": "Multiply $\\frac{x^2-1}{2x} \\cdot \\frac{4x}{x+1}$.",
+                "steps": [
+                  "Factor: $\\tfrac{(x+1)(x-1)}{2x} \\cdot \\tfrac{4x}{x+1}$.",
+                  "Cancel $(x+1)$ and $\\tfrac{4x}{2x} = 2$.",
+                  "$2(x-1)$."
+                ],
+                "answer": "$2(x-1)$",
+                "check": [
+                  "(3**2-1)/(2*3) * (4*3)/(3+1) == 2*(3-1)"
+                ]
+              },
+              {
+                "prompt": "Divide $\\frac{x^2-16}{x^2} \\div \\frac{x-4}{x}$.",
+                "steps": [
+                  "Flip: $\\tfrac{(x+4)(x-4)}{x^2} \\cdot \\tfrac{x}{x-4}$.",
+                  "Cancel $(x-4)$ and one $x$.",
+                  "$\\tfrac{x+4}{x}$."
+                ],
+                "answer": "$\\tfrac{x+4}{x}$",
+                "check": [
+                  "(3**2-16)/3**2 / ((3-4)/3) == (3+4)/3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Across and flip",
+            "intro": "Factor first; flip only the second.",
+            "problems": [
+              {
+                "prompt": "$\\frac{2x}{x-3} \\cdot \\frac{x-3}{8}$ = …",
+                "options": [
+                  "$\\tfrac{x}{4}$",
+                  "$\\tfrac{2x(x-3)}{8(x-3)}$, unsimplifiable",
+                  "$\\tfrac{x-3}{4}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(x-3)$ cancels; $\\tfrac{2}{8} = \\tfrac14$: $\\tfrac{x}{4}$.",
+                "check": [
+                  "(2*5)/(5-3) * (5-3)/8 == Rational(5,4)"
+                ]
+              },
+              {
+                "prompt": "$\\frac{x+2}{5} \\div \\frac{x+2}{15}$ = …",
+                "options": [
+                  "$3$",
+                  "$\\tfrac13$",
+                  "$\\tfrac{(x+2)^2}{75}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Flip the second: $\\tfrac{x+2}{5} \\cdot \\tfrac{15}{x+2} = 3$.",
+                "check": [
+                  "(1+2)/5 * 15/(1+2) == 3"
+                ]
+              },
+              {
+                "prompt": "$\\frac{x^2-x}{6} \\cdot \\frac{3}{x}$ = …",
+                "options": [
+                  "$\\tfrac{x-1}{2}$",
+                  "$\\tfrac{x-1}{6}$",
+                  "$\\tfrac{x^2-x}{2x}$, unsimplifiable"
+                ],
+                "correctIndex": 0,
+                "explanation": "Top factors: $x(x-1)$. Cancel $x$ and $\\tfrac36 = \\tfrac12$: $\\tfrac{x-1}{2}$.",
+                "check": [
+                  "(4**2-4)/6 * 3/4 == (4-1)/2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why flipping works",
+            "body": "Dividing by $\\tfrac12$ means asking \"how many halves fit?\" — twice as many as wholes, so ÷½ is ×2. In general dividing by $\\tfrac{C}{D}$ is multiplying by $\\tfrac{D}{C}$: the flip isn't a trick to memorize, it's what division by a fraction MEANS. Grade-6 pizza logic, now running algebra."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Multiply: factor everything, cross-cancel, then straight across.",
+              "Divide: keep, change, flip — then multiply.",
+              "Cancel early; never build the degree-4 monster."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "adding-and-subtracting",
+      "title": "Adding & Subtracting",
+      "concreteComparison": "You can't add $\\tfrac{1}{6}$ and $\\tfrac{1}{4}$ until both wear twelfths: $\\tfrac{2}{12} + \\tfrac{3}{12} = \\tfrac{5}{12}$. Algebraic fractions have the same dress code — same denominator or no entry. The only new skill is building the **LCD** when the bottoms have $x$'s in them.",
+      "objective": "Add and subtract rational expressions by building the least common denominator, and distribute subtraction across the whole numerator.",
+      "concept": [
+        "Same bottom? Combine tops and keep the bottom: $\\tfrac{5}{x} + \\tfrac{2}{x} = \\tfrac{7}{x}$; $\\tfrac{3x}{x+1} - \\tfrac{x}{x+1} = \\tfrac{2x}{x+1}$.",
+        "Different bottoms: build the **LCD** — every distinct factor, at its highest power. For $\\tfrac{3}{x}$ and $\\tfrac{2}{x^2}$: LCD $= x^2$. For $\\tfrac{1}{x+1}$ and $\\tfrac{1}{x-1}$: LCD $= (x+1)(x-1)$.",
+        "Rebuild each fraction on the LCD (multiply top and bottom by what's missing), then combine: $\\tfrac{3}{x} + \\tfrac{2}{x^2} = \\tfrac{3x}{x^2} + \\tfrac{2}{x^2} = \\tfrac{3x+2}{x^2}$.",
+        "Subtraction's trap: the minus hits the WHOLE second top. $\\tfrac{5x}{x-2} - \\tfrac{x+6}{x-2} = \\tfrac{5x - (x+6)}{x-2} = \\tfrac{4x-6}{x-2}$ — parentheses first, always."
+      ],
+      "keyIdea": "Same denominator: combine tops. Different: build the LCD, rebuild each fraction, then combine — minus distributes over the whole top.",
+      "facts": [
+        {
+          "title": "LCD recipe",
+          "latex": "\\text{every factor, highest power}",
+          "explanation": "x and x² → x²; (x+1) and (x−1) → their product."
+        },
+        {
+          "title": "Minus trap",
+          "latex": "-(x+6) = -x - 6",
+          "explanation": "Subtraction hits every term of the second numerator."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "re4-we1",
+          "statement": "Add $\\frac{3}{x} + \\frac{2}{x^2}$.",
+          "solution": "LCD $x^2$: $\\tfrac{3x}{x^2} + \\tfrac{2}{x^2} = \\tfrac{3x+2}{x^2}$. (Check $x=2$: $\\tfrac32 + \\tfrac12 = 2 = \\tfrac84$ ✓.)",
+          "check": [
+            "3/2 + 2/2**2 == (3*2+2)/2**2"
+          ]
+        },
+        {
+          "id": "re4-we2",
+          "statement": "Add $\\frac{2}{x+1} + \\frac{3}{x-1}$.",
+          "solution": "LCD $(x+1)(x-1)$: $\\tfrac{2(x-1) + 3(x+1)}{(x+1)(x-1)} = \\tfrac{5x+1}{x^2-1}$. (Check $x=2$: $\\tfrac23 + 3 = \\tfrac{11}{3}$ ✓.)",
+          "check": [
+            "2/(2+1) + 3/(2-1) == (5*2+1)/(2**2-1)"
+          ]
+        },
+        {
+          "id": "re4-we3",
+          "statement": "Subtract $\\frac{5x}{x-2} - \\frac{x+6}{x-2}$.",
+          "solution": "$\\tfrac{5x-(x+6)}{x-2} = \\tfrac{4x-6}{x-2}$. (Check $x=3$: $15 - 9 = 6 = \\tfrac{6}{1}$ ✓.)",
+          "check": [
+            "(5*3)/(3-2) - (3+6)/(3-2) == (4*3-6)/(3-2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding tops AND bottoms: $\\tfrac{1}{x} + \\tfrac{1}{x} = \\tfrac{2}{2x}$.",
+          "correction": "Same bottom stays: $\\tfrac{2}{x}$. Adding bottoms is the oldest fraction error alive — numbers kill it: $\\tfrac12 + \\tfrac12 = 1$, not $\\tfrac24 = \\tfrac12$.",
+          "authored": true
+        },
+        {
+          "text": "Dropping the parentheses when subtracting: $\\tfrac{5x - x + 6}{x-2}$.",
+          "correction": "The minus applies to the WHOLE top: $5x - (x+6) = 4x - 6$, not $4x + 6$. Write the parentheses, then distribute.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "re4-t1",
+          "statement": "Add $\\frac{4}{x} + \\frac{1}{2x}$.",
+          "solution": "LCD $2x$: $\\tfrac{8}{2x} + \\tfrac{1}{2x} = \\tfrac{9}{2x}$.",
+          "check": [
+            "4/3 + 1/(2*3) == 9/(2*3)"
+          ]
+        },
+        {
+          "id": "re4-t2",
+          "statement": "Subtract $\\frac{7}{x+3} - \\frac{2}{x+3}$.",
+          "solution": "Same bottom: $\\tfrac{5}{x+3}$.",
+          "check": [
+            "7/(1+3) - 2/(1+3) == 5/(1+3)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The dress code",
+            "title": "Same denominator or no entry",
+            "beats": [
+              "$\\tfrac{5}{x} + \\tfrac{2}{x}$: same bottom → add tops: $\\tfrac{7}{x}$.",
+              "$\\tfrac{1}{6} + \\tfrac{1}{4}$? Different — dress both in twelfths first.",
+              "Algebra keeps the rule. Only the wardrobe changes:",
+              "the common denominator now contains $x$'s."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Building the LCD",
+            "title": "Every factor, highest power",
+            "beats": [
+              "$\\tfrac{3}{x}$ and $\\tfrac{2}{x^2}$: factors $x$ and $x^2$ → LCD $x^2$.",
+              "$\\tfrac{1}{x+1}$ and $\\tfrac{1}{x-1}$: LCD $(x+1)(x-1)$.",
+              "$\\tfrac{1}{2x}$ and $\\tfrac{1}{6}$: LCD $6x$.",
+              "Collect every distinct factor at its biggest power."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Spot the LCD",
+            "prompt": "The LCD of $\\frac{5}{x^2}$ and $\\frac{1}{3x}$ is…",
+            "options": [
+              "$3x^2$",
+              "$3x^3$",
+              "$x^2 + 3x$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Factors: $3$, and $x$ at highest power $2$ → $3x^2$. (Multiplying the bottoms blindly gives $3x^3$ — it works but bloats.)",
+            "check": [
+              "5/2**2 + 1/(3*2) == (5*3+2)/(3*2**2)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Rebuild, then combine",
+            "title": "The full add",
+            "beats": [
+              "$\\tfrac{2}{x+1} + \\tfrac{3}{x-1}$, LCD $(x+1)(x-1)$:",
+              "First: $\\times\\tfrac{x-1}{x-1}$ → $\\tfrac{2(x-1)}{(x+1)(x-1)}$.",
+              "Second: $\\times\\tfrac{x+1}{x+1}$ → $\\tfrac{3(x+1)}{(x+1)(x-1)}$.",
+              "Add tops: $2x-2+3x+3 = 5x+1$. Answer: $\\tfrac{5x+1}{x^2-1}$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "The minus trap",
+            "title": "Distribute it all",
+            "prompt": "$\\frac{6x}{x-1} - \\frac{2x+3}{x-1}$ = …",
+            "options": [
+              "$\\tfrac{4x-3}{x-1}$",
+              "$\\tfrac{4x+3}{x-1}$",
+              "$\\tfrac{4x-3}{0}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$6x - (2x+3) = 4x - 3$. The minus hits BOTH terms — forgetting flips the 3's sign.",
+            "check": [
+              "(6*2)/(2-1) - (2*2+3)/(2-1) == (4*2-3)/(2-1)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "LCD in action",
+            "intro": "Rebuild each fraction, then one clean combine.",
+            "examples": [
+              {
+                "prompt": "Add $\\frac{1}{x} + \\frac{1}{x+2}$.",
+                "steps": [
+                  "LCD $x(x+2)$.",
+                  "$\\tfrac{x+2}{x(x+2)} + \\tfrac{x}{x(x+2)}$.",
+                  "$\\tfrac{2x+2}{x(x+2)}$."
+                ],
+                "answer": "$\\tfrac{2x+2}{x(x+2)}$",
+                "check": [
+                  "1/2 + 1/(2+2) == (2*2+2)/(2*(2+2))"
+                ]
+              },
+              {
+                "prompt": "Subtract $\\frac{3}{x-3} - \\frac{2}{x}$.",
+                "steps": [
+                  "LCD $x(x-3)$.",
+                  "$\\tfrac{3x}{x(x-3)} - \\tfrac{2(x-3)}{x(x-3)}$.",
+                  "$3x - (2x-6) = x + 6$: $\\tfrac{x+6}{x(x-3)}$."
+                ],
+                "answer": "$\\tfrac{x+6}{x(x-3)}$",
+                "check": [
+                  "3/(5-3) - 2/5 == (5+6)/(5*(5-3))"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Combine carefully",
+            "intro": "LCD, rebuild, combine — parentheses on subtractions.",
+            "problems": [
+              {
+                "prompt": "$\\frac{2}{x} + \\frac{3}{x}$ = …",
+                "options": [
+                  "$\\tfrac{5}{x}$",
+                  "$\\tfrac{5}{2x}$",
+                  "$\\tfrac{6}{x^2}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same bottom: add the tops, KEEP the bottom.",
+                "check": [
+                  "2/7 + 3/7 == 5/7"
+                ]
+              },
+              {
+                "prompt": "$\\frac{5}{2x} + \\frac{1}{x^2}$ = …",
+                "options": [
+                  "$\\tfrac{5x+2}{2x^2}$",
+                  "$\\tfrac{6}{2x^3}$",
+                  "$\\tfrac{6}{2x+x^2}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "LCD $2x^2$: $\\tfrac{5x}{2x^2} + \\tfrac{2}{2x^2} = \\tfrac{5x+2}{2x^2}$.",
+                "check": [
+                  "5/(2*2) + 1/2**2 == (5*2+2)/(2*2**2)"
+                ]
+              },
+              {
+                "prompt": "$\\frac{x}{x+5} - \\frac{3}{x+5}$ = …",
+                "options": [
+                  "$\\tfrac{x-3}{x+5}$",
+                  "$\\tfrac{x-3}{2(x+5)}$",
+                  "$x - 3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same bottom: subtract tops. The denominator survives — it doesn't cancel with anything.",
+                "check": [
+                  "4/(4+5) - 3/(4+5) == (4-3)/(4+5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Bottoms are a costume, not a casualty",
+            "body": "After combining, the denominator STAYS — $\\tfrac{7}{x}$ is the answer, not $7$. The only time denominators truly vanish is next lesson, when there's an equals sign to multiply across. Expressions keep their bottoms; equations get to clear them."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Same bottom: combine tops. Different: build the LCD first.",
+              "LCD = every distinct factor at its highest power.",
+              "Minus distributes over the ENTIRE second numerator."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "solving-rational-equations",
+      "title": "Solving Rational Equations",
+      "concreteComparison": "An equation with fractions is like moving day with boxes — you don't carry them one at a time, you rent a truck. Multiply BOTH sides by the LCD and every denominator vanishes at once, leaving a plain equation you already know how to solve. One new duty: check your answer against the excluded values, because the truck sometimes delivers a fake.",
+      "objective": "Solve rational equations by clearing denominators with the LCD, and reject extraneous solutions that hit excluded values.",
+      "concept": [
+        "The strategy: multiply **both sides** by the LCD of every fraction. All denominators cancel, leaving a linear or quadratic equation. $\\tfrac{3}{x} + \\tfrac12 = 2$: LCD $2x$ → $6 + x = 4x$ → $x = 2$.",
+        "Always CHECK: $\\tfrac{3}{2} + \\tfrac{1}{2} = 2$ ✓. Substitution back into the original is the final word.",
+        "The danger: multiplying by an expression that could be ZERO can mint fake answers. If a solution equals an excluded value, it's **extraneous** — cross it off.",
+        "Classic: $\\tfrac{x}{x-3} = \\tfrac{3}{x-3} + 2$. Clear: $x = 3 + 2(x-3)$ → $x = 2x - 3$ → $x = 3$. But $x = 3$ zeroes the original denominators — extraneous. The equation has **no solution**."
+      ],
+      "keyIdea": "Multiply both sides by the LCD to clear all fractions; solve; then reject any answer that's an excluded value.",
+      "facts": [
+        {
+          "title": "The truck",
+          "latex": "\\text{LCD} \\times \\text{both sides}",
+          "explanation": "Every denominator cancels in one move."
+        },
+        {
+          "title": "The fake check",
+          "latex": "\\text{solution} = \\text{excluded value} \\Rightarrow \\text{extraneous}",
+          "explanation": "Cross it off; it never counted."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "re5-we1",
+          "statement": "Solve $\\frac{3}{x} + \\frac{1}{2} = 2$.",
+          "solution": "LCD $2x$: $6 + x = 4x$ → $x = 2$. Check: $\\tfrac32 + \\tfrac12 = 2$ ✓.",
+          "check": [
+            "3/2 + Rational(1,2) == 2"
+          ]
+        },
+        {
+          "id": "re5-we2",
+          "statement": "Solve $\\frac{5}{x+1} = \\frac{3}{x-1}$.",
+          "solution": "Cross-multiply: $5(x-1) = 3(x+1)$ → $5x-5 = 3x+3$ → $x = 4$. Check: $\\tfrac{5}{5} = \\tfrac{3}{3} = 1$ ✓.",
+          "check": [
+            "5/(4+1) == 3/(4-1)",
+            "5*(4-1) == 3*(4+1)"
+          ]
+        },
+        {
+          "id": "re5-we3",
+          "statement": "Solve $\\frac{x}{x-3} = \\frac{3}{x-3} + 2$.",
+          "solution": "Clear $(x-3)$: $x = 3 + 2(x-3)$ → $x = 3$. But $x = 3$ is EXCLUDED — extraneous. No solution.",
+          "check": [
+            "3 + 2*(3-3) == 3",
+            "3 - 3 == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Multiplying only the fraction terms by the LCD and skipping the plain numbers.",
+          "correction": "In $\\tfrac{3}{x} + \\tfrac12 = 2$, the LCD $2x$ hits ALL THREE terms: $6 + x = 4x$. Skipping the 2 breaks the balance.",
+          "authored": true
+        },
+        {
+          "text": "Reporting an extraneous solution as the answer.",
+          "correction": "Solving can produce $x = 3$ even when $x = 3$ is excluded. The check isn't optional — an answer that zeroes a denominator is no answer at all.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "re5-t1",
+          "statement": "Solve $\\frac{4}{x} = \\frac{2}{3}$.",
+          "solution": "Cross-multiply: $12 = 2x$ → $x = 6$. Check: $\\tfrac46 = \\tfrac23$ ✓.",
+          "check": [
+            "Rational(4,6) == Rational(2,3)"
+          ]
+        },
+        {
+          "id": "re5-t2",
+          "statement": "Solve $\\frac{2}{x+2} = \\frac{x}{x+2} - 1$ (watch for fakes).",
+          "solution": "Clear: $2 = x - (x+2) = -2$?! Contradiction — no value works. No solution.",
+          "check": [
+            "3 - (3+2) == -2",
+            "-2 != 2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Rent the truck",
+            "title": "Clear all fractions at once",
+            "beats": [
+              "$\\tfrac{3}{x} + \\tfrac{1}{2} = 2$ — fractions everywhere.",
+              "LCD of $x$ and $2$: $2x$. Multiply EVERY term:",
+              "$2x \\cdot \\tfrac{3}{x} + 2x \\cdot \\tfrac12 = 2x \\cdot 2$",
+              "$6 + x = 4x$. No fractions. Solve: $x = 2$. Check ✓."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Hit every term",
+            "prompt": "To clear $\\frac{5}{x} - 1 = \\frac{3}{2x}$, multiply both sides by $2x$. The $-1$ becomes…",
+            "options": [
+              "$-2x$",
+              "$-1$",
+              "$-2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The LCD multiplies EVERY term: $10 - 2x = 3$. (Leaving the $-1$ alone is the classic slip.)",
+            "check": [
+              "10 - 2*Rational(7,2) == 3",
+              "5/Rational(7,2) - 1 == 3/(2*Rational(7,2))"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Proportion shortcut",
+            "title": "Cross-multiply",
+            "beats": [
+              "Just two fractions, one on each side?",
+              "$\\tfrac{5}{x+1} = \\tfrac{3}{x-1}$ → $5(x-1) = 3(x+1)$.",
+              "$5x - 5 = 3x + 3$ → $x = 4$.",
+              "Check in the original: $1 = 1$ ✓."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The counterfeit answer",
+            "title": "Extraneous solutions",
+            "beats": [
+              "$\\tfrac{x}{x-3} = \\tfrac{3}{x-3} + 2$. Clear $(x-3)$:",
+              "$x = 3 + 2(x-3)$ → $x = 3$.",
+              "But $x = 3$ zeroes the original bottoms. Undefined!",
+              "The 'solution' is fake — **extraneous**. No solution."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Fake detector",
+            "title": "Check against exclusions",
+            "prompt": "You solve an equation and get $x = 5$, but $x = 5$ zeroes one of the original denominators. The equation's solution set is…",
+            "options": [
+              "empty — no solution",
+              "$x = 5$ anyway",
+              "$x = -5$"
+            ],
+            "correctIndex": 0,
+            "explanation": "An answer that lands on an excluded value never counted. If it was the only candidate, nothing solves the equation.",
+            "check": [
+              "5 - 5 == 0"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Clear, solve, check",
+            "intro": "The check is part of the solve.",
+            "examples": [
+              {
+                "prompt": "Solve $\\frac{2}{x} + \\frac{1}{3} = 1$.",
+                "steps": [
+                  "LCD $3x$: $6 + x = 3x$.",
+                  "$x = 3$. Check: $\\tfrac23 + \\tfrac13 = 1$ ✓."
+                ],
+                "answer": "$x = 3$",
+                "check": [
+                  "Rational(2,3) + Rational(1,3) == 1"
+                ]
+              },
+              {
+                "prompt": "Solve $\\frac{x+2}{4} = \\frac{x-1}{2}$.",
+                "steps": [
+                  "Cross-multiply: $2(x+2) = 4(x-1)$.",
+                  "$2x + 4 = 4x - 4$ → $x = 4$.",
+                  "Check: $\\tfrac{6}{4} = \\tfrac{3}{2}$ ✓."
+                ],
+                "answer": "$x = 4$",
+                "check": [
+                  "(4+2)/4 == (4-1)/2",
+                  "2*(4+2) == 4*(4-1)"
+                ]
+              },
+              {
+                "prompt": "Solve $\\frac{1}{x-2} + 3 = \\frac{x-1}{x-2}$.",
+                "steps": [
+                  "Clear $(x-2)$: $1 + 3(x-2) = x-1$.",
+                  "$3x - 5 = x - 1$ → $x = 2$.",
+                  "$x=2$ is excluded → extraneous. No solution."
+                ],
+                "answer": "no solution",
+                "check": [
+                  "3*2 - 5 == 2 - 1",
+                  "2 - 2 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Truck + fake-check",
+            "intro": "Clear with the LCD; audit the answer.",
+            "problems": [
+              {
+                "prompt": "Solve $\\frac{6}{x} = 3$.",
+                "options": [
+                  "$x = 2$",
+                  "$x = 18$",
+                  "$x = \\tfrac12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6 = 3x$ → $x = 2$. Check: $\\tfrac62 = 3$ ✓.",
+                "check": [
+                  "Rational(6,2) == 3"
+                ]
+              },
+              {
+                "prompt": "Solve $\\frac{3}{x-1} = \\frac{5}{x+1}$.",
+                "options": [
+                  "$x = 4$",
+                  "$x = -4$",
+                  "$x = 1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3(x+1) = 5(x-1)$ → $3x+3 = 5x-5$ → $x = 4$. Check: $\\tfrac33 = \\tfrac55$ ✓.",
+                "check": [
+                  "3/(4-1) == 5/(4+1)",
+                  "3*(4+1) == 5*(4-1)"
+                ]
+              },
+              {
+                "prompt": "Solving $\\frac{x}{x-4} - 2 = \\frac{4}{x-4}$ gives $x = 4$. The answer is…",
+                "options": [
+                  "no solution — $4$ is extraneous",
+                  "$x = 4$",
+                  "$x = 0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x = 4$ zeroes the original denominators — the one candidate is fake, so nothing solves it.",
+                "check": [
+                  "4 - 4 == 0",
+                  "4 - 2*(4-4) == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why fakes appear at all",
+            "body": "Multiplying both sides by $(x-3)$ is only reversible when $(x-3) \\neq 0$ — at $x=3$ you multiplied both sides by zero, and $0 = 0$ is 'true' for ANY equation. That's the loophole extraneous solutions sneak through: they're solutions to $0=0$, not to your equation. The check slams the door."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Multiply both sides by the LCD — every term, fractions or not.",
+              "Two-fraction proportions: cross-multiply.",
+              "Check answers against excluded values; extraneous → rejected."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "work-and-rate-problems",
+      "title": "Work & Rate Problems",
+      "concreteComparison": "A painter does a house in 6 hours; a helper alone takes 3. Together they don't take $6 + 3 = 9$ hours — that would mean helping makes it SLOWER. The trick: convert people to **rates**. Painter: $\\tfrac16$ house/hour. Helper: $\\tfrac13$. Together $\\tfrac16 + \\tfrac13 = \\tfrac12$ — half a house per hour, so 2 hours flat. Rates add; times don't.",
+      "objective": "Solve combined-work and rate problems by adding rates as rational expressions and clearing the resulting equation.",
+      "concept": [
+        "If a job takes $t$ hours, the rate is $\\tfrac{1}{t}$ **jobs per hour**. Work problems become fraction problems: rates add, times don't.",
+        "Together-time equation: $\\tfrac{1}{a} + \\tfrac{1}{b} = \\tfrac{1}{t}$. Painter (6h) + helper (3h): $\\tfrac16 + \\tfrac13 = \\tfrac12$ → together $t = 2$ hours.",
+        "The same algebra answers harder questions: pipes filling tanks, two printers on one stack, one worker quitting early — set up rates, multiply by the LCD, solve, sanity-check.",
+        "Sanity anchor: the together-time is always LESS than the fastest worker's solo time (more hands, faster job) — but never less than half of it when there are two workers."
+      ],
+      "keyIdea": "Rate = 1/time. Rates add: 1/a + 1/b = 1/t. Clear the LCD and solve — then sanity-check the time.",
+      "facts": [
+        {
+          "title": "Rate conversion",
+          "latex": "t \\text{ hours per job} \\Rightarrow \\tfrac{1}{t} \\text{ jobs per hour}",
+          "explanation": "Flip time into rate."
+        },
+        {
+          "title": "Together",
+          "latex": "\\tfrac{1}{a} + \\tfrac{1}{b} = \\tfrac{1}{t}",
+          "explanation": "Add the rates, not the times."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "re6-we1",
+          "statement": "A painter takes 6 h, a helper 3 h. How long together?",
+          "solution": "$\\tfrac16 + \\tfrac13 = \\tfrac12$ → 2 hours. (Faster than either alone ✓.)",
+          "check": [
+            "Rational(1,6) + Rational(1,3) == Rational(1,2)"
+          ]
+        },
+        {
+          "id": "re6-we2",
+          "statement": "Pipe A fills a tank in 4 h; pipe B in 12 h. Both open: how long?",
+          "solution": "$\\tfrac14 + \\tfrac{1}{12} = \\tfrac{3+1}{12} = \\tfrac13$ → 3 hours.",
+          "check": [
+            "Rational(1,4) + Rational(1,12) == Rational(1,3)"
+          ]
+        },
+        {
+          "id": "re6-we3",
+          "statement": "Two printers finish a stack together in 4 h. Alone, printer A takes 6 h. How long for B alone?",
+          "solution": "$\\tfrac16 + \\tfrac1b = \\tfrac14$ → $\\tfrac1b = \\tfrac{3-2}{12} = \\tfrac{1}{12}$ → 12 hours.",
+          "check": [
+            "Rational(1,6) + Rational(1,12) == Rational(1,4)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding the TIMES: \"6 h + 3 h = 9 h together\".",
+          "correction": "More workers must be FASTER, not slower. Convert to rates ($\\tfrac16 + \\tfrac13$ jobs/hour), add those, then flip back to time.",
+          "authored": true
+        },
+        {
+          "text": "Averaging the times: \"(6+3)/2 = 4.5 h together\".",
+          "correction": "Also wrong — the answer (2 h) is faster than BOTH solo times divided kindly. Only rates add; times obey no simple average.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "re6-t1",
+          "statement": "One hose fills a pool in 10 h, another in 15 h. Together?",
+          "solution": "$\\tfrac{1}{10} + \\tfrac{1}{15} = \\tfrac{3+2}{30} = \\tfrac16$ → 6 hours.",
+          "check": [
+            "Rational(1,10) + Rational(1,15) == Rational(1,6)"
+          ]
+        },
+        {
+          "id": "re6-t2",
+          "statement": "Together in 6 h; worker A alone takes 10 h. Worker B alone?",
+          "solution": "$\\tfrac1b = \\tfrac16 - \\tfrac{1}{10} = \\tfrac{5-3}{30} = \\tfrac{1}{15}$ → 15 hours.",
+          "check": [
+            "Rational(1,10) + Rational(1,15) == Rational(1,6)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The wrong instinct",
+            "title": "Times don't add",
+            "beats": [
+              "Painter: 6 h solo. Helper: 3 h solo.",
+              "Together \"$6+3 = 9$ h\"? Then helping SLOWS you. No.",
+              "Average, \"$4.5$ h\"? Still slower than the helper alone. No.",
+              "The fix: stop adding times. Add **rates**."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Flip to rates",
+            "title": "Jobs per hour",
+            "beats": [
+              "6 h per house → $\\tfrac16$ house per hour.",
+              "3 h per house → $\\tfrac13$ house per hour.",
+              "Together: $\\tfrac16 + \\tfrac13 = \\tfrac{1+2}{6} = \\tfrac12$ house/hour.",
+              "Half a house each hour → the whole house in **2 h**. ✓"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Rates add",
+            "prompt": "One pipe fills a tank in 4 h, another in 12 h. Together they fill per hour…",
+            "options": [
+              "$\\tfrac13$ of the tank",
+              "$\\tfrac{1}{16}$ of the tank",
+              "$\\tfrac{1}{8}$ of the tank"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tfrac14 + \\tfrac{1}{12} = \\tfrac{3+1}{12} = \\tfrac13$ per hour → 3 hours total.",
+            "check": [
+              "Rational(1,4) + Rational(1,12) == Rational(1,3)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The general equation",
+            "title": "1/a + 1/b = 1/t",
+            "beats": [
+              "Solo times $a$ and $b$, together-time $t$:",
+              "$\\tfrac1a + \\tfrac1b = \\tfrac1t$ — a rational equation!",
+              "Unknown $t$? Clear the LCD $abt$ and solve.",
+              "Unknown worker? Same equation, solve for $a$ or $b$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Backwards problem",
+            "title": "Find the mystery worker",
+            "prompt": "Together: 4 h. Worker A alone: 6 h. Worker B alone takes…",
+            "options": [
+              "$12$ h",
+              "$2$ h",
+              "$10$ h"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tfrac1b = \\tfrac14 - \\tfrac16 = \\tfrac{3-2}{12} = \\tfrac{1}{12}$ → 12 h. (Slower than A — that's why together isn't much faster than A alone.)",
+            "check": [
+              "Rational(1,4) - Rational(1,6) == Rational(1,12)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Rates in the wild",
+            "intro": "Flip to rates; clear the LCD; flip back.",
+            "examples": [
+              {
+                "prompt": "Hose A fills a pool in 8 h, hose B in 24 h. Together?",
+                "steps": [
+                  "$\\tfrac18 + \\tfrac{1}{24} = \\tfrac{3+1}{24} = \\tfrac{4}{24} = \\tfrac16$.",
+                  "Together: 6 hours."
+                ],
+                "answer": "6 h",
+                "check": [
+                  "Rational(1,8) + Rational(1,24) == Rational(1,6)"
+                ]
+              },
+              {
+                "prompt": "A drain empties a full tank in 12 h while a pipe fills it in 6 h. Both open on an empty tank: how long to fill?",
+                "steps": [
+                  "Fill rate $\\tfrac16$, drain rate $-\\tfrac{1}{12}$.",
+                  "Net: $\\tfrac16 - \\tfrac{1}{12} = \\tfrac{1}{12}$ per hour.",
+                  "Fills in 12 hours."
+                ],
+                "answer": "12 h",
+                "check": [
+                  "Rational(1,6) - Rational(1,12) == Rational(1,12)"
+                ]
+              },
+              {
+                "prompt": "Two friends rake a yard together in 2 h. Alone, one takes 6 h. The other alone?",
+                "steps": [
+                  "$\\tfrac1b = \\tfrac12 - \\tfrac16 = \\tfrac{3-1}{6} = \\tfrac13$.",
+                  "3 hours."
+                ],
+                "answer": "3 h",
+                "check": [
+                  "Rational(1,2) - Rational(1,6) == Rational(1,3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Rate-craft",
+            "intro": "Rates add; drains subtract; times flip.",
+            "problems": [
+              {
+                "prompt": "Printers at 9 h and 18 h solo. Together?",
+                "options": [
+                  "$6$ h",
+                  "$13.5$ h",
+                  "$27$ h"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac19 + \\tfrac{1}{18} = \\tfrac{2+1}{18} = \\tfrac16$ → 6 h.",
+                "check": [
+                  "Rational(1,9) + Rational(1,18) == Rational(1,6)"
+                ]
+              },
+              {
+                "prompt": "A sanity check on any two-worker problem: the together-time must be…",
+                "options": [
+                  "less than the faster solo time",
+                  "between the two solo times",
+                  "the average of the solo times"
+                ],
+                "correctIndex": 0,
+                "explanation": "Adding a second pair of hands can only speed things up — together beats even the fastest worker alone.",
+                "check": [
+                  "2 < 3",
+                  "Rational(1,6) + Rational(1,3) == Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "Filling pipe: 5 h. Drain: 20 h. Both open from empty — the tank fills in…",
+                "options": [
+                  "$\\tfrac{20}{3}$ h",
+                  "$4$ h",
+                  "never"
+                ],
+                "correctIndex": 0,
+                "explanation": "Net rate $\\tfrac15 - \\tfrac{1}{20} = \\tfrac{4-1}{20} = \\tfrac{3}{20}$ → $t = \\tfrac{20}{3}$ h ≈ 6 h 40 min.",
+                "check": [
+                  "Rational(1,5) - Rational(1,20) == Rational(3,20)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The harmonic mean",
+            "body": "The together-time for equal-ish workers is governed by the **harmonic mean** — the same average that rules round-trip speeds, parallel resistors in electronics, and camera f-stops. Engineers add $\\tfrac{1}{R_1} + \\tfrac{1}{R_2}$ for circuits exactly the way you just added painter rates. One fraction pattern, half of physics."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Time $t$ → rate $\\tfrac1t$; rates add, times never do.",
+              "$\\tfrac1a + \\tfrac1b = \\tfrac1t$ — clear the LCD and solve for anything.",
+              "Drains subtract; together-time beats the fastest solo time."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "re-pr1",
+      "statement": "Evaluate $\\frac{x-2}{x+3}$ at $x = 7$.",
+      "solution": "$\\tfrac{5}{10} = \\tfrac12$.",
+      "check": [
+        "(7-2)/(7+3) == Rational(1,2)"
+      ]
+    },
+    {
+      "id": "re-pr2",
+      "statement": "Excluded values of $\\frac{x+5}{x^2-9}$?",
+      "solution": "$(x+3)(x-3)$: $x = \\pm 3$.",
+      "check": [
+        "3**2 - 9 == 0",
+        "(-3)**2 - 9 == 0"
+      ]
+    },
+    {
+      "id": "re-pr3",
+      "statement": "Simplify $\\frac{4x+20}{4x}$.",
+      "solution": "$\\tfrac{4(x+5)}{4x} = \\tfrac{x+5}{x}$.",
+      "check": [
+        "(4*5+20)/(4*5) == (5+5)/5"
+      ]
+    },
+    {
+      "id": "re-pr4",
+      "statement": "Simplify $\\frac{x^2-36}{x+6}$.",
+      "solution": "$(x+6)(x-6)$ over $(x+6)$: $x - 6$.",
+      "check": [
+        "(2**2-36)/(2+6) == 2-6"
+      ]
+    },
+    {
+      "id": "re-pr5",
+      "statement": "Multiply $\\frac{x^2-4}{3x} \\cdot \\frac{6x}{x-2}$.",
+      "solution": "$\\tfrac{(x+2)(x-2)}{3x} \\cdot \\tfrac{6x}{x-2} = 2(x+2)$.",
+      "check": [
+        "(3**2-4)/(3*3) * (6*3)/(3-2) == 2*(3+2)"
+      ]
+    },
+    {
+      "id": "re-pr6",
+      "statement": "Divide $\\frac{x+1}{4} \\div \\frac{x+1}{8}$.",
+      "solution": "$\\tfrac{x+1}{4} \\cdot \\tfrac{8}{x+1} = 2$.",
+      "check": [
+        "(5+1)/4 * 8/(5+1) == 2"
+      ]
+    },
+    {
+      "id": "re-pr7",
+      "statement": "Add $\\frac{2}{x} + \\frac{5}{2x}$.",
+      "solution": "LCD $2x$: $\\tfrac{4+5}{2x} = \\tfrac{9}{2x}$.",
+      "check": [
+        "2/3 + 5/(2*3) == 9/(2*3)"
+      ]
+    },
+    {
+      "id": "re-pr8",
+      "statement": "Subtract $\\frac{4x}{x+1} - \\frac{x-3}{x+1}$.",
+      "solution": "$\\tfrac{4x-(x-3)}{x+1} = \\tfrac{3x+3}{x+1} = 3$.",
+      "check": [
+        "(4*2)/(2+1) - (2-3)/(2+1) == 3"
+      ]
+    },
+    {
+      "id": "re-pr9",
+      "statement": "Solve $\\frac{2}{x} + 1 = \\frac{7}{3}$.",
+      "solution": "LCD $3x$: $6 + 3x = 7x$ → $x = \\tfrac32$. Check: $\\tfrac{2}{3/2} + 1 = \\tfrac43 + 1 = \\tfrac73$ ✓.",
+      "check": [
+        "2/Rational(3,2) + 1 == Rational(7,3)"
+      ]
+    },
+    {
+      "id": "re-pr10",
+      "statement": "Two hoses: 6 h and 12 h solo. Together?",
+      "solution": "$\\tfrac16 + \\tfrac{1}{12} = \\tfrac{2+1}{12} = \\tfrac14$ → 4 hours.",
+      "check": [
+        "Rational(1,6) + Rational(1,12) == Rational(1,4)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "re-ty1",
+      "statement": "Evaluate $\\frac{x^2-1}{x+3}$ at $x = 2$, and give the excluded value.",
+      "solution": "$\\tfrac{3}{5}$; excluded $x = -3$.",
+      "check": [
+        "(2**2-1)/(2+3) == Rational(3,5)",
+        "-3 + 3 == 0"
+      ]
+    },
+    {
+      "id": "re-ty2",
+      "statement": "Simplify $\\frac{x^2+6x+8}{x^2-4}$.",
+      "solution": "$\\tfrac{(x+2)(x+4)}{(x+2)(x-2)} = \\tfrac{x+4}{x-2}$.",
+      "check": [
+        "(1**2+6*1+8)/(1**2-4) == (1+4)/(1-2)",
+        "(3**2+6*3+8)/(3**2-4) == (3+4)/(3-2)"
+      ]
+    },
+    {
+      "id": "re-ty3",
+      "statement": "Multiply $\\frac{x^2-x}{4} \\cdot \\frac{8}{x}$.",
+      "solution": "$\\tfrac{x(x-1)}{4} \\cdot \\tfrac{8}{x} = 2(x-1)$.",
+      "check": [
+        "(5**2-5)/4 * 8/5 == 2*(5-1)"
+      ]
+    },
+    {
+      "id": "re-ty4",
+      "statement": "Divide $\\frac{x^2-25}{x} \\div \\frac{x-5}{2x}$.",
+      "solution": "$\\tfrac{(x+5)(x-5)}{x} \\cdot \\tfrac{2x}{x-5} = 2(x+5)$.",
+      "check": [
+        "(3**2-25)/3 / ((3-5)/(2*3)) == 2*(3+5)"
+      ]
+    },
+    {
+      "id": "re-ty5",
+      "statement": "Add $\\frac{3}{x+2} + \\frac{1}{x}$.",
+      "solution": "LCD $x(x+2)$: $\\tfrac{3x + x + 2}{x(x+2)} = \\tfrac{4x+2}{x(x+2)}$.",
+      "check": [
+        "3/(2+2) + 1/2 == (4*2+2)/(2*(2+2))"
+      ]
+    },
+    {
+      "id": "re-ty6",
+      "statement": "Solve $\\frac{x}{x-2} = \\frac{2}{x-2} + 5$, or say why it can't be solved.",
+      "solution": "Clear: $x = 2 + 5(x-2)$ → $x = 2$. Excluded → extraneous. No solution.",
+      "check": [
+        "2 + 5*(2-2) == 2",
+        "2 - 2 == 0"
+      ]
+    },
+    {
+      "id": "re-ty7",
+      "statement": "Working together, two crews pave a road in 6 h. The faster crew alone takes 9 h. The slower alone?",
+      "solution": "$\\tfrac1b = \\tfrac16 - \\tfrac19 = \\tfrac{3-2}{18} = \\tfrac{1}{18}$ → 18 hours.",
+      "check": [
+        "Rational(1,9) + Rational(1,18) == Rational(1,6)"
+      ]
+    }
+  ]
+}
