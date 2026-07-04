@@ -67,6 +67,8 @@ import linearEquations from "@/data/genmath/8/linear-equations.json";
 import linearFunctions from "@/data/genmath/8/linear-functions.json";
 import systemsOfEquations from "@/data/genmath/8/systems-of-linear-equations.json";
 import scatterPlots from "@/data/genmath/8/scatter-plots-and-bivariate-data.json";
+// Grade 10 topic JSON imports (added as each topic is authored + published).
+import polynomialsAndFactoring from "@/data/genmath/10/polynomials-and-factoring.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -152,6 +154,55 @@ export const GRADE8_SPINE: GradeSpineEntry[] = [
   },
 ];
 
+export const GRADE10_SPINE: GradeSpineEntry[] = [
+  {
+    slug: "polynomials-and-factoring",
+    title: "Polynomials & Factoring",
+    blurb: "Terms, degree, and standard form; adding, subtracting, and multiplying polynomials; factoring from GCF to trinomials — and solving by the zero product.",
+    live: true,
+  },
+  {
+    slug: "quadratic-equations",
+    title: "Quadratic Equations",
+    blurb: "Solving by factoring, square roots, completing the square, and the quadratic formula — plus the discriminant.",
+    live: false,
+  },
+  {
+    slug: "quadratic-functions",
+    title: "Quadratic Functions & Parabolas",
+    blurb: "Graphs of y = ax² + bx + c: vertex, axis of symmetry, transformations, and max/min word problems.",
+    live: false,
+  },
+  {
+    slug: "rational-expressions",
+    title: "Rational Expressions & Equations",
+    blurb: "Simplifying, multiplying, and adding algebraic fractions; solving rational equations and spotting excluded values.",
+    live: false,
+  },
+  {
+    slug: "radicals-and-rational-exponents",
+    title: "Radicals & Rational Exponents",
+    blurb: "Operations with radicals, rationalizing, fractional exponents, and solving radical equations.",
+    live: false,
+  },
+  {
+    slug: "exponential-functions",
+    title: "Exponential Functions & Growth",
+    blurb: "y = a·bˣ: growth and decay, compound interest, and how exponentials outrun every line.",
+    live: false,
+  },
+  {
+    slug: "probability-and-counting",
+    title: "Probability & Counting",
+    blurb: "Counting principles, permutations and combinations, and probability of compound events.",
+    live: false,
+  },
+];
+
+const grade10Topics: GenMathTopic[] = [
+  polynomialsAndFactoring as GenMathTopic,
+];
+
 const grade8Topics: GenMathTopic[] = [
   realNumberSystem as GenMathTopic,
   exponentsScientific as GenMathTopic,
@@ -164,7 +215,7 @@ const grade8Topics: GenMathTopic[] = [
 
 // Every authored General-Math topic across grades. Topic slugs are unique
 // across grades, so slug lookups stay unambiguous.
-const allGenMathTopics: GenMathTopic[] = [...grade6Topics, ...grade8Topics];
+const allGenMathTopics: GenMathTopic[] = [...grade6Topics, ...grade8Topics, ...grade10Topics];
 
 // ---------------------------------------------------------------------------
 // Public API
@@ -175,7 +226,7 @@ const ALL_GRADES: GradeInfo[] = [
   { grade: 7, active: false },
   { grade: 8, active: true },
   { grade: 9, active: false },
-  { grade: 10, active: false },
+  { grade: 10, active: true },
   { grade: 11, active: false },
   { grade: 12, active: false },
 ];
@@ -194,6 +245,14 @@ export function getGrade8Topics(): GenMathTopic[] {
 
 export function getGrade8Spine(): GradeSpineEntry[] {
   return GRADE8_SPINE;
+}
+
+export function getGrade10Topics(): GenMathTopic[] {
+  return grade10Topics;
+}
+
+export function getGrade10Spine(): GradeSpineEntry[] {
+  return GRADE10_SPINE;
 }
 
 export function getGenMathTopic(topicSlug: string): GenMathTopic | null {

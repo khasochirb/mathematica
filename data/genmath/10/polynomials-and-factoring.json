@@ -1,0 +1,1523 @@
+{
+  "slug": "polynomials-and-factoring",
+  "title": "Polynomials & Factoring",
+  "grade": 10,
+  "blurb": "Terms, degree, and standard form; adding, subtracting, and multiplying polynomials; factoring from GCF to trinomials — and solving by the zero product.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "meet-the-polynomials",
+      "title": "Meet the Polynomials",
+      "concreteComparison": "A box's volume might be $x^3$, its surface might involve $x^2$, its edges $x$ — and a flat fee tacks on a constant. Add such pieces and you get expressions like $x^3 + 6x^2 - 2x + 7$: a **polynomial**. They're the workhorses of algebra — every quadratic you'll solve this year, every parabola you'll graph, is one of these.",
+      "objective": "Name a polynomial's terms, coefficients, and degree; write polynomials in standard form; and classify by degree and term count.",
+      "concept": [
+        "A **polynomial** is a sum of **terms**, each a number times a whole-number power of $x$: $3x^2 - 5x + 7$ has terms $3x^2$, $-5x$, $7$. The numbers $3, -5, 7$ are **coefficients**.",
+        "The **degree** is the highest power: $3x^2-5x+7$ has degree $2$ (a **quadratic**). Degree 1 is **linear**, degree 3 **cubic**; a lone constant has degree 0.",
+        "**Standard form** orders terms by falling degree: $7 - 5x + 3x^2$ becomes $3x^2 - 5x + 7$. The first coefficient ($3$) is the **leading coefficient**.",
+        "Counting terms: 1 term = monomial, 2 = binomial, 3 = trinomial. And evaluation is just substitution: $3x^2-5x+7$ at $x=2$ is $3(4)-10+7=9$."
+      ],
+      "keyIdea": "Polynomial = sum of coefficient·xⁿ terms; degree = highest power; standard form = falling powers.",
+      "facts": [
+        {
+          "title": "Degree names",
+          "latex": "1 linear · 2 quadratic · 3 cubic",
+          "explanation": "The highest power names it."
+        },
+        {
+          "title": "Term names",
+          "latex": "1 monomial · 2 binomial · 3 trinomial",
+          "explanation": "Count the terms."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pf1-we1",
+          "statement": "Evaluate $3x^2 - 5x + 7$ at $x = 2$.",
+          "solution": "$3(4) - 10 + 7 = 9$.",
+          "check": [
+            "3*2**2 - 5*2 + 7 == 9"
+          ]
+        },
+        {
+          "id": "pf1-we2",
+          "statement": "Write $7 - 5x + 3x^2$ in standard form and give its degree and leading coefficient.",
+          "solution": "$3x^2 - 5x + 7$; degree $2$, leading coefficient $3$. (Same values at every $x$: e.g. $x=1$ gives $5$ both ways.)",
+          "check": [
+            "7 - 5*1 + 3*1**2 == 3*1**2 - 5*1 + 7",
+            "3*1**2 - 5*1 + 7 == 5"
+          ]
+        },
+        {
+          "id": "pf1-we3",
+          "statement": "Classify $4x^3 - x$ by degree and by number of terms.",
+          "solution": "Degree 3 (cubic), two terms (binomial). At $x=2$: $4(8)-2=30$.",
+          "check": [
+            "4*2**3 - 2 == 30"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Taking the degree from the FIRST term as written.",
+          "correction": "$7 + x^5$ has degree 5, not 0 — the degree is the HIGHEST power anywhere, so put it in standard form first.",
+          "authored": true
+        },
+        {
+          "text": "Dropping a term's sign when reordering.",
+          "correction": "$7 - 5x + 3x^2 \\to 3x^2 - 5x + 7$: the minus stays glued to the $5x$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pf1-t1",
+          "statement": "Evaluate $x^2 + 4x - 3$ at $x = 3$.",
+          "solution": "$9 + 12 - 3 = 18$.",
+          "check": [
+            "3**2 + 4*3 - 3 == 18"
+          ]
+        },
+        {
+          "id": "pf1-t2",
+          "statement": "Degree and leading coefficient of $5x - 2x^4 + 1$?",
+          "solution": "Standard form $-2x^4 + 5x + 1$: degree 4, leading coefficient $-2$.",
+          "check": [
+            "5*1 - 2*1**4 + 1 == 4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The cast",
+            "title": "Terms, coefficients, degree",
+            "beats": [
+              "$3x^2 - 5x + 7$: three **terms**.",
+              "Coefficients: $3$, $-5$, and the constant $7$.",
+              "**Degree** = highest power = $2$: a quadratic.",
+              "Whole-number powers only — that's the club rule."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Tidy it",
+            "title": "Standard form",
+            "beats": [
+              "$7 - 5x + 3x^2$ — legal, but scrambled.",
+              "Order by falling powers: $3x^2 - 5x + 7$.",
+              "Now the degree ($2$) leads the parade,",
+              "and $3$ is the **leading coefficient**."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the degree",
+            "prompt": "The degree of $6 + 2x^3 - x$ is…",
+            "options": [
+              "$3$",
+              "$1$",
+              "$6$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Highest power anywhere: $x^3$ → degree 3 (a cubic).",
+            "check": [
+              "6 + 2*1**3 - 1 == 7"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Plug and chug",
+            "title": "Evaluating",
+            "beats": [
+              "$3x^2 - 5x + 7$ at $x=2$:",
+              "$3(2)^2 = 12$.",
+              "$12 - 10 + 7 = 9$.",
+              "A polynomial is a machine — feed it $x$, read $y$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Name and evaluate",
+            "intro": "Standard form first; then substitute.",
+            "examples": [
+              {
+                "prompt": "Standard form, degree, and value at $x=1$ of $2x - x^3 + 5$?",
+                "steps": [
+                  "Standard: $-x^3 + 2x + 5$.",
+                  "Degree 3, leading coefficient $-1$.",
+                  "At $x=1$: $-1+2+5=6$."
+                ],
+                "answer": "$-x^3+2x+5$; degree 3; value 6",
+                "check": [
+                  "2*1 - 1**3 + 5 == 6"
+                ]
+              },
+              {
+                "prompt": "Evaluate $x^2 - 6x + 8$ at $x = 5$.",
+                "steps": [
+                  "$25 - 30 + 8$.",
+                  "$= 3$."
+                ],
+                "answer": "$3$",
+                "check": [
+                  "5**2 - 6*5 + 8 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Polynomial anatomy",
+            "intro": "Degree, form, value.",
+            "problems": [
+              {
+                "prompt": "The leading coefficient of $4 - x^2 + 3x$ (in standard form) is…",
+                "options": [
+                  "$-1$",
+                  "$4$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Standard form $-x^2 + 3x + 4$ leads with $-1$.",
+                "check": [
+                  "4 - 2**2 + 3*2 == -2**2 + 3*2 + 4"
+                ]
+              },
+              {
+                "prompt": "$x^2 + 2x - 15$ at $x = 4$ equals…",
+                "options": [
+                  "$9$",
+                  "$1$",
+                  "$17$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$16 + 8 - 15 = 9$.",
+                "check": [
+                  "4**2 + 2*4 - 15 == 9"
+                ]
+              },
+              {
+                "prompt": "$5x^2 - 2x + 1$ is a…",
+                "options": [
+                  "quadratic trinomial",
+                  "cubic binomial",
+                  "linear monomial"
+                ],
+                "correctIndex": 0,
+                "explanation": "Degree 2 (quadratic), three terms (trinomial).",
+                "check": [
+                  "5*1**2 - 2*1 + 1 == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why “polynomial”?",
+            "body": "Greek **poly** (many) + Latin **nomen** (name/term): “many terms.” The family is ancient — Babylonian scribes solved quadratics on clay 4,000 years ago — but the tidy notation you're using is barely 400 years old. You write algebra more clearly than Newton did as a student."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Terms, coefficients, and degree name the polynomial.",
+              "Standard form: powers falling left to right.",
+              "Evaluate by substituting — a machine like any function."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "adding-and-subtracting-polynomials",
+      "title": "Adding & Subtracting Polynomials",
+      "concreteComparison": "Two food stalls tally their day: stall one made $2x^2+3x-5$ tugriks (where $x$ is the hour count), stall two made $x^2-x+2$. The combined haul? Just merge the like pieces: the $x^2$s together, the $x$s together, the constants together — $3x^2+2x-3$. Polynomials add the way coins do: sort by denomination first.",
+      "objective": "Add and subtract polynomials by combining like terms — and distribute the minus through every term when subtracting.",
+      "concept": [
+        "**Like terms** share the exact same power of $x$: $2x^2$ and $x^2$ combine; $2x^2$ and $3x$ never do.",
+        "**Adding**: group like powers and add coefficients. $(2x^2+3x-5) + (x^2-x+2) = 3x^2+2x-3$.",
+        "**Subtracting**: the minus hits EVERY term of the second polynomial. $(2x^2+3x-5) - (x^2-x+2) = 2x^2+3x-5-x^2+x-2 = x^2+4x-7$.",
+        "Sanity-check with a number: at $x=4$, the originals give $39$ and $14$; the sum $3x^2+2x-3$ gives $53 = 39+14$ ✓."
+      ],
+      "keyIdea": "Sort by power, combine coefficients; subtraction distributes the minus to every term.",
+      "facts": [
+        {
+          "title": "Like terms only",
+          "latex": "$2x^2 + x^2 = 3x^2$",
+          "explanation": "Same power combines."
+        },
+        {
+          "title": "Minus hits all",
+          "latex": "$-(x^2 - x + 2) = -x^2 + x - 2$",
+          "explanation": "Every sign flips."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pf2-we1",
+          "statement": "Add $(2x^2+3x-5) + (x^2-x+2)$.",
+          "solution": "$3x^2+2x-3$. Check at $x=4$: $39+14=53$ ✓.",
+          "check": [
+            "(2*4**2+3*4-5) + (4**2-4+2) == 3*4**2+2*4-3"
+          ]
+        },
+        {
+          "id": "pf2-we2",
+          "statement": "Subtract $(2x^2+3x-5) - (x^2-x+2)$.",
+          "solution": "Distribute the minus: $x^2+4x-7$. Check at $x=4$: $39-14=25$ ✓.",
+          "check": [
+            "(2*4**2+3*4-5) - (4**2-4+2) == 4**2+4*4-7"
+          ]
+        },
+        {
+          "id": "pf2-we3",
+          "statement": "Add $(x^3+2x) + (4x^3-x+6)$.",
+          "solution": "$5x^3+x+6$. Check at $x=2$: $12+36=48$ ✓.",
+          "check": [
+            "(2**3+2*2) + (4*2**3-2+6) == 5*2**3+2+6"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Combining unlike powers: $2x^2 + 3x = 5x^2$.",
+          "correction": "$x^2$ and $x$ are different denominations — they sit side by side, uncombined.",
+          "authored": true
+        },
+        {
+          "text": "Flipping only the first sign when subtracting.",
+          "correction": "$-(x^2 - x + 2)$ becomes $-x^2 + x - 2$ — all three signs flip, not just the first.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pf2-t1",
+          "statement": "Add $(3x^2 - x + 4) + (2x^2 + 5x - 1)$.",
+          "solution": "$5x^2 + 4x + 3$. (At $x=2$: $14+17=31$ ✓.)",
+          "check": [
+            "(3*2**2 - 2 + 4) + (2*2**2 + 5*2 - 1) == 5*2**2 + 4*2 + 3"
+          ]
+        },
+        {
+          "id": "pf2-t2",
+          "statement": "Subtract $(5x^2 + 2x) - (3x^2 - 4x + 1)$.",
+          "solution": "$2x^2 + 6x - 1$. (At $x=3$: $51-16=35$ ✓.)",
+          "check": [
+            "(5*3**2 + 2*3) - (3*3**2 - 4*3 + 1) == 2*3**2 + 6*3 - 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Sort the coins",
+            "title": "Like terms combine",
+            "beats": [
+              "$2x^2$ and $x^2$: same power — combine to $3x^2$.",
+              "$3x$ and $-x$: combine to $2x$.",
+              "$-5$ and $+2$: combine to $-3$.",
+              "$x^2$ with $x$? Different denominations. Never."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Combine",
+            "prompt": "$(2x^2+3x-5) + (x^2-x+2) =$ …",
+            "options": [
+              "$3x^2+2x-3$",
+              "$3x^2+4x-3$",
+              "$3x^4+2x-3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Powers stay put; coefficients add: $3x^2 + 2x - 3$.",
+            "check": [
+              "(2*4**2+3*4-5) + (4**2-4+2) == 3*4**2+2*4-3"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The dangerous minus",
+            "title": "Subtracting",
+            "beats": [
+              "$(2x^2+3x-5) - (x^2-x+2)$:",
+              "the minus hits ALL of $x^2$, $-x$, and $+2$.",
+              "$2x^2+3x-5-x^2+x-2$.",
+              "$= x^2+4x-7$. Three flips, not one."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Merge the polynomials",
+            "intro": "Group by power; watch subtraction signs.",
+            "examples": [
+              {
+                "prompt": "Add $(x^2+6x+1) + (4x^2-2x+3)$.",
+                "steps": [
+                  "$x^2+4x^2 = 5x^2$.",
+                  "$6x-2x = 4x$; $1+3=4$.",
+                  "$5x^2+4x+4$."
+                ],
+                "answer": "$5x^2+4x+4$",
+                "check": [
+                  "(3**2+6*3+1) + (4*3**2-2*3+3) == 5*3**2+4*3+4"
+                ]
+              },
+              {
+                "prompt": "Subtract $(4x^2+x+6) - (x^2+3x-2)$.",
+                "steps": [
+                  "Flip all: $-x^2-3x+2$.",
+                  "$4x^2-x^2=3x^2$; $x-3x=-2x$; $6+2=8$.",
+                  "$3x^2-2x+8$."
+                ],
+                "answer": "$3x^2-2x+8$",
+                "check": [
+                  "(4*2**2+2+6) - (2**2+3*2-2) == 3*2**2-2*2+8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Add and subtract",
+            "intro": "Denominations first; minus flips everything.",
+            "problems": [
+              {
+                "prompt": "$(x^2+2x) + (3x^2-2x+7) =$",
+                "options": [
+                  "$4x^2+7$",
+                  "$4x^2+4x+7$",
+                  "$3x^4+7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x^2+3x^2=4x^2$; $2x-2x=0$; $+7$.",
+                "check": [
+                  "(5**2+2*5) + (3*5**2-2*5+7) == 4*5**2+7"
+                ]
+              },
+              {
+                "prompt": "$(2x^2+5) - (x^2-3) =$",
+                "options": [
+                  "$x^2+8$",
+                  "$x^2+2$",
+                  "$3x^2+2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2x^2-x^2=x^2$; $5-(-3)=8$.",
+                "check": [
+                  "(2*3**2+5) - (3**2-3) == 3**2+8"
+                ]
+              },
+              {
+                "prompt": "$(6x-1) - (2x+4) =$",
+                "options": [
+                  "$4x-5$",
+                  "$4x+3$",
+                  "$8x+3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6x-2x=4x$; $-1-4=-5$.",
+                "check": [
+                  "(6*7-1) - (2*7+4) == 4*7-5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The substitution lie detector",
+            "body": "Not sure your algebra is right? Feed both sides a number. If $(2x^2+3x-5)+(x^2-x+2)$ really equals $3x^2+2x-3$, they must agree at EVERY $x$ — so try $x=4$: $39+14=53$ ✓. One mismatch and you've caught a mistake. This platform machine-checks every answer exactly this way."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Combine like powers; coefficients add.",
+              "Subtraction flips EVERY sign in the second polynomial.",
+              "Spot-check with a number — algebra can't hide."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "multiplying-polynomials",
+      "title": "Multiplying Polynomials",
+      "concreteComparison": "A garden is $x+2$ meters by $x+3$ meters. Its area isn't $x^2+6$ — picture the plot cut into four patches: $x\\cdot x$, $x\\cdot 3$, $2\\cdot x$, and $2\\cdot 3$. Add them: $x^2+5x+6$. Multiplying binomials is just the area of a rectangle, patch by patch — every term shakes hands with every term.",
+      "objective": "Multiply a monomial into a polynomial and multiply binomials (every-term-by-every-term), collecting like terms.",
+      "concept": [
+        "**Monomial × polynomial**: distribute. $3x(x+2) = 3x^2 + 6x$.",
+        "**Binomial × binomial**: EVERY term of the first multiplies EVERY term of the second — four products. $(x+2)(x+3) = x^2 + 3x + 2x + 6 = x^2+5x+6$.",
+        "The middle terms usually merge: $3x+2x=5x$. Notice $5 = 2+3$ and $6 = 2\\cdot3$ — the shortcut behind factoring, coming two lessons from now.",
+        "Signs ride along: $(x+2)(x-5) = x^2 -5x +2x -10 = x^2 -3x -10$."
+      ],
+      "keyIdea": "Every term multiplies every term (four products for binomials); then combine the middles.",
+      "facts": [
+        {
+          "title": "The area picture",
+          "latex": "$(x+2)(x+3)$: four patches",
+          "explanation": "$x^2 + 3x + 2x + 6$."
+        },
+        {
+          "title": "The pattern",
+          "latex": "$(x+a)(x+b)=x^2+(a{+}b)x+ab$",
+          "explanation": "Sum in the middle, product at the end."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pf3-we1",
+          "statement": "Expand $3x(x+2)$.",
+          "solution": "$3x^2 + 6x$. Check at $x=4$: $3(4)(6)=72=48+24$ ✓.",
+          "check": [
+            "3*4*(4+2) == 3*4**2 + 6*4"
+          ]
+        },
+        {
+          "id": "pf3-we2",
+          "statement": "Expand $(x+2)(x+3)$.",
+          "solution": "$x^2+3x+2x+6 = x^2+5x+6$. Check at $x=4$: $6\\cdot7=42=16+20+6$ ✓.",
+          "check": [
+            "(4+2)*(4+3) == 4**2 + 5*4 + 6"
+          ]
+        },
+        {
+          "id": "pf3-we3",
+          "statement": "Expand $(x+2)(x-5)$.",
+          "solution": "$x^2-5x+2x-10 = x^2-3x-10$. Check at $x=3$: $5\\cdot(-2)=-10=9-9-10$ ✓.",
+          "check": [
+            "(3+2)*(3-5) == 3**2 - 3*3 - 10"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Multiplying only the firsts and lasts: $(x+2)(x+3)=x^2+6$.",
+          "correction": "That skips the two middle handshakes ($3x$ and $2x$). All FOUR products, always.",
+          "authored": true
+        },
+        {
+          "text": "Sign slips in the middle terms.",
+          "correction": "$(x+2)(x-5)$: the middles are $-5x$ and $+2x$, giving $-3x$ — track each product's sign separately.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pf3-t1",
+          "statement": "Expand $2x(x-4)$.",
+          "solution": "$2x^2 - 8x$. (At $x=5$: $10\\cdot1=10=50-40$ ✓.)",
+          "check": [
+            "2*5*(5-4) == 2*5**2 - 8*5"
+          ]
+        },
+        {
+          "id": "pf3-t2",
+          "statement": "Expand $(x+1)(x+6)$.",
+          "solution": "$x^2+7x+6$. (At $x=2$: $3\\cdot8=24=4+14+6$ ✓.)",
+          "check": [
+            "(2+1)*(2+6) == 2**2 + 7*2 + 6"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The garden",
+            "title": "Multiplication is area",
+            "beats": [
+              "A plot $(x+2)$ by $(x+3)$.",
+              "Slice it: an $x\\times x$ patch, an $x\\times3$ strip,",
+              "a $2\\times x$ strip, and a $2\\times3$ corner.",
+              "Total: $x^2 + 3x + 2x + 6 = x^2+5x+6$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Four handshakes",
+            "prompt": "$(x+1)(x+4) =$ …",
+            "options": [
+              "$x^2+5x+4$",
+              "$x^2+4$",
+              "$x^2+4x+4$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$x\\cdot x + x\\cdot4 + 1\\cdot x + 1\\cdot4$: the middles merge to $5x$.",
+            "check": [
+              "(3+1)*(3+4) == 3**2 + 5*3 + 4"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "With signs",
+            "title": "Careful handshakes",
+            "beats": [
+              "$(x+2)(x-5)$:",
+              "$x\\cdot x = x^2$; $x\\cdot(-5) = -5x$;",
+              "$2\\cdot x = 2x$; $2\\cdot(-5) = -10$.",
+              "$x^2 - 3x - 10$. Each sign earned."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The hidden pattern",
+            "title": "Sum and product",
+            "beats": [
+              "$(x+a)(x+b) = x^2 + (a{+}b)x + ab$.",
+              "$(x+2)(x+3)$: middle $5$ (=2+3), end $6$ (=2·3).",
+              "Remember this —",
+              "factoring will run it in REVERSE."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Expand and collect",
+            "intro": "Four products; merge the middles.",
+            "examples": [
+              {
+                "prompt": "Expand $(x+4)(x+5)$.",
+                "steps": [
+                  "$x^2 + 5x + 4x + 20$.",
+                  "Middles merge: $9x$.",
+                  "$x^2+9x+20$."
+                ],
+                "answer": "$x^2+9x+20$",
+                "check": [
+                  "(2+4)*(2+5) == 2**2 + 9*2 + 20"
+                ]
+              },
+              {
+                "prompt": "Expand $(2x+1)(x+3)$.",
+                "steps": [
+                  "$2x\\cdot x=2x^2$; $2x\\cdot3=6x$.",
+                  "$1\\cdot x=x$; $1\\cdot3=3$.",
+                  "$2x^2+7x+3$."
+                ],
+                "answer": "$2x^2+7x+3$",
+                "check": [
+                  "(2*4+1)*(4+3) == 2*4**2 + 7*4 + 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Expand",
+            "intro": "Every term shakes every hand.",
+            "problems": [
+              {
+                "prompt": "$(x+3)(x+7) =$",
+                "options": [
+                  "$x^2+10x+21$",
+                  "$x^2+21x+10$",
+                  "$x^2+21$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Middle $3+7=10$; end $3\\cdot7=21$.",
+                "check": [
+                  "(2+3)*(2+7) == 2**2 + 10*2 + 21"
+                ]
+              },
+              {
+                "prompt": "$(x-2)(x+6) =$",
+                "options": [
+                  "$x^2+4x-12$",
+                  "$x^2-4x-12$",
+                  "$x^2+4x+12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Middles: $6x-2x=+4x$; end $-12$.",
+                "check": [
+                  "(5-2)*(5+6) == 5**2 + 4*5 - 12"
+                ]
+              },
+              {
+                "prompt": "$4x(2x-3) =$",
+                "options": [
+                  "$8x^2-12x$",
+                  "$8x^2-3$",
+                  "$6x^2-12x$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Distribute: $4x\\cdot2x=8x^2$, $4x\\cdot(-3)=-12x$.",
+                "check": [
+                  "4*2*(2*2-3) == 8*2**2 - 12*2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "FOIL is just a mnemonic",
+            "body": "Firsts, Outers, Inners, Lasts — FOIL — names the four binomial handshakes. But the AREA picture is mightier: it survives trinomials, where FOIL breaks down and the garden simply grows more patches. Understand the plot, not the acronym."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Distribute: every term × every term.",
+              "$(x+a)(x+b)=x^2+(a{+}b)x+ab$ — sum middle, product end.",
+              "Signs travel with their terms through every product."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "special-products",
+      "title": "Special Products",
+      "concreteComparison": "Two multiplications appear so often they deserve reflexes. Square a binomial — $(x+3)^2$ — and a middle term ALWAYS shows up: $x^2+6x+9$, never $x^2+9$. Multiply conjugates — $(x+3)(x-3)$ — and the middles annihilate: $x^2-9$, clean. These two patterns power mental math, factoring, and half of the algebra ahead.",
+      "objective": "Expand squares of binomials $(a\\pm b)^2$ and conjugate products $(a+b)(a-b)$ instantly — and never drop the middle term.",
+      "concept": [
+        "**Square of a sum**: $(a+b)^2 = a^2 + 2ab + b^2$. The middle term $2ab$ is the two cross-handshakes: $(x+3)^2 = x^2+6x+9$.",
+        "**Square of a difference**: $(a-b)^2 = a^2 - 2ab + b^2$. Only the middle goes negative: $(x-4)^2 = x^2-8x+16$.",
+        "**Conjugates** (same terms, opposite sign): $(a+b)(a-b) = a^2 - b^2$. The middles cancel: $(x+3)(x-3) = x^2-9$ — the **difference of squares**.",
+        "Mental-math bonus: $21\\cdot19 = (20+1)(20-1) = 400-1 = 399$."
+      ],
+      "keyIdea": "$(a\\pm b)^2 = a^2 \\pm 2ab + b^2$ (middle never vanishes); $(a+b)(a-b) = a^2-b^2$ (middle always vanishes).",
+      "facts": [
+        {
+          "title": "Perfect square",
+          "latex": "$(a+b)^2 = a^2+2ab+b^2$",
+          "explanation": "The middle term is mandatory."
+        },
+        {
+          "title": "Conjugates",
+          "latex": "$(a+b)(a-b) = a^2-b^2$",
+          "explanation": "Middles cancel exactly."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pf4-we1",
+          "statement": "Expand $(x+3)^2$.",
+          "solution": "$x^2 + 6x + 9$. Check at $x=5$: $8^2=64=25+30+9$ ✓.",
+          "check": [
+            "(5+3)**2 == 5**2 + 6*5 + 9"
+          ]
+        },
+        {
+          "id": "pf4-we2",
+          "statement": "Expand $(x-4)^2$.",
+          "solution": "$x^2 - 8x + 16$. Check at $x=6$: $2^2=4=36-48+16$ ✓.",
+          "check": [
+            "(6-4)**2 == 6**2 - 8*6 + 16"
+          ]
+        },
+        {
+          "id": "pf4-we3",
+          "statement": "Expand $(x+3)(x-3)$ — and compute $21\\cdot19$ the clever way.",
+          "solution": "$x^2-9$; and $21\\cdot19=(20+1)(20-1)=400-1=399$.",
+          "check": [
+            "(7+3)*(7-3) == 7**2 - 9",
+            "21*19 == 20**2 - 1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "The classic: $(x+3)^2 = x^2 + 9$.",
+          "correction": "Squaring is NOT distributable over +. The middle $2\\cdot3\\cdot x = 6x$ always appears: $x^2+6x+9$. (Test $x=1$: $16 \\neq 10$.)",
+          "authored": true
+        },
+        {
+          "text": "Giving conjugates a middle term.",
+          "correction": "$(x+3)(x-3)$ has middles $-3x+3x=0$ — the answer is exactly $x^2-9$, nothing between.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pf4-t1",
+          "statement": "Expand $(x+5)^2$.",
+          "solution": "$x^2+10x+25$. (At $x=2$: $49=4+20+25$ ✓.)",
+          "check": [
+            "(2+5)**2 == 2**2 + 10*2 + 25"
+          ]
+        },
+        {
+          "id": "pf4-t2",
+          "statement": "Expand $(x+6)(x-6)$.",
+          "solution": "$x^2-36$. (At $x=8$: $14\\cdot2=28=64-36$ ✓.)",
+          "check": [
+            "(8+6)*(8-6) == 8**2 - 36"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The square",
+            "title": "Where the middle comes from",
+            "beats": [
+              "$(x+3)^2 = (x+3)(x+3)$: four handshakes.",
+              "$x^2$, then $3x$, then $3x$ again, then $9$.",
+              "TWO middle handshakes: $2\\cdot3x = 6x$.",
+              "$(a+b)^2 = a^2 + 2ab + b^2$. Always three terms."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "No shortcuts",
+            "prompt": "$(x+4)^2 =$ …",
+            "options": [
+              "$x^2+8x+16$",
+              "$x^2+16$",
+              "$x^2+4x+16$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The middle is $2\\cdot4\\cdot x = 8x$ — squaring never skips it.",
+            "check": [
+              "(3+4)**2 == 3**2 + 8*3 + 16"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The vanishing act",
+            "title": "Conjugates",
+            "beats": [
+              "$(x+3)(x-3)$: middles are $-3x$ and $+3x$.",
+              "They cancel — completely.",
+              "$(a+b)(a-b) = a^2 - b^2$.",
+              "The **difference of squares**: two terms only."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Party trick",
+            "title": "Fast mental math",
+            "beats": [
+              "$21 \\cdot 19 = (20+1)(20-1)$.",
+              "$= 400 - 1 = 399$. Instantly.",
+              "$32 \\cdot 28 = 900 - 4 = 896$.",
+              "Conjugates hide inside ordinary arithmetic."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Pattern recognition",
+            "intro": "Square → three terms; conjugates → two.",
+            "examples": [
+              {
+                "prompt": "Expand $(x-7)^2$.",
+                "steps": [
+                  "$a^2 = x^2$.",
+                  "$-2ab = -14x$; $b^2 = 49$.",
+                  "$x^2 - 14x + 49$."
+                ],
+                "answer": "$x^2-14x+49$",
+                "check": [
+                  "(9-7)**2 == 9**2 - 14*9 + 49"
+                ]
+              },
+              {
+                "prompt": "Compute $103 \\cdot 97$ by conjugates.",
+                "steps": [
+                  "$(100+3)(100-3)$.",
+                  "$= 100^2 - 3^2$.",
+                  "$= 10000 - 9 = 9991$."
+                ],
+                "answer": "$9991$",
+                "check": [
+                  "103*97 == 100**2 - 9"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Specials on sight",
+            "intro": "Name the pattern before you expand.",
+            "problems": [
+              {
+                "prompt": "$(x+10)^2 =$",
+                "options": [
+                  "$x^2+20x+100$",
+                  "$x^2+100$",
+                  "$x^2+10x+100$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Middle $2\\cdot10=20$; end $100$.",
+                "check": [
+                  "(1+10)**2 == 1**2 + 20*1 + 100"
+                ]
+              },
+              {
+                "prompt": "$(x-5)(x+5) =$",
+                "options": [
+                  "$x^2-25$",
+                  "$x^2+25$",
+                  "$x^2-10x-25$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Conjugates: middles cancel, $a^2-b^2$.",
+                "check": [
+                  "(9-5)*(9+5) == 9**2 - 25"
+                ]
+              },
+              {
+                "prompt": "$41\\cdot39 =$ (the clever way)",
+                "options": [
+                  "$1599$",
+                  "$1601$",
+                  "$1590$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(40+1)(40-1)=1600-1$.",
+                "check": [
+                  "41*39 == 40**2 - 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The most common mistake in algebra",
+            "body": "Math educators have actually studied it: $(a+b)^2 = a^2+b^2$ is among the most-committed algebra errors on Earth — so common it has a nickname, “the freshman's dream.” You now hold the antidote: the middle term $2ab$ comes from two real handshakes, and it never skips the party."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$(a\\pm b)^2 = a^2 \\pm 2ab + b^2$ — three terms, always.",
+              "$(a+b)(a-b) = a^2 - b^2$ — two terms, always.",
+              "Conjugates turn hard arithmetic into instant math."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "factoring",
+      "title": "Factoring",
+      "concreteComparison": "Expanding is grinding coffee — easy, one direction. **Factoring** is un-grinding: given $x^2+5x+6$, recover the $(x+2)(x+3)$ it came from. Why bother? Because a factored polynomial confesses its secrets — where it's zero, how it behaves — and next lesson those confessions solve equations.",
+      "objective": "Factor out the GCF, factor trinomials $x^2+bx+c$ by sum-and-product, and factor differences of squares.",
+      "concept": [
+        "**GCF first, always**: $3x^2+6x = 3x(x+2)$ — pull out the biggest shared factor before anything else.",
+        "**Trinomials $x^2+bx+c$**: hunt two numbers with sum $b$ and product $c$. For $x^2+5x+6$: sum 5, product 6 → $2$ and $3$ → $(x+2)(x+3)$.",
+        "**Signs tell you where to look**: $x^2-5x+6$ → both negative: $(x-2)(x-3)$. $x^2+x-6$ → opposite signs: $(x+3)(x-2)$.",
+        "**Difference of squares**: $x^2-9 = (x+3)(x-3)$ — the conjugate pattern in reverse. And always CHECK by expanding (or by substituting a number)."
+      ],
+      "keyIdea": "GCF first; then two numbers with sum b and product c; a²−b² splits into conjugates.",
+      "facts": [
+        {
+          "title": "Sum & product",
+          "latex": "$x^2+5x+6$: need sum 5, product 6",
+          "explanation": "$2$ and $3$ → $(x+2)(x+3)$."
+        },
+        {
+          "title": "Difference of squares",
+          "latex": "$x^2-9 = (x+3)(x-3)$",
+          "explanation": "The conjugate pattern reversed."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pf5-we1",
+          "statement": "Factor $3x^2 + 6x$.",
+          "solution": "GCF $3x$: $3x(x+2)$. Check at $x=5$: $75+30=105=15\\cdot7$ ✓.",
+          "check": [
+            "3*5**2 + 6*5 == 3*5*(5+2)"
+          ]
+        },
+        {
+          "id": "pf5-we2",
+          "statement": "Factor $x^2 + 5x + 6$.",
+          "solution": "Sum 5, product 6: the pair is 2 and 3 → $(x+2)(x+3)$. Check at $x=4$: $42=6\\cdot7$ ✓.",
+          "check": [
+            "4**2 + 5*4 + 6 == (4+2)*(4+3)"
+          ]
+        },
+        {
+          "id": "pf5-we3",
+          "statement": "Factor $x^2 - 5x + 6$ and $x^2 - 9$.",
+          "solution": "Sum $-5$, product $6$: $-2, -3$ → $(x-2)(x-3)$. And $x^2-9=(x+3)(x-3)$. (Checks at $x=6$: $12=4\\cdot3$ ✓; $27=9\\cdot3$ ✓.)",
+          "check": [
+            "6**2 - 5*6 + 6 == (6-2)*(6-3)",
+            "6**2 - 9 == (6+3)*(6-3)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Skipping the GCF.",
+          "correction": "$2x^2+10x+12$: pull the 2 FIRST → $2(x^2+5x+6) = 2(x+2)(x+3)$. Without it, the sum-product hunt fails.",
+          "authored": true
+        },
+        {
+          "text": "Right numbers, wrong signs.",
+          "correction": "$x^2-5x+6$ needs sum $-5$, product $+6$: BOTH negative, $(x-2)(x-3)$ — positive product means matching signs.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pf5-t1",
+          "statement": "Factor $x^2 + 7x + 10$.",
+          "solution": "Sum 7, product 10: $2$ and $5$ → $(x+2)(x+5)$. (At $x=3$: $40=5\\cdot8$ ✓.)",
+          "check": [
+            "3**2 + 7*3 + 10 == (3+2)*(3+5)"
+          ]
+        },
+        {
+          "id": "pf5-t2",
+          "statement": "Factor $x^2 - 16$.",
+          "solution": "$(x+4)(x-4)$. (At $x=6$: $20=10\\cdot2$ ✓.)",
+          "check": [
+            "6**2 - 16 == (6+4)*(6-4)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Reverse gear",
+            "title": "What factoring is",
+            "beats": [
+              "Expanding: $(x+2)(x+3) \\to x^2+5x+6$.",
+              "Factoring: $x^2+5x+6 \\to (x+2)(x+3)$.",
+              "Same road, opposite direction.",
+              "Factored form reveals where the polynomial is ZERO."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Step zero",
+            "title": "Pull the GCF",
+            "beats": [
+              "$3x^2 + 6x$: both terms share $3x$.",
+              "$3x(x + 2)$.",
+              "ALWAYS hunt the GCF first —",
+              "it simplifies everything after."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Sum and product",
+            "prompt": "To factor $x^2+7x+12$, you need two numbers with…",
+            "options": [
+              "sum $7$, product $12$",
+              "sum $12$, product $7$",
+              "sum $7$, product $7$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Sum = middle coefficient, product = constant: $3$ and $4$ → $(x+3)(x+4)$.",
+            "check": [
+              "2**2 + 7*2 + 12 == (2+3)*(2+4)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reading signs",
+            "title": "Where to hunt",
+            "beats": [
+              "$+bx, +c$: both positive. $x^2+5x+6=(x+2)(x+3)$.",
+              "$-bx, +c$: both negative. $x^2-5x+6=(x-2)(x-3)$.",
+              "$\\pm bx, -c$: opposite signs. $x^2+x-6=(x+3)(x-2)$.",
+              "The constant's sign decides matching vs opposite."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Factor them down",
+            "intro": "GCF → sum-product → check.",
+            "examples": [
+              {
+                "prompt": "Factor $x^2 - x - 12$.",
+                "steps": [
+                  "Sum $-1$, product $-12$: opposite signs.",
+                  "$-4$ and $+3$.",
+                  "$(x-4)(x+3)$. Check $x=5$: $8=1\\cdot8$ ✓."
+                ],
+                "answer": "$(x-4)(x+3)$",
+                "check": [
+                  "5**2 - 5 - 12 == (5-4)*(5+3)"
+                ]
+              },
+              {
+                "prompt": "Factor $2x^2 + 10x + 12$ completely.",
+                "steps": [
+                  "GCF 2: $2(x^2+5x+6)$.",
+                  "Sum 5, product 6: $2, 3$.",
+                  "$2(x+2)(x+3)$."
+                ],
+                "answer": "$2(x+2)(x+3)$",
+                "check": [
+                  "2*4**2 + 10*4 + 12 == 2*(4+2)*(4+3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Un-multiply",
+            "intro": "Signs first, then the pair.",
+            "problems": [
+              {
+                "prompt": "$x^2 + 9x + 20 =$",
+                "options": [
+                  "$(x+4)(x+5)$",
+                  "$(x+2)(x+10)$",
+                  "$(x+1)(x+20)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Sum 9, product 20 → 4 and 5.",
+                "check": [
+                  "1**2 + 9*1 + 20 == (1+4)*(1+5)"
+                ]
+              },
+              {
+                "prompt": "$x^2 - 8x + 15 =$",
+                "options": [
+                  "$(x-3)(x-5)$",
+                  "$(x+3)(x-5)$",
+                  "$(x-1)(x-15)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Sum $-8$, product $+15$: both negative → $-3, -5$.",
+                "check": [
+                  "7**2 - 8*7 + 15 == (7-3)*(7-5)"
+                ]
+              },
+              {
+                "prompt": "$x^2 - 49 =$",
+                "options": [
+                  "$(x+7)(x-7)$",
+                  "$(x-7)^2$",
+                  "$(x+7)^2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Difference of squares → conjugates.",
+                "check": [
+                  "9**2 - 49 == (9+7)*(9-7)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Factoring guards your passwords",
+            "body": "Multiplying two enormous primes is instant; factoring the result back apart is so hard that internet encryption (RSA) rests on it. Your bank login is protected by exactly the asymmetry you just felt: expanding is easy, factoring is work."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "GCF first, every time.",
+              "$x^2+bx+c$: two numbers, sum $b$, product $c$; signs guide the hunt.",
+              "$a^2-b^2=(a+b)(a-b)$; verify by expanding back."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "solving-by-factoring",
+      "title": "Solving by the Zero Product",
+      "concreteComparison": "Multiply two numbers and get $0$ — what do you know? At least one of them WAS $0$. There's no other way. That innocent fact is a master key: to solve $x^2+x-6=0$, factor it into $(x+3)(x-2)=0$, and the key turns — $x+3=0$ or $x-2=0$, so $x=-3$ or $x=2$. Factoring just became an equation-solving machine.",
+      "objective": "Solve quadratic equations by factoring and applying the zero-product property — after moving everything to one side.",
+      "concept": [
+        "**Zero-product property**: if $A \\cdot B = 0$ then $A=0$ or $B=0$. Nothing else multiplies to zero.",
+        "**The method**: get $=0$ on one side → factor → set each factor to zero → solve each. $x^2+x-6=0 \\to (x+3)(x-2)=0 \\to x=-3$ or $x=2$.",
+        "**Quadratics usually have TWO solutions** — report both, and check both: $(-3)^2+(-3)-6=0$ ✓ and $2^2+2-6=0$ ✓.",
+        "**The =0 is not optional**: for $x^2+2x=15$, first move: $x^2+2x-15=0 \\to (x+5)(x-3)=0 \\to x=-5$ or $3$. The property only speaks about products equal to ZERO."
+      ],
+      "keyIdea": "Move to =0, factor, set each factor to zero — a product is zero only when a factor is.",
+      "facts": [
+        {
+          "title": "Zero product",
+          "latex": "$AB=0 \\Rightarrow A=0$ or $B=0$",
+          "explanation": "The only way to multiply to zero."
+        },
+        {
+          "title": "The pipeline",
+          "latex": "$=0$ → factor → each factor $=0$",
+          "explanation": "Two factors, usually two answers."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pf6-we1",
+          "statement": "Solve $(x-2)(x+5) = 0$.",
+          "solution": "$x=2$ or $x=-5$ — each root kills one factor. Checks: $(0)(7)=0$ ✓, $(-7)(0)=0$ ✓.",
+          "check": [
+            "(2-2)*(2+5) == 0",
+            "(-5-2)*(-5+5) == 0"
+          ]
+        },
+        {
+          "id": "pf6-we2",
+          "statement": "Solve $x^2 + x - 6 = 0$.",
+          "solution": "Factor: $(x+3)(x-2)=0$, so $x=-3$ or $x=2$. Check: $9-3-6=0$ ✓ and $4+2-6=0$ ✓.",
+          "check": [
+            "(-3)**2 + (-3) - 6 == 0",
+            "2**2 + 2 - 6 == 0"
+          ]
+        },
+        {
+          "id": "pf6-we3",
+          "statement": "Solve $x^2 + 2x = 15$.",
+          "solution": "Move first: $x^2+2x-15=0 \\to (x+5)(x-3)=0 \\to x=-5$ or $x=3$. Check: $25-10=15$ ✓, $9+6=15$ ✓.",
+          "check": [
+            "(-5)**2 + 2*(-5) == 15",
+            "3**2 + 2*3 == 15"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the property when the product isn't zero.",
+          "correction": "$(x-2)(x+5)=8$ does NOT give $x-2=8$ — the shortcut works only for $=0$. Expand, move everything over, refactor.",
+          "authored": true
+        },
+        {
+          "text": "Reporting only one solution.",
+          "correction": "$x^2+x-6=0$ has TWO roots ($-3$ and $2$). A quadratic usually does — check and keep both.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pf6-t1",
+          "statement": "Solve $x^2 - 7x + 10 = 0$.",
+          "solution": "$(x-2)(x-5)=0$: $x=2$ or $x=5$.",
+          "check": [
+            "2**2 - 7*2 + 10 == 0",
+            "5**2 - 7*5 + 10 == 0"
+          ]
+        },
+        {
+          "id": "pf6-t2",
+          "statement": "Solve $x^2 - 16 = 0$.",
+          "solution": "$(x+4)(x-4)=0$: $x=\\pm4$.",
+          "check": [
+            "4**2 - 16 == 0",
+            "(-4)**2 - 16 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The master key",
+            "title": "Zero-product property",
+            "beats": [
+              "$A \\cdot B = 0$: what must be true?",
+              "$A=0$, or $B=0$. No third option —",
+              "no pair of nonzero numbers multiplies to zero.",
+              "This is why factored form solves equations."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Turn the key",
+            "prompt": "$(x-4)(x+1)=0$ means…",
+            "options": [
+              "$x=4$ or $x=-1$",
+              "$x=-4$ or $x=1$",
+              "$x=4$ only"
+            ],
+            "correctIndex": 0,
+            "explanation": "Each factor gets its turn at zero: $x-4=0$ → 4; $x+1=0$ → $-1$.",
+            "check": [
+              "(4-4)*(4+1) == 0",
+              "(-1-4)*(-1+1) == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Full pipeline",
+            "title": "Solve x² + x − 6 = 0",
+            "beats": [
+              "Already $=0$ ✓. Factor: sum 1, product $-6$.",
+              "$(x+3)(x-2)=0$.",
+              "$x=-3$ or $x=2$.",
+              "Check BOTH in the original ✓✓."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The trap",
+            "title": "It must equal ZERO",
+            "beats": [
+              "$x^2+2x=15$ — resist touching it yet.",
+              "Move: $x^2+2x-15=0$.",
+              "$(x+5)(x-3)=0 \\to x=-5$ or $3$.",
+              "A product equal to 15 tells you nothing."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Factor to solve",
+            "intro": "=0, factor, split, check.",
+            "examples": [
+              {
+                "prompt": "Solve $x^2 - 3x - 10 = 0$.",
+                "steps": [
+                  "Sum $-3$, product $-10$: $-5, +2$.",
+                  "$(x-5)(x+2)=0$.",
+                  "$x=5$ or $x=-2$. Both check ✓."
+                ],
+                "answer": "$x=5$ or $x=-2$",
+                "check": [
+                  "5**2 - 3*5 - 10 == 0",
+                  "(-2)**2 - 3*(-2) - 10 == 0"
+                ]
+              },
+              {
+                "prompt": "Solve $x^2 = 6x$.",
+                "steps": [
+                  "Move: $x^2-6x=0$.",
+                  "GCF: $x(x-6)=0$.",
+                  "$x=0$ or $x=6$ — don't divide away the $x=0$ root!"
+                ],
+                "answer": "$x=0$ or $x=6$",
+                "check": [
+                  "0**2 == 6*0",
+                  "6**2 == 6*6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Solve by factoring",
+            "intro": "Both roots, both checked.",
+            "problems": [
+              {
+                "prompt": "$x^2 + 8x + 12 = 0$:",
+                "options": [
+                  "$x=-2$ or $x=-6$",
+                  "$x=2$ or $x=6$",
+                  "$x=-3$ or $x=-4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(x+2)(x+6)=0$.",
+                "check": [
+                  "(-2)**2 + 8*(-2) + 12 == 0",
+                  "(-6)**2 + 8*(-6) + 12 == 0"
+                ]
+              },
+              {
+                "prompt": "$x^2 - 25 = 0$:",
+                "options": [
+                  "$x=\\pm5$",
+                  "$x=5$ only",
+                  "$x=\\pm25$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(x+5)(x-5)=0$ — two roots.",
+                "check": [
+                  "5**2 - 25 == 0",
+                  "(-5)**2 - 25 == 0"
+                ]
+              },
+              {
+                "prompt": "A ball's height is $h=x(8-x)$. It's on the ground ($h=0$) when…",
+                "options": [
+                  "$x=0$ or $x=8$",
+                  "$x=4$ only",
+                  "$x=8$ only"
+                ],
+                "correctIndex": 0,
+                "explanation": "Zero product: launch ($x=0$) and landing ($x=8$).",
+                "check": [
+                  "0*(8-0) == 0",
+                  "8*(8-8) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "You crack quadratics now",
+            "body": "Name, combine, expand, factor, and solve — the full polynomial toolkit for the equations ahead."
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished “Polynomials & Factoring”",
+            "body": "Every skill here feeds the next topic: **Quadratic Equations**, where completing the square and the famous quadratic formula join your zero-product key — and no quadratic on Earth stays unsolved."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "pf-pr1",
+      "statement": "Evaluate $2x^2 - 3x + 1$ at $x=4$.",
+      "solution": "$32-12+1=21$.",
+      "check": [
+        "2*4**2 - 3*4 + 1 == 21"
+      ]
+    },
+    {
+      "id": "pf-pr2",
+      "statement": "Add $(x^2+4x-2) + (3x^2-x+5)$.",
+      "solution": "$4x^2+3x+3$. (Check $x=2$: $10+15=25$ ✓.)",
+      "check": [
+        "(2**2+4*2-2) + (3*2**2-2+5) == 4*2**2+3*2+3"
+      ]
+    },
+    {
+      "id": "pf-pr3",
+      "statement": "Subtract $(4x^2+x) - (x^2-2x+3)$.",
+      "solution": "$3x^2+3x-3$. (Check $x=3$: $39-6=33$ ✓.)",
+      "check": [
+        "(4*3**2+3) - (3**2-2*3+3) == 3*3**2+3*3-3"
+      ]
+    },
+    {
+      "id": "pf-pr4",
+      "statement": "Expand $(x+4)(x+6)$.",
+      "solution": "$x^2+10x+24$.",
+      "check": [
+        "(2+4)*(2+6) == 2**2 + 10*2 + 24"
+      ]
+    },
+    {
+      "id": "pf-pr5",
+      "statement": "Expand $(x-3)^2$.",
+      "solution": "$x^2-6x+9$.",
+      "check": [
+        "(8-3)**2 == 8**2 - 6*8 + 9"
+      ]
+    },
+    {
+      "id": "pf-pr6",
+      "statement": "Expand $(x+8)(x-8)$.",
+      "solution": "$x^2-64$.",
+      "check": [
+        "(9+8)*(9-8) == 9**2 - 64"
+      ]
+    },
+    {
+      "id": "pf-pr7",
+      "statement": "Factor $4x^2 + 8x$.",
+      "solution": "$4x(x+2)$.",
+      "check": [
+        "4*3**2 + 8*3 == 4*3*(3+2)"
+      ]
+    },
+    {
+      "id": "pf-pr8",
+      "statement": "Factor $x^2 + 6x + 8$.",
+      "solution": "$(x+2)(x+4)$.",
+      "check": [
+        "1**2 + 6*1 + 8 == (1+2)*(1+4)"
+      ]
+    },
+    {
+      "id": "pf-pr9",
+      "statement": "Factor $x^2 - 36$.",
+      "solution": "$(x+6)(x-6)$.",
+      "check": [
+        "8**2 - 36 == (8+6)*(8-6)"
+      ]
+    },
+    {
+      "id": "pf-pr10",
+      "statement": "Solve $x^2 - 5x + 4 = 0$.",
+      "solution": "$(x-1)(x-4)=0$: $x=1$ or $x=4$.",
+      "check": [
+        "1**2 - 5*1 + 4 == 0",
+        "4**2 - 5*4 + 4 == 0"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "pf-ty1",
+      "statement": "Standard form and degree of $3 - x + 2x^3$?",
+      "solution": "$2x^3 - x + 3$; degree 3. (At $x=2$: both give $17$.)",
+      "check": [
+        "3 - 2 + 2*2**3 == 2*2**3 - 2 + 3"
+      ]
+    },
+    {
+      "id": "pf-ty2",
+      "statement": "Subtract $(2x^2+3x-5) - (x^2-x+2)$.",
+      "solution": "$x^2+4x-7$.",
+      "check": [
+        "(2*4**2+3*4-5) - (4**2-4+2) == 4**2+4*4-7"
+      ]
+    },
+    {
+      "id": "pf-ty3",
+      "statement": "Expand $(2x+3)(x+4)$.",
+      "solution": "$2x^2+11x+12$.",
+      "check": [
+        "(2*2+3)*(2+4) == 2*2**2 + 11*2 + 12"
+      ]
+    },
+    {
+      "id": "pf-ty4",
+      "statement": "Expand $(x+9)^2$.",
+      "solution": "$x^2+18x+81$.",
+      "check": [
+        "(1+9)**2 == 1**2 + 18*1 + 81"
+      ]
+    },
+    {
+      "id": "pf-ty5",
+      "statement": "Compute $52\\cdot48$ by conjugates.",
+      "solution": "$(50+2)(50-2)=2500-4=2496$.",
+      "check": [
+        "52*48 == 50**2 - 4"
+      ]
+    },
+    {
+      "id": "pf-ty6",
+      "statement": "Factor completely: $3x^2 - 27$.",
+      "solution": "$3(x^2-9)=3(x+3)(x-3)$.",
+      "check": [
+        "3*5**2 - 27 == 3*(5+3)*(5-3)"
+      ]
+    },
+    {
+      "id": "pf-ty7",
+      "statement": "Solve $x^2 + 4x = 21$.",
+      "solution": "$x^2+4x-21=0 \\to (x+7)(x-3)=0$: $x=-7$ or $x=3$.",
+      "check": [
+        "(-7)**2 + 4*(-7) == 21",
+        "3**2 + 4*3 == 21"
+      ]
+    }
+  ]
+}
