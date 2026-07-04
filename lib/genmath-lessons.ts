@@ -73,6 +73,7 @@ import quadraticEquations from "@/data/genmath/10/quadratic-equations.json";
 import quadraticFunctions from "@/data/genmath/10/quadratic-functions.json";
 import rationalExpressions from "@/data/genmath/10/rational-expressions.json";
 import radicalsRationalExponents from "@/data/genmath/10/radicals-and-rational-exponents.json";
+import exponentialFunctions from "@/data/genmath/10/exponential-functions.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -193,7 +194,7 @@ export const GRADE10_SPINE: GradeSpineEntry[] = [
     slug: "exponential-functions",
     title: "Exponential Functions & Growth",
     blurb: "y = a·bˣ: growth and decay, compound interest, and how exponentials outrun every line.",
-    live: false,
+    live: true,
   },
   {
     slug: "probability-and-counting",
@@ -209,6 +210,7 @@ const grade10Topics: GenMathTopic[] = [
   quadraticFunctions as GenMathTopic,
   rationalExpressions as GenMathTopic,
   radicalsRationalExponents as GenMathTopic,
+  exponentialFunctions as GenMathTopic,
 ];
 
 const grade8Topics: GenMathTopic[] = [

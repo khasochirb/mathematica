@@ -1,0 +1,1732 @@
+{
+  "slug": "exponential-functions",
+  "title": "Exponential Functions & Growth",
+  "grade": 10,
+  "blurb": "y = a·bˣ: growth and decay, compound interest, and how exponentials outrun every line.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "meet-exponential-functions",
+      "title": "Meet Exponential Functions",
+      "concreteComparison": "A single bacterium splits every hour: $1, 2, 4, 8, 16, \\ldots$ After $x$ hours there are $2^x$. Compare a stapler factory making 2 staplers an hour: $2, 4, 6, 8$ — steady ADDING. The bacteria MULTIPLY. Functions that multiply by the same factor every step are **exponential**: $y = a \\cdot b^x$, and they run the world's fastest processes.",
+      "objective": "Recognize and evaluate exponential functions $y = a \\cdot b^x$, identifying the starting value $a$ and the growth factor $b$.",
+      "concept": [
+        "**Exponential function**: $y = a \\cdot b^x$ with $b > 0$, $b \\neq 1$. The variable lives in the EXPONENT — that's the species marker. ($y = x^2$ has it in the base: polynomial, different beast.)",
+        "$a$ is the **starting value**: at $x = 0$, $y = a \\cdot b^0 = a$. The graph's y-intercept is $(0, a)$.",
+        "$b$ is the **growth factor**: each step right multiplies $y$ by $b$. $y = 3 \\cdot 2^x$ runs $3, 6, 12, 24, \\ldots$ — start at 3, double each step.",
+        "Spot-the-species test on a table: constant DIFFERENCES → linear; constant RATIOS → exponential. $2, 6, 18, 54$ has ratio 3 every step: exponential with $b = 3$."
+      ],
+      "keyIdea": "y = a·bˣ: start at a, multiply by b each step. Constant ratio = exponential; constant difference = linear.",
+      "facts": [
+        {
+          "title": "The form",
+          "latex": "y = a \\cdot b^x \\quad (b > 0,\\ b \\neq 1)",
+          "explanation": "a = start, b = per-step multiplier."
+        },
+        {
+          "title": "Species test",
+          "latex": "\\text{ratios constant} \\Rightarrow \\text{exponential}",
+          "explanation": "Differences constant → linear instead."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ef1-we1",
+          "statement": "Evaluate $y = 3 \\cdot 2^x$ at $x = 0, 1, 4$.",
+          "solution": "$3 \\cdot 1 = 3$; $3 \\cdot 2 = 6$; $3 \\cdot 16 = 48$.",
+          "check": [
+            "3*2**0 == 3",
+            "3*2**1 == 6",
+            "3*2**4 == 48"
+          ]
+        },
+        {
+          "id": "ef1-we2",
+          "statement": "A colony starts at 5 and triples hourly: write the function and find the count after 3 hours.",
+          "solution": "$y = 5 \\cdot 3^x$; at $x=3$: $5 \\cdot 27 = 135$.",
+          "check": [
+            "5*3**3 == 135",
+            "5*3**0 == 5"
+          ]
+        },
+        {
+          "id": "ef1-we3",
+          "statement": "Is the table $x: 0,1,2,3$ / $y: 2, 6, 18, 54$ linear or exponential?",
+          "solution": "Ratios: $6/2 = 18/6 = 54/18 = 3$ — constant ratio: exponential, $y = 2 \\cdot 3^x$.",
+          "check": [
+            "Rational(6,2) == 3",
+            "Rational(18,6) == 3",
+            "2*3**3 == 54"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Computing $a \\cdot b^x$ as $(a \\cdot b)^x$.",
+          "correction": "Exponent BEFORE multiplication: $3 \\cdot 2^4 = 3 \\cdot 16 = 48$, not $6^4 = 1296$. Only $b$ gets raised.",
+          "authored": true
+        },
+        {
+          "text": "Calling $y = x^2$ exponential because it 'has an exponent'.",
+          "correction": "The variable must be IN the exponent: $2^x$ yes, $x^2$ no. $x^2$ grows by shifting differences; $2^x$ multiplies — different species entirely.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ef1-t1",
+          "statement": "Evaluate $y = 2 \\cdot 5^x$ at $x = 3$.",
+          "solution": "$2 \\cdot 125 = 250$.",
+          "check": [
+            "2*5**3 == 250"
+          ]
+        },
+        {
+          "id": "ef1-t2",
+          "statement": "For $y = 7 \\cdot 4^x$: starting value and growth factor?",
+          "solution": "$a = 7$ (the value at $x=0$), $b = 4$ (×4 per step).",
+          "check": [
+            "7*4**0 == 7",
+            "Rational(7*4**1, 7*4**0) == 4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Two factories",
+            "title": "Adding vs multiplying",
+            "beats": [
+              "Stapler factory: +2 per hour → $2, 4, 6, 8$. Linear.",
+              "Bacteria colony: ×2 per hour → $1, 2, 4, 8$. Exponential!",
+              "Same first steps… wildly different futures.",
+              "The multiplier species: $y = a \\cdot b^x$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Name the parts",
+            "title": "a starts, b multiplies",
+            "beats": [
+              "$y = 3 \\cdot 2^x$.",
+              "$x = 0$: $y = 3$. That's $a$ — the start.",
+              "Each step right: ×2. That's $b$ — the growth factor.",
+              "$3 \\to 6 \\to 12 \\to 24$: start at 3, double forever."
+            ]
+          },
+          {
+            "kind": "expGraph",
+            "eyebrow": "See the signature",
+            "title": "Same multiplier, every step",
+            "teach": "Step the base $b$ and the start $a$: the curve springs into new shapes, and the blue dots wear their **×b chips** — the same multiplier between every consecutive step. Push $b$ below 1 and growth flips into decay (next lesson's star). Notice the curve hugging $y = 0$ on one side: exponentials never touch zero.",
+            "config": {
+              "mode": "growth",
+              "a": 1,
+              "b": 2
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Evaluate carefully",
+            "prompt": "$y = 2 \\cdot 3^x$ at $x = 2$ equals…",
+            "options": [
+              "$18$",
+              "$36$",
+              "$12$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$3^2 = 9$ first, then $\\times 2$: $18$. ($36 = 6^2$ is the merged-base trap.)",
+            "check": [
+              "2*3**2 == 18"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Species ID",
+            "title": "Read the table",
+            "prompt": "$y$: $4, 12, 36, 108$ (at $x = 0,1,2,3$). This is…",
+            "options": [
+              "exponential, $y = 4 \\cdot 3^x$",
+              "linear, $y = 4 + 8x$",
+              "quadratic"
+            ],
+            "correctIndex": 0,
+            "explanation": "Ratios: $12/4 = 36/12 = 3$ — constant ratio is the exponential signature. (Differences $8, 24, 72$ are NOT constant.)",
+            "check": [
+              "Rational(12,4) == 3",
+              "Rational(36,12) == 3",
+              "4*3**3 == 108"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Read and run the form",
+            "intro": "a starts, b multiplies, exponent first.",
+            "examples": [
+              {
+                "prompt": "A video has 40 views and views quadruple daily. Views after 3 days?",
+                "steps": [
+                  "$y = 40 \\cdot 4^x$.",
+                  "$x=3$: $40 \\cdot 64 = 2560$."
+                ],
+                "answer": "$2560$",
+                "check": [
+                  "40*4**3 == 2560"
+                ]
+              },
+              {
+                "prompt": "Which grows bigger by $x = 5$: $y = 100 + 50x$ or $y = 2^x \\cdot 10$?",
+                "steps": [
+                  "Linear: $100 + 250 = 350$.",
+                  "Exponential: $10 \\cdot 32 = 320$.",
+                  "Linear — for now. (By $x=6$: $400$ vs $640$ — flipped.)"
+                ],
+                "answer": "linear at 5; exponential from 6 on",
+                "check": [
+                  "100 + 50*5 == 350",
+                  "10*2**5 == 320",
+                  "10*2**6 == 640",
+                  "100+50*6 == 400"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Form fluency",
+            "intro": "Start, factor, evaluate.",
+            "problems": [
+              {
+                "prompt": "$y = 5 \\cdot 2^x$ at $x = 4$ = …",
+                "options": [
+                  "$80$",
+                  "$10000$",
+                  "$40$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2^4 = 16$, then $\\times 5 = 80$. ($10^4$ is the merged-base trap.)",
+                "check": [
+                  "5*2**4 == 80"
+                ]
+              },
+              {
+                "prompt": "A population runs $6, 12, 24, 48$. Its function is…",
+                "options": [
+                  "$y = 6 \\cdot 2^x$",
+                  "$y = 6 + 6x$",
+                  "$y = 2 \\cdot 6^x$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Start 6, ratio 2. ($6+6x$ gives $6, 12, 18$ — breaks at step 2.)",
+                "check": [
+                  "6*2**2 == 24",
+                  "6*2**3 == 48"
+                ]
+              },
+              {
+                "prompt": "Which is NOT exponential?",
+                "options": [
+                  "$y = x^3$",
+                  "$y = 3^x$",
+                  "$y = 5 \\cdot (0.5)^x$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x^3$ has the variable in the BASE — a polynomial. The exponential species keeps $x$ upstairs.",
+                "check": [
+                  "2**3 == 8",
+                  "3**2 == 9"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The rice that bankrupted an emperor",
+            "body": "Legend: the inventor of chess asked for one grain of rice on square 1, doubling each square. The emperor laughed — until square 64 demanded $2^{63}$ grains: about 9 quintillion, more rice than Earth grows in centuries. Doubling looks humble for 10 squares and eats empires by 64. That's the function you just learned."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$y = a \\cdot b^x$: start at $a$, multiply by $b$ each step.",
+              "Exponent first: $3 \\cdot 2^4 = 48$, never $6^4$.",
+              "Constant ratios → exponential; constant differences → linear."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "growth-and-decay",
+      "title": "Growth & Decay",
+      "concreteComparison": "A savings account grows $5\\%$ a year; a new phone loses $30\\%$ of its value a year. Both are exponential — the account multiplies by $1.05$, the phone by $0.7$. The whole growth-vs-decay story lives in one number: is the factor **above or below 1**? Converting percent change into that factor is this lesson's superpower.",
+      "objective": "Distinguish growth ($b > 1$) from decay ($0 < b < 1$) and convert percent change to a growth factor: $+p\\%$ → $1 + \\tfrac{p}{100}$, $-p\\%$ → $1 - \\tfrac{p}{100}$.",
+      "concept": [
+        "$b > 1$: **growth** — each step multiplies UP. $0 < b < 1$: **decay** — each step multiplies DOWN toward zero (but never reaching it: half of something is never nothing).",
+        "Percent → factor: grow $5\\%$ → keep $100\\%$ and add $5\\%$ → $b = 1.05$. Lose $30\\%$ → keep $70\\%$ → $b = 0.7$. The factor is what you KEEP.",
+        "Full models: $500$ MNT-thousand savings at $+10\\%$: $A = 500(1.1)^t$. An $800$ phone at $-25\\%$: $V = 800(0.75)^t$ — after 2 years, $800 \\cdot 0.5625 = 450$.",
+        "Decay's floor: the curve approaches $y = 0$ but never lands — repeated multiplying by $0.75$ shrinks forever without hitting zero. (The x-axis is an asymptote, same as growth's tail on the other side.)"
+      ],
+      "keyIdea": "Factor above 1 grows, below 1 decays. From percent: b = 1 ± p/100 — the fraction you KEEP.",
+      "facts": [
+        {
+          "title": "The dividing line",
+          "latex": "b > 1 \\text{ grow} \\quad 0 < b < 1 \\text{ decay}",
+          "explanation": "One number decides the fate."
+        },
+        {
+          "title": "Percent to factor",
+          "latex": "+p\\% \\to 1 + \\tfrac{p}{100} \\quad -p\\% \\to 1 - \\tfrac{p}{100}",
+          "explanation": "The keep-fraction."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ef2-we1",
+          "statement": "Write the factor: (a) grows $20\\%$/yr, (b) loses $40\\%$/yr.",
+          "solution": "(a) $b = 1.2$; (b) keep $60\\%$: $b = 0.6$.",
+          "check": [
+            "1 + Rational(20,100) == Rational(6,5)",
+            "1 - Rational(40,100) == Rational(3,5)"
+          ]
+        },
+        {
+          "id": "ef2-we2",
+          "statement": "A $800 phone loses $25\\%$ of its value yearly. Value after 2 years?",
+          "solution": "$V = 800(0.75)^t$; $t=2$: $800 \\cdot \\tfrac{9}{16} = 450$.",
+          "check": [
+            "800*Rational(3,4)**2 == 450"
+          ]
+        },
+        {
+          "id": "ef2-we3",
+          "statement": "A town of $2000$ grows $10\\%$ a year. Population after 3 years?",
+          "solution": "$P = 2000(1.1)^3 = 2000 \\cdot 1.331 = 2662$.",
+          "check": [
+            "2000*Rational(11,10)**3 == 2662"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the percent itself as the factor: '$30\\%$ decay → $b = 0.3$'.",
+          "correction": "$b$ is what you KEEP: losing $30\\%$ keeps $70\\%$, so $b = 0.7$. ($b = 0.3$ would be losing 70%!)",
+          "authored": true
+        },
+        {
+          "text": "Treating decay as subtraction: '$-25\\%$ yearly = $-200$ every year from 800'.",
+          "correction": "Percent decay multiplies: year 1 loses $200$, year 2 loses $25\\%$ of the REMAINING $600$ ($=150$). The steps shrink — that's why it's a curve, not a line.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ef2-t1",
+          "statement": "Factor for $+7\\%$ growth? For $-15\\%$ decay?",
+          "solution": "$1.07$ and $0.85$.",
+          "check": [
+            "1 + Rational(7,100) == Rational(107,100)",
+            "1 - Rational(15,100) == Rational(17,20)"
+          ]
+        },
+        {
+          "id": "ef2-t2",
+          "statement": "$1000$ decays $50\\%$ per step. Value after 4 steps?",
+          "solution": "$1000 \\cdot (\\tfrac12)^4 = \\tfrac{1000}{16} = 62.5$.",
+          "check": [
+            "1000*Rational(1,2)**4 == Rational(125,2)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "One number, two fates",
+            "title": "Above or below 1",
+            "beats": [
+              "$b = 1.05$: each step multiplies UP. Growth.",
+              "$b = 0.7$: each step multiplies DOWN. Decay.",
+              "$b = 1$: nothing ever changes (banned from the club).",
+              "The factor's side of 1 IS the story."
+            ]
+          },
+          {
+            "kind": "expGraph",
+            "eyebrow": "Flip the fate",
+            "title": "Cross b through 1",
+            "teach": "Step the base down through $1$ and watch growth become decay: the same ×b-per-step machine, now shrinking. Decay curves slide toward the x-axis but never touch it — half of something is never nothing. That floor is called an **asymptote**.",
+            "config": {
+              "mode": "growth",
+              "a": 4,
+              "b": 0.5
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Percent to factor",
+            "title": "The keep-fraction",
+            "beats": [
+              "Grow $5\\%$: keep $100\\%$, add $5\\%$ → $\\times 1.05$.",
+              "Lose $30\\%$: keep $70\\%$ → $\\times 0.7$.",
+              "$b = 1 \\pm \\tfrac{p}{100}$ — always the KEEP fraction.",
+              "Never $\\times 0.3$ for a $30\\%$ loss. That keeps 30!"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Convert",
+            "prompt": "A car loses $20\\%$ of its value each year. The yearly factor is…",
+            "options": [
+              "$0.8$",
+              "$0.2$",
+              "$1.2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Keep $80\\%$: $b = 0.8$. ($0.2$ keeps a fifth — losing 80%; $1.2$ GROWS it.)",
+            "check": [
+              "1 - Rational(20,100) == Rational(4,5)"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Run a model",
+            "title": "Phone value",
+            "prompt": "An $800 phone at $-25\\%$/year is worth, after 2 years…",
+            "options": [
+              "$450$",
+              "$400$",
+              "$300$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$800(0.75)^2 = 800 \\cdot 0.5625 = 450$. (Subtracting $200$ twice gives $400$ — the linear error.)",
+            "check": [
+              "800*Rational(3,4)**2 == 450"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Growth and decay models",
+            "intro": "Factor first, then power.",
+            "examples": [
+              {
+                "prompt": "500 (thousand MNT) saved at $+10\\%$/year. Amount after 2 years?",
+                "steps": [
+                  "$A = 500(1.1)^t$.",
+                  "$t=2$: $500 \\cdot 1.21 = 605$."
+                ],
+                "answer": "$605$",
+                "check": [
+                  "500*Rational(11,10)**2 == 605"
+                ]
+              },
+              {
+                "prompt": "A 64-gram sample halves every day. Amount after 5 days?",
+                "steps": [
+                  "$m = 64 \\cdot (\\tfrac12)^t$.",
+                  "$t=5$: $\\tfrac{64}{32} = 2$ g."
+                ],
+                "answer": "$2$ g",
+                "check": [
+                  "64*Rational(1,2)**5 == 2"
+                ]
+              },
+              {
+                "prompt": "Which loses value faster over 2 years: $-40\\%$ once then stable, or $-25\\%$ each year?",
+                "steps": [
+                  "Once: keep $0.6$ → $60\\%$ left.",
+                  "Yearly: $0.75^2 = 0.5625$ → $56.25\\%$ left.",
+                  "The repeated $25\\%$ bites harder."
+                ],
+                "answer": "$-25\\%$ yearly (56.25% left vs 60%)",
+                "check": [
+                  "Rational(3,4)**2 == Rational(9,16)",
+                  "Rational(9,16) < Rational(3,5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Fate-reading",
+            "intro": "Keep-fraction, then power it.",
+            "problems": [
+              {
+                "prompt": "Which model DECAYS?",
+                "options": [
+                  "$y = 900 \\cdot (0.85)^x$",
+                  "$y = 3 \\cdot (1.01)^x$",
+                  "$y = 0.5 \\cdot 2^x$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Only $0.85 < 1$. (A tiny start like $0.5$ or slow growth like $1.01$ still GROWS if $b > 1$.)",
+                "check": [
+                  "Rational(85,100) < 1",
+                  "Rational(101,100) > 1"
+                ]
+              },
+              {
+                "prompt": "$+8\\%$ yearly growth for 2 years multiplies the start by…",
+                "options": [
+                  "$1.1664$",
+                  "$1.16$",
+                  "$0.16$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(1.08)^2 = 1.1664$ — slightly MORE than $+16\\%$: growth compounds.",
+                "check": [
+                  "Rational(108,100)**2 == Rational(2916,2500)",
+                  "Rational(2916,2500) > Rational(116,100)"
+                ]
+              },
+              {
+                "prompt": "A decaying quantity ($b = 0.5$) eventually…",
+                "options": [
+                  "approaches 0 but never reaches it",
+                  "hits exactly 0",
+                  "turns negative"
+                ],
+                "correctIndex": 0,
+                "explanation": "Halving forever shrinks without landing: $\\tfrac{1}{2^{10}}$ is tiny but positive. The x-axis is an asymptote.",
+                "check": [
+                  "Rational(1,2)**10 == Rational(1,1024)",
+                  "Rational(1,1024) > 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why banks fear the number 1",
+            "body": "An interest rate is a factor's distance from 1 — and tiny distances compound into fortunes or ruins. At $+1\\%$ a month, money grows $12.7\\%$ a year (not 12: compounding). Inflation at just $5\\%$ halves your money's value in 14 years. Entire central banks exist to manage which side of 1 an economy's factors sit on."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$b > 1$ grows; $0 < b < 1$ decays toward (never to) zero.",
+              "Percent → factor: keep-fraction, $1 \\pm p/100$.",
+              "Decay multiplies — the losses shrink with the balance."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "exponential-vs-linear",
+      "title": "Exponential vs. Linear",
+      "concreteComparison": "Job offer A: 8 coins a day, forever. Job offer B: 1 coin today, doubled every day. For the first work-week A crushes B ($40$ coins vs $31$). By day 7, B pays $64$ a day and never trails again; by day 30 B's DAILY pay outnumbers every coin A will ever earn. Every exponential beats every line — the only question is when.",
+      "objective": "Compare exponential and linear growth, find where the exponential overtakes, and recognize why the lead is permanent.",
+      "concept": [
+        "Linear adds the same AMOUNT per step; exponential multiplies by the same FACTOR. Early on the line can lead — adding 8 beats doubling 1.",
+        "But doubling compounds: $2^x$ runs $1, 2, 4, \\ldots, 32, 64$ while $8x$ plods $8, 16, 24, \\ldots, 40, 48$. Between $x = 5$ and $6$ the exponential passes — permanently.",
+        "Permanent because growth RATES: the line adds $8$ every step forever; the exponential's step-gain is proportional to its size ($2^x$ gains $2^x$ each step). Once its gain exceeds the line's, the gap only widens.",
+        "This is why \"exponential\" means what it means in headlines: any $b > 1$ beats any line eventually — steeper lines just delay the overtake."
+      ],
+      "keyIdea": "Lines add, exponentials multiply. Every exponential (b > 1) overtakes every line — and never gives the lead back.",
+      "facts": [
+        {
+          "title": "The duel",
+          "latex": "8x \\text{ vs } 2^x",
+          "explanation": "Line leads early; doubler passes near x ≈ 5.4."
+        },
+        {
+          "title": "Why permanent",
+          "latex": "\\text{exponential gains} \\propto \\text{its size}",
+          "explanation": "Its steps grow; the line's never do."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ef3-we1",
+          "statement": "Offer A pays $8$/day; offer B doubles from $1$: $2^x$ on day $x$. Compare daily pay on days 3 and 6.",
+          "solution": "Day 3: A $= 8$, B $= 8$ — tied! Day 6: A $= 8$, B $= 64$. B never trails again.",
+          "check": [
+            "2**3 == 8",
+            "2**6 == 64"
+          ]
+        },
+        {
+          "id": "ef3-we2",
+          "statement": "Total coins by end of day 5: A ($8$/day) vs B (doubling $1, 2, 4, \\ldots$)?",
+          "solution": "A: $40$. B: $1+2+4+8+16 = 31$. The line still leads on totals…",
+          "check": [
+            "8*5 == 40",
+            "1+2+4+8+16 == 31"
+          ]
+        },
+        {
+          "id": "ef3-we3",
+          "statement": "When does $2^x$ first EXCEED $8x$ (whole days)?",
+          "solution": "$x=5$: $32 < 40$. $x=6$: $64 > 48$ — first win at day 6.",
+          "check": [
+            "2**5 < 8*5",
+            "2**6 > 8*6"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Concluding from early data that the line 'grows faster'.",
+          "correction": "Early leads lie. $8x$ beats $2^x$ for five steps — then loses forever. Judge growth by the FACTOR, not the first steps.",
+          "authored": true
+        },
+        {
+          "text": "Thinking a steeper line can hold off an exponential.",
+          "correction": "$100x$, $1000x$ — any line falls. A steeper slope only postpones the overtake ($2^x$ passes $100x$ by $x = 15$). Multiplying always outruns adding.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ef3-t1",
+          "statement": "Which is larger at $x = 10$: $2^x$ or $50x$?",
+          "solution": "$1024$ vs $500$ — the exponential, comfortably.",
+          "check": [
+            "2**10 == 1024",
+            "1024 > 50*10"
+          ]
+        },
+        {
+          "id": "ef3-t2",
+          "statement": "Daily pay $3^x$ vs $30x$: who leads at $x = 2$? At $x = 4$?",
+          "solution": "$x=2$: $9 < 60$ line. $x=4$: $81 > 120$? No — $81 < 120$ still line! $x=5$: $243 > 150$ — flipped.",
+          "check": [
+            "3**2 < 30*2",
+            "3**4 < 30*4",
+            "3**5 > 30*5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Two job offers",
+            "title": "Adding vs doubling",
+            "beats": [
+              "Offer A: 8 coins per day. Steady. Reliable.",
+              "Offer B: 1 coin day one — doubled every day.",
+              "Week one: A wins big. Take A…?",
+              "Let's watch the race before signing."
+            ]
+          },
+          {
+            "kind": "expGraph",
+            "eyebrow": "Watch the overtake",
+            "title": "The race",
+            "teach": "The runners sweep the course together: the blue line (+8 per step) leads early — the orange doubler looks hopeless at $x = 2$. Then compounding kicks in: it passes near $x \\approx 5.4$, gets its 'overtaken' beacon, and by the finish it isn't a race anymore. Replay it — the early lead fools everyone once.",
+            "config": {
+              "mode": "race",
+              "b": 2,
+              "m": 8
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the finish",
+            "prompt": "$2^x$ vs $8x$ at $x = 7$: the values are…",
+            "options": [
+              "$128$ vs $56$ — exponential more than doubles it",
+              "$56$ vs $128$",
+              "$14$ vs $56$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$2^7 = 128$; $8 \\cdot 7 = 56$. One step after overtaking, the gap is already huge.",
+            "check": [
+              "2**7 == 128",
+              "8*7 == 56",
+              "128 > 2*56"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why the lead is permanent",
+            "title": "Gains that grow",
+            "beats": [
+              "The line gains $+8$ every step. Forever. Fixed.",
+              "$2^x$ gains $2^x$ per step — its gain IS its size.",
+              "At $x=6$ it gains $64$/step vs the line's $8$.",
+              "Once ahead in gains, the gap compounds. No comeback."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Generalize",
+            "title": "A steeper line?",
+            "prompt": "Against $y = 100x$, the doubler $2^x$…",
+            "options": [
+              "still wins — just later",
+              "finally loses",
+              "ties forever"
+            ],
+            "correctIndex": 0,
+            "explanation": "$x=15$: $2^{15} = 32768 > 1500$. Steeper lines only delay the overtake. Multiplying beats adding, always.",
+            "check": [
+              "2**15 == 32768",
+              "32768 > 100*15"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Race analysis",
+            "intro": "Find the flip step; explain the permanence.",
+            "examples": [
+              {
+                "prompt": "$3^x$ vs $50x$: find the first whole $x$ where the exponential leads.",
+                "steps": [
+                  "$x=4$: $81 < 200$.",
+                  "$x=5$: $243 < 250$ — SO close.",
+                  "$x=6$: $729 > 300$ ✓."
+                ],
+                "answer": "$x = 6$",
+                "check": [
+                  "3**5 < 50*5",
+                  "3**6 > 50*6"
+                ]
+              },
+              {
+                "prompt": "Salary A: 1000/month + 200/month raises. Salary B: 1000 growing 10%/month. Compare month 12.",
+                "steps": [
+                  "A: $1000 + 200 \\cdot 12 = 3400$.",
+                  "B: $1000(1.1)^{12} \\approx 3138$.",
+                  "A leads at month 12 — but B's factor is compounding; by month 15 B wins."
+                ],
+                "answer": "A at month 12; B soon after",
+                "check": [
+                  "1000 + 200*12 == 3400",
+                  "1000*Rational(11,10)**12 < 3400",
+                  "1000*Rational(11,10)**15 > 1000 + 200*15"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Overtake hunting",
+            "intro": "Check consecutive whole steps.",
+            "problems": [
+              {
+                "prompt": "$2^x$ vs $20x$: who leads at $x = 8$?",
+                "options": [
+                  "the exponential ($256 > 160$)",
+                  "the line ($160 > 256$)",
+                  "tied"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2^8 = 256$, $20 \\cdot 8 = 160$. (At $x=7$: $128 < 140$ — the line's last stand.)",
+                "check": [
+                  "2**8 > 20*8",
+                  "2**7 < 20*7"
+                ]
+              },
+              {
+                "prompt": "A doubling quantity is at $5$ today. In 10 steps it reaches…",
+                "options": [
+                  "$5120$",
+                  "$100$",
+                  "$50$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5 \\cdot 2^{10} = 5 \\cdot 1024 = 5120$. Ten doublings ≈ ×1000 — worth memorizing.",
+                "check": [
+                  "5*2**10 == 5120"
+                ]
+              },
+              {
+                "prompt": "\"The line grew faster for the first 4 steps, so it grows faster.\" This reasoning is…",
+                "options": [
+                  "wrong — early leads don't decide exponential races",
+                  "right — early data is the best data",
+                  "right if the line is steep"
+                ],
+                "correctIndex": 0,
+                "explanation": "The exponential's gains grow with its size; the line's never do. The overtake is a matter of WHEN, not IF.",
+                "check": [
+                  "2**6 > 8*6",
+                  "2**5 < 8*5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Ten doublings is a thousand",
+            "body": "Engineers keep one exponential fact loaded: $2^{10} = 1024 \\approx 1000$. So 20 doublings ≈ a million, 30 ≈ a billion. It's why a sheet of paper folded 42 times would reach the Moon, and why 'the virus doubles every 3 days' emptied stadiums. When you hear 'doubling', think in thousands, not steps."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Lines add a fixed amount; exponentials multiply by a factor.",
+              "Early leads lie: every $b>1$ exponential passes every line.",
+              "The pass is permanent — exponential gains grow with size."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "compound-interest",
+      "title": "Compound Interest",
+      "concreteComparison": "Put $100$ in a bank at $10\\%$ a year. Year one earns $10$. But year two earns $11$ — because the interest itself earned interest. That tiny difference, repeated, is the most consequential exponential on Earth: **compound interest**, the formula $A = P(1+r)^t$ that finances retirements, mortgages, and every 'get rich slow' plan that actually works.",
+      "objective": "Use $A = P(1+r)^t$ to compute compound growth, and contrast it with simple (non-compounding) interest.",
+      "concept": [
+        "**Simple interest** pays on the principal only: $10\\%$ of $100$ is $10$ every year — linear, $A = P(1 + rt)$.",
+        "**Compound interest** pays on the whole balance: $A = P(1+r)^t$. Year 1: $110$. Year 2: $110 \\times 1.1 = 121$ — that extra $1$ is interest on interest.",
+        "The gap grows: after 8 years compound gives $100(1.1)^8 \\approx 214$ vs simple's $180$. After 30: $1745$ vs $400$. Compounding IS the exponential-vs-linear race with money.",
+        "Reading the formula: $P$ = principal (start), $r$ = rate per period as a decimal, $t$ = number of periods, $(1+r)$ = the growth factor from last lesson wearing a suit."
+      ],
+      "keyIdea": "A = P(1+r)^t — the balance multiplies by (1+r) each period, so interest earns interest.",
+      "facts": [
+        {
+          "title": "Compound",
+          "latex": "A = P(1+r)^t",
+          "explanation": "Exponential: factor 1 + r per period."
+        },
+        {
+          "title": "Simple",
+          "latex": "A = P(1 + rt)",
+          "explanation": "Linear: same coins every period. It loses."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ef4-we1",
+          "statement": "$100$ at $10\\%$ compounded yearly: balance after 2 years?",
+          "solution": "$100(1.1)^2 = 121$ — the extra 1 over simple's 120 is interest-on-interest.",
+          "check": [
+            "100*Rational(11,10)**2 == 121",
+            "100*(1 + Rational(10,100)*2) == 120"
+          ]
+        },
+        {
+          "id": "ef4-we2",
+          "statement": "$500$ at $20\\%$/year for 3 years, compounded. Final amount?",
+          "solution": "$500(1.2)^3 = 500 \\cdot 1.728 = 864$.",
+          "check": [
+            "500*Rational(6,5)**3 == 864"
+          ]
+        },
+        {
+          "id": "ef4-we3",
+          "statement": "$1000$ for 2 years: compound $10\\%$ vs simple $10\\%$ — the difference?",
+          "solution": "Compound $1210$, simple $1200$: difference $10$ — exactly the interest year-1's interest earned.",
+          "check": [
+            "1000*Rational(11,10)**2 == 1210",
+            "1000*(1 + Rational(1,10)*2) == 1200",
+            "1210 - 1200 == 10"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Computing compound interest as rate × years: '$10\\%$ for 3 years = $+30\\%$'.",
+          "correction": "$(1.1)^3 = 1.331$: $+33.1\\%$, not $30\\%$. The extra $3.1\\%$ is compounding — multiplying beats adding, even inside a bank.",
+          "authored": true
+        },
+        {
+          "text": "Using the percent as $r$: $A = P(1+10)^t$ for $10\\%$.",
+          "correction": "$r$ is a DECIMAL: $10\\% \\to r = 0.1$, factor $1.1$. ($1 + 10 = 11$ would multiply your money elevenfold a year — no bank survives that.)",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ef4-t1",
+          "statement": "$200$ at $50\\%$/year compounded, for 2 years?",
+          "solution": "$200(1.5)^2 = 450$.",
+          "check": [
+            "200*Rational(3,2)**2 == 450"
+          ]
+        },
+        {
+          "id": "ef4-t2",
+          "statement": "$400$ at $5\\%$ for 2 years: compound vs simple difference?",
+          "solution": "$400(1.05)^2 = 441$ vs $440$: difference $1$.",
+          "check": [
+            "400*Rational(21,20)**2 == 441",
+            "400*(1 + Rational(5,100)*2) == 440"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The extra dollar",
+            "title": "Where compounding lives",
+            "beats": [
+              "$100$ at $10\\%$: year 1 pays $10$. Balance $110$.",
+              "Year 2 pays $10\\%$ of $110$ = $11$. Balance $121$.",
+              "That extra $1$? Interest ON year-1's interest.",
+              "Small now. It's about to matter enormously."
+            ]
+          },
+          {
+            "kind": "expGraph",
+            "eyebrow": "Watch it build",
+            "title": "Year by year",
+            "teach": "The bars fill in year by year — each one is the last bar times $1.1$. Watch the labels: the yearly JUMPS grow ($10, 11, 12.1, \\ldots$) because each year's interest is computed on a bigger balance. The dashed line is where the money started; the finale compares against simple interest.",
+            "config": {
+              "mode": "compound",
+              "p": 100,
+              "r": 0.1,
+              "years": 8
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Run the formula",
+            "prompt": "$100$ at $10\\%$ compounded for 3 years = …",
+            "options": [
+              "$133.10$",
+              "$130$",
+              "$110 \\cdot 3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$100(1.1)^3 = 133.10$. Simple interest's $130$ misses the $3.10$ of interest-on-interest.",
+            "check": [
+              "100*Rational(11,10)**3 == Rational(1331,10)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The formula, labeled",
+            "title": "A = P(1+r)^t",
+            "beats": [
+              "$P$: principal — the starting money.",
+              "$r$: rate per period, as a decimal ($10\\% \\to 0.1$).",
+              "$t$: how many periods.",
+              "$(1+r)$: last lesson's growth factor, in a suit."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Suit check",
+            "title": "Spot the setup",
+            "prompt": "For $2000$ at $7\\%$ yearly for 5 years, the correct expression is…",
+            "options": [
+              "$2000(1.07)^5$",
+              "$2000(1.7)^5$",
+              "$2000(1 + 7)^5$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$7\\% \\to r = 0.07 \\to$ factor $1.07$. ($1.7$ is seventy percent; $8^5$ bankrupts the bank.)",
+            "check": [
+              "2000*Rational(107,100)**0 == 2000",
+              "Rational(107,100) == 1 + Rational(7,100)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Money in motion",
+            "intro": "Factor, power, compare.",
+            "examples": [
+              {
+                "prompt": "$300$ at $20\\%$/year compounded, 2 years.",
+                "steps": [
+                  "$300(1.2)^2$.",
+                  "$300 \\cdot 1.44 = 432$."
+                ],
+                "answer": "$432$",
+                "check": [
+                  "300*Rational(6,5)**2 == 432"
+                ]
+              },
+              {
+                "prompt": "Which is better for 2 years on $1000$: $12\\%$ simple, or $10\\%$ compound?",
+                "steps": [
+                  "Simple 12%: $1000(1 + 0.24) = 1240$.",
+                  "Compound 10%: $1000(1.1)^2 = 1210$.",
+                  "Simple wins at 2 years — compounding needs TIME. (By year 5: $1500$ vs $1610$ — flipped.)"
+                ],
+                "answer": "simple at 2 yrs; compound by 5",
+                "check": [
+                  "1000*(1 + Rational(12,100)*2) == 1240",
+                  "1000*Rational(11,10)**2 == 1210",
+                  "1000*Rational(11,10)**5 > 1000*(1 + Rational(12,100)*5)"
+                ]
+              },
+              {
+                "prompt": "A loan of $500$ compounds at $2\\%$ MONTHLY. Owed after 12 months?",
+                "steps": [
+                  "$500(1.02)^{12}$.",
+                  "$(1.02)^{12} \\approx 1.268$: about $634$.",
+                  "A '2% monthly' loan is ≈ 26.8%/year — compounding cuts both ways."
+                ],
+                "answer": "≈ $634$",
+                "check": [
+                  "500*Rational(51,50)**12 > 630",
+                  "500*Rational(51,50)**12 < 640"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Balance forecasting",
+            "intro": "Decimal rate, factor, power.",
+            "problems": [
+              {
+                "prompt": "$100$ at $100\\%$/year (doubling!), 3 years = …",
+                "options": [
+                  "$800$",
+                  "$400$",
+                  "$300$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$100 \\cdot 2^3 = 800$. ($300$ is the simple-interest answer — adding $100$ thrice.)",
+                "check": [
+                  "100*2**3 == 800",
+                  "100*(1+1*3) == 400"
+                ]
+              },
+              {
+                "prompt": "$1000$ at $5\\%$ for 2 years, compounded, earns in total…",
+                "options": [
+                  "$102.50$",
+                  "$100$",
+                  "$105$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$1000(1.05)^2 = 1102.50$: interest $102.50$ — the $2.50$ over simple's $100$ is compounding.",
+                "check": [
+                  "1000*Rational(21,20)**2 == Rational(2205,2)",
+                  "Rational(2205,2) - 1000 == Rational(205,2)"
+                ]
+              },
+              {
+                "prompt": "Compounding matters most for…",
+                "options": [
+                  "long times and high rates",
+                  "short times",
+                  "small principals only"
+                ],
+                "correctIndex": 0,
+                "explanation": "The gap vs simple interest grows with every period — exponential vs linear, again. Time is the exponent.",
+                "check": [
+                  "Rational(11,10)**30 > 1 + Rational(1,10)*30"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The rule of 72",
+            "body": "Bankers estimate doubling time by dividing 72 by the rate: at $8\\%$, money doubles in about $72/8 = 9$ years (check: $1.08^9 = 1.999$). At $6\\%$: 12 years. It works because of a logarithm hiding in the arithmetic — and it's the fastest financial math trick you'll ever learn."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$A = P(1+r)^t$: the balance multiplies by $(1+r)$ each period.",
+              "$r$ is a decimal; the factor is the keep-and-add $1+r$.",
+              "Compound beats simple, and the gap grows with time."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "half-life-and-decay",
+      "title": "Half-Life & Decay",
+      "concreteComparison": "A doctor gives 400 mg of a medicine whose **half-life** is 6 hours: 200 mg remains at hour 6, 100 at hour 12, 50 at hour 18. Carbon dating runs the same math over 5,730-year halvings to read skeletons' ages. Decay with a known halving (or any shrinking factor) is exponential decay — and you already own every tool it needs.",
+      "objective": "Model half-life and other decay processes with $y = a \\cdot (\\tfrac{1}{2})^{t/h}$ and factor-based decay models.",
+      "concept": [
+        "**Half-life** $h$: the time for half to remain. After $n$ halvings, $(\\tfrac12)^n$ remains: $y = a \\cdot (\\tfrac12)^{t/h}$ — the exponent counts the halvings $t/h$.",
+        "Medicine: 400 mg, half-life 6 h. At $t = 18$: three halvings → $400 \\cdot \\tfrac18 = 50$ mg.",
+        "Non-halving decay uses the keep-factor: a car losing $15\\%$/year is $V = V_0(0.85)^t$; air pressure dropping $12\\%$ per km is $P = P_0(0.88)^{km}$.",
+        "Reading backwards: \"how many halvings until under 10%?\" $(\\tfrac12)^3 = 12.5\\%$, $(\\tfrac12)^4 = 6.25\\%$ — four halvings. Count powers; that's the whole trick."
+      ],
+      "keyIdea": "Half-life: y = a·(1/2)^(t/h) — the exponent counts halvings. Other decay: power the keep-factor.",
+      "facts": [
+        {
+          "title": "Half-life",
+          "latex": "y = a\\left(\\tfrac12\\right)^{t/h}",
+          "explanation": "t/h = how many halvings have happened."
+        },
+        {
+          "title": "Benchmarks",
+          "latex": "3 \\text{ halvings} = 12.5\\% \\quad 4 = 6.25\\%",
+          "explanation": "Count powers of one-half."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ef5-we1",
+          "statement": "400 mg of medicine, half-life 6 h. Amount at $t = 18$ h?",
+          "solution": "$18/6 = 3$ halvings: $400 \\cdot \\tfrac18 = 50$ mg.",
+          "check": [
+            "400*Rational(1,2)**3 == 50",
+            "Rational(18,6) == 3"
+          ]
+        },
+        {
+          "id": "ef5-we2",
+          "statement": "A 96-g radioactive sample has half-life 5 days. Amount after 20 days?",
+          "solution": "$20/5 = 4$ halvings: $96/16 = 6$ g.",
+          "check": [
+            "96*Rational(1,2)**4 == 6"
+          ]
+        },
+        {
+          "id": "ef5-we3",
+          "statement": "A car worth 20,000 loses $15\\%$ yearly. Value after 2 years?",
+          "solution": "$20000(0.85)^2 = 20000 \\cdot 0.7225 = 14450$.",
+          "check": [
+            "20000*Rational(17,20)**2 == 14450"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the TIME as the exponent instead of the number of halvings.",
+          "correction": "18 hours with a 6-hour half-life is $t/h = 3$ halvings — $(\\tfrac12)^3$, not $(\\tfrac12)^{18}$. The exponent counts halvings.",
+          "authored": true
+        },
+        {
+          "text": "Thinking two half-lives = all gone.",
+          "correction": "Two halvings leave a QUARTER ($\\tfrac12 \\cdot \\tfrac12$), not zero. Decay never finishes — it just keeps halving what's left.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ef5-t1",
+          "statement": "80 mg, half-life 3 h: how much at $t = 12$ h?",
+          "solution": "$12/3 = 4$ halvings: $80/16 = 5$ mg.",
+          "check": [
+            "80*Rational(1,2)**4 == 5"
+          ]
+        },
+        {
+          "id": "ef5-t2",
+          "statement": "How many halvings drop a sample below $10\\%$?",
+          "solution": "$(\\tfrac12)^3 = 12.5\\%$; $(\\tfrac12)^4 = 6.25\\%$ — four.",
+          "check": [
+            "Rational(1,2)**3 == Rational(1,8)",
+            "Rational(1,2)**4 < Rational(1,10)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The halving clock",
+            "title": "Half-life",
+            "beats": [
+              "400 mg of medicine. Half-life: 6 hours.",
+              "Hour 6: 200. Hour 12: 100. Hour 18: 50.",
+              "Same fraction gone per tick — the decay signature.",
+              "$y = 400 \\cdot (\\tfrac12)^{t/6}$: the exponent counts halvings."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Count halvings, not hours",
+            "title": "The t/h exponent",
+            "beats": [
+              "18 hours ÷ 6-hour half-life = **3 halvings**.",
+              "$(\\tfrac12)^3 = \\tfrac18$ → $400/8 = 50$ mg. ✓",
+              "The clock ticks in half-lives, not hours.",
+              "$(\\tfrac12)^{18}$ would be 18 halvings — a trillionth!"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Tick the clock",
+            "prompt": "A 64-g sample, half-life 4 days. After 12 days…",
+            "options": [
+              "$8$ g",
+              "$16$ g",
+              "$5\\tfrac13$ g"
+            ],
+            "correctIndex": 0,
+            "explanation": "$12/4 = 3$ halvings: $64 \\to 32 \\to 16 \\to 8$.",
+            "check": [
+              "64*Rational(1,2)**3 == 8"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Beyond halving",
+            "title": "Any keep-factor decays",
+            "beats": [
+              "Car: $-15\\%$/year → $V = 20000(0.85)^t$.",
+              "Atmosphere: $-12\\%$ per km up → $(0.88)^{km}$.",
+              "Coffee cooling, sound fading, meds clearing:",
+              "all the same machine — power the keep-factor."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Benchmarks",
+            "title": "How low how fast?",
+            "prompt": "After 4 half-lives, the fraction remaining is…",
+            "options": [
+              "$6.25\\%$",
+              "$25\\%$",
+              "$0\\%$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(\\tfrac12)^4 = \\tfrac{1}{16} = 6.25\\%$. Never zero — each halving leaves half of something.",
+            "check": [
+              "Rational(1,2)**4 == Rational(1,16)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Decay in the wild",
+            "intro": "Halvings for half-life; keep-factors otherwise.",
+            "examples": [
+              {
+                "prompt": "A patient takes 240 mg; half-life 8 h. Amount after one full day (24 h)?",
+                "steps": [
+                  "$24/8 = 3$ halvings.",
+                  "$240/8 = 30$ mg."
+                ],
+                "answer": "$30$ mg",
+                "check": [
+                  "240*Rational(1,2)**3 == 30"
+                ]
+              },
+              {
+                "prompt": "A phone worth 900 loses a third of its value yearly. Value after 2 years?",
+                "steps": [
+                  "Keep $\\tfrac23$: $V = 900(\\tfrac23)^t$.",
+                  "$t=2$: $900 \\cdot \\tfrac49 = 400$."
+                ],
+                "answer": "$400$",
+                "check": [
+                  "900*Rational(2,3)**2 == 400"
+                ]
+              },
+              {
+                "prompt": "A lab needs a 500-g sample down to under 40 g before disposal (half-life 12 h). How many half-lives — and how long?",
+                "steps": [
+                  "$500 \\to 250 \\to 125 \\to 62.5 \\to 31.25$.",
+                  "Four halvings: $31.25 < 40$ ✓.",
+                  "$4 \\times 12 = 48$ hours."
+                ],
+                "answer": "4 half-lives = 48 h",
+                "check": [
+                  "500*Rational(1,2)**3 > 40",
+                  "500*Rational(1,2)**4 < 40"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Halving fluency",
+            "intro": "Divide time by half-life first.",
+            "problems": [
+              {
+                "prompt": "100 mg, half-life 5 h: at $t = 15$ h there remain…",
+                "options": [
+                  "$12.5$ mg",
+                  "$25$ mg",
+                  "$0$ mg"
+                ],
+                "correctIndex": 0,
+                "explanation": "3 halvings: $100 \\to 50 \\to 25 \\to 12.5$.",
+                "check": [
+                  "100*Rational(1,2)**3 == Rational(25,2)"
+                ]
+              },
+              {
+                "prompt": "After 2 half-lives, the fraction GONE is…",
+                "options": [
+                  "$75\\%$",
+                  "$50\\%$",
+                  "$100\\%$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Remaining: $\\tfrac14$. Gone: $\\tfrac34$. (Two halvings never finish the job.)",
+                "check": [
+                  "1 - Rational(1,2)**2 == Rational(3,4)"
+                ]
+              },
+              {
+                "prompt": "A forest loses $10\\%$ of its area each decade. After 3 decades remains…",
+                "options": [
+                  "$72.9\\%$",
+                  "$70\\%$",
+                  "$66.6\\%$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(0.9)^3 = 0.729$ — a bit MORE than the naive $70\\%$: each decade's loss is computed on less.",
+                "check": [
+                  "Rational(9,10)**3 == Rational(729,1000)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Reading skeletons by halving",
+            "body": "Living things hold a steady share of radioactive carbon-14; death stops the refill and the 5,730-year half-life clock starts. Ötzi the Iceman's carbon read ≈ 53% remaining — just under one half-life — dating him ~5,300 years back. Archaeology's most famous tool is literally this lesson's homework with older numbers."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Half-life: $y = a(\\tfrac12)^{t/h}$ — the exponent counts halvings.",
+              "Benchmarks: 3 halvings → 12.5%, 4 → 6.25%. Never zero.",
+              "Any decay: power the keep-factor ($-15\\%$/yr → $0.85^t$)."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "building-exponential-models",
+      "title": "Building Exponential Models",
+      "concreteComparison": "A biologist logs a culture: day 0 — 150 cells, day 1 — 450, day 2 — 1350. Her lab partner asks for day 6's forecast. She doesn't extend the table six rows; she READS the machine: start $150$, ratio $450/150 = 3$, so $y = 150 \\cdot 3^x$ — and day 6 is $150 \\cdot 729 = 109{,}350$. Building the model from data is the skill everything else in this unit was practicing for.",
+      "objective": "Write $y = a \\cdot b^x$ from stories and tables (finding $b$ as a ratio), and use the model to forecast.",
+      "concept": [
+        "From a **story**: identify the start $a$ and the per-step factor $b$. \"Starts at 30, doubles daily\" → $y = 30 \\cdot 2^x$. \"800, losing 25%/year\" → $y = 800(0.75)^x$.",
+        "From a **table**: $a$ is the $x=0$ entry; $b$ is any consecutive RATIO. $150, 450, 1350$ → $b = 3$, model $y = 150 \\cdot 3^x$. (Check the ratio twice — one ratio could be luck.)",
+        "From **two points** with a gap: $y$ goes $20 \\to 320$ in 4 steps means $b^4 = 16$, so $b = 2$ (positive root). Then $a$ comes from either point.",
+        "Then FORECAST — the model's whole job: day 6 = $150 \\cdot 3^6 = 109{,}350$. And sanity-check: exponential forecasts explode; if cells can't exceed the dish, the model has an expiry date. Models describe, reality caps."
+      ],
+      "keyIdea": "a = the start, b = the consecutive ratio (or the gap-root). Write y = a·bˣ, then forecast — with a sanity check.",
+      "facts": [
+        {
+          "title": "From tables",
+          "latex": "b = \\tfrac{y_{n+1}}{y_n}",
+          "explanation": "Consecutive ratio; a is the x = 0 entry."
+        },
+        {
+          "title": "From a gap",
+          "latex": "b^k = \\tfrac{y_{end}}{y_{start}}",
+          "explanation": "k steps apart: take the k-th root."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ef6-we1",
+          "statement": "Cells: day 0 — 150, day 1 — 450, day 2 — 1350. Model and day-6 forecast?",
+          "solution": "$b = 3$, $a = 150$: $y = 150 \\cdot 3^x$; day 6: $150 \\cdot 729 = 109350$.",
+          "check": [
+            "Rational(450,150) == 3",
+            "Rational(1350,450) == 3",
+            "150*3**6 == 109350"
+          ]
+        },
+        {
+          "id": "ef6-we2",
+          "statement": "A quantity drops $64 \\to 4$ in 2 steps. Find $b$ and the model.",
+          "solution": "$b^2 = \\tfrac{4}{64} = \\tfrac{1}{16}$ → $b = \\tfrac14$: $y = 64(\\tfrac14)^x$.",
+          "check": [
+            "Rational(4,64) == Rational(1,16)",
+            "Rational(1,4)**2 == Rational(1,16)",
+            "64*Rational(1,4)**2 == 4"
+          ]
+        },
+        {
+          "id": "ef6-we3",
+          "statement": "\"A rumor starts with 5 people and each person tells it so it triples hourly.\" Model and hour-4 count?",
+          "solution": "$y = 5 \\cdot 3^x$; hour 4: $5 \\cdot 81 = 405$.",
+          "check": [
+            "5*3**4 == 405"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Taking $b$ as the DIFFERENCE between entries.",
+          "correction": "$150, 450$: $b$ is the ratio $3$, not the difference $300$. Differences build linear models; ratios build exponential ones.",
+          "authored": true
+        },
+        {
+          "text": "Forecasting past the model's sanity range.",
+          "correction": "$150 \\cdot 3^{20}$ ≈ half a quadrillion cells — more than the dish, the lab, the building. Exponential models describe a PHASE; check forecasts against physical limits.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ef6-t1",
+          "statement": "Table: $8, 24, 72, 216$. Write the model.",
+          "solution": "$b = 3$, $a = 8$: $y = 8 \\cdot 3^x$.",
+          "check": [
+            "Rational(24,8) == 3",
+            "8*3**3 == 216"
+          ]
+        },
+        {
+          "id": "ef6-t2",
+          "statement": "$y$ goes $10 \\to 640$ in 3 steps. Find $b$.",
+          "solution": "$b^3 = 64$ → $b = 4$.",
+          "check": [
+            "Rational(640,10) == 64",
+            "4**3 == 64"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Reverse engineering",
+            "title": "From data to machine",
+            "beats": [
+              "Day 0: 150 cells. Day 1: 450. Day 2: 1350.",
+              "Start: $a = 150$ (the day-0 entry).",
+              "Ratio: $450/150 = 3$ — and $1350/450 = 3$ ✓ twice.",
+              "Machine found: $y = 150 \\cdot 3^x$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read a table",
+            "prompt": "Table $y$: $7, 14, 28, 56$. The model is…",
+            "options": [
+              "$y = 7 \\cdot 2^x$",
+              "$y = 7 + 7x$",
+              "$y = 2 \\cdot 7^x$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Start 7, ratio 2 (checked thrice: $14/7 = 28/14 = 56/28 = 2$).",
+            "check": [
+              "Rational(14,7) == 2",
+              "7*2**3 == 56"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Two points, gap between",
+            "title": "The k-th root",
+            "beats": [
+              "$y: 20 \\to 320$, four steps apart. No consecutive pair!",
+              "Four multiplications did it: $b^4 = \\tfrac{320}{20} = 16$.",
+              "$b = \\sqrt[4]{16} = 2$.",
+              "Model: $y = 20 \\cdot 2^x$. Gaps just mean roots."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Gap practice",
+            "title": "Root it out",
+            "prompt": "A value grows $5 \\to 45$ in 2 steps. The factor $b$ is…",
+            "options": [
+              "$3$",
+              "$9$",
+              "$20$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$b^2 = 9$ → $b = 3$. ($9$ is $b^2$; $20$ is the difference-thinking trap.)",
+            "check": [
+              "Rational(45,5) == 9",
+              "3**2 == 9"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Forecast, then sanity-check",
+            "title": "The model's job",
+            "beats": [
+              "$y = 150 \\cdot 3^x$: day 6 → $150 \\cdot 729 = 109{,}350$. Fine.",
+              "Day 20 → half a QUADRILLION cells. Not fine.",
+              "Exponentials describe a phase, not forever —",
+              "food runs out, dishes fill, rumors saturate. Cap your claims."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Model-building reps",
+            "intro": "Start, ratio (or root), write, forecast.",
+            "examples": [
+              {
+                "prompt": "Downloads: week 0 — 400; week 1 — 600; week 2 — 900. Model and week-4 forecast?",
+                "steps": [
+                  "Ratio: $600/400 = 1.5$ ✓ ($900/600 = 1.5$).",
+                  "$y = 400(1.5)^x$.",
+                  "Week 4: $400 \\cdot 5.0625 = 2025$."
+                ],
+                "answer": "$y = 400(1.5)^x$; $2025$",
+                "check": [
+                  "Rational(600,400) == Rational(3,2)",
+                  "400*Rational(3,2)**4 == 2025"
+                ]
+              },
+              {
+                "prompt": "A sample decays $810 \\to 10$ in 4 half... steps. Find $b$ and the model.",
+                "steps": [
+                  "$b^4 = \\tfrac{10}{810} = \\tfrac{1}{81}$.",
+                  "$b = \\tfrac13$.",
+                  "$y = 810(\\tfrac13)^x$."
+                ],
+                "answer": "$y = 810(\\tfrac13)^x$",
+                "check": [
+                  "Rational(10,810) == Rational(1,81)",
+                  "Rational(1,3)**4 == Rational(1,81)",
+                  "810*Rational(1,3)**4 == 10"
+                ]
+              },
+              {
+                "prompt": "Story: \"an account opens with 250 and grows 8% yearly.\" Model + 2-year value.",
+                "steps": [
+                  "Factor $1.08$.",
+                  "$A = 250(1.08)^t$.",
+                  "$t=2$: $250 \\cdot 1.1664 = 291.60$."
+                ],
+                "answer": "$291.60$",
+                "check": [
+                  "250*Rational(27,25)**2 == Rational(1458,5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Build and run",
+            "intro": "Ratios twice; roots for gaps; sanity always.",
+            "problems": [
+              {
+                "prompt": "Table: $5, 20, 80, 320$. Day 5's forecast is…",
+                "options": [
+                  "$5120$",
+                  "$1280$",
+                  "$400$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$b = 4$: $y = 5 \\cdot 4^x$; $x=5$: $5 \\cdot 1024 = 5120$.",
+                "check": [
+                  "Rational(20,5) == 4",
+                  "5*4**5 == 5120"
+                ]
+              },
+              {
+                "prompt": "$y$ falls $500 \\to 20$ in 2 steps. $b$ = …",
+                "options": [
+                  "$\\tfrac15$",
+                  "$\\tfrac{1}{25}$",
+                  "$-240$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$b^2 = \\tfrac{20}{500} = \\tfrac{1}{25}$ → $b = \\tfrac15$.",
+                "check": [
+                  "Rational(20,500) == Rational(1,25)",
+                  "Rational(1,5)**2 == Rational(1,25)"
+                ]
+              },
+              {
+                "prompt": "Your model says a town hits 40 billion people by 2100. The right response is…",
+                "options": [
+                  "question the model's range — reality caps exponentials",
+                  "trust it — the algebra checked out",
+                  "double it to be safe"
+                ],
+                "correctIndex": 0,
+                "explanation": "Perfect algebra, impossible forecast: exponential models describe phases. When output beats physical limits, the phase has ended.",
+                "check": [
+                  "2**10 == 1024"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Moore's law, the self-aware exponential",
+            "body": "In 1965 Gordon Moore modeled transistor counts as doubling every two years — an exponential model built from a four-point table, exactly your method. It held for FIFTY years (a billion-fold), then physics (atom-sized limits) capped the phase, right on schedule. The best modelers know their model's expiry date."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$a$ = the start; $b$ = consecutive ratio (check it twice).",
+              "Gap of $k$ steps: $b^k = \\tfrac{end}{start}$, take the $k$-th root.",
+              "Forecast boldly, then sanity-check against reality's caps."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "ef-pr1",
+      "statement": "Evaluate $y = 4 \\cdot 3^x$ at $x = 3$.",
+      "solution": "$4 \\cdot 27 = 108$.",
+      "check": [
+        "4*3**3 == 108"
+      ]
+    },
+    {
+      "id": "ef-pr2",
+      "statement": "Table $y$: $9, 18, 36, 72$ — linear or exponential? Write the model.",
+      "solution": "Ratios all 2: exponential, $y = 9 \\cdot 2^x$.",
+      "check": [
+        "Rational(18,9) == 2",
+        "9*2**3 == 72"
+      ]
+    },
+    {
+      "id": "ef-pr3",
+      "statement": "Factor for $+35\\%$? For $-8\\%$?",
+      "solution": "$1.35$ and $0.92$.",
+      "check": [
+        "1 + Rational(35,100) == Rational(27,20)",
+        "1 - Rational(8,100) == Rational(23,25)"
+      ]
+    },
+    {
+      "id": "ef-pr4",
+      "statement": "A 3000-person town shrinks $10\\%$ yearly. Population after 2 years?",
+      "solution": "$3000(0.9)^2 = 2430$.",
+      "check": [
+        "3000*Rational(9,10)**2 == 2430"
+      ]
+    },
+    {
+      "id": "ef-pr5",
+      "statement": "Which leads at $x = 6$: $2^x$ or $10x$?",
+      "solution": "$64 > 60$ — the exponential, having just overtaken.",
+      "check": [
+        "2**6 > 10*6",
+        "2**5 < 10*5"
+      ]
+    },
+    {
+      "id": "ef-pr6",
+      "statement": "$400$ at $25\\%$/year compounded, 2 years?",
+      "solution": "$400(1.25)^2 = 625$.",
+      "check": [
+        "400*Rational(5,4)**2 == 625"
+      ]
+    },
+    {
+      "id": "ef-pr7",
+      "statement": "Compound vs simple: $200$ at $10\\%$ for 3 years — the gap?",
+      "solution": "$266.20$ vs $260$: gap $6.20$.",
+      "check": [
+        "200*Rational(11,10)**3 == Rational(1331,5)",
+        "200*(1 + Rational(1,10)*3) == 260"
+      ]
+    },
+    {
+      "id": "ef-pr8",
+      "statement": "120 mg of medicine, half-life 4 h. Amount at $t = 12$ h?",
+      "solution": "3 halvings: $120/8 = 15$ mg.",
+      "check": [
+        "120*Rational(1,2)**3 == 15"
+      ]
+    },
+    {
+      "id": "ef-pr9",
+      "statement": "A value drops $250 \\to 2$ in 3 steps. Find $b$.",
+      "solution": "$b^3 = \\tfrac{2}{250} = \\tfrac{1}{125}$ → $b = \\tfrac15$.",
+      "check": [
+        "Rational(2,250) == Rational(1,125)",
+        "Rational(1,5)**3 == Rational(1,125)"
+      ]
+    },
+    {
+      "id": "ef-pr10",
+      "statement": "Rumor: 3 people, doubling hourly. When does it pass 100 people?",
+      "solution": "$3 \\cdot 2^5 = 96 < 100$; $3 \\cdot 2^6 = 192$ — hour 6.",
+      "check": [
+        "3*2**5 < 100",
+        "3*2**6 > 100"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "ef-ty1",
+      "statement": "Evaluate $y = 6 \\cdot 2^x$ at $x = 5$, and name $a$ and $b$.",
+      "solution": "$6 \\cdot 32 = 192$; $a = 6$, $b = 2$.",
+      "check": [
+        "6*2**5 == 192"
+      ]
+    },
+    {
+      "id": "ef-ty2",
+      "statement": "Growth or decay, and the percent: $y = 700(0.94)^x$?",
+      "solution": "Decay — keeps $94\\%$, loses $6\\%$ per step.",
+      "check": [
+        "Rational(94,100) < 1",
+        "1 - Rational(94,100) == Rational(3,50)"
+      ]
+    },
+    {
+      "id": "ef-ty3",
+      "statement": "$1000$ at $20\\%$ compounded for 3 years?",
+      "solution": "$1000(1.2)^3 = 1728$.",
+      "check": [
+        "1000*Rational(6,5)**3 == 1728"
+      ]
+    },
+    {
+      "id": "ef-ty4",
+      "statement": "First whole $x$ where $2^x > 15x$?",
+      "solution": "$x=6$: $64 < 90$; $x=7$: $128 > 105$ — $x = 7$.",
+      "check": [
+        "2**6 < 15*6",
+        "2**7 > 15*7"
+      ]
+    },
+    {
+      "id": "ef-ty5",
+      "statement": "500 g sample, half-life 10 days: amount after a month (30 days)?",
+      "solution": "3 halvings: $500/8 = 62.5$ g.",
+      "check": [
+        "500*Rational(1,2)**3 == Rational(125,2)"
+      ]
+    },
+    {
+      "id": "ef-ty6",
+      "statement": "Table: $2, 10, 50, 250$. Model and the $x=5$ forecast?",
+      "solution": "$y = 2 \\cdot 5^x$; $x=5$: $2 \\cdot 3125 = 6250$.",
+      "check": [
+        "Rational(10,2) == 5",
+        "2*5**5 == 6250"
+      ]
+    },
+    {
+      "id": "ef-ty7",
+      "statement": "A scooter worth 1600 loses a quarter of its value yearly. When does it dip below 700?",
+      "solution": "$1600 \\to 1200 \\to 900 \\to 675$: after year 3.",
+      "check": [
+        "1600*Rational(3,4)**2 == 900",
+        "1600*Rational(3,4)**3 == 675",
+        "675 < 700"
+      ]
+    }
+  ]
+}

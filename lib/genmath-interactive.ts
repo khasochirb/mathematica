@@ -762,6 +762,20 @@ export interface ParabolaGraphConfig {
   max?: number;
 }
 
+// The exponential workbench: growth (y = a·bˣ with steppers, ×b ratio chips),
+// race (exponential vs line, auto-swept with the overtake marked), and
+// compound (a balance compounding year by year as growing bars).
+export interface ExpGraphConfig {
+  mode: "growth" | "race" | "compound";
+  a?: number; // growth: starting value (y-intercept)
+  b?: number; // growth/race: the base
+  m?: number; // race: the line's slope
+  p?: number; // compound: principal
+  r?: number; // compound: rate per year (e.g. 0.1)
+  years?: number; // compound: years shown
+  interactive?: boolean;
+}
+
 // Two lines y = m1x + b1 and y = m2x + b2 on one grid; line 2 adjustable.
 // Marks the intersection (the system's solution) and calls parallel /
 // same-line verdicts live. The systems-of-equations workbench.
@@ -979,6 +993,7 @@ export type InteractiveStep =
   | { kind: "circleUnroll"; eyebrow?: string; title: string; teach: string; config: CircleUnrollConfig }
   | { kind: "systemGraph"; eyebrow?: string; title: string; teach: string; config: SystemGraphConfig }
   | { kind: "parabolaGraph"; eyebrow?: string; title: string; teach: string; config: ParabolaGraphConfig }
+  | { kind: "expGraph"; eyebrow?: string; title: string; teach: string; config: ExpGraphConfig }
   | { kind: "scatterPlot"; eyebrow?: string; title: string; teach: string; config: ScatterPlotConfig }
   | { kind: "areaShape"; eyebrow?: string; title: string; teach: string; config: AreaShapeConfig }
   | { kind: "apothemPolygon"; eyebrow?: string; title: string; teach: string; config: ApothemPolygonConfig }
