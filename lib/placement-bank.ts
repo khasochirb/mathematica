@@ -5,7 +5,7 @@
 // ramps up. Example, Equations: x+5=10 (easy) → 2x+7x=18 (medium) →
 // 2x+3=11 (hard, two-step).
 
-import { getGrade6Topics, getGeometrySpine, getGrade8Spine } from "@/lib/genmath-lessons";
+import { getGrade6Topics, getGeometrySpine, getGrade8Spine, getGrade10Spine } from "@/lib/genmath-lessons";
 
 export type PlacementQuestion = {
   id: string;
@@ -192,9 +192,48 @@ const G8_CURATED: Curated[] = [
   Q("scatter-plots-and-bivariate-data", 3, "Trend line $y = 0.75x + 2.5$: the prediction at $x = 6$ is —", ["$7$", "$6.25$", "$4.5$", "$9.25$"], 0, "$0.75(6) + 2.5 = 7$."),
 ];
 
+// Grade 10 — 7 topics × 3 genuine tiers.
+const G10_CURATED: Curated[] = [
+  // 1. Polynomials & Factoring
+  Q("polynomials-and-factoring", 1, "Expand $(x+2)(x+5)$.", ["$x^2 + 7x + 10$", "$x^2 + 10x + 7$", "$x^2 + 10$", "$2x + 7$"], 0, "FOIL: $x^2 + 5x + 2x + 10$."),
+  Q("polynomials-and-factoring", 2, "Factor $x^2 - 25$.", ["$(x+5)(x-5)$", "$(x-5)^2$", "$(x+5)^2$", "$x(x - 25)$"], 0, "Difference of squares: $a^2 - b^2 = (a+b)(a-b)$."),
+  Q("polynomials-and-factoring", 3, "Solve $x^2 + 4x = 21$.", ["$x = 3$ or $x = -7$", "$x = -3$ or $x = 7$", "$x = 21$ or $x = 0$", "$x = 3$ only"], 0, "$x^2+4x-21 = (x+7)(x-3) = 0$."),
+
+  // 2. Quadratic Equations
+  Q("quadratic-equations", 1, "Solve $x^2 = 64$.", ["$x = \\pm 8$", "$x = 8$ only", "$x = 32$", "$x = \\pm 32$"], 0, "Both $8^2$ and $(-8)^2$ equal $64$."),
+  Q("quadratic-equations", 2, "Solve $(x-3)^2 = 25$.", ["$x = 8$ or $x = -2$", "$x = \\pm 5$", "$x = 8$ only", "$x = 28$"], 0, "$x - 3 = \\pm 5$: $x = 8$ or $-2$."),
+  Q("quadratic-equations", 3, "How many real solutions does $x^2 + 2x + 5 = 0$ have?", ["None", "One", "Two", "Infinitely many"], 0, "Discriminant $4 - 20 = -16 < 0$: no real roots."),
+
+  // 3. Quadratic Functions & Parabolas
+  Q("quadratic-functions", 1, "The graph of $y = -2x^2$ opens —", ["down, narrower than $y=x^2$", "up, narrower", "down, wider", "up, wider"], 0, "$a = -2$: negative flips it down; $|a| = 2 > 1$ narrows it."),
+  Q("quadratic-functions", 2, "The vertex of $y = (x-4)^2 + 3$ is —", ["$(4, 3)$", "$(-4, 3)$", "$(4, -3)$", "$(3, 4)$"], 0, "Vertex form: the bracket dies at $x = 4$, $k = 3$."),
+  Q("quadratic-functions", 3, "The vertex of $y = x^2 - 6x + 1$ is —", ["$(3, -8)$", "$(-3, 8)$", "$(6, 1)$", "$(3, 1)$"], 0, "Axis $x = 6/2 = 3$; $y(3) = 9 - 18 + 1 = -8$."),
+
+  // 4. Rational Expressions & Equations
+  Q("rational-expressions", 1, "The excluded value of $\\tfrac{x+1}{x-4}$ is —", ["$x = 4$", "$x = -1$", "$x = 0$", "$x = -4$"], 0, "The denominator dies at $x = 4$; a zero TOP is fine."),
+  Q("rational-expressions", 2, "Simplify $\\tfrac{x^2-9}{x+3}$.", ["$x - 3$", "$x + 3$", "$x - 9$", "it can't simplify"], 0, "$(x+3)(x-3)$ over $(x+3)$."),
+  Q("rational-expressions", 3, "A painter takes 6 h alone, a helper 3 h. Together they take —", ["$2$ h", "$4.5$ h", "$9$ h", "$3$ h"], 0, "Rates add: $\\tfrac16 + \\tfrac13 = \\tfrac12$ job/hour → 2 hours."),
+
+  // 5. Radicals & Rational Exponents
+  Q("radicals-and-rational-exponents", 1, "Simplify $\\sqrt{72}$.", ["$6\\sqrt{2}$", "$2\\sqrt{6}$", "$36\\sqrt{2}$", "$8\\sqrt{3}$"], 0, "$72 = 36 \\cdot 2$."),
+  Q("radicals-and-rational-exponents", 2, "Evaluate $8^{2/3}$.", ["$4$", "$16$", "$\\tfrac{16}{3}$", "$6$"], 0, "Cube root of 8 is 2; squared is 4."),
+  Q("radicals-and-rational-exponents", 3, "Solve $\\sqrt{x} = x - 2$.", ["$x = 4$ only", "$x = 4$ or $x = 1$", "$x = 1$ only", "no solution"], 0, "Squaring gives $x = 4$ or $1$, but $\\sqrt1 \\neq -1$: $1$ is extraneous."),
+
+  // 6. Exponential Functions & Growth
+  Q("exponential-functions", 1, "Evaluate $y = 3 \\cdot 2^x$ at $x = 4$.", ["$48$", "$1296$", "$24$", "$36$"], 0, "$2^4 = 16$, then $\\times 3$."),
+  Q("exponential-functions", 2, "A phone loses $20\\%$ of its value yearly. The yearly factor is —", ["$0.8$", "$0.2$", "$1.2$", "$-0.2$"], 0, "Keep $80\\%$: multiply by $0.8$ each year."),
+  Q("exponential-functions", 3, "$1000$ at $10\\%$ compounded yearly is worth, after 2 years —", ["$1210$", "$1200$", "$1100$", "$1020$"], 0, "$1000(1.1)^2 = 1210$ — the extra 10 is interest on interest."),
+
+  // 7. Probability & Counting
+  Q("probability-and-counting", 1, "4 shirts and 3 pants make how many outfits?", ["$12$", "$7$", "$4^3$", "$1$"], 0, "Each shirt pairs with each pant: $4 \\times 3$."),
+  Q("probability-and-counting", 2, "How many 2-person teams can 8 people form?", ["$28$", "$56$", "$16$", "$64$"], 0, "Order-blind: $_8C_2 = \\tfrac{8 \\cdot 7}{2} = 28$."),
+  Q("probability-and-counting", 3, "Two dice: $P(\\text{at least one six})$ = —", ["$\\tfrac{11}{36}$", "$\\tfrac{1}{36}$", "$\\tfrac{1}{3}$", "$\\tfrac{2}{6}$"], 0, "$1 - (\\tfrac56)^2 = \\tfrac{11}{36}$."),
+];
+
 let cache: PlacementQuestion[] | null = null;
 let geoCache: PlacementQuestion[] | null = null;
 let g8Cache: PlacementQuestion[] | null = null;
+let g10Cache: PlacementQuestion[] | null = null;
 
 export function getPlacementBank(): PlacementQuestion[] {
   if (cache) return cache;
@@ -215,6 +254,13 @@ export function getGrade8PlacementBank(): PlacementQuestion[] {
   const titleBySlug = new Map(getGrade8Spine().map((t) => [t.slug, t.title]));
   g8Cache = G8_CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
   return g8Cache;
+}
+
+export function getGrade10PlacementBank(): PlacementQuestion[] {
+  if (g10Cache) return g10Cache;
+  const titleBySlug = new Map(getGrade10Spine().map((t) => [t.slug, t.title]));
+  g10Cache = G10_CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
+  return g10Cache;
 }
 
 // A stable, per-question shuffle of the answer options (the source keeps the

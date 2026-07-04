@@ -8,7 +8,7 @@ import {
   summarize,
   type PlacementState,
 } from "@/lib/placement-engine";
-import { getPlacementBank, getGeometryPlacementBank, getGrade8PlacementBank, displayQuestion, placementTopics, type PlacementQuestion } from "@/lib/placement-bank";
+import { getPlacementBank, getGeometryPlacementBank, getGrade8PlacementBank, getGrade10PlacementBank, displayQuestion, placementTopics, type PlacementQuestion } from "@/lib/placement-bank";
 
 // A small synthetic bank: 2 topics × 3 difficulties.
 function synthBank(): PlacementQuestion[] {
@@ -208,6 +208,39 @@ describe("placement bank (curated tiers)", () => {
     expect(ans("linear-functions:d2")).toContain("2"); // slope
     expect(ans("systems-of-linear-equations:d2")).toContain("(3, 6)");
     expect(ans("scatter-plots-and-bivariate-data:d3")).toContain("7"); // prediction
+    for (const q of bank) {
+      expect(q.correctIndex).toBeGreaterThanOrEqual(0);
+      expect(q.correctIndex).toBeLessThan(q.options.length);
+      const d = displayQuestion(q);
+      expect(d.options[d.correctIndex]).toBe(q.options[q.correctIndex]);
+    }
+  });
+
+  it("grade-10 bank has three tiers for all 7 topics, with correct spot-check answers", () => {
+    const bank = getGrade10PlacementBank();
+    const topics = placementTopics(bank);
+    expect(topics.length).toBe(7);
+    for (const t of topics) {
+      const diffs = bank.filter((q) => q.topicSlug === t.slug).map((q) => q.difficulty).sort();
+      expect(diffs).toEqual([1, 2, 3]);
+      expect(t.title.length).toBeGreaterThan(0);
+      expect(t.title).not.toBe(t.slug);
+    }
+    const byId = new Map(bank.map((q) => [q.id, q]));
+    const ans = (id: string) => {
+      const q = byId.get(id)!;
+      return q.options[q.correctIndex];
+    };
+    expect(ans("polynomials-and-factoring:d2")).toContain("(x+5)(x-5)"); // difference of squares
+    expect(ans("polynomials-and-factoring:d3")).toContain("-7"); // x²+4x=21
+    expect(ans("quadratic-equations:d1")).toContain("\\pm 8"); // x²=64
+    expect(ans("quadratic-equations:d3")).toContain("None"); // D<0
+    expect(ans("quadratic-functions:d3")).toContain("(3, -8)"); // vertex
+    expect(ans("rational-expressions:d3")).toContain("2"); // work-rate 2h
+    expect(ans("radicals-and-rational-exponents:d1")).toContain("6\\sqrt{2}"); // √72
+    expect(ans("radicals-and-rational-exponents:d3")).toContain("4"); // extraneous filtered
+    expect(ans("exponential-functions:d3")).toContain("1210"); // compound
+    expect(ans("probability-and-counting:d3")).toContain("\\tfrac{11}{36}"); // at least one six
     for (const q of bank) {
       expect(q.correctIndex).toBeGreaterThanOrEqual(0);
       expect(q.correctIndex).toBeLessThan(q.options.length);
