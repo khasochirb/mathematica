@@ -74,6 +74,7 @@ import quadraticFunctions from "@/data/genmath/10/quadratic-functions.json";
 import rationalExpressions from "@/data/genmath/10/rational-expressions.json";
 import radicalsRationalExponents from "@/data/genmath/10/radicals-and-rational-exponents.json";
 import exponentialFunctions from "@/data/genmath/10/exponential-functions.json";
+import probabilityAndCounting from "@/data/genmath/10/probability-and-counting.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -200,7 +201,7 @@ export const GRADE10_SPINE: GradeSpineEntry[] = [
     slug: "probability-and-counting",
     title: "Probability & Counting",
     blurb: "Counting principles, permutations and combinations, and probability of compound events.",
-    live: false,
+    live: true,
   },
 ];
 
@@ -211,6 +212,7 @@ const grade10Topics: GenMathTopic[] = [
   rationalExpressions as GenMathTopic,
   radicalsRationalExponents as GenMathTopic,
   exponentialFunctions as GenMathTopic,
+  probabilityAndCounting as GenMathTopic,
 ];
 
 const grade8Topics: GenMathTopic[] = [

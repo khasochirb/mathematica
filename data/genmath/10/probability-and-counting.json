@@ -1,0 +1,1720 @@
+{
+  "slug": "probability-and-counting",
+  "title": "Probability & Counting",
+  "grade": 10,
+  "blurb": "Counting principles, permutations and combinations, and probability of compound events.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "the-counting-principle",
+      "title": "The Counting Principle",
+      "concreteComparison": "You own 3 shirts and 2 pairs of pants. How many outfits? Not $3 + 2 = 5$ — each shirt pairs with each pant: $3 \\times 2 = 6$. That little ×, applied stage by stage, counts phone numbers, passwords, license plates, and DNA — without ever listing them. It's the engine under everything this unit does.",
+      "objective": "Count multi-stage choices with the multiplication principle, with and without repetition allowed.",
+      "concept": [
+        "**The counting principle**: if a task has stages with $m$, then $n$, then $p$ options, the total is $m \\times n \\times p$. Outfits: $3 \\times 2 = 6$; a menu of 4 mains, 3 drinks, 2 desserts: $4 \\cdot 3 \\cdot 2 = 24$ dinners.",
+        "Why multiply: each of the 3 shirts opens 2 pant-doors — 3 groups of 2. A tree diagram of the choices has exactly $3 \\times 2$ leaves.",
+        "**Repetition allowed** keeps every stage full: a 4-digit PIN has $10 \\cdot 10 \\cdot 10 \\cdot 10 = 10^4 = 10000$ options.",
+        "**No repetition** shrinks each stage: a 4-digit code with all digits different has $10 \\cdot 9 \\cdot 8 \\cdot 7 = 5040$. The next lesson gives that shrinking pattern a name."
+      ],
+      "keyIdea": "Stages multiply: m × n × p total outcomes. Repetition keeps stages full; no-repetition shrinks them by one each time.",
+      "facts": [
+        {
+          "title": "The principle",
+          "latex": "m \\times n \\times p \\ \\cdots",
+          "explanation": "Options per stage, multiplied."
+        },
+        {
+          "title": "PIN check",
+          "latex": "10^4 = 10000",
+          "explanation": "Four full stages of 10."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc1-we1",
+          "statement": "A cafe offers 4 mains, 3 drinks, and 2 desserts. How many different meals?",
+          "solution": "$4 \\cdot 3 \\cdot 2 = 24$.",
+          "check": [
+            "4*3*2 == 24"
+          ]
+        },
+        {
+          "id": "pc1-we2",
+          "statement": "How many 4-digit PINs are possible? How many with no repeated digit?",
+          "solution": "Full: $10^4 = 10000$. No repeats: $10 \\cdot 9 \\cdot 8 \\cdot 7 = 5040$.",
+          "check": [
+            "10**4 == 10000",
+            "10*9*8*7 == 5040"
+          ]
+        },
+        {
+          "id": "pc1-we3",
+          "statement": "License plates: 2 letters then 3 digits. How many plates?",
+          "solution": "$26 \\cdot 26 \\cdot 10 \\cdot 10 \\cdot 10 = 676{,}000$.",
+          "check": [
+            "26*26*10*10*10 == 676000"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding the stages: 3 shirts + 2 pants = 5 outfits.",
+          "correction": "Each shirt goes with EACH pant — 3 groups of 2, so $3 \\times 2 = 6$. Adding counts the clothes, not the outfits.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting stages shrink when repetition is banned.",
+          "correction": "\"4 digits, all different\" is $10 \\cdot 9 \\cdot 8 \\cdot 7$, not $10^4$ — each pick uses up an option.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc1-t1",
+          "statement": "5 sandwich breads, 4 fillings: how many sandwiches?",
+          "solution": "$5 \\cdot 4 = 20$.",
+          "check": [
+            "5*4 == 20"
+          ]
+        },
+        {
+          "id": "pc1-t2",
+          "statement": "3-character codes from A–Z, no repeats: how many?",
+          "solution": "$26 \\cdot 25 \\cdot 24 = 15600$.",
+          "check": [
+            "26*25*24 == 15600"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Count without listing",
+            "title": "The outfit problem",
+            "beats": [
+              "3 shirts, 2 pants. List the outfits? S1P1, S1P2, S2P1…",
+              "Faster: each shirt opens 2 pant-doors.",
+              "3 groups of 2: $3 \\times 2 = 6$ outfits.",
+              "Multiply the stages. Never list again."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Chain the stages",
+            "title": "Bigger menus",
+            "beats": [
+              "4 mains × 3 drinks × 2 desserts.",
+              "$4 \\cdot 3 = 12$ main-drink pairs…",
+              "…each with 2 dessert choices: $24$ meals.",
+              "Any number of stages: keep multiplying."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Multiply, don't add",
+            "prompt": "A quiz has 5 true/false questions. How many answer sheets are possible?",
+            "options": [
+              "$2^5 = 32$",
+              "$5 \\cdot 2 = 10$",
+              "$5 + 2 = 7$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Five stages of 2 options: $2 \\cdot 2 \\cdot 2 \\cdot 2 \\cdot 2 = 32$.",
+            "check": [
+              "2**5 == 32"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Repetition matters",
+            "title": "Full vs shrinking stages",
+            "beats": [
+              "4-digit PIN, repeats fine: $10 \\cdot 10 \\cdot 10 \\cdot 10 = 10000$.",
+              "All digits DIFFERENT: first pick 10 ways…",
+              "…then 9 left, then 8, then 7: $5040$.",
+              "Read the fine print: may options repeat?"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Fine print",
+            "title": "Repeats or not?",
+            "prompt": "How many 3-letter codes use three DIFFERENT letters?",
+            "options": [
+              "$26 \\cdot 25 \\cdot 24$",
+              "$26^3$",
+              "$26 + 25 + 24$"
+            ],
+            "correctIndex": 0,
+            "explanation": "No repeats: stages shrink $26, 25, 24$ → $15600$. ($26^3 = 17576$ allows AAA.)",
+            "check": [
+              "26*25*24 == 15600",
+              "26**3 == 17576"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Stage engineering",
+            "intro": "Identify the stages; count each; multiply.",
+            "examples": [
+              {
+                "prompt": "A restaurant's 'combo': 3 soups, 5 mains, 4 desserts, 2 drinks. Total combos?",
+                "steps": [
+                  "Four stages: $3, 5, 4, 2$.",
+                  "$3 \\cdot 5 \\cdot 4 \\cdot 2 = 120$."
+                ],
+                "answer": "$120$",
+                "check": [
+                  "3*5*4*2 == 120"
+                ]
+              },
+              {
+                "prompt": "How many 5-digit numbers exist (first digit can't be 0)?",
+                "steps": [
+                  "First stage: 9 options (1–9).",
+                  "Remaining four: 10 each.",
+                  "$9 \\cdot 10^4 = 90000$."
+                ],
+                "answer": "$90000$",
+                "check": [
+                  "9*10**4 == 90000"
+                ]
+              },
+              {
+                "prompt": "Password: exactly 2 letters then 2 digits, no repeated characters. Count them.",
+                "steps": [
+                  "Letters: $26 \\cdot 25$.",
+                  "Digits: $10 \\cdot 9$.",
+                  "$650 \\cdot 90 = 58500$."
+                ],
+                "answer": "$58500$",
+                "check": [
+                  "26*25*10*9 == 58500"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Stage counting",
+            "intro": "Stages, options, multiply.",
+            "problems": [
+              {
+                "prompt": "4 routes from home to school, 3 from school to the gym. Routes home→gym?",
+                "options": [
+                  "$12$",
+                  "$7$",
+                  "$4^3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4 \\cdot 3 = 12$ two-leg routes.",
+                "check": [
+                  "4*3 == 12"
+                ]
+              },
+              {
+                "prompt": "A 6-question multiple-choice quiz, 4 options each: possible answer sheets?",
+                "options": [
+                  "$4^6 = 4096$",
+                  "$6^4 = 1296$",
+                  "$24$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Six stages of 4: $4^6$. (Base = options, exponent = questions.)",
+                "check": [
+                  "4**6 == 4096"
+                ]
+              },
+              {
+                "prompt": "2-digit codes with different digits: how many?",
+                "options": [
+                  "$90$",
+                  "$100$",
+                  "$81$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$10 \\cdot 9 = 90$. (Full repetition would be $100$.)",
+                "check": [
+                  "10*9 == 90"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why your padlock is called a 'combination' lock (wrongly)",
+            "body": "A 3-dial lock with digits 0–9 has $10^3 = 1000$ settings — countable in an afternoon by a patient thief, which is why bike locks got 4 and 5 dials ($10000$ and $100000$). And mathematically it's a PERMUTATION lock: 1-2-3 and 3-2-1 open different doors. The right name was inside this unit all along."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Multi-stage choices multiply: $m \\times n \\times p$.",
+              "Repetition allowed: stages stay full ($10^4$).",
+              "No repetition: stages shrink ($10 \\cdot 9 \\cdot 8 \\cdot 7$)."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "permutations",
+      "title": "Permutations",
+      "concreteComparison": "Eight sprinters, three medals. Gold has 8 candidates, silver 7, bronze 6: $8 \\cdot 7 \\cdot 6 = 336$ podiums. That shrinking product has a name — a **permutation** — and a notation built on the **factorial**, math's fastest-growing everyday function.",
+      "objective": "Count ordered arrangements with factorials and the permutation formula $_nP_r = \\frac{n!}{(n-r)!}$.",
+      "concept": [
+        "**Factorial**: $n! = n(n-1)(n-2)\\cdots 1$ counts ways to arrange ALL of $n$ things in order. $5! = 120$ ways to shelve 5 books. (And $0! = 1$: one way to arrange nothing.)",
+        "Arranging just $r$ of the $n$: the stages shrink from $n$ but stop after $r$ picks — that's a **permutation**: $_nP_r = n(n-1)\\cdots$ ($r$ factors) $= \\frac{n!}{(n-r)!}$.",
+        "Podium: $_8P_3 = 8 \\cdot 7 \\cdot 6 = 336 = \\frac{8!}{5!}$ — the $5!$ cancels the un-used tail.",
+        "**Order matters** is the permutation signature: gold-silver-bronze, president-then-VP, 1st-2nd-3rd. If swapping two picks changes the outcome, you're permuting."
+      ],
+      "keyIdea": "n! arranges everything; nPr = n!/(n−r)! arranges r of n. Use when ORDER MATTERS.",
+      "facts": [
+        {
+          "title": "Factorial",
+          "latex": "n! = n(n-1)\\cdots 1, \\quad 0! = 1",
+          "explanation": "Arrangements of all n."
+        },
+        {
+          "title": "Permutation",
+          "latex": "_nP_r = \\tfrac{n!}{(n-r)!}",
+          "explanation": "r picks from n, order mattering."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc2-we1",
+          "statement": "How many ways can 5 books be arranged on a shelf?",
+          "solution": "$5! = 120$.",
+          "check": [
+            "factorial(5) == 120"
+          ]
+        },
+        {
+          "id": "pc2-we2",
+          "statement": "8 sprinters, 3 medals (gold/silver/bronze): how many podiums?",
+          "solution": "$_8P_3 = 8 \\cdot 7 \\cdot 6 = 336$.",
+          "check": [
+            "8*7*6 == 336",
+            "factorial(8)/factorial(5) == 336"
+          ]
+        },
+        {
+          "id": "pc2-we3",
+          "statement": "A club of 10 picks a president, then a vice-president. How many outcomes?",
+          "solution": "$_{10}P_2 = 10 \\cdot 9 = 90$ — order matters: the two jobs differ.",
+          "check": [
+            "10*9 == 90",
+            "factorial(10)/factorial(8) == 90"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Computing $_nP_r$ as $n \\cdot r$ or $n^r$.",
+          "correction": "$_8P_3$ is $8 \\cdot 7 \\cdot 6$ — the SHRINKING product with $r$ factors, not $8 \\cdot 3 = 24$ or $8^3 = 512$.",
+          "authored": true
+        },
+        {
+          "text": "Believing $0! = 0$.",
+          "correction": "$0! = 1$: there is exactly ONE way to arrange nothing (do nothing). The formulas depend on it: $_nP_n = \\tfrac{n!}{0!} = n!$ ✓.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc2-t1",
+          "statement": "Compute $4!$ and $6!$.",
+          "solution": "$24$ and $720$.",
+          "check": [
+            "factorial(4) == 24",
+            "factorial(6) == 720"
+          ]
+        },
+        {
+          "id": "pc2-t2",
+          "statement": "$_7P_2$ = ?",
+          "solution": "$7 \\cdot 6 = 42$.",
+          "check": [
+            "7*6 == 42",
+            "factorial(7)/factorial(5) == 42"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Arrange everything",
+            "title": "The factorial",
+            "beats": [
+              "5 books on a shelf: 5 choices, then 4, 3, 2, 1.",
+              "$5 \\cdot 4 \\cdot 3 \\cdot 2 \\cdot 1 = 5! = 120$.",
+              "The ! is 'factorial' — the all-arrangements count.",
+              "It EXPLODES: $10! = 3{,}628{,}800$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Arrange just some",
+            "title": "Enter the permutation",
+            "beats": [
+              "8 sprinters, only 3 medals.",
+              "Gold: 8 ways. Silver: 7. Bronze: 6. Stop.",
+              "$_8P_3 = 8 \\cdot 7 \\cdot 6 = 336$.",
+              "Formula: $\\tfrac{8!}{5!}$ — divide away the unused tail."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Shrink and stop",
+            "prompt": "$_6P_2$ = …",
+            "options": [
+              "$30$",
+              "$12$",
+              "$36$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Two shrinking factors: $6 \\cdot 5 = 30$. ($12$ is $6\\cdot2$; $36$ is $6^2$.)",
+            "check": [
+              "6*5 == 30",
+              "factorial(6)/factorial(4) == 30"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The signature",
+            "title": "Order matters",
+            "beats": [
+              "Gold-silver-bronze: swapping runners CHANGES the podium.",
+              "President then VP: swapping changes who leads.",
+              "That's the permutation signature.",
+              "(Order NOT mattering is next lesson's story.)"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Signature check",
+            "title": "Which is a permutation?",
+            "prompt": "Which task needs a permutation count?",
+            "options": [
+              "choosing 1st, 2nd, 3rd prize winners",
+              "choosing 3 equal committee members",
+              "choosing 3 identical door prizes"
+            ],
+            "correctIndex": 0,
+            "explanation": "Prizes ranked = order matters. Equal committee members and identical prizes don't care about order — different tool.",
+            "check": [
+              "5*4*3 == 60"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Ordered counting",
+            "intro": "Factorial for all; nPr for some.",
+            "examples": [
+              {
+                "prompt": "How many ways can 6 students line up for a photo?",
+                "steps": [
+                  "All 6, ordered: $6!$.",
+                  "$720$."
+                ],
+                "answer": "$720$",
+                "check": [
+                  "factorial(6) == 720"
+                ]
+              },
+              {
+                "prompt": "A playlist shows 4 of your 9 favorite songs, in order. How many playlists?",
+                "steps": [
+                  "$_9P_4 = 9 \\cdot 8 \\cdot 7 \\cdot 6$.",
+                  "$= 3024$."
+                ],
+                "answer": "$3024$",
+                "check": [
+                  "9*8*7*6 == 3024",
+                  "factorial(9)/factorial(5) == 3024"
+                ]
+              },
+              {
+                "prompt": "In how many ways can the letters of MATH be arranged?",
+                "steps": [
+                  "4 distinct letters: $4!$.",
+                  "$= 24$ — from MATH to HTAM."
+                ],
+                "answer": "$24$",
+                "check": [
+                  "factorial(4) == 24"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Permutation drills",
+            "intro": "Count the shrinking factors.",
+            "problems": [
+              {
+                "prompt": "$5!$ = …",
+                "options": [
+                  "$120$",
+                  "$25$",
+                  "$60$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5 \\cdot 4 \\cdot 3 \\cdot 2 \\cdot 1 = 120$.",
+                "check": [
+                  "factorial(5) == 120"
+                ]
+              },
+              {
+                "prompt": "12 teams, top-3 trophy finishes: how many outcomes?",
+                "options": [
+                  "$1320$",
+                  "$36$",
+                  "$1728$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$_{12}P_3 = 12 \\cdot 11 \\cdot 10 = 1320$.",
+                "check": [
+                  "12*11*10 == 1320"
+                ]
+              },
+              {
+                "prompt": "$_nP_n$ (arrange ALL n) equals…",
+                "options": [
+                  "$n!$",
+                  "$n$",
+                  "$1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Arranging all of them IS the factorial: $\\tfrac{n!}{0!} = n!$ (thanks to $0! = 1$).",
+                "check": [
+                  "factorial(5)/factorial(0) == 120"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "52! — the number that breaks intuition",
+            "body": "Shuffle a deck properly and its order is one of $52! \\approx 8 \\times 10^{67}$ arrangements — so many that every fair shuffle in history has almost certainly produced an order NO ONE has ever seen. There are more deck orders than atoms in our galaxy. You've held a cosmic first in your hands and never noticed."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$n!$ arranges all $n$; it explodes fast; $0! = 1$.",
+              "$_nP_r$: $r$ shrinking factors from $n$ — $\\tfrac{n!}{(n-r)!}$.",
+              "Use permutations when swapping picks changes the outcome."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "combinations",
+      "title": "Combinations",
+      "concreteComparison": "Pick 2 of 5 friends for pizza — does \"Ana then Bat\" differ from \"Bat then Ana\"? No: same pizza table. Permutations would count both ($5 \\cdot 4 = 20$); reality counts them once ($10$). When order does NOT matter, divide out the repeats: that's a **combination**, the workhorse of teams, hands, and lotteries.",
+      "objective": "Count unordered selections with $_nC_r = \\frac{n!}{r!(n-r)!}$, and choose correctly between permutations and combinations.",
+      "concept": [
+        "**Combination**: choose $r$ of $n$ with order irrelevant. Formula: $_nC_r = \\frac{n!}{r!\\,(n-r)!}$ — the permutation count divided by $r!$, the number of orders each group was over-counted in.",
+        "Pizza pair: $_5C_2 = \\tfrac{5 \\cdot 4}{2!} = 10$. Each pair {Ana, Bat} appeared as 2 orderings — dividing by $2! = 2$ collapses them.",
+        "The decision test: **does swapping change anything?** President/VP — yes: permutation. Two equal committee seats — no: combination. Medals — permutation. Pizza toppings — combination.",
+        "Symmetry bonus: $_nC_r = {_nC_{n-r}}$ — choosing 2 to take IS choosing 3 to leave: $_5C_2 = {_5C_3} = 10$."
+      ],
+      "keyIdea": "nCr = n! / (r!(n−r)!): permutations with the r! orderings divided out. Use when order doesn't matter.",
+      "facts": [
+        {
+          "title": "Combination",
+          "latex": "_nC_r = \\tfrac{n!}{r!(n-r)!}",
+          "explanation": "Groups, not lineups."
+        },
+        {
+          "title": "Symmetry",
+          "latex": "_nC_r = {}_nC_{n-r}",
+          "explanation": "Choosing the keepers = choosing the leftovers."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc3-we1",
+          "statement": "How many ways to choose 2 of 5 friends?",
+          "solution": "$_5C_2 = \\tfrac{5!}{2!\\,3!} = 10$.",
+          "check": [
+            "binomial(5,2) == 10"
+          ]
+        },
+        {
+          "id": "pc3-we2",
+          "statement": "A team of 4 from a class of 10: how many teams?",
+          "solution": "$_{10}C_4 = \\tfrac{10!}{4!\\,6!} = 210$.",
+          "check": [
+            "binomial(10,4) == 210"
+          ]
+        },
+        {
+          "id": "pc3-we3",
+          "statement": "From 8 candidates: (a) president + VP, (b) two equal reps. Count each.",
+          "solution": "(a) order matters: $8 \\cdot 7 = 56$. (b) order doesn't: $_8C_2 = 28$ — exactly half.",
+          "check": [
+            "8*7 == 56",
+            "binomial(8,2) == 28",
+            "Rational(56,2) == 28"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using a permutation for an order-blind choice.",
+          "correction": "Two equal committee seats from 8 people is $_8C_2 = 28$, not $56$ — Ana-with-Bat IS Bat-with-Ana. Ask the swap test first.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting to divide by $r!$ (not $2$, not $r$).",
+          "correction": "Choosing 3 of 7: $\\tfrac{7 \\cdot 6 \\cdot 5}{3!} = \\tfrac{210}{6} = 35$. Each trio was counted in $3! = 6$ orders — divide by all six.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc3-t1",
+          "statement": "$_6C_2$ = ?",
+          "solution": "$\\tfrac{6 \\cdot 5}{2} = 15$.",
+          "check": [
+            "binomial(6,2) == 15"
+          ]
+        },
+        {
+          "id": "pc3-t2",
+          "statement": "Choose 3 pizza toppings from 9 available: how many ways?",
+          "solution": "$_9C_3 = \\tfrac{9 \\cdot 8 \\cdot 7}{6} = 84$.",
+          "check": [
+            "binomial(9,3) == 84"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The over-count",
+            "title": "Same pizza, two names",
+            "beats": [
+              "Pick 2 of 5 friends. Permutation says $5 \\cdot 4 = 20$.",
+              "But 'Ana then Bat' = 'Bat then Ana'. Same table!",
+              "Every pair got counted $2! = 2$ times.",
+              "Truth: $\\tfrac{20}{2} = 10$. That's a **combination**."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The formula",
+            "title": "Divide out the orders",
+            "beats": [
+              "$_nC_r = \\tfrac{n!}{r!\\,(n-r)!}$ — permutation ÷ $r!$.",
+              "Choose 3 of 7: $\\tfrac{7 \\cdot 6 \\cdot 5}{3!} = \\tfrac{210}{6} = 35$.",
+              "Each trio had $3! = 6$ hidden orderings.",
+              "Divide them out; groups remain."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Collapse the orders",
+            "prompt": "$_7C_2$ = …",
+            "options": [
+              "$21$",
+              "$42$",
+              "$14$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tfrac{7 \\cdot 6}{2!} = 21$. ($42$ forgot to divide; $14$ divided by $r$ instead of $r!$… same here, but wrong habit.)",
+            "check": [
+              "binomial(7,2) == 21",
+              "7*6 == 42"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The swap test",
+            "title": "Permutation or combination?",
+            "beats": [
+              "Swapping two picks changes the outcome? PERMUTATION.",
+              "President/VP: swap → different government. P.",
+              "Two equal reps: swap → same pair. C.",
+              "Medals: P. Toppings: C. Always run the test."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Run the test",
+            "title": "Which needs a combination?",
+            "prompt": "Which count is a combination?",
+            "options": [
+              "choosing 5 lottery numbers",
+              "assigning gold, silver, bronze",
+              "ranking your top 3 movies"
+            ],
+            "correctIndex": 0,
+            "explanation": "Lottery numbers win as a SET — order irrelevant: $_nC_5$. Medals and rankings change on swap: permutations.",
+            "check": [
+              "binomial(6,5) == 6"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Group counting",
+            "intro": "Swap test first; then the right formula.",
+            "examples": [
+              {
+                "prompt": "A 5-player starting lineup (no positions) from 12 players?",
+                "steps": [
+                  "Positions? None — order-blind.",
+                  "$_{12}C_5 = 792$."
+                ],
+                "answer": "$792$",
+                "check": [
+                  "binomial(12,5) == 792"
+                ]
+              },
+              {
+                "prompt": "How many different 2-topping pizzas from 8 toppings?",
+                "steps": [
+                  "Toppings mix in a pan — order-blind.",
+                  "$_8C_2 = \\tfrac{8 \\cdot 7}{2} = 28$."
+                ],
+                "answer": "$28$",
+                "check": [
+                  "binomial(8,2) == 28"
+                ]
+              },
+              {
+                "prompt": "Verify the symmetry: compute $_9C_2$ and $_9C_7$.",
+                "steps": [
+                  "$_9C_2 = 36$.",
+                  "$_9C_7 = 36$ — choosing 2 keepers IS choosing 7 leftovers."
+                ],
+                "answer": "both $36$",
+                "check": [
+                  "binomial(9,2) == 36",
+                  "binomial(9,7) == 36"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "C or P, then compute",
+            "intro": "The swap test never lies.",
+            "problems": [
+              {
+                "prompt": "Choose 3 books to pack (from 10): how many ways?",
+                "options": [
+                  "$120$",
+                  "$720$",
+                  "$30$"
+                ],
+                "correctIndex": 0,
+                "explanation": "A bag doesn't care about order: $_{10}C_3 = 120$. ($720$ is the permutation.)",
+                "check": [
+                  "binomial(10,3) == 120",
+                  "10*9*8 == 720"
+                ]
+              },
+              {
+                "prompt": "4 equal-prize raffle winners from 20 tickets: combination or permutation?",
+                "options": [
+                  "combination — $_{20}C_4$",
+                  "permutation — $_{20}P_4$",
+                  "neither"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal prizes: swapping winners changes nothing. $_{20}C_4 = 4845$.",
+                "check": [
+                  "binomial(20,4) == 4845"
+                ]
+              },
+              {
+                "prompt": "$_{100}C_{98}$ = …",
+                "options": [
+                  "$4950$",
+                  "$9900$",
+                  "$100 \\cdot 98$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Symmetry: $_{100}C_{98} = {_{100}C_2} = \\tfrac{100 \\cdot 99}{2} = 4950$. Choose the 2 you DROP.",
+                "check": [
+                  "binomial(100,98) == 4950",
+                  "binomial(100,2) == 4950"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Pascal's triangle is a combination table",
+            "body": "Stack the numbers $_nC_r$ into rows and you get Pascal's triangle — each entry the sum of the two above it. The same triangle expands $(a+b)^n$, counts lattice paths, and hides the Fibonacci numbers along its diagonals. Blaise Pascal built it in 1654… to settle a gambling dispute. Combinations were born at a casino table."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$_nC_r = \\tfrac{n!}{r!(n-r)!}$: permutations ÷ the $r!$ orderings.",
+              "Swap test: outcome changes → P; doesn't → C.",
+              "Symmetry: $_nC_r = {_nC_{n-r}}$ — keepers or leftovers."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "probability-basics",
+      "title": "Probability Basics",
+      "concreteComparison": "Roll a die. Six faces, each equally likely, and \"roll a 5\" claims exactly one of them: $P = \\tfrac{1}{6}$. That's the whole foundation — **probability = favorable over total** — a number from 0 (impossible) to 1 (certain) that quantifies luck itself.",
+      "objective": "Compute probabilities as favorable/total for equally likely outcomes, use the 0-to-1 scale, and apply the complement rule.",
+      "concept": [
+        "For equally likely outcomes: $P(A) = \\frac{\\text{favorable}}{\\text{total}}$. One die, 'roll a 5': $\\tfrac16$. 'Roll even': three faces → $\\tfrac36 = \\tfrac12$.",
+        "The scale: $0 \\le P \\le 1$. $P = 0$ impossible ('roll a 7'), $P = 1$ certain ('roll at most 6'), $\\tfrac12$ = coin-flip odds. Probabilities are fractions, decimals, or percents — same number, three outfits.",
+        "**Complement rule**: $P(\\text{not } A) = 1 - P(A)$. Chance a card is NOT a heart: $1 - \\tfrac{13}{52} = \\tfrac{39}{52} = \\tfrac34$. Often the 'not' is the easy side to count.",
+        "Count carefully — the classic error is wrong TOTALS: two dice have $36$ ordered outcomes, not $12$ ('sum of 7' is $\\tfrac{6}{36}$, and sums aren't equally likely!)."
+      ],
+      "keyIdea": "P = favorable/total (equally likely!), lives in [0,1]; P(not A) = 1 − P(A).",
+      "facts": [
+        {
+          "title": "The definition",
+          "latex": "P(A) = \\tfrac{\\text{favorable}}{\\text{total}}",
+          "explanation": "Only for EQUALLY LIKELY outcomes."
+        },
+        {
+          "title": "Complement",
+          "latex": "P(\\text{not } A) = 1 - P(A)",
+          "explanation": "Count whichever side is easier."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc4-we1",
+          "statement": "One die: find $P(5)$ and $P(\\text{even})$.",
+          "solution": "$P(5) = \\tfrac16$; even = $\\{2,4,6\\}$: $\\tfrac36 = \\tfrac12$.",
+          "check": [
+            "Rational(1,6) == Rational(1,6)",
+            "Rational(3,6) == Rational(1,2)"
+          ]
+        },
+        {
+          "id": "pc4-we2",
+          "statement": "A standard deck (52 cards): $P(\\text{heart})$? $P(\\text{not a heart})$?",
+          "solution": "$\\tfrac{13}{52} = \\tfrac14$; complement: $1 - \\tfrac14 = \\tfrac34$.",
+          "check": [
+            "Rational(13,52) == Rational(1,4)",
+            "1 - Rational(1,4) == Rational(3,4)"
+          ]
+        },
+        {
+          "id": "pc4-we3",
+          "statement": "A bag holds 3 red, 5 blue, 2 green marbles. $P(\\text{blue})$? $P(\\text{not green})$?",
+          "solution": "Total 10: $P(\\text{blue}) = \\tfrac{5}{10} = \\tfrac12$; $P(\\text{not green}) = 1 - \\tfrac{2}{10} = \\tfrac45$.",
+          "check": [
+            "Rational(5,10) == Rational(1,2)",
+            "1 - Rational(2,10) == Rational(4,5)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using favorable/UNfavorable instead of favorable/total.",
+          "correction": "'Roll a 5' is $\\tfrac{1}{6}$ (one of six faces), not $\\tfrac{1}{5}$ (one against five). The denominator is ALL outcomes.",
+          "authored": true
+        },
+        {
+          "text": "Applying favorable/total to outcomes that are NOT equally likely.",
+          "correction": "Two-dice sums run 2–12, but $P(\\text{sum}=7) \\neq \\tfrac{1}{11}$: sums aren't equally likely. Count the 36 ordered PAIRS: $\\tfrac{6}{36} = \\tfrac16$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc4-t1",
+          "statement": "A spinner has 8 equal sectors, 3 of them gold. $P(\\text{gold})$?",
+          "solution": "$\\tfrac38$.",
+          "check": [
+            "Rational(3,8) == Rational(3,8)",
+            "Rational(3,8) < 1"
+          ]
+        },
+        {
+          "id": "pc4-t2",
+          "statement": "$P(\\text{rain}) = 0.3$. $P(\\text{no rain})$?",
+          "solution": "$1 - 0.3 = 0.7$.",
+          "check": [
+            "1 - Rational(3,10) == Rational(7,10)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Quantifying luck",
+            "title": "Favorable over total",
+            "beats": [
+              "A die: 6 faces, all equally likely.",
+              "'Roll a 5': 1 favorable of 6 total → $P = \\tfrac16$.",
+              "'Roll even': $\\{2,4,6\\}$ → $\\tfrac36 = \\tfrac12$.",
+              "Count both floors. Divide. That's probability."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The scale",
+            "title": "From impossible to certain",
+            "beats": [
+              "$P = 0$: impossible (roll a 7 on one die).",
+              "$P = 1$: certain (roll 6 or less).",
+              "$\\tfrac12$: pure coin-flip.",
+              "$\\tfrac16 \\approx 17\\%$ — fraction, decimal, percent: one number."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Count both floors",
+            "prompt": "A bag: 4 red, 6 blue. $P(\\text{red})$ = …",
+            "options": [
+              "$\\tfrac{4}{10}$",
+              "$\\tfrac{4}{6}$",
+              "$\\tfrac{6}{10}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Favorable 4, TOTAL 10 (not 6 — that's favorable-over-unfavorable, the odds trap).",
+            "check": [
+              "Rational(4,10) == Rational(2,5)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The complement shortcut",
+            "title": "Count the easy side",
+            "beats": [
+              "$P(\\text{not } A) = 1 - P(A)$ — always.",
+              "Not-a-heart: $1 - \\tfrac{13}{52} = \\tfrac34$.",
+              "Sometimes 'not' is MUCH easier to count…",
+              "…a trick that pays off big next lesson."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Flip it",
+            "title": "Complement",
+            "prompt": "A spinner lands on red with $P = \\tfrac{2}{7}$. $P(\\text{not red})$ = …",
+            "options": [
+              "$\\tfrac{5}{7}$",
+              "$\\tfrac{2}{5}$",
+              "$\\tfrac{7}{2}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$1 - \\tfrac27 = \\tfrac57$. Complements always sum to 1.",
+            "check": [
+              "1 - Rational(2,7) == Rational(5,7)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Probability accounting",
+            "intro": "Total first, then favorable.",
+            "examples": [
+              {
+                "prompt": "One card from a full deck: $P(\\text{face card})$? (J, Q, K in 4 suits)",
+                "steps": [
+                  "Favorable: $3 \\cdot 4 = 12$.",
+                  "$P = \\tfrac{12}{52} = \\tfrac{3}{13}$."
+                ],
+                "answer": "$\\tfrac{3}{13}$",
+                "check": [
+                  "Rational(12,52) == Rational(3,13)"
+                ]
+              },
+              {
+                "prompt": "Two dice: $P(\\text{sum} = 7)$.",
+                "steps": [
+                  "Total: $6 \\times 6 = 36$ ordered pairs.",
+                  "Favorable: $(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)$ — six.",
+                  "$P = \\tfrac{6}{36} = \\tfrac16$."
+                ],
+                "answer": "$\\tfrac16$",
+                "check": [
+                  "6*6 == 36",
+                  "Rational(6,36) == Rational(1,6)"
+                ]
+              },
+              {
+                "prompt": "A class: 12 girls, 8 boys. A random student is picked. $P(\\text{boy})$, as a percent?",
+                "steps": [
+                  "$\\tfrac{8}{20} = \\tfrac25$.",
+                  "$= 40\\%$."
+                ],
+                "answer": "$40\\%$",
+                "check": [
+                  "Rational(8,20) == Rational(2,5)",
+                  "Rational(2,5) == Rational(40,100)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Fair-count patrol",
+            "intro": "Equally likely? Then favorable/total.",
+            "problems": [
+              {
+                "prompt": "A letter is picked from MONGOL. $P(\\text{O})$ = …",
+                "options": [
+                  "$\\tfrac{2}{6} = \\tfrac13$",
+                  "$\\tfrac{1}{6}$",
+                  "$\\tfrac{2}{5}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Six letters, two O's: $\\tfrac26 = \\tfrac13$.",
+                "check": [
+                  "Rational(2,6) == Rational(1,3)"
+                ]
+              },
+              {
+                "prompt": "$P(A) = 0.85$. Then $P(\\text{not } A)$ = …",
+                "options": [
+                  "$0.15$",
+                  "$0.85$",
+                  "$1.85$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$1 - 0.85 = 0.15$. (Probabilities never exceed 1!)",
+                "check": [
+                  "1 - Rational(85,100) == Rational(3,20)"
+                ]
+              },
+              {
+                "prompt": "Which CANNOT be a probability?",
+                "options": [
+                  "$1.2$",
+                  "$0$",
+                  "$\\tfrac{99}{100}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Probabilities live in $[0, 1]$ — $1.2$ would be 'more than certain'.",
+                "check": [
+                  "Rational(12,10) > 1",
+                  "Rational(99,100) < 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The problem that started it all",
+            "body": "Probability theory began in 1654 when a gambler asked Pascal and Fermat how to fairly split the pot of an interrupted dice game. Their letters back and forth — counting favorable outcomes over total outcomes — founded the field that now prices insurance, trains AI models, and forecasts elections. All of it: favorable over total."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$P = \\tfrac{\\text{favorable}}{\\text{total}}$ — equally likely outcomes only.",
+              "The scale runs 0 (impossible) to 1 (certain).",
+              "$P(\\text{not }A) = 1 - P(A)$: count whichever side is easier."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "compound-events",
+      "title": "Compound Events",
+      "concreteComparison": "One coin lands heads half the time. Two coins BOTH heads? Half of the half: $\\tfrac12 \\cdot \\tfrac12 = \\tfrac14$. Chains of events multiply their probabilities — as long as they don't influence each other. And when one draw changes the next (a card kept out of the deck), the fractions update mid-chain. Two rules, all of compound probability.",
+      "objective": "Multiply probabilities of independent events, adjust for dependence (without replacement), and use the complement for 'at least one'.",
+      "concept": [
+        "**Independent** events (neither affects the other) multiply: $P(A \\text{ and } B) = P(A) \\cdot P(B)$. Two dice, both sixes: $\\tfrac16 \\cdot \\tfrac16 = \\tfrac{1}{36}$.",
+        "**Dependent** events update the second fraction: bag of 5 red + 3 blue, draw two WITHOUT replacement, both red: $\\tfrac58 \\cdot \\tfrac47 = \\tfrac{5}{14}$ — after one red leaves, 4 reds remain of 7.",
+        "**At least one** = complement of NONE: $P(\\text{at least one six in two rolls}) = 1 - (\\tfrac56)^2 = \\tfrac{11}{36}$. Counting 'none' is one clean multiplication; counting 'at least one' directly is a mess.",
+        "Watch the words: WITH replacement → fractions reset (independent); WITHOUT → they shift. And 'or' with no overlap ADDS: $P(\\text{heart or spade}) = \\tfrac14 + \\tfrac14 = \\tfrac12$."
+      ],
+      "keyIdea": "Independent: multiply. Without replacement: update the fractions. 'At least one': 1 − P(none).",
+      "facts": [
+        {
+          "title": "And (independent)",
+          "latex": "P(A \\text{ and } B) = P(A)\\,P(B)",
+          "explanation": "Chains multiply."
+        },
+        {
+          "title": "At least one",
+          "latex": "1 - P(\\text{none})",
+          "explanation": "The complement does the hard case."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc5-we1",
+          "statement": "Two dice: $P(\\text{both sixes})$?",
+          "solution": "$\\tfrac16 \\cdot \\tfrac16 = \\tfrac{1}{36}$ — independent rolls multiply.",
+          "check": [
+            "Rational(1,6)*Rational(1,6) == Rational(1,36)"
+          ]
+        },
+        {
+          "id": "pc5-we2",
+          "statement": "Bag: 5 red, 3 blue. Two draws, no replacement: $P(\\text{both red})$?",
+          "solution": "$\\tfrac58 \\cdot \\tfrac47 = \\tfrac{20}{56} = \\tfrac{5}{14}$ — the second fraction updates.",
+          "check": [
+            "Rational(5,8)*Rational(4,7) == Rational(5,14)"
+          ]
+        },
+        {
+          "id": "pc5-we3",
+          "statement": "Two rolls: $P(\\text{at least one six})$?",
+          "solution": "$1 - P(\\text{no sixes}) = 1 - (\\tfrac56)^2 = 1 - \\tfrac{25}{36} = \\tfrac{11}{36}$.",
+          "check": [
+            "1 - Rational(5,6)**2 == Rational(11,36)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding probabilities for 'and': $P(\\text{two sixes}) = \\tfrac16 + \\tfrac16 = \\tfrac13$.",
+          "correction": "'And' chains MULTIPLY: $\\tfrac16 \\cdot \\tfrac16 = \\tfrac{1}{36}$. (Adding is for non-overlapping 'or'.) Both sixes is RARER than one six, not more likely.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting to update fractions without replacement.",
+          "correction": "Both red from 5R/3B: $\\tfrac58 \\cdot \\tfrac58$ is WITH replacement. Without: the second draw sees 4 reds among 7 — $\\tfrac58 \\cdot \\tfrac47$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc5-t1",
+          "statement": "A coin and a die: $P(\\text{heads AND a six})$?",
+          "solution": "$\\tfrac12 \\cdot \\tfrac16 = \\tfrac{1}{12}$.",
+          "check": [
+            "Rational(1,2)*Rational(1,6) == Rational(1,12)"
+          ]
+        },
+        {
+          "id": "pc5-t2",
+          "statement": "Three coin flips: $P(\\text{at least one head})$?",
+          "solution": "$1 - (\\tfrac12)^3 = \\tfrac78$.",
+          "check": [
+            "1 - Rational(1,2)**3 == Rational(7,8)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Chains multiply",
+            "title": "Half of a half",
+            "beats": [
+              "One coin heads: $\\tfrac12$.",
+              "Two coins BOTH heads: half of the times the first is…",
+              "$\\tfrac12 \\cdot \\tfrac12 = \\tfrac14$. Check the list: HH, HT, TH, TT ✓.",
+              "Independent events: multiply straight through."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "And-chain",
+            "prompt": "$P(\\text{three heads in three flips})$ = …",
+            "options": [
+              "$\\tfrac18$",
+              "$\\tfrac32$",
+              "$\\tfrac16$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tfrac12 \\cdot \\tfrac12 \\cdot \\tfrac12 = \\tfrac18$. (Adding gives $\\tfrac32$ — more than certain. Impossible!)",
+            "check": [
+              "Rational(1,2)**3 == Rational(1,8)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "When draws remember",
+            "title": "Without replacement",
+            "beats": [
+              "Bag: 5 red, 3 blue. Draw two, keep the first out.",
+              "First red: $\\tfrac58$. Now the bag CHANGED: 4 red of 7.",
+              "Second red: $\\tfrac47$.",
+              "Both: $\\tfrac58 \\cdot \\tfrac47 = \\tfrac{5}{14}$. Update mid-chain."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Update drill",
+            "title": "Second fraction",
+            "prompt": "Bag: 4 white, 2 black; two draws, no replacement. $P(\\text{both white})$ = …",
+            "options": [
+              "$\\tfrac{2}{5}$",
+              "$\\tfrac{4}{9}$",
+              "$\\tfrac{16}{36}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tfrac46 \\cdot \\tfrac35 = \\tfrac{12}{30} = \\tfrac25$. ($\\tfrac46 \\cdot \\tfrac46$ forgets the missing marble.)",
+            "check": [
+              "Rational(4,6)*Rational(3,5) == Rational(2,5)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The 'at least one' trick",
+            "title": "Attack the complement",
+            "beats": [
+              "'At least one six in two rolls' — many cases! (first, second, both…)",
+              "'NO sixes' — one case: $(\\tfrac56)^2 = \\tfrac{25}{36}$.",
+              "$P(\\text{at least one}) = 1 - \\tfrac{25}{36} = \\tfrac{11}{36}$.",
+              "See 'at least one'? Compute NONE, subtract from 1."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Compound chains",
+            "intro": "Multiply; update; complement.",
+            "examples": [
+              {
+                "prompt": "A quiz has two multiple-choice questions (4 options each). $P(\\text{guess both right})$?",
+                "steps": [
+                  "Each: $\\tfrac14$. Independent.",
+                  "$\\tfrac14 \\cdot \\tfrac14 = \\tfrac{1}{16}$."
+                ],
+                "answer": "$\\tfrac{1}{16}$",
+                "check": [
+                  "Rational(1,4)**2 == Rational(1,16)"
+                ]
+              },
+              {
+                "prompt": "Deck of 52, draw two without replacement: $P(\\text{both aces})$?",
+                "steps": [
+                  "First ace: $\\tfrac{4}{52}$.",
+                  "Second: $\\tfrac{3}{51}$.",
+                  "$\\tfrac{4}{52} \\cdot \\tfrac{3}{51} = \\tfrac{1}{221}$."
+                ],
+                "answer": "$\\tfrac{1}{221}$",
+                "check": [
+                  "Rational(4,52)*Rational(3,51) == Rational(1,221)"
+                ]
+              },
+              {
+                "prompt": "Free-throw shooter makes 80%. $P(\\text{at least one make in two shots})$?",
+                "steps": [
+                  "$P(\\text{miss both}) = (0.2)^2 = 0.04$.",
+                  "$1 - 0.04 = 0.96$."
+                ],
+                "answer": "$0.96$",
+                "check": [
+                  "1 - Rational(1,5)**2 == Rational(24,25)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Chain-craft",
+            "intro": "Independent multiply; dependent update; 'at least' flips.",
+            "problems": [
+              {
+                "prompt": "Two spins of a 5-sector spinner (1 gold sector): $P(\\text{gold twice})$ = …",
+                "options": [
+                  "$\\tfrac{1}{25}$",
+                  "$\\tfrac{2}{5}$",
+                  "$\\tfrac{1}{10}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Spins reset — independent: $\\tfrac15 \\cdot \\tfrac15 = \\tfrac{1}{25}$.",
+                "check": [
+                  "Rational(1,5)**2 == Rational(1,25)"
+                ]
+              },
+              {
+                "prompt": "Drawer: 6 black socks, 4 white. Grab two (no replacement): $P(\\text{both black})$ = …",
+                "options": [
+                  "$\\tfrac13$",
+                  "$\\tfrac{9}{25}$",
+                  "$\\tfrac35$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{6}{10} \\cdot \\tfrac59 = \\tfrac{30}{90} = \\tfrac13$.",
+                "check": [
+                  "Rational(6,10)*Rational(5,9) == Rational(1,3)"
+                ]
+              },
+              {
+                "prompt": "$P(\\text{at least one tail in 4 flips})$ = …",
+                "options": [
+                  "$\\tfrac{15}{16}$",
+                  "$\\tfrac{1}{16}$",
+                  "$\\tfrac12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$1 - P(\\text{all heads}) = 1 - \\tfrac{1}{16} = \\tfrac{15}{16}$.",
+                "check": [
+                  "1 - Rational(1,2)**4 == Rational(15,16)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The gambler's fallacy",
+            "body": "A roulette wheel in Monte Carlo, 1913: black came up 26 times straight, and gamblers lost fortunes betting red 'because it was due'. It wasn't — each spin is INDEPENDENT, and the wheel has no memory. $P(\\text{red})$ stayed the same on spin 27 as on spin 1. Multiplication of independent events isn't just homework; it's the fallacy-proof vest."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Independent 'and': multiply the probabilities.",
+              "Without replacement: update the second fraction.",
+              "'At least one' = $1 - P(\\text{none})$ — the complement shortcut."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "probability-meets-counting",
+      "title": "Probability Meets Counting",
+      "concreteComparison": "A mini-lottery: pick 3 numbers from 10; the draw picks 3. What's your chance? Favorable: 1 (your exact set). Total: $_{10}C_3 = 120$ equally likely sets. $P = \\tfrac{1}{120}$. When outcomes get too many to list, the counting tools from lessons 1–3 BECOME the probability tools — this is where the unit's two halves shake hands.",
+      "objective": "Compute probabilities whose favorable and total counts come from the counting principle, permutations, and combinations.",
+      "concept": [
+        "The framework is unchanged — $P = \\tfrac{\\text{favorable}}{\\text{total}}$ — but both counts now come from formulas: totals from $_nC_r$, $_nP_r$, or stage products; favorables the same way.",
+        "Mini-lottery: total $_{10}C_3 = 120$; favorable 1 → $P = \\tfrac{1}{120}$. Real lotteries just use bigger numbers: 6-from-45 gives $_{45}C_6 = 8{,}145{,}060$.",
+        "Richer favorables count too: committee of 2 from 4 girls + 3 boys; $P(\\text{both girls}) = \\tfrac{_4C_2}{_7C_2} = \\tfrac{6}{21} = \\tfrac27$.",
+        "Cross-check trick: many counting probabilities also fall to the chain rule. Both girls: $\\tfrac47 \\cdot \\tfrac36 = \\tfrac27$ ✓. Two roads, one answer — use one to verify the other."
+      ],
+      "keyIdea": "P = favorable/total with both counts from counting formulas — and the chain rule cross-checks the answer.",
+      "facts": [
+        {
+          "title": "The marriage",
+          "latex": "P = \\tfrac{\\text{count(favorable)}}{\\text{count(total)}}",
+          "explanation": "Counting powers probability."
+        },
+        {
+          "title": "Cross-check",
+          "latex": "\\tfrac{_4C_2}{_7C_2} = \\tfrac47 \\cdot \\tfrac36",
+          "explanation": "Two methods, one truth."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc6-we1",
+          "statement": "Mini-lottery: choose 3 of 10 numbers. $P(\\text{jackpot})$?",
+          "solution": "Total $_{10}C_3 = 120$, favorable 1: $P = \\tfrac{1}{120}$.",
+          "check": [
+            "binomial(10,3) == 120",
+            "Rational(1,120) < Rational(1,100)"
+          ]
+        },
+        {
+          "id": "pc6-we2",
+          "statement": "From 4 girls and 3 boys, a random pair is chosen. $P(\\text{both girls})$?",
+          "solution": "$\\tfrac{_4C_2}{_7C_2} = \\tfrac{6}{21} = \\tfrac27$. (Chain check: $\\tfrac47 \\cdot \\tfrac36 = \\tfrac27$ ✓)",
+          "check": [
+            "binomial(4,2) == 6",
+            "binomial(7,2) == 21",
+            "Rational(6,21) == Rational(2,7)",
+            "Rational(4,7)*Rational(3,6) == Rational(2,7)"
+          ]
+        },
+        {
+          "id": "pc6-we3",
+          "statement": "Four people sit in a random row. $P(\\text{Ana and Bat sit together})$?",
+          "solution": "Total $4! = 24$; together: treat the pair as one block — $3! \\cdot 2 = 12$: $P = \\tfrac{12}{24} = \\tfrac12$.",
+          "check": [
+            "factorial(4) == 24",
+            "factorial(3)*2 == 12",
+            "Rational(12,24) == Rational(1,2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Mixing an ordered total with an unordered favorable (or vice versa).",
+          "correction": "If the total counts SETS ($_nC_r$), the favorable must count sets too. Half-ordered fractions are the top source of wrong probabilities.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting that only EQUALLY LIKELY totals work.",
+          "correction": "The framework needs every counted outcome equally likely — random draws and fair seatings qualify; 'sum of two dice' values don't (count the 36 pairs instead).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc6-t1",
+          "statement": "Choose 2 from 6 red + 2 gold marbles. $P(\\text{both gold})$?",
+          "solution": "$\\tfrac{_2C_2}{_8C_2} = \\tfrac{1}{28}$.",
+          "check": [
+            "binomial(8,2) == 28",
+            "Rational(1,28) == Rational(1,28)"
+          ]
+        },
+        {
+          "id": "pc6-t2",
+          "statement": "A 4-from-20 lottery: what's $P(\\text{jackpot})$?",
+          "solution": "$_{20}C_4 = 4845$: $P = \\tfrac{1}{4845}$.",
+          "check": [
+            "binomial(20,4) == 4845"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The handshake",
+            "title": "Counting powers probability",
+            "beats": [
+              "$P = \\tfrac{\\text{favorable}}{\\text{total}}$ never changed.",
+              "But now: total = $_{10}C_3 = 120$ lottery sets.",
+              "Favorable = 1 (your ticket).",
+              "$P = \\tfrac{1}{120}$. Counting became probability."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Scale it up",
+            "prompt": "A 6-from-45 lottery has $_{45}C_6 = 8145060$ sets. One ticket's jackpot chance is…",
+            "options": [
+              "$\\tfrac{1}{8145060}$",
+              "$\\tfrac{6}{45}$",
+              "$\\tfrac{1}{45}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "One favorable set of 8.1 million equally likely sets. (You are ~40× likelier to be struck by lightning this year.)",
+            "check": [
+              "binomial(45,6) == 8145060"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Richer favorables",
+            "title": "Count the winners too",
+            "beats": [
+              "Pair from 4 girls + 3 boys. $P(\\text{both girls})$?",
+              "Total pairs: $_7C_2 = 21$.",
+              "Favorable pairs: $_4C_2 = 6$.",
+              "$P = \\tfrac{6}{21} = \\tfrac27$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Your turn",
+            "title": "Both from one group",
+            "prompt": "From 5 novels + 3 comics, two random books. $P(\\text{both comics})$ = …",
+            "options": [
+              "$\\tfrac{3}{28}$",
+              "$\\tfrac{9}{64}$",
+              "$\\tfrac{3}{8}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tfrac{_3C_2}{_8C_2} = \\tfrac{3}{28}$. (Chain check: $\\tfrac38 \\cdot \\tfrac27 = \\tfrac{6}{56} = \\tfrac{3}{28}$ ✓)",
+            "check": [
+              "binomial(3,2) == 3",
+              "binomial(8,2) == 28",
+              "Rational(3,8)*Rational(2,7) == Rational(3,28)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The cross-check",
+            "title": "Two roads, one answer",
+            "beats": [
+              "Both girls: combinations said $\\tfrac{6}{21} = \\tfrac27$.",
+              "Chain rule: first girl $\\tfrac47$, second $\\tfrac36$: $\\tfrac27$. ✓",
+              "Different tools, same truth — always.",
+              "Solve one way, VERIFY the other. Free error-proofing."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "The unit, united",
+            "intro": "Choose the counting tool; run the fraction; cross-check.",
+            "examples": [
+              {
+                "prompt": "Three people randomly line up. $P(\\text{alphabetical order})$?",
+                "steps": [
+                  "Total: $3! = 6$ lineups.",
+                  "Favorable: 1.",
+                  "$P = \\tfrac16$."
+                ],
+                "answer": "$\\tfrac16$",
+                "check": [
+                  "factorial(3) == 6"
+                ]
+              },
+              {
+                "prompt": "Committee of 3 from 5 seniors + 4 juniors: $P(\\text{all seniors})$?",
+                "steps": [
+                  "Total: $_9C_3 = 84$.",
+                  "Favorable: $_5C_3 = 10$.",
+                  "$P = \\tfrac{10}{84} = \\tfrac{5}{42}$. (Chain: $\\tfrac59 \\cdot \\tfrac48 \\cdot \\tfrac37$ ✓)"
+                ],
+                "answer": "$\\tfrac{5}{42}$",
+                "check": [
+                  "binomial(9,3) == 84",
+                  "binomial(5,3) == 10",
+                  "Rational(10,84) == Rational(5,42)",
+                  "Rational(5,9)*Rational(4,8)*Rational(3,7) == Rational(5,42)"
+                ]
+              },
+              {
+                "prompt": "A 4-digit PIN is chosen at random. $P(\\text{all digits different})$?",
+                "steps": [
+                  "Total: $10^4 = 10000$.",
+                  "Favorable: $10 \\cdot 9 \\cdot 8 \\cdot 7 = 5040$.",
+                  "$P = 0.504$ — barely a coin flip!"
+                ],
+                "answer": "$\\tfrac{5040}{10000} = 0.504$",
+                "check": [
+                  "10*9*8*7 == 5040",
+                  "Rational(5040,10000) == Rational(63,125)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Full-unit workout",
+            "intro": "Counting tool → fraction → cross-check.",
+            "problems": [
+              {
+                "prompt": "Two cards from a 52-deck: $P(\\text{both hearts})$ = …",
+                "options": [
+                  "$\\tfrac{1}{17}$",
+                  "$\\tfrac{1}{16}$",
+                  "$\\tfrac{1}{4}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{13}{52} \\cdot \\tfrac{12}{51} = \\tfrac{1}{17}$ (or $\\tfrac{_{13}C_2}{_{52}C_2} = \\tfrac{78}{1326}$ ✓).",
+                "check": [
+                  "Rational(13,52)*Rational(12,51) == Rational(1,17)",
+                  "Rational(binomial(13,2), binomial(52,2)) == Rational(1,17)"
+                ]
+              },
+              {
+                "prompt": "5 friends randomly pick seats in a row of 5. $P(\\text{a particular friend gets the left end})$ = …",
+                "options": [
+                  "$\\tfrac15$",
+                  "$\\tfrac{1}{120}$",
+                  "$\\tfrac12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Favorable: $4! = 24$ arrangements with her on the end; total $5! = 120$: $\\tfrac{24}{120} = \\tfrac15$. (Or simply: 5 equally likely seats.)",
+                "check": [
+                  "Rational(factorial(4), factorial(5)) == Rational(1,5)"
+                ]
+              },
+              {
+                "prompt": "A raffle sells 100 tickets; you hold 5. Two different winners are drawn. $P(\\text{you win NEITHER})$ = …",
+                "options": [
+                  "$\\tfrac{95}{100} \\cdot \\tfrac{94}{99} \\approx 0.902$",
+                  "$\\tfrac{90}{100}$",
+                  "$(0.95)^2 = 0.9025$… same thing"
+                ],
+                "correctIndex": 0,
+                "explanation": "Without replacement: $\\tfrac{95}{100} \\cdot \\tfrac{94}{99} = \\tfrac{893}{990}$ — close to $(0.95)^2$ but not equal: the second draw remembers.",
+                "check": [
+                  "Rational(95,100)*Rational(94,99) == Rational(893,990)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The birthday surprise",
+            "body": "In a class of just 23 people, the probability that SOME two share a birthday is over 50% — computed exactly this unit's way: $P(\\text{no shared}) = \\tfrac{365}{365} \\cdot \\tfrac{364}{365} \\cdots$ (23 shrinking factors) $\\approx 0.49$, so $P(\\text{shared}) \\approx 0.51$. Twenty-three people, half a coin-flip. Counting doesn't care what intuition expects."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Counting formulas feed both floors of $P = \\tfrac{\\text{fav}}{\\text{total}}$.",
+              "Keep ordered with ordered, sets with sets.",
+              "Cross-check with the chain rule — two roads, one answer."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "pc-pr1",
+      "statement": "6 shirt colors, 3 logo options: how many shirt designs?",
+      "solution": "$6 \\cdot 3 = 18$.",
+      "check": [
+        "6*3 == 18"
+      ]
+    },
+    {
+      "id": "pc-pr2",
+      "statement": "How many 3-digit codes (digits may repeat)? With no repeats?",
+      "solution": "$10^3 = 1000$; no repeats $10 \\cdot 9 \\cdot 8 = 720$.",
+      "check": [
+        "10**3 == 1000",
+        "10*9*8 == 720"
+      ]
+    },
+    {
+      "id": "pc-pr3",
+      "statement": "Compute $6!$ and $_7P_3$.",
+      "solution": "$720$; $7 \\cdot 6 \\cdot 5 = 210$.",
+      "check": [
+        "factorial(6) == 720",
+        "7*6*5 == 210"
+      ]
+    },
+    {
+      "id": "pc-pr4",
+      "statement": "$_8C_3$ = ?",
+      "solution": "$\\tfrac{8 \\cdot 7 \\cdot 6}{3!} = 56$.",
+      "check": [
+        "binomial(8,3) == 56"
+      ]
+    },
+    {
+      "id": "pc-pr5",
+      "statement": "President + secretary from 9 people vs a 2-person team from 9: count both.",
+      "solution": "Ordered: $9 \\cdot 8 = 72$; team: $_9C_2 = 36$.",
+      "check": [
+        "9*8 == 72",
+        "binomial(9,2) == 36"
+      ]
+    },
+    {
+      "id": "pc-pr6",
+      "statement": "One die: $P(\\text{at most 2})$?",
+      "solution": "$\\{1,2\\}$: $\\tfrac26 = \\tfrac13$.",
+      "check": [
+        "Rational(2,6) == Rational(1,3)"
+      ]
+    },
+    {
+      "id": "pc-pr7",
+      "statement": "$P(\\text{event}) = \\tfrac{3}{11}$. $P(\\text{not the event})$?",
+      "solution": "$\\tfrac{8}{11}$.",
+      "check": [
+        "1 - Rational(3,11) == Rational(8,11)"
+      ]
+    },
+    {
+      "id": "pc-pr8",
+      "statement": "Two independent free throws at 70%: $P(\\text{both made})$?",
+      "solution": "$0.7^2 = 0.49$.",
+      "check": [
+        "Rational(7,10)**2 == Rational(49,100)"
+      ]
+    },
+    {
+      "id": "pc-pr9",
+      "statement": "Bag: 6 green, 4 yellow; two draws, no replacement. $P(\\text{both green})$?",
+      "solution": "$\\tfrac{6}{10} \\cdot \\tfrac59 = \\tfrac13$.",
+      "check": [
+        "Rational(6,10)*Rational(5,9) == Rational(1,3)"
+      ]
+    },
+    {
+      "id": "pc-pr10",
+      "statement": "Random pair from 3 teachers + 5 students: $P(\\text{both students})$?",
+      "solution": "$\\tfrac{_5C_2}{_8C_2} = \\tfrac{10}{28} = \\tfrac{5}{14}$.",
+      "check": [
+        "binomial(5,2) == 10",
+        "binomial(8,2) == 28",
+        "Rational(10,28) == Rational(5,14)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "pc-ty1",
+      "statement": "A menu: 5 mains, 4 sides, 3 drinks. How many meals?",
+      "solution": "$60$.",
+      "check": [
+        "5*4*3 == 60"
+      ]
+    },
+    {
+      "id": "pc-ty2",
+      "statement": "How many ways can 7 books line a shelf?",
+      "solution": "$7! = 5040$.",
+      "check": [
+        "factorial(7) == 5040"
+      ]
+    },
+    {
+      "id": "pc-ty3",
+      "statement": "Gold/silver/bronze among 10 gymnasts: how many podiums?",
+      "solution": "$_{10}P_3 = 720$.",
+      "check": [
+        "10*9*8 == 720"
+      ]
+    },
+    {
+      "id": "pc-ty4",
+      "statement": "A 4-person committee from 11 volunteers: how many?",
+      "solution": "$_{11}C_4 = 330$.",
+      "check": [
+        "binomial(11,4) == 330"
+      ]
+    },
+    {
+      "id": "pc-ty5",
+      "statement": "Two dice: $P(\\text{both even})$?",
+      "solution": "$\\tfrac12 \\cdot \\tfrac12 = \\tfrac14$.",
+      "check": [
+        "Rational(3,6)*Rational(3,6) == Rational(1,4)"
+      ]
+    },
+    {
+      "id": "pc-ty6",
+      "statement": "$P(\\text{at least one six in three rolls})$?",
+      "solution": "$1 - (\\tfrac56)^3 = 1 - \\tfrac{125}{216} = \\tfrac{91}{216}$.",
+      "check": [
+        "1 - Rational(5,6)**3 == Rational(91,216)"
+      ]
+    },
+    {
+      "id": "pc-ty7",
+      "statement": "A 3-from-12 mini-lottery: $P(\\text{jackpot with one ticket})$?",
+      "solution": "$_{12}C_3 = 220$: $P = \\tfrac{1}{220}$.",
+      "check": [
+        "binomial(12,3) == 220"
+      ]
+    }
+  ]
+}
