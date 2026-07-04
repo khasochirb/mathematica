@@ -1,0 +1,1606 @@
+{
+  "slug": "systems-of-linear-equations",
+  "title": "Systems of Linear Equations",
+  "grade": 8,
+  "blurb": "Two lines at once — solving by graphing, substitution, and elimination, and what the intersection means.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "two-equations-one-answer",
+      "title": "Two Equations, One Answer",
+      "concreteComparison": "A riddle: “I'm thinking of two numbers. They add to $7$, and their difference is $3$.” One clue alone has endless answers — $(1,6), (2,5), (0,7)\\ldots$ — but BOTH clues together pin down exactly one pair: $5$ and $2$. That's a **system of equations**: two conditions that must hold at once, and the solution is whatever satisfies both.",
+      "objective": "Understand a system of two linear equations, and check whether a candidate pair (x, y) satisfies BOTH equations.",
+      "concept": [
+        "A **system of equations** is two (or more) equations about the SAME variables, both required at once: $\\begin{cases}x+y=7\\\\ x-y=3\\end{cases}$",
+        "A **solution of the system** is a pair $(x,y)$ that makes **both** equations true. $(5,2)$: $5+2=7$ ✓ and $5-2=3$ ✓ — solution. $(6,1)$: first ✓ but $6-1=5\\neq3$ ✗ — not a solution.",
+        "One linear equation has infinitely many solutions (a whole line of them). The second equation cuts that freedom down — usually to a single point.",
+        "Graphically: each equation is a line, and the system's solution is where the lines **intersect** — the one point lying on both."
+      ],
+      "keyIdea": "A system's solution must satisfy BOTH equations — graphically, the point where the two lines cross.",
+      "facts": [
+        {
+          "title": "System",
+          "latex": "$x+y=7$ AND $x-y=3$",
+          "explanation": "Both must hold at once."
+        },
+        {
+          "title": "Check both",
+          "latex": "$(5,2)$: $7$ ✓ and $3$ ✓",
+          "explanation": "One ✓ isn't enough."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sys1-we1",
+          "statement": "Is $(5,2)$ a solution of the system $x+y=7$, $x-y=3$?",
+          "solution": "$5+2=7$ ✓ and $5-2=3$ ✓ — yes, it satisfies both.",
+          "check": [
+            "5 + 2 == 7",
+            "5 - 2 == 3"
+          ]
+        },
+        {
+          "id": "sys1-we2",
+          "statement": "Is $(6,1)$ a solution of the same system?",
+          "solution": "$6+1=7$ ✓ but $6-1=5\\neq3$ ✗ — no. Passing one equation isn't enough.",
+          "check": [
+            "6 + 1 == 7",
+            "6 - 1 != 3"
+          ]
+        },
+        {
+          "id": "sys1-we3",
+          "statement": "Is $(2,3)$ a solution of $y=2x-1$, $y=-x+5$?",
+          "solution": "$2(2)-1=3$ ✓ and $-2+5=3$ ✓ — yes.",
+          "check": [
+            "2*2 - 1 == 3",
+            "-1*2 + 5 == 3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Checking only one equation.",
+          "correction": "A system's solution must pass BOTH tests — $(6,1)$ fits $x+y=7$ but fails $x-y=3$, so it's out.",
+          "authored": true
+        },
+        {
+          "text": "Swapping x and y in the pair.",
+          "correction": "$(5,2)$ means $x=5$, $y=2$ — order matters; $(2,5)$ is a different claim.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sys1-t1",
+          "statement": "Is $(4,3)$ a solution of $x+y=7$, $x-y=1$?",
+          "solution": "$4+3=7$ ✓, $4-3=1$ ✓ — yes.",
+          "check": [
+            "4 + 3 == 7",
+            "4 - 3 == 1"
+          ]
+        },
+        {
+          "id": "sys1-t2",
+          "statement": "Is $(1,4)$ a solution of $y=3x+1$, $y=x+2$?",
+          "solution": "$3(1)+1=4$ ✓ but $1+2=3\\neq4$ ✗ — no.",
+          "check": [
+            "3*1 + 1 == 4",
+            "1 + 2 != 4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The riddle",
+            "title": "Two clues at once",
+            "beats": [
+              "“Two numbers add to $7$; their difference is $3$.”",
+              "Clue 1 alone: endless pairs — $(1,6), (2,5)\\ldots$",
+              "Clue 2 alone: endless pairs too.",
+              "Both **together**: only $(5,2)$ survives."
+            ]
+          },
+          {
+            "kind": "systemGraph",
+            "eyebrow": "See it",
+            "title": "Two lines, one shared point",
+            "teach": "Each equation draws a line. The **intersection** is the only point on both — the system's solution. Adjust the blue line and watch the solution move with it.",
+            "config": {
+              "m1": 2,
+              "b1": -1,
+              "m2": -1,
+              "b2": 5
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Test the pair",
+            "prompt": "Is $(3,5)$ a solution of the system $y=x+2$ and $y=2x-1$?",
+            "options": [
+              "Yes — it satisfies both",
+              "No — it fails the second",
+              "Only if x = 5"
+            ],
+            "correctIndex": 0,
+            "explanation": "$3+2=5$ ✓ and $2(3)-1=5$ ✓ — it passes both tests.",
+            "check": [
+              "3 + 2 == 5",
+              "2*3 - 1 == 5"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The test",
+            "title": "Check BOTH equations",
+            "beats": [
+              "Candidate: $(5,2)$ for $x+y=7$, $x-y=3$.",
+              "First: $5+2=7$ ✓.",
+              "Second: $5-2=3$ ✓.",
+              "Both pass → solution. One failure → rejected."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Solution or not?",
+            "intro": "Substitute the pair into each equation.",
+            "examples": [
+              {
+                "prompt": "Is $(2,3)$ a solution of $y=2x-1$ and $y=-x+5$?",
+                "steps": [
+                  "$2(2)-1=3$ ✓.",
+                  "$-(2)+5=3$ ✓.",
+                  "Both hold — yes."
+                ],
+                "answer": "yes",
+                "check": [
+                  "2*2 - 1 == 3",
+                  "-1*2 + 5 == 3"
+                ]
+              },
+              {
+                "prompt": "Is $(3,4)$ a solution of $x+y=7$ and $2x-y=1$?",
+                "steps": [
+                  "$3+4=7$ ✓.",
+                  "$2(3)-4=2\\neq1$ ✗.",
+                  "Fails the second — no."
+                ],
+                "answer": "no",
+                "check": [
+                  "3 + 4 == 7",
+                  "2*3 - 4 != 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Both or bust",
+            "intro": "A solution passes every equation.",
+            "problems": [
+              {
+                "prompt": "Is $(1,3)$ a solution of $y=2x+1$ and $y=4x-1$?",
+                "options": [
+                  "Yes",
+                  "No — fails the first",
+                  "No — fails the second"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2(1)+1=3$ ✓ and $4(1)-1=3$ ✓.",
+                "check": [
+                  "2*1 + 1 == 3",
+                  "4*1 - 1 == 3"
+                ]
+              },
+              {
+                "prompt": "Which pair solves $x+y=10$ AND $x-y=4$?",
+                "options": [
+                  "$(7,3)$",
+                  "$(6,4)$",
+                  "$(5,5)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$7+3=10$ ✓ and $7-3=4$ ✓; the others fail the difference.",
+                "check": [
+                  "7 + 3 == 10",
+                  "7 - 3 == 4"
+                ]
+              },
+              {
+                "prompt": "A system's solution, on a graph, is…",
+                "options": [
+                  "where the lines cross",
+                  "either line's y-intercept",
+                  "the steeper line"
+                ],
+                "correctIndex": 0,
+                "explanation": "The intersection is the one point on BOTH lines.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Systems built the GPS in your pocket",
+            "body": "Your phone finds you by solving a system: each satellite says “you're this far from me” — one equation per satellite. One satellite narrows you to a sphere, two to a circle, three to points, four to YOU. Every blue dot on a map is a solved system."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A system = two equations that must hold **at once**.",
+              "Solutions must pass **both** substitution tests.",
+              "On a graph: the intersection point of the two lines."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "solving-by-graphing",
+      "title": "Solving by Graphing",
+      "concreteComparison": "Two food trucks track their sales on the same chart. Truck A started strong but grows slowly; Truck B started at zero and climbs fast. The manager's question — “when does B catch A?” — is answered by one glance: where the two lines **cross**. Graphing a system turns algebra into a picture with the answer sitting at the intersection.",
+      "objective": "Solve a system by graphing both lines and reading the intersection, then verifying the point in both equations.",
+      "concept": [
+        "**Method:** graph each equation (intercept + slope-walk, from Linear Functions), find the crossing point, and read its coordinates.",
+        "System $y=2x-1$ and $y=-x+5$: the lines cross at $(2,3)$. That's the solution.",
+        "**Always verify** — graphs can deceive at grid edges: $2(2)-1=3$ ✓ and $-(2)+5=3$ ✓. Both pass, so $(2,3)$ is confirmed.",
+        "Graphing is fast and visual but only trustworthy when the crossing lands on clean grid points — for messy fractions you'll want substitution or elimination (next lessons)."
+      ],
+      "keyIdea": "Graph both, read the crossing, then CONFIRM by substituting into both equations.",
+      "facts": [
+        {
+          "title": "The method",
+          "latex": "graph → cross → read",
+          "explanation": "Then verify by substitution."
+        },
+        {
+          "title": "Its limit",
+          "latex": "fraction crossings are hard to read",
+          "explanation": "Algebra takes over there."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sys2-we1",
+          "statement": "Solve by graphing: $y=2x-1$, $y=-x+5$.",
+          "solution": "Lines cross at $(2,3)$. Verify: $2(2)-1=3$ ✓, $-(2)+5=3$ ✓.",
+          "check": [
+            "2*2 - 1 == 3",
+            "-1*2 + 5 == 3"
+          ]
+        },
+        {
+          "id": "sys2-we2",
+          "statement": "Solve by graphing: $y=x+1$, $y=3x-3$.",
+          "solution": "Crossing at $(2,3)$: $2+1=3$ ✓ and $3(2)-3=3$ ✓.",
+          "check": [
+            "2 + 1 == 3",
+            "3*2 - 3 == 3"
+          ]
+        },
+        {
+          "id": "sys2-we3",
+          "statement": "Solve by graphing: $y=-2x+6$, $y=x$.",
+          "solution": "Crossing at $(2,2)$: $-2(2)+6=2$ ✓ and $y=x$ gives $2$ ✓.",
+          "check": [
+            "-2*2 + 6 == 2",
+            "2 == 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading the intersection carelessly.",
+          "correction": "A crossing that LOOKS like $(2,3)$ might be $(1.9, 3.1)$ — always substitute to confirm.",
+          "authored": true
+        },
+        {
+          "text": "Reporting only x.",
+          "correction": "The solution is a PAIR: $x=2$ AND $y=3$, written $(2,3)$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sys2-t1",
+          "statement": "The lines $y=x+2$ and $y=2x$ cross where?",
+          "solution": "At $(2,4)$: $2+2=4$ ✓ and $2(2)=4$ ✓.",
+          "check": [
+            "2 + 2 == 4",
+            "2*2 == 4"
+          ]
+        },
+        {
+          "id": "sys2-t2",
+          "statement": "The lines $y=-x+4$ and $y=x-2$ cross where?",
+          "solution": "At $(3,1)$: $-3+4=1$ ✓ and $3-2=1$ ✓.",
+          "check": [
+            "-1*3 + 4 == 1",
+            "3 - 2 == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "systemGraph",
+            "eyebrow": "The workbench",
+            "title": "Find the crossing",
+            "teach": "Here is $y=2x-1$ (orange) and $y=-x+5$ (blue). The marked point is the solution — move the blue line and the crossing (and the check beneath it) updates live.",
+            "config": {
+              "m1": 2,
+              "b1": -1,
+              "m2": -1,
+              "b2": 5
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The method",
+            "title": "Three steps",
+            "beats": [
+              "① Graph line 1: intercept, then slope-walk.",
+              "② Graph line 2 the same way.",
+              "③ Read the crossing — that pair is the solution.",
+              "Then verify it in BOTH equations."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read it",
+            "prompt": "$y=x+1$ and $y=3x-3$ cross at…",
+            "options": [
+              "$(2,3)$",
+              "$(3,2)$",
+              "$(1,2)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$2+1=3$ and $3(2)-3=3$ — both give $y=3$ at $x=2$.",
+            "check": [
+              "2 + 1 == 3",
+              "3*2 - 3 == 3"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Trust but verify",
+            "title": "The substitution check",
+            "beats": [
+              "The graph SUGGESTS $(2,3)$.",
+              "Equation 1: $2(2)-1=3$ ✓.",
+              "Equation 2: $-(2)+5=3$ ✓.",
+              "Now it's not a guess — it's confirmed."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Graph, read, verify",
+            "intro": "The check is part of the method.",
+            "examples": [
+              {
+                "prompt": "Solve: $y=2x$ and $y=x+3$.",
+                "steps": [
+                  "Cross where $2x=x+3$ → at $x=3$.",
+                  "$y=2(3)=6$.",
+                  "Check: $3+3=6$ ✓. Solution $(3,6)$."
+                ],
+                "answer": "$(3,6)$",
+                "check": [
+                  "2*3 == 6",
+                  "3 + 3 == 6"
+                ]
+              },
+              {
+                "prompt": "Solve: $y=-x+7$ and $y=x+1$.",
+                "steps": [
+                  "Crossing at $x=3$: $-3+7=4$ and $3+1=4$.",
+                  "Both give $y=4$.",
+                  "Solution $(3,4)$."
+                ],
+                "answer": "$(3,4)$",
+                "check": [
+                  "-1*3 + 7 == 4",
+                  "3 + 1 == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Read the crossings",
+            "intro": "Verify before you commit.",
+            "problems": [
+              {
+                "prompt": "$y=x-1$ and $y=-x+5$ cross at…",
+                "options": [
+                  "$(3,2)$",
+                  "$(2,3)$",
+                  "$(4,3)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3-1=2$ ✓ and $-3+5=2$ ✓.",
+                "check": [
+                  "3 - 1 == 2",
+                  "-1*3 + 5 == 2"
+                ]
+              },
+              {
+                "prompt": "$y=3x$ and $y=x+4$ cross at…",
+                "options": [
+                  "$(2,6)$",
+                  "$(1,3)$",
+                  "$(4,8)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3(2)=6$ ✓ and $2+4=6$ ✓.",
+                "check": [
+                  "3*2 == 6",
+                  "2 + 4 == 6"
+                ]
+              },
+              {
+                "prompt": "Graphing struggles most when the solution is…",
+                "options": [
+                  "a messy fraction pair",
+                  "at the origin",
+                  "on the y-axis"
+                ],
+                "correctIndex": 0,
+                "explanation": "Try reading $(\\frac{7}{3}, \\frac{11}{3})$ off a grid — algebra handles those better.",
+                "check": [
+                  "Rational(7,3)*3 == 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The 17th-century mashup",
+            "body": "Graphing a system works because of Descartes' big idea: geometry and algebra are the SAME subject wearing different clothes. A point is a pair of numbers; a line is an equation. Two truths about numbers become two lines — and “solve” becomes “look where they cross.”"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Graph both lines; the crossing is the solution.",
+              "Verify the pair in both equations — always.",
+              "Messy crossings → switch to algebraic methods."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "solving-by-substitution",
+      "title": "Solving by Substitution",
+      "concreteComparison": "One friend says “my number is 3 more than yours.” If your number is $x$, hers is literally $x+3$ — so wherever her number appears, you can **swap in** $x+3$. That swap is substitution: use one equation to rewrite the other so only one variable remains. Then it's just a linear equation, and you already own those.",
+      "objective": "Solve systems by substituting one equation into the other, reducing two unknowns to one — then back-substitute for the full pair.",
+      "concept": [
+        "**When one equation is solved for a variable** — like $y=x+3$ — substitute that expression into the OTHER equation: $x+(x+3)=9 \\to 2x+3=9 \\to x=3$.",
+        "**Back-substitute** to finish: $y=3+3=6$. Solution $(3,6)$.",
+        "If neither equation starts solved, pick the easiest variable to isolate first (a coefficient of 1 is the friendliest).",
+        "The check never changes: $(3,6)$ in both originals — $3+6=9$ ✓ and $6=3+3$ ✓."
+      ],
+      "keyIdea": "Swap one equation's expression into the other → one variable → solve → back-substitute.",
+      "facts": [
+        {
+          "title": "The swap",
+          "latex": "$y=x+3$ into $x+y=9$",
+          "explanation": "$x+(x+3)=9$ — one unknown left."
+        },
+        {
+          "title": "Finish it",
+          "latex": "back-substitute for the pair",
+          "explanation": "$x=3$ → $y=6$ → $(3,6)$."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sys3-we1",
+          "statement": "Solve: $y=x+3$ and $x+y=9$.",
+          "solution": "Substitute: $x+(x+3)=9 \\to 2x=6 \\to x=3$; then $y=6$. Check: $3+6=9$ ✓.",
+          "check": [
+            "3 + (3 + 3) == 9",
+            "3 + 3 == 6"
+          ]
+        },
+        {
+          "id": "sys3-we2",
+          "statement": "Solve: $y=2x$ and $3x+y=15$.",
+          "solution": "$3x+2x=15 \\to 5x=15 \\to x=3$; $y=6$. Check: $3(3)+6=15$ ✓.",
+          "check": [
+            "3*3 + 2*3 == 15",
+            "2*3 == 6"
+          ]
+        },
+        {
+          "id": "sys3-we3",
+          "statement": "Solve: $y=x-1$ and $2x+y=8$.",
+          "solution": "$2x+(x-1)=8 \\to 3x=9 \\to x=3$; $y=2$. Check: $2(3)+2=8$ ✓.",
+          "check": [
+            "2*3 + (3 - 1) == 8",
+            "3 - 1 == 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Substituting back into the SAME equation.",
+          "correction": "Plugging $y=x+3$ into itself gives $x+3=x+3$ — true and useless. Substitute into the OTHER equation.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting parentheses around the swapped expression.",
+          "correction": "$2x - (x+3)$ needs the parentheses: it's $2x-x-3$, not $2x-x+3$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sys3-t1",
+          "statement": "Solve: $y=x+2$ and $x+y=10$.",
+          "solution": "$x+(x+2)=10 \\to x=4$, $y=6$.",
+          "check": [
+            "4 + (4 + 2) == 10",
+            "4 + 2 == 6"
+          ]
+        },
+        {
+          "id": "sys3-t2",
+          "statement": "Solve: $y=3x$ and $x+y=12$.",
+          "solution": "$x+3x=12 \\to x=3$, $y=9$.",
+          "check": [
+            "3 + 3*3 == 12",
+            "3*3 == 9"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The move",
+            "title": "Swap in the expression",
+            "beats": [
+              "System: $y=x+3$ and $x+y=9$.",
+              "The first says: $y$ IS $x+3$.",
+              "So replace $y$ in the second:",
+              "$x+(x+3)=9$ — one variable now."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Solve and finish",
+            "title": "Back-substitute",
+            "beats": [
+              "$x+(x+3)=9 \\to 2x+3=9 \\to x=3$.",
+              "Half done — a solution is a PAIR.",
+              "$y=x+3=3+3=6$.",
+              "Solution: $(3,6)$. Check both ✓."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Make the swap",
+            "prompt": "Substituting $y=2x$ into $3x+y=15$ gives…",
+            "options": [
+              "$3x+2x=15$",
+              "$3x+2y=15$",
+              "$2x+2x=15$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Replace the $y$ with $2x$: $3x+2x=15$, so $x=3$.",
+            "check": [
+              "3*3 + 2*3 == 15"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Watch the minus",
+            "title": "Parentheses protect signs",
+            "beats": [
+              "System: $y=x+1$ and $2x-y=5$.",
+              "Substitute WITH parentheses: $2x-(x+1)=5$.",
+              "$2x-x-1=5 \\to x=6$; then $y=7$.",
+              "Dropping them ($2x-x+1$) would poison the sign."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Substitute and solve",
+            "intro": "Swap into the OTHER equation, then back-substitute.",
+            "examples": [
+              {
+                "prompt": "Solve: $y=2x-1$ and $x+y=8$.",
+                "steps": [
+                  "$x+(2x-1)=8$.",
+                  "$3x=9 \\to x=3$.",
+                  "$y=2(3)-1=5$. Solution $(3,5)$."
+                ],
+                "answer": "$(3,5)$",
+                "check": [
+                  "3 + (2*3 - 1) == 8",
+                  "2*3 - 1 == 5"
+                ]
+              },
+              {
+                "prompt": "Solve: $x=y+4$ and $x+2y=10$.",
+                "steps": [
+                  "$(y+4)+2y=10$.",
+                  "$3y=6 \\to y=2$.",
+                  "$x=2+4=6$. Solution $(6,2)$."
+                ],
+                "answer": "$(6,2)$",
+                "check": [
+                  "(2 + 4) + 2*2 == 10",
+                  "2 + 4 == 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Your turn to swap",
+            "intro": "Isolated variable → other equation.",
+            "problems": [
+              {
+                "prompt": "Solve: $y=x+5$ and $x+y=11$.",
+                "options": [
+                  "$(3,8)$",
+                  "$(8,3)$",
+                  "$(4,7)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x+(x+5)=11 \\to x=3$, $y=8$.",
+                "check": [
+                  "3 + (3 + 5) == 11",
+                  "3 + 5 == 8"
+                ]
+              },
+              {
+                "prompt": "Solve: $y=4x$ and $y=x+9$.",
+                "options": [
+                  "$(3,12)$",
+                  "$(4,13)$",
+                  "$(9,36)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4x=x+9 \\to 3x=9 \\to x=3$; $y=12$.",
+                "check": [
+                  "4*3 == 3 + 9",
+                  "4*3 == 12"
+                ]
+              },
+              {
+                "prompt": "Solve: $y=x-2$ and $3x-y=10$.",
+                "options": [
+                  "$(4,2)$",
+                  "$(2,0)$",
+                  "$(6,4)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3x-(x-2)=10 \\to 2x+2=10 \\to x=4$, $y=2$.",
+                "check": [
+                  "3*4 - (4 - 2) == 10",
+                  "4 - 2 == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Substitution is how computers solve everything",
+            "body": "Solvers inside spreadsheets, game engines, and AI training loops reduce big systems the same way you just did — express one unknown in terms of others, swap it through, repeat. A million-variable system falls to the same move you used on two."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Substitute the isolated expression into the OTHER equation.",
+              "Solve the one-variable equation, then back-substitute.",
+              "Parentheses around the swap protect the signs."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "solving-by-elimination",
+      "title": "Solving by Elimination",
+      "concreteComparison": "Two receipts from the same café: $2$ coffees $+$ $1$ muffin $= \\$7$; and $1$ coffee $+$ $1$ muffin $= \\$5$. Subtract the receipts! The muffins cancel, leaving $1$ coffee $= \\$2$. Lining up equations and adding or subtracting them to **wipe out a variable** — that's elimination, and sometimes it's dramatically faster than substitution.",
+      "objective": "Solve systems by adding or subtracting equations to eliminate a variable — multiplying one equation first when needed.",
+      "concept": [
+        "**Aligned opposites cancel.** $\\begin{cases}x+y=7\\\\ x-y=3\\end{cases}$: ADD them — the $y$s cancel: $2x=10 \\to x=5$, then $y=2$.",
+        "**Matching terms subtract away.** $2x+y=7$ and $x+y=5$: SUBTRACT — the $y$s vanish: $x=2$, then $y=3$.",
+        "**No match yet? Multiply first.** $x+2y=8$ and $2x+3y=13$: double the first ($2x+4y=16$), subtract the second: $y=3$, then $x=2$.",
+        "Add when the target terms have OPPOSITE signs, subtract when they MATCH. Finish, as always, by checking the pair in both originals."
+      ],
+      "keyIdea": "Add or subtract whole equations so one variable cancels; multiply an equation first if nothing lines up.",
+      "facts": [
+        {
+          "title": "Opposites: add",
+          "latex": "$+y$ and $-y$ cancel on adding",
+          "explanation": "$x+y=7$, $x-y=3$ → $2x=10$."
+        },
+        {
+          "title": "Twins: subtract",
+          "latex": "$+y$ and $+y$ cancel on subtracting",
+          "explanation": "$2x+y=7$, $x+y=5$ → $x=2$."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sys4-we1",
+          "statement": "Solve by elimination: $x+y=7$ and $x-y=3$.",
+          "solution": "Add: $2x=10 \\to x=5$; then $5+y=7 \\to y=2$. Check: $5-2=3$ ✓.",
+          "check": [
+            "5 + 2 == 7",
+            "5 - 2 == 3"
+          ]
+        },
+        {
+          "id": "sys4-we2",
+          "statement": "Solve: $2x+y=7$ and $x+y=5$.",
+          "solution": "Subtract: $x=2$; then $y=3$. Check: $2(2)+3=7$ ✓.",
+          "check": [
+            "2*2 + 3 == 7",
+            "2 + 3 == 5"
+          ]
+        },
+        {
+          "id": "sys4-we3",
+          "statement": "Solve: $x+2y=8$ and $2x+3y=13$.",
+          "solution": "Double the first: $2x+4y=16$; subtract the second: $y=3$; then $x=2$. Check: $2+6=8$ ✓, $4+9=13$ ✓.",
+          "check": [
+            "2 + 2*3 == 8",
+            "2*2 + 3*3 == 13"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Subtracting only part of an equation.",
+          "correction": "Elimination hits EVERY term: $(2x+y)-(x+y)=7-5$ — left sides AND right sides.",
+          "authored": true
+        },
+        {
+          "text": "Adding when the terms match (instead of subtracting).",
+          "correction": "$+y$ plus $+y$ makes $2y$, not $0$ — matching terms need SUBTRACTION to cancel.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sys4-t1",
+          "statement": "Solve: $x+y=9$ and $x-y=1$.",
+          "solution": "Add: $2x=10 \\to x=5$, $y=4$.",
+          "check": [
+            "5 + 4 == 9",
+            "5 - 4 == 1"
+          ]
+        },
+        {
+          "id": "sys4-t2",
+          "statement": "Solve: $3x+y=11$ and $x+y=5$.",
+          "solution": "Subtract: $2x=6 \\to x=3$, $y=2$.",
+          "check": [
+            "3*3 + 2 == 11",
+            "3 + 2 == 5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The café trick",
+            "title": "Subtract the receipts",
+            "beats": [
+              "$2$ coffees $+1$ muffin $=\\$7$.",
+              "$1$ coffee $+1$ muffin $=\\$5$.",
+              "Subtract: the muffins cancel!",
+              "$1$ coffee $=\\$2$ — and the muffin must be $\\$3$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Opposites cancel",
+            "title": "Add the equations",
+            "beats": [
+              "$x+y=7$ and $x-y=3$: stack and ADD.",
+              "$+y$ and $-y$ wipe out: $2x=10$.",
+              "$x=5$; back into either: $y=2$.",
+              "Solution $(5,2)$ — check both ✓."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Add or subtract?",
+            "prompt": "To eliminate $y$ from $4x+y=14$ and $2x+y=8$, you should…",
+            "options": [
+              "subtract the equations",
+              "add the equations",
+              "multiply both by 0"
+            ],
+            "correctIndex": 0,
+            "explanation": "The $y$s MATCH ($+y$, $+y$) — subtracting cancels them: $2x=6$, $x=3$, $y=2$.",
+            "check": [
+              "4*3 + 2 == 14",
+              "2*3 + 2 == 8"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Make a match",
+            "title": "Multiply first",
+            "beats": [
+              "$x+2y=8$ and $2x+3y=13$ — nothing cancels yet.",
+              "Double equation 1: $2x+4y=16$.",
+              "NOW subtract: $(2x+4y)-(2x+3y)=16-13$.",
+              "$y=3$, then $x=2$. Solution $(2,3)$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Cancel a variable",
+            "intro": "Line up, then add or subtract whole equations.",
+            "examples": [
+              {
+                "prompt": "Solve: $x+y=6$ and $x-y=4$.",
+                "steps": [
+                  "Add: $2x=10 \\to x=5$.",
+                  "Then $5+y=6 \\to y=1$.",
+                  "Check: $5-1=4$ ✓."
+                ],
+                "answer": "$(5,1)$",
+                "check": [
+                  "5 + 1 == 6",
+                  "5 - 1 == 4"
+                ]
+              },
+              {
+                "prompt": "Solve: $3x+2y=12$ and $x+2y=8$.",
+                "steps": [
+                  "Subtract: $2x=4 \\to x=2$.",
+                  "Then $2+2y=8 \\to y=3$.",
+                  "Check: $6+6=12$ ✓."
+                ],
+                "answer": "$(2,3)$",
+                "check": [
+                  "3*2 + 2*3 == 12",
+                  "2 + 2*3 == 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Eliminate!",
+            "intro": "Opposites add; twins subtract; multiply to matchmake.",
+            "problems": [
+              {
+                "prompt": "Solve: $x+y=8$ and $x-y=2$.",
+                "options": [
+                  "$(5,3)$",
+                  "$(3,5)$",
+                  "$(6,2)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Add: $2x=10$, $x=5$, $y=3$.",
+                "check": [
+                  "5 + 3 == 8",
+                  "5 - 3 == 2"
+                ]
+              },
+              {
+                "prompt": "Solve: $2x+y=9$ and $x+y=6$.",
+                "options": [
+                  "$(3,3)$",
+                  "$(4,1)$",
+                  "$(2,5)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Subtract: $x=3$; then $y=3$.",
+                "check": [
+                  "2*3 + 3 == 9",
+                  "3 + 3 == 6"
+                ]
+              },
+              {
+                "prompt": "Solve: $x+3y=11$ and $2x+5y=19$.",
+                "options": [
+                  "$(2,3)$",
+                  "$(3,2)$",
+                  "$(1,4)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Double the first: $2x+6y=22$; subtract: $y=3$, then $x=2$.",
+                "check": [
+                  "2 + 3*3 == 11",
+                  "2*2 + 5*3 == 19"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Nine chapters, two thousand years",
+            "body": "Elimination appears fully-formed in the ancient Chinese text “Nine Chapters on the Mathematical Art” (~200 BCE) — solving grain-and-livestock systems on counting boards, centuries before European algebra. The West rediscovered it and named it after Gauss; the boards had it first."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Add to cancel opposites; subtract to cancel twins.",
+              "Nothing lines up? Multiply an equation first.",
+              "Eliminate → solve → back-substitute → check both."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "one-none-or-infinitely-many",
+      "title": "One, None, or Infinitely Many",
+      "concreteComparison": "Remember equations whose $x$ vanished — leaving $5=9$ (impossible) or $6=6$ (always true)? Systems inherit the same three endings, and now you can SEE them: lines that **cross** (one solution), **parallel** lines that never touch (no solution), and two equations that secretly draw the **same line** (infinitely many). The algebra and the picture tell one story.",
+      "objective": "Classify a system as having one, none, or infinitely many solutions — from the graph (cross / parallel / same line) and from the algebra (slopes and intercepts).",
+      "concept": [
+        "**One solution:** different slopes → the lines must cross exactly once. $y=2x+1$ and $y=-x+4$ cross at $(1,3)$.",
+        "**No solution:** same slope, different intercepts → parallel. $y=2x+1$ and $y=2x-3$ stay $4$ apart forever. Algebra agrees: subtracting gives $0=4$ ✗.",
+        "**Infinitely many:** the same line in disguise. $y=2x+1$ and $2y=4x+2$ — divide the second by 2 and it IS the first. Every point on the line works.",
+        "Quick test: compare slopes first; if they match, compare intercepts."
+      ],
+      "keyIdea": "Different slopes → one; same slope, different b → none; same slope AND b → infinitely many.",
+      "facts": [
+        {
+          "title": "Cross",
+          "latex": "$m_1 \\neq m_2$ → one solution",
+          "explanation": "Different slopes must meet once."
+        },
+        {
+          "title": "Parallel / same",
+          "latex": "$m_1=m_2$: check $b$",
+          "explanation": "Different b → none; same b → infinite."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sys5-we1",
+          "statement": "How many solutions: $y=2x+1$ and $y=-x+4$?",
+          "solution": "Slopes differ ($2 \\neq -1$) → exactly one; they cross at $(1,3)$.",
+          "check": [
+            "2*1 + 1 == 3",
+            "-1*1 + 4 == 3"
+          ]
+        },
+        {
+          "id": "sys5-we2",
+          "statement": "How many solutions: $y=2x+1$ and $y=2x-3$?",
+          "solution": "Same slope, different intercepts → parallel, NO solution. (Subtracting gives $0=4$, impossible.)",
+          "check": [
+            "0 != 4",
+            "2*5 + 1 != 2*5 - 3"
+          ]
+        },
+        {
+          "id": "sys5-we3",
+          "statement": "How many solutions: $y=2x+1$ and $2y=4x+2$?",
+          "solution": "Divide the second by 2: $y=2x+1$ — the SAME line. Infinitely many. (Check $x=3$: both give $7$.)",
+          "check": [
+            "2*3 + 1 == 7",
+            "(4*3 + 2)/2 == 7"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Calling parallel lines “one solution at infinity”.",
+          "correction": "In this course parallel = NO solution — there is no actual point on both lines.",
+          "authored": true
+        },
+        {
+          "text": "Missing a same-line system because it's disguised.",
+          "correction": "$2y=4x+2$ doesn't LOOK like $y=2x+1$ until you simplify — always reduce before comparing.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sys5-t1",
+          "statement": "How many solutions: $y=3x+2$ and $y=3x-1$?",
+          "solution": "Same slope 3, different intercepts — none. (At $x=1$: $5$ vs $2$.)",
+          "check": [
+            "3*1 + 2 != 3*1 - 1"
+          ]
+        },
+        {
+          "id": "sys5-t2",
+          "statement": "How many solutions: $y=x+4$ and $3y=3x+12$?",
+          "solution": "Divide by 3: same line — infinitely many. (At $x=2$: both $6$.)",
+          "check": [
+            "2 + 4 == 6",
+            "(3*2 + 12)/3 == 6"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "systemGraph",
+            "eyebrow": "Experiment",
+            "title": "Make all three happen",
+            "teach": "Start: the lines cross once. Now set the blue slope to $2$ (parallel — the solution disappears), then set its intercept to $1$ (same line — every point works). Three endings, one dial away.",
+            "config": {
+              "m1": 2,
+              "b1": 1,
+              "m2": -1,
+              "b2": 4
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Ending 1",
+            "title": "Different slopes: one",
+            "beats": [
+              "$m_1 \\neq m_2$: one line climbs faster.",
+              "They MUST cross — exactly once.",
+              "$y=2x+1$ vs $y=-x+4$: cross at $(1,3)$.",
+              "Most systems live here."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Count them",
+            "prompt": "$y=5x+2$ and $y=5x-7$ have how many solutions?",
+            "options": [
+              "None — parallel",
+              "One",
+              "Infinitely many"
+            ],
+            "correctIndex": 0,
+            "explanation": "Same slope 5, different intercepts: parallel lines never meet.",
+            "check": [
+              "5*1 + 2 != 5*1 - 7"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Endings 2 and 3",
+            "title": "Same slope: look at b",
+            "beats": [
+              "Same $m$, different $b$: parallel — **none**.",
+              "Same $m$, same $b$: identical — **infinite**.",
+              "Beware disguises: simplify $2y=4x+2$ first.",
+              "It's $y=2x+1$ wearing a coat."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Classify the system",
+            "intro": "Compare slopes, then intercepts.",
+            "examples": [
+              {
+                "prompt": "$y=4x+1$ and $y=4x+5$: how many solutions?",
+                "steps": [
+                  "Slopes match (4).",
+                  "Intercepts differ (1 vs 5).",
+                  "Parallel — no solution."
+                ],
+                "answer": "none",
+                "check": [
+                  "4*2 + 1 != 4*2 + 5"
+                ]
+              },
+              {
+                "prompt": "$y=3x-2$ and $2y=6x-4$: how many?",
+                "steps": [
+                  "Halve the second: $y=3x-2$.",
+                  "Identical lines.",
+                  "Infinitely many."
+                ],
+                "answer": "infinitely many",
+                "check": [
+                  "3*4 - 2 == 10",
+                  "(6*4 - 4)/2 == 10"
+                ]
+              },
+              {
+                "prompt": "$y=x+1$ and $y=2x-1$: how many?",
+                "steps": [
+                  "Slopes differ (1 vs 2).",
+                  "Exactly one crossing.",
+                  "At $(2,3)$: $2+1=3$, $2(2)-1=3$."
+                ],
+                "answer": "one — $(2,3)$",
+                "check": [
+                  "2 + 1 == 3",
+                  "2*2 - 1 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "One, none, or all?",
+            "intro": "Slopes first, then intercepts.",
+            "problems": [
+              {
+                "prompt": "$y=2x+3$ and $y=-2x+3$:",
+                "options": [
+                  "One solution",
+                  "No solution",
+                  "Infinitely many"
+                ],
+                "correctIndex": 0,
+                "explanation": "Slopes differ ($2$ vs $-2$) — they cross (at $(0,3)$, in fact).",
+                "check": [
+                  "2*0 + 3 == 3",
+                  "-2*0 + 3 == 3"
+                ]
+              },
+              {
+                "prompt": "$y=x+2$ and $5y=5x+10$:",
+                "options": [
+                  "Infinitely many",
+                  "No solution",
+                  "One solution"
+                ],
+                "correctIndex": 0,
+                "explanation": "Divide by 5: the same line.",
+                "check": [
+                  "3 + 2 == 5",
+                  "(5*3 + 10)/5 == 5"
+                ]
+              },
+              {
+                "prompt": "A system of two PARALLEL streets has…",
+                "options": [
+                  "no intersection",
+                  "one intersection",
+                  "two intersections"
+                ],
+                "correctIndex": 0,
+                "explanation": "Parallel means never meeting — no solution.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Full circle",
+            "body": "In Linear Equations you met $5=9$ (no solution) and $6=6$ (always true) — and we promised they were geometry in disguise. Here's the payoff: eliminate a variable from a parallel system and you get exactly $0=4$; from a same-line system, $0=0$. The strange equations WERE parallel and identical lines all along."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Different slopes → one solution (a crossing).",
+              "Same slope, different $b$ → parallel, none.",
+              "Same line (simplify to see it!) → infinitely many."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "systems-in-the-wild",
+      "title": "Systems in the Wild",
+      "concreteComparison": "A school play sells $200$ tickets and collects $\\$1100$. Adult tickets cost $\\$8$, student tickets $\\$4$. How many of each? TWO unknowns — so one equation can't do it. But the story hands you two facts: a **count** ($a+s=200$) and a **value** ($8a+4s=1100$). Two facts, two unknowns — a system. Solve it and the box office is balanced: $75$ adults, $125$ students.",
+      "objective": "Translate two-fact word problems into systems (count + value, sum + difference, break-even), solve with your method of choice, and interpret the answer.",
+      "concept": [
+        "**Name both unknowns** first: $a$ = adult tickets, $s$ = student tickets.",
+        "**Count + value** is the classic shape: one equation counts items ($a+s=200$), the other totals their worth ($8a+4s=1100$). Elimination: quadruple the count ($4a+4s=800$), subtract: $4a=300 \\to a=75$, so $s=125$.",
+        "**Sum + difference** stories ($x+y=20$, $x-y=4$) love elimination — add and the difference melts.",
+        "**Break-even** stories (two plans, when equal?) set two expressions equal — substitution's home turf. Whatever the method: answer the actual question, with units, and sanity-check it."
+      ],
+      "keyIdea": "Two unknowns need two facts: name the variables, write count/value (or sum/difference) equations, solve, interpret.",
+      "facts": [
+        {
+          "title": "Count + value",
+          "latex": "$a+s=200$; $8a+4s=1100$",
+          "explanation": "One equation counts, one prices."
+        },
+        {
+          "title": "Answer the question",
+          "latex": "75 adults, 125 students",
+          "explanation": "Numbers + units + sense-check."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sys6-we1",
+          "statement": "200 tickets, $\\$1100$ collected; adults $\\$8$, students $\\$4$. How many of each?",
+          "solution": "$a+s=200$, $8a+4s=1100$. Multiply the count by 4 and subtract: $4a=300 \\to a=75$, $s=125$. Check: $8(75)+4(125)=1100$ ✓.",
+          "check": [
+            "75 + 125 == 200",
+            "8*75 + 4*125 == 1100"
+          ]
+        },
+        {
+          "id": "sys6-we2",
+          "statement": "Two numbers: sum $20$, difference $4$. Find them.",
+          "solution": "$x+y=20$, $x-y=4$. Add: $2x=24 \\to x=12$, $y=8$.",
+          "check": [
+            "12 + 8 == 20",
+            "12 - 8 == 4"
+          ]
+        },
+        {
+          "id": "sys6-we3",
+          "statement": "Gym A: $\\$40$ joining $+ \\$10$/mo. Gym B: $\\$10$ joining $+ \\$15$/mo. When do they cost the same?",
+          "solution": "$10m+40=15m+10 \\to 5m=30 \\to m=6$ months (both $\\$100$).",
+          "check": [
+            "10*6 + 40 == 15*6 + 10"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Writing one equation with two unknowns and getting stuck.",
+          "correction": "Two unknowns need TWO independent facts — reread the story for the second (a total, a difference, a comparison).",
+          "authored": true
+        },
+        {
+          "text": "Reporting x when the question asked for y (or both).",
+          "correction": "$a=75$ isn't the full answer to “how many of each” — finish the pair and label it: 75 adult, 125 student.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sys6-t1",
+          "statement": "A jar has 25 coins — nickels and dimes — worth $\\$2.00$. How many dimes?",
+          "solution": "$n+d=25$, $5n+10d=200$ (cents). Quintuple the count, subtract: $5d=75 \\to d=15$.",
+          "check": [
+            "10 + 15 == 25",
+            "5*10 + 10*15 == 200"
+          ]
+        },
+        {
+          "id": "sys6-t2",
+          "statement": "Two numbers: sum $30$, difference $6$.",
+          "solution": "Add the equations: $2x=36 \\to x=18$, $y=12$.",
+          "check": [
+            "18 + 12 == 30",
+            "18 - 12 == 6"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Two facts",
+            "title": "Why one equation can't",
+            "beats": [
+              "“How many adults AND students?” — two unknowns.",
+              "$a+s=200$ alone: endless possibilities.",
+              "The revenue fact pins it: $8a+4s=1100$.",
+              "Two unknowns ⇒ hunt for two facts. Always."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Count + value",
+            "title": "The box-office system",
+            "beats": [
+              "Count: $a+s=200$.",
+              "Value: $8a+4s=1100$.",
+              "×4 the count: $4a+4s=800$; subtract:",
+              "$4a=300 \\to a=75$, so $s=125$. Done."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Set it up",
+            "prompt": "30 coins (nickels + dimes) worth $\\$2.25$. Which system fits (in cents)?",
+            "options": [
+              "$n+d=30$; $5n+10d=225$",
+              "$n+d=225$; $5n+10d=30$",
+              "$n\\cdot d=30$; $n+d=225$"
+            ],
+            "correctIndex": 0,
+            "explanation": "One equation counts the coins; the other counts the cents.",
+            "check": [
+              "15 + 15 == 30",
+              "5*15 + 10*15 == 225"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Break-even",
+            "title": "When two plans tie",
+            "beats": [
+              "Gym A: $10m+40$. Gym B: $15m+10$.",
+              "“Same cost” means set them EQUAL.",
+              "$10m+40=15m+10 \\to m=6$ months.",
+              "Before 6: A costs more; after: B does."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Story → system → answer",
+            "intro": "Name variables; find both facts; solve; interpret.",
+            "examples": [
+              {
+                "prompt": "A farm has chickens and cows — 20 heads, 56 legs. How many cows?",
+                "steps": [
+                  "$c+h=20$ (heads), $4c+2h=56$ (legs).",
+                  "Double the heads: $2c+2h=40$; subtract: $2c=16$.",
+                  "$c=8$ cows (and 12 chickens). Check: $32+24=56$ ✓."
+                ],
+                "answer": "$8$ cows",
+                "check": [
+                  "8 + 12 == 20",
+                  "4*8 + 2*12 == 56"
+                ]
+              },
+              {
+                "prompt": "Two numbers: sum 26, difference 10.",
+                "steps": [
+                  "$x+y=26$, $x-y=10$.",
+                  "Add: $2x=36 \\to x=18$.",
+                  "$y=8$."
+                ],
+                "answer": "$18$ and $8$",
+                "check": [
+                  "18 + 8 == 26",
+                  "18 - 8 == 10"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Wild systems",
+            "intro": "Two unknowns, two facts, one answer.",
+            "problems": [
+              {
+                "prompt": "12 pizzas — small $\\$9$, large $\\$14$ — cost $\\$133$ total. How many large?",
+                "options": [
+                  "$5$",
+                  "$7$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$s+l=12$, $9s+14l=133$. Nine-times the count: $9s+9l=108$; subtract: $5l=25 \\to l=5$.",
+                "check": [
+                  "7 + 5 == 12",
+                  "9*7 + 14*5 == 133"
+                ]
+              },
+              {
+                "prompt": "Sum 15, difference 3. The larger number is…",
+                "options": [
+                  "$9$",
+                  "$6$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Add: $2x=18 \\to x=9$ (the other is 6).",
+                "check": [
+                  "9 + 6 == 15",
+                  "9 - 6 == 3"
+                ]
+              },
+              {
+                "prompt": "Scooters: $\\$1$ + $\\$0.30$/min vs $\\$4$ + $\\$0.10$/min. Equal at…",
+                "options": [
+                  "$15$ min",
+                  "$10$ min",
+                  "$30$ min"
+                ],
+                "correctIndex": 0,
+                "explanation": "In cents: $100+30m=400+10m \\to 20m=300 \\to m=15$.",
+                "check": [
+                  "100 + 30*15 == 400 + 10*15"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "You solve systems now",
+            "body": "Graphing, substitution, elimination — and the judgment of which to reach for. Count-value, sum-difference, break-even: the wild ones all fall the same way."
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished “Systems of Linear Equations”",
+            "body": "Two equations, one plane, and every ending mapped: crossing, parallel, identical. One topic left in Grade 8: **Scatter Plots & Bivariate Data** — where messy real-world points meet the lines you now command."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "sys-pr1",
+      "statement": "Is $(2,7)$ a solution of $y=3x+1$ and $y=x+5$?",
+      "solution": "$3(2)+1=7$ ✓ and $2+5=7$ ✓ — yes.",
+      "check": [
+        "3*2 + 1 == 7",
+        "2 + 5 == 7"
+      ]
+    },
+    {
+      "id": "sys-pr2",
+      "statement": "The lines $y=x+3$ and $y=2x$ cross where?",
+      "solution": "$(3,6)$.",
+      "check": [
+        "3 + 3 == 6",
+        "2*3 == 6"
+      ]
+    },
+    {
+      "id": "sys-pr3",
+      "statement": "Solve by substitution: $y=x+4$ and $x+y=10$.",
+      "solution": "$x+(x+4)=10 \\to x=3$, $y=7$.",
+      "check": [
+        "3 + (3 + 4) == 10",
+        "3 + 4 == 7"
+      ]
+    },
+    {
+      "id": "sys-pr4",
+      "statement": "Solve by substitution: $y=2x$ and $5x-y=9$.",
+      "solution": "$5x-2x=9 \\to x=3$, $y=6$.",
+      "check": [
+        "5*3 - 2*3 == 9",
+        "2*3 == 6"
+      ]
+    },
+    {
+      "id": "sys-pr5",
+      "statement": "Solve by elimination: $x+y=11$ and $x-y=5$.",
+      "solution": "Add: $2x=16 \\to x=8$, $y=3$.",
+      "check": [
+        "8 + 3 == 11",
+        "8 - 3 == 5"
+      ]
+    },
+    {
+      "id": "sys-pr6",
+      "statement": "Solve by elimination: $3x+y=10$ and $x+y=6$.",
+      "solution": "Subtract: $2x=4 \\to x=2$, $y=4$.",
+      "check": [
+        "3*2 + 4 == 10",
+        "2 + 4 == 6"
+      ]
+    },
+    {
+      "id": "sys-pr7",
+      "statement": "Solve: $x+2y=9$ and $3x+4y=21$.",
+      "solution": "Double the first: $2x+4y=18$; subtract: $x=3$, then $y=3$.",
+      "check": [
+        "3 + 2*3 == 9",
+        "3*3 + 4*3 == 21"
+      ]
+    },
+    {
+      "id": "sys-pr8",
+      "statement": "How many solutions: $y=4x-1$ and $y=4x+6$?",
+      "solution": "Same slope, different intercepts — none.",
+      "check": [
+        "4*2 - 1 != 4*2 + 6"
+      ]
+    },
+    {
+      "id": "sys-pr9",
+      "statement": "How many solutions: $y=x+2$ and $4y=4x+8$?",
+      "solution": "Same line — infinitely many.",
+      "check": [
+        "5 + 2 == 7",
+        "(4*5 + 8)/4 == 7"
+      ]
+    },
+    {
+      "id": "sys-pr10",
+      "statement": "Two numbers: sum 22, difference 8. Find them.",
+      "solution": "Add: $2x=30 \\to x=15$, $y=7$.",
+      "check": [
+        "15 + 7 == 22",
+        "15 - 7 == 8"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "sys-ty1",
+      "statement": "Is $(4,2)$ a solution of $x+y=6$ and $x-2y=0$?",
+      "solution": "$4+2=6$ ✓ and $4-4=0$ ✓ — yes.",
+      "check": [
+        "4 + 2 == 6",
+        "4 - 2*2 == 0"
+      ]
+    },
+    {
+      "id": "sys-ty2",
+      "statement": "Solve by graphing (then verify): $y=2x-3$ and $y=-x+3$.",
+      "solution": "Cross at $(2,1)$: $4-3=1$ ✓, $-2+3=1$ ✓.",
+      "check": [
+        "2*2 - 3 == 1",
+        "-1*2 + 3 == 1"
+      ]
+    },
+    {
+      "id": "sys-ty3",
+      "statement": "Solve: $y=3x-5$ and $x+y=7$.",
+      "solution": "$x+3x-5=7 \\to x=3$, $y=4$.",
+      "check": [
+        "3 + (3*3 - 5) == 7",
+        "3*3 - 5 == 4"
+      ]
+    },
+    {
+      "id": "sys-ty4",
+      "statement": "Solve: $2x+3y=13$ and $2x+y=7$.",
+      "solution": "Subtract: $2y=6 \\to y=3$, $x=2$.",
+      "check": [
+        "2*2 + 3*3 == 13",
+        "2*2 + 3 == 7"
+      ]
+    },
+    {
+      "id": "sys-ty5",
+      "statement": "How many solutions: $y=7x+2$ and $y=7x+2$?",
+      "solution": "Identical — infinitely many.",
+      "check": [
+        "7*1 + 2 == 7*1 + 2"
+      ]
+    },
+    {
+      "id": "sys-ty6",
+      "statement": "Adult tickets $\\$10$, child $\\$6$; 50 tickets, $\\$420$ collected. How many adult?",
+      "solution": "$a+c=50$, $10a+6c=420$: $4a=120 \\to a=30$.",
+      "check": [
+        "30 + 20 == 50",
+        "10*30 + 6*20 == 420"
+      ]
+    },
+    {
+      "id": "sys-ty7",
+      "statement": "Two plans: $\\$18$ up front plus $\\$5$/month, or no fee and $\\$8$/month. When do they cost the same?",
+      "solution": "$5m+18=8m \\to 3m=18 \\to m=6$ months (both cost $\\$48$).",
+      "check": [
+        "5*6 + 18 == 8*6"
+      ]
+    }
+  ]
+}

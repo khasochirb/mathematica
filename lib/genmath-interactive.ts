@@ -731,6 +731,16 @@ export interface ArcSectorConfig {
   color?: string;
 }
 
+// Two lines y = m1x + b1 and y = m2x + b2 on one grid; line 2 adjustable.
+// Marks the intersection (the system's solution) and calls parallel /
+// same-line verdicts live. The systems-of-equations workbench.
+export interface SystemGraphConfig {
+  m1: number; b1: number;
+  m2: number; b2: number;
+  interactive?: boolean;
+  min?: number; max?: number;
+}
+
 // A circle rolling one full turn along a line, unrolling its circumference —
 // π played out as "a little more than 3 diameters". Auto-plays with a replay.
 export interface CircleUnrollConfig {
@@ -936,6 +946,7 @@ export type InteractiveStep =
   | { kind: "tangentCircle"; eyebrow?: string; title: string; teach: string; config: TangentCircleConfig }
   | { kind: "arcSector"; eyebrow?: string; title: string; teach: string; config: ArcSectorConfig }
   | { kind: "circleUnroll"; eyebrow?: string; title: string; teach: string; config: CircleUnrollConfig }
+  | { kind: "systemGraph"; eyebrow?: string; title: string; teach: string; config: SystemGraphConfig }
   | { kind: "areaShape"; eyebrow?: string; title: string; teach: string; config: AreaShapeConfig }
   | { kind: "apothemPolygon"; eyebrow?: string; title: string; teach: string; config: ApothemPolygonConfig }
   | { kind: "compositeArea"; eyebrow?: string; title: string; teach: string; config: CompositeAreaConfig }

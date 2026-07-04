@@ -78,6 +78,7 @@ import CircleAngle from "@/components/genmath/interactive/CircleAngle";
 import TangentCircle from "@/components/genmath/interactive/TangentCircle";
 import ArcSector from "@/components/genmath/interactive/ArcSector";
 import CircleUnroll from "@/components/genmath/interactive/CircleUnroll";
+import SystemGraph from "@/components/genmath/interactive/SystemGraph";
 import AreaShape from "@/components/genmath/interactive/AreaShape";
 import ApothemPolygon from "@/components/genmath/interactive/ApothemPolygon";
 import CompositeArea from "@/components/genmath/interactive/CompositeArea";
@@ -930,6 +931,16 @@ function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveSt
         <>
           <StepHeader eyebrow={step.eyebrow} title={step.title} />
           <TangentCircle config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "systemGraph":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <SystemGraph config={step.config} />
           <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
             <MathText text={step.teach} />
           </p>
