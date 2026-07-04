@@ -1,0 +1,1740 @@
+{
+  "slug": "quadratic-equations",
+  "title": "Quadratic Equations",
+  "grade": 10,
+  "blurb": "Solving by factoring, square roots, completing the square, and the quadratic formula — plus the discriminant.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "meet-the-quadratics",
+      "title": "Meet the Quadratics",
+      "concreteComparison": "Toss a ball and its height follows $h = -5t^2 + 20t$ — a **quadratic**. Setting $h = 0$ asks \"when does it land?\", and that's a **quadratic equation**. Bridges, screen diagonals, profit curves, braking distance: whenever something involves a square, the question \"when does it equal this value?\" is a quadratic equation.",
+      "objective": "Recognize a quadratic equation, write it in standard form $ax^2+bx+c=0$, identify $a$, $b$, $c$, and check whether a number is a solution.",
+      "concept": [
+        "A **quadratic equation** sets a degree-2 polynomial equal to zero: **standard form** is $ax^2 + bx + c = 0$ with $a \\neq 0$. For $2x^2 - 7x + 3 = 0$: $a=2$, $b=-7$, $c=3$.",
+        "A **solution** (or **root**) is a number that makes the equation true. Check by substituting: $x=3$ in $x^2-5x+6=0$ gives $9-15+6=0$ ✓ — so $3$ is a solution.",
+        "A quadratic has **at most two** real solutions — the parabola $y=ax^2+bx+c$ can cross the $x$-axis at most twice. Two, one, or zero crossings are all possible.",
+        "Before solving anything, move every term to one side: $x^2 = 5x - 6$ becomes $x^2 - 5x + 6 = 0$. Every method this unit starts from that $= 0$ form (or builds a perfect square from it)."
+      ],
+      "keyIdea": "Quadratic equation: ax² + bx + c = 0 (a ≠ 0). A solution makes it true; there are at most two.",
+      "facts": [
+        {
+          "title": "Standard form",
+          "latex": "ax^2 + bx + c = 0,\\ a \\neq 0",
+          "explanation": "Everything on one side, zero on the other."
+        },
+        {
+          "title": "Root count",
+          "latex": "0, 1, or 2 real solutions",
+          "explanation": "A parabola crosses the axis at most twice."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "qe1-we1",
+          "statement": "Write $x^2 = 5x - 6$ in standard form and name $a$, $b$, $c$.",
+          "solution": "$x^2 - 5x + 6 = 0$: $a=1$, $b=-5$, $c=6$. (Both sides agree at $x=2$: $4 = 4$.)",
+          "check": [
+            "2**2 == 5*2 - 6",
+            "2**2 - 5*2 + 6 == 0"
+          ]
+        },
+        {
+          "id": "qe1-we2",
+          "statement": "Is $x = 3$ a solution of $x^2 - 5x + 6 = 0$? Is $x = 1$?",
+          "solution": "$x=3$: $9-15+6=0$ ✓ yes. $x=1$: $1-5+6=2 \\neq 0$ ✗ no.",
+          "check": [
+            "3**2 - 5*3 + 6 == 0",
+            "1**2 - 5*1 + 6 != 0"
+          ]
+        },
+        {
+          "id": "qe1-we3",
+          "statement": "A ball's height is $h = -5t^2 + 20t$. Verify it lands ($h=0$) at $t = 4$.",
+          "solution": "$-5(16) + 80 = -80 + 80 = 0$ ✓ — the ball lands after 4 seconds.",
+          "check": [
+            "-5*4**2 + 20*4 == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Calling $x^2 = 25$ \"already standard form\".",
+          "correction": "Standard form needs zero on one side: $x^2 - 25 = 0$. Then $a=1$, $b=0$, $c=-25$ — note $b$ can be 0.",
+          "authored": true
+        },
+        {
+          "text": "Reading $b$ and $c$ without their signs.",
+          "correction": "In $x^2 - 5x + 6 = 0$, $b = -5$, not $5$. The sign belongs to the coefficient.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "qe1-t1",
+          "statement": "Is $x = -2$ a solution of $x^2 + 3x + 2 = 0$?",
+          "solution": "$4 - 6 + 2 = 0$ ✓ yes.",
+          "check": [
+            "(-2)**2 + 3*(-2) + 2 == 0"
+          ]
+        },
+        {
+          "id": "qe1-t2",
+          "statement": "Standard form of $3x^2 = 12x$?",
+          "solution": "$3x^2 - 12x = 0$: $a=3$, $b=-12$, $c=0$. (At $x=4$ both sides are $48$.)",
+          "check": [
+            "3*4**2 == 12*4",
+            "3*4**2 - 12*4 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The star of the year",
+            "title": "What makes an equation quadratic",
+            "beats": [
+              "One thing: an $x^2$ term (and nothing higher).",
+              "$x^2 - 5x + 6 = 0$ — quadratic.",
+              "$3x + 1 = 0$ — linear, no square.",
+              "$x^3 = 8$ — cubic, too high. Not our guest."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "House style",
+            "title": "Standard form",
+            "beats": [
+              "$ax^2 + bx + c = 0$, with $a \\neq 0$.",
+              "$x^2 = 5x - 6$ → move everything left:",
+              "$x^2 - 5x + 6 = 0$. Now $a=1$, $b=-5$, $c=6$.",
+              "Signs travel with their terms — always."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Name the coefficients",
+            "prompt": "In $2x^2 - 7x + 3 = 0$, the value of $b$ is…",
+            "options": [
+              "$-7$",
+              "$7$",
+              "$2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$b$ is the coefficient of $x$ WITH its sign: $-7$.",
+            "check": [
+              "2*3**2 - 7*3 + 3 == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "What counts as an answer",
+            "title": "Solutions (roots)",
+            "beats": [
+              "A **solution** makes the equation true.",
+              "Try $x=3$ in $x^2-5x+6=0$: $9-15+6=0$ ✓.",
+              "Try $x=1$: $1-5+6=2$ ✗. Not a solution.",
+              "Substitution is your lie detector — it never fails."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Think about it",
+            "title": "How many solutions?",
+            "prompt": "A quadratic equation can have at most how many real solutions?",
+            "options": [
+              "$2$",
+              "$1$",
+              "As many as you like"
+            ],
+            "correctIndex": 0,
+            "explanation": "The parabola $y = ax^2+bx+c$ crosses the $x$-axis at most twice: at most 2 real solutions.",
+            "check": [
+              "2**2 - 5*2 + 6 == 0",
+              "3**2 - 5*3 + 6 == 0"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Standard form and checking",
+            "intro": "Move to zero; substitute to verify.",
+            "examples": [
+              {
+                "prompt": "Write $x^2 + 4 = 4x$ in standard form and test $x = 2$.",
+                "steps": [
+                  "$x^2 - 4x + 4 = 0$.",
+                  "At $x=2$: $4 - 8 + 4 = 0$ ✓.",
+                  "$x=2$ is a solution."
+                ],
+                "answer": "$x^2 - 4x + 4 = 0$; $x=2$ works",
+                "check": [
+                  "2**2 - 4*2 + 4 == 0"
+                ]
+              },
+              {
+                "prompt": "Verify that $t = 1$ and $t = 3$ both solve $t^2 - 4t + 3 = 0$.",
+                "steps": [
+                  "$t=1$: $1 - 4 + 3 = 0$ ✓.",
+                  "$t=3$: $9 - 12 + 3 = 0$ ✓.",
+                  "Two solutions — the maximum."
+                ],
+                "answer": "both work",
+                "check": [
+                  "1**2 - 4*1 + 3 == 0",
+                  "3**2 - 4*3 + 3 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Spot solutions",
+            "intro": "Substitute and see.",
+            "problems": [
+              {
+                "prompt": "Which is a solution of $x^2 - 9 = 0$?",
+                "options": [
+                  "$x = -3$",
+                  "$x = 9$",
+                  "$x = 4.5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(-3)^2 - 9 = 0$ ✓. ($9^2-9=72$, nowhere near.)",
+                "check": [
+                  "(-3)**2 - 9 == 0",
+                  "9**2 - 9 != 0"
+                ]
+              },
+              {
+                "prompt": "Standard form of $x^2 = 7x$?",
+                "options": [
+                  "$x^2 - 7x = 0$",
+                  "$x^2 + 7x = 0$",
+                  "$x = 7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Move $7x$ left. (Careful: dividing by $x$ instead would lose the solution $x=0$.)",
+                "check": [
+                  "7**2 - 7*7 == 0",
+                  "0**2 - 7*0 == 0"
+                ]
+              },
+              {
+                "prompt": "In $x^2 - 25 = 0$, the coefficient $b$ is…",
+                "options": [
+                  "$0$",
+                  "$-25$",
+                  "$1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "There's no $x$ term, so $b = 0$; $c = -25$.",
+                "check": [
+                  "5**2 - 25 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Older than algebra itself",
+            "body": "Babylonian scribes were solving quadratic problems on clay tablets around 2000 BCE — nearly 4,000 years before the notation you're using. They phrased them as \"a square and ten roots equal thirty-nine\" and solved them with recipes. Same math, no symbols."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Quadratic equation: $ax^2+bx+c=0$ with $a \\neq 0$.",
+              "Solutions (roots) make it true — check by substituting.",
+              "At most two real solutions; move everything to one side first."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "solving-by-square-roots",
+      "title": "Solving by Square Roots",
+      "concreteComparison": "A square dance floor covers $49$ m². Side length? Solve $s^2 = 49$. You know $7$ works — but algebra also offers $-7$ (a legal number, not a legal floor). Whenever a quadratic has **no $x$ term**, un-squaring both sides — with a $\\pm$ — is the fastest tool in the box.",
+      "objective": "Solve quadratics of the form $x^2 = k$ and $(x+a)^2 = k$ by taking square roots, remembering both the positive and negative root.",
+      "concept": [
+        "If $x^2 = k$ (with $k > 0$), then $x = \\sqrt{k}$ **or** $x = -\\sqrt{k}$ — written $x = \\pm\\sqrt{k}$. Both $7^2$ and $(-7)^2$ are $49$, so $x^2=49$ has two solutions.",
+        "If $k$ isn't a perfect square, answers stay exact with radicals: $x^2 = 20$ gives $x = \\pm\\sqrt{20} = \\pm 2\\sqrt{5}$.",
+        "The same move works on a squared **bracket**: $(x-3)^2 = 16$ gives $x - 3 = \\pm 4$, so $x = 7$ or $x = -1$. Un-square first, then finish the linear equation.",
+        "If $x^2 = k$ with $k < 0$ — like $x^2 = -9$ — there is **no real solution**: no real number squares to a negative. (And $x^2 = 0$ has exactly one: $x=0$.)"
+      ],
+      "keyIdea": "x² = k → x = ±√k (two solutions for k > 0, one for k = 0, none real for k < 0).",
+      "facts": [
+        {
+          "title": "The ± rule",
+          "latex": "x^2 = k \\Rightarrow x = \\pm\\sqrt{k}",
+          "explanation": "Un-squaring always gives two candidates."
+        },
+        {
+          "title": "Bracket version",
+          "latex": "(x+a)^2 = k \\Rightarrow x + a = \\pm\\sqrt{k}",
+          "explanation": "Un-square, then solve the linear leftovers."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "qe2-we1",
+          "statement": "Solve $x^2 = 49$.",
+          "solution": "$x = \\pm 7$. Check: $7^2 = 49$ and $(-7)^2 = 49$.",
+          "check": [
+            "7**2 == 49",
+            "(-7)**2 == 49"
+          ]
+        },
+        {
+          "id": "qe2-we2",
+          "statement": "Solve $x^2 = 20$. Give exact answers.",
+          "solution": "$x = \\pm\\sqrt{20} = \\pm 2\\sqrt{5}$. Check: $(2\\sqrt5)^2 = 4 \\cdot 5 = 20$.",
+          "check": [
+            "(2*sqrt(5))**2 == 20",
+            "(-2*sqrt(5))**2 == 20"
+          ]
+        },
+        {
+          "id": "qe2-we3",
+          "statement": "Solve $(x-3)^2 = 16$.",
+          "solution": "$x - 3 = \\pm 4$: $x = 7$ or $x = -1$. Check: $(7-3)^2=16$, $(-1-3)^2=16$.",
+          "check": [
+            "(7-3)**2 == 16",
+            "(-1-3)**2 == 16"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Writing only $x = \\sqrt{k}$ and forgetting the negative root.",
+          "correction": "$x^2 = 49$ has TWO solutions: $7$ and $-7$. The $\\pm$ isn't decoration — half the answer lives there.",
+          "authored": true
+        },
+        {
+          "text": "Un-squaring before the square is alone.",
+          "correction": "In $3x^2 = 75$, divide by 3 FIRST ($x^2 = 25$), then root: $x = \\pm 5$. Rooting $3x^2$ directly is a mess.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "qe2-t1",
+          "statement": "Solve $x^2 = 121$.",
+          "solution": "$x = \\pm 11$.",
+          "check": [
+            "11**2 == 121",
+            "(-11)**2 == 121"
+          ]
+        },
+        {
+          "id": "qe2-t2",
+          "statement": "Solve $(x+5)^2 = 49$.",
+          "solution": "$x + 5 = \\pm 7$: $x = 2$ or $x = -12$.",
+          "check": [
+            "(2+5)**2 == 49",
+            "(-12+5)**2 == 49"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The fast lane",
+            "title": "When there's no x term",
+            "beats": [
+              "$x^2 = 49$. No middle $x$ — so don't factor.",
+              "Just un-square: $x = \\pm\\sqrt{49} = \\pm 7$.",
+              "Two answers, because $7^2$ AND $(-7)^2$ hit $49$.",
+              "That $\\pm$ is the whole lesson. Guard it."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Both roots",
+            "prompt": "The solutions of $x^2 = 100$ are…",
+            "options": [
+              "$10$ and $-10$",
+              "only $10$",
+              "$50$ and $-50$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$10^2 = 100$ and $(-10)^2 = 100$. Always two for a positive right side.",
+            "check": [
+              "10**2 == 100",
+              "(-10)**2 == 100"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Not perfect? still exact",
+            "title": "Radical answers",
+            "beats": [
+              "$x^2 = 20$ — no whole number squares to 20.",
+              "Exact answer: $x = \\pm\\sqrt{20}$.",
+              "Simplify: $\\sqrt{20} = \\sqrt{4}\\sqrt{5} = 2\\sqrt{5}$.",
+              "So $x = \\pm 2\\sqrt{5}$. Exact beats decimal."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Squared brackets",
+            "title": "Un-square, then finish",
+            "beats": [
+              "$(x-3)^2 = 16$ — the bracket is just a squared thing.",
+              "Un-square: $x - 3 = \\pm 4$.",
+              "Plus case: $x = 7$. Minus case: $x = -1$.",
+              "One un-squaring, two little linear equations."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Careful now",
+            "title": "A negative right side",
+            "prompt": "How many real solutions does $x^2 = -9$ have?",
+            "options": [
+              "None",
+              "Two",
+              "One"
+            ],
+            "correctIndex": 0,
+            "explanation": "Squares of real numbers are never negative — $3^2 = 9$ and $(-3)^2 = 9$, both positive. No real solution.",
+            "check": [
+              "3**2 == 9",
+              "(-3)**2 == 9"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Root it out",
+            "intro": "Isolate the square, un-square with ±, finish.",
+            "examples": [
+              {
+                "prompt": "Solve $3x^2 = 75$.",
+                "steps": [
+                  "Divide by 3: $x^2 = 25$.",
+                  "Un-square: $x = \\pm 5$."
+                ],
+                "answer": "$x = \\pm 5$",
+                "check": [
+                  "3*5**2 == 75",
+                  "3*(-5)**2 == 75"
+                ]
+              },
+              {
+                "prompt": "Solve $(x+2)^2 = 36$.",
+                "steps": [
+                  "$x + 2 = \\pm 6$.",
+                  "$x = 4$ or $x = -8$."
+                ],
+                "answer": "$x = 4$ or $x = -8$",
+                "check": [
+                  "(4+2)**2 == 36",
+                  "(-8+2)**2 == 36"
+                ]
+              },
+              {
+                "prompt": "Solve $x^2 - 18 = 0$ exactly.",
+                "steps": [
+                  "$x^2 = 18$.",
+                  "$x = \\pm\\sqrt{18} = \\pm 3\\sqrt{2}$."
+                ],
+                "answer": "$x = \\pm 3\\sqrt{2}$",
+                "check": [
+                  "(3*sqrt(2))**2 - 18 == 0",
+                  "(-3*sqrt(2))**2 - 18 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "± everywhere",
+            "intro": "Isolate, un-square, finish.",
+            "problems": [
+              {
+                "prompt": "$x^2 = 64$ has solutions…",
+                "options": [
+                  "$\\pm 8$",
+                  "$8$ only",
+                  "$\\pm 32$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$8^2 = (-8)^2 = 64$.",
+                "check": [
+                  "8**2 == 64",
+                  "(-8)**2 == 64"
+                ]
+              },
+              {
+                "prompt": "Solve $(x-1)^2 = 25$.",
+                "options": [
+                  "$x = 6$ or $x = -4$",
+                  "$x = 6$ only",
+                  "$x = \\pm 5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x - 1 = \\pm 5$ → $x = 6$ or $x = -4$. (Not $\\pm 5$ — the bracket wasn't bare $x$.)",
+                "check": [
+                  "(6-1)**2 == 25",
+                  "(-4-1)**2 == 25"
+                ]
+              },
+              {
+                "prompt": "Exact solutions of $x^2 = 50$?",
+                "options": [
+                  "$\\pm 5\\sqrt{2}$",
+                  "$\\pm 25$",
+                  "$\\pm 2\\sqrt{5}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{50} = \\sqrt{25}\\sqrt{2} = 5\\sqrt{2}$.",
+                "check": [
+                  "(5*sqrt(2))**2 == 50"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Isolate first",
+            "body": "The square must be ALONE before you un-square. $3x^2 = 75$? Divide first. $(x+2)^2 - 5 = 31$? Add 5 first. Only then does $\\pm\\sqrt{\\ }$ do its clean work."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$x^2 = k$ → $x = \\pm\\sqrt{k}$ — never drop the $\\pm$.",
+              "$(x+a)^2 = k$ → un-square, then solve the two linear cases.",
+              "$k < 0$: no real solutions. $k = 0$: exactly one."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "solving-by-factoring",
+      "title": "Solving by Factoring",
+      "concreteComparison": "A rectangular banner's area is $x(x+3) = 40$ — width times (width + 3) equals 40 square meters. Multiply it out, move the 40 over, and you're staring at $x^2 + 3x - 40 = 0$. Factor it into $(x+8)(x-5) = 0$ and the **zero product property** cracks it open: one of those brackets must be zero.",
+      "objective": "Solve quadratic equations by moving everything to one side, factoring, and applying the zero product property.",
+      "concept": [
+        "The **zero product property**: if $A \\cdot B = 0$, then $A = 0$ or $B = 0$. It's the reason factoring solves equations — a product only vanishes when a factor does.",
+        "Routine: (1) standard form $= 0$; (2) factor the quadratic; (3) set each factor to zero; (4) solve the two mini-equations. $x^2 - 5x + 6 = 0 \\to (x-2)(x-3) = 0 \\to x = 2$ or $x = 3$.",
+        "The right side MUST be zero first. $(x-2)(x-3) = 6$ does **not** mean $x-2=6$ — a product equal to 6 says nothing about its factors. Expand, subtract 6, re-factor.",
+        "Missing constant? Factor out $x$: $x^2 = 7x \\to x^2 - 7x = 0 \\to x(x-7) = 0 \\to x = 0$ or $x = 7$. Dividing both sides by $x$ instead silently throws away $x = 0$."
+      ],
+      "keyIdea": "Get 0 on one side, factor, set each factor to 0. A product is zero only when a factor is.",
+      "facts": [
+        {
+          "title": "Zero product",
+          "latex": "A \\cdot B = 0 \\Rightarrow A = 0 \\text{ or } B = 0",
+          "explanation": "Only works with zero on one side."
+        },
+        {
+          "title": "The routine",
+          "latex": "= 0 \\to \\text{factor} \\to \\text{each} = 0",
+          "explanation": "Two mini-equations, two roots."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "qe3-we1",
+          "statement": "Solve $x^2 - 5x + 6 = 0$.",
+          "solution": "$(x-2)(x-3) = 0$: $x = 2$ or $x = 3$.",
+          "check": [
+            "2**2 - 5*2 + 6 == 0",
+            "3**2 - 5*3 + 6 == 0"
+          ]
+        },
+        {
+          "id": "qe3-we2",
+          "statement": "Solve $x^2 + 3x = 40$.",
+          "solution": "$x^2 + 3x - 40 = 0 \\to (x+8)(x-5) = 0$: $x = -8$ or $x = 5$.",
+          "check": [
+            "(-8)**2 + 3*(-8) == 40",
+            "5**2 + 3*5 == 40"
+          ]
+        },
+        {
+          "id": "qe3-we3",
+          "statement": "Solve $2x^2 - 7x + 3 = 0$.",
+          "solution": "$(2x-1)(x-3) = 0$: $x = \\tfrac{1}{2}$ or $x = 3$.",
+          "check": [
+            "2*Rational(1,2)**2 - 7*Rational(1,2) + 3 == 0",
+            "2*3**2 - 7*3 + 3 == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the zero product property when the right side isn't zero.",
+          "correction": "$(x-2)(x-3) = 6$: you may NOT set $x-2 = 6$. Expand, get $x^2-5x=0$, factor again: $x=0$ or $x=5$.",
+          "authored": true
+        },
+        {
+          "text": "Dividing both sides by $x$.",
+          "correction": "$x^2 = 7x$ → dividing by $x$ gives $x=7$ and LOSES $x=0$. Factor instead: $x(x-7)=0$ keeps both.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "qe3-t1",
+          "statement": "Solve $x^2 + 2x - 15 = 0$.",
+          "solution": "$(x+5)(x-3)=0$: $x = -5$ or $x = 3$.",
+          "check": [
+            "(-5)**2 + 2*(-5) - 15 == 0",
+            "3**2 + 2*3 - 15 == 0"
+          ]
+        },
+        {
+          "id": "qe3-t2",
+          "statement": "Solve $x^2 = 9x$.",
+          "solution": "$x(x-9)=0$: $x = 0$ or $x = 9$.",
+          "check": [
+            "0**2 == 9*0",
+            "9**2 == 9*9"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The magic property",
+            "title": "Zero product",
+            "beats": [
+              "If $A \\cdot B = 0$, one of them IS zero.",
+              "No other number does this: $A \\cdot B = 6$ tells you nothing.",
+              "$(x-2)(x-3) = 0$ → $x-2=0$ or $x-3=0$.",
+              "So $x = 2$ or $x = 3$. Factored form spills its secrets."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The routine",
+            "title": "Four beats, every time",
+            "beats": [
+              "1. Standard form: everything on one side, $= 0$.",
+              "2. Factor the quadratic.",
+              "3. Set EACH factor to zero.",
+              "4. Solve the two mini-equations. Done."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the roots",
+            "prompt": "The solutions of $(x+4)(x-6) = 0$ are…",
+            "options": [
+              "$-4$ and $6$",
+              "$4$ and $-6$",
+              "$4$ and $6$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$x+4=0$ gives $x=-4$; $x-6=0$ gives $x=6$. Signs flip when you solve.",
+            "check": [
+              "(-4+4)*(-4-6) == 0",
+              "(6+4)*(6-6) == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Trap street",
+            "title": "When the right side isn't 0",
+            "beats": [
+              "$(x-2)(x-3) = 6$. Tempting to write $x-2=6$…",
+              "Illegal. A product of 6 says nothing about factors.",
+              "Expand: $x^2 - 5x + 6 = 6 \\to x^2 - 5x = 0$.",
+              "Factor: $x(x-5) = 0 \\to x = 0$ or $x = 5$. ✓"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Spot the trap",
+            "title": "Missing constant",
+            "prompt": "To solve $x^2 = 7x$, the safe move is…",
+            "options": [
+              "factor: $x(x-7)=0$",
+              "divide both sides by $x$",
+              "take square roots"
+            ],
+            "correctIndex": 0,
+            "explanation": "Factoring keeps both answers: $x=0$ or $x=7$. Dividing by $x$ loses $x=0$ forever.",
+            "check": [
+              "0**2 == 7*0",
+              "7**2 == 7*7"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Factor and conquer",
+            "intro": "Standard form, factor, each factor to zero.",
+            "examples": [
+              {
+                "prompt": "Solve $x^2 + 7x + 10 = 0$.",
+                "steps": [
+                  "Need two numbers: sum $7$, product $10$ → $2, 5$.",
+                  "$(x+2)(x+5) = 0$.",
+                  "$x = -2$ or $x = -5$."
+                ],
+                "answer": "$x = -2$ or $x = -5$",
+                "check": [
+                  "(-2)**2 + 7*(-2) + 10 == 0",
+                  "(-5)**2 + 7*(-5) + 10 == 0"
+                ]
+              },
+              {
+                "prompt": "Solve $x^2 - 4x = 21$.",
+                "steps": [
+                  "$x^2 - 4x - 21 = 0$.",
+                  "Sum $-4$, product $-21$ → $-7, 3$: $(x-7)(x+3) = 0$.",
+                  "$x = 7$ or $x = -3$."
+                ],
+                "answer": "$x = 7$ or $x = -3$",
+                "check": [
+                  "7**2 - 4*7 == 21",
+                  "(-3)**2 - 4*(-3) == 21"
+                ]
+              },
+              {
+                "prompt": "Solve $3x^2 - 12x = 0$.",
+                "steps": [
+                  "Common factor: $3x(x - 4) = 0$.",
+                  "$x = 0$ or $x = 4$."
+                ],
+                "answer": "$x = 0$ or $x = 4$",
+                "check": [
+                  "3*0**2 - 12*0 == 0",
+                  "3*4**2 - 12*4 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Zero product reps",
+            "intro": "Factor first. Then harvest.",
+            "problems": [
+              {
+                "prompt": "Solve $x^2 - x - 12 = 0$.",
+                "options": [
+                  "$x = 4$ or $x = -3$",
+                  "$x = -4$ or $x = 3$",
+                  "$x = 6$ or $x = -2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(x-4)(x+3) = 0$.",
+                "check": [
+                  "4**2 - 4 - 12 == 0",
+                  "(-3)**2 - (-3) - 12 == 0"
+                ]
+              },
+              {
+                "prompt": "Solve $x^2 + 6x = 0$.",
+                "options": [
+                  "$x = 0$ or $x = -6$",
+                  "$x = -6$ only",
+                  "$x = 0$ or $x = 6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x(x+6) = 0$ — and yes, $x = 0$ counts.",
+                "check": [
+                  "0**2 + 6*0 == 0",
+                  "(-6)**2 + 6*(-6) == 0"
+                ]
+              },
+              {
+                "prompt": "The banner: solve $x(x+3) = 40$.",
+                "options": [
+                  "$x = 5$ or $x = -8$",
+                  "$x = 40$ or $x = 37$",
+                  "$x = 5$ only"
+                ],
+                "correctIndex": 0,
+                "explanation": "Expand: $x^2+3x-40=0 \\to (x+8)(x-5)=0$. Width must be positive, so the banner is $5$ m — but the equation honestly has both roots.",
+                "check": [
+                  "5*(5+3) == 40",
+                  "-8*(-8+3) == 40"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why zero is special",
+            "body": "The zero product property is why the number 0 is algebra's favorite target. Among all numbers, only zero forces a factor to confess. That's why every solving method this unit begins with \"get 0 on one side\" — you're setting the trap."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Zero product: $A \\cdot B = 0$ → $A=0$ or $B=0$.",
+              "Standard form first — the property needs $= 0$.",
+              "Never divide by $x$; factor it out instead."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "completing-the-square",
+      "title": "Completing the Square",
+      "concreteComparison": "Picture $x^2 + 6x$ as an actual shape: an $x \\times x$ square plus two $3 \\times x$ strips along its edges. The shape is ALMOST a bigger square — there's a $3 \\times 3$ corner missing. Add that $9$ and you literally **complete the square**: $(x+3)^2$. That geometric patch-up turns any quadratic into the un-squarable form of Lesson 2.",
+      "objective": "Turn $x^2 + bx$ into a perfect square by adding $(b/2)^2$, and use it to solve quadratics that don't factor nicely.",
+      "concept": [
+        "A **perfect square trinomial** is the expansion of $(x+a)^2 = x^2 + 2ax + a^2$. Recognize the pattern: the constant is the square of half the middle coefficient.",
+        "To complete $x^2 + bx$: take half of $b$, square it, add it. $x^2 + 6x$ needs $(6/2)^2 = 9$: $x^2 + 6x + 9 = (x+3)^2$.",
+        "Solving with it: $x^2 + 6x + 5 = 0 \\to x^2 + 6x = -5 \\to x^2 + 6x + 9 = 4 \\to (x+3)^2 = 4 \\to x + 3 = \\pm 2$: $x = -1$ or $x = -5$. Whatever you add on the left, add on the right.",
+        "Its superpower: it works when factoring fails. $x^2 - 4x + 1 = 0$ has no integer factors, but $(x-2)^2 = 3$ gives the exact answers $x = 2 \\pm \\sqrt{3}$."
+      ],
+      "keyIdea": "Add (b/2)² to complete x² + bx into (x + b/2)². Balance the equation, then solve by square roots.",
+      "facts": [
+        {
+          "title": "The patch",
+          "latex": "x^2 + bx + \\left(\\tfrac{b}{2}\\right)^2 = \\left(x + \\tfrac{b}{2}\\right)^2",
+          "explanation": "Half the middle, squared."
+        },
+        {
+          "title": "Balance",
+          "latex": "\\text{add left} \\Rightarrow \\text{add right}",
+          "explanation": "The equation stays true only if both sides get the patch."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "qe4-we1",
+          "statement": "What must be added to $x^2 + 10x$ to complete the square?",
+          "solution": "$(10/2)^2 = 25$: $x^2 + 10x + 25 = (x+5)^2$. (Check at $x=1$: $36 = 36$.)",
+          "check": [
+            "1**2 + 10*1 + 25 == (1+5)**2"
+          ]
+        },
+        {
+          "id": "qe4-we2",
+          "statement": "Solve $x^2 + 6x + 5 = 0$ by completing the square.",
+          "solution": "$x^2+6x = -5 \\to x^2+6x+9 = 4 \\to (x+3)^2 = 4 \\to x+3 = \\pm 2$: $x = -1$ or $x = -5$.",
+          "check": [
+            "(-1)**2 + 6*(-1) + 5 == 0",
+            "(-5)**2 + 6*(-5) + 5 == 0"
+          ]
+        },
+        {
+          "id": "qe4-we3",
+          "statement": "Solve $x^2 - 4x + 1 = 0$ exactly.",
+          "solution": "$x^2-4x = -1 \\to x^2-4x+4 = 3 \\to (x-2)^2 = 3$: $x = 2 \\pm \\sqrt{3}$.",
+          "check": [
+            "expand((2+sqrt(3))**2 - 4*(2+sqrt(3)) + 1) == 0",
+            "expand((2-sqrt(3))**2 - 4*(2-sqrt(3)) + 1) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding $b^2$ instead of $(b/2)^2$.",
+          "correction": "For $x^2 + 6x$, add $9$ (half of 6, squared) — not $36$. HALF first, THEN square.",
+          "authored": true
+        },
+        {
+          "text": "Patching the left side and forgetting the right.",
+          "correction": "$x^2 + 6x = -5$: adding 9 on the left means adding 9 on the right too ($= 4$). One-sided patches break the equation.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "qe4-t1",
+          "statement": "Complete the square: $x^2 + 8x + \\square = (x + \\square)^2$.",
+          "solution": "$(8/2)^2 = 16$: $x^2+8x+16 = (x+4)^2$. (Check $x=1$: $25=25$.)",
+          "check": [
+            "1**2 + 8*1 + 16 == (1+4)**2"
+          ]
+        },
+        {
+          "id": "qe4-t2",
+          "statement": "Solve $x^2 - 2x - 8 = 0$ by completing the square.",
+          "solution": "$x^2-2x+1 = 9 \\to (x-1)^2 = 9$: $x = 4$ or $x = -2$.",
+          "check": [
+            "4**2 - 2*4 - 8 == 0",
+            "(-2)**2 - 2*(-2) - 8 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The missing corner",
+            "title": "Why it's called completing the square",
+            "beats": [
+              "$x^2 + 6x$: an $x{\\times}x$ square + two $3{\\times}x$ strips.",
+              "Arrange the strips on two edges — almost a big square.",
+              "The hole in the corner is exactly $3 \\times 3 = 9$.",
+              "Add it: $x^2 + 6x + 9 = (x+3)^2$. Square complete."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The recipe",
+            "title": "Half it, square it",
+            "beats": [
+              "To complete $x^2 + bx$: take $\\tfrac{b}{2}$, square it.",
+              "$x^2 + 10x$: half of 10 is 5, so add $25 \\to (x+5)^2$.",
+              "$x^2 - 8x$: half of $-8$ is $-4$, add $16 \\to (x-4)^2$.",
+              "The sign inside matches the sign of $b$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Patch size",
+            "prompt": "What completes $x^2 + 12x$ into a perfect square?",
+            "options": [
+              "$36$",
+              "$144$",
+              "$6$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Half of 12 is 6; $6^2 = 36$. Then $x^2+12x+36 = (x+6)^2$.",
+            "check": [
+              "1**2 + 12*1 + 36 == (1+6)**2"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Now solve with it",
+            "title": "The full walkthrough",
+            "beats": [
+              "$x^2 + 6x + 5 = 0$. Move the 5: $x^2 + 6x = -5$.",
+              "Patch both sides: $x^2 + 6x + 9 = -5 + 9$.",
+              "$(x+3)^2 = 4$ — Lesson 2 territory now.",
+              "$x + 3 = \\pm 2$: $x = -1$ or $x = -5$. ✓"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Balance check",
+            "title": "Both sides",
+            "prompt": "Solving $x^2 - 10x = 3$: after adding 25 to the left, the right side becomes…",
+            "options": [
+              "$28$",
+              "$3$",
+              "$-22$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Add 25 to BOTH sides: $(x-5)^2 = 28$. Forgetting the right side is the classic slip.",
+            "check": [
+              "expand((5+sqrt(28))**2 - 10*(5+sqrt(28))) == 3"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Patch, balance, un-square",
+            "intro": "Half the middle, squared — on both sides.",
+            "examples": [
+              {
+                "prompt": "Solve $x^2 + 4x - 12 = 0$ by completing the square.",
+                "steps": [
+                  "$x^2 + 4x = 12$.",
+                  "Add $(4/2)^2 = 4$: $(x+2)^2 = 16$.",
+                  "$x + 2 = \\pm 4$: $x = 2$ or $x = -6$."
+                ],
+                "answer": "$x = 2$ or $x = -6$",
+                "check": [
+                  "2**2 + 4*2 - 12 == 0",
+                  "(-6)**2 + 4*(-6) - 12 == 0"
+                ]
+              },
+              {
+                "prompt": "Solve $x^2 + 8x + 3 = 0$ exactly.",
+                "steps": [
+                  "$x^2 + 8x = -3$.",
+                  "Add 16: $(x+4)^2 = 13$.",
+                  "$x = -4 \\pm \\sqrt{13}$."
+                ],
+                "answer": "$x = -4 \\pm \\sqrt{13}$",
+                "check": [
+                  "expand((-4+sqrt(13))**2 + 8*(-4+sqrt(13)) + 3) == 0",
+                  "expand((-4-sqrt(13))**2 + 8*(-4-sqrt(13)) + 3) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Complete and solve",
+            "intro": "Patch size first, then the full solve.",
+            "problems": [
+              {
+                "prompt": "$x^2 - 6x + \\square$ is a perfect square when $\\square$ is…",
+                "options": [
+                  "$9$",
+                  "$36$",
+                  "$-9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Half of $-6$ is $-3$; $(-3)^2 = 9$: $(x-3)^2$.",
+                "check": [
+                  "4**2 - 6*4 + 9 == (4-3)**2"
+                ]
+              },
+              {
+                "prompt": "Solve $x^2 + 2x - 3 = 0$ by completing the square.",
+                "options": [
+                  "$x = 1$ or $x = -3$",
+                  "$x = -1$ or $x = 3$",
+                  "$x = \\pm\\sqrt{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(x+1)^2 = 4$ → $x+1 = \\pm 2$.",
+                "check": [
+                  "1**2 + 2*1 - 3 == 0",
+                  "(-3)**2 + 2*(-3) - 3 == 0"
+                ]
+              },
+              {
+                "prompt": "Exact solutions of $x^2 - 2x - 4 = 0$?",
+                "options": [
+                  "$1 \\pm \\sqrt{5}$",
+                  "$2 \\pm \\sqrt{5}$",
+                  "$\\pm 2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(x-1)^2 = 5$ → $x = 1 \\pm \\sqrt{5}$.",
+                "check": [
+                  "expand((1+sqrt(5))**2 - 2*(1+sqrt(5)) - 4) == 0",
+                  "expand((1-sqrt(5))**2 - 2*(1-sqrt(5)) - 4) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The 4,000-year-old trick",
+            "body": "Completing the square IS the Babylonian clay-tablet method — they described it with actual squares and strips of land. It's also how the quadratic formula is derived: run completing-the-square on $ax^2+bx+c=0$ with letters instead of numbers, and the formula falls out. You'll meet it next lesson."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Perfect square: $x^2 + bx + (b/2)^2 = (x + b/2)^2$.",
+              "Patch BOTH sides, then un-square with $\\pm$.",
+              "Works even when factoring fails — answers like $2 \\pm \\sqrt{3}$."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-quadratic-formula",
+      "title": "The Quadratic Formula",
+      "concreteComparison": "Factoring is a lockpick — elegant when it works. Completing the square is a locksmith — always works, some labor. The **quadratic formula** is the master key: someone ran completing-the-square on $ax^2+bx+c=0$ once, in general, and engraved the answer. Plug in $a$, $b$, $c$; out come both roots, every time.",
+      "objective": "Solve any quadratic with $x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}$, keeping signs straight and answers exact.",
+      "concept": [
+        "For $ax^2 + bx + c = 0$: $$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$ It comes from completing the square on the general equation — nothing new, just pre-computed.",
+        "Read $a$, $b$, $c$ from **standard form**, signs included. For $2x^2 + 5x - 3 = 0$: $a=2$, $b=5$, $c=-3$; the formula gives $x = \\tfrac{-5 \\pm 7}{4}$: $x = \\tfrac12$ or $x = -3$.",
+        "The $\\pm$ produces both roots: one with $+$, one with $-$. Compute the square root part $\\sqrt{b^2-4ac}$ first and the rest is arithmetic.",
+        "When the root isn't whole, leave it exact: $x^2 + 3x + 1 = 0$ gives $x = \\tfrac{-3 \\pm \\sqrt{5}}{2}$ — a perfectly finished answer."
+      ],
+      "keyIdea": "x = (−b ± √(b²−4ac)) / (2a) — works on every quadratic, no exceptions.",
+      "facts": [
+        {
+          "title": "The formula",
+          "latex": "x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}",
+          "explanation": "Memorize it. It pays rent forever."
+        },
+        {
+          "title": "Where it's from",
+          "latex": "\\text{completing the square on } ax^2+bx+c=0",
+          "explanation": "Pre-computed, engraved, reusable."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "qe5-we1",
+          "statement": "Solve $x^2 - 2x - 8 = 0$ with the quadratic formula.",
+          "solution": "$a=1, b=-2, c=-8$: $x = \\tfrac{2 \\pm \\sqrt{4+32}}{2} = \\tfrac{2 \\pm 6}{2}$: $x = 4$ or $x = -2$.",
+          "check": [
+            "4**2 - 2*4 - 8 == 0",
+            "(-2)**2 - 2*(-2) - 8 == 0"
+          ]
+        },
+        {
+          "id": "qe5-we2",
+          "statement": "Solve $2x^2 + 5x - 3 = 0$.",
+          "solution": "$x = \\tfrac{-5 \\pm \\sqrt{25+24}}{4} = \\tfrac{-5 \\pm 7}{4}$: $x = \\tfrac12$ or $x = -3$.",
+          "check": [
+            "2*Rational(1,2)**2 + 5*Rational(1,2) - 3 == 0",
+            "2*(-3)**2 + 5*(-3) - 3 == 0"
+          ]
+        },
+        {
+          "id": "qe5-we3",
+          "statement": "Solve $x^2 + 3x + 1 = 0$ exactly.",
+          "solution": "$x = \\tfrac{-3 \\pm \\sqrt{9-4}}{2} = \\tfrac{-3 \\pm \\sqrt{5}}{2}$.",
+          "check": [
+            "expand(((-3+sqrt(5))/2)**2 + 3*(-3+sqrt(5))/2 + 1) == 0",
+            "expand(((-3-sqrt(5))/2)**2 + 3*(-3-sqrt(5))/2 + 1) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Feeding in $b$ without its sign.",
+          "correction": "In $x^2 - 2x - 8 = 0$, $b = -2$, so $-b = +2$. A dropped minus flips both answers.",
+          "authored": true
+        },
+        {
+          "text": "Dividing only the root part by $2a$.",
+          "correction": "The WHOLE top, $-b \\pm \\sqrt{\\ }$, sits over $2a$: $\\tfrac{-5 \\pm 7}{4}$, not $-5 \\pm \\tfrac{7}{4}$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "qe5-t1",
+          "statement": "Solve $x^2 + x - 6 = 0$ with the formula.",
+          "solution": "$x = \\tfrac{-1 \\pm \\sqrt{1+24}}{2} = \\tfrac{-1 \\pm 5}{2}$: $x = 2$ or $x = -3$.",
+          "check": [
+            "2**2 + 2 - 6 == 0",
+            "(-3)**2 + (-3) - 6 == 0"
+          ]
+        },
+        {
+          "id": "qe5-t2",
+          "statement": "Solve $x^2 - 6x + 4 = 0$ exactly.",
+          "solution": "$x = \\tfrac{6 \\pm \\sqrt{36-16}}{2} = \\tfrac{6 \\pm 2\\sqrt{5}}{2} = 3 \\pm \\sqrt{5}$.",
+          "check": [
+            "expand((3+sqrt(5))**2 - 6*(3+sqrt(5)) + 4) == 0",
+            "expand((3-sqrt(5))**2 - 6*(3-sqrt(5)) + 4) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The master key",
+            "title": "One formula, every quadratic",
+            "beats": [
+              "$ax^2 + bx + c = 0$ — any $a$, $b$, $c$ at all.",
+              "$$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$",
+              "It's completing-the-square, done once with letters.",
+              "Factorable, ugly, irrational — it doesn't care."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Feeding it",
+            "title": "Signs go in too",
+            "beats": [
+              "$x^2 - 2x - 8 = 0$: $a = 1$, $b = -2$, $c = -8$.",
+              "$-b = 2$. $\\ \\ b^2 - 4ac = 4 + 32 = 36$.",
+              "$x = \\tfrac{2 \\pm 6}{2}$ → $x = 4$ or $x = -2$.",
+              "Most formula errors are sign errors at the door."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Set up correctly",
+            "prompt": "For $3x^2 - x - 2 = 0$, the value under the square root, $b^2 - 4ac$, is…",
+            "options": [
+              "$25$",
+              "$-23$",
+              "$23$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(-1)^2 - 4(3)(-2) = 1 + 24 = 25$. Two negatives in $-4ac$ make a plus.",
+            "check": [
+              "3*1**2 - 1 - 2 == 0",
+              "3*Rational(-2,3)**2 - Rational(-2,3) - 2 == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reading the output",
+            "title": "The ± split",
+            "beats": [
+              "$\\sqrt{25} = 5$, so $x = \\tfrac{1 \\pm 5}{6}$.",
+              "Plus lane: $x = \\tfrac{6}{6} = 1$.",
+              "Minus lane: $x = \\tfrac{-4}{6} = -\\tfrac{2}{3}$.",
+              "One formula pass, both roots delivered."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Exact finish",
+            "title": "Irrational roots",
+            "prompt": "$x^2 + 3x + 1 = 0$ gives $x = \\frac{-3 \\pm \\sqrt{5}}{2}$. This answer is…",
+            "options": [
+              "exact and complete",
+              "wrong — needs decimals",
+              "only half done"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\sqrt{5}$ is exact; a decimal would be an approximation. Radical answers ARE finished answers.",
+            "check": [
+              "expand(((-3+sqrt(5))/2)**2 + 3*(-3+sqrt(5))/2 + 1) == 0"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Formula reps",
+            "intro": "a, b, c with signs → root part → ± split.",
+            "examples": [
+              {
+                "prompt": "Solve $x^2 - 4x - 5 = 0$.",
+                "steps": [
+                  "$b^2-4ac = 16 + 20 = 36$.",
+                  "$x = \\tfrac{4 \\pm 6}{2}$.",
+                  "$x = 5$ or $x = -1$."
+                ],
+                "answer": "$x = 5$ or $x = -1$",
+                "check": [
+                  "5**2 - 4*5 - 5 == 0",
+                  "(-1)**2 - 4*(-1) - 5 == 0"
+                ]
+              },
+              {
+                "prompt": "Solve $2x^2 - 7x + 3 = 0$.",
+                "steps": [
+                  "$b^2-4ac = 49 - 24 = 25$.",
+                  "$x = \\tfrac{7 \\pm 5}{4}$.",
+                  "$x = 3$ or $x = \\tfrac12$."
+                ],
+                "answer": "$x = 3$ or $x = \\tfrac12$",
+                "check": [
+                  "2*3**2 - 7*3 + 3 == 0",
+                  "2*Rational(1,2)**2 - 7*Rational(1,2) + 3 == 0"
+                ]
+              },
+              {
+                "prompt": "Solve $x^2 - 6x + 7 = 0$ exactly.",
+                "steps": [
+                  "$b^2-4ac = 36 - 28 = 8$.",
+                  "$x = \\tfrac{6 \\pm \\sqrt{8}}{2} = \\tfrac{6 \\pm 2\\sqrt{2}}{2}$.",
+                  "$x = 3 \\pm \\sqrt{2}$."
+                ],
+                "answer": "$x = 3 \\pm \\sqrt{2}$",
+                "check": [
+                  "expand((3+sqrt(2))**2 - 6*(3+sqrt(2)) + 7) == 0",
+                  "expand((3-sqrt(2))**2 - 6*(3-sqrt(2)) + 7) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Master-key practice",
+            "intro": "Watch the signs at the door.",
+            "problems": [
+              {
+                "prompt": "Solve $x^2 + 5x + 6 = 0$ with the formula.",
+                "options": [
+                  "$x = -2$ or $x = -3$",
+                  "$x = 2$ or $x = 3$",
+                  "$x = -1$ or $x = -6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x = \\tfrac{-5 \\pm 1}{2}$: $-2$ and $-3$.",
+                "check": [
+                  "(-2)**2 + 5*(-2) + 6 == 0",
+                  "(-3)**2 + 5*(-3) + 6 == 0"
+                ]
+              },
+              {
+                "prompt": "For $x^2 - 8x + 3 = 0$, $b^2 - 4ac$ equals…",
+                "options": [
+                  "$52$",
+                  "$76$",
+                  "$-52$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$64 - 12 = 52$.",
+                "check": [
+                  "expand((4+sqrt(13))**2 - 8*(4+sqrt(13)) + 3) == 0"
+                ]
+              },
+              {
+                "prompt": "Exact solutions of $x^2 - 8x + 3 = 0$?",
+                "options": [
+                  "$4 \\pm \\sqrt{13}$",
+                  "$8 \\pm \\sqrt{13}$",
+                  "$4 \\pm 13$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x = \\tfrac{8 \\pm \\sqrt{52}}{2} = \\tfrac{8 \\pm 2\\sqrt{13}}{2} = 4 \\pm \\sqrt{13}$.",
+                "check": [
+                  "expand((4+sqrt(13))**2 - 8*(4+sqrt(13)) + 3) == 0",
+                  "expand((4-sqrt(13))**2 - 8*(4-sqrt(13)) + 3) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "A formula with a soundtrack",
+            "body": "Students around the world sing the quadratic formula to the tune of \"Pop Goes the Weasel\" — 'x equals negative b, plus or minus the square root, of b squared minus four a c, all over two a.' Silly, but it works: melodies are stickier than symbols, and this is the one formula worth carrying for life."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}$ solves ANY quadratic.",
+              "Feed in $a$, $b$, $c$ with their signs, from standard form.",
+              "Whole top over $2a$; radical answers are exact answers."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-discriminant",
+      "title": "The Discriminant & Choosing a Method",
+      "concreteComparison": "Before a hike you check the forecast — not the whole weather, just enough to plan. The number under the formula's square root, $b^2 - 4ac$, is a quadratic's forecast: positive means two real solutions, zero means exactly one, negative means none. One quick computation and you know what you're walking into before solving anything.",
+      "objective": "Use the discriminant $b^2-4ac$ to count real solutions without solving, and pick the fastest solving method for a given quadratic.",
+      "concept": [
+        "The **discriminant** is $D = b^2 - 4ac$ — the part under the formula's square root. It **discriminates** between the three possible fates of a quadratic.",
+        "$D > 0$: $\\pm\\sqrt{D}$ gives two different values → **two** real solutions. $D = 0$: $\\pm 0$ collapses → exactly **one** (the parabola just touches the axis). $D < 0$: no real square root → **no** real solutions.",
+        "Example run: $x^2 - x - 6$ has $D = 1 + 24 = 25 > 0$ (two); $x^2 - 6x + 9$ has $D = 36 - 36 = 0$ (one: $x=3$); $x^2 + 2x + 5$ has $D = 4 - 20 = -16$ (none).",
+        "Method strategy: no $x$ term → **square roots**. Factors jump out → **factoring**. Otherwise → **formula** (or completing the square when $b$ is even and you want the vertex form). All roads reach the same roots."
+      ],
+      "keyIdea": "D = b² − 4ac: positive → 2 real solutions, zero → 1, negative → 0. Check the forecast, then pick your route.",
+      "facts": [
+        {
+          "title": "Discriminant",
+          "latex": "D = b^2 - 4ac",
+          "explanation": "The number under the formula's radical."
+        },
+        {
+          "title": "Three fates",
+          "latex": "D>0: 2 \\quad D=0: 1 \\quad D<0: 0",
+          "explanation": "Count solutions without solving."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "qe6-we1",
+          "statement": "How many real solutions does $x^2 - 6x + 9 = 0$ have?",
+          "solution": "$D = 36 - 36 = 0$: exactly one, $x = 3$ (check: $9-18+9=0$).",
+          "check": [
+            "(-6)**2 - 4*1*9 == 0",
+            "3**2 - 6*3 + 9 == 0"
+          ]
+        },
+        {
+          "id": "qe6-we2",
+          "statement": "How many real solutions does $x^2 + 2x + 5 = 0$ have?",
+          "solution": "$D = 4 - 20 = -16 < 0$: none — no real number works.",
+          "check": [
+            "2**2 - 4*1*5 == -16",
+            "-16 < 0"
+          ]
+        },
+        {
+          "id": "qe6-we3",
+          "statement": "Count the real solutions of $2x^2 + 3x - 2 = 0$, then find them.",
+          "solution": "$D = 9 + 16 = 25 > 0$: two. $x = \\tfrac{-3 \\pm 5}{4}$: $x = \\tfrac12$ or $x = -2$.",
+          "check": [
+            "3**2 - 4*2*(-2) == 25",
+            "2*Rational(1,2)**2 + 3*Rational(1,2) - 2 == 0",
+            "2*(-2)**2 + 3*(-2) - 2 == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Computing $b^2 - 4ac$ with sign slips in $-4ac$.",
+          "correction": "For $c < 0$, $-4ac$ turns POSITIVE: in $x^2 - x - 6$, $D = 1 - 4(1)(-6) = 1 + 24 = 25$.",
+          "authored": true
+        },
+        {
+          "text": "Saying $D = 0$ means \"no solutions\".",
+          "correction": "$D = 0$ means ONE real solution (a double root) — the parabola touches the axis. NO solutions needs $D < 0$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "qe6-t1",
+          "statement": "Without solving: how many real solutions does $x^2 + 4x + 4 = 0$ have?",
+          "solution": "$D = 16 - 16 = 0$: one ($x = -2$).",
+          "check": [
+            "4**2 - 4*1*4 == 0",
+            "(-2)**2 + 4*(-2) + 4 == 0"
+          ]
+        },
+        {
+          "id": "qe6-t2",
+          "statement": "Which method is fastest for $x^2 = 50$, and what are the solutions?",
+          "solution": "No $x$ term → square roots: $x = \\pm\\sqrt{50} = \\pm 5\\sqrt{2}$.",
+          "check": [
+            "(5*sqrt(2))**2 == 50",
+            "(-5*sqrt(2))**2 == 50"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The forecast",
+            "title": "One number, three fates",
+            "beats": [
+              "$D = b^2 - 4ac$ — it lives under the formula's root.",
+              "$D > 0$: $\\pm\\sqrt{D}$ splits → **two** solutions.",
+              "$D = 0$: $\\pm 0$ collapses → exactly **one**.",
+              "$D < 0$: no real root of a negative → **none**."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Picture it",
+            "title": "What the parabola does",
+            "beats": [
+              "Two solutions: the parabola crosses the axis twice.",
+              "One: it kisses the axis at a single point.",
+              "None: it floats entirely above (or below).",
+              "$D$ reads the geometry without drawing it."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Run the forecast",
+            "prompt": "For $x^2 - x - 6 = 0$, the discriminant is…",
+            "options": [
+              "$25$",
+              "$-23$",
+              "$23$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$D = (-1)^2 - 4(1)(-6) = 1 + 24 = 25$. Minus times minus: $-4ac$ went positive.",
+            "check": [
+              "(-1)**2 - 4*1*(-6) == 25"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Fates",
+            "title": "Zero discriminant",
+            "prompt": "$x^2 - 10x + 25 = 0$ has $D = 100 - 100 = 0$. So it has…",
+            "options": [
+              "one real solution",
+              "no real solutions",
+              "two real solutions"
+            ],
+            "correctIndex": 0,
+            "explanation": "$D=0$ → one double root: $(x-5)^2 = 0$, $x = 5$.",
+            "check": [
+              "(-10)**2 - 4*1*25 == 0",
+              "5**2 - 10*5 + 25 == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Choosing your weapon",
+            "title": "Method strategy",
+            "beats": [
+              "No $x$ term ($x^2 = 50$)? **Square roots** — seconds.",
+              "Nice factors ($x^2-5x+6$)? **Factor** — elegant.",
+              "Nothing nice ($x^2+3x+1$)? **Formula** — always works.",
+              "Even middle term? **Complete the square** shines too."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Forecast, then solve",
+            "intro": "Discriminant first; then the fastest route.",
+            "examples": [
+              {
+                "prompt": "Count, then solve: $x^2 - 5x + 6 = 0$.",
+                "steps": [
+                  "$D = 25 - 24 = 1 > 0$: two solutions.",
+                  "Factors are nice: $(x-2)(x-3) = 0$.",
+                  "$x = 2$ or $x = 3$."
+                ],
+                "answer": "two: $x = 2, 3$",
+                "check": [
+                  "(-5)**2 - 4*1*6 == 1",
+                  "2**2 - 5*2 + 6 == 0",
+                  "3**2 - 5*3 + 6 == 0"
+                ]
+              },
+              {
+                "prompt": "Count the real solutions of $3x^2 + x + 2 = 0$.",
+                "steps": [
+                  "$D = 1 - 24 = -23 < 0$.",
+                  "No real solutions — done, no solving needed."
+                ],
+                "answer": "none",
+                "check": [
+                  "1**2 - 4*3*2 == -23",
+                  "-23 < 0"
+                ]
+              },
+              {
+                "prompt": "Pick the fastest method and solve: $(x+1)^2 = 9$.",
+                "steps": [
+                  "Already a lone square: square roots.",
+                  "$x + 1 = \\pm 3$.",
+                  "$x = 2$ or $x = -4$."
+                ],
+                "answer": "$x = 2$ or $x = -4$",
+                "check": [
+                  "(2+1)**2 == 9",
+                  "(-4+1)**2 == 9"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Forecast + strategy",
+            "intro": "Count first. Solve only if asked.",
+            "problems": [
+              {
+                "prompt": "$x^2 + 6x + 10 = 0$ has how many real solutions?",
+                "options": [
+                  "$0$",
+                  "$1$",
+                  "$2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$D = 36 - 40 = -4 < 0$: the parabola never reaches the axis.",
+                "check": [
+                  "6**2 - 4*1*10 == -4",
+                  "-4 < 0"
+                ]
+              },
+              {
+                "prompt": "For which equation is taking square roots clearly fastest?",
+                "options": [
+                  "$x^2 - 75 = 0$",
+                  "$x^2 + 5x + 6 = 0$",
+                  "$2x^2 - 7x + 3 = 0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "No $x$ term: $x^2 = 75$, $x = \\pm 5\\sqrt{3}$. The others have middle terms.",
+                "check": [
+                  "(5*sqrt(3))**2 - 75 == 0"
+                ]
+              },
+              {
+                "prompt": "$4x^2 - 12x + 9 = 0$: discriminant and solution count?",
+                "options": [
+                  "$D = 0$, one solution",
+                  "$D = 288$, two solutions",
+                  "$D = -144$, none"
+                ],
+                "correctIndex": 0,
+                "explanation": "$D = 144 - 144 = 0$: one double root, $x = \\tfrac32$.",
+                "check": [
+                  "(-12)**2 - 4*4*9 == 0",
+                  "4*Rational(3,2)**2 - 12*Rational(3,2) + 9 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why 'discriminant'?",
+            "body": "From Latin **discriminare** — to separate or distinguish. The number $b^2-4ac$ separates quadratics into their three families (two roots, one, none) with a single glance. Mathematicians love a good gatekeeper: the same idea reappears for cubics, quartics, and beyond."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$D = b^2 - 4ac$: $D>0$ two, $D=0$ one, $D<0$ no real solutions.",
+              "Watch signs in $-4ac$ — negative $c$ makes it positive.",
+              "Strategy: square roots → factoring → formula, by shape."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "qe-pr1",
+      "statement": "Is $x = -4$ a solution of $x^2 + x - 12 = 0$?",
+      "solution": "$16 - 4 - 12 = 0$ ✓ yes.",
+      "check": [
+        "(-4)**2 + (-4) - 12 == 0"
+      ]
+    },
+    {
+      "id": "qe-pr2",
+      "statement": "Solve $x^2 = 144$.",
+      "solution": "$x = \\pm 12$.",
+      "check": [
+        "12**2 == 144",
+        "(-12)**2 == 144"
+      ]
+    },
+    {
+      "id": "qe-pr3",
+      "statement": "Solve $(x-4)^2 = 9$.",
+      "solution": "$x - 4 = \\pm 3$: $x = 7$ or $x = 1$.",
+      "check": [
+        "(7-4)**2 == 9",
+        "(1-4)**2 == 9"
+      ]
+    },
+    {
+      "id": "qe-pr4",
+      "statement": "Solve $x^2 - 7x + 12 = 0$ by factoring.",
+      "solution": "$(x-3)(x-4) = 0$: $x = 3$ or $x = 4$.",
+      "check": [
+        "3**2 - 7*3 + 12 == 0",
+        "4**2 - 7*4 + 12 == 0"
+      ]
+    },
+    {
+      "id": "qe-pr5",
+      "statement": "Solve $x^2 = 5x$.",
+      "solution": "$x(x-5) = 0$: $x = 0$ or $x = 5$ (don't divide by $x$!).",
+      "check": [
+        "0**2 == 5*0",
+        "5**2 == 5*5"
+      ]
+    },
+    {
+      "id": "qe-pr6",
+      "statement": "What completes the square: $x^2 - 12x + \\square$?",
+      "solution": "$(-12/2)^2 = 36$: $(x-6)^2$.",
+      "check": [
+        "2**2 - 12*2 + 36 == (2-6)**2"
+      ]
+    },
+    {
+      "id": "qe-pr7",
+      "statement": "Solve $x^2 + 6x - 7 = 0$ by completing the square.",
+      "solution": "$(x+3)^2 = 16$: $x = 1$ or $x = -7$.",
+      "check": [
+        "1**2 + 6*1 - 7 == 0",
+        "(-7)**2 + 6*(-7) - 7 == 0"
+      ]
+    },
+    {
+      "id": "qe-pr8",
+      "statement": "Solve $2x^2 + x - 6 = 0$ with the quadratic formula.",
+      "solution": "$x = \\tfrac{-1 \\pm \\sqrt{1+48}}{4} = \\tfrac{-1 \\pm 7}{4}$: $x = \\tfrac32$ or $x = -2$.",
+      "check": [
+        "2*Rational(3,2)**2 + Rational(3,2) - 6 == 0",
+        "2*(-2)**2 + (-2) - 6 == 0"
+      ]
+    },
+    {
+      "id": "qe-pr9",
+      "statement": "Solve $x^2 - 4x - 1 = 0$ exactly.",
+      "solution": "$x = \\tfrac{4 \\pm \\sqrt{20}}{2} = 2 \\pm \\sqrt{5}$.",
+      "check": [
+        "expand((2+sqrt(5))**2 - 4*(2+sqrt(5)) - 1) == 0",
+        "expand((2-sqrt(5))**2 - 4*(2-sqrt(5)) - 1) == 0"
+      ]
+    },
+    {
+      "id": "qe-pr10",
+      "statement": "How many real solutions does $x^2 - 3x + 7 = 0$ have?",
+      "solution": "$D = 9 - 28 = -19 < 0$: none.",
+      "check": [
+        "(-3)**2 - 4*1*7 == -19",
+        "-19 < 0"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "qe-ty1",
+      "statement": "Standard form of $x^2 + 3 = 4x$, and its $a$, $b$, $c$?",
+      "solution": "$x^2 - 4x + 3 = 0$: $a=1$, $b=-4$, $c=3$. (Check $x=1$: $1+3=4$ ✓.)",
+      "check": [
+        "1**2 + 3 == 4*1",
+        "1**2 - 4*1 + 3 == 0"
+      ]
+    },
+    {
+      "id": "qe-ty2",
+      "statement": "Solve $(x+3)^2 = 25$.",
+      "solution": "$x + 3 = \\pm 5$: $x = 2$ or $x = -8$.",
+      "check": [
+        "(2+3)**2 == 25",
+        "(-8+3)**2 == 25"
+      ]
+    },
+    {
+      "id": "qe-ty3",
+      "statement": "Solve $x^2 + 5x - 14 = 0$ by factoring.",
+      "solution": "$(x+7)(x-2) = 0$: $x = -7$ or $x = 2$.",
+      "check": [
+        "(-7)**2 + 5*(-7) - 14 == 0",
+        "2**2 + 5*2 - 14 == 0"
+      ]
+    },
+    {
+      "id": "qe-ty4",
+      "statement": "Solve $x^2 - 10x + 20 = 0$ by completing the square (exact).",
+      "solution": "$(x-5)^2 = 5$: $x = 5 \\pm \\sqrt{5}$.",
+      "check": [
+        "expand((5+sqrt(5))**2 - 10*(5+sqrt(5)) + 20) == 0",
+        "expand((5-sqrt(5))**2 - 10*(5-sqrt(5)) + 20) == 0"
+      ]
+    },
+    {
+      "id": "qe-ty5",
+      "statement": "Solve $3x^2 - 5x - 2 = 0$ with the quadratic formula.",
+      "solution": "$x = \\tfrac{5 \\pm \\sqrt{25+24}}{6} = \\tfrac{5 \\pm 7}{6}$: $x = 2$ or $x = -\\tfrac13$.",
+      "check": [
+        "3*2**2 - 5*2 - 2 == 0",
+        "3*Rational(-1,3)**2 - 5*Rational(-1,3) - 2 == 0"
+      ]
+    },
+    {
+      "id": "qe-ty6",
+      "statement": "Without solving, count the real solutions of $2x^2 - 4x + 2 = 0$.",
+      "solution": "$D = 16 - 16 = 0$: exactly one ($x = 1$).",
+      "check": [
+        "(-4)**2 - 4*2*2 == 0",
+        "2*1**2 - 4*1 + 2 == 0"
+      ]
+    },
+    {
+      "id": "qe-ty7",
+      "statement": "A ball's height is $h = -5t^2 + 30t$. When does it land ($h = 0$, $t > 0$)?",
+      "solution": "$-5t(t - 6) = 0$: $t = 0$ (launch) or $t = 6$ — it lands at $t = 6$ s.",
+      "check": [
+        "-5*6**2 + 30*6 == 0",
+        "-5*0**2 + 30*0 == 0"
+      ]
+    }
+  ]
+}

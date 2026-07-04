@@ -69,6 +69,7 @@ import systemsOfEquations from "@/data/genmath/8/systems-of-linear-equations.jso
 import scatterPlots from "@/data/genmath/8/scatter-plots-and-bivariate-data.json";
 // Grade 10 topic JSON imports (added as each topic is authored + published).
 import polynomialsAndFactoring from "@/data/genmath/10/polynomials-and-factoring.json";
+import quadraticEquations from "@/data/genmath/10/quadratic-equations.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -165,7 +166,7 @@ export const GRADE10_SPINE: GradeSpineEntry[] = [
     slug: "quadratic-equations",
     title: "Quadratic Equations",
     blurb: "Solving by factoring, square roots, completing the square, and the quadratic formula — plus the discriminant.",
-    live: false,
+    live: true,
   },
   {
     slug: "quadratic-functions",
@@ -201,6 +202,7 @@ export const GRADE10_SPINE: GradeSpineEntry[] = [
 
 const grade10Topics: GenMathTopic[] = [
   polynomialsAndFactoring as GenMathTopic,
+  quadraticEquations as GenMathTopic,
 ];
 
 const grade8Topics: GenMathTopic[] = [
