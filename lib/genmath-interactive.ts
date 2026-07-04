@@ -744,6 +744,24 @@ export interface ScatterPlotConfig {
   b0?: number; // fit mode: starting intercept
 }
 
+// The quadratic-functions workbench — one animated parabola, five modes:
+// shape (y = ax², stepper on a), vertex (y = a(x−h)²+k, steppers on h/k),
+// standard (y = ax²+bx+c, steppers on b/c, axis/vertex/y-intercept computed
+// live), roots (stepper on k: two crossings → kiss → none), and projectile
+// (auto-playing ball along h = v₀t − 5t² with the vertex marked at the apex).
+export interface ParabolaGraphConfig {
+  mode: "shape" | "vertex" | "standard" | "roots" | "projectile";
+  a?: number; // shape: starting a; vertex/roots: fixed a (default 1)
+  h?: number; // vertex: starting h; roots: fixed h
+  k?: number; // vertex/roots: starting k
+  b?: number; // standard: starting b
+  c?: number; // standard: starting c
+  v0?: number; // projectile: launch speed (default 20 → h = 20t − 5t²)
+  interactive?: boolean;
+  min?: number;
+  max?: number;
+}
+
 // Two lines y = m1x + b1 and y = m2x + b2 on one grid; line 2 adjustable.
 // Marks the intersection (the system's solution) and calls parallel /
 // same-line verdicts live. The systems-of-equations workbench.
@@ -960,6 +978,7 @@ export type InteractiveStep =
   | { kind: "arcSector"; eyebrow?: string; title: string; teach: string; config: ArcSectorConfig }
   | { kind: "circleUnroll"; eyebrow?: string; title: string; teach: string; config: CircleUnrollConfig }
   | { kind: "systemGraph"; eyebrow?: string; title: string; teach: string; config: SystemGraphConfig }
+  | { kind: "parabolaGraph"; eyebrow?: string; title: string; teach: string; config: ParabolaGraphConfig }
   | { kind: "scatterPlot"; eyebrow?: string; title: string; teach: string; config: ScatterPlotConfig }
   | { kind: "areaShape"; eyebrow?: string; title: string; teach: string; config: AreaShapeConfig }
   | { kind: "apothemPolygon"; eyebrow?: string; title: string; teach: string; config: ApothemPolygonConfig }

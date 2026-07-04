@@ -1,0 +1,1727 @@
+{
+  "slug": "quadratic-functions",
+  "title": "Quadratic Functions & Parabolas",
+  "grade": 10,
+  "blurb": "Graphs of y = ax² + bx + c: vertex, axis of symmetry, transformations, and max/min word problems.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "meet-the-parabola",
+      "title": "Meet the Parabola",
+      "concreteComparison": "Turn on a water fountain and watch the jet: up, over, down — a perfect arc. Throw a ball, same arc. Headlight reflectors, satellite dishes, the cables of a suspension bridge: all the same curve. That arc is the graph of $y = ax^2$ — the **parabola** — and this unit is about reading its every feature.",
+      "objective": "Graph $y = ax^2$ from a table, name the vertex and axis of symmetry, and predict how $a$ flips, widens, or narrows the curve.",
+      "concept": [
+        "A **quadratic function** is $y = ax^2 + bx + c$ ($a \\neq 0$); its graph is a **parabola**. Start with the simplest: $y = x^2$. Table it: $x = -2, -1, 0, 1, 2$ gives $y = 4, 1, 0, 1, 4$ — a U through the origin.",
+        "The values repeat in mirror image: $(-2)^2 = 2^2$. Every parabola has this **symmetry** — a vertical **axis of symmetry** through its turning point, the **vertex**. For $y = x^2$: vertex $(0,0)$, axis $x = 0$.",
+        "The sign of $a$ picks the direction: $a > 0$ opens **up** (the vertex is the minimum); $a < 0$ opens **down** (the vertex is the maximum). $y = -x^2$ is $y = x^2$ flipped.",
+        "The size of $a$ sets the width: $|a| > 1$ is **narrower** (y grows faster: $y = 3x^2$ triples every height), $|a| < 1$ is **wider** ($y = \\tfrac12 x^2$ halves them). $a$ can't be $0$ — that's a flat line, not a parabola."
+      ],
+      "keyIdea": "y = ax² is a symmetric U with vertex (0,0): a > 0 opens up, a < 0 down; bigger |a| = narrower.",
+      "facts": [
+        {
+          "title": "The parts",
+          "latex": "\\text{vertex} + \\text{axis of symmetry}",
+          "explanation": "Turning point, and the mirror line through it."
+        },
+        {
+          "title": "The dial a",
+          "latex": "a > 0 \\text{ up} \\quad a < 0 \\text{ down} \\quad |a| \\text{ sets width}",
+          "explanation": "One number controls flip and width."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "qf1-we1",
+          "statement": "Table $y = x^2$ at $x = -2, -1, 0, 1, 2$ and name the vertex.",
+          "solution": "$y = 4, 1, 0, 1, 4$; vertex $(0, 0)$ — the minimum.",
+          "check": [
+            "(-2)**2 == 4",
+            "(-1)**2 == 1",
+            "0**2 == 0",
+            "2**2 == 4"
+          ]
+        },
+        {
+          "id": "qf1-we2",
+          "statement": "Does $y = -2x^2$ open up or down, and is it wider or narrower than $y = x^2$?",
+          "solution": "$a = -2 < 0$: opens down. $|a| = 2 > 1$: narrower. At $x=1$: $y = -2$ (vs $-1$ for $y=-x^2$).",
+          "check": [
+            "-2*1**2 == -2",
+            "Abs(-2) > 1"
+          ]
+        },
+        {
+          "id": "qf1-we3",
+          "statement": "Verify the symmetry of $y = x^2$ at $x = 3$ and $x = -3$.",
+          "solution": "$3^2 = 9$ and $(-3)^2 = 9$ — equal heights either side of the axis $x = 0$.",
+          "check": [
+            "3**2 == (-3)**2",
+            "3**2 == 9"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking $y = -x^2$ means \"negative $x$, squared\".",
+          "correction": "It's $-(x^2)$: square FIRST, then negate. At $x = 3$: $y = -9$, not $9$. The whole curve hangs below the axis.",
+          "authored": true
+        },
+        {
+          "text": "Reading \"bigger $a$\" as \"bigger, wider curve\".",
+          "correction": "Bigger $|a|$ means y grows FASTER — a steeper, NARROWER parabola. $y = 3x^2$ is a tight cup; $y = \\tfrac13 x^2$ is a wide bowl.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "qf1-t1",
+          "statement": "What is $y = \\tfrac12 x^2$ at $x = 4$, and is the curve wider or narrower than $y = x^2$?",
+          "solution": "$y = \\tfrac12(16) = 8$; $|a| = \\tfrac12 < 1$: wider.",
+          "check": [
+            "Rational(1,2)*4**2 == 8",
+            "Rational(1,2) < 1"
+          ]
+        },
+        {
+          "id": "qf1-t2",
+          "statement": "Which is the vertex of $y = -3x^2$, and is it a max or a min?",
+          "solution": "$(0,0)$; $a < 0$ opens down, so the vertex is the MAXIMUM.",
+          "check": [
+            "-3*0**2 == 0",
+            "-3*1**2 < 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The star curve",
+            "title": "One arc, everywhere",
+            "beats": [
+              "Fountains, thrown balls, headlight mirrors, bridge cables.",
+              "All trace the same curve: a **parabola**.",
+              "Equation of the family: $y = ax^2$ (then $+bx+c$ later).",
+              "This unit: learn to read the curve like a map."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Build one from scratch",
+            "title": "Table y = x²",
+            "beats": [
+              "$x$: $-2, -1, 0, 1, 2$.",
+              "$y$: $4, 1, 0, 1, 4$.",
+              "Heights repeat in mirror image around $x = 0$.",
+              "Plot and join: a U with its nose at $(0,0)$."
+            ]
+          },
+          {
+            "kind": "parabolaGraph",
+            "eyebrow": "Play with it",
+            "title": "The a dial",
+            "teach": "Step $a$ and watch: positive opens **up**, negative flips it **down**; past $|a|=1$ the cup narrows, below it the cup widens. The blue dots mark equal heights at $\\pm x$ — the mirror symmetry never breaks. The curve's turning point is the **vertex**, and the vertical mirror line through it is the **axis of symmetry**.",
+            "config": {
+              "mode": "shape",
+              "a": 1
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Flip and width",
+            "prompt": "Compared with $y = x^2$, the graph of $y = -\\tfrac12 x^2$ is…",
+            "options": [
+              "flipped down and wider",
+              "flipped down and narrower",
+              "upright and wider"
+            ],
+            "correctIndex": 0,
+            "explanation": "$a = -\\tfrac12$: negative flips it down; $|a| = \\tfrac12 < 1$ spreads it wider.",
+            "check": [
+              "-Rational(1,2)*2**2 == -2",
+              "Rational(1,2) < 1"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The anatomy",
+            "title": "Vertex + axis",
+            "beats": [
+              "**Vertex**: the turning point — bottom of a cup, top of a frown.",
+              "**Axis of symmetry**: the vertical mirror through the vertex.",
+              "For $y = ax^2$: vertex $(0,0)$, axis $x = 0$.",
+              "Fold the page on the axis — the curve lands on itself."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Read the dial",
+            "intro": "Sign flips, size widths.",
+            "examples": [
+              {
+                "prompt": "At $x = 2$, compare $y = x^2$, $y = 3x^2$, and $y = \\tfrac12 x^2$.",
+                "steps": [
+                  "$x^2$: $4$.",
+                  "$3x^2$: $12$ — three times as tall already (narrower).",
+                  "$\\tfrac12 x^2$: $2$ — half as tall (wider)."
+                ],
+                "answer": "$4$, $12$, $2$",
+                "check": [
+                  "2**2 == 4",
+                  "3*2**2 == 12",
+                  "Rational(1,2)*2**2 == 2"
+                ]
+              },
+              {
+                "prompt": "Where does $y = -x^2$ sit at $x = \\pm 3$?",
+                "steps": [
+                  "$-(3)^2 = -9$ and $-(-3)^2 = -9$.",
+                  "Equal heights below the axis — flipped, still symmetric."
+                ],
+                "answer": "$-9$ both",
+                "check": [
+                  "-(3)**2 == -9",
+                  "-(-3)**2 == -9"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Dial reading",
+            "intro": "Sign → direction, size → width.",
+            "problems": [
+              {
+                "prompt": "$y = 5x^2$ at $x = -2$ equals…",
+                "options": [
+                  "$20$",
+                  "$-20$",
+                  "$100$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5 \\cdot 4 = 20$. Square first — the minus dies in the square.",
+                "check": [
+                  "5*(-2)**2 == 20"
+                ]
+              },
+              {
+                "prompt": "Which parabola is the WIDEST?",
+                "options": [
+                  "$y = \\tfrac14 x^2$",
+                  "$y = x^2$",
+                  "$y = 4x^2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Smallest $|a|$ spreads slowest: $\\tfrac14 < 1 < 4$.",
+                "check": [
+                  "Rational(1,4) < 1",
+                  "1 < 4"
+                ]
+              },
+              {
+                "prompt": "The vertex of $y = -7x^2$ is a…",
+                "options": [
+                  "maximum at $(0,0)$",
+                  "minimum at $(0,0)$",
+                  "maximum at $(0,-7)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$a < 0$ opens down, so the origin is the top of the frown.",
+                "check": [
+                  "-7*0**2 == 0",
+                  "-7*1**2 < 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why headlights are parabolic",
+            "body": "A parabola has a magic point — the **focus**. Light from a bulb at the focus bounces off the parabolic mirror into a perfect parallel beam (headlights), and incoming parallel signals bounce INTO the focus (satellite dishes). Same curve, both directions. Your graph homework is also antenna engineering."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$y = ax^2$: a symmetric U, vertex $(0,0)$, axis $x = 0$.",
+              "$a > 0$ up (vertex = min); $a < 0$ down (vertex = max).",
+              "$|a| > 1$ narrower, $|a| < 1$ wider — never $a = 0$."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "vertex-form",
+      "title": "Vertex Form",
+      "concreteComparison": "A video game sprite doesn't get redrawn from scratch to move — the SAME sprite is slid right 3 and up 2. Parabolas move the same way: $y = (x-3)^2 + 2$ is $y = x^2$ slid right 3, up 2. **Vertex form** $y = a(x-h)^2 + k$ is the parabola with its position written directly in the equation.",
+      "objective": "Read the vertex $(h, k)$ and axis $x = h$ straight from $y = a(x-h)^2 + k$, and translate between the shift and the equation.",
+      "concept": [
+        "**Vertex form**: $y = a(x-h)^2 + k$. The graph is $y = ax^2$ moved so its vertex sits at $(h, k)$; the axis of symmetry is $x = h$.",
+        "The $k$ is friendly: $+k$ lifts the curve up $k$. The $h$ is sneaky: $(x - 3)^2$ moves it **right** 3 (the vertex is where the bracket is zero: $x = 3$), and $(x+3)^2 = (x-(-3))^2$ moves it **left** 3.",
+        "Why the vertex is at $x = h$: a square is never negative, so $a(x-h)^2 + k$ is closest to $k$ exactly when the bracket dies — at $x = h$. For $a > 0$, $k$ is the minimum value; for $a < 0$, the maximum.",
+        "Reading practice: $y = 2(x-1)^2 - 5$ → vertex $(1, -5)$, axis $x = 1$, opens up, narrow. $y = -(x+4)^2 + 3$ → vertex $(-4, 3)$, opens down."
+      ],
+      "keyIdea": "y = a(x−h)² + k: vertex (h, k), axis x = h. The bracket's zero is h — sign flipped from what it looks like.",
+      "facts": [
+        {
+          "title": "Vertex form",
+          "latex": "y = a(x-h)^2 + k \\to \\text{vertex } (h, k)",
+          "explanation": "Position is written into the equation."
+        },
+        {
+          "title": "The h trap",
+          "latex": "(x-3)^2: \\text{right } 3 \\quad (x+3)^2: \\text{left } 3",
+          "explanation": "The vertex is where the bracket equals zero."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "qf2-we1",
+          "statement": "Vertex and axis of $y = (x-3)^2 + 2$?",
+          "solution": "Vertex $(3, 2)$, axis $x = 3$. Check: at $x=3$, $y = 0 + 2 = 2$ (the minimum); at $x=5$, $y = 4+2 = 6$.",
+          "check": [
+            "(3-3)**2 + 2 == 2",
+            "(5-3)**2 + 2 == 6"
+          ]
+        },
+        {
+          "id": "qf2-we2",
+          "statement": "Vertex of $y = -2(x+1)^2 + 8$, and is it a max or min?",
+          "solution": "$(x+1) = (x-(-1))$: vertex $(-1, 8)$; $a = -2 < 0$ opens down → maximum. Check: $x=-1$ gives $8$; $x=0$ gives $6 < 8$.",
+          "check": [
+            "-2*(-1+1)**2 + 8 == 8",
+            "-2*(0+1)**2 + 8 == 6"
+          ]
+        },
+        {
+          "id": "qf2-we3",
+          "statement": "Write the equation of $y = x^2$ shifted right 4 and down 1, and give its vertex.",
+          "solution": "$y = (x-4)^2 - 1$; vertex $(4, -1)$. Check: at $x=4$, $y=-1$; at $x=6$, $y = 4-1 = 3$.",
+          "check": [
+            "(4-4)**2 - 1 == -1",
+            "(6-4)**2 - 1 == 3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading $(x+3)^2$ as \"right 3\".",
+          "correction": "$(x+3)^2$ is zero at $x = -3$: the vertex moved LEFT. The shift is always the OPPOSITE sign of what sits in the bracket.",
+          "authored": true
+        },
+        {
+          "text": "Swapping h and k.",
+          "correction": "In $y = (x-3)^2 + 2$ the vertex is $(3, 2)$ — $h=3$ from inside the bracket (x-coordinate), $k=2$ from outside (y-coordinate). Not $(2,3)$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "qf2-t1",
+          "statement": "Vertex of $y = (x+5)^2 - 4$?",
+          "solution": "$(-5, -4)$. Check: $x=-5$ gives $-4$; $x=-3$ gives $4-4=0$.",
+          "check": [
+            "(-5+5)**2 - 4 == -4",
+            "(-3+5)**2 - 4 == 0"
+          ]
+        },
+        {
+          "id": "qf2-t2",
+          "statement": "The maximum value of $y = -3(x-2)^2 + 7$ is…",
+          "solution": "$7$, at $x = 2$: the square only subtracts, so the top is $k$. Check: $x=2 \\to 7$, $x=3 \\to 4$.",
+          "check": [
+            "-3*(2-2)**2 + 7 == 7",
+            "-3*(3-2)**2 + 7 == 4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Moving day",
+            "title": "Same curve, new address",
+            "beats": [
+              "$y = x^2$ is the curve; now we move it.",
+              "$+ 2$ outside: everything lifts up 2.",
+              "$(x - 3)^2$: the whole curve slides right 3.",
+              "Together: $y = (x-3)^2 + 2$, vertex at $(3, 2)$."
+            ]
+          },
+          {
+            "kind": "parabolaGraph",
+            "eyebrow": "Drive it",
+            "title": "Slide and lift",
+            "teach": "Step $h$ and $k$ and watch the parabola glide — the vertex dot and the dashed axis $x = h$ track it everywhere. Notice the equation update: the vertex coordinates are written INTO vertex form. That's the whole point of it.",
+            "config": {
+              "mode": "vertex",
+              "a": 1,
+              "h": 3,
+              "k": 2
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The sneaky sign",
+            "title": "Why (x−3)² means right",
+            "beats": [
+              "The vertex lives where the bracket is ZERO.",
+              "$(x-3)^2 = 0$ at $x = 3$ → vertex at $x = 3$. Right.",
+              "$(x+3)^2 = 0$ at $x = -3$ → vertex at $x = -3$. Left.",
+              "Read the shift as \"what kills the bracket\"."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Bracket reading",
+            "prompt": "The vertex of $y = (x+2)^2 - 6$ is…",
+            "options": [
+              "$(-2, -6)$",
+              "$(2, -6)$",
+              "$(-2, 6)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The bracket dies at $x = -2$; $k = -6$ rides outside. Vertex $(-2, -6)$.",
+            "check": [
+              "(-2+2)**2 - 6 == -6",
+              "(0+2)**2 - 6 == -2"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why the vertex is the extreme",
+            "title": "A square never goes negative",
+            "beats": [
+              "$a(x-h)^2$ is $0$ at $x=h$, positive everywhere else ($a>0$).",
+              "So $y = a(x-h)^2 + k$ can't dip below $k$.",
+              "Minimum $= k$, achieved exactly at $x = h$.",
+              "Flip $a < 0$: now it can't RISE above $k$ — a maximum."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Read and write vertex form",
+            "intro": "Vertex out; shifts in.",
+            "examples": [
+              {
+                "prompt": "Vertex, axis, direction of $y = 2(x-1)^2 - 5$?",
+                "steps": [
+                  "Bracket dies at $x=1$; $k=-5$: vertex $(1,-5)$.",
+                  "Axis $x = 1$; $a = 2 > 0$: opens up (min $=-5$)."
+                ],
+                "answer": "$(1,-5)$, $x=1$, up",
+                "check": [
+                  "2*(1-1)**2 - 5 == -5",
+                  "2*(2-1)**2 - 5 == -3"
+                ]
+              },
+              {
+                "prompt": "Write $y=x^2$ shifted left 2, up 3, then find $y$ at $x = 0$.",
+                "steps": [
+                  "Left 2: $(x+2)^2$; up 3: $+3$.",
+                  "$y = (x+2)^2 + 3$.",
+                  "At $x=0$: $4 + 3 = 7$."
+                ],
+                "answer": "$y=(x+2)^2+3$; $y(0)=7$",
+                "check": [
+                  "(0+2)**2 + 3 == 7",
+                  "(-2+2)**2 + 3 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Vertex-form fluency",
+            "intro": "The bracket's zero is h.",
+            "problems": [
+              {
+                "prompt": "Axis of symmetry of $y = -(x-6)^2 + 1$?",
+                "options": [
+                  "$x = 6$",
+                  "$x = -6$",
+                  "$x = 1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Bracket zero at $x=6$ — the axis passes through the vertex $(6,1)$.",
+                "check": [
+                  "-(6-6)**2 + 1 == 1",
+                  "-(7-6)**2 + 1 == 0"
+                ]
+              },
+              {
+                "prompt": "Which equation has vertex $(-3, 4)$ and opens down?",
+                "options": [
+                  "$y = -2(x+3)^2 + 4$",
+                  "$y = 2(x-3)^2 + 4$",
+                  "$y = -2(x-3)^2 - 4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Need $(x+3)^2$ (dies at $-3$), $+4$ outside, negative $a$.",
+                "check": [
+                  "-2*(-3+3)**2 + 4 == 4",
+                  "-2*(-2+3)**2 + 4 == 2"
+                ]
+              },
+              {
+                "prompt": "The minimum value of $y = 5(x-8)^2 + 3$ is…",
+                "options": [
+                  "$3$",
+                  "$8$",
+                  "$-8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The square bottoms out at 0, so $y$ bottoms out at $k = 3$ (at $x = 8$).",
+                "check": [
+                  "5*(8-8)**2 + 3 == 3",
+                  "5*(9-8)**2 + 3 == 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Say it as a story",
+            "body": "Read $y = -2(x+1)^2 + 8$ aloud as moves: start with $y=x^2$… flip it down and squeeze it (×−2)… slide LEFT 1… lift up 8. Now you can sketch it in five seconds — vertex $(-1, 8)$, frowning, narrow."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$y = a(x-h)^2 + k$: vertex $(h,k)$, axis $x = h$.",
+              "The bracket's zero is $h$ — opposite of the visible sign.",
+              "$k$ is the min ($a>0$) or max ($a<0$); $a$ still sets flip + width."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "standard-form-features",
+      "title": "Reading Standard Form",
+      "concreteComparison": "Most quadratics arrive in **standard form** $y = ax^2 + bx + c$ — profit models, physics formulas, the equations you solved last topic. The features are still there, just hidden: $c$ is where the curve cuts the y-axis, and a one-line formula $x = -\\tfrac{b}{2a}$ finds the axis of symmetry. Two computations and the whole graph unlocks.",
+      "objective": "From $y = ax^2 + bx + c$, read the y-intercept $(0, c)$, compute the axis $x = -\\frac{b}{2a}$, and find the vertex by substituting.",
+      "concept": [
+        "The **y-intercept** is free: at $x = 0$, $y = c$. The curve always cuts the y-axis at $(0, c)$.",
+        "The **axis of symmetry** is $x = -\\tfrac{b}{2a}$. For $y = x^2 - 4x + 3$: $x = \\tfrac{4}{2} = 2$. (It's the quadratic formula's $\\tfrac{-b}{2a}$ — the midpoint of the two roots, which is exactly where the mirror stands.)",
+        "The **vertex** sits on the axis: substitute $x = -\\tfrac{b}{2a}$ back in. Here: $y = 4 - 8 + 3 = -1$, so the vertex is $(2, -1)$.",
+        "Direction and width still come from $a$, same as ever. So standard form reads: direction ($a$), y-intercept ($c$), axis ($-\\tfrac{b}{2a}$), vertex (substitute) — four features, two formulas."
+      ],
+      "keyIdea": "In y = ax² + bx + c: y-intercept (0, c); axis x = −b/2a; vertex by substituting that x back in.",
+      "facts": [
+        {
+          "title": "Free intercept",
+          "latex": "x = 0 \\Rightarrow y = c",
+          "explanation": "The constant is the y-axis crossing."
+        },
+        {
+          "title": "Axis formula",
+          "latex": "x = -\\tfrac{b}{2a}",
+          "explanation": "The mirror line — and the vertex's x-coordinate."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "qf3-we1",
+          "statement": "Axis, vertex, and y-intercept of $y = x^2 - 4x + 3$?",
+          "solution": "Axis $x = \\tfrac{4}{2} = 2$; vertex $y(2) = 4-8+3 = -1$ → $(2,-1)$; y-intercept $(0, 3)$.",
+          "check": [
+            "-(-4)/(2*1) == 2",
+            "2**2 - 4*2 + 3 == -1",
+            "0**2 - 4*0 + 3 == 3"
+          ]
+        },
+        {
+          "id": "qf3-we2",
+          "statement": "Vertex of $y = -x^2 + 6x - 5$, and is it a max or min?",
+          "solution": "Axis $x = \\tfrac{-6}{-2} = 3$; $y(3) = -9+18-5 = 4$: vertex $(3,4)$, and $a<0$ → maximum.",
+          "check": [
+            "-6/(2*(-1)) == 3",
+            "-(3**2) + 6*3 - 5 == 4"
+          ]
+        },
+        {
+          "id": "qf3-we3",
+          "statement": "Find the vertex of $y = 2x^2 + 8x + 3$.",
+          "solution": "$x = \\tfrac{-8}{4} = -2$; $y(-2) = 8 - 16 + 3 = -5$: vertex $(-2, -5)$.",
+          "check": [
+            "-8/(2*2) == -2",
+            "2*(-2)**2 + 8*(-2) + 3 == -5"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dropping the minus in $x = -\\tfrac{b}{2a}$.",
+          "correction": "For $y = x^2 - 4x + 3$, $b = -4$, so $x = -(-4)/2 = +2$. Sign in, sign flipped out.",
+          "authored": true
+        },
+        {
+          "text": "Calling $(0, c)$ the vertex.",
+          "correction": "$(0, c)$ is the Y-INTERCEPT — where the curve cuts the y-axis. The vertex is at $x = -\\tfrac{b}{2a}$, usually somewhere else entirely.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "qf3-t1",
+          "statement": "Axis of symmetry of $y = x^2 + 6x + 8$?",
+          "solution": "$x = -6/2 = -3$.",
+          "check": [
+            "-6/(2*1) == -3",
+            "(-3)**2 + 6*(-3) + 8 == -1"
+          ]
+        },
+        {
+          "id": "qf3-t2",
+          "statement": "Vertex of $y = x^2 - 2x - 3$?",
+          "solution": "$x = 1$; $y(1) = 1-2-3 = -4$: $(1, -4)$.",
+          "check": [
+            "-(-2)/(2*1) == 1",
+            "1**2 - 2*1 - 3 == -4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Hidden features",
+            "title": "Standard form keeps secrets",
+            "beats": [
+              "$y = x^2 - 4x + 3$ — where's the vertex? Not obvious.",
+              "But two clues sit in plain sight:",
+              "$c = 3$: the curve cuts the y-axis at $(0, 3)$. Free.",
+              "And a formula finds the mirror line…"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The axis formula",
+            "title": "x = −b / 2a",
+            "beats": [
+              "$y = x^2 - 4x + 3$: $a = 1$, $b = -4$.",
+              "$x = -\\tfrac{b}{2a} = -\\tfrac{-4}{2} = 2$.",
+              "That vertical line $x = 2$ is the axis of symmetry.",
+              "The vertex? On the axis: $y(2) = 4 - 8 + 3 = -1$. So $(2,-1)$."
+            ]
+          },
+          {
+            "kind": "parabolaGraph",
+            "eyebrow": "Watch it compute",
+            "title": "Live features",
+            "teach": "Step $b$ and $c$ and watch the three features recompute: the blue y-intercept dot rides at $(0, c)$, the dashed axis stands at $x = -b/2a$, and the vertex marker chases the curve's turning point. Every piece of the readout below the graph is computed from the equation — the graph is just the formula made visible.",
+            "config": {
+              "mode": "standard",
+              "a": 1,
+              "b": -4,
+              "c": 3
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Run the formula",
+            "prompt": "The axis of symmetry of $y = x^2 + 8x + 1$ is…",
+            "options": [
+              "$x = -4$",
+              "$x = 4$",
+              "$x = 8$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$x = -\\tfrac{8}{2} = -4$. The minus in the formula flips $b$'s sign.",
+            "check": [
+              "-8/(2*1) == -4",
+              "(-4)**2 + 8*(-4) + 1 == -15"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Feature sort",
+            "title": "Which is which?",
+            "prompt": "For $y = 2x^2 - 12x + 5$, the point $(0, 5)$ is…",
+            "options": [
+              "the y-intercept",
+              "the vertex",
+              "an x-intercept"
+            ],
+            "correctIndex": 0,
+            "explanation": "At $x=0$, $y = c = 5$ — the y-axis crossing. (The vertex is at $x = 12/4 = 3$.)",
+            "check": [
+              "2*0**2 - 12*0 + 5 == 5",
+              "-(-12)/(2*2) == 3"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Two formulas, whole graph",
+            "intro": "Axis first, then substitute.",
+            "examples": [
+              {
+                "prompt": "Full feature set of $y = x^2 + 2x - 8$?",
+                "steps": [
+                  "y-intercept: $(0, -8)$.",
+                  "Axis: $x = -2/2 = -1$.",
+                  "Vertex: $y(-1) = 1 - 2 - 8 = -9$ → $(-1, -9)$. Opens up."
+                ],
+                "answer": "$(0,-8)$; $x=-1$; $(-1,-9)$; up",
+                "check": [
+                  "0**2 + 2*0 - 8 == -8",
+                  "-2/(2*1) == -1",
+                  "(-1)**2 + 2*(-1) - 8 == -9"
+                ]
+              },
+              {
+                "prompt": "Vertex of $y = -2x^2 + 4x + 1$ — max or min?",
+                "steps": [
+                  "Axis: $x = -4/(-4) = 1$.",
+                  "$y(1) = -2 + 4 + 1 = 3$: vertex $(1, 3)$.",
+                  "$a = -2 < 0$: opens down — it's a MAXIMUM."
+                ],
+                "answer": "$(1,3)$, maximum",
+                "check": [
+                  "-4/(2*(-2)) == 1",
+                  "-2*1**2 + 4*1 + 1 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Feature hunting",
+            "intro": "c is free; the axis takes one line.",
+            "problems": [
+              {
+                "prompt": "y-intercept of $y = 3x^2 - 5x - 7$?",
+                "options": [
+                  "$(0, -7)$",
+                  "$(0, 3)$",
+                  "$(-7, 0)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Set $x = 0$: everything but $c$ vanishes.",
+                "check": [
+                  "3*0**2 - 5*0 - 7 == -7"
+                ]
+              },
+              {
+                "prompt": "Vertex of $y = x^2 - 6x + 5$?",
+                "options": [
+                  "$(3, -4)$",
+                  "$(-3, -4)$",
+                  "$(3, 5)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Axis $x = 6/2 = 3$; $y(3) = 9 - 18 + 5 = -4$.",
+                "check": [
+                  "-(-6)/(2*1) == 3",
+                  "3**2 - 6*3 + 5 == -4"
+                ]
+              },
+              {
+                "prompt": "For $y = -x^2 + 2x + 3$ the vertex $(1, 4)$ is…",
+                "options": [
+                  "the highest point on the curve",
+                  "the lowest point on the curve",
+                  "the y-intercept"
+                ],
+                "correctIndex": 0,
+                "explanation": "$a < 0$: opens down, vertex on top. ($y(1) = -1+2+3 = 4$ ✓)",
+                "check": [
+                  "-(1**2) + 2*1 + 3 == 4",
+                  "-(0**2) + 2*0 + 3 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The mirror knows the roots",
+            "body": "The axis $x = -\\tfrac{b}{2a}$ is exactly the AVERAGE of the two roots — the mirror stands halfway between them. That's why the quadratic formula is $x = -\\tfrac{b}{2a} \\pm \\tfrac{\\sqrt{D}}{2a}$: start at the mirror, step the same distance both ways. Two topics, one geometry."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "y-intercept: $(0, c)$ — free.",
+              "Axis: $x = -\\tfrac{b}{2a}$; vertex: substitute that $x$ back in.",
+              "$a$ still calls direction (up/down) and width."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "roots-and-x-intercepts",
+      "title": "Roots & x-Intercepts",
+      "concreteComparison": "Last topic you solved $x^2 - 4x + 3 = 0$ and got $x = 1, 3$. Now graph $y = x^2 - 4x + 3$: the curve crosses the x-axis at… $1$ and $3$. Not a coincidence — **solving the equation IS finding where the graph touches height zero**. The algebra and the picture are the same fact in two languages.",
+      "objective": "Connect x-intercepts to the solutions of $ax^2+bx+c=0$, read roots from factored form, and predict the crossing count with the discriminant.",
+      "concept": [
+        "An **x-intercept** is a point where $y = 0$. So the x-intercepts of $y = ax^2+bx+c$ are exactly the **solutions** (roots) of $ax^2+bx+c = 0$ — Topic 2's equations, drawn.",
+        "**Factored form** hands you the crossings: $y = (x-1)(x-3)$ is zero at $x = 1$ and $x = 3$ (zero product!). And the axis of symmetry stands halfway between: $x = 2$.",
+        "The **discriminant** $D = b^2-4ac$ counts the crossings without solving: $D > 0$ two crossings, $D = 0$ one (the vertex kisses the axis), $D < 0$ none (the curve floats clear).",
+        "Same fact from the vertex: an upward parabola with vertex BELOW the axis must cross twice on the way down and up; vertex ON the axis, once; vertex above, never. Vertex position and discriminant tell one story."
+      ],
+      "keyIdea": "x-intercepts = roots of the equation. Factored form shows them; the discriminant counts them; the vertex explains them.",
+      "facts": [
+        {
+          "title": "The bridge",
+          "latex": "\\text{graph crosses } x\\text{-axis} \\iff y = 0 \\text{ has that solution}",
+          "explanation": "Equation-solving and graph-reading are the same."
+        },
+        {
+          "title": "Crossing count",
+          "latex": "D>0: 2 \\quad D=0: 1 \\quad D<0: 0",
+          "explanation": "The discriminant, now with a picture."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "qf4-we1",
+          "statement": "Find the x-intercepts of $y = x^2 - 4x + 3$ and check them on the axis of symmetry.",
+          "solution": "Factor: $(x-1)(x-3)$ → crossings $x = 1, 3$. Axis: halfway, $x = 2 = -\\tfrac{b}{2a}$ ✓.",
+          "check": [
+            "1**2 - 4*1 + 3 == 0",
+            "3**2 - 4*3 + 3 == 0",
+            "Rational(1+3,2) == 2"
+          ]
+        },
+        {
+          "id": "qf4-we2",
+          "statement": "Where does $y = (x+2)(x-5)$ cross the x-axis, and where is its axis of symmetry?",
+          "solution": "Crossings $x = -2, 5$; axis halfway: $x = \\tfrac{-2+5}{2} = \\tfrac32$.",
+          "check": [
+            "(-2+2)*(-2-5) == 0",
+            "(5+2)*(5-5) == 0",
+            "Rational(-2+5,2) == Rational(3,2)"
+          ]
+        },
+        {
+          "id": "qf4-we3",
+          "statement": "How many x-intercepts does $y = x^2 + 2x + 5$ have?",
+          "solution": "$D = 4 - 20 = -16 < 0$: none — the parabola floats above the axis (vertex $(-1, 4)$, opening up).",
+          "check": [
+            "2**2 - 4*1*5 == -16",
+            "(-1)**2 + 2*(-1) + 5 == 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading the crossings of $y=(x-1)(x-3)$ as $-1$ and $-3$.",
+          "correction": "Each factor's ZERO is the crossing: $x-1=0$ at $x=1$. Same sneaky sign as vertex form's $h$.",
+          "authored": true
+        },
+        {
+          "text": "Thinking \"no x-intercepts\" means \"no graph\".",
+          "correction": "$y = x^2+2x+5$ graphs beautifully — a parabola floating above the axis. It just never reaches height 0.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "qf4-t1",
+          "statement": "x-intercepts of $y = x^2 - 9$?",
+          "solution": "$x^2 = 9$: $x = \\pm 3$ — crossings at $(-3, 0)$ and $(3, 0)$.",
+          "check": [
+            "3**2 - 9 == 0",
+            "(-3)**2 - 9 == 0"
+          ]
+        },
+        {
+          "id": "qf4-t2",
+          "statement": "Without solving: how many times does $y = x^2 - 6x + 9$ touch the x-axis?",
+          "solution": "$D = 36 - 36 = 0$: once — the vertex $(3, 0)$ sits ON the axis.",
+          "check": [
+            "(-6)**2 - 4*1*9 == 0",
+            "3**2 - 6*3 + 9 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Two languages, one fact",
+            "title": "Solutions are crossings",
+            "beats": [
+              "Topic 2: solve $x^2-4x+3=0$ → $x = 1, 3$.",
+              "This topic: graph $y = x^2-4x+3$.",
+              "It crosses the x-axis at $1$ and $3$. Same numbers.",
+              "\"Solve the equation\" = \"find where the graph hits 0\"."
+            ]
+          },
+          {
+            "kind": "parabolaGraph",
+            "eyebrow": "Move the curve",
+            "title": "Two, one, none",
+            "teach": "Step $k$ to raise and lower the parabola. Low: **two** blue crossings. Touching: **one** kiss at the vertex. Lifted clear: **none** — and the panel goes red, exactly when the discriminant of the matching equation goes negative. You're watching $D > 0$, $D = 0$, $D < 0$ happen geometrically.",
+            "config": {
+              "mode": "roots",
+              "a": 1,
+              "h": 1,
+              "k": -4
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Factored form crossings",
+            "prompt": "$y = (x+4)(x-2)$ crosses the x-axis at…",
+            "options": [
+              "$x = -4$ and $x = 2$",
+              "$x = 4$ and $x = -2$",
+              "$x = 4$ and $x = 2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Each factor's zero: $x+4=0$ at $-4$; $x-2=0$ at $2$. Zero product, drawn.",
+            "check": [
+              "(-4+4)*(-4-2) == 0",
+              "(2+4)*(2-2) == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The midpoint bonus",
+            "title": "Axis between the roots",
+            "beats": [
+              "Crossings at $-4$ and $2$ — where's the vertex?",
+              "The mirror stands HALFWAY: $x = \\tfrac{-4+2}{2} = -1$.",
+              "Symmetry does the work: equal distance to both roots.",
+              "Roots → axis → vertex: three features from one factoring."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Count without solving",
+            "title": "Discriminant eyes",
+            "prompt": "$y = x^2 + 4x + 4$ touches the x-axis…",
+            "options": [
+              "exactly once",
+              "twice",
+              "never"
+            ],
+            "correctIndex": 0,
+            "explanation": "$D = 16 - 16 = 0$: one double root — $(x+2)^2$ kisses the axis at $x = -2$.",
+            "check": [
+              "4**2 - 4*1*4 == 0",
+              "(-2)**2 + 4*(-2) + 4 == 0"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Roots, drawn",
+            "intro": "Factor → crossings → axis → vertex.",
+            "examples": [
+              {
+                "prompt": "Full sketch plan for $y = x^2 - 2x - 8$.",
+                "steps": [
+                  "Factor: $(x-4)(x+2)$ → crossings $4, -2$.",
+                  "Axis halfway: $x = 1$.",
+                  "Vertex: $y(1) = 1-2-8 = -9$ → $(1,-9)$. Opens up, y-intercept $(0,-8)$."
+                ],
+                "answer": "crossings $-2, 4$; vertex $(1, -9)$",
+                "check": [
+                  "4**2 - 2*4 - 8 == 0",
+                  "(-2)**2 - 2*(-2) - 8 == 0",
+                  "1**2 - 2*1 - 8 == -9"
+                ]
+              },
+              {
+                "prompt": "How many crossings: $y = 2x^2 - 4x + 5$?",
+                "steps": [
+                  "$D = 16 - 40 = -24 < 0$.",
+                  "None — vertex $(1, 3)$ with $a>0$: floats above."
+                ],
+                "answer": "none",
+                "check": [
+                  "(-4)**2 - 4*2*5 == -24",
+                  "2*1**2 - 4*1 + 5 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Crossings from every form",
+            "intro": "Factor, formula, or discriminant — pick your tool.",
+            "problems": [
+              {
+                "prompt": "x-intercepts of $y = x^2 + x - 6$?",
+                "options": [
+                  "$x = 2$ and $x = -3$",
+                  "$x = -2$ and $x = 3$",
+                  "$x = 1$ and $x = -6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(x+3)(x-2) = 0$.",
+                "check": [
+                  "2**2 + 2 - 6 == 0",
+                  "(-3)**2 + (-3) - 6 == 0"
+                ]
+              },
+              {
+                "prompt": "A parabola opens up and its vertex is $(2, 3)$ — above the axis. Crossings?",
+                "options": [
+                  "none",
+                  "two",
+                  "one"
+                ],
+                "correctIndex": 0,
+                "explanation": "Opening up from a vertex already above the axis, it never comes down to $y = 0$.",
+                "check": [
+                  "3 > 0"
+                ]
+              },
+              {
+                "prompt": "$y = x^2 - 5x + 6$ crosses at $x = 2$ and $x = 3$. Its axis of symmetry is…",
+                "options": [
+                  "$x = 2.5$",
+                  "$x = 5$",
+                  "$x = 6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Halfway between the roots: $\\tfrac{2+3}{2} = \\tfrac52$. (Matches $-\\tfrac{b}{2a} = \\tfrac52$ ✓)",
+                "check": [
+                  "2**2 - 5*2 + 6 == 0",
+                  "3**2 - 5*3 + 6 == 0",
+                  "Rational(2+3,2) == Rational(5,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why bridges love parabolas",
+            "body": "Hang a chain and it droops in a catenary; load a suspension-bridge cable with a flat deck and the curve becomes a true parabola. Engineers read its roots (tower positions), vertex (lowest sag), and axis (the midspan) from the same three features you just learned. Golden Gate Bridge: one giant $y = ax^2 + bx + c$."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "x-intercepts of the graph = roots of the equation.",
+              "Factored form shows them; the axis stands halfway between.",
+              "$D > 0/= 0/< 0$ → two / one / no crossings — vertex position agrees."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "max-min-problems",
+      "title": "Max & Min Problems",
+      "concreteComparison": "Throw a ball at $20$ m/s and its height is $h = 20t - 5t^2$. How high does it get? That's not a solving question — it's a **vertex** question. The peak of the flight IS the vertex of the parabola. Profit peaks, biggest fenced areas, highest fountains: whenever a quadratic models the world, its vertex is the record holder.",
+      "objective": "Use the vertex to answer optimization questions: maximum height, maximum product, and maximum area with a fixed perimeter.",
+      "concept": [
+        "For $a < 0$ the vertex is the **maximum**; for $a > 0$, the **minimum**. Find it as always: $t = -\\tfrac{b}{2a}$, then substitute for the value.",
+        "Projectile: $h = 20t - 5t^2$ has $a=-5$, $b=20$: peak at $t = -\\tfrac{20}{-10} = 2$ s, height $h(2) = 40 - 20 = 20$ m. Landing: solve $h = 0$ → $t = 4$ s (the peak sits halfway, by symmetry!).",
+        "Max product: two numbers summing to $20$ — call one $x$, the other $20 - x$; product $P = x(20-x) = 20x - x^2$. Vertex at $x = 10$: the product maxes at $10 \\times 10 = 100$. Equal split wins.",
+        "Max area: $40$ m of fence around a rectangle → $l + w = 20$, area $A = w(20-w)$. Same parabola as the product problem! Best at $w = 10$: a $10 \\times 10$ square, $100$ m². The square is the champion rectangle."
+      ],
+      "keyIdea": "Optimization = vertex-finding: x = −b/2a locates the best input, substituting gives the best value.",
+      "facts": [
+        {
+          "title": "Peak time",
+          "latex": "t = -\\tfrac{b}{2a}",
+          "explanation": "The input where the quadratic peaks (or bottoms)."
+        },
+        {
+          "title": "Symmetry bonus",
+          "latex": "\\text{peak at half the flight}",
+          "explanation": "The vertex sits midway between launch and landing."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "qf5-we1",
+          "statement": "A ball follows $h = 20t - 5t^2$. Find the peak height and when it lands.",
+          "solution": "Peak: $t = -\\tfrac{20}{-10} = 2$, $h(2) = 40-20 = 20$ m. Lands: $5t(4-t)=0$ → $t=4$ s.",
+          "check": [
+            "-20/(2*(-5)) == 2",
+            "20*2 - 5*2**2 == 20",
+            "20*4 - 5*4**2 == 0"
+          ]
+        },
+        {
+          "id": "qf5-we2",
+          "statement": "Two numbers add to $16$. How large can their product be?",
+          "solution": "$P = x(16-x)$: vertex at $x = 8$, $P = 64$. Split evenly.",
+          "check": [
+            "-16/(2*(-1)) == 8",
+            "8*(16-8) == 64",
+            "7*(16-7) == 63"
+          ]
+        },
+        {
+          "id": "qf5-we3",
+          "statement": "With $24$ m of fencing, what's the biggest rectangular area?",
+          "solution": "$l + w = 12$, $A = w(12-w)$: vertex $w = 6$ → a $6\\times6$ square, $36$ m².",
+          "check": [
+            "6*(12-6) == 36",
+            "5*(12-5) == 35",
+            "-12/(2*(-1)) == 6"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Answering the vertex's x when the question asks the max VALUE (or vice versa).",
+          "correction": "\"When is it highest?\" → $t = 2$ s (the x). \"HOW high?\" → $h(2) = 20$ m (the y). Read which one the question wants.",
+          "authored": true
+        },
+        {
+          "text": "Maximizing area with a lopsided rectangle \"because longer is bigger\".",
+          "correction": "With fixed perimeter, area $w(20-w)$ PEAKS at the square. $19\\times1 = 19$ m² loses badly to $10\\times10 = 100$ m².",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "qf5-t1",
+          "statement": "A rocket follows $h = 30t - 5t^2$. When is it highest, and how high?",
+          "solution": "$t = -\\tfrac{30}{-10} = 3$ s; $h(3) = 90 - 45 = 45$ m.",
+          "check": [
+            "-30/(2*(-5)) == 3",
+            "30*3 - 5*3**2 == 45"
+          ]
+        },
+        {
+          "id": "qf5-t2",
+          "statement": "Two numbers sum to $10$. Their maximum product is…",
+          "solution": "$5 \\times 5 = 25$ — the even split.",
+          "check": [
+            "5*(10-5) == 25",
+            "4*(10-4) == 24"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "A question solving can't answer",
+            "title": "How high?",
+            "beats": [
+              "$h = 20t - 5t^2$: a ball's height over time.",
+              "\"When does it land?\" → solve $h = 0$. Old news.",
+              "\"How HIGH does it get?\" → no equation to solve…",
+              "…because the answer is the parabola's PEAK. The vertex."
+            ]
+          },
+          {
+            "kind": "parabolaGraph",
+            "eyebrow": "Watch the flight",
+            "title": "The vertex is the record",
+            "teach": "The ball flies $h = 20t - 5t^2$ for real — watch the trail. The peak gets marked the moment it's passed: $t = 2$ s, $h = 20$ m, exactly the vertex $t = -b/2a$. And by symmetry the peak sits at HALF the flight: land at $4$, peak at $2$. Replay it and watch for that.",
+            "config": {
+              "mode": "projectile",
+              "v0": 20
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the peak",
+            "prompt": "For $h = 40t - 5t^2$, the peak is at…",
+            "options": [
+              "$t = 4$ s",
+              "$t = 8$ s",
+              "$t = 40$ s"
+            ],
+            "correctIndex": 0,
+            "explanation": "$t = -\\tfrac{40}{2(-5)} = 4$ s. (It lands at $t = 8$ — the peak is halfway.)",
+            "check": [
+              "-40/(2*(-5)) == 4",
+              "40*8 - 5*8**2 == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Beyond physics",
+            "title": "The biggest product",
+            "beats": [
+              "Two numbers must add to $20$. Maximize the product.",
+              "Let one be $x$; the other is $20 - x$.",
+              "$P = x(20-x) = 20x - x^2$ — a downward parabola!",
+              "Vertex: $x = 10$. Product $10 \\cdot 10 = 100$. Even split wins."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Try the idea",
+            "title": "Fence math",
+            "prompt": "You have $32$ m of fence for a rectangular pen. The area is largest when the pen is…",
+            "options": [
+              "an $8 \\times 8$ square",
+              "a $12 \\times 4$ rectangle",
+              "a $15 \\times 1$ rectangle"
+            ],
+            "correctIndex": 0,
+            "explanation": "$l+w = 16$, $A = w(16-w)$ peaks at $w = 8$: $64$ m² beats $48$ and $15$.",
+            "check": [
+              "8*(16-8) == 64",
+              "12*4 == 48",
+              "15*1 == 15"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Vertex, applied",
+            "intro": "Identify the quadratic; find its vertex; answer the actual question.",
+            "examples": [
+              {
+                "prompt": "A fountain jet follows $h = 12t - 3t^2$ (height in m). Peak height?",
+                "steps": [
+                  "$t = -\\tfrac{12}{-6} = 2$ s.",
+                  "$h(2) = 24 - 12 = 12$ m."
+                ],
+                "answer": "$12$ m at $t = 2$ s",
+                "check": [
+                  "-12/(2*(-3)) == 2",
+                  "12*2 - 3*2**2 == 12"
+                ]
+              },
+              {
+                "prompt": "Profit is $P = -2x^2 + 40x - 150$ ($x$ = price). Best price and best profit?",
+                "steps": [
+                  "$x = -\\tfrac{40}{-4} = 10$.",
+                  "$P(10) = -200 + 400 - 150 = 50$.",
+                  "Charge 10; earn 50."
+                ],
+                "answer": "price $10$, profit $50$",
+                "check": [
+                  "-40/(2*(-2)) == 10",
+                  "-2*10**2 + 40*10 - 150 == 50"
+                ]
+              },
+              {
+                "prompt": "Two numbers sum to $14$; maximize the product.",
+                "steps": [
+                  "$P = x(14-x)$, vertex $x = 7$.",
+                  "$7 \\cdot 7 = 49$."
+                ],
+                "answer": "$49$",
+                "check": [
+                  "-14/(2*(-1)) == 7",
+                  "7*(14-7) == 49",
+                  "6*(14-6) == 48"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Peak hunting",
+            "intro": "x = −b/2a, then substitute — and answer the right question.",
+            "problems": [
+              {
+                "prompt": "$h = 24t - 4t^2$: the maximum height is…",
+                "options": [
+                  "$36$",
+                  "$3$",
+                  "$24$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Peak at $t = 3$; $h(3) = 72 - 36 = 36$. ($3$ is WHEN, not HOW HIGH.)",
+                "check": [
+                  "-24/(2*(-4)) == 3",
+                  "24*3 - 4*3**2 == 36"
+                ]
+              },
+              {
+                "prompt": "$y = x^2 - 8x + 20$ (opens up). Its minimum value is…",
+                "options": [
+                  "$4$",
+                  "$-8$",
+                  "$20$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Vertex at $x = 4$: $y = 16 - 32 + 20 = 4$.",
+                "check": [
+                  "-(-8)/(2*1) == 4",
+                  "4**2 - 8*4 + 20 == 4"
+                ]
+              },
+              {
+                "prompt": "A ball lands at $t = 10$ s. By symmetry its peak was at…",
+                "options": [
+                  "$t = 5$ s",
+                  "$t = 10$ s",
+                  "$t = 2.5$ s"
+                ],
+                "correctIndex": 0,
+                "explanation": "Launch at $0$, land at $10$ — the vertex sits exactly halfway.",
+                "check": [
+                  "Rational(0+10,2) == 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Angry Birds is a vertex problem",
+            "body": "Every trajectory in every physics game is a parabola — the game engine computes $h = v_0t - \\tfrac{g}{2}t^2$ sixty times a second. Aiming the bird IS choosing $a$, $b$ so the vertex and roots land where you want. You now know the math behind the slingshot."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Max/min questions are vertex questions: $x = -\\tfrac{b}{2a}$, then substitute.",
+              "WHEN/WHERE is the vertex's $x$; HOW MUCH is its $y$.",
+              "Fixed sum → even split; fixed perimeter → the square wins."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "graphing-quadratics",
+      "title": "The Graphing Recipe",
+      "concreteComparison": "A pilot runs the same pre-flight checklist every time — not because flying is easy, but because the checklist makes it automatic. Graphing $y = ax^2+bx+c$ has a five-step checklist: direction, y-intercept, axis, vertex, roots. Run it and any quadratic — however ugly — turns into a sketch in under a minute.",
+      "objective": "Graph any quadratic from standard form with the five-step recipe, using symmetry to double every plotted point for free.",
+      "concept": [
+        "The recipe: **(1)** direction & width from $a$; **(2)** y-intercept $(0,c)$; **(3)** axis $x = -\\tfrac{b}{2a}$; **(4)** vertex (substitute); **(5)** x-intercepts if they exist (factor or formula).",
+        "Then the freebie: **symmetry doubles every point**. The y-intercept $(0, c)$ has a mirror twin across the axis. Plot 3 points, get 5.",
+        "Run it on $y = x^2 - 2x - 3$: opens up; $(0,-3)$; axis $x = 1$; vertex $(1,-4)$; roots $(x-3)(x+1)$ → $-1, 3$. Five features — the sketch draws itself.",
+        "Sanity checks at the end: does the vertex sit between the roots? Does the curve open the way $a$ says? Does the y-intercept match $c$? Three seconds of checking catches most sketch errors."
+      ],
+      "keyIdea": "Direction → y-intercept → axis → vertex → roots; then mirror every point across the axis for free.",
+      "facts": [
+        {
+          "title": "The checklist",
+          "latex": "a \\to c \\to -\\tfrac{b}{2a} \\to \\text{vertex} \\to \\text{roots}",
+          "explanation": "Five steps, any quadratic."
+        },
+        {
+          "title": "Symmetry freebie",
+          "latex": "(0, c) \\text{ has a twin at } x = 2 \\cdot \\text{axis}",
+          "explanation": "Every point you plot mirrors across the axis."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "qf6-we1",
+          "statement": "Run the full recipe on $y = x^2 - 2x - 3$.",
+          "solution": "Up; $(0,-3)$; axis $x=1$; vertex $(1,-4)$; roots $x = -1, 3$. Mirror of $(0,-3)$: $(2,-3)$.",
+          "check": [
+            "-(-2)/(2*1) == 1",
+            "1**2 - 2*1 - 3 == -4",
+            "3**2 - 2*3 - 3 == 0",
+            "(-1)**2 - 2*(-1) - 3 == 0",
+            "2**2 - 2*2 - 3 == -3"
+          ]
+        },
+        {
+          "id": "qf6-we2",
+          "statement": "Recipe for $y = -x^2 + 4x$ (no constant term).",
+          "solution": "Down; $(0,0)$ — through the origin; axis $x = 2$; vertex $(2,4)$; roots $-x(x-4) = 0$ → $0, 4$.",
+          "check": [
+            "4/(2*1) == 2",
+            "-(2**2) + 4*2 == 4",
+            "-(0**2) + 4*0 == 0",
+            "-(4**2) + 4*4 == 0"
+          ]
+        },
+        {
+          "id": "qf6-we3",
+          "statement": "Sketch data for $y = 2x^2 + 4x - 6$.",
+          "solution": "Up, narrow; $(0,-6)$; axis $x = -1$; vertex $(-1,-8)$; roots $2(x+3)(x-1)$ → $-3, 1$.",
+          "check": [
+            "-4/(2*2) == -1",
+            "2*(-1)**2 + 4*(-1) - 6 == -8",
+            "2*1**2 + 4*1 - 6 == 0",
+            "2*(-3)**2 + 4*(-3) - 6 == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Plotting the vertex and y-intercept, then freehanding a lopsided curve.",
+          "correction": "Use the mirror: $(0, c)$ has a twin across the axis. With vertex + two mirror pairs, the sketch is locked symmetric.",
+          "authored": true
+        },
+        {
+          "text": "Skipping the direction check and drawing every parabola opening up.",
+          "correction": "Read $a$ FIRST. $y = -x^2 + 4x$ opens DOWN — its vertex is a peak, and the sketch is upside-down from habit.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "qf6-t1",
+          "statement": "For $y = x^2 + 4x + 3$: axis, vertex, roots?",
+          "solution": "Axis $x = -2$; vertex $(-2, -1)$; roots $(x+1)(x+3)$ → $-1, -3$.",
+          "check": [
+            "-4/(2*1) == -2",
+            "(-2)**2 + 4*(-2) + 3 == -1",
+            "(-1)**2 + 4*(-1) + 3 == 0",
+            "(-3)**2 + 4*(-3) + 3 == 0"
+          ]
+        },
+        {
+          "id": "qf6-t2",
+          "statement": "The mirror twin of the y-intercept of $y = x^2 - 6x + 5$ is at…",
+          "solution": "$(0,5)$ mirrors across $x=3$ to $(6, 5)$. Check: $y(6) = 36-36+5 = 5$ ✓.",
+          "check": [
+            "0**2 - 6*0 + 5 == 5",
+            "6**2 - 6*6 + 5 == 5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The checklist",
+            "title": "Five steps, any quadratic",
+            "beats": [
+              "1. Direction & width: read $a$.",
+              "2. y-intercept: $(0, c)$ — free.",
+              "3. Axis: $x = -\\tfrac{b}{2a}$.",
+              "4. Vertex: substitute. 5. Roots: factor or formula."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Run it live",
+            "title": "y = x² − 2x − 3",
+            "beats": [
+              "$a = 1$: opens up. $(0, -3)$: y-intercept.",
+              "Axis: $x = \\tfrac{2}{2} = 1$. Vertex: $y(1) = -4$ → $(1, -4)$.",
+              "Roots: $(x-3)(x+1)$ → $x = -1, 3$.",
+              "Five features. The curve has nowhere to hide."
+            ]
+          },
+          {
+            "kind": "parabolaGraph",
+            "eyebrow": "See the whole picture",
+            "title": "All features at once",
+            "teach": "This is the finished product: the curve through the roots at $-1$ and $3$, vertex $(1,-4)$ ringed, dashed axis at $x = 1$, blue y-intercept at $(0,-3)$. Step $b$ or $c$ to scramble the quadratic — then re-run the checklist mentally and watch every feature land where the formulas say.",
+            "config": {
+              "mode": "standard",
+              "a": 1,
+              "b": -2,
+              "c": -3
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The freebie",
+            "prompt": "$y = x^2 - 8x + 10$ passes through $(0, 10)$. By symmetry it also passes through…",
+            "options": [
+              "$(8, 10)$",
+              "$(-8, 10)$",
+              "$(4, 10)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Axis at $x = 4$; the twin of $x=0$ is $x=8$. Check: $64 - 64 + 10 = 10$ ✓.",
+            "check": [
+              "-(-8)/(2*1) == 4",
+              "8**2 - 8*8 + 10 == 10"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Sanity checks",
+            "title": "Three-second audit",
+            "beats": [
+              "Vertex between the roots? (It must be — symmetry.)",
+              "Direction matches $a$'s sign?",
+              "Curve cuts the y-axis at exactly $c$?",
+              "Three yes's = a trustworthy sketch."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Full recipes",
+            "intro": "Checklist top to bottom.",
+            "examples": [
+              {
+                "prompt": "Recipe: $y = x^2 + 2x - 3$.",
+                "steps": [
+                  "Up; $(0,-3)$.",
+                  "Axis $x = -1$; vertex $(-1,-4)$.",
+                  "Roots: $(x+3)(x-1)$ → $-3, 1$. Mirror of $(0,-3)$: $(-2,-3)$."
+                ],
+                "answer": "vertex $(-1,-4)$, roots $-3, 1$",
+                "check": [
+                  "-2/(2*1) == -1",
+                  "(-1)**2 + 2*(-1) - 3 == -4",
+                  "1**2 + 2*1 - 3 == 0",
+                  "(-3)**2 + 2*(-3) - 3 == 0",
+                  "(-2)**2 + 2*(-2) - 3 == -3"
+                ]
+              },
+              {
+                "prompt": "Recipe: $y = -x^2 + 6x - 5$.",
+                "steps": [
+                  "DOWN ($a=-1$); $(0,-5)$.",
+                  "Axis $x = 3$; vertex $(3, 4)$ — a peak.",
+                  "Roots: $-(x-1)(x-5)$ → $1, 5$."
+                ],
+                "answer": "peak $(3,4)$, roots $1, 5$",
+                "check": [
+                  "-6/(2*(-1)) == 3",
+                  "-(3**2) + 6*3 - 5 == 4",
+                  "-(1**2) + 6*1 - 5 == 0",
+                  "-(5**2) + 6*5 - 5 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Checklist runs",
+            "intro": "Five features each — no freehand guessing.",
+            "problems": [
+              {
+                "prompt": "$y = x^2 - 4x$: vertex?",
+                "options": [
+                  "$(2, -4)$",
+                  "$(-2, 4)$",
+                  "$(2, 4)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Axis $x = 2$; $y(2) = 4 - 8 = -4$.",
+                "check": [
+                  "-(-4)/(2*1) == 2",
+                  "2**2 - 4*2 == -4"
+                ]
+              },
+              {
+                "prompt": "$y = x^2 - 4x$ crosses the x-axis at…",
+                "options": [
+                  "$0$ and $4$",
+                  "$2$ and $-2$",
+                  "$0$ and $-4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x(x-4) = 0$. (And the vertex's $x = 2$ sits halfway ✓.)",
+                "check": [
+                  "0**2 - 4*0 == 0",
+                  "4**2 - 4*4 == 0"
+                ]
+              },
+              {
+                "prompt": "Which is a valid sanity check for a finished sketch?",
+                "options": [
+                  "the vertex lies between the x-intercepts",
+                  "the y-intercept equals $a$",
+                  "the axis passes through $(0, c)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Symmetry forces the vertex midway between the roots. ($c$ is the y-intercept, not $a$; the axis is $x = -b/2a$, usually not $0$.)",
+                "check": [
+                  "Rational(-1+3,2) == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Plot in mirror pairs",
+            "body": "Never plot one point at a time — plot TWINS. Vertex first, then each point with its mirror across the axis: $(0,c)$ and its twin, one root and the other. Five dots, all guaranteed consistent, and the curve draws itself through them."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Recipe: $a$ → $(0,c)$ → axis → vertex → roots.",
+              "Symmetry doubles every plotted point for free.",
+              "Audit: vertex between roots, direction matches $a$, intercept = $c$."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "qf-pr1",
+      "statement": "Is $y = 4x^2$ wider or narrower than $y = x^2$, and which way does it open?",
+      "solution": "$|a| = 4 > 1$: narrower; $a > 0$: up. At $x=1$: $4$ vs $1$.",
+      "check": [
+        "4*1**2 == 4",
+        "4 > 1"
+      ]
+    },
+    {
+      "id": "qf-pr2",
+      "statement": "Vertex of $y = (x-5)^2 + 3$?",
+      "solution": "$(5, 3)$ — bracket dies at 5, $k = 3$.",
+      "check": [
+        "(5-5)**2 + 3 == 3",
+        "(6-5)**2 + 3 == 4"
+      ]
+    },
+    {
+      "id": "qf-pr3",
+      "statement": "Write $y = x^2$ shifted left 1 and down 6; where is its vertex?",
+      "solution": "$y = (x+1)^2 - 6$; vertex $(-1, -6)$.",
+      "check": [
+        "(-1+1)**2 - 6 == -6",
+        "(1+1)**2 - 6 == -2"
+      ]
+    },
+    {
+      "id": "qf-pr4",
+      "statement": "Axis of symmetry of $y = x^2 + 10x - 2$?",
+      "solution": "$x = -10/2 = -5$.",
+      "check": [
+        "-10/(2*1) == -5",
+        "(-5)**2 + 10*(-5) - 2 == -27"
+      ]
+    },
+    {
+      "id": "qf-pr5",
+      "statement": "Vertex of $y = x^2 - 6x + 11$ — max or min?",
+      "solution": "Axis $x=3$; $y(3) = 9-18+11 = 2$: $(3,2)$, a minimum ($a>0$).",
+      "check": [
+        "-(-6)/(2*1) == 3",
+        "3**2 - 6*3 + 11 == 2"
+      ]
+    },
+    {
+      "id": "qf-pr6",
+      "statement": "y-intercept and x-intercepts of $y = x^2 - x - 12$?",
+      "solution": "$(0,-12)$; factor $(x-4)(x+3)$: crossings $4, -3$.",
+      "check": [
+        "0**2 - 0 - 12 == -12",
+        "4**2 - 4 - 12 == 0",
+        "(-3)**2 - (-3) - 12 == 0"
+      ]
+    },
+    {
+      "id": "qf-pr7",
+      "statement": "How many x-intercepts does $y = x^2 + 3x + 4$ have?",
+      "solution": "$D = 9 - 16 = -7 < 0$: none.",
+      "check": [
+        "3**2 - 4*1*4 == -7",
+        "-7 < 0"
+      ]
+    },
+    {
+      "id": "qf-pr8",
+      "statement": "$h = 16t - 4t^2$: peak height and landing time?",
+      "solution": "Peak $t = 2$: $h = 32 - 16 = 16$. Lands $t = 4$.",
+      "check": [
+        "-16/(2*(-4)) == 2",
+        "16*2 - 4*2**2 == 16",
+        "16*4 - 4*4**2 == 0"
+      ]
+    },
+    {
+      "id": "qf-pr9",
+      "statement": "Two numbers sum to $18$. Maximum product?",
+      "solution": "$9 \\times 9 = 81$.",
+      "check": [
+        "9*(18-9) == 81",
+        "8*(18-8) == 80"
+      ]
+    },
+    {
+      "id": "qf-pr10",
+      "statement": "$y = x^2 - 2x - 8$ passes through $(0,-8)$. Its mirror twin across the axis is…",
+      "solution": "Axis $x = 1$: twin $(2, -8)$. Check: $4-4-8 = -8$ ✓.",
+      "check": [
+        "-(-2)/(2*1) == 1",
+        "2**2 - 2*2 - 8 == -8"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "qf-ty1",
+      "statement": "Order by width, widest first: $y = 2x^2$, $y = \\tfrac13 x^2$, $y = -x^2$.",
+      "solution": "$\\tfrac13 x^2$ (widest), $-x^2$, $2x^2$ (narrowest) — by $|a|$: $\\tfrac13 < 1 < 2$.",
+      "check": [
+        "Rational(1,3) < 1",
+        "1 < 2"
+      ]
+    },
+    {
+      "id": "qf-ty2",
+      "statement": "Vertex, axis, and direction of $y = -3(x+2)^2 + 5$?",
+      "solution": "Vertex $(-2, 5)$; axis $x = -2$; opens down (max $= 5$).",
+      "check": [
+        "-3*(-2+2)**2 + 5 == 5",
+        "-3*(-1+2)**2 + 5 == 2"
+      ]
+    },
+    {
+      "id": "qf-ty3",
+      "statement": "Find the vertex of $y = x^2 + 8x + 13$.",
+      "solution": "Axis $x = -4$; $y(-4) = 16 - 32 + 13 = -3$: $(-4, -3)$.",
+      "check": [
+        "-8/(2*1) == -4",
+        "(-4)**2 + 8*(-4) + 13 == -3"
+      ]
+    },
+    {
+      "id": "qf-ty4",
+      "statement": "x-intercepts and axis of $y = (x+6)(x-2)$?",
+      "solution": "Crossings $-6, 2$; axis halfway: $x = -2$.",
+      "check": [
+        "(-6+6)*(-6-2) == 0",
+        "(2+6)*(2-2) == 0",
+        "Rational(-6+2,2) == -2"
+      ]
+    },
+    {
+      "id": "qf-ty5",
+      "statement": "Without solving: crossings of $y = x^2 - 10x + 25$?",
+      "solution": "$D = 100 - 100 = 0$: one — the vertex $(5, 0)$ kisses the axis.",
+      "check": [
+        "(-10)**2 - 4*1*25 == 0",
+        "5**2 - 10*5 + 25 == 0"
+      ]
+    },
+    {
+      "id": "qf-ty6",
+      "statement": "Profit is $P = -x^2 + 30x - 125$. Best $x$ and best profit?",
+      "solution": "$x = 15$; $P(15) = -225 + 450 - 125 = 100$.",
+      "check": [
+        "-30/(2*(-1)) == 15",
+        "-(15**2) + 30*15 - 125 == 100"
+      ]
+    },
+    {
+      "id": "qf-ty7",
+      "statement": "A ball follows $h = 25t - 5t^2$. Peak height, and when does it land?",
+      "solution": "Peak $t = 2.5$: $h = 62.5 - 31.25 = 31.25$ m. Lands $t = 5$ s.",
+      "check": [
+        "-25/(2*(-5)) == Rational(5,2)",
+        "25*Rational(5,2) - 5*Rational(5,2)**2 == Rational(125,4)",
+        "25*5 - 5*5**2 == 0"
+      ]
+    }
+  ]
+}

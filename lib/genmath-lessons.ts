@@ -70,6 +70,7 @@ import scatterPlots from "@/data/genmath/8/scatter-plots-and-bivariate-data.json
 // Grade 10 topic JSON imports (added as each topic is authored + published).
 import polynomialsAndFactoring from "@/data/genmath/10/polynomials-and-factoring.json";
 import quadraticEquations from "@/data/genmath/10/quadratic-equations.json";
+import quadraticFunctions from "@/data/genmath/10/quadratic-functions.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -172,7 +173,7 @@ export const GRADE10_SPINE: GradeSpineEntry[] = [
     slug: "quadratic-functions",
     title: "Quadratic Functions & Parabolas",
     blurb: "Graphs of y = ax² + bx + c: vertex, axis of symmetry, transformations, and max/min word problems.",
-    live: false,
+    live: true,
   },
   {
     slug: "rational-expressions",
@@ -203,6 +204,7 @@ export const GRADE10_SPINE: GradeSpineEntry[] = [
 const grade10Topics: GenMathTopic[] = [
   polynomialsAndFactoring as GenMathTopic,
   quadraticEquations as GenMathTopic,
+  quadraticFunctions as GenMathTopic,
 ];
 
 const grade8Topics: GenMathTopic[] = [
