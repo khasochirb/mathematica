@@ -8,7 +8,7 @@ import {
   summarize,
   type PlacementState,
 } from "@/lib/placement-engine";
-import { getPlacementBank, getGeometryPlacementBank, displayQuestion, placementTopics, type PlacementQuestion } from "@/lib/placement-bank";
+import { getPlacementBank, getGeometryPlacementBank, getGrade8PlacementBank, displayQuestion, placementTopics, type PlacementQuestion } from "@/lib/placement-bank";
 
 // A small synthetic bank: 2 topics × 3 difficulties.
 function synthBank(): PlacementQuestion[] {
@@ -182,6 +182,37 @@ describe("placement bank (curated tiers)", () => {
     for (const q of bank) {
       expect(q.correctIndex).toBeGreaterThanOrEqual(0);
       expect(q.correctIndex).toBeLessThan(q.options.length);
+    }
+  });
+
+  it("grade-8 bank has three tiers for all 7 topics, with correct spot-check answers", () => {
+    const bank = getGrade8PlacementBank();
+    const topics = placementTopics(bank);
+    expect(topics.length).toBe(7);
+    for (const t of topics) {
+      const diffs = bank.filter((q) => q.topicSlug === t.slug).map((q) => q.difficulty).sort();
+      expect(diffs).toEqual([1, 2, 3]);
+      expect(t.title.length).toBeGreaterThan(0);
+      expect(t.title).not.toBe(t.slug);
+    }
+    const byId = new Map(bank.map((q) => [q.id, q]));
+    const ans = (id: string) => {
+      const q = byId.get(id)!;
+      return q.options[q.correctIndex];
+    };
+    expect(ans("linear-equations:d1")).toContain("4"); // 2x+3=11
+    expect(ans("linear-equations:d3")).toContain("Infinitely"); // identity
+    expect(ans("roots:d2")).toContain("\\pm 7"); // x²=49
+    expect(ans("roots:d3")).toContain("5\\sqrt{2}"); // √50
+    expect(ans("exponents-and-scientific-notation:d3")).toContain("6\\times10^7");
+    expect(ans("linear-functions:d2")).toContain("2"); // slope
+    expect(ans("systems-of-linear-equations:d2")).toContain("(3, 6)");
+    expect(ans("scatter-plots-and-bivariate-data:d3")).toContain("7"); // prediction
+    for (const q of bank) {
+      expect(q.correctIndex).toBeGreaterThanOrEqual(0);
+      expect(q.correctIndex).toBeLessThan(q.options.length);
+      const d = displayQuestion(q);
+      expect(d.options[d.correctIndex]).toBe(q.options[q.correctIndex]);
     }
   });
 

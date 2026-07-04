@@ -5,7 +5,7 @@
 // ramps up. Example, Equations: x+5=10 (easy) → 2x+7x=18 (medium) →
 // 2x+3=11 (hard, two-step).
 
-import { getGrade6Topics, getGeometrySpine } from "@/lib/genmath-lessons";
+import { getGrade6Topics, getGeometrySpine, getGrade8Spine } from "@/lib/genmath-lessons";
 
 export type PlacementQuestion = {
   id: string;
@@ -153,8 +153,48 @@ const GEO_CURATED: Curated[] = [
   Q("coordinate-geometry", 3, "The slope of the line through $(1,2)$ and $(4,11)$ is —", ["$3$", "$\\tfrac{1}{3}$", "$-3$", "$9$"], 0, "$\\tfrac{11-2}{4-1} = \\tfrac{9}{3} = 3$."),
 ];
 
+
+// Grade 8 — 7 topics × 3 genuine tiers.
+const G8_CURATED: Curated[] = [
+  // 1. The Real Number System
+  Q("the-real-number-system", 1, "Write $0.75$ as a fraction in lowest terms.", ["$\\tfrac{3}{4}$", "$\\tfrac{75}{100}$", "$\\tfrac{7}{5}$", "$\\tfrac{1}{4}$"], 0, "$0.75 = \\tfrac{75}{100} = \\tfrac{3}{4}$."),
+  Q("the-real-number-system", 2, "Which number is irrational?", ["$\\sqrt{2}$", "$\\sqrt{9}$", "$0.\\overline{3}$", "$\\tfrac{7}{2}$"], 0, "$2$ isn't a perfect square, so $\\sqrt{2}$ never terminates or repeats."),
+  Q("the-real-number-system", 3, "Between which two whole numbers does $\\sqrt{50}$ lie?", ["$7$ and $8$", "$6$ and $7$", "$24$ and $26$", "$8$ and $9$"], 0, "$7^2 = 49 < 50 < 64 = 8^2$."),
+
+  // 2. Exponents & Scientific Notation
+  Q("exponents-and-scientific-notation", 1, "Simplify $2^3 \\cdot 2^4$ as a single power.", ["$2^7$", "$2^{12}$", "$4^7$", "$2^1$"], 0, "Same base: add the exponents."),
+  Q("exponents-and-scientific-notation", 2, "Evaluate $5^{-2}$.", ["$\\tfrac{1}{25}$", "$-25$", "$-10$", "$\\tfrac{1}{10}$"], 0, "A negative exponent flips: $5^{-2} = \\tfrac{1}{5^2}$."),
+  Q("exponents-and-scientific-notation", 3, "Compute $(3\\times10^4)(2\\times10^3)$ in scientific notation.", ["$6\\times10^7$", "$6\\times10^{12}$", "$5\\times10^7$", "$6\\times10^1$"], 0, "Multiply the fronts, add the exponents: $6\\times10^{4+3}$."),
+
+  // 3. Square & Cube Roots
+  Q("roots", 1, "Evaluate $\\sqrt{81}$.", ["$9$", "$40.5$", "$8$", "$81$"], 0, "$9^2 = 81$."),
+  Q("roots", 2, "Solve $x^2 = 49$.", ["$x = \\pm 7$", "$x = 7$ only", "$x = 24.5$", "$x = \\pm 24.5$"], 0, "Both $7^2$ and $(-7)^2$ equal $49$."),
+  Q("roots", 3, "Simplify $\\sqrt{50}$.", ["$5\\sqrt{2}$", "$25\\sqrt{2}$", "$2\\sqrt{5}$", "$10\\sqrt{5}$"], 0, "$\\sqrt{50} = \\sqrt{25\\cdot2} = 5\\sqrt{2}$."),
+
+  // 4. Linear Equations
+  Q("linear-equations", 1, "Solve $2x + 3 = 11$.", ["$x = 4$", "$x = 7$", "$x = 14$", "$x = 5$"], 0, "Subtract 3, divide by 2."),
+  Q("linear-equations", 2, "Solve $5x + 2 = 3x + 10$.", ["$x = 4$", "$x = 6$", "$x = 1$", "$x = 12$"], 0, "Collect: $2x = 8$, so $x = 4$."),
+  Q("linear-equations", 3, "How many solutions does $2(x+3) = 2x + 6$ have?", ["Infinitely many", "None", "Exactly one", "Exactly two"], 0, "Both sides simplify to the same expression — every $x$ works."),
+
+  // 5. Linear Functions
+  Q("linear-functions", 1, "The rule is $y = 2x + 1$. The output for $x = 3$ is —", ["$7$", "$6$", "$9$", "$5$"], 0, "$2(3)+1 = 7$."),
+  Q("linear-functions", 2, "The slope through $(1,2)$ and $(5,10)$ is —", ["$2$", "$\\tfrac{1}{2}$", "$8$", "$4$"], 0, "$\\tfrac{10-2}{5-1} = 2$."),
+  Q("linear-functions", 3, "A table reads $(0,7), (1,9), (2,11)$. Its equation is —", ["$y = 2x + 7$", "$y = 7x + 2$", "$y = 2x + 9$", "$y = 9x$"], 0, "Jump of 2 per step; value 7 at $x=0$."),
+
+  // 6. Systems of Linear Equations
+  Q("systems-of-linear-equations", 1, "Is $(5,2)$ a solution of $x+y=7$ AND $x-y=3$?", ["Yes — it satisfies both", "No — it fails the first", "No — it fails the second", "Only if $x = 2$"], 0, "$5+2=7$ ✓ and $5-2=3$ ✓."),
+  Q("systems-of-linear-equations", 2, "Solve: $y = x + 3$ and $x + y = 9$.", ["$(3, 6)$", "$(6, 3)$", "$(4, 5)$", "$(9, 3)$"], 0, "Substitute: $x + (x+3) = 9$, so $x = 3$, $y = 6$."),
+  Q("systems-of-linear-equations", 3, "How many solutions: $y = 2x + 1$ and $y = 2x - 3$?", ["None — parallel lines", "One", "Infinitely many", "Two"], 0, "Same slope, different intercepts — the lines never meet."),
+
+  // 7. Scatter Plots & Bivariate Data
+  Q("scatter-plots-and-bivariate-data", 1, "(hours studied, test score): the cloud of dots climbs ↗. Correlation?", ["Positive", "Negative", "None", "Impossible to tell"], 0, "Larger $x$ with larger $y$ — the cloud tilts up."),
+  Q("scatter-plots-and-bivariate-data", 2, "Points $(1,1),(2,2),(3,3),(8,0)$: the outlier is —", ["$(8,0)$", "$(3,3)$", "$(1,1)$", "there is none"], 0, "Three points sit on $y=x$; $(8,0)$ is far off that pattern."),
+  Q("scatter-plots-and-bivariate-data", 3, "Trend line $y = 0.75x + 2.5$: the prediction at $x = 6$ is —", ["$7$", "$6.25$", "$4.5$", "$9.25$"], 0, "$0.75(6) + 2.5 = 7$."),
+];
+
 let cache: PlacementQuestion[] | null = null;
 let geoCache: PlacementQuestion[] | null = null;
+let g8Cache: PlacementQuestion[] | null = null;
 
 export function getPlacementBank(): PlacementQuestion[] {
   if (cache) return cache;
@@ -168,6 +208,13 @@ export function getGeometryPlacementBank(): PlacementQuestion[] {
   const titleBySlug = new Map(getGeometrySpine().map((u) => [u.slug, u.title]));
   geoCache = GEO_CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
   return geoCache;
+}
+
+export function getGrade8PlacementBank(): PlacementQuestion[] {
+  if (g8Cache) return g8Cache;
+  const titleBySlug = new Map(getGrade8Spine().map((t) => [t.slug, t.title]));
+  g8Cache = G8_CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
+  return g8Cache;
 }
 
 // A stable, per-question shuffle of the answer options (the source keeps the
