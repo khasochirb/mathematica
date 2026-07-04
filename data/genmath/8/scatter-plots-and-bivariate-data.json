@@ -1,0 +1,1565 @@
+{
+  "slug": "scatter-plots-and-bivariate-data",
+  "title": "Scatter Plots & Bivariate Data",
+  "grade": 8,
+  "blurb": "Plotting paired data, spotting correlation, fitting a trend line, and reading two-way tables.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "reading-scatter-plots",
+      "title": "Reading Scatter Plots",
+      "concreteComparison": "Twelve classmates each report two numbers: hours studied and test score. One student is a whole ROW in a table — but just a single **dot** on a graph: right for hours, up for score. Twelve students, twelve dots, and suddenly the whole class's story is visible at a glance. That picture is a **scatter plot**, the tool for any data that comes in pairs.",
+      "objective": "Read a scatter plot: what one point represents, how to place paired data, and how to pull individual facts back off the cloud.",
+      "concept": [
+        "**Bivariate data** comes in pairs — two measurements per observation: (hours studied, test score), (temperature, ice creams sold), (age, height).",
+        "A **scatter plot** places one dot per observation: across for the first value, up for the second. The dot $(6,7)$ IS the student who studied 6 hours and scored 7.",
+        "Reading back: to find how a specific observation did, locate its dot and read both coordinates.",
+        "Unlike a line graph, the dots are NOT connected — each is a separate observation, not a path."
+      ],
+      "keyIdea": "One observation = one point; the pair (x, y) places it. The cloud of points is the data set.",
+      "facts": [
+        {
+          "title": "One dot",
+          "latex": "$(6,7)$ = one observation",
+          "explanation": "6 across, 7 up."
+        },
+        {
+          "title": "No connecting",
+          "latex": "dots stay separate",
+          "explanation": "Each is its own observation."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sc1-we1",
+          "statement": "A student studied $6$ hours and scored $7$. Where is their dot?",
+          "solution": "At $(6,7)$ — $6$ across on the hours axis, $7$ up on the score axis.",
+          "check": [
+            "6 + 1 == 7"
+          ]
+        },
+        {
+          "id": "sc1-we2",
+          "statement": "Twelve students each contribute one dot. How many dots for a class of $25$?",
+          "solution": "One per student: $25$ dots.",
+          "check": [
+            "25 == 25"
+          ]
+        },
+        {
+          "id": "sc1-we3",
+          "statement": "The dots $(2,4)$ and $(4,2)$ — same observation?",
+          "solution": "No! $(2,4)$ studied 2 h and scored 4; $(4,2)$ studied 4 h and scored 2. Order matters.",
+          "check": [
+            "2*4 == 4*2",
+            "2 != 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Connecting the dots like a line graph.",
+          "correction": "Scatter-plot dots are separate observations — connecting them invents a path that doesn't exist.",
+          "authored": true
+        },
+        {
+          "text": "Swapping the coordinates.",
+          "correction": "$(6,7)$ and $(7,6)$ are different students — the FIRST number always rides the horizontal axis.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sc1-t1",
+          "statement": "Plot: a player practiced $3$ hours and scored $5$ goals. The dot goes at…",
+          "solution": "$(3,5)$.",
+          "check": [
+            "3 + 2 == 5"
+          ]
+        },
+        {
+          "id": "sc1-t2",
+          "statement": "A scatter plot of 30 days of (temperature, sales) has how many dots?",
+          "solution": "One per day: $30$.",
+          "check": [
+            "30 == 30"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "scatterPlot",
+            "eyebrow": "Watch it",
+            "title": "Data becomes dots",
+            "teach": "Twelve students report (hours studied, test score) — and land on the plot **one by one**, each at its own pair. The rightmost high dot is the student at $(9,10)$: nine hours, a perfect score.",
+            "config": {
+              "mode": "plot",
+              "xLabel": "hours studied",
+              "yLabel": "test score"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Pairs become points",
+            "beats": [
+              "Bivariate data = two numbers per observation.",
+              "(hours, score): $(6,7)$ means 6 h → scored 7.",
+              "Across for the first, up for the second.",
+              "Twelve observations → twelve dots. Never connected."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Place the dot",
+            "prompt": "A student studied $4$ hours and scored $6$. Their dot sits at…",
+            "options": [
+              "$(4,6)$",
+              "$(6,4)$",
+              "$(4,4)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "First number across (hours 4), second up (score 6).",
+            "check": [
+              "4 + 2 == 6"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reading back",
+            "title": "From cloud to fact",
+            "beats": [
+              "Find the dot at $(9,10)$.",
+              "Across: 9 hours studied.",
+              "Up: scored 10.",
+              "Every dot answers: who, how much, what result."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Dots and their stories",
+            "intro": "Coordinates in, facts out.",
+            "examples": [
+              {
+                "prompt": "Ice-cream stand: on a $30°$ day they sold $8$ tubs. Where's the dot; what does $(20, 3)$ say?",
+                "steps": [
+                  "The day is the dot $(30,8)$.",
+                  "$(20,3)$: a $20°$ day with $3$ tubs sold.",
+                  "Warmer day, more tubs — noted."
+                ],
+                "answer": "$(30,8)$; a 20° day sold 3",
+                "check": [
+                  "30 - 10 == 20",
+                  "8 - 5 == 3"
+                ]
+              },
+              {
+                "prompt": "Which pair did the student at $(5,7)$ report?",
+                "steps": [
+                  "Across 5: studied 5 hours.",
+                  "Up 7: scored 7."
+                ],
+                "answer": "5 hours, score 7",
+                "check": [
+                  "5 + 2 == 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Read the plot",
+            "intro": "First number across, second up.",
+            "problems": [
+              {
+                "prompt": "The dot $(8,3)$ in (screen hours, sleep quality) means…",
+                "options": [
+                  "8 h screens, quality 3",
+                  "3 h screens, quality 8",
+                  "8 nights of data"
+                ],
+                "correctIndex": 0,
+                "explanation": "Across = screen hours (8), up = quality (3).",
+                "check": [
+                  "8 - 5 == 3"
+                ]
+              },
+              {
+                "prompt": "A scatter plot shows (age, shoe size) for 18 kids. Number of dots?",
+                "options": [
+                  "$18$",
+                  "$36$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "One dot per kid — the PAIR shares one dot.",
+                "check": [
+                  "18 == 18"
+                ]
+              },
+              {
+                "prompt": "Why not connect scatter-plot dots?",
+                "options": [
+                  "Each dot is a separate observation",
+                  "Lines are only for geometry",
+                  "Too many dots"
+                ],
+                "correctIndex": 0,
+                "explanation": "There's no path between different students — connecting invents one.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The plot that saved lives",
+            "body": "In 1854, London physician John Snow plotted cholera deaths as dots on a map — and the cloud clustered around one water pump on Broad Street. The pump handle was removed; the outbreak collapsed. One of history's most famous dot-plots was a public-health weapon."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Bivariate data = pairs; one observation = one dot.",
+              "First value across, second value up.",
+              "Dots stay separate — no connecting."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "correlation",
+      "title": "Correlation: Reading the Cloud",
+      "concreteComparison": "Hold a class's (hours studied, score) plot at arm's length: the cloud of dots **climbs** to the right. Now plot (hours on screens, hours of sleep): the cloud **sinks**. Plot (shoe size, quiz score): a shapeless blob. Before any formulas, the cloud's tilt already tells the story — that tilt is **correlation**.",
+      "objective": "Classify scatter plots as showing positive, negative, or no correlation — and judge strength — from the shape of the cloud.",
+      "concept": [
+        "**Positive correlation:** as $x$ grows, $y$ tends to grow — the cloud tilts up ↗. More study, higher scores.",
+        "**Negative correlation:** as $x$ grows, $y$ tends to fall — the cloud tilts down ↘. More screen time, less sleep.",
+        "**No correlation:** no tilt, no pattern — knowing $x$ tells you nothing about $y$. Shoe size and quiz score.",
+        "**Strength**: tightly-packed clouds mean strong correlation; loose, scattered clouds mean weak. And the classic warning: correlation is a PATTERN, not a CAUSE — ice-cream sales and sunburns rise together because of a third thing (summer), not each other."
+      ],
+      "keyIdea": "Cloud climbs ↗ positive; sinks ↘ negative; shapeless — none. Tightness = strength. Pattern ≠ cause.",
+      "facts": [
+        {
+          "title": "The three shapes",
+          "latex": "↗ positive · ↘ negative · ✻ none",
+          "explanation": "Read the tilt of the cloud."
+        },
+        {
+          "title": "The warning",
+          "latex": "correlation ≠ causation",
+          "explanation": "Patterns don't prove causes."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sc2-we1",
+          "statement": "(hours studied, score): dots climb from $(1,3)$ to $(9,10)$. Correlation?",
+          "solution": "Positive — larger $x$ comes with larger $y$: from $y=3$ up to $y=10$.",
+          "check": [
+            "10 > 3",
+            "9 > 1"
+          ]
+        },
+        {
+          "id": "sc2-we2",
+          "statement": "(screen hours, sleep): dots fall from $(1,9)$ to $(9,3)$. Correlation?",
+          "solution": "Negative — as $x$ rises from 1 to 9, $y$ drops from 9 to 3.",
+          "check": [
+            "9 > 3",
+            "9 > 1"
+          ]
+        },
+        {
+          "id": "sc2-we3",
+          "statement": "Two positive clouds: A hugs a line closely; B is loosely scattered. Which is stronger?",
+          "solution": "A — tightness is strength. Both are positive; A predicts better.",
+          "check": [
+            "1 == 1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading one stray dot as the trend.",
+          "correction": "Correlation is about the CLOUD's overall tilt — one point up or down doesn't flip the story.",
+          "authored": true
+        },
+        {
+          "text": "Concluding cause from correlation.",
+          "correction": "Ice-cream sales correlate with sunburns — summer causes both. A pattern is a clue, not a verdict.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sc2-t1",
+          "statement": "(temperature, hot-chocolate sales): colder days sell more. Correlation?",
+          "solution": "Negative — higher temperature, lower sales.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "sc2-t2",
+          "statement": "(height, phone battery life). Expected correlation?",
+          "solution": "None — height tells you nothing about battery life.",
+          "check": [
+            "1 == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "scatterPlot",
+            "eyebrow": "Experiment",
+            "title": "One cloud, three stories",
+            "teach": "Tap the buttons and watch the SAME twelve dots glide into three different stories: climbing ↗, sinking ↘, and shapeless. The tilt of the cloud is the correlation.",
+            "config": {
+              "mode": "correlation",
+              "dataset": "positive"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The three tilts",
+            "title": "Name the cloud",
+            "beats": [
+              "↗ climbs right: **positive** — x up, y up.",
+              "↘ sinks right: **negative** — x up, y down.",
+              "✻ shapeless: **none** — x says nothing about y.",
+              "Squint: the tilt appears before the details."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Name it",
+            "prompt": "(practice hours, mistakes made): the cloud sinks ↘. Correlation?",
+            "options": [
+              "Negative",
+              "Positive",
+              "None"
+            ],
+            "correctIndex": 0,
+            "explanation": "More practice comes with FEWER mistakes — negative correlation (a good thing here!).",
+            "check": [
+              "1 == 1"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Strength",
+            "title": "Tight vs loose",
+            "beats": [
+              "Both clouds can be positive…",
+              "…but one hugs a line, one sprawls.",
+              "Tight = **strong**: x predicts y well.",
+              "Loose = **weak**: the trend is there, barely."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The famous warning",
+            "title": "Pattern is not cause",
+            "beats": [
+              "Ice-cream sales ↗ sunburn cases. Correlated!",
+              "Does ice cream burn skin? No —",
+              "**summer** drives both. A hidden third factor.",
+              "Correlation points a flashlight; it doesn't convict."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Classify the clouds",
+            "intro": "Tilt first, tightness second.",
+            "examples": [
+              {
+                "prompt": "(car age, resale price): older cars sell for less. Classify.",
+                "steps": [
+                  "x up (age), y down (price).",
+                  "The cloud sinks ↘.",
+                  "Negative correlation."
+                ],
+                "answer": "negative",
+                "check": [
+                  "1 == 1"
+                ]
+              },
+              {
+                "prompt": "(plant sunlight hours, growth): more sun, more growth, tightly packed. Classify.",
+                "steps": [
+                  "x up, y up: positive.",
+                  "Tight cloud: strong.",
+                  "Strong positive."
+                ],
+                "answer": "strong positive",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Read the tilt",
+            "intro": "↗, ↘, or shapeless?",
+            "problems": [
+              {
+                "prompt": "(hours of daylight, heating bill):",
+                "options": [
+                  "Negative",
+                  "Positive",
+                  "None"
+                ],
+                "correctIndex": 0,
+                "explanation": "More daylight → warmer → lower heating bill: ↘.",
+                "check": [
+                  "1 == 1"
+                ]
+              },
+              {
+                "prompt": "(number of pages, book weight):",
+                "options": [
+                  "Positive",
+                  "Negative",
+                  "None"
+                ],
+                "correctIndex": 0,
+                "explanation": "More pages, heavier book: ↗.",
+                "check": [
+                  "1 == 1"
+                ]
+              },
+              {
+                "prompt": "Cities with more firefighters have more fire damage. Firefighters cause damage?",
+                "options": [
+                  "No — bigger cities drive both",
+                  "Yes — the data says so",
+                  "Only in small cities"
+                ],
+                "correctIndex": 0,
+                "explanation": "City size is the hidden third factor. Correlation ≠ causation.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The pirate graph",
+            "body": "To parody sloppy correlation claims, someone once plotted global temperature against the number of pirates — a beautiful negative correlation! Fewer pirates, warmer planet. Bring back pirates? The joke graph is now a classroom classic on why patterns alone prove nothing."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Positive ↗, negative ↘, none ✻ — read the tilt.",
+              "Tight cloud = strong; loose = weak.",
+              "Correlation is a pattern, never a proof of cause."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "outliers-and-clusters",
+      "title": "Outliers & Clusters",
+      "concreteComparison": "Eleven students' dots march neatly upward — study more, score more. But one dot sits alone in the corner: $8$ hours studied, score of $2$. Sick on test day? Studied the wrong chapter? That lone dot is an **outlier**, and real data almost always has one. Spotting the stragglers (and the clumps) is how you read data like a skeptic instead of a believer.",
+      "objective": "Identify outliers (points far from the pattern) and clusters (tight clumps) in scatter plots, and reason about what they do to a trend.",
+      "concept": [
+        "An **outlier** is a point far from the overall pattern — not just the biggest or smallest, but the one that doesn't FIT. Eleven dots climbing plus $(8,2)$ sitting low: that's the outlier.",
+        "Outliers deserve a question, not automatic deletion: measurement error? special circumstance? or a genuinely surprising observation?",
+        "A **cluster** is a tight clump of points — two clusters often mean two groups hiding in one plot (weekday sales vs weekend sales).",
+        "Outliers TUG on summaries: one wild point can noticeably drag a trend line toward itself — which is exactly why you look for them first."
+      ],
+      "keyIdea": "An outlier breaks the pattern; a cluster reveals a subgroup. Find both before trusting any trend.",
+      "facts": [
+        {
+          "title": "Outlier",
+          "latex": "far from the PATTERN",
+          "explanation": "Not merely the max or min."
+        },
+        {
+          "title": "Cluster",
+          "latex": "a tight clump",
+          "explanation": "Often a hidden subgroup."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sc3-we1",
+          "statement": "Eleven dots climb from $(1,3)$ toward $(9,10)$; one sits at $(8,2)$. Identify the outlier.",
+          "solution": "$(8,2)$ — at $x=8$ the pattern predicts a HIGH score (near 8–9), but this point is at 2, far below.",
+          "check": [
+            "8 > 2",
+            "9 - 2 == 7"
+          ]
+        },
+        {
+          "id": "sc3-we2",
+          "statement": "Does the outlier $(8,2)$ pull a trend line up or down on the right side?",
+          "solution": "Down — a low point at large $x$ drags the right end of the line toward itself.",
+          "check": [
+            "2 < 8"
+          ]
+        },
+        {
+          "id": "sc3-we3",
+          "statement": "A shop's (day, sales) plot shows two clumps: one low, one high. What's a likely explanation?",
+          "solution": "Two subgroups — e.g. weekdays (low cluster) and weekends (high cluster).",
+          "check": [
+            "1 == 1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Calling the largest value an outlier automatically.",
+          "correction": "$(9,10)$ is the biggest point but fits the pattern perfectly. The outlier is the point that DOESN'T fit — $(8,2)$.",
+          "authored": true
+        },
+        {
+          "text": "Silently deleting outliers.",
+          "correction": "First ask why it's there. A typo can go; a real surprise is often the most interesting data point you have.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sc3-t1",
+          "statement": "Points: $(1,2),(2,3),(3,4),(4,5),(9,1)$. Which is the outlier?",
+          "solution": "$(9,1)$ — the others climb steadily; it sits far off that path.",
+          "check": [
+            "5 - 1 == 4"
+          ]
+        },
+        {
+          "id": "sc3-t2",
+          "statement": "One clump at low x, one at high x, gap between. What should you suspect?",
+          "solution": "Two clusters — two different groups mixed in one plot.",
+          "check": [
+            "1 == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "scatterPlot",
+            "eyebrow": "Spot it",
+            "title": "One of these is not like the others",
+            "teach": "Eleven dots tell a clean upward story — and the pulsing red dot at $(8,2)$ refuses to join it. Eight hours of study, a score of 2: the outlier. Your first question should always be **why**.",
+            "config": {
+              "mode": "outlier",
+              "xLabel": "hours studied",
+              "yLabel": "test score"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "What makes an outlier",
+            "title": "Far from the PATTERN",
+            "beats": [
+              "Not the biggest. Not the smallest.",
+              "The one that doesn't FIT the cloud's story.",
+              "At $x=8$ the pattern expects $y\\approx 8$–$9$.",
+              "$(8,2)$ misses that by a mile — outlier."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Find the stray",
+            "prompt": "Points $(1,1),(2,2),(3,3),(4,4),(1,5)$: the outlier is…",
+            "options": [
+              "$(1,5)$",
+              "$(4,4)$",
+              "$(1,1)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Four points sit on the line $y=x$; $(1,5)$ floats far above it.",
+            "check": [
+              "4 == 4",
+              "5 != 1"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Clusters",
+            "title": "Clumps are clues",
+            "beats": [
+              "Sometimes the cloud splits into two clumps.",
+              "Shop sales: low weekday clump, high weekend clump.",
+              "One plot, two hidden groups.",
+              "Clusters ask: should this be TWO analyses?"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Outliers and their pull",
+            "intro": "Name the stray; reason about its tug.",
+            "examples": [
+              {
+                "prompt": "Library data climbs from $(1,2)$ to $(8,9)$, plus one point at $(7,1)$. Outlier and its effect?",
+                "steps": [
+                  "$(7,1)$ sits far below the climb.",
+                  "A low-right point drags the line's right end down.",
+                  "The trend flattens because of one point."
+                ],
+                "answer": "$(7,1)$; it flattens the trend",
+                "check": [
+                  "9 - 1 == 8"
+                ]
+              },
+              {
+                "prompt": "Is the outlier always a mistake?",
+                "steps": [
+                  "No — first ask why.",
+                  "Typo → fix or drop.",
+                  "Real surprise → the most interesting point in the plot."
+                ],
+                "answer": "no — investigate first",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Strays and clumps",
+            "intro": "Pattern first, then the exceptions.",
+            "problems": [
+              {
+                "prompt": "$(2,8),(3,7),(4,6),(5,5),(6,4),(2,1)$: the outlier is…",
+                "options": [
+                  "$(2,1)$",
+                  "$(6,4)$",
+                  "$(2,8)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Five points fall neatly ↘; $(2,1)$ sits far below that path.",
+                "check": [
+                  "8 - 1 == 7"
+                ]
+              },
+              {
+                "prompt": "An outlier at the far right, well BELOW an upward trend, will…",
+                "options": [
+                  "tilt the trend line down",
+                  "tilt it up",
+                  "not affect it"
+                ],
+                "correctIndex": 0,
+                "explanation": "Lines get tugged toward stray points — a low-right stray flattens the climb.",
+                "check": [
+                  "1 == 1"
+                ]
+              },
+              {
+                "prompt": "A (height, weight) plot of 3rd-graders AND their teachers likely shows…",
+                "options": [
+                  "two clusters",
+                  "no correlation",
+                  "a perfect line"
+                ],
+                "correctIndex": 0,
+                "explanation": "Kids clump low-left, adults high-right: two groups, two clusters.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The $8 million outlier",
+            "body": "In 2010 a trader's “fat finger” allegedly typed billion instead of million — and stock-market plots grew an outlier so wild it triggered a flash crash. Automated systems now hunt outliers in real time, doing at planet scale exactly what you just did by eye."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Outlier = far from the pattern (not just the max).",
+              "Ask WHY before deleting — surprises matter.",
+              "Clusters reveal hidden subgroups; outliers tug trends."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "fitting-a-trend-line",
+      "title": "Fitting a Trend Line",
+      "concreteComparison": "Lay a ruler across the cloud of dots and try to make it “fair”: some dots above, some below, all of them CLOSE. That ruler is a **trend line** — one straight summary of a hundred observations. What makes one placement better than another? The size of the **misses**: the little vertical gaps between each dot and your line. Best line = smallest misses.",
+      "objective": "Fit a trend line to a scatter plot by minimizing the misses (residuals), and judge what makes a line a good or bad fit.",
+      "concept": [
+        "A **trend line** (line of best fit) is one straight line summarizing the cloud — the pattern with the noise squeezed out.",
+        "Each point's **miss** (residual) is the vertical gap between the point and the line: $\\text{miss} = y_{\\text{point}} - y_{\\text{line}}$. Above the line: positive. Below: negative.",
+        "A **good fit** keeps ALL the misses small — and balanced: roughly as much cloud above the line as below. A line through only the top dots has huge one-sided misses.",
+        "Statisticians crown the line with the smallest total (squared) misses — the **least-squares** line. Your eye gets close; the formula nails it."
+      ],
+      "keyIdea": "The trend line is the line with the smallest, most balanced misses — dots split above and below.",
+      "facts": [
+        {
+          "title": "Miss (residual)",
+          "latex": "point minus line",
+          "explanation": "The little vertical gap."
+        },
+        {
+          "title": "Best fit",
+          "latex": "smallest total misses",
+          "explanation": "Balanced above and below."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sc4-we1",
+          "statement": "The line $y=0.75x+2.5$ predicts what at $x=6$ — and the point there is $(6,7)$. Find the miss.",
+          "solution": "Line: $0.75(6)+2.5=7$. Miss $=7-7=0$ — the line passes through this point.",
+          "check": [
+            "Rational(3,4)*6 + Rational(5,2) == 7",
+            "7 - 7 == 0"
+          ]
+        },
+        {
+          "id": "sc4-we2",
+          "statement": "Same line at $x=4$: the point is $(4,6)$. Find the miss.",
+          "solution": "Line: $0.75(4)+2.5=5.5$. Miss $=6-5.5=0.5$ — half a point above the line.",
+          "check": [
+            "Rational(3,4)*4 + Rational(5,2) == Rational(11,2)",
+            "6 - Rational(11,2) == Rational(1,2)"
+          ]
+        },
+        {
+          "id": "sc4-we3",
+          "statement": "Line A misses by $0.4$ on average; line B by $1.5$. Which fits better?",
+          "solution": "A — smaller average miss is the whole game.",
+          "check": [
+            "Rational(4,10) < Rational(15,10)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Drawing the line through the first and last dots.",
+          "correction": "Endpoints are just two observations — the best line balances ALL the dots, and often passes through none of them.",
+          "authored": true
+        },
+        {
+          "text": "Putting the line above the whole cloud.",
+          "correction": "If every miss is negative (all dots below), the line isn't summarizing — slide it down until the cloud splits.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sc4-t1",
+          "statement": "Line $y=0.75x+2.5$ at $x=8$: the point is $(8,8)$. The miss?",
+          "solution": "Line gives $8.5$; miss $=8-8.5=-0.5$ — half a point below.",
+          "check": [
+            "Rational(3,4)*8 + Rational(5,2) == Rational(17,2)",
+            "8 - Rational(17,2) == -Rational(1,2)"
+          ]
+        },
+        {
+          "id": "sc4-t2",
+          "statement": "A line has every dot ABOVE it. Good fit?",
+          "solution": "No — all misses are positive (one-sided). Raise the line to balance the cloud.",
+          "check": [
+            "1 == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "scatterPlot",
+            "eyebrow": "Play it",
+            "title": "The line-fitting game",
+            "teach": "The dashed sticks are the **misses**. Steer the slope and intercept to shrink the **average miss** — then hit **Snap to best fit** and see how close your eye got to the mathematical optimum.",
+            "config": {
+              "mode": "fit",
+              "xLabel": "hours studied",
+              "yLabel": "test score",
+              "m0": 0.25,
+              "b0": 6
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The score",
+            "title": "Misses, measured",
+            "beats": [
+              "Each dot's miss: $y_{\\text{point}} - y_{\\text{line}}$.",
+              "Above the line: positive. Below: negative.",
+              "The line $y=0.75x+2.5$ at $x=4$ says $5.5$;",
+              "the point $(4,6)$ misses it by $+0.5$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Compute a miss",
+            "prompt": "Line $y=0.75x+2.5$; point $(2,4)$. The miss is…",
+            "options": [
+              "$0$",
+              "$+1$",
+              "$-1$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Line at $x=2$: $0.75(2)+2.5=4$. Miss $=4-4=0$ — dead on.",
+            "check": [
+              "Rational(3,4)*2 + Rational(5,2) == 4"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "What “best” means",
+            "title": "Balance and closeness",
+            "beats": [
+              "Good fit: small misses, split above/below.",
+              "Bad fit: huge misses, or all on one side.",
+              "The least-squares line minimizes the total.",
+              "Your eye lands near it — the formula lands ON it."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Judge the fit",
+            "intro": "Small + balanced beats big or one-sided.",
+            "examples": [
+              {
+                "prompt": "For $y=0.75x+2.5$, find the misses at $(2,5)$ and $(5,6)$.",
+                "steps": [
+                  "At $x=2$: line $=4$; miss $=5-4=+1$.",
+                  "At $x=5$: line $=6.25$; miss $=6-6.25=-0.25$.",
+                  "One above, one below — balanced."
+                ],
+                "answer": "$+1$ and $-0.25$",
+                "check": [
+                  "5 - (Rational(3,4)*2 + Rational(5,2)) == 1",
+                  "6 - (Rational(3,4)*5 + Rational(5,2)) == -Rational(1,4)"
+                ]
+              },
+              {
+                "prompt": "Two lines on the same cloud: average misses $0.37$ vs $0.90$. Verdict?",
+                "steps": [
+                  "Smaller average miss wins.",
+                  "$0.37 < 0.90$.",
+                  "The first line is the better fit."
+                ],
+                "answer": "the first",
+                "check": [
+                  "Rational(37,100) < Rational(90,100)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Fit like a statistician",
+            "intro": "Shrink the misses; keep the balance.",
+            "problems": [
+              {
+                "prompt": "Line $y=0.75x+2.5$; point $(6,7)$. Miss?",
+                "options": [
+                  "$0$",
+                  "$+0.5$",
+                  "$-1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Line at 6: exactly 7 — zero miss.",
+                "check": [
+                  "Rational(3,4)*6 + Rational(5,2) == 7"
+                ]
+              },
+              {
+                "prompt": "A trend line should…",
+                "options": [
+                  "balance dots above and below",
+                  "touch every dot",
+                  "pass through (0,0)"
+                ],
+                "correctIndex": 0,
+                "explanation": "It summarizes — it rarely touches many dots at all.",
+                "check": [
+                  "1 == 1"
+                ]
+              },
+              {
+                "prompt": "Which average miss is the best fit?",
+                "options": [
+                  "$0.4$",
+                  "$1.2$",
+                  "$2.0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Smallest average miss = closest line.",
+                "check": [
+                  "Rational(4,10) < Rational(12,10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Invented for the stars",
+            "body": "Least squares was born in astronomy: in 1801 the asteroid Ceres vanished behind the Sun, and 24-year-old Gauss fitted a curve through the few noisy sightings to predict where it would reappear. Astronomers pointed their telescopes at his line — and there it was."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Miss (residual) = point − line, the vertical gap.",
+              "Best line: smallest misses, balanced above/below.",
+              "Least squares makes “best” exact; your eye gets close."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "predicting-with-trend-lines",
+      "title": "Predicting with Trend Lines",
+      "concreteComparison": "Your class's trend line came out as $y=0.75x+2.5$. A new student asks: “If I study $6$ hours, what should I expect?” Slide to $x=6$ on the line: $y=7$. That's the payoff of the whole chapter — the line doesn't just DESCRIBE the class, it **predicts** for students who aren't even in the data. (With one caution about wandering too far…)",
+      "objective": "Use a trend-line equation to make predictions, interpret its slope and intercept in context, and know when extrapolation gets dangerous.",
+      "concept": [
+        "**Predicting**: plug the $x$ into the trend line. $y=0.75x+2.5$ at $x=6$: $0.75(6)+2.5=7$ — expect a score near $7$.",
+        "**Slope in context**: $0.75$ means each extra hour of study adds about $0.75$ points. **Intercept in context**: $2.5$ is the predicted score with zero study.",
+        "**Interpolation** (predicting INSIDE the data's range, $x=1$–$9$ here) is trustworthy. **Extrapolation** (outside it) gets shaky fast: at $x=20$ the line predicts $17.5$ — on a test out of 10!",
+        "Predictions are estimates of the TREND, not guarantees for individuals — the cloud scatters around the line, and so will new students."
+      ],
+      "keyIdea": "Plug x into the line to predict; trust it inside the data's range, distrust it far outside.",
+      "facts": [
+        {
+          "title": "Predict",
+          "latex": "$y=0.75(6)+2.5=7$",
+          "explanation": "Substitute and read."
+        },
+        {
+          "title": "Extrapolation warning",
+          "latex": "$x=20$ → $y=17.5$ on a 10-point test",
+          "explanation": "Far outside the data, lines lie."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sc5-we1",
+          "statement": "Trend line $y=0.75x+2.5$: predict the score for $4$ hours of study.",
+          "solution": "$0.75(4)+2.5=5.5$ — expect about $5.5$.",
+          "check": [
+            "Rational(3,4)*4 + Rational(5,2) == Rational(11,2)"
+          ]
+        },
+        {
+          "id": "sc5-we2",
+          "statement": "What does the slope $0.75$ mean here?",
+          "solution": "Each additional hour of study raises the predicted score by $0.75$ points — two more hours, $1.5$ more points.",
+          "check": [
+            "Rational(3,4)*2 == Rational(3,2)"
+          ]
+        },
+        {
+          "id": "sc5-we3",
+          "statement": "Predict at $x=10$ and at $x=20$. Which prediction deserves trust?",
+          "solution": "$x=10$: $y=10$ (just past the data — usable). $x=20$: $y=17.5$, impossible on a 10-point test — extrapolation gone wrong.",
+          "check": [
+            "Rational(3,4)*10 + Rational(5,2) == 10",
+            "Rational(3,4)*20 + Rational(5,2) == Rational(35,2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Trusting predictions far outside the data.",
+          "correction": "The line only learned from $x=1$–$9$. At $x=20$ it predicts $17.5$ out of 10 — nonsense on stilts.",
+          "authored": true
+        },
+        {
+          "text": "Reading predictions as promises.",
+          "correction": "The line predicts the TREND. Real dots scatter around it — a 6-hour student expects ABOUT 7, not exactly 7.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sc5-t1",
+          "statement": "Using $y=0.75x+2.5$: predicted score for $8$ hours?",
+          "solution": "$0.75(8)+2.5=8.5$.",
+          "check": [
+            "Rational(3,4)*8 + Rational(5,2) == Rational(17,2)"
+          ]
+        },
+        {
+          "id": "sc5-t2",
+          "statement": "A line fit on ages 5–12 is used to predict at age 40. Wise?",
+          "solution": "No — that's extrapolation far beyond the data. Growth patterns don't continue forever.",
+          "check": [
+            "40 > 12"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "scatterPlot",
+            "eyebrow": "The tool",
+            "title": "Your line, ready to predict",
+            "teach": "This is the best-fit line for the class ($y\\approx 0.75x+2.5$ once snapped). Every prediction below comes from sliding along it — inside the data's range it's a good guide.",
+            "config": {
+              "mode": "fit",
+              "xLabel": "hours studied",
+              "yLabel": "test score",
+              "m0": 0.75,
+              "b0": 2.5
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Predicting",
+            "title": "Substitute and read",
+            "beats": [
+              "Trend line: $y=0.75x+2.5$.",
+              "New student, 6 hours: $x=6$.",
+              "$y=0.75(6)+2.5=7$.",
+              "Expect a score around $7$. That's the payoff."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Your turn",
+            "prompt": "Predict the score for $2$ hours of study ($y=0.75x+2.5$):",
+            "options": [
+              "$4$",
+              "$5.5$",
+              "$2.5$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$0.75(2)+2.5=4$.",
+            "check": [
+              "Rational(3,4)*2 + Rational(5,2) == 4"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Meaning of m and b",
+            "title": "The line speaks the story's language",
+            "beats": [
+              "Slope $0.75$: each study hour buys $0.75$ points.",
+              "Intercept $2.5$: the zero-study baseline.",
+              "Same $m$ and $b$ from Linear Functions —",
+              "now wearing real-world units."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The danger zone",
+            "title": "Extrapolation",
+            "beats": [
+              "Data lives at $x=1$–$9$.",
+              "Inside that range: predictions are grounded.",
+              "$x=20$: the line says $17.5$… out of 10.",
+              "Far from the data, the line knows nothing."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Predict — and judge the prediction",
+            "intro": "Substitute; then ask if x is in range.",
+            "examples": [
+              {
+                "prompt": "Predict for 5 hours; is it trustworthy?",
+                "steps": [
+                  "$0.75(5)+2.5=6.25$.",
+                  "$x=5$ is mid-range (1–9).",
+                  "Interpolation — trustworthy."
+                ],
+                "answer": "$\\approx 6.25$, trustworthy",
+                "check": [
+                  "Rational(3,4)*5 + Rational(5,2) == Rational(25,4)"
+                ]
+              },
+              {
+                "prompt": "A plant-growth line fit on weeks 1–6 predicts 3 meters at week 50. Trust it?",
+                "steps": [
+                  "Week 50 is FAR outside weeks 1–6.",
+                  "Growth slows; lines don't.",
+                  "Extrapolation — don't trust it."
+                ],
+                "answer": "no — extreme extrapolation",
+                "check": [
+                  "50 > 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Predict responsibly",
+            "intro": "Inside the range: yes. Far out: beware.",
+            "problems": [
+              {
+                "prompt": "$y=0.75x+2.5$: prediction at $x=4$?",
+                "options": [
+                  "$5.5$",
+                  "$4.75$",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3+2.5=5.5$.",
+                "check": [
+                  "Rational(3,4)*4 + Rational(5,2) == Rational(11,2)"
+                ]
+              },
+              {
+                "prompt": "The intercept $2.5$ means…",
+                "options": [
+                  "predicted score with 0 hours",
+                  "max possible score",
+                  "hours needed to pass"
+                ],
+                "correctIndex": 0,
+                "explanation": "$b$ is always the $x=0$ value — the no-study baseline.",
+                "check": [
+                  "Rational(3,4)*0 + Rational(5,2) == Rational(5,2)"
+                ]
+              },
+              {
+                "prompt": "Which prediction is extrapolation (data: x = 1–9)?",
+                "options": [
+                  "$x=25$",
+                  "$x=5$",
+                  "$x=8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$25$ is far outside the observed range.",
+                "check": [
+                  "25 > 9"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Moore's law: the extrapolation that held",
+            "body": "In 1965 Gordon Moore drew a trend line through FIVE data points about chip components and extrapolated a decade out. Reckless? Wildly. Yet the industry adopted his line as a roadmap and chased it for half a century. Most extrapolations fail — the rare ones that stick can organize an entire industry."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Predict by substituting x into the trend line.",
+              "$m$ and $b$ speak the story's units.",
+              "Interpolate freely; extrapolate with suspicion."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "two-way-tables",
+      "title": "Two-Way Tables",
+      "concreteComparison": "Not all paired data is numbers. Ask $100$ students two YES/NO questions — “do you play a sport?” and “do you pack lunch?” — and a scatter plot is useless: there's nothing to measure, only categories. The tool for paired **categories** is the **two-way table**: rows for one question, columns for the other, counts in the cells.",
+      "objective": "Read and complete two-way tables, and use row/column totals and relative frequencies to spot associations between categories.",
+      "concept": [
+        "A **two-way table** cross-tabulates two categorical variables. Rows: grade (7th/8th). Columns: has a phone (yes/no). Each cell counts one combination.",
+        "**Totals** live on the margins: row totals, column totals, and the grand total. Every missing cell is recoverable: cells in a row must add to the row total.",
+        "**Relative frequency** turns counts into comparable fractions: $40$ of $50$ eighth-graders have phones $= \\frac{40}{50} = 80\\%$, vs $30$ of $50$ seventh-graders $=60\\%$.",
+        "Comparing relative frequencies across rows reveals **association**: if the percentages differ clearly ($80\\%$ vs $60\\%$), the two variables are related; if they match, they're independent."
+      ],
+      "keyIdea": "Categories pair up in a two-way table; compare ROW percentages to spot an association.",
+      "facts": [
+        {
+          "title": "The grid",
+          "latex": "rows × columns of counts",
+          "explanation": "One cell per combination."
+        },
+        {
+          "title": "Association test",
+          "latex": "compare row percentages",
+          "explanation": "$80\\%$ vs $60\\%$ → related."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sc6-we1",
+          "statement": "Of 50 seventh-graders, 30 have phones. Of 50 eighth-graders, 40 do. Complete the no-phone cells and the totals.",
+          "solution": "7th: $50-30=20$ without. 8th: $50-40=10$ without. Phones total $70$, no-phone total $30$, grand total $100$.",
+          "check": [
+            "30 + 20 == 50",
+            "40 + 10 == 50",
+            "30 + 40 == 70",
+            "20 + 10 == 30",
+            "70 + 30 == 100"
+          ]
+        },
+        {
+          "id": "sc6-we2",
+          "statement": "What fraction of 8th graders have phones? Of 7th graders? Is there an association?",
+          "solution": "8th: $\\frac{40}{50}=80\\%$; 7th: $\\frac{30}{50}=60\\%$. The rates differ — grade and phone ownership are associated.",
+          "check": [
+            "Rational(40,50) == Rational(4,5)",
+            "Rational(30,50) == Rational(3,5)"
+          ]
+        },
+        {
+          "id": "sc6-we3",
+          "statement": "What fraction of ALL students have a phone?",
+          "solution": "$\\frac{70}{100}=70\\%$.",
+          "check": [
+            "Rational(70,100) == Rational(7,10)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Comparing raw counts from different-sized groups.",
+          "correction": "40 vs 30 phone-owners looks close — but out of 50 each, that's 80% vs 60%. Rates, not raw counts.",
+          "authored": true
+        },
+        {
+          "text": "Mixing row and column percentages.",
+          "correction": "“% of 8th-graders with phones” divides by the ROW total (50), not the column total (70). Pick the group first.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sc6-t1",
+          "statement": "A row reads: cats $18$, dogs $?$, total $45$. Find the missing cell.",
+          "solution": "$45-18=27$ dogs.",
+          "check": [
+            "18 + 27 == 45"
+          ]
+        },
+        {
+          "id": "sc6-t2",
+          "statement": "Club A: $12$ of $30$ walk to school. Club B: $12$ of $20$. Same rate?",
+          "solution": "No: $\\frac{12}{30}=40\\%$ vs $\\frac{12}{20}=60\\%$ — same count, different rates.",
+          "check": [
+            "Rational(12,30) == Rational(2,5)",
+            "Rational(12,20) == Rational(3,5)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "When dots fail",
+            "title": "Categories need a grid",
+            "beats": [
+              "Scatter plots need NUMBERS on both axes.",
+              "“Plays a sport?” / “Packs lunch?” — categories.",
+              "The tool: a **two-way table**.",
+              "Rows × columns, a count in every cell."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The table",
+            "title": "Phones by grade",
+            "beats": [
+              "100 students, two questions:",
+              "7th grade: 30 with phones, 20 without (50 total).",
+              "8th grade: 40 with, 10 without (50 total).",
+              "Margins: 70 with, 30 without, 100 overall."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Fill the cell",
+            "prompt": "A row: has phone $40$, no phone $?$, total $50$. The cell is…",
+            "options": [
+              "$10$",
+              "$90$",
+              "$40$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Cells add to the row total: $50-40=10$.",
+            "check": [
+              "40 + 10 == 50"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Rates, not counts",
+            "title": "Relative frequency",
+            "beats": [
+              "8th: $\\frac{40}{50} = 80\\%$ have phones.",
+              "7th: $\\frac{30}{50} = 60\\%$.",
+              "Different rates → grade and phones are **associated**.",
+              "Equal rates would mean: no relationship."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Read the grid",
+            "intro": "Complete cells; compare row rates.",
+            "examples": [
+              {
+                "prompt": "Sports vs lunch: athletes 24 of 40 pack lunch; non-athletes 18 of 60. Compare the rates.",
+                "steps": [
+                  "Athletes: $\\frac{24}{40}=60\\%$.",
+                  "Non-athletes: $\\frac{18}{60}=30\\%$.",
+                  "$60\\%$ vs $30\\%$ — associated."
+                ],
+                "answer": "60% vs 30% — associated",
+                "check": [
+                  "Rational(24,40) == Rational(3,5)",
+                  "Rational(18,60) == Rational(3,10)"
+                ]
+              },
+              {
+                "prompt": "Grand total 100; row totals 40 and ?. Find it.",
+                "steps": [
+                  "Rows add to the grand total.",
+                  "$100-40=60$."
+                ],
+                "answer": "$60$",
+                "check": [
+                  "40 + 60 == 100"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Two-way thinking",
+            "intro": "Complete, then compare rates.",
+            "problems": [
+              {
+                "prompt": "Column: bus riders — 7th: 22, 8th: ?, total 50. The 8th-grade cell is…",
+                "options": [
+                  "$28$",
+                  "$72$",
+                  "$22$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$50-22=28$.",
+                "check": [
+                  "22 + 28 == 50"
+                ]
+              },
+              {
+                "prompt": "Morning people: 15 of 25 girls, 12 of 25 boys. Rates?",
+                "options": [
+                  "$60\\%$ vs $48\\%$",
+                  "$15\\%$ vs $12\\%$",
+                  "$40\\%$ vs $52\\%$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{15}{25}=60\\%$, $\\frac{12}{25}=48\\%$.",
+                "check": [
+                  "Rational(15,25) == Rational(3,5)",
+                  "Rational(12,25) == Rational(12,25)"
+                ]
+              },
+              {
+                "prompt": "Two rows show identical percentages. The variables are…",
+                "options": [
+                  "not associated",
+                  "strongly associated",
+                  "outliers"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal rates across groups = knowing the row tells you nothing new.",
+                "check": [
+                  "Rational(1,2) == Rational(1,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "You read data now",
+            "body": "Dots, clouds, trends, strays, predictions, and category grids — the full bivariate toolkit."
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Course complete",
+            "title": "You've finished Grade 8",
+            "body": "Scatter plots close the arc: real numbers → exponents → roots → equations → functions → systems → DATA, where all of it meets the messy world. That's the entire Grade 8 course — every topic interactive, every answer machine-verified. Onward."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "sc-pr1",
+      "statement": "A student practiced 7 h and made 2 errors. Their dot on (practice, errors) is…",
+      "solution": "$(7,2)$.",
+      "check": [
+        "7 - 5 == 2"
+      ]
+    },
+    {
+      "id": "sc-pr2",
+      "statement": "(elevation, temperature): higher up is colder. Correlation?",
+      "solution": "Negative.",
+      "check": [
+        "1 == 1"
+      ]
+    },
+    {
+      "id": "sc-pr3",
+      "statement": "Points $(1,1),(2,2),(3,3),(8,0)$: name the outlier.",
+      "solution": "$(8,0)$ — the rest sit on $y=x$.",
+      "check": [
+        "3 == 3",
+        "0 != 8"
+      ]
+    },
+    {
+      "id": "sc-pr4",
+      "statement": "Line $y=0.75x+2.5$: the miss at point $(2,5)$?",
+      "solution": "Line gives $4$; miss $=5-4=+1$.",
+      "check": [
+        "5 - (Rational(3,4)*2 + Rational(5,2)) == 1"
+      ]
+    },
+    {
+      "id": "sc-pr5",
+      "statement": "Predict with $y=0.75x+2.5$ at $x=6$.",
+      "solution": "$7$.",
+      "check": [
+        "Rational(3,4)*6 + Rational(5,2) == 7"
+      ]
+    },
+    {
+      "id": "sc-pr6",
+      "statement": "Average misses: line A $0.5$, line B $0.9$. Better fit?",
+      "solution": "A.",
+      "check": [
+        "Rational(5,10) < Rational(9,10)"
+      ]
+    },
+    {
+      "id": "sc-pr7",
+      "statement": "Trend slope $0.75$ points/hour: how much do 4 extra hours add?",
+      "solution": "$3$ points.",
+      "check": [
+        "Rational(3,4)*4 == 3"
+      ]
+    },
+    {
+      "id": "sc-pr8",
+      "statement": "Data spans $x=1$–$9$. Is predicting at $x=30$ interpolation or extrapolation?",
+      "solution": "Extrapolation — far outside the range.",
+      "check": [
+        "30 > 9"
+      ]
+    },
+    {
+      "id": "sc-pr9",
+      "statement": "Two-way row: walk 14, ride ?, total 40.",
+      "solution": "$40-14=26$.",
+      "check": [
+        "14 + 26 == 40"
+      ]
+    },
+    {
+      "id": "sc-pr10",
+      "statement": "Glasses: 20 of 40 in class A, 15 of 50 in class B. Rates?",
+      "solution": "A: $50\\%$; B: $30\\%$ — different.",
+      "check": [
+        "Rational(20,40) == Rational(1,2)",
+        "Rational(15,50) == Rational(3,10)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "sc-ty1",
+      "statement": "The dot $(5,9)$ on (hours slept, mood score) means…",
+      "solution": "5 hours slept, mood 9.",
+      "check": [
+        "5 + 4 == 9"
+      ]
+    },
+    {
+      "id": "sc-ty2",
+      "statement": "(bus stops passed, distance from home): correlation?",
+      "solution": "Positive — more stops, farther away.",
+      "check": [
+        "1 == 1"
+      ]
+    },
+    {
+      "id": "sc-ty3",
+      "statement": "$(1,8),(2,7),(3,6),(4,5),(9,9)$: the outlier is?",
+      "solution": "$(9,9)$ — the pattern falls ↘; it jumps high.",
+      "check": [
+        "8 - 5 == 3"
+      ]
+    },
+    {
+      "id": "sc-ty4",
+      "statement": "Line $y=0.75x+2.5$: miss at $(8,8)$?",
+      "solution": "Line: $8.5$; miss $=-0.5$.",
+      "check": [
+        "8 - (Rational(3,4)*8 + Rational(5,2)) == -Rational(1,2)"
+      ]
+    },
+    {
+      "id": "sc-ty5",
+      "statement": "Predict at $x=10$ with $y=0.75x+2.5$ — and note the caution.",
+      "solution": "$y=10$; $x=10$ is just past the data ($1$–$9$), so treat gently.",
+      "check": [
+        "Rational(3,4)*10 + Rational(5,2) == 10"
+      ]
+    },
+    {
+      "id": "sc-ty6",
+      "statement": "Complete: pets yes/no by grade — 7th: 32 yes, 18 no; 8th: ? yes, 25 no; 8th total 50.",
+      "solution": "8th yes $=50-25=25$.",
+      "check": [
+        "25 + 25 == 50",
+        "32 + 18 == 50"
+      ]
+    },
+    {
+      "id": "sc-ty7",
+      "statement": "Bring lunch: 21 of 30 in drama club, 14 of 40 in chess club. Associated?",
+      "solution": "Drama $70\\%$ vs chess $35\\%$ — yes, associated.",
+      "check": [
+        "Rational(21,30) == Rational(7,10)",
+        "Rational(14,40) == Rational(7,20)"
+      ]
+    }
+  ]
+}

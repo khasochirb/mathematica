@@ -731,6 +731,19 @@ export interface ArcSectorConfig {
   color?: string;
 }
 
+// The bivariate-data workbench: an animated scatter plot with four modes —
+// points rain in (plot), datasets morph between correlation shapes
+// (correlation), a stray point pulses (outlier), and a line-fitting game
+// scores the average miss against the least-squares fit (fit).
+export interface ScatterPlotConfig {
+  mode: "plot" | "correlation" | "outlier" | "fit";
+  dataset?: "positive" | "negative" | "none";
+  xLabel?: string;
+  yLabel?: string;
+  m0?: number; // fit mode: starting slope
+  b0?: number; // fit mode: starting intercept
+}
+
 // Two lines y = m1x + b1 and y = m2x + b2 on one grid; line 2 adjustable.
 // Marks the intersection (the system's solution) and calls parallel /
 // same-line verdicts live. The systems-of-equations workbench.
@@ -947,6 +960,7 @@ export type InteractiveStep =
   | { kind: "arcSector"; eyebrow?: string; title: string; teach: string; config: ArcSectorConfig }
   | { kind: "circleUnroll"; eyebrow?: string; title: string; teach: string; config: CircleUnrollConfig }
   | { kind: "systemGraph"; eyebrow?: string; title: string; teach: string; config: SystemGraphConfig }
+  | { kind: "scatterPlot"; eyebrow?: string; title: string; teach: string; config: ScatterPlotConfig }
   | { kind: "areaShape"; eyebrow?: string; title: string; teach: string; config: AreaShapeConfig }
   | { kind: "apothemPolygon"; eyebrow?: string; title: string; teach: string; config: ApothemPolygonConfig }
   | { kind: "compositeArea"; eyebrow?: string; title: string; teach: string; config: CompositeAreaConfig }

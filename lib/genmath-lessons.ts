@@ -66,6 +66,7 @@ import roots from "@/data/genmath/8/roots.json";
 import linearEquations from "@/data/genmath/8/linear-equations.json";
 import linearFunctions from "@/data/genmath/8/linear-functions.json";
 import systemsOfEquations from "@/data/genmath/8/systems-of-linear-equations.json";
+import scatterPlots from "@/data/genmath/8/scatter-plots-and-bivariate-data.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -147,7 +148,7 @@ export const GRADE8_SPINE: GradeSpineEntry[] = [
     slug: "scatter-plots-and-bivariate-data",
     title: "Scatter Plots & Bivariate Data",
     blurb: "Plotting paired data, spotting correlation, fitting a trend line, and reading two-way tables.",
-    live: false,
+    live: true,
   },
 ];
 
@@ -158,6 +159,7 @@ const grade8Topics: GenMathTopic[] = [
   linearEquations as GenMathTopic,
   linearFunctions as GenMathTopic,
   systemsOfEquations as GenMathTopic,
+  scatterPlots as GenMathTopic,
 ];
 
 // Every authored General-Math topic across grades. Topic slugs are unique
