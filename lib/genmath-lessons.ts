@@ -81,6 +81,7 @@ import polynomialFunctions from "@/data/genmath/11/polynomial-functions.json";
 import logarithms from "@/data/genmath/11/logarithms.json";
 import sequencesAndSeries from "@/data/genmath/11/sequences-and-series.json";
 import trigonometryUnitCircle from "@/data/genmath/11/trigonometry-and-the-unit-circle.json";
+import complexNumbers from "@/data/genmath/11/complex-numbers.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -246,7 +247,7 @@ export const GRADE11_SPINE: GradeSpineEntry[] = [
     slug: "complex-numbers",
     title: "Complex Numbers",
     blurb: "The number i, arithmetic with a + bi, conjugates and division, and quadratics whose roots finally all exist.",
-    live: false,
+    live: true,
   },
   {
     slug: "statistics-and-data",
@@ -262,6 +263,7 @@ const grade11Topics: GenMathTopic[] = [
   logarithms as GenMathTopic,
   sequencesAndSeries as GenMathTopic,
   trigonometryUnitCircle as GenMathTopic,
+  complexNumbers as GenMathTopic,
 ];
 
 const grade10Topics: GenMathTopic[] = [

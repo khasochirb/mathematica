@@ -1,0 +1,1702 @@
+{
+  "slug": "complex-numbers",
+  "title": "Complex Numbers",
+  "grade": 11,
+  "blurb": "The number i, arithmetic with a + bi, conjugates and division, and quadratics whose roots finally all exist.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "meet-i",
+      "title": "Meet i",
+      "concreteComparison": "Negatives were once 'absurd' (what's minus three sheep?). Irrationals scandalized the Greeks. Every number-system upgrade started as heresy and ended as Tuesday. The last upgrade: $x^2 = -1$ has no real answer — so mathematicians INVENTED one, named it $i$, and demanded only that $i^2 = -1$. Everything else about algebra survives untouched.",
+      "objective": "Define $i$ by $i^2 = -1$, simplify square roots of negatives, and compute powers of $i$ using the 4-cycle.",
+      "concept": [
+        "**Definition**: $i$ is a new number with one property: $i^2 = -1$. Nothing on the real line squares to a negative, so $i$ lives OFF the line — 'imaginary' is a historical nickname, not an insult.",
+        "Roots of negatives factor through $i$: $\\sqrt{-9} = \\sqrt{9}\\sqrt{-1} = 3i$; $\\sqrt{-50} = 5i\\sqrt{2}$ — pull the $\\sqrt{-1}$ out FIRST, then simplify as in the radicals unit.",
+        "Powers of $i$ cycle with period 4: $i^1 = i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$, then repeat. For $i^{37}$: divide 37 by 4, remainder 1 → $i^{37} = i$.",
+        "Old equations gain answers: $x^2 = -25$ now solves — $x = \\pm 5i$. Check: $(5i)^2 = 25 i^2 = -25$ ✓."
+      ],
+      "keyIdea": "i² = −1 and nothing else changes. √(−n) = i√n; powers of i cycle i, −1, −i, 1 — remainder mod 4 decides.",
+      "facts": [
+        {
+          "title": "The one rule",
+          "latex": "i^2 = -1",
+          "explanation": "Everything else is ordinary algebra."
+        },
+        {
+          "title": "The 4-cycle",
+          "latex": "i, -1, -i, 1, i, -1, \\ldots",
+          "explanation": "Exponent mod 4 picks the value."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cx1-we1",
+          "statement": "Simplify $\\sqrt{-9}$ and $\\sqrt{-50}$.",
+          "solution": "$3i$ and $5i\\sqrt{2}$ — pull out $i$, then simplify the radical.",
+          "check": [
+            "(3*I)**2 == -9",
+            "(5*I*sqrt(2))**2 == -50"
+          ]
+        },
+        {
+          "id": "cx1-we2",
+          "statement": "Compute $i^3$, $i^4$, and $i^{37}$.",
+          "solution": "$i^3 = -i$; $i^4 = 1$; $37 = 4(9)+1$ → $i^{37} = i$.",
+          "check": [
+            "I**3 == -I",
+            "I**4 == 1",
+            "I**37 == I"
+          ]
+        },
+        {
+          "id": "cx1-we3",
+          "statement": "Solve $x^2 = -25$.",
+          "solution": "$x = \\pm 5i$. Check: $(5i)^2 = 25i^2 = -25$ ✓.",
+          "check": [
+            "(5*I)**2 == -25",
+            "(-5*I)**2 == -25"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using $\\sqrt{a}\\sqrt{b} = \\sqrt{ab}$ on two negatives.",
+          "correction": "$\\sqrt{-4}\\sqrt{-9} = (2i)(3i) = 6i^2 = -6$ — NOT $\\sqrt{36} = 6$. Convert to $i$-form FIRST; the product rule only held for nonnegatives.",
+          "authored": true
+        },
+        {
+          "text": "Treating $i$ like a variable that can equal anything.",
+          "correction": "$i$ is a fixed CONSTANT (like π), pinned by $i^2 = -1$. It never 'takes values' — it is one.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cx1-t1",
+          "statement": "Simplify $\\sqrt{-49}$ and $\\sqrt{-12}$.",
+          "solution": "$7i$ and $2i\\sqrt{3}$.",
+          "check": [
+            "(7*I)**2 == -49",
+            "(2*I*sqrt(3))**2 == -12"
+          ]
+        },
+        {
+          "id": "cx1-t2",
+          "statement": "Compute $i^{102}$.",
+          "solution": "$102 = 4(25) + 2$: $i^{102} = i^2 = -1$.",
+          "check": [
+            "I**102 == -1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "A history of heresies",
+            "title": "Numbers keep growing",
+            "beats": [
+              "Negatives: once 'absurd'. Now: temperatures.",
+              "Irrationals: got a Pythagorean (allegedly) drowned.",
+              "Every extension was scandal → tool → Tuesday.",
+              "One equation still had no answer: $x^2 = -1$…"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The invention",
+            "title": "One rule only",
+            "beats": [
+              "DECLARE a new number $i$ with $i^2 = -1$.",
+              "Keep every algebra rule you already own.",
+              "That's the whole invention.",
+              "'Imaginary' was Descartes mocking it. The name stuck; the mockery didn't."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "First computation",
+            "prompt": "$\\sqrt{-36}$ = …",
+            "options": [
+              "$6i$",
+              "$-6$",
+              "impossible"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\sqrt{36}\\sqrt{-1} = 6i$. Check: $(6i)^2 = 36i^2 = -36$ ✓.",
+            "check": [
+              "(6*I)**2 == -36"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The merry-go-round",
+            "title": "Powers of i",
+            "beats": [
+              "$i^1 = i$, $\\ i^2 = -1$, $\\ i^3 = i^2 \\cdot i = -i$, $\\ i^4 = 1$.",
+              "Then it REPEATS: a 4-cycle, forever.",
+              "$i^{37}$? $37 \\div 4$ leaves remainder 1: $i^{37} = i^1 = i$.",
+              "Exponent mod 4 — that's the whole trick."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Cycle drill",
+            "title": "Big exponent",
+            "prompt": "$i^{50}$ = …",
+            "options": [
+              "$-1$",
+              "$i$",
+              "$1$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$50 = 4(12) + 2$: $i^{50} = i^2 = -1$.",
+            "check": [
+              "I**50 == -1"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "i-arithmetic",
+            "intro": "Pull out i first; ride the 4-cycle.",
+            "examples": [
+              {
+                "prompt": "Simplify $\\sqrt{-18} + \\sqrt{-8}$.",
+                "steps": [
+                  "$3i\\sqrt2 + 2i\\sqrt2$.",
+                  "$= 5i\\sqrt2$ — like radicals, still like terms."
+                ],
+                "answer": "$5i\\sqrt{2}$",
+                "check": [
+                  "(3*I*sqrt(2))**2 == -18",
+                  "(2*I*sqrt(2))**2 == -8",
+                  "3*I*sqrt(2) + 2*I*sqrt(2) == 5*I*sqrt(2)"
+                ]
+              },
+              {
+                "prompt": "Compute $i^{16}$, $i^{21}$, $i^{99}$.",
+                "steps": [
+                  "16: remainder 0 → 1.",
+                  "21: remainder 1 → $i$.",
+                  "99: remainder 3 → $-i$."
+                ],
+                "answer": "$1$, $i$, $-i$",
+                "check": [
+                  "I**16 == 1",
+                  "I**21 == I",
+                  "I**99 == -I"
+                ]
+              },
+              {
+                "prompt": "Solve $x^2 + 49 = 0$.",
+                "steps": [
+                  "$x^2 = -49$.",
+                  "$x = \\pm 7i$."
+                ],
+                "answer": "$x = \\pm 7i$",
+                "check": [
+                  "(7*I)**2 + 49 == 0",
+                  "(-7*I)**2 + 49 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "New-number reps",
+            "intro": "One rule; old algebra.",
+            "problems": [
+              {
+                "prompt": "$(2i)^2$ = …",
+                "options": [
+                  "$-4$",
+                  "$4$",
+                  "$4i$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4i^2 = -4$. Squaring an imaginary lands on the negative reals.",
+                "check": [
+                  "(2*I)**2 == -4"
+                ]
+              },
+              {
+                "prompt": "$\\sqrt{-4} \\cdot \\sqrt{-9}$ = …",
+                "options": [
+                  "$-6$",
+                  "$6$",
+                  "$6i$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(2i)(3i) = 6i^2 = -6$. (Merging under one root gives $+6$ — the product rule's revenge.)",
+                "check": [
+                  "(2*I)*(3*I) == -6"
+                ]
+              },
+              {
+                "prompt": "$i^{403}$ = …",
+                "options": [
+                  "$-i$",
+                  "$i$",
+                  "$-1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$403 = 4(100) + 3$: remainder 3 → $-i$.",
+                "check": [
+                  "I**403 == -I"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The engineer's j",
+            "body": "Electrical engineers write $j$ instead of $i$ (their $i$ was taken — current). Every AC circuit, every phone signal, every power grid is analyzed with complex numbers: impedance is a complex number, and 'imaginary' power is real enough to heat transformers. The 'impossible number' runs the electrical world under an alias."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$i^2 = -1$ — the only new rule; all algebra survives.",
+              "$\\sqrt{-n} = i\\sqrt{n}$: extract $i$ before simplifying.",
+              "Powers of $i$ cycle with period 4; exponent mod 4 decides."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "complex-numbers-and-arithmetic",
+      "title": "Complex Numbers: a + bi",
+      "concreteComparison": "Mixing reals and imaginaries makes a two-part number, like coordinates or '3 dollars and 40 cents': $z = a + bi$ keeps a **real part** and an **imaginary part** that never blend. Adding and subtracting is bookkeeping — reals with reals, imaginaries with imaginaries — the like-terms discipline you've run since Grade 6.",
+      "objective": "Identify real and imaginary parts, and add, subtract, and scale complex numbers by combining like parts.",
+      "concept": [
+        "**Complex number**: $z = a + bi$ — real part $a$, imaginary part $b$ (the COEFFICIENT of $i$, a real number). $3 - 7i$: real 3, imaginary $-7$.",
+        "Reals and imaginaries are both special cases: $5 = 5 + 0i$ and $2i = 0 + 2i$. The complex numbers CONTAIN everything before them.",
+        "**Add/subtract componentwise**: $(2+3i) + (4-5i) = 6 - 2i$; subtraction distributes the minus over BOTH parts.",
+        "**Equality is two equations**: $a + bi = c + di$ forces $a = c$ AND $b = d$. Two-part numbers carry two facts — this powers 'find x and y' problems."
+      ],
+      "keyIdea": "z = a + bi: two parts that never blend. Combine componentwise; equality matches both parts separately.",
+      "facts": [
+        {
+          "title": "Anatomy",
+          "latex": "z = a + bi",
+          "explanation": "Real part a; imaginary part b (a real number!)."
+        },
+        {
+          "title": "Equality",
+          "latex": "a+bi = c+di \\iff a=c \\text{ and } b=d",
+          "explanation": "One complex equation = two real ones."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cx2-we1",
+          "statement": "Compute $(2+3i) + (4-5i)$ and $(2+3i) - (4-5i)$.",
+          "solution": "Sum: $6 - 2i$. Difference: $-2 + 8i$ (the minus hits both parts).",
+          "check": [
+            "(2+3*I) + (4-5*I) == 6 - 2*I",
+            "(2+3*I) - (4-5*I) == -2 + 8*I"
+          ]
+        },
+        {
+          "id": "cx2-we2",
+          "statement": "Compute $3(2-4i) - 2(1-3i)$.",
+          "solution": "$6 - 12i - 2 + 6i = 4 - 6i$.",
+          "check": [
+            "3*(2-4*I) - 2*(1-3*I) == 4 - 6*I"
+          ]
+        },
+        {
+          "id": "cx2-we3",
+          "statement": "Find real $x, y$ with $x + yi = (3+2i) + (1-5i)$.",
+          "solution": "Right side: $4 - 3i$ → $x = 4$, $y = -3$.",
+          "check": [
+            "(3+2*I) + (1-5*I) == 4 - 3*I"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Blending the parts: $(2+3i) + (4-5i) = 4i$ or similar mashups.",
+          "correction": "Reals never merge with imaginaries — they're different species, like meters and seconds. $6$ and $-2i$ stay separate: $6 - 2i$.",
+          "authored": true
+        },
+        {
+          "text": "Calling the imaginary part of $3 - 7i$ '$-7i$'.",
+          "correction": "The imaginary PART is the real coefficient $-7$. (Convention matters when matching parts in equations.)",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cx2-t1",
+          "statement": "$(5-2i) + (-3+6i)$ = ?",
+          "solution": "$2 + 4i$.",
+          "check": [
+            "(5-2*I) + (-3+6*I) == 2 + 4*I"
+          ]
+        },
+        {
+          "id": "cx2-t2",
+          "statement": "$(1+i) - (4-3i)$ = ?",
+          "solution": "$-3 + 4i$.",
+          "check": [
+            "(1+I) - (4-3*I) == -3 + 4*I"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Two-part numbers",
+            "title": "Dollars and cents",
+            "beats": [
+              "$z = a + bi$: a REAL part and an IMAGINARY part.",
+              "Like '3 dollars 40 cents' — two components, one number.",
+              "$3 - 7i$: real part 3, imaginary part $-7$.",
+              "The parts never blend. Ever."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Everything fits inside",
+            "title": "The family tree",
+            "beats": [
+              "Every real is complex: $5 = 5 + 0i$.",
+              "Every imaginary too: $2i = 0 + 2i$.",
+              "$\\mathbb{C}$ contains $\\mathbb{R}$ contains $\\mathbb{Q}$ contains $\\mathbb{Z}$…",
+              "The Grade-8 number-system diagram grew a new ring."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Componentwise",
+            "prompt": "$(7 - 2i) + (-3 + 9i)$ = …",
+            "options": [
+              "$4 + 7i$",
+              "$4 + 11i$",
+              "$11i$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Reals: $7-3 = 4$. Imaginaries: $-2+9 = 7$. Two ledgers, no blending.",
+            "check": [
+              "(7-2*I) + (-3+9*I) == 4 + 7*I"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Subtraction's double hit",
+            "title": "Distribute the minus",
+            "beats": [
+              "$(2+3i) - (4-5i)$",
+              "$= 2 + 3i - 4 + 5i$ — BOTH parts flip.",
+              "$= -2 + 8i$.",
+              "The Grade-10 minus trap, now in two dimensions."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Minus patrol",
+            "title": "Both parts",
+            "prompt": "$(1+6i) - (5+2i)$ = …",
+            "options": [
+              "$-4 + 4i$",
+              "$-4 + 8i$",
+              "$4 - 4i$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Reals: $1-5 = -4$; imaginaries: $6-2 = 4$.",
+            "check": [
+              "(1+6*I) - (5+2*I) == -4 + 4*I"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Two-ledger arithmetic",
+            "intro": "Componentwise, with scaling.",
+            "examples": [
+              {
+                "prompt": "Compute $2(3+i) + 3(1-2i)$.",
+                "steps": [
+                  "$6 + 2i + 3 - 6i$.",
+                  "$= 9 - 4i$."
+                ],
+                "answer": "$9 - 4i$",
+                "check": [
+                  "2*(3+I) + 3*(1-2*I) == 9 - 4*I"
+                ]
+              },
+              {
+                "prompt": "Find real $x$ and $y$: $(x + yi) - (2 - 3i) = 5 + i$.",
+                "steps": [
+                  "$x - 2 = 5 \\to x = 7$.",
+                  "$y + 3 = 1 \\to y = -2$.",
+                  "One complex equation, two real answers."
+                ],
+                "answer": "$x = 7$, $y = -2$",
+                "check": [
+                  "(7 - 2*I) - (2 - 3*I) == 5 + I"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Part discipline",
+            "intro": "Real ledger, imaginary ledger.",
+            "problems": [
+              {
+                "prompt": "The imaginary part of $6 - 11i$ is…",
+                "options": [
+                  "$-11$",
+                  "$-11i$",
+                  "$11$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The part is the real COEFFICIENT of $i$: $-11$.",
+                "check": [
+                  "(6 - 11*I) - 6 == -11*I"
+                ]
+              },
+              {
+                "prompt": "$(4+4i) - (4-4i)$ = …",
+                "options": [
+                  "$8i$",
+                  "$0$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Reals cancel; imaginaries double: $8i$ — a purely imaginary result.",
+                "check": [
+                  "(4+4*I) - (4-4*I) == 8*I"
+                ]
+              },
+              {
+                "prompt": "If $a + bi = 0$ (with $a, b$ real), then…",
+                "options": [
+                  "$a = 0$ AND $b = 0$",
+                  "$a = -bi$",
+                  "$a = 0$ or $b = 0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Zero has both parts zero — matching parts gives two equations, both forced.",
+                "check": [
+                  "0 + 0*I == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The name that stuck",
+            "body": "Gauss hated 'imaginary' and proposed 'lateral numbers' — sideways from the real line, which is exactly right (next lessons make it literal). He lost the naming battle but won the math: the complex numbers' full acceptance traces to his 1799 proof that every polynomial equation has solutions in them. Names lie; theorems don't."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$z = a + bi$: real and imaginary parts, forever separate.",
+              "Add/subtract componentwise; minus hits both parts.",
+              "Matching parts turns one complex equation into two real ones."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "multiplying-complex-numbers",
+      "title": "Multiplying Complex Numbers",
+      "concreteComparison": "You already own the tool: FOIL from Grade 10. $(1+2i)(3-i)$ expands exactly like $(1+2x)(3-x)$ — four products, collect terms — with ONE twist at the end: any $i^2$ that appears becomes $-1$ and jumps ledgers, from the imaginary column into the real one. Old machine, one new gear.",
+      "objective": "Multiply complex numbers by expanding and converting $i^2 = -1$, including squares and the special conjugate product.",
+      "concept": [
+        "FOIL, then convert: $(1+2i)(3-i) = 3 - i + 6i - 2i^2 = 3 + 5i + 2 = 5 + 5i$. The $-2i^2$ became $+2$ — real.",
+        "Squares work the same: $(3+2i)^2 = 9 + 12i + 4i^2 = 5 + 12i$. (The perfect-square pattern from Grade 10, plus the conversion.)",
+        "The star product: $(a+bi)(a-bi) = a^2 + b^2$ — REAL and positive. The imaginary cross-terms cancel and $-b^2i^2 = +b^2$. This 'conjugate pair' powers next lesson's division.",
+        "Multiplying by $i$ alone: $i(a+bi) = -b + ai$ — the parts SWAP (with a sign). Geometrically that's a quarter-turn, a teaser for the complex plane."
+      ],
+      "keyIdea": "Expand like polynomials, then i² → −1 (jumping to the real ledger). Conjugate pairs multiply to a² + b², real.",
+      "facts": [
+        {
+          "title": "The routine",
+          "latex": "\\text{FOIL} \\to i^2 = -1 \\to \\text{collect}",
+          "explanation": "One new gear on the old machine."
+        },
+        {
+          "title": "Star product",
+          "latex": "(a+bi)(a-bi) = a^2 + b^2",
+          "explanation": "Always real, always positive (unless 0)."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cx3-we1",
+          "statement": "Compute $(1+2i)(3-i)$.",
+          "solution": "$3 - i + 6i - 2i^2 = 5 + 5i$.",
+          "check": [
+            "simplify(((1+2*I)*(3-I)) - (5 + 5*I)) == 0"
+          ]
+        },
+        {
+          "id": "cx3-we2",
+          "statement": "Compute $(3+2i)^2$.",
+          "solution": "$9 + 12i + 4i^2 = 5 + 12i$.",
+          "check": [
+            "simplify(((3+2*I)**2) - (5 + 12*I)) == 0"
+          ]
+        },
+        {
+          "id": "cx3-we3",
+          "statement": "Compute $(4+3i)(4-3i)$.",
+          "solution": "$16 + 9 = 25$ — the conjugate product, purely real.",
+          "check": [
+            "simplify(((4+3*I)*(4-3*I)) - (25)) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Leaving $i^2$ in the answer.",
+          "correction": "$3 + 5i - 2i^2$ isn't finished — convert: $-2i^2 = +2$, giving $5 + 5i$. Sweep every $i^2$ into the real ledger before boxing the answer.",
+          "authored": true
+        },
+        {
+          "text": "Computing $(3+2i)^2$ as $9 + 4i^2 = 5$.",
+          "correction": "Squares have a MIDDLE term: $(a+b)^2 = a^2 + 2ab + b^2$ — the $12i$ survives. Grade 10's missing-middle error, complex edition.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cx3-t1",
+          "statement": "$(2+i)(3+2i)$ = ?",
+          "solution": "$6 + 4i + 3i + 2i^2 = 4 + 7i$.",
+          "check": [
+            "simplify(((2+I)*(3+2*I)) - (4 + 7*I)) == 0"
+          ]
+        },
+        {
+          "id": "cx3-t2",
+          "statement": "$(5+2i)(5-2i)$ = ?",
+          "solution": "$25 + 4 = 29$.",
+          "check": [
+            "simplify(((5+2*I)*(5-2*I)) - (29)) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Old machine, new gear",
+            "title": "FOIL returns",
+            "beats": [
+              "$(1+2i)(3-i)$ — expand like any binomials:",
+              "$3 - i + 6i - 2i^2$.",
+              "New gear: $i^2 = -1$, so $-2i^2 = +2$.",
+              "Collect: $5 + 5i$. Done."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Run the gear",
+            "prompt": "$(2+3i)(1+i)$ = …",
+            "options": [
+              "$-1 + 5i$",
+              "$2 + 5i$",
+              "$5 + 5i$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$2 + 2i + 3i + 3i^2 = 2 + 5i - 3 = -1 + 5i$. The $3i^2$ jumped ledgers as $-3$.",
+            "check": [
+              "simplify(((2+3*I)*(1+I)) - (-1 + 5*I)) == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The ledger jump",
+            "title": "Where i² goes",
+            "beats": [
+              "Every $i^2$ is secretly a REAL number: $-1$.",
+              "So $ki^2$ leaves the imaginary column as $-k$.",
+              "An answer still holding $i^2$ isn't finished.",
+              "Final form: exactly $a + bi$, both parts clean."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The star product",
+            "title": "Conjugates annihilate i",
+            "beats": [
+              "$(4+3i)(4-3i)$: cross terms $-12i + 12i$ cancel…",
+              "…and $-9i^2 = +9$: total $16 + 9 = 25$.",
+              "$(a+bi)(a-bi) = a^2 + b^2$. Real. Positive.",
+              "Radicals had this trick too — next lesson weaponizes it."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Star drill",
+            "title": "Real on arrival",
+            "prompt": "$(6+i)(6-i)$ = …",
+            "options": [
+              "$37$",
+              "$35$",
+              "$36 - i^2 \\ldots$ so $35$?"
+            ],
+            "correctIndex": 0,
+            "explanation": "$36 + 1 = 37$: $a^2 + b^2$, the plus is built in ($-i^2 = +1$).",
+            "check": [
+              "simplify(((6+I)*(6-I)) - (37)) == 0"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Product lines",
+            "intro": "FOIL, convert, collect — and the star.",
+            "examples": [
+              {
+                "prompt": "Compute $(2-3i)(4+i)$.",
+                "steps": [
+                  "$8 + 2i - 12i - 3i^2$.",
+                  "$= 8 - 10i + 3 = 11 - 10i$."
+                ],
+                "answer": "$11 - 10i$",
+                "check": [
+                  "simplify(((2-3*I)*(4+I)) - (11 - 10*I)) == 0"
+                ]
+              },
+              {
+                "prompt": "Compute $(1-i)^2$ and then $(1-i)^4$.",
+                "steps": [
+                  "$(1-i)^2 = 1 - 2i + i^2 = -2i$.",
+                  "$(1-i)^4 = (-2i)^2 = 4i^2 = -4$.",
+                  "Powers of complex numbers: square, then square again."
+                ],
+                "answer": "$-2i$, then $-4$",
+                "check": [
+                  "simplify(((1-I)**2) - (-2*I)) == 0",
+                  "simplify(((1-I)**4) - (-4)) == 0"
+                ]
+              },
+              {
+                "prompt": "Multiply $i(5 - 2i)$ and describe what happened to the parts.",
+                "steps": [
+                  "$5i - 2i^2 = 2 + 5i$.",
+                  "Parts swapped (with a sign): $(5, -2) \\to (2, 5)$ — a quarter-turn."
+                ],
+                "answer": "$2 + 5i$",
+                "check": [
+                  "simplify((I*(5-2*I)) - (2 + 5*I)) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Gear practice",
+            "intro": "No i² leaves the shop.",
+            "problems": [
+              {
+                "prompt": "$(3+i)(3-2i)$ = …",
+                "options": [
+                  "$11 - 3i$",
+                  "$9 - 3i$",
+                  "$11 + 3i$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$9 - 6i + 3i - 2i^2 = 9 - 3i + 2 = 11 - 3i$.",
+                "check": [
+                  "simplify(((3+I)*(3-2*I)) - (11 - 3*I)) == 0"
+                ]
+              },
+              {
+                "prompt": "$(2+5i)(2-5i)$ = …",
+                "options": [
+                  "$29$",
+                  "$-21$",
+                  "$4 - 25i$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Star product: $4 + 25 = 29$.",
+                "check": [
+                  "simplify(((2+5*I)*(2-5*I)) - (29)) == 0"
+                ]
+              },
+              {
+                "prompt": "$(1+i)^2$ = …",
+                "options": [
+                  "$2i$",
+                  "$2$",
+                  "$1 + i^2 = 0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$1 + 2i + i^2 = 2i$ — the middle term IS the answer. (Dropping it gives 0: the classic.)",
+                "check": [
+                  "simplify(((1+I)**2) - (2*I)) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Fractals are complex multiplication",
+            "body": "The Mandelbrot set — the most famous image in mathematics — is drawn by repeatedly squaring complex numbers: $z \\to z^2 + c$, over and over, coloring points by whether they escape to infinity. Every psychedelic zoom video you've seen is $(a+bi)^2$, iterated billions of times. This lesson's FOIL is the fractal's entire engine."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Multiply like polynomials; then $i^2 \\to -1$ jumps ledgers.",
+              "Squares keep their middle terms.",
+              "$(a+bi)(a-bi) = a^2 + b^2$ — the real-making star product."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "conjugates-and-division",
+      "title": "Conjugates & Division",
+      "concreteComparison": "Radicals taught you to clean $\\tfrac{1}{\\sqrt3 - 1}$ with a conjugate. Complex fractions have the identical problem — $\\tfrac{3+i}{1-i}$ has an 'unreal' denominator — and the identical cure: multiply top and bottom by the **conjugate** $1+i$, and the bottom becomes the star product $a^2 + b^2$: a plain positive real. Same trick, new number system.",
+      "objective": "Use the conjugate $\\bar{z} = a - bi$ and modulus to divide complex numbers, landing answers in clean $a + bi$ form.",
+      "concept": [
+        "**Conjugate**: $\\overline{a+bi} = a - bi$ — flip the imaginary sign. Key identity: $z\\bar{z} = a^2 + b^2$, always real, always $\\ge 0$.",
+        "**Modulus**: $|z| = \\sqrt{a^2+b^2}$ — the number's 'size'. $|3+4i| = 5$. So $z\\bar z = |z|^2$.",
+        "**Division**: multiply top and bottom by the bottom's conjugate. $\\tfrac{3+i}{1-i} = \\tfrac{(3+i)(1+i)}{(1-i)(1+i)} = \\tfrac{2+4i}{2} = 1 + 2i$.",
+        "Sanity check divisions by multiplying back: $(1+2i)(1-i) = 3 + i$ ✓. Division is defined by what multiplication undoes."
+      ],
+      "keyIdea": "Conjugate flips the i-sign; z·z̄ = a² + b² = |z|². Divide by multiplying with the bottom's conjugate.",
+      "facts": [
+        {
+          "title": "Conjugate + modulus",
+          "latex": "z\\bar{z} = a^2 + b^2 = |z|^2",
+          "explanation": "The star product, named."
+        },
+        {
+          "title": "Division",
+          "latex": "\\tfrac{w}{z} = \\tfrac{w\\bar{z}}{|z|^2}",
+          "explanation": "Bottom goes real; then split the parts."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cx4-we1",
+          "statement": "Find $\\bar{z}$ and $|z|$ for $z = 3+4i$.",
+          "solution": "$\\bar z = 3-4i$; $|z| = \\sqrt{9+16} = 5$.",
+          "check": [
+            "simplify(((3+4*I)*(3-4*I)) - (25)) == 0",
+            "Abs(3+4*I) == 5"
+          ]
+        },
+        {
+          "id": "cx4-we2",
+          "statement": "Compute $\\frac{3+i}{1-i}$.",
+          "solution": "Multiply by $\\tfrac{1+i}{1+i}$: $\\tfrac{2+4i}{2} = 1 + 2i$. Check: $(1+2i)(1-i) = 3+i$ ✓.",
+          "check": [
+            "simplify(((3+I)/(1-I)) - (1 + 2*I)) == 0",
+            "simplify(((1+2*I)*(1-I)) - (3+I)) == 0"
+          ]
+        },
+        {
+          "id": "cx4-we3",
+          "statement": "Compute $\\frac{10}{2+i}$.",
+          "solution": "$\\tfrac{10(2-i)}{5} = 2(2-i) = 4 - 2i$.",
+          "check": [
+            "simplify((10/(2+I)) - (4 - 2*I)) == 0",
+            "simplify(((4-2*I)*(2+I)) - (10)) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Conjugating BOTH the top and the bottom.",
+          "correction": "Multiply top and bottom by the BOTTOM's conjugate (×1 in disguise). Conjugating the numerator too changes the value — that's a different number.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting that $|z|$ uses a PLUS.",
+          "correction": "$|3-4i| = \\sqrt{9+16} = 5$, not $\\sqrt{9-16}$. The modulus squares both parts and ADDS — Pythagoras, as the next lesson makes literal.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cx4-t1",
+          "statement": "$|5 - 12i|$ = ?",
+          "solution": "$\\sqrt{25+144} = 13$.",
+          "check": [
+            "Abs(5-12*I) == 13"
+          ]
+        },
+        {
+          "id": "cx4-t2",
+          "statement": "$\\frac{2+3i}{1+i}$ = ?",
+          "solution": "$\\tfrac{(2+3i)(1-i)}{2} = \\tfrac{5+i}{2}$.",
+          "check": [
+            "simplify(((2+3*I)/(1+I)) - (Rational(5,2) + I/2)) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Same disease, same cure",
+            "title": "Unreal denominators",
+            "beats": [
+              "Radicals: $\\tfrac{1}{\\sqrt3-1}$ — cleaned with a conjugate.",
+              "Complex: $\\tfrac{3+i}{1-i}$ — same problem downstairs.",
+              "Same cure: multiply by $\\tfrac{1+i}{1+i}$ (that's ×1).",
+              "The bottom becomes $1^2 + 1^2 = 2$. Real."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Names for the tools",
+            "title": "Conjugate and modulus",
+            "beats": [
+              "$\\bar z$: flip the i-sign. $\\overline{3+4i} = 3-4i$.",
+              "$z\\bar z = a^2+b^2$ — the star product from last lesson.",
+              "$|z| = \\sqrt{a^2+b^2}$: the number's SIZE. $|3+4i| = 5$.",
+              "So $z\\bar z = |z|^2$. Three ideas, one identity."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Size a number",
+            "prompt": "$|8 + 6i|$ = …",
+            "options": [
+              "$10$",
+              "$14$",
+              "$\\sqrt{28}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\sqrt{64+36} = \\sqrt{100} = 10$ — a 6-8-10 triangle in disguise.",
+            "check": [
+              "Abs(8+6*I) == 10"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Division, start to finish",
+            "title": "The full routine",
+            "beats": [
+              "$\\tfrac{3+i}{1-i}$: bottom's conjugate is $1+i$.",
+              "Top: $(3+i)(1+i) = 2 + 4i$.",
+              "Bottom: $(1-i)(1+i) = 2$.",
+              "$\\tfrac{2+4i}{2} = 1 + 2i$. Verify: $(1+2i)(1-i) = 3+i$ ✓."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Divide drill",
+            "title": "Clean it",
+            "prompt": "$\\frac{5}{1+2i}$ = …",
+            "options": [
+              "$1 - 2i$",
+              "$5 - 10i$",
+              "$1 + 2i$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tfrac{5(1-2i)}{1+4} = 1 - 2i$. Check: $(1-2i)(1+2i) = 5$ ✓.",
+            "check": [
+              "5/(1+2*I) == 1 - 2*I",
+              "simplify(((1-2*I)*(1+2*I)) - (5)) == 0"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Conjugate service",
+            "intro": "Bottom's conjugate; verify by multiplying back.",
+            "examples": [
+              {
+                "prompt": "Compute $\\frac{4-2i}{1+i}$.",
+                "steps": [
+                  "×$\\tfrac{1-i}{1-i}$: top $(4-2i)(1-i) = 2-6i$.",
+                  "Bottom: $2$.",
+                  "$= 1 - 3i$. Check: $(1-3i)(1+i) = 4-2i$ ✓."
+                ],
+                "answer": "$1 - 3i$",
+                "check": [
+                  "simplify(((4-2*I)/(1+I)) - (1 - 3*I)) == 0",
+                  "simplify(((1-3*I)*(1+I)) - (4-2*I)) == 0"
+                ]
+              },
+              {
+                "prompt": "For $z = 2 - i$: compute $\\bar z$, $|z|^2$, and $\\tfrac{1}{z}$.",
+                "steps": [
+                  "$\\bar z = 2+i$; $|z|^2 = 5$.",
+                  "$\\tfrac1z = \\tfrac{\\bar z}{|z|^2} = \\tfrac{2+i}{5}$."
+                ],
+                "answer": "$\\tfrac{2+i}{5}$",
+                "check": [
+                  "simplify(((2-I)*(2+I)) - (5)) == 0",
+                  "simplify((1/(2-I)) - (Rational(2,5) + I/5)) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Division fluency",
+            "intro": "The bottom's conjugate is the whole trick.",
+            "problems": [
+              {
+                "prompt": "$\\overline{-4 + 7i}$ = …",
+                "options": [
+                  "$-4 - 7i$",
+                  "$4 - 7i$",
+                  "$4 + 7i$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Only the i-sign flips; the real part stays put.",
+                "check": [
+                  "simplify(((-4+7*I)*(-4-7*I)) - (65)) == 0"
+                ]
+              },
+              {
+                "prompt": "$\\frac{6+8i}{2}$ = …",
+                "options": [
+                  "$3 + 4i$",
+                  "$3 + 8i$",
+                  "$6 + 4i$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Real denominators just divide both parts — no conjugate needed.",
+                "check": [
+                  "(6+8*I)/2 == 3 + 4*I"
+                ]
+              },
+              {
+                "prompt": "$\\frac{i}{1-i}$ = …",
+                "options": [
+                  "$-\\tfrac12 + \\tfrac12 i$",
+                  "$\\tfrac12 + \\tfrac12 i$",
+                  "$i$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{i(1+i)}{2} = \\tfrac{i + i^2}{2} = \\tfrac{-1+i}{2}$.",
+                "check": [
+                  "simplify((I/(1-I)) - (-Rational(1,2) + I/2)) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Conjugates catch errors for free",
+            "body": "Because real-coefficient math treats $i$ and $-i$ identically, conjugating every number in a correct complex calculation yields another correct calculation. Engineers exploit this as a checksum: run the computation, conjugate, run again — disagreement means a bug. The mirror symmetry of $\\pm i$ is a built-in proofreader."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$\\bar z$ flips the i-sign; $z\\bar z = |z|^2 = a^2 + b^2$.",
+              "Divide by the bottom's conjugate (×1 in disguise).",
+              "Verify every division by multiplying back."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "complex-roots-of-quadratics",
+      "title": "Complex Roots of Quadratics",
+      "concreteComparison": "Grade 10 left a case marked 'no solution': the discriminant $D < 0$, the parabola floating clear of the axis. Reopen the file with $i$ in hand — $\\sqrt{-16} = 4i$ — and the quadratic formula finishes what it started: $x^2 + 2x + 5 = 0$ gives $x = -1 \\pm 2i$. EVERY quadratic now has exactly two roots (counting the double). Case closed.",
+      "objective": "Solve quadratics with negative discriminants, getting conjugate-pair roots, and verify them by substitution.",
+      "concept": [
+        "The formula never changes: $x = \\tfrac{-b \\pm \\sqrt{D}}{2a}$. When $D < 0$, write $\\sqrt{D} = i\\sqrt{|D|}$ and keep going.",
+        "$x^2 + 2x + 5 = 0$: $D = 4 - 20 = -16$; $\\sqrt{-16} = 4i$; $x = \\tfrac{-2 \\pm 4i}{2} = -1 \\pm 2i$.",
+        "Complex roots of real quadratics arrive in **conjugate pairs**: if $-1+2i$ is a root, $-1-2i$ must be too. (The $\\pm$ builds the pair; the parabola misses the axis symmetrically.)",
+        "Verify like always — substitute: $(-1+2i)^2 + 2(-1+2i) + 5 = (-3-4i) + (-2+4i) + 5 = 0$ ✓. And the full discriminant story completes: $D > 0$ two real, $D = 0$ one real (double), $D < 0$ two complex conjugates."
+      ],
+      "keyIdea": "D < 0: √D = i√|D| and the formula continues. Roots come in conjugate pairs; every quadratic has exactly 2 roots.",
+      "facts": [
+        {
+          "title": "The completion",
+          "latex": "D<0 \\Rightarrow x = \\tfrac{-b \\pm i\\sqrt{|D|}}{2a}",
+          "explanation": "The formula, unblocked."
+        },
+        {
+          "title": "Pair law",
+          "latex": "\\text{roots } p \\pm qi",
+          "explanation": "Real-coefficient quadratics: conjugates or nothing."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cx5-we1",
+          "statement": "Solve $x^2 + 2x + 5 = 0$.",
+          "solution": "$D = -16$: $x = \\tfrac{-2 \\pm 4i}{2} = -1 \\pm 2i$. Verify: $(-1+2i)^2 + 2(-1+2i) + 5 = 0$ ✓.",
+          "check": [
+            "simplify(((-1+2*I)**2 + 2*(-1+2*I) + 5) - (0)) == 0",
+            "simplify(((-1-2*I)**2 + 2*(-1-2*I) + 5) - (0)) == 0"
+          ]
+        },
+        {
+          "id": "cx5-we2",
+          "statement": "Solve $x^2 - 4x + 13 = 0$.",
+          "solution": "$D = 16 - 52 = -36$: $x = \\tfrac{4 \\pm 6i}{2} = 2 \\pm 3i$.",
+          "check": [
+            "simplify(((2+3*I)**2 - 4*(2+3*I) + 13) - (0)) == 0",
+            "simplify(((2-3*I)**2 - 4*(2-3*I) + 13) - (0)) == 0"
+          ]
+        },
+        {
+          "id": "cx5-we3",
+          "statement": "Build the quadratic (leading 1) whose roots are $3 \\pm i$.",
+          "solution": "Sum $= 6$, product $= 9 + 1 = 10$: $x^2 - 6x + 10$. Check both roots ✓.",
+          "check": [
+            "simplify(((3+I)**2 - 6*(3+I) + 10) - (0)) == 0",
+            "simplify(((3+I)*(3-I)) - (10)) == 0",
+            "(3+I) + (3-I) == 6"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Still writing 'no solution' when $D < 0$.",
+          "correction": "No REAL solution — but two complex ones. The right answer now names them: $x = -1 \\pm 2i$. 'No solution' retired the day $i$ arrived.",
+          "authored": true
+        },
+        {
+          "text": "Losing the ÷2a on the imaginary part.",
+          "correction": "$x = \\tfrac{-2 \\pm 4i}{2}$: the 2 divides BOTH terms → $-1 \\pm 2i$, not $-1 \\pm 4i$. Same whole-top rule as Grade 10.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cx5-t1",
+          "statement": "Solve $x^2 + 9 = 0$ and $x^2 + 6x + 10 = 0$.",
+          "solution": "$x = \\pm 3i$; and $D = -4$: $x = -3 \\pm i$.",
+          "check": [
+            "(3*I)**2 + 9 == 0",
+            "simplify(((-3+I)**2 + 6*(-3+I) + 10) - (0)) == 0"
+          ]
+        },
+        {
+          "id": "cx5-t2",
+          "statement": "One root of a real quadratic is $5 - 2i$. The other is…",
+          "solution": "$5 + 2i$ — the conjugate, no computation needed.",
+          "check": [
+            "simplify(((5-2*I)*(5+2*I)) - (29)) == 0",
+            "(5-2*I) + (5+2*I) == 10"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The cold case",
+            "title": "Reopening 'no solution'",
+            "beats": [
+              "Grade 10, discriminant $-16$: 'no real solution.' File closed.",
+              "New evidence: $\\sqrt{-16} = 4i$ exists now.",
+              "The formula was never broken — just blocked.",
+              "Unblock it and finish the case."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The solve",
+            "title": "x² + 2x + 5 = 0",
+            "beats": [
+              "$D = 4 - 20 = -16$.",
+              "$x = \\tfrac{-2 \\pm \\sqrt{-16}}{2} = \\tfrac{-2 \\pm 4i}{2}$.",
+              "$x = -1 \\pm 2i$. Two roots, as promised.",
+              "The ÷2 hits BOTH terms — old rule, still law."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Unblocked formula",
+            "prompt": "Solve $x^2 + 16 = 0$.",
+            "options": [
+              "$x = \\pm 4i$",
+              "no solution",
+              "$x = \\pm 4$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$x^2 = -16$: $x = \\pm 4i$. Check: $(4i)^2 = -16$ ✓.",
+            "check": [
+              "(4*I)**2 + 16 == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The pair law",
+            "title": "Conjugates or nothing",
+            "beats": [
+              "Real quadratic, complex roots → always $p \\pm qi$.",
+              "The $\\pm$ in the formula BUILDS the pair.",
+              "Know one root? The other is free — flip the i-sign.",
+              "(Sum $2p$ and product $p^2+q^2$: both real — as they must be.)"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Free root",
+            "title": "Use the pair law",
+            "prompt": "A real quadratic has root $4 + 3i$. Its other root is…",
+            "options": [
+              "$4 - 3i$",
+              "$-4 - 3i$",
+              "$3 + 4i$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Conjugate pair: flip only the i-sign. (Sum 8, product 25 — the quadratic is $x^2 - 8x + 25$.)",
+            "check": [
+              "simplify(((4+3*I)**2 - 8*(4+3*I) + 25) - (0)) == 0",
+              "simplify(((4-3*I)**2 - 8*(4-3*I) + 25) - (0)) == 0"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Case files",
+            "intro": "D, then i√|D|, then divide the whole top.",
+            "examples": [
+              {
+                "prompt": "Solve $x^2 - 2x + 2 = 0$ and verify one root.",
+                "steps": [
+                  "$D = 4 - 8 = -4$.",
+                  "$x = \\tfrac{2 \\pm 2i}{2} = 1 \\pm i$.",
+                  "Verify: $(1+i)^2 - 2(1+i) + 2 = 2i - 2 - 2i + 2 = 0$ ✓."
+                ],
+                "answer": "$x = 1 \\pm i$",
+                "check": [
+                  "simplify(((1+I)**2 - 2*(1+I) + 2) - (0)) == 0",
+                  "simplify(((1-I)**2 - 2*(1-I) + 2) - (0)) == 0"
+                ]
+              },
+              {
+                "prompt": "Solve $2x^2 + 2x + 5 = 0$.",
+                "steps": [
+                  "$D = 4 - 40 = -36$.",
+                  "$x = \\tfrac{-2 \\pm 6i}{4}$.",
+                  "$= -\\tfrac12 \\pm \\tfrac32 i$."
+                ],
+                "answer": "$-\\tfrac12 \\pm \\tfrac32 i$",
+                "check": [
+                  "simplify((2*(-Rational(1,2)+Rational(3,2)*I)**2 + 2*(-Rational(1,2)+Rational(3,2)*I) + 5) - (0)) == 0"
+                ]
+              },
+              {
+                "prompt": "Complete the discriminant table for: $x^2-x-6$, $x^2-6x+9$, $x^2+x+1$.",
+                "steps": [
+                  "$D = 25 > 0$: two real ($3, -2$).",
+                  "$D = 0$: one double real ($3$).",
+                  "$D = -3 < 0$: conjugate pair $\\tfrac{-1 \\pm i\\sqrt3}{2}$."
+                ],
+                "answer": "two real / one double / conjugate pair",
+                "check": [
+                  "3**2 - 3 - 6 == 0",
+                  "3**2 - 6*3 + 9 == 0",
+                  "expand(((-1+I*sqrt(3))/2)**2 + (-1+I*sqrt(3))/2 + 1) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Full-spectrum solving",
+            "intro": "Name the roots — 'no solution' is retired.",
+            "problems": [
+              {
+                "prompt": "Solve $x^2 + 4x + 5 = 0$.",
+                "options": [
+                  "$-2 \\pm i$",
+                  "$2 \\pm i$",
+                  "no solution"
+                ],
+                "correctIndex": 0,
+                "explanation": "$D = -4$: $x = \\tfrac{-4 \\pm 2i}{2} = -2 \\pm i$.",
+                "check": [
+                  "simplify(((-2+I)**2 + 4*(-2+I) + 5) - (0)) == 0"
+                ]
+              },
+              {
+                "prompt": "A quadratic with roots $\\pm 6i$ is…",
+                "options": [
+                  "$x^2 + 36$",
+                  "$x^2 - 36$",
+                  "$x^2 + 6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Sum 0, product $36$: $x^2 + 36$. (Check: $(6i)^2 + 36 = 0$ ✓.)",
+                "check": [
+                  "(6*I)**2 + 36 == 0"
+                ]
+              },
+              {
+                "prompt": "Counting multiplicity and complex roots, EVERY quadratic has…",
+                "options": [
+                  "exactly 2 roots",
+                  "at most 2, sometimes 0",
+                  "1 or 2 roots"
+                ],
+                "correctIndex": 0,
+                "explanation": "The discriminant's three cases all deliver two: distinct real, double real, or a conjugate pair. Algebra's books finally balance.",
+                "check": [
+                  "simplify(((1+I)**2 - 2*(1+I) + 2) - (0)) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The theorem this completes",
+            "body": "Gauss's Fundamental Theorem of Algebra: every degree-n polynomial has exactly n roots in the complex numbers. The polynomial unit's 'at most n' was the real-line shadow; with $i$, 'at most' becomes 'exactly'. No further number-inventions needed — the complex numbers are algebraically CLOSED. The tower of heresies is finished."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$D < 0$: $\\sqrt D = i\\sqrt{|D|}$ — the formula continues.",
+              "Complex roots of real quadratics: conjugate pairs, always.",
+              "Every quadratic: exactly two roots. The books balance."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-complex-plane",
+      "title": "The Complex Plane",
+      "concreteComparison": "Where does $3 + 4i$ LIVE? Not on the number line — it's two-dimensional. Put the reals on a horizontal axis, the imaginaries on a vertical one, and $a + bi$ becomes the POINT $(a, b)$: Gauss's 'lateral numbers', literally. The modulus becomes a distance, conjugates become mirror images, and multiplying by $i$ becomes a quarter-turn — arithmetic turns into geometry.",
+      "objective": "Plot complex numbers as points, read modulus as distance from the origin, and see conjugation and multiplication-by-i geometrically.",
+      "concept": [
+        "**The plane**: horizontal axis = real part, vertical = imaginary part. $3+4i \\leftrightarrow (3,4)$; reals live on the x-axis, pure imaginaries on the y-axis.",
+        "**Modulus = distance**: $|3+4i| = \\sqrt{3^2+4^2} = 5$ — the straight-line distance from the origin. The formula was Pythagoras all along.",
+        "**Conjugate = reflection**: $\\bar z$ flips the sign of $b$ — the mirror image across the real axis. (Quadratics' conjugate root pairs sit symmetrically about it.)",
+        "**Multiplying by $i$ = quarter-turn**: $i(3+4i) = -4+3i$ — the point $(3,4)$ rotates $90°$ counterclockwise to $(-4,3)$. Four multiplications return home: that IS the $i^4 = 1$ cycle. Rotation is why engineers model spinning circuits with complex numbers."
+      ],
+      "keyIdea": "a + bi = the point (a, b): modulus is distance (Pythagoras), conjugation is mirror-flip, ×i is a 90° turn.",
+      "facts": [
+        {
+          "title": "The map",
+          "latex": "a + bi \\leftrightarrow (a, b)",
+          "explanation": "Reals horizontal, imaginaries vertical."
+        },
+        {
+          "title": "The geometry",
+          "latex": "|z| \\text{ dist} \\quad \\bar z \\text{ mirror} \\quad \\times i \\text{ turn}",
+          "explanation": "Arithmetic becomes geometry."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cx6-we1",
+          "statement": "Plot-data: where do $3+4i$, $-2+i$, and $-3i$ sit, and how far is each from the origin?",
+          "solution": "$(3,4)$: dist 5; $(-2,1)$: dist $\\sqrt5$; $(0,-3)$: dist 3 (on the imaginary axis).",
+          "check": [
+            "Abs(3+4*I) == 5",
+            "Abs(-2+I) == sqrt(5)",
+            "Abs(-3*I) == 3"
+          ]
+        },
+        {
+          "id": "cx6-we2",
+          "statement": "Rotate $z = 3+4i$ by $90°$ (multiply by $i$), and check the distance survived.",
+          "solution": "$iz = -4+3i$ — the point $(-4,3)$; $|iz| = 5 = |z|$ ✓ rotations preserve distance.",
+          "check": [
+            "simplify((I*(3+4*I)) - (-4+3*I)) == 0",
+            "Abs(-4+3*I) == 5"
+          ]
+        },
+        {
+          "id": "cx6-we3",
+          "statement": "Apply $\\times i$ four times to $2 + i$ and watch it come home.",
+          "solution": "$2+i \\to -1+2i \\to -2-i \\to 1-2i \\to 2+i$ — four quarter-turns = one full turn ($i^4 = 1$).",
+          "check": [
+            "simplify((I*(2+I)) - (-1+2*I)) == 0",
+            "simplify((I*(-1+2*I)) - (-2-I)) == 0",
+            "I**4*(2+I) == 2+I"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Plotting $a + bi$ at $(b, a)$.",
+          "correction": "Real part → HORIZONTAL, imaginary → vertical: $3+4i$ is $(3,4)$, three right and four up. (Alphabetical again: a then b, x then y.)",
+          "authored": true
+        },
+        {
+          "text": "Expecting $\\times i$ to stretch the number.",
+          "correction": "$|i| = 1$: multiplying by $i$ only ROTATES — distances survive. Stretching needs $|z| \\neq 1$ (e.g. $\\times 2i$ turns AND doubles).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cx6-t1",
+          "statement": "How far is $-6 + 8i$ from the origin?",
+          "solution": "$\\sqrt{36+64} = 10$.",
+          "check": [
+            "Abs(-6+8*I) == 10"
+          ]
+        },
+        {
+          "id": "cx6-t2",
+          "statement": "Rotate $1 + 2i$ a quarter-turn (×$i$).",
+          "solution": "$i(1+2i) = -2 + i$: $(1,2) \\to (-2,1)$ ✓.",
+          "check": [
+            "simplify((I*(1+2*I)) - (-2+I)) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "A home for two-part numbers",
+            "title": "Gauss's lateral numbers",
+            "beats": [
+              "$3+4i$ can't fit on a LINE — it has two parts.",
+              "Give it a PLANE: reals across, imaginaries up.",
+              "$3+4i$ = the point $(3, 4)$.",
+              "The 'imaginary' numbers were sideways all along."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Old formulas, new pictures",
+            "title": "Distance and mirrors",
+            "beats": [
+              "$|z| = \\sqrt{a^2+b^2}$: the distance to the origin. Pythagoras!",
+              "$\\bar z$: flip $b$ — the MIRROR across the real axis.",
+              "Conjugate root pairs: symmetric about that mirror.",
+              "Division's tricks were geometry in disguise."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Locate and measure",
+            "prompt": "$-5 + 12i$ sits in which quadrant, at what distance?",
+            "options": [
+              "QII, distance 13",
+              "QIV, distance 13",
+              "QII, distance 7"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(-5, 12)$: left and up = QII; $\\sqrt{25+144} = 13$.",
+            "check": [
+              "Abs(-5+12*I) == 13"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The rotation secret",
+            "title": "×i turns the plane",
+            "beats": [
+              "$i(3+4i) = -4 + 3i$: $(3,4) \\to (-4,3)$.",
+              "That's a $90°$ counterclockwise turn. Exactly.",
+              "×$i$ four times: home again — $i^4 = 1$, geometrically.",
+              "Lesson 1's merry-go-round WAS a merry-go-round."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Turn drill",
+            "title": "Quarter-turn",
+            "prompt": "Multiplying $5i$ by $i$ gives…",
+            "options": [
+              "$-5$ — the point turned onto the negative real axis",
+              "$5$",
+              "$-5i$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(0,5)$ turns $90°$ CCW to $(-5,0)$: $i \\cdot 5i = 5i^2 = -5$. Top of the plane → left of the plane.",
+            "check": [
+              "I*(5*I) == -5"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Geometry of arithmetic",
+            "intro": "Points, distances, mirrors, turns.",
+            "examples": [
+              {
+                "prompt": "For $z = 4 - 3i$: plot-data for $z$, $\\bar z$, and $iz$, with distances.",
+                "steps": [
+                  "$z$: $(4,-3)$, dist 5.",
+                  "$\\bar z = 4+3i$: the mirror $(4,3)$, dist 5.",
+                  "$iz = 3+4i$: the quarter-turn $(3,4)$, dist 5.",
+                  "All three: distance 5 — mirrors and turns preserve size."
+                ],
+                "answer": "three points, all at distance 5",
+                "check": [
+                  "Abs(4-3*I) == 5",
+                  "Abs(4+3*I) == 5",
+                  "simplify((I*(4-3*I)) - (3+4*I)) == 0",
+                  "Abs(3+4*I) == 5"
+                ]
+              },
+              {
+                "prompt": "Which is farther from the origin: $6+2i$ or $4+5i$?",
+                "steps": [
+                  "$|6+2i|^2 = 40$.",
+                  "$|4+5i|^2 = 41$.",
+                  "$4+5i$ — barely."
+                ],
+                "answer": "$4+5i$",
+                "check": [
+                  "simplify(((6+2*I)*(6-2*I)) - (40)) == 0",
+                  "simplify(((4+5*I)*(4-5*I)) - (41)) == 0",
+                  "40 < 41"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Plane fluency",
+            "intro": "(a, b), Pythagoras, mirror, turn.",
+            "problems": [
+              {
+                "prompt": "The point for $-2 - 2i$ lies in…",
+                "options": [
+                  "QIII",
+                  "QII",
+                  "QIV"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(-2,-2)$: left and down.",
+                "check": [
+                  "Abs(-2-2*I) == 2*sqrt(2)"
+                ]
+              },
+              {
+                "prompt": "Which numbers sit exactly distance 1 from the origin?",
+                "options": [
+                  "$i$, $-1$, and $\\tfrac{\\sqrt2}{2}(1+i)$ all do",
+                  "only $1$ and $-1$",
+                  "only $i$ and $-i$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The UNIT CIRCLE lives here too: all of $|z| = 1$. (Last topic's circle was the complex plane in disguise.)",
+                "check": [
+                  "Abs(I) == 1",
+                  "Abs(-1) == 1",
+                  "Abs(sqrt(2)/2*(1+I)) == 1"
+                ]
+              },
+              {
+                "prompt": "Rotating $7$ (the real number) by two quarter-turns (×$i$ twice) gives…",
+                "options": [
+                  "$-7$",
+                  "$7i$",
+                  "$-7i$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$i^2 \\cdot 7 = -7$: half a turn lands on the opposite side. 'Multiplying by $-1$ is a 180° rotation' — now literally.",
+                "check": [
+                  "I**2*7 == -7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The most beautiful equation",
+            "body": "Push this geometry one step further and you reach $e^{i\\pi} + 1 = 0$ — Euler's identity, voted mathematics' most beautiful equation: it says 'rotating by π lands on −1', tying $e$, $i$, $\\pi$, 1, and 0 in one line. You now know what three of its five characters are doing there. University finishes the story."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$a+bi$ lives at $(a,b)$: reals across, imaginaries up.",
+              "$|z|$ = distance; $\\bar z$ = mirror; ×$i$ = quarter-turn.",
+              "The unit circle returns: $|z| = 1$ is trig's circle, complexified."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "cx-pr1",
+      "statement": "Simplify $\\sqrt{-64}$ and $\\sqrt{-20}$.",
+      "solution": "$8i$ and $2i\\sqrt5$.",
+      "check": [
+        "(8*I)**2 == -64",
+        "(2*I*sqrt(5))**2 == -20"
+      ]
+    },
+    {
+      "id": "cx-pr2",
+      "statement": "Compute $i^{14}$ and $i^{81}$.",
+      "solution": "$14$: rem 2 → $-1$; $81$: rem 1 → $i$.",
+      "check": [
+        "I**14 == -1",
+        "I**81 == I"
+      ]
+    },
+    {
+      "id": "cx-pr3",
+      "statement": "$(3-2i) + (5+7i)$ and $(3-2i) - (5+7i)$?",
+      "solution": "$8+5i$ and $-2-9i$.",
+      "check": [
+        "(3-2*I) + (5+7*I) == 8+5*I",
+        "(3-2*I) - (5+7*I) == -2-9*I"
+      ]
+    },
+    {
+      "id": "cx-pr4",
+      "statement": "$(2+i)(4-3i)$ = ?",
+      "solution": "$8 - 6i + 4i - 3i^2 = 11 - 2i$.",
+      "check": [
+        "simplify(((2+I)*(4-3*I)) - (11 - 2*I)) == 0"
+      ]
+    },
+    {
+      "id": "cx-pr5",
+      "statement": "$(1+3i)^2$ = ?",
+      "solution": "$1 + 6i + 9i^2 = -8 + 6i$.",
+      "check": [
+        "simplify(((1+3*I)**2) - (-8 + 6*I)) == 0"
+      ]
+    },
+    {
+      "id": "cx-pr6",
+      "statement": "$(7+2i)(7-2i)$ and $|7+2i|^2$?",
+      "solution": "Both $53$ — the star product IS the modulus squared.",
+      "check": [
+        "simplify(((7+2*I)*(7-2*I)) - (53)) == 0"
+      ]
+    },
+    {
+      "id": "cx-pr7",
+      "statement": "$\\frac{4+2i}{1+i}$ = ?",
+      "solution": "$\\tfrac{(4+2i)(1-i)}{2} = 3 - i$. Check: $(3-i)(1+i) = 4+2i$ ✓.",
+      "check": [
+        "simplify(((4+2*I)/(1+I)) - (3 - I)) == 0",
+        "simplify(((3-I)*(1+I)) - (4+2*I)) == 0"
+      ]
+    },
+    {
+      "id": "cx-pr8",
+      "statement": "Solve $x^2 + 8x + 25 = 0$.",
+      "solution": "$D = -36$: $x = -4 \\pm 3i$.",
+      "check": [
+        "simplify(((-4+3*I)**2 + 8*(-4+3*I) + 25) - (0)) == 0"
+      ]
+    },
+    {
+      "id": "cx-pr9",
+      "statement": "One root is $2 - 5i$ (real coefficients). The other root, their sum, and product?",
+      "solution": "$2+5i$; sum 4; product 29.",
+      "check": [
+        "(2-5*I) + (2+5*I) == 4",
+        "simplify(((2-5*I)*(2+5*I)) - (29)) == 0"
+      ]
+    },
+    {
+      "id": "cx-pr10",
+      "statement": "Distance of $-9 + 12i$ from the origin, and the effect of ×$i$ on it?",
+      "solution": "$|z| = 15$; $iz = -12 - 9i$ — rotated $90°$, distance still 15.",
+      "check": [
+        "Abs(-9+12*I) == 15",
+        "simplify((I*(-9+12*I)) - (-12-9*I)) == 0"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "cx-ty1",
+      "statement": "Simplify $\\sqrt{-45}$ and compute $i^{203}$.",
+      "solution": "$3i\\sqrt5$; $203$: rem 3 → $-i$.",
+      "check": [
+        "(3*I*sqrt(5))**2 == -45",
+        "I**203 == -I"
+      ]
+    },
+    {
+      "id": "cx-ty2",
+      "statement": "$2(1-4i) - 3(2-i)$ = ?",
+      "solution": "$2 - 8i - 6 + 3i = -4 - 5i$.",
+      "check": [
+        "2*(1-4*I) - 3*(2-I) == -4 - 5*I"
+      ]
+    },
+    {
+      "id": "cx-ty3",
+      "statement": "$(5-i)(2+3i)$ = ?",
+      "solution": "$10 + 15i - 2i - 3i^2 = 13 + 13i$.",
+      "check": [
+        "simplify(((5-I)*(2+3*I)) - (13 + 13*I)) == 0"
+      ]
+    },
+    {
+      "id": "cx-ty4",
+      "statement": "$\\frac{7-i}{2-i}$ = ?",
+      "solution": "$\\tfrac{(7-i)(2+i)}{5} = \\tfrac{15+5i}{5} = 3 + i$.",
+      "check": [
+        "simplify(((7-I)/(2-I)) - (3 + I)) == 0",
+        "simplify(((3+I)*(2-I)) - (7-I)) == 0"
+      ]
+    },
+    {
+      "id": "cx-ty5",
+      "statement": "Solve $x^2 - 6x + 13 = 0$.",
+      "solution": "$D = -16$: $x = 3 \\pm 2i$.",
+      "check": [
+        "simplify(((3+2*I)**2 - 6*(3+2*I) + 13) - (0)) == 0",
+        "simplify(((3-2*I)**2 - 6*(3-2*I) + 13) - (0)) == 0"
+      ]
+    },
+    {
+      "id": "cx-ty6",
+      "statement": "Build the quadratic (leading 1) with roots $1 \\pm 4i$.",
+      "solution": "Sum 2, product $1+16 = 17$: $x^2 - 2x + 17$.",
+      "check": [
+        "simplify(((1+4*I)**2 - 2*(1+4*I) + 17) - (0)) == 0",
+        "simplify(((1+4*I)*(1-4*I)) - (17)) == 0"
+      ]
+    },
+    {
+      "id": "cx-ty7",
+      "statement": "$z = 8 - 6i$: find $|z|$, $\\bar z$, and $iz$.",
+      "solution": "$|z| = 10$; $\\bar z = 8+6i$; $iz = 6+8i$ (quarter-turn, distance kept).",
+      "check": [
+        "Abs(8-6*I) == 10",
+        "simplify((I*(8-6*I)) - (6+8*I)) == 0",
+        "Abs(6+8*I) == 10"
+      ]
+    }
+  ]
+}
