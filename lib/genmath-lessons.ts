@@ -79,6 +79,7 @@ import probabilityAndCounting from "@/data/genmath/10/probability-and-counting.j
 import functionsAndTransformations from "@/data/genmath/11/functions-and-transformations.json";
 import polynomialFunctions from "@/data/genmath/11/polynomial-functions.json";
 import logarithms from "@/data/genmath/11/logarithms.json";
+import sequencesAndSeries from "@/data/genmath/11/sequences-and-series.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -232,7 +233,7 @@ export const GRADE11_SPINE: GradeSpineEntry[] = [
     slug: "sequences-and-series",
     title: "Sequences & Series",
     blurb: "Arithmetic and geometric sequences, recursive and explicit rules, and the sums that add a whole list at once.",
-    live: false,
+    live: true,
   },
   {
     slug: "trigonometry-and-the-unit-circle",
@@ -258,6 +259,7 @@ const grade11Topics: GenMathTopic[] = [
   functionsAndTransformations as GenMathTopic,
   polynomialFunctions as GenMathTopic,
   logarithms as GenMathTopic,
+  sequencesAndSeries as GenMathTopic,
 ];
 
 const grade10Topics: GenMathTopic[] = [

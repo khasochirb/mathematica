@@ -1,0 +1,1709 @@
+{
+  "slug": "sequences-and-series",
+  "title": "Sequences & Series",
+  "grade": 11,
+  "blurb": "Arithmetic and geometric sequences, recursive and explicit rules, and the sums that add a whole list at once.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "meet-sequences",
+      "title": "Meet Sequences",
+      "concreteComparison": "A gym plan: 20 pushups today, then 5 more each day — $20, 25, 30, 35, \\ldots$ An ordered list built by a rule is a **sequence**, and the two ways to write its rule mirror how you'd coach it: 'add 5 to yesterday' (**recursive**) or 'day $n$ is $15 + 5n$' (**explicit**). One tells you the next step; the other teleports to any day.",
+      "objective": "Use subscript notation $a_n$, generate terms from recursive and explicit rules, and tell the two rule types apart.",
+      "concept": [
+        "A **sequence** is an ordered list: $a_1, a_2, a_3, \\ldots$ The subscript is the POSITION; $a_4$ reads 'the 4th term'. For $20, 25, 30, 35$: $a_1 = 20$, $a_4 = 35$.",
+        "**Recursive rule**: each term from the previous — $a_1 = 20$, $a_n = a_{n-1} + 5$. Great for building; useless for teleporting (want $a_{100}$? Compute 99 steps.)",
+        "**Explicit rule**: position in, term out — $a_n = 15 + 5n$. Check: $a_1 = 20$ ✓, $a_4 = 35$ ✓. Teleports straight to $a_{100} = 515$.",
+        "Sequences ARE functions with domain $1, 2, 3, \\ldots$ — the explicit rule is $f(n)$ wearing subscript clothes. Everything from the functions topic applies."
+      ],
+      "keyIdea": "aₙ = the term at position n. Recursive rules step from the previous term; explicit rules teleport to any position.",
+      "facts": [
+        {
+          "title": "Notation",
+          "latex": "a_n = \\text{term at position } n",
+          "explanation": "Subscript = position, not multiplication."
+        },
+        {
+          "title": "Two rule styles",
+          "latex": "\\text{recursive: step} \\quad \\text{explicit: teleport}",
+          "explanation": "Build vs jump."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sq1-we1",
+          "statement": "For the sequence $20, 25, 30, 35, \\ldots$: find $a_2$ and $a_6$.",
+          "solution": "$a_2 = 25$; keep adding 5: $a_5 = 40$, $a_6 = 45$.",
+          "check": [
+            "20 + 5 == 25",
+            "20 + 5*5 == 45"
+          ]
+        },
+        {
+          "id": "sq1-we2",
+          "statement": "Generate the first 4 terms of $a_1 = 3$, $a_n = 2a_{n-1} + 1$.",
+          "solution": "$3, 7, 15, 31$ — each term doubles-and-adds-one.",
+          "check": [
+            "2*3 + 1 == 7",
+            "2*7 + 1 == 15",
+            "2*15 + 1 == 31"
+          ]
+        },
+        {
+          "id": "sq1-we3",
+          "statement": "For the explicit rule $a_n = n^2 + 1$: find $a_3$ and $a_{10}$.",
+          "solution": "$a_3 = 10$; $a_{10} = 101$ — no stepping needed.",
+          "check": [
+            "3**2 + 1 == 10",
+            "10**2 + 1 == 101"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading $a_4$ as '$a$ times 4'.",
+          "correction": "The subscript is a POSITION label: $a_4$ = the fourth term of the list. No multiplication anywhere.",
+          "authored": true
+        },
+        {
+          "text": "Using a recursive rule like an explicit one: '$a_{100} = a_{99} + 5$, done!'.",
+          "correction": "That answer still contains $a_{99}$ — an unknown. Recursive rules need every prior step (or a conversion to explicit form, next lesson's job).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sq1-t1",
+          "statement": "First three terms of $a_n = 4n - 1$?",
+          "solution": "$3, 7, 11$.",
+          "check": [
+            "4*1 - 1 == 3",
+            "4*2 - 1 == 7",
+            "4*3 - 1 == 11"
+          ]
+        },
+        {
+          "id": "sq1-t2",
+          "statement": "With $a_1 = 5$ and $a_n = a_{n-1} \\cdot 3$: find $a_3$.",
+          "solution": "$5 \\to 15 \\to 45$.",
+          "check": [
+            "5*3*3 == 45"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Ordered lists with rules",
+            "title": "The gym plan",
+            "beats": [
+              "Day 1: 20 pushups. Each day: +5.",
+              "$20, 25, 30, 35, \\ldots$ — a **sequence**.",
+              "$a_1 = 20$, $a_2 = 25$… the subscript is the DAY.",
+              "$a_n$: the term at position $n$. That's all the notation."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Two ways to write the rule",
+            "title": "Step vs teleport",
+            "beats": [
+              "Recursive: $a_n = a_{n-1} + 5$ — 'add 5 to yesterday'.",
+              "Explicit: $a_n = 15 + 5n$ — 'day $n$ is $15+5n$'.",
+              "Recursive builds. Explicit teleports:",
+              "$a_{100} = 15 + 500 = 515$. No 99 steps."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the subscript",
+            "prompt": "For $6, 10, 14, 18, \\ldots$: $a_3$ = …",
+            "options": [
+              "$14$",
+              "$3a$",
+              "$18$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Third position: 14. (Subscripts label position — never multiply.)",
+            "check": [
+              "6 + 4*2 == 14"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Teleport test",
+            "title": "Use the explicit rule",
+            "prompt": "$a_n = n^2 - n$: then $a_5$ = …",
+            "options": [
+              "$20$",
+              "$24$",
+              "$10$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$25 - 5 = 20$. Position in, term out.",
+            "check": [
+              "5**2 - 5 == 20"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Rules at work",
+            "intro": "Recursive: build. Explicit: jump.",
+            "examples": [
+              {
+                "prompt": "Build 4 terms: $a_1 = 1$, $a_n = 3a_{n-1} - 1$.",
+                "steps": [
+                  "$a_2 = 3(1)-1 = 2$.",
+                  "$a_3 = 3(2)-1 = 5$.",
+                  "$a_4 = 3(5)-1 = 14$."
+                ],
+                "answer": "$1, 2, 5, 14$",
+                "check": [
+                  "3*1 - 1 == 2",
+                  "3*2 - 1 == 5",
+                  "3*5 - 1 == 14"
+                ]
+              },
+              {
+                "prompt": "Which positions of $a_n = 2n + 3$ give the terms $5$ and $23$?",
+                "steps": [
+                  "$2n + 3 = 5 \\to n = 1$.",
+                  "$2n + 3 = 23 \\to n = 10$.",
+                  "Explicit rules also run backwards — solve for $n$."
+                ],
+                "answer": "$n = 1$ and $n = 10$",
+                "check": [
+                  "2*1 + 3 == 5",
+                  "2*10 + 3 == 23"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Notation fluency",
+            "intro": "Position in, term out; steps need history.",
+            "problems": [
+              {
+                "prompt": "$a_n = 100 - 7n$: the first term is…",
+                "options": [
+                  "$93$",
+                  "$100$",
+                  "$107$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$a_1 = 100 - 7 = 93$. (The rule starts at $n = 1$, not $n = 0$.)",
+                "check": [
+                  "100 - 7*1 == 93"
+                ]
+              },
+              {
+                "prompt": "$a_1 = 2$, $a_n = a_{n-1}^2$: then $a_4$ = …",
+                "options": [
+                  "$256$",
+                  "$16$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2 \\to 4 \\to 16 \\to 256$ — squaring compounds fast.",
+                "check": [
+                  "((2**2)**2)**2 == 256"
+                ]
+              },
+              {
+                "prompt": "To find $a_{50}$ FAST, you want…",
+                "options": [
+                  "an explicit rule",
+                  "a recursive rule",
+                  "the first 49 terms"
+                ],
+                "correctIndex": 0,
+                "explanation": "Explicit teleports: one substitution. Recursive walks all 49 steps.",
+                "check": [
+                  "50 - 1 == 49"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The most famous recursive rule",
+            "body": "Fibonacci's $a_n = a_{n-1} + a_{n-2}$ — each term the sum of the previous TWO — grows sunflower spirals, pinecone scales, and nautilus shells: $1, 1, 2, 3, 5, 8, 13, \\ldots$ He introduced it in 1202 to model breeding rabbits. The rabbits were fictional; the pattern turned out to be everywhere."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$a_n$: the term at position $n$ — subscripts label, never multiply.",
+              "Recursive rules step from the previous term; explicit rules teleport.",
+              "A sequence is a function on $1, 2, 3, \\ldots$ in subscript clothes."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "arithmetic-sequences",
+      "title": "Arithmetic Sequences",
+      "concreteComparison": "A taxi charges 3 to start, then 4 per kilometer: $7, 11, 15, 19, \\ldots$ — the same amount added every step. That's an **arithmetic sequence**, the linear function of the sequence world, and one formula teleports to any term: start plus (steps taken) × (step size).",
+      "objective": "Recognize arithmetic sequences by their common difference and use $a_n = a_1 + (n-1)d$ to find terms, differences, and positions.",
+      "concept": [
+        "**Arithmetic sequence**: the same **common difference** $d$ added each step. $7, 11, 15, 19$: $d = 4$. Test: consecutive differences all equal.",
+        "The explicit formula: $a_n = a_1 + (n-1)d$ — from $a_1$, you've taken $n-1$ steps of size $d$. Taxi at km 10: $a_{10} = 7 + 9(4) = 43$.",
+        "Why $n-1$ (the classic off-by-one): the FIRST term uses zero steps. Five fence posts, four gaps.",
+        "Everything runs backwards too: given $a_1 = 5$ and $a_{20} = 81$, the difference is $d = \\tfrac{81-5}{19} = 4$; given a term, solve for its position $n$. It's linear-equation algebra with a costume."
+      ],
+      "keyIdea": "Same difference every step: aₙ = a₁ + (n−1)d — n−1 steps from the start. Fence posts and gaps.",
+      "facts": [
+        {
+          "title": "The formula",
+          "latex": "a_n = a_1 + (n-1)d",
+          "explanation": "Start + steps × step-size."
+        },
+        {
+          "title": "Posts and gaps",
+          "latex": "n \\text{ terms} \\Rightarrow n-1 \\text{ steps}",
+          "explanation": "The off-by-one, tamed."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sq2-we1",
+          "statement": "For $7, 11, 15, 19, \\ldots$: find $d$ and $a_{10}$.",
+          "solution": "$d = 4$; $a_{10} = 7 + 9 \\cdot 4 = 43$.",
+          "check": [
+            "11 - 7 == 4",
+            "7 + (10-1)*4 == 43"
+          ]
+        },
+        {
+          "id": "sq2-we2",
+          "statement": "An arithmetic sequence has $a_1 = 100$ and $d = -6$. Find $a_{12}$.",
+          "solution": "$a_{12} = 100 + 11(-6) = 34$ — negative differences count DOWN.",
+          "check": [
+            "100 + (12-1)*(-6) == 34"
+          ]
+        },
+        {
+          "id": "sq2-we3",
+          "statement": "Given $a_1 = 5$ and $a_{20} = 81$: find $d$.",
+          "solution": "19 steps cover $81 - 5 = 76$: $d = 4$.",
+          "check": [
+            "Rational(81-5, 20-1) == 4",
+            "5 + 19*4 == 81"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using $n$ steps instead of $n-1$: $a_{10} = a_1 + 10d$.",
+          "correction": "Ten terms, NINE steps: $a_{10} = a_1 + 9d$. The first term is the starting post — it costs no step.",
+          "authored": true
+        },
+        {
+          "text": "Testing 'arithmetic' with just one difference.",
+          "correction": "$1, 2, 4, 8$ has first difference 1 — but then 2, then 4. Check at least two consecutive differences before declaring $d$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sq2-t1",
+          "statement": "$3, 10, 17, 24, \\ldots$: find $d$ and $a_{15}$.",
+          "solution": "$d = 7$; $a_{15} = 3 + 14 \\cdot 7 = 101$.",
+          "check": [
+            "10 - 3 == 7",
+            "3 + 14*7 == 101"
+          ]
+        },
+        {
+          "id": "sq2-t2",
+          "statement": "Which position of $2, 9, 16, \\ldots$ holds the term $107$?",
+          "solution": "$2 + (n-1)7 = 107 \\to n - 1 = 15 \\to n = 16$.",
+          "check": [
+            "2 + (16-1)*7 == 107"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The taxi meter",
+            "title": "Same step, every step",
+            "beats": [
+              "Start 3, plus 4 per km: $7, 11, 15, 19, \\ldots$",
+              "One number rules the list: the **common difference** $d = 4$.",
+              "Test: consecutive differences ALL equal.",
+              "The linear function of sequence-land."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Teleport formula",
+            "title": "Start + steps × size",
+            "beats": [
+              "From $a_1$, reaching $a_n$ takes $n - 1$ steps.",
+              "$a_n = a_1 + (n-1)d$.",
+              "$a_{10} = 7 + 9(4) = 43$.",
+              "Why $n-1$? Five posts, four gaps. Always."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Count the gaps",
+            "prompt": "$5, 12, 19, \\ldots$: $a_{9}$ = …",
+            "options": [
+              "$61$",
+              "$68$",
+              "$45$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$5 + 8 \\cdot 7 = 61$ — eight gaps to the ninth post. ($68$ used 9 steps: the off-by-one.)",
+            "check": [
+              "5 + (9-1)*7 == 61"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Run it backwards",
+            "title": "Find d, find n",
+            "beats": [
+              "$a_1 = 5$, $a_{20} = 81$: what's $d$?",
+              "19 gaps cover $76$: $d = 4$.",
+              "Which position holds 107 in $2, 9, 16, \\ldots$?",
+              "$2 + (n-1)7 = 107 \\to n = 16$. Linear algebra, costumed."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Backwards drill",
+            "title": "Hunt the difference",
+            "prompt": "$a_1 = 8$ and $a_{11} = 58$: then $d$ = …",
+            "options": [
+              "$5$",
+              "$5.8$",
+              "$50$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Ten gaps cover $50$: $d = 5$. (Dividing by 11 is the posts-for-gaps swap.)",
+            "check": [
+              "Rational(58-8, 11-1) == 5",
+              "8 + 10*5 == 58"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Meter math",
+            "intro": "Formula forward, formula backward.",
+            "examples": [
+              {
+                "prompt": "Seats per row in a theater: row 1 has 14, each row adds 3. How many seats in row 20?",
+                "steps": [
+                  "$a_{20} = 14 + 19 \\cdot 3$.",
+                  "$= 71$ seats."
+                ],
+                "answer": "$71$",
+                "check": [
+                  "14 + 19*3 == 71"
+                ]
+              },
+              {
+                "prompt": "An arithmetic sequence runs $\\ldots, 40, ?, 52, \\ldots$ (consecutive). Find the middle term and $d$.",
+                "steps": [
+                  "Two steps cover 12: $d = 6$.",
+                  "Middle: $46$ — the average of its neighbors!"
+                ],
+                "answer": "$46$, $d = 6$",
+                "check": [
+                  "Rational(52-40,2) == 6",
+                  "Rational(40+52,2) == 46"
+                ]
+              },
+              {
+                "prompt": "Is $200$ a term of $3, 10, 17, \\ldots$?",
+                "steps": [
+                  "$3 + (n-1)7 = 200 \\to n - 1 = \\tfrac{197}{7}$.",
+                  "Not a whole number — 200 is NOT in the list.",
+                  "(197 = 7·28 + 1: lands between posts.)"
+                ],
+                "answer": "no",
+                "check": [
+                  "3 + 28*7 == 199",
+                  "3 + 29*7 == 206"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Gap discipline",
+            "intro": "n−1 gaps; averages between neighbors.",
+            "problems": [
+              {
+                "prompt": "$a_n = ?$ for $9, 14, 19, \\ldots$ — the explicit rule is…",
+                "options": [
+                  "$a_n = 9 + 5(n-1)$",
+                  "$a_n = 9 + 5n$",
+                  "$a_n = 5 + 9(n-1)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Start 9, step 5, $n-1$ steps. Check $a_1$: $9$ ✓ (the middle option gives 14).",
+                "check": [
+                  "9 + 5*(1-1) == 9",
+                  "9 + 5*(3-1) == 19"
+                ]
+              },
+              {
+                "prompt": "A countdown: $a_1 = 50$, $d = -8$. First negative term at…",
+                "options": [
+                  "$n = 8$",
+                  "$n = 7$",
+                  "$n = 6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$a_7 = 50 - 48 = 2 > 0$; $a_8 = -6 < 0$.",
+                "check": [
+                  "50 + (7-1)*(-8) == 2",
+                  "50 + (8-1)*(-8) == -6"
+                ]
+              },
+              {
+                "prompt": "In any arithmetic sequence, each middle term equals…",
+                "options": [
+                  "the average of its two neighbors",
+                  "the sum of its neighbors",
+                  "half the next term"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal steps up and down: $\\tfrac{(a-d) + (a+d)}{2} = a$. That's WHY it's called 'arithmetic' — the arithmetic mean.",
+                "check": [
+                  "Rational((10-3) + (10+3), 2) == 10"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why 'arithmetic'?",
+            "body": "The name comes from the arithmetic MEAN: in $7, 11, 15$, the middle term is exactly the average of its neighbors. (Geometric sequences, next lesson, hide the geometric mean the same way: in $2, 6, 18$, the middle is $\\sqrt{2 \\cdot 18} = 6$.) The sequence names are a 2,000-year-old averages joke."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Common difference $d$: test SEVERAL consecutive gaps.",
+              "$a_n = a_1 + (n-1)d$ — posts and gaps, minus one.",
+              "Backwards too: solve for $d$, for $n$, or test membership."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "geometric-sequences",
+      "title": "Geometric Sequences",
+      "concreteComparison": "Fold a sheet of paper: 1 layer, 2, 4, 8, 16… Each fold MULTIPLIES by 2 — an arithmetic sequence's multiplicative twin. **Geometric sequences** run on a **common ratio**, and their teleport formula swaps the arithmetic one's multiplication for an exponent: start times ratio-to-the-steps. You met this machine as $y = a \\cdot b^x$; now it wears subscripts.",
+      "objective": "Recognize geometric sequences by their common ratio and use $a_n = a_1 \\cdot r^{n-1}$ in both directions.",
+      "concept": [
+        "**Geometric sequence**: same **common ratio** $r$ multiplied each step. $2, 6, 18, 54$: $r = 3$. Test: consecutive RATIOS all equal.",
+        "Explicit formula: $a_n = a_1 \\cdot r^{n-1}$ — from $a_1$, multiply by $r$ once per step, $n-1$ steps. Paper folds: $a_8 = 1 \\cdot 2^7 = 128$ layers.",
+        "It's Grade 10's exponential function on the domain $1, 2, 3, \\ldots$: $r > 1$ grows, $0 < r < 1$ decays ($80, 40, 20, 10$: $r = \\tfrac12$), negative $r$ ALTERNATES signs ($3, -6, 12, -24$: $r = -2$).",
+        "Backwards: given $a_1 = 5$ and $a_4 = 135$, three steps multiply by $\\tfrac{135}{5} = 27 = r^3$, so $r = 3$ — the gap-root trick from exponential models, in subscript clothes."
+      ],
+      "keyIdea": "Same ratio every step: aₙ = a₁·r^(n−1). Growth, decay, or sign-flipping — by where r sits.",
+      "facts": [
+        {
+          "title": "The formula",
+          "latex": "a_n = a_1 \\cdot r^{n-1}",
+          "explanation": "Start × ratio per gap."
+        },
+        {
+          "title": "The ratio's regimes",
+          "latex": "r>1 \\text{ grow} \\quad 0<r<1 \\text{ decay} \\quad r<0 \\text{ alternate}",
+          "explanation": "One number, three behaviors."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sq3-we1",
+          "statement": "For $2, 6, 18, 54, \\ldots$: find $r$ and $a_7$.",
+          "solution": "$r = 3$; $a_7 = 2 \\cdot 3^6 = 1458$.",
+          "check": [
+            "Rational(6,2) == 3",
+            "2*3**(7-1) == 1458"
+          ]
+        },
+        {
+          "id": "sq3-we2",
+          "statement": "For $80, 40, 20, \\ldots$: find $r$ and $a_6$.",
+          "solution": "$r = \\tfrac12$; $a_6 = 80 \\cdot (\\tfrac12)^5 = \\tfrac{80}{32} = 2.5$.",
+          "check": [
+            "Rational(40,80) == Rational(1,2)",
+            "80*Rational(1,2)**5 == Rational(5,2)"
+          ]
+        },
+        {
+          "id": "sq3-we3",
+          "statement": "Given $a_1 = 5$ and $a_4 = 135$: find $r$.",
+          "solution": "Three gaps: $r^3 = 27 \\to r = 3$.",
+          "check": [
+            "Rational(135,5) == 27",
+            "5*3**(4-1) == 135"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Testing with differences instead of ratios.",
+          "correction": "$2, 6, 18$: differences $4, 12$ — unequal, but it's perfectly geometric ($r = 3$). Multiplicative lists need the RATIO test: divide neighbors.",
+          "authored": true
+        },
+        {
+          "text": "Computing $a_n = (a_1 r)^{n-1}$ — gluing the start onto the ratio.",
+          "correction": "Only $r$ gets the exponent: $a_7 = 2 \\cdot 3^6$, not $6^6$. Same trap as $y = ab^x$ in Grade 10.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sq3-t1",
+          "statement": "$1, 4, 16, 64, \\ldots$: find $r$ and $a_6$.",
+          "solution": "$r = 4$; $a_6 = 4^5 = 1024$.",
+          "check": [
+            "Rational(4,1) == 4",
+            "1*4**5 == 1024"
+          ]
+        },
+        {
+          "id": "sq3-t2",
+          "statement": "$3, -6, 12, -24, \\ldots$: find $r$ and $a_5$.",
+          "solution": "$r = -2$; $a_5 = 3 \\cdot 16 = 48$.",
+          "check": [
+            "Rational(-6,3) == -2",
+            "3*(-2)**4 == 48"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The multiplicative twin",
+            "title": "Fold the paper",
+            "beats": [
+              "Folds: $1, 2, 4, 8, 16, \\ldots$ — each fold ×2.",
+              "Arithmetic adds $d$; geometric MULTIPLIES by $r$.",
+              "Test: neighbor RATIOS all equal.",
+              "$2, 6, 18, 54$: $\\tfrac62 = \\tfrac{18}{6} = 3$ ✓."
+            ]
+          },
+          {
+            "kind": "patternGrow",
+            "eyebrow": "Watch it compound",
+            "title": "Doubling, step by step",
+            "teach": "Reveal the stages: each square count DOUBLES — the geometric machine drawn in tiles. By stage $n$ there are $2^{n-1}$ tiles: the explicit formula growing before your eyes. Compare how fast the tiles outrun any add-the-same-amount plan.",
+            "config": {
+              "pattern": "doubling",
+              "maxSteps": 6
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Ratio test",
+            "prompt": "$5, 15, 45, 135, \\ldots$: $r$ and $a_6$ are…",
+            "options": [
+              "$r = 3$, $a_6 = 1215$",
+              "$r = 10$, $a_6 = 55$",
+              "$r = 3$, $a_6 = 405$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$r = 3$; five gaps: $a_6 = 5 \\cdot 3^5 = 1215$. ($405$ used four gaps — off-by-one.)",
+            "check": [
+              "5*3**5 == 1215",
+              "5*3**4 == 405"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Three regimes",
+            "title": "Where r sits",
+            "beats": [
+              "$r = 3$: growth — the paper-fold explosion.",
+              "$r = \\tfrac12$: decay — $80, 40, 20, 10, \\ldots$ (half-life!)",
+              "$r = -2$: ALTERNATION — $3, -6, 12, -24$: signs flip.",
+              "One ratio, three personalities."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Regime call",
+            "title": "Negative ratio",
+            "prompt": "$a_1 = 2$, $r = -3$: the 4th term is…",
+            "options": [
+              "$-54$",
+              "$54$",
+              "$-18$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$2 \\cdot (-3)^3 = -54$. Odd gap-count → negative. Track the sign through the exponent.",
+            "check": [
+              "2*(-3)**3 == -54"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Ratio machinery",
+            "intro": "Formula forward; gap-roots backward.",
+            "examples": [
+              {
+                "prompt": "A ball bounces to $\\tfrac{3}{5}$ of its height each time, from 250 cm. Height after bounce 3?",
+                "steps": [
+                  "$a_n = 250 (\\tfrac35)^n$ after $n$ bounces.",
+                  "$250 \\cdot \\tfrac{27}{125} = 54$ cm."
+                ],
+                "answer": "$54$ cm",
+                "check": [
+                  "250*Rational(3,5)**3 == 54"
+                ]
+              },
+              {
+                "prompt": "$a_2 = 12$ and $a_5 = 324$: find $r$ and $a_1$.",
+                "steps": [
+                  "Three gaps: $r^3 = \\tfrac{324}{12} = 27 \\to r = 3$.",
+                  "$a_1 = \\tfrac{12}{3} = 4$."
+                ],
+                "answer": "$r = 3$, $a_1 = 4$",
+                "check": [
+                  "Rational(324,12) == 27",
+                  "4*3**(2-1) == 12",
+                  "4*3**(5-1) == 324"
+                ]
+              },
+              {
+                "prompt": "Is $2, 6, 18$ arithmetic, geometric, or both?",
+                "steps": [
+                  "Differences: $4, 12$ — unequal: not arithmetic.",
+                  "Ratios: $3, 3$ — equal: geometric."
+                ],
+                "answer": "geometric only",
+                "check": [
+                  "6-2 == 4",
+                  "18-6 == 12",
+                  "Rational(6,2) == Rational(18,6)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Twin telling",
+            "intro": "Ratios for geometric; watch the off-by-one.",
+            "problems": [
+              {
+                "prompt": "$a_n = 7 \\cdot 2^{n-1}$: then $a_5$ = …",
+                "options": [
+                  "$112$",
+                  "$224$",
+                  "$70$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$7 \\cdot 2^4 = 112$.",
+                "check": [
+                  "7*2**4 == 112"
+                ]
+              },
+              {
+                "prompt": "Which sequence is geometric?",
+                "options": [
+                  "$1, \\tfrac12, \\tfrac14, \\tfrac18$",
+                  "$1, 3, 5, 7$",
+                  "$1, 4, 9, 16$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Ratios all $\\tfrac12$ — decay regime. (The others: arithmetic; perfect squares.)",
+                "check": [
+                  "Rational(1,2)/1 == Rational(1,4)/Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "In a geometric sequence, each middle term equals…",
+                "options": [
+                  "$\\sqrt{\\text{product of its neighbors}}$",
+                  "the average of its neighbors",
+                  "the neighbors' difference"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2, 6, 18$: $\\sqrt{2 \\cdot 18} = 6$ — the GEOMETRIC mean. The twin of last lesson's average fact.",
+                "check": [
+                  "sqrt(2*18) == 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "42 folds to the Moon",
+            "body": "Paper is 0.1 mm thick; folding doubles it. After 42 folds: $2^{42} \\times 0.1$ mm ≈ 440,000 km — past the Moon. (The world record for physical folds is 12 — the paper fights back exponentially too, since each fold must bend a stack twice as thick.) Geometric sequences don't negotiate."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Common ratio $r$: test neighbor ratios, not differences.",
+              "$a_n = a_1 \\cdot r^{n-1}$ — the exponential, in subscripts.",
+              "Regimes: growth ($r>1$), decay ($0<r<1$), alternation ($r<0$)."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "arithmetic-series",
+      "title": "Arithmetic Series",
+      "concreteComparison": "Legend: 8-year-old Gauss was told to add $1 + 2 + \\cdots + 100$ to keep him busy. He paired the ends — $1+100$, $2+99$, $3+98$ — fifty pairs of $101$: $5050$, in seconds. A **series** is a sequence being ADDED, and Gauss's pairing is the formula: $S_n = \\tfrac{n(a_1 + a_n)}{2}$ — count times average of first-and-last.",
+      "objective": "Sum arithmetic series with $S_n = \\frac{n(a_1+a_n)}{2}$, finding the last term first when necessary.",
+      "concept": [
+        "A **series** is a sequence's sum: the sequence $2, 5, 8, 11$ has series $2+5+8+11 = 26$.",
+        "**Gauss's pairing**: first + last = second + second-to-last = … Every pair totals $a_1 + a_n$, and there are $\\tfrac{n}{2}$ pairs: $$S_n = \\frac{n(a_1 + a_n)}{2}.$$",
+        "Read it as **count × average**: $\\tfrac{a_1 + a_n}{2}$ is the average term, and $n$ terms of average size sum to $n \\times$ average. (Odd counts work too — the middle term IS the average.)",
+        "Often the last term needs computing first: sum $3 + 7 + 11 + \\cdots$ for 20 terms → $a_{20} = 3 + 19 \\cdot 4 = 79$, then $S_{20} = \\tfrac{20(3+79)}{2} = 820$. Two formulas, chained."
+      ],
+      "keyIdea": "Sₙ = n(a₁ + aₙ)/2 — count times the average of first and last. Compute the last term first if needed.",
+      "facts": [
+        {
+          "title": "Gauss's formula",
+          "latex": "S_n = \\tfrac{n(a_1+a_n)}{2}",
+          "explanation": "Pairs of first+last — or count × average."
+        },
+        {
+          "title": "The chain",
+          "latex": "\\text{find } a_n \\text{ first, then } S_n",
+          "explanation": "Two formulas working together."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sq4-we1",
+          "statement": "Compute $1 + 2 + \\cdots + 100$ Gauss's way.",
+          "solution": "$S = \\tfrac{100 \\cdot 101}{2} = 5050$.",
+          "check": [
+            "Rational(100*(1+100), 2) == 5050"
+          ]
+        },
+        {
+          "id": "sq4-we2",
+          "statement": "Sum the first 20 terms of $3, 7, 11, \\ldots$.",
+          "solution": "$a_{20} = 3 + 19 \\cdot 4 = 79$; $S_{20} = \\tfrac{20(3+79)}{2} = 820$.",
+          "check": [
+            "3 + 19*4 == 79",
+            "Rational(20*(3+79), 2) == 820"
+          ]
+        },
+        {
+          "id": "sq4-we3",
+          "statement": "A theater's rows hold $14, 17, 20, \\ldots$ seats for 10 rows. Total seats?",
+          "solution": "$a_{10} = 14 + 27 = 41$; $S_{10} = \\tfrac{10(14+41)}{2} = 275$.",
+          "check": [
+            "14 + 9*3 == 41",
+            "Rational(10*(14+41), 2) == 275"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Averaging the first and SECOND terms instead of first and last.",
+          "correction": "The average term is $\\tfrac{a_1 + a_n}{2}$ — ends of the whole list. Using $a_2$ gives a near-miss that feels right and isn't.",
+          "authored": true
+        },
+        {
+          "text": "Summing '20 terms' but stopping the last-term chain at $a_{19}$.",
+          "correction": "$a_{20} = a_1 + 19d$ — the off-by-one strikes the SERIES through its last term. Count posts, then pair.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sq4-t1",
+          "statement": "Sum $5 + 10 + 15 + \\cdots + 50$.",
+          "solution": "Ten terms: $S = \\tfrac{10(5+50)}{2} = 275$.",
+          "check": [
+            "Rational(10*(5+50), 2) == 275"
+          ]
+        },
+        {
+          "id": "sq4-t2",
+          "statement": "Sum the first 30 odd numbers ($1 + 3 + \\cdots$).",
+          "solution": "$a_{30} = 59$; $S = \\tfrac{30 \\cdot 60}{2} = 900 = 30^2$!",
+          "check": [
+            "1 + 29*2 == 59",
+            "Rational(30*(1+59),2) == 900",
+            "30**2 == 900"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The bored genius",
+            "title": "Gauss's pairing",
+            "beats": [
+              "Add $1 + 2 + \\cdots + 100$. By hand? No—",
+              "pair the ends: $1+100$, $2+99$, $3+98$, …",
+              "Fifty pairs, each totaling 101: $5050$.",
+              "Since 1787, nobody adds series term by term."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The formula",
+            "title": "Count × average",
+            "beats": [
+              "$S_n = \\tfrac{n(a_1 + a_n)}{2}$.",
+              "Read: $n$ terms × average term $\\tfrac{a_1+a_n}{2}$.",
+              "$1..100$: $100 \\times 50.5 = 5050$ ✓.",
+              "First and LAST — the whole list's bookends."
+            ]
+          },
+          {
+            "kind": "patternGrow",
+            "eyebrow": "The sum that draws squares",
+            "title": "Adding odd numbers",
+            "teach": "Reveal the stages: $1$, then $1+3$, then $1+3+5$… each L-shaped layer of tiles is the next odd number, and the total is always a PERFECT SQUARE: $1, 4, 9, 16, \\ldots$ Gauss's formula agrees: the first $n$ odds sum to $\\tfrac{n(1 + (2n-1))}{2} = n^2$. A series, drawn.",
+            "config": {
+              "pattern": "odds",
+              "maxSteps": 6
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Pair it",
+            "prompt": "$2 + 4 + 6 + \\cdots + 40$ (twenty terms) = …",
+            "options": [
+              "$420$",
+              "$840$",
+              "$400$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tfrac{20(2+40)}{2} = 420$. ($840$ forgot the ÷2 — counted every pair twice.)",
+            "check": [
+              "Rational(20*(2+40),2) == 420"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Chain the formulas",
+            "title": "Last term first",
+            "beats": [
+              "Sum 20 terms of $3, 7, 11, \\ldots$ — but what's the last?",
+              "Step 1 (last lesson): $a_{20} = 3 + 19(4) = 79$.",
+              "Step 2 (this lesson): $S = \\tfrac{20(3+79)}{2} = 820$.",
+              "Term formula feeds the sum formula. Always in that order."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Chained drill",
+            "title": "Both formulas",
+            "prompt": "The sum of the first 15 terms of $10, 12, 14, \\ldots$ is…",
+            "options": [
+              "$360$",
+              "$330$",
+              "$510$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$a_{15} = 10 + 28 = 38$; $S = \\tfrac{15(10+38)}{2} = 360$.",
+            "check": [
+              "10 + 14*2 == 38",
+              "Rational(15*(10+38),2) == 360"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Sums in the wild",
+            "intro": "Chain: last term, then pair.",
+            "examples": [
+              {
+                "prompt": "A brick stack: 25 bricks on the bottom, one fewer each row, 10 rows. Total bricks?",
+                "steps": [
+                  "Top row: $25 - 9 = 16$.",
+                  "$S = \\tfrac{10(25+16)}{2} = 205$."
+                ],
+                "answer": "$205$",
+                "check": [
+                  "25 - 9 == 16",
+                  "Rational(10*(25+16),2) == 205"
+                ]
+              },
+              {
+                "prompt": "Savings: 10 (thousand) in week 1, +2 each week, for 26 weeks. Total saved?",
+                "steps": [
+                  "$a_{26} = 10 + 25 \\cdot 2 = 60$.",
+                  "$S = \\tfrac{26(10+60)}{2} = 910$."
+                ],
+                "answer": "$910$ thousand",
+                "check": [
+                  "10 + 25*2 == 60",
+                  "Rational(26*(10+60),2) == 910"
+                ]
+              },
+              {
+                "prompt": "How many terms of $1 + 2 + 3 + \\cdots$ first reach a sum over 200?",
+                "steps": [
+                  "$S_n = \\tfrac{n(n+1)}{2}$.",
+                  "$S_{19} = 190 < 200$; $S_{20} = 210$.",
+                  "Twenty terms."
+                ],
+                "answer": "$n = 20$",
+                "check": [
+                  "Rational(19*20,2) == 190",
+                  "Rational(20*21,2) == 210"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Pairing practice",
+            "intro": "Bookends, count, halve.",
+            "problems": [
+              {
+                "prompt": "$10 + 20 + \\cdots + 100$ = …",
+                "options": [
+                  "$550$",
+                  "$1100$",
+                  "$500$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Ten terms, average 55: $550$.",
+                "check": [
+                  "Rational(10*(10+100),2) == 550"
+                ]
+              },
+              {
+                "prompt": "The first 50 even numbers ($2 + 4 + \\cdots + 100$) sum to…",
+                "options": [
+                  "$2550$",
+                  "$5050$",
+                  "$2500$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{50(2+100)}{2} = 2550$. (Twice the first 50 naturals minus... no — it IS $50 \\cdot 51$.)",
+                "check": [
+                  "Rational(50*(2+100),2) == 2550",
+                  "50*51 == 2550"
+                ]
+              },
+              {
+                "prompt": "The first $n$ odd numbers always sum to…",
+                "options": [
+                  "$n^2$",
+                  "$2n$",
+                  "$\\tfrac{n(n+1)}{2}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{n(1 + 2n-1)}{2} = n^2$ — the L-shaped tiles drew the proof.",
+                "check": [
+                  "Rational(6*(1+11),2) == 36",
+                  "6**2 == 36"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Gauss, verified",
+            "body": "Historians argue whether the schoolroom story is true — Gauss told it himself in old age, numbers varying by the telling. What's certain: the pairing predates him by millennia (the Pythagoreans drew odd-number sums as square pebble arrangements — your tile figure!) and he DID become history's greatest number theorist. Good stories compound like sequences."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Series = a sequence being summed.",
+              "$S_n = \\tfrac{n(a_1+a_n)}{2}$ — count × average of the bookends.",
+              "Chain: compute $a_n$ first when the last term isn't given."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "geometric-series",
+      "title": "Geometric Series",
+      "concreteComparison": "The chessboard legend returns for its finale: ONE grain doubling per square. Adding all 64 squares one at a time would take forever — but a trick kills the sum instantly: multiply the whole sum by 2, subtract the original, and every middle term cancels. What's left: $S = 2^{64} - 1$. That telescoping cancellation is the geometric series formula.",
+      "objective": "Sum geometric series with $S_n = \\frac{a_1(r^n - 1)}{r - 1}$, and understand the multiply-and-subtract derivation.",
+      "concept": [
+        "The trick, on $S = 1 + 2 + 4 + \\cdots + 2^{n-1}$: double it — $2S = 2 + 4 + \\cdots + 2^n$. Subtract: everything overlaps except the ends: $2S - S = 2^n - 1$.",
+        "In general: $$S_n = \\frac{a_1(r^n - 1)}{r - 1}$$ — multiply by $r$, subtract, and only the bookends survive the cancellation.",
+        "Check small: $2 + 6 + 18 + 54 + 162 = 242$, and the formula gives $\\tfrac{2(3^5-1)}{3-1} = \\tfrac{2 \\cdot 242}{2} = 242$ ✓.",
+        "Growth makes these sums TOP-heavy: in $1+2+\\cdots+2^{63}$, the last term alone outweighs all the others combined (plus one). Geometric series are stories about their final term."
+      ],
+      "keyIdea": "Multiply by r, subtract, and the middle cancels: Sₙ = a₁(rⁿ−1)/(r−1). The last term dominates.",
+      "facts": [
+        {
+          "title": "The formula",
+          "latex": "S_n = \\tfrac{a_1(r^n - 1)}{r - 1}",
+          "explanation": "Born from multiply-and-subtract."
+        },
+        {
+          "title": "Top-heavy",
+          "latex": "\\text{last term} > \\text{all before it (r=2)}",
+          "explanation": "$2^{63} = (2^{63}-1) + 1$."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sq5-we1",
+          "statement": "Sum $2 + 6 + 18 + 54 + 162$ by formula, then verify directly.",
+          "solution": "$\\tfrac{2(3^5-1)}{3-1} = 242$; direct: $2+6+18+54+162 = 242$ ✓.",
+          "check": [
+            "Rational(2*(3**5-1), 3-1) == 242",
+            "2+6+18+54+162 == 242"
+          ]
+        },
+        {
+          "id": "sq5-we2",
+          "statement": "Sum the first 10 terms of $1, 2, 4, 8, \\ldots$.",
+          "solution": "$S_{10} = \\tfrac{1(2^{10}-1)}{2-1} = 1023$.",
+          "check": [
+            "Rational(1*(2**10-1), 2-1) == 1023"
+          ]
+        },
+        {
+          "id": "sq5-we3",
+          "statement": "Sum the first 6 terms of $100, 50, 25, \\ldots$ (exactly).",
+          "solution": "$r = \\tfrac12$: $S_6 = \\tfrac{100((1/2)^6-1)}{1/2-1} = 100 \\cdot \\tfrac{63}{32} = \\tfrac{1575}{8}$.",
+          "check": [
+            "Rational(100, 1)*(1 - Rational(1,2)**6)/(1 - Rational(1,2)) == Rational(1575,8)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the arithmetic pairing on a geometric list.",
+          "correction": "Gauss's count-×-average needs EQUAL STEPS. $1+2+4+8$: average of bookends is 4.5, times 4 = 18 — but the true sum is 15. Ratios need the multiply-and-subtract formula.",
+          "authored": true
+        },
+        {
+          "text": "Computing $r^n$ with $n-1$ (the term formula's habit).",
+          "correction": "The SUM formula uses $r^n$ — full $n$, no minus one. Terms count gaps; sums count terms. Check against a tiny series when unsure.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sq5-t1",
+          "statement": "Sum the first 5 terms of $3, 6, 12, \\ldots$.",
+          "solution": "$\\tfrac{3(2^5-1)}{1} = 93$. (Direct: $3+6+12+24+48 = 93$ ✓.)",
+          "check": [
+            "Rational(3*(2**5-1), 2-1) == 93",
+            "3+6+12+24+48 == 93"
+          ]
+        },
+        {
+          "id": "sq5-t2",
+          "statement": "Sum the first 4 terms of $5, 15, 45, \\ldots$.",
+          "solution": "$\\tfrac{5(3^4-1)}{2} = 200$.",
+          "check": [
+            "Rational(5*(3**4-1), 3-1) == 200",
+            "5+15+45+135 == 200"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The chessboard finale",
+            "title": "Add all 64 squares",
+            "beats": [
+              "$S = 1 + 2 + 4 + \\cdots + 2^{63}$. Term-by-term? Never.",
+              "Double it: $2S = 2 + 4 + \\cdots + 2^{64}$.",
+              "Subtract: middles cancel — $S = 2^{64} - 1$.",
+              "Eighteen quintillion grains, computed in two lines."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The general formula",
+            "title": "Multiply, subtract, survive",
+            "beats": [
+              "$S_n = a_1 + a_1r + \\cdots + a_1r^{n-1}$.",
+              "$rS_n$ shifts everything one slot right.",
+              "Subtract: only bookends survive:",
+              "$S_n = \\tfrac{a_1(r^n - 1)}{r - 1}$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Small-series verify",
+            "prompt": "$1 + 2 + 4 + 8$ = …",
+            "options": [
+              "$15 = 2^4 - 1$",
+              "$18$ (count × average)",
+              "$16$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tfrac{1(2^4-1)}{1} = 15$ ✓ direct. (Count × average gives 18 — Gauss's pairing needs equal STEPS, not ratios.)",
+            "check": [
+              "1+2+4+8 == 15",
+              "2**4 - 1 == 15"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Top-heavy sums",
+            "title": "The last term rules",
+            "beats": [
+              "$1 + 2 + \\cdots + 2^{62} = 2^{63} - 1$.",
+              "The NEXT term alone: $2^{63}$.",
+              "One term outweighs the entire history plus one.",
+              "Geometric series are stories about their final term."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "n or n−1?",
+            "title": "The sum exponent",
+            "prompt": "First 6 terms of $1, 3, 9, \\ldots$: the sum is…",
+            "options": [
+              "$\\tfrac{3^6-1}{2} = 364$",
+              "$\\tfrac{3^5-1}{2} = 121$",
+              "$3^6 = 729$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Sums use FULL $n$: $\\tfrac{3^6 - 1}{2} = 364$. (Direct check: $1+3+9+27+81+243 = 364$ ✓.)",
+            "check": [
+              "Rational(3**6-1, 2) == 364",
+              "1+3+9+27+81+243 == 364"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Cancellation at work",
+            "intro": "Formula, then a small-case sanity check.",
+            "examples": [
+              {
+                "prompt": "A chain letter: 4 people send it, each recipient sends to 4 more. Total people after 5 rounds?",
+                "steps": [
+                  "Rounds: $4, 16, 64, 256, 1024$.",
+                  "$S_5 = \\tfrac{4(4^5-1)}{3} = 1364$."
+                ],
+                "answer": "$1364$",
+                "check": [
+                  "Rational(4*(4**5-1), 4-1) == 1364",
+                  "4+16+64+256+1024 == 1364"
+                ]
+              },
+              {
+                "prompt": "Total distance a ball travels DOWN: dropped from 128 cm, each bounce reaches half. Sum the first 5 descents.",
+                "steps": [
+                  "$128 + 64 + 32 + 16 + 8$.",
+                  "$= \\tfrac{128((1/2)^5 - 1)}{1/2 - 1} = 248$ cm."
+                ],
+                "answer": "$248$ cm",
+                "check": [
+                  "128+64+32+16+8 == 248",
+                  "Rational(128,1)*(1 - Rational(1,2)**5)/(1 - Rational(1,2)) == 248"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Series arsenal",
+            "intro": "Right formula for the right list.",
+            "problems": [
+              {
+                "prompt": "$2 + 4 + 8 + \\cdots + 256$ (eight terms) = …",
+                "options": [
+                  "$510$",
+                  "$1032$",
+                  "$258$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{2(2^8-1)}{1} = 510$.",
+                "check": [
+                  "Rational(2*(2**8-1), 2-1) == 510"
+                ]
+              },
+              {
+                "prompt": "Which sum needs the GEOMETRIC formula?",
+                "options": [
+                  "$1 + 5 + 25 + 125$",
+                  "$1 + 5 + 9 + 13$",
+                  "$5 + 10 + 15 + 20$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal ratios (×5). The others have equal steps — Gauss handles those.",
+                "check": [
+                  "Rational(5,1) == Rational(25,5)",
+                  "5-1 == 9-5"
+                ]
+              },
+              {
+                "prompt": "$1 + 2 + 4 + \\cdots + 2^{19}$ compares to $2^{20}$ as…",
+                "options": [
+                  "exactly one less",
+                  "exactly half",
+                  "exactly equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "$S = 2^{20} - 1$: the whole history is one grain short of the next square. Top-heavy, always.",
+                "check": [
+                  "2**20 - 1 == 1048575"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The emperor's bill, totaled",
+            "body": "The full chessboard owes $2^{64} - 1 \\approx 1.8 \\times 10^{19}$ grains — about 500 years of today's world rice harvest. Some tellings say the inventor was executed for insolence; smarter tellings say he was hired as treasurer on the spot. Either way: never sign a geometric contract without running the sum formula first."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Multiply by $r$, subtract — the middle cancels.",
+              "$S_n = \\tfrac{a_1(r^n-1)}{r-1}$; sums use full $n$.",
+              "Wrong tool alert: Gauss pairing fails on ratio lists."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "infinite-geometric-series",
+      "title": "Infinite Geometric Series",
+      "concreteComparison": "Walk to a wall: half the distance, then half of what's left, then half again — $\\tfrac12 + \\tfrac14 + \\tfrac18 + \\cdots$, forever. Infinitely many steps… yet you arrive: the sum is exactly $1$. When the ratio shrinks each term ($|r| < 1$), an INFINITE list can have a FINITE sum — and the formula is the shortest in the unit: $S = \\tfrac{a_1}{1 - r}$.",
+      "objective": "Sum infinite geometric series with $S = \\frac{a_1}{1-r}$ when $|r| < 1$, and recognize when no finite sum exists.",
+      "concept": [
+        "Watch the partial sums of $\\tfrac12 + \\tfrac14 + \\tfrac18 + \\cdots$: $\\tfrac12, \\tfrac34, \\tfrac78, \\tfrac{15}{16}, \\ldots$ — always one step's-worth short of 1, and that shortfall halves each time. The sum **converges** to 1.",
+        "In the finite formula, $r^n$ dies as $n$ grows (when $|r| < 1$): what remains is $$S = \\frac{a_1}{1 - r}.$$ Half-walk: $\\tfrac{1/2}{1 - 1/2} = 1$ ✓.",
+        "**Divergence**: if $|r| \\ge 1$ the terms don't shrink — $1 + 2 + 4 + \\cdots$ grows past everything; no finite sum exists. Check $|r| < 1$ BEFORE using the formula.",
+        "The party trick: $0.999\\ldots = \\tfrac{9}{10} + \\tfrac{9}{100} + \\cdots = \\tfrac{9/10}{1 - 1/10} = 1$. Exactly 1 — not 'approaching', EQUAL. Repeating decimals are infinite geometric series in disguise."
+      ],
+      "keyIdea": "|r| < 1: the tail dies and S = a₁/(1−r). |r| ≥ 1: no finite sum. Repeating decimals are these series in disguise.",
+      "facts": [
+        {
+          "title": "The formula",
+          "latex": "S = \\tfrac{a_1}{1-r} \\quad (|r| < 1)",
+          "explanation": "The finite formula with rⁿ sent to zero."
+        },
+        {
+          "title": "The gate",
+          "latex": "|r| \\ge 1 \\Rightarrow \\text{diverges}",
+          "explanation": "Check the ratio before you sum."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sq6-we1",
+          "statement": "Sum $\\tfrac12 + \\tfrac14 + \\tfrac18 + \\cdots$",
+          "solution": "$S = \\tfrac{1/2}{1 - 1/2} = 1$ — the wall is reached.",
+          "check": [
+            "Rational(1,2)/(1 - Rational(1,2)) == 1"
+          ]
+        },
+        {
+          "id": "sq6-we2",
+          "statement": "Sum $9 + 3 + 1 + \\tfrac13 + \\cdots$",
+          "solution": "$r = \\tfrac13$: $S = \\tfrac{9}{1 - 1/3} = \\tfrac{27}{2}$.",
+          "check": [
+            "Rational(9,1)/(1 - Rational(1,3)) == Rational(27,2)"
+          ]
+        },
+        {
+          "id": "sq6-we3",
+          "statement": "Show $0.999\\ldots = 1$ as a geometric series.",
+          "solution": "$a_1 = \\tfrac{9}{10}$, $r = \\tfrac{1}{10}$: $S = \\tfrac{9/10}{9/10} = 1$. Exactly.",
+          "check": [
+            "Rational(9,10)/(1 - Rational(1,10)) == 1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Summing a divergent series: $S = \\tfrac{1}{1-2} = -1$ for $1+2+4+\\cdots$.",
+          "correction": "The formula's fine print is $|r| < 1$. With $r = 2$ the terms GROW — no finite sum exists, and the $-1$ is the formula misfiring outside its warranty.",
+          "authored": true
+        },
+        {
+          "text": "Thinking $0.999\\ldots$ is 'just under' 1.",
+          "correction": "The infinite sum is EXACTLY 1 — every finite cutoff is under, but the limit isn't a cutoff. (If they differed, their difference would be a positive number smaller than every $\\tfrac{1}{10^n}$ — no such number exists.)",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sq6-t1",
+          "statement": "Sum $8 + 4 + 2 + 1 + \\cdots$",
+          "solution": "$S = \\tfrac{8}{1 - 1/2} = 16$.",
+          "check": [
+            "Rational(8,1)/(1 - Rational(1,2)) == 16"
+          ]
+        },
+        {
+          "id": "sq6-t2",
+          "statement": "Write $0.777\\ldots$ as a fraction via the series.",
+          "solution": "$\\tfrac{7/10}{1 - 1/10} = \\tfrac79$.",
+          "check": [
+            "Rational(7,10)/(1 - Rational(1,10)) == Rational(7,9)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Walking to the wall",
+            "title": "Infinite steps, finite trip",
+            "beats": [
+              "Half the distance. Half of what's left. Again. Forever.",
+              "$\\tfrac12 + \\tfrac14 + \\tfrac18 + \\cdots$ — infinitely many terms.",
+              "Partial sums: $\\tfrac12, \\tfrac34, \\tfrac78, \\tfrac{15}{16}$… closing on 1.",
+              "You DO reach the wall. The infinite sum is exactly 1."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Where the formula comes from",
+            "title": "Kill the tail",
+            "beats": [
+              "Finite: $S_n = \\tfrac{a_1(1 - r^n)}{1 - r}$.",
+              "If $|r| < 1$: $r^n \\to 0$ as $n$ grows.",
+              "Drop it: $S = \\tfrac{a_1}{1 - r}$.",
+              "Shortest formula in the unit — with fine print: $|r| < 1$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Sum forever",
+            "prompt": "$6 + 3 + \\tfrac32 + \\cdots$ = …",
+            "options": [
+              "$12$",
+              "$\\infty$",
+              "$10.5$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$r = \\tfrac12 < 1$: $S = \\tfrac{6}{1/2} = 12$.",
+            "check": [
+              "Rational(6,1)/(1 - Rational(1,2)) == 12"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The gate",
+            "title": "Divergence",
+            "beats": [
+              "$1 + 2 + 4 + 8 + \\cdots$: terms GROW. Sum: infinite.",
+              "The formula would say $\\tfrac{1}{1-2} = -1$. Nonsense —",
+              "it misfired outside its warranty: $|r| < 1$ only.",
+              "Always check the ratio at the door."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Warranty check",
+            "title": "Which converges?",
+            "prompt": "Which series has a finite sum?",
+            "options": [
+              "$100 + 80 + 64 + \\cdots$",
+              "$1 + 1 + 1 + \\cdots$",
+              "$2 + 3 + 4.5 + \\cdots$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$r = 0.8 < 1$ converges (to 500). The others: $r = 1$ and $r = 1.5$ — both grow forever.",
+            "check": [
+              "Rational(100,1)/(1 - Rational(4,5)) == 500"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Taming infinity",
+            "intro": "Gate first, formula second.",
+            "examples": [
+              {
+                "prompt": "A ball drops 100 cm; each bounce reaches 60%. TOTAL distance it falls (all descents)?",
+                "steps": [
+                  "Descents: $100 + 60 + 36 + \\cdots$, $r = 0.6$.",
+                  "$S = \\tfrac{100}{0.4} = 250$ cm."
+                ],
+                "answer": "$250$ cm",
+                "check": [
+                  "Rational(100,1)/(1 - Rational(3,5)) == 250"
+                ]
+              },
+              {
+                "prompt": "Convert $0.363636\\ldots$ to a fraction.",
+                "steps": [
+                  "$\\tfrac{36}{100} + \\tfrac{36}{10000} + \\cdots$: $r = \\tfrac{1}{100}$.",
+                  "$S = \\tfrac{36/100}{99/100} = \\tfrac{36}{99} = \\tfrac{4}{11}$."
+                ],
+                "answer": "$\\tfrac{4}{11}$",
+                "check": [
+                  "Rational(36,100)/(1 - Rational(1,100)) == Rational(4,11)"
+                ]
+              },
+              {
+                "prompt": "A patient takes 200 mg daily; each day $\\tfrac14$ of yesterday's total remains. Long-run steady level just after a dose?",
+                "steps": [
+                  "$200 + 200(\\tfrac14) + 200(\\tfrac{1}{16}) + \\cdots$",
+                  "$S = \\tfrac{200}{3/4} = \\tfrac{800}{3} \\approx 267$ mg."
+                ],
+                "answer": "$\\tfrac{800}{3}$ mg",
+                "check": [
+                  "Rational(200,1)/(1 - Rational(1,4)) == Rational(800,3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Infinity drills",
+            "intro": "Check |r| < 1, then one division.",
+            "problems": [
+              {
+                "prompt": "$20 + 10 + 5 + \\cdots$ = …",
+                "options": [
+                  "$40$",
+                  "$35$",
+                  "diverges"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{20}{1 - 1/2} = 40$.",
+                "check": [
+                  "Rational(20,1)/(1 - Rational(1,2)) == 40"
+                ]
+              },
+              {
+                "prompt": "$0.555\\ldots$ = …",
+                "options": [
+                  "$\\tfrac59$",
+                  "$\\tfrac12$",
+                  "$\\tfrac{5}{10}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{5/10}{9/10} = \\tfrac59$ — every repeating digit is a $\\tfrac{\\text{digit}}{9}$.",
+                "check": [
+                  "Rational(5,10)/(1 - Rational(1,10)) == Rational(5,9)"
+                ]
+              },
+              {
+                "prompt": "$3 + 3 + 3 + \\cdots$ …",
+                "options": [
+                  "diverges — $r = 1$",
+                  "sums to $\\tfrac{3}{0}$",
+                  "sums to 3"
+                ],
+                "correctIndex": 0,
+                "explanation": "$r = 1$ fails the gate (and the formula would divide by zero — the math itself refuses).",
+                "check": [
+                  "1 - 1 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Zeno, refuted by Grade 11",
+            "body": "The philosopher Zeno argued 2,400 years ago that motion is impossible: to reach a wall you must first go half, then half of that — infinitely many tasks! The resolution took until the 1800s: infinitely many steps can take FINITE total distance (and time), because $\\tfrac12 + \\tfrac14 + \\cdots = 1$. You now hold, in one small formula, the answer to antiquity's most famous paradox."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$|r| < 1$: the tail dies; $S = \\tfrac{a_1}{1-r}$.",
+              "$|r| \\ge 1$: divergence — the formula's warranty is void.",
+              "Repeating decimals are infinite geometric series ($0.\\overline{9} = 1$)."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "sq-pr1",
+      "statement": "First three terms of $a_n = 3n + 2$?",
+      "solution": "$5, 8, 11$.",
+      "check": [
+        "3*1+2 == 5",
+        "3*2+2 == 8",
+        "3*3+2 == 11"
+      ]
+    },
+    {
+      "id": "sq-pr2",
+      "statement": "$a_1 = 4$, $a_n = 2a_{n-1} - 3$: find $a_3$.",
+      "solution": "$4 \\to 5 \\to 7$.",
+      "check": [
+        "2*4-3 == 5",
+        "2*5-3 == 7"
+      ]
+    },
+    {
+      "id": "sq-pr3",
+      "statement": "$11, 18, 25, \\ldots$: find $d$ and $a_{12}$.",
+      "solution": "$d = 7$; $a_{12} = 11 + 77 = 88$.",
+      "check": [
+        "18-11 == 7",
+        "11 + 11*7 == 88"
+      ]
+    },
+    {
+      "id": "sq-pr4",
+      "statement": "$a_1 = 6$, $a_{16} = 96$: find $d$.",
+      "solution": "15 gaps cover 90: $d = 6$.",
+      "check": [
+        "Rational(96-6, 15) == 6"
+      ]
+    },
+    {
+      "id": "sq-pr5",
+      "statement": "$4, 12, 36, \\ldots$: find $r$ and $a_6$.",
+      "solution": "$r = 3$; $a_6 = 4 \\cdot 3^5 = 972$.",
+      "check": [
+        "Rational(12,4) == 3",
+        "4*3**5 == 972"
+      ]
+    },
+    {
+      "id": "sq-pr6",
+      "statement": "$1, -2, 4, -8, \\ldots$: find $a_7$.",
+      "solution": "$r = -2$: $a_7 = (-2)^6 = 64$.",
+      "check": [
+        "(-2)**6 == 64"
+      ]
+    },
+    {
+      "id": "sq-pr7",
+      "statement": "Sum $4 + 9 + 14 + \\cdots$ for 12 terms.",
+      "solution": "$a_{12} = 4 + 55 = 59$; $S = \\tfrac{12(4+59)}{2} = 378$.",
+      "check": [
+        "4 + 11*5 == 59",
+        "Rational(12*(4+59),2) == 378"
+      ]
+    },
+    {
+      "id": "sq-pr8",
+      "statement": "Sum the first 8 terms of $1, 2, 4, \\ldots$, then compare to $a_9$.",
+      "solution": "$S_8 = 2^8 - 1 = 255$; $a_9 = 256$ — one more than the whole history.",
+      "check": [
+        "2**8 - 1 == 255",
+        "1*2**8 == 256"
+      ]
+    },
+    {
+      "id": "sq-pr9",
+      "statement": "Sum $27 + 9 + 3 + \\cdots$ (forever).",
+      "solution": "$r = \\tfrac13$: $S = \\tfrac{27}{2/3} = \\tfrac{81}{2}$.",
+      "check": [
+        "Rational(27,1)/(1 - Rational(1,3)) == Rational(81,2)"
+      ]
+    },
+    {
+      "id": "sq-pr10",
+      "statement": "Write $0.444\\ldots$ as a fraction.",
+      "solution": "$\\tfrac{4/10}{9/10} = \\tfrac49$.",
+      "check": [
+        "Rational(4,10)/(1 - Rational(1,10)) == Rational(4,9)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "sq-ty1",
+      "statement": "$a_n = n^2 - 2n$: compute $a_4$ and $a_{10}$.",
+      "solution": "$8$ and $80$.",
+      "check": [
+        "4**2 - 2*4 == 8",
+        "10**2 - 2*10 == 80"
+      ]
+    },
+    {
+      "id": "sq-ty2",
+      "statement": "$5, 9, 13, \\ldots$: which position holds $161$?",
+      "solution": "$5 + (n-1)4 = 161 \\to n = 40$.",
+      "check": [
+        "5 + 39*4 == 161"
+      ]
+    },
+    {
+      "id": "sq-ty3",
+      "statement": "$2, 10, 50, \\ldots$: find $a_5$ and state the regime.",
+      "solution": "$r = 5$, growth; $a_5 = 2 \\cdot 5^4 = 1250$.",
+      "check": [
+        "2*5**4 == 1250"
+      ]
+    },
+    {
+      "id": "sq-ty4",
+      "statement": "$a_3 = 18$ and $a_6 = 486$ (geometric): find $r$.",
+      "solution": "Three gaps: $r^3 = 27 \\to r = 3$.",
+      "check": [
+        "Rational(486,18) == 27",
+        "3**3 == 27"
+      ]
+    },
+    {
+      "id": "sq-ty5",
+      "statement": "Sum $100 + 96 + 92 + \\cdots$ for 25 terms.",
+      "solution": "$a_{25} = 100 - 96 = 4$; $S = \\tfrac{25(100+4)}{2} = 1300$.",
+      "check": [
+        "100 - 24*4 == 4",
+        "Rational(25*(100+4),2) == 1300"
+      ]
+    },
+    {
+      "id": "sq-ty6",
+      "statement": "Sum the first 6 terms of $5, 10, 20, \\ldots$.",
+      "solution": "$\\tfrac{5(2^6-1)}{1} = 315$.",
+      "check": [
+        "Rational(5*(2**6-1), 2-1) == 315"
+      ]
+    },
+    {
+      "id": "sq-ty7",
+      "statement": "A ball is dropped from 90 cm; each bounce reaches $\\tfrac23$ of the previous height. Total of ALL bounce heights (not the drop)?",
+      "solution": "$60 + 40 + \\cdots$: $S = \\tfrac{60}{1/3} = 180$ cm.",
+      "check": [
+        "90*Rational(2,3) == 60",
+        "Rational(60,1)/(1 - Rational(2,3)) == 180"
+      ]
+    }
+  ]
+}
