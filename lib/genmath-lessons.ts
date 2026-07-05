@@ -75,6 +75,8 @@ import rationalExpressions from "@/data/genmath/10/rational-expressions.json";
 import radicalsRationalExponents from "@/data/genmath/10/radicals-and-rational-exponents.json";
 import exponentialFunctions from "@/data/genmath/10/exponential-functions.json";
 import probabilityAndCounting from "@/data/genmath/10/probability-and-counting.json";
+// Grade 11 topic JSON imports (added as each topic is authored + published).
+import functionsAndTransformations from "@/data/genmath/11/functions-and-transformations.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -205,6 +207,55 @@ export const GRADE10_SPINE: GradeSpineEntry[] = [
   },
 ];
 
+export const GRADE11_SPINE: GradeSpineEntry[] = [
+  {
+    slug: "functions-and-transformations",
+    title: "Functions & Transformations",
+    blurb: "Function notation, domain and range, shifts, stretches, reflections — and inverse functions that undo it all.",
+    live: true,
+  },
+  {
+    slug: "polynomial-functions",
+    title: "Polynomial Functions",
+    blurb: "Cubics and beyond: end behavior, zeros and multiplicity, the remainder and factor theorems, and sketching from factors.",
+    live: false,
+  },
+  {
+    slug: "logarithms",
+    title: "Logarithms",
+    blurb: "The inverse of the exponential: log laws, solving exponential and log equations, and the scales that measure earthquakes and sound.",
+    live: false,
+  },
+  {
+    slug: "sequences-and-series",
+    title: "Sequences & Series",
+    blurb: "Arithmetic and geometric sequences, recursive and explicit rules, and the sums that add a whole list at once.",
+    live: false,
+  },
+  {
+    slug: "trigonometry-and-the-unit-circle",
+    title: "Trigonometry & the Unit Circle",
+    blurb: "Radians, the unit circle, sine and cosine as coordinates, and the waves they draw.",
+    live: false,
+  },
+  {
+    slug: "complex-numbers",
+    title: "Complex Numbers",
+    blurb: "The number i, arithmetic with a + bi, conjugates and division, and quadratics whose roots finally all exist.",
+    live: false,
+  },
+  {
+    slug: "statistics-and-data",
+    title: "Statistics & Data",
+    blurb: "Mean vs median, standard deviation, z-scores, and the normal curve that grades on it.",
+    live: false,
+  },
+];
+
+const grade11Topics: GenMathTopic[] = [
+  functionsAndTransformations as GenMathTopic,
+];
+
 const grade10Topics: GenMathTopic[] = [
   polynomialsAndFactoring as GenMathTopic,
   quadraticEquations as GenMathTopic,
@@ -227,7 +278,7 @@ const grade8Topics: GenMathTopic[] = [
 
 // Every authored General-Math topic across grades. Topic slugs are unique
 // across grades, so slug lookups stay unambiguous.
-const allGenMathTopics: GenMathTopic[] = [...grade6Topics, ...grade8Topics, ...grade10Topics];
+const allGenMathTopics: GenMathTopic[] = [...grade6Topics, ...grade8Topics, ...grade10Topics, ...grade11Topics];
 
 // ---------------------------------------------------------------------------
 // Public API
@@ -239,7 +290,7 @@ const ALL_GRADES: GradeInfo[] = [
   { grade: 8, active: true },
   { grade: 9, active: false },
   { grade: 10, active: true },
-  { grade: 11, active: false },
+  { grade: 11, active: true },
   { grade: 12, active: false },
 ];
 
@@ -265,6 +316,14 @@ export function getGrade10Topics(): GenMathTopic[] {
 
 export function getGrade10Spine(): GradeSpineEntry[] {
   return GRADE10_SPINE;
+}
+
+export function getGrade11Topics(): GenMathTopic[] {
+  return grade11Topics;
+}
+
+export function getGrade11Spine(): GradeSpineEntry[] {
+  return GRADE11_SPINE;
 }
 
 export function getGenMathTopic(topicSlug: string): GenMathTopic | null {
