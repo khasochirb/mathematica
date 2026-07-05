@@ -85,6 +85,7 @@ import complexNumbers from "@/data/genmath/11/complex-numbers.json";
 import statisticsAndData from "@/data/genmath/11/statistics-and-data.json";
 // Grade 12 topic JSON imports (added as each topic is authored + published).
 import trigonometricIdentities from "@/data/genmath/12/trigonometric-identities.json";
+import limitsAndContinuity from "@/data/genmath/12/limits-and-continuity.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -271,7 +272,7 @@ export const GRADE12_SPINE: GradeSpineEntry[] = [
     slug: "limits-and-continuity",
     title: "Limits & Continuity",
     blurb: "What a function approaches: reading limits from graphs, computing them with algebra, and where functions break.",
-    live: false,
+    live: true,
   },
   {
     slug: "derivatives",
@@ -307,6 +308,7 @@ export const GRADE12_SPINE: GradeSpineEntry[] = [
 
 const grade12Topics: GenMathTopic[] = [
   trigonometricIdentities as GenMathTopic,
+  limitsAndContinuity as GenMathTopic,
 ];
 
 const grade11Topics: GenMathTopic[] = [

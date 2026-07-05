@@ -796,6 +796,14 @@ export interface UnitCircleConfig {
   start?: number; // explore: initial angle in degrees
 }
 
+// The limits workbench: two dots close in on a target x from both sides.
+// approach: the squeeze finds the limit; hole: the limit exists where the
+// value doesn't; jump: one-sided limits disagree (DNE); infinite: outputs
+// blow up along a vertical asymptote (auto-played with replay).
+export interface LimitGraphConfig {
+  mode: "approach" | "hole" | "jump" | "infinite";
+}
+
 // Two lines y = m1x + b1 and y = m2x + b2 on one grid; line 2 adjustable.
 // Marks the intersection (the system's solution) and calls parallel /
 // same-line verdicts live. The systems-of-equations workbench.
@@ -1016,6 +1024,7 @@ export type InteractiveStep =
   | { kind: "expGraph"; eyebrow?: string; title: string; teach: string; config: ExpGraphConfig }
   | { kind: "polyGraph"; eyebrow?: string; title: string; teach: string; config: PolyGraphConfig }
   | { kind: "unitCircle"; eyebrow?: string; title: string; teach: string; config: UnitCircleConfig }
+  | { kind: "limitGraph"; eyebrow?: string; title: string; teach: string; config: LimitGraphConfig }
   | { kind: "scatterPlot"; eyebrow?: string; title: string; teach: string; config: ScatterPlotConfig }
   | { kind: "areaShape"; eyebrow?: string; title: string; teach: string; config: AreaShapeConfig }
   | { kind: "apothemPolygon"; eyebrow?: string; title: string; teach: string; config: ApothemPolygonConfig }
