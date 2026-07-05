@@ -1,0 +1,1599 @@
+{
+  "slug": "derivatives",
+  "title": "Derivatives",
+  "grade": 12,
+  "blurb": "The slope of a curve: the derivative as a limit, and the power, product, quotient, and chain rules.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "the-derivative-as-a-limit",
+      "title": "The Derivative as a Limit",
+      "concreteComparison": "Your speedometer answers an impossible-sounding question: how fast are you going RIGHT NOW? Speed needs two moments — distance over time — but 'now' is one moment. The escape: measure over a shrinking interval and take the limit. That limit is the **derivative**, and last topic's $\\lim_{h \\to 0} \\tfrac{(2+h)^2 - 4}{h}$ exercises were this exact computation in disguise.",
+      "objective": "Define the derivative f'(a) as the limit of the difference quotient, compute it for simple functions, and read it as the slope of the tangent line.",
+      "concept": [
+        "**Slope needs two points** — but 'slope of a curve AT a point' gives you one. Fix: take a second point $h$ away, compute the **secant slope** $\\tfrac{f(a+h) - f(a)}{h}$, then let $h \\to 0$.",
+        "**The definition**: $f'(a) = \\lim_{h \\to 0} \\tfrac{f(a+h) - f(a)}{h}$. Plugging $h = 0$ gives $\\tfrac{0}{0}$ — the indeterminate form from last topic. Expand, cancel the $h$, substitute: EVERY derivative is that dance.",
+        "**Geometry**: as $h$ shrinks, the secant line tips onto the **tangent line** — the line that grazes the curve at the point, matching its direction. $f'(a)$ IS the tangent's slope.",
+        "Example, in full: $f(x) = x^2$ at $a = 3$: $\\tfrac{(3+h)^2 - 9}{h} = \\tfrac{6h + h^2}{h} = 6 + h \\to 6$. The curve $y = x^2$ climbs with slope exactly $6$ as it passes $(3, 9)$."
+      ],
+      "keyIdea": "f'(a) = lim of (f(a+h) − f(a))/h as h → 0: the secant slope's limit, the tangent's slope, the curve's instantaneous rate — all one number.",
+      "facts": [
+        {
+          "title": "The definition",
+          "latex": "f'(a) = \\lim_{h \\to 0} \\tfrac{f(a+h) - f(a)}{h}",
+          "explanation": "A 0/0 limit: expand, cancel h, substitute."
+        },
+        {
+          "title": "The geometry",
+          "latex": "\\text{secant} \\to \\text{tangent as } h \\to 0",
+          "explanation": "f'(a) is the tangent line's slope."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "dv1-we1",
+          "statement": "From the definition, compute $f'(3)$ for $f(x) = x^2$.",
+          "solution": "$\\tfrac{(3+h)^2 - 9}{h} = \\tfrac{6h + h^2}{h} = 6 + h \\to 6$.",
+          "check": [
+            "limit(((3 + h)**2 - 9)/h, h, 0) == 6"
+          ]
+        },
+        {
+          "id": "dv1-we2",
+          "statement": "From the definition, compute $f'(2)$ for $f(x) = x^2 - 3x$.",
+          "solution": "$f(2+h) = 4 + 4h + h^2 - 6 - 3h = h^2 + h - 2$ and $f(2) = -2$: quotient $= \\tfrac{h^2 + h}{h} = h + 1 \\to 1$.",
+          "check": [
+            "limit(((2 + h)**2 - 3*(2 + h) - (2**2 - 3*2))/h, h, 0) == 1"
+          ]
+        },
+        {
+          "id": "dv1-we3",
+          "statement": "$f(x) = 5x + 2$ (a line). Compute $f'(a)$ at any $a$ and interpret.",
+          "solution": "$\\tfrac{5(a+h) + 2 - 5a - 2}{h} = \\tfrac{5h}{h} = 5$ — no limit even needed. A line's 'instantaneous slope' is its slope, everywhere. Sanity restored.",
+          "check": [
+            "limit((5*(a + h) + 2 - (5*a + 2))/h, h, 0) == 5"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Plugging h = 0 straight into the difference quotient.",
+          "correction": "That's $\\tfrac00$ — the indeterminate form. The h must be CANCELLED first (expand the top; a bare h always factors out), and THEN h → 0.",
+          "authored": true
+        },
+        {
+          "text": "Treating the derivative as 'the y-value at the point'.",
+          "correction": "$f'(3)$ is the SLOPE at $x = 3$, not the height. $f(3) = 9$ says where the curve is; $f'(3) = 6$ says how steeply it's climbing through there.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "dv1-t1",
+          "statement": "From the definition: $f'(1)$ for $f(x) = x^2$.",
+          "solution": "$\\tfrac{(1+h)^2 - 1}{h} = \\tfrac{2h + h^2}{h} = 2 + h \\to 2$.",
+          "check": [
+            "limit(((1 + h)**2 - 1)/h, h, 0) == 2"
+          ]
+        },
+        {
+          "id": "dv1-t2",
+          "statement": "From the definition: $f'(2)$ for $f(x) = 3x^2$.",
+          "solution": "$\\tfrac{3(2+h)^2 - 12}{h} = \\tfrac{12h + 3h^2}{h} = 12 + 3h \\to 12$.",
+          "check": [
+            "limit((3*(2 + h)**2 - 12)/h, h, 0) == 12"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The speedometer's secret",
+            "title": "Rate at an instant",
+            "beats": [
+              "Speed = distance ÷ time. But 'right now' is ONE instant — no interval.",
+              "The fix: measure over a tiny h, then shrink it.",
+              "$\\tfrac{f(a+h) - f(a)}{h}$, then $h \\to 0$.",
+              "Last topic built the limit machinery for exactly this moment."
+            ]
+          },
+          {
+            "kind": "tangentGraph",
+            "eyebrow": "The collapse",
+            "title": "Secant onto tangent",
+            "teach": "Step $h$ down and watch the red secant line tip onto the dashed tangent. The secant's slope reads $1 + h/2$: at $h = 2$ it's $2$, at $h = 0.1$ it's $1.05$ — collapsing onto $f'(1) = 1$. The derivative is this collapse, caught by a limit.",
+            "config": {
+              "mode": "secant"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the collapse",
+            "prompt": "Secant slopes: $h=1$ gives $1.5$; $h=0.5$ gives $1.25$; $h=0.1$ gives $1.05$. The tangent slope is…",
+            "options": [
+              "$1$ — the value being squeezed toward",
+              "$1.05$ — the last measurement",
+              "$0$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The measurements form a squeeze pointing at 1. The derivative is the LIMIT, not the last sample — the same squeeze-reading as last topic.",
+            "check": [
+              "limit(1 + h/2, h, 0) == 1"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The dance, formalized",
+            "title": "Expand, cancel, substitute",
+            "beats": [
+              "$f(x) = x^2$ at $a = 3$: $\\tfrac{(3+h)^2 - 9}{h}$.",
+              "Expand: $\\tfrac{9 + 6h + h^2 - 9}{h} = \\tfrac{h(6 + h)}{h}$.",
+              "Cancel the $h$ — the whole game.",
+              "$6 + h \\to 6$. The parabola passes $(3,9)$ climbing at slope 6."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Definition drills",
+            "intro": "Every derivative is the same 0/0 dance.",
+            "examples": [
+              {
+                "prompt": "$f(x) = x^2 + 2x$: compute $f'(1)$ from the definition.",
+                "steps": [
+                  "$f(1+h) = 1 + 2h + h^2 + 2 + 2h = h^2 + 4h + 3$; $f(1) = 3$.",
+                  "Quotient: $\\tfrac{h^2 + 4h}{h} = h + 4$.",
+                  "$h \\to 0$: $f'(1) = 4$."
+                ],
+                "answer": "$4$",
+                "check": [
+                  "limit(((1 + h)**2 + 2*(1 + h) - 3)/h, h, 0) == 4"
+                ]
+              },
+              {
+                "prompt": "$f(x) = \\tfrac{1}{x}$ at $a = 2$ — a fraction needs one extra algebra move.",
+                "steps": [
+                  "$\\tfrac{\\frac{1}{2+h} - \\frac12}{h} = \\tfrac{2 - (2+h)}{2h(2+h)} = \\tfrac{-1}{2(2+h)}$.",
+                  "$h \\to 0$: $-\\tfrac14$.",
+                  "Negative slope — $\\tfrac1x$ falls as $x$ grows. The sign carries meaning."
+                ],
+                "answer": "$-\\tfrac{1}{4}$",
+                "check": [
+                  "limit((1/(2 + h) - Rational(1,2))/h, h, 0) == Rational(-1,4)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Slope hunting",
+            "intro": "Expand, cancel h, substitute.",
+            "problems": [
+              {
+                "prompt": "$f(x) = x^2$: $f'(5)$ = …",
+                "options": [
+                  "$10$",
+                  "$25$",
+                  "$5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{(5+h)^2 - 25}{h} = 10 + h \\to 10$. (Height 25, slope 10 — different jobs.)",
+                "check": [
+                  "limit(((5 + h)**2 - 25)/h, h, 0) == 10"
+                ]
+              },
+              {
+                "prompt": "$f(x) = 7$ (constant): $f'(a)$ = …",
+                "options": [
+                  "$0$ — flat everywhere",
+                  "$7$",
+                  "undefined"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{7 - 7}{h} = 0$ before the limit even acts. Flat graph, zero slope.",
+                "check": [
+                  "limit((7 - 7)/h, h, 0) == 0"
+                ]
+              },
+              {
+                "prompt": "The tangent line at a point…",
+                "options": [
+                  "matches the curve's direction there — slope $f'(a)$",
+                  "always crosses the curve twice",
+                  "is horizontal"
+                ],
+                "correctIndex": 0,
+                "explanation": "It's the limit of secants: the line the curve is 'trying to be' at that instant.",
+                "check": [
+                  "limit(((1 + h)**2 - 1)/h, h, 0) == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "History",
+            "title": "Newton vs Leibniz: the nastiest feud in math",
+            "body": "Calculus was invented twice, nearly simultaneously — Newton (for physics) and Leibniz (for geometry) — and the two camps fought so bitterly over credit that British and continental mathematics barely spoke for a century. We use Leibniz's notation ($\\tfrac{dy}{dx}$) and Newton's applications. The derivative you just computed is the peace treaty."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$f'(a) = \\lim_{h\\to0} \\tfrac{f(a+h) - f(a)}{h}$ — the 0/0 dance, every time.",
+              "Geometrically: secants collapse onto the tangent; $f'(a)$ is its slope.",
+              "Height ($f$) and slope ($f'$) are different numbers with different jobs."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-derivative-function",
+      "title": "The Derivative Function",
+      "concreteComparison": "Computing $f'(1) = 2$, $f'(3) = 6$, $f'(5) = 10$ for $y = x^2$, a pattern jumps out: the slope at $a$ is always $2a$. Run the definition once with a LETTER instead of a number and you get $f'(x) = 2x$ — a whole new function whose every output is a slope of the old one. The derivative isn't a number; it's a **slope-reporting machine**.",
+      "objective": "Compute f'(x) as a function from the definition, use the dy/dx notation, and read the sign of f' as rising/falling behavior of f.",
+      "concept": [
+        "**Run the definition symbolically**: $f(x) = x^2$: $\\tfrac{(x+h)^2 - x^2}{h} = \\tfrac{2xh + h^2}{h} = 2x + h \\to 2x$. So $f'(x) = 2x$ — one computation, every slope.",
+        "**Notation**: $f'(x)$ (Lagrange) and $\\tfrac{dy}{dx}$ (Leibniz) mean the same thing. Leibniz's fraction-look is a deliberate reminder: the derivative IS $\\tfrac{\\text{rise}}{\\text{run}}$ pushed to the limit.",
+        "**Sign reading**: where $f' > 0$ the curve rises; where $f' < 0$ it falls; where $f' = 0$ it's momentarily flat — a peak, valley, or pause. For $y = x^2$: $f'(x) = 2x$ is negative left of $0$, zero AT $0$, positive right — fall, vertex, rise. The parabola you've known since Grade 10, now narrated by its derivative.",
+        "**The graph-pair view**: plot $f$ and $f'$ together and $f'$'s HEIGHT at each $x$ equals $f$'s SLOPE there. Reading one graph off the other is a core exam skill."
+      ],
+      "keyIdea": "Run the difference quotient with x as a letter: f'(x) is a function reporting the slope at every point. Its sign narrates f: positive = rising, negative = falling, zero = flat.",
+      "facts": [
+        {
+          "title": "Two notations",
+          "latex": "f'(x) = \\tfrac{dy}{dx}",
+          "explanation": "Lagrange's prime, Leibniz's ratio — same machine."
+        },
+        {
+          "title": "Sign dictionary",
+          "latex": "f' > 0: \\text{rising}; \\quad f' < 0: \\text{falling}; \\quad f' = 0: \\text{flat}",
+          "explanation": "The derivative narrates the function."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "dv2-we1",
+          "statement": "From the definition, find $f'(x)$ for $f(x) = x^2$.",
+          "solution": "$\\tfrac{(x+h)^2 - x^2}{h} = \\tfrac{2xh + h^2}{h} = 2x + h \\to 2x$.",
+          "check": [
+            "limit(((x + h)**2 - x**2)/h, h, 0) == 2*x"
+          ]
+        },
+        {
+          "id": "dv2-we2",
+          "statement": "From the definition, find $f'(x)$ for $f(x) = x^3$.",
+          "solution": "$(x+h)^3 = x^3 + 3x^2h + 3xh^2 + h^3$: quotient $= 3x^2 + 3xh + h^2 \\to 3x^2$.",
+          "check": [
+            "limit(((x + h)**3 - x**3)/h, h, 0) == 3*x**2"
+          ]
+        },
+        {
+          "id": "dv2-we3",
+          "statement": "$f(x) = x^2 - 4x$. Where is $f'(x) = 0$, and what does the sign of $f'$ say either side?",
+          "solution": "$f'(x) = 2x - 4 = 0$ at $x = 2$. Left of 2: $f' < 0$ (falling); right: $f' > 0$ (rising) — so $x = 2$ is the valley. (It's the vertex $x = -b/2a$ from Grade 10, rediscovered by calculus.)",
+          "check": [
+            "limit(((x + h)**2 - 4*(x + h) - (x**2 - 4*x))/h, h, 0) == 2*x - 4",
+            "2*2 - 4 == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Confusing f'(x) = 2x with 'the slope is 2x' as a single number.",
+          "correction": "$f'$ is a FUNCTION: at $x = 3$ the slope is 6, at $x = -1$ it's $-2$. 'The' slope of a curve doesn't exist — each point has its own.",
+          "authored": true
+        },
+        {
+          "text": "Reading dy/dx as a fraction to cancel.",
+          "correction": "It's Leibniz's NOTATION for the limit — evocative of rise/run, but not a ratio of two numbers you can split apart (yet — differentials come much later).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "dv2-t1",
+          "statement": "From the definition: $f'(x)$ for $f(x) = 4x^2$.",
+          "solution": "$\\tfrac{4(x+h)^2 - 4x^2}{h} = 8x + 4h \\to 8x$.",
+          "check": [
+            "limit((4*(x + h)**2 - 4*x**2)/h, h, 0) == 8*x"
+          ]
+        },
+        {
+          "id": "dv2-t2",
+          "statement": "$f'(x) = 2x - 6$. On which side of $x = 3$ is $f$ falling?",
+          "solution": "$f' < 0$ when $x < 3$: falling to the LEFT of 3 (and rising right of it — $x = 3$ is a valley).",
+          "check": [
+            "2*2 - 6 < 0",
+            "2*4 - 6 > 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "A pattern appears",
+            "title": "Slopes come in families",
+            "beats": [
+              "$y = x^2$: $f'(1) = 2$, $f'(3) = 6$, $f'(5) = 10\\ldots$",
+              "Slope at $a$ is always $2a$. Suspicious.",
+              "Run the definition ONCE, with $x$ as a letter:",
+              "$\\tfrac{(x+h)^2 - x^2}{h} = 2x + h \\to 2x$. One run, every slope."
+            ]
+          },
+          {
+            "kind": "tangentGraph",
+            "eyebrow": "The slope machine",
+            "title": "f and f′ share a grid",
+            "teach": "Slide $x$: the orange dot rides the curve while the blue dot rides $f'(x) = x$. The blue line's HEIGHT at each $x$ is exactly the orange curve's SLOPE there — negative while it falls, zero at the vertex, positive while it climbs.",
+            "config": {
+              "mode": "slopeCurve"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the machine",
+            "prompt": "$f'(x) = 2x$ for $f(x) = x^2$. The slope at $x = -3$ is…",
+            "options": [
+              "$-6$ — falling, steeply",
+              "$6$",
+              "$9$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$f'(-3) = -6$: negative means the curve is FALLING there. ($9$ is the height $f(-3)$ — the other number's job.)",
+            "check": [
+              "limit(((x + h)**2 - x**2)/h, h, 0) == 2*x",
+              "2*(-3) == -6"
+            ]
+          },
+          {
+            "kind": "tangentGraph",
+            "eyebrow": "The tangent tour",
+            "title": "Downhill, flat, uphill",
+            "teach": "Slide the touch point along the parabola. Left of the vertex the tangent tips downhill ($f' < 0$); AT the vertex it's perfectly flat ($f' = 0$, beacon); right of it, uphill ($f' > 0$). The sign of the derivative narrates the whole story.",
+            "config": {
+              "mode": "tangent"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Notation",
+            "title": "Two spellings, one idea",
+            "beats": [
+              "Lagrange: $f'(x)$ — compact, function-flavored.",
+              "Leibniz: $\\tfrac{dy}{dx}$ — a fraction-shaped reminder of rise/run.",
+              "$\\tfrac{dy}{dx} = 2x$ and $f'(x) = 2x$ say the same thing.",
+              "Exams use both; so will we."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Machine building",
+            "intro": "Definition once, with letters.",
+            "examples": [
+              {
+                "prompt": "Find $f'(x)$ for $f(x) = x^2 + 3x$ and locate where $f$ is flat.",
+                "steps": [
+                  "Quotient: $\\tfrac{2xh + h^2 + 3h}{h} = 2x + h + 3 \\to 2x + 3$.",
+                  "Flat where $2x + 3 = 0$: $x = -\\tfrac32$.",
+                  "(The vertex of this parabola — Grade 10's $-b/2a$, re-derived.)"
+                ],
+                "answer": "$f'(x) = 2x + 3$; flat at $x = -\\tfrac{3}{2}$",
+                "check": [
+                  "limit(((x + h)**2 + 3*(x + h) - (x**2 + 3*x))/h, h, 0) == 2*x + 3",
+                  "2*Rational(-3,2) + 3 == 0"
+                ]
+              },
+              {
+                "prompt": "Sketch-read: $f'(x) = 3x^2$ (from $f = x^3$). What does $f'$'s sign say about $x^3$?",
+                "steps": [
+                  "$3x^2 \\geq 0$ everywhere — never negative.",
+                  "So $x^3$ NEVER falls: rising, rising, with one flat instant at $x = 0$.",
+                  "Matches the S-curve you know: it pauses at the origin but never turns back."
+                ],
+                "answer": "always rising; momentarily flat at 0",
+                "check": [
+                  "limit(((x + h)**3 - x**3)/h, h, 0) == 3*x**2",
+                  "3*0**2 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Machine reading",
+            "intro": "f′ is a function; its sign is a story.",
+            "problems": [
+              {
+                "prompt": "$f(x) = x^2$: the slope machine $f'$ outputs $-4$ at…",
+                "options": [
+                  "$x = -2$",
+                  "$x = 2$",
+                  "$x = -4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$f'(x) = 2x = -4$ gives $x = -2$.",
+                "check": [
+                  "2*(-2) == -4"
+                ]
+              },
+              {
+                "prompt": "Where $f' < 0$, the graph of $f$ is…",
+                "options": [
+                  "falling",
+                  "below the x-axis",
+                  "concave"
+                ],
+                "correctIndex": 0,
+                "explanation": "Sign of $f'$ = direction of $f$. (Below the axis is about $f$'s SIGN — height again, not slope.)",
+                "check": [
+                  "2*(-1) < 0"
+                ]
+              },
+              {
+                "prompt": "$\\tfrac{dy}{dx}$ is…",
+                "options": [
+                  "Leibniz's notation for the derivative",
+                  "a fraction of two numbers",
+                  "the y-intercept"
+                ],
+                "correctIndex": 0,
+                "explanation": "A limit wearing a fraction costume — rise over run, pushed to the instant.",
+                "check": [
+                  "limit(((x + h)**2 - x**2)/h, h, 0) == 2*x"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Applications",
+            "title": "The machine that reads mountains",
+            "body": "Hikers' apps compute 'grade' — the derivative of elevation with respect to distance — from GPS traces, then color the trail by its sign and size: green flats ($f' \\approx 0$), red climbs ($f'$ large). Your legs feel the derivative; the elevation profile is just $f$. Every 'how steep' question in the world is a slope-machine query."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Run the definition with letters: $f'(x)$ is the slope at EVERY point.",
+              "$f'(x)$ and $\\tfrac{dy}{dx}$: two notations, one machine.",
+              "Sign of $f'$: positive rising, negative falling, zero flat."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-power-rule",
+      "title": "The Power Rule",
+      "concreteComparison": "The definition delivered $x^2 \\to 2x$ and $x^3 \\to 3x^2$. Line them up — $x^2 \\to 2x^1$, $x^3 \\to 3x^2$, $x^4 \\to 4x^3$ — and the machine reveals its gears: **exponent hops down front, drops by one**. That's the power rule, and with sums and constants it differentiates every polynomial on sight. The definition built the tool; now we mass-produce.",
+      "objective": "Differentiate powers with d/dx xⁿ = nxⁿ⁻¹, plus the constant, constant-multiple, and sum rules — every polynomial on sight.",
+      "concept": [
+        "**Power rule**: $\\tfrac{d}{dx} x^n = n x^{n-1}$. The exponent jumps down as a multiplier; the new exponent is one less. Works for ALL real $n$ — including negatives ($x^{-1} \\to -x^{-2}$) and fractions ($\\sqrt{x} = x^{1/2} \\to \\tfrac{1}{2}x^{-1/2}$).",
+        "**Constants die**: $\\tfrac{d}{dx} c = 0$ (flat line, zero slope). **Constants ride along**: $\\tfrac{d}{dx}[c \\cdot f] = c \\cdot f'$.",
+        "**Sums split**: $\\tfrac{d}{dx}[f + g] = f' + g'$ — differentiate term by term. Together: $\\tfrac{d}{dx}(x^3 - 5x^2 + 4x - 7) = 3x^2 - 10x + 4$. Note the $-7$ vanished.",
+        "These aren't new axioms — each one falls out of the limit definition and the limit laws. The power rule is the definition's expand-cancel dance done once for all $n$ (the binomial theorem makes the $h$ factor out)."
+      ],
+      "keyIdea": "xⁿ → nxⁿ⁻¹; constants vanish, coefficients ride, sums split term by term. Every polynomial differentiates on sight.",
+      "facts": [
+        {
+          "title": "Power rule",
+          "latex": "\\tfrac{d}{dx} x^n = n x^{n-1}",
+          "explanation": "Exponent hops down; drops by one. All real n."
+        },
+        {
+          "title": "The assembly kit",
+          "latex": "(cf)' = cf', \\quad (f + g)' = f' + g', \\quad c' = 0",
+          "explanation": "Term-by-term differentiation."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "dv3-we1",
+          "statement": "Differentiate $y = x^5$.",
+          "solution": "$5x^4$ — exponent down front, drop by one.",
+          "check": [
+            "diff(x**5, x) == 5*x**4"
+          ]
+        },
+        {
+          "id": "dv3-we2",
+          "statement": "Differentiate $f(x) = 2x^3 - 5x^2 + 4x - 9$.",
+          "solution": "Term by term: $6x^2 - 10x + 4$; the constant $-9$ contributes nothing.",
+          "check": [
+            "diff(2*x**3 - 5*x**2 + 4*x - 9, x) == 6*x**2 - 10*x + 4"
+          ]
+        },
+        {
+          "id": "dv3-we3",
+          "statement": "Differentiate $g(x) = \\sqrt{x} + \\dfrac{1}{x}$ (rewrite as powers first).",
+          "solution": "$x^{1/2} + x^{-1}$: derivative $\\tfrac12 x^{-1/2} - x^{-2} = \\tfrac{1}{2\\sqrt{x}} - \\tfrac{1}{x^2}$.",
+          "check": [
+            "simplify(diff(sqrt(x) + 1/x, x) - (1/(2*sqrt(x)) - 1/x**2)) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Leaving the exponent unchanged: d/dx x³ = 3x³.",
+          "correction": "The exponent DROPS: $3x^2$. Both moves happen — down front AND down by one.",
+          "authored": true
+        },
+        {
+          "text": "Differentiating the constant term into itself.",
+          "correction": "$\\tfrac{d}{dx} 7 = 0$, not 7. A constant is a flat line: zero slope. Every polynomial's derivative is one degree shorter AND missing the constant.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "dv3-t1",
+          "statement": "Differentiate $y = 4x^6 - x^3 + 2x$.",
+          "solution": "$24x^5 - 3x^2 + 2$.",
+          "check": [
+            "diff(4*x**6 - x**3 + 2*x, x) == 24*x**5 - 3*x**2 + 2"
+          ]
+        },
+        {
+          "id": "dv3-t2",
+          "statement": "Find the slope of $y = x^3 - 3x$ at $x = 2$.",
+          "solution": "$y' = 3x^2 - 3$; at 2: $12 - 3 = 9$.",
+          "check": [
+            "diff(x**3 - 3*x, x) == 3*x**2 - 3",
+            "3*2**2 - 3 == 9"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The gears show",
+            "title": "From definition to rule",
+            "beats": [
+              "$x^2 \\to 2x$. $x^3 \\to 3x^2$. $x^4 \\to 4x^3$ (the definition says so).",
+              "Pattern: exponent hops down front, then drops by one.",
+              "$\\tfrac{d}{dx}x^n = nx^{n-1}$ — for ALL real $n$.",
+              "The binomial theorem is why: expanding $(x+h)^n$, the $h$ always factors."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Both moves",
+            "prompt": "$\\tfrac{d}{dx} x^7$ = …",
+            "options": [
+              "$7x^6$",
+              "$7x^7$",
+              "$x^6$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Down front AND drop by one: $7x^6$. Forgetting either half is the classic slip.",
+            "check": [
+              "diff(x**7, x) == 7*x**6"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The assembly kit",
+            "title": "Polynomials on sight",
+            "beats": [
+              "Constants die: $(c)' = 0$ — flat means zero slope.",
+              "Coefficients ride: $(5x^3)' = 5 \\cdot 3x^2 = 15x^2$.",
+              "Sums split: differentiate term by term.",
+              "$x^3 - 5x^2 + 4x - 7 \\;\\to\\; 3x^2 - 10x + 4$. Sight-reading."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Term patrol",
+            "title": "Watch the constant",
+            "prompt": "$\\tfrac{d}{dx}(x^4 + 3x - 12)$ = …",
+            "options": [
+              "$4x^3 + 3$",
+              "$4x^3 + 3 - 12$",
+              "$4x^3 + 3x$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$x^4 \\to 4x^3$; $3x \\to 3$; $-12 \\to 0$ and disappears. The constant never survives.",
+            "check": [
+              "diff(x**4 + 3*x - 12, x) == 4*x**3 + 3"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Negative and fractional n",
+            "title": "The rule's full reach",
+            "beats": [
+              "$\\tfrac{1}{x} = x^{-1} \\to -x^{-2} = -\\tfrac{1}{x^2}$.",
+              "$\\sqrt{x} = x^{1/2} \\to \\tfrac12 x^{-1/2} = \\tfrac{1}{2\\sqrt{x}}$.",
+              "Grade 10's rational exponents were preparing for this.",
+              "Rewrite as a power; apply the rule; translate back."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Sight-reading drills",
+            "intro": "Rewrite, differentiate, evaluate.",
+            "examples": [
+              {
+                "prompt": "The tangent line to $y = x^3 - 3x$ at $x = 2$: find its slope and point.",
+                "steps": [
+                  "$y' = 3x^2 - 3$; slope at 2: $9$.",
+                  "Point: $(2, 8 - 6) = (2, 2)$.",
+                  "Line: $y = 2 + 9(x - 2)$ — derivative as tangent-builder."
+                ],
+                "answer": "slope 9 through $(2, 2)$",
+                "check": [
+                  "diff(x**3 - 3*x, x) == 3*x**2 - 3",
+                  "2**3 - 3*2 == 2",
+                  "3*4 - 3 == 9"
+                ]
+              },
+              {
+                "prompt": "Differentiate $y = \\dfrac{2}{x^2} + 3\\sqrt{x}$.",
+                "steps": [
+                  "Rewrite: $2x^{-2} + 3x^{1/2}$.",
+                  "Apply: $-4x^{-3} + \\tfrac32 x^{-1/2}$.",
+                  "Translate: $-\\tfrac{4}{x^3} + \\tfrac{3}{2\\sqrt{x}}$."
+                ],
+                "answer": "$-\\tfrac{4}{x^3} + \\tfrac{3}{2\\sqrt{x}}$",
+                "check": [
+                  "simplify(diff(2/x**2 + 3*sqrt(x), x) - (-4/x**3 + Rational(3,2)/sqrt(x))) == 0"
+                ]
+              },
+              {
+                "prompt": "Where is the graph of $y = x^3 - 12x$ flat?",
+                "steps": [
+                  "$y' = 3x^2 - 12 = 0$.",
+                  "$x^2 = 4$: $x = \\pm 2$.",
+                  "Two flat instants — a hilltop and a valley (next topic sorts which)."
+                ],
+                "answer": "$x = 2$ and $x = -2$",
+                "check": [
+                  "diff(x**3 - 12*x, x) == 3*x**2 - 12",
+                  "3*2**2 - 12 == 0",
+                  "3*(-2)**2 - 12 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Rule work",
+            "intro": "Every term, both moves.",
+            "problems": [
+              {
+                "prompt": "$\\tfrac{d}{dx}(5x^4 - 2x^2 + 8)$ = …",
+                "options": [
+                  "$20x^3 - 4x$",
+                  "$20x^3 - 4x + 8$",
+                  "$5x^3 - 2x$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Term by term; the 8 dies.",
+                "check": [
+                  "diff(5*x**4 - 2*x**2 + 8, x) == 20*x**3 - 4*x"
+                ]
+              },
+              {
+                "prompt": "The slope of $y = \\sqrt{x}$ at $x = 4$ is…",
+                "options": [
+                  "$\\tfrac14$",
+                  "$2$",
+                  "$\\tfrac12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$y' = \\tfrac{1}{2\\sqrt{x}}$; at 4: $\\tfrac{1}{2 \\cdot 2} = \\tfrac14$.",
+                "check": [
+                  "simplify(diff(sqrt(x), x) - 1/(2*sqrt(x))) == 0",
+                  "Rational(1, 2*2) == Rational(1,4)"
+                ]
+              },
+              {
+                "prompt": "$\\tfrac{d}{dx} \\tfrac{1}{x}$ = …",
+                "options": [
+                  "$-\\tfrac{1}{x^2}$",
+                  "$\\tfrac{1}{x^2}$",
+                  "$\\ln x$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x^{-1} \\to -1 \\cdot x^{-2}$. The definition's $-\\tfrac14$ at $x = 2$ (lesson 1) checks out: $-\\tfrac{1}{2^2}$.",
+                "check": [
+                  "diff(1/x, x) == -1/x**2",
+                  "Rational(-1, 4) == -Rational(1,4)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Physics",
+            "title": "One rule, centuries of physics",
+            "body": "Kepler guessed planetary laws from data; Newton DERIVED them — by differentiating. The power rule (plus its friends) turned 'motion' from philosophy into computation: position $t^2$ means velocity $2t$ means acceleration $2$, constant — free fall, explained in three differentiations. Lesson 6 does exactly this."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$x^n \\to nx^{n-1}$ — down front, drop by one; all real $n$.",
+              "Constants die, coefficients ride, sums split.",
+              "Rewrite roots and reciprocals as powers first."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "product-and-quotient-rules",
+      "title": "Product & Quotient Rules",
+      "concreteComparison": "Here's the trap the power rule sets: if sums split, surely products do too? Test it: $x \\cdot x = x^2$. Split guess: $1 \\cdot 1 = 1$. Truth: $2x$. WRONG — and the failure is the lesson. Products need their own rule (each factor takes a turn being differentiated), and quotients get one too. The derivative respects addition; multiplication demands a toll.",
+      "objective": "Differentiate products with (fg)' = f'g + fg' and quotients with the low-d-high minus high-d-low formula.",
+      "concept": [
+        "**Products do NOT split**: $(fg)' \\neq f'g'$. The truth — **product rule**: $(fg)' = f'g + fg'$. Each factor takes one turn being differentiated while the other watches.",
+        "Check it on $x \\cdot x$: $(x)'x + x(x)' = x + x = 2x$ ✓ — matches the power rule on $x^2$. The rule earns its keep when factors are genuinely different: $x^2 \\sin x$, $(x^2+1)(x^3-2)$.",
+        "**Quotient rule**: $\\left(\\tfrac{f}{g}\\right)' = \\tfrac{f'g - fg'}{g^2}$. The chant: 'low d-high minus high d-low, over low-low'. ORDER MATTERS in the numerator — the minus makes it fragile where the product rule was symmetric.",
+        "Strategy note: many quotients dodge the rule entirely — $\\tfrac{x^3 + x}{x} = x^2 + 1$ simplifies FIRST. Reach for the machinery only when algebra can't clear the fraction."
+      ],
+      "keyIdea": "(fg)' = f'g + fg' — each factor takes a turn. (f/g)' = (f'g − fg')/g²: low d-high minus high d-low, over low squared; order matters.",
+      "facts": [
+        {
+          "title": "Product rule",
+          "latex": "(fg)' = f'g + fg'",
+          "explanation": "Each factor takes a differentiated turn."
+        },
+        {
+          "title": "Quotient rule",
+          "latex": "\\left(\\tfrac{f}{g}\\right)' = \\tfrac{f'g - fg'}{g^2}",
+          "explanation": "Low d-high minus high d-low, over low-low."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "dv4-we1",
+          "statement": "Differentiate $y = (x^2 + 1)(x^3 - 2)$ with the product rule.",
+          "solution": "$2x(x^3 - 2) + (x^2 + 1)(3x^2) = 5x^4 + 3x^2 - 4x$. (Expanding first gives the same — the rule saves that work.)",
+          "check": [
+            "simplify(diff((x**2 + 1)*(x**3 - 2), x) - (5*x**4 + 3*x**2 - 4*x)) == 0"
+          ]
+        },
+        {
+          "id": "dv4-we2",
+          "statement": "Differentiate $y = \\dfrac{x^2}{x + 1}$.",
+          "solution": "$\\tfrac{2x(x+1) - x^2 \\cdot 1}{(x+1)^2} = \\tfrac{x^2 + 2x}{(x+1)^2}$.",
+          "check": [
+            "simplify(diff(x**2/(x + 1), x) - (x**2 + 2*x)/(x + 1)**2) == 0"
+          ]
+        },
+        {
+          "id": "dv4-we3",
+          "statement": "Show the trap concretely: for $f = x^2, g = x^3$, compare $(fg)'$ with $f'g'$.",
+          "solution": "$(fg)' = (x^5)' = 5x^4$; but $f'g' = 2x \\cdot 3x^2 = 6x^3$. Different functions entirely — products don't split.",
+          "check": [
+            "diff(x**5, x) == 5*x**4",
+            "simplify(2*x*3*x**2 - 6*x**3) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Splitting products: (fg)' = f'g'.",
+          "correction": "$x \\cdot x$ kills it: guess gives 1, truth is $2x$. Each factor takes a TURN: $f'g + fg'$.",
+          "authored": true
+        },
+        {
+          "text": "Flipping the quotient rule's numerator.",
+          "correction": "$\\tfrac{fg' - f'g}{g^2}$ is the NEGATIVE of the answer. Chant it: low d-high MINUS high d-low. The top starts with the derivative of the TOP... times bottom.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "dv4-t1",
+          "statement": "Differentiate $y = x^3(x^2 - 4)$ two ways: product rule, then expand-first.",
+          "solution": "Product rule: $3x^2(x^2 - 4) + x^3(2x) = 5x^4 - 12x^2$. Expand-first: $(x^5 - 4x^3)' = 5x^4 - 12x^2$. Agreement.",
+          "check": [
+            "simplify(diff(x**3*(x**2 - 4), x) - (5*x**4 - 12*x**2)) == 0"
+          ]
+        },
+        {
+          "id": "dv4-t2",
+          "statement": "Differentiate $y = \\dfrac{2x + 1}{x - 3}$.",
+          "solution": "$\\tfrac{2(x-3) - (2x+1)}{(x-3)^2} = \\tfrac{-7}{(x-3)^2}$ — always negative: this curve only falls (excluded value and all, straight from Grade 10).",
+          "check": [
+            "simplify(diff((2*x + 1)/(x - 3), x) + 7/(x - 3)**2) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The trap",
+            "title": "Products don't split",
+            "beats": [
+              "Sums split — so products should too, right?",
+              "Test: $x \\cdot x = x^2$. Split-guess: $1 \\cdot 1 = 1$.",
+              "Truth: $2x$. The guess isn't even close.",
+              "One counterexample, one funeral. Products need a real rule."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The product rule",
+            "title": "Taking turns",
+            "beats": [
+              "$(fg)' = f'g + fg'$ — each factor differentiates ONCE while the other watches.",
+              "Sanity check on $x \\cdot x$: $1 \\cdot x + x \\cdot 1 = 2x$ ✓.",
+              "Why turns? Both factors contribute to the change —",
+              "grow $f$ a little AND grow $g$ a little; the rule adds both effects."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Turn taking",
+            "prompt": "$y = x^2(x^3 + 1)$: $y'$ = …",
+            "options": [
+              "$2x(x^3 + 1) + x^2 \\cdot 3x^2$",
+              "$2x \\cdot 3x^2$",
+              "$6x^3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Each factor takes a turn: $2x(x^3+1) + 3x^4 = 5x^4 + 2x$. The split-guess $6x^3$ is the trap from the opening.",
+            "check": [
+              "simplify(diff(x**2*(x**3 + 1), x) - (5*x**4 + 2*x)) == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The quotient rule",
+            "title": "Low d-high minus high d-low",
+            "beats": [
+              "$\\left(\\tfrac{f}{g}\\right)' = \\tfrac{f'g - fg'}{g^2}$.",
+              "Chant: LOW d-HIGH minus HIGH d-LOW, over LOW-LOW.",
+              "The minus makes order matter — flip it and you negate the answer.",
+              "But first: can algebra clear the fraction? $\\tfrac{x^3+x}{x} = x^2 + 1$. Simplify beats machinery."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Rule craft",
+            "intro": "Products take turns; quotients chant.",
+            "examples": [
+              {
+                "prompt": "Differentiate $y = \\dfrac{x^2 + 1}{x^2 - 1}$.",
+                "steps": [
+                  "Low d-high: $(x^2-1)(2x)$. High d-low: $(x^2+1)(2x)$.",
+                  "Top: $2x[(x^2 - 1) - (x^2 + 1)] = -4x$.",
+                  "$y' = \\tfrac{-4x}{(x^2-1)^2}$."
+                ],
+                "answer": "$-\\tfrac{4x}{(x^2 - 1)^2}$",
+                "check": [
+                  "simplify(diff((x**2 + 1)/(x**2 - 1), x) + 4*x/(x**2 - 1)**2) == 0"
+                ]
+              },
+              {
+                "prompt": "Slope of $y = \\dfrac{x}{x + 2}$ at $x = 0$.",
+                "steps": [
+                  "$y' = \\tfrac{(x+2) - x}{(x+2)^2} = \\tfrac{2}{(x+2)^2}$.",
+                  "At 0: $\\tfrac{2}{4} = \\tfrac12$."
+                ],
+                "answer": "$\\tfrac{1}{2}$",
+                "check": [
+                  "simplify(diff(x/(x + 2), x) - 2/(x + 2)**2) == 0",
+                  "Rational(2, 4) == Rational(1,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Turns and chants",
+            "intro": "Simplify first when you can.",
+            "problems": [
+              {
+                "prompt": "$\\tfrac{d}{dx}\\left[\\tfrac{x^4 + x^2}{x^2}\\right]$ — smartest first move?",
+                "options": [
+                  "simplify to $x^2 + 1$ first",
+                  "quotient rule immediately",
+                  "product rule on $x^4 \\cdot x^{-2}$…"
+                ],
+                "correctIndex": 0,
+                "explanation": "Divide through: $x^2 + 1$, derivative $2x$, done in one line. Machinery is for fractions algebra can't clear.",
+                "check": [
+                  "simplify(diff((x**4 + x**2)/x**2, x) - 2*x) == 0"
+                ]
+              },
+              {
+                "prompt": "$y = (x^3)(x^2)$. The product rule gives…",
+                "options": [
+                  "$5x^4$ — matching $(x^5)'$",
+                  "$6x^4$",
+                  "$x^6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3x^2 \\cdot x^2 + x^3 \\cdot 2x = 3x^4 + 2x^4 = 5x^4$ — the rules agree with each other, always.",
+                "check": [
+                  "simplify(diff(x**3*x**2, x) - 5*x**4) == 0"
+                ]
+              },
+              {
+                "prompt": "The numerator of $\\left(\\tfrac{f}{g}\\right)'$ starts with…",
+                "options": [
+                  "$f'g$ — derivative of the top, times bottom",
+                  "$fg'$",
+                  "$f'g'$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Low d-high FIRST, then minus high d-low. Flipped order = negated answer = wrong sign everywhere.",
+                "check": [
+                  "simplify(diff(x/(x + 2), x) - 2/(x + 2)**2) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Why it works",
+            "title": "Why 'each takes a turn' is how growth works",
+            "body": "A rectangle's area is width × height. Grow both slightly: the new area adds a strip of $\\Delta w \\cdot h$ (width's turn), a strip of $w \\cdot \\Delta h$ (height's turn), and a negligible corner crumb $\\Delta w \\Delta h$. Divide by the time step, let it shrink — the crumb dies and $(wh)' = w'h + wh'$ remains. The product rule is a picture of a growing rectangle."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$(fg)' = f'g + fg'$ — turns, not splits.",
+              "$\\left(\\tfrac{f}{g}\\right)' = \\tfrac{f'g - fg'}{g^2}$ — low d-high minus high d-low; order matters.",
+              "Simplify before machinery when algebra can clear the fraction."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-chain-rule",
+      "title": "The Chain Rule",
+      "concreteComparison": "A gear turns 3 times per turn of its neighbor, which turns 2 times per crank of the handle. Crank once: the far gear turns $3 \\times 2 = 6$ times. Rates through a chain MULTIPLY — and that's the whole chain rule. $(3x+1)^2$ is a chain: inner gear $3x+1$, outer gear squaring. Differentiate the outside, keep the inside, times the inside's derivative.",
+      "objective": "Differentiate compositions with the chain rule: outer derivative at the inner function, times the inner derivative.",
+      "concept": [
+        "**Compositions are chains**: $y = (3x + 1)^2$ is 'square (the outer) applied to $3x+1$ (the inner)'. Grade 11's function-machines feeding each other — now we differentiate through the whole assembly line.",
+        "**Chain rule**: $\\tfrac{d}{dx} f(g(x)) = f'(g(x)) \\cdot g'(x)$. In words: derivative of the OUTER, evaluated at the (untouched) inner, TIMES the derivative of the inner. Rates multiply through a chain.",
+        "Test on $(3x+1)^2$: outer $u^2 \\to 2u$, keep inside: $2(3x+1)$; inner $3x+1 \\to 3$. Product: $6(3x+1) = 18x + 6$. Expand-check: $(9x^2 + 6x + 1)' = 18x + 6$ ✓.",
+        "**The forgotten factor**: the classic error is dropping $g'$. $\\tfrac{d}{dx}(x^2+1)^3 \\neq 3(x^2+1)^2$ — the inner derivative $2x$ must ride along: $6x(x^2+1)^2$. Ask of every function: 'is the inside just $x$?' If not, pay the toll."
+      ],
+      "keyIdea": "d/dx f(g(x)) = f'(g(x)) · g'(x): differentiate the outside (keeping the inside), then multiply by the inside's derivative. Rates multiply through a chain.",
+      "facts": [
+        {
+          "title": "Chain rule",
+          "latex": "\\tfrac{d}{dx} f(g(x)) = f'(g(x)) \\cdot g'(x)",
+          "explanation": "Outer at the inner, times inner."
+        },
+        {
+          "title": "Leibniz's version",
+          "latex": "\\tfrac{dy}{dx} = \\tfrac{dy}{du} \\cdot \\tfrac{du}{dx}",
+          "explanation": "The notation practically begs to multiply."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "dv5-we1",
+          "statement": "Differentiate $y = (3x + 1)^2$, then verify by expanding.",
+          "solution": "Chain: $2(3x+1) \\cdot 3 = 18x + 6$. Expand: $9x^2 + 6x + 1 \\to 18x + 6$ ✓.",
+          "check": [
+            "simplify(diff((3*x + 1)**2, x) - (18*x + 6)) == 0"
+          ]
+        },
+        {
+          "id": "dv5-we2",
+          "statement": "Differentiate $y = (x^2 + 1)^3$.",
+          "solution": "Outer: $3(x^2+1)^2$; inner toll: $2x$. Answer: $6x(x^2 + 1)^2$.",
+          "check": [
+            "simplify(diff((x**2 + 1)**3, x) - 6*x*(x**2 + 1)**2) == 0"
+          ]
+        },
+        {
+          "id": "dv5-we3",
+          "statement": "Differentiate $y = \\sqrt{5x^2 + 4}$.",
+          "solution": "Rewrite: $(5x^2+4)^{1/2}$. Outer: $\\tfrac12(5x^2+4)^{-1/2}$; toll: $10x$. Answer: $\\tfrac{5x}{\\sqrt{5x^2+4}}$.",
+          "check": [
+            "simplify(diff(sqrt(5*x**2 + 4), x) - 5*x/sqrt(5*x**2 + 4)) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dropping the inner derivative.",
+          "correction": "$(x^2+1)^3 \\to 3(x^2+1)^2$ is only HALF the answer — the inner $2x$ must multiply on: $6x(x^2+1)^2$. Every chain charges its toll.",
+          "authored": true
+        },
+        {
+          "text": "Differentiating the inside INSIDE the outer function.",
+          "correction": "The inner function stays untouched in $f'(g(x))$: write $2(3x+1)$, not $2(3)$. Differentiate the outside AT the inside, then multiply.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "dv5-t1",
+          "statement": "Differentiate $y = (2x - 5)^4$.",
+          "solution": "$4(2x-5)^3 \\cdot 2 = 8(2x - 5)^3$.",
+          "check": [
+            "simplify(diff((2*x - 5)**4, x) - 8*(2*x - 5)**3) == 0"
+          ]
+        },
+        {
+          "id": "dv5-t2",
+          "statement": "Differentiate $y = \\dfrac{1}{(x^2 + 3)^2}$ — chain, no quotient rule needed.",
+          "solution": "$(x^2+3)^{-2}$: outer $-2(x^2+3)^{-3}$, toll $2x$: $-\\tfrac{4x}{(x^2+3)^3}$.",
+          "check": [
+            "simplify(diff(1/(x**2 + 3)**2, x) + 4*x/(x**2 + 3)**3) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Gears",
+            "title": "Rates multiply",
+            "beats": [
+              "Gear C turns 3× per turn of B; B turns 2× per crank.",
+              "Crank once → C turns $3 \\times 2 = 6$ times.",
+              "Chained rates MULTIPLY. No exceptions.",
+              "Compositions of functions are exactly such gear-trains."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The rule",
+            "title": "Outer at inner, times inner",
+            "beats": [
+              "$y = f(g(x))$: outer $f$, inner $g$.",
+              "$y' = f'(g(x)) \\cdot g'(x)$.",
+              "Differentiate the OUTSIDE — keep the inside untouched —",
+              "then pay the toll: multiply by the inside's derivative."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Pay the toll",
+            "prompt": "$\\tfrac{d}{dx}(x^3 + 2)^5$ = …",
+            "options": [
+              "$5(x^3+2)^4 \\cdot 3x^2$",
+              "$5(x^3+2)^4$",
+              "$15x^4$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Outer down: $5(\\cdot)^4$; inside kept; toll $3x^2$ paid. The toll-free option is the classic half-answer.",
+            "check": [
+              "simplify(diff((x**3 + 2)**5, x) - 15*x**2*(x**3 + 2)**4) == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Leibniz sees it best",
+            "title": "dy/du times du/dx",
+            "beats": [
+              "Set $u = 3x + 1$, so $y = u^2$.",
+              "$\\tfrac{dy}{du} = 2u$ and $\\tfrac{du}{dx} = 3$.",
+              "$\\tfrac{dy}{dx} = \\tfrac{dy}{du} \\cdot \\tfrac{du}{dx} = 2u \\cdot 3 = 6(3x+1)$.",
+              "The notation looks like fractions cancelling — that's WHY Leibniz designed it."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Chain craft",
+            "intro": "Name the outer, keep the inner, pay the toll.",
+            "examples": [
+              {
+                "prompt": "Differentiate $y = (x^2 - 4x)^3$ and find where its tangent is flat.",
+                "steps": [
+                  "$y' = 3(x^2-4x)^2 \\cdot (2x - 4)$.",
+                  "Flat when either factor dies: $x^2 - 4x = 0$ → $x = 0, 4$; or $2x - 4 = 0$ → $x = 2$.",
+                  "Three flat points, two sources — both factors matter."
+                ],
+                "answer": "$x = 0, 2, 4$",
+                "check": [
+                  "simplify(diff((x**2 - 4*x)**3, x) - 3*(x**2 - 4*x)**2*(2*x - 4)) == 0",
+                  "2*2 - 4 == 0"
+                ]
+              },
+              {
+                "prompt": "Differentiate $y = \\sqrt{x^2 + 9}$ and evaluate at $x = 4$.",
+                "steps": [
+                  "$y' = \\tfrac{2x}{2\\sqrt{x^2+9}} = \\tfrac{x}{\\sqrt{x^2+9}}$.",
+                  "At 4: $\\tfrac{4}{\\sqrt{25}} = \\tfrac45$."
+                ],
+                "answer": "$\\tfrac{4}{5}$",
+                "check": [
+                  "simplify(diff(sqrt(x**2 + 9), x) - x/sqrt(x**2 + 9)) == 0",
+                  "Rational(4, 5) == Rational(4,5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Gear-train duty",
+            "intro": "Outer, inner, toll.",
+            "problems": [
+              {
+                "prompt": "$\\tfrac{d}{dx}(5x + 2)^3$ = …",
+                "options": [
+                  "$15(5x+2)^2$",
+                  "$3(5x+2)^2$",
+                  "$(15x+6)^2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3(5x+2)^2 \\cdot 5$: the toll is 5.",
+                "check": [
+                  "simplify(diff((5*x + 2)**3, x) - 15*(5*x + 2)**2) == 0"
+                ]
+              },
+              {
+                "prompt": "For $y = (x^2+1)^{10}$, the 'toll' factor is…",
+                "options": [
+                  "$2x$ — the inner's derivative",
+                  "$10$",
+                  "$(x^2+1)^9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Full answer $10(x^2+1)^9 \\cdot 2x = 20x(x^2+1)^9$; the toll is whatever the INSIDE differentiates to.",
+                "check": [
+                  "simplify(diff((x**2 + 1)**10, x) - 20*x*(x**2 + 1)**9) == 0"
+                ]
+              },
+              {
+                "prompt": "When the inside is just $x$ — e.g. $x^4$ — the chain rule…",
+                "options": [
+                  "still holds: the toll is 1",
+                  "doesn't apply",
+                  "gives a different answer than the power rule"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4x^3 \\cdot 1$: the power rule is the chain rule with a free toll. One rule, special case.",
+                "check": [
+                  "diff(x**4, x) == 4*x**3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Technology",
+            "title": "The rule that trains the machines",
+            "body": "Neural networks learn by 'backpropagation' — which is the chain rule, applied through millions of composed functions, billions of times a second. Every AI model that recognizes a face or translates a sentence is running the exact computation you just did on $(3x+1)^2$, scaled up. The gear-train picture, industrialized."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Chains multiply rates: $f(g(x))' = f'(g(x)) \\cdot g'(x)$.",
+              "Differentiate the outside, KEEP the inside, pay the inner-derivative toll.",
+              "Leibniz: $\\tfrac{dy}{dx} = \\tfrac{dy}{du}\\tfrac{du}{dx}$ — the notation multiplies for you."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "sine-cosine-and-motion",
+      "title": "Sine, Cosine & Motion",
+      "concreteComparison": "Grade 11's wave-scroll showed sine climbing fastest exactly where cosine peaks, and pausing exactly where cosine dies. That wasn't coincidence — it was a derivative hiding in plain sight: $(\\sin x)' = \\cos x$. Add motion — position, velocity, acceleration as a derivative chain — and this lesson closes the loop: the unit circle, the wave, and the falling stone all speak one language.",
+      "objective": "Differentiate sin and cos (with the chain rule), and read position → velocity → acceleration as repeated differentiation.",
+      "concept": [
+        "**The trig pair**: $(\\sin x)' = \\cos x$ and $(\\cos x)' = -\\sin x$. Sine's slope IS the cosine curve; cosine's slope is sine flipped. (Radians make this clean — one more reason Grade 11 switched.)",
+        "Sanity check the picture: at $x = 0$, sine crosses zero climbing its steepest — and $\\cos 0 = 1$, the maximum. At the wave's crest ($x = \\tfrac{\\pi}{2}$), sine pauses — and $\\cos\\tfrac{\\pi}{2} = 0$. The formula IS the wave-scroll observation.",
+        "**With the chain rule**: $(\\sin 3x)' = 3\\cos 3x$; $(\\cos(x^2))' = -2x\\sin(x^2)$. Same toll system as lesson 5.",
+        "**Motion**: position $s(t)$ → velocity $v = s'$ (how fast position changes) → acceleration $a = v' = s''$ (how fast speed changes). A stone: $s = 5t^2$ meters gives $v = 10t$ m/s and $a = 10$ m/s² — constant, gravity's signature. Differentiation reads motion like a sentence."
+      ],
+      "keyIdea": "(sin x)' = cos x, (cos x)' = −sin x — the wave-scroll fact, formalized. Position, velocity, acceleration: each is the previous one's derivative.",
+      "facts": [
+        {
+          "title": "The trig pair",
+          "latex": "(\\sin x)' = \\cos x \\qquad (\\cos x)' = -\\sin x",
+          "explanation": "Sine's slope is the cosine curve."
+        },
+        {
+          "title": "Motion chain",
+          "latex": "s(t) \\to v = s' \\to a = s''",
+          "explanation": "Position, velocity, acceleration: differentiate down the line."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "dv6-we1",
+          "statement": "Differentiate $y = 3\\sin x - 2\\cos x$ and evaluate the slope at $x = 0$.",
+          "solution": "$y' = 3\\cos x + 2\\sin x$; at 0: $3 \\cdot 1 + 0 = 3$.",
+          "check": [
+            "simplify(diff(3*sin(x) - 2*cos(x), x) - (3*cos(x) + 2*sin(x))) == 0",
+            "3*cos(0) + 2*sin(0) == 3"
+          ]
+        },
+        {
+          "id": "dv6-we2",
+          "statement": "Differentiate $y = \\sin(4x)$ and $y = \\cos(x^2)$.",
+          "solution": "Chain tolls: $4\\cos 4x$ and $-2x\\sin(x^2)$.",
+          "check": [
+            "simplify(diff(sin(4*x), x) - 4*cos(4*x)) == 0",
+            "simplify(diff(cos(x**2), x) + 2*x*sin(x**2)) == 0"
+          ]
+        },
+        {
+          "id": "dv6-we3",
+          "statement": "A stone dropped off a cliff falls $s(t) = 5t^2$ meters in $t$ seconds. Find its velocity and acceleration at $t = 3$.",
+          "solution": "$v = s' = 10t$: at 3, $30$ m/s. $a = v' = 10$ m/s² — constant at every instant: gravity.",
+          "check": [
+            "diff(5*t**2, t) == 10*t",
+            "10*3 == 30",
+            "diff(10*t, t) == 10"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Writing (cos x)' = sin x — dropping the minus.",
+          "correction": "Cosine STARTS at its peak, so it heads downhill first: its slope begins negative. $(\\cos x)' = -\\sin x$. Check any picture at $x$ slightly past 0.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the chain toll on sin(3x).",
+          "correction": "$(\\sin 3x)' = 3\\cos 3x$ — the inner $3x$ charges its 3. Trig functions are not exempt from lesson 5.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "dv6-t1",
+          "statement": "Differentiate $y = \\cos(5x)$.",
+          "solution": "$-5\\sin 5x$ — minus from cosine, 5 from the toll.",
+          "check": [
+            "simplify(diff(cos(5*x), x) + 5*sin(5*x)) == 0"
+          ]
+        },
+        {
+          "id": "dv6-t2",
+          "statement": "$s(t) = t^3 - 6t^2 + 9t$: when is the object momentarily stopped ($v = 0$)?",
+          "solution": "$v = 3t^2 - 12t + 9 = 3(t-1)(t-3)$: stopped at $t = 1$ and $t = 3$.",
+          "check": [
+            "diff(t**3 - 6*t**2 + 9*t, t) == 3*t**2 - 12*t + 9",
+            "3*(1-1)*(1-3) == 0",
+            "3*1 - 12 + 9 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The wave-scroll's secret",
+            "title": "A derivative in plain sight",
+            "beats": [
+              "Grade 11's wave: sine climbs steepest at $0$, pauses at the crest.",
+              "Where does cosine peak? At $0$. Where does it die? The crest.",
+              "Sine's SLOPE, at every point, is cosine's HEIGHT.",
+              "$(\\sin x)' = \\cos x$. You've seen this fact — now it has a name."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The pair",
+            "prompt": "$(\\cos x)'$ = …",
+            "options": [
+              "$-\\sin x$ — cosine starts by falling",
+              "$\\sin x$",
+              "$\\cos x$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Cosine begins AT its peak, so its first move is downhill: slope starts negative. The minus is the whole memory task.",
+            "check": [
+              "simplify(diff(cos(x), x) + sin(x)) == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "With the chain",
+            "title": "Tolls apply",
+            "beats": [
+              "$(\\sin 3x)' = \\cos 3x \\cdot 3 = 3\\cos 3x$.",
+              "$(\\cos(x^2))' = -\\sin(x^2) \\cdot 2x$.",
+              "Outer trig derivative, inside kept, toll paid.",
+              "Lesson 5's system — trig changes nothing."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Motion is a derivative chain",
+            "title": "s, v, a",
+            "beats": [
+              "Position $s(t)$. How fast does it change? Velocity $v = s'$.",
+              "How fast does VELOCITY change? Acceleration $a = v' = s''$.",
+              "The stone: $s = 5t^2 \\to v = 10t \\to a = 10$, constant.",
+              "Gravity is a second derivative. Physics is differentiation."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Waves and stones",
+            "intro": "Trig pairs, chain tolls, motion chains.",
+            "examples": [
+              {
+                "prompt": "Find the tangent slope of $y = \\sin x$ at $x = \\tfrac{\\pi}{3}$.",
+                "steps": [
+                  "$y' = \\cos x$.",
+                  "$\\cos\\tfrac{\\pi}{3} = \\tfrac12$ — the unit circle from Grade 11, one more time."
+                ],
+                "answer": "$\\tfrac{1}{2}$",
+                "check": [
+                  "cos(pi/3) == Rational(1,2)",
+                  "simplify(diff(sin(x), x) - cos(x)) == 0"
+                ]
+              },
+              {
+                "prompt": "A ball thrown up: $s(t) = 20t - 5t^2$. When does it stop rising, and how high is it then?",
+                "steps": [
+                  "$v = 20 - 10t = 0$ at $t = 2$ s — the top of the flight.",
+                  "Height: $s(2) = 40 - 20 = 20$ m.",
+                  "(Velocity zero = the peak: next topic builds a whole theory on this.)"
+                ],
+                "answer": "$t = 2$ s, height $20$ m",
+                "check": [
+                  "diff(20*t - 5*t**2, t) == 20 - 10*t",
+                  "20 - 10*2 == 0",
+                  "20*2 - 5*2**2 == 20"
+                ]
+              },
+              {
+                "prompt": "Differentiate $y = x^2\\sin x$ — product AND trig.",
+                "steps": [
+                  "Turns: $(x^2)'\\sin x + x^2(\\sin x)'$.",
+                  "$= 2x\\sin x + x^2\\cos x$."
+                ],
+                "answer": "$2x\\sin x + x^2\\cos x$",
+                "check": [
+                  "simplify(diff(x**2*sin(x), x) - (2*x*sin(x) + x**2*cos(x))) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Full-toolkit finale",
+            "intro": "Every rule from the topic, one last lap.",
+            "problems": [
+              {
+                "prompt": "$(\\sin x)'$ at $x = \\pi$ is…",
+                "options": [
+                  "$-1$",
+                  "$0$",
+                  "$1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\cos\\pi = -1$: mid-descent, the wave falls at full tilt.",
+                "check": [
+                  "cos(pi) == -1"
+                ]
+              },
+              {
+                "prompt": "$s(t) = t^2 + 3t$: velocity at $t = 2$ = …",
+                "options": [
+                  "$7$",
+                  "$10$",
+                  "$4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$v = 2t + 3$; at 2: $7$.",
+                "check": [
+                  "diff(t**2 + 3*t, t) == 2*t + 3",
+                  "2*2 + 3 == 7"
+                ]
+              },
+              {
+                "prompt": "$\\tfrac{d}{dx}\\sin(x^3)$ = …",
+                "options": [
+                  "$3x^2\\cos(x^3)$",
+                  "$\\cos(x^3)$",
+                  "$\\cos(3x^2)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Outer: $\\cos(x^3)$ with inside kept; toll: $3x^2$. Both toll-free options are lesson-5 traps.",
+                "check": [
+                  "simplify(diff(sin(x**3), x) - 3*x**2*cos(x**3)) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Preview",
+            "title": "The topic in one sentence",
+            "body": "You now hold the tool the whole year was building toward: limits made 'instantaneous' precise, and the derivative measures it — slopes, speeds, growth, waves. Next topic puts it to WORK: finding the best, the biggest, the cheapest, the fastest — optimization, where calculus starts paying rent."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$(\\sin x)' = \\cos x$; $(\\cos x)' = -\\sin x$ — the wave-scroll, formalized.",
+              "Chain tolls apply to trig: $(\\sin 3x)' = 3\\cos 3x$.",
+              "Motion: $s \\to v \\to a$ by repeated differentiation; $v = 0$ marks the turning points."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "dv-pr1",
+      "statement": "From the definition, compute $f'(4)$ for $f(x) = x^2$.",
+      "solution": "$\\tfrac{(4+h)^2 - 16}{h} = 8 + h \\to 8$.",
+      "check": [
+        "limit(((4 + h)**2 - 16)/h, h, 0) == 8"
+      ]
+    },
+    {
+      "id": "dv-pr2",
+      "statement": "From the definition, find $f'(x)$ for $f(x) = x^2 - 6x$.",
+      "solution": "$\\tfrac{2xh + h^2 - 6h}{h} = 2x + h - 6 \\to 2x - 6$.",
+      "check": [
+        "limit(((x + h)**2 - 6*(x + h) - (x**2 - 6*x))/h, h, 0) == 2*x - 6"
+      ]
+    },
+    {
+      "id": "dv-pr3",
+      "statement": "Differentiate $y = 3x^4 - 2x^3 + x - 11$.",
+      "solution": "$12x^3 - 6x^2 + 1$.",
+      "check": [
+        "diff(3*x**4 - 2*x**3 + x - 11, x) == 12*x**3 - 6*x**2 + 1"
+      ]
+    },
+    {
+      "id": "dv-pr4",
+      "statement": "Find the equation of the tangent line to $y = x^2$ at $x = 3$.",
+      "solution": "Slope $6$, point $(3, 9)$: $y = 9 + 6(x - 3) = 6x - 9$.",
+      "check": [
+        "diff(x**2, x) == 2*x",
+        "2*3 == 6",
+        "6*3 - 9 == 9"
+      ]
+    },
+    {
+      "id": "dv-pr5",
+      "statement": "Differentiate $y = (x^2 + 2)(x^3 - 1)$.",
+      "solution": "Turns: $2x(x^3 - 1) + (x^2+2)3x^2 = 5x^4 + 6x^2 - 2x$.",
+      "check": [
+        "simplify(diff((x**2 + 2)*(x**3 - 1), x) - (5*x**4 + 6*x**2 - 2*x)) == 0"
+      ]
+    },
+    {
+      "id": "dv-pr6",
+      "statement": "Differentiate $y = \\dfrac{x + 1}{x^2 + 1}$.",
+      "solution": "$\\tfrac{(x^2+1) - (x+1)2x}{(x^2+1)^2} = \\tfrac{1 - 2x - x^2}{(x^2+1)^2}$.",
+      "check": [
+        "simplify(diff((x + 1)/(x**2 + 1), x) - (1 - 2*x - x**2)/(x**2 + 1)**2) == 0"
+      ]
+    },
+    {
+      "id": "dv-pr7",
+      "statement": "Differentiate $y = (4x - 3)^5$.",
+      "solution": "$5(4x-3)^4 \\cdot 4 = 20(4x - 3)^4$.",
+      "check": [
+        "simplify(diff((4*x - 3)**5, x) - 20*(4*x - 3)**4) == 0"
+      ]
+    },
+    {
+      "id": "dv-pr8",
+      "statement": "Differentiate $y = \\sqrt{x^2 + 16}$ and evaluate at $x = 3$.",
+      "solution": "$y' = \\tfrac{x}{\\sqrt{x^2+16}}$; at 3: $\\tfrac{3}{5}$.",
+      "check": [
+        "simplify(diff(sqrt(x**2 + 16), x) - x/sqrt(x**2 + 16)) == 0",
+        "Rational(3, 5) == Rational(3,5)"
+      ]
+    },
+    {
+      "id": "dv-pr9",
+      "statement": "Differentiate $y = \\sin(2x) + \\cos x$ and evaluate the slope at $x = 0$.",
+      "solution": "$y' = 2\\cos 2x - \\sin x$; at 0: $2 - 0 = 2$.",
+      "check": [
+        "simplify(diff(sin(2*x) + cos(x), x) - (2*cos(2*x) - sin(x))) == 0",
+        "2*cos(0) - sin(0) == 2"
+      ]
+    },
+    {
+      "id": "dv-pr10",
+      "statement": "$s(t) = t^3 - 3t^2$ (meters, seconds): find velocity and acceleration at $t = 2$.",
+      "solution": "$v = 3t^2 - 6t$: at 2, $0$ m/s — momentarily stopped. $a = 6t - 6$: at 2, $6$ m/s².",
+      "check": [
+        "diff(t**3 - 3*t**2, t) == 3*t**2 - 6*t",
+        "3*4 - 12 == 0",
+        "diff(3*t**2 - 6*t, t) == 6*t - 6",
+        "6*2 - 6 == 6"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "dv-ty1",
+      "statement": "From the definition, compute $f'(1)$ for $f(x) = 2x^2 + x$.",
+      "solution": "$\\tfrac{2(1+h)^2 + (1+h) - 3}{h} = \\tfrac{5h + 2h^2}{h} = 5 + 2h \\to 5$.",
+      "check": [
+        "limit((2*(1 + h)**2 + (1 + h) - 3)/h, h, 0) == 5"
+      ]
+    },
+    {
+      "id": "dv-ty2",
+      "statement": "Differentiate $y = x^5 - 4x^2 + \\dfrac{2}{x}$.",
+      "solution": "$5x^4 - 8x - \\tfrac{2}{x^2}$.",
+      "check": [
+        "simplify(diff(x**5 - 4*x**2 + 2/x, x) - (5*x**4 - 8*x - 2/x**2)) == 0"
+      ]
+    },
+    {
+      "id": "dv-ty3",
+      "statement": "Where is the tangent to $y = x^3 - 27x$ horizontal?",
+      "solution": "$y' = 3x^2 - 27 = 0$: $x = \\pm 3$.",
+      "check": [
+        "diff(x**3 - 27*x, x) == 3*x**2 - 27",
+        "3*9 - 27 == 0"
+      ]
+    },
+    {
+      "id": "dv-ty4",
+      "statement": "Differentiate $y = \\dfrac{x^2}{2x + 1}$.",
+      "solution": "$\\tfrac{2x(2x+1) - 2x^2}{(2x+1)^2} = \\tfrac{2x^2 + 2x}{(2x+1)^2}$.",
+      "check": [
+        "simplify(diff(x**2/(2*x + 1), x) - (2*x**2 + 2*x)/(2*x + 1)**2) == 0"
+      ]
+    },
+    {
+      "id": "dv-ty5",
+      "statement": "Differentiate $y = (x^2 - 3x + 1)^4$.",
+      "solution": "$4(x^2 - 3x + 1)^3(2x - 3)$.",
+      "check": [
+        "simplify(diff((x**2 - 3*x + 1)**4, x) - 4*(x**2 - 3*x + 1)**3*(2*x - 3)) == 0"
+      ]
+    },
+    {
+      "id": "dv-ty6",
+      "statement": "Differentiate $y = x\\cos x$.",
+      "solution": "Turns: $\\cos x - x\\sin x$.",
+      "check": [
+        "simplify(diff(x*cos(x), x) - (cos(x) - x*sin(x))) == 0"
+      ]
+    },
+    {
+      "id": "dv-ty7",
+      "statement": "A ball: $s(t) = 30t - 5t^2$. A classmate says it's fastest at the top. Use derivatives to settle it.",
+      "solution": "$v = 30 - 10t$: at the top ($t = 3$) $v = 0$ — the ball is momentarily STOPPED, the opposite of fastest. Speed is greatest at launch and landing ($|v| = 30$).",
+      "check": [
+        "diff(30*t - 5*t**2, t) == 30 - 10*t",
+        "30 - 10*3 == 0"
+      ]
+    }
+  ]
+}

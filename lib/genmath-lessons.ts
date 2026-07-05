@@ -86,6 +86,7 @@ import statisticsAndData from "@/data/genmath/11/statistics-and-data.json";
 // Grade 12 topic JSON imports (added as each topic is authored + published).
 import trigonometricIdentities from "@/data/genmath/12/trigonometric-identities.json";
 import limitsAndContinuity from "@/data/genmath/12/limits-and-continuity.json";
+import derivatives from "@/data/genmath/12/derivatives.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -278,7 +279,7 @@ export const GRADE12_SPINE: GradeSpineEntry[] = [
     slug: "derivatives",
     title: "Derivatives",
     blurb: "The slope of a curve: the derivative as a limit, and the power, product, quotient, and chain rules.",
-    live: false,
+    live: true,
   },
   {
     slug: "applications-of-derivatives",
@@ -309,6 +310,7 @@ export const GRADE12_SPINE: GradeSpineEntry[] = [
 const grade12Topics: GenMathTopic[] = [
   trigonometricIdentities as GenMathTopic,
   limitsAndContinuity as GenMathTopic,
+  derivatives as GenMathTopic,
 ];
 
 const grade11Topics: GenMathTopic[] = [

@@ -804,6 +804,14 @@ export interface LimitGraphConfig {
   mode: "approach" | "hole" | "jump" | "infinite";
 }
 
+// The derivatives workbench on f(x) = x²/2 (slope at x is exactly x).
+// secant: an h-stepper collapses the secant onto the tangent — the definition
+// drawn; tangent: slide the touch point, slope readout goes downhill/flat/
+// uphill; slopeCurve: f and f′ share the grid — the derivative is a function.
+export interface TangentGraphConfig {
+  mode: "secant" | "tangent" | "slopeCurve";
+}
+
 // Two lines y = m1x + b1 and y = m2x + b2 on one grid; line 2 adjustable.
 // Marks the intersection (the system's solution) and calls parallel /
 // same-line verdicts live. The systems-of-equations workbench.
@@ -1025,6 +1033,7 @@ export type InteractiveStep =
   | { kind: "polyGraph"; eyebrow?: string; title: string; teach: string; config: PolyGraphConfig }
   | { kind: "unitCircle"; eyebrow?: string; title: string; teach: string; config: UnitCircleConfig }
   | { kind: "limitGraph"; eyebrow?: string; title: string; teach: string; config: LimitGraphConfig }
+  | { kind: "tangentGraph"; eyebrow?: string; title: string; teach: string; config: TangentGraphConfig }
   | { kind: "scatterPlot"; eyebrow?: string; title: string; teach: string; config: ScatterPlotConfig }
   | { kind: "areaShape"; eyebrow?: string; title: string; teach: string; config: AreaShapeConfig }
   | { kind: "apothemPolygon"; eyebrow?: string; title: string; teach: string; config: ApothemPolygonConfig }
