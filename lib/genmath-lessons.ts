@@ -78,6 +78,7 @@ import probabilityAndCounting from "@/data/genmath/10/probability-and-counting.j
 // Grade 11 topic JSON imports (added as each topic is authored + published).
 import functionsAndTransformations from "@/data/genmath/11/functions-and-transformations.json";
 import polynomialFunctions from "@/data/genmath/11/polynomial-functions.json";
+import logarithms from "@/data/genmath/11/logarithms.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -225,7 +226,7 @@ export const GRADE11_SPINE: GradeSpineEntry[] = [
     slug: "logarithms",
     title: "Logarithms",
     blurb: "The inverse of the exponential: log laws, solving exponential and log equations, and the scales that measure earthquakes and sound.",
-    live: false,
+    live: true,
   },
   {
     slug: "sequences-and-series",
@@ -256,6 +257,7 @@ export const GRADE11_SPINE: GradeSpineEntry[] = [
 const grade11Topics: GenMathTopic[] = [
   functionsAndTransformations as GenMathTopic,
   polynomialFunctions as GenMathTopic,
+  logarithms as GenMathTopic,
 ];
 
 const grade10Topics: GenMathTopic[] = [

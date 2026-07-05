@@ -1,0 +1,1716 @@
+{
+  "slug": "logarithms",
+  "title": "Logarithms",
+  "grade": 11,
+  "blurb": "The inverse of the exponential: log laws, solving exponential and log equations, and the scales that measure earthquakes and sound.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "meet-logarithms",
+      "title": "Meet Logarithms",
+      "concreteComparison": "You know $2^5 = 32$ forwards: 'two to the fifth is what?' A **logarithm** asks it backwards: '$2$ to WHAT power is $32$?' — written $\\log_2 32 = 5$. Every exponential fact you own is secretly two facts, and the log is the one that answers the question banks, biologists, and seismologists actually ask: how long, how many doublings, how strong?",
+      "objective": "Read and write logarithms as 'what exponent?' questions, converting fluently between $b^y = x$ and $\\log_b x = y$.",
+      "concept": [
+        "**Definition**: $\\log_b x = y$ means exactly $b^y = x$. The log is the EXPONENT: $\\log_2 32 = 5$ because $2^5 = 32$.",
+        "Read $\\log_2 32$ aloud as a question: '2 to what power gives 32?'. Every log evaluation is an exponent hunt.",
+        "The two forms are the same fact wearing different clothes: $3^4 = 81 \\iff \\log_3 81 = 4$. Converting between them is this lesson's whole muscle.",
+        "House rules (inherited from exponentials): the base $b$ is positive and $\\neq 1$, and you can only take logs of POSITIVE numbers — $b^y$ never outputs zero or negatives, so the question '$b$ to what power is $-8$?' has no answer."
+      ],
+      "keyIdea": "log_b x = y ⟺ b^y = x — the log IS the exponent. Only positive inputs have logs.",
+      "facts": [
+        {
+          "title": "The definition",
+          "latex": "\\log_b x = y \\iff b^y = x",
+          "explanation": "Same fact, two costumes."
+        },
+        {
+          "title": "The question",
+          "latex": "\\log_2 32 = \\text{“2 to what power is 32?”}",
+          "explanation": "Every log is an exponent hunt."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "lg1-we1",
+          "statement": "Evaluate $\\log_2 32$ and $\\log_3 81$.",
+          "solution": "$2^5 = 32$ → $5$; $3^4 = 81$ → $4$.",
+          "check": [
+            "2**5 == 32",
+            "3**4 == 81"
+          ]
+        },
+        {
+          "id": "lg1-we2",
+          "statement": "Convert $5^3 = 125$ to log form, and $\\log_4 64 = 3$ to exponential form.",
+          "solution": "$\\log_5 125 = 3$; and $4^3 = 64$.",
+          "check": [
+            "5**3 == 125",
+            "4**3 == 64"
+          ]
+        },
+        {
+          "id": "lg1-we3",
+          "statement": "Solve for $x$: $\\log_2 x = 6$.",
+          "solution": "Exponential form: $x = 2^6 = 64$.",
+          "check": [
+            "2**6 == 64"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading $\\log_2 32$ as $32 \\div 2$ or $2 \\times 32$.",
+          "correction": "It's neither — it's an EXPONENT: the power that lifts 2 to 32. $\\log_2 32 = 5$, not 16 or 64.",
+          "authored": true
+        },
+        {
+          "text": "Taking the log of a negative number or zero.",
+          "correction": "$\\log_2(-8)$ asks '2 to what power is $-8$?' — no real power does that ($2^y > 0$ always). Log inputs must be positive.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "lg1-t1",
+          "statement": "Evaluate $\\log_5 125$ and $\\log_{10} 1000$.",
+          "solution": "$3$ and $3$.",
+          "check": [
+            "5**3 == 125",
+            "10**3 == 1000"
+          ]
+        },
+        {
+          "id": "lg1-t2",
+          "statement": "Solve $\\log_3 x = 4$.",
+          "solution": "$x = 3^4 = 81$.",
+          "check": [
+            "3**4 == 81"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The backwards question",
+            "title": "Exponents in reverse",
+            "beats": [
+              "Forwards: $2^5 = ?$ → 32. You've done this for years.",
+              "Backwards: $2^{?} = 32$ → that '?' is the logarithm.",
+              "$\\log_2 32 = 5$. The log IS the exponent.",
+              "New notation. Zero new math."
+            ]
+          },
+          {
+            "kind": "expGraph",
+            "eyebrow": "The curve you're reading backwards",
+            "title": "Exponential, meet your inverse",
+            "teach": "Here's $y = 2^x$ from the Grade 10 unit. The exponential answers 'given the exponent, what's the value?' — the LOG reads the same curve the other way: 'given the value, what was the exponent?'. Find 8 on the y-axis, slide to the curve, drop down: $x = 3$. That's $\\log_2 8 = 3$, read off the graph.",
+            "config": {
+              "mode": "growth",
+              "a": 1,
+              "b": 2
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Ask the question",
+            "prompt": "$\\log_4 64$ = …",
+            "options": [
+              "$3$",
+              "$16$",
+              "$256$"
+            ],
+            "correctIndex": 0,
+            "explanation": "'4 to what power is 64?' — $4^3 = 64$, so 3. ($16$ is $64÷4$: the division trap.)",
+            "check": [
+              "4**3 == 64"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Two costumes",
+            "title": "Convert both ways",
+            "beats": [
+              "$3^4 = 81$ and $\\log_3 81 = 4$: the SAME fact.",
+              "Exponential form: base, exponent, result.",
+              "Log form: the result moves in, the exponent moves out.",
+              "Stuck on a log? Put the fact back in exponential clothes."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Costume change",
+            "title": "Rewrite it",
+            "prompt": "$\\log_6 x = 2$ in exponential form is…",
+            "options": [
+              "$6^2 = x$",
+              "$x^2 = 6$",
+              "$2^6 = x$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Base 6, exponent 2 (the log's answer), result $x$: $x = 36$.",
+            "check": [
+              "6**2 == 36"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "The exponent hunt",
+            "intro": "Rewrite in exponential clothes and hunt.",
+            "examples": [
+              {
+                "prompt": "Evaluate $\\log_2 128$, $\\log_9 81$, and $\\log_7 7$.",
+                "steps": [
+                  "$2^7 = 128$ → 7.",
+                  "$9^2 = 81$ → 2.",
+                  "$7^1 = 7$ → 1."
+                ],
+                "answer": "$7$, $2$, $1$",
+                "check": [
+                  "2**7 == 128",
+                  "9**2 == 81",
+                  "7**1 == 7"
+                ]
+              },
+              {
+                "prompt": "Solve $\\log_x 49 = 2$.",
+                "steps": [
+                  "Exponential clothes: $x^2 = 49$.",
+                  "$x = 7$ (bases are positive)."
+                ],
+                "answer": "$x = 7$",
+                "check": [
+                  "7**2 == 49"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Backwards fluency",
+            "intro": "The log is the exponent — hunt it.",
+            "problems": [
+              {
+                "prompt": "$\\log_2 64$ = …",
+                "options": [
+                  "$6$",
+                  "$32$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2^6 = 64$.",
+                "check": [
+                  "2**6 == 64"
+                ]
+              },
+              {
+                "prompt": "$\\log_{10} 10000$ = …",
+                "options": [
+                  "$4$",
+                  "$1000$",
+                  "$10$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$10^4 = 10000$ — base-10 logs count the zeros!",
+                "check": [
+                  "10**4 == 10000"
+                ]
+              },
+              {
+                "prompt": "Which has NO answer?",
+                "options": [
+                  "$\\log_2(-4)$",
+                  "$\\log_2 \\tfrac12$",
+                  "$\\log_2 1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2^y$ is never negative. ($\\log_2 \\tfrac12 = -1$ and $\\log_2 1 = 0$ are fine — negative and zero OUTPUTS are legal; negative INPUTS are not.)",
+                "check": [
+                  "2**(-1) == Rational(1,2)",
+                  "2**0 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The tables that steered ships",
+            "body": "Before calculators, every navigator and astronomer owned a book of log tables — 400 pages of pre-computed exponent-hunts. John Napier published the first in 1614, and Kepler said it 'doubled the life of an astronomer' by halving the arithmetic. Logs were humanity's calculator for 350 years; the slide rule was just logs carved into wood."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$\\log_b x = y \\iff b^y = x$ — the log is the exponent.",
+              "Evaluate by asking 'base to what power gives this?'.",
+              "Inputs must be positive; the base is positive and ≠ 1."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "evaluating-logarithms",
+      "title": "Evaluating Logarithms",
+      "concreteComparison": "A cashier doesn't recompute $7 \\times 8$ — they know it. Logs have the same times-table moments: $\\log_b 1 = 0$ always, $\\log_b b = 1$ always, and fractional inputs go NEGATIVE ($\\log_2 \\tfrac18 = -3$). Load the special values once and most log questions become instant reads.",
+      "objective": "Evaluate logs instantly at the special values (1, the base, powers and reciprocal powers of the base) including negative and fractional answers.",
+      "concept": [
+        "Two always-true anchors: $\\log_b 1 = 0$ (since $b^0 = 1$) and $\\log_b b = 1$ (since $b^1 = b$). Any base, every time.",
+        "Reciprocals go negative: $\\log_2 \\tfrac18$ asks '2 to what power is $\\tfrac18$?' — $2^{-3} = \\tfrac18$, so $-3$. Inputs between 0 and 1 have negative logs.",
+        "Roots go fractional: $\\log_4 2 = \\tfrac12$ because $4^{1/2} = 2$; $\\log_8 2 = \\tfrac13$. Grade 10's rational exponents, cashing in.",
+        "The **common log** $\\log x$ (no base shown) means base 10 — and on powers of ten it just counts zeros: $\\log 1000 = 3$, $\\log 0.01 = -2$."
+      ],
+      "keyIdea": "Anchors: log_b 1 = 0, log_b b = 1; reciprocals negative, roots fractional; bare log = base 10.",
+      "facts": [
+        {
+          "title": "Anchors",
+          "latex": "\\log_b 1 = 0 \\qquad \\log_b b = 1",
+          "explanation": "From b⁰ = 1 and b¹ = b."
+        },
+        {
+          "title": "Common log",
+          "latex": "\\log x \\text{ means } \\log_{10} x",
+          "explanation": "On powers of 10 it counts zeros."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "lg2-we1",
+          "statement": "Evaluate $\\log_7 1$, $\\log_7 7$, and $\\log_7 49$.",
+          "solution": "$0$, $1$, $2$ — the anchor ladder.",
+          "check": [
+            "7**0 == 1",
+            "7**1 == 7",
+            "7**2 == 49"
+          ]
+        },
+        {
+          "id": "lg2-we2",
+          "statement": "Evaluate $\\log_2 \\tfrac{1}{8}$ and $\\log_5 \\tfrac{1}{25}$.",
+          "solution": "$2^{-3} = \\tfrac18$ → $-3$; $5^{-2} = \\tfrac{1}{25}$ → $-2$.",
+          "check": [
+            "2**(-3) == Rational(1,8)",
+            "5**(-2) == Rational(1,25)"
+          ]
+        },
+        {
+          "id": "lg2-we3",
+          "statement": "Evaluate $\\log_9 3$ and $\\log 100000$.",
+          "solution": "$9^{1/2} = 3$ → $\\tfrac12$; base-10: $10^5$ → $5$.",
+          "check": [
+            "9**Rational(1,2) == 3",
+            "10**5 == 100000"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Guessing $\\log_b 1 = 1$.",
+          "correction": "$b^0 = 1$ for EVERY base, so $\\log_b 1 = 0$. The '1 input' always answers zero — it's the exponential's starting line.",
+          "authored": true
+        },
+        {
+          "text": "Calling $\\log_2 \\tfrac18$ 'undefined because it's a fraction'.",
+          "correction": "Positive fractions are fine — their logs are just NEGATIVE: $\\log_2 \\tfrac18 = -3$. Only zero and negatives are out of bounds.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "lg2-t1",
+          "statement": "Evaluate $\\log_3 \\tfrac19$ and $\\log_{12} 1$.",
+          "solution": "$-2$ and $0$.",
+          "check": [
+            "3**(-2) == Rational(1,9)",
+            "12**0 == 1"
+          ]
+        },
+        {
+          "id": "lg2-t2",
+          "statement": "Evaluate $\\log_{16} 4$ and $\\log 0.001$.",
+          "solution": "$16^{1/2} = 4$ → $\\tfrac12$; $10^{-3} = 0.001$ → $-3$.",
+          "check": [
+            "16**Rational(1,2) == 4",
+            "10**(-3) == Rational(1,1000)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The anchor ladder",
+            "title": "Powers of the base",
+            "beats": [
+              "Base 7: $\\log_7 1 = 0$, $\\log_7 7 = 1$, $\\log_7 49 = 2$…",
+              "The ladder climbs the powers: $7^0, 7^1, 7^2$.",
+              "$\\log_b 1 = 0$ and $\\log_b b = 1$ for EVERY base.",
+              "Two anchors, memorized once, used forever."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Below the floor",
+            "title": "Fractions go negative",
+            "beats": [
+              "$\\log_2 \\tfrac18$: '2 to what power is an eighth?'",
+              "$2^{-3} = \\tfrac{1}{2^3} = \\tfrac18$. Answer: $-3$.",
+              "Inputs in $(0, 1)$ → negative logs.",
+              "The ladder extends below zero — same rungs, minus signs."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Down the ladder",
+            "prompt": "$\\log_3 \\tfrac{1}{27}$ = …",
+            "options": [
+              "$-3$",
+              "$\\tfrac{1}{3}$",
+              "undefined"
+            ],
+            "correctIndex": 0,
+            "explanation": "$3^{-3} = \\tfrac{1}{27}$. Small positive input, negative exponent.",
+            "check": [
+              "3**(-3) == Rational(1,27)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Between the rungs",
+            "title": "Roots go fractional",
+            "beats": [
+              "$\\log_4 2$: '4 to what power is 2?'",
+              "$4^{1/2} = \\sqrt4 = 2$. Answer: $\\tfrac12$.",
+              "$\\log_8 2 = \\tfrac13$ ($8^{1/3} = 2$).",
+              "Rational exponents from Grade 10, paying rent."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Count the zeros",
+            "title": "The common log",
+            "prompt": "$\\log 1{,}000{,}000$ = …",
+            "options": [
+              "$6$",
+              "$10^6$",
+              "$60$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Bare log = base 10, and $10^6$ = a million: the common log counts zeros.",
+            "check": [
+              "10**6 == 1000000"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Instant reads",
+            "intro": "Anchors, negatives, fractions — no computation.",
+            "examples": [
+              {
+                "prompt": "Evaluate: $\\log_5 1$, $\\log_5 \\tfrac15$, $\\log_{25} 5$.",
+                "steps": [
+                  "$5^0 = 1$ → 0.",
+                  "$5^{-1} = \\tfrac15$ → $-1$.",
+                  "$25^{1/2} = 5$ → $\\tfrac12$."
+                ],
+                "answer": "$0, -1, \\tfrac12$",
+                "check": [
+                  "5**0 == 1",
+                  "5**(-1) == Rational(1,5)",
+                  "25**Rational(1,2) == 5"
+                ]
+              },
+              {
+                "prompt": "Order from smallest: $\\log_2 8$, $\\log_2 \\tfrac14$, $\\log_2 1$.",
+                "steps": [
+                  "$\\log_2 \\tfrac14 = -2$.",
+                  "$\\log_2 1 = 0$.",
+                  "$\\log_2 8 = 3$. Order: $-2 < 0 < 3$."
+                ],
+                "answer": "$\\log_2 \\tfrac14 < \\log_2 1 < \\log_2 8$",
+                "check": [
+                  "2**(-2) == Rational(1,4)",
+                  "2**0 == 1",
+                  "2**3 == 8",
+                  "-2 < 0",
+                  "0 < 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Ladder sprints",
+            "intro": "Anchor, then climb or descend.",
+            "problems": [
+              {
+                "prompt": "$\\log_6 6$ = …",
+                "options": [
+                  "$1$",
+                  "$0$",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6^1 = 6$ — the base itself always answers 1.",
+                "check": [
+                  "6**1 == 6"
+                ]
+              },
+              {
+                "prompt": "$\\log_{10} 0.1$ = …",
+                "options": [
+                  "$-1$",
+                  "$0.1$",
+                  "$\\tfrac{1}{10}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$10^{-1} = 0.1$. One step below the floor.",
+                "check": [
+                  "10**(-1) == Rational(1,10)"
+                ]
+              },
+              {
+                "prompt": "$\\log_{27} 3$ = …",
+                "options": [
+                  "$\\tfrac13$",
+                  "$3$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$27^{1/3} = \\sqrt[3]{27} = 3$: a between-the-rungs fractional answer.",
+                "check": [
+                  "27**Rational(1,3) == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Your brain runs on log scales",
+            "body": "Psychophysics' Weber–Fechner law: human senses perceive RATIOS, not differences. Doubling loudness feels like one equal 'step' whether it's whisper→talk or talk→shout — your ear is taking a logarithm. Same for brightness, pitch, even how children first estimate numbers. Evaluating logs feels natural because your nervous system's been doing it all along."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$\\log_b 1 = 0$, $\\log_b b = 1$ — the two anchors.",
+              "Inputs in $(0,1)$: negative logs; root inputs: fractional logs.",
+              "Bare $\\log$ = base 10 — it counts zeros on powers of ten."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "log-laws",
+      "title": "The Log Laws",
+      "concreteComparison": "Exponents had laws: multiply powers, ADD exponents. Since logs ARE exponents, every exponent law casts a log shadow: $\\log(ab) = \\log a + \\log b$ — multiplication downstairs becomes addition upstairs. Three laws, all inherited, all doing the same job: turning hard operations into easier ones.",
+      "objective": "Apply the product, quotient, and power laws to expand, condense, and evaluate logarithmic expressions.",
+      "concept": [
+        "**Product law**: $\\log_b(xy) = \\log_b x + \\log_b y$. Shadow of $b^m \\cdot b^n = b^{m+n}$. Check: $\\log_2(8 \\cdot 4) = \\log_2 32 = 5 = 3 + 2$ ✓.",
+        "**Quotient law**: $\\log_b \\tfrac{x}{y} = \\log_b x - \\log_b y$. Shadow of $b^m / b^n = b^{m-n}$.",
+        "**Power law** (the workhorse): $\\log_b(x^n) = n \\log_b x$ — exponents INSIDE a log walk out front as multipliers. Shadow of $(b^m)^n = b^{mn}$.",
+        "Two directions of use: **expand** ($\\log_2 \\tfrac{x^3 y}{z} = 3\\log_2 x + \\log_2 y - \\log_2 z$) and **condense** ($2\\log 5 + \\log 4 = \\log 100 = 2$). Condensing often makes ugly sums suddenly evaluable."
+      ],
+      "keyIdea": "Logs turn × into +, ÷ into −, and powers into multipliers — the exponent laws, seen from below.",
+      "facts": [
+        {
+          "title": "The three laws",
+          "latex": "\\log xy = \\log x + \\log y \\quad \\log \\tfrac{x}{y} = \\log x - \\log y \\quad \\log x^n = n\\log x",
+          "explanation": "Inherited from the exponent laws."
+        },
+        {
+          "title": "The warning",
+          "latex": "\\log(x + y) \\neq \\log x + \\log y",
+          "explanation": "No law splits a SUM inside a log."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "lg3-we1",
+          "statement": "Verify the product law on $\\log_2(8 \\cdot 4)$.",
+          "solution": "$\\log_2 32 = 5$ and $\\log_2 8 + \\log_2 4 = 3 + 2 = 5$ ✓.",
+          "check": [
+            "2**5 == 8*4",
+            "2**3 == 8",
+            "2**2 == 4",
+            "3 + 2 == 5"
+          ]
+        },
+        {
+          "id": "lg3-we2",
+          "statement": "Evaluate $\\log_3 54 - \\log_3 2$.",
+          "solution": "Quotient law: $\\log_3 \\tfrac{54}{2} = \\log_3 27 = 3$.",
+          "check": [
+            "Rational(54,2) == 27",
+            "3**3 == 27"
+          ]
+        },
+        {
+          "id": "lg3-we3",
+          "statement": "Evaluate $2\\log 5 + \\log 4$ (base 10).",
+          "solution": "Power law in: $\\log 25 + \\log 4 = \\log 100 = 2$.",
+          "check": [
+            "5**2 == 25",
+            "25*4 == 100",
+            "10**2 == 100"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Splitting a sum: $\\log(x+y) = \\log x + \\log y$.",
+          "correction": "The product law splits PRODUCTS only. Numbers kill it: $\\log_2(8+8) = 4$, but $\\log_2 8 + \\log_2 8 = 6$. No law touches $\\log(x+y)$.",
+          "authored": true
+        },
+        {
+          "text": "Reading $\\log x^n$ as $(\\log x)^n$.",
+          "correction": "$\\log_2(8^2) = \\log_2 64 = 6 = 2\\log_2 8$ — the power multiplies. $(\\log_2 8)^2 = 9$: different number, different meaning.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "lg3-t1",
+          "statement": "Evaluate $\\log_2 6 + \\log_2 \\tfrac{32}{6}$ using a law.",
+          "solution": "Product: $\\log_2 (6 \\cdot \\tfrac{32}{6}) = \\log_2 32 = 5$.",
+          "check": [
+            "6*Rational(32,6) == 32",
+            "2**5 == 32"
+          ]
+        },
+        {
+          "id": "lg3-t2",
+          "statement": "Evaluate $\\log_5 \\sqrt{5}$ with the power law.",
+          "solution": "$\\log_5 5^{1/2} = \\tfrac12$.",
+          "check": [
+            "5**Rational(1,2) == sqrt(5)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Laws by inheritance",
+            "title": "Shadows of the exponent laws",
+            "beats": [
+              "$b^m \\cdot b^n = b^{m+n}$: multiply → ADD exponents.",
+              "Logs ARE exponents, so downstairs multiplication…",
+              "…is upstairs addition: $\\log(xy) = \\log x + \\log y$.",
+              "All three laws arrive this way. Nothing new to prove."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The three, together",
+            "title": "Product, quotient, power",
+            "beats": [
+              "$\\log_b(xy) = \\log_b x + \\log_b y$.",
+              "$\\log_b \\tfrac{x}{y} = \\log_b x - \\log_b y$.",
+              "$\\log_b(x^n) = n\\log_b x$ — the workhorse.",
+              "×→+, ÷→−, powers→multipliers."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Verify with numbers",
+            "prompt": "$\\log_2 8 + \\log_2 4$ = …",
+            "options": [
+              "$\\log_2 32 = 5$",
+              "$\\log_2 12$",
+              "$\\log_2 8 \\cdot \\log_2 4 = 6$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Adding logs multiplies insides: $8 \\cdot 4 = 32$, and $\\log_2 32 = 5 = 3+2$ ✓.",
+            "check": [
+              "8*4 == 32",
+              "2**5 == 32"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The forbidden split",
+            "title": "No law for sums",
+            "beats": [
+              "$\\log(x + y)$: tempting to split. DON'T.",
+              "Numbers object: $\\log_2(8+8) = \\log_2 16 = 4$…",
+              "…but $\\log_2 8 + \\log_2 8 = 6$. Not equal.",
+              "Products split. Sums sit tight. Always."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Power law drill",
+            "title": "Walk the exponent out",
+            "prompt": "$\\log_3 (81^5)$ = …",
+            "options": [
+              "$20$",
+              "$3^{20}$",
+              "$1024$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$5 \\log_3 81 = 5 \\cdot 4 = 20$ — no need to compute $81^5$!",
+            "check": [
+              "3**4 == 81",
+              "5*4 == 20"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Expand and condense",
+            "intro": "Both directions; condense to evaluate.",
+            "examples": [
+              {
+                "prompt": "Condense and evaluate: $\\log_6 9 + \\log_6 4$.",
+                "steps": [
+                  "Product: $\\log_6 36$.",
+                  "$6^2 = 36$: answer $2$."
+                ],
+                "answer": "$2$",
+                "check": [
+                  "9*4 == 36",
+                  "6**2 == 36"
+                ]
+              },
+              {
+                "prompt": "Condense and evaluate: $3\\log_2 4 - \\log_2 4$.",
+                "steps": [
+                  "$3\\log_2 4 = \\log_2 64$.",
+                  "$\\log_2 64 - \\log_2 4 = \\log_2 16 = 4$."
+                ],
+                "answer": "$4$",
+                "check": [
+                  "4**3 == 64",
+                  "Rational(64,4) == 16",
+                  "2**4 == 16"
+                ]
+              },
+              {
+                "prompt": "Given $\\log_{10} 2 \\approx 0.301$: estimate $\\log_{10} 8$.",
+                "steps": [
+                  "$8 = 2^3$.",
+                  "$\\log 8 = 3\\log 2 \\approx 0.903$.",
+                  "One memorized log unlocks a family."
+                ],
+                "answer": "$\\approx 0.903$",
+                "check": [
+                  "2**3 == 8",
+                  "3*Rational(301,1000) == Rational(903,1000)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Law enforcement",
+            "intro": "×→+, ÷→−, powers out front; sums never split.",
+            "problems": [
+              {
+                "prompt": "$\\log_4 32 + \\log_4 2$ = …",
+                "options": [
+                  "$3$",
+                  "$5$",
+                  "$\\log_4 34$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\log_4 64 = 3$ ($4^3 = 64$). Adding logs multiplies: $32 \\cdot 2 = 64$.",
+                "check": [
+                  "32*2 == 64",
+                  "4**3 == 64"
+                ]
+              },
+              {
+                "prompt": "$\\log_2 96 - \\log_2 3$ = …",
+                "options": [
+                  "$5$",
+                  "$93$",
+                  "$\\log_2 93$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Quotient: $\\log_2 \\tfrac{96}{3} = \\log_2 32 = 5$.",
+                "check": [
+                  "Rational(96,3) == 32",
+                  "2**5 == 32"
+                ]
+              },
+              {
+                "prompt": "Which is TRUE?",
+                "options": [
+                  "$\\log_2 x^3 = 3\\log_2 x$",
+                  "$\\log_2(x+4) = \\log_2 x + \\log_2 4$",
+                  "$(\\log_2 x)^3 = 3\\log_2 x$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Only the power law. Test the others at $x = 4$: $\\log_2 8 = 3 \\ne 2+2$; $(\\log_2 4)^3 = 8 \\ne 6$.",
+                "check": [
+                  "2**6 == 4**3",
+                  "2**3 == 4+4",
+                  "2**2 == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The law that shortened WWII",
+            "body": "Engineers' slide rules multiplied by ADDING lengths — physical rulers marked in logs, exploiting the product law. Every aircraft, bridge, and rocket before 1970 was designed on one; the Apollo engineers carried them to the Moon as calculator backups. $\\log(xy) = \\log x + \\log y$ isn't just algebra — it was the 20th century's multiplication hardware."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Product: ×→+. Quotient: ÷→−. Power: exponents walk out front.",
+              "Condense to evaluate; expand to simplify.",
+              "$\\log(x+y)$ has no law — sums never split."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "solving-exponential-equations",
+      "title": "Solving Exponential Equations",
+      "concreteComparison": "Grade 10 left a question dangling: money doubles at $A = 100 \\cdot 2^t$ — WHEN does it hit 3200? You could step year by year… or free the trapped exponent in one move. Logs are the key made for this lock: $2^t = 32 \\to t = \\log_2 32 = 5$. The variable-in-the-exponent problem, finally solved by machine instead of by guessing.",
+      "objective": "Solve exponential equations by matching bases or by taking logs, isolating the exponential first.",
+      "concept": [
+        "**Same-base method**: if both sides can wear one base, exponents must match. $2^{x+1} = 32 = 2^5 \\to x + 1 = 5 \\to x = 4$.",
+        "**Log method** (works always): rewrite $b^x = c$ as $x = \\log_b c$. $2^x = 32 \\to x = \\log_2 32 = 5$ — the definition doing the solving.",
+        "**Isolate first**: in $5 \\cdot 2^x = 40$, divide by 5 BEFORE logging: $2^x = 8 \\to x = 3$. The exponential must be alone, like the radical in Grade 10's radical equations.",
+        "When the answer isn't whole, it's still exact: $2^x = 10 \\to x = \\log_2 10$ (a hair above 3, since $2^3 = 8 < 10 < 16$). Bracketing between whole exponents sanity-checks any log answer."
+      ],
+      "keyIdea": "Match bases if you can; otherwise isolate b^x and apply x = log_b c. Bracket the answer between whole powers.",
+      "facts": [
+        {
+          "title": "Same base",
+          "latex": "b^m = b^n \\Rightarrow m = n",
+          "explanation": "One base → equate exponents."
+        },
+        {
+          "title": "The key",
+          "latex": "b^x = c \\Rightarrow x = \\log_b c",
+          "explanation": "The definition, run as a solver."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "lg4-we1",
+          "statement": "Solve $2^{x+1} = 32$.",
+          "solution": "$32 = 2^5$: $x + 1 = 5 \\to x = 4$. Check: $2^5 = 32$ ✓.",
+          "check": [
+            "2**(4+1) == 32"
+          ]
+        },
+        {
+          "id": "lg4-we2",
+          "statement": "Solve $5 \\cdot 2^x = 40$.",
+          "solution": "Isolate: $2^x = 8 \\to x = 3$. Check: $5 \\cdot 8 = 40$ ✓.",
+          "check": [
+            "5*2**3 == 40"
+          ]
+        },
+        {
+          "id": "lg4-we3",
+          "statement": "Solve $9^x = 27$ (match bases through 3).",
+          "solution": "$(3^2)^x = 3^3 \\to 2x = 3 \\to x = \\tfrac32$. Check: $9^{3/2} = 27$ ✓.",
+          "check": [
+            "9**Rational(3,2) == 27"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Logging before isolating: taking logs of $5 \\cdot 2^x = 40$ term-by-term.",
+          "correction": "Divide by 5 FIRST: $2^x = 8$. (Logging the product works with laws — $\\log 5 + x\\log 2 = \\log 40$ — but isolating first is two steps shorter and slip-proof.)",
+          "authored": true
+        },
+        {
+          "text": "Equating exponents across DIFFERENT bases.",
+          "correction": "$2^x = 3^x$ doesn't give 'x = x, always true' — for $x \\neq 0$ the sides differ. Same-base shortcuts need the SAME base; otherwise, logs.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "lg4-t1",
+          "statement": "Solve $3^{2x} = 81$.",
+          "solution": "$81 = 3^4$: $2x = 4 \\to x = 2$.",
+          "check": [
+            "3**(2*2) == 81"
+          ]
+        },
+        {
+          "id": "lg4-t2",
+          "statement": "Solve $4 \\cdot 5^x = 500$.",
+          "solution": "$5^x = 125 \\to x = 3$.",
+          "check": [
+            "4*5**3 == 500"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The dangling question",
+            "title": "When does it hit 3200?",
+            "beats": [
+              "$A = 100 \\cdot 2^t$. Solve $100 \\cdot 2^t = 3200$.",
+              "Isolate: $2^t = 32$.",
+              "Free the exponent: $t = \\log_2 32 = 5$ years.",
+              "Grade 10 could only guess-and-check. You have the key."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Method 1",
+            "title": "Match the bases",
+            "beats": [
+              "$2^{x+1} = 32$. Spot it: $32 = 2^5$.",
+              "One base on both sides → exponents equal:",
+              "$x + 1 = 5 \\to x = 4$.",
+              "Fastest when the match exists. Hunt powers first."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Base matching",
+            "prompt": "Solve $2^{3x} = 64$.",
+            "options": [
+              "$x = 2$",
+              "$x = 3$",
+              "$x = 21\\tfrac13$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$64 = 2^6$: $3x = 6 \\to x = 2$.",
+            "check": [
+              "2**(3*2) == 64"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Method 2",
+            "title": "The log key",
+            "beats": [
+              "$2^x = 10$ — no whole power of 2 is 10.",
+              "Definition to the rescue: $x = \\log_2 10$.",
+              "Bracket it: $2^3 = 8 < 10 < 16 = 2^4$…",
+              "…so $x$ is a bit above 3. Exact answer + sanity range."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Isolate first",
+            "title": "Clear the multiplier",
+            "prompt": "Solve $3 \\cdot 4^x = 48$.",
+            "options": [
+              "$x = 2$",
+              "$x = 4$",
+              "$x = 16$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Divide by 3: $4^x = 16 \\to x = 2$. The multiplier never rides into the log.",
+            "check": [
+              "3*4**2 == 48"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Key work",
+            "intro": "Match bases, or isolate and log.",
+            "examples": [
+              {
+                "prompt": "Solve $25^x = 125$.",
+                "steps": [
+                  "Both are powers of 5: $(5^2)^x = 5^3$.",
+                  "$2x = 3 \\to x = \\tfrac32$."
+                ],
+                "answer": "$x = \\tfrac32$",
+                "check": [
+                  "25**Rational(3,2) == 125"
+                ]
+              },
+              {
+                "prompt": "A dose decays: $D = 400 \\cdot (\\tfrac12)^t$. When is 25 mg left?",
+                "steps": [
+                  "$(\\tfrac12)^t = \\tfrac{25}{400} = \\tfrac{1}{16}$.",
+                  "$\\tfrac{1}{16} = (\\tfrac12)^4$: $t = 4$ hours."
+                ],
+                "answer": "$t = 4$",
+                "check": [
+                  "400*Rational(1,2)**4 == 25"
+                ]
+              },
+              {
+                "prompt": "Bracket $x$ in $3^x = 50$ between whole numbers.",
+                "steps": [
+                  "$3^3 = 27 < 50$.",
+                  "$3^4 = 81 > 50$.",
+                  "$3 < x < 4$; exactly $x = \\log_3 50$."
+                ],
+                "answer": "between 3 and 4",
+                "check": [
+                  "3**3 < 50",
+                  "3**4 > 50"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Unlock the exponent",
+            "intro": "Isolate, match or log, bracket-check.",
+            "problems": [
+              {
+                "prompt": "Solve $6^{x-2} = 36$.",
+                "options": [
+                  "$x = 4$",
+                  "$x = 8$",
+                  "$x = 38$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$36 = 6^2$: $x - 2 = 2$.",
+                "check": [
+                  "6**(4-2) == 36"
+                ]
+              },
+              {
+                "prompt": "Solve $2 \\cdot 3^x = 162$.",
+                "options": [
+                  "$x = 4$",
+                  "$x = 5$",
+                  "$x = 81$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3^x = 81 = 3^4$.",
+                "check": [
+                  "2*3**4 == 162"
+                ]
+              },
+              {
+                "prompt": "$x = \\log_5 100$ lies between…",
+                "options": [
+                  "$2$ and $3$",
+                  "$1$ and $2$",
+                  "$4$ and $5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5^2 = 25 < 100 < 125 = 5^3$. Bracketing beats blind trust in any calculator.",
+                "check": [
+                  "5**2 < 100",
+                  "5**3 > 100"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Carbon dating is one log solve",
+            "body": "A fossil holds 12.5% of its original carbon-14. How old? Solve $(\\tfrac12)^{t/5730} = 0.125 = (\\tfrac12)^3$ — three half-lives, so $t = 17{,}190$ years. Every radiocarbon date in every museum placard is exactly this lesson's equation, solved the same-base way."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Match bases when possible: $b^m = b^n \\Rightarrow m = n$.",
+              "Otherwise isolate and apply $x = \\log_b c$.",
+              "Bracket log answers between whole powers as a sanity check."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "solving-log-equations",
+      "title": "Solving Log Equations",
+      "concreteComparison": "Radical equations taught you the drill: isolate, un-do, CHECK for fakes. Log equations run the same drill with a new un-do: rewrite $\\log_2 x = 4$ in exponential clothes ($x = 16$) and you're done — almost. Logs refuse negative inputs, so condensed equations can mint candidates the original never accepts. The check is back, and it has teeth.",
+      "objective": "Solve logarithmic equations by converting to exponential form (or equating insides), rejecting candidates outside the domain.",
+      "concept": [
+        "**Single log**: isolate it, then swap costumes. $\\log_3(x+2) = 2 \\to x + 2 = 3^2 \\to x = 7$. Check: $\\log_3 9 = 2$ ✓.",
+        "**Log = log**: same base on both sides → insides equal. $\\log_5(2x-1) = \\log_5(x+3) \\to 2x - 1 = x + 3 \\to x = 4$.",
+        "**Condense first**: $\\log_2 x + \\log_2(x-2) = 3$ → $\\log_2[x(x-2)] = 3$ → $x^2 - 2x = 8$ → $x = 4$ or $x = -2$.",
+        "**The check bites**: $x = -2$ makes $\\log_2(-2)$ — illegal input. Reject it: only $x = 4$ survives. Every candidate must keep every original log's inside POSITIVE."
+      ],
+      "keyIdea": "Isolate → exponential clothes (or equate insides). Then check: every log's inside must stay positive — fakes get rejected.",
+      "facts": [
+        {
+          "title": "The un-do",
+          "latex": "\\log_b(\\text{stuff}) = y \\Rightarrow \\text{stuff} = b^y",
+          "explanation": "Costume change as a solver."
+        },
+        {
+          "title": "The bite",
+          "latex": "\\text{inside} \\le 0 \\Rightarrow \\text{candidate rejected}",
+          "explanation": "Logs never accept zero or negatives."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "lg5-we1",
+          "statement": "Solve $\\log_3(x+2) = 2$.",
+          "solution": "$x + 2 = 3^2 = 9 \\to x = 7$. Check: inside $= 9 > 0$ ✓.",
+          "check": [
+            "3**2 == 7+2",
+            "7 + 2 > 0"
+          ]
+        },
+        {
+          "id": "lg5-we2",
+          "statement": "Solve $\\log_5(2x-1) = \\log_5(x+3)$.",
+          "solution": "Insides equal: $2x - 1 = x + 3 \\to x = 4$. Check: both insides $= 7 > 0$ ✓.",
+          "check": [
+            "2*4 - 1 == 4 + 3",
+            "4 + 3 > 0"
+          ]
+        },
+        {
+          "id": "lg5-we3",
+          "statement": "Solve $\\log_2 x + \\log_2(x-2) = 3$.",
+          "solution": "Condense: $x(x-2) = 2^3 = 8 \\to x^2-2x-8 = 0 \\to x = 4$ or $-2$. Reject $-2$ (negative inside). Answer: $x = 4$.",
+          "check": [
+            "4*(4-2) == 8",
+            "2**3 == 8",
+            "(-2)*(-2-2) == 8",
+            "-2 < 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Skipping the domain check after condensing.",
+          "correction": "The algebra happily produces $x = -2$ — and $\\log_2(-2)$ is meaningless. Both roots solve the CONDENSED equation; only the positive-inside one solves the original.",
+          "authored": true
+        },
+        {
+          "text": "Converting $\\log_3(x+2) = 2$ to $x + 2 = 2^3$.",
+          "correction": "The BASE stays the base: $x + 2 = 3^2 = 9$. Swapping base and answer is the classic costume malfunction.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "lg5-t1",
+          "statement": "Solve $\\log_2(x-3) = 4$.",
+          "solution": "$x - 3 = 16 \\to x = 19$. Inside $16 > 0$ ✓.",
+          "check": [
+            "2**4 == 19-3",
+            "19 - 3 > 0"
+          ]
+        },
+        {
+          "id": "lg5-t2",
+          "statement": "Solve $\\log_7(3x) = \\log_7(x+8)$.",
+          "solution": "$3x = x + 8 \\to x = 4$. Insides $12 > 0$ ✓.",
+          "check": [
+            "3*4 == 4+8",
+            "3*4 > 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The familiar drill",
+            "title": "Isolate, un-do, check",
+            "beats": [
+              "Radical equations: isolate the root, square, CHECK.",
+              "Log equations: isolate the log, exponentiate, CHECK.",
+              "$\\log_3(x+2) = 2 \\to x+2 = 3^2 \\to x = 7$.",
+              "Same drill, new un-do. The check returns too…"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Costume-change solve",
+            "prompt": "Solve $\\log_4(x+1) = 2$.",
+            "options": [
+              "$x = 15$",
+              "$x = 7$",
+              "$x = 9$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$x + 1 = 4^2 = 16 \\to x = 15$. (Base 4 stays the base — $2^4$ is the malfunction.)",
+            "check": [
+              "4**2 == 15+1"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Log equals log",
+            "title": "Strip the wrappers",
+            "beats": [
+              "$\\log_5(2x-1) = \\log_5(x+3)$.",
+              "Same base, both sides wrapped once:",
+              "insides must match: $2x-1 = x+3 \\to x = 4$.",
+              "(Then check both insides stay positive: $7 > 0$ ✓.)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The fake returns",
+            "title": "Condense, solve, REJECT",
+            "beats": [
+              "$\\log_2 x + \\log_2(x-2) = 3$. Condense: $\\log_2[x(x-2)] = 3$.",
+              "$x^2 - 2x = 8$: $x = 4$ or $x = -2$.",
+              "$x = -2$? The ORIGINAL asks for $\\log_2(-2)$. Illegal.",
+              "Reject. Only $x = 4$. The check has teeth here."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Fake patrol",
+            "title": "Audit the candidates",
+            "prompt": "Solving $\\log_3 x + \\log_3(x-6) = 3$ yields $x = 9$ and $x = -3$. The solution set is…",
+            "options": [
+              "$x = 9$ only",
+              "both",
+              "$x = -3$ only"
+            ],
+            "correctIndex": 0,
+            "explanation": "$x = -3$ puts negatives inside both logs — rejected. $x = 9$: insides 9 and 3, both positive ✓ (and $9 \\cdot 3 = 27 = 3^3$ ✓).",
+            "check": [
+              "9*(9-6) == 27",
+              "3**3 == 27",
+              "-3 < 0"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Drill with teeth",
+            "intro": "Convert or condense; audit every candidate.",
+            "examples": [
+              {
+                "prompt": "Solve $\\log_6(x) + \\log_6(x+5) = 2$.",
+                "steps": [
+                  "Condense: $x(x+5) = 36$.",
+                  "$x^2+5x-36 = 0 \\to x = 4$ or $-9$.",
+                  "Reject $-9$; answer $x = 4$ (insides 4, 9 ✓)."
+                ],
+                "answer": "$x = 4$",
+                "check": [
+                  "4*(4+5) == 36",
+                  "6**2 == 36",
+                  "-9 < 0"
+                ]
+              },
+              {
+                "prompt": "Solve $2\\log_5 x = \\log_5 (x + 20)$.",
+                "steps": [
+                  "Power law: $\\log_5 x^2 = \\log_5(x+20)$.",
+                  "$x^2 = x + 20 \\to x = 5$ or $-4$.",
+                  "Reject $-4$ ($\\log_5(-4)$ illegal); $x = 5$."
+                ],
+                "answer": "$x = 5$",
+                "check": [
+                  "5**2 == 5 + 20",
+                  "-4 < 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Teethy checks",
+            "intro": "Positive insides or it never happened.",
+            "problems": [
+              {
+                "prompt": "Solve $\\log_9(2x+7) = \\log_9(x+12)$.",
+                "options": [
+                  "$x = 5$",
+                  "$x = -5$",
+                  "no solution"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2x+7 = x+12 \\to x = 5$; insides both $17 > 0$ ✓.",
+                "check": [
+                  "2*5+7 == 5+12",
+                  "5+12 > 0"
+                ]
+              },
+              {
+                "prompt": "Solve $\\log_2(x^2) = 4$ (find every solution).",
+                "options": [
+                  "$x = 4$ or $x = -4$",
+                  "$x = 4$ only",
+                  "$x = 8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x^2 = 16$: both $\\pm4$ keep the inside ($16$) positive — BOTH survive! Checks can pass fakes through only when insides go bad; here neither does.",
+                "check": [
+                  "4**2 == 16",
+                  "(-4)**2 == 16",
+                  "2**4 == 16"
+                ]
+              },
+              {
+                "prompt": "A candidate makes one log's inside equal $0$. It is…",
+                "options": [
+                  "rejected — log of zero is undefined",
+                  "accepted",
+                  "accepted if other logs are fine"
+                ],
+                "correctIndex": 0,
+                "explanation": "'$b$ to what power is 0?' has no answer — insides must be strictly positive.",
+                "check": [
+                  "2**0 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The equation that sized the internet",
+            "body": "In 1998, Google's founders ranked pages with an algorithm whose convergence math runs on logs — and web-scale numbers only fit in human heads logarithmically ('the index grew from $10^7$ to $10^{10}$ pages'). Log equations aren't just solvable; they're how engineers even TALK about systems that grow by powers."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Single log: isolate, then exponential clothes.",
+              "Log = log (same base): equate the insides.",
+              "Condense → solve → REJECT any candidate with a non-positive inside."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "log-scales",
+      "title": "Log Scales",
+      "concreteComparison": "A magnitude-7 earthquake isn't 'a bit worse' than a 5 — it shakes $10^2 = 100$ times harder. Richter, decibels, and pH are **log scales**: each step UP multiplies the real quantity by a fixed factor. They exist because nature's ranges are absurd — from rustling leaves to jet engines is a trillion-fold — and only logs fold a trillion into a friendly 0-to-120.",
+      "objective": "Read and compare log-scale measurements (Richter, decibels, pH), converting scale differences into real-world ratios.",
+      "concept": [
+        "**The rule**: on a log scale, DIFFERENCES in the reading are RATIOS in reality. Richter: each whole step = ×10 ground motion, so mag 7 vs mag 5 is $10^{7-5} = 100×$.",
+        "**Decibels**: sound intensity, 10 dB = ×10. A 90 dB concert vs a 60 dB conversation: $10^{(90-60)/10} = 10^3 = 1000×$ the intensity.",
+        "**pH**: acidity, each step DOWN = ×10 more acidic. pH 3 soda vs pH 7 water: $10^{7-3} = 10^4 = 10{,}000×$ more acidic.",
+        "Why log scales exist: the raw ranges span factors of $10^{12}$ or more. A linear dial would need a kilometer of tickmarks; a log dial folds each ×10 into one step. Reading them is just this unit's math: differences upstairs, ratios downstairs."
+      ],
+      "keyIdea": "Log scales turn ratios into differences: each step = one ×factor. Difference of d steps = 10^d in reality (Richter, pH; dB use steps of 10).",
+      "facts": [
+        {
+          "title": "The rule",
+          "latex": "\\Delta \\text{reading} = d \\Rightarrow \\text{ratio} = 10^d",
+          "explanation": "Differences upstairs, ratios downstairs."
+        },
+        {
+          "title": "The scales",
+          "latex": "\\text{Richter} \\cdot \\text{dB} \\cdot \\text{pH}",
+          "explanation": "Earthquakes, sound, acidity — all logs."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "lg6-we1",
+          "statement": "How much harder does a magnitude 7 quake shake than a magnitude 5?",
+          "solution": "$10^{7-5} = 10^2 = 100$ times.",
+          "check": [
+            "10**(7-5) == 100"
+          ]
+        },
+        {
+          "id": "lg6-we2",
+          "statement": "A concert is 90 dB; a conversation 60 dB. Intensity ratio?",
+          "solution": "$(90-60)/10 = 3$ tens: $10^3 = 1000×$.",
+          "check": [
+            "Rational(90-60, 10) == 3",
+            "10**3 == 1000"
+          ]
+        },
+        {
+          "id": "lg6-we3",
+          "statement": "Soda has pH 3, water pH 7. How many times more acidic is the soda?",
+          "solution": "4 steps down: $10^4 = 10{,}000×$.",
+          "check": [
+            "10**(7-3) == 10000"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading scale differences as real differences: 'mag 7 is 2 units worse than mag 5'.",
+          "correction": "Two STEPS = a factor of $10^2 = 100$. Log scales hide multiplication inside subtraction — that's their whole job.",
+          "authored": true
+        },
+        {
+          "text": "Doubling the reading to double the quantity: '6 dB is twice 3 dB'.",
+          "correction": "Each +10 dB multiplies intensity ×10; doubling a READING can mean a millionfold change. Never do linear arithmetic on a log dial.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "lg6-t1",
+          "statement": "Magnitude 8 vs magnitude 4: ground-motion ratio?",
+          "solution": "$10^4 = 10{,}000×$.",
+          "check": [
+            "10**(8-4) == 10000"
+          ]
+        },
+        {
+          "id": "lg6-t2",
+          "statement": "pH 2 lemon juice vs pH 6 milk: acidity ratio?",
+          "solution": "$10^{6-2} = 10^4 = 10{,}000×$.",
+          "check": [
+            "10**(6-2) == 10000"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Nature's absurd ranges",
+            "title": "Why log scales exist",
+            "beats": [
+              "Rustling leaves → jet engine: a TRILLION-fold in energy.",
+              "A linear dial would need a kilometer of tickmarks.",
+              "The fix: each dial step = one ×10. Fold the trillion into 12.",
+              "Richter, decibels, pH — all the same fold."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The one rule",
+            "title": "Differences are ratios",
+            "beats": [
+              "Reading difference $d$ → real ratio $10^d$.",
+              "Mag 7 vs 5: difference 2 → $100×$ the shaking.",
+              "Subtraction upstairs, multiplication downstairs —",
+              "the log laws, running civilization's dials."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Quake arithmetic",
+            "prompt": "A magnitude 6 quake vs a magnitude 3: the ground moves…",
+            "options": [
+              "$1000×$ more",
+              "$3×$ more",
+              "$2×$ more"
+            ],
+            "correctIndex": 0,
+            "explanation": "Difference 3 → $10^3 = 1000×$. ('$3×$' is the linear-reading trap.)",
+            "check": [
+              "10**(6-3) == 1000"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Decibels",
+            "title": "Tens of a bel",
+            "beats": [
+              "Sound: every +10 dB = ×10 intensity.",
+              "60 dB talk → 90 dB concert: 3 tens → $1000×$.",
+              "Headphones at 100 dB vs 70 dB: also $1000×$. Ears, beware.",
+              "(+3 dB ≈ ×2 — the sound engineer's favorite shortcut.)"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "pH patrol",
+            "title": "Acid arithmetic",
+            "prompt": "Vinegar (pH 2) vs baking-soda water (pH 9): the vinegar is…",
+            "options": [
+              "$10^7$ times more acidic",
+              "$7$ times more acidic",
+              "$4.5$ times more acidic"
+            ],
+            "correctIndex": 0,
+            "explanation": "Seven steps of ×10: ten million times. pH compresses chemistry's wildest ratios into 0–14.",
+            "check": [
+              "10**(9-2) == 10000000"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Dial reading",
+            "intro": "Difference → power of ten → ratio.",
+            "examples": [
+              {
+                "prompt": "The 1960 Chile quake (mag ≈ 9.5) vs a mag 6.5 quake: motion ratio?",
+                "steps": [
+                  "Difference: 3.",
+                  "$10^3 = 1000×$ the ground motion."
+                ],
+                "answer": "$1000×$",
+                "check": [
+                  "10**3 == 1000"
+                ]
+              },
+              {
+                "prompt": "City traffic: 70 dB. A rock concert: 110 dB. Intensity ratio?",
+                "steps": [
+                  "$(110-70)/10 = 4$ tens.",
+                  "$10^4 = 10{,}000×$."
+                ],
+                "answer": "$10^4×$",
+                "check": [
+                  "Rational(110-70,10) == 4",
+                  "10**4 == 10000"
+                ]
+              },
+              {
+                "prompt": "How many mag-5 quakes' worth of shaking equals one mag 7?",
+                "steps": [
+                  "Each mag-5 is $10^{-2}$ of a mag-7's motion.",
+                  "Need $10^2 = 100$ of them."
+                ],
+                "answer": "$100$",
+                "check": [
+                  "10**2 == 100"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Ratio fluency",
+            "intro": "Steps to powers; never linear arithmetic.",
+            "problems": [
+              {
+                "prompt": "40 dB library vs 80 dB vacuum cleaner: intensity ratio…",
+                "options": [
+                  "$10^4$",
+                  "$2$",
+                  "$40$"
+                ],
+                "correctIndex": 0,
+                "explanation": "4 tens of dB → $10^4 = 10{,}000×$. ('Twice the dB' ≠ twice the sound!)",
+                "check": [
+                  "Rational(80-40,10) == 4",
+                  "10**4 == 10000"
+                ]
+              },
+              {
+                "prompt": "A solution 1000× more acidic than pH 8 has pH…",
+                "options": [
+                  "$5$",
+                  "$11$",
+                  "$8000$"
+                ],
+                "correctIndex": 0,
+                "explanation": "×1000 = 3 steps MORE acidic = 3 steps DOWN: pH 5.",
+                "check": [
+                  "10**3 == 1000",
+                  "8 - 3 == 5"
+                ]
+              },
+              {
+                "prompt": "Every whole step on a log-10 scale multiplies the quantity by…",
+                "options": [
+                  "$10$",
+                  "$2$",
+                  "itself"
+                ],
+                "correctIndex": 0,
+                "explanation": "That's the definition — and why a 12-step dial spans a trillion.",
+                "check": [
+                  "10**12 == 1000000000000"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Your playlist is logarithmic too",
+            "body": "Musical octaves are a log scale of frequency: every octave UP doubles the Hz. A piano's 88 keys span $27.5$ Hz to $4186$ Hz — a $152×$ range folded into 7-and-a-bit equal-feeling octaves, because your ear hears RATIOS. Equal-tempered tuning divides each ×2 into twelve equal log-steps: every semitone is $2^{1/12}$. Music theory is applied logarithms."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Log scales: reading differences = real ratios ($10^d$).",
+              "Richter and pH step by ×10; decibels by ×10 per 10 dB.",
+              "They exist to fold trillion-fold ranges into friendly dials."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "lg-pr1",
+      "statement": "Evaluate $\\log_2 16$ and $\\log_6 216$.",
+      "solution": "$4$ and $3$.",
+      "check": [
+        "2**4 == 16",
+        "6**3 == 216"
+      ]
+    },
+    {
+      "id": "lg-pr2",
+      "statement": "Convert $10^4 = 10000$ to log form; convert $\\log_2 x = 5$ to exponential form and solve.",
+      "solution": "$\\log 10000 = 4$; $x = 2^5 = 32$.",
+      "check": [
+        "10**4 == 10000",
+        "2**5 == 32"
+      ]
+    },
+    {
+      "id": "lg-pr3",
+      "statement": "Evaluate $\\log_4 \\tfrac{1}{16}$ and $\\log_{49} 7$.",
+      "solution": "$-2$ and $\\tfrac12$.",
+      "check": [
+        "4**(-2) == Rational(1,16)",
+        "49**Rational(1,2) == 7"
+      ]
+    },
+    {
+      "id": "lg-pr4",
+      "statement": "Condense and evaluate: $\\log_2 12 + \\log_2 \\tfrac{8}{3}$.",
+      "solution": "$\\log_2 32 = 5$.",
+      "check": [
+        "12*Rational(8,3) == 32",
+        "2**5 == 32"
+      ]
+    },
+    {
+      "id": "lg-pr5",
+      "statement": "Condense and evaluate: $3\\log_{10} 2 + \\log_{10} 125$.",
+      "solution": "$\\log 8 + \\log 125 = \\log 1000 = 3$.",
+      "check": [
+        "2**3 == 8",
+        "8*125 == 1000",
+        "10**3 == 1000"
+      ]
+    },
+    {
+      "id": "lg-pr6",
+      "statement": "Solve $2^{x-3} = 64$.",
+      "solution": "$x - 3 = 6 \\to x = 9$.",
+      "check": [
+        "2**(9-3) == 64"
+      ]
+    },
+    {
+      "id": "lg-pr7",
+      "statement": "Solve $7 \\cdot 3^x = 189$.",
+      "solution": "$3^x = 27 \\to x = 3$.",
+      "check": [
+        "7*3**3 == 189"
+      ]
+    },
+    {
+      "id": "lg-pr8",
+      "statement": "Solve $\\log_5(2x+1) = 2$.",
+      "solution": "$2x + 1 = 25 \\to x = 12$. Inside $25 > 0$ ✓.",
+      "check": [
+        "5**2 == 2*12+1"
+      ]
+    },
+    {
+      "id": "lg-pr9",
+      "statement": "Solve $\\log_4 x + \\log_4(x-6) = 2$ (audit candidates).",
+      "solution": "$x(x-6) = 16 \\to x = 8$ or $-2$; reject $-2$. Answer $x = 8$.",
+      "check": [
+        "8*(8-6) == 16",
+        "4**2 == 16",
+        "-2 < 0"
+      ]
+    },
+    {
+      "id": "lg-pr10",
+      "statement": "Magnitude 6.9 vs 4.9: how much stronger is the shaking?",
+      "solution": "$10^2 = 100×$.",
+      "check": [
+        "10**2 == 100"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "lg-ty1",
+      "statement": "Evaluate $\\log_3 243$ and $\\log_8 2$.",
+      "solution": "$5$ and $\\tfrac13$.",
+      "check": [
+        "3**5 == 243",
+        "8**Rational(1,3) == 2"
+      ]
+    },
+    {
+      "id": "lg-ty2",
+      "statement": "Evaluate $\\log_2 \\tfrac{1}{32}$ and $\\log 0.0001$.",
+      "solution": "$-5$ and $-4$.",
+      "check": [
+        "2**(-5) == Rational(1,32)",
+        "10**(-4) == Rational(1,10000)"
+      ]
+    },
+    {
+      "id": "lg-ty3",
+      "statement": "Condense and evaluate: $\\log_3 108 - \\log_3 4$.",
+      "solution": "$\\log_3 27 = 3$.",
+      "check": [
+        "Rational(108,4) == 27",
+        "3**3 == 27"
+      ]
+    },
+    {
+      "id": "lg-ty4",
+      "statement": "Solve $4^{2x} = 256$.",
+      "solution": "$256 = 4^4$: $2x = 4 \\to x = 2$.",
+      "check": [
+        "4**(2*2) == 256"
+      ]
+    },
+    {
+      "id": "lg-ty5",
+      "statement": "Solve $\\log_2(3x - 5) = 4$.",
+      "solution": "$3x - 5 = 16 \\to x = 7$.",
+      "check": [
+        "2**4 == 3*7-5"
+      ]
+    },
+    {
+      "id": "lg-ty6",
+      "statement": "Solve $2\\log_6 x = \\log_6(2x + 24)$ (audit candidates).",
+      "solution": "$x^2 = 2x + 24 \\to x = 6$ or $-4$; reject $-4$. Answer $x = 6$.",
+      "check": [
+        "6**2 == 2*6 + 24",
+        "-4 < 0"
+      ]
+    },
+    {
+      "id": "lg-ty7",
+      "statement": "A whisper is 30 dB; a chainsaw 110 dB. Intensity ratio?",
+      "solution": "8 tens: $10^8 = 100{,}000{,}000×$.",
+      "check": [
+        "Rational(110-30,10) == 8",
+        "10**8 == 100000000"
+      ]
+    }
+  ]
+}
