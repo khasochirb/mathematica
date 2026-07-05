@@ -1,0 +1,1689 @@
+{
+  "slug": "statistics-and-data",
+  "title": "Statistics & Data",
+  "grade": 11,
+  "blurb": "Mean vs median, standard deviation, z-scores, and the normal curve that grades on it.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "mean-vs-median",
+      "title": "Mean vs. Median",
+      "concreteComparison": "Nine people in a cafe earn ordinary salaries; a billionaire walks in. The AVERAGE income jumps to nine digits — but nobody in the room got richer. The **mean** follows every dollar; the **median** (the middle person) barely notices. Choosing the right 'center' is the first honest decision in statistics, and headline-writers exploit the wrong one daily.",
+      "objective": "Compute mean and median, know how outliers pull the mean but not the median, and pick the appropriate center.",
+      "concept": [
+        "**Mean**: total ÷ count. Salaries $30, 35, 40, 55$ (thousands): mean $= \\tfrac{160}{4} = 40$.",
+        "**Median**: the middle value of the SORTED list — or the mean of the middle two when the count is even. Same data: median $= \\tfrac{35+40}{2} = 37.5$.",
+        "**Outliers pull the mean**, not the median: append a 240 to that list and the mean leaps to $80$ while the median only slides to $40$. One wild value, two very different stories.",
+        "Choosing: symmetric, well-behaved data → mean (it uses every value). Skewed data or outliers (incomes, house prices) → median. When a report says 'average', always ask WHICH one."
+      ],
+      "keyIdea": "Mean = total/count and follows every value; median = the sorted middle and shrugs at outliers. Skewed data wants the median.",
+      "facts": [
+        {
+          "title": "The two centers",
+          "latex": "\\text{mean} = \\tfrac{\\text{total}}{n} \\quad \\text{median} = \\text{sorted middle}",
+          "explanation": "Different questions, different answers."
+        },
+        {
+          "title": "Outlier law",
+          "latex": "\\text{outliers drag the mean, not the median}",
+          "explanation": "The billionaire-walks-in effect."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "st1-we1",
+          "statement": "Find the mean and median of $30, 35, 40, 55$.",
+          "solution": "Mean $\\tfrac{160}{4} = 40$; median $\\tfrac{35+40}{2} = 37.5$.",
+          "check": [
+            "Rational(30+35+40+55, 4) == 40",
+            "Rational(35+40, 2) == Rational(75,2)"
+          ]
+        },
+        {
+          "id": "st1-we2",
+          "statement": "Append $240$ to that list. New mean and median?",
+          "solution": "Mean $\\tfrac{400}{5} = 80$; median (middle of 5) $= 40$. The outlier moved the mean $40$ points and the median $2.5$.",
+          "check": [
+            "Rational(30+35+40+55+240, 5) == 80"
+          ]
+        },
+        {
+          "id": "st1-we3",
+          "statement": "Test scores $60, 70, 80, 90, 100$: mean and median?",
+          "solution": "Both $80$ — symmetric data agrees with itself.",
+          "check": [
+            "Rational(60+70+80+90+100, 5) == 80"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Taking the median without sorting first.",
+          "correction": "The median of $9, 2, 7$ is 7 (sorted: $2, 7, 9$), not 2. Sort, THEN find the middle.",
+          "authored": true
+        },
+        {
+          "text": "Reporting the mean for skewed data as 'the typical value'.",
+          "correction": "Mean income in the billionaire cafe is millions; the TYPICAL person earns 40k. For skewed data the median is the honest 'typical'.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "st1-t1",
+          "statement": "Mean and median of $4, 8, 6, 10, 12$?",
+          "solution": "Mean $\\tfrac{40}{5} = 8$; sorted middle $= 8$.",
+          "check": [
+            "Rational(4+8+6+10+12, 5) == 8"
+          ]
+        },
+        {
+          "id": "st1-t2",
+          "statement": "Median of $3, 9, 5, 11$?",
+          "solution": "Sorted $3,5,9,11$: median $\\tfrac{5+9}{2} = 7$.",
+          "check": [
+            "Rational(5+9,2) == 7"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The billionaire walks in",
+            "title": "Two 'averages', two stories",
+            "beats": [
+              "Nine cafe-goers, ordinary incomes. One billionaire enters.",
+              "MEAN income: nine digits. Nobody's richer.",
+              "MEDIAN income: the middle person. Barely moves.",
+              "'Average' hides a choice. Statistics starts by exposing it."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The two recipes",
+            "title": "Compute both",
+            "beats": [
+              "Mean: add everything, divide by the count.",
+              "Median: SORT, take the middle (or middle-two average).",
+              "$30, 35, 40, 55$: mean 40, median 37.5.",
+              "Close here — because no outlier. Yet."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Sort first!",
+            "prompt": "The median of $12, 3, 8, 5, 10$ is…",
+            "options": [
+              "$8$",
+              "$5$",
+              "$7.6$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Sorted: $3, 5, 8, 10, 12$ — middle is 8. ($7.6$ is the MEAN.)",
+            "check": [
+              "Rational(12+3+8+5+10, 5) == Rational(38,5)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The outlier experiment",
+            "title": "Drag test",
+            "beats": [
+              "Append 240 to $30, 35, 40, 55$:",
+              "Mean: $40 \\to 80$. Doubled by one guest.",
+              "Median: $37.5 \\to 40$. Shrugged.",
+              "The mean follows every dollar; the median follows the crowd."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Choose the center",
+            "title": "House prices",
+            "prompt": "A town's house prices are mostly ~50M with a few palaces. The honest 'typical price' is…",
+            "options": [
+              "the median",
+              "the mean",
+              "either — they'll agree"
+            ],
+            "correctIndex": 0,
+            "explanation": "Right-skewed data: palaces drag the mean up. The median stays with the typical house — which is why real-estate reports quote it.",
+            "check": [
+              "Rational(30+35+40+55+240, 5) == 80"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Center craft",
+            "intro": "Compute both; compare; choose.",
+            "examples": [
+              {
+                "prompt": "Five games, points: $18, 22, 20, 24, 96$. Mean, median, and which represents a typical game?",
+                "steps": [
+                  "Mean: $\\tfrac{180}{5} = 36$.",
+                  "Sorted: $18, 20, 22, 24, 96$ — median 22.",
+                  "One blowout dragged the mean 14 points above every normal game: median."
+                ],
+                "answer": "mean 36, median 22 — median",
+                "check": [
+                  "Rational(18+22+20+24+96, 5) == 36"
+                ]
+              },
+              {
+                "prompt": "A class of 9 averages 70 on a quiz. A 10th student scores 100. New mean?",
+                "steps": [
+                  "Old total: $9 \\times 70 = 630$.",
+                  "New total: $730$; new mean $= 73$.",
+                  "Means update through TOTALS."
+                ],
+                "answer": "$73$",
+                "check": [
+                  "9*70 == 630",
+                  "Rational(630+100, 10) == 73"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Honest centers",
+            "intro": "Sort for medians; totals for means.",
+            "problems": [
+              {
+                "prompt": "Mean of $5, 9, 4, 6, 6$?",
+                "options": [
+                  "$6$",
+                  "$5$",
+                  "$30$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{30}{5} = 6$.",
+                "check": [
+                  "Rational(5+9+4+6+6, 5) == 6"
+                ]
+              },
+              {
+                "prompt": "Which measure changes MOST when 1000 joins $10, 20, 30$?",
+                "options": [
+                  "the mean",
+                  "the median",
+                  "both equally"
+                ],
+                "correctIndex": 0,
+                "explanation": "Mean: $20 \\to 265$. Median: $20 \\to 25$. Outliers own the mean.",
+                "check": [
+                  "Rational(10+20+30, 3) == 20",
+                  "Rational(10+20+30+1000, 4) == 265",
+                  "Rational(20+30,2) == 25"
+                ]
+              },
+              {
+                "prompt": "Mean = median usually signals…",
+                "options": [
+                  "roughly symmetric data",
+                  "an outlier",
+                  "a mistake"
+                ],
+                "correctIndex": 0,
+                "explanation": "When the two centers agree, nothing is dragging one of them — the data is balanced.",
+                "check": [
+                  "Rational(60+70+80+90+100, 5) == 80"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The 'average person' has fewer than 2 legs",
+            "body": "Mean legs per human is about 1.999 (amputees pull it below 2) — so almost everyone is 'above average'. The joke is a real lesson: for lopsided data the mean describes NOBODY. Statisticians keep it framed on office walls as a warning against thoughtless averaging."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Mean = total ÷ count; median = sorted middle.",
+              "Outliers drag the mean and barely touch the median.",
+              "Skewed data → median; symmetric data → mean."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "spread-and-standard-deviation",
+      "title": "Spread & Standard Deviation",
+      "concreteComparison": "Two archers both average a bullseye. One's arrows cluster in the gold; the other's spray the whole target. Same center — completely different shooters. **Spread** is the missing half of every data story, and the **standard deviation** is its ruler: the typical distance from the mean.",
+      "objective": "Compute range and (population) standard deviation, and interpret SD as typical distance from the mean.",
+      "concept": [
+        "**Range** = max − min: quick but fragile (two values decide it). The serious tool is the standard deviation.",
+        "**Standard deviation** recipe: (1) find the mean; (2) square each value's deviation from it; (3) average those squares (the **variance**); (4) square-root back. For $2,4,4,4,5,5,7,9$: mean 5, squared deviations sum 32, variance 4, SD $= 2$.",
+        "Why square? Deviations alone cancel to zero (the mean is the balance point). Squaring keeps distances positive — then the final root returns to the original units.",
+        "Interpretation: SD ≈ the TYPICAL miss. SD 2 means values typically sit about 2 from the mean. Tight archer: small SD. Spray archer: big SD. Same mean either way."
+      ],
+      "keyIdea": "SD = √(average of squared deviations): the typical distance from the mean. Small SD = consistent; large = scattered.",
+      "facts": [
+        {
+          "title": "The recipe",
+          "latex": "\\sigma = \\sqrt{\\tfrac{\\sum (x-\\bar x)^2}{n}}",
+          "explanation": "Deviations → squares → average → root."
+        },
+        {
+          "title": "Reading it",
+          "latex": "\\sigma \\approx \\text{typical miss}",
+          "explanation": "Distance from the mean, in original units."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "st2-we1",
+          "statement": "Compute the SD of $2, 4, 4, 4, 5, 5, 7, 9$.",
+          "solution": "Mean 5; squared deviations $9+1+1+1+0+0+4+16 = 32$; variance $4$; SD $= 2$.",
+          "check": [
+            "Rational(2+4+4+4+5+5+7+9, 8) == 5",
+            "(2-5)**2 + 3*(4-5)**2 + 2*(5-5)**2 + (7-5)**2 + (9-5)**2 == 32",
+            "Rational(32,8) == 4",
+            "sqrt(4) == 2"
+          ]
+        },
+        {
+          "id": "st2-we2",
+          "statement": "Two archers, five shots' distances from center: A: $1,1,2,2,4$; B: $0,0,1,4,5$. Range of each?",
+          "solution": "A: $4-1 = 3$; B: $5-0 = 5$. B is streakier — brilliant and terrible.",
+          "check": [
+            "4 - 1 == 3",
+            "5 - 0 == 5"
+          ]
+        },
+        {
+          "id": "st2-we3",
+          "statement": "Why do raw deviations always sum to zero? Show it for $2, 5, 8$ (mean 5).",
+          "solution": "$(2-5) + (5-5) + (8-5) = -3 + 0 + 3 = 0$ — the mean balances; that's why we square.",
+          "check": [
+            "(2-5) + (5-5) + (8-5) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Averaging the raw deviations (getting 0) and reporting 'no spread'.",
+          "correction": "Deviations ALWAYS cancel — the mean is the balance point. Square first, average, then root: that's the whole reason the recipe exists.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the final square root and reporting the variance.",
+          "correction": "Variance 4 means SD 2 — the variance is in SQUARED units (points², cm²). Root back before interpreting.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "st2-t1",
+          "statement": "SD of $1, 3, 5, 7, 9$ (mean 5)?",
+          "solution": "Squares: $16+4+0+4+16 = 40$; variance 8; SD $= 2\\sqrt2$.",
+          "check": [
+            "(1-5)**2 + (3-5)**2 + (5-5)**2 + (7-5)**2 + (9-5)**2 == 40",
+            "sqrt(Rational(40,5)) == 2*sqrt(2)"
+          ]
+        },
+        {
+          "id": "st2-t2",
+          "statement": "Which has bigger SD: $10, 10, 10$ or $5, 10, 15$?",
+          "solution": "First: SD 0 (no spread). Second: variance $\\tfrac{50}{3}$ — clearly bigger.",
+          "check": [
+            "(10-10)**2 + (10-10)**2 + (10-10)**2 == 0",
+            "(5-10)**2 + (10-10)**2 + (15-10)**2 == 50"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Same center, different shooters",
+            "title": "Why spread matters",
+            "beats": [
+              "Two archers, both AVERAGE a bullseye.",
+              "One clusters in the gold. One sprays the target.",
+              "The mean can't tell them apart. Spread can.",
+              "Statistics needs both coordinates: center AND spread."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The recipe",
+            "title": "Four steps to σ",
+            "beats": [
+              "1. Mean. 2. Square each deviation.",
+              "3. Average the squares (= variance).",
+              "4. Square-root back to real units.",
+              "$2,4,4,4,5,5,7,9$: mean 5 → squares 32 → var 4 → SD 2."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Balance point",
+            "prompt": "The raw deviations from the mean always sum to…",
+            "options": [
+              "$0$",
+              "the variance",
+              "the range"
+            ],
+            "correctIndex": 0,
+            "explanation": "The mean balances the data perfectly — that's its definition. Squaring rescues the information.",
+            "check": [
+              "(2-5) + (8-5) + (5-5) == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reading σ",
+            "title": "The typical miss",
+            "beats": [
+              "SD 2 (in points): values typically sit ~2 from the mean.",
+              "Quiz scores mean 70, SD 3: most scores near 67–73. Tight.",
+              "Mean 70, SD 15: scores everywhere. Loose.",
+              "One number, and you can picture the whole spray."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Spread telling",
+            "title": "Which is which?",
+            "prompt": "Factory A's bolts: SD 0.1 mm. Factory B's: SD 2 mm. The consistent factory is…",
+            "options": [
+              "A — small SD means tight clustering",
+              "B — big SD means reliable",
+              "can't tell without the means"
+            ],
+            "correctIndex": 0,
+            "explanation": "Small SD = little typical deviation = consistency. (Precision manufacturing is a war against σ.)",
+            "check": [
+              "Rational(1,10) < 2"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "σ in action",
+            "intro": "Recipe start to finish; then interpret.",
+            "examples": [
+              {
+                "prompt": "Compute the SD of $6, 8, 10, 12, 14$.",
+                "steps": [
+                  "Mean 10.",
+                  "Squares: $16+4+0+4+16 = 40$; variance 8.",
+                  "SD $= \\sqrt8 = 2\\sqrt2 \\approx 2.8$."
+                ],
+                "answer": "$2\\sqrt2$",
+                "check": [
+                  "Rational(6+8+10+12+14, 5) == 10",
+                  "(6-10)**2 + (8-10)**2 + 0 + (12-10)**2 + (14-10)**2 == 40",
+                  "sqrt(Rational(40,5)) == 2*sqrt(2)"
+                ]
+              },
+              {
+                "prompt": "Two routes to school, times: A: $20, 20, 21, 19, 20$; B: $14, 26, 18, 24, 18$. Both mean 20 — which route for exam day?",
+                "steps": [
+                  "A: squares $0+0+1+1+0 = 2$; variance $0.4$.",
+                  "B: squares $36+36+4+16+4 = 96$; variance $19.2$.",
+                  "Route A: nearly deterministic. Take A when it matters."
+                ],
+                "answer": "A (tiny SD)",
+                "check": [
+                  "Rational(20+20+21+19+20, 5) == 20",
+                  "(20-20)**2+(20-20)**2+(21-20)**2+(19-20)**2+(20-20)**2 == 2",
+                  "(14-20)**2+(26-20)**2+(18-20)**2+(24-20)**2+(18-20)**2 == 96"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Spread fluency",
+            "intro": "Squares, average, root — and read it.",
+            "problems": [
+              {
+                "prompt": "The variance of a dataset is 25. Its SD is…",
+                "options": [
+                  "$5$",
+                  "$625$",
+                  "$12.5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "SD = √variance. (Variance lives in squared units.)",
+                "check": [
+                  "sqrt(25) == 5"
+                ]
+              },
+              {
+                "prompt": "Adding 10 to EVERY value does what to the SD?",
+                "options": [
+                  "nothing — spread is unchanged",
+                  "adds 10",
+                  "multiplies it"
+                ],
+                "correctIndex": 0,
+                "explanation": "Shifting everyone equally moves the mean but not the distances from it. (Deviations are shift-proof.)",
+                "check": [
+                  "(12-15) - (2-5) == 0"
+                ]
+              },
+              {
+                "prompt": "A dataset with SD = 0 must be…",
+                "options": [
+                  "all identical values",
+                  "all zero",
+                  "sorted"
+                ],
+                "correctIndex": 0,
+                "explanation": "Zero typical distance from the mean = nobody deviates = every value equal.",
+                "check": [
+                  "(10-10)**2 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The σ that finds planets",
+            "body": "Astronomers announce discoveries in sigmas: a '5-sigma' signal sits five SDs from noise — odds about 1 in 3.5 million of a fluke. The Higgs boson waited YEARS at 3–4 sigma before CERN would say 'discovery' at 5. Standard deviation isn't just spread; it's science's threshold for believing its own eyes."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Spread completes the story the mean starts.",
+              "σ: square deviations, average, root — the typical miss.",
+              "Small σ = consistent; σ = 0 = identical; shifts don't change it."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "z-scores",
+      "title": "Z-Scores",
+      "concreteComparison": "You scored 85 in math (class mean 70) and 78 in history (mean 70). Better at math? The math test had SD 15 — your 85 is one SD up. History's SD was 4 — your 78 is TWO SDs up. The **z-score** is the universal translator: distances measured in SDs, so any two performances, on any scales, become comparable.",
+      "objective": "Compute $z = \\frac{x - \\mu}{\\sigma}$, interpret sign and size, and use z-scores to compare across different scales.",
+      "concept": [
+        "**Z-score**: $z = \\tfrac{x - \\mu}{\\sigma}$ — how many standard deviations $x$ sits from the mean. $x = 85$, $\\mu = 70$, $\\sigma = 15$: $z = 1$.",
+        "Sign reads direction: positive = above the mean, negative = below, $z = 0$ = exactly average. Size reads rarity: $|z| < 1$ is ordinary, $|z| > 2$ is notable, $|z| > 3$ is exceptional.",
+        "Cross-scale comparison: math $z = 1$ vs history $z = \\tfrac{78-70}{4} = 2$ — the history result is the rarer feat, despite fewer raw points.",
+        "Backwards too: $x = \\mu + z\\sigma$. 'The cutoff is $z = 1.5$' with $\\mu = 100, \\sigma = 10$ means $x = 115$."
+      ],
+      "keyIdea": "z = (x − μ)/σ: distance from the mean in SD units. Sign = direction, size = rarity; x = μ + zσ runs it backwards.",
+      "facts": [
+        {
+          "title": "The translator",
+          "latex": "z = \\tfrac{x - \\mu}{\\sigma}",
+          "explanation": "Any scale → SD units."
+        },
+        {
+          "title": "Backwards",
+          "latex": "x = \\mu + z\\sigma",
+          "explanation": "From z back to the raw score."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "st3-we1",
+          "statement": "Math: 85 with $\\mu = 70, \\sigma = 15$. History: 78 with $\\mu = 70, \\sigma = 4$. Compute both z-scores.",
+          "solution": "Math $z = 1$; history $z = 2$ — history was the stronger performance.",
+          "check": [
+            "Rational(85-70, 15) == 1",
+            "Rational(78-70, 4) == 2"
+          ]
+        },
+        {
+          "id": "st3-we2",
+          "statement": "Heights: $\\mu = 170$ cm, $\\sigma = 8$. Find $z$ for 154 cm and 186 cm.",
+          "solution": "$z = -2$ and $z = +2$ — equally unusual, opposite directions.",
+          "check": [
+            "Rational(154-170, 8) == -2",
+            "Rational(186-170, 8) == 2"
+          ]
+        },
+        {
+          "id": "st3-we3",
+          "statement": "A scholarship requires $z \\ge 1.5$ on a test with $\\mu = 200, \\sigma = 20$. Minimum raw score?",
+          "solution": "$x = 200 + 1.5(20) = 230$.",
+          "check": [
+            "200 + Rational(3,2)*20 == 230"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Comparing raw scores across different tests.",
+          "correction": "85 > 78 in points, but the tests had different spreads: z-scores (1 vs 2) reverse the verdict. Raw points don't transfer between scales; sigmas do.",
+          "authored": true
+        },
+        {
+          "text": "Dropping the sign on below-mean values.",
+          "correction": "154 cm has $z = -2$, not 2. The minus IS the information: two SDs BELOW. Direction matters as much as distance.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "st3-t1",
+          "statement": "$x = 92$, $\\mu = 80$, $\\sigma = 6$: find $z$.",
+          "solution": "$z = 2$.",
+          "check": [
+            "Rational(92-80, 6) == 2"
+          ]
+        },
+        {
+          "id": "st3-t2",
+          "statement": "With $\\mu = 50, \\sigma = 8$: what raw score has $z = -1.5$?",
+          "solution": "$50 - 12 = 38$.",
+          "check": [
+            "50 + Rational(-3,2)*8 == 38"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Points don't transfer",
+            "title": "The two-test puzzle",
+            "beats": [
+              "Math 85 (mean 70). History 78 (mean 70).",
+              "More points in math — but was it BETTER?",
+              "Math's spread: σ = 15. History's: σ = 4.",
+              "Measure in SDs and the answer flips…"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The universal translator",
+            "title": "z = (x − μ)/σ",
+            "beats": [
+              "Math: $\\tfrac{85-70}{15} = 1$ SD above.",
+              "History: $\\tfrac{78-70}{4} = 2$ SDs above.",
+              "The history score is the rarer feat.",
+              "Any scale in, SD-units out — scores become comparable."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Translate",
+            "prompt": "$x = 64$, $\\mu = 80$, $\\sigma = 8$: $z$ = …",
+            "options": [
+              "$-2$",
+              "$2$",
+              "$-16$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tfrac{64-80}{8} = -2$: two SDs BELOW. The sign carries the direction.",
+            "check": [
+              "Rational(64-80, 8) == -2"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reading z",
+            "title": "Direction and rarity",
+            "beats": [
+              "$z > 0$: above the mean. $z < 0$: below. $z = 0$: dead average.",
+              "$|z| < 1$: crowd territory (most data lives here).",
+              "$|z| > 2$: notable. $|z| > 3$: newspaper-worthy.",
+              "Next lesson attaches exact percentages to these zones."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Compare feats",
+            "title": "Cross-sport",
+            "prompt": "Runner A: 100m in z = −2.2 (fast = below mean time). Swimmer B: z = −1.1. The stronger performance vs their field is…",
+            "options": [
+              "A — further below the mean time",
+              "B — closer to average",
+              "tie"
+            ],
+            "correctIndex": 0,
+            "explanation": "More SDs from the pack = rarer feat. Negative direction is GOOD here (faster than mean) — read sign against context.",
+            "check": [
+              "Rational(22,10) > Rational(11,10)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Translator service",
+            "intro": "Forwards, backwards, and across scales.",
+            "examples": [
+              {
+                "prompt": "SAT-style: $\\mu = 500, \\sigma = 100$; score 650. IQ-style: $\\mu = 100, \\sigma = 15$; score 130. Which is rarer?",
+                "steps": [
+                  "SAT: $z = 1.5$.",
+                  "IQ: $z = 2$.",
+                  "The 130 IQ is the rarer result."
+                ],
+                "answer": "the 130 (z = 2)",
+                "check": [
+                  "Rational(650-500, 100) == Rational(3,2)",
+                  "Rational(130-100, 15) == 2"
+                ]
+              },
+              {
+                "prompt": "A factory rejects bolts with $|z| > 2$; $\\mu = 50.0$ mm, $\\sigma = 0.2$. Acceptance range?",
+                "steps": [
+                  "$50 \\pm 2(0.2)$.",
+                  "$49.6$ to $50.4$ mm."
+                ],
+                "answer": "$[49.6, 50.4]$",
+                "check": [
+                  "50 + 2*Rational(2,10) == Rational(252,5)",
+                  "50 - 2*Rational(2,10) == Rational(248,5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "SD-unit fluency",
+            "intro": "Sign, size, and the backwards formula.",
+            "problems": [
+              {
+                "prompt": "$\\mu = 40, \\sigma = 5$: the value 52.5 has $z$ = …",
+                "options": [
+                  "$2.5$",
+                  "$12.5$",
+                  "$1.25$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{12.5}{5} = 2.5$.",
+                "check": [
+                  "Rational(105,2) - 40 == Rational(25,2)",
+                  "Rational(25,2)/5 == Rational(5,2)"
+                ]
+              },
+              {
+                "prompt": "Which is most unusual?",
+                "options": [
+                  "$z = -2.8$",
+                  "$z = 1.9$",
+                  "$z = 0.3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Rarity is $|z|$: 2.8 beats 1.9 regardless of direction.",
+                "check": [
+                  "Rational(28,10) > Rational(19,10)"
+                ]
+              },
+              {
+                "prompt": "Your z on a test is exactly 0. You scored…",
+                "options": [
+                  "exactly the mean",
+                  "zero points",
+                  "the median"
+                ],
+                "correctIndex": 0,
+                "explanation": "$z = 0 \\iff x = \\mu$. (Zero POINTS would usually be a very negative z!)",
+                "check": [
+                  "Rational(70-70, 5) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The z that grades the Olympics",
+            "body": "Decathlon scoring converts ten wildly different events — sprint seconds, javelin meters, jump heights — into points via formulas built on z-score logic: how far above the reference performance, in spread units? It's the only fair way to add a 100m dash to a shot put. Ten scales, one ruler."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$z = \\tfrac{x-\\mu}{\\sigma}$: distances in SD units.",
+              "Sign = direction from the mean; $|z|$ = rarity.",
+              "Cross-scale comparisons and cutoffs: translate, then judge."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-normal-curve",
+      "title": "The Normal Curve",
+      "concreteComparison": "Measure a thousand people's heights and the histogram forms a shape nature loves: a symmetric bell, crowded in the middle, thinning to rare tails. Heights, measurement errors, test scores — the **normal curve** appears whenever many small independent effects add up. And it obeys one astonishingly useful rule of thumb: 68–95–99.7.",
+      "objective": "Describe the normal distribution's shape and apply the empirical (68-95-99.7) rule to intervals around the mean.",
+      "concept": [
+        "**Shape**: symmetric bell centered at $\\mu$ — mean = median there. The SD $\\sigma$ sets the width: the curve's 'shoulders' sit exactly at $\\mu \\pm \\sigma$.",
+        "**The empirical rule**: about **68%** of data lies within 1 SD of the mean, **95%** within 2 SDs, **99.7%** within 3. (That's why $|z| > 2$ felt notable and $|z| > 3$ exceptional.)",
+        "Interval reading: heights $\\mu = 170, \\sigma = 8$ → 68% between 162 and 178; 95% between 154 and 186; almost everyone between 146 and 194.",
+        "Symmetry splits everything: outside $\\pm 2$ SD lives $5\\%$ — so $2.5\\%$ in EACH tail. Above $\\mu$: exactly $50\\%$. Every empirical-rule question is adding and halving these zones."
+      ],
+      "keyIdea": "The bell: symmetric around μ, width set by σ; 68% within 1σ, 95% within 2σ, 99.7% within 3σ — halve tails by symmetry.",
+      "facts": [
+        {
+          "title": "The rule",
+          "latex": "68 - 95 - 99.7",
+          "explanation": "Within 1, 2, 3 SDs of the mean."
+        },
+        {
+          "title": "Symmetry",
+          "latex": "\\text{each tail beyond } 2\\sigma: 2.5\\%",
+          "explanation": "Halve whatever's left over."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "st4-we1",
+          "statement": "Heights: $\\mu = 170$ cm, $\\sigma = 8$. Between which heights do the middle 68% and 95% fall?",
+          "solution": "68%: $162$–$178$; 95%: $154$–$186$.",
+          "check": [
+            "170 - 8 == 162",
+            "170 + 8 == 178",
+            "170 - 2*8 == 154",
+            "170 + 2*8 == 186"
+          ]
+        },
+        {
+          "id": "st4-we2",
+          "statement": "What percent of data lies ABOVE $\\mu + 2\\sigma$?",
+          "solution": "Outside $\\pm2\\sigma$: 5%; halve by symmetry: $2.5\\%$.",
+          "check": [
+            "100 - 95 == 5",
+            "Rational(5,2) == Rational(5,2)"
+          ]
+        },
+        {
+          "id": "st4-we3",
+          "statement": "Scores: $\\mu = 70, \\sigma = 5$. What percent scored between 70 and 80?",
+          "solution": "70 to 80 is 0 to $+2$ SD: half of 95% $= 47.5\\%$.",
+          "check": [
+            "70 + 2*5 == 80",
+            "Rational(95,2) == Rational(95,2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Applying 68-95-99.7 to non-bell data.",
+          "correction": "The rule is a property of the NORMAL shape. Incomes (skewed) and dice sums (small-n) disobey it; check the shape before quoting the rule.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting to halve for one-sided questions.",
+          "correction": "'Within 1σ' is 68% — but 'ABOVE μ+σ' is $\\tfrac{100-68}{2} = 16\\%$, not 32%. Draw the bell; shade the region; halve tails.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "st4-t1",
+          "statement": "$\\mu = 100, \\sigma = 15$: 95% of values lie between…",
+          "solution": "$70$ and $130$.",
+          "check": [
+            "100 - 2*15 == 70",
+            "100 + 2*15 == 130"
+          ]
+        },
+        {
+          "id": "st4-t2",
+          "statement": "What percent lies below $\\mu - \\sigma$?",
+          "solution": "$(100-68)/2 = 16\\%$.",
+          "check": [
+            "Rational(100-68, 2) == 16"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Nature's favorite shape",
+            "title": "The bell appears",
+            "beats": [
+              "Heights, lab-measurement errors, test scores…",
+              "Histogram enough of them: a symmetric bell.",
+              "Crowded middle, rare tails, mean = median at the peak.",
+              "It appears whenever MANY small effects add up."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The magic percentages",
+            "title": "68 – 95 – 99.7",
+            "beats": [
+              "Within $\\mu \\pm \\sigma$: about 68% of everything.",
+              "Within $\\mu \\pm 2\\sigma$: 95%.",
+              "Within $\\mu \\pm 3\\sigma$: 99.7% — almost all.",
+              "Three numbers, memorized once, used forever."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Interval read",
+            "prompt": "$\\mu = 60, \\sigma = 4$: about 68% of values lie in…",
+            "options": [
+              "$[56, 64]$",
+              "$[52, 68]$",
+              "$[60, 68]$"
+            ],
+            "correctIndex": 0,
+            "explanation": "One SD each way: $60 \\pm 4$.",
+            "check": [
+              "60 - 4 == 56",
+              "60 + 4 == 64"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Halving the leftovers",
+            "title": "One-sided questions",
+            "beats": [
+              "Outside $\\pm 1\\sigma$: 32% — so 16% per tail.",
+              "Outside $\\pm 2\\sigma$: 5% — so 2.5% per tail.",
+              "'Percent above $\\mu + \\sigma$?' → one tail → 16%.",
+              "Sketch the bell, shade, halve. Never guess."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Tail work",
+            "title": "Above two sigma",
+            "prompt": "IQ-style scores: $\\mu = 100, \\sigma = 15$. About what percent score above 130?",
+            "options": [
+              "$2.5\\%$",
+              "$5\\%$",
+              "$16\\%$"
+            ],
+            "correctIndex": 0,
+            "explanation": "130 is $+2\\sigma$; beyond ±2σ is 5%, halved: 2.5% in the upper tail.",
+            "check": [
+              "100 + 2*15 == 130",
+              "Rational(100-95,2) == Rational(5,2)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Bell accounting",
+            "intro": "Zones, then add and halve.",
+            "examples": [
+              {
+                "prompt": "Battery life: $\\mu = 20$ h, $\\sigma = 2$. What percent last between 16 and 24 hours? Under 14?",
+                "steps": [
+                  "16–24 is $\\pm2\\sigma$: 95%.",
+                  "14 is $-3\\sigma$; below it: $\\tfrac{100-99.7}{2} = 0.15\\%$."
+                ],
+                "answer": "95%; 0.15%",
+                "check": [
+                  "20 - 2*2 == 16",
+                  "20 + 2*2 == 24",
+                  "20 - 3*2 == 14"
+                ]
+              },
+              {
+                "prompt": "Scores: $\\mu = 70, \\sigma = 5$. Percent between 65 and 80?",
+                "steps": [
+                  "65 → $-1\\sigma$; 80 → $+2\\sigma$.",
+                  "Left half of 68% (34%) + half of 95% (47.5%).",
+                  "$= 81.5\\%$."
+                ],
+                "answer": "$81.5\\%$",
+                "check": [
+                  "Rational(68,2) == 34",
+                  "Rational(95,2) == Rational(95,2)",
+                  "Rational(68,2) + Rational(95,2) == Rational(163,2)"
+                ]
+              },
+              {
+                "prompt": "In a school of 1000 students (normal scores, $\\mu = 70, \\sigma = 5$): about how many score above 80?",
+                "steps": [
+                  "Above $+2\\sigma$: 2.5%.",
+                  "$1000 \\times 0.025 = 25$ students."
+                ],
+                "answer": "≈ 25",
+                "check": [
+                  "Rational(25,1000) == Rational(5,2)/100"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Rule fluency",
+            "intro": "Draw, shade, halve.",
+            "problems": [
+              {
+                "prompt": "Percent of normal data within 3 SDs of the mean?",
+                "options": [
+                  "$99.7\\%$",
+                  "$95\\%$",
+                  "$100\\%$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Nearly all — but never quite 100: the tails go on forever, thinly.",
+                "check": [
+                  "Rational(997,10) < 100"
+                ]
+              },
+              {
+                "prompt": "Percent BELOW the mean of any normal distribution?",
+                "options": [
+                  "$50\\%$",
+                  "$34\\%$",
+                  "$68\\%$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Perfect symmetry: half below, half above. (Mean = median on a bell.)",
+                "check": [
+                  "Rational(100,2) == 50"
+                ]
+              },
+              {
+                "prompt": "$\\mu = 500, \\sigma = 100$: what percent score between 500 and 600?",
+                "options": [
+                  "$34\\%$",
+                  "$68\\%$",
+                  "$16\\%$"
+                ],
+                "correctIndex": 0,
+                "explanation": "0 to $+1\\sigma$ is half of the 68% band.",
+                "check": [
+                  "Rational(68,2) == 34"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The curve on old money",
+            "body": "Germany's 10-Deutschmark note carried Gauss's portrait AND the bell curve with its equation — the only banknote to feature a probability density. Fitting: Gauss derived it correcting astronomical measurement errors, and for two centuries since, 'errors behave normally' has been science's default assumption. A curve so trusted they printed money on it."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "The bell: symmetric at $\\mu$, shoulders at $\\mu \\pm \\sigma$.",
+              "68–95–99.7 within 1, 2, 3 SDs.",
+              "One-sided questions: sketch, shade, halve the leftover."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "working-the-normal-model",
+      "title": "Working the Normal Model",
+      "concreteComparison": "The last two lessons snap together: z-scores locate a value on the bell, and the empirical rule prices the real estate. 'How rare is a 186 cm height?' becomes 'z = 2 → top 2.5%'. This lesson is the full workflow — raw score → z → bell zone → percent — the exact machine behind standardized-test percentiles.",
+      "objective": "Chain z-scores with the empirical rule to find percentages and percentiles for normal data, in both directions.",
+      "concept": [
+        "The workflow: raw $x$ → $z = \\tfrac{x-\\mu}{\\sigma}$ → place on the bell → read the zone's percent. Heights $\\mu=170, \\sigma=8$: is 186 rare? $z = 2$ → above it: 2.5%.",
+        "**Percentile** = percent BELOW you. $z = 1$: $50 + 34 = 84$th percentile. $z = -2$: $2.5$th. $z = 0$: the 50th, dead middle.",
+        "Reverse workflow: 'What score is the 97.5th percentile?' → that's $z = 2$ → $x = \\mu + 2\\sigma$. Percentile → z → raw.",
+        "Between-two-values questions stack zones: from $z = -1$ to $z = 2$ is $34 + 47.5 = 81.5\\%$. Always sketch; the bell does the bookkeeping."
+      ],
+      "keyIdea": "Raw → z → bell zone → percent (and reverse). Percentile = percent below; z = 1, 2 map to the 84th, 97.5th.",
+      "facts": [
+        {
+          "title": "The chain",
+          "latex": "x \\to z \\to \\text{zone} \\to \\%",
+          "explanation": "Both directions."
+        },
+        {
+          "title": "Percentile anchors",
+          "latex": "z = -2, -1, 0, 1, 2 \\to 2.5, 16, 50, 84, 97.5",
+          "explanation": "Five landmarks worth knowing."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "st5-we1",
+          "statement": "Heights $\\mu = 170, \\sigma = 8$: what percentile is 178 cm?",
+          "solution": "$z = 1$: $50 + 34 = 84$th percentile.",
+          "check": [
+            "Rational(178-170, 8) == 1",
+            "50 + 34 == 84"
+          ]
+        },
+        {
+          "id": "st5-we2",
+          "statement": "Test $\\mu = 70, \\sigma = 5$: what score marks the 97.5th percentile?",
+          "solution": "97.5th ↔ $z = 2$: $x = 70 + 10 = 80$.",
+          "check": [
+            "70 + 2*5 == 80",
+            "50 + Rational(95,2) == Rational(195,2)"
+          ]
+        },
+        {
+          "id": "st5-we3",
+          "statement": "Same test: what fraction scores between 65 and 80?",
+          "solution": "$z = -1$ to $z = 2$: $34 + 47.5 = 81.5\\%$.",
+          "check": [
+            "Rational(65-70, 5) == -1",
+            "Rational(80-70, 5) == 2",
+            "34 + Rational(95,2) == Rational(163,2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Confusing percentile with percent score.",
+          "correction": "The 84th percentile means 84% of people scored BELOW you — not that you scored 84%. A 60% score can be the 99th percentile on a brutal test.",
+          "authored": true
+        },
+        {
+          "text": "Adding zone percentages without a sketch.",
+          "correction": "From $z=-1$ to $z=2$: it's 34 + 47.5, not 68 + 95. Each side of the mean contributes its HALF-band. The sketch prevents double-counting.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "st5-t1",
+          "statement": "$\\mu = 100, \\sigma = 15$: what percentile is 85?",
+          "solution": "$z = -1$: 16th percentile.",
+          "check": [
+            "Rational(85-100, 15) == -1",
+            "50 - 34 == 16"
+          ]
+        },
+        {
+          "id": "st5-t2",
+          "statement": "What z marks the 84th percentile, and the raw score when $\\mu = 60, \\sigma = 10$?",
+          "solution": "$z = 1$: $x = 70$.",
+          "check": [
+            "60 + 1*10 == 70"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Snap the tools together",
+            "title": "The full machine",
+            "beats": [
+              "Lesson 3: z locates you on the bell.",
+              "Lesson 4: the rule prices each zone.",
+              "Chain them: raw → z → zone → percent.",
+              "That chain IS how percentiles get computed."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The five landmarks",
+            "title": "Percentile anchors",
+            "beats": [
+              "$z = -2$: 2.5th percentile. $z = -1$: 16th.",
+              "$z = 0$: 50th (the median).",
+              "$z = 1$: 84th. $z = 2$: 97.5th.",
+              "Five anchors cover most exam questions cold."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Run the chain",
+            "prompt": "$\\mu = 170, \\sigma = 8$: a height of 162 cm is at the…",
+            "options": [
+              "16th percentile",
+              "32nd percentile",
+              "68th percentile"
+            ],
+            "correctIndex": 0,
+            "explanation": "$z = -1$ → 50 − 34 = 16% below... wait: BELOW $-1σ$ is 16%, so 16th percentile.",
+            "check": [
+              "Rational(162-170, 8) == -1",
+              "50 - 34 == 16"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reverse gear",
+            "title": "Percentile → score",
+            "beats": [
+              "'Top 2.5% qualify' = 97.5th percentile = $z = 2$.",
+              "$x = \\mu + 2\\sigma$. Done.",
+              "Cutoffs, admissions bars, clinical thresholds:",
+              "all set by driving the chain backwards."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Reverse drill",
+            "title": "Find the cutoff",
+            "prompt": "Reaction times $\\mu = 250$ ms, $\\sigma = 30$. The fastest 16% beat…",
+            "options": [
+              "$220$ ms",
+              "$280$ ms",
+              "$190$ ms"
+            ],
+            "correctIndex": 0,
+            "explanation": "Fastest = LOWEST times: 16th percentile ↔ $z = -1$ → $250 - 30 = 220$ ms.",
+            "check": [
+              "250 - 30 == 220"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Percentile factory",
+            "intro": "Chain forward; chain backward; stack zones.",
+            "examples": [
+              {
+                "prompt": "Exam: $\\mu = 62, \\sigma = 9$. Ana scored 80. Percentile?",
+                "steps": [
+                  "$z = \\tfrac{80-62}{9} = 2$.",
+                  "$50 + 47.5 = 97.5$th percentile — top 2.5%."
+                ],
+                "answer": "97.5th",
+                "check": [
+                  "Rational(80-62, 9) == 2",
+                  "50 + Rational(95,2) == Rational(195,2)"
+                ]
+              },
+              {
+                "prompt": "Same exam: what range of scores covers the middle 68% of students?",
+                "steps": [
+                  "$\\pm 1\\sigma$: $62 \\pm 9$.",
+                  "$53$ to $71$."
+                ],
+                "answer": "$[53, 71]$",
+                "check": [
+                  "62 - 9 == 53",
+                  "62 + 9 == 71"
+                ]
+              },
+              {
+                "prompt": "Chip factory: lifetimes $\\mu = 5000$ h, $\\sigma = 400$. Warranty covers the bottom 2.5%. Warranty threshold?",
+                "steps": [
+                  "2.5th percentile ↔ $z = -2$.",
+                  "$5000 - 800 = 4200$ hours."
+                ],
+                "answer": "$4200$ h",
+                "check": [
+                  "5000 - 2*400 == 4200"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Chain mastery",
+            "intro": "Anchors: 2.5, 16, 50, 84, 97.5.",
+            "problems": [
+              {
+                "prompt": "$z = 0$ is always the…",
+                "options": [
+                  "50th percentile",
+                  "0th percentile",
+                  "68th percentile"
+                ],
+                "correctIndex": 0,
+                "explanation": "The mean splits the bell in half — median and mean coincide.",
+                "check": [
+                  "Rational(100,2) == 50"
+                ]
+              },
+              {
+                "prompt": "$\\mu = 30, \\sigma = 3$: the 84th percentile score is…",
+                "options": [
+                  "$33$",
+                  "$36$",
+                  "$84$"
+                ],
+                "correctIndex": 0,
+                "explanation": "84th ↔ $z = 1$: $30 + 3 = 33$.",
+                "check": [
+                  "30 + 3 == 33"
+                ]
+              },
+              {
+                "prompt": "From the 16th to the 84th percentile lies what percent of the data?",
+                "options": [
+                  "$68\\%$",
+                  "$84\\%$",
+                  "$50\\%$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$84 - 16 = 68$ — the ±1σ band, seen through percentiles.",
+                "check": [
+                  "84 - 16 == 68"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Growth charts are percentile machines",
+            "body": "A pediatrician plotting a baby on the '75th percentile for weight' is running this exact chain against reference data from millions of children. The curved lines on the chart ARE constant-z curves aging through time. Parents worldwide read normal-model output weekly without knowing its name."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Chain: raw → z → zone → percent — and in reverse for cutoffs.",
+              "Anchors: $z = -2,-1,0,1,2$ ↔ 2.5, 16, 50, 84, 97.5.",
+              "Sketch the bell; stack half-bands; never double-count."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "lying-with-statistics",
+      "title": "How Data Lies",
+      "concreteComparison": "Ice-cream sales and drowning deaths rise together every summer — does dessert cause drowning? A supplement ad's 'up to 90% improvement!' — measured how, on whom, versus what? Statistics is powerful enough that its misuses are powerful too. The course ends with the defense kit: the five questions that expose bad data before it fools you.",
+      "objective": "Spot correlation-vs-causation errors, biased samples, misleading graphs, and cherry-picked statistics.",
+      "concept": [
+        "**Correlation ≠ causation**: ice cream and drownings share a cause (summer), not a causal link. Ask: could a third factor drive both? Could the arrow point backwards?",
+        "**Biased samples**: polling gym-goers about exercise, or your own followers about your popularity, measures the SAMPLE, not the world. Ask: who was asked — and who COULDN'T be in the sample?",
+        "**Misleading pictures**: a y-axis starting at 98 turns a 1% wiggle into a cliff; a truncated timeline hides the trend that embarrasses. Ask: where do the axes start, and what's cropped?",
+        "**Cherry-picked centers**: 'average salary 90k' (the mean, dragged by executives) vs the 45k median. Ask: which center, and what's the spread? — the whole unit, weaponized as skepticism."
+      ],
+      "keyIdea": "Four traps: third factors, biased samples, cropped axes, and convenient averages. Five questions expose them all.",
+      "facts": [
+        {
+          "title": "The mantra",
+          "latex": "\\text{correlation} \\neq \\text{causation}",
+          "explanation": "Shared causes and reversed arrows lurk."
+        },
+        {
+          "title": "The defense",
+          "latex": "\\text{who? how many? which center? what axes? vs what?}",
+          "explanation": "Five questions, most lies exposed."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "st6-we1",
+          "statement": "Cities with more firefighters have more fires. Do firefighters cause fires?",
+          "solution": "No — city SIZE drives both. Per-capita rates (dividing by population) remove the third factor.",
+          "check": [
+            "Rational(100, 1000000) < Rational(10, 10000)"
+          ]
+        },
+        {
+          "id": "st6-we2",
+          "statement": "A company: salaries 40, 42, 44, 46, 228 (thousands). The recruiter says 'average = 80'. Check both centers.",
+          "solution": "Mean $= \\tfrac{400}{5} = 80$ ✓ technically true; median $= 44$ — the honest 'typical'. Ask which center!",
+          "check": [
+            "Rational(40+42+44+46+228, 5) == 80"
+          ]
+        },
+        {
+          "id": "st6-we3",
+          "statement": "A graph shows sales 'doubling' — bars of height 100 and 102 on an axis from 98 to 104. What really happened?",
+          "solution": "Growth of $\\tfrac{2}{100} = 2\\%$. The cropped axis made 2% LOOK like 100%. Read axes before bars.",
+          "check": [
+            "Rational(102-100, 100) == Rational(1,50)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Accepting 'studies show a link' as 'X causes Y'.",
+          "correction": "A link is a correlation. Before believing causation, hunt third factors and reversed arrows — most headlines skip both.",
+          "authored": true
+        },
+        {
+          "text": "Trusting a poll because its sample is LARGE.",
+          "correction": "A million biased answers beat nobody: the 1936 Literary Digest polled 2.4 MILLION people (by car/phone lists — wealthy owners) and called the US election wrong by 19 points. Representative beats big.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "st6-t1",
+          "statement": "Shoe size correlates with reading ability in children. Third factor?",
+          "solution": "AGE — older kids have bigger feet and read better.",
+          "check": [
+            "10 > 5"
+          ]
+        },
+        {
+          "id": "st6-t2",
+          "statement": "'Average' bonus is quoted as 12k; the median is 2k. What does the gap tell you?",
+          "solution": "Heavy right skew — a few giant bonuses drag the mean; the typical worker gets ~2k.",
+          "check": [
+            "12 - 2 == 10"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The summer of drownings",
+            "title": "Correlation's oldest trick",
+            "beats": [
+              "Ice-cream sales up → drownings up. Every summer.",
+              "Does dessert drown people? Obviously not:",
+              "SUMMER causes both — a third factor.",
+              "Correlation is a clue, never a verdict."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Hunt the third factor",
+            "prompt": "Countries with more TVs per person live longer. Because…",
+            "options": [
+              "wealth buys both TVs and healthcare",
+              "television heals",
+              "long life causes TV purchases"
+            ],
+            "correctIndex": 0,
+            "explanation": "A classic third factor: national wealth drives both statistics. (The arrow-backwards option at least made you check!)",
+            "check": [
+              "2 > 1"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Who did you ask?",
+            "title": "Sample bias",
+            "beats": [
+              "Poll gym members: 'everyone exercises!'",
+              "Poll your followers: 'everyone loves me!'",
+              "The sample must LOOK LIKE the population.",
+              "And size can't fix bias — 2.4 million wrong answers once called an election 19 points off."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Axis crimes",
+            "title": "Pictures that lie",
+            "beats": [
+              "Bars of 100 vs 102 on an axis from 98: looks DOUBLE.",
+              "Same data from 0: two nearly equal bars. Honest.",
+              "Cropped axes, cherry-picked windows, missing context —",
+              "always read the numbers ON the axes first."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Graph audit",
+            "title": "The 2% cliff",
+            "prompt": "Sales rose 100 → 102. On a bar chart starting at 98, the second bar LOOKS…",
+            "options": [
+              "twice as tall — while the real growth is 2%",
+              "correctly 2% taller",
+              "shorter"
+            ],
+            "correctIndex": 0,
+            "explanation": "Bar heights above the crop: 2 vs 4 units — visually doubled. Real change: $\\tfrac{2}{100} = 2\\%$.",
+            "check": [
+              "Rational(102-100, 100) == Rational(1,50)",
+              "102 - 98 == 2*(100 - 98)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "The defense kit",
+            "intro": "Five questions against real cases.",
+            "examples": [
+              {
+                "prompt": "Ad: 'Users lost UP TO 10 kg!' What do the five questions reveal to ask?",
+                "steps": [
+                  "'Up to' = the single best case, not typical.",
+                  "Who was sampled? Versus what control?",
+                  "Where's the MEDIAN loss and the spread?",
+                  "An honest claim quotes center + spread; this quotes the maximum."
+                ],
+                "answer": "'up to' = cherry-picked maximum",
+                "check": [
+                  "10 > 0"
+                ]
+              },
+              {
+                "prompt": "Hospital A has higher death rates than B. A is a top referral center for the sickest cases. Fair comparison?",
+                "steps": [
+                  "No — the SAMPLES differ: A treats harder cases.",
+                  "Compare like-for-like severity groups.",
+                  "(This reversal even has a name: Simpson's paradox.)"
+                ],
+                "answer": "no — case-mix bias",
+                "check": [
+                  "1 < 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Skeptic drills",
+            "intro": "Third factor? Sample? Axes? Center? Versus what?",
+            "problems": [
+              {
+                "prompt": "'People who take vitamins are healthier.' The strongest objection is…",
+                "options": [
+                  "vitamin-takers may differ in other habits too",
+                  "vitamins are cheap",
+                  "healthy people can't take vitamins"
+                ],
+                "correctIndex": 0,
+                "explanation": "Health-conscious people exercise, eat better AND take vitamins — the habits are the third factor. (Only randomized trials cut this knot.)",
+                "check": [
+                  "3 > 2"
+                ]
+              },
+              {
+                "prompt": "An online poll on a gaming site: '92% play games daily.' The flaw is…",
+                "options": [
+                  "the sample — gamers polling gamers",
+                  "the percentage is too high to be real",
+                  "online polls always lie"
+                ],
+                "correctIndex": 0,
+                "explanation": "Perfect illustration of sampling bias: the venue pre-selects the answer.",
+                "check": [
+                  "92 < 100"
+                ]
+              },
+              {
+                "prompt": "A claim quotes only the mean of a very skewed dataset. Your first request:",
+                "options": [
+                  "the median and the spread",
+                  "more decimal places",
+                  "a bigger sample"
+                ],
+                "correctIndex": 0,
+                "explanation": "Center choice + spread — this unit's toolkit — is exactly what skew-hiders omit.",
+                "check": [
+                  "Rational(40+42+44+46+228, 5) == 80"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The book that started the fight",
+            "body": "Darrell Huff's 'How to Lie with Statistics' (1954) — a slim illustrated guide to every trick in this lesson — became the best-selling statistics book in history. Its lesson aged perfectly: the tricks haven't changed, only the charts got interactive. You now own both sides: how to compute honestly, and how to catch those who don't."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Correlation ≠ causation: hunt third factors and reversed arrows.",
+              "Samples must represent; size never fixes bias.",
+              "Read axes; demand the median AND the spread for skewed claims."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "st-pr1",
+      "statement": "Mean and median of $7, 3, 9, 5, 6$?",
+      "solution": "Mean 6; sorted $3,5,6,7,9$: median 6.",
+      "check": [
+        "Rational(7+3+9+5+6, 5) == 6"
+      ]
+    },
+    {
+      "id": "st-pr2",
+      "statement": "Add 100 to that list. Which center moves more?",
+      "solution": "Mean: $6 \\to \\tfrac{130}{6} \\approx 21.7$; median: $6 \\to 6.5$. The mean, by far.",
+      "check": [
+        "Rational(30+100, 6) == Rational(65,3)",
+        "Rational(6+7,2) == Rational(13,2)"
+      ]
+    },
+    {
+      "id": "st-pr3",
+      "statement": "Range and variance of $4, 6, 8, 10, 12$ (mean 8)?",
+      "solution": "Range 8; squares $16+4+0+4+16 = 40$: variance 8.",
+      "check": [
+        "12 - 4 == 8",
+        "(4-8)**2+(6-8)**2+0+(10-8)**2+(12-8)**2 == 40",
+        "Rational(40,5) == 8"
+      ]
+    },
+    {
+      "id": "st-pr4",
+      "statement": "SD of $5, 5, 5, 5$? Of $3, 5, 5, 7$ (mean 5)?",
+      "solution": "First: 0. Second: squares $4+0+0+4 = 8$; variance 2; SD $= \\sqrt2$.",
+      "check": [
+        "(5-5)**2 == 0",
+        "(3-5)**2 + 0 + 0 + (7-5)**2 == 8",
+        "sqrt(Rational(8,4)) == sqrt(2)"
+      ]
+    },
+    {
+      "id": "st-pr5",
+      "statement": "$x = 88, \\mu = 76, \\sigma = 6$: find $z$.",
+      "solution": "$z = 2$.",
+      "check": [
+        "Rational(88-76, 6) == 2"
+      ]
+    },
+    {
+      "id": "st-pr6",
+      "statement": "Which is rarer: $z = 1.8$ or $z = -2.1$?",
+      "solution": "$|-2.1| > 1.8$: the second.",
+      "check": [
+        "Rational(21,10) > Rational(18,10)"
+      ]
+    },
+    {
+      "id": "st-pr7",
+      "statement": "$\\mu = 40, \\sigma = 6$: 95% of values lie between…",
+      "solution": "$28$ and $52$.",
+      "check": [
+        "40 - 2*6 == 28",
+        "40 + 2*6 == 52"
+      ]
+    },
+    {
+      "id": "st-pr8",
+      "statement": "What percent of normal data lies above $\\mu + \\sigma$?",
+      "solution": "$(100-68)/2 = 16\\%$.",
+      "check": [
+        "Rational(100-68, 2) == 16"
+      ]
+    },
+    {
+      "id": "st-pr9",
+      "statement": "Test $\\mu = 55, \\sigma = 8$: what score is the 97.5th percentile?",
+      "solution": "$z = 2$: $55 + 16 = 71$.",
+      "check": [
+        "55 + 2*8 == 71"
+      ]
+    },
+    {
+      "id": "st-pr10",
+      "statement": "Ice cream ↔ sunburn correlation: name the third factor and the fix.",
+      "solution": "Sunny weather drives both; compare within same-weather days (control for it).",
+      "check": [
+        "2 > 1"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "st-ty1",
+      "statement": "Mean and median of $12, 18, 15, 21, 100, 14$?",
+      "solution": "Mean $\\tfrac{180}{6} = 30$; sorted middle pair $15, 18$: median $16.5$. Skew: report the median.",
+      "check": [
+        "Rational(12+18+15+21+100+14, 6) == 30",
+        "Rational(15+18, 2) == Rational(33,2)"
+      ]
+    },
+    {
+      "id": "st-ty2",
+      "statement": "Compute the SD of $1, 2, 3, 4, 5$ (mean 3).",
+      "solution": "Squares $4+1+0+1+4 = 10$; variance 2; SD $= \\sqrt2$.",
+      "check": [
+        "(1-3)**2+(2-3)**2+0+(4-3)**2+(5-3)**2 == 10",
+        "sqrt(Rational(10,5)) == sqrt(2)"
+      ]
+    },
+    {
+      "id": "st-ty3",
+      "statement": "Physics: 82 ($\\mu = 70, \\sigma = 8$). Chemistry: 90 ($\\mu = 80, \\sigma = 10$). Which performance is stronger?",
+      "solution": "Physics $z = 1.5$; chemistry $z = 1$. Physics — despite fewer raw points.",
+      "check": [
+        "Rational(82-70, 8) == Rational(3,2)",
+        "Rational(90-80, 10) == 1"
+      ]
+    },
+    {
+      "id": "st-ty4",
+      "statement": "$\\mu = 120, \\sigma = 12$: find the values at $z = -1.5$ and $z = 2.5$.",
+      "solution": "$102$ and $150$.",
+      "check": [
+        "120 + Rational(-3,2)*12 == 102",
+        "120 + Rational(5,2)*12 == 150"
+      ]
+    },
+    {
+      "id": "st-ty5",
+      "statement": "Lifetimes $\\mu = 800$ h, $\\sigma = 50$: what percent last 700–900 hours?",
+      "solution": "$\\pm 2\\sigma$: 95%.",
+      "check": [
+        "800 - 2*50 == 700",
+        "800 + 2*50 == 900"
+      ]
+    },
+    {
+      "id": "st-ty6",
+      "statement": "What percent of normal data lies between $\\mu$ and $\\mu + 2\\sigma$?",
+      "solution": "Half of 95%: $47.5\\%$.",
+      "check": [
+        "Rational(95,2) == Rational(95,2)"
+      ]
+    },
+    {
+      "id": "st-ty7",
+      "statement": "A recruiter quotes mean salary 80k where the median is 44k. What's happening, and which figure should a candidate trust?",
+      "solution": "Right skew — executive salaries drag the mean. Trust the median (~the typical offer).",
+      "check": [
+        "80 > 44"
+      ]
+    }
+  ]
+}

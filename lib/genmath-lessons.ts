@@ -82,6 +82,7 @@ import logarithms from "@/data/genmath/11/logarithms.json";
 import sequencesAndSeries from "@/data/genmath/11/sequences-and-series.json";
 import trigonometryUnitCircle from "@/data/genmath/11/trigonometry-and-the-unit-circle.json";
 import complexNumbers from "@/data/genmath/11/complex-numbers.json";
+import statisticsAndData from "@/data/genmath/11/statistics-and-data.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -253,7 +254,7 @@ export const GRADE11_SPINE: GradeSpineEntry[] = [
     slug: "statistics-and-data",
     title: "Statistics & Data",
     blurb: "Mean vs median, standard deviation, z-scores, and the normal curve that grades on it.",
-    live: false,
+    live: true,
   },
 ];
 
@@ -264,6 +265,7 @@ const grade11Topics: GenMathTopic[] = [
   sequencesAndSeries as GenMathTopic,
   trigonometryUnitCircle as GenMathTopic,
   complexNumbers as GenMathTopic,
+  statisticsAndData as GenMathTopic,
 ];
 
 const grade10Topics: GenMathTopic[] = [
