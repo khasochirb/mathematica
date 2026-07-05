@@ -787,6 +787,15 @@ export interface ExpGraphConfig {
   interactive?: boolean;
 }
 
+// The trigonometry workbench: radians (radius-arcs wrap the rim), explore (an
+// angle stepper drives the unit-circle point; the inner right triangle shows
+// cos/sin as coordinates), and wave (an orbiting point traces the sine curve
+// onto a scroll — auto-play with replay).
+export interface UnitCircleConfig {
+  mode: "radians" | "explore" | "wave";
+  start?: number; // explore: initial angle in degrees
+}
+
 // Two lines y = m1x + b1 and y = m2x + b2 on one grid; line 2 adjustable.
 // Marks the intersection (the system's solution) and calls parallel /
 // same-line verdicts live. The systems-of-equations workbench.
@@ -1006,6 +1015,7 @@ export type InteractiveStep =
   | { kind: "parabolaGraph"; eyebrow?: string; title: string; teach: string; config: ParabolaGraphConfig }
   | { kind: "expGraph"; eyebrow?: string; title: string; teach: string; config: ExpGraphConfig }
   | { kind: "polyGraph"; eyebrow?: string; title: string; teach: string; config: PolyGraphConfig }
+  | { kind: "unitCircle"; eyebrow?: string; title: string; teach: string; config: UnitCircleConfig }
   | { kind: "scatterPlot"; eyebrow?: string; title: string; teach: string; config: ScatterPlotConfig }
   | { kind: "areaShape"; eyebrow?: string; title: string; teach: string; config: AreaShapeConfig }
   | { kind: "apothemPolygon"; eyebrow?: string; title: string; teach: string; config: ApothemPolygonConfig }

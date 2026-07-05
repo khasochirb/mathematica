@@ -1,0 +1,1719 @@
+{
+  "slug": "trigonometry-and-the-unit-circle",
+  "title": "Trigonometry & the Unit Circle",
+  "grade": 11,
+  "blurb": "Radians, the unit circle, sine and cosine as coordinates, and the waves they draw.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "radians",
+      "title": "Radians",
+      "concreteComparison": "Degrees are a Babylonian habit — 360 because their year had ~360 days. Mathematics prefers a unit the circle chooses itself: wrap the RADIUS along the rim, and the angle that arc spans is one **radian**. About $57.3°$, three-and-a-bit of them to a half-turn — and that 'bit' makes the half-turn exactly $\\pi$ radians. Nature's angle unit, free of ancient calendars.",
+      "objective": "Convert between degrees and radians using $180° = \\pi$ rad, and know the key angles in both units.",
+      "concept": [
+        "**One radian** = the angle whose arc equals the radius. The full rim is $2\\pi r$, so a full turn holds $2\\pi$ radians; a half-turn is $\\pi$: the master fact $180° = \\pi$ rad.",
+        "Convert by proportion: degrees × $\\tfrac{\\pi}{180}$ = radians; radians × $\\tfrac{180}{\\pi}$ = degrees. $30° = \\tfrac{\\pi}{6}$, $45° = \\tfrac{\\pi}{4}$, $60° = \\tfrac{\\pi}{3}$, $90° = \\tfrac{\\pi}{2}$.",
+        "Radian answers usually keep the $\\pi$: $\\tfrac{\\pi}{6}$ is exact and readable; $0.5236\\ldots$ is neither. Leave $\\pi$ in, like leaving $\\sqrt2$ unexpanded.",
+        "The payoff for 'natural': arc length becomes just $s = r\\theta$ (radius × angle) — no $\\tfrac{\\pi}{180}$ clutter. A 3 m radius swung through 2 rad sweeps exactly 6 m of arc."
+      ],
+      "keyIdea": "1 radian = radius-length of arc; 180° = π rad. Convert by ×π/180 or ×180/π; arc length s = rθ.",
+      "facts": [
+        {
+          "title": "Master fact",
+          "latex": "180° = \\pi \\text{ rad}",
+          "explanation": "Half-turn = π. Everything converts through it."
+        },
+        {
+          "title": "The payoff",
+          "latex": "s = r\\theta",
+          "explanation": "Arc length, clutter-free — radians only."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "tr1-we1",
+          "statement": "Convert $30°$, $90°$, and $270°$ to radians.",
+          "solution": "$\\tfrac{\\pi}{6}$, $\\tfrac{\\pi}{2}$, $\\tfrac{3\\pi}{2}$.",
+          "check": [
+            "Rational(30,180)*pi == pi/6",
+            "Rational(90,180)*pi == pi/2",
+            "Rational(270,180)*pi == 3*pi/2"
+          ]
+        },
+        {
+          "id": "tr1-we2",
+          "statement": "Convert $\\tfrac{\\pi}{4}$ and $\\tfrac{2\\pi}{3}$ to degrees.",
+          "solution": "$45°$ and $120°$.",
+          "check": [
+            "(pi/4)*Rational(180,1)/pi == 45",
+            "(2*pi/3)*Rational(180,1)/pi == 120"
+          ]
+        },
+        {
+          "id": "tr1-we3",
+          "statement": "A pendulum of length 3 m swings through 2 radians. Arc length?",
+          "solution": "$s = r\\theta = 3 \\cdot 2 = 6$ m.",
+          "check": [
+            "3*2 == 6"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Memorizing '1 rad = 57.3°' and converting through it.",
+          "correction": "Convert through the EXACT master fact $180° = \\pi$: $30° = \\tfrac{30\\pi}{180} = \\tfrac{\\pi}{6}$. The 57.3 is a decimal approximation — fine for intuition, wrong for exact work.",
+          "authored": true
+        },
+        {
+          "text": "Dropping the π from radian answers.",
+          "correction": "$45°$ is $\\tfrac{\\pi}{4}$, not $\\tfrac14$. The π carries the circle; without it the number means a different (bizarre) angle.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "tr1-t1",
+          "statement": "Convert $120°$ to radians and $\\tfrac{\\pi}{3}$ to degrees.",
+          "solution": "$\\tfrac{2\\pi}{3}$ and $60°$.",
+          "check": [
+            "Rational(120,180)*pi == 2*pi/3",
+            "(pi/3)*Rational(180,1)/pi == 60"
+          ]
+        },
+        {
+          "id": "tr1-t2",
+          "statement": "Arc length: radius 5, angle $\\tfrac{3\\pi}{5}$ rad?",
+          "solution": "$s = 5 \\cdot \\tfrac{3\\pi}{5} = 3\\pi$.",
+          "check": [
+            "5*(3*pi/5) == 3*pi"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "A Babylonian habit",
+            "title": "Why 360 anyway?",
+            "beats": [
+              "Degrees: 360 per turn — an ancient calendar's leftovers.",
+              "Nothing about a circle prefers 360.",
+              "Math wants the circle's OWN unit…",
+              "…so let the radius measure the rim."
+            ]
+          },
+          {
+            "kind": "unitCircle",
+            "eyebrow": "Wrap the radius",
+            "title": "One radian at a time",
+            "teach": "Step the wraps: each radius-length of arc is ONE radian (≈ 57.3°). Watch the third wrap almost reach the π mark at the half-turn — three-and-a-bit radii make it exactly: π ≈ 3.14 radians = 180°. The circle measuring itself.",
+            "config": {
+              "mode": "radians"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The master fact",
+            "prompt": "$90°$ in radians is…",
+            "options": [
+              "$\\tfrac{\\pi}{2}$",
+              "$\\tfrac{\\pi}{4}$",
+              "$90\\pi$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Half of the half-turn: $\\tfrac{\\pi}{2}$. All conversions route through $180° = \\pi$.",
+            "check": [
+              "Rational(90,180)*pi == pi/2"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The conversion",
+            "title": "Route through 180 = π",
+            "beats": [
+              "Degrees → radians: multiply by $\\tfrac{\\pi}{180}$.",
+              "$30° \\to \\tfrac{30\\pi}{180} = \\tfrac{\\pi}{6}$. $60° \\to \\tfrac{\\pi}{3}$.",
+              "Radians → degrees: multiply by $\\tfrac{180}{\\pi}$.",
+              "$\\tfrac{3\\pi}{4} \\to 135°$. Keep the π until the end."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Both ways",
+            "title": "Convert back",
+            "prompt": "$\\tfrac{5\\pi}{6}$ rad in degrees is…",
+            "options": [
+              "$150°$",
+              "$120°$",
+              "$210°$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tfrac{5 \\cdot 180}{6} = 150°$.",
+            "check": [
+              "(5*pi/6)*Rational(180,1)/pi == 150"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Unit fluency",
+            "intro": "Exact conversions; s = rθ payoffs.",
+            "examples": [
+              {
+                "prompt": "Fill the key ladder: $30°, 45°, 60°, 90°$ in radians.",
+                "steps": [
+                  "$\\tfrac{\\pi}{6}, \\tfrac{\\pi}{4}, \\tfrac{\\pi}{3}, \\tfrac{\\pi}{2}$.",
+                  "Sixths, quarters, thirds, halves — of the half-turn."
+                ],
+                "answer": "$\\tfrac{\\pi}{6}, \\tfrac{\\pi}{4}, \\tfrac{\\pi}{3}, \\tfrac{\\pi}{2}$",
+                "check": [
+                  "Rational(45,180)*pi == pi/4",
+                  "Rational(60,180)*pi == pi/3"
+                ]
+              },
+              {
+                "prompt": "A wheel of radius 40 cm rolls through $\\tfrac{3\\pi}{2}$ rad. How far does its rim travel?",
+                "steps": [
+                  "$s = r\\theta = 40 \\cdot \\tfrac{3\\pi}{2}$.",
+                  "$= 60\\pi \\approx 188$ cm."
+                ],
+                "answer": "$60\\pi$ cm",
+                "check": [
+                  "40*(3*pi/2) == 60*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Radian reps",
+            "intro": "Route through the master fact.",
+            "problems": [
+              {
+                "prompt": "$240°$ = …",
+                "options": [
+                  "$\\tfrac{4\\pi}{3}$",
+                  "$\\tfrac{3\\pi}{4}$",
+                  "$\\tfrac{2\\pi}{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{240}{180}\\pi = \\tfrac43\\pi$.",
+                "check": [
+                  "Rational(240,180)*pi == 4*pi/3"
+                ]
+              },
+              {
+                "prompt": "A full turn is…",
+                "options": [
+                  "$2\\pi$ rad",
+                  "$\\pi$ rad",
+                  "$360\\pi$ rad"
+                ],
+                "correctIndex": 0,
+                "explanation": "The rim is $2\\pi$ radii long — so $2\\pi$ radians all the way around.",
+                "check": [
+                  "Rational(360,180)*pi == 2*pi"
+                ]
+              },
+              {
+                "prompt": "Radius 6, central angle $\\tfrac{\\pi}{3}$: the arc is…",
+                "options": [
+                  "$2\\pi$",
+                  "$\\tfrac{\\pi}{2}$",
+                  "$18\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$s = 6 \\cdot \\tfrac{\\pi}{3} = 2\\pi$ — one clean multiplication, the radian payoff.",
+                "check": [
+                  "6*(pi/3) == 2*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The lost constant",
+            "body": "Some mathematicians campaign for τ (tau) = 2π as the true circle constant — 'one turn = τ' reads cleaner than 'one turn = 2π'. Tau Day (June 28: 6/28) celebrates with two pies. The campaign is only half-joking: radians make angles natural, and τ would make RADIANS natural. π's 300-year head start will probably win anyway."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "1 radian = one radius of arc; $180° = \\pi$ rad.",
+              "Convert by $\\times\\tfrac{\\pi}{180}$ or $\\times\\tfrac{180}{\\pi}$; keep π exact.",
+              "Payoff: $s = r\\theta$ — arc length without clutter."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-unit-circle",
+      "title": "The Unit Circle",
+      "concreteComparison": "Geometry's SOH-CAH-TOA lived inside right triangles — useless past $90°$. The upgrade: put a circle of radius 1 at the origin, walk an angle $\\theta$ counterclockwise from the positive x-axis, and DEFINE $\\cos\\theta$ and $\\sin\\theta$ as the landing point's coordinates. Suddenly every angle — $150°$, $300°$, $1000°$ — has a cosine and sine, read straight off a map.",
+      "objective": "Use the unit-circle definition — $(\\cos\\theta, \\sin\\theta)$ is the point at angle $\\theta$ — including axis angles and quadrant signs.",
+      "concept": [
+        "**The definition**: on a radius-1 circle, the point at angle $\\theta$ (counterclockwise from the positive x-axis) IS $(\\cos\\theta, \\sin\\theta)$. Cosine = x-coordinate, sine = y-coordinate.",
+        "It agrees with the old triangles: for acute $\\theta$, the radius-1 hypotenuse makes adjacent $= \\cos\\theta$, opposite $= \\sin\\theta$. Same values — but the circle keeps going past $90°$.",
+        "Axis angles read instantly: $0°$: $(1, 0)$; $90°$: $(0, 1)$; $180°$: $(-1, 0)$; $270°$: $(0, -1)$. So $\\cos 180° = -1$, $\\sin 270° = -1$.",
+        "Quadrant signs follow the map: QII has $x < 0, y > 0$ (cos −, sin +); QIII both −; QIV cos +, sin −. And Pythagoras rides along: $\\cos^2\\theta + \\sin^2\\theta = 1$ for every $\\theta$ — the point is always on the circle."
+      ],
+      "keyIdea": "The point at angle θ is (cos θ, sin θ): cosine is x, sine is y. Signs come from the quadrant; cos² + sin² = 1 always.",
+      "facts": [
+        {
+          "title": "The definition",
+          "latex": "(\\cos\\theta, \\sin\\theta) = \\text{point at } \\theta",
+          "explanation": "Coordinates ARE the trig values."
+        },
+        {
+          "title": "Always true",
+          "latex": "\\cos^2\\theta + \\sin^2\\theta = 1",
+          "explanation": "Radius 1 + Pythagoras."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "tr2-we1",
+          "statement": "Read $\\cos$ and $\\sin$ at $180°$ and at $270°$.",
+          "solution": "$180°$: $(-1, 0)$ → cos $= -1$, sin $= 0$. $270°$: $(0,-1)$ → cos $= 0$, sin $= -1$.",
+          "check": [
+            "cos(pi) == -1",
+            "sin(pi) == 0",
+            "cos(3*pi/2) == 0",
+            "sin(3*pi/2) == -1"
+          ]
+        },
+        {
+          "id": "tr2-we2",
+          "statement": "In which quadrant is $\\theta = 200°$, and what are the signs of its cosine and sine?",
+          "solution": "QIII (between $180°$ and $270°$): both negative.",
+          "check": [
+            "cos(pi/6)**2 + sin(pi/6)**2 == 1"
+          ]
+        },
+        {
+          "id": "tr2-we3",
+          "statement": "Verify $\\cos^2 60° + \\sin^2 60° = 1$ exactly.",
+          "solution": "$(\\tfrac12)^2 + (\\tfrac{\\sqrt3}{2})^2 = \\tfrac14 + \\tfrac34 = 1$ ✓.",
+          "check": [
+            "cos(pi/3)**2 + sin(pi/3)**2 == 1",
+            "Rational(1,4) + Rational(3,4) == 1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Assigning sine to x and cosine to y.",
+          "correction": "Alphabetical order helps: (x, y) ↔ (Cos, Sin) — C before S. Cosine is the horizontal coordinate, always.",
+          "authored": true
+        },
+        {
+          "text": "Measuring the angle from the y-axis, or clockwise.",
+          "correction": "Convention: start at the positive x-axis, rotate COUNTERclockwise. $90°$ lands at the TOP $(0,1)$ — if yours landed right or bottom, the starting ray or direction slipped.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "tr2-t1",
+          "statement": "$\\cos 0°$ and $\\sin 90°$?",
+          "solution": "Both $1$ — points $(1,0)$ and $(0,1)$.",
+          "check": [
+            "cos(0) == 1",
+            "sin(pi/2) == 1"
+          ]
+        },
+        {
+          "id": "tr2-t2",
+          "statement": "$\\theta = 310°$: which quadrant, which signs?",
+          "solution": "QIV: cos $+$, sin $-$.",
+          "check": [
+            "cos(pi/4)**2 + sin(pi/4)**2 == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Past 90°",
+            "title": "The triangle's ceiling",
+            "beats": [
+              "SOH-CAH-TOA needs a right triangle — max angle: $90°$.",
+              "But waves, orbits, and seasons turn past $90°$ constantly.",
+              "The fix: trade the triangle for a CIRCLE of radius 1.",
+              "Angles become points; points have coordinates…"
+            ]
+          },
+          {
+            "kind": "unitCircle",
+            "eyebrow": "Walk the rim",
+            "title": "Coordinates are the values",
+            "teach": "Step the angle around the circle: the landing point's coordinates ARE (cos θ, sin θ) — orange leg = cosine (x), blue leg = sine (y). Cross into QII and watch cosine go negative while sine stays positive; keep going and watch every sign combination appear, quadrant by quadrant.",
+            "config": {
+              "mode": "explore",
+              "start": 45
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Axis reading",
+            "prompt": "$\\cos 180°$ = …",
+            "options": [
+              "$-1$",
+              "$0$",
+              "$1$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$180°$ lands at $(-1, 0)$: the x-coordinate is $-1$.",
+            "check": [
+              "cos(pi) == -1"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The sign map",
+            "title": "Quadrant by quadrant",
+            "beats": [
+              "QI: both $+$. QII: cos $-$, sin $+$.",
+              "QIII: both $-$. QIV: cos $+$, sin $-$.",
+              "No memorizing needed — it's just WHERE the point is:",
+              "left half → x negative; bottom half → y negative."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Sign patrol",
+            "title": "Place 240°",
+            "prompt": "At $\\theta = 240°$ the signs are…",
+            "options": [
+              "cos $-$, sin $-$",
+              "cos $-$, sin $+$",
+              "cos $+$, sin $-$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$240°$ sits in QIII (bottom-left): both coordinates negative.",
+            "check": [
+              "cos(4*pi/3) == -Rational(1,2)",
+              "sin(4*pi/3) == -sqrt(3)/2"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Map reading",
+            "intro": "Point first, coordinates second.",
+            "examples": [
+              {
+                "prompt": "List $(\\cos, \\sin)$ at all four axis angles.",
+                "steps": [
+                  "$0°$: $(1,0)$. $90°$: $(0,1)$.",
+                  "$180°$: $(-1,0)$. $270°$: $(0,-1)$.",
+                  "One coordinate always 0, the other ±1."
+                ],
+                "answer": "$(1,0), (0,1), (-1,0), (0,-1)$",
+                "check": [
+                  "cos(0) == 1",
+                  "sin(pi/2) == 1",
+                  "cos(pi) == -1",
+                  "sin(3*pi/2) == -1"
+                ]
+              },
+              {
+                "prompt": "A point on the unit circle has $x = \\tfrac35$ in QIV. Find its $y$.",
+                "steps": [
+                  "$x^2 + y^2 = 1$: $y^2 = 1 - \\tfrac{9}{25} = \\tfrac{16}{25}$.",
+                  "QIV → y negative: $y = -\\tfrac45$.",
+                  "So cos $= \\tfrac35$, sin $= -\\tfrac45$ for this angle."
+                ],
+                "answer": "$y = -\\tfrac45$",
+                "check": [
+                  "Rational(3,5)**2 + Rational(-4,5)**2 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Circle fluency",
+            "intro": "C is x, S is y; signs from the map.",
+            "problems": [
+              {
+                "prompt": "$\\sin 180°$ = …",
+                "options": [
+                  "$0$",
+                  "$1$",
+                  "$-1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(-1, 0)$: the y-coordinate is 0. (Half-turn = on the x-axis.)",
+                "check": [
+                  "sin(pi) == 0"
+                ]
+              },
+              {
+                "prompt": "Where are BOTH cos and sin negative?",
+                "options": [
+                  "QIII",
+                  "QII",
+                  "QIV"
+                ],
+                "correctIndex": 0,
+                "explanation": "Bottom-left: x and y both negative — angles between 180° and 270°.",
+                "check": [
+                  "cos(4*pi/3) < 0",
+                  "sin(4*pi/3) < 0"
+                ]
+              },
+              {
+                "prompt": "A unit-circle point has sin θ = 1. The angle is…",
+                "options": [
+                  "$90°$",
+                  "$0°$",
+                  "$180°$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Only the TOP of the circle has y = 1: θ = 90° (plus full turns).",
+                "check": [
+                  "sin(pi/2) == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "GPS runs the unit circle",
+            "body": "Every GPS fix solves triangles on a sphere using cos and sin at wildly obtuse angles — impossible with SOH-CAH-TOA, trivial with the circle definition. Your phone evaluates unit-circle coordinates thousands of times per fix. The 'circle upgrade' isn't a classroom nicety; it's why navigation works past the first quadrant of the planet."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Point at $\\theta$ = $(\\cos\\theta, \\sin\\theta)$ — cosine x, sine y.",
+              "Axis angles read instantly; signs come from the quadrant.",
+              "$\\cos^2 + \\sin^2 = 1$ always: the point never leaves the circle."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "special-angles",
+      "title": "Special Angles",
+      "concreteComparison": "Three angles — $30°, 45°, 60°$ — have EXACT coordinates, inherited from geometry's two special triangles. Learn one quadrant's worth ($\\tfrac12$, $\\tfrac{\\sqrt2}{2}$, $\\tfrac{\\sqrt3}{2}$) and the sign map from last lesson recycles them everywhere: $150°$, $225°$, $300°$ are the same three numbers wearing quadrant signs. Twelve values from three memories.",
+      "objective": "Know the exact sine and cosine of 30°, 45°, 60° (π/6, π/4, π/3) and extend them to all quadrants via reference angles.",
+      "concept": [
+        "From the special right triangles: $\\cos 30° = \\tfrac{\\sqrt3}{2}, \\sin 30° = \\tfrac12$; $\\cos 45° = \\sin 45° = \\tfrac{\\sqrt2}{2}$; $\\cos 60° = \\tfrac12, \\sin 60° = \\tfrac{\\sqrt3}{2}$.",
+        "The ladder trick: sines at $30°, 45°, 60°$ are $\\tfrac{\\sqrt1}{2}, \\tfrac{\\sqrt2}{2}, \\tfrac{\\sqrt3}{2}$ — root 1, 2, 3 over 2. Cosines run the same ladder backwards.",
+        "**Reference angles**: any angle's values equal its acute reference angle's values, with the QUADRANT choosing signs. $150°$ references $30°$ (in QII): $\\sin 150° = +\\tfrac12$, $\\cos 150° = -\\tfrac{\\sqrt3}{2}$.",
+        "Find the reference: distance to the nearest x-axis direction — $180° - 150° = 30°$; $225° - 180° = 45°$; $360° - 300° = 60°$. Three numbers + sign map = the whole circle."
+      ],
+      "keyIdea": "√1/2, √2/2, √3/2 — the sine ladder at 30°, 45°, 60°. Reference angle gives the size; quadrant gives the sign.",
+      "facts": [
+        {
+          "title": "The ladder",
+          "latex": "\\sin: \\tfrac{\\sqrt1}{2}, \\tfrac{\\sqrt2}{2}, \\tfrac{\\sqrt3}{2}",
+          "explanation": "At 30°, 45°, 60° — cosines run it backwards."
+        },
+        {
+          "title": "Reference angle",
+          "latex": "\\text{distance to the x-axis}",
+          "explanation": "Size from the reference; sign from the quadrant."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "tr3-we1",
+          "statement": "Exact values: $\\sin 30°$, $\\cos 45°$, $\\sin 60°$.",
+          "solution": "$\\tfrac12$, $\\tfrac{\\sqrt2}{2}$, $\\tfrac{\\sqrt3}{2}$.",
+          "check": [
+            "sin(pi/6) == Rational(1,2)",
+            "cos(pi/4) == sqrt(2)/2",
+            "sin(pi/3) == sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "tr3-we2",
+          "statement": "Evaluate $\\sin 150°$ and $\\cos 150°$ exactly.",
+          "solution": "Reference $30°$, QII (sin +, cos −): $\\sin = \\tfrac12$, $\\cos = -\\tfrac{\\sqrt3}{2}$.",
+          "check": [
+            "sin(5*pi/6) == Rational(1,2)",
+            "cos(5*pi/6) == -sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "tr3-we3",
+          "statement": "Evaluate $\\cos 225°$ and $\\sin 300°$ exactly.",
+          "solution": "$225°$: ref $45°$, QIII → $-\\tfrac{\\sqrt2}{2}$. $300°$: ref $60°$, QIV → $\\sin = -\\tfrac{\\sqrt3}{2}$.",
+          "check": [
+            "cos(5*pi/4) == -sqrt(2)/2",
+            "sin(5*pi/3) == -sqrt(3)/2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Swapping the 30°/60° values.",
+          "correction": "$\\sin 30° = \\tfrac12$ (small angle, small height); $\\sin 60° = \\tfrac{\\sqrt3}{2} \\approx 0.87$ (big angle, big height). Sanity-check against the picture: height grows with angle in QI.",
+          "authored": true
+        },
+        {
+          "text": "Getting the reference angle's SIZE right but forgetting the quadrant sign.",
+          "correction": "$\\cos 150°$ is NOT $\\tfrac{\\sqrt3}{2}$ — QII is the left half, so cosine is negative. Reference gives the digits; quadrant signs them.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "tr3-t1",
+          "statement": "$\\cos 60°$ and $\\sin 45°$ exactly?",
+          "solution": "$\\tfrac12$ and $\\tfrac{\\sqrt2}{2}$.",
+          "check": [
+            "cos(pi/3) == Rational(1,2)",
+            "sin(pi/4) == sqrt(2)/2"
+          ]
+        },
+        {
+          "id": "tr3-t2",
+          "statement": "$\\sin 210°$ exactly?",
+          "solution": "Ref $30°$, QIII: $-\\tfrac12$.",
+          "check": [
+            "sin(7*pi/6) == -Rational(1,2)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Three exact angles",
+            "title": "Gifts from geometry",
+            "beats": [
+              "The 45-45-90 and 30-60-90 triangles (Geometry, Unit 8)",
+              "hand the circle exact coordinates at $30°, 45°, 60°$:",
+              "$\\sin$: $\\tfrac12$, $\\tfrac{\\sqrt2}{2}$, $\\tfrac{\\sqrt3}{2}$.",
+              "$\\cos$: the same three, in reverse."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The ladder",
+            "title": "Root 1, 2, 3 over 2",
+            "beats": [
+              "$\\sin 30° = \\tfrac{\\sqrt1}{2}, \\ \\sin 45° = \\tfrac{\\sqrt2}{2}, \\ \\sin 60° = \\tfrac{\\sqrt3}{2}$.",
+              "Rising angle, rising root. One pattern, six values.",
+              "Cosines climb DOWN the same ladder.",
+              "$45°$ is the crossing: $\\cos = \\sin$ there."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Ladder read",
+            "prompt": "$\\cos 30°$ = …",
+            "options": [
+              "$\\tfrac{\\sqrt3}{2}$",
+              "$\\tfrac12$",
+              "$\\tfrac{\\sqrt2}{2}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Cosine runs the ladder backwards: big at small angles. ($\\tfrac12$ is $\\sin 30°$ — the classic swap.)",
+            "check": [
+              "cos(pi/6) == sqrt(3)/2"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Recycle everywhere",
+            "title": "Reference angles",
+            "beats": [
+              "$150°$: it leans $30°$ away from the x-axis — reference $30°$.",
+              "Same DIGITS as $30°$; QII picks the signs:",
+              "$\\sin 150° = +\\tfrac12$, $\\cos 150° = -\\tfrac{\\sqrt3}{2}$.",
+              "Three memories + the sign map = the whole circle."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Recycling drill",
+            "title": "Value at 315°",
+            "prompt": "$\\sin 315°$ = …",
+            "options": [
+              "$-\\tfrac{\\sqrt2}{2}$",
+              "$\\tfrac{\\sqrt2}{2}$",
+              "$-\\tfrac12$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Ref: $360 - 315 = 45°$; QIV → sine negative: $-\\tfrac{\\sqrt2}{2}$.",
+            "check": [
+              "sin(7*pi/4) == -sqrt(2)/2"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Exact-value engine",
+            "intro": "Reference size, quadrant sign.",
+            "examples": [
+              {
+                "prompt": "Evaluate $\\cos 120°$ and $\\sin 120°$.",
+                "steps": [
+                  "Ref: $180 - 120 = 60°$. QII: cos −, sin +.",
+                  "$\\cos = -\\tfrac12$, $\\sin = \\tfrac{\\sqrt3}{2}$."
+                ],
+                "answer": "$-\\tfrac12$, $\\tfrac{\\sqrt3}{2}$",
+                "check": [
+                  "cos(2*pi/3) == -Rational(1,2)",
+                  "sin(2*pi/3) == sqrt(3)/2"
+                ]
+              },
+              {
+                "prompt": "Evaluate $\\cos \\tfrac{7\\pi}{6}$ (that's $210°$).",
+                "steps": [
+                  "Ref: $210 - 180 = 30°$. QIII: cos −.",
+                  "$-\\tfrac{\\sqrt3}{2}$."
+                ],
+                "answer": "$-\\tfrac{\\sqrt3}{2}$",
+                "check": [
+                  "cos(7*pi/6) == -sqrt(3)/2"
+                ]
+              },
+              {
+                "prompt": "Which angles in $[0°, 360°)$ have $\\sin\\theta = \\tfrac12$?",
+                "steps": [
+                  "Reference $30°$, sine positive → QI and QII.",
+                  "$30°$ and $150°$."
+                ],
+                "answer": "$30°$ and $150°$",
+                "check": [
+                  "sin(pi/6) == Rational(1,2)",
+                  "sin(5*pi/6) == Rational(1,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Twelve values, three memories",
+            "intro": "Ladder + map.",
+            "problems": [
+              {
+                "prompt": "$\\cos 45°$ = …",
+                "options": [
+                  "$\\tfrac{\\sqrt2}{2}$",
+                  "$\\tfrac12$",
+                  "$1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The crossing point of the ladder — cos and sin agree at 45°.",
+                "check": [
+                  "cos(pi/4) == sqrt(2)/2"
+                ]
+              },
+              {
+                "prompt": "$\\cos 300°$ = …",
+                "options": [
+                  "$\\tfrac12$",
+                  "$-\\tfrac12$",
+                  "$-\\tfrac{\\sqrt3}{2}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Ref $60°$, QIV: cosine POSITIVE there — $+\\tfrac12$.",
+                "check": [
+                  "cos(5*pi/3) == Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "$\\sin\\theta = -\\tfrac{\\sqrt3}{2}$ with $\\theta$ in QIII. Then $\\theta$ = …",
+                "options": [
+                  "$240°$",
+                  "$210°$",
+                  "$300°$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Need reference $60°$ in QIII: $180 + 60 = 240°$. ($210°$ refs 30°; $300°$ is QIV.)",
+                "check": [
+                  "sin(4*pi/3) == -sqrt(3)/2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Draw before you sign",
+            "body": "For any special-angle question: (1) sketch the circle, (2) mark the angle's quadrant, (3) find the reference by its distance to the x-axis, (4) copy the ladder digits, (5) sign by quadrant. Five seconds of sketch beats every memorized table — and survives exam nerves."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "The ladder: $\\tfrac{\\sqrt1}{2}, \\tfrac{\\sqrt2}{2}, \\tfrac{\\sqrt3}{2}$ at $30°, 45°, 60°$.",
+              "Reference angle = distance to the x-axis; it fixes the digits.",
+              "The quadrant signs them — twelve exact values from three."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "sine-and-cosine-waves",
+      "title": "Sine & Cosine Waves",
+      "concreteComparison": "Watch one seat on a slowly turning Ferris wheel and plot its HEIGHT against time: up, over the top, down, under the bottom, forever. That plot is the **sine wave** — the unit circle's y-coordinate unrolled onto a timeline. Every wave in physics (sound, light, tides, AC power) is this one picture: circular motion, viewed sideways.",
+      "objective": "Connect the unit circle to the graphs of sin and cos: shape, period 2π, amplitude 1, intercepts and peaks.",
+      "concept": [
+        "Graph $y = \\sin\\theta$ by unrolling: as $\\theta$ sweeps the circle, plot the point's HEIGHT at each angle. Starts at 0, peaks at 1 ($\\theta = \\tfrac{\\pi}{2}$), back to 0 at $\\pi$, trough $-1$ at $\\tfrac{3\\pi}{2}$, home at $2\\pi$.",
+        "**Period** $2\\pi$: one full orbit = one full wave, then it repeats forever. $\\sin(\\theta + 2\\pi) = \\sin\\theta$.",
+        "**Amplitude** 1: the circle's radius caps the height — the wave lives between $-1$ and $1$.",
+        "Cosine is the X-coordinate's story: same wave, but starting at its PEAK ($\\cos 0 = 1$). The cosine curve is the sine curve slid left $\\tfrac{\\pi}{2}$ — the transformations topic, striking again."
+      ],
+      "keyIdea": "Sine = the circling point's height, unrolled: period 2π, amplitude 1. Cosine = the same wave starting at its peak.",
+      "facts": [
+        {
+          "title": "The wave's vitals",
+          "latex": "\\text{period } 2\\pi, \\text{ amplitude } 1",
+          "explanation": "One orbit per wave; radius caps height."
+        },
+        {
+          "title": "The twins",
+          "latex": "\\cos\\theta = \\sin(\\theta + \\tfrac{\\pi}{2})",
+          "explanation": "Cosine: sine, slid left a quarter-turn."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "tr4-we1",
+          "statement": "Where in $[0, 2\\pi]$ does $\\sin\\theta$ peak, cross zero, and trough?",
+          "solution": "Peak 1 at $\\tfrac{\\pi}{2}$; zeros at $0, \\pi, 2\\pi$; trough $-1$ at $\\tfrac{3\\pi}{2}$.",
+          "check": [
+            "sin(pi/2) == 1",
+            "sin(pi) == 0",
+            "sin(3*pi/2) == -1",
+            "sin(2*pi) == 0"
+          ]
+        },
+        {
+          "id": "tr4-we2",
+          "statement": "Verify the periodicity: compare $\\sin\\tfrac{\\pi}{6}$ and $\\sin\\tfrac{13\\pi}{6}$.",
+          "solution": "$\\tfrac{13\\pi}{6} = \\tfrac{\\pi}{6} + 2\\pi$: both equal $\\tfrac12$ ✓.",
+          "check": [
+            "sin(13*pi/6) == sin(pi/6)",
+            "sin(pi/6) == Rational(1,2)"
+          ]
+        },
+        {
+          "id": "tr4-we3",
+          "statement": "Verify the quarter-turn shift at $\\theta = 0$ and $\\theta = \\tfrac{\\pi}{3}$: $\\cos\\theta = \\sin(\\theta + \\tfrac{\\pi}{2})$.",
+          "solution": "$\\cos 0 = 1 = \\sin\\tfrac{\\pi}{2}$ ✓; $\\cos\\tfrac{\\pi}{3} = \\tfrac12 = \\sin\\tfrac{5\\pi}{6}$ ✓.",
+          "check": [
+            "cos(0) == sin(pi/2)",
+            "cos(pi/3) == sin(pi/3 + pi/2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Drawing the sine wave starting at its peak.",
+          "correction": "$\\sin 0 = 0$: the sine wave starts at ZERO heading up. Starting at the peak is COSINE's signature ($\\cos 0 = 1$).",
+          "authored": true
+        },
+        {
+          "text": "Thinking the wave eventually flattens or drifts.",
+          "correction": "The orbit never changes, so neither does the wave: same peaks, same period, forever. Periodicity is exact, not approximate.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "tr4-t1",
+          "statement": "$\\cos\\theta$ in $[0, 2\\pi]$: where does it peak and trough?",
+          "solution": "Peak 1 at $0$ and $2\\pi$; trough $-1$ at $\\pi$.",
+          "check": [
+            "cos(0) == 1",
+            "cos(pi) == -1",
+            "cos(2*pi) == 1"
+          ]
+        },
+        {
+          "id": "tr4-t2",
+          "statement": "Evaluate $\\sin\\tfrac{9\\pi}{2}$ using periodicity.",
+          "solution": "$\\tfrac{9\\pi}{2} = \\tfrac{\\pi}{2} + 4\\pi$: $\\sin = 1$.",
+          "check": [
+            "sin(9*pi/2) == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "One seat, watched sideways",
+            "title": "The Ferris wheel plot",
+            "beats": [
+              "Track one seat's HEIGHT as the wheel turns.",
+              "Up… over the top… down… under… repeat.",
+              "Height vs time = the sine wave.",
+              "Circular motion, viewed from the side."
+            ]
+          },
+          {
+            "kind": "unitCircle",
+            "eyebrow": "Watch it unroll",
+            "title": "The circle draws the wave",
+            "teach": "The orbiting point's height rides across to the scroll: as θ sweeps one full turn, the wave completes exactly one cycle — peak at π/2, zero at π, trough at 3π/2, home at 2π. One orbit = one wave = period 2π. Replay it and watch the peak happen exactly at the top of the circle.",
+            "config": {
+              "mode": "wave"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the wave",
+            "prompt": "$\\sin\\theta$ first reaches its trough $-1$ at $\\theta$ = …",
+            "options": [
+              "$\\tfrac{3\\pi}{2}$",
+              "$\\pi$",
+              "$2\\pi$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The point is at the circle's BOTTOM three-quarters through the orbit.",
+            "check": [
+              "sin(3*pi/2) == -1"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The twins",
+            "title": "Cosine's head start",
+            "beats": [
+              "Cosine plots the X-coordinate instead.",
+              "$\\cos 0 = 1$: it STARTS at the peak.",
+              "Same shape, same period — slid left $\\tfrac{\\pi}{2}$:",
+              "$\\cos\\theta = \\sin(\\theta + \\tfrac{\\pi}{2})$. Transformations, again."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Twin telling",
+            "title": "Which curve?",
+            "prompt": "A wave starts at its maximum and first hits zero at $\\tfrac{\\pi}{2}$. It is…",
+            "options": [
+              "$y = \\cos\\theta$",
+              "$y = \\sin\\theta$",
+              "$y = -\\sin\\theta$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Peak at the start is cosine's signature ($\\cos 0 = 1$, $\\cos\\tfrac{\\pi}{2} = 0$).",
+            "check": [
+              "cos(0) == 1",
+              "cos(pi/2) == 0"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Wave anatomy",
+            "intro": "Circle positions → wave features.",
+            "examples": [
+              {
+                "prompt": "Sketch data for $y = \\sin\\theta$: values at $0, \\tfrac{\\pi}{2}, \\pi, \\tfrac{3\\pi}{2}, 2\\pi$.",
+                "steps": [
+                  "$0, 1, 0, -1, 0$.",
+                  "Five anchor points; smooth wave through them."
+                ],
+                "answer": "$0, 1, 0, -1, 0$",
+                "check": [
+                  "sin(0) == 0",
+                  "sin(pi/2) == 1",
+                  "sin(3*pi/2) == -1"
+                ]
+              },
+              {
+                "prompt": "Evaluate $\\cos 7\\pi$ using periodicity.",
+                "steps": [
+                  "$7\\pi = \\pi + 3(2\\pi)$: same as $\\cos\\pi$.",
+                  "$= -1$."
+                ],
+                "answer": "$-1$",
+                "check": [
+                  "cos(7*pi) == -1",
+                  "cos(pi) == -1"
+                ]
+              },
+              {
+                "prompt": "How many solutions does $\\sin\\theta = 0.3$ have in $[0, 2\\pi]$?",
+                "steps": [
+                  "The height 0.3 is crossed once rising, once falling.",
+                  "Two solutions per cycle — QI and QII."
+                ],
+                "answer": "two",
+                "check": [
+                  "sin(pi/2) > Rational(3,10)",
+                  "sin(0) < Rational(3,10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Unrolled fluency",
+            "intro": "Circle position answers every wave question.",
+            "problems": [
+              {
+                "prompt": "The period of $y = \\cos\\theta$ is…",
+                "options": [
+                  "$2\\pi$",
+                  "$\\pi$",
+                  "$1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same orbit, same period: one full turn.",
+                "check": [
+                  "cos(2*pi) == cos(0)"
+                ]
+              },
+              {
+                "prompt": "$\\sin\\theta$ and $\\cos\\theta$ are EQUAL at $\\theta$ = …",
+                "options": [
+                  "$\\tfrac{\\pi}{4}$",
+                  "$\\tfrac{\\pi}{2}$",
+                  "$0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The 45° crossing: both $\\tfrac{\\sqrt2}{2}$. (On the wave picture: where the curves intersect.)",
+                "check": [
+                  "sin(pi/4) == cos(pi/4)"
+                ]
+              },
+              {
+                "prompt": "Over $[0, 4\\pi]$, the sine wave completes…",
+                "options": [
+                  "2 full cycles",
+                  "1 cycle",
+                  "4 cycles"
+                ],
+                "correctIndex": 0,
+                "explanation": "Period $2\\pi$: two orbits, two waves.",
+                "check": [
+                  "sin(4*pi) == 0",
+                  "Rational(4,2) == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Every sound you hear is this graph",
+            "body": "A microphone diaphragm wiggles; plot its position vs time and pure tones are EXACTLY sine waves — 440 wiggles per second is concert A. Every song is a sum of sines (that's what MP3 compression exploits), every radio wave a sine at millions of cycles per second. The circle you unrolled this lesson is the alphabet of all signals."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Sine = the circling point's height, unrolled onto a timeline.",
+              "Period $2\\pi$, amplitude 1; anchors at $0, \\tfrac{\\pi}{2}, \\pi, \\tfrac{3\\pi}{2}, 2\\pi$.",
+              "Cosine = same wave starting at its peak (slid left $\\tfrac{\\pi}{2}$)."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "transforming-waves",
+      "title": "Transforming Waves",
+      "concreteComparison": "The functions unit gave you the master form $a \\cdot f(x-h) + k$; waves cash it in. $y = a\\sin(b\\theta) + k$: the $a$ sets how TALL the wave swings (amplitude), the $b$ sets how FAST it repeats (period $= \\tfrac{2\\pi}{b}$), the $k$ sets the midline it swings around. Three dials, every wave in the world.",
+      "objective": "Read amplitude |a|, period 2π/b, and midline k from $y = a\\sin(b\\theta) + k$, and evaluate such functions exactly.",
+      "concept": [
+        "**Amplitude** $|a|$: half the swing. $y = 3\\sin\\theta$ swings $\\pm3$ — the transformations unit's vertical stretch, applied to a wave.",
+        "**Period** $\\tfrac{2\\pi}{b}$: $y = \\sin(2\\theta)$ finishes a cycle when $2\\theta = 2\\pi$, i.e. every $\\pi$ — twice as fast. Bigger $b$, faster repeat, shorter period.",
+        "**Midline** $y = k$: the vertical shift. $y = \\sin\\theta + 5$ swings between 4 and 6, around the line $y = 5$.",
+        "All together: $y = 3\\sin(2\\theta) + 5$ — amplitude 3, period $\\pi$, midline 5, range $[2, 8]$. Max $= k + |a|$, min $= k - |a|$."
+      ],
+      "keyIdea": "y = a·sin(bθ) + k: amplitude |a|, period 2π/b, midline k; range [k−|a|, k+|a|].",
+      "facts": [
+        {
+          "title": "Three dials",
+          "latex": "|a| \\text{ tall} \\quad \\tfrac{2\\pi}{b} \\text{ fast} \\quad k \\text{ midline}",
+          "explanation": "The master form, on waves."
+        },
+        {
+          "title": "The range",
+          "latex": "[k - |a|, \\ k + |a|]",
+          "explanation": "Midline ± amplitude."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "tr5-we1",
+          "statement": "Amplitude, period, midline of $y = 3\\sin(2\\theta) + 5$?",
+          "solution": "Amplitude 3; period $\\tfrac{2\\pi}{2} = \\pi$; midline $y = 5$; range $[2, 8]$.",
+          "check": [
+            "2*pi/2 == pi",
+            "5 + 3 == 8",
+            "5 - 3 == 2"
+          ]
+        },
+        {
+          "id": "tr5-we2",
+          "statement": "Evaluate $y = 3\\sin(2\\theta) + 5$ at $\\theta = \\tfrac{\\pi}{4}$.",
+          "solution": "$3\\sin\\tfrac{\\pi}{2} + 5 = 3(1) + 5 = 8$ — the maximum, on schedule.",
+          "check": [
+            "3*sin(2*(pi/4)) + 5 == 8"
+          ]
+        },
+        {
+          "id": "tr5-we3",
+          "statement": "A wave has max 10 and min 2. Find its amplitude and midline.",
+          "solution": "Midline: average $= 6$; amplitude: half the swing $= 4$.",
+          "check": [
+            "Rational(10+2,2) == 6",
+            "Rational(10-2,2) == 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading b itself as the period.",
+          "correction": "$b$ counts cycles per $2\\pi$ — the period is $\\tfrac{2\\pi}{b}$. $y = \\sin(2\\theta)$ has period $\\pi$ (fast), not 2.",
+          "authored": true
+        },
+        {
+          "text": "Taking max − min as the amplitude.",
+          "correction": "Max − min is the FULL swing; amplitude is HALF of it. Max 10, min 2 → amplitude 4, not 8.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "tr5-t1",
+          "statement": "Amplitude and period of $y = 5\\cos(3\\theta)$?",
+          "solution": "Amplitude 5, period $\\tfrac{2\\pi}{3}$.",
+          "check": [
+            "2*pi/3 == 2*pi/3",
+            "5*cos(0) == 5"
+          ]
+        },
+        {
+          "id": "tr5-t2",
+          "statement": "Range of $y = 2\\sin\\theta - 3$?",
+          "solution": "$[-5, -1]$ — midline $-3$, swing $\\pm2$.",
+          "check": [
+            "-3 + 2 == -1",
+            "-3 - 2 == -5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The master form returns",
+            "title": "Three dials on a wave",
+            "beats": [
+              "$y = a\\sin(b\\theta) + k$.",
+              "$a$: how TALL (amplitude — the stretch dial).",
+              "$b$: how FAST (period $\\tfrac{2\\pi}{b}$ — a horizontal squeeze).",
+              "$k$: the MIDLINE (the lift dial). Old friends, new job."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Dial reading",
+            "prompt": "$y = 4\\sin\\theta + 1$ swings between…",
+            "options": [
+              "$-3$ and $5$",
+              "$-4$ and $4$",
+              "$1$ and $5$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Midline 1, amplitude 4: $1 \\pm 4$.",
+            "check": [
+              "1 + 4 == 5",
+              "1 - 4 == -3"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The speed dial",
+            "title": "Why period = 2π/b",
+            "beats": [
+              "$y = \\sin(2\\theta)$: the INPUT runs twice as fast.",
+              "A full cycle needs $2\\theta = 2\\pi$ → $\\theta = \\pi$.",
+              "Period: $\\tfrac{2\\pi}{b}$. Bigger $b$ = faster repeat.",
+              "$\\sin(\\tfrac{\\theta}{2})$: period $4\\pi$ — a lazy wave."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Speed drill",
+            "title": "Count the cycles",
+            "prompt": "$y = \\sin(4\\theta)$ completes how many cycles over $[0, 2\\pi]$?",
+            "options": [
+              "$4$",
+              "$\\tfrac14$",
+              "$8$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Period $\\tfrac{2\\pi}{4} = \\tfrac{\\pi}{2}$: four full waves fit in one old one.",
+            "check": [
+              "2*pi/(pi/2) == 4"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "From graph to formula",
+            "title": "Reverse engineering",
+            "beats": [
+              "Given: max 10, min 2, period $\\pi$.",
+              "Midline: $\\tfrac{10+2}{2} = 6$. Amplitude: $\\tfrac{10-2}{2} = 4$.",
+              "Period $\\pi$ → $b = 2$.",
+              "$y = 4\\sin(2\\theta) + 6$. Three dials, read backwards."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Dial work",
+            "intro": "Amplitude, period, midline — forwards and back.",
+            "examples": [
+              {
+                "prompt": "Full vitals of $y = 2\\cos(3\\theta) - 1$, and its value at $\\theta = 0$.",
+                "steps": [
+                  "Amplitude 2, period $\\tfrac{2\\pi}{3}$, midline $-1$, range $[-3, 1]$.",
+                  "At 0: $2(1) - 1 = 1$ — a peak (cosine starts high)."
+                ],
+                "answer": "amp 2, per $\\tfrac{2\\pi}{3}$, mid $-1$; $y(0) = 1$",
+                "check": [
+                  "2*cos(0) - 1 == 1",
+                  "-1 + 2 == 1",
+                  "-1 - 2 == -3"
+                ]
+              },
+              {
+                "prompt": "Evaluate $y = 6\\sin(2\\theta) - 2$ at $\\theta = \\tfrac{\\pi}{12}$ (exactly).",
+                "steps": [
+                  "$2\\theta = \\tfrac{\\pi}{6}$: $\\sin = \\tfrac12$.",
+                  "$6 \\cdot \\tfrac12 - 2 = 1$."
+                ],
+                "answer": "$1$",
+                "check": [
+                  "6*sin(2*(pi/12)) - 2 == 1"
+                ]
+              },
+              {
+                "prompt": "Write a sine function with amplitude 3, period $\\tfrac{2\\pi}{5}$, midline 7.",
+                "steps": [
+                  "$b = 5$ (period $\\tfrac{2\\pi}{5}$).",
+                  "$y = 3\\sin(5\\theta) + 7$.",
+                  "Check range: $[4, 10]$ ✓."
+                ],
+                "answer": "$y = 3\\sin(5\\theta) + 7$",
+                "check": [
+                  "2*pi/5 == 2*pi/5",
+                  "7 + 3 == 10",
+                  "7 - 3 == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Wave dials",
+            "intro": "Half the swing; 2π over b; midline is home.",
+            "problems": [
+              {
+                "prompt": "Amplitude of $y = -4\\sin\\theta$?",
+                "options": [
+                  "$4$",
+                  "$-4$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Amplitude is $|a|$ — the flip changes direction, not tallness.",
+                "check": [
+                  "Abs(-4) == 4"
+                ]
+              },
+              {
+                "prompt": "Period of $y = \\cos(\\tfrac{\\theta}{3})$?",
+                "options": [
+                  "$6\\pi$",
+                  "$\\tfrac{2\\pi}{3}$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{2\\pi}{1/3} = 6\\pi$ — fractional $b$ makes SLOW waves.",
+                "check": [
+                  "2*pi/Rational(1,3) == 6*pi"
+                ]
+              },
+              {
+                "prompt": "A wave swings between 20 and 30. Its equation could be…",
+                "options": [
+                  "$y = 5\\sin\\theta + 25$",
+                  "$y = 10\\sin\\theta + 25$",
+                  "$y = 5\\sin\\theta + 20$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Midline $\\tfrac{20+30}{2} = 25$, amplitude $\\tfrac{30-20}{2} = 5$.",
+                "check": [
+                  "25 + 5 == 30",
+                  "25 - 5 == 20"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The equalizer is a b-dial",
+            "body": "A music equalizer splits sound into sine components by their b values — bass sliders boost small-b (long-period) waves, treble boosts large-b ones. Audio engineers literally mix by amplitude ($a$) per frequency band ($b$). Your three dials are a recording studio's control surface."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$|a|$: amplitude. $\\tfrac{2\\pi}{b}$: period. $k$: midline.",
+              "Range = midline ± amplitude.",
+              "Reverse-read: midline from the average, amplitude from half the swing."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "periodic-models",
+      "title": "Periodic Models",
+      "concreteComparison": "A Ferris wheel with center 10 m up and radius 8 m turns once per minute. Your height? $h = 10 + 8\\sin(\\ldots)$ — the midline is the AXLE, the amplitude is the RADIUS, the period is one revolution. Anything that circles or cycles — tides, daylight hours, heartbeats — fits the same three-dial template. This lesson is the unit, applied.",
+      "objective": "Build and use sinusoidal models: match midline to center, amplitude to radius/half-swing, period to the cycle time.",
+      "concept": [
+        "The template: $\\text{quantity} = \\text{midline} + \\text{amplitude} \\cdot \\sin(b \\cdot t)$, with $b = \\tfrac{2\\pi}{\\text{period}}$.",
+        "Ferris wheel (center 10, radius 8, period 60 s): $h = 10 + 8\\sin(\\tfrac{2\\pi}{60}t)$ — max height $18$ (top), min $2$ (bottom), starting mid-height rising.",
+        "Reading a model: tide $d = 5 + 2\\sin(\\tfrac{\\pi}{6}t)$ — average depth 5 m, tide swing $\\pm 2$ m, period $\\tfrac{2\\pi}{\\pi/6} = 12$ hours.",
+        "Evaluate at special times exactly: the wheel at $t = 15$ s: $\\tfrac{2\\pi}{60} \\cdot 15 = \\tfrac{\\pi}{2}$, $\\sin = 1$: height $18$ — the top, a quarter-turn in."
+      ],
+      "keyIdea": "Midline = center; amplitude = radius (half the swing); b = 2π/period. Cycles of any kind, one template.",
+      "facts": [
+        {
+          "title": "The template",
+          "latex": "\\text{mid} + \\text{amp} \\cdot \\sin\\!\\left(\\tfrac{2\\pi}{\\text{period}}\\,t\\right)",
+          "explanation": "Three measurements, one model."
+        },
+        {
+          "title": "The dictionary",
+          "latex": "\\text{axle} \\to k \\quad \\text{radius} \\to a \\quad \\text{rev time} \\to \\text{period}",
+          "explanation": "Physical parts name the dials."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "tr6-we1",
+          "statement": "Ferris wheel: center 10 m, radius 8 m, period 60 s. Write $h(t)$ and find the max/min heights.",
+          "solution": "$h = 10 + 8\\sin(\\tfrac{2\\pi}{60}t)$; max $18$ m, min $2$ m.",
+          "check": [
+            "10 + 8 == 18",
+            "10 - 8 == 2",
+            "2*pi/(2*pi/60) == 60"
+          ]
+        },
+        {
+          "id": "tr6-we2",
+          "statement": "Evaluate that wheel at $t = 15$ s.",
+          "solution": "$\\tfrac{2\\pi}{60} \\cdot 15 = \\tfrac{\\pi}{2}$: $h = 10 + 8(1) = 18$ — the very top.",
+          "check": [
+            "10 + 8*sin(pi/2) == 18"
+          ]
+        },
+        {
+          "id": "tr6-we3",
+          "statement": "Tide: $d = 5 + 2\\sin(\\tfrac{\\pi}{6}t)$ ($t$ in hours). Average depth, swing, and period?",
+          "solution": "Average 5 m; swing $\\pm2$ m (3 to 7); period $\\tfrac{2\\pi}{\\pi/6} = 12$ h.",
+          "check": [
+            "2*pi/(pi/6) == 12",
+            "5 + 2 == 7",
+            "5 - 2 == 3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Setting b equal to the period.",
+          "correction": "$b$ is $\\tfrac{2\\pi}{\\text{period}}$ — a 60-second wheel gets $b = \\tfrac{2\\pi}{60}$, not 60. Fast cycles have BIG b, long periods have small b.",
+          "authored": true
+        },
+        {
+          "text": "Using the wheel's TOP height as the midline.",
+          "correction": "The midline is the CENTER (axle) height — the average of top and bottom. Top = midline + radius; putting the top at $k$ shifts the whole ride 8 m skyward.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "tr6-t1",
+          "statement": "A wheel: center 12 m, radius 9 m. Max and min heights?",
+          "solution": "$21$ m and $3$ m.",
+          "check": [
+            "12 + 9 == 21",
+            "12 - 9 == 3"
+          ]
+        },
+        {
+          "id": "tr6-t2",
+          "statement": "Model $T = 20 + 6\\sin(\\tfrac{\\pi}{12}t)$ (hours): period and temperature range?",
+          "solution": "Period 24 h; range $14°$ to $26°$.",
+          "check": [
+            "2*pi/(pi/12) == 24",
+            "20 + 6 == 26",
+            "20 - 6 == 14"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The wheel writes the formula",
+            "title": "Physical parts, wave dials",
+            "beats": [
+              "Axle height 10 m → midline $k = 10$.",
+              "Radius 8 m → amplitude $a = 8$.",
+              "One turn per 60 s → $b = \\tfrac{2\\pi}{60}$.",
+              "$h = 10 + 8\\sin(\\tfrac{2\\pi}{60}t)$. The ride, equationized."
+            ]
+          },
+          {
+            "kind": "unitCircle",
+            "eyebrow": "The engine underneath",
+            "title": "Circle → wave → model",
+            "teach": "This is why the template works: the seat IS a point on a circle, and its height IS the sine wave — midline where the axle sits, amplitude the radius, period one revolution. Every periodic model in this lesson is this animation with different labels.",
+            "config": {
+              "mode": "wave"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Build one",
+            "prompt": "Wheel: center 15 m, radius 10 m, period 90 s. The model is…",
+            "options": [
+              "$h = 15 + 10\\sin(\\tfrac{2\\pi}{90}t)$",
+              "$h = 10 + 15\\sin(\\tfrac{2\\pi}{90}t)$",
+              "$h = 15 + 10\\sin(90t)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Axle → midline 15; radius → amplitude 10; $b = \\tfrac{2\\pi}{90}$.",
+            "check": [
+              "15 + 10 == 25",
+              "2*pi/(2*pi/90) == 90"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reading models backwards",
+            "title": "The tide chart",
+            "beats": [
+              "$d = 5 + 2\\sin(\\tfrac{\\pi}{6}t)$.",
+              "Average depth: 5 m. High tide: 7 m. Low: 3 m.",
+              "Period: $\\tfrac{2\\pi}{\\pi/6} = 12$ hours — twice-daily tides ✓.",
+              "A harbor master reads these dials for a living."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Exact evaluation",
+            "title": "Catch the peak",
+            "prompt": "The wheel $h = 10 + 8\\sin(\\tfrac{2\\pi}{60}t)$ at $t = 45$ s is at height…",
+            "options": [
+              "$2$ m — the bottom",
+              "$18$ m — the top",
+              "$10$ m — mid-height"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tfrac{2\\pi}{60} \\cdot 45 = \\tfrac{3\\pi}{2}$: $\\sin = -1$, $h = 10 - 8 = 2$. Three-quarters round = the bottom.",
+            "check": [
+              "10 + 8*sin(3*pi/2) == 2"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Models in the wild",
+            "intro": "Dictionary in, evaluation out.",
+            "examples": [
+              {
+                "prompt": "Daylight in a northern city: $L = 12 + 5\\sin(\\tfrac{2\\pi}{365}t)$ hours ($t$ = days). Longest and shortest days, and the period?",
+                "steps": [
+                  "Longest: $12 + 5 = 17$ h; shortest: $7$ h.",
+                  "Period: 365 days — one year ✓."
+                ],
+                "answer": "17 h, 7 h, 365 d",
+                "check": [
+                  "12 + 5 == 17",
+                  "12 - 5 == 7",
+                  "2*pi/(2*pi/365) == 365"
+                ]
+              },
+              {
+                "prompt": "A piston's height: $y = 30 + 20\\sin(4\\pi t)$ cm ($t$ in seconds). Period and cycles per second?",
+                "steps": [
+                  "Period $= \\tfrac{2\\pi}{4\\pi} = \\tfrac12$ s.",
+                  "Two full cycles every second."
+                ],
+                "answer": "$\\tfrac12$ s, 2 per second",
+                "check": [
+                  "2*pi/(4*pi) == Rational(1,2)",
+                  "Rational(1, Rational(1,2)) == 2"
+                ]
+              },
+              {
+                "prompt": "The wheel $h = 10 + 8\\sin(\\tfrac{2\\pi}{60}t)$: height at $t = 5$ s (exactly)?",
+                "steps": [
+                  "Angle: $\\tfrac{2\\pi}{60} \\cdot 5 = \\tfrac{\\pi}{6}$.",
+                  "$h = 10 + 8 \\cdot \\tfrac12 = 14$ m."
+                ],
+                "answer": "$14$ m",
+                "check": [
+                  "10 + 8*sin(pi/6) == 14"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Template mastery",
+            "intro": "Center, radius, revolution — then evaluate.",
+            "problems": [
+              {
+                "prompt": "A buoy bobs between 1 m and 3 m above the seabed... its midline and amplitude are…",
+                "options": [
+                  "midline 2, amplitude 1",
+                  "midline 1, amplitude 3",
+                  "midline 3, amplitude 2"
+                ],
+                "correctIndex": 0,
+                "explanation": "Average $\\tfrac{1+3}{2} = 2$; half-swing 1.",
+                "check": [
+                  "Rational(1+3,2) == 2",
+                  "Rational(3-1,2) == 1"
+                ]
+              },
+              {
+                "prompt": "A wheel turns once per 30 s. Its $b$ is…",
+                "options": [
+                  "$\\tfrac{2\\pi}{30}$",
+                  "$30$",
+                  "$\\tfrac{30}{2\\pi}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$b = \\tfrac{2\\pi}{\\text{period}}$ — always the flip.",
+                "check": [
+                  "2*pi/(2*pi/30) == 30"
+                ]
+              },
+              {
+                "prompt": "$h = 10 + 8\\sin(\\tfrac{2\\pi}{60}t)$ at $t = 30$ s: the seat is…",
+                "options": [
+                  "back at mid-height (10 m), descending",
+                  "at the top",
+                  "at the bottom"
+                ],
+                "correctIndex": 0,
+                "explanation": "Half a turn: $\\sin\\pi = 0$, height 10 m — halfway, now on the way down.",
+                "check": [
+                  "10 + 8*sin(pi) == 10"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The tides that run on this template",
+            "body": "Tide-prediction machines — brass gearboxes of cranks and pulleys built in the 1870s — summed a dozen sine waves mechanically, one per lunar/solar cycle, and printed a year of tides for any harbor. Lord Kelvin's design guided the D-Day landings. Every crank was one $a\\sin(bt + \\text{phase})$: this lesson, cast in brass."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Template: mid + amp·sin($\\tfrac{2\\pi}{\\text{period}} t$).",
+              "Dictionary: axle → midline, radius → amplitude, revolution → period.",
+              "Evaluate at special times exactly via the unit circle."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "tr-pr1",
+      "statement": "Convert $60°$ and $135°$ to radians.",
+      "solution": "$\\tfrac{\\pi}{3}$ and $\\tfrac{3\\pi}{4}$.",
+      "check": [
+        "Rational(60,180)*pi == pi/3",
+        "Rational(135,180)*pi == 3*pi/4"
+      ]
+    },
+    {
+      "id": "tr-pr2",
+      "statement": "Convert $\\tfrac{5\\pi}{6}$ and $\\tfrac{7\\pi}{4}$ to degrees.",
+      "solution": "$150°$ and $315°$.",
+      "check": [
+        "(5*pi/6)*Rational(180,1)/pi == 150",
+        "(7*pi/4)*Rational(180,1)/pi == 315"
+      ]
+    },
+    {
+      "id": "tr-pr3",
+      "statement": "Arc length: radius 4, angle $\\tfrac{3\\pi}{4}$?",
+      "solution": "$s = 3\\pi$.",
+      "check": [
+        "4*(3*pi/4) == 3*pi"
+      ]
+    },
+    {
+      "id": "tr-pr4",
+      "statement": "$\\cos 90°$, $\\sin 270°$, $\\cos 360°$?",
+      "solution": "$0$, $-1$, $1$.",
+      "check": [
+        "cos(pi/2) == 0",
+        "sin(3*pi/2) == -1",
+        "cos(2*pi) == 1"
+      ]
+    },
+    {
+      "id": "tr-pr5",
+      "statement": "Exact: $\\sin 45°$ and $\\cos 60°$.",
+      "solution": "$\\tfrac{\\sqrt2}{2}$ and $\\tfrac12$.",
+      "check": [
+        "sin(pi/4) == sqrt(2)/2",
+        "cos(pi/3) == Rational(1,2)"
+      ]
+    },
+    {
+      "id": "tr-pr6",
+      "statement": "Exact: $\\sin 240°$.",
+      "solution": "Ref $60°$, QIII: $-\\tfrac{\\sqrt3}{2}$.",
+      "check": [
+        "sin(4*pi/3) == -sqrt(3)/2"
+      ]
+    },
+    {
+      "id": "tr-pr7",
+      "statement": "Verify $\\cos^2 45° + \\sin^2 45° = 1$.",
+      "solution": "$\\tfrac12 + \\tfrac12 = 1$ ✓.",
+      "check": [
+        "cos(pi/4)**2 + sin(pi/4)**2 == 1"
+      ]
+    },
+    {
+      "id": "tr-pr8",
+      "statement": "Where does $\\cos\\theta$ trough on $[0, 2\\pi]$, and what's the value?",
+      "solution": "$-1$ at $\\theta = \\pi$.",
+      "check": [
+        "cos(pi) == -1"
+      ]
+    },
+    {
+      "id": "tr-pr9",
+      "statement": "Amplitude, period, midline of $y = 4\\sin(3\\theta) - 2$?",
+      "solution": "Amp 4, period $\\tfrac{2\\pi}{3}$, midline $-2$; range $[-6, 2]$.",
+      "check": [
+        "2*pi/3 == 2*pi/3",
+        "-2 + 4 == 2",
+        "-2 - 4 == -6"
+      ]
+    },
+    {
+      "id": "tr-pr10",
+      "statement": "Wheel: center 9 m, radius 7 m, period 40 s. Model and max height?",
+      "solution": "$h = 9 + 7\\sin(\\tfrac{2\\pi}{40}t)$; max 16 m.",
+      "check": [
+        "9 + 7 == 16",
+        "2*pi/(2*pi/40) == 40"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "tr-ty1",
+      "statement": "Convert $210°$ to radians and $\\tfrac{5\\pi}{4}$ to degrees.",
+      "solution": "$\\tfrac{7\\pi}{6}$ and $225°$.",
+      "check": [
+        "Rational(210,180)*pi == 7*pi/6",
+        "(5*pi/4)*Rational(180,1)/pi == 225"
+      ]
+    },
+    {
+      "id": "tr-ty2",
+      "statement": "A gear of radius 12 cm turns $\\tfrac{5\\pi}{6}$ rad. Rim distance?",
+      "solution": "$s = 10\\pi$ cm.",
+      "check": [
+        "12*(5*pi/6) == 10*pi"
+      ]
+    },
+    {
+      "id": "tr-ty3",
+      "statement": "Signs of cos and sin at $\\theta = 305°$?",
+      "solution": "QIV: cos $+$, sin $-$.",
+      "check": [
+        "cos(7*pi/4) > 0",
+        "sin(7*pi/4) < 0"
+      ]
+    },
+    {
+      "id": "tr-ty4",
+      "statement": "Exact: $\\cos 135°$ and $\\sin 330°$.",
+      "solution": "$-\\tfrac{\\sqrt2}{2}$ and $-\\tfrac12$.",
+      "check": [
+        "cos(3*pi/4) == -sqrt(2)/2",
+        "sin(11*pi/6) == -Rational(1,2)"
+      ]
+    },
+    {
+      "id": "tr-ty5",
+      "statement": "All $\\theta$ in $[0°, 360°)$ with $\\cos\\theta = -\\tfrac12$?",
+      "solution": "Ref $60°$, cosine negative → QII, QIII: $120°$ and $240°$.",
+      "check": [
+        "cos(2*pi/3) == -Rational(1,2)",
+        "cos(4*pi/3) == -Rational(1,2)"
+      ]
+    },
+    {
+      "id": "tr-ty6",
+      "statement": "Evaluate $y = 5\\sin(2\\theta) + 1$ at $\\theta = \\tfrac{\\pi}{4}$, and give the range.",
+      "solution": "$5(1) + 1 = 6$; range $[-4, 6]$.",
+      "check": [
+        "5*sin(2*(pi/4)) + 1 == 6",
+        "1 - 5 == -4"
+      ]
+    },
+    {
+      "id": "tr-ty7",
+      "statement": "Tide: $d = 6 + 3\\sin(\\tfrac{\\pi}{6}t)$ (hours). Depth at $t = 3$, and the low-tide depth?",
+      "solution": "$t=3$: $\\sin\\tfrac{\\pi}{2} = 1$: 9 m (high tide!); low tide 3 m.",
+      "check": [
+        "6 + 3*sin(pi/2) == 9",
+        "6 - 3 == 3"
+      ]
+    }
+  ]
+}
