@@ -77,6 +77,7 @@ import exponentialFunctions from "@/data/genmath/10/exponential-functions.json";
 import probabilityAndCounting from "@/data/genmath/10/probability-and-counting.json";
 // Grade 11 topic JSON imports (added as each topic is authored + published).
 import functionsAndTransformations from "@/data/genmath/11/functions-and-transformations.json";
+import polynomialFunctions from "@/data/genmath/11/polynomial-functions.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -218,7 +219,7 @@ export const GRADE11_SPINE: GradeSpineEntry[] = [
     slug: "polynomial-functions",
     title: "Polynomial Functions",
     blurb: "Cubics and beyond: end behavior, zeros and multiplicity, the remainder and factor theorems, and sketching from factors.",
-    live: false,
+    live: true,
   },
   {
     slug: "logarithms",
@@ -254,6 +255,7 @@ export const GRADE11_SPINE: GradeSpineEntry[] = [
 
 const grade11Topics: GenMathTopic[] = [
   functionsAndTransformations as GenMathTopic,
+  polynomialFunctions as GenMathTopic,
 ];
 
 const grade10Topics: GenMathTopic[] = [

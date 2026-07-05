@@ -82,6 +82,7 @@ import SystemGraph from "@/components/genmath/interactive/SystemGraph";
 import ScatterPlot from "@/components/genmath/interactive/ScatterPlot";
 import ParabolaGraph from "@/components/genmath/interactive/ParabolaGraph";
 import ExpGraph from "@/components/genmath/interactive/ExpGraph";
+import PolyGraph from "@/components/genmath/interactive/PolyGraph";
 import AreaShape from "@/components/genmath/interactive/AreaShape";
 import ApothemPolygon from "@/components/genmath/interactive/ApothemPolygon";
 import CompositeArea from "@/components/genmath/interactive/CompositeArea";
@@ -944,6 +945,16 @@ function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveSt
         <>
           <StepHeader eyebrow={step.eyebrow} title={step.title} />
           <ScatterPlot config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "polyGraph":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <PolyGraph config={step.config} />
           <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
             <MathText text={step.teach} />
           </p>

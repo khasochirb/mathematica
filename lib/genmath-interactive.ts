@@ -762,6 +762,17 @@ export interface ParabolaGraphConfig {
   max?: number;
 }
 
+// The polynomial workbench: endBehavior (y = ±xⁿ, degree stepper + sign flip,
+// arm arrows), zeros (a factored cubic with one movable zero), and
+// multiplicity (cross / bounce / flatten-through at a repeated zero).
+export interface PolyGraphConfig {
+  mode: "endBehavior" | "zeros" | "multiplicity";
+  n?: number; // endBehavior: starting degree
+  negative?: boolean; // endBehavior: leading sign
+  zeros?: [number, number, number]; // zeros: the cubic's roots (third is steppable)
+  m?: number; // multiplicity: starting multiplicity at x = 1
+}
+
 // The exponential workbench: growth (y = a·bˣ with steppers, ×b ratio chips),
 // race (exponential vs line, auto-swept with the overtake marked), and
 // compound (a balance compounding year by year as growing bars).
@@ -994,6 +1005,7 @@ export type InteractiveStep =
   | { kind: "systemGraph"; eyebrow?: string; title: string; teach: string; config: SystemGraphConfig }
   | { kind: "parabolaGraph"; eyebrow?: string; title: string; teach: string; config: ParabolaGraphConfig }
   | { kind: "expGraph"; eyebrow?: string; title: string; teach: string; config: ExpGraphConfig }
+  | { kind: "polyGraph"; eyebrow?: string; title: string; teach: string; config: PolyGraphConfig }
   | { kind: "scatterPlot"; eyebrow?: string; title: string; teach: string; config: ScatterPlotConfig }
   | { kind: "areaShape"; eyebrow?: string; title: string; teach: string; config: AreaShapeConfig }
   | { kind: "apothemPolygon"; eyebrow?: string; title: string; teach: string; config: ApothemPolygonConfig }

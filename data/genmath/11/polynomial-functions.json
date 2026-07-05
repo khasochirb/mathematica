@@ -1,0 +1,1708 @@
+{
+  "slug": "polynomial-functions",
+  "title": "Polynomial Functions",
+  "grade": 11,
+  "blurb": "Cubics and beyond: end behavior, zeros and multiplicity, the remainder and factor theorems, and sketching from factors.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "meet-polynomial-functions",
+      "title": "Meet Polynomial Functions",
+      "concreteComparison": "A rollercoaster with one dip is a parabola's world. Two dips and a hill? No quadratic can draw that — but $y = x^3 - 4x$ can. **Polynomial functions** are the rollercoaster family: every extra degree buys the curve one more possible turn, and this unit teaches you to read the whole track from the equation.",
+      "objective": "Identify a polynomial function's degree and leading coefficient, evaluate it, and count its possible turning points.",
+      "concept": [
+        "A **polynomial function** is $f(x) = a_nx^n + \\cdots + a_1x + a_0$. The **degree** $n$ is the highest power; the **leading coefficient** $a_n$ rides the highest term. $f(x) = 2x^3 - 5x + 1$: degree 3, leading coefficient 2.",
+        "Degree names carry over: 1 linear, 2 quadratic, 3 **cubic**, 4 **quartic**, 5 **quintic**. Evaluating is Grade-10 substitution, just longer: $f(2) = 16 - 10 + 1 = 7$.",
+        "Degree buys turns: a degree-$n$ curve has at most $n - 1$ **turning points**. Lines never turn, parabolas turn once, cubics up to twice — that's the two-dips-and-a-hill budget.",
+        "Polynomial graphs are smooth and unbroken — no jumps (like rational functions at excluded values), no corners (like $|x|$). Any polynomial, any input: one clean curve."
+      ],
+      "keyIdea": "Degree = highest power; it caps the turning points at n − 1. Smooth, unbroken curves — no jumps, no corners.",
+      "facts": [
+        {
+          "title": "The names",
+          "latex": "3 \\text{ cubic} \\cdot 4 \\text{ quartic} \\cdot 5 \\text{ quintic}",
+          "explanation": "Degree names the family member."
+        },
+        {
+          "title": "Turn budget",
+          "latex": "\\text{degree } n \\Rightarrow \\text{at most } n-1 \\text{ turns}",
+          "explanation": "Each degree buys one more possible turn."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pf1-we1",
+          "statement": "Degree, leading coefficient, and $f(2)$ for $f(x) = 2x^3 - 5x + 1$?",
+          "solution": "Degree 3, leading coefficient 2; $f(2) = 16 - 10 + 1 = 7$.",
+          "check": [
+            "2*2**3 - 5*2 + 1 == 7"
+          ]
+        },
+        {
+          "id": "pf1-we2",
+          "statement": "Evaluate $f(x) = x^4 - 3x^2 + 2$ at $x = -2$ and $x = 1$.",
+          "solution": "$f(-2) = 16 - 12 + 2 = 6$; $f(1) = 0$ — so $x=1$ is a zero!",
+          "check": [
+            "(-2)**4 - 3*(-2)**2 + 2 == 6",
+            "1**4 - 3*1**2 + 2 == 0"
+          ]
+        },
+        {
+          "id": "pf1-we3",
+          "statement": "How many turning points can a quartic (degree 4) have at most? A cubic?",
+          "solution": "Quartic: up to 3; cubic: up to 2. (Budget: $n-1$.)",
+          "check": [
+            "4 - 1 == 3",
+            "3 - 1 == 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading the degree off the FIRST term as written.",
+          "correction": "$f(x) = 5x - 2x^4 + 1$ has degree 4 — highest power anywhere. Reorder to standard form first, same as Grade 10.",
+          "authored": true
+        },
+        {
+          "text": "Thinking degree n means EXACTLY n − 1 turns.",
+          "correction": "$n-1$ is the BUDGET, not the bill: $y = x^3$ has degree 3 and zero turns. The cap is at most, never exactly.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pf1-t1",
+          "statement": "Evaluate $f(x) = x^3 - 4x$ at $x = 3$.",
+          "solution": "$27 - 12 = 15$.",
+          "check": [
+            "3**3 - 4*3 == 15"
+          ]
+        },
+        {
+          "id": "pf1-t2",
+          "statement": "Degree and leading coefficient of $f(x) = 7 - x^5 + 3x^2$?",
+          "solution": "Degree 5, leading coefficient $-1$.",
+          "check": [
+            "-(2**5) + 3*2**2 + 7 == -13"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Beyond the parabola",
+            "title": "The rollercoaster family",
+            "beats": [
+              "Lines: no turns. Parabolas: one turn. Then what?",
+              "$y = x^3 - 4x$: down, up, down — TWO turns.",
+              "Every extra degree buys one more possible turn.",
+              "Polynomials: the family that draws rollercoasters."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The vitals",
+            "title": "Degree and leading coefficient",
+            "beats": [
+              "$f(x) = 2x^3 - 5x + 1$.",
+              "Degree: highest power → 3 (a **cubic**).",
+              "Leading coefficient: rides the top term → 2.",
+              "These two numbers will run this whole unit."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the vitals",
+            "prompt": "For $f(x) = 4x - x^6 + 2$, the degree and leading coefficient are…",
+            "options": [
+              "degree 6, leading $-1$",
+              "degree 1, leading 4",
+              "degree 6, leading 4"
+            ],
+            "correctIndex": 0,
+            "explanation": "Highest power anywhere: $-x^6$ → degree 6, leading coefficient $-1$.",
+            "check": [
+              "4*1 - 1**6 + 2 == 5"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Turn budget",
+            "title": "Count the possible turns",
+            "prompt": "A degree-5 polynomial can have at most how many turning points?",
+            "options": [
+              "$4$",
+              "$5$",
+              "$6$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Budget is $n - 1 = 4$. (It may spend fewer — $x^5$ turns zero times.)",
+            "check": [
+              "5 - 1 == 4"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Vitals and values",
+            "intro": "Standard form first; substitute with care.",
+            "examples": [
+              {
+                "prompt": "Evaluate $f(x) = x^3 - 2x^2 - 5x + 6$ at $x = 1$, $x = 3$, $x = 0$.",
+                "steps": [
+                  "$f(1) = 1 - 2 - 5 + 6 = 0$ — a zero!",
+                  "$f(3) = 27 - 18 - 15 + 6 = 0$ — another!",
+                  "$f(0) = 6$ — the y-intercept."
+                ],
+                "answer": "$0$, $0$, $6$",
+                "check": [
+                  "1**3 - 2*1**2 - 5*1 + 6 == 0",
+                  "3**3 - 2*3**2 - 5*3 + 6 == 0",
+                  "0**3 - 2*0**2 - 5*0 + 6 == 6"
+                ]
+              },
+              {
+                "prompt": "A curve rises, falls, rises, falls. What's the SMALLEST degree it could have?",
+                "steps": [
+                  "Three turns counted.",
+                  "Need $n - 1 \\ge 3$: $n \\ge 4$.",
+                  "Smallest: degree 4 (a quartic)."
+                ],
+                "answer": "degree 4",
+                "check": [
+                  "4 - 1 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Family ID",
+            "intro": "Degree caps turns; the y-intercept is f(0).",
+            "problems": [
+              {
+                "prompt": "$f(x) = x^4 - 5x^2 + 4$ at $x = 2$ equals…",
+                "options": [
+                  "$0$",
+                  "$4$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$16 - 20 + 4 = 0$ — so $x=2$ is a zero of this quartic.",
+                "check": [
+                  "2**4 - 5*2**2 + 4 == 0"
+                ]
+              },
+              {
+                "prompt": "Which could NOT be the graph of a polynomial?",
+                "options": [
+                  "a curve with a jump (break) in it",
+                  "a curve with 3 turns",
+                  "a curve through the origin"
+                ],
+                "correctIndex": 0,
+                "explanation": "Polynomials are smooth and unbroken — jumps belong to rational functions at excluded values.",
+                "check": [
+                  "0**3 == 0"
+                ]
+              },
+              {
+                "prompt": "The y-intercept of $f(x) = x^3 - 4x + 9$ is…",
+                "options": [
+                  "$(0, 9)$",
+                  "$(9, 0)$",
+                  "$(0, -4)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$f(0) = 9$ — the constant term, exactly like $c$ in Grade 10.",
+                "check": [
+                  "0**3 - 4*0 + 9 == 9"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why engineers love polynomials",
+            "body": "Your phone renders curved fonts, your car's suspension is tuned, and Netflix compresses video — all with polynomials, because they're the only curves computers evaluate with just + and ×. Every other function (sines, logs, roots) gets APPROXIMATED by a polynomial before silicon touches it. This unit's family is computing's native tongue."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Degree = highest power; leading coefficient rides it.",
+              "Turn budget: at most $n - 1$ turning points.",
+              "Smooth, unbroken curves; $f(0)$ = the constant = y-intercept."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "end-behavior",
+      "title": "End Behavior",
+      "concreteComparison": "Zoom a graph out far enough and every polynomial simplifies to its loudest voice: the leading term. $y = x^3 - 100x^2 + 5$ looks wild up close, but from a distance it's just $y = x^3$ — down-left, up-right. **End behavior** is reading the arms from two facts: is the degree even or odd, and is the leading coefficient positive or negative?",
+      "objective": "Predict a polynomial's end behavior (both arms) from the degree's parity and the leading coefficient's sign.",
+      "concept": [
+        "Far from the origin the leading term drowns out everything: at $x = 100$, $x^3$ is a million times $x$. So the ARMS of any polynomial match the arms of $\\pm x^n$.",
+        "**Even degree**: both arms point the SAME way. Positive leading: both up ($\\uparrow\\ \\uparrow$, like $x^2$). Negative: both down.",
+        "**Odd degree**: the arms point OPPOSITE ways. Positive leading: down-left, up-right ($\\downarrow\\ \\uparrow$, like $x^3$). Negative: up-left, down-right.",
+        "Two questions decide all four cases: even or odd degree? positive or negative leading coefficient? $y = -2x^5 + 40x$: odd + negative → up-left, down-right — no other information needed."
+      ],
+      "keyIdea": "Zoomed out, only the leading term speaks: even degree → arms together; odd → arms opposite; negative flips both.",
+      "facts": [
+        {
+          "title": "The four cases",
+          "latex": "\\text{even/odd} \\times \\text{positive/negative}",
+          "explanation": "Two questions, four arm patterns."
+        },
+        {
+          "title": "Why it works",
+          "latex": "x^3 \\gg x^2 \\gg x \\text{ for large } x",
+          "explanation": "The leading term outshouts the rest."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pf2-we1",
+          "statement": "End behavior of $y = x^3 - 100x^2 + 5$?",
+          "solution": "Odd degree, positive leading: down-left, up-right. (At $x = 200$: $x^3$ term is $8{,}000{,}000$ vs $-4{,}000{,}000$ — the cube already wins.)",
+          "check": [
+            "200**3 - 100*200**2 + 5 > 0",
+            "(-200)**3 - 100*(-200)**2 + 5 < 0"
+          ]
+        },
+        {
+          "id": "pf2-we2",
+          "statement": "End behavior of $y = -3x^4 + x^3 - 7$?",
+          "solution": "Even degree, negative leading: BOTH arms down. Check: $f(10) = -30000 + 1000 - 7 < 0$ and $f(-10) < 0$.",
+          "check": [
+            "-3*10**4 + 10**3 - 7 < 0",
+            "-3*(-10)**4 + (-10)**3 - 7 < 0"
+          ]
+        },
+        {
+          "id": "pf2-we3",
+          "statement": "A graph's arms both point UP. What do you know about its equation?",
+          "solution": "Even degree, positive leading coefficient — like $x^2$ or $3x^6$. Check $x^2$: $f(\\pm 5) = 25 > 0$ both sides.",
+          "check": [
+            "5**2 > 0",
+            "(-5)**2 > 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Letting a big middle term change the verdict.",
+          "correction": "$y = x^3 - 100x^2$: the $-100x^2$ bends the middle, but at large $|x|$ the cube rules. Arms come from the LEADING term only.",
+          "authored": true
+        },
+        {
+          "text": "Flipping the odd-positive pattern.",
+          "correction": "Positive odd (like $x^3$) runs down-left, UP-right — it climbs as you read rightward. Up-left belongs to NEGATIVE odd. Anchor to $y = x^3$ and $y = x^2$; derive the rest by flipping.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pf2-t1",
+          "statement": "End behavior of $y = 5x^6 - x$?",
+          "solution": "Even, positive: both arms up. ($f(\\pm 2) = 320 \\mp 2 > 0$.)",
+          "check": [
+            "5*2**6 - 2 > 0",
+            "5*(-2)**6 - (-2) > 0"
+          ]
+        },
+        {
+          "id": "pf2-t2",
+          "statement": "End behavior of $y = -x^3 + 4x$?",
+          "solution": "Odd, negative: up-left, down-right. ($f(-10) = 960 > 0$, $f(10) = -960 < 0$.)",
+          "check": [
+            "-(-10)**3 + 4*(-10) > 0",
+            "-(10)**3 + 4*10 < 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The loudest voice",
+            "title": "Zoom out",
+            "beats": [
+              "$y = x^3 - 100x^2 + 5$: chaos up close.",
+              "At $x = 1000$: the cube is a BILLION; the rest, pocket change.",
+              "Zoomed out, every polynomial IS its leading term.",
+              "So the arms obey $\\pm x^n$. Two facts decide everything."
+            ]
+          },
+          {
+            "kind": "polyGraph",
+            "eyebrow": "Play the four cases",
+            "title": "Degree and sign",
+            "teach": "Step the degree and flip the sign — the blue arrows call the arms. Even degrees point both arms the SAME way (together up, or together down); odd degrees split them. The negative flip turns the whole picture upside down. Four cases, two questions.",
+            "config": {
+              "mode": "endBehavior",
+              "n": 3,
+              "negative": false
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Call the arms",
+            "prompt": "$y = -x^4 + 99x^3$: the arms point…",
+            "options": [
+              "both down",
+              "both up",
+              "down-left, up-right"
+            ],
+            "correctIndex": 0,
+            "explanation": "Even degree (4), negative leading: both down. The $99x^3$ shouts loudly in the middle, but the quartic owns the ends.",
+            "check": [
+              "-(200)**4 + 99*200**3 < 0",
+              "-(-200)**4 + 99*(-200)**3 < 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Anchor and flip",
+            "title": "Never memorize four cases",
+            "beats": [
+              "Anchor 1: $y = x^2$ — even, both arms UP.",
+              "Anchor 2: $y = x^3$ — odd, down-left/up-right.",
+              "Negative? Flip the anchor upside down.",
+              "Two anchors + one flip = all four cases."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "From graph to equation",
+            "title": "Reverse reading",
+            "prompt": "A curve's arms run up-left and down-right. Its leading term could be…",
+            "options": [
+              "$-2x^5$",
+              "$2x^5$",
+              "$-2x^4$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Opposite arms → odd degree; up-LEFT → negative leading. $-2x^5$ ✓.",
+            "check": [
+              "-2*(-10)**5 > 0",
+              "-2*(10)**5 < 0"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Arm-calling",
+            "intro": "Parity + sign, nothing else.",
+            "examples": [
+              {
+                "prompt": "Call the arms: $y = 7x^8 - x^7 + 2x$.",
+                "steps": [
+                  "Degree 8: even → arms together.",
+                  "Leading 7 > 0 → both UP."
+                ],
+                "answer": "both up",
+                "check": [
+                  "7*3**8 - 3**7 + 2*3 > 0",
+                  "7*(-3)**8 - (-3)**7 + 2*(-3) > 0"
+                ]
+              },
+              {
+                "prompt": "Call the arms: $y = 4x - x^3$.",
+                "steps": [
+                  "Standard form: $-x^3 + 4x$: degree 3, leading $-1$.",
+                  "Odd + negative: up-left, down-right."
+                ],
+                "answer": "up-left, down-right",
+                "check": [
+                  "4*(-10) - (-10)**3 > 0",
+                  "4*10 - 10**3 < 0"
+                ]
+              },
+              {
+                "prompt": "A polynomial's arms BOTH point down and it has 3 turning points. Smallest possible degree?",
+                "steps": [
+                  "Both down → even degree, negative leading.",
+                  "3 turns needs $n - 1 \\ge 3$: $n \\ge 4$.",
+                  "Even and $\\ge 4$: degree 4."
+                ],
+                "answer": "4 (with negative leading)",
+                "check": [
+                  "4 - 1 == 3",
+                  "Mod(4, 2) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Four-case fluency",
+            "intro": "Even/odd, then the sign flip.",
+            "problems": [
+              {
+                "prompt": "$y = -6x^2 + x$: arms…",
+                "options": [
+                  "both down",
+                  "both up",
+                  "opposite"
+                ],
+                "correctIndex": 0,
+                "explanation": "Even (2), negative: an upside-down parabola — both arms down.",
+                "check": [
+                  "-6*10**2 + 10 < 0",
+                  "-6*(-10)**2 - 10 < 0"
+                ]
+              },
+              {
+                "prompt": "As $x \\to +\\infty$, $y = x^5 - 90x^4 \\to$ …",
+                "options": [
+                  "$+\\infty$",
+                  "$-\\infty$",
+                  "$0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Odd + positive: the right arm climbs. (At $x = 100$: $10^{10} - 9 \\times 10^9 > 0$ — the five wins already.)",
+                "check": [
+                  "100**5 - 90*100**4 > 0"
+                ]
+              },
+              {
+                "prompt": "Which equation could draw a curve whose arms BOTH rise?",
+                "options": [
+                  "$y = x^4 - 3x$",
+                  "$y = x^3 + 3x$",
+                  "$y = -x^6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both up needs even + positive: $x^4$ ✓. ($x^3$ splits; $-x^6$ points both down.)",
+                "check": [
+                  "10**4 - 3*10 > 0",
+                  "(-10)**4 - 3*(-10) > 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The million-dollar zoom-out",
+            "body": "Economists, epidemiologists, and climate modelers all exploit this lesson: whatever messy polynomial fits their data, LONG-RUN forecasts depend only on the leading term. Get the degree or its sign wrong and your 30-year projection points the wrong direction entirely — which is why 'what's the leading behavior?' is the first question in every modeling review."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Zoomed out, only the leading term matters.",
+              "Even degree: arms together. Odd: arms opposite.",
+              "Negative leading coefficient flips the whole picture."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "zeros-and-factors",
+      "title": "Zeros & Factors",
+      "concreteComparison": "Grade 10's zero-product property scaled up: $y = (x+2)(x-1)(x-3)$ crosses the x-axis exactly where a factor dies — at $-2$, $1$, and $3$. Factored form is a polynomial's landing log: every crossing listed by name. And it runs backwards: know the crossings, write the factors, rebuild the curve.",
+      "objective": "Read zeros from factored form, build factored equations from zeros, and use the degree-n-has-at-most-n-zeros rule.",
+      "concept": [
+        "A **zero** of $f$ is an input with $f(x) = 0$ — graphically, an x-intercept. For factored polynomials the zero-product property lists them: $(x+2)(x-1)(x-3) = 0$ at $x = -2, 1, 3$.",
+        "Backwards: zeros $-2, 1, 3$ → factors $(x+2)(x-1)(x-3)$ — each zero $r$ contributes the factor $(x - r)$, sneaky sign included.",
+        "Degree caps the count: a degree-$n$ polynomial has **at most $n$ zeros** (each crossing spends one factor). A cubic crosses at most 3 times.",
+        "The leading coefficient survives factoring: $y = 2(x+2)(x-1)(x-3)$ has the SAME zeros but doubles every height — same landings, steeper flight. Fix it with one extra point, usually the y-intercept."
+      ],
+      "keyIdea": "Zeros = x-intercepts = factors' deaths. Zero r ↔ factor (x − r); degree n allows at most n of them.",
+      "facts": [
+        {
+          "title": "The dictionary",
+          "latex": "\\text{zero } r \\iff \\text{factor } (x - r)",
+          "explanation": "Both directions, sneaky sign included."
+        },
+        {
+          "title": "The cap",
+          "latex": "\\deg n \\Rightarrow \\text{at most } n \\text{ zeros}",
+          "explanation": "Each crossing spends one factor."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pf3-we1",
+          "statement": "Zeros of $y = (x+2)(x-1)(x-3)$?",
+          "solution": "$x = -2, 1, 3$ — each factor's death. Check all three by substitution.",
+          "check": [
+            "(-2+2)*(-2-1)*(-2-3) == 0",
+            "(1+2)*(1-1)*(1-3) == 0",
+            "(3+2)*(3-1)*(3-3) == 0"
+          ]
+        },
+        {
+          "id": "pf3-we2",
+          "statement": "Write a cubic with zeros $-1, 2, 4$ passing through standard height (leading 1), and verify one zero.",
+          "solution": "$y = (x+1)(x-2)(x-4)$. Check $x=2$: $(3)(0)(-2) = 0$ ✓.",
+          "check": [
+            "(2+1)*(2-2)*(2-4) == 0",
+            "(-1+1)*(-1-2)*(-1-4) == 0"
+          ]
+        },
+        {
+          "id": "pf3-we3",
+          "statement": "Zeros of $y = x^3 - 4x$?",
+          "solution": "Factor: $x(x^2-4) = x(x+2)(x-2)$ → zeros $0, -2, 2$.",
+          "check": [
+            "0**3 - 4*0 == 0",
+            "2**3 - 4*2 == 0",
+            "(-2)**3 - 4*(-2) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading the zeros of $(x+2)(x-3)$ as $2$ and $-3$.",
+          "correction": "Each factor's ZERO: $x+2$ dies at $-2$; $x-3$ at $3$. The sneaky sign from vertex form and Grade 10 — it never went away.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the leading coefficient when building from zeros.",
+          "correction": "Zeros $1, 2$ fit $y = a(x-1)(x-2)$ for ANY $a$ — infinitely many curves share those landings. A required extra point (often the y-intercept) pins $a$ down.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pf3-t1",
+          "statement": "Zeros of $y = (x-5)(x+4)x$?",
+          "solution": "$5, -4, 0$ — don't miss the lone $x$'s zero!",
+          "check": [
+            "(5-5)*(5+4)*5 == 0",
+            "0*(0-5)*(0+4) == 0"
+          ]
+        },
+        {
+          "id": "pf3-t2",
+          "statement": "Build a quadratic with zeros $3$ and $-6$ (leading 1), and expand it.",
+          "solution": "$(x-3)(x+6) = x^2 + 3x - 18$. Check $x=3$: $9 + 9 - 18 = 0$ ✓.",
+          "check": [
+            "3**2 + 3*3 - 18 == 0",
+            "(-6)**2 + 3*(-6) - 18 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The landing log",
+            "title": "Factored form lists the crossings",
+            "beats": [
+              "$y = (x+2)(x-1)(x-3)$.",
+              "$y = 0$ exactly when a factor dies:",
+              "$x = -2$, $x = 1$, $x = 3$. Three landings, listed.",
+              "Zero-product property — now with three factors."
+            ]
+          },
+          {
+            "kind": "polyGraph",
+            "eyebrow": "Move a landing",
+            "title": "Zeros drive the curve",
+            "teach": "The cubic's three crossings wear beacons. Step the THIRD zero and watch: the factor $(x - c)$ rewrites, the crossing slides, and the whole curve reshapes to land there. Factored form isn't just notation — it's the curve's flight plan.",
+            "config": {
+              "mode": "zeros",
+              "zeros": [
+                -2,
+                1,
+                3
+              ]
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the log",
+            "prompt": "The zeros of $y = (x-4)(x+1)(x-2)$ are…",
+            "options": [
+              "$4, -1, 2$",
+              "$-4, 1, -2$",
+              "$4, 1, 2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Each factor's death: $x = 4$, $x = -1$, $x = 2$. Signs flip on exit.",
+            "check": [
+              "(4-4)*(4+1)*(4-2) == 0",
+              "(-1-4)*(-1+1)*(-1-2) == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Run it backwards",
+            "title": "From landings to equation",
+            "beats": [
+              "Told: a cubic lands at $-1$, $2$, $4$.",
+              "Each zero $r$ → factor $(x - r)$:",
+              "$y = a(x+1)(x-2)(x-4)$.",
+              "The $a$? One more point pins it — often $f(0)$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Pin the a",
+            "title": "Use the y-intercept",
+            "prompt": "A quadratic has zeros $1$ and $3$, and y-intercept $(0, 6)$. Then $a$ in $y = a(x-1)(x-3)$ is…",
+            "options": [
+              "$2$",
+              "$6$",
+              "$1$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$f(0) = a(-1)(-3) = 3a = 6 \\to a = 2$. Same landings, height calibrated.",
+            "check": [
+              "2*(0-1)*(0-3) == 6",
+              "2*(1-1)*(1-3) == 0"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Two-way dictionary",
+            "intro": "Factors → zeros; zeros → factors; a from a point.",
+            "examples": [
+              {
+                "prompt": "Find all zeros of $y = 2x^3 - 8x^2 + 6x$.",
+                "steps": [
+                  "Common factor: $2x(x^2 - 4x + 3)$.",
+                  "Factor: $2x(x-1)(x-3)$.",
+                  "Zeros: $0, 1, 3$."
+                ],
+                "answer": "$0, 1, 3$",
+                "check": [
+                  "2*0**3 - 8*0**2 + 6*0 == 0",
+                  "2*1**3 - 8*1**2 + 6*1 == 0",
+                  "2*3**3 - 8*3**2 + 6*3 == 0"
+                ]
+              },
+              {
+                "prompt": "Write the cubic with zeros $-3, 0, 2$ and leading coefficient $1$, expanded.",
+                "steps": [
+                  "$y = x(x+3)(x-2)$.",
+                  "$= x(x^2 + x - 6)$.",
+                  "$= x^3 + x^2 - 6x$."
+                ],
+                "answer": "$x^3 + x^2 - 6x$",
+                "check": [
+                  "(-3)**3 + (-3)**2 - 6*(-3) == 0",
+                  "2**3 + 2**2 - 6*2 == 0",
+                  "5*(5+3)*(5-2) == 5**3 + 5**2 - 6*5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Landing-log drills",
+            "intro": "Sign flips on exit; count against the degree.",
+            "problems": [
+              {
+                "prompt": "How many zeros can $y = x^4 - 10x^2 + 9$ have at MOST?",
+                "options": [
+                  "$4$",
+                  "$3$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Degree 4 caps it at 4 — and this one hits the cap: $(x^2-1)(x^2-9)$ → $\\pm1, \\pm3$.",
+                "check": [
+                  "1**4 - 10*1**2 + 9 == 0",
+                  "3**4 - 10*3**2 + 9 == 0"
+                ]
+              },
+              {
+                "prompt": "A cubic crosses at $-2$ and $5$ only, passing straight through both. Could its third factor be $(x-5)$ again?",
+                "options": [
+                  "yes — a repeated factor",
+                  "no — factors can't repeat",
+                  "no — cubics need 3 different zeros"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(x+2)(x-5)^2$ is a legal cubic — repeated factors are next lesson's star.",
+                "check": [
+                  "(5+2)*(5-5)**2 == 0"
+                ]
+              },
+              {
+                "prompt": "The zeros of $y = 3(x-1)(x+7)$ are…",
+                "options": [
+                  "$1$ and $-7$",
+                  "$3, 1, -7$",
+                  "$-1$ and $7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The 3 out front never zeroes — it just steepens. Landings: $1, -7$.",
+                "check": [
+                  "3*(1-1)*(1+7) == 0",
+                  "3*(-7-1)*(-7+7) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The theorem behind the cap",
+            "body": "Why at most n zeros? The Fundamental Theorem of Algebra — proved by Gauss at age 21 — says a degree-n polynomial has EXACTLY n roots if you count repeats and allow complex numbers. Your 'at most n' is its real-axis shadow; the missing roots are hiding off the number line, waiting in this course's Complex Numbers topic."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Zero $r$ ↔ factor $(x-r)$: read and write both directions.",
+              "Degree $n$ → at most $n$ zeros.",
+              "The leading $a$ needs one extra point — usually $f(0)$."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "multiplicity",
+      "title": "Multiplicity",
+      "concreteComparison": "Three planes approach a runway. One lands and rolls straight through. One touches a wheel and lifts off again. One flattens out long and low before finally passing through. Same runway — three landing styles. Repeated factors give polynomial crossings the same three styles: **cross**, **bounce**, or **flatten-through** — and the exponent on the factor is the pilot.",
+      "objective": "Use a zero's multiplicity to predict crossing style: odd multiplicity crosses (≥3 flattens), even multiplicity bounces.",
+      "concept": [
+        "**Multiplicity** = the exponent on a zero's factor. In $y = (x+2)(x-1)^2$: zero $-2$ has multiplicity 1; zero $1$ has multiplicity 2.",
+        "**Odd multiplicity** (1, 3, 5…): the curve CROSSES the axis. Multiplicity 1 passes cleanly; 3 and up flatten out first, then pass — a slow-motion crossing.",
+        "**Even multiplicity** (2, 4…): the curve BOUNCES — touches the axis and turns back, never crossing. Near $x=1$, $(x-1)^2$ behaves like a little upward parabola glued to the axis.",
+        "Multiplicities spend the degree: $(x+2)(x-1)^2$ is degree $1 + 2 = 3$. The exponents must total the degree — a bookkeeping check that catches most sketch errors."
+      ],
+      "keyIdea": "Multiplicity = factor's exponent. Odd → cross (≥3 flattens first); even → bounce. Multiplicities sum to the degree.",
+      "facts": [
+        {
+          "title": "The styles",
+          "latex": "1 \\text{ cross} \\cdot 2 \\text{ bounce} \\cdot 3 \\text{ flatten-through}",
+          "explanation": "The exponent pilots the landing."
+        },
+        {
+          "title": "Bookkeeping",
+          "latex": "\\text{multiplicities sum to the degree}",
+          "explanation": "Every degree point gets spent."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pf4-we1",
+          "statement": "For $y = (x+2)(x-1)^2$: list zeros with multiplicities and landing styles.",
+          "solution": "$-2$ (mult 1): crosses. $1$ (mult 2): bounces. Check the bounce: $f(0.5) = 0.625 > 0$ and $f(1.5) = 0.875 > 0$ — same side!",
+          "check": [
+            "(-2+2)*(-2-1)**2 == 0",
+            "(1+2)*(1-1)**2 == 0",
+            "(Rational(1,2)+2)*(Rational(1,2)-1)**2 > 0",
+            "(Rational(3,2)+2)*(Rational(3,2)-1)**2 > 0"
+          ]
+        },
+        {
+          "id": "pf4-we2",
+          "statement": "Same question for $y = x^3(x-4)$.",
+          "solution": "$0$ (mult 3): flattens through. $4$ (mult 1): crosses. Degree check: $3 + 1 = 4$ ✓.",
+          "check": [
+            "0**3*(0-4) == 0",
+            "4**3*(4-4) == 0",
+            "3 + 1 == 4"
+          ]
+        },
+        {
+          "id": "pf4-we3",
+          "statement": "Does $y = (x-2)^2$ cross or bounce at $x = 2$? Verify with points either side.",
+          "solution": "Bounces: $f(1) = 1 > 0$ and $f(3) = 1 > 0$ — the curve stays above, touching only at 2.",
+          "check": [
+            "(1-2)**2 > 0",
+            "(3-2)**2 > 0",
+            "(2-2)**2 == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Treating every zero as a clean crossing.",
+          "correction": "$(x-1)^2$ NEVER crosses at 1 — it bounces. Check a point either side: same sign = bounce, opposite = cross.",
+          "authored": true
+        },
+        {
+          "text": "Miscounting the degree by forgetting exponents.",
+          "correction": "$(x+2)(x-1)^2$ is degree 3, not 2 — the squared factor spends TWO degree points. Multiplicities must sum to the degree.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pf4-t1",
+          "statement": "Zeros and multiplicities of $y = (x-3)^2(x+5)$?",
+          "solution": "$3$ mult 2 (bounce), $-5$ mult 1 (cross). Degree 3 ✓.",
+          "check": [
+            "(3-3)**2*(3+5) == 0",
+            "(-5-3)**2*(-5+5) == 0",
+            "2 + 1 == 3"
+          ]
+        },
+        {
+          "id": "pf4-t2",
+          "statement": "Verify the bounce of $y = (x+1)^2$ at $x = -1$ with points either side.",
+          "solution": "$f(-2) = 1 > 0$, $f(0) = 1 > 0$ — same side both times: bounce.",
+          "check": [
+            "(-2+1)**2 > 0",
+            "(0+1)**2 > 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Three landings",
+            "title": "Cross, bounce, flatten",
+            "beats": [
+              "Multiplicity 1: land and roll through. CROSS.",
+              "Multiplicity 2: touch-and-go. BOUNCE.",
+              "Multiplicity 3: long, flat landing, then through.",
+              "The factor's exponent is the pilot."
+            ]
+          },
+          {
+            "kind": "polyGraph",
+            "eyebrow": "Fly all three",
+            "title": "Step the exponent",
+            "teach": "The zero at x = 1 changes style as m steps: at 1 the curve passes cleanly; at 2 it kisses the axis and turns back (watch the beacon turn red); at 3 it squashes flat and slides through. One exponent, three different landings.",
+            "config": {
+              "mode": "multiplicity",
+              "m": 1
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Call the landing",
+            "prompt": "At its zero $x = 5$, the curve $y = (x-5)^2(x+1)$ …",
+            "options": [
+              "bounces",
+              "crosses cleanly",
+              "flattens through"
+            ],
+            "correctIndex": 0,
+            "explanation": "Multiplicity 2 = even = bounce. Verify: $f(4) = 5 > 0$, $f(6) = 7 > 0$ — same side.",
+            "check": [
+              "(4-5)**2*(4+1) > 0",
+              "(6-5)**2*(6+1) > 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The same-side test",
+            "title": "Verify any landing",
+            "beats": [
+              "Unsure? Sample both sides of the zero.",
+              "Same sign both sides → bounce (even mult).",
+              "Opposite signs → cross (odd mult).",
+              "Two substitutions beat any memorized rule."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Bookkeeping",
+            "title": "Spend the degree",
+            "prompt": "$y = (x+1)^2(x-2)^3$ has degree…",
+            "options": [
+              "$5$",
+              "$2$",
+              "$6$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$2 + 3 = 5$: multiplicities sum to the degree. (Bounce at $-1$, flatten-through at $2$.)",
+            "check": [
+              "2 + 3 == 5"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Landing analysis",
+            "intro": "Exponent → style; sample to verify.",
+            "examples": [
+              {
+                "prompt": "Fully describe the zeros of $y = x^2(x-3)$.",
+                "steps": [
+                  "$0$: mult 2 → bounce at the origin.",
+                  "$3$: mult 1 → cross.",
+                  "Degree $2+1 = 3$; arms of a positive cubic."
+                ],
+                "answer": "bounce at 0, cross at 3",
+                "check": [
+                  "(-1)**2*(-1-3) < 0",
+                  "1**2*(1-3) < 0",
+                  "4**2*(4-3) > 0"
+                ]
+              },
+              {
+                "prompt": "Build a quartic (leading 1) that bounces at $x = 2$ and crosses at $x = -1$ and $x = 5$.",
+                "steps": [
+                  "Bounce → $(x-2)^2$; crossings → $(x+1)(x-5)$.",
+                  "$y = (x-2)^2(x+1)(x-5)$.",
+                  "Degree: $2+1+1 = 4$ ✓."
+                ],
+                "answer": "$(x-2)^2(x+1)(x-5)$",
+                "check": [
+                  "(2-2)**2*(2+1)*(2-5) == 0",
+                  "(-1-2)**2*(-1+1)*(-1-5) == 0",
+                  "2 + 1 + 1 == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Pilot calls",
+            "intro": "Even bounces; odd crosses; big odd flattens.",
+            "problems": [
+              {
+                "prompt": "$y = (x+4)^3$: at $x = -4$ the curve…",
+                "options": [
+                  "flattens, then passes through",
+                  "bounces",
+                  "crosses steeply"
+                ],
+                "correctIndex": 0,
+                "explanation": "Multiplicity 3: odd → through, but ≥3 → flattened first. ($f(-5) = -1$, $f(-3) = 1$: opposite sides ✓.)",
+                "check": [
+                  "(-5+4)**3 < 0",
+                  "(-3+4)**3 > 0"
+                ]
+              },
+              {
+                "prompt": "A quartic touches the axis at $1$ (turning back) and crosses at $-2$ and $3$. Its factorization shape is…",
+                "options": [
+                  "$(x-1)^2(x+2)(x-3)$",
+                  "$(x-1)(x+2)(x-3)$",
+                  "$(x-1)^2(x+2)^2(x-3)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Bounce = squared factor; two clean crossings; degree $2+1+1 = 4$ ✓. (The third option is degree 5.)",
+                "check": [
+                  "2 + 1 + 1 == 4"
+                ]
+              },
+              {
+                "prompt": "$f(x) = (x-6)^2$: $f(5)$ and $f(7)$ are…",
+                "options": [
+                  "both positive — the bounce signature",
+                  "opposite signs",
+                  "both zero"
+                ],
+                "correctIndex": 0,
+                "explanation": "$1$ and $1$: same side of the axis on both flanks of the zero. That's what bouncing looks like in numbers.",
+                "check": [
+                  "(5-6)**2 == 1",
+                  "(7-6)**2 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Bounces are how engineers spot double roots",
+            "body": "Control engineers tuning a drone WANT double roots — a response curve that touches its target and settles, instead of crossing into overshoot. When the simulation bounces off the setpoint line, they read it instantly: even multiplicity, critically damped, ship it. Your landing-style rule is their stability diagnostic."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Multiplicity = the factor's exponent.",
+              "Odd → cross (≥3 flattens first); even → bounce.",
+              "Multiplicities sum to the degree; the same-side test verifies."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "remainder-and-factor-theorems",
+      "title": "The Remainder & Factor Theorems",
+      "concreteComparison": "Is 3 a zero of $f(x) = x^3 - 2x^2 - 5x + 6$? The long way: divide by $(x-3)$ and check the remainder. The shortcut: just compute $f(3)$ — the **Remainder Theorem** says $f(3)$ IS that remainder. One substitution replaces an entire long division, and 'remainder zero' becomes the fastest factor test in algebra.",
+      "objective": "Use the Remainder Theorem ($f(a)$ = remainder on division by $x-a$) and Factor Theorem ($f(a)=0 \\iff (x-a)$ is a factor) to test and find factors.",
+      "concept": [
+        "**Remainder Theorem**: dividing $f(x)$ by $(x - a)$ leaves remainder $f(a)$. Why: $f(x) = (x-a)q(x) + r$; plug in $x = a$ and the first term dies, leaving $f(a) = r$.",
+        "**Factor Theorem** (the payoff): $(x - a)$ is a factor exactly when $f(a) = 0$. Zero remainder = clean division = factor. It's the zero-factor dictionary with a proof attached.",
+        "Factor-hunting: test small candidates $\\pm1, \\pm2, \\pm3, \\ldots$ (divisors of the constant term). $f(x) = x^3 - 2x^2 - 5x + 6$: $f(1) = 0$ ✓ — so $(x-1)$ divides it.",
+        "Then peel: $f(x) = (x-1)(x^2 - x - 6) = (x-1)(x-3)(x+2)$ — one found zero reduces the cubic to a Grade-10 quadratic. Repeat until fully factored."
+      ],
+      "keyIdea": "f(a) = the remainder on dividing by (x−a); f(a) = 0 means (x−a) is a factor. Test candidates, peel, repeat.",
+      "facts": [
+        {
+          "title": "Remainder Theorem",
+          "latex": "f(x) \\div (x-a) \\text{ leaves } f(a)",
+          "explanation": "One substitution = whole division's remainder."
+        },
+        {
+          "title": "Factor Theorem",
+          "latex": "f(a) = 0 \\iff (x-a) \\mid f(x)",
+          "explanation": "The fastest factor test in algebra."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pf5-we1",
+          "statement": "Find the remainder when $f(x) = x^3 - 2x^2 - 5x + 6$ is divided by $(x - 2)$.",
+          "solution": "$f(2) = 8 - 8 - 10 + 6 = -4$ — the remainder, no division needed.",
+          "check": [
+            "2**3 - 2*2**2 - 5*2 + 6 == -4"
+          ]
+        },
+        {
+          "id": "pf5-we2",
+          "statement": "Is $(x - 1)$ a factor of $f(x) = x^3 - 2x^2 - 5x + 6$? Fully factor if so.",
+          "solution": "$f(1) = 0$ ✓. Peel: $f = (x-1)(x^2-x-6) = (x-1)(x-3)(x+2)$. (Verify at $x=4$: $54 = 3 \\cdot 1 \\cdot 6 \\cdot 3$… both give 18.)",
+          "check": [
+            "1**3 - 2*1**2 - 5*1 + 6 == 0",
+            "4**3 - 2*4**2 - 5*4 + 6 == (4-1)*(4-3)*(4+2)"
+          ]
+        },
+        {
+          "id": "pf5-we3",
+          "statement": "For what $k$ is $(x + 1)$ a factor of $f(x) = x^3 + kx - 4$?",
+          "solution": "Need $f(-1) = 0$: $-1 - k - 4 = 0 \\to k = -5$. Check: $f(-1) = -1 + 5 - 4 = 0$ ✓.",
+          "check": [
+            "(-1)**3 + (-5)*(-1) - 4 == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Evaluating $f(-a)$ to test the factor $(x - a)$.",
+          "correction": "$(x - 3)$ dies at $x = +3$: test $f(3)$. For $(x + 3)$, test $f(-3)$. The factor's ZERO is what you substitute — sneaky sign, final boss form.",
+          "authored": true
+        },
+        {
+          "text": "Stopping after one factor is found.",
+          "correction": "$f(1) = 0$ gives $(x-1)$ — but the quotient $x^2 - x - 6$ still factors! Peel all the way down to linear pieces.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pf5-t1",
+          "statement": "Remainder when $f(x) = x^3 + 2x - 7$ is divided by $(x-2)$?",
+          "solution": "$f(2) = 8 + 4 - 7 = 5$.",
+          "check": [
+            "2**3 + 2*2 - 7 == 5"
+          ]
+        },
+        {
+          "id": "pf5-t2",
+          "statement": "Is $(x + 2)$ a factor of $f(x) = x^3 + 3x^2 + 2x$?",
+          "solution": "$f(-2) = -8 + 12 - 4 = 0$ ✓ yes. (Indeed $f = x(x+1)(x+2)$.)",
+          "check": [
+            "(-2)**3 + 3*(-2)**2 + 2*(-2) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The shortcut",
+            "title": "One substitution beats a division",
+            "beats": [
+              "Divide $f$ by $(x-a)$: $f(x) = (x-a)q(x) + r$.",
+              "Now feed in $x = a$: the $(a-a)$ kills the big term.",
+              "$f(a) = r$. The value IS the remainder.",
+              "Whole long division, one substitution."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Instant remainder",
+            "prompt": "The remainder when $x^3 - 4x + 1$ is divided by $(x-3)$ is…",
+            "options": [
+              "$16$",
+              "$0$",
+              "$-2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$f(3) = 27 - 12 + 1 = 16$. No division performed.",
+            "check": [
+              "3**3 - 4*3 + 1 == 16"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The payoff",
+            "title": "Zero remainder = factor",
+            "beats": [
+              "If $f(a) = 0$, the division is CLEAN: $(x-a)$ divides $f$.",
+              "**Factor Theorem**: $f(a) = 0 \\iff (x-a)$ is a factor.",
+              "Factor-testing is now just… evaluating.",
+              "The zero–factor dictionary, upgraded with a proof."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The hunt",
+            "title": "Test small candidates, then peel",
+            "beats": [
+              "$f(x) = x^3 - 2x^2 - 5x + 6$. Try $\\pm1, \\pm2, \\pm3, \\pm6$…",
+              "$f(1) = 0$ ✓! So $(x-1)$ divides.",
+              "Peel: $f = (x-1)(x^2 - x - 6)$.",
+              "The quadratic is Grade 10: $(x-3)(x+2)$. Fully factored."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Sign patrol",
+            "title": "Which value tests (x+3)?",
+            "prompt": "To test whether $(x + 3)$ is a factor of $f$, evaluate…",
+            "options": [
+              "$f(-3)$",
+              "$f(3)$",
+              "$f(0)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(x+3)$ dies at $x = -3$ — substitute the factor's ZERO. The sneaky sign's last stand.",
+            "check": [
+              "(-3) + 3 == 0"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Hunt and peel",
+            "intro": "Evaluate to test; divide to peel; repeat.",
+            "examples": [
+              {
+                "prompt": "Fully factor $f(x) = x^3 - 7x + 6$ (start by testing $x = 1$).",
+                "steps": [
+                  "$f(1) = 1 - 7 + 6 = 0$ ✓ → $(x-1)$.",
+                  "Peel: $x^2 + x - 6 = (x+3)(x-2)$.",
+                  "$f = (x-1)(x+3)(x-2)$."
+                ],
+                "answer": "$(x-1)(x+3)(x-2)$",
+                "check": [
+                  "1**3 - 7*1 + 6 == 0",
+                  "(-3)**3 - 7*(-3) + 6 == 0",
+                  "2**3 - 7*2 + 6 == 0",
+                  "5**3 - 7*5 + 6 == (5-1)*(5+3)*(5-2)"
+                ]
+              },
+              {
+                "prompt": "Find the remainder of $f(x) = 2x^3 - x^2 + 3$ divided by $(x + 1)$.",
+                "steps": [
+                  "The factor dies at $-1$.",
+                  "$f(-1) = -2 - 1 + 3 = 0$.",
+                  "Remainder 0 — a factor, discovered by accident!"
+                ],
+                "answer": "$0$ — it's a factor",
+                "check": [
+                  "2*(-1)**3 - (-1)**2 + 3 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Theorem drills",
+            "intro": "Substitute the factor's zero.",
+            "problems": [
+              {
+                "prompt": "Remainder of $x^{100} - 1$ divided by $(x - 1)$?",
+                "options": [
+                  "$0$",
+                  "$1$",
+                  "$100$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$f(1) = 1 - 1 = 0$ — a degree-100 division, solved by one substitution. THAT's the theorem's power.",
+                "check": [
+                  "1**100 - 1 == 0"
+                ]
+              },
+              {
+                "prompt": "$f(x) = x^3 + x^2 - 10x + 8$: which is a factor?",
+                "options": [
+                  "$(x - 2)$",
+                  "$(x + 2)$",
+                  "$(x - 5)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$f(2) = 8 + 4 - 20 + 8 = 0$ ✓. ($f(-2) = 24$, $f(5) = 108$.)",
+                "check": [
+                  "2**3 + 2**2 - 10*2 + 8 == 0",
+                  "(-2)**3 + (-2)**2 - 10*(-2) + 8 == 24"
+                ]
+              },
+              {
+                "prompt": "$f(4) = 7$ tells you that dividing $f$ by $(x-4)$ leaves…",
+                "options": [
+                  "remainder 7 — so NOT a factor",
+                  "remainder 4",
+                  "a factor"
+                ],
+                "correctIndex": 0,
+                "explanation": "The value at 4 IS the remainder; nonzero means the division isn't clean.",
+                "check": [
+                  "7 != 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The theorem that checks your ISBN",
+            "body": "Book codes, credit cards, and QR codes all verify themselves with remainder arithmetic — the checksum digit is chosen so a polynomial built from the digits leaves remainder zero. A scanner 'testing the factor' millions of times a day is running this lesson's theorem at the speed of light."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Remainder Theorem: $f(a)$ = the remainder on ÷$(x-a)$.",
+              "Factor Theorem: $f(a) = 0 \\iff (x-a)$ is a factor.",
+              "Hunt small candidates, peel to a quadratic, finish with Grade 10."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "sketching-polynomials",
+      "title": "The Sketching Recipe",
+      "concreteComparison": "You've collected the whole toolkit across five lessons: arms from the leading term, landings from the factors, landing STYLE from multiplicities, altitude from the y-intercept. Sketching a polynomial is now assembly, not artistry — a four-step recipe that turns $y = (x+2)(x-1)^2$ into a confident freehand curve in under a minute.",
+      "objective": "Sketch factored polynomials with the four-step recipe: end behavior, zeros, multiplicities, y-intercept — then trace.",
+      "concept": [
+        "The recipe: **(1)** arms from degree parity + leading sign; **(2)** zeros on the axis from the factors; **(3)** landing style at each zero from multiplicity; **(4)** y-intercept from $f(0)$. Then trace left-arm to right-arm through the landings.",
+        "Run it on $y = (x+2)(x-1)^2$: degree 3, positive → down-left/up-right; zeros $-2$ (cross), $1$ (bounce); $f(0) = 2$. Trace: rise from ↙, cross at $-2$, up through $(0,2)$, bounce at $1$, exit ↗.",
+        "The trace is forced: between consecutive zeros the curve can't touch the axis, so its sign is FIXED there — one sample point per gap confirms the arc.",
+        "Audit at the end: does the trace agree with both arms? Does each landing match its multiplicity? Does the curve pass the y-intercept? Three yeses = a trustworthy sketch."
+      ],
+      "keyIdea": "Arms → zeros → landing styles → y-intercept, then trace. Between zeros the sign is fixed — sample once per gap.",
+      "facts": [
+        {
+          "title": "The recipe",
+          "latex": "\\text{arms} \\to \\text{zeros} \\to \\text{styles} \\to f(0)",
+          "explanation": "Four steps, then trace."
+        },
+        {
+          "title": "Gap rule",
+          "latex": "\\text{no zero in the gap} \\Rightarrow \\text{sign fixed}",
+          "explanation": "One sample per gap pins the arc."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pf6-we1",
+          "statement": "Run the recipe on $y = (x+2)(x-1)^2$.",
+          "solution": "Degree 3, +: ↙…↗. Cross at $-2$, bounce at $1$; $f(0) = 2$. Gap check: $f(-3) = -16 < 0$ ✓ left of $-2$ is below.",
+          "check": [
+            "(0+2)*(0-1)**2 == 2",
+            "(-3+2)*(-3-1)**2 == -16",
+            "(-2+2)*(-2-1)**2 == 0",
+            "(1+2)*(1-1)**2 == 0"
+          ]
+        },
+        {
+          "id": "pf6-we2",
+          "statement": "Run the recipe on $y = -x(x-2)(x+3)$.",
+          "solution": "Degree 3, leading $-1$: ↖…↘. Crossings $0, 2, -3$; $f(0) = 0$ (origin!). Sample $f(1) = -1 \\cdot -1 \\cdot 4 = 4 > 0$: above between 0 and 2.",
+          "check": [
+            "-0*(0-2)*(0+3) == 0",
+            "-1*(1-2)*(1+3) == 4",
+            "-2*(2-2)*(2+3) == 0",
+            "-(-3)*(-3-2)*(-3+3) == 0"
+          ]
+        },
+        {
+          "id": "pf6-we3",
+          "statement": "Sketch data for $y = (x-2)^2(x+1)^2$: arms, landings, y-intercept.",
+          "solution": "Degree 4, +: both arms UP. Bounces at $2$ AND $-1$ (never crosses!); $f(0) = 4$. The curve stays $\\ge 0$ everywhere.",
+          "check": [
+            "(0-2)**2*(0+1)**2 == 4",
+            "(2-2)**2*(2+1)**2 == 0",
+            "(1-2)**2*(1+1)**2 > 0",
+            "(-2-2)**2*(-2+1)**2 > 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Tracing landings right but arms wrong (or vice versa).",
+          "correction": "The trace must START and END on the leading term's arms. If your zigzag through the zeros exits the wrong corner, a multiplicity was misread — audit both.",
+          "authored": true
+        },
+        {
+          "text": "Letting the curve wander across the axis between zeros.",
+          "correction": "No zero in a gap = no crossing in that gap. The sign is locked; one sample point per gap confirms which side.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pf6-t1",
+          "statement": "For $y = x(x-3)^2$: arms and landing styles?",
+          "solution": "Degree 3, +: ↙…↗; cross at 0, bounce at 3. ($f(1) = 4 > 0$ between them.)",
+          "check": [
+            "0*(0-3)**2 == 0",
+            "3*(3-3)**2 == 0",
+            "1*(1-3)**2 == 4"
+          ]
+        },
+        {
+          "id": "pf6-t2",
+          "statement": "What is $f(0)$ for $y = 2(x-1)(x+4)$, and which side of the axis is the curve there?",
+          "solution": "$f(0) = 2(-1)(4) = -8$: below the axis at the intercept.",
+          "check": [
+            "2*(0-1)*(0+4) == -8",
+            "-8 < 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Assembly, not artistry",
+            "title": "The four-step recipe",
+            "beats": [
+              "1. ARMS: degree parity + leading sign.",
+              "2. ZEROS: read the factors.",
+              "3. STYLES: multiplicity per zero.",
+              "4. $f(0)$: the altitude marker. Then trace."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Full run",
+            "title": "y = (x+2)(x−1)²",
+            "beats": [
+              "Degree 3, positive: ↙ enters, ↗ exits.",
+              "Zeros: cross at $-2$, bounce at $1$.",
+              "$f(0) = (2)(1) = 2$: passes $(0, 2)$.",
+              "Trace: rise, cross $-2$, over $(0,2)$, bounce at 1, exit ↗."
+            ]
+          },
+          {
+            "kind": "polyGraph",
+            "eyebrow": "Watch the assembly",
+            "title": "The bounce in context",
+            "teach": "Here's that exact curve: cross at −2, up through the y-intercept, kiss-and-turn at 1 (the red beacon), exit up-right — every feature placed by the recipe. Step the multiplicity to 1 or 3 and re-run the recipe in your head: only step 3 changes, and the trace obeys.",
+            "config": {
+              "mode": "multiplicity",
+              "m": 2
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Recipe step 1",
+            "prompt": "$y = -2(x+1)(x-2)(x-4)$: the arms run…",
+            "options": [
+              "↖ and ↘",
+              "↙ and ↗",
+              "both up"
+            ],
+            "correctIndex": 0,
+            "explanation": "Degree 3 (odd, arms opposite), leading $-2$ (negative, flip): up-left, down-right.",
+            "check": [
+              "-2*(-10+1)*(-10-2)*(-10-4) > 0",
+              "-2*(10+1)*(10-2)*(10-4) < 0"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Gap rule",
+            "title": "Locked signs",
+            "prompt": "$y = (x+2)(x-1)^2$ has zeros only at $-2$ and $1$. Between them (say at $x = 0$) the curve is…",
+            "options": [
+              "above the axis — and stays above on the whole gap",
+              "below the axis",
+              "crossing somewhere in the gap"
+            ],
+            "correctIndex": 0,
+            "explanation": "$f(0) = 2 > 0$, and with no zero inside the gap it can't cross: the whole stretch rides above.",
+            "check": [
+              "(0+2)*(0-1)**2 == 2",
+              "(Rational(-1,2)+2)*(Rational(-1,2)-1)**2 > 0"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Full recipes",
+            "intro": "All four steps, then the audit.",
+            "examples": [
+              {
+                "prompt": "Sketch plan for $y = x(x+2)(x-2)$.",
+                "steps": [
+                  "Degree 3, +: ↙…↗.",
+                  "Crossings: $-2, 0, 2$ — all clean (mult 1).",
+                  "$f(0) = 0$; samples: $f(-1) = 3 > 0$, $f(1) = -3 < 0$.",
+                  "Rise, cross $-2$, hump above, through 0, dip below, cross 2, exit ↗."
+                ],
+                "answer": "S-curve through $-2, 0, 2$",
+                "check": [
+                  "-1*(-1+2)*(-1-2) == 3",
+                  "1*(1+2)*(1-2) == -3",
+                  "0*(0+2)*(0-2) == 0"
+                ]
+              },
+              {
+                "prompt": "Sketch plan for $y = (x+1)^2(x-3)$.",
+                "steps": [
+                  "Degree 3, +: ↙…↗.",
+                  "Bounce at $-1$, cross at $3$.",
+                  "$f(0) = 1 \\cdot (-3) = -3$: below at the intercept.",
+                  "Rise to the bounce at $-1$, back down through $(0,-3)$, cross at 3, exit ↗."
+                ],
+                "answer": "bounce $-1$, cross $3$, dip through $(0,-3)$",
+                "check": [
+                  "(0+1)**2*(0-3) == -3",
+                  "(-1+1)**2*(-1-3) == 0",
+                  "(3+1)**2*(3-3) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Recipe runs",
+            "intro": "Arms, zeros, styles, altitude — audit at the end.",
+            "problems": [
+              {
+                "prompt": "$y = (x-1)(x-4)^2$: at its y-intercept the curve is…",
+                "options": [
+                  "below the axis ($f(0) = -16$)",
+                  "above the axis ($f(0) = 16$)",
+                  "on the axis"
+                ],
+                "correctIndex": 0,
+                "explanation": "$f(0) = (-1)(16) = -16$. The curve dips below before crossing at 1.",
+                "check": [
+                  "(0-1)*(0-4)**2 == -16"
+                ]
+              },
+              {
+                "prompt": "A degree-4 curve with positive leading bounces at both of its only zeros. It ever goes below the axis…",
+                "options": [
+                  "never",
+                  "between the zeros",
+                  "outside the zeros"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both arms up + only bounces = the axis is touched, never crossed: the curve lives entirely at $y \\ge 0$.",
+                "check": [
+                  "(1-2)**2*(1+1)**2 > 0"
+                ]
+              },
+              {
+                "prompt": "Your trace of a cubic exits top-LEFT, but the leading term is $+x^3$. The audit says…",
+                "options": [
+                  "a landing style was misread — recheck multiplicities",
+                  "the sketch is fine",
+                  "cubics can exit either way"
+                ],
+                "correctIndex": 0,
+                "explanation": "$+x^3$ MUST enter from ↙. A wrong exit means the crossings flipped the curve an extra time — some multiplicity is wrong.",
+                "check": [
+                  "(-10)**3 < 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Freehand beats plotting",
+            "body": "Given ten minutes, a plotting robot computes 50 points; a mathematician runs this recipe in 30 seconds and draws a curve that's RIGHT everywhere it matters — arms, crossings, bounces, intercept. Exams, whiteboards, and engineering back-of-envelopes all reward structure over pixels. You now sketch like the mathematician."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Recipe: arms → zeros → styles → $f(0)$ → trace.",
+              "Signs lock between zeros; one sample per gap.",
+              "Audit: trace must honor both arms and every landing style."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "pfn-pr1",
+      "statement": "Degree, leading coefficient, and $f(1)$ for $f(x) = 3x^4 - x^2 + 5$?",
+      "solution": "Degree 4, leading 3; $f(1) = 7$.",
+      "check": [
+        "3*1**4 - 1**2 + 5 == 7"
+      ]
+    },
+    {
+      "id": "pfn-pr2",
+      "statement": "Evaluate $f(x) = x^3 - 6x^2 + 11x - 6$ at $x = 1, 2, 3$.",
+      "solution": "All zero — the cubic is $(x-1)(x-2)(x-3)$!",
+      "check": [
+        "1**3 - 6*1**2 + 11*1 - 6 == 0",
+        "2**3 - 6*2**2 + 11*2 - 6 == 0",
+        "3**3 - 6*3**2 + 11*3 - 6 == 0"
+      ]
+    },
+    {
+      "id": "pfn-pr3",
+      "statement": "End behavior of $y = -2x^6 + x^5$?",
+      "solution": "Even, negative: both arms down.",
+      "check": [
+        "-2*10**6 + 10**5 < 0",
+        "-2*(-10)**6 + (-10)**5 < 0"
+      ]
+    },
+    {
+      "id": "pfn-pr4",
+      "statement": "End behavior of $y = x^5 - 40x^2$?",
+      "solution": "Odd, positive: down-left, up-right.",
+      "check": [
+        "(-10)**5 - 40*(-10)**2 < 0",
+        "10**5 - 40*10**2 > 0"
+      ]
+    },
+    {
+      "id": "pfn-pr5",
+      "statement": "Zeros of $y = (x+5)(x-2)x$?",
+      "solution": "$-5, 2, 0$.",
+      "check": [
+        "(-5+5)*(-5-2)*(-5) == 0",
+        "0*(0+5)*(0-2) == 0"
+      ]
+    },
+    {
+      "id": "pfn-pr6",
+      "statement": "Build a cubic (leading 1) with zeros $-1, 1, 6$; expand the first two factors.",
+      "solution": "$(x+1)(x-1)(x-6) = (x^2-1)(x-6)$. Check $x=2$: $(3)(1)(-4) = -12 = (3)(-4)$ ✓.",
+      "check": [
+        "(2+1)*(2-1)*(2-6) == (2**2-1)*(2-6)"
+      ]
+    },
+    {
+      "id": "pfn-pr7",
+      "statement": "$y = (x-4)^2(x+2)$: landing style at each zero?",
+      "solution": "Bounce at 4 (mult 2), cross at $-2$ (mult 1). Same-side check at 4: $f(3) = 5 > 0$, $f(5) = 7 > 0$ ✓.",
+      "check": [
+        "(3-4)**2*(3+2) == 5",
+        "(5-4)**2*(5+2) == 7"
+      ]
+    },
+    {
+      "id": "pfn-pr8",
+      "statement": "Remainder when $f(x) = x^3 - 5x + 2$ is divided by $(x-2)$?",
+      "solution": "$f(2) = 8 - 10 + 2 = 0$ — clean: $(x-2)$ is a factor.",
+      "check": [
+        "2**3 - 5*2 + 2 == 0"
+      ]
+    },
+    {
+      "id": "pfn-pr9",
+      "statement": "Is $(x+1)$ a factor of $f(x) = x^4 - 2x^2 + 1$?",
+      "solution": "$f(-1) = 1 - 2 + 1 = 0$ ✓ yes. (It's $(x^2-1)^2$ — a double bounce... squared crossings!)",
+      "check": [
+        "(-1)**4 - 2*(-1)**2 + 1 == 0"
+      ]
+    },
+    {
+      "id": "pfn-pr10",
+      "statement": "For $y = (x+3)(x-1)^2$: y-intercept, and the sign of the curve just left of $-3$?",
+      "solution": "$f(0) = 3$; at $x = -4$: $f(-4) = (-1)(25) = -25 < 0$ — below.",
+      "check": [
+        "(0+3)*(0-1)**2 == 3",
+        "(-4+3)*(-4-1)**2 == -25"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "pfn-ty1",
+      "statement": "Max turning points of a degree-6 polynomial, and $f(2)$ for $f(x) = x^6 - 60$?",
+      "solution": "5 turns max; $f(2) = 4$.",
+      "check": [
+        "6 - 1 == 5",
+        "2**6 - 60 == 4"
+      ]
+    },
+    {
+      "id": "pfn-ty2",
+      "statement": "End behavior of $y = 5x^3 - x^7$?",
+      "solution": "Standard form leads with $-x^7$: odd, negative — up-left, down-right.",
+      "check": [
+        "5*(-10)**3 - (-10)**7 > 0",
+        "5*10**3 - 10**7 < 0"
+      ]
+    },
+    {
+      "id": "pfn-ty3",
+      "statement": "All zeros of $y = x^3 - 9x$?",
+      "solution": "$x(x+3)(x-3)$: $0, \\pm 3$.",
+      "check": [
+        "0**3 - 9*0 == 0",
+        "3**3 - 9*3 == 0",
+        "(-3)**3 - 9*(-3) == 0"
+      ]
+    },
+    {
+      "id": "pfn-ty4",
+      "statement": "A quartic (leading 1) bounces at $0$ and crosses at $-2$ and $2$. Write it and give $f(1)$.",
+      "solution": "$y = x^2(x+2)(x-2)$; $f(1) = 1 \\cdot 3 \\cdot (-1) = -3$.",
+      "check": [
+        "1**2*(1+2)*(1-2) == -3",
+        "0**2*(0+2)*(0-2) == 0"
+      ]
+    },
+    {
+      "id": "pfn-ty5",
+      "statement": "Remainder of $f(x) = 2x^3 + x^2 - 3$ divided by $(x+1)$?",
+      "solution": "$f(-1) = -2 + 1 - 3 = -4$.",
+      "check": [
+        "2*(-1)**3 + (-1)**2 - 3 == -4"
+      ]
+    },
+    {
+      "id": "pfn-ty6",
+      "statement": "Fully factor $f(x) = x^3 - 3x^2 - 4x + 12$ (test $x = 2$ first).",
+      "solution": "$f(2) = 0$ → $(x-2)$; peel: $x^2 - x - 6 = (x-3)(x+2)$. $f = (x-2)(x-3)(x+2)$.",
+      "check": [
+        "2**3 - 3*2**2 - 4*2 + 12 == 0",
+        "3**3 - 3*3**2 - 4*3 + 12 == 0",
+        "(-2)**3 - 3*(-2)**2 - 4*(-2) + 12 == 0"
+      ]
+    },
+    {
+      "id": "pfn-ty7",
+      "statement": "Sketch data for $y = -x(x-3)^2$: arms, landings, and the sign between $0$ and $3$.",
+      "solution": "Degree 3, leading $-1$: ↖…↘. Cross at 0, bounce at 3. Between: $f(1) = -4 < 0$ — below the axis.",
+      "check": [
+        "-1*(1-3)**2 == -4",
+        "-0*(0-3)**2 == 0",
+        "-3*(3-3)**2 == 0"
+      ]
+    }
+  ]
+}
