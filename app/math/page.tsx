@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { listGrades, getGrade6Topics, getGrade8Spine, getGrade10Spine, getGrade11Spine } from "@/lib/genmath-lessons";
+import { listGrades, getGrade6Topics, getGrade8Spine, getGrade10Spine, getGrade11Spine, getGrade12Spine } from "@/lib/genmath-lessons";
 
 const TOPIC_COUNTS: Record<number, number> = {
   6: getGrade6Topics().length,
   8: getGrade8Spine().length,
   10: getGrade10Spine().length,
   11: getGrade11Spine().length,
+  12: getGrade12Spine().length,
 };
 
 export default function MathLandingPage() {
