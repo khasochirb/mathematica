@@ -5,7 +5,7 @@
 // ramps up. Example, Equations: x+5=10 (easy) → 2x+7x=18 (medium) →
 // 2x+3=11 (hard, two-step).
 
-import { getGrade6Topics, getGeometrySpine, getGrade8Spine, getGrade10Spine } from "@/lib/genmath-lessons";
+import { getGrade6Topics, getGeometrySpine, getGrade8Spine, getGrade10Spine, getGrade11Spine } from "@/lib/genmath-lessons";
 
 export type PlacementQuestion = {
   id: string;
@@ -230,10 +230,49 @@ const G10_CURATED: Curated[] = [
   Q("probability-and-counting", 3, "Two dice: $P(\\text{at least one six})$ = —", ["$\\tfrac{11}{36}$", "$\\tfrac{1}{36}$", "$\\tfrac{1}{3}$", "$\\tfrac{2}{6}$"], 0, "$1 - (\\tfrac56)^2 = \\tfrac{11}{36}$."),
 ];
 
+// Grade 11 — 7 topics × 3 genuine tiers.
+const G11_CURATED: Curated[] = [
+  // 1. Functions & Transformations
+  Q("functions-and-transformations", 1, "If $f(x) = x^2 + 1$, then $f(3)$ = —", ["$10$", "$7$", "$9$", "$16$"], 0, "$3^2 + 1 = 10$."),
+  Q("functions-and-transformations", 2, "The graph of $y = f(x - 2) + 5$ is $f$ shifted —", ["right 2, up 5", "left 2, up 5", "right 5, up 2", "left 2, down 5"], 0, "Inside the brackets moves opposite ($-2$ → right); outside moves as written."),
+  Q("functions-and-transformations", 3, "If $f(x) = 2x - 6$, its inverse is $f^{-1}(x)$ = —", ["$\\tfrac{x+6}{2}$", "$\\tfrac{x-6}{2}$", "$6 - 2x$", "$\\tfrac{1}{2x-6}$"], 0, "Swap and solve: $x = 2y - 6$ gives $y = \\tfrac{x+6}{2}$."),
+
+  // 2. Polynomial Functions
+  Q("polynomial-functions", 1, "The degree of $5x^3 - 2x^7 + 1$ is —", ["$7$", "$3$", "$5$", "$1$"], 0, "The largest exponent anywhere wins: $-2x^7$."),
+  Q("polynomial-functions", 2, "As $x \\to \\pm\\infty$, the graph of $y = -x^4 + 3x$ heads —", ["down on both ends", "up on both ends", "up right, down left", "down right, up left"], 0, "Even degree with a negative lead: both arms point down."),
+  Q("polynomial-functions", 3, "At $x = 2$, the graph of $y = (x+1)(x-2)^2$ —", ["touches and bounces off the axis", "crosses the axis", "has a vertical asymptote", "is undefined"], 0, "Even multiplicity (2): the graph kisses the axis and turns back."),
+
+  // 3. Logarithms
+  Q("logarithms", 1, "$\\log_2 32$ = —", ["$5$", "$16$", "$4$", "$6$"], 0, "$2^5 = 32$."),
+  Q("logarithms", 2, "$\\log 4 + \\log 25$ = —", ["$2$", "$29$", "$100$", "$10$"], 0, "Logs add when insides multiply: $\\log 100 = 2$."),
+  Q("logarithms", 3, "The solution of $3^x = 20$ is —", ["$x = \\tfrac{\\log 20}{\\log 3}$, between 2 and 3", "$x = \\tfrac{20}{3}$", "$x = \\log \\tfrac{20}{3}$", "$x = \\log 60$"], 0, "Take logs of both sides; $3^2 = 9 < 20 < 27 = 3^3$ brackets it."),
+
+  // 4. Sequences & Series
+  Q("sequences-and-series", 1, "The next term of $4, 7, 10, 13, \\ldots$ is —", ["$16$", "$15$", "$17$", "$14$"], 0, "Common difference $+3$."),
+  Q("sequences-and-series", 2, "Geometric with $a_1 = 3$ and $r = 2$: $a_5$ = —", ["$48$", "$96$", "$24$", "$30$"], 0, "$a_5 = 3 \\cdot 2^4 = 48$."),
+  Q("sequences-and-series", 3, "$1 + 2 + 3 + \\cdots + 100$ = —", ["$5050$", "$5000$", "$10100$", "$4950$"], 0, "Gauss pairing: $\\tfrac{100 \\cdot 101}{2}$."),
+
+  // 5. Trigonometry & the Unit Circle
+  Q("trigonometry-and-the-unit-circle", 1, "$180°$ in radians is —", ["$\\pi$", "$2\\pi$", "$\\tfrac{\\pi}{2}$", "$90\\pi$"], 0, "Half a turn is $\\pi$ radians."),
+  Q("trigonometry-and-the-unit-circle", 2, "$\\sin \\tfrac{\\pi}{6}$ = —", ["$\\tfrac{1}{2}$", "$\\tfrac{\\sqrt{3}}{2}$", "$\\tfrac{\\sqrt{2}}{2}$", "$1$"], 0, "$30°$: the short leg of the 30-60-90 triangle."),
+  Q("trigonometry-and-the-unit-circle", 3, "If $\\cos\\theta < 0$ and $\\sin\\theta < 0$, then $\\theta$ is in quadrant —", ["III", "II", "IV", "I"], 0, "Both coordinates negative: bottom-left."),
+
+  // 6. Complex Numbers
+  Q("complex-numbers", 1, "$i^2$ = —", ["$-1$", "$1$", "$i$", "$-i$"], 0, "That's the definition of $i$."),
+  Q("complex-numbers", 2, "$(3 + 2i) + (1 - 5i)$ = —", ["$4 - 3i$", "$4 + 3i$", "$2 + 7i$", "$3 - 10i$"], 0, "Reals with reals, imaginaries with imaginaries."),
+  Q("complex-numbers", 3, "$(2 + i)(2 - i)$ = —", ["$5$", "$3$", "$4$", "$5 - 4i$"], 0, "Conjugates: $4 - i^2 = 4 + 1 = 5$ — purely real."),
+
+  // 7. Statistics & Data
+  Q("statistics-and-data", 1, "The median of $2, 3, 7, 8, 100$ is —", ["$7$", "$8$", "$24$", "$100$"], 0, "The middle of the sorted list — the 100 can't drag it."),
+  Q("statistics-and-data", 2, "Scores: mean $70$, SD $10$. A score of $85$ has $z$ = —", ["$1.5$", "$15$", "$-1.5$", "$0.5$"], 0, "$z = \\tfrac{85 - 70}{10} = 1.5$."),
+  Q("statistics-and-data", 3, "Normal with $\\mu = 100$, $\\sigma = 15$: about what share lies between $85$ and $115$?", ["$68\\%$", "$95\\%$", "$50\\%$", "$99.7\\%$"], 0, "That's $\\mu \\pm 1\\sigma$ — the 68 of 68-95-99.7."),
+];
+
 let cache: PlacementQuestion[] | null = null;
 let geoCache: PlacementQuestion[] | null = null;
 let g8Cache: PlacementQuestion[] | null = null;
 let g10Cache: PlacementQuestion[] | null = null;
+let g11Cache: PlacementQuestion[] | null = null;
 
 export function getPlacementBank(): PlacementQuestion[] {
   if (cache) return cache;
@@ -261,6 +300,13 @@ export function getGrade10PlacementBank(): PlacementQuestion[] {
   const titleBySlug = new Map(getGrade10Spine().map((t) => [t.slug, t.title]));
   g10Cache = G10_CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
   return g10Cache;
+}
+
+export function getGrade11PlacementBank(): PlacementQuestion[] {
+  if (g11Cache) return g11Cache;
+  const titleBySlug = new Map(getGrade11Spine().map((t) => [t.slug, t.title]));
+  g11Cache = G11_CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
+  return g11Cache;
 }
 
 // A stable, per-question shuffle of the answer options (the source keeps the

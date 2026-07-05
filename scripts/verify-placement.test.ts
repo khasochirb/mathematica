@@ -8,7 +8,7 @@ import {
   summarize,
   type PlacementState,
 } from "@/lib/placement-engine";
-import { getPlacementBank, getGeometryPlacementBank, getGrade8PlacementBank, getGrade10PlacementBank, displayQuestion, placementTopics, type PlacementQuestion } from "@/lib/placement-bank";
+import { getPlacementBank, getGeometryPlacementBank, getGrade8PlacementBank, getGrade10PlacementBank, getGrade11PlacementBank, displayQuestion, placementTopics, type PlacementQuestion } from "@/lib/placement-bank";
 
 // A small synthetic bank: 2 topics × 3 difficulties.
 function synthBank(): PlacementQuestion[] {
@@ -241,6 +241,42 @@ describe("placement bank (curated tiers)", () => {
     expect(ans("radicals-and-rational-exponents:d3")).toContain("4"); // extraneous filtered
     expect(ans("exponential-functions:d3")).toContain("1210"); // compound
     expect(ans("probability-and-counting:d3")).toContain("\\tfrac{11}{36}"); // at least one six
+    for (const q of bank) {
+      expect(q.correctIndex).toBeGreaterThanOrEqual(0);
+      expect(q.correctIndex).toBeLessThan(q.options.length);
+      const d = displayQuestion(q);
+      expect(d.options[d.correctIndex]).toBe(q.options[q.correctIndex]);
+    }
+  });
+
+  it("grade-11 bank has three tiers for all 7 topics, with correct spot-check answers", () => {
+    const bank = getGrade11PlacementBank();
+    const topics = placementTopics(bank);
+    expect(topics.length).toBe(7);
+    for (const t of topics) {
+      const diffs = bank.filter((q) => q.topicSlug === t.slug).map((q) => q.difficulty).sort();
+      expect(diffs).toEqual([1, 2, 3]);
+      expect(t.title.length).toBeGreaterThan(0);
+      expect(t.title).not.toBe(t.slug);
+    }
+    const byId = new Map(bank.map((q) => [q.id, q]));
+    const ans = (id: string) => {
+      const q = byId.get(id)!;
+      return q.options[q.correctIndex];
+    };
+    expect(ans("functions-and-transformations:d1")).toContain("10"); // f(3)
+    expect(ans("functions-and-transformations:d3")).toContain("\\tfrac{x+6}{2}"); // inverse
+    expect(ans("polynomial-functions:d2")).toContain("down on both ends"); // -x⁴
+    expect(ans("polynomial-functions:d3")).toContain("bounces"); // multiplicity 2
+    expect(ans("logarithms:d1")).toContain("5"); // log₂32
+    expect(ans("logarithms:d2")).toContain("2"); // log4+log25
+    expect(ans("sequences-and-series:d2")).toContain("48"); // 3·2⁴
+    expect(ans("sequences-and-series:d3")).toContain("5050"); // Gauss
+    expect(ans("trigonometry-and-the-unit-circle:d2")).toContain("\\tfrac{1}{2}"); // sin π/6
+    expect(ans("trigonometry-and-the-unit-circle:d3")).toBe("III"); // both negative
+    expect(ans("complex-numbers:d3")).toBe("$5$"); // conjugate product
+    expect(ans("statistics-and-data:d2")).toContain("1.5"); // z-score
+    expect(ans("statistics-and-data:d3")).toContain("68"); // μ±1σ
     for (const q of bank) {
       expect(q.correctIndex).toBeGreaterThanOrEqual(0);
       expect(q.correctIndex).toBeLessThan(q.options.length);
