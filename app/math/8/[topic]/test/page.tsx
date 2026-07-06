@@ -4,20 +4,30 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import RevealProblemCard from "@/components/lesson/RevealProblemCard";
-import { getGenMathTopic } from "@/lib/genmath-lessons";
+import { getGenMathTopicLocalized } from "@/lib/genmath-lessons";
+import { useLang } from "@/lib/lang-context";
 import ContentGate from "@/components/genmath/ContentGate";
 
-const REVEAL_LABELS = {
+const REVEAL_LABELS_EN = {
   reveal: "Show solution",
   hide: "Hide",
   revealAria: "Show solution",
   hideAria: "Hide solution",
 };
+const REVEAL_LABELS_MN = {
+  reveal: "Бодолтыг харах",
+  hide: "Нуух",
+  revealAria: "Бодолтыг харах",
+  hideAria: "Бодолтыг нуух",
+};
 
 function GenMathTestPageInner() {
   const params = useParams();
   const topicSlug = params.topic as string;
-  const topic = getGenMathTopic(topicSlug);
+  const { lang } = useLang();
+  const mn = lang === "mn";
+  const REVEAL_LABELS = mn ? REVEAL_LABELS_MN : REVEAL_LABELS_EN;
+  const topic = getGenMathTopicLocalized(topicSlug, lang);
 
   if (!topic) {
     return (
@@ -46,7 +56,7 @@ function GenMathTestPageInner() {
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">General Math · Grade 8 · {topic.title}</div>
+          <div className="eyebrow">{mn ? "Ерөнхий математик · 8-р анги" : "General Math · Grade 8"} · {topic.title}</div>
         </div>
 
         <h1
@@ -59,7 +69,7 @@ function GenMathTestPageInner() {
             color: "var(--fg)",
           }}
         >
-          Test Yourself — {topic.title}
+          {mn ? "Өөрийгөө шалга" : "Test Yourself"} — {topic.title}
         </h1>
 
         {/* Note about grading mode */}
@@ -68,10 +78,10 @@ function GenMathTestPageInner() {
           style={{ background: "var(--bg-1)" }}
         >
           <p className="mono text-[11px] uppercase mb-1" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-            Coming soon
+            {mn ? "Тун удахгүй" : "Coming soon"}
           </p>
           <p className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-            Graded mode coming in a later step. For now, attempt each problem and reveal the solution to self-check.
+            {mn ? "Дүгнэдэг горим дараагийн шатанд нэмэгдэнэ. Одоохондоо бодлого бүрийг бодоод, бодолтыг нээж өөрийгөө шалгаарай." : "Graded mode coming in a later step. For now, attempt each problem and reveal the solution to self-check."}
           </p>
         </div>
 

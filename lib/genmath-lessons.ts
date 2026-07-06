@@ -91,6 +91,10 @@ import applicationsOfDerivatives from "@/data/genmath/12/applications-of-derivat
 import integrals from "@/data/genmath/12/integrals.json";
 import vectors from "@/data/genmath/12/vectors.json";
 import conicSections from "@/data/genmath/12/conic-sections.json";
+// Mongolian mirrors of the Grade 8 topics (identical structure/ids/checks;
+// every prose string translated). Resolved by getGenMathTopicLocalized when
+// the site language is "mn".
+import realNumberSystemMn from "@/data/genmath/8-mn/the-real-number-system.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -411,6 +415,18 @@ export function getGrade12Spine(): GradeSpineEntry[] {
 
 export function getGenMathTopic(topicSlug: string): GenMathTopic | null {
   return allGenMathTopics.find((t) => t.slug === topicSlug) ?? null;
+}
+
+// Mongolian topic mirrors, keyed by slug. Grown as courses are localized.
+const GENMATH_TOPICS_MN: Record<string, GenMathTopic> = {
+  "the-real-number-system": realNumberSystemMn as GenMathTopic,
+};
+
+// Locale-aware topic lookup: Mongolian mirror when the site language is "mn"
+// and a translation exists; the English original otherwise.
+export function getGenMathTopicLocalized(topicSlug: string, lang: string): GenMathTopic | null {
+  if (lang === "mn" && GENMATH_TOPICS_MN[topicSlug]) return GENMATH_TOPICS_MN[topicSlug];
+  return getGenMathTopic(topicSlug);
 }
 
 export function getGenMathLesson(

@@ -99,9 +99,15 @@ import CoordGeo from "@/components/genmath/interactive/CoordGeo";
 import RatioFigure from "@/components/genmath/interactive/RatioFigure";
 import NotationToggle from "@/components/genmath/interactive/NotationToggle";
 import { type GenMathLesson } from "@/lib/genmath-lessons";
+import { useLang } from "@/lib/lang-context";
 import { type InteractiveStep, type WorkedItem, getLessonProblem } from "@/lib/genmath-interactive";
 
-const REVEAL = { reveal: "Show solution", hide: "Hide", revealAria: "Show solution", hideAria: "Hide solution" };
+// Player chrome in both site languages; lesson CONTENT arrives already
+// localized from the registry (data/genmath/8-mn mirrors).
+const CHROME = {
+  en: { reveal: "Show solution", hide: "Hide", answer: "Answer:", back: "Back", cont: "Continue", finish: "Finish lesson" },
+  mn: { reveal: "Бодолтыг харах", hide: "Нуух", answer: "Хариу:", back: "Буцах", cont: "Үргэлжлүүлэх", finish: "Хичээлийг дуусгах" },
+};
 
 function StepHeader({ eyebrow, title }: { eyebrow?: string; title: string }) {
   return (
@@ -122,9 +128,10 @@ function StepHeader({ eyebrow, title }: { eyebrow?: string; title: string }) {
 }
 
 function AnswerPill({ answer }: { answer: string }) {
+  const { lang } = useLang();
   return (
     <span className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5" style={{ background: "var(--accent-wash)", color: "var(--accent)" }}>
-      <span className="text-[12px]">Answer:</span>
+      <span className="text-[12px]">{CHROME[lang].answer}</span>
       <span className="q-math text-[14px]">
         <MathText text={answer} />
       </span>
@@ -166,6 +173,10 @@ function WorkedItemCard({ item, index }: { item: WorkedItem; index: number }) {
 }
 
 function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveStep }) {
+  const { lang } = useLang();
+  const REVEAL = lang === "mn"
+    ? { reveal: "Бодолтыг харах", hide: "Нуух", revealAria: "Бодолтыг харах", hideAria: "Бодолтыг нуух" }
+    : { reveal: "Show solution", hide: "Hide", revealAria: "Show solution", hideAria: "Hide solution" };
   switch (step.kind) {
     case "concept":
       return (
@@ -1255,6 +1266,8 @@ export default function LessonPlayer({
   const total = steps.length;
   const isLast = i >= total - 1;
   const topicHref = baseHref ?? `/math/6/${topicSlug}`;
+  const { lang } = useLang();
+  const C = CHROME[lang];
 
   // On every step change, bring the page back to the top so the learner starts
   // the next step at its heading instead of wherever they'd scrolled to answer.
@@ -1317,7 +1330,7 @@ export default function LessonPlayer({
             className="gm-press inline-flex items-center gap-1.5 rounded-full px-4 py-3 text-[14px] disabled:opacity-35"
             style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
           >
-            <ArrowLeft className="h-4 w-4" /> Back
+            <ArrowLeft className="h-4 w-4" /> {C.back}
           </button>
           {isLast ? (
             <Link
@@ -1325,7 +1338,7 @@ export default function LessonPlayer({
               className="gm-press ml-auto inline-flex items-center gap-1.5 rounded-full px-6 py-3 text-[14px]"
               style={{ background: "var(--accent)", color: "var(--accent-ink, #fff)" }}
             >
-              <Check className="h-4 w-4" /> Finish lesson
+              <Check className="h-4 w-4" /> {C.finish}
             </Link>
           ) : (
             <button
@@ -1334,7 +1347,7 @@ export default function LessonPlayer({
               className="gm-press ml-auto inline-flex items-center gap-1.5 rounded-full px-6 py-3 text-[14px]"
               style={{ background: "var(--accent)", color: "var(--accent-ink, #fff)" }}
             >
-              Continue <ArrowRight className="h-4 w-4" />
+              {C.cont} <ArrowRight className="h-4 w-4" />
             </button>
           )}
         </div>
