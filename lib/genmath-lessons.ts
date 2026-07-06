@@ -87,6 +87,9 @@ import statisticsAndData from "@/data/genmath/11/statistics-and-data.json";
 // every prose string translated). Resolved by getGenMathTopicLocalized when
 // the site language is "mn".
 import realNumberSystemMn from "@/data/genmath/8-mn/the-real-number-system.json";
+import exponentsScientificMn from "@/data/genmath/8-mn/exponents-and-scientific-notation.json";
+import rootsMn from "@/data/genmath/8-mn/roots.json";
+import linearEquationsMn from "@/data/genmath/8-mn/linear-equations.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -349,6 +352,9 @@ export function getGenMathTopic(topicSlug: string): GenMathTopic | null {
 // Mongolian topic mirrors, keyed by slug. Grown as courses are localized.
 const GENMATH_TOPICS_MN: Record<string, GenMathTopic> = {
   "the-real-number-system": realNumberSystemMn as GenMathTopic,
+  "exponents-and-scientific-notation": exponentsScientificMn as GenMathTopic,
+  "roots": rootsMn as GenMathTopic,
+  "linear-equations": linearEquationsMn as GenMathTopic,
 };
 
 // Locale-aware topic lookup: Mongolian mirror when the site language is "mn"
