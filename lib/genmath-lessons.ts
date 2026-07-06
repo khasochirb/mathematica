@@ -101,6 +101,7 @@ import linearEquationsMn from "@/data/genmath/8-mn/linear-equations.json";
 import linearFunctionsMn from "@/data/genmath/8-mn/linear-functions.json";
 import systemsMn from "@/data/genmath/8-mn/systems-of-linear-equations.json";
 import scatterMn from "@/data/genmath/8-mn/scatter-plots-and-bivariate-data.json";
+import ratiosMn from "@/data/genmath/6-mn/ratios-and-rates.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -432,6 +433,7 @@ const GENMATH_TOPICS_MN: Record<string, GenMathTopic> = {
   "linear-functions": linearFunctionsMn as GenMathTopic,
   "systems-of-linear-equations": systemsMn as GenMathTopic,
   "scatter-plots-and-bivariate-data": scatterMn as GenMathTopic,
+  "ratios-and-rates": ratiosMn as GenMathTopic,
 };
 
 // Locale-aware topic lookup: Mongolian mirror when the site language is "mn"

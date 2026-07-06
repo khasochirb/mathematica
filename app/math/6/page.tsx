@@ -3,12 +3,15 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
-import { getGrade6Topics } from "@/lib/genmath-lessons";
+import { getGrade6Topics, getGenMathTopicLocalized } from "@/lib/genmath-lessons";
 import { useAuth } from "@/lib/auth-context";
 import { loadPlacement, type StoredPlacement } from "@/lib/placement-result";
+import { useLang } from "@/lib/lang-context";
 
 export default function Grade6TopicsPage() {
   const topics = getGrade6Topics();
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const { user } = useAuth();
   const [placement, setPlacement] = useState<StoredPlacement | null>(null);
 
@@ -20,7 +23,7 @@ export default function Grade6TopicsPage() {
 
   const prioritySet = new Set(placement?.priorityTopics ?? []);
   const priorityTitles = (placement?.priorityTopics ?? [])
-    .map((slug) => topics.find((t) => t.slug === slug)?.title)
+    .map((slug) => getGenMathTopicLocalized(slug, lang)?.title)
     .filter(Boolean) as string[];
 
   return (
@@ -31,14 +34,16 @@ export default function Grade6TopicsPage() {
           <Link href="/math" className="p-2 rounded-md transition-colors" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">General Math · Grade 6</div>
+          <div className="eyebrow">{mn ? "Ерөнхий математик · 6-р анги" : "General Math · Grade 6"}</div>
         </div>
 
         <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(32px, 5vw, 56px)", letterSpacing: "-0.04em", lineHeight: 1, color: "var(--fg)" }}>
-          Grade 6 Topics
+          {mn ? "6-р ангийн сэдвүүд" : "Grade 6 Topics"}
         </h1>
         <p className="mt-3 mb-6" style={{ color: "var(--fg-1)", fontSize: 16 }}>
-          Select a topic to explore lessons, practice problems, and self-tests.
+          {mn
+            ? "Хичээл, дасгал, өөрийгөө шалгах тесттэй танилцахын тулд сэдвээ сонгоорой."
+            : "Select a topic to explore lessons, practice problems, and self-tests."}
         </p>
 
         {/* Placement CTA / summary */}
@@ -49,15 +54,19 @@ export default function Grade6TopicsPage() {
             </span>
             <div className="flex-1 min-w-0">
               <p className="serif" style={{ fontSize: 16, color: "var(--fg)" }}>
-                You're at the <b style={{ color: "var(--accent)" }}>{placement.level}</b> level
+                {mn ? <>Таны түвшин: <b style={{ color: "var(--accent)" }}>{placement.level}</b></> : <>You're at the <b style={{ color: "var(--accent)" }}>{placement.level}</b> level</>}
               </p>
               <p className="text-[13px] mt-0.5" style={{ color: "var(--fg-2)" }}>
                 {priorityTitles.length > 0
-                  ? <>Focus first on <b>{priorityTitles.slice(0, 3).join(", ")}</b> — marked below.</>
-                  : <>You're strong across the board. Retake anytime.</>}
+                  ? (mn
+                      ? <>Эхлээд <b>{priorityTitles.slice(0, 3).join(", ")}</b> сэдэвт анхаараарай — доор тэмдэглэсэн.</>
+                      : <>Focus first on <b>{priorityTitles.slice(0, 3).join(", ")}</b> — marked below.</>)
+                  : (mn
+                      ? <>Та бүх сэдэвт сайн байна. Хүссэн үедээ дахин өгөөрэй.</>
+                      : <>You're strong across the board. Retake anytime.</>)}
               </p>
             </div>
-            <span className="mono text-[11px] flex-shrink-0" style={{ color: "var(--accent)" }}>Retake →</span>
+            <span className="mono text-[11px] flex-shrink-0" style={{ color: "var(--accent)" }}>{mn ? "Дахин өгөх →" : "Retake →"}</span>
           </Link>
         ) : (
           <Link href="/math/6/placement" className="card-edit p-4 mb-8 flex items-center gap-4" style={{ textDecoration: "none", borderColor: "var(--accent-line)", background: "var(--accent-wash)" }}>
@@ -65,9 +74,11 @@ export default function Grade6TopicsPage() {
               <Sparkles className="h-4.5 w-4.5" />
             </span>
             <div className="flex-1 min-w-0">
-              <p className="serif" style={{ fontSize: 16, color: "var(--fg)" }}>Take the placement test</p>
+              <p className="serif" style={{ fontSize: 16, color: "var(--fg)" }}>{mn ? "Түвшин тогтоох тест өгөх" : "Take the placement test"}</p>
               <p className="text-[13px] mt-0.5" style={{ color: "var(--fg-2)" }}>
-                A quick adaptive test builds a personalized plan and marks the topics most important for you.
+                {mn
+                  ? "Богино дасан зохицох тест таны хувийн төлөвлөгөөг гаргаж, танд хамгийн чухал сэдвүүдийг тэмдэглэнэ."
+                  : "A quick adaptive test builds a personalized plan and marks the topics most important for you."}
               </p>
             </div>
             <ArrowRight className="h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
@@ -75,7 +86,8 @@ export default function Grade6TopicsPage() {
         )}
 
         <div className="space-y-3">
-          {topics.map((topic, i) => {
+          {topics.map((t, i) => {
+            const topic = getGenMathTopicLocalized(t.slug, lang) ?? t;
             const important = prioritySet.has(topic.slug);
             return (
               <Link
@@ -102,7 +114,7 @@ export default function Grade6TopicsPage() {
                     </p>
                     {important && (
                       <span className="rounded-full px-2 py-0.5 text-[10px] font-medium" style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--accent)" }}>
-                        Important for you
+                        {mn ? "Танд чухал" : "Important for you"}
                       </span>
                     )}
                   </div>
@@ -111,7 +123,7 @@ export default function Grade6TopicsPage() {
                   </p>
                 </div>
                 <span className="mono text-[11px] flex-shrink-0" style={{ color: "var(--fg-3)" }}>
-                  {topic.lessons.length} lesson{topic.lessons.length !== 1 ? "s" : ""}
+                  {mn ? `${topic.lessons.length} хичээл` : `${topic.lessons.length} lesson${topic.lessons.length !== 1 ? "s" : ""}`}
                 </span>
               </Link>
             );
