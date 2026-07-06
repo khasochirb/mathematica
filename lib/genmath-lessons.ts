@@ -87,6 +87,7 @@ import statisticsAndData from "@/data/genmath/11/statistics-and-data.json";
 import trigonometricIdentities from "@/data/genmath/12/trigonometric-identities.json";
 import limitsAndContinuity from "@/data/genmath/12/limits-and-continuity.json";
 import derivatives from "@/data/genmath/12/derivatives.json";
+import applicationsOfDerivatives from "@/data/genmath/12/applications-of-derivatives.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -285,7 +286,7 @@ export const GRADE12_SPINE: GradeSpineEntry[] = [
     slug: "applications-of-derivatives",
     title: "Applications of Derivatives",
     blurb: "Tangent lines, increasing and decreasing, maxima and minima, and optimization problems that pay.",
-    live: false,
+    live: true,
   },
   {
     slug: "integrals",
@@ -311,6 +312,7 @@ const grade12Topics: GenMathTopic[] = [
   trigonometricIdentities as GenMathTopic,
   limitsAndContinuity as GenMathTopic,
   derivatives as GenMathTopic,
+  applicationsOfDerivatives as GenMathTopic,
 ];
 
 const grade11Topics: GenMathTopic[] = [

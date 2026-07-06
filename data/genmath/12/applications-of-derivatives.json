@@ -1,0 +1,1647 @@
+{
+  "slug": "applications-of-derivatives",
+  "title": "Applications of Derivatives",
+  "grade": 12,
+  "blurb": "Tangent lines, increasing and decreasing, maxima and minima, and optimization problems that pay.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "tangent-lines",
+      "title": "Tangent Lines",
+      "concreteComparison": "Swing a ball on a string and let go: it flies off along the **tangent** — the direction the curve was heading at that exact instant. Last topic built the slope-measuring machine; this lesson writes the actual line: point from $f$, slope from $f'$, assembled with Grade 8's point-slope form. Calculus meets $y = mx + b$, and both are better for it.",
+      "objective": "Write the equation of the tangent line to a curve at a point: slope from f', point from f, assembled in point-slope form.",
+      "concept": [
+        "**The recipe**: tangent to $y = f(x)$ at $x = a$ needs two ingredients — the POINT $(a, f(a))$ and the SLOPE $f'(a)$. Assemble: $y = f(a) + f'(a)(x - a)$. Point-slope form from Grade 8, fed by calculus.",
+        "Example: $y = x^2$ at $x = 3$. Point: $(3, 9)$. Slope: $f'(x) = 2x$, so $f'(3) = 6$. Line: $y = 9 + 6(x - 3) = 6x - 9$.",
+        "**Two different machines**: $f(3) = 9$ answers 'where is the curve?'; $f'(3) = 6$ answers 'which way is it heading?'. The tangent line needs both answers — mixing them up is the classic wreck.",
+        "**Why tangents matter**: near the touch point, the tangent IS the curve, to first approximation. Calculators estimate $\\sqrt{17}$ by riding the tangent to $\\sqrt{x}$ at $x = 16$: $\\approx 4 + \\tfrac{1}{8}(17-16) = 4.125$ (true value $4.123\\ldots$). Lines are easy; tangents make curves locally easy."
+      ],
+      "keyIdea": "Tangent at x = a: y = f(a) + f'(a)(x − a). Point from f, slope from f', point-slope from Grade 8 — and near the touch point, the line practically IS the curve.",
+      "facts": [
+        {
+          "title": "The recipe",
+          "latex": "y = f(a) + f'(a)(x - a)",
+          "explanation": "Point from f, slope from f′."
+        },
+        {
+          "title": "Local stand-in",
+          "latex": "f(x) \\approx f(a) + f'(a)(x - a) \\text{ near } a",
+          "explanation": "The tangent approximates the curve."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ad1-we1",
+          "statement": "Find the tangent line to $y = x^2$ at $x = 3$.",
+          "solution": "Point $(3, 9)$; slope $2 \\cdot 3 = 6$. Line: $y = 9 + 6(x-3) = 6x - 9$.",
+          "check": [
+            "diff(x**2, x) == 2*x",
+            "3**2 == 9",
+            "simplify(9 + 6*(x - 3) - (6*x - 9)) == 0"
+          ]
+        },
+        {
+          "id": "ad1-we2",
+          "statement": "Find the tangent line to $y = x^3 - 2x$ at $x = 1$.",
+          "solution": "Point: $(1, -1)$. Slope: $y' = 3x^2 - 2$, at 1: $1$. Line: $y = -1 + 1(x - 1) = x - 2$.",
+          "check": [
+            "1**3 - 2*1 == -1",
+            "diff(x**3 - 2*x, x) == 3*x**2 - 2",
+            "3*1 - 2 == 1"
+          ]
+        },
+        {
+          "id": "ad1-we3",
+          "statement": "Use the tangent to $y = \\sqrt{x}$ at $x = 16$ to estimate $\\sqrt{17}$.",
+          "solution": "Point $(16, 4)$; slope $\\tfrac{1}{2\\sqrt{16}} = \\tfrac18$. Estimate: $4 + \\tfrac18(17 - 16) = 4.125$. (True: $4.1231\\ldots$ — the tangent earns its keep.)",
+          "check": [
+            "simplify(diff(sqrt(x), x) - 1/(2*sqrt(x))) == 0",
+            "4 + Rational(1,8) == Rational(33,8)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using f(a) as the slope.",
+          "correction": "$f(3) = 9$ is the HEIGHT. The slope is $f'(3) = 6$ — a different machine's output. Point from $f$, slope from $f'$, never swapped.",
+          "authored": true
+        },
+        {
+          "text": "Writing the tangent through the origin by default.",
+          "correction": "The line passes through $(a, f(a))$, not $(0,0)$. Point-slope form $y = f(a) + f'(a)(x-a)$ anchors it correctly by construction.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ad1-t1",
+          "statement": "Tangent line to $y = x^2 - 4x$ at $x = 1$?",
+          "solution": "Point $(1, -3)$; slope $2(1) - 4 = -2$. Line: $y = -3 - 2(x-1) = -2x - 1$.",
+          "check": [
+            "1 - 4 == -3",
+            "diff(x**2 - 4*x, x) == 2*x - 4",
+            "2*1 - 4 == -2"
+          ]
+        },
+        {
+          "id": "ad1-t2",
+          "statement": "At which point does $y = x^2$ have a tangent parallel to $y = 4x + 7$?",
+          "solution": "Parallel means slope 4: $2x = 4$, $x = 2$ — the point $(2, 4)$.",
+          "check": [
+            "2*2 == 4",
+            "2**2 == 4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Letting go of the string",
+            "title": "The instant's direction",
+            "beats": [
+              "Swing a ball on a string; release. It exits along the TANGENT.",
+              "The curve's direction at one instant — that's a line.",
+              "We can now compute it: slope $= f'(a)$, anchor $= (a, f(a))$.",
+              "Grade 8's point-slope form does the assembly."
+            ]
+          },
+          {
+            "kind": "tangentGraph",
+            "eyebrow": "Feel the anchor",
+            "title": "One point, one slope",
+            "teach": "Slide the touch point: at each $a$ the blue line pivots to slope $f'(a) = a$, anchored at $(a, f(a))$. Two numbers fully determine it — that pair is all a tangent-line problem ever asks you to find.",
+            "config": {
+              "mode": "tangent"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which machine?",
+            "prompt": "For the tangent to $y = x^2$ at $x = 3$, the number $6$ is…",
+            "options": [
+              "the slope — from $f'(3)$",
+              "the height — from $f(3)$",
+              "the y-intercept"
+            ],
+            "correctIndex": 0,
+            "explanation": "$f'(x) = 2x$ gives slope $6$; the height is $f(3) = 9$. Keep the machines straight and the line writes itself: $y = 9 + 6(x-3)$.",
+            "check": [
+              "2*3 == 6",
+              "3**2 == 9"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The recipe",
+            "title": "Assemble in point-slope",
+            "beats": [
+              "1 — Height: $f(a)$.",
+              "2 — Slope: $f'(a)$.",
+              "3 — Assemble: $y = f(a) + f'(a)(x - a)$.",
+              "Tidy to $y = mx + b$ if asked. That's the whole skill."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Line assembly",
+            "intro": "Height, slope, point-slope.",
+            "examples": [
+              {
+                "prompt": "Tangent to $y = x^3$ at $x = 2$.",
+                "steps": [
+                  "Height: $8$. Slope: $3x^2$ at 2 is $12$.",
+                  "$y = 8 + 12(x - 2) = 12x - 16$."
+                ],
+                "answer": "$y = 12x - 16$",
+                "check": [
+                  "2**3 == 8",
+                  "diff(x**3, x) == 3*x**2",
+                  "3*2**2 == 12",
+                  "simplify(8 + 12*(x - 2) - (12*x - 16)) == 0"
+                ]
+              },
+              {
+                "prompt": "Where does $y = x^2 - 6x$ have a HORIZONTAL tangent?",
+                "steps": [
+                  "Horizontal = slope 0: $2x - 6 = 0$.",
+                  "$x = 3$; point $(3, -9)$.",
+                  "(Horizontal tangents are next lesson's whole story.)"
+                ],
+                "answer": "$(3, -9)$",
+                "check": [
+                  "diff(x**2 - 6*x, x) == 2*x - 6",
+                  "2*3 - 6 == 0",
+                  "3**2 - 6*3 == -9"
+                ]
+              },
+              {
+                "prompt": "Estimate $\\sqrt{26}$ by tangent to $y = \\sqrt{x}$ at $x = 25$.",
+                "steps": [
+                  "Point $(25, 5)$; slope $\\tfrac{1}{2\\cdot5} = \\tfrac{1}{10}$.",
+                  "$\\sqrt{26} \\approx 5 + \\tfrac{1}{10}(1) = 5.1$. (True: $5.099$.)"
+                ],
+                "answer": "$\\approx 5.1$",
+                "check": [
+                  "simplify(diff(sqrt(x), x) - 1/(2*sqrt(x))) == 0",
+                  "5 + Rational(1,10) == Rational(51,10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Anchor and aim",
+            "intro": "Two numbers, one line.",
+            "problems": [
+              {
+                "prompt": "Tangent to $y = x^2 + 1$ at $x = 2$: the slope is…",
+                "options": [
+                  "$4$",
+                  "$5$",
+                  "$2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$y' = 2x$; at 2: slope 4. ($5$ is the height $f(2)$ — the other ingredient.)",
+                "check": [
+                  "2*2 == 4",
+                  "2**2 + 1 == 5"
+                ]
+              },
+              {
+                "prompt": "The tangent to $y = x^3 - 3x$ at $x = 1$ is…",
+                "options": [
+                  "horizontal — the slope is 0",
+                  "vertical",
+                  "slope 3"
+                ],
+                "correctIndex": 0,
+                "explanation": "$y' = 3x^2 - 3$; at 1: $0$. A flat tangent — this point is a valley, as the next lesson will prove.",
+                "check": [
+                  "3*1**2 - 3 == 0"
+                ]
+              },
+              {
+                "prompt": "Near the touch point, the tangent line is…",
+                "options": [
+                  "an excellent stand-in for the curve",
+                  "always below the curve",
+                  "only decorative"
+                ],
+                "correctIndex": 0,
+                "explanation": "That's linear approximation — how calculators and physicists tame curves: locally, everything is a line.",
+                "check": [
+                  "4 + Rational(1,8) == Rational(33,8)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Physics",
+            "title": "Sparks fly on tangents",
+            "body": "Watch a grinding wheel: sparks leave the disk exactly along tangent lines — glowing straight-line proof of the definition. Medieval siege engineers knew it too: a trebuchet's payload releases on the sling's tangent. Get the release angle wrong and the calculus error lands on your own castle."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Tangent at $a$: $y = f(a) + f'(a)(x - a)$ — height from $f$, slope from $f'$.",
+              "Horizontal tangent = slope zero = solve $f'(x) = 0$.",
+              "Near the touch point the tangent approximates the curve — linear approximation."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "rising-and-falling",
+      "title": "Rising & Falling",
+      "concreteComparison": "A hiker reads a trail profile at a glance: climbing here, descending there, cresting in between. The derivative reads any function the same way — $f' > 0$ means rising, $f' < 0$ means falling — and the boundaries between stretches are exactly where $f' = 0$. One sign chart of $f'$ and the whole shape of $f$ falls out, no plotting required.",
+      "objective": "Find the intervals where f increases and decreases by solving f'(x) = 0 and testing the sign of f' on each interval.",
+      "concept": [
+        "**The principle**: on any interval where $f'(x) > 0$, $f$ INCREASES; where $f'(x) < 0$, it DECREASES. The derivative's sign is the function's direction — lesson 2 of last topic, now industrialized.",
+        "**The method (sign chart)**: (1) compute $f'$; (2) solve $f'(x) = 0$ (and note where $f'$ doesn't exist) — these **critical points** cut the number line into intervals; (3) test ONE point per interval; (4) read off rising/falling.",
+        "Example: $f(x) = x^3 - 3x$, $f' = 3x^2 - 3 = 3(x-1)(x+1)$. Critical points $\\pm 1$. Test $x = -2$: $f' = 9 > 0$ rising. Test $0$: $-3 < 0$ falling. Test $2$: $9 > 0$ rising. Shape: up, down, up — the cubic S-wiggle, derived not drawn.",
+        "**Why one test point suffices**: $f'$ is continuous here, and it can only change sign by passing through $0$ — which happens only at critical points (the IVT from two topics back, working for us now). Between consecutive critical points, the sign is locked."
+      ],
+      "keyIdea": "Solve f' = 0 for critical points, test one point per interval, and the sign chart of f' hands you every rising and falling stretch of f.",
+      "facts": [
+        {
+          "title": "The principle",
+          "latex": "f' > 0 \\Rightarrow f \\text{ rising}; \\quad f' < 0 \\Rightarrow f \\text{ falling}",
+          "explanation": "Direction is the derivative's sign."
+        },
+        {
+          "title": "The method",
+          "latex": "\\text{critical points cut intervals; one test point each}",
+          "explanation": "Signs can't flip between critical points (IVT)."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ad2-we1",
+          "statement": "Find where $f(x) = x^3 - 3x$ rises and falls.",
+          "solution": "$f' = 3x^2 - 3 = 0$ at $x = \\pm1$. Tests: $f'(-2) = 9 > 0$, $f'(0) = -3 < 0$, $f'(2) = 9 > 0$. Rising on $x < -1$ and $x > 1$; falling between.",
+          "check": [
+            "diff(x**3 - 3*x, x) == 3*x**2 - 3",
+            "3*(-2)**2 - 3 > 0",
+            "3*0**2 - 3 < 0",
+            "3*2**2 - 3 > 0"
+          ]
+        },
+        {
+          "id": "ad2-we2",
+          "statement": "Find where $f(x) = x^2 - 8x + 3$ decreases.",
+          "solution": "$f' = 2x - 8 < 0$ when $x < 4$: falling until 4, rising after — the parabola's vertex at $x = 4$, located without completing any square.",
+          "check": [
+            "diff(x**2 - 8*x + 3, x) == 2*x - 8",
+            "2*3 - 8 < 0",
+            "2*5 - 8 > 0"
+          ]
+        },
+        {
+          "id": "ad2-we3",
+          "statement": "Show $f(x) = x^3 + x$ increases EVERYWHERE.",
+          "solution": "$f' = 3x^2 + 1 \\geq 1 > 0$ for all $x$ — no critical points, one interval, always rising. A function you can promise is one-to-one (its inverse exists — Grade 11 callback).",
+          "check": [
+            "diff(x**3 + x, x) == 3*x**2 + 1",
+            "3*0**2 + 1 > 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading the sign of f instead of f'.",
+          "correction": "$f$ negative means BELOW the axis; $f'$ negative means FALLING. A function can be negative and rising ($x^3$ just left of 0). Direction lives in the derivative.",
+          "authored": true
+        },
+        {
+          "text": "Skipping the test points and guessing alternation.",
+          "correction": "Signs don't always alternate: $f' = 3x^2$ is positive on BOTH sides of its critical point $0$ (the S-curve pauses but never falls). Test every interval.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ad2-t1",
+          "statement": "Where does $f(x) = x^3 - 12x$ fall?",
+          "solution": "$f' = 3x^2 - 12 = 0$ at $\\pm2$; test $0$: $-12 < 0$. Falling on $-2 < x < 2$.",
+          "check": [
+            "diff(x**3 - 12*x, x) == 3*x**2 - 12",
+            "3*0 - 12 < 0",
+            "3*9 - 12 > 0"
+          ]
+        },
+        {
+          "id": "ad2-t2",
+          "statement": "Where does $f(x) = -x^2 + 6x$ rise?",
+          "solution": "$f' = -2x + 6 > 0$ when $x < 3$: rising until the vertex, then falling — the downward parabola from Grade 10, narrated.",
+          "check": [
+            "diff(-x**2 + 6*x, x) == 6 - 2*x",
+            "6 - 2*2 > 0",
+            "6 - 2*4 < 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The trail profile",
+            "title": "Reading direction",
+            "beats": [
+              "A hiker's map: climb, crest, descend — read at a glance.",
+              "For functions, the derivative is that glance:",
+              "$f' > 0$ rising, $f' < 0$ falling, $f' = 0$ the crests and floors.",
+              "Today: turn one derivative into the whole trail report."
+            ]
+          },
+          {
+            "kind": "tangentGraph",
+            "eyebrow": "Watch the handoff",
+            "title": "Sign is direction",
+            "teach": "Slide $x$ across the vertex: the blue $f'$ line sits BELOW the axis while the curve falls, crosses zero exactly at the bottom, and rides above while the curve climbs. The derivative's sign chart IS the function's itinerary.",
+            "config": {
+              "mode": "slopeCurve"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which negative?",
+            "prompt": "$f(x) = x^3$ near $x = -0.5$: $f$ is negative there. The function is…",
+            "options": [
+              "rising — $f' = 3x^2 > 0$",
+              "falling — negative means falling",
+              "flat"
+            ],
+            "correctIndex": 0,
+            "explanation": "Below the axis (sign of $f$) and climbing (sign of $f'$) at once. Direction lives in the DERIVATIVE — the most common mix-up in the chapter.",
+            "check": [
+              "3*Rational(-1,2)**2 > 0",
+              "Rational(-1,2)**3 < 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The sign chart",
+            "title": "Four steps",
+            "beats": [
+              "1 — Compute $f'$. 2 — Solve $f' = 0$: critical points.",
+              "3 — They cut the line into intervals; test ONE point each.",
+              "4 — Read: $+$ rising, $-$ falling.",
+              "Why one point is enough: $f'$ can only change sign THROUGH zero (IVT)."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Trail reports",
+            "intro": "Critical points, then one honest test each.",
+            "examples": [
+              {
+                "prompt": "Full report for $f(x) = x^3 - 6x^2 + 9x$.",
+                "steps": [
+                  "$f' = 3x^2 - 12x + 9 = 3(x-1)(x-3)$: critical at 1, 3.",
+                  "Tests: $f'(0) = 9 > 0$; $f'(2) = -3 < 0$; $f'(4) = 9 > 0$.",
+                  "Rising, falling, rising — crest at 1, floor at 3."
+                ],
+                "answer": "up on $x<1$, down on $1<x<3$, up on $x>3$",
+                "check": [
+                  "diff(x**3 - 6*x**2 + 9*x, x) == 3*x**2 - 12*x + 9",
+                  "3*(0-1)*(0-3) > 0",
+                  "3*(2-1)*(2-3) < 0",
+                  "3*(4-1)*(4-3) > 0"
+                ]
+              },
+              {
+                "prompt": "The trap case: $f(x) = x^3$. Critical point at 0 — does the sign flip?",
+                "steps": [
+                  "$f' = 3x^2$; test $-1$: $3 > 0$; test $1$: $3 > 0$.",
+                  "No flip — rising on both sides, with one flat instant.",
+                  "Critical point ≠ automatic turn. The tests decide, never the guess."
+                ],
+                "answer": "rising everywhere (flat instant at 0)",
+                "check": [
+                  "diff(x**3, x) == 3*x**2",
+                  "3*(-1)**2 > 0",
+                  "3*1**2 > 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Chart duty",
+            "intro": "Critical points, tests, verdicts.",
+            "problems": [
+              {
+                "prompt": "$f' = (x-2)(x-5)$. On $2 < x < 5$, $f$ is…",
+                "options": [
+                  "falling — test $x=3$: $(1)(-2) < 0$",
+                  "rising",
+                  "flat"
+                ],
+                "correctIndex": 0,
+                "explanation": "One factor positive, one negative: $f' < 0$ throughout the middle interval.",
+                "check": [
+                  "(3-2)*(3-5) < 0"
+                ]
+              },
+              {
+                "prompt": "$f(x) = x^4$: its only critical point is $x = 0$, and the function…",
+                "options": [
+                  "falls then rises — a floor at 0",
+                  "rises then falls",
+                  "rises everywhere"
+                ],
+                "correctIndex": 0,
+                "explanation": "$f' = 4x^3$: negative left of 0, positive right — down into the origin, up and out.",
+                "check": [
+                  "diff(x**4, x) == 4*x**3",
+                  "4*(-1)**3 < 0",
+                  "4*1**3 > 0"
+                ]
+              },
+              {
+                "prompt": "A function with $f'(x) = x^2 + 4$…",
+                "options": [
+                  "rises everywhere — $f'$ is never zero",
+                  "has two critical points",
+                  "falls for $x < 0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x^2 + 4 \\geq 4 > 0$ always: no critical points, one interval, permanently climbing.",
+                "check": [
+                  "0**2 + 4 > 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Economics",
+            "title": "The economists' favorite sign",
+            "body": "Marginal cost, marginal revenue, marginal utility — economics runs on derivatives' signs. 'Diminishing returns' is literally 'the derivative of output is still positive but falling'. Firms expand production while marginal profit $> 0$ and stop at zero — tomorrow's lesson, wearing a suit."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$f' > 0$ rising, $f' < 0$ falling — direction is the derivative's sign.",
+              "Critical points ($f' = 0$) cut the line; one test point per interval settles it.",
+              "Signs need not alternate ($x^3$!) — always run the tests."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "peaks-and-valleys",
+      "title": "Peaks & Valleys",
+      "concreteComparison": "Every summit on Earth shares one property: at the very top, the ground is momentarily level. Functions agree — a smooth curve can only peak or bottom out where $f' = 0$. But level ground isn't PROOF of a summit ($x^3$'s flat pause fooled no one last lesson), so we interrogate each critical point: did the rise turn to fall (peak), the fall to rise (valley), or neither (pause)?",
+      "objective": "Classify critical points as local maxima, minima, or neither using the first-derivative test, and find extreme values on closed intervals.",
+      "concept": [
+        "**Fermat's observation**: at a local max or min of a smooth function, $f'(a) = 0$. Peaks and valleys hide ONLY among critical points — solving $f' = 0$ produces the complete list of suspects.",
+        "**First-derivative test**: check $f'$'s sign left and right of each suspect. $+$ to $-$: local MAX (rise turns to fall). $-$ to $+$: local MIN. Same sign both sides: neither — just a pause ($x^3$ at 0).",
+        "$f(x) = x^3 - 3x$: suspects $\\pm1$. At $-1$: rising before, falling after → local max, value $f(-1) = 2$. At $1$: falling→rising → local min, $f(1) = -2$. The S-curve, fully labeled.",
+        "**Closed-interval bonus**: on $[a, b]$, the absolute max/min live at critical points OR ENDPOINTS. Evaluate $f$ at all of them; the biggest and smallest values win. No test needed — just a short list and a comparison."
+      ],
+      "keyIdea": "Extremes hide only where f' = 0. Classify by the sign flip: + to − is a peak, − to + is a valley, no flip is a pause. On [a,b], also audit the endpoints.",
+      "facts": [
+        {
+          "title": "Fermat's theorem",
+          "latex": "\\text{local extreme} \\Rightarrow f'(a) = 0",
+          "explanation": "Suspects are exactly the critical points."
+        },
+        {
+          "title": "First-derivative test",
+          "latex": "+\\to-: \\text{max}; \\quad -\\to+: \\text{min}; \\quad \\text{no flip: neither}",
+          "explanation": "The sign flip is the verdict."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ad3-we1",
+          "statement": "Find and classify the critical points of $f(x) = x^3 - 3x$.",
+          "solution": "$f' = 3(x-1)(x+1)$: suspects $\\pm1$. Sign chart (last lesson): $+,-,+$. At $-1$: max, $f(-1) = 2$; at $1$: min, $f(1) = -2$.",
+          "check": [
+            "diff(x**3 - 3*x, x) == 3*x**2 - 3",
+            "(-1)**3 - 3*(-1) == 2",
+            "1**3 - 3*1 == -2"
+          ]
+        },
+        {
+          "id": "ad3-we2",
+          "statement": "Find the absolute max and min of $f(x) = x^2 - 4x$ on $[0, 5]$.",
+          "solution": "Critical: $2x - 4 = 0$ at $x = 2$. Audit: $f(0) = 0$, $f(2) = -4$, $f(5) = 5$. Absolute min $-4$ at $2$; absolute max $5$ at the endpoint $5$.",
+          "check": [
+            "diff(x**2 - 4*x, x) == 2*x - 4",
+            "2**2 - 4*2 == -4",
+            "5**2 - 4*5 == 5",
+            "0**2 - 4*0 == 0"
+          ]
+        },
+        {
+          "id": "ad3-we3",
+          "statement": "Classify the critical point of $f(x) = x^4$ at $x = 0$… and of $g(x) = x^3$ at $x = 0$.",
+          "solution": "$f' = 4x^3$: $-$ to $+$ → valley (min 0). $g' = 3x^2$: $+$ to $+$ → no flip, a pause. Same-looking suspects, opposite verdicts — the test, not the location, decides.",
+          "check": [
+            "4*(-1)**3 < 0",
+            "4*1**3 > 0",
+            "3*(-1)**2 > 0",
+            "3*1**2 > 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Declaring every critical point a max or min.",
+          "correction": "$x^3$ at 0: critical, but just a flat pause — the sign never flips. Fermat gives SUSPECTS; the first-derivative test convicts.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting endpoints on a closed interval.",
+          "correction": "On $[0,5]$, $f(x) = x^2 - 4x$ has its absolute MAX at $x = 5$ — no critical point there, just the interval's edge. Endpoints skip the $f' = 0$ requirement entirely.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ad3-t1",
+          "statement": "Classify the critical points of $f(x) = x^3 - 12x$.",
+          "solution": "$f' = 3x^2 - 12 = 0$ at $\\pm2$; chart $+,-,+$: max at $-2$ ($f = 16$), min at $2$ ($f = -16$).",
+          "check": [
+            "(-2)**3 - 12*(-2) == 16",
+            "2**3 - 12*2 == -16"
+          ]
+        },
+        {
+          "id": "ad3-t2",
+          "statement": "Absolute extremes of $f(x) = x^3 - 3x$ on $[0, 2]$?",
+          "solution": "Critical inside: $x = 1$ only. Audit: $f(0) = 0$, $f(1) = -2$, $f(2) = 2$. Min $-2$, max $2$.",
+          "check": [
+            "1**3 - 3*1 == -2",
+            "2**3 - 3*2 == 2",
+            "0**3 - 3*0 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Level ground at the summit",
+            "title": "Fermat's observation",
+            "beats": [
+              "At the top of any smooth hill, the ground is level: $f' = 0$.",
+              "So peaks and valleys hide ONLY among critical points.",
+              "Solve $f' = 0$: the complete suspect list.",
+              "But level ≠ summit ($x^3$'s pause!) — suspects need interrogation."
+            ]
+          },
+          {
+            "kind": "tangentGraph",
+            "eyebrow": "The suspect at zero",
+            "title": "Flat at the floor",
+            "teach": "Slide to $a = 0$: the tangent goes flat and the beacon fires — a critical point. Left of it the slope is negative (falling in), right of it positive (climbing out): $-$ to $+$ is the signature of a VALLEY.",
+            "config": {
+              "mode": "tangent"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the flip",
+            "prompt": "Near a critical point, $f'$ goes $+$ before and $-$ after. The point is…",
+            "options": [
+              "a local max — rise turns to fall",
+              "a local min",
+              "a pause"
+            ],
+            "correctIndex": 0,
+            "explanation": "Climbing in, descending out: that's a peak. ($-$ to $+$ is the valley; no flip, the impostor.)",
+            "check": [
+              "3*(0-1)*(0-3) > 0",
+              "3*(2-1)*(2-3) < 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The closed-interval audit",
+            "title": "Edges count",
+            "beats": [
+              "On $[a, b]$, absolute extremes sit at critical points OR endpoints.",
+              "Recipe: list critical points inside, add both endpoints,",
+              "evaluate $f$ at each, compare. Largest wins, smallest wins.",
+              "No sign test needed — a short list beats a long argument."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Interrogations",
+            "intro": "Suspects, flips, audits.",
+            "examples": [
+              {
+                "prompt": "Classify all critical points of $f(x) = x^4 - 8x^2$.",
+                "steps": [
+                  "$f' = 4x^3 - 16x = 4x(x-2)(x+2)$: suspects $0, \\pm2$.",
+                  "Chart: $-,+,-,+$ → valley at $-2$ ($f=-16$), peak at $0$ ($f=0$), valley at $2$ ($f=-16$).",
+                  "The W-shape, fully labeled."
+                ],
+                "answer": "min $-16$ at $\\pm2$; local max $0$ at $0$",
+                "check": [
+                  "diff(x**4 - 8*x**2, x) == 4*x**3 - 16*x",
+                  "(-2)**4 - 8*(-2)**2 == -16",
+                  "0**4 - 8*0 == 0",
+                  "2**4 - 8*2**2 == -16"
+                ]
+              },
+              {
+                "prompt": "A ball: $s(t) = 20t - 5t^2$ on $[0, 4]$. Highest point, and when?",
+                "steps": [
+                  "$v = 20 - 10t = 0$ at $t = 2$.",
+                  "Audit: $s(0) = 0$, $s(2) = 20$, $s(4) = 0$.",
+                  "Peak height 20 m at $t = 2$ s — last topic's stone, now a theorem."
+                ],
+                "answer": "20 m at $t = 2$",
+                "check": [
+                  "diff(20*t - 5*t**2, t) == 20 - 10*t",
+                  "20*2 - 5*4 == 20",
+                  "20*4 - 5*16 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Verdicts",
+            "intro": "Flip or no flip.",
+            "problems": [
+              {
+                "prompt": "$f' = x^2(x - 3)$: the critical point at $x = 0$ is…",
+                "options": [
+                  "a pause — $f'$ is negative on both sides",
+                  "a peak",
+                  "a valley"
+                ],
+                "correctIndex": 0,
+                "explanation": "Test $-1$: $(1)(-4) < 0$; test $1$: $(1)(-2) < 0$. No flip — the $x^2$ factor bounces without crossing (Grade 11 multiplicity, working overtime).",
+                "check": [
+                  "(-1)**2*(-1-3) < 0",
+                  "1**2*(1-3) < 0"
+                ]
+              },
+              {
+                "prompt": "Absolute max of $f(x) = 6x - x^2$ on $[0, 5]$…",
+                "options": [
+                  "$9$ at $x = 3$",
+                  "$5$ at $x = 5$",
+                  "$0$ at $x = 0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Critical: $6 - 2x = 0$ at 3; audit $f(0)=0$, $f(3)=9$, $f(5)=5$.",
+                "check": [
+                  "6*3 - 3**2 == 9",
+                  "6*5 - 5**2 == 5"
+                ]
+              },
+              {
+                "prompt": "A local max is always…",
+                "options": [
+                  "a critical point (for smooth f)",
+                  "the function's biggest value ever",
+                  "where $f = 0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Fermat: extremes imply $f' = 0$. But 'local' means king of its neighborhood only — the absolute crown may sit elsewhere (or at an endpoint).",
+                "check": [
+                  "3*1**2 - 3 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "History",
+            "title": "The theorem written before calculus",
+            "body": "Fermat stated 'extremes have level tangents' in 1638 — thirty years before Newton or Leibniz formalized the derivative. He was optimizing before optimization existed, using an 'adequality' trick historians still argue about. Next lesson adds a second opinion: the second derivative, which can classify suspects without a sign chart."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Extremes hide only at critical points ($f' = 0$) — Fermat.",
+              "First-derivative test: $+\\to-$ peak, $-\\to+$ valley, no flip pause.",
+              "Closed intervals: audit critical points AND endpoints; compare values."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "concavity-and-the-second-derivative",
+      "title": "Concavity & the Second Derivative",
+      "concreteComparison": "Two roads both climb — but one curls upward like the start of a ramp, the other flattens like a hill nearing its crest. Same direction, different CURL. That curl is **concavity**, and it's measured by differentiating the derivative: $f''$. One more turn of the crank, and every curve gets a second adjective — plus a shortcut test that classifies peaks and valleys in a single evaluation.",
+      "objective": "Compute second derivatives, read concavity (up/down) and inflection points, and classify critical points with the second-derivative test.",
+      "concept": [
+        "**The second derivative** $f'' = (f')'$: the rate of change OF the slope. $f'' > 0$: slopes increasing — the curve bends UPWARD (holds water, ∪). $f'' < 0$: slopes decreasing — bends DOWNWARD (sheds water, ∩).",
+        "**Inflection points**: where concavity flips ($f''$ changes sign). $f(x) = x^3$: $f'' = 6x$ — concave down for $x<0$, up for $x>0$, inflection at the origin: the S-curve's mid-twist.",
+        "**Second-derivative test**: at a critical point ($f'(a) = 0$), check $f''(a)$. Positive → curve bends up → VALLEY. Negative → bends down → PEAK. Zero → no verdict; fall back to the sign chart. Mnemonic: concave up = cup = holds a minimum.",
+        "In motion language: $s$ position, $s'$ velocity, $s''$ acceleration — and concavity of position IS the sign of acceleration. Slowing car: rising position graph, concave down. Physics has been reading $f''$ all along."
+      ],
+      "keyIdea": "f'' measures the curl: positive bends up (∪), negative bends down (∩), sign change = inflection. At a critical point, f'' > 0 means valley, f'' < 0 means peak.",
+      "facts": [
+        {
+          "title": "Concavity",
+          "latex": "f'' > 0: \\cup \\text{ (up)}; \\quad f'' < 0: \\cap \\text{ (down)}",
+          "explanation": "The rate of change of the slope."
+        },
+        {
+          "title": "Second-derivative test",
+          "latex": "f'(a) = 0: \\; f''(a) > 0 \\Rightarrow \\min; \\; f''(a) < 0 \\Rightarrow \\max",
+          "explanation": "Cup holds a minimum; f'' = 0 is silent."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ad4-we1",
+          "statement": "Find $f''$ for $f(x) = x^3 - 6x^2 + 5$ and locate the inflection point.",
+          "solution": "$f' = 3x^2 - 12x$; $f'' = 6x - 12$: negative before 2, positive after — inflection at $x = 2$.",
+          "check": [
+            "simplify(diff(x**3 - 6*x**2 + 5, x, 2) - (6*x - 12)) == 0",
+            "6*1 - 12 < 0",
+            "6*3 - 12 > 0"
+          ]
+        },
+        {
+          "id": "ad4-we2",
+          "statement": "Use the second-derivative test on $f(x) = x^3 - 3x$.",
+          "solution": "Suspects $\\pm1$; $f'' = 6x$. $f''(-1) = -6 < 0$: peak at $-1$. $f''(1) = 6 > 0$: valley at $1$. One evaluation each — no sign chart.",
+          "check": [
+            "simplify(diff(x**3 - 3*x, x, 2) - (6*x)) == 0",
+            "6*(-1) < 0",
+            "6*1 > 0"
+          ]
+        },
+        {
+          "id": "ad4-we3",
+          "statement": "Where does the test go silent? Try $f(x) = x^4$ at its critical point.",
+          "solution": "$f' = 4x^3 = 0$ at $0$; $f'' = 12x^2$, so $f''(0) = 0$ — no verdict. The sign chart settles it: $-$ to $+$, a valley. The shortcut has a blind spot; the chart never does.",
+          "check": [
+            "simplify(diff(x**4, x, 2) - (12*x**2)) == 0",
+            "12*0**2 == 0",
+            "4*(-1)**3 < 0",
+            "4*1**3 > 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Confusing concave down with decreasing.",
+          "correction": "Concavity is about the CURL, not the direction. A curve can rise while concave down (a hill's final approach: still climbing, flattening out). Direction: $f'$. Curl: $f''$. Independent dials.",
+          "authored": true
+        },
+        {
+          "text": "Reading f''(a) = 0 as 'neither max nor min'.",
+          "correction": "Zero means NO VERDICT, not 'no extreme' — $x^4$ has $f''(0) = 0$ and a genuine minimum there. When the test is silent, return to the first-derivative sign chart.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ad4-t1",
+          "statement": "Concavity of $f(x) = x^4 - 6x^2$: where does it bend down?",
+          "solution": "$f'' = 12x^2 - 12 < 0$ for $-1 < x < 1$: concave down between the inflections at $\\pm1$.",
+          "check": [
+            "simplify(diff(x**4 - 6*x**2, x, 2) - (12*x**2 - 12)) == 0",
+            "12*0 - 12 < 0",
+            "12*4 - 12 > 0"
+          ]
+        },
+        {
+          "id": "ad4-t2",
+          "statement": "Second-derivative test on $f(x) = x^2 - 8x$: classify $x = 4$.",
+          "solution": "$f'' = 2 > 0$ everywhere: valley at 4 — every upward parabola's vertex is a minimum, now certified.",
+          "check": [
+            "simplify(diff(x**2 - 8*x, x, 2) - (2)) == 0",
+            "2 > 0",
+            "2*4 - 8 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Two climbing roads",
+            "title": "Direction isn't the whole story",
+            "beats": [
+              "Both roads rise. One curls up (a ramp steepening);",
+              "the other flattens (a hill cresting). Different experiences.",
+              "The curl is CONCAVITY — measured by differentiating AGAIN.",
+              "$f'' = (f')'$: the slope's own rate of change."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Cup or cap?",
+            "prompt": "$f''(x) > 0$ on an interval means the curve there…",
+            "options": [
+              "bends upward — ∪, slopes increasing",
+              "rises",
+              "is positive"
+            ],
+            "correctIndex": 0,
+            "explanation": "Concave up: each tangent tips steeper than the last. Whether it's rising, falling, or turning is $f'$'s business — separate dial.",
+            "check": [
+              "simplify(diff(x**2, x, 2) - (2)) == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Inflection points",
+            "title": "The mid-twist",
+            "beats": [
+              "Where $f''$ changes sign, the bend flips: inflection.",
+              "$x^3$: $f'' = 6x$ — cap for $x<0$, cup for $x>0$, twist at 0.",
+              "Real-world inflections: epidemic curves 'turning the corner',",
+              "adoption curves cooling — the news reports $f''$ without naming it."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The shortcut test",
+            "title": "One evaluation, one verdict",
+            "beats": [
+              "At a suspect ($f'(a) = 0$), evaluate $f''(a)$:",
+              "positive → cup → VALLEY. negative → cap → PEAK.",
+              "zero → silence: fall back to the sign chart.",
+              "Cup holds a minimum — the whole mnemonic you need."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Second opinions",
+            "intro": "Curl, twist, verdict.",
+            "examples": [
+              {
+                "prompt": "Full concavity report for $f(x) = x^3 - 3x^2 + 1$.",
+                "steps": [
+                  "$f'' = 6x - 6$: cap before 1, cup after — inflection at $(1, -1)$.",
+                  "Suspects: $f' = 3x^2 - 6x = 0$ at $0, 2$.",
+                  "$f''(0) = -6$: peak. $f''(2) = 6$: valley. Report complete."
+                ],
+                "answer": "peak at 0, valley at 2, inflection at 1",
+                "check": [
+                  "simplify(diff(x**3 - 3*x**2 + 1, x, 2) - (6*x - 6)) == 0",
+                  "6*0 - 6 < 0",
+                  "6*2 - 6 > 0",
+                  "1 - 3 + 1 == -1"
+                ]
+              },
+              {
+                "prompt": "A braking car: $s(t) = 30t - 3t^2$. Describe its motion in s, v, a language.",
+                "steps": [
+                  "$v = 30 - 6t > 0$ until $t = 5$: still moving forward.",
+                  "$a = -6 < 0$ throughout: decelerating.",
+                  "Position rising but concave DOWN — the graph of every braking vehicle."
+                ],
+                "answer": "forward but slowing: $v > 0$, $a < 0$",
+                "check": [
+                  "diff(30*t - 3*t**2, t) == 30 - 6*t",
+                  "simplify(diff(30*t - 3*t**2, t, 2) - (-6)) == 0",
+                  "30 - 6*2 > 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Curl reading",
+            "intro": "f' for direction, f'' for bend.",
+            "problems": [
+              {
+                "prompt": "$f(x) = -x^2$: its concavity is…",
+                "options": [
+                  "down everywhere — $f'' = -2$",
+                  "up everywhere",
+                  "down only right of 0"
+                ],
+                "correctIndex": 0,
+                "explanation": "Constant $f'' = -2 < 0$: one big cap. (Every downward parabola; its vertex is a max by the test.)",
+                "check": [
+                  "simplify(diff(-x**2, x, 2) - (-2)) == 0"
+                ]
+              },
+              {
+                "prompt": "$f'(3) = 0$ and $f''(3) = 5$. Then $x = 3$ is…",
+                "options": [
+                  "a local min — cup holds it",
+                  "a local max",
+                  "an inflection"
+                ],
+                "correctIndex": 0,
+                "explanation": "Flat tangent inside an upward bend: the bottom of a cup.",
+                "check": [
+                  "5 > 0"
+                ]
+              },
+              {
+                "prompt": "An inflection point is where…",
+                "options": [
+                  "$f''$ changes sign — the bend flips",
+                  "$f' = 0$",
+                  "the function crosses the axis"
+                ],
+                "correctIndex": 0,
+                "explanation": "Concavity's job, not slope's or height's. A curve can inflect mid-climb ($x^3$ does, at full speed... well, at zero speed — but climbing on both sides).",
+                "check": [
+                  "6*(-1) < 0",
+                  "6*1 > 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Real world",
+            "title": "The most-watched second derivative in history",
+            "body": "During epidemics, 'the curve is flattening' means cases still RISING but concave down — $f''$ turned negative before $f'$ did, and epidemiologists cheered a second derivative on live television. Markets do it too: 'growth is slowing' moves billions, and it's pure $f'' < 0$. The bend is news before the turn is."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$f''$ measures curl: cup up ($>0$), cap down ($<0$); sign flip = inflection.",
+              "Second-derivative test: at a suspect, $f'' > 0$ valley, $f'' < 0$ peak, $= 0$ silence.",
+              "Motion: $s, v = s', a = s''$ — concavity of position is the sign of acceleration."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "curve-sketching",
+      "title": "Curve Sketching",
+      "concreteComparison": "A detective doesn't photograph the suspect — they assemble a profile: height, build, habits, haunts. Curve sketching is that assembly for functions: intercepts and asymptotes (Grade 10's tools), rising/falling from $f'$, bends from $f''$ — and out comes an accurate portrait, drawn from evidence rather than from a thousand plotted points. This is the lesson where four topics' worth of tools work one case together.",
+      "objective": "Combine intercepts, asymptotes, f' (direction, extremes) and f'' (concavity, inflections) into a complete, justified sketch of a function.",
+      "concept": [
+        "**The checklist**: (1) domain + intercepts; (2) asymptotes/end behavior (rational functions: the degree rules; polynomials: leading term); (3) $f'$: critical points, rising/falling chart, peaks/valleys; (4) $f''$: concavity, inflections; (5) plot the few special points and connect, honoring every verdict.",
+        "Run it on $f(x) = x^3 - 3x^2$: intercepts $x = 0, 3$; end behavior down-left/up-right (odd, positive). $f' = 3x(x-2)$: peak at $0$ (value 0), valley at $2$ (value $-4$). $f'' = 6x - 6$: inflection at $1$ ($-2$). Seven facts, one faithful sketch.",
+        "**Consistency is the power**: every conclusion cross-checks the others. A peak at height 0 falling to a valley at $-4$, twisting at exactly $(1, -2)$ — the midpoint! — while the arms obey the end behavior. When the evidence agrees, the sketch is RIGHT, no plotting needed.",
+        "Sketching is the exam's favorite synthesis question because it audits everything at once: algebra (factoring $f'$), limits (asymptotes), and both derivative tests. Master the checklist and the whole chapter is one workflow."
+      ],
+      "keyIdea": "Five-step checklist — domain/intercepts, end behavior, f' chart, f'' chart, connect. Every tool from four topics, one coherent portrait.",
+      "facts": [
+        {
+          "title": "The checklist",
+          "latex": "\\text{intercepts} \\to \\text{ends} \\to f' \\to f'' \\to \\text{connect}",
+          "explanation": "Evidence first, drawing last."
+        },
+        {
+          "title": "Cross-check",
+          "latex": "\\text{every verdict must agree with every other}",
+          "explanation": "Contradiction = arithmetic slip somewhere."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ad5-we1",
+          "statement": "Profile $f(x) = x^3 - 3x^2$: intercepts, extremes, inflection.",
+          "solution": "Intercepts: $x^2(x-3) = 0$ at $0, 3$. $f' = 3x^2 - 6x = 3x(x-2)$: peak $(0,0)$, valley $(2,-4)$. $f'' = 6x - 6$: inflection $(1,-2)$.",
+          "check": [
+            "0**3 - 3*0**2 == 0",
+            "3**3 - 3*3**2 == 0",
+            "diff(x**3 - 3*x**2, x) == 3*x**2 - 6*x",
+            "2**3 - 3*2**2 == -4",
+            "simplify(diff(x**3 - 3*x**2, x, 2) - (6*x - 6)) == 0",
+            "1 - 3 == -2"
+          ]
+        },
+        {
+          "id": "ad5-we2",
+          "statement": "Profile $f(x) = \\dfrac{2x}{x - 1}$: asymptotes and direction.",
+          "solution": "Vertical asymptote $x = 1$; horizontal $y = 2$ (degree tie). $f' = \\tfrac{-2}{(x-1)^2} < 0$ everywhere: falling on both branches — a two-piece hyperbola sliding down toward its asymptotes.",
+          "check": [
+            "limit(2*x/(x - 1), x, oo) == 2",
+            "simplify(diff(2*x/(x - 1), x) + 2/(x - 1)**2) == 0"
+          ]
+        },
+        {
+          "id": "ad5-we3",
+          "statement": "Two functions have $f' = 3x^2 + 1$ and $g' = -3x^2 - 1$ respectively. Sketch-describe each in one sentence.",
+          "solution": "$f' > 0$ always: $f$ climbs forever (an S rising). $g' < 0$ always: $g$ falls forever (the mirror S). One sign, one silhouette.",
+          "check": [
+            "3*0**2 + 1 > 0",
+            "-3*0**2 - 1 < 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Plotting ten points and connecting the dots.",
+          "correction": "Point-plotting misses everything between points — peaks, holes, asymptotes. The checklist finds every feature FIRST; the sketch just honors the findings.",
+          "authored": true
+        },
+        {
+          "text": "Letting the sketch contradict a computed fact.",
+          "correction": "If your chart says 'falling on $(0,2)$' but your drawing rises there, one of them lies — recheck before submitting. Consistency isn't optional; it's the method's built-in error alarm.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ad5-t1",
+          "statement": "Quick profile of $f(x) = x^4 - 4x^3$: extremes and inflections.",
+          "solution": "$f' = 4x^2(x - 3)$: pause at 0 (no flip — the $x^2$ factor), valley at 3 ($f = -27$). $f'' = 12x(x-2)$: inflections at 0 and 2.",
+          "check": [
+            "diff(x**4 - 4*x**3, x) == 4*x**3 - 12*x**2",
+            "3**4 - 4*27 == -27",
+            "simplify(diff(x**4 - 4*x**3, x, 2) - (12*x**2 - 24*x)) == 0"
+          ]
+        },
+        {
+          "id": "ad5-t2",
+          "statement": "What do the arms of $f(x) = -x^4 + 8x^2$ do, and why?",
+          "solution": "Even degree, negative lead: both arms plunge down — Grade 11's end-behavior rule, opening the sketch before any calculus starts.",
+          "check": [
+            "-(10)**4 + 8*100 < 0",
+            "-(-10)**4 + 8*100 < 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The detective's method",
+            "title": "Profile, then portrait",
+            "beats": [
+              "Don't photograph point-by-point. Assemble evidence:",
+              "intercepts, ends, direction, bend — THEN draw once.",
+              "Four topics of tools, one case file.",
+              "Today they all work together."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The checklist",
+            "title": "Five steps, in order",
+            "beats": [
+              "1 — Domain, intercepts (algebra).",
+              "2 — Ends: asymptotes / leading term (limits).",
+              "3 — $f'$: chart, peaks, valleys.",
+              "4 — $f''$: bends, inflections. 5 — connect, honoring all verdicts."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Open the case",
+            "prompt": "First feature to establish for $f(x) = \\tfrac{x+2}{x-3}$?",
+            "options": [
+              "the asymptotes — $x = 3$ and $y = 1$",
+              "the inflection points",
+              "$f'''$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Rational function: skeleton first. Vertical at the dead denominator, horizontal from the degree tie — the frame everything else hangs on.",
+            "check": [
+              "limit((x + 2)/(x - 3), x, oo) == 1"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Case files",
+            "intro": "Evidence in, portrait out.",
+            "examples": [
+              {
+                "prompt": "Full profile: $f(x) = x^3 - 3x^2$ (the chapter's mascot).",
+                "steps": [
+                  "Intercepts 0 and 3; ends ↙↗ (odd, positive lead).",
+                  "$f' = 3x(x-2)$: peak $(0,0)$, valley $(2,-4)$.",
+                  "$f'' = 6x-6$: inflection $(1,-2)$ — dead center between peak and valley.",
+                  "Connect: down-up-down-up? No — ↙ rise to $(0,0)$, dip to $(2,-4)$, climb ↗. Every fact honored."
+                ],
+                "answer": "S-dip: peak $(0,0)$, valley $(2,-4)$, twist $(1,-2)$",
+                "check": [
+                  "diff(x**3 - 3*x**2, x) == 3*x**2 - 6*x",
+                  "simplify(diff(x**3 - 3*x**2, x, 2) - (6*x - 6)) == 0",
+                  "2**3 - 3*4 == -4",
+                  "1**3 - 3*1 == -2"
+                ]
+              },
+              {
+                "prompt": "Spot the contradiction: a student's sketch of $f = x^2 - 2x$ shows a peak at $x = 1$. Audit it.",
+                "steps": [
+                  "$f' = 2x - 2 = 0$ at 1 — critical, fine so far.",
+                  "But $f'' = 2 > 0$: CUP. The point is a valley, not a peak.",
+                  "The parabola opens up (positive lead) — three independent witnesses agree the sketch is upside-down."
+                ],
+                "answer": "valley at $(1, -1)$; the sketch is inverted",
+                "check": [
+                  "diff(x**2 - 2*x, x) == 2*x - 2",
+                  "simplify(diff(x**2 - 2*x, x, 2) - (2)) == 0",
+                  "1 - 2 == -1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Junior detective",
+            "intro": "Let the checklist run.",
+            "problems": [
+              {
+                "prompt": "$f(x) = x^3 + 1$: how many peaks/valleys?",
+                "options": [
+                  "none — $f' = 3x^2$ never flips sign",
+                  "one peak",
+                  "one of each"
+                ],
+                "correctIndex": 0,
+                "explanation": "Critical at 0 but no flip: a pause on a permanent climb. Intercept at $x = -1$, inflection at $(0,1)$ — a lifted S.",
+                "check": [
+                  "diff(x**3 + 1, x) == 3*x**2",
+                  "3*(-1)**2 > 0",
+                  "3*1**2 > 0"
+                ]
+              },
+              {
+                "prompt": "A sketch of $y = \\tfrac{1}{x^2}$ must show…",
+                "options": [
+                  "a vertical asymptote at 0 and $y \\to 0$ at the ends",
+                  "an inflection at the origin",
+                  "a peak at $x = 1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Blow-up at the dead denominator ($+\\infty$ both sides — the square), and bottom-heavy degrees send both tails to 0.",
+                "check": [
+                  "limit(1/x**2, x, 0) == oo",
+                  "limit(1/x**2, x, oo) == 0"
+                ]
+              },
+              {
+                "prompt": "Your $f'$ chart says rising on $(1, 4)$; your sketch falls there. Protocol?",
+                "options": [
+                  "recheck the arithmetic — one of them lies",
+                  "trust the sketch",
+                  "average them"
+                ],
+                "correctIndex": 0,
+                "explanation": "Consistency is the method's alarm system. Sketches don't outvote sign charts; errors get found, not split.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "History",
+            "title": "Before graphing calculators",
+            "body": "Every curve in every pre-1980s textbook was drawn by hand from exactly this checklist — and engineers bridged rivers on those sketches. The checklist is still faster than plotting for understanding WHY a curve does what it does: a calculator shows you the shape; the profile explains it. Exams (and the ЭЕШ) test the explanation."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Five steps: intercepts, ends, $f'$ chart, $f''$ chart, connect.",
+              "Every verdict must agree — contradictions are error alarms.",
+              "Profile beats plotting: features first, portrait second."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "optimization",
+      "title": "Optimization",
+      "concreteComparison": "A farmer has 100 m of fence and wants the biggest rectangular paddock. A factory wants the cheapest box that holds a liter. A phone maker wants the price that maximizes revenue. Every one is the same problem: write the quantity as a function, then send calculus to find its peak. This is the lesson where derivatives start earning money — the chapter's whole toolkit, aimed at 'best'.",
+      "objective": "Translate word problems into functions of one variable (using the constraint), find the optimum with derivatives, and verify it's the right kind of extreme.",
+      "concept": [
+        "**The workflow**: (1) name the variables, draw the picture; (2) write the TARGET (what to maximize/minimize); (3) use the CONSTRAINT to eliminate all but one variable; (4) solve $f' = 0$; (5) verify (second-derivative test or endpoints) and answer the actual question asked.",
+        "The fence: paddock $x$ by $y$, constraint $2x + 2y = 100$ → $y = 50 - x$. Target: $A = x(50 - x) = 50x - x^2$. $A' = 50 - 2x = 0$: $x = 25$, so $y = 25$ — the square, area $625$ m². ($A'' = -2 < 0$: genuinely a max.)",
+        "**Constraints are the trick**: the target usually has two variables; the constraint (fixed fence, fixed volume, fixed cost) converts it to one. Algebra sets the stage; calculus takes the bow.",
+        "**Answer the question asked**: if the problem wants the maximum AREA, report 625 m² — not $x = 25$. And sanity-check against the domain: a negative side length or a price of zero means a wrong branch, not a clever answer."
+      ],
+      "keyIdea": "Target minus constraint = one-variable function; f' = 0 finds the candidate; f'' or endpoints certify it; then answer the actual question.",
+      "facts": [
+        {
+          "title": "The workflow",
+          "latex": "\\text{target} \\xrightarrow{\\text{constraint}} f(x) \\xrightarrow{f' = 0} \\text{candidate} \\xrightarrow{f''} \\text{verdict}",
+          "explanation": "Algebra sets up; calculus finishes."
+        },
+        {
+          "title": "The fence answer",
+          "latex": "\\text{fixed perimeter} \\Rightarrow \\text{square wins}",
+          "explanation": "100 m of fence: 25 × 25 = 625 m²."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ad6-we1",
+          "statement": "100 m of fence, biggest rectangular paddock: dimensions and area?",
+          "solution": "$y = 50 - x$; $A = 50x - x^2$; $A' = 50 - 2x = 0$ at $x = 25$. Square, $625$ m². $A'' = -2 < 0$ certifies the max.",
+          "check": [
+            "diff(50*x - x**2, x) == 50 - 2*x",
+            "50 - 2*25 == 0",
+            "25*(50 - 25) == 625",
+            "simplify(diff(50*x - x**2, x, 2) - (-2)) == 0"
+          ]
+        },
+        {
+          "id": "ad6-we2",
+          "statement": "Two nonnegative numbers sum to 20. Maximize their product.",
+          "solution": "$P = x(20 - x) = 20x - x^2$; $P' = 20 - 2x = 0$ at $x = 10$: both 10, product 100. (Endpoints give 0 — the interior wins.)",
+          "check": [
+            "diff(20*x - x**2, x) == 20 - 2*x",
+            "10*(20 - 10) == 100",
+            "0*(20 - 0) == 0"
+          ]
+        },
+        {
+          "id": "ad6-we3",
+          "statement": "An open-top box: square base $x$, height $h$, volume $32$ cm³. Minimize the material $M = x^2 + 4xh$.",
+          "solution": "Constraint: $h = \\tfrac{32}{x^2}$. $M = x^2 + \\tfrac{128}{x}$; $M' = 2x - \\tfrac{128}{x^2} = 0$ → $x^3 = 64$, $x = 4$, $h = 2$. $M'' = 2 + \\tfrac{256}{x^3} > 0$: a genuine minimum, $M = 48$ cm².",
+          "check": [
+            "simplify(diff(x**2 + 128/x, x) - (2*x - 128/x**2)) == 0",
+            "2*4 - Rational(128, 16) == 0",
+            "16 + Rational(128, 4) == 48",
+            "Rational(32, 16) == 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Differentiating a two-variable target.",
+          "correction": "$A = xy$ can't be differentiated until the constraint eliminates $y$. Constraint FIRST, then calculus — the order is the method.",
+          "authored": true
+        },
+        {
+          "text": "Reporting x when the question asked for the area (or cost, or profit).",
+          "correction": "$x = 25$ is the candidate; $625$ m² is the ANSWER. Reread the question after the calculus — the last step is reading comprehension.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ad6-t1",
+          "statement": "Two numbers differ by 10. Minimize their product.",
+          "solution": "$P = x(x + 10) = x^2 + 10x$; $P' = 2x + 10 = 0$ at $x = -5$: the pair $-5, 5$, product $-25$. ($P'' = 2 > 0$: min.)",
+          "check": [
+            "diff(x**2 + 10*x, x) == 2*x + 10",
+            "2*(-5) + 10 == 0",
+            "(-5)*(5) == -25"
+          ]
+        },
+        {
+          "id": "ad6-t2",
+          "statement": "A rectangle sits under $y = 12 - x^2$ with its base on the x-axis, corners at $\\pm x$. Maximize its area.",
+          "solution": "$A = 2x(12 - x^2) = 24x - 2x^3$; $A' = 24 - 6x^2 = 0$ at $x = 2$: area $2 \\cdot 2 \\cdot 8 = 32$.",
+          "check": [
+            "diff(24*x - 2*x**3, x) == 24 - 6*x**2",
+            "24 - 6*4 == 0",
+            "2*2*(12 - 4) == 32"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Where derivatives earn money",
+            "title": "Best is a math problem",
+            "beats": [
+              "Biggest paddock, cheapest box, top revenue —",
+              "every 'best' is a function's peak or valley.",
+              "You can now FIND those. The whole chapter was training.",
+              "One workflow runs them all."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The workflow",
+            "title": "Five moves",
+            "beats": [
+              "1 — Variables + picture. 2 — Target to optimize.",
+              "3 — CONSTRAINT eliminates variables → one-variable $f$.",
+              "4 — $f' = 0$: candidates. 5 — Certify ($f''$/endpoints), then",
+              "ANSWER THE QUESTION ASKED. Not $x$ — the thing they wanted."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The blocking move",
+            "prompt": "Maximize $A = xy$ given $x + y = 16$. First move?",
+            "options": [
+              "substitute $y = 16 - x$ — one variable first",
+              "differentiate $xy$ immediately",
+              "guess $x = 8$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Two variables can't differentiate (yet). Constraint in, $A = 16x - x^2$, and NOW calculus: $x = 8$, max 64. (The guess was right — the square always wins — but the method PROVES it.)",
+            "check": [
+              "diff(16*x - x**2, x) == 16 - 2*x",
+              "8*(16 - 8) == 64"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Payday problems",
+            "intro": "Constraint, candidate, certificate, answer.",
+            "examples": [
+              {
+                "prompt": "A garden borders a river (no fence needed on that side): 60 m of fence for the other three sides. Maximize the area.",
+                "steps": [
+                  "Sides: $x, x, y$ with $2x + y = 60$ → $y = 60 - 2x$.",
+                  "$A = x(60 - 2x) = 60x - 2x^2$; $A' = 60 - 4x = 0$: $x = 15$, $y = 30$.",
+                  "$A'' = -4 < 0$ ✓. Area $450$ m² — NOT a square this time: the free river side changes the answer."
+                ],
+                "answer": "15 × 30 = 450 m²",
+                "check": [
+                  "diff(60*x - 2*x**2, x) == 60 - 4*x",
+                  "60 - 4*15 == 0",
+                  "15*(60 - 30) == 450",
+                  "simplify(diff(60*x - 2*x**2, x, 2) - (-4)) == 0"
+                ]
+              },
+              {
+                "prompt": "Tickets at price $p$ sell $q = 120 - 2p$ seats. Find the revenue-maximizing price.",
+                "steps": [
+                  "$R = pq = 120p - 2p^2$.",
+                  "$R' = 120 - 4p = 0$: $p = 30$; $R'' = -4 < 0$ ✓.",
+                  "Answer the question: price 30 (revenue $1800$, seats 60)."
+                ],
+                "answer": "$p = 30$",
+                "check": [
+                  "diff(120*p - 2*p**2, p) == 120 - 4*p",
+                  "120 - 4*30 == 0",
+                  "30*(120 - 60) == 1800"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Your shift",
+            "intro": "Run the workflow end to end.",
+            "problems": [
+              {
+                "prompt": "Sum 30, maximize product: the pair is…",
+                "options": [
+                  "$15$ and $15$",
+                  "$10$ and $20$",
+                  "$1$ and $29$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$P = 30x - x^2$, $P' = 0$ at 15: product 225. Equal split — the recurring optimization motif.",
+                "check": [
+                  "diff(30*x - x**2, x) == 30 - 2*x",
+                  "15*15 == 225",
+                  "10*20 == 200"
+                ]
+              },
+              {
+                "prompt": "Minimize $f(x) = x + \\tfrac{16}{x}$ for $x > 0$.",
+                "options": [
+                  "$x = 4$, value $8$",
+                  "$x = 16$, value $17$",
+                  "$x = 2$, value $10$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$f' = 1 - \\tfrac{16}{x^2} = 0$ at $x = 4$; $f'' = \\tfrac{32}{x^3} > 0$ certifies. (This shape prices everything from shipping crates to server loads.)",
+                "check": [
+                  "simplify(diff(x + 16/x, x) - (1 - 16/x**2)) == 0",
+                  "4 + Rational(16, 4) == 8"
+                ]
+              },
+              {
+                "prompt": "After finding $x = 25$ maximizes the paddock, the final step is…",
+                "options": [
+                  "report what was asked — the 625 m² area",
+                  "stop: $x = 25$ is the answer",
+                  "check $f'''$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The question asked for the biggest paddock. Candidates are calculus; answers are reading comprehension.",
+                "check": [
+                  "25*25 == 625"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Preview",
+            "title": "The 100-billion-dollar derivative",
+            "body": "Airlines reprice seats by the minute, ad auctions clear billions of times a day, delivery routes reshuffle continuously — all of it optimization: write the target, respect the constraints, chase $f' = 0$ at industrial scale. The fence problem you just solved is the smallest sibling of the algorithms running the modern economy. Next topic: integrals — running the derivative machine in REVERSE."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Workflow: variables → target → constraint (to one variable) → $f' = 0$ → certify.",
+              "$f''$ or endpoints certify max vs min; domains rule out nonsense roots.",
+              "Answer the question ASKED — the area, the price, the cost; not just $x$."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "ad-pr1",
+      "statement": "Tangent line to $y = x^2 - 3x$ at $x = 2$?",
+      "solution": "Point $(2, -2)$; slope $2(2) - 3 = 1$: $y = -2 + (x - 2) = x - 4$.",
+      "check": [
+        "2**2 - 3*2 == -2",
+        "diff(x**2 - 3*x, x) == 2*x - 3",
+        "2*2 - 3 == 1"
+      ]
+    },
+    {
+      "id": "ad-pr2",
+      "statement": "Estimate $\\sqrt{50}$ via the tangent to $y = \\sqrt{x}$ at $x = 49$.",
+      "solution": "Point $(49, 7)$, slope $\\tfrac{1}{14}$: $\\approx 7 + \\tfrac{1}{14} \\approx 7.071$. (True: $7.0710\\ldots$)",
+      "check": [
+        "simplify(diff(sqrt(x), x) - 1/(2*sqrt(x))) == 0",
+        "7 + Rational(1,14) == Rational(99,14)"
+      ]
+    },
+    {
+      "id": "ad-pr3",
+      "statement": "Where does $f(x) = x^3 - 27x$ rise?",
+      "solution": "$f' = 3x^2 - 27 = 0$ at $\\pm3$; tests: rising for $x < -3$ and $x > 3$.",
+      "check": [
+        "diff(x**3 - 27*x, x) == 3*x**2 - 27",
+        "3*16 - 27 > 0",
+        "3*0 - 27 < 0"
+      ]
+    },
+    {
+      "id": "ad-pr4",
+      "statement": "Classify the critical points of $f(x) = x^3 - 6x^2 + 9x + 1$.",
+      "solution": "$f' = 3(x-1)(x-3)$: peak at 1 ($f = 5$), valley at 3 ($f = 1$) — chart $+,-,+$.",
+      "check": [
+        "diff(x**3 - 6*x**2 + 9*x + 1, x) == 3*x**2 - 12*x + 9",
+        "1 - 6 + 9 + 1 == 5",
+        "27 - 54 + 27 + 1 == 1"
+      ]
+    },
+    {
+      "id": "ad-pr5",
+      "statement": "Absolute extremes of $f(x) = x^3 - 12x$ on $[0, 3]$?",
+      "solution": "Critical inside: 2. Audit: $f(0) = 0$, $f(2) = -16$, $f(3) = -9$. Max 0, min $-16$.",
+      "check": [
+        "2**3 - 12*2 == -16",
+        "3**3 - 12*3 == -9",
+        "0 - 0 == 0"
+      ]
+    },
+    {
+      "id": "ad-pr6",
+      "statement": "Concavity of $f(x) = x^3 - 9x^2$: inflection point?",
+      "solution": "$f'' = 6x - 18$: flips at $x = 3$ — inflection $(3, -54)$.",
+      "check": [
+        "simplify(diff(x**3 - 9*x**2, x, 2) - (6*x - 18)) == 0",
+        "6*2 - 18 < 0",
+        "6*4 - 18 > 0",
+        "27 - 81 == -54"
+      ]
+    },
+    {
+      "id": "ad-pr7",
+      "statement": "Second-derivative test: classify the critical points of $f(x) = 2x^3 - 6x$.",
+      "solution": "$f' = 6x^2 - 6 = 0$ at $\\pm1$; $f'' = 12x$: $f''(-1) < 0$ peak ($f = 4$), $f''(1) > 0$ valley ($f = -4$).",
+      "check": [
+        "diff(2*x**3 - 6*x, x) == 6*x**2 - 6",
+        "12*(-1) < 0",
+        "12*1 > 0",
+        "2*(-1)**3 - 6*(-1) == 4"
+      ]
+    },
+    {
+      "id": "ad-pr8",
+      "statement": "Profile $f(x) = x^4 - 2x^2$: extremes and inflections.",
+      "solution": "$f' = 4x(x^2 - 1)$: valleys at $\\pm1$ ($f = -1$), peak at 0. $f'' = 12x^2 - 4$: inflections at $\\pm\\tfrac{1}{\\sqrt3}$.",
+      "check": [
+        "diff(x**4 - 2*x**2, x) == 4*x**3 - 4*x",
+        "1 - 2 == -1",
+        "simplify(diff(x**4 - 2*x**2, x, 2) - (12*x**2 - 4)) == 0",
+        "12*Rational(1,3) - 4 == 0"
+      ]
+    },
+    {
+      "id": "ad-pr9",
+      "statement": "Fence 80 m of rectangular paddock: the best dimensions and area?",
+      "solution": "$A = x(40 - x)$; $A' = 40 - 2x = 0$: $20 \\times 20 = 400$ m² — the square again.",
+      "check": [
+        "diff(40*x - x**2, x) == 40 - 2*x",
+        "20*(40 - 20) == 400"
+      ]
+    },
+    {
+      "id": "ad-pr10",
+      "statement": "A projectile: $s(t) = 40t - 5t^2$. Peak height, and the speed at landing ($t = 8$)?",
+      "solution": "$v = 40 - 10t = 0$ at 4: peak $s(4) = 80$ m. At $t = 8$: $v = -40$ — landing at 40 m/s, downward.",
+      "check": [
+        "diff(40*t - 5*t**2, t) == 40 - 10*t",
+        "40*4 - 5*16 == 80",
+        "40 - 10*8 == -40"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "ad-ty1",
+      "statement": "Tangent to $y = x^3$ at $x = 1$, in $y = mx + b$ form.",
+      "solution": "Point $(1,1)$, slope 3: $y = 1 + 3(x-1) = 3x - 2$.",
+      "check": [
+        "1**3 == 1",
+        "3*1**2 == 3",
+        "simplify(1 + 3*(x - 1) - (3*x - 2)) == 0"
+      ]
+    },
+    {
+      "id": "ad-ty2",
+      "statement": "Where is $f(x) = 2x^3 - 9x^2 + 12x$ falling?",
+      "solution": "$f' = 6x^2 - 18x + 12 = 6(x-1)(x-2)$: falling on $1 < x < 2$ only.",
+      "check": [
+        "diff(2*x**3 - 9*x**2 + 12*x, x) == 6*x**2 - 18*x + 12",
+        "6*(Rational(3,2)-1)*(Rational(3,2)-2) < 0"
+      ]
+    },
+    {
+      "id": "ad-ty3",
+      "statement": "Absolute max of $f(x) = -x^2 + 4x + 1$ on $[0, 5]$?",
+      "solution": "Critical: $x = 2$, $f(2) = 5$. Endpoints: $f(0) = 1$, $f(5) = -4$. Max 5.",
+      "check": [
+        "diff(-x**2 + 4*x + 1, x) == 4 - 2*x",
+        "-(2)**2 + 4*2 + 1 == 5",
+        "-(5)**2 + 4*5 + 1 == -4"
+      ]
+    },
+    {
+      "id": "ad-ty4",
+      "statement": "$f'(a) = 0$ and $f''(a) = -3$: what is $x = a$?",
+      "solution": "Flat tangent inside a downward bend: a local MAX — cap sheds; cup holds.",
+      "check": [
+        "-3 < 0"
+      ]
+    },
+    {
+      "id": "ad-ty5",
+      "statement": "Find the inflection of $f(x) = x^3 + 3x^2 - 9x$ and the concavity either side.",
+      "solution": "$f'' = 6x + 6$: cap before $-1$, cup after — inflection at $(-1, 11)$.",
+      "check": [
+        "simplify(diff(x**3 + 3*x**2 - 9*x, x, 2) - (6*x + 6)) == 0",
+        "6*(-2) + 6 < 0",
+        "6*0 + 6 > 0",
+        "(-1)**3 + 3*1 + 9 == 11"
+      ]
+    },
+    {
+      "id": "ad-ty6",
+      "statement": "Two positive numbers multiply to 36. Minimize their sum.",
+      "solution": "$S = x + \\tfrac{36}{x}$; $S' = 1 - \\tfrac{36}{x^2} = 0$ at $x = 6$: the pair $6, 6$, sum 12. ($S'' > 0$ ✓.)",
+      "check": [
+        "simplify(diff(x + 36/x, x) - (1 - 36/x**2)) == 0",
+        "6 + Rational(36, 6) == 12"
+      ]
+    },
+    {
+      "id": "ad-ty7",
+      "statement": "A student maximizes revenue $R = 100p - 5p^2$ and reports 'the answer is $p = 10$… so revenue is 1000 — wait, or is it 500?' Settle it, with the certificate.",
+      "solution": "$R' = 100 - 10p = 0$ at $p = 10$; $R'' = -10 < 0$ certifies a max. $R(10) = 1000 - 500 = 500$. The answer to 'maximum revenue' is $500$ — evaluate, then read the question.",
+      "check": [
+        "diff(100*p - 5*p**2, p) == 100 - 10*p",
+        "100 - 10*10 == 0",
+        "100*10 - 5*100 == 500"
+      ]
+    }
+  ]
+}
