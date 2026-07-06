@@ -1,0 +1,1585 @@
+{
+  "slug": "vectors",
+  "title": "Vectors",
+  "grade": 12,
+  "blurb": "Magnitude and direction: components, addition, scalar multiples, the dot product, and the angle between.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "what-is-a-vector",
+      "title": "What Is a Vector?",
+      "concreteComparison": "'Walk 5 km' is not enough information — 5 km WHICH WAY? Temperature needs one number; a walk needs two: how far AND which direction. Quantities like that — displacement, velocity, force, wind — are **vectors**, drawn as arrows and written as component pairs $\\langle a, b \\rangle$: the walk east, the walk north. One arrow, two numbers, and Pythagoras standing by to measure it.",
+      "objective": "Represent vectors as component pairs ⟨a, b⟩, distinguish them from scalars, compute magnitudes, and find the vector between two points.",
+      "concept": [
+        "**Scalar vs vector**: a scalar is one number (temperature 25°, mass 3 kg). A vector is magnitude AND direction (wind 30 km/h from the west, force 10 N downward). Arrows drawn anywhere with the same length and direction are the SAME vector — position doesn't matter, only the trip.",
+        "**Components**: $\\vec{v} = \\langle 3, 4 \\rangle$ means 'go 3 east, 4 north'. The angle-bracket pair IS the vector — drawn from the origin, its tip lands at the point $(3, 4)$.",
+        "**Magnitude**: the arrow's length, by Pythagoras: $|\\vec{v}| = \\sqrt{a^2 + b^2}$. For $\\langle 3, 4 \\rangle$: $\\sqrt{9 + 16} = 5$. (The 3-4-5 triangle retires into vector notation.)",
+        "**From point to point**: the vector from $A(1, 2)$ to $B(4, 6)$ is $\\overrightarrow{AB} = \\langle 4-1, 6-2 \\rangle = \\langle 3, 4 \\rangle$ — tip minus tail, coordinate by coordinate."
+      ],
+      "keyIdea": "A vector is magnitude + direction, written ⟨a, b⟩ (east-part, north-part). |⟨a,b⟩| = √(a² + b²), and tip-minus-tail builds the vector between two points.",
+      "facts": [
+        {
+          "title": "The pair",
+          "latex": "\\vec{v} = \\langle a, b \\rangle",
+          "explanation": "The walk east, the walk north."
+        },
+        {
+          "title": "Magnitude",
+          "latex": "|\\vec{v}| = \\sqrt{a^2 + b^2}",
+          "explanation": "Pythagoras measures every arrow."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ve1-we1",
+          "statement": "Find the magnitude of $\\vec{v} = \\langle 3, 4 \\rangle$.",
+          "solution": "$\\sqrt{3^2 + 4^2} = \\sqrt{25} = 5$.",
+          "check": [
+            "sqrt(3**2 + 4**2) == 5"
+          ]
+        },
+        {
+          "id": "ve1-we2",
+          "statement": "Find the vector from $A(2, -1)$ to $B(5, 3)$, and its magnitude.",
+          "solution": "$\\overrightarrow{AB} = \\langle 5-2, 3-(-1) \\rangle = \\langle 3, 4 \\rangle$; magnitude 5 again — same trip as before, starting somewhere else.",
+          "check": [
+            "5 - 2 == 3",
+            "3 - (-1) == 4",
+            "sqrt(3**2 + 4**2) == 5"
+          ]
+        },
+        {
+          "id": "ve1-we3",
+          "statement": "Which are vectors: temperature, velocity, mass, force?",
+          "solution": "Velocity and force (they point); temperature and mass are scalars (they only size). The test: does 'which way?' make sense?",
+          "check": [
+            "2 > 1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Confusing the vector ⟨3, 4⟩ with the point (3, 4).",
+          "correction": "The point is an ADDRESS; the vector is a TRIP (that happens to end there when started at the origin). Trips can start anywhere — arrows of equal length and direction are equal vectors.",
+          "authored": true
+        },
+        {
+          "text": "Adding magnitudes componentwise: |⟨3, 4⟩| = 7.",
+          "correction": "Length is not a + b — the legs are perpendicular. Pythagoras: $\\sqrt{9 + 16} = 5$, not 7. Walking 3 east and 4 north leaves you 5 from home, not 7.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ve1-t1",
+          "statement": "Magnitude of $\\langle 5, 12 \\rangle$?",
+          "solution": "$\\sqrt{25 + 144} = 13$.",
+          "check": [
+            "sqrt(5**2 + 12**2) == 13"
+          ]
+        },
+        {
+          "id": "ve1-t2",
+          "statement": "The vector from $(3, 7)$ to $(1, 2)$?",
+          "solution": "$\\langle 1-3, 2-7 \\rangle = \\langle -2, -5 \\rangle$ — west and south; components carry signs.",
+          "check": [
+            "1 - 3 == -2",
+            "2 - 7 == -5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Which way?",
+            "title": "One number isn't enough",
+            "beats": [
+              "'Walk 5 km.' — Which WAY? The instruction is incomplete.",
+              "Temperature: one number suffices (scalar).",
+              "A walk, a wind, a force: size AND direction (vector).",
+              "We draw them as arrows and write them as pairs."
+            ]
+          },
+          {
+            "kind": "vectorGraph",
+            "eyebrow": "The anatomy",
+            "title": "One arrow, two numbers",
+            "teach": "Step the components: $\\langle 3, 4 \\rangle$ means 3 east then 4 north — the dashed legs. The arrow is the direct trip, and Pythagoras prices it: $\\sqrt{3^2 + 4^2} = 5$. Every vector is this triangle.",
+            "config": {
+              "mode": "components"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the pair",
+            "prompt": "$\\vec{v} = \\langle -2, 3 \\rangle$ points…",
+            "options": [
+              "west and north — left 2, up 3",
+              "east and north",
+              "west and south"
+            ],
+            "correctIndex": 0,
+            "explanation": "Negative x-component: westward. Positive y: northward. Signs are directions.",
+            "check": [
+              "sqrt((-2)**2 + 3**2) == sqrt(13)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Tip minus tail",
+            "title": "Vectors between points",
+            "beats": [
+              "From $A(1, 2)$ to $B(4, 6)$: what's the trip?",
+              "$\\overrightarrow{AB} = \\langle 4-1, 6-2 \\rangle = \\langle 3, 4 \\rangle$.",
+              "TIP minus TAIL, coordinate by coordinate.",
+              "(B minus A — alphabetical order is the memory hook.)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Arrow accounting",
+            "intro": "Components, magnitudes, trips.",
+            "examples": [
+              {
+                "prompt": "A ship sails $\\langle 8, -6 \\rangle$ km (east 8, south 6). How far from its start?",
+                "steps": [
+                  "Magnitude: $\\sqrt{64 + 36} = \\sqrt{100}$.",
+                  "$10$ km — regardless of the zigzag details of the trip."
+                ],
+                "answer": "$10$ km",
+                "check": [
+                  "sqrt(8**2 + (-6)**2) == 10"
+                ]
+              },
+              {
+                "prompt": "Find $\\overrightarrow{PQ}$ for $P(-2, 5)$, $Q(4, -3)$, and its magnitude.",
+                "steps": [
+                  "$\\langle 4-(-2), -3-5 \\rangle = \\langle 6, -8 \\rangle$.",
+                  "Magnitude $\\sqrt{36 + 64} = 10$ — the 3-4-5 family, doubled."
+                ],
+                "answer": "$\\langle 6, -8 \\rangle$, magnitude 10",
+                "check": [
+                  "4 - (-2) == 6",
+                  "-3 - 5 == -8",
+                  "sqrt(6**2 + 8**2) == 10"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Vector or not",
+            "intro": "Pairs, trips, lengths.",
+            "problems": [
+              {
+                "prompt": "$|\\langle 6, 8 \\rangle|$ = …",
+                "options": [
+                  "$10$",
+                  "$14$",
+                  "$48$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{36 + 64} = 10$. (14 is the componentwise trap; 48 is the product.)",
+                "check": [
+                  "sqrt(6**2 + 8**2) == 10"
+                ]
+              },
+              {
+                "prompt": "Two arrows: same length, same direction, drawn in different places. They are…",
+                "options": [
+                  "the same vector",
+                  "different vectors",
+                  "equal only at the origin"
+                ],
+                "correctIndex": 0,
+                "explanation": "A vector is the TRIP, not the location. Slide an arrow anywhere — it stays itself.",
+                "check": [
+                  "sqrt(3**2 + 4**2) == 5"
+                ]
+              },
+              {
+                "prompt": "Which is a vector quantity?",
+                "options": [
+                  "a plane's velocity",
+                  "the plane's mass",
+                  "the cabin temperature"
+                ],
+                "correctIndex": 0,
+                "explanation": "Velocity answers 'which way' (830 km/h TOWARD Tokyo); mass and temperature don't.",
+                "check": [
+                  "1 < 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "History",
+            "title": "Where the arrows came from",
+            "body": "Vectors are teenage mathematics — barely 180 years old. Hamilton carved his quaternion breakthrough into a Dublin bridge in 1843 (the graffiti is still commemorated); Gibbs and Heaviside later trimmed it to the arrow algebra we use. Physics adopted it instantly: Maxwell's electromagnetism is four vector equations that fit on a T-shirt."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Vectors carry magnitude + direction; scalars carry only size.",
+              "$\\langle a, b \\rangle$: east-part, north-part; magnitude $\\sqrt{a^2 + b^2}$.",
+              "Tip minus tail builds the vector between two points."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "adding-and-scaling",
+      "title": "Adding & Scaling",
+      "concreteComparison": "A plane flies 700 km/h north while the jet stream shoves it 100 km/h east — where does it actually go? Nature adds vectors constantly, and the rule is a picture: walk the first arrow, then the second — the sum is the direct shortcut home. In components it's even simpler: add the easts, add the norths. Scaling is one number stretching the whole trip.",
+      "objective": "Add and subtract vectors componentwise (tip-to-tail picture), multiply by scalars, and combine operations.",
+      "concept": [
+        "**Addition, the picture**: glue $\\vec{v}$'s tail to $\\vec{u}$'s tip; $\\vec{u} + \\vec{v}$ runs from the start straight to the finish — the two-leg journey collapsed into one.",
+        "**Addition, the algebra**: $\\langle 3, 1 \\rangle + \\langle 1, 3 \\rangle = \\langle 4, 4 \\rangle$. Easts with easts, norths with norths — no cross-talk between components.",
+        "**Scaling**: $2\\vec{v}$ doubles the trip (same direction); $\\tfrac12\\vec{v}$ halves it; $-\\vec{v}$ walks it BACKWARDS. Componentwise: $2\\langle 3, -1 \\rangle = \\langle 6, -2 \\rangle$. Magnitudes scale by $|c|$: $|c\\vec{v}| = |c||\\vec{v}|$.",
+        "**Subtraction**: $\\vec{u} - \\vec{v} = \\vec{u} + (-\\vec{v})$ — add the reverse. Componentwise, just subtract. Geometrically, $\\vec{u} - \\vec{v}$ is the arrow FROM $\\vec{v}$'s tip TO $\\vec{u}$'s tip: the correction that turns one trip into the other."
+      ],
+      "keyIdea": "Add tip-to-tail in pictures, componentwise in algebra. Scalars stretch, shrink, or reverse; subtraction adds the reverse.",
+      "facts": [
+        {
+          "title": "Componentwise",
+          "latex": "\\langle a, b \\rangle + \\langle c, d \\rangle = \\langle a+c, b+d \\rangle",
+          "explanation": "Easts with easts, norths with norths."
+        },
+        {
+          "title": "Scaling",
+          "latex": "c\\langle a, b \\rangle = \\langle ca, cb \\rangle, \\quad |c\\vec{v}| = |c||\\vec{v}|",
+          "explanation": "Negative c reverses the arrow."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ve2-we1",
+          "statement": "$\\vec{u} = \\langle 3, 1 \\rangle$, $\\vec{v} = \\langle 1, 3 \\rangle$: find $\\vec{u} + \\vec{v}$ and $\\vec{u} - \\vec{v}$.",
+          "solution": "Sum $\\langle 4, 4 \\rangle$; difference $\\langle 2, -2 \\rangle$.",
+          "check": [
+            "3 + 1 == 4",
+            "1 + 3 == 4",
+            "3 - 1 == 2",
+            "1 - 3 == -2"
+          ]
+        },
+        {
+          "id": "ve2-we2",
+          "statement": "Compute $3\\langle 2, -1 \\rangle - 2\\langle 1, 4 \\rangle$.",
+          "solution": "$\\langle 6, -3 \\rangle - \\langle 2, 8 \\rangle = \\langle 4, -11 \\rangle$.",
+          "check": [
+            "3*2 - 2*1 == 4",
+            "3*(-1) - 2*4 == -11"
+          ]
+        },
+        {
+          "id": "ve2-we3",
+          "statement": "The plane: velocity $\\langle 0, 700 \\rangle$ km/h, wind $\\langle 100, 0 \\rangle$. Find the true velocity and speed.",
+          "solution": "Sum: $\\langle 100, 700 \\rangle$; speed $\\sqrt{100^2 + 700^2} = \\sqrt{500000} = 100\\sqrt{50} \\approx 707$ km/h — barely faster, but pushed off course.",
+          "check": [
+            "0 + 100 == 100",
+            "700 + 0 == 700",
+            "simplify(sqrt(100**2 + 700**2) - 500*sqrt(2)) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding magnitudes instead of vectors.",
+          "correction": "700 km/h plane + 100 km/h wind ≠ 800 km/h unless they point the SAME way. Perpendicular here: the true speed is $\\sqrt{700^2 + 100^2} \\approx 707$. Directions matter before sizes.",
+          "authored": true
+        },
+        {
+          "text": "Scaling only one component.",
+          "correction": "$2\\langle 3, 4 \\rangle = \\langle 6, 8 \\rangle$ — BOTH components double, or the direction changes. A stretched trip keeps its heading only if every part stretches equally.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ve2-t1",
+          "statement": "$\\langle -2, 5 \\rangle + \\langle 6, -1 \\rangle$ = ?",
+          "solution": "$\\langle 4, 4 \\rangle$.",
+          "check": [
+            "-2 + 6 == 4",
+            "5 - 1 == 4"
+          ]
+        },
+        {
+          "id": "ve2-t2",
+          "statement": "$|{-3}\\langle 4, -3 \\rangle|$ = ?",
+          "solution": "$|-3| \\cdot 5 = 15$ — the scalar's SIZE scales the length; the sign only flips direction.",
+          "check": [
+            "3*sqrt(4**2 + 3**2) == 15"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Nature adds arrows",
+            "title": "The jet stream problem",
+            "beats": [
+              "Plane: 700 north. Wind: 100 east. Where does it GO?",
+              "Not 800 anything — the pushes point different ways.",
+              "Vector addition: the machinery for combined pushes.",
+              "Rule one: it's a picture. Rule two: it's trivial in components."
+            ]
+          },
+          {
+            "kind": "vectorGraph",
+            "eyebrow": "Tip to tail",
+            "title": "The shortcut home",
+            "teach": "Reshape $\\vec{v}$: it stays glued to $\\vec{u}$'s tip, and the red resultant always runs start-to-finish. Two legs, one shortcut — and in components it's just $\\langle 3 + v_x,\\ 1 + v_y \\rangle$: easts with easts, norths with norths.",
+            "config": {
+              "mode": "add"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Component discipline",
+            "prompt": "$\\langle 5, -2 \\rangle + \\langle -3, 4 \\rangle$ = …",
+            "options": [
+              "$\\langle 2, 2 \\rangle$",
+              "$\\langle 8, -6 \\rangle$",
+              "$\\langle 2, -6 \\rangle$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$5 + (-3) = 2$; $-2 + 4 = 2$. Componentwise, signs and all — the middle option subtracted.",
+            "check": [
+              "5 - 3 == 2",
+              "-2 + 4 == 2"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Scaling and reversing",
+            "title": "One number, whole trip",
+            "beats": [
+              "$2\\vec{v}$: same heading, double length. $\\tfrac12\\vec{v}$: half.",
+              "$-\\vec{v}$: the return trip — same length, reversed.",
+              "Componentwise: $c\\langle a, b \\rangle = \\langle ca, cb \\rangle$.",
+              "And $\\vec{u} - \\vec{v}$ is just $\\vec{u} + (-\\vec{v})$: add the reverse."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Combined operations",
+            "intro": "Scale first, then add — like terms, vector edition.",
+            "examples": [
+              {
+                "prompt": "$2\\langle 1, 3 \\rangle + 3\\langle 2, -2 \\rangle$",
+                "steps": [
+                  "Scale: $\\langle 2, 6 \\rangle$ and $\\langle 6, -6 \\rangle$.",
+                  "Add: $\\langle 8, 0 \\rangle$ — due east, all northness cancelled."
+                ],
+                "answer": "$\\langle 8, 0 \\rangle$",
+                "check": [
+                  "2*1 + 3*2 == 8",
+                  "2*3 + 3*(-2) == 0"
+                ]
+              },
+              {
+                "prompt": "A rower aims $\\langle 0, 4 \\rangle$ km/h across a river flowing $\\langle 3, 0 \\rangle$ km/h. True velocity, speed, and the direction verdict.",
+                "steps": [
+                  "Sum: $\\langle 3, 4 \\rangle$.",
+                  "Speed $\\sqrt{9 + 16} = 5$ km/h.",
+                  "The boat crabs diagonally — aiming straight across doesn't GO straight across."
+                ],
+                "answer": "$\\langle 3, 4 \\rangle$, 5 km/h, pushed downstream",
+                "check": [
+                  "0 + 3 == 3",
+                  "4 + 0 == 4",
+                  "sqrt(3**2 + 4**2) == 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Arrow arithmetic",
+            "intro": "Componentwise, always.",
+            "problems": [
+              {
+                "prompt": "$-2\\langle 3, -5 \\rangle$ = …",
+                "options": [
+                  "$\\langle -6, 10 \\rangle$",
+                  "$\\langle -6, -10 \\rangle$",
+                  "$\\langle 6, 10 \\rangle$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both components times $-2$: signs flip, sizes double.",
+                "check": [
+                  "-2*3 == -6",
+                  "-2*(-5) == 10"
+                ]
+              },
+              {
+                "prompt": "$\\vec{u} + \\vec{v} = \\vec{0}$ (the zero vector). Then $\\vec{v}$ is…",
+                "options": [
+                  "$-\\vec{u}$ — the exact return trip",
+                  "impossible",
+                  "perpendicular to $\\vec{u}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Out and exactly back: the only way two trips cancel completely.",
+                "check": [
+                  "3 + (-3) == 0"
+                ]
+              },
+              {
+                "prompt": "If $|\\vec{v}| = 4$, then $|3\\vec{v}|$ = …",
+                "options": [
+                  "$12$",
+                  "$7$",
+                  "$36$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$|c\\vec{v}| = |c||\\vec{v}| = 3 \\cdot 4$. (36 squared it; 7 added.)",
+                "check": [
+                  "3*4 == 12"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Aviation",
+            "title": "Crosswind landings are vector sums",
+            "body": "Watch a plane land in a crosswind: it flies visibly SIDEWAYS — nose pointed into the wind, ground track straight down the runway. The pilot is solving u + wind = runway direction for u, live, at 250 km/h. Every crabbed landing is a vector-addition diagram with 200 passengers inside."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Tip-to-tail in pictures; componentwise in algebra.",
+              "Scalars stretch/shrink/reverse; $|c\\vec{v}| = |c||\\vec{v}|$.",
+              "Subtract by adding the reverse; combined pushes are vector sums."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "unit-vectors-and-direction",
+      "title": "Unit Vectors & Direction",
+      "concreteComparison": "Sometimes you want ONLY the direction — 'which way to the summit?' — with the distance stripped away. A **unit vector** is a direction distilled: length exactly 1. Divide any vector by its own magnitude and the size cancels out, leaving pure heading. With the two axis units $\\vec{i}$ and $\\vec{j}$, every vector in the plane becomes a recipe: so much $\\vec{i}$, so much $\\vec{j}$.",
+      "objective": "Normalize vectors to unit length, use the standard basis i and j, and build vectors with a given magnitude and direction.",
+      "concept": [
+        "**Unit vector**: any vector of magnitude 1. The **normalization** of $\\vec{v}$ is $\\hat{v} = \\tfrac{\\vec{v}}{|\\vec{v}|}$ — same direction, length scaled to exactly 1. For $\\langle 3, 4 \\rangle$: $\\hat{v} = \\langle \\tfrac35, \\tfrac45 \\rangle$; check: $\\sqrt{\\tfrac{9}{25} + \\tfrac{16}{25}} = 1$ ✓.",
+        "**The standard basis**: $\\vec{i} = \\langle 1, 0 \\rangle$ (due east), $\\vec{j} = \\langle 0, 1 \\rangle$ (due north). Every vector decomposes: $\\langle 3, 4 \\rangle = 3\\vec{i} + 4\\vec{j}$. Same information, physics costume.",
+        "**Rebuilding with a chosen size**: want magnitude 10 in the direction of $\\langle 3, 4 \\rangle$? Take $10\\hat{v} = \\langle 6, 8 \\rangle$. Direction from the unit vector, size from the scalar — fully separated concerns.",
+        "**Angles**: the unit vector at angle $\\theta$ from the positive x-axis is $\\langle \\cos\\theta, \\sin\\theta \\rangle$ — the unit circle returns, now employed as a direction dial."
+      ],
+      "keyIdea": "v̂ = v/|v| strips a vector to pure direction (length 1). i and j are the axis units; a⟨cos θ, sin θ⟩ builds any size in any heading.",
+      "facts": [
+        {
+          "title": "Normalization",
+          "latex": "\\hat{v} = \\tfrac{\\vec{v}}{|\\vec{v}|}",
+          "explanation": "Divide by the length; direction survives."
+        },
+        {
+          "title": "The basis",
+          "latex": "\\vec{i} = \\langle 1, 0 \\rangle, \\; \\vec{j} = \\langle 0, 1 \\rangle",
+          "explanation": "⟨a, b⟩ = a i + b j."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ve3-we1",
+          "statement": "Find the unit vector in the direction of $\\vec{v} = \\langle 3, 4 \\rangle$.",
+          "solution": "$|\\vec{v}| = 5$: $\\hat{v} = \\langle \\tfrac35, \\tfrac45 \\rangle$. Check: $(\\tfrac35)^2 + (\\tfrac45)^2 = 1$ ✓.",
+          "check": [
+            "sqrt(3**2 + 4**2) == 5",
+            "Rational(3,5)**2 + Rational(4,5)**2 == 1"
+          ]
+        },
+        {
+          "id": "ve3-we2",
+          "statement": "Write $\\langle -2, 7 \\rangle$ in $\\vec{i}, \\vec{j}$ form, and $5\\vec{i} - 3\\vec{j}$ in bracket form.",
+          "solution": "$-2\\vec{i} + 7\\vec{j}$; and $\\langle 5, -3 \\rangle$. Two costumes, one vector.",
+          "check": [
+            "-2 + 7 == 5",
+            "5 - 3 == 2"
+          ]
+        },
+        {
+          "id": "ve3-we3",
+          "statement": "Build the vector of magnitude 26 in the direction of $\\langle 5, 12 \\rangle$.",
+          "solution": "$|\\langle 5, 12 \\rangle| = 13$; unit $\\langle \\tfrac{5}{13}, \\tfrac{12}{13} \\rangle$; times 26: $\\langle 10, 24 \\rangle$.",
+          "check": [
+            "sqrt(5**2 + 12**2) == 13",
+            "26*Rational(5,13) == 10",
+            "26*Rational(12,13) == 24"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Normalizing by dividing by a component instead of the magnitude.",
+          "correction": "$\\langle 3, 4 \\rangle \\div 4$ gives $\\langle 0.75, 1 \\rangle$ — length $1.25$, not 1, and it feels 'unit-ish' but isn't. Divide by $|\\vec{v}| = 5$, always.",
+          "authored": true
+        },
+        {
+          "text": "Treating i and j as unknowns to solve for.",
+          "correction": "$3\\vec{i} + 4\\vec{j}$ isn't an equation — $\\vec{i}, \\vec{j}$ are fixed arrows (east and north). It's the same object as $\\langle 3, 4 \\rangle$, just spelled for physics class.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ve3-t1",
+          "statement": "Unit vector for $\\langle -6, 8 \\rangle$?",
+          "solution": "Magnitude 10: $\\langle -\\tfrac35, \\tfrac45 \\rangle$.",
+          "check": [
+            "sqrt(6**2 + 8**2) == 10",
+            "Rational(3,5)**2 + Rational(4,5)**2 == 1"
+          ]
+        },
+        {
+          "id": "ve3-t2",
+          "statement": "The unit vector at angle $\\theta = \\tfrac{\\pi}{3}$?",
+          "solution": "$\\langle \\cos\\tfrac{\\pi}{3}, \\sin\\tfrac{\\pi}{3} \\rangle = \\langle \\tfrac12, \\tfrac{\\sqrt3}{2} \\rangle$ — the unit circle, moonlighting.",
+          "check": [
+            "cos(pi/3) == Rational(1,2)",
+            "simplify(sin(pi/3) - sqrt(3)/2) == 0",
+            "Rational(1,4) + Rational(3,4) == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Direction, distilled",
+            "title": "Strip the size",
+            "beats": [
+              "'Which way to the summit?' wants a direction, not a distance.",
+              "A UNIT vector: length exactly 1 — pure heading.",
+              "Recipe: divide the vector by its own magnitude.",
+              "$\\langle 3, 4 \\rangle \\div 5 = \\langle \\tfrac35, \\tfrac45 \\rangle$. Size gone, direction kept."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Certify it",
+            "prompt": "Is $\\langle \\tfrac{5}{13}, \\tfrac{12}{13} \\rangle$ a unit vector?",
+            "options": [
+              "Yes: $\\tfrac{25}{169} + \\tfrac{144}{169} = 1$",
+              "No — the components aren't 1",
+              "Only approximately"
+            ],
+            "correctIndex": 0,
+            "explanation": "The magnitude-squared sums to exactly 1. (Components needn't be 1 — the LENGTH must.)",
+            "check": [
+              "Rational(5,13)**2 + Rational(12,13)**2 == 1"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The i–j costume",
+            "title": "Physics spelling",
+            "beats": [
+              "$\\vec{i} = \\langle 1, 0 \\rangle$: one step east. $\\vec{j} = \\langle 0, 1 \\rangle$: one step north.",
+              "Every vector: $\\langle a, b \\rangle = a\\vec{i} + b\\vec{j}$.",
+              "Physics prefers this spelling; the mathematics is identical.",
+              "Translate freely — exams use both."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Build to order",
+            "title": "Any size, any heading",
+            "beats": [
+              "Want magnitude 10 toward $\\langle 3, 4 \\rangle$?",
+              "Normalize: $\\langle \\tfrac35, \\tfrac45 \\rangle$. Scale: $\\times 10 = \\langle 6, 8 \\rangle$.",
+              "Or with an angle: $10\\langle \\cos\\theta, \\sin\\theta \\rangle$.",
+              "Grade 11's unit circle is now a direction dial."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Direction work",
+            "intro": "Normalize, translate, rebuild.",
+            "examples": [
+              {
+                "prompt": "A drone must fly at 20 m/s toward $\\langle -3, 4 \\rangle$. Find its velocity vector.",
+                "steps": [
+                  "$|\\langle -3, 4 \\rangle| = 5$; unit: $\\langle -\\tfrac35, \\tfrac45 \\rangle$.",
+                  "Velocity: $20 \\times = \\langle -12, 16 \\rangle$.",
+                  "Check: $\\sqrt{144 + 256} = 20$ ✓."
+                ],
+                "answer": "$\\langle -12, 16 \\rangle$",
+                "check": [
+                  "sqrt(3**2 + 4**2) == 5",
+                  "20*Rational(-3,5) == -12",
+                  "20*Rational(4,5) == 16",
+                  "sqrt(12**2 + 16**2) == 20"
+                ]
+              },
+              {
+                "prompt": "Express $\\vec{w} = 6\\vec{i} - 8\\vec{j}$ in brackets, find $|\\vec{w}|$, and normalize.",
+                "steps": [
+                  "$\\langle 6, -8 \\rangle$; magnitude 10.",
+                  "$\\hat{w} = \\langle \\tfrac35, -\\tfrac45 \\rangle$ — southeast-ish, length 1."
+                ],
+                "answer": "$\\langle 6, -8 \\rangle$, $|\\vec{w}| = 10$, $\\hat{w} = \\langle \\tfrac35, -\\tfrac45 \\rangle$",
+                "check": [
+                  "sqrt(6**2 + 8**2) == 10",
+                  "Rational(6,10) == Rational(3,5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Heading duty",
+            "intro": "Divide by the length; scale to order.",
+            "problems": [
+              {
+                "prompt": "The unit vector of $\\langle 8, -6 \\rangle$ is…",
+                "options": [
+                  "$\\langle \\tfrac45, -\\tfrac35 \\rangle$",
+                  "$\\langle 8, -6 \\rangle$",
+                  "$\\langle 1, -1 \\rangle$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Magnitude 10; divide both components.",
+                "check": [
+                  "Rational(8,10) == Rational(4,5)",
+                  "Rational(4,5)**2 + Rational(3,5)**2 == 1"
+                ]
+              },
+              {
+                "prompt": "$\\vec{i} + \\vec{j}$ has magnitude…",
+                "options": [
+                  "$\\sqrt{2}$",
+                  "$2$",
+                  "$1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\langle 1, 1 \\rangle$: $\\sqrt{1 + 1}$. Two unit vectors don't add to a unit vector (unless aligned).",
+                "check": [
+                  "simplify(sqrt(1 + 1) - sqrt(2)) == 0"
+                ]
+              },
+              {
+                "prompt": "A vector of magnitude 6 at angle $\\theta = \\tfrac{\\pi}{6}$:",
+                "options": [
+                  "$\\langle 3\\sqrt3, 3 \\rangle$",
+                  "$\\langle 3, 3\\sqrt3 \\rangle$",
+                  "$\\langle 6, 6 \\rangle$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6\\langle \\cos\\tfrac{\\pi}{6}, \\sin\\tfrac{\\pi}{6} \\rangle = 6\\langle \\tfrac{\\sqrt3}{2}, \\tfrac12 \\rangle$.",
+                "check": [
+                  "simplify(6*cos(pi/6) - 3*sqrt(3)) == 0",
+                  "6*sin(pi/6) == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Technology",
+            "title": "Your phone normalizes constantly",
+            "body": "Game joysticks, compass apps, GPS bearings — all unit vectors. A joystick pushed to the corner would move you √2 times faster diagonally, so game engines normalize the input every frame: same top speed in every direction. If you've ever noticed diagonal movement is NOT faster in a well-made game, you've observed v/|v| in production."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$\\hat{v} = \\vec{v}/|\\vec{v}|$: length 1, direction intact.",
+              "$\\vec{i}, \\vec{j}$ spell $\\langle a, b \\rangle$ as $a\\vec{i} + b\\vec{j}$.",
+              "Magnitude × unit vector builds any arrow to order; $\\langle \\cos\\theta, \\sin\\theta \\rangle$ dials by angle."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-dot-product",
+      "title": "The Dot Product",
+      "concreteComparison": "How do you MULTIPLY two arrows? There's a way that outputs a single number — the **dot product** — and that number is a relationship detector: it measures how much two vectors agree. Same-ish direction: positive. Perpendicular: exactly zero. Opposing: negative. Two formulas compute it (components, or magnitudes-and-angle), and their equality is where all the power lives.",
+      "objective": "Compute dot products from components and from |u||v|cos θ, and read the sign as an agreement meter.",
+      "concept": [
+        "**Component formula**: $\\vec{u} \\cdot \\vec{v} = u_x v_x + u_y v_y$ — multiply matching components, add. $\\langle 2, 3 \\rangle \\cdot \\langle 4, 1 \\rangle = 8 + 3 = 11$. Output: a NUMBER (a scalar), not a vector.",
+        "**Angle formula**: $\\vec{u} \\cdot \\vec{v} = |\\vec{u}||\\vec{v}|\\cos\\theta$, where $\\theta$ is the angle between them. Both formulas always agree — that's a theorem (the law of cosines in disguise), and next lesson mines it for angles.",
+        "**The sign is a protractor**: $\\cos\\theta > 0$ for acute, $= 0$ at $90°$, $< 0$ for obtuse. So the dot product's SIGN instantly classifies the angle: positive = agreeing, zero = perpendicular, negative = opposing.",
+        "**Perpendicularity test**: $\\vec{u} \\perp \\vec{v} \\iff \\vec{u} \\cdot \\vec{v} = 0$. $\\langle 2, 3 \\rangle \\cdot \\langle 3, -2 \\rangle = 6 - 6 = 0$ — right angle, certified by arithmetic alone. (Grade 8's negative-reciprocal slopes, reborn.)"
+      ],
+      "keyIdea": "u · v = uₓvₓ + uᵧvᵧ = |u||v|cos θ: a scalar agreement meter. Positive acute, zero perpendicular, negative obtuse.",
+      "facts": [
+        {
+          "title": "Two formulas",
+          "latex": "\\vec{u} \\cdot \\vec{v} = u_x v_x + u_y v_y = |\\vec{u}||\\vec{v}|\\cos\\theta",
+          "explanation": "Their equality powers everything."
+        },
+        {
+          "title": "The perpendicularity test",
+          "latex": "\\vec{u} \\perp \\vec{v} \\iff \\vec{u} \\cdot \\vec{v} = 0",
+          "explanation": "Right angles by arithmetic."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ve4-we1",
+          "statement": "Compute $\\langle 2, 3 \\rangle \\cdot \\langle 4, 1 \\rangle$.",
+          "solution": "$2 \\cdot 4 + 3 \\cdot 1 = 11$ — positive: the vectors lean the same way (acute angle).",
+          "check": [
+            "2*4 + 3*1 == 11"
+          ]
+        },
+        {
+          "id": "ve4-we2",
+          "statement": "Show $\\langle 2, 3 \\rangle \\perp \\langle 3, -2 \\rangle$.",
+          "solution": "Dot: $6 + (-6) = 0$. Zero = right angle, no protractor needed.",
+          "check": [
+            "2*3 + 3*(-2) == 0"
+          ]
+        },
+        {
+          "id": "ve4-we3",
+          "statement": "$|\\vec{u}| = 4$, $|\\vec{v}| = 5$, angle $60°$: find $\\vec{u} \\cdot \\vec{v}$.",
+          "solution": "$4 \\cdot 5 \\cdot \\cos 60° = 20 \\cdot \\tfrac12 = 10$ — the angle formula, no components needed.",
+          "check": [
+            "4*5*cos(pi/3) == 10"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Expecting the dot product to be a vector.",
+          "correction": "$\\vec{u} \\cdot \\vec{v}$ is a NUMBER — the whole point. ⟨8, 3⟩ as an answer means you multiplied componentwise and forgot to ADD.",
+          "authored": true
+        },
+        {
+          "text": "Reading dot = 0 as 'a vector is zero'.",
+          "correction": "$\\langle 2, 3 \\rangle$ and $\\langle 3, -2 \\rangle$ are both alive and well — they're just perpendicular. Zero dot measures the ANGLE, not the arrows.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ve4-t1",
+          "statement": "$\\langle 5, -2 \\rangle \\cdot \\langle 3, 4 \\rangle$ = ?",
+          "solution": "$15 - 8 = 7$ — positive, acute.",
+          "check": [
+            "5*3 + (-2)*4 == 7"
+          ]
+        },
+        {
+          "id": "ve4-t2",
+          "statement": "Find $k$ making $\\langle k, 6 \\rangle \\perp \\langle 2, 1 \\rangle$.",
+          "solution": "$2k + 6 = 0$: $k = -3$.",
+          "check": [
+            "2*(-3) + 6 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Multiplying arrows",
+            "title": "The agreement meter",
+            "beats": [
+              "Adding arrows: solved. Multiplying them?",
+              "The dot product outputs one NUMBER measuring agreement:",
+              "same-ish way → positive; perpendicular → zero; opposed → negative.",
+              "Two formulas compute it. Their equality is the treasure."
+            ]
+          },
+          {
+            "kind": "vectorGraph",
+            "eyebrow": "Hunt the zero",
+            "title": "The sign in action",
+            "teach": "Aim $\\vec{v}$ around: the readout $2v_x + 3v_y$ swings positive (acute), negative (obtuse) — and hits EXACTLY zero at $\\langle 3, -2 \\rangle$ and $\\langle -3, 2 \\rangle$: the two headings perpendicular to $\\vec{u}$. The beacon fires when you find them.",
+            "config": {
+              "mode": "dot"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Number, not arrow",
+            "prompt": "$\\langle 1, 5 \\rangle \\cdot \\langle 3, 2 \\rangle$ = …",
+            "options": [
+              "$13$",
+              "$\\langle 3, 10 \\rangle$",
+              "$\\langle 4, 7 \\rangle$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$3 + 10 = 13$. Multiply matching components, then ADD — the output is a scalar. (The vector options are the two classic slips.)",
+            "check": [
+              "1*3 + 5*2 == 13"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The second formula",
+            "title": "Enter the angle",
+            "beats": [
+              "$\\vec{u} \\cdot \\vec{v} = |\\vec{u}||\\vec{v}|\\cos\\theta$.",
+              "Same output as the components — always (law of cosines, backstage).",
+              "$\\cos\\theta$'s sign explains the meter: acute +, right 0, obtuse −.",
+              "Two ways to compute; equate them and angles fall out (next lesson)."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Meter readings",
+            "intro": "Components or angle — whichever is given.",
+            "examples": [
+              {
+                "prompt": "Classify the angle between $\\langle 4, 1 \\rangle$ and $\\langle -2, 3 \\rangle$ without finding it.",
+                "steps": [
+                  "Dot: $-8 + 3 = -5$.",
+                  "Negative → obtuse. Verdict delivered by sign alone."
+                ],
+                "answer": "obtuse",
+                "check": [
+                  "4*(-2) + 1*3 == -5",
+                  "-5 < 0"
+                ]
+              },
+              {
+                "prompt": "Forces $|\\vec{F}| = 8$ N and displacement $|\\vec{d}| = 3$ m at $60°$: compute $\\vec{F} \\cdot \\vec{d}$ (that's WORK, in physics).",
+                "steps": [
+                  "$8 \\cdot 3 \\cdot \\cos 60° = 24 \\cdot \\tfrac12 = 12$ joules.",
+                  "Only the ALIGNED part of the force does work — cos θ prices the alignment."
+                ],
+                "answer": "$12$ J",
+                "check": [
+                  "8*3*cos(pi/3) == 12"
+                ]
+              },
+              {
+                "prompt": "Find all $k$ with $\\langle k, 2 \\rangle \\perp \\langle k, -8 \\rangle$.",
+                "steps": [
+                  "Dot: $k^2 - 16 = 0$.",
+                  "$k = \\pm 4$ — Grade 10 factoring closes a vector problem."
+                ],
+                "answer": "$k = 4$ or $k = -4$",
+                "check": [
+                  "4**2 - 16 == 0",
+                  "(-4)**2 - 16 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Sign duty",
+            "intro": "Compute, then read the meter.",
+            "problems": [
+              {
+                "prompt": "$\\langle 6, -4 \\rangle \\cdot \\langle 2, 3 \\rangle$ = …",
+                "options": [
+                  "$0$ — perpendicular!",
+                  "$24$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$12 - 12 = 0$: a hidden right angle, exposed by arithmetic.",
+                "check": [
+                  "6*2 + (-4)*3 == 0"
+                ]
+              },
+              {
+                "prompt": "$\\vec{u} \\cdot \\vec{v} < 0$ tells you the angle is…",
+                "options": [
+                  "obtuse — the vectors oppose",
+                  "acute",
+                  "exactly 180°"
+                ],
+                "correctIndex": 0,
+                "explanation": "Negative cos θ means past 90°. (Exactly 180° is the extreme case, but any obtuse angle goes negative.)",
+                "check": [
+                  "cos(2*pi/3) < 0"
+                ]
+              },
+              {
+                "prompt": "$\\vec{v} \\cdot \\vec{v}$ always equals…",
+                "options": [
+                  "$|\\vec{v}|^2$",
+                  "$0$",
+                  "$2|\\vec{v}|$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$v_x^2 + v_y^2$ — the magnitude squared. A vector agrees with itself completely ($\\theta = 0$, $\\cos = 1$).",
+                "check": [
+                  "3*3 + 4*4 == 25",
+                  "sqrt(3**2 + 4**2)**2 == 25"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Technology",
+            "title": "The billion-dollar dot product",
+            "body": "Search engines and AI models represent meanings as vectors with thousands of components — and measure similarity with (normalized) dot products. 'Find documents like this one' = 'find vectors with a big dot product against mine'. The agreement meter you just learned on ⟨2,3⟩ runs, scaled up, every time you search, stream, or ask an AI a question."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$\\vec{u} \\cdot \\vec{v} = u_xv_x + u_yv_y = |\\vec{u}||\\vec{v}|\\cos\\theta$ — a scalar.",
+              "Sign = angle class: positive acute, zero perpendicular, negative obtuse.",
+              "$\\vec{v} \\cdot \\vec{v} = |\\vec{v}|^2$; perpendicularity is a one-line arithmetic test."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "angles-between-vectors",
+      "title": "Angles Between Vectors",
+      "concreteComparison": "Two hikers leave camp on different bearings — what's the angle between their paths? No protractor reaches across a map, but the dot product does: equate its two formulas and solve for the angle. $\\cos\\theta = \\tfrac{\\vec{u} \\cdot \\vec{v}}{|\\vec{u}||\\vec{v}|}$ turns three arithmetic quantities into any angle in the plane — the unit circle answering one last practical question.",
+      "objective": "Compute the angle between vectors via cos θ = (u·v)/(|u||v|), and use dot products to test alignment precisely.",
+      "concept": [
+        "**The angle recipe**: from $\\vec{u} \\cdot \\vec{v} = |\\vec{u}||\\vec{v}|\\cos\\theta$, solve: $\\cos\\theta = \\tfrac{\\vec{u} \\cdot \\vec{v}}{|\\vec{u}||\\vec{v}|}$. Compute three numbers — dot, two magnitudes — and read the angle off the unit circle.",
+        "Example: $\\vec{u} = \\langle 1, 0 \\rangle$, $\\vec{v} = \\langle 1, 1 \\rangle$: $\\cos\\theta = \\tfrac{1}{1 \\cdot \\sqrt2} = \\tfrac{\\sqrt2}{2}$, so $\\theta = 45°$ — as the picture insists.",
+        "**The cosine's range does the sanity check**: the formula always lands in $[-1, 1]$ (that's the Cauchy–Schwarz inequality working quietly); values near $\\pm1$ mean nearly parallel, near 0 nearly perpendicular.",
+        "**Special angles return one final time**: $\\cos\\theta = \\tfrac12 \\to 60°$, $\\tfrac{\\sqrt2}{2} \\to 45°$, $\\tfrac{\\sqrt3}{2} \\to 30°$, $0 \\to 90°$. Grade 11's unit-circle chart is the lookup table for every vector angle."
+      ],
+      "keyIdea": "cos θ = (u·v)/(|u||v|): three arithmetic quantities produce the angle. The unit-circle chart converts the cosine to degrees.",
+      "facts": [
+        {
+          "title": "The recipe",
+          "latex": "\\cos\\theta = \\tfrac{\\vec{u} \\cdot \\vec{v}}{|\\vec{u}||\\vec{v}|}",
+          "explanation": "Dot over product of lengths."
+        },
+        {
+          "title": "Sanity range",
+          "latex": "-1 \\leq \\cos\\theta \\leq 1",
+          "explanation": "Near ±1: nearly parallel. Near 0: nearly perpendicular."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ve5-we1",
+          "statement": "Find the angle between $\\langle 1, 0 \\rangle$ and $\\langle 1, 1 \\rangle$.",
+          "solution": "$\\cos\\theta = \\tfrac{1}{\\sqrt2} = \\tfrac{\\sqrt2}{2}$: $\\theta = 45°$.",
+          "check": [
+            "simplify(1/sqrt(2) - sqrt(2)/2) == 0",
+            "simplify(cos(pi/4) - sqrt(2)/2) == 0"
+          ]
+        },
+        {
+          "id": "ve5-we2",
+          "statement": "Find the angle between $\\langle 3, 4 \\rangle$ and $\\langle -4, 3 \\rangle$.",
+          "solution": "Dot: $-12 + 12 = 0$: $\\theta = 90°$ immediately — no magnitudes needed when the dot dies.",
+          "check": [
+            "3*(-4) + 4*3 == 0",
+            "cos(pi/2) == 0"
+          ]
+        },
+        {
+          "id": "ve5-we3",
+          "statement": "Find the angle between $\\langle 1, \\sqrt{3} \\rangle$ and $\\langle 2, 0 \\rangle$.",
+          "solution": "Dot $= 2$; magnitudes $2$ and $2$: $\\cos\\theta = \\tfrac{2}{4} = \\tfrac12$, so $\\theta = 60°$.",
+          "check": [
+            "simplify(sqrt(1 + 3) - 2) == 0",
+            "Rational(2, 4) == Rational(1,2)",
+            "cos(pi/3) == Rational(1,2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Forgetting to divide by BOTH magnitudes.",
+          "correction": "$\\cos\\theta = \\tfrac{\\vec{u}\\cdot\\vec{v}}{|\\vec{u}||\\vec{v}|}$ — the denominator is the PRODUCT of lengths. Dividing by one (or by their sum) gives cosines outside $[-1,1]$: the sanity range catches the slip.",
+          "authored": true
+        },
+        {
+          "text": "Reporting the cosine as the angle.",
+          "correction": "$\\cos\\theta = \\tfrac12$ is a CLUE; the ANGLE is $60°$. Finish the lookup — the unit-circle chart is the last step, not decoration.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ve5-t1",
+          "statement": "Angle between $\\langle 2, 2 \\rangle$ and $\\langle 0, 3 \\rangle$?",
+          "solution": "$\\cos\\theta = \\tfrac{6}{2\\sqrt2 \\cdot 3} = \\tfrac{\\sqrt2}{2}$: $45°$.",
+          "check": [
+            "simplify(6/(2*sqrt(2)*3) - sqrt(2)/2) == 0"
+          ]
+        },
+        {
+          "id": "ve5-t2",
+          "statement": "Two unit vectors have dot product $-\\tfrac{1}{2}$. The angle between them?",
+          "solution": "$\\cos\\theta = -\\tfrac12$: $\\theta = 120°$ — obtuse, as the negative sign promised.",
+          "check": [
+            "cos(2*pi/3) == Rational(-1,2)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The protractor problem",
+            "title": "Angles from arithmetic",
+            "beats": [
+              "Two hikers, two bearings — what's the angle between the paths?",
+              "The dot product's two formulas must agree:",
+              "$u_xv_x + u_yv_y = |\\vec{u}||\\vec{v}|\\cos\\theta$.",
+              "Solve for $\\cos\\theta$. Three numbers in, one angle out."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The recipe, step by step",
+            "title": "Dot, lengths, lookup",
+            "beats": [
+              "1 — Dot product (components).",
+              "2 — Both magnitudes (Pythagoras).",
+              "3 — Divide: $\\cos\\theta = \\tfrac{\\text{dot}}{\\text{product of lengths}}$.",
+              "4 — Unit-circle lookup: $\\tfrac12 \\to 60°$, $\\tfrac{\\sqrt2}{2} \\to 45°$…"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Run it",
+            "prompt": "$\\vec{u} = \\langle 1, 1 \\rangle$, $\\vec{v} = \\langle 0, 2 \\rangle$: $\\cos\\theta$ = …",
+            "options": [
+              "$\\tfrac{2}{2\\sqrt2} = \\tfrac{\\sqrt2}{2}$ → 45°",
+              "$\\tfrac{2}{4}$ → 60°",
+              "$2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Dot $= 2$; lengths $\\sqrt2$ and $2$. And a cosine of 2 (option three) is impossible — the range $[-1,1]$ police would arrest it.",
+            "check": [
+              "simplify(2/(sqrt(2)*2) - sqrt(2)/2) == 0"
+            ]
+          },
+          {
+            "kind": "vectorGraph",
+            "eyebrow": "Feel the angle",
+            "title": "Sign, then size",
+            "teach": "Aim $\\vec{v}$ and watch the verdict change: acute, right (beacon at zero), obtuse. The dot's SIGN classifies instantly; today's formula goes further and names the exact angle. Try $\\langle -3, 2 \\rangle$ against $\\vec{u} = \\langle 2, 3 \\rangle$ — perpendicular, 90° on the nose.",
+            "config": {
+              "mode": "dot"
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Angle hunts",
+            "intro": "Three numbers, one lookup.",
+            "examples": [
+              {
+                "prompt": "The angle between $\\langle 3, 1 \\rangle$ and $\\langle 1, 3 \\rangle$ — symmetric arrows.",
+                "steps": [
+                  "Dot: $3 + 3 = 6$. Magnitudes: both $\\sqrt{10}$.",
+                  "$\\cos\\theta = \\tfrac{6}{10} = \\tfrac35$.",
+                  "Not a chart angle — and that's fine: $\\cos\\theta = 0.6$ means $\\theta \\approx 53°$, acute and certified."
+                ],
+                "answer": "$\\cos\\theta = \\tfrac{3}{5}$ (≈ 53°)",
+                "check": [
+                  "3*1 + 1*3 == 6",
+                  "simplify(sqrt(10)*sqrt(10) - 10) == 0",
+                  "Rational(6,10) == Rational(3,5)"
+                ]
+              },
+              {
+                "prompt": "Hiker A walks along $\\langle 4, 0 \\rangle$; hiker B along $\\langle 3, 3\\sqrt{3} \\rangle$. The angle between their paths?",
+                "steps": [
+                  "Dot: $12$. Magnitudes: $4$ and $\\sqrt{9 + 27} = 6$.",
+                  "$\\cos\\theta = \\tfrac{12}{24} = \\tfrac12$: $\\theta = 60°$.",
+                  "The camp's map, measured by multiplication."
+                ],
+                "answer": "$60°$",
+                "check": [
+                  "4*3 + 0 == 12",
+                  "simplify(sqrt(9 + 27) - 6) == 0",
+                  "Rational(12, 24) == Rational(1,2)",
+                  "cos(pi/3) == Rational(1,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Lookup season",
+            "intro": "Dot, divide, unit circle.",
+            "problems": [
+              {
+                "prompt": "$\\cos\\theta = \\tfrac{\\sqrt3}{2}$ between two paths means θ = …",
+                "options": [
+                  "$30°$",
+                  "$60°$",
+                  "$45°$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The Grade 11 chart: $\\cos 30° = \\tfrac{\\sqrt3}{2}$. (60° pairs with ½.)",
+                "check": [
+                  "simplify(cos(pi/6) - sqrt(3)/2) == 0"
+                ]
+              },
+              {
+                "prompt": "Angle between $\\langle 5, 0 \\rangle$ and $\\langle 0, -7 \\rangle$?",
+                "options": [
+                  "$90°$ — the dot is 0",
+                  "$180°$",
+                  "$45°$"
+                ],
+                "correctIndex": 0,
+                "explanation": "East vs south: dot $= 0 + 0 = 0$. Perpendicular, whatever the lengths.",
+                "check": [
+                  "5*0 + 0*(-7) == 0"
+                ]
+              },
+              {
+                "prompt": "A computed $\\cos\\theta = 1.4$ means…",
+                "options": [
+                  "an arithmetic error — cosines cap at 1",
+                  "θ is very small",
+                  "the vectors are parallel"
+                ],
+                "correctIndex": 0,
+                "explanation": "The range $[-1, 1]$ is a built-in alarm. Usually a forgotten magnitude in the denominator.",
+                "check": [
+                  "1 < Rational(14,10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Deep cut",
+            "title": "The inequality behind the sanity check",
+            "body": "Why can't the formula exceed 1? Because |u·v| ≤ |u||v| always — the Cauchy–Schwarz inequality, one of the most-used facts in all of mathematics. It guarantees every 'similarity score' in AI stays bounded, every correlation lives in [−1,1], and every vector angle exists. One inequality, quietly holding up statistics, physics, and machine learning."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$\\cos\\theta = \\tfrac{\\vec{u}\\cdot\\vec{v}}{|\\vec{u}||\\vec{v}|}$: dot over both lengths.",
+              "Unit-circle lookup finishes the job; sign classifies before you compute.",
+              "Cosines outside $[-1,1]$ are error alarms, not answers."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "vectors-in-action",
+      "title": "Vectors in Action",
+      "concreteComparison": "Final assembly: a river crossing, a heavy sled, a drone's delivery route. Every applied vector problem is the same four moves — set axes, write each quantity as $\\langle x, y \\rangle$, run the algebra (add for combined pushes, dot for work and angles), then translate the numbers back into the story. The chapter's toolkit, deployed on problems that could be homework or could be Tuesday.",
+      "objective": "Solve applied problems — displacement chains, velocity with current/wind, force components, and work — using the full vector toolkit.",
+      "concept": [
+        "**Displacement chains add**: leg 1 + leg 2 + leg 3 = net displacement. A robot going $\\langle 3, 0 \\rangle$, $\\langle 0, 4 \\rangle$, $\\langle -1, 1 \\rangle$ ends at $\\langle 2, 5 \\rangle$ — and its distance FROM START is $|\\langle 2, 5 \\rangle| = \\sqrt{29}$, however long the path was.",
+        "**Velocities superpose**: boat + current, plane + wind. Aim $\\langle 0, 5 \\rangle$ in a current $\\langle 2, 0 \\rangle$: true velocity $\\langle 2, 5 \\rangle$. To go STRAIGHT across, pre-aim upstream so the current's push cancels.",
+        "**Forces resolve**: a pull of magnitude $F$ at angle $\\theta$ is $\\langle F\\cos\\theta, F\\sin\\theta \\rangle$ — the horizontal part moves the sled, the vertical part fights gravity. Splitting forces into components is half of introductory physics.",
+        "**Work is a dot product**: $W = \\vec{F} \\cdot \\vec{d}$ — only the aligned part of a force does work. Pull $10$ N at $60°$ over $6$ m: $W = 10 \\cdot 6 \\cdot \\cos 60° = 30$ J. Perpendicular force (carrying a bag horizontally): zero work, mathematically certified."
+      ],
+      "keyIdea": "Axes → components → algebra (add displacements/velocities, resolve forces by cos/sin, dot for work) → translate back. Four moves close every applied problem.",
+      "facts": [
+        {
+          "title": "Superposition",
+          "latex": "\\vec{v}_{true} = \\vec{v}_{aim} + \\vec{v}_{current}",
+          "explanation": "Combined pushes add as vectors."
+        },
+        {
+          "title": "Work",
+          "latex": "W = \\vec{F} \\cdot \\vec{d} = |F||d|\\cos\\theta",
+          "explanation": "Only the aligned part of the force works."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ve6-we1",
+          "statement": "A delivery drone flies $\\langle 6, 2 \\rangle$ km, then $\\langle -2, 3 \\rangle$ km. Net displacement and distance from base?",
+          "solution": "Net $\\langle 4, 5 \\rangle$; distance $\\sqrt{16 + 25} = \\sqrt{41} \\approx 6.4$ km.",
+          "check": [
+            "6 - 2 == 4",
+            "2 + 3 == 5",
+            "simplify(sqrt(4**2 + 5**2) - sqrt(41)) == 0"
+          ]
+        },
+        {
+          "id": "ve6-we2",
+          "statement": "A boat aims straight across at 4 m/s; the river flows 3 m/s. Find the true speed and the downstream drift after 20 s.",
+          "solution": "True velocity $\\langle 3, 4 \\rangle$, speed 5 m/s. Drift: $3 \\times 20 = 60$ m downstream (while crossing $80$ m of river).",
+          "check": [
+            "sqrt(3**2 + 4**2) == 5",
+            "3*20 == 60",
+            "4*20 == 80"
+          ]
+        },
+        {
+          "id": "ve6-we3",
+          "statement": "A sled is pulled with force 40 N at $60°$ above horizontal, over 10 m of flat ground. Compute the work.",
+          "solution": "$W = 40 \\cdot 10 \\cdot \\cos 60° = 200$ J — half the naive $400$: only the horizontal component pulls the sled forward.",
+          "check": [
+            "40*10*cos(pi/3) == 200"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding path lengths to get displacement.",
+          "correction": "Distance walked and displacement differ: three legs totaling 9 km can end $\\sqrt{29} \\approx 5.4$ km from the start. Add VECTORS for position; add magnitudes only for odometer questions.",
+          "authored": true
+        },
+        {
+          "text": "Using the full force magnitude in work when the pull is angled.",
+          "correction": "An angled rope wastes some pull on lifting. $W = |F||d|\\cos\\theta$ — the cosine prices the alignment; skipping it overpays by the vertical component.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ve6-t1",
+          "statement": "Three legs: $\\langle 2, 1 \\rangle$, $\\langle -1, 3 \\rangle$, $\\langle 4, -2 \\rangle$. Net displacement?",
+          "solution": "$\\langle 5, 2 \\rangle$ — componentwise, all three at once.",
+          "check": [
+            "2 - 1 + 4 == 5",
+            "1 + 3 - 2 == 2"
+          ]
+        },
+        {
+          "id": "ve6-t2",
+          "statement": "Force $\\langle 8, 6 \\rangle$ N over displacement $\\langle 5, 0 \\rangle$ m: the work?",
+          "solution": "$W = 40 + 0 = 40$ J — the vertical 6 N contributes nothing to horizontal motion.",
+          "check": [
+            "8*5 + 6*0 == 40"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Final assembly",
+            "title": "Four moves",
+            "beats": [
+              "1 — Set axes (east-north, or along-across).",
+              "2 — Everything into $\\langle x, y \\rangle$ components.",
+              "3 — Algebra: add pushes, resolve forces, dot for work.",
+              "4 — Translate back: km, m/s, joules. The story wants units."
+            ]
+          },
+          {
+            "kind": "vectorGraph",
+            "eyebrow": "Combined pushes",
+            "title": "Aim + current",
+            "teach": "The boat aims $\\vec{u}$; the river adds $\\vec{v}$. Reshape the current and watch the red TRUE course swing — aim straight and you land downstream; pre-aim upstream (negative $v_x$… or rather aim against the flow) and the drift cancels. Navigation is vector addition with consequences.",
+            "config": {
+              "mode": "add"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Odometer vs crow",
+            "prompt": "A robot walks $\\langle 3, 0 \\rangle$ then $\\langle 0, 4 \\rangle$. Distance from start, and distance WALKED?",
+            "options": [
+              "$5$ from start; $7$ walked",
+              "$7$ from start; $5$ walked",
+              "both 7"
+            ],
+            "correctIndex": 0,
+            "explanation": "Displacement $\\langle 3, 4 \\rangle$: magnitude 5 (the crow). The odometer sums the legs: $3 + 4 = 7$. Different questions, different additions.",
+            "check": [
+              "sqrt(3**2 + 4**2) == 5",
+              "3 + 4 == 7"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Resolving forces",
+            "title": "cos and sin split the pull",
+            "beats": [
+              "A 40 N pull at $60°$: how much moves the sled, how much lifts?",
+              "$\\langle 40\\cos 60°, 40\\sin 60° \\rangle = \\langle 20, 20\\sqrt3 \\rangle$.",
+              "20 N forward, ~34.6 N upward.",
+              "Every angled force is two perpendicular jobs in one rope."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Field problems",
+            "intro": "Axes, components, algebra, story.",
+            "examples": [
+              {
+                "prompt": "A swimmer crosses a 100 m river swimming 2 m/s straight across; the current is 1.5 m/s. Time to cross, and landing point downstream?",
+                "steps": [
+                  "Crossing speed (the across-component) is unaffected: $t = \\tfrac{100}{2} = 50$ s.",
+                  "Drift: $1.5 \\times 50 = 75$ m downstream.",
+                  "The current NEVER slows the crossing — it only relocates the arrival. Components don't cross-talk."
+                ],
+                "answer": "50 s; 75 m downstream",
+                "check": [
+                  "Rational(100, 2) == 50",
+                  "Rational(3,2)*50 == 75"
+                ]
+              },
+              {
+                "prompt": "Two tugboats pull a barge: $\\vec{F_1} = \\langle 3000, 2000 \\rangle$ N, $\\vec{F_2} = \\langle 3000, -2000 \\rangle$ N. Net force and its direction?",
+                "steps": [
+                  "Sum: $\\langle 6000, 0 \\rangle$ — the sideways pulls cancel.",
+                  "6000 N due east: the barge tracks straight even though neither rope points straight.",
+                  "Symmetric angling is how real tugs steer massive loads."
+                ],
+                "answer": "$\\langle 6000, 0 \\rangle$ N, due east",
+                "check": [
+                  "3000 + 3000 == 6000",
+                  "2000 - 2000 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Deployment",
+            "intro": "The whole toolkit, in the field.",
+            "problems": [
+              {
+                "prompt": "Plane airspeed $\\langle 0, 300 \\rangle$, wind $\\langle 40, 0 \\rangle$: ground speed ≈ …",
+                "options": [
+                  "$\\sqrt{300^2 + 40^2} \\approx 303$",
+                  "$340$",
+                  "$300$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Perpendicular wind barely changes speed ($\\sqrt{91600} \\approx 302.7$) but definitely changes the course — the classic vector surprise.",
+                "check": [
+                  "300**2 + 40**2 == 91600"
+                ]
+              },
+              {
+                "prompt": "Work done carrying a 50 N bag 100 m across a FLAT floor:",
+                "options": [
+                  "$0$ J — the force is perpendicular to the motion",
+                  "$5000$ J",
+                  "$50$ J"
+                ],
+                "correctIndex": 0,
+                "explanation": "You hold it UP; it moves SIDEWAYS: $\\theta = 90°$, $\\cos\\theta = 0$. Tiring, yes — but zero work in the physics sense. The dot product is strict.",
+                "check": [
+                  "50*100*cos(pi/2) == 0"
+                ]
+              },
+              {
+                "prompt": "To actually travel due north in a current pushing east, you aim…",
+                "options": [
+                  "slightly west of north — cancel the push",
+                  "due north",
+                  "slightly east"
+                ],
+                "correctIndex": 0,
+                "explanation": "Your aim + current must sum to north: the aim needs a westward component equal-and-opposite to the current. Ferry pilots do this arithmetic by feel.",
+                "check": [
+                  "-2 + 2 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Milestone",
+            "title": "One topic left",
+            "body": "Vectors close with the same lesson calculus opened: hard questions become easy arithmetic once you pick the right representation — arrows into components, curves into limits. One topic remains in Grade 12 (and in the whole course): conic sections, the four curves an ancient cone has been hiding since Apollonius. The finish line is visible."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Displacements and velocities ADD; forces resolve via $\\cos$/$\\sin$.",
+              "Work $= \\vec{F} \\cdot \\vec{d}$: only aligned force counts; perpendicular = zero.",
+              "Four moves: axes, components, algebra, translate back with units."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "ve-pr1",
+      "statement": "Magnitude of $\\langle -8, 15 \\rangle$?",
+      "solution": "$\\sqrt{64 + 225} = \\sqrt{289} = 17$.",
+      "check": [
+        "sqrt(8**2 + 15**2) == 17"
+      ]
+    },
+    {
+      "id": "ve-pr2",
+      "statement": "The vector from $A(-1, 4)$ to $B(3, 1)$, and its magnitude?",
+      "solution": "$\\langle 4, -3 \\rangle$; magnitude 5.",
+      "check": [
+        "3 - (-1) == 4",
+        "1 - 4 == -3",
+        "sqrt(4**2 + 3**2) == 5"
+      ]
+    },
+    {
+      "id": "ve-pr3",
+      "statement": "$2\\langle 3, -1 \\rangle + \\langle -4, 5 \\rangle$ = ?",
+      "solution": "$\\langle 2, 3 \\rangle$.",
+      "check": [
+        "2*3 - 4 == 2",
+        "2*(-1) + 5 == 3"
+      ]
+    },
+    {
+      "id": "ve-pr4",
+      "statement": "Unit vector for $\\langle 7, -24 \\rangle$?",
+      "solution": "Magnitude 25: $\\langle \\tfrac{7}{25}, -\\tfrac{24}{25} \\rangle$.",
+      "check": [
+        "sqrt(7**2 + 24**2) == 25",
+        "Rational(7,25)**2 + Rational(24,25)**2 == 1"
+      ]
+    },
+    {
+      "id": "ve-pr5",
+      "statement": "Build the vector of magnitude 15 toward $\\langle -3, 4 \\rangle$.",
+      "solution": "Unit $\\langle -\\tfrac35, \\tfrac45 \\rangle$; times 15: $\\langle -9, 12 \\rangle$.",
+      "check": [
+        "15*Rational(-3,5) == -9",
+        "15*Rational(4,5) == 12",
+        "sqrt(9**2 + 12**2) == 15"
+      ]
+    },
+    {
+      "id": "ve-pr6",
+      "statement": "$\\langle 4, -3 \\rangle \\cdot \\langle 2, 5 \\rangle$ = ? Classify the angle.",
+      "solution": "$8 - 15 = -7$: obtuse.",
+      "check": [
+        "4*2 + (-3)*5 == -7",
+        "-7 < 0"
+      ]
+    },
+    {
+      "id": "ve-pr7",
+      "statement": "Find $k$ so that $\\langle 3, k \\rangle \\perp \\langle 4, 6 \\rangle$.",
+      "solution": "$12 + 6k = 0$: $k = -2$.",
+      "check": [
+        "12 + 6*(-2) == 0"
+      ]
+    },
+    {
+      "id": "ve-pr8",
+      "statement": "Angle between $\\langle 2, 0 \\rangle$ and $\\langle 3, 3 \\rangle$?",
+      "solution": "$\\cos\\theta = \\tfrac{6}{2 \\cdot 3\\sqrt2} = \\tfrac{\\sqrt2}{2}$: $45°$.",
+      "check": [
+        "simplify(6/(2*3*sqrt(2)) - sqrt(2)/2) == 0"
+      ]
+    },
+    {
+      "id": "ve-pr9",
+      "statement": "A kayaker aims $\\langle 0, 3 \\rangle$ m/s; current $\\langle 2, 0 \\rangle$ m/s. True speed, and net displacement after 30 s?",
+      "solution": "Speed $\\sqrt{13} \\approx 3.6$ m/s; displacement $30\\langle 2, 3 \\rangle = \\langle 60, 90 \\rangle$ m.",
+      "check": [
+        "simplify(sqrt(2**2 + 3**2) - sqrt(13)) == 0",
+        "30*2 == 60",
+        "30*3 == 90"
+      ]
+    },
+    {
+      "id": "ve-pr10",
+      "statement": "Work done by $\\vec{F} = \\langle 12, 5 \\rangle$ N over $\\vec{d} = \\langle 10, 0 \\rangle$ m?",
+      "solution": "$W = 120 + 0 = 120$ J — only the x-component works.",
+      "check": [
+        "12*10 + 5*0 == 120"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "ve-ty1",
+      "statement": "$P(2, -3)$, $Q(-4, 5)$: find $\\overrightarrow{PQ}$ and $|\\overrightarrow{PQ}|$.",
+      "solution": "$\\langle -6, 8 \\rangle$; magnitude 10.",
+      "check": [
+        "-4 - 2 == -6",
+        "5 - (-3) == 8",
+        "sqrt(6**2 + 8**2) == 10"
+      ]
+    },
+    {
+      "id": "ve-ty2",
+      "statement": "$3\\langle 1, -2 \\rangle - 2\\langle -2, 1 \\rangle$ = ?",
+      "solution": "$\\langle 3 + 4, -6 - 2 \\rangle = \\langle 7, -8 \\rangle$.",
+      "check": [
+        "3*1 - 2*(-2) == 7",
+        "3*(-2) - 2*1 == -8"
+      ]
+    },
+    {
+      "id": "ve-ty3",
+      "statement": "Find the unit vector of $\\vec{v} = 9\\vec{i} - 12\\vec{j}$.",
+      "solution": "$|\\vec{v}| = 15$: $\\hat{v} = \\langle \\tfrac35, -\\tfrac45 \\rangle$.",
+      "check": [
+        "sqrt(9**2 + 12**2) == 15",
+        "Rational(9,15) == Rational(3,5)"
+      ]
+    },
+    {
+      "id": "ve-ty4",
+      "statement": "$\\langle 6, -2 \\rangle \\cdot \\langle 1, 3 \\rangle$ = ? What does the result say?",
+      "solution": "$6 - 6 = 0$: the vectors are perpendicular.",
+      "check": [
+        "6*1 + (-2)*3 == 0"
+      ]
+    },
+    {
+      "id": "ve-ty5",
+      "statement": "The angle between $\\langle 1, \\sqrt3 \\rangle$ and $\\langle \\sqrt3, 1 \\rangle$?",
+      "solution": "Dot $= 2\\sqrt3$; magnitudes both 2: $\\cos\\theta = \\tfrac{2\\sqrt3}{4} = \\tfrac{\\sqrt3}{2}$: $30°$.",
+      "check": [
+        "simplify(1*sqrt(3) + sqrt(3)*1 - 2*sqrt(3)) == 0",
+        "simplify(2*sqrt(3)/4 - sqrt(3)/2) == 0",
+        "simplify(cos(pi/6) - sqrt(3)/2) == 0"
+      ]
+    },
+    {
+      "id": "ve-ty6",
+      "statement": "A plane flies airspeed $\\langle 200, 0 \\rangle$ km/h in wind $\\langle -30, 40 \\rangle$ km/h. Ground velocity and ground speed?",
+      "solution": "$\\langle 170, 40 \\rangle$; speed $\\sqrt{28900 + 1600} = \\sqrt{30500} \\approx 175$ km/h.",
+      "check": [
+        "200 - 30 == 170",
+        "0 + 40 == 40",
+        "170**2 + 40**2 == 30500"
+      ]
+    },
+    {
+      "id": "ve-ty7",
+      "statement": "A student computes the angle between two vectors and gets $\\cos\\theta = \\tfrac{18}{12}$. Diagnose the error and prescribe the fix.",
+      "solution": "$\\tfrac{18}{12} = 1.5 > 1$ — impossible: cosines live in $[-1, 1]$ (Cauchy–Schwarz). Almost surely a magnitude is missing from the denominator; recompute $|\\vec{u}||\\vec{v}|$, then look up the angle.",
+      "check": [
+        "Rational(18, 12) > 1"
+      ]
+    }
+  ]
+}

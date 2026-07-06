@@ -89,6 +89,7 @@ import limitsAndContinuity from "@/data/genmath/12/limits-and-continuity.json";
 import derivatives from "@/data/genmath/12/derivatives.json";
 import applicationsOfDerivatives from "@/data/genmath/12/applications-of-derivatives.json";
 import integrals from "@/data/genmath/12/integrals.json";
+import vectors from "@/data/genmath/12/vectors.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -299,7 +300,7 @@ export const GRADE12_SPINE: GradeSpineEntry[] = [
     slug: "vectors",
     title: "Vectors",
     blurb: "Magnitude and direction: components, addition, scalar multiples, the dot product, and the angle between.",
-    live: false,
+    live: true,
   },
   {
     slug: "conic-sections",
@@ -315,6 +316,7 @@ const grade12Topics: GenMathTopic[] = [
   derivatives as GenMathTopic,
   applicationsOfDerivatives as GenMathTopic,
   integrals as GenMathTopic,
+  vectors as GenMathTopic,
 ];
 
 const grade11Topics: GenMathTopic[] = [

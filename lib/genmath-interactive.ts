@@ -812,6 +812,13 @@ export interface TangentGraphConfig {
   mode: "secant" | "tangent" | "slopeCurve";
 }
 
+// The vectors workbench: components (one arrow, dashed legs, live magnitude),
+// add (tip-to-tail with a springing resultant), dot (term-by-term dot product
+// whose sign calls the angle: acute / right / obtuse).
+export interface VectorGraphConfig {
+  mode: "components" | "add" | "dot";
+}
+
 // The integrals workbench. riemann: left-endpoint rectangles under x² on
 // [0,2] with an n-stepper — the staircase melts into the curve chasing 8/3;
 // accumulate: auto-played sweep filling area behind a moving edge, readout
@@ -1044,6 +1051,7 @@ export type InteractiveStep =
   | { kind: "limitGraph"; eyebrow?: string; title: string; teach: string; config: LimitGraphConfig }
   | { kind: "tangentGraph"; eyebrow?: string; title: string; teach: string; config: TangentGraphConfig }
   | { kind: "areaGraph"; eyebrow?: string; title: string; teach: string; config: AreaGraphConfig }
+  | { kind: "vectorGraph"; eyebrow?: string; title: string; teach: string; config: VectorGraphConfig }
   | { kind: "scatterPlot"; eyebrow?: string; title: string; teach: string; config: ScatterPlotConfig }
   | { kind: "areaShape"; eyebrow?: string; title: string; teach: string; config: AreaShapeConfig }
   | { kind: "apothemPolygon"; eyebrow?: string; title: string; teach: string; config: ApothemPolygonConfig }
