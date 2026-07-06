@@ -812,6 +812,15 @@ export interface TangentGraphConfig {
   mode: "secant" | "tangent" | "slopeCurve";
 }
 
+// The integrals workbench. riemann: left-endpoint rectangles under x² on
+// [0,2] with an n-stepper — the staircase melts into the curve chasing 8/3;
+// accumulate: auto-played sweep filling area behind a moving edge, readout
+// A(x) = x³/3 — area as a function; ftc: f(x) = x on [0,b], triangle geometry
+// vs the antiderivative, agreeing at every b.
+export interface AreaGraphConfig {
+  mode: "riemann" | "accumulate" | "ftc";
+}
+
 // Two lines y = m1x + b1 and y = m2x + b2 on one grid; line 2 adjustable.
 // Marks the intersection (the system's solution) and calls parallel /
 // same-line verdicts live. The systems-of-equations workbench.
@@ -1034,6 +1043,7 @@ export type InteractiveStep =
   | { kind: "unitCircle"; eyebrow?: string; title: string; teach: string; config: UnitCircleConfig }
   | { kind: "limitGraph"; eyebrow?: string; title: string; teach: string; config: LimitGraphConfig }
   | { kind: "tangentGraph"; eyebrow?: string; title: string; teach: string; config: TangentGraphConfig }
+  | { kind: "areaGraph"; eyebrow?: string; title: string; teach: string; config: AreaGraphConfig }
   | { kind: "scatterPlot"; eyebrow?: string; title: string; teach: string; config: ScatterPlotConfig }
   | { kind: "areaShape"; eyebrow?: string; title: string; teach: string; config: AreaShapeConfig }
   | { kind: "apothemPolygon"; eyebrow?: string; title: string; teach: string; config: ApothemPolygonConfig }

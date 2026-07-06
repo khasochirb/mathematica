@@ -88,6 +88,7 @@ import trigonometricIdentities from "@/data/genmath/12/trigonometric-identities.
 import limitsAndContinuity from "@/data/genmath/12/limits-and-continuity.json";
 import derivatives from "@/data/genmath/12/derivatives.json";
 import applicationsOfDerivatives from "@/data/genmath/12/applications-of-derivatives.json";
+import integrals from "@/data/genmath/12/integrals.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -292,7 +293,7 @@ export const GRADE12_SPINE: GradeSpineEntry[] = [
     slug: "integrals",
     title: "Integrals",
     blurb: "Undoing the derivative: antiderivatives, the area under a curve, and the Fundamental Theorem of Calculus.",
-    live: false,
+    live: true,
   },
   {
     slug: "vectors",
@@ -313,6 +314,7 @@ const grade12Topics: GenMathTopic[] = [
   limitsAndContinuity as GenMathTopic,
   derivatives as GenMathTopic,
   applicationsOfDerivatives as GenMathTopic,
+  integrals as GenMathTopic,
 ];
 
 const grade11Topics: GenMathTopic[] = [

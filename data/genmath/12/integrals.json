@@ -1,0 +1,1578 @@
+{
+  "slug": "integrals",
+  "title": "Integrals",
+  "grade": 12,
+  "blurb": "Undoing the derivative: antiderivatives, the area under a curve, and the Fundamental Theorem of Calculus.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "undoing-the-derivative",
+      "title": "Undoing the Derivative",
+      "concreteComparison": "Every machine invites the same question: can it run backwards? You know velocity comes from differentiating position — but a GPS records your VELOCITY and wants your position back. That's **antidifferentiation**: given $f$, find an $F$ whose derivative is $f$. The power rule reverses cleanly (exponent up one, divide by the new one)… with one famous ghost: the $+C$.",
+      "objective": "Find antiderivatives by reversing the power rule, check by differentiating, and understand why every answer carries + C.",
+      "concept": [
+        "**The definition**: $F$ is an antiderivative of $f$ if $F' = f$. Since $(x^3)' = 3x^2$, an antiderivative of $3x^2$ is $x^3$. Notation: $\\int 3x^2\\,dx = x^3 + C$.",
+        "**Reverse power rule**: forward was 'down front, drop by one'; backward is 'UP by one, divide by the new exponent': $\\int x^n\\,dx = \\tfrac{x^{n+1}}{n+1} + C$ (for $n \\neq -1$). Sums split and constants ride, exactly as before.",
+        "**The ghost $+C$**: $x^3$, $x^3 + 5$, and $x^3 - 100$ ALL differentiate to $3x^2$ — constants die under differentiation, so reversing can't recover them. The $+C$ acknowledges the whole family of answers. Extra information (like a starting position) pins down which family member you need.",
+        "**The free checker**: differentiate your answer. If you don't get the integrand back, the answer is wrong — no exceptions, no doubt. Antidifferentiation is the rare skill that grades itself."
+      ],
+      "keyIdea": "∫ xⁿ dx = xⁿ⁺¹/(n+1) + C — up by one, divide by the new one, plus the family constant. Differentiate to check: the answer grades itself.",
+      "facts": [
+        {
+          "title": "Reverse power rule",
+          "latex": "\\int x^n\\,dx = \\tfrac{x^{n+1}}{n+1} + C \\;\\; (n \\neq -1)",
+          "explanation": "Up by one, divide by the new one."
+        },
+        {
+          "title": "The ghost",
+          "latex": "F' = G' \\Rightarrow F = G + \\text{constant}",
+          "explanation": "Constants die forward, so + C rides backward."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "in1-we1",
+          "statement": "Find $\\int x^4\\,dx$ and check by differentiating.",
+          "solution": "$\\tfrac{x^5}{5} + C$. Check: $(\\tfrac{x^5}{5})' = x^4$ ✓.",
+          "check": [
+            "integrate(x**4, x) == x**5/5",
+            "diff(x**5/5, x) == x**4"
+          ]
+        },
+        {
+          "id": "in1-we2",
+          "statement": "Find $\\int (3x^2 - 4x + 1)\\,dx$.",
+          "solution": "Term by term: $x^3 - 2x^2 + x + C$.",
+          "check": [
+            "integrate(3*x**2 - 4*x + 1, x) == x**3 - 2*x**2 + x",
+            "diff(x**3 - 2*x**2 + x, x) == 3*x**2 - 4*x + 1"
+          ]
+        },
+        {
+          "id": "in1-we3",
+          "statement": "A particle has $v(t) = 10t$ and starts at position $s(0) = 3$. Find $s(t)$.",
+          "solution": "$s = \\int 10t\\,dt = 5t^2 + C$; the start pins the ghost: $s(0) = C = 3$. $s(t) = 5t^2 + 3$.",
+          "check": [
+            "integrate(10*t, t) == 5*t**2",
+            "5*0**2 + 3 == 3",
+            "diff(5*t**2 + 3, t) == 10*t"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dropping the + C.",
+          "correction": "$\\int 2x\\,dx = x^2$ is INCOMPLETE — $x^2 + 7$ works just as well. The $+C$ is the whole family; initial conditions choose the member.",
+          "authored": true
+        },
+        {
+          "text": "Reversing the rule the wrong way: dividing by the OLD exponent.",
+          "correction": "$\\int x^4 dx = \\tfrac{x^5}{5}$, not $\\tfrac{x^5}{4}$. Up by one FIRST, then divide by the NEW exponent. The diff-check catches it instantly: $(\\tfrac{x^5}{4})' = \\tfrac{5x^4}{4} \\neq x^4$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "in1-t1",
+          "statement": "Find $\\int (x^2 + 6x)\\,dx$.",
+          "solution": "$\\tfrac{x^3}{3} + 3x^2 + C$.",
+          "check": [
+            "integrate(x**2 + 6*x, x) == x**3/3 + 3*x**2",
+            "diff(x**3/3 + 3*x**2, x) == x**2 + 6*x"
+          ]
+        },
+        {
+          "id": "in1-t2",
+          "statement": "Which functions have derivative exactly $\\cos x$?",
+          "solution": "$\\sin x + C$ — the whole vertical family of sine curves.",
+          "check": [
+            "integrate(cos(x), x) == sin(x)",
+            "diff(sin(x), x) == cos(x)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Running the machine backwards",
+            "title": "The GPS problem",
+            "beats": [
+              "Forward: position → differentiate → velocity.",
+              "Your GPS logs VELOCITY. It wants position back.",
+              "Needed: an $F$ with $F' = f$ — an ANTIderivative.",
+              "New notation: $\\int f\\,dx$. New skill: same old rules, reversed."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reversing the power rule",
+            "title": "Up by one, divide",
+            "beats": [
+              "Forward: $x^5 \\to 5x^4$ (down front, drop one).",
+              "Backward: $x^4 \\to \\tfrac{x^5}{5}$ (UP one, divide by the new).",
+              "$\\int x^n dx = \\tfrac{x^{n+1}}{n+1} + C$.",
+              "Sums split, constants ride — the old assembly kit, mirrored."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Mirror move",
+            "prompt": "$\\int x^6\\,dx$ = …",
+            "options": [
+              "$\\tfrac{x^7}{7} + C$",
+              "$6x^5 + C$",
+              "$\\tfrac{x^7}{6} + C$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Up to 7, divide by 7. ($6x^5$ is the DERIVATIVE — the machine running forward.) Check: $(\\tfrac{x^7}{7})' = x^6$ ✓.",
+            "check": [
+              "integrate(x**6, x) == x**7/7",
+              "diff(x**7/7, x) == x**6"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The ghost constant",
+            "title": "Why + C",
+            "beats": [
+              "$(x^3)' = 3x^2$. Also $(x^3 + 5)'$. Also $(x^3 - 100)'$.",
+              "Constants die under differentiation —",
+              "so the reverse trip can't know which one you had.",
+              "$+ C$ = the honest answer: a family, not a function."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Reverse gear",
+            "intro": "Integrate, then diff-check. Always.",
+            "examples": [
+              {
+                "prompt": "$\\int (4x^3 - 2x + 7)\\,dx$",
+                "steps": [
+                  "Term by term: $x^4 - x^2 + 7x + C$.",
+                  "Check: $(x^4 - x^2 + 7x)' = 4x^3 - 2x + 7$ ✓."
+                ],
+                "answer": "$x^4 - x^2 + 7x + C$",
+                "check": [
+                  "integrate(4*x**3 - 2*x + 7, x) == x**4 - x**2 + 7*x",
+                  "diff(x**4 - x**2 + 7*x, x) == 4*x**3 - 2*x + 7"
+                ]
+              },
+              {
+                "prompt": "A stone: $v(t) = -10t$ (falling), released from height $s(0) = 45$ m. Find $s(t)$ and the landing time.",
+                "steps": [
+                  "$s = -5t^2 + C$; $s(0) = 45$ pins $C = 45$.",
+                  "$s(t) = 45 - 5t^2 = 0$ at $t = 3$ s.",
+                  "The + C was the cliff height all along."
+                ],
+                "answer": "$s = 45 - 5t^2$; lands at $t = 3$",
+                "check": [
+                  "integrate(-10*t, t) == -5*t**2",
+                  "45 - 5*3**2 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Family business",
+            "intro": "Up one, divide, + C.",
+            "problems": [
+              {
+                "prompt": "$\\int 6x^2\\,dx$ = …",
+                "options": [
+                  "$2x^3 + C$",
+                  "$12x + C$",
+                  "$6x^3 + C$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6 \\cdot \\tfrac{x^3}{3} = 2x^3$. The diff-check: $(2x^3)' = 6x^2$ ✓.",
+                "check": [
+                  "integrate(6*x**2, x) == 2*x**3"
+                ]
+              },
+              {
+                "prompt": "How many antiderivatives does $f(x) = 2x$ have?",
+                "options": [
+                  "infinitely many — $x^2 + C$ for every $C$",
+                  "exactly one: $x^2$",
+                  "two"
+                ],
+                "correctIndex": 0,
+                "explanation": "A whole vertical family of parabolas, every one with slope $2x$. Initial conditions pick the member.",
+                "check": [
+                  "diff(x**2 + 7, x) == 2*x"
+                ]
+              },
+              {
+                "prompt": "$F' = f$ and you differentiate your candidate $F$ and DON'T get $f$. Verdict?",
+                "options": [
+                  "wrong answer — the check is infallible",
+                  "close enough",
+                  "the check is optional"
+                ],
+                "correctIndex": 0,
+                "explanation": "Antidifferentiation grades itself: $F' = f$ or bust. It's the only topic where you never need the answer key.",
+                "check": [
+                  "diff(x**5/5, x) == x**4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "History",
+            "title": "The longest-running backwards problem",
+            "body": "Newton's masterstroke wasn't differentiating — it was UN-differentiating. Kepler had planetary positions; Newton had a law about acceleration (second derivatives). Connecting them meant antidifferentiating twice across the solar system. The + C's in that computation? Initial positions and velocities of the planets — measured by telescope, plugged in by hand."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$\\int x^n dx = \\tfrac{x^{n+1}}{n+1} + C$ — up by one, divide by the new one.",
+              "The $+C$ family: constants die forward, so the trip back yields a family.",
+              "Differentiate to check — the skill that grades itself."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-area-problem",
+      "title": "The Area Problem",
+      "concreteComparison": "Rectangles, triangles, circles — Grade 6 through Geometry armed you with area formulas for straight-ish shapes. But the region under $y = x^2$? No formula on the chart. The fix is gloriously blunt: TILE it with skinny rectangles, add them up, and let the rectangles get skinnier forever. The error melts to zero — and the limit of the sums is the exact area. Limits, called back for one more job.",
+      "objective": "Estimate areas under curves with Riemann sums (rectangle sums), and understand that the exact area is the limit as the slices thin.",
+      "concept": [
+        "**The tiling idea**: cut $[0, 2]$ into $n$ strips of width $\\Delta x = \\tfrac{2}{n}$; on each, build a rectangle up to the curve (say, at the strip's LEFT edge); add the areas: $\\sum f(x_i)\\,\\Delta x$. That's a **Riemann sum**.",
+        "For $f(x) = x^2$ on $[0,2]$ with 4 slices: heights at $0, 0.5, 1, 1.5$ give $0.5(0 + 0.25 + 1 + 2.25) = 1.75$. With 8 slices: $2.1875$. With 32: $2.542$. The staircase is climbing toward something…",
+        "**The limit is the answer**: left-rectangles UNDER-shoot a rising curve; right-rectangles OVER-shoot; both squeeze the true area between them as $n \\to \\infty$. For $x^2$ on $[0,2]$ they converge to $\\tfrac{8}{3} = 2.\\overline{6}$ — the exact area, no formula chart required.",
+        "**Why this matters beyond area**: distance from a speed graph, water from a flow rate, cost from a marginal-cost curve — anything accumulated from a rate is the same rectangle sum in disguise. 'Area under the curve' is the universal accumulator."
+      ],
+      "keyIdea": "Tile the region with n rectangles, sum, and take n → ∞: the Riemann sums squeeze onto the exact area. Accumulating any rate is this same sum in disguise.",
+      "facts": [
+        {
+          "title": "Riemann sum",
+          "latex": "\\sum f(x_i)\\,\\Delta x",
+          "explanation": "Rectangle heights × widths, added up."
+        },
+        {
+          "title": "The squeeze",
+          "latex": "\\text{left sums} \\nearrow \\; \\tfrac{8}{3} \\; \\swarrow \\text{right sums}",
+          "explanation": "For x² on [0,2]: both sides converge to 8/3."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "in2-we1",
+          "statement": "Left-endpoint sum for $f(x) = x^2$ on $[0, 2]$ with $n = 4$ slices.",
+          "solution": "$\\Delta x = 0.5$; heights at $0, 0.5, 1, 1.5$: sum $= 0.5(0 + 0.25 + 1 + 2.25) = 1.75$ — an underestimate; the staircase hides under the rising curve.",
+          "check": [
+            "Rational(1,2)*(0 + Rational(1,4) + 1 + Rational(9,4)) == Rational(7,4)"
+          ]
+        },
+        {
+          "id": "in2-we2",
+          "statement": "Right-endpoint sum, same setup.",
+          "solution": "Heights at $0.5, 1, 1.5, 2$: $0.5(0.25 + 1 + 2.25 + 4) = 3.75$ — an overestimate. True area trapped: $1.75 < A < 3.75$.",
+          "check": [
+            "Rational(1,2)*(Rational(1,4) + 1 + Rational(9,4) + 4) == Rational(15,4)"
+          ]
+        },
+        {
+          "id": "in2-we3",
+          "statement": "What are these sums converging to? (Sneak preview with the machinery of lesson 4.)",
+          "solution": "$\\int_0^2 x^2\\,dx = \\tfrac{8}{3} \\approx 2.667$ — comfortably between 1.75 and 3.75, and exactly what both staircases chase as $n$ grows.",
+          "check": [
+            "integrate(x**2, (x, 0, 2)) == Rational(8,3)",
+            "Rational(7,4) < Rational(8,3)",
+            "Rational(8,3) < Rational(15,4)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the wrong edge's height for the chosen scheme.",
+          "correction": "LEFT-endpoint rectangles read the height at each strip's left edge — for 4 slices of $[0,2]$ that's $x = 0, 0.5, 1, 1.5$ (no height at 2). Mixing edges scrambles the under/over story.",
+          "authored": true
+        },
+        {
+          "text": "Expecting the rectangle sum to BE the area.",
+          "correction": "Any finite $n$ carries error — the sum is an ESTIMATE. The area is the LIMIT. (Same trap as calling a secant slope the derivative.)",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "in2-t1",
+          "statement": "Left sum for $f(x) = x$ on $[0, 2]$, $n = 4$: compute it, and compare to the triangle's true area.",
+          "solution": "$0.5(0 + 0.5 + 1 + 1.5) = 1.5$; the triangle has area $\\tfrac{2 \\cdot 2}{2} = 2$. Underestimate, as expected.",
+          "check": [
+            "Rational(1,2)*(0 + Rational(1,2) + 1 + Rational(3,2)) == Rational(3,2)",
+            "Rational(2*2, 2) == 2"
+          ]
+        },
+        {
+          "id": "in2-t2",
+          "statement": "As $n$ doubles, what happens to a Riemann sum's error (roughly)?",
+          "solution": "It roughly halves (for these endpoint schemes) — thinner slices, thinner error wedges: $8/3 - 1.75 = 0.917$ at $n=4$ shrinks to about $0.46$ at $n=8$.",
+          "check": [
+            "Rational(8,3) - Rational(7,4) > 0",
+            "Rational(8,3) - Rational(7,4) < 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Off the formula chart",
+            "title": "A shape with a curved roof",
+            "beats": [
+              "Rectangles, triangles, circles: all charted. But under $y = x^2$?",
+              "No formula exists. The move: TILE it with rectangles.",
+              "Add them up. Then let them get skinny. Forever.",
+              "The error melts; the limit is exact. Limits, back on duty."
+            ]
+          },
+          {
+            "kind": "areaGraph",
+            "eyebrow": "The staircase",
+            "title": "Watch it melt",
+            "teach": "Step $n$ up: 2 slices are crude, 8 are decent, 32 hug the curve. The sum readout climbs $1.75 \\to 2.19 \\to 2.42 \\to \\ldots$ chasing the true area $\\tfrac{8}{3}$. Every extra slice shaves the error wedge thinner.",
+            "config": {
+              "mode": "riemann"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Under or over?",
+            "prompt": "Left-endpoint rectangles under a RISING curve give…",
+            "options": [
+              "an underestimate — each rectangle tops out below the curve",
+              "an overestimate",
+              "the exact area"
+            ],
+            "correctIndex": 0,
+            "explanation": "Rising curve: the left edge is the strip's lowest point, so every rectangle undershoots. Right endpoints flip it — and the truth is squeezed between.",
+            "check": [
+              "Rational(7,4) < Rational(8,3)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The sum, formalized",
+            "title": "Riemann's recipe",
+            "beats": [
+              "Width: $\\Delta x = \\tfrac{b - a}{n}$. Heights: $f$ at chosen points.",
+              "Sum: $f(x_1)\\Delta x + f(x_2)\\Delta x + \\cdots$ — the staircase area.",
+              "$n = 4$: $1.75$. $n = 32$: $2.54$. $n \\to \\infty$: $\\tfrac{8}{3}$, exactly.",
+              "Estimate for any $n$; EXACT in the limit. That's the area problem, solved."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Staircase arithmetic",
+            "intro": "Widths, heights, sums, verdicts.",
+            "examples": [
+              {
+                "prompt": "Right-endpoint sum for $f(x) = x^2$ on $[0,2]$, $n = 4$ — and trap the true area.",
+                "steps": [
+                  "Heights at $0.5, 1, 1.5, 2$: squares $0.25, 1, 2.25, 4$.",
+                  "Sum: $0.5 \\times 7.5 = 3.75$.",
+                  "With the left sum 1.75: the truth lives in $(1.75, 3.75)$ — and $\\tfrac83 = 2.67$ obliges."
+                ],
+                "answer": "$3.75$; trapped: $1.75 < \\tfrac{8}{3} < 3.75$",
+                "check": [
+                  "Rational(1,2)*(Rational(1,4) + 1 + Rational(9,4) + 4) == Rational(15,4)",
+                  "Rational(7,4) < Rational(8,3)",
+                  "Rational(8,3) < Rational(15,4)"
+                ]
+              },
+              {
+                "prompt": "A car's speed: $v = 20$ m/s for 3 s, then $30$ m/s for 2 s. Distance, as an area.",
+                "steps": [
+                  "The speed graph is two flat steps: rectangles ALREADY.",
+                  "$20 \\times 3 + 30 \\times 2 = 120$ m.",
+                  "Area under a speed curve = distance — the accumulator in action. Curvy speeds just need skinnier slices."
+                ],
+                "answer": "$120$ m",
+                "check": [
+                  "20*3 + 30*2 == 120"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Slice work",
+            "intro": "Widths × heights, then squeeze.",
+            "problems": [
+              {
+                "prompt": "$f(x) = 2x$ on $[0, 3]$, left sum with $n = 3$: …",
+                "options": [
+                  "$0 + 2 + 4 = 6$",
+                  "$2 + 4 + 6 = 12$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\Delta x = 1$; left heights at $0, 1, 2$ are $0, 2, 4$. (True area: the triangle gives 9 — the sum undershoots, as left sums must.)",
+                "check": [
+                  "1*(0 + 2 + 4) == 6",
+                  "Rational(3*6, 2) == 9"
+                ]
+              },
+              {
+                "prompt": "To make the staircase error shrink, you…",
+                "options": [
+                  "increase $n$ — thinner slices",
+                  "increase the heights",
+                  "widen the interval"
+                ],
+                "correctIndex": 0,
+                "explanation": "The error lives in the wedges between staircase and curve; skinnier rectangles mean skinnier wedges.",
+                "check": [
+                  "Rational(8,3) - Rational(7,4) > Rational(8,3) - Rational(15,8)"
+                ]
+              },
+              {
+                "prompt": "Area under a VELOCITY graph equals…",
+                "options": [
+                  "distance traveled",
+                  "acceleration",
+                  "average speed"
+                ],
+                "correctIndex": 0,
+                "explanation": "Each rectangle is (speed × short time) = short distance; the sum accumulates the trip. Every rate accumulates this way.",
+                "check": [
+                  "20*3 + 30*2 == 120"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "History",
+            "title": "Archimedes got there 2,200 years early",
+            "body": "Archimedes computed the area under a parabola in ~250 BC by exhaustion — inscribing triangles, then more triangles, then MORE — and proved the answer exactly, essentially running a Riemann limit two millennia before limits existed. His method was lost for centuries in a palimpsest scraped and overwritten by monks; X-ray imaging recovered it in 2006. The area problem is old; the solution was just waiting for notation."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Riemann sum: tile with $n$ rectangles, sum heights × widths.",
+              "Left sums undershoot a rising curve, right sums overshoot — the truth is squeezed.",
+              "Exact area = the limit as $n \\to \\infty$; rates accumulate the same way."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-definite-integral",
+      "title": "The Definite Integral",
+      "concreteComparison": "The rectangle-sum limit deserves better than a paragraph of prose every time — so it gets a symbol: $\\int_a^b f(x)\\,dx$, an elongated S for 'sum', with the interval's endpoints riding the flanks. This lesson is the symbol's user manual: what it means, its algebra (splitting, flipping, scaling), and its one behavioral quirk — area below the axis counts NEGATIVE.",
+      "objective": "Read and use definite integral notation, apply linearity/additivity/orientation properties, and handle signed area.",
+      "concept": [
+        "**The notation**: $\\int_a^b f(x)\\,dx$ = the limit of Riemann sums of $f$ on $[a, b]$ — the exact accumulated area. The $\\int$ is a stretched S (sum); $dx$ is the ghost of $\\Delta x$; $a, b$ are the start and end.",
+        "**Signed area**: where $f < 0$ the 'heights' are negative, so regions BELOW the axis subtract. $\\int_0^{2\\pi} \\sin x\\,dx = 0$: the hump above cancels the hump below. The integral is a net accumulator, not a paint bucket.",
+        "**The algebra**: constants pull out; sums split ($\\int(f + g) = \\int f + \\int g$); intervals chain ($\\int_a^b + \\int_b^c = \\int_a^c$); flipping the limits flips the sign ($\\int_b^a = -\\int_a^b$); and $\\int_a^a = 0$ (no width, no area).",
+        "Simple geometry can evaluate some integrals outright: $\\int_0^3 2x\\,dx$ is a triangle ($\\tfrac{3 \\cdot 6}{2} = 9$); $\\int_0^4 5\\,dx$ is a rectangle ($20$). Keep the picture handy — the symbol never stops meaning area."
+      ],
+      "keyIdea": "∫ᵃᵇ f dx is the Riemann-sum limit: net signed area. It splits over sums, scales by constants, chains over intervals, flips with orientation — and counts below-axis regions negative.",
+      "facts": [
+        {
+          "title": "The symbol",
+          "latex": "\\int_a^b f(x)\\,dx = \\lim \\sum f(x_i)\\Delta x",
+          "explanation": "A stretched S for an infinite sum."
+        },
+        {
+          "title": "Signed area",
+          "latex": "\\text{below the axis} \\Rightarrow \\text{negative contribution}",
+          "explanation": "Net accumulator, not paint bucket."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "in3-we1",
+          "statement": "Evaluate $\\int_0^3 2x\\,dx$ by geometry.",
+          "solution": "The region is a triangle: base 3, height 6 — area $9$.",
+          "check": [
+            "integrate(2*x, (x, 0, 3)) == 9",
+            "Rational(3*6, 2) == 9"
+          ]
+        },
+        {
+          "id": "in3-we2",
+          "statement": "Evaluate $\\int_0^{2\\pi} \\sin x\\,dx$ and explain the answer.",
+          "solution": "$0$ — the arch above $[0, \\pi]$ (area 2) exactly cancels the arch below $[\\pi, 2\\pi]$ (area $-2$). Net accumulation: zero.",
+          "check": [
+            "integrate(sin(x), (x, 0, 2*pi)) == 0",
+            "integrate(sin(x), (x, 0, pi)) == 2"
+          ]
+        },
+        {
+          "id": "in3-we3",
+          "statement": "Given $\\int_0^5 f = 12$ and $\\int_0^2 f = 4$: find $\\int_2^5 f$ and $\\int_5^0 f$.",
+          "solution": "Chaining: $\\int_2^5 = 12 - 4 = 8$. Flipping: $\\int_5^0 = -12$.",
+          "check": [
+            "12 - 4 == 8",
+            "-(12) == -12"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Treating the integral as always-positive area.",
+          "correction": "$\\int_0^{2\\pi} \\sin = 0$, not 4. The integral nets out signs; 'total paint' requires splitting at the axis crossings and taking absolute values piece by piece.",
+          "authored": true
+        },
+        {
+          "text": "Ignoring the orientation of the limits.",
+          "correction": "$\\int_3^1 f$ is $-\\int_1^3 f$ — integrating 'backwards' negates. The limits are an itinerary, not just a pair of endpoints.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "in3-t1",
+          "statement": "Evaluate $\\int_0^4 5\\,dx$ by geometry.",
+          "solution": "A $4 \\times 5$ rectangle: $20$.",
+          "check": [
+            "integrate(5 + 0*x, (x, 0, 4)) == 20",
+            "4*5 == 20"
+          ]
+        },
+        {
+          "id": "in3-t2",
+          "statement": "$\\int_1^6 f = 10$ and $\\int_4^6 f = 3$: find $\\int_1^4 f$.",
+          "solution": "$10 - 3 = 7$ — chaining, rearranged.",
+          "check": [
+            "10 - 3 == 7"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "A symbol for the limit",
+            "title": "The stretched S",
+            "beats": [
+              "'The limit of rectangle sums on $[a,b]$' — every time? No.",
+              "$\\int_a^b f(x)\\,dx$: S for sum, $dx$ the ghost of $\\Delta x$.",
+              "Endpoints ride the flanks: start $a$, finish $b$.",
+              "Today: the user manual."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the symbol",
+            "prompt": "In $\\int_1^4 x^2\\,dx$, the $1$ and $4$ are…",
+            "options": [
+              "the interval — accumulate from 1 to 4",
+              "solutions",
+              "heights"
+            ],
+            "correctIndex": 0,
+            "explanation": "The itinerary: start accumulating at $x = 1$, stop at $x = 4$. (Value: $\\tfrac{64 - 1}{3} = 21$, by next lesson's shortcut.)",
+            "check": [
+              "integrate(x**2, (x, 1, 4)) == 21"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The quirk: signed area",
+            "title": "Below counts negative",
+            "beats": [
+              "Rectangle heights are $f(x_i)$ — and heights can be NEGATIVE.",
+              "So regions below the axis SUBTRACT.",
+              "$\\int_0^{2\\pi} \\sin x\\,dx = 0$: arch up (+2), arch down (−2), net 0.",
+              "The integral nets; if you want paint, split at the crossings."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The algebra",
+            "title": "Five properties",
+            "beats": [
+              "Constants out: $\\int 3f = 3\\int f$. Sums split.",
+              "Chain: $\\int_a^b + \\int_b^c = \\int_a^c$.",
+              "Flip: $\\int_b^a = -\\int_a^b$. And $\\int_a^a = 0$.",
+              "All five are obvious in the rectangle picture — check them there."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Manual practice",
+            "intro": "Geometry when possible; properties always.",
+            "examples": [
+              {
+                "prompt": "Evaluate $\\int_{0}^{6} (4 - x)\\,dx$ by splitting at the axis crossing.",
+                "steps": [
+                  "The line crosses zero at $x = 4$: triangle above ($\\tfrac{4 \\cdot 4}{2} = 8$), triangle below ($\\tfrac{2 \\cdot 2}{2} = 2$, negative).",
+                  "Net: $8 - 2 = 6$.",
+                  "Check by machinery: $\\int_0^6 (4-x) = 6$ ✓."
+                ],
+                "answer": "$6$",
+                "check": [
+                  "integrate(4 - x, (x, 0, 6)) == 6",
+                  "Rational(4*4,2) - Rational(2*2,2) == 6"
+                ]
+              },
+              {
+                "prompt": "$\\int_0^3 f = 7$ and $\\int_0^3 g = 2$. Evaluate $\\int_0^3 (2f - 3g)$ — no formulas for f, g given!",
+                "steps": [
+                  "Linearity needs no formulas: $2 \\cdot 7 - 3 \\cdot 2$.",
+                  "$= 8$. Properties ARE the computation."
+                ],
+                "answer": "$8$",
+                "check": [
+                  "2*7 - 3*2 == 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Property duty",
+            "intro": "Picture first, properties second.",
+            "problems": [
+              {
+                "prompt": "$\\int_2^2 (x^5 - 3x)\\,dx$ = …",
+                "options": [
+                  "$0$ — no width, no area",
+                  "$26$",
+                  "needs the antiderivative"
+                ],
+                "correctIndex": 0,
+                "explanation": "Start = finish: the accumulator never moves. No computation survives contact with a zero-width interval.",
+                "check": [
+                  "integrate(x**5 - 3*x, (x, 2, 2)) == 0"
+                ]
+              },
+              {
+                "prompt": "$f$ is negative on all of $[1, 5]$. Then $\\int_1^5 f$ is…",
+                "options": [
+                  "negative — every slice subtracts",
+                  "positive — area is area",
+                  "zero"
+                ],
+                "correctIndex": 0,
+                "explanation": "All heights negative → all contributions negative. The 'paint' answer is $|\\int f|$, but the integral itself reports the sign.",
+                "check": [
+                  "integrate(-2 + 0*x, (x, 1, 5)) == -8"
+                ]
+              },
+              {
+                "prompt": "$\\int_0^1 f = 5$. Then $\\int_1^0 f$ = …",
+                "options": [
+                  "$-5$",
+                  "$5$",
+                  "$0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Walking the itinerary backwards negates the accumulation.",
+                "check": [
+                  "-(5) == -5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "History",
+            "title": "Leibniz's S, still stretching",
+            "body": "The ∫ symbol is Leibniz's, from 1675 — a stretched 'ſ' (long s) for 'summa'. He designed his notation to compute FOR you: dx cancellations, chained limits, flipped signs all look like algebra because he built them to. Newton's rival notation (dots over letters) survives only in physics lectures; Leibniz's runs every calculus book on Earth. Notation is a technology."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$\\int_a^b f\\,dx$: the Riemann limit in one symbol — net signed area.",
+              "Below the axis subtracts; split at crossings for total 'paint'.",
+              "Five properties: linearity ×2, chaining, flipping, zero width."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-fundamental-theorem",
+      "title": "The Fundamental Theorem",
+      "concreteComparison": "Two half-topics are about to collide. Lesson 1 reversed derivatives (antiderivatives); lessons 2–3 built areas (integrals) — seemingly unrelated crafts. The **Fundamental Theorem of Calculus** says they're the same craft: $\\int_a^b f(x)\\,dx = F(b) - F(a)$, where $F$ is ANY antiderivative of $f$. Infinite rectangle sums, computed by one subtraction. It's the biggest anticlimax in mathematics, and the most useful.",
+      "objective": "Evaluate definite integrals with the FTC: antidifferentiate, evaluate at both ends, subtract. Understand why area and antiderivatives are linked.",
+      "concept": [
+        "**The theorem**: if $F' = f$, then $\\int_a^b f(x)\\,dx = F(b) - F(a)$. Notation: $[F(x)]_a^b$. The infinite sum collapses to two evaluations and a minus sign.",
+        "Run it: $\\int_0^2 x^2\\,dx = [\\tfrac{x^3}{3}]_0^2 = \\tfrac{8}{3} - 0 = \\tfrac{8}{3}$ — the exact number those staircases were chasing, in one line.",
+        "**Why it's true (the sweep picture)**: let $A(x)$ = area accumulated from $a$ to $x$. Nudge $x$ by $h$: the area gains a sliver $\\approx f(x) \\cdot h$, so $A'(x) = f(x)$ — the area function IS an antiderivative of the curve! Any other antiderivative $F$ differs by a constant, which the subtraction $F(b) - F(a)$ cancels.",
+        "**The +C never matters here**: $F(b) - F(a)$ with $F + 7$ gives $(F(b)+7) - (F(a)+7)$ — the 7s cancel. For DEFINITE integrals, pick the antiderivative with $C = 0$ and march."
+      ],
+      "keyIdea": "∫ᵃᵇ f dx = F(b) − F(a) for any antiderivative F: area and antidifferentiation are one craft. The accumulating area's growth rate is the curve's height — that's the proof in one sliver.",
+      "facts": [
+        {
+          "title": "FTC",
+          "latex": "\\int_a^b f(x)\\,dx = F(b) - F(a), \\quad F' = f",
+          "explanation": "Infinite sums by one subtraction."
+        },
+        {
+          "title": "The sliver",
+          "latex": "A'(x) = f(x)",
+          "explanation": "Accumulated area grows at the curve's height."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "in4-we1",
+          "statement": "Evaluate $\\int_0^2 x^2\\,dx$ — the staircases' target, at last.",
+          "solution": "$[\\tfrac{x^3}{3}]_0^2 = \\tfrac{8}{3} - 0 = \\tfrac{8}{3} \\approx 2.667$.",
+          "check": [
+            "integrate(x**2, (x, 0, 2)) == Rational(8,3)",
+            "Rational(2**3, 3) - 0 == Rational(8,3)"
+          ]
+        },
+        {
+          "id": "in4-we2",
+          "statement": "Evaluate $\\int_1^3 (2x + 1)\\,dx$.",
+          "solution": "$[x^2 + x]_1^3 = (9 + 3) - (1 + 1) = 10$.",
+          "check": [
+            "integrate(2*x + 1, (x, 1, 3)) == 10",
+            "(9 + 3) - (1 + 1) == 10"
+          ]
+        },
+        {
+          "id": "in4-we3",
+          "statement": "Evaluate $\\int_0^{\\pi} \\sin x\\,dx$.",
+          "solution": "$[-\\cos x]_0^{\\pi} = -\\cos\\pi + \\cos 0 = 1 + 1 = 2$. The area under one full arch of sine is exactly 2 — a small miracle.",
+          "check": [
+            "integrate(sin(x), (x, 0, pi)) == 2",
+            "cos(0) - cos(pi) == 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Evaluating F(b) − F(a) in the wrong order.",
+          "correction": "TOP limit first: $F(b) - F(a)$. Reversing gives the negative — and a wrong sign on every area. 'Top minus bottom', chanted.",
+          "authored": true
+        },
+        {
+          "text": "Adding + C to a definite integral's answer.",
+          "correction": "The C cancels in the subtraction — definite integrals are NUMBERS, not families. The + C belongs to indefinite integrals only.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "in4-t1",
+          "statement": "Evaluate $\\int_1^2 3x^2\\,dx$.",
+          "solution": "$[x^3]_1^2 = 8 - 1 = 7$.",
+          "check": [
+            "integrate(3*x**2, (x, 1, 2)) == 7",
+            "8 - 1 == 7"
+          ]
+        },
+        {
+          "id": "in4-t2",
+          "statement": "Evaluate $\\int_0^4 (x - 2)\\,dx$ and reconcile with the signed-area picture.",
+          "solution": "$[\\tfrac{x^2}{2} - 2x]_0^4 = (8 - 8) - 0 = 0$ — the triangle below $[0,2]$ cancels the twin above $[2,4]$. Signed area, certified by the FTC.",
+          "check": [
+            "integrate(x - 2, (x, 0, 4)) == 0",
+            "Rational(16,2) - 8 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The collision",
+            "title": "Two crafts, one theorem",
+            "beats": [
+              "Craft 1: reversing derivatives (lesson 1).",
+              "Craft 2: rectangle-sum areas (lessons 2–3).",
+              "The FTC: they're the SAME craft.",
+              "$\\int_a^b f\\,dx = F(b) - F(a)$. Infinite sums, one subtraction."
+            ]
+          },
+          {
+            "kind": "areaGraph",
+            "eyebrow": "Why it's true",
+            "title": "The sweep argument",
+            "teach": "Watch the sweep: the filled area $A(x)$ grows exactly as fast as the curve is tall — gain a sliver of width $h$, gain area $\\approx f(x) \\cdot h$, so $A'(x) = f(x)$. The AREA function is an antiderivative of the curve. That's the theorem, in one animation.",
+            "config": {
+              "mode": "accumulate"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The collapse",
+            "prompt": "$\\int_0^2 x^2 dx$ via FTC: antiderivative $\\tfrac{x^3}{3}$, so the answer is…",
+            "options": [
+              "$\\tfrac{8}{3} - 0 = \\tfrac{8}{3}$",
+              "$\\tfrac{4}{3}$",
+              "$8 - 0 = 8$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Evaluate at the TOP (2): $\\tfrac{8}{3}$; at the BOTTOM (0): $0$; subtract. The staircases from lesson 2 spent thirty-two rectangles chasing what this computes in one line.",
+            "check": [
+              "integrate(x**2, (x, 0, 2)) == Rational(8,3)"
+            ]
+          },
+          {
+            "kind": "areaGraph",
+            "eyebrow": "Certify on a triangle",
+            "title": "Geometry agrees",
+            "teach": "Step $b$: the region under $f(x) = x$ is a right triangle — geometry says $\\tfrac{b \\cdot b}{2}$. The antiderivative $\\tfrac{x^2}{2}$ evaluated at $b$ says the same number, at every $b$. When two independent methods always agree, you're holding a theorem.",
+            "config": {
+              "mode": "ftc"
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "One-line areas",
+            "intro": "Antidifferentiate, evaluate top and bottom, subtract.",
+            "examples": [
+              {
+                "prompt": "$\\int_1^4 (3x^2 - 2x)\\,dx$",
+                "steps": [
+                  "Antiderivative: $x^3 - x^2$.",
+                  "Top: $64 - 16 = 48$. Bottom: $1 - 1 = 0$.",
+                  "Answer: $48$."
+                ],
+                "answer": "$48$",
+                "check": [
+                  "integrate(3*x**2 - 2*x, (x, 1, 4)) == 48",
+                  "(64 - 16) - (1 - 1) == 48"
+                ]
+              },
+              {
+                "prompt": "$\\int_0^{\\pi/2} \\cos x\\,dx$",
+                "steps": [
+                  "Antiderivative: $\\sin x$.",
+                  "$\\sin\\tfrac{\\pi}{2} - \\sin 0 = 1 - 0 = 1$.",
+                  "The area under cosine's first quarter-wave: exactly 1."
+                ],
+                "answer": "$1$",
+                "check": [
+                  "integrate(cos(x), (x, 0, pi/2)) == 1",
+                  "sin(pi/2) - sin(0) == 1"
+                ]
+              },
+              {
+                "prompt": "The triangle check: $\\int_0^b x\\,dx$ for general $b$.",
+                "steps": [
+                  "FTC: $[\\tfrac{x^2}{2}]_0^b = \\tfrac{b^2}{2}$.",
+                  "Geometry: right triangle, legs $b$ and $b$: $\\tfrac{b \\cdot b}{2}$.",
+                  "Identical — for EVERY $b$. The widget's two readouts, proved."
+                ],
+                "answer": "$\\tfrac{b^2}{2}$, both ways",
+                "check": [
+                  "integrate(x, (x, 0, b)) == b**2/2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Subtraction season",
+            "intro": "Top minus bottom, no + C.",
+            "problems": [
+              {
+                "prompt": "$\\int_0^3 (x^2 + 1)\\,dx$ = …",
+                "options": [
+                  "$12$",
+                  "$9$",
+                  "$30$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$[\\tfrac{x^3}{3} + x]_0^3 = (9 + 3) - 0 = 12$.",
+                "check": [
+                  "integrate(x**2 + 1, (x, 0, 3)) == 12"
+                ]
+              },
+              {
+                "prompt": "$\\int_2^5 4\\,dx$ = …",
+                "options": [
+                  "$12$",
+                  "$20$",
+                  "$4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$[4x]_2^5 = 20 - 8 = 12$ — and the picture agrees: a $3 \\times 4$ rectangle.",
+                "check": [
+                  "integrate(4 + 0*x, (x, 2, 5)) == 12",
+                  "3*4 == 12"
+                ]
+              },
+              {
+                "prompt": "Why does + C never appear in a definite integral's answer?",
+                "options": [
+                  "it cancels in $F(b) - F(a)$",
+                  "it's rounded away",
+                  "convention only"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(F(b) + C) - (F(a) + C)$: the C's annihilate. Definite integrals are numbers; families are for indefinite ones.",
+                "check": [
+                  "(8 + 7) - (1 + 7) == 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "History",
+            "title": "The theorem that ended a 2000-year problem",
+            "body": "Archimedes computed one parabola's area and it was a career achievement. After the FTC (Newton & Leibniz, 1660s–70s), any first-year student computes it in one line: antidifferentiate, subtract. Entire libraries of ancient 'quadrature' problems became homework. That's what 'fundamental' means — not hard, but load-bearing."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "FTC: $\\int_a^b f = F(b) - F(a)$ — infinite sums by one subtraction.",
+              "Why: accumulated area grows at the curve's height, $A' = f$.",
+              "Top minus bottom; the + C cancels; geometry stays as your cross-check."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "integration-in-practice",
+      "title": "Integration in Practice",
+      "concreteComparison": "Differentiation had rules for everything; integration is choosier — it rewards pattern-spotting. This lesson is the working toolkit: polynomials and trig on sight, rewriting before integrating (roots to powers, split the fraction), and the chain rule's mirror — spotting $(2x+1)^3$ and paying the toll in REVERSE (divide by the inner derivative). Craft, not just rules.",
+      "objective": "Integrate polynomials, powers, and sin/cos fluently; rewrite integrands first; reverse simple chains like (ax+b)ⁿ by dividing by the inner derivative.",
+      "concept": [
+        "**The sight-reading list**: powers ($\\tfrac{x^{n+1}}{n+1}$), $\\sin x \\to -\\cos x$, $\\cos x \\to \\sin x$, constants and sums as always. Always diff-check the trig signs: $(-\\cos x)' = \\sin x$ ✓.",
+        "**Rewrite first**: $\\sqrt{x} = x^{1/2}$, $\\tfrac{1}{x^2} = x^{-2}$, $\\tfrac{x^3 + x}{x} = x^2 + 1$. Thirty seconds of algebra beats any integration technique — same triage discipline as limits.",
+        "**Reversing the chain (linear inner)**: $\\int (2x+1)^3 dx$: going forward, differentiating $(2x+1)^4$ pays a toll of $2 \\cdot 4 = 8$... so going backward, divide by it: $\\tfrac{(2x+1)^4}{8} + C$. Rule: for inner $ax + b$, integrate the outer shape and divide by $a$ (and the new exponent). Diff-check catches every slip.",
+        "**Boundaries of the craft**: this trick needs the inner function LINEAR. $\\int (x^2+1)^3 dx$ has no such shortcut — expand it instead. Recognizing which case you hold is half the exam points."
+      ],
+      "keyIdea": "Rewrite first, integrate on sight, and reverse linear chains by dividing by the inner slope. Diff-check everything — especially the trig signs.",
+      "facts": [
+        {
+          "title": "Trig pair, reversed",
+          "latex": "\\int \\sin x\\,dx = -\\cos x + C; \\quad \\int \\cos x\\,dx = \\sin x + C",
+          "explanation": "One minus sign to respect."
+        },
+        {
+          "title": "Linear chain reversal",
+          "latex": "\\int (ax+b)^n dx = \\tfrac{(ax+b)^{n+1}}{a(n+1)} + C",
+          "explanation": "Divide by the toll you'd have paid."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "in5-we1",
+          "statement": "Find $\\int (2x + 1)^3\\,dx$ and verify.",
+          "solution": "$\\tfrac{(2x+1)^4}{8} + C$. Check: derivative $= \\tfrac{4(2x+1)^3 \\cdot 2}{8} = (2x+1)^3$ ✓.",
+          "check": [
+            "simplify(diff((2*x + 1)**4/8, x) - (2*x + 1)**3) == 0"
+          ]
+        },
+        {
+          "id": "in5-we2",
+          "statement": "Find $\\int \\sin(3x)\\,dx$.",
+          "solution": "Outer: $-\\cos$; toll to reverse: 3. Answer: $-\\tfrac{\\cos 3x}{3} + C$. Check: $\\tfrac{3\\sin 3x}{3} = \\sin 3x$ ✓.",
+          "check": [
+            "simplify(diff(-cos(3*x)/3, x) - sin(3*x)) == 0"
+          ]
+        },
+        {
+          "id": "in5-we3",
+          "statement": "Evaluate $\\int_0^4 \\sqrt{x}\\,dx$ — rewrite first.",
+          "solution": "$x^{1/2}$: antiderivative $\\tfrac{2}{3}x^{3/2}$. At 4: $\\tfrac{2}{3} \\cdot 8 = \\tfrac{16}{3}$; at 0: 0. Answer $\\tfrac{16}{3}$.",
+          "check": [
+            "integrate(sqrt(x), (x, 0, 4)) == Rational(16,3)",
+            "Rational(2,3)*8 == Rational(16,3)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Getting the trig signs backwards.",
+          "correction": "$\\int \\sin = -\\cos$ (not $+\\cos$): check by differentiating, $(-\\cos)' = +\\sin$ ✓. The forward minus on $(\\cos)' = -\\sin$ becomes a backward minus on $\\int\\sin$.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting to divide by the inner slope.",
+          "correction": "$\\int \\cos(5x) dx = \\tfrac{\\sin 5x}{5}$, not $\\sin 5x$ — differentiate the wrong one and a stray 5 appears. The toll must be paid in both directions.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "in5-t1",
+          "statement": "Find $\\int (3x - 2)^4\\,dx$.",
+          "solution": "$\\tfrac{(3x-2)^5}{15} + C$ — up to 5, divide by $3 \\times 5$.",
+          "check": [
+            "simplify(diff((3*x - 2)**5/15, x) - (3*x - 2)**4) == 0"
+          ]
+        },
+        {
+          "id": "in5-t2",
+          "statement": "Evaluate $\\int_0^{\\pi} \\cos\\tfrac{x}{2}\\,dx$.",
+          "solution": "Antiderivative $2\\sin\\tfrac{x}{2}$: at $\\pi$, $2 \\cdot 1 = 2$; at 0, 0. Answer 2.",
+          "check": [
+            "integrate(cos(x/2), (x, 0, pi)) == 2",
+            "simplify(diff(2*sin(x/2), x) - cos(x/2)) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Choosier than differentiation",
+            "title": "Craft over rules",
+            "beats": [
+              "Differentiation: rules for everything, apply and go.",
+              "Integration: pattern-spotting. Some forms yield, some resist.",
+              "The toolkit: sight-reading, rewriting, and chain-reversal.",
+              "Plus the eternal safety net: diff-check."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Sight-reading",
+            "title": "The core list",
+            "beats": [
+              "Powers: up one, divide. $\\int \\cos = \\sin$. $\\int \\sin = -\\cos$.",
+              "THE minus: differentiate to check which way it points.",
+              "$(-\\cos x)' = \\sin x$ ✓ — so $\\int \\sin$ takes the minus.",
+              "Sums split, constants ride. Old friends."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Sign duty",
+            "prompt": "$\\int \\sin x\\,dx$ = …",
+            "options": [
+              "$-\\cos x + C$",
+              "$\\cos x + C$",
+              "$-\\sin x + C$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Check the candidate: $(-\\cos x)' = \\sin x$ ✓. The one-minus-sign trap of the whole lesson.",
+            "check": [
+              "integrate(sin(x), x) == -cos(x)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reversing the chain",
+            "title": "Divide by the toll",
+            "beats": [
+              "Forward: $((2x+1)^4)' = 4(2x+1)^3 \\cdot 2$ — toll 8 total.",
+              "Backward: $\\int (2x+1)^3 dx = \\tfrac{(2x+1)^4}{8} + C$.",
+              "Linear inner $ax+b$: divide by $a \\times (\\text{new exponent})$.",
+              "NON-linear inner? No shortcut — expand or wait for university."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Toolkit runs",
+            "intro": "Rewrite, spot, reverse, check.",
+            "examples": [
+              {
+                "prompt": "$\\int \\dfrac{x^4 + 2x}{x}\\,dx$ — rewrite first.",
+                "steps": [
+                  "Divide through: $x^3 + 2$.",
+                  "Integrate: $\\tfrac{x^4}{4} + 2x + C$.",
+                  "No quotient technique needed — algebra cleared the road."
+                ],
+                "answer": "$\\tfrac{x^4}{4} + 2x + C$",
+                "check": [
+                  "simplify(diff(x**4/4 + 2*x, x) - (x**4 + 2*x)/x) == 0"
+                ]
+              },
+              {
+                "prompt": "Evaluate $\\int_0^1 (4x + 1)^2\\,dx$ two ways: chain-reversal, then expansion.",
+                "steps": [
+                  "Reversal: $[\\tfrac{(4x+1)^3}{12}]_0^1 = \\tfrac{125 - 1}{12} = \\tfrac{31}{3}$.",
+                  "Expand: $16x^2 + 8x + 1 \\to [\\tfrac{16x^3}{3} + 4x^2 + x]_0^1 = \\tfrac{16}{3} + 5 = \\tfrac{31}{3}$.",
+                  "Two roads, one number — the craft self-verifies."
+                ],
+                "answer": "$\\tfrac{31}{3}$",
+                "check": [
+                  "integrate((4*x + 1)**2, (x, 0, 1)) == Rational(31,3)",
+                  "Rational(125 - 1, 12) == Rational(31,3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Pattern patrol",
+            "intro": "Which tool does each want?",
+            "problems": [
+              {
+                "prompt": "$\\int \\cos(2x)\\,dx$ = …",
+                "options": [
+                  "$\\tfrac{\\sin 2x}{2} + C$",
+                  "$\\sin 2x + C$",
+                  "$-\\tfrac{\\sin 2x}{2} + C$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Reverse toll: divide by 2. Diff-check: $\\tfrac{2\\cos 2x}{2} = \\cos 2x$ ✓.",
+                "check": [
+                  "simplify(diff(sin(2*x)/2, x) - cos(2*x)) == 0"
+                ]
+              },
+              {
+                "prompt": "Best first move on $\\int \\tfrac{x^3 - x}{x^2}\\,dx$:",
+                "options": [
+                  "split: $x - \\tfrac{1}{x}$… wait — $x - x^{-1}$: rewrite!",
+                  "quotient rule",
+                  "chain reversal"
+                ],
+                "correctIndex": 0,
+                "explanation": "Divide through: $x - x^{-1}$. First term easy; the second is the $n = -1$ hole in the power rule — noted honestly, resolved by logarithms at university. (Exams here keep to safe powers.)",
+                "check": [
+                  "simplify((x**3 - x)/x**2 - (x - 1/x)) == 0"
+                ]
+              },
+              {
+                "prompt": "$\\int (5x - 4)^3 dx$ = …",
+                "options": [
+                  "$\\tfrac{(5x-4)^4}{20} + C$",
+                  "$\\tfrac{(5x-4)^4}{4} + C$",
+                  "$3(5x-4)^2 + C$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Up to 4, divide by $5 \\cdot 4 = 20$. The middle option forgot the inner slope; the last one differentiated.",
+                "check": [
+                  "simplify(diff((5*x - 4)**4/20, x) - (5*x - 4)**3) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "The two-question triage",
+            "body": "Facing any integral, ask: (1) can algebra REWRITE it into sight-readable pieces? (2) is the inner function LINEAR, so chain-reversal applies? Yes to either — proceed. No to both — on this course, expand; in university, a whole zoo of techniques (substitution, parts) awaits. Knowing which case you hold is the actual skill."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Sight list: powers, $\\int\\cos = \\sin$, $\\int\\sin = -\\cos$ (mind the minus).",
+              "Rewrite first: roots to powers, split fractions.",
+              "Linear chains reverse by dividing by the toll; diff-check everything."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "area-and-motion",
+      "title": "Area & Motion",
+      "concreteComparison": "The chapter's tools now take two jobs. Job one: geometry — exact areas of curved regions, including the area BETWEEN two curves (top minus bottom, integrated). Job two: physics — a velocity graph's area is distance, an acceleration graph's area is velocity change; the odometer is an integral of the speedometer. One last lesson, and the derivative-integral pair runs the whole motion story in both directions.",
+      "objective": "Compute areas between curves (top − bottom), and recover distance/position from velocity using definite integrals.",
+      "concept": [
+        "**Area between curves**: if $f \\geq g$ on $[a,b]$, the region between them has area $\\int_a^b (f - g)\\,dx$ — each vertical sliver has height (top − bottom). Find the crossing points first ($f = g$) if the interval isn't given.",
+        "Classic: between $y = x$ and $y = x^2$ (crossings 0 and 1): $\\int_0^1 (x - x^2)dx = \\tfrac12 - \\tfrac13 = \\tfrac16$. The lens between the line and the parabola: exactly one-sixth.",
+        "**Motion recovered**: displacement $= \\int_a^b v(t)\\,dt$ (signed — backwards motion subtracts); total DISTANCE $= \\int |v|$, splitting where $v = 0$. And $v(b) - v(a) = \\int_a^b a(t)\\,dt$: each layer of the motion stack integrates up to the next.",
+        "The stack, complete: $a \\xrightarrow{\\int} v \\xrightarrow{\\int} s$ going up, $s \\xrightarrow{d/dt} v \\xrightarrow{d/dt} a$ coming down. Grade 12's calculus core in one diagram — and the ЭЕШ's favorite physics crossover."
+      ],
+      "keyIdea": "Between curves: ∫(top − bottom), crossings as limits. Motion: ∫v = displacement (signed), ∫|v| = distance, ∫a = velocity change — the s-v-a stack integrates up and differentiates down.",
+      "facts": [
+        {
+          "title": "Between curves",
+          "latex": "A = \\int_a^b (\\text{top} - \\text{bottom})\\,dx",
+          "explanation": "Slivers of height f − g."
+        },
+        {
+          "title": "The motion stack",
+          "latex": "a \\xrightarrow{\\int} v \\xrightarrow{\\int} s",
+          "explanation": "Areas climb the stack; derivatives descend it."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "in6-we1",
+          "statement": "Find the area between $y = x$ and $y = x^2$.",
+          "solution": "Crossings: $x = x^2$ at $0, 1$; the line rides on top. $\\int_0^1 (x - x^2)dx = \\tfrac12 - \\tfrac13 = \\tfrac16$.",
+          "check": [
+            "integrate(x - x**2, (x, 0, 1)) == Rational(1,6)",
+            "Rational(1,2) - Rational(1,3) == Rational(1,6)"
+          ]
+        },
+        {
+          "id": "in6-we2",
+          "statement": "A car: $v(t) = 6t$ m/s. How far does it travel in the first 4 seconds?",
+          "solution": "$\\int_0^4 6t\\,dt = [3t^2]_0^4 = 48$ m. (The area of the speed triangle: $\\tfrac{4 \\cdot 24}{2} = 48$ ✓.)",
+          "check": [
+            "integrate(6*t, (t, 0, 4)) == 48",
+            "Rational(4*24, 2) == 48"
+          ]
+        },
+        {
+          "id": "in6-we3",
+          "statement": "A ball: $v(t) = 20 - 10t$. Find the displacement AND the total distance over $[0, 4]$.",
+          "solution": "Displacement: $\\int_0^4 (20 - 10t)dt = 80 - 80 = 0$ — it lands where it started (height-wise). Distance: split at $v = 0$ ($t = 2$): up $\\int_0^2 = 20$, down $|\\int_2^4| = 20$ — total 40 m of travel.",
+          "check": [
+            "integrate(20 - 10*t, (t, 0, 4)) == 0",
+            "integrate(20 - 10*t, (t, 0, 2)) == 20",
+            "integrate(20 - 10*t, (t, 2, 4)) == -20"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Integrating top − bottom without checking which is on top.",
+          "correction": "Between crossings the roles can swap. Sketch or test a midpoint: at $x = \\tfrac12$, the line $y = \\tfrac12$ beats the parabola $y = \\tfrac14$ — so line minus parabola. Wrong order = negative area = wrong.",
+          "authored": true
+        },
+        {
+          "text": "Reporting displacement when the question asks distance.",
+          "correction": "The thrown ball's displacement over its whole flight is 0; its DISTANCE is 40 m. Split at the turnaround ($v = 0$) and add absolute pieces for distance.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "in6-t1",
+          "statement": "Area between $y = 2x$ and $y = x^2$?",
+          "solution": "Crossings 0 and 2; line on top: $\\int_0^2 (2x - x^2)dx = 4 - \\tfrac83 = \\tfrac43$.",
+          "check": [
+            "integrate(2*x - x**2, (x, 0, 2)) == Rational(4,3)"
+          ]
+        },
+        {
+          "id": "in6-t2",
+          "statement": "$a(t) = 6$ m/s², starting from $v(0) = 4$: find $v(3)$.",
+          "solution": "$v(3) - v(0) = \\int_0^3 6\\,dt = 18$: $v(3) = 22$ m/s.",
+          "check": [
+            "integrate(6 + 0*t, (t, 0, 3)) == 18",
+            "4 + 18 == 22"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Two jobs",
+            "title": "Geometry and motion",
+            "beats": [
+              "Job 1: areas of curved regions — even BETWEEN curves.",
+              "Job 2: physics — the odometer integrates the speedometer.",
+              "Both are the same rectangle sums wearing different units.",
+              "The chapter closes by running them both."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Between curves",
+            "title": "Sliver heights",
+            "beats": [
+              "Each vertical sliver: height = top − bottom.",
+              "$A = \\int_a^b (f - g)\\,dx$, crossings for limits.",
+              "Line vs parabola: $\\int_0^1 (x - x^2) = \\tfrac16$.",
+              "Always CHECK who's on top — test a midpoint."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Who's on top?",
+            "prompt": "Between $y = x$ and $y = x^2$ on $(0,1)$, the top curve is…",
+            "options": [
+              "the line — at $x = \\tfrac12$: $0.5 > 0.25$",
+              "the parabola",
+              "they tie"
+            ],
+            "correctIndex": 0,
+            "explanation": "One midpoint test settles it. Between 0 and 1, squaring SHRINKS — the parabola sags under the line.",
+            "check": [
+              "Rational(1,2) > Rational(1,4)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The motion stack",
+            "title": "Integrate up, differentiate down",
+            "beats": [
+              "$s \\to v \\to a$ by differentiating (last topic).",
+              "$a \\to v \\to s$ by INTEGRATING (this one).",
+              "$\\int v$ = displacement (signed); $\\int |v|$ = distance.",
+              "Split at $v = 0$ — the turnaround — for distance."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Both jobs, run",
+            "intro": "Slivers for geometry; areas for motion.",
+            "examples": [
+              {
+                "prompt": "Area between $y = 4 - x^2$ and the x-axis.",
+                "steps": [
+                  "Crossings: $x = \\pm2$.",
+                  "$\\int_{-2}^2 (4 - x^2)dx = [4x - \\tfrac{x^3}{3}]_{-2}^2 = \\tfrac{16}{3} + \\tfrac{16}{3} = \\tfrac{32}{3}$.",
+                  "The parabolic arch: $\\tfrac{32}{3} \\approx 10.7$."
+                ],
+                "answer": "$\\tfrac{32}{3}$",
+                "check": [
+                  "integrate(4 - x**2, (x, -2, 2)) == Rational(32,3)"
+                ]
+              },
+              {
+                "prompt": "A train: $v(t) = 12t - 3t^2$ m/s on $[0, 4]$. Displacement, and the moment it reverses.",
+                "steps": [
+                  "Reverses where $v = 0$: $3t(4 - t) = 0$ at $t = 4$ — within the window, only the endpoint. No mid-trip reversal.",
+                  "$\\int_0^4 (12t - 3t^2)dt = [6t^2 - t^3]_0^4 = 96 - 64 = 32$ m.",
+                  "Distance = displacement here (v ≥ 0 throughout): 32 m."
+                ],
+                "answer": "$32$ m, no reversal",
+                "check": [
+                  "integrate(12*t - 3*t**2, (t, 0, 4)) == 32",
+                  "12*2 - 3*4 > 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Final lap",
+            "intro": "The whole chapter, both jobs.",
+            "problems": [
+              {
+                "prompt": "Area between $y = x^2$ and $y = 4$ (a parabolic bowl under a lid):",
+                "options": [
+                  "$\\tfrac{32}{3}$",
+                  "$8$",
+                  "$\\tfrac{16}{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Crossings $\\pm2$; top is the lid: $\\int_{-2}^2 (4 - x^2) = \\tfrac{32}{3}$ — the same arch as before, viewed upside down.",
+                "check": [
+                  "integrate(4 - x**2, (x, -2, 2)) == Rational(32,3)"
+                ]
+              },
+              {
+                "prompt": "$v(t) = 10 - 2t$ on $[0, 8]$: the object's displacement is…",
+                "options": [
+                  "$16$ — forward 25, back 9",
+                  "$80$",
+                  "$25$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\int_0^8 (10-2t)dt = 80 - 64 = 16$. (Turnaround at $t=5$: forward $\\int_0^5 = 25$, back $\\int_5^8 = -9$. Distance would be 34.)",
+                "check": [
+                  "integrate(10 - 2*t, (t, 0, 8)) == 16",
+                  "integrate(10 - 2*t, (t, 0, 5)) == 25",
+                  "integrate(10 - 2*t, (t, 5, 8)) == -9"
+                ]
+              },
+              {
+                "prompt": "The odometer-speedometer relationship is…",
+                "options": [
+                  "odometer = integral of speedometer",
+                  "they're independent gauges",
+                  "speedometer = integral of odometer"
+                ],
+                "correctIndex": 0,
+                "explanation": "Distance accumulates speed: $s = \\int v\\,dt$. (And $v = s'$ going back down — the stack runs both ways.)",
+                "check": [
+                  "integrate(6*t, (t, 0, 4)) == 48"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Milestone",
+            "title": "The topic in one sentence",
+            "body": "Grade 12's calculus core is complete: limits made 'instant' precise, derivatives measured it, integrals accumulated it back — one machine, running both directions, from slope to area and speedometer to odometer. Two topics remain — vectors and conic sections — and they're geometric desserts after the calculus main course."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Between curves: $\\int$(top − bottom), crossings as limits, midpoint test for who's on top.",
+              "$\\int v$ = displacement (signed); split at turnarounds for total distance.",
+              "The motion stack integrates up ($a \\to v \\to s$) and differentiates down."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "in-pr1",
+      "statement": "Find $\\int (6x^2 - 4x + 3)\\,dx$.",
+      "solution": "$2x^3 - 2x^2 + 3x + C$.",
+      "check": [
+        "integrate(6*x**2 - 4*x + 3, x) == 2*x**3 - 2*x**2 + 3*x",
+        "diff(2*x**3 - 2*x**2 + 3*x, x) == 6*x**2 - 4*x + 3"
+      ]
+    },
+    {
+      "id": "in-pr2",
+      "statement": "$v(t) = 8t$ with $s(0) = 2$: find $s(t)$.",
+      "solution": "$s = 4t^2 + C$; $C = 2$: $s(t) = 4t^2 + 2$.",
+      "check": [
+        "integrate(8*t, t) == 4*t**2",
+        "4*0 + 2 == 2"
+      ]
+    },
+    {
+      "id": "in-pr3",
+      "statement": "Left-endpoint sum for $f(x) = x^2$ on $[0,2]$, $n = 2$.",
+      "solution": "$\\Delta x = 1$; heights at 0, 1: $1(0 + 1) = 1$. (Crude — the true area is $\\tfrac83$.)",
+      "check": [
+        "1*(0 + 1) == 1",
+        "integrate(x**2, (x, 0, 2)) == Rational(8,3)"
+      ]
+    },
+    {
+      "id": "in-pr4",
+      "statement": "Evaluate $\\int_0^3 (x^2 - 2x + 4)\\,dx$.",
+      "solution": "$[\\tfrac{x^3}{3} - x^2 + 4x]_0^3 = 9 - 9 + 12 = 12$.",
+      "check": [
+        "integrate(x**2 - 2*x + 4, (x, 0, 3)) == 12"
+      ]
+    },
+    {
+      "id": "in-pr5",
+      "statement": "Evaluate $\\int_1^2 \\dfrac{x^3 + 1}{x^2}\\,dx$ — rewrite first.",
+      "solution": "$x + x^{-2}$: antiderivative $\\tfrac{x^2}{2} - \\tfrac{1}{x}$. $(2 - \\tfrac12) - (\\tfrac12 - 1) = 2$.",
+      "check": [
+        "integrate((x**3 + 1)/x**2, (x, 1, 2)) == 2"
+      ]
+    },
+    {
+      "id": "in-pr6",
+      "statement": "Evaluate $\\int_0^{\\pi/2} \\sin x\\,dx$.",
+      "solution": "$[-\\cos x]_0^{\\pi/2} = 0 + 1 = 1$.",
+      "check": [
+        "integrate(sin(x), (x, 0, pi/2)) == 1"
+      ]
+    },
+    {
+      "id": "in-pr7",
+      "statement": "Find $\\int (2x - 5)^4\\,dx$.",
+      "solution": "$\\tfrac{(2x-5)^5}{10} + C$ — up to 5, divide by $2 \\cdot 5$.",
+      "check": [
+        "simplify(diff((2*x - 5)**5/10, x) - (2*x - 5)**4) == 0"
+      ]
+    },
+    {
+      "id": "in-pr8",
+      "statement": "Area between $y = x^2$ and $y = x^3$ on $[0, 1]$?",
+      "solution": "$x^2$ rides on top (test $\\tfrac12$: $\\tfrac14 > \\tfrac18$): $\\int_0^1 (x^2 - x^3) = \\tfrac13 - \\tfrac14 = \\tfrac{1}{12}$.",
+      "check": [
+        "integrate(x**2 - x**3, (x, 0, 1)) == Rational(1,12)",
+        "Rational(1,4) > Rational(1,8)"
+      ]
+    },
+    {
+      "id": "in-pr9",
+      "statement": "$\\int_0^4 f = 9$, $\\int_0^4 g = 5$: evaluate $\\int_0^4 (3f - g)$ and $\\int_4^0 f$.",
+      "solution": "Linearity: $27 - 5 = 22$. Flip: $-9$.",
+      "check": [
+        "3*9 - 5 == 22",
+        "-(9) == -9"
+      ]
+    },
+    {
+      "id": "in-pr10",
+      "statement": "$v(t) = t^2 - 4t + 3$ on $[0, 3]$: displacement, and where the object reverses.",
+      "solution": "Reverses where $v = 0$: $t = 1, 3$. Displacement $\\int_0^3 = [\\tfrac{t^3}{3} - 2t^2 + 3t]_0^3 = 9 - 18 + 9 = 0$ — it returns to its start.",
+      "check": [
+        "integrate(t**2 - 4*t + 3, (t, 0, 3)) == 0",
+        "(1 - 1)*(1 - 3) == 0"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "in-ty1",
+      "statement": "Find $\\int (x^3 - 6x^2 + 2)\\,dx$ and verify by differentiating.",
+      "solution": "$\\tfrac{x^4}{4} - 2x^3 + 2x + C$; derivative recovers the integrand ✓.",
+      "check": [
+        "integrate(x**3 - 6*x**2 + 2, x) == x**4/4 - 2*x**3 + 2*x",
+        "diff(x**4/4 - 2*x**3 + 2*x, x) == x**3 - 6*x**2 + 2"
+      ]
+    },
+    {
+      "id": "in-ty2",
+      "statement": "Evaluate $\\int_1^3 (4x - 2)\\,dx$, then confirm with trapezoid geometry.",
+      "solution": "$[2x^2 - 2x]_1^3 = 12 - 0 = 12$. Geometry: heights 2 and 10, width 2: $\\tfrac{(2+10) \\cdot 2}{2} = 12$ ✓.",
+      "check": [
+        "integrate(4*x - 2, (x, 1, 3)) == 12",
+        "Rational((2 + 10)*2, 2) == 12"
+      ]
+    },
+    {
+      "id": "in-ty3",
+      "statement": "Evaluate $\\int_0^2 (3x^2 + 2x - 1)\\,dx$.",
+      "solution": "$[x^3 + x^2 - x]_0^2 = 8 + 4 - 2 = 10$.",
+      "check": [
+        "integrate(3*x**2 + 2*x - 1, (x, 0, 2)) == 10"
+      ]
+    },
+    {
+      "id": "in-ty4",
+      "statement": "Evaluate $\\int_0^{\\pi} (\\sin x + \\cos x)\\,dx$.",
+      "solution": "$[-\\cos x + \\sin x]_0^{\\pi} = (1 + 0) - (-1 + 0) = 2$.",
+      "check": [
+        "integrate(sin(x) + cos(x), (x, 0, pi)) == 2"
+      ]
+    },
+    {
+      "id": "in-ty5",
+      "statement": "Find $\\int \\cos(4x)\\,dx$ and $\\int (5x + 2)^3\\,dx$.",
+      "solution": "$\\tfrac{\\sin 4x}{4} + C$ and $\\tfrac{(5x+2)^4}{20} + C$ — both certified by differentiation.",
+      "check": [
+        "simplify(diff(sin(4*x)/4, x) - cos(4*x)) == 0",
+        "simplify(diff((5*x + 2)**4/20, x) - (5*x + 2)**3) == 0"
+      ]
+    },
+    {
+      "id": "in-ty6",
+      "statement": "Find the area of the region between $y = 6x$ and $y = x^2$.",
+      "solution": "Crossings 0 and 6; line on top: $\\int_0^6 (6x - x^2) = 108 - 72 = 36$.",
+      "check": [
+        "integrate(6*x - x**2, (x, 0, 6)) == 36"
+      ]
+    },
+    {
+      "id": "in-ty7",
+      "statement": "A rocket sled: $v(t) = 30 - 10t$ on $[0, 5]$. A classmate computes $\\int_0^5 v = 25$ and reports '25 m traveled'. Audit the claim.",
+      "solution": "$v = 0$ at $t = 3$: the sled REVERSES. Forward $\\int_0^3 = 45$; backward $\\int_3^5 = -20$. Displacement 25 m ✓ but DISTANCE = 65 m. The claim confuses net with total — the classic.",
+      "check": [
+        "integrate(30 - 10*t, (t, 0, 5)) == 25",
+        "integrate(30 - 10*t, (t, 0, 3)) == 45",
+        "integrate(30 - 10*t, (t, 3, 5)) == -20"
+      ]
+    }
+  ]
+}
