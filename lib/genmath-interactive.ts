@@ -819,6 +819,14 @@ export interface VectorGraphConfig {
   mode: "components" | "add" | "dot";
 }
 
+// The conic-sections workbench: circle (center + radius steppers), ellipse
+// (a/b steppers, foci beacons, live eccentricity, axis swap), parabola
+// (p-stepper, focus beacon + dashed directrix), hyperbola (a/b steppers,
+// dashed asymptotes, foci outside).
+export interface ConicGraphConfig {
+  mode: "circle" | "ellipse" | "parabola" | "hyperbola";
+}
+
 // The integrals workbench. riemann: left-endpoint rectangles under x² on
 // [0,2] with an n-stepper — the staircase melts into the curve chasing 8/3;
 // accumulate: auto-played sweep filling area behind a moving edge, readout
@@ -1052,6 +1060,7 @@ export type InteractiveStep =
   | { kind: "tangentGraph"; eyebrow?: string; title: string; teach: string; config: TangentGraphConfig }
   | { kind: "areaGraph"; eyebrow?: string; title: string; teach: string; config: AreaGraphConfig }
   | { kind: "vectorGraph"; eyebrow?: string; title: string; teach: string; config: VectorGraphConfig }
+  | { kind: "conicGraph"; eyebrow?: string; title: string; teach: string; config: ConicGraphConfig }
   | { kind: "scatterPlot"; eyebrow?: string; title: string; teach: string; config: ScatterPlotConfig }
   | { kind: "areaShape"; eyebrow?: string; title: string; teach: string; config: AreaShapeConfig }
   | { kind: "apothemPolygon"; eyebrow?: string; title: string; teach: string; config: ApothemPolygonConfig }

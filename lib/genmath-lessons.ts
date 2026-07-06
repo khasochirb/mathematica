@@ -90,6 +90,7 @@ import derivatives from "@/data/genmath/12/derivatives.json";
 import applicationsOfDerivatives from "@/data/genmath/12/applications-of-derivatives.json";
 import integrals from "@/data/genmath/12/integrals.json";
 import vectors from "@/data/genmath/12/vectors.json";
+import conicSections from "@/data/genmath/12/conic-sections.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -306,7 +307,7 @@ export const GRADE12_SPINE: GradeSpineEntry[] = [
     slug: "conic-sections",
     title: "Conic Sections",
     blurb: "Circles, ellipses, parabolas, and hyperbolas — the four curves hiding in a sliced cone.",
-    live: false,
+    live: true,
   },
 ];
 
@@ -317,6 +318,7 @@ const grade12Topics: GenMathTopic[] = [
   applicationsOfDerivatives as GenMathTopic,
   integrals as GenMathTopic,
   vectors as GenMathTopic,
+  conicSections as GenMathTopic,
 ];
 
 const grade11Topics: GenMathTopic[] = [

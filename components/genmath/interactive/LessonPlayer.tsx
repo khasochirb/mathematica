@@ -88,6 +88,7 @@ import LimitGraph from "@/components/genmath/interactive/LimitGraph";
 import TangentGraph from "@/components/genmath/interactive/TangentGraph";
 import AreaGraph from "@/components/genmath/interactive/AreaGraph";
 import VectorGraph from "@/components/genmath/interactive/VectorGraph";
+import ConicGraph from "@/components/genmath/interactive/ConicGraph";
 import AreaShape from "@/components/genmath/interactive/AreaShape";
 import ApothemPolygon from "@/components/genmath/interactive/ApothemPolygon";
 import CompositeArea from "@/components/genmath/interactive/CompositeArea";
@@ -1000,6 +1001,16 @@ function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveSt
         <>
           <StepHeader eyebrow={step.eyebrow} title={step.title} />
           <VectorGraph config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "conicGraph":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <ConicGraph config={step.config} />
           <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
             <MathText text={step.teach} />
           </p>
