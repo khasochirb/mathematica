@@ -83,6 +83,14 @@ import sequencesAndSeries from "@/data/genmath/11/sequences-and-series.json";
 import trigonometryUnitCircle from "@/data/genmath/11/trigonometry-and-the-unit-circle.json";
 import complexNumbers from "@/data/genmath/11/complex-numbers.json";
 import statisticsAndData from "@/data/genmath/11/statistics-and-data.json";
+// Grade 12 topic JSON imports (added as each topic is authored + published).
+import trigonometricIdentities from "@/data/genmath/12/trigonometric-identities.json";
+import limitsAndContinuity from "@/data/genmath/12/limits-and-continuity.json";
+import derivatives from "@/data/genmath/12/derivatives.json";
+import applicationsOfDerivatives from "@/data/genmath/12/applications-of-derivatives.json";
+import integrals from "@/data/genmath/12/integrals.json";
+import vectors from "@/data/genmath/12/vectors.json";
+import conicSections from "@/data/genmath/12/conic-sections.json";
 // Mongolian mirrors of the Grade 8 topics (identical structure/ids/checks;
 // every prose string translated). Resolved by getGenMathTopicLocalized when
 // the site language is "mn".
@@ -268,6 +276,61 @@ export const GRADE11_SPINE: GradeSpineEntry[] = [
   },
 ];
 
+export const GRADE12_SPINE: GradeSpineEntry[] = [
+  {
+    slug: "trigonometric-identities",
+    title: "Trigonometric Identities",
+    blurb: "The Pythagorean identity, sum and double-angle formulas, proving identities, and solving trig equations.",
+    live: true,
+  },
+  {
+    slug: "limits-and-continuity",
+    title: "Limits & Continuity",
+    blurb: "What a function approaches: reading limits from graphs, computing them with algebra, and where functions break.",
+    live: true,
+  },
+  {
+    slug: "derivatives",
+    title: "Derivatives",
+    blurb: "The slope of a curve: the derivative as a limit, and the power, product, quotient, and chain rules.",
+    live: true,
+  },
+  {
+    slug: "applications-of-derivatives",
+    title: "Applications of Derivatives",
+    blurb: "Tangent lines, increasing and decreasing, maxima and minima, and optimization problems that pay.",
+    live: true,
+  },
+  {
+    slug: "integrals",
+    title: "Integrals",
+    blurb: "Undoing the derivative: antiderivatives, the area under a curve, and the Fundamental Theorem of Calculus.",
+    live: true,
+  },
+  {
+    slug: "vectors",
+    title: "Vectors",
+    blurb: "Magnitude and direction: components, addition, scalar multiples, the dot product, and the angle between.",
+    live: true,
+  },
+  {
+    slug: "conic-sections",
+    title: "Conic Sections",
+    blurb: "Circles, ellipses, parabolas, and hyperbolas — the four curves hiding in a sliced cone.",
+    live: true,
+  },
+];
+
+const grade12Topics: GenMathTopic[] = [
+  trigonometricIdentities as GenMathTopic,
+  limitsAndContinuity as GenMathTopic,
+  derivatives as GenMathTopic,
+  applicationsOfDerivatives as GenMathTopic,
+  integrals as GenMathTopic,
+  vectors as GenMathTopic,
+  conicSections as GenMathTopic,
+];
+
 const grade11Topics: GenMathTopic[] = [
   functionsAndTransformations as GenMathTopic,
   polynomialFunctions as GenMathTopic,
@@ -300,7 +363,7 @@ const grade8Topics: GenMathTopic[] = [
 
 // Every authored General-Math topic across grades. Topic slugs are unique
 // across grades, so slug lookups stay unambiguous.
-const allGenMathTopics: GenMathTopic[] = [...grade6Topics, ...grade8Topics, ...grade10Topics, ...grade11Topics];
+const allGenMathTopics: GenMathTopic[] = [...grade6Topics, ...grade8Topics, ...grade10Topics, ...grade11Topics, ...grade12Topics];
 
 // ---------------------------------------------------------------------------
 // Public API
@@ -313,7 +376,7 @@ const ALL_GRADES: GradeInfo[] = [
   { grade: 9, active: false },
   { grade: 10, active: true },
   { grade: 11, active: true },
-  { grade: 12, active: false },
+  { grade: 12, active: true },
 ];
 
 export function listGrades(): GradeInfo[] {
@@ -346,6 +409,14 @@ export function getGrade11Topics(): GenMathTopic[] {
 
 export function getGrade11Spine(): GradeSpineEntry[] {
   return GRADE11_SPINE;
+}
+
+export function getGrade12Topics(): GenMathTopic[] {
+  return grade12Topics;
+}
+
+export function getGrade12Spine(): GradeSpineEntry[] {
+  return GRADE12_SPINE;
 }
 
 export function getGenMathTopic(topicSlug: string): GenMathTopic | null {

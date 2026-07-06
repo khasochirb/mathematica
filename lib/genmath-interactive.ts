@@ -796,6 +796,46 @@ export interface UnitCircleConfig {
   start?: number; // explore: initial angle in degrees
 }
 
+// The limits workbench: two dots close in on a target x from both sides.
+// approach: the squeeze finds the limit; hole: the limit exists where the
+// value doesn't; jump: one-sided limits disagree (DNE); infinite: outputs
+// blow up along a vertical asymptote (auto-played with replay).
+export interface LimitGraphConfig {
+  mode: "approach" | "hole" | "jump" | "infinite";
+}
+
+// The derivatives workbench on f(x) = x²/2 (slope at x is exactly x).
+// secant: an h-stepper collapses the secant onto the tangent — the definition
+// drawn; tangent: slide the touch point, slope readout goes downhill/flat/
+// uphill; slopeCurve: f and f′ share the grid — the derivative is a function.
+export interface TangentGraphConfig {
+  mode: "secant" | "tangent" | "slopeCurve";
+}
+
+// The vectors workbench: components (one arrow, dashed legs, live magnitude),
+// add (tip-to-tail with a springing resultant), dot (term-by-term dot product
+// whose sign calls the angle: acute / right / obtuse).
+export interface VectorGraphConfig {
+  mode: "components" | "add" | "dot";
+}
+
+// The conic-sections workbench: circle (center + radius steppers), ellipse
+// (a/b steppers, foci beacons, live eccentricity, axis swap), parabola
+// (p-stepper, focus beacon + dashed directrix), hyperbola (a/b steppers,
+// dashed asymptotes, foci outside).
+export interface ConicGraphConfig {
+  mode: "circle" | "ellipse" | "parabola" | "hyperbola";
+}
+
+// The integrals workbench. riemann: left-endpoint rectangles under x² on
+// [0,2] with an n-stepper — the staircase melts into the curve chasing 8/3;
+// accumulate: auto-played sweep filling area behind a moving edge, readout
+// A(x) = x³/3 — area as a function; ftc: f(x) = x on [0,b], triangle geometry
+// vs the antiderivative, agreeing at every b.
+export interface AreaGraphConfig {
+  mode: "riemann" | "accumulate" | "ftc";
+}
+
 // Two lines y = m1x + b1 and y = m2x + b2 on one grid; line 2 adjustable.
 // Marks the intersection (the system's solution) and calls parallel /
 // same-line verdicts live. The systems-of-equations workbench.
@@ -1016,6 +1056,11 @@ export type InteractiveStep =
   | { kind: "expGraph"; eyebrow?: string; title: string; teach: string; config: ExpGraphConfig }
   | { kind: "polyGraph"; eyebrow?: string; title: string; teach: string; config: PolyGraphConfig }
   | { kind: "unitCircle"; eyebrow?: string; title: string; teach: string; config: UnitCircleConfig }
+  | { kind: "limitGraph"; eyebrow?: string; title: string; teach: string; config: LimitGraphConfig }
+  | { kind: "tangentGraph"; eyebrow?: string; title: string; teach: string; config: TangentGraphConfig }
+  | { kind: "areaGraph"; eyebrow?: string; title: string; teach: string; config: AreaGraphConfig }
+  | { kind: "vectorGraph"; eyebrow?: string; title: string; teach: string; config: VectorGraphConfig }
+  | { kind: "conicGraph"; eyebrow?: string; title: string; teach: string; config: ConicGraphConfig }
   | { kind: "scatterPlot"; eyebrow?: string; title: string; teach: string; config: ScatterPlotConfig }
   | { kind: "areaShape"; eyebrow?: string; title: string; teach: string; config: AreaShapeConfig }
   | { kind: "apothemPolygon"; eyebrow?: string; title: string; teach: string; config: ApothemPolygonConfig }

@@ -8,7 +8,7 @@ import {
   summarize,
   type PlacementState,
 } from "@/lib/placement-engine";
-import { getPlacementBank, getGeometryPlacementBank, getGrade8PlacementBank, getGrade10PlacementBank, getGrade11PlacementBank, displayQuestion, placementTopics, type PlacementQuestion } from "@/lib/placement-bank";
+import { getPlacementBank, getGeometryPlacementBank, getGrade8PlacementBank, getGrade10PlacementBank, getGrade11PlacementBank, getGrade12PlacementBank, displayQuestion, placementTopics, type PlacementQuestion } from "@/lib/placement-bank";
 
 // A small synthetic bank: 2 topics × 3 difficulties.
 function synthBank(): PlacementQuestion[] {
@@ -277,6 +277,42 @@ describe("placement bank (curated tiers)", () => {
     expect(ans("complex-numbers:d3")).toBe("$5$"); // conjugate product
     expect(ans("statistics-and-data:d2")).toContain("1.5"); // z-score
     expect(ans("statistics-and-data:d3")).toContain("68"); // μ±1σ
+    for (const q of bank) {
+      expect(q.correctIndex).toBeGreaterThanOrEqual(0);
+      expect(q.correctIndex).toBeLessThan(q.options.length);
+      const d = displayQuestion(q);
+      expect(d.options[d.correctIndex]).toBe(q.options[q.correctIndex]);
+    }
+  });
+
+  it("grade-12 bank has three tiers for all 7 topics, with correct spot-check answers", () => {
+    const bank = getGrade12PlacementBank();
+    const topics = placementTopics(bank);
+    expect(topics.length).toBe(7);
+    for (const t of topics) {
+      const diffs = bank.filter((q) => q.topicSlug === t.slug).map((q) => q.difficulty).sort();
+      expect(diffs).toEqual([1, 2, 3]);
+      expect(t.title.length).toBeGreaterThan(0);
+      expect(t.title).not.toBe(t.slug);
+    }
+    const byId = new Map(bank.map((q) => [q.id, q]));
+    const ans = (id: string) => {
+      const q = byId.get(id)!;
+      return q.options[q.correctIndex];
+    };
+    expect(ans("trigonometric-identities:d1")).toBe("$1$"); // Pythagorean identity
+    expect(ans("trigonometric-identities:d2")).toContain("\\tfrac{4}{5}"); // QI cosine
+    expect(ans("limits-and-continuity:d2")).toBe("$4$"); // factored 0/0
+    expect(ans("limits-and-continuity:d3")).toContain("does not exist"); // jump
+    expect(ans("derivatives:d1")).toContain("3x^2"); // power rule
+    expect(ans("derivatives:d3")).toContain("6x(x^2+1)^2"); // chain rule
+    expect(ans("applications-of-derivatives:d3")).toContain("625"); // fence
+    expect(ans("integrals:d1")).toContain("\\tfrac{x^3}{3}"); // reverse power rule
+    expect(ans("integrals:d2")).toBe("$8$"); // FTC
+    expect(ans("vectors:d1")).toBe("$5$"); // magnitude
+    expect(ans("vectors:d2")).toContain("$0$"); // perpendicular dot
+    expect(ans("conic-sections:d2")).toContain("\\pm 4"); // ellipse minus-law
+    expect(ans("conic-sections:d3")).toBe("hyperbola"); // classification
     for (const q of bank) {
       expect(q.correctIndex).toBeGreaterThanOrEqual(0);
       expect(q.correctIndex).toBeLessThan(q.options.length);
