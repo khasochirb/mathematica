@@ -3,12 +3,15 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getGenMathTopic } from "@/lib/genmath-lessons";
+import { getGenMathTopicLocalized } from "@/lib/genmath-lessons";
+import { useLang } from "@/lib/lang-context";
 
 export default function GenMathTopicPage() {
   const params = useParams();
   const topicSlug = params.topic as string;
-  const topic = getGenMathTopic(topicSlug);
+  const { lang } = useLang();
+  const mn = lang === "mn";
+  const topic = getGenMathTopicLocalized(topicSlug, lang);
 
   if (!topic) {
     return (
@@ -37,7 +40,7 @@ export default function GenMathTopicPage() {
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">General Math · Grade 8</div>
+          <div className="eyebrow">{mn ? "Ерөнхий математик · 8-р анги" : "General Math · Grade 8"}</div>
         </div>
 
         {/* Topic heading */}
@@ -58,7 +61,7 @@ export default function GenMathTopicPage() {
         </p>
 
         {/* Lesson list */}
-        <div className="eyebrow mb-4">Lessons</div>
+        <div className="eyebrow mb-4">{mn ? "Хичээлүүд" : "Lessons"}</div>
         <ol className="space-y-3 mb-10">
           {topic.lessons.map((lesson, i) => (
             <li key={lesson.slug}>
@@ -95,10 +98,10 @@ export default function GenMathTopicPage() {
         {/* Practice + Test buttons */}
         <div className="flex gap-3 flex-wrap">
           <Link href={`/math/8/${topicSlug}/practice`} className="btn btn-primary">
-            Practice
+            {mn ? "Дасгал" : "Practice"}
           </Link>
           <Link href={`/math/8/${topicSlug}/test`} className="btn btn-line">
-            Test yourself
+            {mn ? "Өөрийгөө шалга" : "Test yourself"}
           </Link>
         </div>
       </div>

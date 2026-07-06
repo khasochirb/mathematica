@@ -4,20 +4,30 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import RevealProblemCard from "@/components/lesson/RevealProblemCard";
-import { getGenMathTopic } from "@/lib/genmath-lessons";
+import { getGenMathTopicLocalized } from "@/lib/genmath-lessons";
+import { useLang } from "@/lib/lang-context";
 import ContentGate from "@/components/genmath/ContentGate";
 
-const REVEAL_LABELS = {
+const REVEAL_LABELS_EN = {
   reveal: "Show solution",
   hide: "Hide",
   revealAria: "Show solution",
   hideAria: "Hide solution",
 };
+const REVEAL_LABELS_MN = {
+  reveal: "Бодолтыг харах",
+  hide: "Нуух",
+  revealAria: "Бодолтыг харах",
+  hideAria: "Бодолтыг нуух",
+};
 
 function GenMathPracticePageInner() {
   const params = useParams();
   const topicSlug = params.topic as string;
-  const topic = getGenMathTopic(topicSlug);
+  const { lang } = useLang();
+  const mn = lang === "mn";
+  const REVEAL_LABELS = mn ? REVEAL_LABELS_MN : REVEAL_LABELS_EN;
+  const topic = getGenMathTopicLocalized(topicSlug, lang);
 
   if (!topic) {
     return (
@@ -46,7 +56,7 @@ function GenMathPracticePageInner() {
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">General Math · Grade 8 · {topic.title}</div>
+          <div className="eyebrow">{mn ? "Ерөнхий математик · 8-р анги" : "General Math · Grade 8"} · {topic.title}</div>
         </div>
 
         <h1
@@ -59,10 +69,10 @@ function GenMathPracticePageInner() {
             color: "var(--fg)",
           }}
         >
-          Practice — {topic.title}
+          {mn ? "Дасгал" : "Practice"} — {topic.title}
         </h1>
         <p className="mt-3 mb-8" style={{ color: "var(--fg-2)", fontSize: 14 }}>
-          Work through each problem, then reveal the solution to check your answer.
+          {mn ? "Бодлого бүрийг бодоод, бодолтыг нээж хариугаа шалгаарай." : "Work through each problem, then reveal the solution to check your answer."}
         </p>
 
         <div className="space-y-4">
