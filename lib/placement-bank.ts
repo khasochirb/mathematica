@@ -5,7 +5,7 @@
 // ramps up. Example, Equations: x+5=10 (easy) → 2x+7x=18 (medium) →
 // 2x+3=11 (hard, two-step).
 
-import { getGrade6Topics, getGeometrySpine, getGrade8Spine, getGrade10Spine, getGrade11Spine } from "@/lib/genmath-lessons";
+import { getGrade6Topics, getGeometrySpine, getGrade8Spine, getGrade10Spine, getGrade11Spine, getGrade12Spine } from "@/lib/genmath-lessons";
 
 export type PlacementQuestion = {
   id: string;
@@ -268,11 +268,50 @@ const G11_CURATED: Curated[] = [
   Q("statistics-and-data", 3, "Normal with $\\mu = 100$, $\\sigma = 15$: about what share lies between $85$ and $115$?", ["$68\\%$", "$95\\%$", "$50\\%$", "$99.7\\%$"], 0, "That's $\\mu \\pm 1\\sigma$ — the 68 of 68-95-99.7."),
 ];
 
+// Grade 12 — 7 topics × 3 genuine tiers.
+const G12_CURATED: Curated[] = [
+  // 1. Trigonometric Identities
+  Q("trigonometric-identities", 1, "$\\sin^2\\theta + \\cos^2\\theta$ = —", ["$1$", "$0$", "$2$", "$\\cos 2\\theta$"], 0, "The Pythagorean identity — the unit circle's radius as algebra."),
+  Q("trigonometric-identities", 2, "$\\sin\\theta = \\tfrac{3}{5}$ with $\\theta$ in QI. Then $\\cos\\theta$ = —", ["$\\tfrac{4}{5}$", "$\\tfrac{3}{4}$", "$-\\tfrac{4}{5}$", "$\\tfrac{5}{4}$"], 0, "$\\cos^2 = 1 - \\tfrac{9}{25} = \\tfrac{16}{25}$; QI keeps it positive."),
+  Q("trigonometric-identities", 3, "Solve $\\sin x = \\tfrac{1}{2}$ on $[0, 2\\pi)$.", ["$\\tfrac{\\pi}{6}$ and $\\tfrac{5\\pi}{6}$", "$\\tfrac{\\pi}{6}$ only", "$\\tfrac{\\pi}{3}$ and $\\tfrac{2\\pi}{3}$", "$\\tfrac{\\pi}{6}$ and $\\tfrac{7\\pi}{6}$"], 0, "Height $\\tfrac12$ hits twice per lap: QI and its vertical mirror in QII."),
+
+  // 2. Limits & Continuity
+  Q("limits-and-continuity", 1, "$\\lim_{x \\to 3}(2x + 1)$ = —", ["$7$", "$6$", "does not exist", "$3$"], 0, "Polynomial: substitute. $2(3) + 1$."),
+  Q("limits-and-continuity", 2, "$\\lim_{x \\to 2} \\tfrac{x^2 - 4}{x - 2}$ = —", ["$4$", "does not exist — $\\tfrac{0}{0}$", "$2$", "$\\infty$"], 0, "Factor and cancel: $x + 2 \\to 4$. The $\\tfrac00$ was a work order, not a verdict."),
+  Q("limits-and-continuity", 3, "$f(x) = x + 1$ for $x < 1$; $f(x) = 4 - x$ for $x \\geq 1$. Then $\\lim_{x \\to 1} f(x)$ —", ["does not exist — left gives 2, right gives 3", "equals $2$", "equals $3$", "equals $2.5$"], 0, "One-sided limits disagree: a jump. Existence requires agreement."),
+
+  // 3. Derivatives
+  Q("derivatives", 1, "$\\tfrac{d}{dx} x^3$ = —", ["$3x^2$", "$x^2$", "$3x^3$", "$\\tfrac{x^4}{4}$"], 0, "Power rule: down front, drop by one."),
+  Q("derivatives", 2, "The slope of $y = x^2$ at $x = 3$ is —", ["$6$", "$9$", "$2x$", "$3$"], 0, "$y' = 2x$; at 3: slope 6. (9 is the HEIGHT.)"),
+  Q("derivatives", 3, "$\\tfrac{d}{dx}(x^2 + 1)^3$ = —", ["$6x(x^2+1)^2$", "$3(x^2+1)^2$", "$6x$", "$3x^2(x^2+1)^2$"], 0, "Chain rule: outer $3(\\cdot)^2$, keep the inside, pay the $2x$ toll."),
+
+  // 4. Applications of Derivatives
+  Q("applications-of-derivatives", 1, "Where $f'(x) > 0$, the graph of $f$ is —", ["rising", "falling", "above the x-axis", "flat"], 0, "The derivative's sign is the function's direction."),
+  Q("applications-of-derivatives", 2, "The critical points of $f(x) = x^3 - 3x$ are —", ["$x = 1$ and $x = -1$", "$x = 0$ only", "$x = 3$ and $x = -3$", "$x = 1$ only"], 0, "$f' = 3x^2 - 3 = 0$ at $x = \\pm 1$."),
+  Q("applications-of-derivatives", 3, "With 100 m of fence, the biggest rectangular paddock has area —", ["$625$ m² — the $25 \\times 25$ square", "$2500$ m²", "$100$ m²", "$250$ m²"], 0, "$A = x(50 - x)$ peaks at $x = 25$: $A'' < 0$ certifies the max."),
+
+  // 5. Integrals
+  Q("integrals", 1, "$\\int x^2\\,dx$ = —", ["$\\tfrac{x^3}{3} + C$", "$2x + C$", "$x^3 + C$", "$3x^3 + C$"], 0, "Up by one, divide by the new one — plus the family constant."),
+  Q("integrals", 2, "$\\int_1^3 2x\\,dx$ = —", ["$8$", "$6$", "$9$", "$4$"], 0, "$[x^2]_1^3 = 9 - 1 = 8$ — top minus bottom."),
+  Q("integrals", 3, "$v(t) = 20 - 10t$ on $[0, 4]$: the displacement is —", ["$0$ — up 20 m, back 20 m", "$40$ m", "$80$ m", "$20$ m"], 0, "$\\int_0^4 v = 80 - 80 = 0$: the ball lands where it started. (Distance is 40.)"),
+
+  // 6. Vectors
+  Q("vectors", 1, "$|\\langle 3, 4 \\rangle|$ = —", ["$5$", "$7$", "$12$", "$25$"], 0, "Pythagoras: $\\sqrt{9 + 16}$."),
+  Q("vectors", 2, "$\\langle 2, 3 \\rangle \\cdot \\langle 3, -2 \\rangle$ = —", ["$0$ — perpendicular", "$12$", "$6$", "$-6$"], 0, "$6 - 6 = 0$: a right angle, certified by arithmetic."),
+  Q("vectors", 3, "The angle between $\\langle 1, 0 \\rangle$ and $\\langle 1, 1 \\rangle$ is —", ["$45°$", "$30°$", "$60°$", "$90°$"], 0, "$\\cos\\theta = \\tfrac{1}{\\sqrt2} = \\tfrac{\\sqrt2}{2}$: the unit-circle lookup gives 45°."),
+
+  // 7. Conic Sections
+  Q("conic-sections", 1, "$(x-2)^2 + (y+1)^2 = 9$: center and radius?", ["$(2, -1)$, $r = 3$", "$(-2, 1)$, $r = 3$", "$(2, -1)$, $r = 9$", "$(-2, 1)$, $r = 9$"], 0, "Signs flip for the center; square-root the right side."),
+  Q("conic-sections", 2, "The foci of $\\tfrac{x^2}{25} + \\tfrac{y^2}{9} = 1$ are —", ["$(\\pm 4, 0)$", "$(\\pm\\sqrt{34}, 0)$", "$(\\pm 3, 0)$", "$(\\pm 5, 0)$"], 0, "Ellipse: $c^2 = a^2 - b^2 = 16$ — minus-law, foci inside."),
+  Q("conic-sections", 3, "$9x^2 - 4y^2 = 36$ is a —", ["hyperbola", "ellipse", "parabola", "circle"], 0, "Opposite signs on the squared terms: the minus sign's curve."),
+];
+
 let cache: PlacementQuestion[] | null = null;
 let geoCache: PlacementQuestion[] | null = null;
 let g8Cache: PlacementQuestion[] | null = null;
 let g10Cache: PlacementQuestion[] | null = null;
 let g11Cache: PlacementQuestion[] | null = null;
+let g12Cache: PlacementQuestion[] | null = null;
 
 export function getPlacementBank(): PlacementQuestion[] {
   if (cache) return cache;
@@ -307,6 +346,13 @@ export function getGrade11PlacementBank(): PlacementQuestion[] {
   const titleBySlug = new Map(getGrade11Spine().map((t) => [t.slug, t.title]));
   g11Cache = G11_CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
   return g11Cache;
+}
+
+export function getGrade12PlacementBank(): PlacementQuestion[] {
+  if (g12Cache) return g12Cache;
+  const titleBySlug = new Map(getGrade12Spine().map((t) => [t.slug, t.title]));
+  g12Cache = G12_CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
+  return g12Cache;
 }
 
 // A stable, per-question shuffle of the answer options (the source keeps the
