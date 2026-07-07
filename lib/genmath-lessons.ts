@@ -151,6 +151,51 @@ export interface GradeSpineEntry {
   live: boolean;
 }
 
+export const GRADE7_SPINE: GradeSpineEntry[] = [
+  {
+    slug: "proportional-relationships",
+    title: "Proportional Relationships",
+    blurb: "Unit rates with fractions, the constant of proportionality, y = kx, and reading proportionality from tables and graphs.",
+    live: false,
+  },
+  {
+    slug: "rational-number-operations",
+    title: "Rational Number Operations",
+    blurb: "Adding, subtracting, multiplying, and dividing with negatives — integers, fractions, and decimals, all four operations, one number line.",
+    live: false,
+  },
+  {
+    slug: "equations-and-inequalities",
+    title: "Equations & Inequalities",
+    blurb: "Simplifying expressions with negatives, two-step equations, and inequalities — including the flip when you multiply by a negative.",
+    live: false,
+  },
+  {
+    slug: "percent-applications",
+    title: "Percent Applications",
+    blurb: "Percent change, discounts, markups, tax, tips, simple interest, and percent error — the percents that show up on receipts.",
+    live: false,
+  },
+  {
+    slug: "geometry-scale-and-circles",
+    title: "Geometry: Scale, Angles & Circles",
+    blurb: "Scale drawings, angle relationships, the triangle inequality, and circles — where \u03c0 finally earns its name.",
+    live: false,
+  },
+  {
+    slug: "probability",
+    title: "Probability",
+    blurb: "Chance from 0 to 1: sample spaces, theoretical vs experimental probability, and simple compound events.",
+    live: false,
+  },
+  {
+    slug: "sampling-and-statistics",
+    title: "Sampling & Statistics",
+    blurb: "Random samples, inference about a population, and comparing two data sets with center and spread.",
+    live: false,
+  },
+];
+
 export const GRADE8_SPINE: GradeSpineEntry[] = [
   {
     slug: "the-real-number-system",
@@ -361,6 +406,8 @@ const grade10Topics: GenMathTopic[] = [
   probabilityAndCounting as GenMathTopic,
 ];
 
+const grade7Topics: GenMathTopic[] = [];
+
 const grade8Topics: GenMathTopic[] = [
   realNumberSystem as GenMathTopic,
   exponentsScientific as GenMathTopic,
@@ -373,7 +420,7 @@ const grade8Topics: GenMathTopic[] = [
 
 // Every authored General-Math topic across grades. Topic slugs are unique
 // across grades, so slug lookups stay unambiguous.
-const allGenMathTopics: GenMathTopic[] = [...grade6Topics, ...grade8Topics, ...grade10Topics, ...grade11Topics, ...grade12Topics];
+const allGenMathTopics: GenMathTopic[] = [...grade6Topics, ...grade7Topics, ...grade8Topics, ...grade10Topics, ...grade11Topics, ...grade12Topics];
 
 // ---------------------------------------------------------------------------
 // Public API
@@ -381,7 +428,7 @@ const allGenMathTopics: GenMathTopic[] = [...grade6Topics, ...grade8Topics, ...g
 
 const ALL_GRADES: GradeInfo[] = [
   { grade: 6, active: true },
-  { grade: 7, active: false },
+  { grade: 7, active: true },
   { grade: 8, active: true },
   { grade: 9, active: false },
   { grade: 10, active: true },
@@ -395,6 +442,14 @@ export function listGrades(): GradeInfo[] {
 
 export function getGrade6Topics(): GenMathTopic[] {
   return grade6Topics;
+}
+
+export function getGrade7Topics(): GenMathTopic[] {
+  return grade7Topics;
+}
+
+export function getGrade7Spine(): GradeSpineEntry[] {
+  return GRADE7_SPINE;
 }
 
 export function getGrade8Topics(): GenMathTopic[] {
