@@ -106,6 +106,7 @@ import fractionsMn from "@/data/genmath/6-mn/fractions.json";
 import decimalsMn from "@/data/genmath/6-mn/decimals.json";
 import percentagesMn from "@/data/genmath/6-mn/percentages.json";
 import integersMn from "@/data/genmath/6-mn/integers.json";
+import factorsMn from "@/data/genmath/6-mn/factors-and-multiples.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -442,6 +443,7 @@ const GENMATH_TOPICS_MN: Record<string, GenMathTopic> = {
   "decimals": decimalsMn as GenMathTopic,
   "percentages": percentagesMn as GenMathTopic,
   "integers": integersMn as GenMathTopic,
+  "factors-and-multiples": factorsMn as GenMathTopic,
 };
 
 // Locale-aware topic lookup: Mongolian mirror when the site language is "mn"
