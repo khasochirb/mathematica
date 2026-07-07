@@ -1,0 +1,1566 @@
+{
+  "slug": "probability",
+  "title": "Probability",
+  "grade": 7,
+  "blurb": "Chance from 0 to 1: sample spaces, theoretical vs experimental probability, and simple compound events.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "what-is-probability",
+      "title": "What Is Probability?",
+      "concreteComparison": "“There's a $30\\%$ chance of rain.” “That team is a long shot.” “It's a coin flip.” We talk about chance all day — probability just pins it to a number line from $0$ to $1$: impossible sits at $0$, certain at $1$, and a fair coin flip exactly at $\\frac{1}{2}$. One number replaces a whole shelf of vague words.",
+      "objective": "Express probability as a number from 0 to 1, compute P(event) for equally likely outcomes, and interpret likelihood language.",
+      "concept": [
+        "**Probability** measures how likely something is, on a scale from $0$ (impossible) to $1$ (certain). It can wear three outfits: fraction $\\frac{3}{10}$, decimal $0.3$, or percent $30\\%$.",
+        "When all outcomes are **equally likely**, $P(\\text{event}) = \\frac{\\text{favorable outcomes}}{\\text{total outcomes}}$. A standard die: $P(5) = \\frac{1}{6}$.",
+        "Language maps to regions of the scale: *unlikely* lives below $\\frac{1}{2}$, *likely* above it, *even chance* exactly at $\\frac{1}{2}$.",
+        "Probability is about the LONG RUN, not a promise: $P(\\text{heads}) = \\frac{1}{2}$ doesn't mean alternating heads and tails — it means the fraction of heads settles near half over many flips."
+      ],
+      "keyIdea": "$P = \\frac{\\text{favorable}}{\\text{total}}$ for equally likely outcomes — a number from 0 to 1.",
+      "facts": [
+        {
+          "title": "The scale",
+          "explanation": "Impossible is 0, certain is 1, everything else is between.",
+          "latex": "$0 \\le P \\le 1$"
+        },
+        {
+          "title": "The formula",
+          "explanation": "Count what you want over everything that could happen (equally likely).",
+          "latex": "$P = \\tfrac{\\text{favorable}}{\\text{total}}$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "prb1-we1",
+          "statement": "A standard die is rolled. Find $P(\\text{rolling a } 5)$ and $P(\\text{rolling an even number})$.",
+          "solution": "$P(5) = \\frac{1}{6}$. Evens are $\\{2, 4, 6\\}$: $P(\\text{even}) = \\frac{3}{6} = \\frac{1}{2}$.",
+          "check": [
+            "Rational(3,6) == Rational(1,2)"
+          ]
+        },
+        {
+          "id": "prb1-we2",
+          "statement": "A bag holds $4$ red, $5$ blue, and $3$ green marbles. Find $P(\\text{blue})$.",
+          "solution": "Total: $12$. $P(\\text{blue}) = \\frac{5}{12}$.",
+          "check": [
+            "4 + 5 + 3 == 12"
+          ]
+        },
+        {
+          "id": "prb1-we3",
+          "statement": "Which is more likely: drawing a heart from a $52$-card deck, or rolling at most $2$ on a die?",
+          "solution": "$P(\\text{heart}) = \\frac{13}{52} = \\frac{1}{4}$; $P(\\le 2) = \\frac{2}{6} = \\frac{1}{3}$. Rolling at most $2$ is more likely.",
+          "check": [
+            "Rational(13,52) == Rational(1,4)",
+            "Rational(2,6) == Rational(1,3)",
+            "Rational(1,3) > Rational(1,4)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reporting probabilities bigger than 1.",
+          "correction": "A probability of 2 or 150% is meaningless — check that favorable ≤ total. If you got 1.5, you counted something twice.",
+          "authored": true
+        },
+        {
+          "text": "Using the formula on UNEQUAL outcomes.",
+          "correction": "“Win or lose — 2 outcomes — so P(win) = 1/2” fails when the outcomes aren't equally likely. The formula needs a fair, symmetric list.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "prb1-t1",
+          "statement": "A spinner has $8$ equal sections numbered $1$–$8$. Find $P(\\text{multiple of } 3)$.",
+          "solution": "Multiples of 3: $\\{3, 6\\}$. $P = \\frac{2}{8} = \\frac{1}{4}$.",
+          "check": [
+            "Rational(2,8) == Rational(1,4)"
+          ]
+        },
+        {
+          "id": "prb1-t2",
+          "statement": "Express $P = \\frac{3}{5}$ as a decimal and a percent.",
+          "solution": "$0.6$ and $60\\%$.",
+          "check": [
+            "Rational(3,5) == Rational(6,10)",
+            "Rational(3,5) == Rational(60,100)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The scale",
+            "title": "Chance gets a ruler",
+            "beats": [
+              "Impossible → $0$. Certain → $1$.",
+              "A fair coin: $\\frac{1}{2}$, dead center.",
+              "Every chance in the world lands somewhere on $[0, 1]$.",
+              "Fractions, decimals, percents — three outfits, one number."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The count",
+            "title": "Favorable over total",
+            "beats": [
+              "List all EQUALLY LIKELY outcomes.",
+              "Count the ones you want.",
+              "$P(\\text{even on a die}) = \\frac{3}{6} = \\frac{1}{2}$.",
+              "The recipe fails if outcomes aren't equally likely — check first."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the bag",
+            "prompt": "A bag has $3$ red and $9$ black marbles. $P(\\text{red})$?",
+            "options": [
+              "$\\frac{1}{4}$",
+              "$\\frac{1}{3}$",
+              "$\\frac{3}{9}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Total is $12$: $P = \\frac{3}{12} = \\frac{1}{4}$. ($\\frac{3}{9}$ divides by the OTHER color's count — a classic slip.)",
+            "check": [
+              "Rational(3,12) == Rational(1,4)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Chance by counting",
+            "intro": "Total first, favorable second, simplify last.",
+            "examples": [
+              {
+                "prompt": "A letter is picked at random from MATHEMATICS. Find $P(\\text{M})$.",
+                "steps": [
+                  "The word has $11$ letters.",
+                  "M appears twice.",
+                  "$P = \\frac{2}{11}$."
+                ],
+                "answer": "$\\frac{2}{11}$",
+                "check": [
+                  "2 + 9 == 11"
+                ]
+              },
+              {
+                "prompt": "A month is chosen at random. $P(\\text{name starts with J})$?",
+                "steps": [
+                  "$12$ months in total.",
+                  "J-months: January, June, July — $3$.",
+                  "$P = \\frac{3}{12} = \\frac{1}{4}$."
+                ],
+                "answer": "$\\frac{1}{4}$",
+                "check": [
+                  "Rational(3,12) == Rational(1,4)"
+                ]
+              },
+              {
+                "prompt": "Order these by likelihood: $P(A) = 0.45$, $P(B) = \\frac{2}{5}$, $P(C) = 42\\%$.",
+                "steps": [
+                  "Same outfit: $0.45$, $0.40$, $0.42$.",
+                  "$B < C < A$.",
+                  "Convert before comparing — always."
+                ],
+                "answer": "$B < C < A$",
+                "check": [
+                  "Rational(2,5) == Rational(40,100)",
+                  "Rational(40,100) < Rational(42,100)",
+                  "Rational(42,100) < Rational(45,100)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Scale practice",
+            "intro": "Count, divide, place it on the scale.",
+            "problems": [
+              {
+                "prompt": "A die shows a number greater than $4$. Probability?",
+                "options": [
+                  "$\\frac{1}{3}$",
+                  "$\\frac{1}{2}$",
+                  "$\\frac{2}{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\{5, 6\\}$: $P = \\frac{2}{6} = \\frac{1}{3}$.",
+                "check": [
+                  "Rational(2,6) == Rational(1,3)"
+                ]
+              },
+              {
+                "prompt": "Which event is IMPOSSIBLE?",
+                "options": [
+                  "Rolling a $7$ on one standard die",
+                  "Rolling an odd number",
+                  "Rolling a $1$ twice in a row"
+                ],
+                "correctIndex": 0,
+                "explanation": "A standard die has faces 1–6: $P(7) = 0$.",
+                "check": [
+                  "0 == 0"
+                ]
+              },
+              {
+                "prompt": "A raffle sells $200$ tickets; you hold $8$. Your chance of winning the single prize?",
+                "options": [
+                  "$4\\%$",
+                  "$8\\%$",
+                  "$2.5\\%$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{8}{200} = 0.04 = 4\\%$.",
+                "check": [
+                  "Rational(8,200) == Rational(4,100)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Born at the gambling table",
+            "body": "Probability theory began in 1654 with letters between Pascal and Fermat about a gambler's puzzle: how to fairly split the pot of an interrupted dice game. From those letters grew the mathematics that now prices insurance, forecasts weather, and trains AI models. The casino lost the war: every game on its floor is now an equation the house solved first."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Probability lives on $[0, 1]$: impossible to certain.",
+              "Equally likely outcomes: $P = \\frac{\\text{favorable}}{\\text{total}}$.",
+              "It's a long-run fraction, not a short-term promise."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "sample-spaces",
+      "title": "Sample Spaces",
+      "concreteComparison": "Flip two coins. “Two heads, two tails, or one of each — three outcomes, so each is $\\frac{1}{3}$”… and that's WRONG. Write out the full list: HH, HT, TH, TT. “One of each” happens two ways out of four — it's $\\frac{1}{2}$, twice as likely as HH. The complete list of outcomes — the **sample space** — is the difference between guessing and knowing.",
+      "objective": "List complete sample spaces (lists, tables, tree diagrams) and use them to compute probabilities.",
+      "concept": [
+        "The **sample space** is the list of ALL possible outcomes. Probability formulas only work when the list is complete and its entries equally likely.",
+        "For two-part experiments, a **table** organizes everything: two dice make a $6 \\times 6$ grid of $36$ cells; each cell is one equally likely outcome.",
+        "A **tree diagram** grows one level per stage: coin then die gives $2 \\times 6 = 12$ leaves.",
+        "The **counting principle** shortcuts the size: a sequence of choices multiplies — $2$ coins and a die give $2 \\times 2 \\times 6 = 24$ outcomes. Count leaves without drawing every branch."
+      ],
+      "keyIdea": "List (or count) EVERY outcome — lists, tables, and trees; sizes multiply across stages.",
+      "facts": [
+        {
+          "title": "The counting principle",
+          "explanation": "Independent stages multiply their option counts.",
+          "latex": "$2 \\times 6 = 12$"
+        },
+        {
+          "title": "Order matters in the list",
+          "explanation": "Two different ways to get one-of-each — the sample space sees them separately.",
+          "latex": "HT $\\neq$ TH"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "prb2-we1",
+          "statement": "Two coins are flipped. List the sample space and find $P(\\text{exactly one head})$.",
+          "solution": "$\\{HH, HT, TH, TT\\}$ — four outcomes. Exactly one head: HT, TH. $P = \\frac{2}{4} = \\frac{1}{2}$.",
+          "check": [
+            "Rational(2,4) == Rational(1,2)",
+            "2**2 == 4"
+          ]
+        },
+        {
+          "id": "prb2-we2",
+          "statement": "Two dice are rolled. How many outcomes are in the sample space, and what is $P(\\text{sum} = 7)$?",
+          "solution": "$6 \\times 6 = 36$ outcomes. Sum 7: $(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)$ — six ways. $P = \\frac{6}{36} = \\frac{1}{6}$.",
+          "check": [
+            "6*6 == 36",
+            "Rational(6,36) == Rational(1,6)"
+          ]
+        },
+        {
+          "id": "prb2-we3",
+          "statement": "A menu offers $3$ mains, $4$ sides, and $2$ drinks. How many different meals?",
+          "solution": "$3 \\times 4 \\times 2 = 24$ meals.",
+          "check": [
+            "3*4*2 == 24"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Merging HT and TH into one outcome.",
+          "correction": "They're different results of a two-coin flip. Collapse them and 'one of each' looks as likely as HH — the classic 1/3 error.",
+          "authored": true
+        },
+        {
+          "text": "Adding stage counts instead of multiplying.",
+          "correction": "3 mains and 4 sides make $3 \\times 4 = 12$ combos, not 7. Choices in sequence MULTIPLY.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "prb2-t1",
+          "statement": "A spinner (A, B, C) is spun and a coin is flipped. How many outcomes? List them.",
+          "solution": "$3 \\times 2 = 6$: AH, AT, BH, BT, CH, CT.",
+          "check": [
+            "3*2 == 6"
+          ]
+        },
+        {
+          "id": "prb2-t2",
+          "statement": "Two dice are rolled. Find $P(\\text{both show the same number})$.",
+          "solution": "Doubles: $6$ of $36$. $P = \\frac{1}{6}$.",
+          "check": [
+            "Rational(6,36) == Rational(1,6)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The full list",
+            "title": "Write them ALL down",
+            "beats": [
+              "Two coins: HH, HT, TH, TT.",
+              "Four outcomes — not three.",
+              "“One of each” owns TWO of them: $P = \\frac{2}{4}$.",
+              "Complete list first; probability second."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Tools",
+            "title": "Tables and trees",
+            "beats": [
+              "Two stages → a table: dice make a $6 \\times 6$ grid.",
+              "Multi-stage → a tree: each level splits every branch.",
+              "Counting principle: stage sizes MULTIPLY.",
+              "$2$ coins $\\times$ $1$ die $= 2 \\cdot 2 \\cdot 6 = 24$ leaves."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Count the leaves",
+            "prompt": "A password uses one letter from $\\{A, B\\}$ followed by one digit from $\\{1,2,3,4,5\\}$. How many passwords?",
+            "options": [
+              "$10$",
+              "$7$",
+              "$25$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$2 \\times 5 = 10$.",
+            "check": [
+              "2*5 == 10"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Spaces at work",
+            "intro": "Build the space, then count inside it.",
+            "examples": [
+              {
+                "prompt": "Three coins are flipped. Find $P(\\text{all heads})$.",
+                "steps": [
+                  "Sample space size: $2^3 = 8$.",
+                  "All heads is one outcome: HHH.",
+                  "$P = \\frac{1}{8}$."
+                ],
+                "answer": "$\\frac{1}{8}$",
+                "check": [
+                  "2**3 == 8"
+                ]
+              },
+              {
+                "prompt": "Two dice: $P(\\text{sum} \\ge 10)$?",
+                "steps": [
+                  "Sums 10, 11, 12: $(4,6),(5,5),(6,4),(5,6),(6,5),(6,6)$.",
+                  "Six outcomes of $36$.",
+                  "$P = \\frac{6}{36} = \\frac{1}{6}$."
+                ],
+                "answer": "$\\frac{1}{6}$",
+                "check": [
+                  "Rational(6,36) == Rational(1,6)"
+                ]
+              },
+              {
+                "prompt": "A family has three children. $P(\\text{exactly two girls})$? (Assume boy/girl equally likely.)",
+                "steps": [
+                  "Space: $2^3 = 8$ orders.",
+                  "Two girls: GGB, GBG, BGG — three ways.",
+                  "$P = \\frac{3}{8}$."
+                ],
+                "answer": "$\\frac{3}{8}$",
+                "check": [
+                  "2**3 == 8",
+                  "3 < 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Space cadets",
+            "intro": "Complete list or multiplied count — your choice.",
+            "problems": [
+              {
+                "prompt": "A coin is flipped and a die is rolled. $P(\\text{heads and a } 6)$?",
+                "options": [
+                  "$\\frac{1}{12}$",
+                  "$\\frac{1}{8}$",
+                  "$\\frac{1}{6}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$12$ outcomes; one is (H, 6): $P = \\frac{1}{12}$.",
+                "check": [
+                  "2*6 == 12"
+                ]
+              },
+              {
+                "prompt": "Two dice are rolled. Which sum is MOST likely?",
+                "options": [
+                  "$7$",
+                  "$6$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Sum 7 has 6 ways — more than any other sum (6 has 5 ways; 12 has 1).",
+                "check": [
+                  "6 > 5",
+                  "6 > 1"
+                ]
+              },
+              {
+                "prompt": "Shirts in 4 colors and pants in 3 colors. How many outfits?",
+                "options": [
+                  "$12$",
+                  "$7$",
+                  "$81$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4 \\times 3 = 12$.",
+                "check": [
+                  "4*3 == 12"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The Grand Duke's dice",
+            "body": "The Grand Duke of Tuscany noticed dice sums of $10$ appeared slightly more often than $9$, though both “can be made three ways” with unordered triples. Galileo wrote out the FULL ordered sample space — all $216$ rolls of three dice — and showed 10 has 27 ways to 9's 25. The duke's gambling hunch was right, and the complete list settled it."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "The sample space is the COMPLETE list of outcomes — order counts.",
+              "Tables for two stages, trees for more, multiplication for size.",
+              "Count favorable cells inside the full space; never shortcut the list."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "theoretical-vs-experimental",
+      "title": "Theoretical vs Experimental Probability",
+      "concreteComparison": "Theory says a fair coin lands heads half the time. You flip it $20$ times and get $13$ heads — $65\\%$! Is the coin broken? Flip it $1{,}000$ times and you'll likely see something like $507$ heads — $50.7\\%$. Two kinds of probability are talking: what SHOULD happen (theoretical) and what DID happen (experimental) — and the more you flip, the closer they get.",
+      "objective": "Distinguish theoretical from experimental probability, compute both, and use the long-run settling to judge fairness.",
+      "concept": [
+        "**Theoretical probability** comes from analyzing the situation: equally likely outcomes, favorable over total. No experiment needed.",
+        "**Experimental probability** comes from data: $P_{\\text{exp}} = \\frac{\\text{times it happened}}{\\text{times you tried}}$. It changes with every new trial.",
+        "The **long run** reconciles them: as trials pile up, experimental probability settles toward the theoretical value. Small samples swing wildly; big samples calm down.",
+        "When theory is unavailable — a bent coin, a thumbtack, a basketball player's free throws — experimental probability is all there is, and MORE TRIALS make it trustworthy.",
+        "Big, persistent gaps between the two are evidence: a die showing $6$ on $40\\%$ of many hundreds of rolls isn't unlucky, it's loaded."
+      ],
+      "keyIdea": "Theory predicts, experiments record; with enough trials the two shake hands.",
+      "facts": [
+        {
+          "title": "Experimental formula",
+          "explanation": "A fraction built from data, not analysis.",
+          "latex": "$P_{\\text{exp}} = \\tfrac{\\text{happened}}{\\text{tried}}$"
+        },
+        {
+          "title": "The long run",
+          "explanation": "Small samples swing; large samples settle. (The law of large numbers.)",
+          "latex": "more trials → closer to theory"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "prb3-we1",
+          "statement": "A coin lands heads $13$ times in $20$ flips. Find the experimental probability, and compare to theory.",
+          "solution": "$P_{\\text{exp}} = \\frac{13}{20} = 0.65$; theory says $0.5$. A gap this size is common in only 20 flips.",
+          "check": [
+            "Rational(13,20) == Rational(65,100)"
+          ]
+        },
+        {
+          "id": "prb3-we2",
+          "statement": "A thumbtack lands point-up $36$ times in $60$ drops. Estimate $P(\\text{point up})$.",
+          "solution": "$P_{\\text{exp}} = \\frac{36}{60} = \\frac{3}{5} = 0.6$. (No symmetry, so experiment is the only source.)",
+          "check": [
+            "Rational(36,60) == Rational(3,5)"
+          ]
+        },
+        {
+          "id": "prb3-we3",
+          "statement": "A die is rolled $600$ times; a $6$ appears $240$ times. Fair or loaded?",
+          "solution": "$P_{\\text{exp}} = \\frac{240}{600} = 0.4$, but theory says $\\frac{1}{6} \\approx 0.167$. At $600$ trials, that gap screams LOADED.",
+          "check": [
+            "Rational(240,600) == Rational(4,10)",
+            "Rational(4,10) > Rational(1,6)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Expecting small experiments to match theory.",
+          "correction": "13 heads in 20 flips is normal, not proof of bias. Judge fairness on LARGE samples, not handfuls.",
+          "authored": true
+        },
+        {
+          "text": "Using favorable-over-total on asymmetric objects.",
+          "correction": "A thumbtack has two outcomes but they are NOT equally likely — 'so P = 1/2' fails. Asymmetric objects need experiments.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "prb3-t1",
+          "statement": "A spinner landed on red $18$ times in $45$ spins. Experimental $P(\\text{red})$?",
+          "solution": "$\\frac{18}{45} = \\frac{2}{5} = 0.4$.",
+          "check": [
+            "Rational(18,45) == Rational(2,5)"
+          ]
+        },
+        {
+          "id": "prb3-t2",
+          "statement": "A basketball player made $51$ of $68$ free throws. Estimate her free-throw probability.",
+          "solution": "$\\frac{51}{68} = \\frac{3}{4} = 75\\%$.",
+          "check": [
+            "Rational(51,68) == Rational(3,4)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Two sources",
+            "title": "Should vs did",
+            "beats": [
+              "Theoretical: analyze the object. $P(\\text{heads}) = \\frac{1}{2}$.",
+              "Experimental: run trials. $\\frac{13}{20} = 0.65$.",
+              "Different numbers — both legitimate.",
+              "One predicts; the other reports."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The reconciliation",
+            "title": "The long run",
+            "beats": [
+              "$20$ flips: $65\\%$ heads happens all the time.",
+              "$1{,}000$ flips: heads will hug $50\\%$.",
+              "More trials → the experimental line settles onto theory.",
+              "That settling is why casinos always win EVENTUALLY."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "When theory is silent",
+            "title": "Thumbtacks and free throws",
+            "beats": [
+              "A thumbtack isn't symmetric — no theory to consult.",
+              "Drop it $60$ times: point-up $36$ → $P \\approx 0.6$.",
+              "Athletes, weather, batteries: all experimental.",
+              "Trust grows with trial count."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which kind?",
+            "prompt": "“Marisol made $17$ of her last $25$ serves, so her serve probability is about $68\\%$.” This probability is…",
+            "options": [
+              "experimental",
+              "theoretical",
+              "impossible to define"
+            ],
+            "correctIndex": 0,
+            "explanation": "It's built from observed trials — $\\frac{17}{25} = 0.68$ — not from symmetry.",
+            "check": [
+              "Rational(17,25) == Rational(68,100)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Predict, record, compare",
+            "intro": "Compute both when you can; judge gaps by sample size.",
+            "examples": [
+              {
+                "prompt": "Theory: how many $6$s do you EXPECT in $120$ die rolls?",
+                "steps": [
+                  "$P(6) = \\frac{1}{6}$.",
+                  "Expected count: $\\frac{1}{6} \\times 120$.",
+                  "$= 20$ sixes."
+                ],
+                "answer": "$20$",
+                "check": [
+                  "Rational(1,6)*120 == 20"
+                ]
+              },
+              {
+                "prompt": "A die rolled $120$ times gave $23$ sixes. Experimental probability, and verdict?",
+                "steps": [
+                  "$P_{\\text{exp}} = \\frac{23}{120} \\approx 0.19$.",
+                  "Theory: $0.167$; expected 20, saw 23.",
+                  "A gap of 3 in 120 rolls is ordinary — no alarm."
+                ],
+                "answer": "$\\approx 0.19$; consistent with fair",
+                "check": [
+                  "Rational(1,6)*120 == 20",
+                  "23 - 20 == 3"
+                ]
+              },
+              {
+                "prompt": "A spinner landed A: $52$, B: $23$, C: $25$ in $100$ spins. Estimate each probability.",
+                "steps": [
+                  "$P(A) \\approx 0.52$.",
+                  "$P(B) \\approx 0.23$, $P(C) \\approx 0.25$.",
+                  "They total $1$ — a good sanity check."
+                ],
+                "answer": "$0.52, 0.23, 0.25$",
+                "check": [
+                  "52 + 23 + 25 == 100",
+                  "Rational(52,100) + Rational(23,100) + Rational(25,100) == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Theory meets data",
+            "intro": "Expected = P × trials; experimental = happened ÷ tried.",
+            "problems": [
+              {
+                "prompt": "How many heads do you EXPECT in $500$ fair-coin flips?",
+                "options": [
+                  "$250$",
+                  "$500$",
+                  "It's impossible to say"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{1}{2} \\times 500 = 250$ — expected, though rarely exact.",
+                "check": [
+                  "Rational(1,2)*500 == 250"
+                ]
+              },
+              {
+                "prompt": "A wheel landed on the prize $6$ times in $150$ spins. Experimental $P(\\text{prize})$?",
+                "options": [
+                  "$0.04$",
+                  "$0.06$",
+                  "$0.15$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{6}{150} = 0.04$.",
+                "check": [
+                  "Rational(6,150) == Rational(4,100)"
+                ]
+              },
+              {
+                "prompt": "Which experiment gives the MOST trustworthy estimate of a coin's fairness?",
+                "options": [
+                  "$2{,}000$ flips",
+                  "$20$ flips",
+                  "$5$ flips repeated mentally"
+                ],
+                "correctIndex": 0,
+                "explanation": "The long run: more trials, closer to the truth.",
+                "check": [
+                  "2000 > 20"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The man who flipped 10,000 coins",
+            "body": "Imprisoned during World War II, mathematician John Kerrich flipped a coin $10{,}000$ times and recorded every result: $5{,}067$ heads — $50.67\\%$. His hand-built dataset became a classic demonstration that experimental probability really does settle onto theory. (Computers now simulate a billion flips per second, but Kerrich did it with a ceiling to stare at and time to spare.)"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Theoretical analyzes; experimental records — both are fractions.",
+              "More trials pull the experimental value toward theory.",
+              "Asymmetric objects and human skills are experimental-only territory."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "complements-and-combined-events",
+      "title": "Complements & Combined Events",
+      "concreteComparison": "What's the chance of NOT rolling a $6$? You could count the five friendly faces… or subtract: $1 - \\frac{1}{6} = \\frac{5}{6}$. The “not” shortcut — the **complement** — is probability's best bargain, and it pairs with a simple addition rule for “this OR that” questions.",
+      "objective": "Use P(not A) = 1 − P(A) and add probabilities of non-overlapping events.",
+      "concept": [
+        "The **complement** of event $A$ is “$A$ doesn't happen.” Since something must happen, $P(A) + P(\\text{not } A) = 1$, so $P(\\text{not } A) = 1 - P(A)$.",
+        "The complement shines when “not” is easier than the thing itself: $P(\\text{at least one head in 3 flips}) = 1 - P(\\text{no heads}) = 1 - \\frac{1}{8} = \\frac{7}{8}$.",
+        "For events that CAN'T happen together (mutually exclusive), “or” means ADD: $P(\\text{roll } 1 \\text{ or } 2) = \\frac{1}{6} + \\frac{1}{6} = \\frac{1}{3}$.",
+        "If events CAN overlap, plain addition double-counts the overlap — count outcomes in the sample space instead. (The full or-rule arrives in Grade 10.)"
+      ],
+      "keyIdea": "$P(\\text{not } A) = 1 - P(A)$; for non-overlapping events, $P(A \\text{ or } B) = P(A) + P(B)$.",
+      "facts": [
+        {
+          "title": "Complement rule",
+          "explanation": "The chances of happening and not-happening share the whole 1.",
+          "latex": "$P(\\text{not } A) = 1 - P(A)$"
+        },
+        {
+          "title": "Or-rule (no overlap)",
+          "explanation": "Only when A and B can't both occur.",
+          "latex": "$P(A \\text{ or } B) = P(A) + P(B)$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "prb4-we1",
+          "statement": "Find $P(\\text{not rolling a } 6)$ on one die.",
+          "solution": "$1 - \\frac{1}{6} = \\frac{5}{6}$.",
+          "check": [
+            "1 - Rational(1,6) == Rational(5,6)"
+          ]
+        },
+        {
+          "id": "prb4-we2",
+          "statement": "The chance of rain is $35\\%$. What's the chance it stays dry?",
+          "solution": "$100\\% - 35\\% = 65\\%$.",
+          "check": [
+            "1 - Rational(35,100) == Rational(65,100)"
+          ]
+        },
+        {
+          "id": "prb4-we3",
+          "statement": "A card is drawn from a standard deck. Find $P(\\text{king or queen})$.",
+          "solution": "Can't be both: $\\frac{4}{52} + \\frac{4}{52} = \\frac{8}{52} = \\frac{2}{13}$.",
+          "check": [
+            "Rational(4,52) + Rational(4,52) == Rational(2,13)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding probabilities of overlapping events.",
+          "correction": "P(king or heart) isn't 4/52 + 13/52: the king of hearts got counted twice. Adding is only safe when events can't co-occur.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the complement includes EVERYTHING else.",
+          "correction": "'Not a 6' means 1, 2, 3, 4, or 5 — all five. The complement is the whole rest of the sample space, not just one rival outcome.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "prb4-t1",
+          "statement": "A spinner has $10$ equal sections, $3$ of them gold. Find $P(\\text{not gold})$.",
+          "solution": "$1 - \\frac{3}{10} = \\frac{7}{10}$.",
+          "check": [
+            "1 - Rational(3,10) == Rational(7,10)"
+          ]
+        },
+        {
+          "id": "prb4-t2",
+          "statement": "One die: find $P(\\text{rolling less than } 3 \\text{ or exactly } 6)$.",
+          "solution": "$\\frac{2}{6} + \\frac{1}{6} = \\frac{3}{6} = \\frac{1}{2}$.",
+          "check": [
+            "Rational(2,6) + Rational(1,6) == Rational(1,2)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The bargain",
+            "title": "One minus",
+            "beats": [
+              "Happening and not-happening split the whole $1$.",
+              "$P(\\text{not } A) = 1 - P(A)$.",
+              "$P(\\text{not } 6) = 1 - \\frac{1}{6} = \\frac{5}{6}$.",
+              "One subtraction instead of five counts."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Power move",
+            "title": "“At least one” loves complements",
+            "beats": [
+              "$P(\\text{at least one head in 3 flips})$ — messy to count directly.",
+              "Its complement is clean: NO heads $=$ TTT $= \\frac{1}{8}$.",
+              "$1 - \\frac{1}{8} = \\frac{7}{8}$.",
+              "See “at least one”? Think “$1 -$ none.”"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Or",
+            "title": "Add when they can't share",
+            "beats": [
+              "Roll a $1$ OR a $2$: no overlap possible.",
+              "$\\frac{1}{6} + \\frac{1}{6} = \\frac{2}{6}$.",
+              "Overlapping events double-count — count the space instead.",
+              "King or queen? Add. King or heart? Careful!"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Flip it around",
+            "prompt": "$P(\\text{at least one tail in two flips})$?",
+            "options": [
+              "$\\frac{3}{4}$",
+              "$\\frac{1}{2}$",
+              "$\\frac{1}{4}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Complement: no tails $=$ HH $= \\frac{1}{4}$. So $1 - \\frac{1}{4} = \\frac{3}{4}$.",
+            "check": [
+              "1 - Rational(1,4) == Rational(3,4)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Nots and ors",
+            "intro": "Subtract for not; add for exclusive or.",
+            "examples": [
+              {
+                "prompt": "A bag: $5$ red, $4$ blue, $3$ white. $P(\\text{not white})$?",
+                "steps": [
+                  "$P(\\text{white}) = \\frac{3}{12} = \\frac{1}{4}$.",
+                  "$1 - \\frac{1}{4} = \\frac{3}{4}$.",
+                  "(Or count: $\\frac{9}{12}$ — same.)"
+                ],
+                "answer": "$\\frac{3}{4}$",
+                "check": [
+                  "1 - Rational(3,12) == Rational(3,4)",
+                  "Rational(9,12) == Rational(3,4)"
+                ]
+              },
+              {
+                "prompt": "Same bag: $P(\\text{red or white})$?",
+                "steps": [
+                  "No marble is both.",
+                  "$\\frac{5}{12} + \\frac{3}{12}$.",
+                  "$= \\frac{8}{12} = \\frac{2}{3}$."
+                ],
+                "answer": "$\\frac{2}{3}$",
+                "check": [
+                  "Rational(5,12) + Rational(3,12) == Rational(2,3)"
+                ]
+              },
+              {
+                "prompt": "A game is won with probability $0.15$ per play. $P(\\text{losing a single play})$?",
+                "steps": [
+                  "Complement.",
+                  "$1 - 0.15$.",
+                  "$= 0.85$."
+                ],
+                "answer": "$0.85$",
+                "check": [
+                  "1 - Rational(15,100) == Rational(85,100)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Shortcut season",
+            "intro": "“Not” subtracts; exclusive “or” adds.",
+            "problems": [
+              {
+                "prompt": "One die: $P(\\text{not a multiple of } 3)$?",
+                "options": [
+                  "$\\frac{2}{3}$",
+                  "$\\frac{1}{3}$",
+                  "$\\frac{1}{2}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Multiples of 3: $\\{3, 6\\}$, so $1 - \\frac{2}{6} = \\frac{4}{6} = \\frac{2}{3}$.",
+                "check": [
+                  "1 - Rational(2,6) == Rational(2,3)"
+                ]
+              },
+              {
+                "prompt": "A wheel: $P(\\text{jackpot}) = 0.02$. Chance of NO jackpot?",
+                "options": [
+                  "$0.98$",
+                  "$0.02$",
+                  "$0.5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$1 - 0.02 = 0.98$.",
+                "check": [
+                  "1 - Rational(2,100) == Rational(98,100)"
+                ]
+              },
+              {
+                "prompt": "Spinner sections: $4$ red, $2$ green, $2$ yellow (equal sizes). $P(\\text{green or yellow})$?",
+                "options": [
+                  "$\\frac{1}{2}$",
+                  "$\\frac{1}{4}$",
+                  "$\\frac{3}{4}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{2}{8} + \\frac{2}{8} = \\frac{4}{8} = \\frac{1}{2}$.",
+                "check": [
+                  "Rational(2,8) + Rational(2,8) == Rational(1,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The birthday bet",
+            "body": "In a class of just $23$ people, the chance that two share a birthday is about $50.7\\%$ — and the only sane way to compute it is the complement: find P(all 23 birthdays DIFFERENT), then subtract from 1. Direct counting of shared-birthday cases is a nightmare; “one minus none” does it in a line. The complement rule turns bar bets into arithmetic."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$P(\\text{not } A) = 1 - P(A)$ — happening and not share the whole 1.",
+              "“At least one” → compute “none,” subtract from 1.",
+              "Add probabilities only for events that can't co-occur."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "compound-events",
+      "title": "Compound Events",
+      "concreteComparison": "What's the chance of flipping heads AND rolling a $6$? The coin doesn't care what the die does — the events are **independent** — so the chances multiply: $\\frac{1}{2} \\times \\frac{1}{6} = \\frac{1}{12}$. Check it against the full table of $12$ outcomes: exactly one is (H, 6). Multiplication is just the sample space, compressed.",
+      "objective": "Compute probabilities of compound events using tables, trees, and the multiplication rule for independent events.",
+      "concept": [
+        "A **compound event** involves two or more stages: flip AND roll, spin AND spin, draw AND draw.",
+        "For **independent** stages (one outcome doesn't change the other's chances), probabilities MULTIPLY: $P(A \\text{ then } B) = P(A) \\times P(B)$.",
+        "The rule is the counting principle wearing probability clothes: favorable ways multiply AND total ways multiply, so the fractions multiply.",
+        "Drawing WITHOUT replacement breaks independence: after taking a red marble out, the bag has changed. Adjust the second fraction to the new contents.",
+        "Trees carry the fractions: each branch holds its probability, and a path's probability is the product along it."
+      ],
+      "keyIdea": "Independent stages multiply: $P(A \\text{ and } B) = P(A) \\times P(B)$; without replacement, update the second fraction.",
+      "facts": [
+        {
+          "title": "Multiplication rule",
+          "explanation": "For independent events — each stage keeps its own chances.",
+          "latex": "$P(A \\text{ and } B) = P(A) \\cdot P(B)$"
+        },
+        {
+          "title": "Without replacement",
+          "explanation": "Removing an object shifts every later probability.",
+          "latex": "second draw uses the CHANGED bag"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "prb5-we1",
+          "statement": "Find $P(\\text{heads and a } 6)$ for a coin flip and a die roll.",
+          "solution": "Independent: $\\frac{1}{2} \\times \\frac{1}{6} = \\frac{1}{12}$.",
+          "check": [
+            "Rational(1,2)*Rational(1,6) == Rational(1,12)"
+          ]
+        },
+        {
+          "id": "prb5-we2",
+          "statement": "A spinner lands on red with probability $\\frac{2}{5}$. Find $P(\\text{red on both of two spins})$.",
+          "solution": "$\\frac{2}{5} \\times \\frac{2}{5} = \\frac{4}{25}$.",
+          "check": [
+            "Rational(2,5)*Rational(2,5) == Rational(4,25)"
+          ]
+        },
+        {
+          "id": "prb5-we3",
+          "statement": "A bag holds $3$ red and $2$ blue marbles. Two are drawn without replacement. Find $P(\\text{both red})$.",
+          "solution": "First red: $\\frac{3}{5}$. Then $2$ reds remain of $4$: $\\frac{2}{4}$. Product: $\\frac{3}{5} \\times \\frac{1}{2} = \\frac{3}{10}$.",
+          "check": [
+            "Rational(3,5)*Rational(2,4) == Rational(3,10)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding when the question says AND.",
+          "correction": "P(heads AND 6) multiplies to 1/12. Adding 1/2 + 1/6 = 2/3 answers a different (and impossible-to-name) question.",
+          "authored": true
+        },
+        {
+          "text": "Keeping the first fraction after drawing without replacement.",
+          "correction": "Once a red leaves the bag, the second draw sees 2 red of 4 — not 3 of 5. Update before multiplying.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "prb5-t1",
+          "statement": "Two dice: $P(\\text{both show } 6)$?",
+          "solution": "$\\frac{1}{6} \\times \\frac{1}{6} = \\frac{1}{36}$.",
+          "check": [
+            "Rational(1,6)*Rational(1,6) == Rational(1,36)"
+          ]
+        },
+        {
+          "id": "prb5-t2",
+          "statement": "A drawer has $4$ black and $6$ white socks. Two drawn without replacement: $P(\\text{both white})$?",
+          "solution": "$\\frac{6}{10} \\times \\frac{5}{9} = \\frac{30}{90} = \\frac{1}{3}$.",
+          "check": [
+            "Rational(6,10)*Rational(5,9) == Rational(1,3)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The rule",
+            "title": "AND means multiply",
+            "beats": [
+              "Independent stages don't influence each other.",
+              "$P(H \\text{ and } 6) = \\frac{1}{2} \\times \\frac{1}{6} = \\frac{1}{12}$.",
+              "Verify in the $12$-cell table: one (H, 6) cell. ✓",
+              "The rule IS the sample space, compressed."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The catch",
+            "title": "Replacement changes everything",
+            "beats": [
+              "Draw and PUT BACK: the bag resets — independent.",
+              "Draw and KEEP: the bag changed — dependent.",
+              "$3$ red of $5$, then $2$ red of $4$.",
+              "$\\frac{3}{5} \\times \\frac{2}{4} = \\frac{3}{10}$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Trees with weights",
+            "title": "Fractions ride the branches",
+            "beats": [
+              "Label each branch with its probability.",
+              "Multiply along a path for that path's chance.",
+              "Add across paths that satisfy the event.",
+              "All the leaves together always total $1$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Two free throws",
+            "prompt": "A player makes free throws with probability $0.8$. $P(\\text{makes both of two})$? (Independent.)",
+            "options": [
+              "$0.64$",
+              "$0.8$",
+              "$1.6$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$0.8 \\times 0.8 = 0.64$. (Adding gives the impossible 1.6!)",
+            "check": [
+              "Rational(8,10)*Rational(8,10) == Rational(64,100)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Chains of chance",
+            "intro": "Multiply along; update after removals.",
+            "examples": [
+              {
+                "prompt": "$P(\\text{three heads in a row})$?",
+                "steps": [
+                  "$\\frac{1}{2} \\times \\frac{1}{2} \\times \\frac{1}{2}$.",
+                  "$= \\frac{1}{8}$.",
+                  "Matches the $2^3 = 8$ sample space: one HHH."
+                ],
+                "answer": "$\\frac{1}{8}$",
+                "check": [
+                  "Rational(1,2)**3 == Rational(1,8)"
+                ]
+              },
+              {
+                "prompt": "A quiz has two multiple-choice questions with $4$ options each. $P(\\text{guessing both right})$?",
+                "steps": [
+                  "Each: $\\frac{1}{4}$.",
+                  "$\\frac{1}{4} \\times \\frac{1}{4}$.",
+                  "$= \\frac{1}{16}$."
+                ],
+                "answer": "$\\frac{1}{16}$",
+                "check": [
+                  "Rational(1,4)*Rational(1,4) == Rational(1,16)"
+                ]
+              },
+              {
+                "prompt": "Cards: two drawn without replacement. $P(\\text{both hearts})$?",
+                "steps": [
+                  "First: $\\frac{13}{52} = \\frac{1}{4}$.",
+                  "Then $12$ hearts of $51$: $\\frac{12}{51} = \\frac{4}{17}$.",
+                  "$\\frac{1}{4} \\times \\frac{4}{17} = \\frac{1}{17}$."
+                ],
+                "answer": "$\\frac{1}{17}$",
+                "check": [
+                  "Rational(13,52)*Rational(12,51) == Rational(1,17)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Multiply wisely",
+            "intro": "Independent? Multiply as-is. Removal? Update first.",
+            "problems": [
+              {
+                "prompt": "Spinner: $P(\\text{blue}) = \\frac{1}{3}$. $P(\\text{blue twice in a row})$?",
+                "options": [
+                  "$\\frac{1}{9}$",
+                  "$\\frac{2}{3}$",
+                  "$\\frac{2}{6}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{1}{3} \\times \\frac{1}{3} = \\frac{1}{9}$.",
+                "check": [
+                  "Rational(1,3)*Rational(1,3) == Rational(1,9)"
+                ]
+              },
+              {
+                "prompt": "A bag: $5$ green, $3$ purple. Two drawn WITHOUT replacement. $P(\\text{both purple})$?",
+                "options": [
+                  "$\\frac{3}{28}$",
+                  "$\\frac{9}{64}$",
+                  "$\\frac{3}{32}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{3}{8} \\times \\frac{2}{7} = \\frac{6}{56} = \\frac{3}{28}$.",
+                "check": [
+                  "Rational(3,8)*Rational(2,7) == Rational(3,28)"
+                ]
+              },
+              {
+                "prompt": "Coin and two dice: $P(\\text{tails and double sixes})$?",
+                "options": [
+                  "$\\frac{1}{72}$",
+                  "$\\frac{1}{48}$",
+                  "$\\frac{1}{24}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{1}{2} \\times \\frac{1}{36} = \\frac{1}{72}$.",
+                "check": [
+                  "Rational(1,2)*Rational(1,36) == Rational(1,72)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The chevalier's expensive mistake",
+            "body": "The 17th-century gambler Chevalier de Méré profited betting he'd roll at least one $6$ in four throws ($P \\approx 0.52$), then went broke betting on double-sixes in $24$ throws of two dice ($P \\approx 0.49$). The difference between 52% and 49% — computed with exactly the multiplication and complement rules you now own — was the question that launched Pascal and Fermat's letters. His losses funded probability theory."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "AND for independent events multiplies the probabilities.",
+              "Without replacement, the second fraction sees the changed bag.",
+              "Trees: multiply along paths, add across qualifying paths."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "simulations-and-predictions",
+      "title": "Simulations & Predictions",
+      "concreteComparison": "A cereal brand puts $1$ of $6$ different toys in each box. How many boxes until you collect all six? Don't buy cereal — roll a die! Each roll “is” a box; keep rolling until all six faces appear, count the rolls, repeat fifty times, average. That's a **simulation**: using a random device you control to answer a question about randomness you don't.",
+      "objective": "Design simple simulations with dice, coins, and random digits, and use probability to predict expected counts.",
+      "concept": [
+        "A **simulation** replaces a real random situation with a matching model: a die for six equally likely toys, a coin for boy/girl, digits 0–9 for a $30\\%$ chance (say 1–3 = success).",
+        "The match must preserve the probabilities: a $30\\%$ free-throw shooter is NOT a coin — use digits 1–3 out of 0–9, or a spinner with $30\\%$ shaded.",
+        "**Prediction** runs the other way: expected count $=$ probability $\\times$ number of trials. Expect $\\frac{1}{6} \\times 300 = 50$ sixes in $300$ rolls.",
+        "Simulations answer questions too tangled for formulas (like the cereal-toy collector) — and more repetitions make the estimate steadier, exactly like experimental probability."
+      ],
+      "keyIdea": "Model the chances faithfully, repeat many times, average; predictions run P × trials.",
+      "facts": [
+        {
+          "title": "Expected count",
+          "explanation": "Probability scaled up to a prediction.",
+          "latex": "$P \\times \\text{trials}$"
+        },
+        {
+          "title": "Model faithfully",
+          "explanation": "The simulation device must match the real probabilities.",
+          "latex": "30% ≠ a coin"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "prb6-we1",
+          "statement": "A store expects $2\\%$ of $1{,}500$ customers to return items. Predict the number of returns.",
+          "solution": "$0.02 \\times 1500 = 30$ returns.",
+          "check": [
+            "Rational(2,100)*1500 == 30"
+          ]
+        },
+        {
+          "id": "prb6-we2",
+          "statement": "Design a simulation for a $40\\%$ free-throw shooter using digits $0$–$9$.",
+          "solution": "Let digits $1$–$4$ mean “make” ($4$ of $10 = 40\\%$) and $5$–$9$, $0$ mean “miss.” Each digit is one shot.",
+          "check": [
+            "Rational(4,10) == Rational(40,100)"
+          ]
+        },
+        {
+          "id": "prb6-we3",
+          "statement": "In $60$ rolls of a fair die, how many results of $5$ or $6$ do you expect?",
+          "solution": "$P = \\frac{2}{6} = \\frac{1}{3}$; expected $= \\frac{1}{3} \\times 60 = 20$.",
+          "check": [
+            "Rational(2,6)*60 == 20"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Expecting the prediction to hit exactly.",
+          "correction": "Expected 30 returns means AROUND 30 — 27 or 34 are unremarkable. Expected counts are centers, not guarantees.",
+          "authored": true
+        },
+        {
+          "text": "Using a device with the wrong probabilities.",
+          "correction": "Flipping a coin to simulate a 30% event bakes in 50%. Match the model to the true chance before a single trial.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "prb6-t1",
+          "statement": "A raffle gives each ticket a $\\frac{1}{25}$ chance of a prize. Predict prizes for $200$ tickets.",
+          "solution": "$\\frac{1}{25} \\times 200 = 8$ prizes.",
+          "check": [
+            "Rational(1,25)*200 == 8"
+          ]
+        },
+        {
+          "id": "prb6-t2",
+          "statement": "How would you simulate a $25\\%$ chance with a standard deck of cards?",
+          "solution": "Draw a card: hearts (13 of 52 = 25%) means success. Replace and shuffle between trials.",
+          "check": [
+            "Rational(13,52) == Rational(25,100)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Rent-a-randomness",
+            "beats": [
+              "Real question: cereal toys, weather, free throws.",
+              "Stand-in device: dice, coins, digits, spinners.",
+              "Requirement: SAME probabilities.",
+              "Then repeat, record, average."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Matching",
+            "title": "Build the model right",
+            "beats": [
+              "$\\frac{1}{6}$ chance → one die face.",
+              "$30\\%$ → digits 1–3 of 0–9, or 3 shaded tenths of a spinner.",
+              "$25\\%$ → one suit of a card deck.",
+              "The device is wrong ⇒ every conclusion is wrong."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Forward gear",
+            "title": "Predicting counts",
+            "beats": [
+              "Expected count $= P \\times$ trials.",
+              "$300$ rolls: expect $\\frac{1}{6} \\times 300 = 50$ sixes.",
+              "Reality wobbles around the expectation.",
+              "Bigger trial counts → relatively smaller wobble."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Scale it up",
+            "prompt": "A vaccine side effect occurs with probability $0.5\\%$. Predict cases among $4{,}000$ patients.",
+            "options": [
+              "$20$",
+              "$200$",
+              "$2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$0.005 \\times 4000 = 20$.",
+            "check": [
+              "Rational(5,1000)*4000 == 20"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Design and predict",
+            "intro": "Model, then run — or multiply, then expect.",
+            "examples": [
+              {
+                "prompt": "Simulate: a couple plans $3$ children. Estimate $P(\\text{all girls})$ with coins — and check with theory.",
+                "steps": [
+                  "Model: 3 coin flips = one family; heads = girl.",
+                  "Run many families, count all-heads.",
+                  "Theory check: $\\frac{1}{2}^3 = \\frac{1}{8} = 12.5\\%$."
+                ],
+                "answer": "$\\frac{1}{8}$",
+                "check": [
+                  "Rational(1,2)**3 == Rational(1,8)"
+                ]
+              },
+              {
+                "prompt": "A pop quiz has $5$ true/false questions. Predict how many a pure guesser gets right — and simulate.",
+                "steps": [
+                  "Expected: $\\frac{1}{2} \\times 5 = 2.5$ correct.",
+                  "Simulate: 5 coin flips per quiz, heads = correct.",
+                  "Averages over many quizzes settle near 2.5."
+                ],
+                "answer": "$2.5$",
+                "check": [
+                  "Rational(1,2)*5 == Rational(5,2)"
+                ]
+              },
+              {
+                "prompt": "Airline data: $6\\%$ of booked passengers no-show. A flight books $250$. Predict no-shows.",
+                "steps": [
+                  "$0.06 \\times 250$.",
+                  "$= 15$ passengers.",
+                  "This is why airlines oversell — and occasionally apologize."
+                ],
+                "answer": "$15$",
+                "check": [
+                  "Rational(6,100)*250 == 15"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Your turn to model",
+            "intro": "Match the device; multiply for predictions.",
+            "problems": [
+              {
+                "prompt": "Best device for simulating a $\\frac{1}{6}$ chance?",
+                "options": [
+                  "One roll of a die",
+                  "One coin flip",
+                  "Two coin flips"
+                ],
+                "correctIndex": 0,
+                "explanation": "A die face has exactly $\\frac{1}{6}$ probability; coins give quarters and halves.",
+                "check": [
+                  "Rational(1,6) < Rational(1,4)"
+                ]
+              },
+              {
+                "prompt": "Expect how many left-handers in a school of $800$, if $P(\\text{left-handed}) = 0.1$?",
+                "options": [
+                  "$80$",
+                  "$8$",
+                  "$160$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$0.1 \\times 800 = 80$.",
+                "check": [
+                  "Rational(1,10)*800 == 80"
+                ]
+              },
+              {
+                "prompt": "A simulation of $50$ trials gave $14$ successes. The experimental estimate of $P$ is…",
+                "options": [
+                  "$0.28$",
+                  "$0.14$",
+                  "$0.5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{14}{50} = 0.28$.",
+                "check": [
+                  "Rational(14,50) == Rational(28,100)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Simulations built the bomb and the forecast",
+            "body": "Modern simulation — the “Monte Carlo method,” named for the casino — was invented in the 1940s by physicists who needed answers no formula could give, and its first big run used one of the earliest computers. Today the same idea forecasts hurricanes, prices insurance, and tests game balance: when the math gets too tangled, scientists roll a few million dice."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A simulation is a faithful random stand-in, repeated many times.",
+              "The device must match the true probabilities exactly.",
+              "Expected count $= P \\times$ trials — a center to wobble around."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "prb-pr1",
+      "statement": "A bag holds $6$ red, $3$ blue, and $3$ yellow marbles. Find $P(\\text{red})$ as a fraction, decimal, and percent.",
+      "solution": "$\\frac{6}{12} = \\frac{1}{2} = 0.5 = 50\\%$.",
+      "check": [
+        "Rational(6,12) == Rational(1,2)"
+      ]
+    },
+    {
+      "id": "prb-pr2",
+      "statement": "Two coins are flipped. Find $P(\\text{at least one head})$.",
+      "solution": "Complement of no heads (TT): $1 - \\frac{1}{4} = \\frac{3}{4}$.",
+      "check": [
+        "1 - Rational(1,4) == Rational(3,4)"
+      ]
+    },
+    {
+      "id": "prb-pr3",
+      "statement": "Two dice are rolled. Find $P(\\text{sum} = 4)$.",
+      "solution": "$(1,3),(2,2),(3,1)$: $\\frac{3}{36} = \\frac{1}{12}$.",
+      "check": [
+        "Rational(3,36) == Rational(1,12)"
+      ]
+    },
+    {
+      "id": "prb-pr4",
+      "statement": "A spinner landed on green $27$ times in $90$ spins. Find the experimental probability of green.",
+      "solution": "$\\frac{27}{90} = \\frac{3}{10} = 0.3$.",
+      "check": [
+        "Rational(27,90) == Rational(3,10)"
+      ]
+    },
+    {
+      "id": "prb-pr5",
+      "statement": "One die: find $P(\\text{even or a } 5)$.",
+      "solution": "No overlap: $\\frac{3}{6} + \\frac{1}{6} = \\frac{4}{6} = \\frac{2}{3}$.",
+      "check": [
+        "Rational(3,6) + Rational(1,6) == Rational(2,3)"
+      ]
+    },
+    {
+      "id": "prb-pr6",
+      "statement": "A coin is flipped and a spinner with $5$ equal sections is spun. Find $P(\\text{heads and section } 1)$.",
+      "solution": "$\\frac{1}{2} \\times \\frac{1}{5} = \\frac{1}{10}$.",
+      "check": [
+        "Rational(1,2)*Rational(1,5) == Rational(1,10)"
+      ]
+    },
+    {
+      "id": "prb-pr7",
+      "statement": "A box has $4$ good and $2$ defective bulbs. Two drawn without replacement: $P(\\text{both good})$?",
+      "solution": "$\\frac{4}{6} \\times \\frac{3}{5} = \\frac{12}{30} = \\frac{2}{5}$.",
+      "check": [
+        "Rational(4,6)*Rational(3,5) == Rational(2,5)"
+      ]
+    },
+    {
+      "id": "prb-pr8",
+      "statement": "About $12\\%$ of visitors buy a souvenir. Predict buyers among $650$ visitors.",
+      "solution": "$0.12 \\times 650 = 78$.",
+      "check": [
+        "Rational(12,100)*650 == 78"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "prb-ty1",
+      "statement": "A letter is chosen from PROBABILITY. Find $P(\\text{B})$.",
+      "solution": "The word has $11$ letters; B appears twice: $\\frac{2}{11}$.",
+      "check": [
+        "2 + 9 == 11"
+      ]
+    },
+    {
+      "id": "prb-ty2",
+      "statement": "Two dice: which is more likely, a sum of $6$ or a sum of $9$? Show the counts.",
+      "solution": "Sum 6: five ways; sum 9: four ways. Sum 6 is more likely ($\\frac{5}{36} > \\frac{4}{36}$).",
+      "check": [
+        "Rational(5,36) > Rational(4,36)"
+      ]
+    },
+    {
+      "id": "prb-ty3",
+      "statement": "A die is rolled $240$ times; a $2$ appears $80$ times. Compare experimental and theoretical probability. Fair?",
+      "solution": "Experimental: $\\frac{80}{240} = \\frac{1}{3}$; theory: $\\frac{1}{6}$. Twice the expectation over 240 rolls — strong evidence the die is loaded.",
+      "check": [
+        "Rational(80,240) == Rational(1,3)",
+        "Rational(1,3) > Rational(1,6)"
+      ]
+    },
+    {
+      "id": "prb-ty4",
+      "statement": "The chance of a delayed bus is $15\\%$. Find the chance it's on time, and predict on-time days out of $40$ school days.",
+      "solution": "$P(\\text{on time}) = 0.85$; expected: $0.85 \\times 40 = 34$ days.",
+      "check": [
+        "1 - Rational(15,100) == Rational(85,100)",
+        "Rational(85,100)*40 == 34"
+      ]
+    },
+    {
+      "id": "prb-ty5",
+      "statement": "A drawer has $5$ blue and $3$ red pens. Two taken without replacement. Find $P(\\text{blue then red})$.",
+      "solution": "$\\frac{5}{8} \\times \\frac{3}{7} = \\frac{15}{56}$.",
+      "check": [
+        "Rational(5,8)*Rational(3,7) == Rational(15,56)"
+      ]
+    },
+    {
+      "id": "prb-ty6",
+      "statement": "Design a fair simulation for a $70\\%$ chance using digits $0$–$9$, and predict successes in $300$ trials.",
+      "solution": "Let digits $1$–$7$ mean success ($7$ of $10$). Expected: $0.7 \\times 300 = 210$.",
+      "check": [
+        "Rational(7,10)*300 == 210"
+      ]
+    }
+  ]
+}
