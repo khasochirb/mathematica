@@ -5,7 +5,7 @@
 // ramps up. Example, Equations: x+5=10 (easy) → 2x+7x=18 (medium) →
 // 2x+3=11 (hard, two-step).
 
-import { getGrade6Topics, getGeometrySpine, getGrade7Spine, getGrade8Spine, getGrade10Spine, getGrade11Spine, getGrade12Spine } from "@/lib/genmath-lessons";
+import { getGrade6Topics, getGeometrySpine, getGrade7Spine, getGrade8Spine, getGrade9Spine, getGrade10Spine, getGrade11Spine, getGrade12Spine } from "@/lib/genmath-lessons";
 
 export type PlacementQuestion = {
   id: string;
@@ -347,10 +347,52 @@ const G7_CURATED: Curated[] = [
   Q("sampling-and-statistics", 3, "Data: $6, 8, 10, 12, 14$ (mean $10$). The MAD is —", ["$2.4$", "$4$", "$10$", "$2$"], 0, "Distances $4,2,0,2,4$ average to $\\tfrac{12}{5} = 2.4$."),
 ];
 
+
+// ---------------------------------------------------------------------------
+// Grade 9 — one tiered question per difficulty for each of the 7 topics.
+// ---------------------------------------------------------------------------
+const G9_CURATED: Curated[] = [
+  // 1. Equations & Formulas
+  Q("equations-and-formulas", 1, "Solve $3x - 4 = 2x + 6$.", ["$x = 10$", "$x = 2$", "$x = -10$", "$x = 5$"], 0, "Subtract $2x$: $x - 4 = 6$, so $x = 10$."),
+  Q("equations-and-formulas", 2, "Solve $2(x - 3) = 4x + 8$ .", ["$x = -7$", "$x = 7$", "$x = -1$", "$x = 1$"], 0, "$2x - 6 = 4x + 8 \\Rightarrow -14 = 2x \\Rightarrow x = -7$."),
+  Q("equations-and-formulas", 3, "Solve $A = \\tfrac{1}{2}bh$ for $h$.", ["$h = \\tfrac{2A}{b}$", "$h = \\tfrac{A}{2b}$", "$h = 2Ab$", "$h = \\tfrac{b}{2A}$"], 0, "Multiply by 2, divide by $b$: $h = \\tfrac{2A}{b}$."),
+
+  // 2. Inequalities & Absolute Value
+  Q("inequalities-and-absolute-value", 1, "Which values satisfy $-2 < x \\le 3$?", ["$0$ and $3$", "$-2$ and $3$", "$-3$ and $0$", "$4$ and $0$"], 0, "$0$ is inside; $3$ is included by $\\le$. $-2$ itself is excluded."),
+  Q("inequalities-and-absolute-value", 2, "Solve $|x| = 5$.", ["$x = 5$ or $x = -5$", "$x = 5$ only", "$x = -5$ only", "no solution"], 0, "Two numbers sit 5 from zero: $\\pm 5$."),
+  Q("inequalities-and-absolute-value", 3, "Solve $|x - 2| < 3$.", ["$-1 < x < 5$", "$x < 5$", "$x < -1$ or $x > 5$", "$-3 < x < 3$"], 0, "Within 3 of 2: $2 - 3 < x < 2 + 3$."),
+
+  // 3. Introduction to Functions
+  Q("introduction-to-functions", 1, "If $f(x) = 2x + 1$, find $f(3)$.", ["$7$", "$6$", "$5$", "$9$"], 0, "$f(3) = 2(3) + 1 = 7$."),
+  Q("introduction-to-functions", 2, "Which relation is NOT a function?", ["$\\{(1,2), (1,3), (2,4)\\}$", "$\\{(1,2), (2,2), (3,2)\\}$", "$y = x^2$", "$y = 3x - 1$"], 0, "Input $1$ has two outputs — it fails the one-output rule."),
+  Q("introduction-to-functions", 3, "The domain of $f(x) = \\tfrac{1}{x - 4}$ is —", ["all reals except $4$", "all reals", "$x > 4$", "all reals except $0$"], 0, "Only $x = 4$ makes the denominator zero."),
+
+  // 4. Linear Models & Variation
+  Q("linear-models-and-variation", 1, "$y$ varies directly with $x$, and $y = 12$ when $x = 4$. Find $k$.", ["$3$", "$48$", "$8$", "$\\tfrac{1}{3}$"], 0, "$k = \\tfrac{y}{x} = 3$."),
+  Q("linear-models-and-variation", 2, "$y$ varies inversely with $x$: $y = 6$ when $x = 4$. Find $y$ when $x = 8$.", ["$3$", "$12$", "$2$", "$48$"], 0, "$xy = 24$ stays constant: $y = 24 \\div 8 = 3$."),
+  Q("linear-models-and-variation", 3, "A gym costs $\\$25$ to join plus $\\$15$ per month. Which model gives the total cost after $m$ months?", ["$C = 15m + 25$", "$C = 25m + 15$", "$C = 40m$", "$C = 15m - 25$"], 0, "Per-month rate multiplies $m$; the joining fee adds once."),
+
+  // 5. Systems of Inequalities
+  Q("inequalities-in-two-variables", 1, "Is $(1, 5)$ a solution of $y > 2x + 1$?", ["Yes — $5 > 3$", "No — $5 < 3$", "Only on the line", "Can't tell"], 0, "Substitute: $5 > 2(1) + 1 = 3$. ✓"),
+  Q("inequalities-in-two-variables", 2, "The graph of $y \\le x - 2$ uses —", ["a solid line, shaded below", "a dashed line, shaded below", "a solid line, shaded above", "a dashed line, shaded above"], 0, "$\\le$ includes the line (solid) and takes the lesser side (below)."),
+  Q("inequalities-in-two-variables", 3, "Which point satisfies BOTH $y \\ge x$ and $y < 4$?", ["$(1, 2)$", "$(3, 1)$", "$(0, 5)$", "$(4, 4)$"], 0, "$2 \\ge 1$ ✓ and $2 < 4$ ✓; the others fail one test."),
+
+  // 6. Piecewise & Absolute-Value Graphs
+  Q("piecewise-and-absolute-value-graphs", 1, "The graph of $y = |x|$ looks like —", ["a V with its point at the origin", "a straight line", "a U-shaped curve", "a circle"], 0, "Absolute value folds the line $y = x$ upward into a V."),
+  Q("piecewise-and-absolute-value-graphs", 2, "The vertex of $y = |x - 3| + 1$ is —", ["$(3, 1)$", "$(-3, 1)$", "$(3, -1)$", "$(1, 3)$"], 0, "Inside shifts right 3; outside shifts up 1."),
+  Q("piecewise-and-absolute-value-graphs", 3, "For $f(x) = \\begin{cases} x + 1 & x < 0 \\\\ 2x & x \\ge 0 \\end{cases}$, find $f(-2) + f(3)$.", ["$5$", "$7$", "$4$", "$1$"], 0, "$f(-2) = -1$ (first piece), $f(3) = 6$ (second): $-1 + 6 = 5$."),
+
+  // 7. Data Distributions
+  Q("data-distributions", 1, "The median of $2, 4, 6, 8, 10$ is —", ["$6$", "$5$", "$8$", "$30$"], 0, "The middle of the sorted list."),
+  Q("data-distributions", 2, "For the data $1, 3, 5, 7, 9, 11, 13, 15$, the first quartile $Q_1$ is —", ["$4$", "$3$", "$5$", "$8$"], 0, "Lower half $1,3,5,7$: median $= \\tfrac{3+5}{2} = 4$."),
+  Q("data-distributions", 3, "A data set has $Q_1 = 20$ and $Q_3 = 32$. The IQR is —", ["$12$", "$52$", "$26$", "$6$"], 0, "IQR $= Q_3 - Q_1 = 12$."),
+];
+
 let cache: PlacementQuestion[] | null = null;
 let geoCache: PlacementQuestion[] | null = null;
 let g7Cache: PlacementQuestion[] | null = null;
 let g8Cache: PlacementQuestion[] | null = null;
+let g9Cache: PlacementQuestion[] | null = null;
 let g10Cache: PlacementQuestion[] | null = null;
 let g11Cache: PlacementQuestion[] | null = null;
 let g12Cache: PlacementQuestion[] | null = null;
@@ -381,6 +423,13 @@ export function getGrade8PlacementBank(): PlacementQuestion[] {
   const titleBySlug = new Map(getGrade8Spine().map((t) => [t.slug, t.title]));
   g8Cache = G8_CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
   return g8Cache;
+}
+
+export function getGrade9PlacementBank(): PlacementQuestion[] {
+  if (g9Cache) return g9Cache;
+  const titleBySlug = new Map(getGrade9Spine().map((t) => [t.slug, t.title]));
+  g9Cache = G9_CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
+  return g9Cache;
 }
 
 export function getGrade10PlacementBank(): PlacementQuestion[] {

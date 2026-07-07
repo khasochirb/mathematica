@@ -249,6 +249,51 @@ export const GRADE8_SPINE: GradeSpineEntry[] = [
   },
 ];
 
+export const GRADE9_SPINE: GradeSpineEntry[] = [
+  {
+    slug: "equations-and-formulas",
+    title: "Equations & Formulas",
+    blurb: "Multi-step equations with variables on both sides, special cases, and literal equations — solving formulas for any letter.",
+    live: false,
+  },
+  {
+    slug: "inequalities-and-absolute-value",
+    title: "Inequalities & Absolute Value",
+    blurb: "Compound inequalities (and/or), absolute-value equations, and absolute-value inequalities — distances on the number line.",
+    live: false,
+  },
+  {
+    slug: "introduction-to-functions",
+    title: "Introduction to Functions",
+    blurb: "Function notation, domain and range, the vertical line test, and reading graphs qualitatively.",
+    live: false,
+  },
+  {
+    slug: "linear-models-and-variation",
+    title: "Linear Models & Variation",
+    blurb: "Writing linear models from context, direct variation revisited, and inverse variation \u2014 y = k/x, the other proportionality.",
+    live: false,
+  },
+  {
+    slug: "inequalities-in-two-variables",
+    title: "Systems of Inequalities",
+    blurb: "Graphing two-variable inequalities, shading half-planes, and systems of inequalities as feasible regions.",
+    live: false,
+  },
+  {
+    slug: "piecewise-and-absolute-value-graphs",
+    title: "Piecewise & Absolute-Value Graphs",
+    blurb: "The V of y = |x|, shifts of it, and functions defined in pieces \u2014 including step functions.",
+    live: false,
+  },
+  {
+    slug: "data-distributions",
+    title: "Data Distributions",
+    blurb: "Histograms, box plots, quartiles and IQR \u2014 the shape of data and how to compare distributions.",
+    live: false,
+  },
+];
+
 export const GRADE10_SPINE: GradeSpineEntry[] = [
   {
     slug: "polynomials-and-factoring",
@@ -424,6 +469,8 @@ const grade7Topics: GenMathTopic[] = [
   samplingAndStatistics as GenMathTopic,
 ];
 
+const grade9Topics: GenMathTopic[] = [];
+
 const grade8Topics: GenMathTopic[] = [
   realNumberSystem as GenMathTopic,
   exponentsScientific as GenMathTopic,
@@ -436,7 +483,7 @@ const grade8Topics: GenMathTopic[] = [
 
 // Every authored General-Math topic across grades. Topic slugs are unique
 // across grades, so slug lookups stay unambiguous.
-const allGenMathTopics: GenMathTopic[] = [...grade6Topics, ...grade7Topics, ...grade8Topics, ...grade10Topics, ...grade11Topics, ...grade12Topics];
+const allGenMathTopics: GenMathTopic[] = [...grade6Topics, ...grade7Topics, ...grade8Topics, ...grade9Topics, ...grade10Topics, ...grade11Topics, ...grade12Topics];
 
 // ---------------------------------------------------------------------------
 // Public API
@@ -446,7 +493,7 @@ const ALL_GRADES: GradeInfo[] = [
   { grade: 6, active: true },
   { grade: 7, active: true },
   { grade: 8, active: true },
-  { grade: 9, active: false },
+  { grade: 9, active: true },
   { grade: 10, active: true },
   { grade: 11, active: true },
   { grade: 12, active: true },
@@ -474,6 +521,14 @@ export function getGrade8Topics(): GenMathTopic[] {
 
 export function getGrade8Spine(): GradeSpineEntry[] {
   return GRADE8_SPINE;
+}
+
+export function getGrade9Topics(): GenMathTopic[] {
+  return grade9Topics;
+}
+
+export function getGrade9Spine(): GradeSpineEntry[] {
+  return GRADE9_SPINE;
 }
 
 export function getGrade10Topics(): GenMathTopic[] {
