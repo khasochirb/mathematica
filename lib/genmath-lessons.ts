@@ -59,6 +59,8 @@ import expressionsAndEquations from "@/data/genmath/6/expressions-and-equations.
 import coordinatePlane from "@/data/genmath/6/coordinate-plane.json";
 import geometryAreaVolume from "@/data/genmath/6/geometry-area-volume.json";
 import dataAndStatistics from "@/data/genmath/6/data-and-statistics.json";
+// Grade 7 topic JSON imports (added as each topic is authored + published).
+import proportionalRelationships from "@/data/genmath/7/proportional-relationships.json";
 // Grade 8 topic JSON imports (added as each topic is authored + published).
 import realNumberSystem from "@/data/genmath/8/the-real-number-system.json";
 import exponentsScientific from "@/data/genmath/8/exponents-and-scientific-notation.json";
@@ -156,7 +158,7 @@ export const GRADE7_SPINE: GradeSpineEntry[] = [
     slug: "proportional-relationships",
     title: "Proportional Relationships",
     blurb: "Unit rates with fractions, the constant of proportionality, y = kx, and reading proportionality from tables and graphs.",
-    live: false,
+    live: true,
   },
   {
     slug: "rational-number-operations",
@@ -406,7 +408,9 @@ const grade10Topics: GenMathTopic[] = [
   probabilityAndCounting as GenMathTopic,
 ];
 
-const grade7Topics: GenMathTopic[] = [];
+const grade7Topics: GenMathTopic[] = [
+  proportionalRelationships as GenMathTopic,
+];
 
 const grade8Topics: GenMathTopic[] = [
   realNumberSystem as GenMathTopic,

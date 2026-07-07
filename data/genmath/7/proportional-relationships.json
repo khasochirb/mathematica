@@ -1,0 +1,1614 @@
+{
+  "slug": "proportional-relationships",
+  "title": "Proportional Relationships",
+  "grade": 7,
+  "blurb": "Unit rates with fractions, the constant of proportionality, y = kx, and reading proportionality from tables and graphs.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "unit-rates-with-fractions",
+      "title": "Unit Rates with Fractions",
+      "concreteComparison": "You walk $\\frac{1}{2}$ mile in $\\frac{1}{4}$ hour. How fast is that? Not “half a mile per quarter hour” — nobody talks like that. You want miles per **one** hour: $\\frac{1}{2} \\div \\frac{1}{4} = 2$ miles per hour. A **unit rate** with fractions works exactly like one with whole numbers — you just have to divide fractions to get there.",
+      "objective": "Compute unit rates from ratios of fractions, using fraction division (keep–change–flip).",
+      "concept": [
+        "A **rate** compares two quantities with different units — miles and hours, dollars and pounds, cups and batches. A **unit rate** rewrites it as “how much per **one**”: per one hour, per one pound, per one batch.",
+        "To find a unit rate, divide: the quantity you're measuring goes on top, and you divide by the amount of the other quantity. $\\frac{1}{2}$ mile in $\\frac{1}{4}$ hour is $\\frac{1}{2} \\div \\frac{1}{4}$ miles per hour.",
+        "Dividing fractions is Grade 6 skill you already own: **keep** the first fraction, **change** ÷ to ×, **flip** the second. $\\frac{1}{2} \\div \\frac{1}{4} = \\frac{1}{2} \\times \\frac{4}{1} = 2$.",
+        "In Grade 7 the numbers in a rate are allowed to be fractions themselves — half miles, quarter hours, thirds of a cup. The recipe for the unit rate never changes: divide."
+      ],
+      "keyIdea": "Unit rate $= \\frac{\\text{amount}}{\\text{other amount}}$ — divide, even when both amounts are fractions.",
+      "facts": [
+        {
+          "title": "Unit rate = divide",
+          "explanation": "The unit rate is the first quantity divided by the second — whatever kinds of numbers they are.",
+          "latex": "$\\tfrac{1}{2} \\div \\tfrac{1}{4} = 2$"
+        },
+        {
+          "title": "Keep–change–flip still works",
+          "explanation": "Fraction division turns into multiplication by the reciprocal.",
+          "latex": "$\\tfrac{a}{b} \\div \\tfrac{c}{d} = \\tfrac{a}{b} \\times \\tfrac{d}{c}$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "prop1-we1",
+          "statement": "You walk $\\frac{1}{2}$ mile in $\\frac{1}{4}$ hour. Find your speed in miles per hour.",
+          "solution": "Speed $= \\frac{1}{2} \\div \\frac{1}{4} = \\frac{1}{2} \\times \\frac{4}{1} = 2$ miles per hour.",
+          "check": [
+            "Rational(1,2) / Rational(1,4) == 2"
+          ]
+        },
+        {
+          "id": "prop1-we2",
+          "statement": "A recipe uses $\\frac{3}{4}$ cup of sugar for $\\frac{1}{2}$ a batch. How much sugar per whole batch?",
+          "solution": "$\\frac{3}{4} \\div \\frac{1}{2} = \\frac{3}{4} \\times \\frac{2}{1} = \\frac{3}{2}$ cups per batch — that's $1\\frac{1}{2}$ cups.",
+          "check": [
+            "Rational(3,4) / Rational(1,2) == Rational(3,2)"
+          ]
+        },
+        {
+          "id": "prop1-we3",
+          "statement": "Cheese costs \\$9 for $\\frac{3}{4}$ pound. Find the price per pound.",
+          "solution": "$9 \\div \\frac{3}{4} = 9 \\times \\frac{4}{3} = 12$ — so \\$12 per pound.",
+          "check": [
+            "9 / Rational(3,4) == 12"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dividing in the wrong order.",
+          "correction": "Per **hour** means divide **by the hours**: miles $\\div$ hours. $\\frac{1}{2} \\div \\frac{1}{4}$, not $\\frac{1}{4} \\div \\frac{1}{2}$.",
+          "authored": true
+        },
+        {
+          "text": "Flipping the first fraction instead of the second.",
+          "correction": "Keep the FIRST, flip the SECOND: $\\frac{1}{2} \\div \\frac{1}{4} = \\frac{1}{2} \\times \\frac{4}{1}$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "prop1-t1",
+          "statement": "You jog $\\frac{2}{3}$ mile in $\\frac{1}{6}$ hour. Find your speed in miles per hour.",
+          "solution": "$\\frac{2}{3} \\div \\frac{1}{6} = \\frac{2}{3} \\times \\frac{6}{1} = 4$ miles per hour.",
+          "check": [
+            "Rational(2,3) / Rational(1,6) == 4"
+          ]
+        },
+        {
+          "id": "prop1-t2",
+          "statement": "A tap fills $\\frac{5}{8}$ of a bucket in $\\frac{1}{4}$ minute. How many buckets per minute?",
+          "solution": "$\\frac{5}{8} \\div \\frac{1}{4} = \\frac{5}{8} \\times \\frac{4}{1} = \\frac{5}{2}$ buckets per minute.",
+          "check": [
+            "Rational(5,8) / Rational(1,4) == Rational(5,2)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "rateMeter",
+            "eyebrow": "Play with it",
+            "title": "A rate is a division",
+            "teach": "Slide the two amounts and watch the unit rate update. The rate is always **top divided by bottom** — distance divided by time gives speed.",
+            "config": {
+              "topLabel": "Distance",
+              "topUnit": "km",
+              "top": 120,
+              "topMax": 300,
+              "topStep": 10,
+              "bottomLabel": "Time",
+              "bottomUnit": "hours",
+              "bottom": 2,
+              "bottomMax": 10,
+              "bottomStep": 1,
+              "rateUnit": "km per hour"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Per ONE",
+            "beats": [
+              "A **unit rate** answers “how much per one?”",
+              "Per one hour, per one pound, per one batch.",
+              "To get it, **divide** the first amount by the second.",
+              "$120$ km in $2$ hours $\\to 120 \\div 2 = 60$ km per hour."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The Grade 7 twist",
+            "title": "The amounts can be fractions",
+            "beats": [
+              "$\\frac{1}{2}$ mile in $\\frac{1}{4}$ hour — both amounts are fractions.",
+              "The recipe doesn't change: **divide**.",
+              "$\\frac{1}{2} \\div \\frac{1}{4} = \\frac{1}{2} \\times \\frac{4}{1} = 2$ miles per hour.",
+              "Keep the first, change $\\div$ to $\\times$, flip the second."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Snail speed",
+            "prompt": "A snail crawls $\\frac{1}{4}$ meter in $\\frac{1}{2}$ minute. What is its speed in meters per minute?",
+            "options": [
+              "$\\frac{1}{2}$",
+              "$2$",
+              "$\\frac{1}{8}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\frac{1}{4} \\div \\frac{1}{2} = \\frac{1}{4} \\times \\frac{2}{1} = \\frac{1}{2}$ meter per minute.",
+            "check": [
+              "Rational(1,4) / Rational(1,2) == Rational(1,2)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Fraction over fraction",
+            "intro": "Divide, using keep–change–flip.",
+            "examples": [
+              {
+                "prompt": "A cyclist rides $\\frac{5}{6}$ km in $\\frac{1}{3}$ minute. Find km per minute.",
+                "steps": [
+                  "Unit rate $= \\frac{5}{6} \\div \\frac{1}{3}$.",
+                  "Keep–change–flip: $\\frac{5}{6} \\times \\frac{3}{1}$.",
+                  "$= \\frac{15}{6} = \\frac{5}{2}$ km per minute."
+                ],
+                "answer": "$\\frac{5}{2}$ km per minute",
+                "check": [
+                  "Rational(5,6) / Rational(1,3) == Rational(5,2)"
+                ]
+              },
+              {
+                "prompt": "$\\frac{7}{8}$ cup of flour makes $\\frac{1}{4}$ of a recipe. How much flour for the whole recipe?",
+                "steps": [
+                  "Per one recipe $= \\frac{7}{8} \\div \\frac{1}{4}$.",
+                  "$= \\frac{7}{8} \\times \\frac{4}{1} = \\frac{28}{8}$.",
+                  "$= \\frac{7}{2} = 3\\frac{1}{2}$ cups."
+                ],
+                "answer": "$\\frac{7}{2}$ cups",
+                "check": [
+                  "Rational(7,8) / Rational(1,4) == Rational(7,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Find the unit rate",
+            "intro": "Divide the first amount by the second.",
+            "problems": [
+              {
+                "prompt": "You hike $\\frac{3}{5}$ mile in $\\frac{1}{5}$ hour. Miles per hour?",
+                "options": [
+                  "$3$",
+                  "$\\frac{1}{3}$",
+                  "$15$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{3}{5} \\div \\frac{1}{5} = \\frac{3}{5} \\times \\frac{5}{1} = 3$ miles per hour.",
+                "check": [
+                  "Rational(3,5) / Rational(1,5) == 3"
+                ]
+              },
+              {
+                "prompt": "$\\frac{1}{2}$ kg of dough makes $\\frac{1}{8}$ of a batch of buns. Kilograms per full batch?",
+                "options": [
+                  "$4$",
+                  "$\\frac{1}{4}$",
+                  "$\\frac{1}{16}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{1}{2} \\div \\frac{1}{8} = \\frac{1}{2} \\times \\frac{8}{1} = 4$ kg per batch.",
+                "check": [
+                  "Rational(1,2) / Rational(1,8) == 4"
+                ]
+              },
+              {
+                "prompt": "Grapes cost \\$5 for $\\frac{1}{2}$ pound. Price per pound?",
+                "options": [
+                  "\\$10",
+                  "\\$2.50",
+                  "\\$5.50"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5 \\div \\frac{1}{2} = 5 \\times 2 = 10$ — \\$10 per pound.",
+                "check": [
+                  "5 / Rational(1,2) == 10"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The fastest wings",
+            "body": "A hummingbird beats its wings about $50$ times per second — a unit rate. Scientists almost never say “$200$ beats per $4$ seconds”; every rate in science gets pushed to **per one** so different animals, engines, and athletes can be compared instantly. Unit rates are the universal language of speed."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **unit rate** is “how much per one” — divide the first amount by the second.",
+              "Fractions don't change the recipe: $\\frac{1}{2} \\div \\frac{1}{4} = 2$.",
+              "Keep–change–flip turns fraction division into multiplication."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "what-is-proportional",
+      "title": "Proportional or Not?",
+      "concreteComparison": "Apples cost \\$2 per pound: $1$ pound costs \\$2, $3$ pounds cost \\$6, $10$ pounds cost \\$20. Double the apples, double the cost — always. Now a pizza place charges \\$8 per pizza **plus** a \\$5 delivery fee: $1$ pizza costs \\$13, $2$ cost \\$21. Double the pizzas and the price does NOT double. The apples are **proportional**; the pizza-with-fee is not.",
+      "objective": "Decide whether two quantities are proportional by testing whether their ratio is constant.",
+      "concept": [
+        "Two quantities are **proportional** when their ratio never changes: every row of the table gives the same value of $\\frac{y}{x}$.",
+        "The apple table $(1, 2), (3, 6), (10, 20)$ passes: $\\frac{2}{1} = \\frac{6}{3} = \\frac{20}{10} = 2$. The pizza table $(1, 13), (2, 21)$ fails: $\\frac{13}{1} \\neq \\frac{21}{2}$.",
+        "The test is a division check. Divide $y$ by $x$ in every row; if you always get the same number, the relationship is proportional — and that number is the constant you'll meet in the next lesson.",
+        "Proportional relationships are exactly the ones where scaling works: double one quantity and the other doubles, triple one and the other triples. A flat fee, a head start, or a minimum charge breaks proportionality."
+      ],
+      "keyIdea": "Proportional $\\iff$ $\\frac{y}{x}$ is the same in every row.",
+      "facts": [
+        {
+          "title": "The ratio test",
+          "explanation": "Divide y by x in every row — all equal means proportional.",
+          "latex": "$\\tfrac{y}{x}$ constant $\\iff$ proportional"
+        },
+        {
+          "title": "Zero rides along",
+          "explanation": "In a proportional relationship, zero of one quantity means zero of the other — no fees, no head starts.",
+          "latex": "$(0, 0)$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "prop2-we1",
+          "statement": "A table shows $(2, 6), (3, 9), (5, 15)$. Is $y$ proportional to $x$?",
+          "solution": "Check the ratios: $\\frac{6}{2} = 3$, $\\frac{9}{3} = 3$, $\\frac{15}{5} = 3$. All equal — **proportional**, with constant $3$.",
+          "check": [
+            "Rational(6,2) == 3",
+            "Rational(9,3) == 3",
+            "Rational(15,5) == 3"
+          ]
+        },
+        {
+          "id": "prop2-we2",
+          "statement": "A table shows $(1, 4), (2, 7), (3, 10)$. Is $y$ proportional to $x$?",
+          "solution": "$\\frac{4}{1} = 4$ but $\\frac{7}{2} = 3.5$. The ratios differ — **not proportional**. (Each row adds $3$, but adding is not scaling.)",
+          "check": [
+            "Rational(4,1) != Rational(7,2)"
+          ]
+        },
+        {
+          "id": "prop2-we3",
+          "statement": "A gym charges a \\$10 signup fee plus \\$20 per month. Is total cost proportional to months?",
+          "solution": "$1$ month: \\$30; $2$ months: \\$50. $\\frac{30}{1} \\neq \\frac{50}{2} = 25$. The fee breaks it — **not proportional**.",
+          "check": [
+            "10 + 20*1 == 30",
+            "10 + 20*2 == 50",
+            "Rational(30,1) != Rational(50,2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Calling any increasing table proportional.",
+          "correction": "Increasing isn't enough — the RATIO $\\frac{y}{x}$ must be identical in every row. $(1,4),(2,7)$ increases but $4 \\neq 3.5$.",
+          "authored": true
+        },
+        {
+          "text": "Checking only one row.",
+          "correction": "One ratio can't be “constant.” Compare at least two rows — every row must give the same $\\frac{y}{x}$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "prop2-t1",
+          "statement": "Is the table $(4, 10), (6, 15), (10, 25)$ proportional?",
+          "solution": "$\\frac{10}{4} = \\frac{5}{2}$, $\\frac{15}{6} = \\frac{5}{2}$, $\\frac{25}{10} = \\frac{5}{2}$. Constant ratio — yes, proportional.",
+          "check": [
+            "Rational(10,4) == Rational(5,2)",
+            "Rational(15,6) == Rational(5,2)",
+            "Rational(25,10) == Rational(5,2)"
+          ]
+        },
+        {
+          "id": "prop2-t2",
+          "statement": "A taxi charges \\$3 to start plus \\$2 per km. Is the fare proportional to distance?",
+          "solution": "$1$ km: \\$5; $2$ km: \\$7. $\\frac{5}{1} \\neq \\frac{7}{2}$ — not proportional; the starting charge breaks it.",
+          "check": [
+            "3 + 2*1 == 5",
+            "3 + 2*2 == 7",
+            "Rational(5,1) != Rational(7,2)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "ratioTable",
+            "eyebrow": "Play with it",
+            "title": "One ratio, many rows",
+            "teach": "Reveal more columns. Every column is the SAME ratio scaled up — $1$ hour to $3$ km becomes $2$ to $6$, $3$ to $9$… That constant ratio is what makes a relationship proportional.",
+            "config": {
+              "a": 1,
+              "b": 3,
+              "tokenA": {
+                "label": "hour",
+                "plural": "hours",
+                "color": "#4a90d9"
+              },
+              "tokenB": {
+                "label": "km",
+                "plural": "km",
+                "color": "#3f9d63"
+              },
+              "maxCols": 5
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The test",
+            "title": "Divide every row",
+            "beats": [
+              "Take a table of $x$ and $y$ values.",
+              "Compute $\\frac{y}{x}$ for **every** row.",
+              "All the same number $\\to$ **proportional**.",
+              "Even one different $\\to$ not proportional."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "What breaks it",
+            "title": "Fees and head starts",
+            "beats": [
+              "“\\$8 per pizza **plus \\$5 delivery**” — the fee breaks proportionality.",
+              "$1$ pizza: $\\frac{13}{1} = 13$. $\\;2$ pizzas: $\\frac{21}{2} = 10.5$.",
+              "Anything added on top — a fee, a head start, a minimum — kills the constant ratio.",
+              "Pure “per” pricing keeps it: \\$2 per pound, $60$ km per hour."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Spot the proportional table",
+            "prompt": "Which table shows $y$ proportional to $x$?",
+            "options": [
+              "$(1, 5), (2, 10), (4, 20)$",
+              "$(1, 3), (2, 5), (3, 7)$",
+              "$(2, 4), (3, 5), (4, 6)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\frac{5}{1} = \\frac{10}{2} = \\frac{20}{4} = 5$ — constant. The others add $2$ or $1$ each step, which changes the ratio.",
+            "check": [
+              "Rational(5,1) == 5",
+              "Rational(10,2) == 5",
+              "Rational(20,4) == 5",
+              "Rational(3,1) != Rational(5,2)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Run the ratio test",
+            "intro": "Divide y by x in every row and compare.",
+            "examples": [
+              {
+                "prompt": "Is $(3, 12), (5, 20), (8, 32)$ proportional?",
+                "steps": [
+                  "$\\frac{12}{3} = 4$.",
+                  "$\\frac{20}{5} = 4$, $\\frac{32}{8} = 4$.",
+                  "All ratios equal $4$ — proportional."
+                ],
+                "answer": "Yes — constant ratio $4$",
+                "check": [
+                  "Rational(12,3) == 4",
+                  "Rational(20,5) == 4",
+                  "Rational(32,8) == 4"
+                ]
+              },
+              {
+                "prompt": "Is $(2, 5), (4, 9), (6, 13)$ proportional?",
+                "steps": [
+                  "$\\frac{5}{2} = 2.5$.",
+                  "$\\frac{9}{4} = 2.25$.",
+                  "Different — not proportional (it adds $4$ each time instead of scaling)."
+                ],
+                "answer": "No — the ratio changes",
+                "check": [
+                  "Rational(5,2) != Rational(9,4)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Proportional or not?",
+            "intro": "Test the ratio in every row.",
+            "problems": [
+              {
+                "prompt": "$(2, 8), (5, 20), (7, 28)$ — proportional?",
+                "options": [
+                  "Yes, ratio $4$",
+                  "No",
+                  "Yes, ratio $6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{8}{2} = \\frac{20}{5} = \\frac{28}{7} = 4$.",
+                "check": [
+                  "Rational(8,2) == 4",
+                  "Rational(20,5) == 4",
+                  "Rational(28,7) == 4"
+                ]
+              },
+              {
+                "prompt": "A phone plan: \\$15 base fee plus \\$5 per GB. Cost proportional to GB?",
+                "options": [
+                  "No — the base fee breaks it",
+                  "Yes",
+                  "Only for small GB"
+                ],
+                "correctIndex": 0,
+                "explanation": "$1$ GB: $\\frac{20}{1} = 20$; $\\;5$ GB: $\\frac{40}{5} = 8$. Ratios differ.",
+                "check": [
+                  "15 + 5*1 == 20",
+                  "15 + 5*5 == 40",
+                  "Rational(20,1) != Rational(40,5)"
+                ]
+              },
+              {
+                "prompt": "$(1, 2.5), (4, 10), (6, 15)$ — proportional?",
+                "options": [
+                  "Yes, ratio $2.5$",
+                  "No",
+                  "Yes, ratio $5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{2.5}{1} = \\frac{10}{4} = \\frac{15}{6} = 2.5$.",
+                "check": [
+                  "Rational(25,10) == Rational(10,4)",
+                  "Rational(10,4) == Rational(15,6)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The “zero costs zero” shortcut",
+            "body": "There's a one-question shortcut for many real situations: *what happens at zero?* Zero pounds of apples cost \\$0 — proportional survives. Zero pizzas still cost \\$5 to “deliver” — proportionality is dead on arrival. Every proportional relationship passes through $(0, 0)$, which is why the graph test in the next lessons starts at the origin."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "**Proportional** means the ratio $\\frac{y}{x}$ is the same in every row.",
+              "Test by dividing every row — one mismatch and it's not proportional.",
+              "Fees, head starts, and minimums break proportionality; $(0,0)$ always belongs."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "constant-of-proportionality",
+      "title": "The Constant of Proportionality",
+      "concreteComparison": "A bakery sells lemonade for \\$3 a cup — every cup, every time. That one number, $3$, tells you the whole story: $2$ cups cost $3 \\times 2$, $7$ cups cost $3 \\times 7$, $x$ cups cost $3x$. When a relationship is proportional, one number runs everything. It's called the **constant of proportionality**, and its name tag is $k$.",
+      "objective": "Find the constant of proportionality k from a table, a point, or a description, and write the equation y = kx.",
+      "concept": [
+        "In a proportional relationship, the ratio $\\frac{y}{x}$ is always the same number. That number is the **constant of proportionality**, written $k$.",
+        "Once you know $k$, the whole relationship compresses into one equation: $y = kx$. Multiply any $x$ by $k$ and you get its $y$.",
+        "To find $k$, divide: $k = \\frac{y}{x}$ using any row of the table, any point on the graph, or any pair from the story. One clean pair is all it takes.",
+        "$k$ has meaning, not just a value — it's the unit rate. \\$3 per cup, $60$ km per hour, $\\frac{5}{2}$ cups per batch. Say the units out loud and $k$ stops being abstract."
+      ],
+      "keyIdea": "$k = \\frac{y}{x}$, and then $y = kx$ — the constant IS the unit rate.",
+      "facts": [
+        {
+          "title": "One pair gives k",
+          "explanation": "Divide any matching pair (with x ≠ 0) to find the constant.",
+          "latex": "$k = \\tfrac{y}{x}$"
+        },
+        {
+          "title": "The equation",
+          "explanation": "Every proportional relationship is y = kx for its own k — nothing added, nothing extra.",
+          "latex": "$y = kx$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "prop3-we1",
+          "statement": "A proportional table contains the pair $(4, 10)$. Find $k$ and write the equation.",
+          "solution": "$k = \\frac{10}{4} = \\frac{5}{2}$. Equation: $y = \\frac{5}{2}x$.",
+          "check": [
+            "Rational(10,4) == Rational(5,2)",
+            "Rational(5,2)*4 == 10"
+          ]
+        },
+        {
+          "id": "prop3-we2",
+          "statement": "Three notebooks cost \\$7.50. Find the constant of proportionality (price per notebook) and the cost of $8$ notebooks.",
+          "solution": "$k = \\frac{7.50}{3} = 2.50$ dollars per notebook. Then $8$ notebooks cost $2.50 \\times 8 = 20$ dollars.",
+          "check": [
+            "Rational(15,2)/3 == Rational(5,2)",
+            "Rational(5,2)*8 == 20"
+          ]
+        },
+        {
+          "id": "prop3-we3",
+          "statement": "In $y = \\frac{3}{4}x$, what is $y$ when $x = 12$?",
+          "solution": "$y = \\frac{3}{4} \\times 12 = 9$.",
+          "check": [
+            "Rational(3,4)*12 == 9"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Computing x ÷ y instead of y ÷ x.",
+          "correction": "The constant is $k = \\frac{y}{x}$ — the OUTPUT divided by the input. For $(4, 10)$, $k = \\frac{10}{4}$, not $\\frac{4}{10}$.",
+          "authored": true
+        },
+        {
+          "text": "Writing y = x + k for a proportional relationship.",
+          "correction": "Proportional means MULTIPLY: $y = kx$. If you're adding, the ratio changes row to row and it isn't proportional.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "prop3-t1",
+          "statement": "A proportional relationship contains $(6, 15)$. Find $k$ and the equation.",
+          "solution": "$k = \\frac{15}{6} = \\frac{5}{2}$, so $y = \\frac{5}{2}x$.",
+          "check": [
+            "Rational(15,6) == Rational(5,2)"
+          ]
+        },
+        {
+          "id": "prop3-t2",
+          "statement": "Using $y = \\frac{5}{2}x$, find $y$ when $x = 10$.",
+          "solution": "$y = \\frac{5}{2} \\times 10 = 25$.",
+          "check": [
+            "Rational(5,2)*10 == 25"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "scaler",
+            "eyebrow": "Play with it",
+            "title": "One constant scales everything",
+            "teach": "Slide the number of batches. The recipe is $2$ scoops to $3$ cups — every batch multiplies BOTH amounts by the same factor. One constant, the whole table.",
+            "config": {
+              "a": 2,
+              "b": 3,
+              "tokenA": {
+                "label": "scoop",
+                "plural": "scoops",
+                "color": "#7c4a2d"
+              },
+              "tokenB": {
+                "label": "cup",
+                "plural": "cups",
+                "color": "#4a90d9"
+              },
+              "maxBatches": 6,
+              "goodLabel": "tastes just right"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The star of the show",
+            "title": "Meet k",
+            "beats": [
+              "Proportional means $\\frac{y}{x}$ is one fixed number.",
+              "That number is $k$ — the **constant of proportionality**.",
+              "Find it by dividing any pair: $k = \\frac{y}{x}$.",
+              "Then the whole relationship is $y = kx$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reading k",
+            "title": "k is the unit rate",
+            "beats": [
+              "$k$ isn't just a number — it has units.",
+              "Lemonade at $(2, 6)$: $k = \\frac{6}{2} = 3$ dollars **per cup**.",
+              "Speed at $(3, 180)$: $k = 60$ km **per hour**.",
+              "Say “per” and you've said $k$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Find k",
+            "prompt": "A proportional table contains $(8, 12)$. What is $k$?",
+            "options": [
+              "$\\frac{3}{2}$",
+              "$\\frac{2}{3}$",
+              "$4$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$k = \\frac{y}{x} = \\frac{12}{8} = \\frac{3}{2}$.",
+            "check": [
+              "Rational(12,8) == Rational(3,2)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "From pair to equation",
+            "intro": "Divide once, then write y = kx.",
+            "examples": [
+              {
+                "prompt": "A car travels $150$ km in $2$ hours (proportional). Find $k$ and the equation.",
+                "steps": [
+                  "$k = \\frac{150}{2} = 75$ km per hour.",
+                  "Equation: $y = 75x$.",
+                  "Check: $x = 2$ gives $y = 150$. ✓"
+                ],
+                "answer": "$y = 75x$",
+                "check": [
+                  "Rational(150,2) == 75",
+                  "75*2 == 150"
+                ]
+              },
+              {
+                "prompt": "$5$ meters of ribbon cost \\$4. What does $k$ mean, and what do $15$ meters cost?",
+                "steps": [
+                  "$k = \\frac{4}{5}$ dollars per meter.",
+                  "$y = \\frac{4}{5}x$.",
+                  "$x = 15$: $y = \\frac{4}{5} \\times 15 = 12$ dollars."
+                ],
+                "answer": "\\$12",
+                "check": [
+                  "Rational(4,5)*15 == 12"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "k in the wild",
+            "intro": "Divide y by x, then use the equation.",
+            "problems": [
+              {
+                "prompt": "A proportional relationship contains $(10, 4)$. What is $k$?",
+                "options": [
+                  "$\\frac{2}{5}$",
+                  "$\\frac{5}{2}$",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$k = \\frac{4}{10} = \\frac{2}{5}$.",
+                "check": [
+                  "Rational(4,10) == Rational(2,5)"
+                ]
+              },
+              {
+                "prompt": "$y = 6x$ describes a printer's pages over minutes. How many pages in $7$ minutes?",
+                "options": [
+                  "$42$",
+                  "$13$",
+                  "$36$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$y = 6 \\times 7 = 42$ pages.",
+                "check": [
+                  "6*7 == 42"
+                ]
+              },
+              {
+                "prompt": "Which equation is proportional?",
+                "options": [
+                  "$y = \\frac{2}{3}x$",
+                  "$y = x + 4$",
+                  "$y = 2x - 1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Proportional equations are exactly $y = kx$ — a multiple of $x$ with nothing added.",
+                "check": [
+                  "Rational(2,3)*3 == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "k around you",
+            "body": "Exchange rates, fuel efficiency, printer speeds, pay-per-hour wages, pixels per inch — the modern world runs on constants of proportionality. When engineers say a sensor outputs “$20$ millivolts per degree,” that's a $k$. Find the constant and you can predict every value the relationship will ever produce."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$k = \\frac{y}{x}$ from any pair — the constant of proportionality.",
+              "The whole relationship is one equation: $y = kx$.",
+              "$k$ is the unit rate; give it units (“per hour”, “per cup”) and it speaks."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "graphs-of-proportional-relationships",
+      "title": "Graphs of Proportional Relationships",
+      "concreteComparison": "Plot a babysitter's pay: $1$ hour \\$15, $2$ hours \\$30, $3$ hours \\$45. The points march in a perfectly straight line — and if you trace it backwards, it hits $(0, 0)$: zero hours, zero pay. Every proportional relationship draws this exact picture: a **straight line through the origin**. Anything else — a curve, or a line that starts above zero — is telling you something non-proportional is going on.",
+      "objective": "Recognize proportional relationships from graphs, and read k as the y-value at x = 1.",
+      "concept": [
+        "Graph a proportional relationship and you always get a **straight line through the origin** $(0, 0)$. Straightness comes from the constant ratio; passing through the origin comes from “zero gives zero.”",
+        "Both tests matter. A straight line that crosses the y-axis at $5$ has a built-in fee — not proportional. A curve through the origin changes its ratio as it goes — not proportional either.",
+        "The constant $k$ is easy to spot on the graph: it's the $y$-value directly above $x = 1$. The point $(1, k)$ always sits on the line.",
+        "From any other point $(x, y)$ on the line, recover the constant the usual way: $k = \\frac{y}{x}$. The graph, the table, and the equation $y = kx$ are three views of the same relationship."
+      ],
+      "keyIdea": "Proportional graph $=$ straight line through $(0,0)$; the point above $x = 1$ reads off $k$.",
+      "facts": [
+        {
+          "title": "Two tests, both required",
+          "explanation": "A line missing the origin, or a curve through it, is not proportional.",
+          "latex": "straight AND through $(0,0)$"
+        },
+        {
+          "title": "Read k at x = 1",
+          "explanation": "The y-value above x = 1 is the constant of proportionality.",
+          "latex": "$(1, k)$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "prop4-we1",
+          "statement": "A line passes through the origin and the point $(4, 6)$. Find $k$ and the equation.",
+          "solution": "$k = \\frac{6}{4} = \\frac{3}{2}$, so $y = \\frac{3}{2}x$.",
+          "check": [
+            "Rational(6,4) == Rational(3,2)"
+          ]
+        },
+        {
+          "id": "prop4-we2",
+          "statement": "A graph of a proportional relationship passes through $(1, 8)$. What does that point tell you?",
+          "solution": "The $y$-value at $x = 1$ IS the constant: $k = 8$, so $y = 8x$.",
+          "check": [
+            "Rational(8,1) == 8",
+            "8*1 == 8"
+          ]
+        },
+        {
+          "id": "prop4-we3",
+          "statement": "A straight line crosses the y-axis at $(0, 3)$ and rises from there. Is it proportional?",
+          "solution": "No. It's straight, but it misses the origin — at $x = 0$ it gives $y = 3 \\neq 0$, a built-in starting amount.",
+          "check": [
+            "3 != 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Accepting any straight line as proportional.",
+          "correction": "Straight is only HALF the test — the line must also pass through $(0, 0)$. A y-intercept of 3 means a fee of 3 at zero.",
+          "authored": true
+        },
+        {
+          "text": "Reading k from the point above x = 2.",
+          "correction": "The y-value above $x = 2$ is $2k$, not $k$. Either look above $x = 1$, or divide: $k = \\frac{y}{x}$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "prop4-t1",
+          "statement": "A proportional graph passes through $(5, 20)$. Find $k$.",
+          "solution": "$k = \\frac{20}{5} = 4$.",
+          "check": [
+            "Rational(20,5) == 4"
+          ]
+        },
+        {
+          "id": "prop4-t2",
+          "statement": "Which point must EVERY proportional graph contain?",
+          "solution": "$(0, 0)$ — zero input gives zero output, always.",
+          "check": [
+            "0 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "Play with it",
+            "title": "The line through the origin",
+            "teach": "These points come from $y = 2x$: $(1, 2), (2, 4), (3, 6)$. Notice they line up perfectly — and the line they suggest passes straight through $(0, 0)$. Tap around and imagine the line continuing.",
+            "config": {
+              "mode": "plot",
+              "min": 0,
+              "max": 8,
+              "points": [
+                {
+                  "x": 1,
+                  "y": 2,
+                  "label": "(1, 2)"
+                },
+                {
+                  "x": 2,
+                  "y": 4,
+                  "label": "(2, 4)"
+                },
+                {
+                  "x": 3,
+                  "y": 6,
+                  "label": "(3, 6)"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The picture",
+            "title": "Straight, through zero",
+            "beats": [
+              "Proportional data always graphs as a **straight line**…",
+              "…that passes through the **origin** $(0, 0)$.",
+              "Straight = the ratio never changes.",
+              "Through the origin = zero gives zero."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reading the graph",
+            "title": "Where's k?",
+            "beats": [
+              "Look directly above $x = 1$.",
+              "That point is $(1, k)$ — the constant, exposed.",
+              "From any point: $k = \\frac{y}{x}$.",
+              "$(4, 6)$ on the line $\\to k = \\frac{6}{4} = \\frac{3}{2}$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which is proportional?",
+            "prompt": "Three graphs are described. Which one shows a proportional relationship?",
+            "options": [
+              "A straight line through $(0,0)$ and $(2, 5)$",
+              "A straight line through $(0, 4)$ and $(2, 8)$",
+              "A curve through $(0,0)$, $(1, 1)$, and $(2, 8)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Only the first is BOTH straight and through the origin. The second has a starting value of $4$; the third changes its ratio ($\\frac{1}{1} \\neq \\frac{8}{2}$).",
+            "check": [
+              "Rational(5,2) == Rational(5,2)",
+              "4 != 0",
+              "Rational(1,1) != Rational(8,2)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "From graph to equation",
+            "intro": "Grab one clean point, divide, write y = kx.",
+            "examples": [
+              {
+                "prompt": "A proportional graph passes through $(3, 12)$. Write the equation.",
+                "steps": [
+                  "$k = \\frac{12}{3} = 4$.",
+                  "Equation: $y = 4x$.",
+                  "Check with the point: $4 \\times 3 = 12$. ✓"
+                ],
+                "answer": "$y = 4x$",
+                "check": [
+                  "Rational(12,3) == 4",
+                  "4*3 == 12"
+                ]
+              },
+              {
+                "prompt": "A graph of cost vs. kilograms passes through $(1, 2.5)$. What's the cost of $6$ kg?",
+                "steps": [
+                  "Above $x = 1$ sits $k$: $k = 2.5$ dollars per kg.",
+                  "$y = 2.5x$.",
+                  "$x = 6$: $y = 2.5 \\times 6 = 15$ dollars."
+                ],
+                "answer": "\\$15",
+                "check": [
+                  "Rational(5,2)*6 == 15"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Graph detective",
+            "intro": "Straight? Through the origin? Then read k.",
+            "problems": [
+              {
+                "prompt": "A proportional graph contains $(2, 7)$. What is $k$?",
+                "options": [
+                  "$\\frac{7}{2}$",
+                  "$\\frac{2}{7}$",
+                  "$14$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$k = \\frac{y}{x} = \\frac{7}{2}$.",
+                "check": [
+                  "Rational(7,2) == Rational(7,2)"
+                ]
+              },
+              {
+                "prompt": "A line passes through $(0, 0)$, $(1, 4)$, and $(3, 12)$. Its equation is…",
+                "options": [
+                  "$y = 4x$",
+                  "$y = x + 3$",
+                  "$y = 12x$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The point above $x = 1$ gives $k = 4$; check $(3, 12)$: $4 \\times 3 = 12$. ✓",
+                "check": [
+                  "4*3 == 12",
+                  "Rational(12,3) == 4"
+                ]
+              },
+              {
+                "prompt": "A ride-share graph is a straight line through $(0, 2)$ and $(4, 10)$. Proportional?",
+                "options": [
+                  "No — it misses the origin",
+                  "Yes — it's straight",
+                  "Can't tell"
+                ],
+                "correctIndex": 0,
+                "explanation": "At $x = 0$ it charges $2$ — a base fare. Straight but shifted means not proportional.",
+                "check": [
+                  "2 != 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The origin test in the lab",
+            "body": "Physicists use the origin test constantly. Hooke's law says a spring's stretch is proportional to the force — so real experimental data should form a line through $(0, 0)$. When the plotted line misses the origin, scientists don't shrug: they hunt for the hidden “fee” — a miscalibrated scale, friction, a bent spring. The graph's y-intercept is a bug report."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Proportional graphs are straight lines through the origin — both parts required.",
+              "The point $(1, k)$ reads off the constant directly.",
+              "From any point, $k = \\frac{y}{x}$, and the equation is $y = kx$."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "solving-with-proportions",
+      "title": "Solving with Proportions",
+      "concreteComparison": "A recipe for $12$ cookies uses $3$ cups of flour. You need $20$ cookies. Nobody re-invents the recipe — you set the two ratios equal and solve: $\\frac{3}{12} = \\frac{x}{20}$. Same ratio, new size. That equation is a **proportion**, and cross-multiplying cracks it open: $12x = 60$, so $x = 5$ cups.",
+      "objective": "Set up a proportion from a word problem and solve it by cross-multiplying.",
+      "concept": [
+        "A **proportion** is an equation saying two ratios are equal: $\\frac{a}{b} = \\frac{c}{d}$. It's the tool for “same rate, different amount” problems.",
+        "Set it up with matching units in matching places: if the left ratio is $\\frac{\\text{flour}}{\\text{cookies}}$, the right ratio must be $\\frac{\\text{flour}}{\\text{cookies}}$ too — tops match, bottoms match.",
+        "**Cross-multiplying** turns the proportion into a simple equation: $\\frac{a}{b} = \\frac{c}{d}$ becomes $ad = bc$. It works because you're multiplying both sides by both denominators.",
+        "Always sanity-check the answer against the story. More cookies should need more flour; a longer trip should take more time. If the direction is wrong, the setup was flipped."
+      ],
+      "keyIdea": "Match the units top-and-bottom, then cross-multiply: $\\frac{a}{b} = \\frac{c}{d} \\iff ad = bc$.",
+      "facts": [
+        {
+          "title": "Cross-multiply",
+          "explanation": "The diagonal products of a true proportion are equal.",
+          "latex": "$\\tfrac{a}{b} = \\tfrac{c}{d} \\iff ad = bc$"
+        },
+        {
+          "title": "Units line up",
+          "explanation": "Same kind of quantity on top of both sides, same kind on the bottom.",
+          "latex": "$\\tfrac{\\text{flour}}{\\text{cookies}} = \\tfrac{\\text{flour}}{\\text{cookies}}$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "prop5-we1",
+          "statement": "$3$ shirts cost \\$24. At the same rate, what do $7$ shirts cost?",
+          "solution": "$\\frac{24}{3} = \\frac{x}{7}$. Cross-multiply: $3x = 168$, so $x = 56$. Seven shirts cost \\$56.",
+          "check": [
+            "Rational(24,3)*7 == 56",
+            "3*56 == 24*7"
+          ]
+        },
+        {
+          "id": "prop5-we2",
+          "statement": "On a map, $2$ cm represents $5$ km. How far apart are two towns that are $7$ cm apart on the map?",
+          "solution": "$\\frac{5}{2} = \\frac{x}{7}$. Cross-multiply: $2x = 35$, so $x = 17.5$ km.",
+          "check": [
+            "Rational(5,2)*7 == Rational(35,2)",
+            "2*Rational(35,2) == 5*7"
+          ]
+        },
+        {
+          "id": "prop5-we3",
+          "statement": "A printer prints $45$ pages in $6$ minutes. How long for $120$ pages?",
+          "solution": "$\\frac{45}{6} = \\frac{120}{x}$. Cross-multiply: $45x = 720$, so $x = 16$ minutes.",
+          "check": [
+            "45*16 == 720",
+            "6*120 == 720",
+            "Rational(120, Rational(45,6)) == 16"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Mixing the units diagonally.",
+          "correction": "$\\frac{3 \\text{ shirts}}{24 \\text{ dollars}} = \\frac{56 \\text{ dollars}}{7 \\text{ shirts}}$ is scrambled. Tops must match and bottoms must match BEFORE you cross-multiply.",
+          "authored": true
+        },
+        {
+          "text": "Cross-multiplying the same side.",
+          "correction": "The products are DIAGONAL: $\\frac{a}{b} = \\frac{c}{d}$ gives $ad = bc$ — top-left times bottom-right, top-right times bottom-left.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "prop5-t1",
+          "statement": "$5$ kg of rice cost \\$8. What do $15$ kg cost?",
+          "solution": "$\\frac{8}{5} = \\frac{x}{15}$: cross-multiply $5x = 120$, so $x = 24$ dollars.",
+          "check": [
+            "Rational(8,5)*15 == 24",
+            "5*24 == 8*15"
+          ]
+        },
+        {
+          "id": "prop5-t2",
+          "statement": "A car uses $6$ liters per $100$ km. How much fuel for $250$ km?",
+          "solution": "$\\frac{6}{100} = \\frac{x}{250}$: $100x = 1500$, so $x = 15$ liters.",
+          "check": [
+            "Rational(6,100)*250 == 15",
+            "100*15 == 6*250"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "proportionBuilder",
+            "eyebrow": "Play with it",
+            "title": "Scale the known ratio",
+            "teach": "The recipe fixes the ratio: $2$ cups of flour for every $3$ eggs. Set how many eggs you have and let the proportion find the flour.",
+            "config": {
+              "aLabel": "flour",
+              "bLabel": "eggs",
+              "a": 2,
+              "b": 3,
+              "knownSide": "b",
+              "knownValue": 9,
+              "tokenA": {
+                "label": "cup",
+                "plural": "cups flour",
+                "color": "#c9a15a"
+              },
+              "tokenB": {
+                "label": "egg",
+                "plural": "eggs",
+                "color": "#f2c14e"
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The setup",
+            "title": "Two equal ratios",
+            "beats": [
+              "A proportion says: **same ratio, new size**.",
+              "$\\frac{3 \\text{ cups}}{12 \\text{ cookies}} = \\frac{x \\text{ cups}}{20 \\text{ cookies}}$",
+              "Tops match (cups), bottoms match (cookies).",
+              "One unknown, one equation."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The move",
+            "title": "Cross-multiply",
+            "beats": [
+              "$\\frac{a}{b} = \\frac{c}{d}$ becomes $ad = bc$.",
+              "$\\frac{3}{12} = \\frac{x}{20} \\to 3 \\times 20 = 12x$.",
+              "$60 = 12x$, so $x = 5$.",
+              "Five cups for twenty cookies — and more cookies did need more flour. ✓"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Set it up",
+            "prompt": "$4$ tickets cost \\$18. Which proportion finds the cost $x$ of $10$ tickets?",
+            "options": [
+              "$\\frac{18}{4} = \\frac{x}{10}$",
+              "$\\frac{18}{4} = \\frac{10}{x}$",
+              "$\\frac{4}{18} = \\frac{x}{10}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Dollars on top of both sides, tickets on the bottom of both: $\\frac{18}{4} = \\frac{x}{10}$, giving $x = 45$.",
+            "check": [
+              "Rational(18,4)*10 == 45"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Cross-multiply and solve",
+            "intro": "Match units, cross-multiply, solve, sanity-check.",
+            "examples": [
+              {
+                "prompt": "A photo $4$ cm wide is enlarged so its $6$ cm height becomes $15$ cm. Find the new width.",
+                "steps": [
+                  "$\\frac{4}{6} = \\frac{x}{15}$ (widths over heights).",
+                  "Cross-multiply: $6x = 60$.",
+                  "$x = 10$ cm wide."
+                ],
+                "answer": "$10$ cm",
+                "check": [
+                  "6*10 == 4*15",
+                  "Rational(4,6)*15 == 10"
+                ]
+              },
+              {
+                "prompt": "$9$ identical pens cost \\$12. How many pens can you buy with \\$20?",
+                "steps": [
+                  "$\\frac{9}{12} = \\frac{x}{20}$ (pens over dollars).",
+                  "Cross-multiply: $12x = 180$.",
+                  "$x = 15$ pens."
+                ],
+                "answer": "$15$ pens",
+                "check": [
+                  "12*15 == 9*20",
+                  "Rational(9,12)*20 == 15"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Proportion practice",
+            "intro": "Set up, cross-multiply, solve.",
+            "problems": [
+              {
+                "prompt": "$6$ oranges cost \\$4. What do $15$ oranges cost?",
+                "options": [
+                  "\\$10",
+                  "\\$9",
+                  "\\$12"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{4}{6} = \\frac{x}{15}$: $6x = 60$, $x = 10$.",
+                "check": [
+                  "Rational(4,6)*15 == 10",
+                  "6*10 == 4*15"
+                ]
+              },
+              {
+                "prompt": "A model car uses the scale $1$ cm $= 24$ cm. The model is $18$ cm long. How long is the real car?",
+                "options": [
+                  "$432$ cm",
+                  "$424$ cm",
+                  "$180$ cm"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{24}{1} = \\frac{x}{18}$: $x = 24 \\times 18 = 432$ cm.",
+                "check": [
+                  "24*18 == 432"
+                ]
+              },
+              {
+                "prompt": "A hiker covers $10$ km in $4$ hours. At that pace, how long for $25$ km?",
+                "options": [
+                  "$10$ hours",
+                  "$8$ hours",
+                  "$12.5$ hours"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{10}{4} = \\frac{25}{x}$: $10x = 100$, $x = 10$ hours.",
+                "check": [
+                  "10*10 == 4*25"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Eratosthenes' proportion",
+            "body": "Around $240$ BC, Eratosthenes measured the Earth with one proportion. At noon, a stick in Alexandria cast a shadow at a $7.2°$ angle while a well in Syene had none. $\\frac{7.2}{360} = \\frac{800 \\text{ km}}{x}$ — the distance between cities over the full circumference — gave $x = 40{,}000$ km. He was within a couple percent of the true value, two millennia before satellites."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A **proportion** sets two equal ratios: same rate, new size.",
+              "Line the units up — tops match, bottoms match.",
+              "Cross-multiply ($ad = bc$), solve, and sanity-check the direction."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "proportions-in-action",
+      "title": "Proportions in Action",
+      "concreteComparison": "Store A sells $6$ bottles of water for \\$9. Store B sells $8$ bottles for \\$10. Which is the better buy? Your proportional toolkit answers instantly: \\$1.50 per bottle versus \\$1.25 per bottle — Store B wins. Better buys, map scales, recipes, fuel, speed: one skill set, worn five different ways.",
+      "objective": "Apply unit rates and proportions to better-buy comparisons, scales, recipes, fuel, and speed problems.",
+      "concept": [
+        "Real proportional problems come in costumes: better buys, map scales, recipe scaling, fuel use, constant speed. Underneath, they're all the same two moves — find a unit rate, or set up a proportion.",
+        "**Better buy:** compute each option's price per one unit and compare. The smaller unit price wins.",
+        "**Scales and recipes:** the ratio is fixed (1 cm : 24 km, or 3 cups : 12 cookies); a proportion scales it to the size you need.",
+        "**Speed and fuel:** distance $=$ rate $\\times$ time, and fuel used is proportional to distance. Find the constant once, then multiply."
+      ],
+      "keyIdea": "Every costume, same body: find the unit rate, or set the two equal ratios and cross-multiply.",
+      "facts": [
+        {
+          "title": "Better buy = lower unit price",
+          "explanation": "Divide price by quantity for each option, then compare per-one prices.",
+          "latex": "$\\tfrac{9}{6} = 1.50 > \\tfrac{10}{8} = 1.25$"
+        },
+        {
+          "title": "d = rt",
+          "explanation": "At constant speed, distance is proportional to time — the speed is k.",
+          "latex": "$d = rt$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "prop6-we1",
+          "statement": "Store A: $6$ bottles for \\$9. Store B: $8$ bottles for \\$10. Which is the better buy?",
+          "solution": "A: $\\frac{9}{6} = 1.50$ per bottle. B: $\\frac{10}{8} = 1.25$ per bottle. Store B is cheaper per bottle.",
+          "check": [
+            "Rational(9,6) == Rational(3,2)",
+            "Rational(10,8) == Rational(5,4)",
+            "Rational(5,4) < Rational(3,2)"
+          ]
+        },
+        {
+          "id": "prop6-we2",
+          "statement": "A car travels $240$ km in $3$ hours. At the same speed, how long will $400$ km take?",
+          "solution": "Speed $= \\frac{240}{3} = 80$ km/h. Time $= \\frac{400}{80} = 5$ hours.",
+          "check": [
+            "Rational(240,3) == 80",
+            "Rational(400,80) == 5"
+          ]
+        },
+        {
+          "id": "prop6-we3",
+          "statement": "A punch recipe serves $8$ people using $2$ liters of juice. How much juice for $28$ people?",
+          "solution": "$\\frac{2}{8} = \\frac{x}{28}$: cross-multiply $8x = 56$, so $x = 7$ liters.",
+          "check": [
+            "8*7 == 2*28",
+            "Rational(2,8)*28 == 7"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Comparing totals instead of unit prices.",
+          "correction": "\\$10 total is more than \\$9 total, but B is still the better BUY — per bottle it's \\$1.25 vs \\$1.50. Always divide before comparing.",
+          "authored": true
+        },
+        {
+          "text": "Scaling only one ingredient of a recipe.",
+          "correction": "A recipe is a fixed ratio — scale EVERY ingredient by the same factor, or the proportions (and the taste) break.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "prop6-t1",
+          "statement": "Brand X: $4$ rolls for \\$6. Brand Y: $9$ rolls for \\$12. Better buy?",
+          "solution": "X: $\\frac{6}{4} = 1.50$ per roll. Y: $\\frac{12}{9} = \\frac{4}{3} \\approx 1.33$ per roll. Brand Y wins.",
+          "check": [
+            "Rational(6,4) == Rational(3,2)",
+            "Rational(12,9) == Rational(4,3)",
+            "Rational(4,3) < Rational(3,2)"
+          ]
+        },
+        {
+          "id": "prop6-t2",
+          "statement": "A train covers $180$ km in $2$ hours. How far in $5$ hours at the same speed?",
+          "solution": "Speed $= 90$ km/h; distance $= 90 \\times 5 = 450$ km.",
+          "check": [
+            "Rational(180,2) == 90",
+            "90*5 == 450"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "dealCompare",
+            "eyebrow": "Play with it",
+            "title": "The better buy",
+            "teach": "Two deals, one question: which costs less **per bottle**? Reveal the unit prices and see the winner.",
+            "config": {
+              "unit": "bottle",
+              "currency": "$",
+              "dealA": {
+                "label": "Store A",
+                "price": 9,
+                "qty": 6
+              },
+              "dealB": {
+                "label": "Store B",
+                "price": 10,
+                "qty": 8
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "One toolkit",
+            "title": "Five costumes, two moves",
+            "beats": [
+              "Better buys, maps, recipes, fuel, speed.",
+              "Move 1: find the **unit rate** and compare or multiply.",
+              "Move 2: set a **proportion** and cross-multiply.",
+              "Pick whichever gets you to one clean division faster."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Per one, then compare",
+            "prompt": "Pack P: $5$ pens for \\$4. Pack Q: $12$ pens for \\$9. Which is the better buy?",
+            "options": [
+              "Pack Q",
+              "Pack P",
+              "They're equal"
+            ],
+            "correctIndex": 0,
+            "explanation": "P: $\\frac{4}{5} = 0.80$ per pen. Q: $\\frac{9}{12} = 0.75$ per pen. Q is cheaper per pen.",
+            "check": [
+              "Rational(4,5) == Rational(4,5)",
+              "Rational(9,12) == Rational(3,4)",
+              "Rational(3,4) < Rational(4,5)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Costumes off",
+            "intro": "Spot the fixed ratio, then divide or cross-multiply.",
+            "examples": [
+              {
+                "prompt": "A map's scale is $3$ cm $: 20$ km. Two cities are $12$ cm apart on the map. Real distance?",
+                "steps": [
+                  "$\\frac{20}{3} = \\frac{x}{12}$ (km over cm).",
+                  "Cross-multiply: $3x = 240$.",
+                  "$x = 80$ km."
+                ],
+                "answer": "$80$ km",
+                "check": [
+                  "3*80 == 20*12",
+                  "Rational(20,3)*12 == 80"
+                ]
+              },
+              {
+                "prompt": "A car uses $18$ liters for $300$ km. How many liters for $450$ km?",
+                "steps": [
+                  "Fuel per km: $\\frac{18}{300} = 0.06$.",
+                  "$450 \\times 0.06 = 27$.",
+                  "Or: $\\frac{18}{300} = \\frac{x}{450} \\to 300x = 8100 \\to x = 27$."
+                ],
+                "answer": "$27$ liters",
+                "check": [
+                  "Rational(18,300)*450 == 27",
+                  "300*27 == 18*450"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Mixed missions",
+            "intro": "Unit rate or proportion — your choice.",
+            "problems": [
+              {
+                "prompt": "A cyclist rides $36$ km in $90$ minutes. What's the speed in km per hour?",
+                "options": [
+                  "$24$ km/h",
+                  "$40$ km/h",
+                  "$54$ km/h"
+                ],
+                "correctIndex": 0,
+                "explanation": "$90$ minutes $= 1.5$ hours; $\\frac{36}{1.5} = 24$ km/h.",
+                "check": [
+                  "Rational(36, Rational(3,2)) == 24"
+                ]
+              },
+              {
+                "prompt": "A recipe for $4$ servings needs $\\frac{2}{3}$ cup of rice. How much for $10$ servings?",
+                "options": [
+                  "$\\frac{5}{3}$ cups",
+                  "$\\frac{20}{3}$ cups",
+                  "$\\frac{3}{5}$ cup"
+                ],
+                "correctIndex": 0,
+                "explanation": "Per serving: $\\frac{2}{3} \\div 4 = \\frac{1}{6}$. Ten servings: $\\frac{10}{6} = \\frac{5}{3}$ cups.",
+                "check": [
+                  "Rational(2,3)/4 == Rational(1,6)",
+                  "Rational(1,6)*10 == Rational(5,3)"
+                ]
+              },
+              {
+                "prompt": "Store A: $3$ kg for \\$7.50. Store B: $5$ kg for \\$12. Better buy?",
+                "options": [
+                  "Store B",
+                  "Store A",
+                  "Equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "A: $\\frac{7.50}{3} = 2.50$ per kg. B: $\\frac{12}{5} = 2.40$ per kg. B wins.",
+                "check": [
+                  "Rational(15,2)/3 == Rational(5,2)",
+                  "Rational(12,5) < Rational(5,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Grocery-shelf law",
+            "body": "In many countries, supermarkets are legally required to print the **unit price** — the price per liter, per kilogram, per 100 sheets — on the shelf tag, precisely so shoppers don't have to cross-multiply in the aisle. The law exists because “bigger package” is NOT always “better deal,” and stores know most people compare totals, not rates."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Better buy: divide to the unit price, then compare.",
+              "Maps and recipes: fixed ratio + proportion = any size you need.",
+              "Speed and fuel: find $k$ once ($d = rt$), then multiply."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "prop-pr1",
+      "statement": "You swim $\\frac{3}{4}$ km in $\\frac{1}{2}$ hour. Find your speed in km per hour.",
+      "solution": "$\\frac{3}{4} \\div \\frac{1}{2} = \\frac{3}{4} \\times 2 = \\frac{3}{2}$ km per hour.",
+      "check": [
+        "Rational(3,4) / Rational(1,2) == Rational(3,2)"
+      ]
+    },
+    {
+      "id": "prop-pr2",
+      "statement": "Is the table $(2, 5), (4, 10), (6, 15)$ proportional? If so, find $k$.",
+      "solution": "$\\frac{5}{2} = \\frac{10}{4} = \\frac{15}{6} = \\frac{5}{2}$ — proportional with $k = \\frac{5}{2}$.",
+      "check": [
+        "Rational(5,2) == Rational(10,4)",
+        "Rational(10,4) == Rational(15,6)"
+      ]
+    },
+    {
+      "id": "prop-pr3",
+      "statement": "A proportional relationship contains the pair $(6, 9)$. Write the equation.",
+      "solution": "$k = \\frac{9}{6} = \\frac{3}{2}$, so $y = \\frac{3}{2}x$.",
+      "check": [
+        "Rational(9,6) == Rational(3,2)"
+      ]
+    },
+    {
+      "id": "prop-pr4",
+      "statement": "In $y = \\frac{7}{2}x$, find $y$ when $x = 8$.",
+      "solution": "$y = \\frac{7}{2} \\times 8 = 28$.",
+      "check": [
+        "Rational(7,2)*8 == 28"
+      ]
+    },
+    {
+      "id": "prop-pr5",
+      "statement": "A proportional graph passes through $(5, 3)$. What is $k$, and what is $y$ at $x = 20$?",
+      "solution": "$k = \\frac{3}{5}$; at $x = 20$, $y = \\frac{3}{5} \\times 20 = 12$.",
+      "check": [
+        "Rational(3,5)*20 == 12"
+      ]
+    },
+    {
+      "id": "prop-pr6",
+      "statement": "$8$ kg of apples cost \\$14. What do $20$ kg cost at the same rate?",
+      "solution": "$\\frac{14}{8} = \\frac{x}{20}$: cross-multiply $8x = 280$, so $x = 35$ dollars.",
+      "check": [
+        "8*35 == 14*20",
+        "Rational(14,8)*20 == 35"
+      ]
+    },
+    {
+      "id": "prop-pr7",
+      "statement": "Store A: $10$ eggs for \\$3.50. Store B: $18$ eggs for \\$5.40. Which is the better buy?",
+      "solution": "A: $\\frac{3.50}{10} = 0.35$ per egg. B: $\\frac{5.40}{18} = 0.30$ per egg. Store B.",
+      "check": [
+        "Rational(35,100) == Rational(7,20)",
+        "Rational(540,100)/18 == Rational(3,10)",
+        "Rational(3,10) < Rational(7,20)"
+      ]
+    },
+    {
+      "id": "prop-pr8",
+      "statement": "A drone flies $21$ km in $\\frac{3}{4}$ hour. At that speed, how far does it fly in $2$ hours?",
+      "solution": "Speed $= 21 \\div \\frac{3}{4} = 28$ km/h. In $2$ hours: $56$ km.",
+      "check": [
+        "21 / Rational(3,4) == 28",
+        "28*2 == 56"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "prop-ty1",
+      "statement": "A robot vacuum cleans $\\frac{2}{5}$ of a room in $\\frac{1}{4}$ hour. How many rooms per hour?",
+      "solution": "$\\frac{2}{5} \\div \\frac{1}{4} = \\frac{2}{5} \\times 4 = \\frac{8}{5}$ rooms per hour.",
+      "check": [
+        "Rational(2,5) / Rational(1,4) == Rational(8,5)"
+      ]
+    },
+    {
+      "id": "prop-ty2",
+      "statement": "Which is proportional: (a) $y = 4x$, (b) $y = 4x + 1$, (c) $y = x^2$?",
+      "solution": "(a). It's the only one of the form $y = kx$: (b) adds $1$; (c) changes its ratio ($\\frac{1}{1} \\neq \\frac{4}{2}$).",
+      "check": [
+        "4*1 + 1 != 4*1",
+        "Rational(1,1) != Rational(4,2)"
+      ]
+    },
+    {
+      "id": "prop-ty3",
+      "statement": "A proportional table contains $(12, 30)$. Find $k$ and the value of $y$ at $x = 18$.",
+      "solution": "$k = \\frac{30}{12} = \\frac{5}{2}$; $y = \\frac{5}{2} \\times 18 = 45$.",
+      "check": [
+        "Rational(30,12) == Rational(5,2)",
+        "Rational(5,2)*18 == 45"
+      ]
+    },
+    {
+      "id": "prop-ty4",
+      "statement": "A graph of a proportional relationship passes through $(1, 6)$. What is the equation, and is $(4, 26)$ on the line?",
+      "solution": "$k = 6$, so $y = 6x$. At $x = 4$, $y = 24 \\neq 26$ — the point is NOT on the line.",
+      "check": [
+        "6*4 == 24",
+        "24 != 26"
+      ]
+    },
+    {
+      "id": "prop-ty5",
+      "statement": "On a blueprint, $2$ cm represents $3$ m. A wall is $7$ cm on the blueprint. How long is the real wall?",
+      "solution": "$\\frac{3}{2} = \\frac{x}{7}$: $2x = 21$, so $x = 10.5$ m.",
+      "check": [
+        "2*Rational(21,2) == 3*7"
+      ]
+    },
+    {
+      "id": "prop-ty6",
+      "statement": "Pack A: $6$ juice boxes for \\$5.40. Pack B: $10$ boxes for \\$8.50. Which is the better buy, and by how much per box?",
+      "solution": "A: $\\frac{5.40}{6} = 0.90$ per box. B: $\\frac{8.50}{10} = 0.85$ per box. Pack B, by \\$0.05 per box.",
+      "check": [
+        "Rational(540,100)/6 == Rational(9,10)",
+        "Rational(850,100)/10 == Rational(17,20)",
+        "Rational(9,10) - Rational(17,20) == Rational(1,20)"
+      ]
+    }
+  ]
+}
