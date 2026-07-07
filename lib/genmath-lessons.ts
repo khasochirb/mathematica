@@ -63,6 +63,7 @@ import dataAndStatistics from "@/data/genmath/6/data-and-statistics.json";
 import proportionalRelationships from "@/data/genmath/7/proportional-relationships.json";
 import rationalNumberOperations from "@/data/genmath/7/rational-number-operations.json";
 import equationsAndInequalities from "@/data/genmath/7/equations-and-inequalities.json";
+import percentApplications from "@/data/genmath/7/percent-applications.json";
 // Grade 8 topic JSON imports (added as each topic is authored + published).
 import realNumberSystem from "@/data/genmath/8/the-real-number-system.json";
 import exponentsScientific from "@/data/genmath/8/exponents-and-scientific-notation.json";
@@ -178,7 +179,7 @@ export const GRADE7_SPINE: GradeSpineEntry[] = [
     slug: "percent-applications",
     title: "Percent Applications",
     blurb: "Percent change, discounts, markups, tax, tips, simple interest, and percent error — the percents that show up on receipts.",
-    live: false,
+    live: true,
   },
   {
     slug: "geometry-scale-and-circles",
@@ -414,6 +415,7 @@ const grade7Topics: GenMathTopic[] = [
   proportionalRelationships as GenMathTopic,
   rationalNumberOperations as GenMathTopic,
   equationsAndInequalities as GenMathTopic,
+  percentApplications as GenMathTopic,
 ];
 
 const grade8Topics: GenMathTopic[] = [

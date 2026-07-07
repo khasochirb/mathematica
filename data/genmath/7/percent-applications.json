@@ -1,0 +1,1583 @@
+{
+  "slug": "percent-applications",
+  "title": "Percent Applications",
+  "grade": 7,
+  "blurb": "Percent change, discounts, markups, tax, tips, simple interest, and percent error — the percents that show up on receipts.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "the-percent-equation",
+      "title": "The Percent Equation",
+      "concreteComparison": "Three questions walk into class: “What is $30\\%$ of $150$?”, “$45$ is what percent of $150$?”, “$45$ is $30\\%$ of what?” In Grade 6 they felt like three different tricks. They're ONE equation with a different blank each time: $\\text{part} = \\text{percent} \\times \\text{whole}$. Your new equation-solving skills turn every percent question into fill-in-the-blank.",
+      "objective": "Use part = percent × whole as a single equation and solve it for any of its three unknowns.",
+      "concept": [
+        "Every percent statement has three actors: the **part**, the **percent** (as a decimal or fraction), and the **whole**. They're bound by one equation: $\\text{part} = \\text{percent} \\times \\text{whole}$.",
+        "“What is $30\\%$ of $150$?” — the part is missing: $p = 0.30 \\times 150 = 45$.",
+        "“$45$ is what percent of $150$?” — the percent is missing: $45 = r \\times 150$, so $r = \\frac{45}{150} = 0.30 = 30\\%$.",
+        "“$45$ is $30\\%$ of what?” — the whole is missing: $45 = 0.30 \\times w$, so $w = \\frac{45}{0.30} = 150$.",
+        "Convert the percent to a decimal BEFORE it enters the equation ($30\\% = 0.30$), and convert back at the end if the answer is a percent."
+      ],
+      "keyIdea": "One equation, three blanks: $\\text{part} = \\text{percent} \\times \\text{whole}$ — solve for whichever is missing.",
+      "facts": [
+        {
+          "title": "The percent equation",
+          "explanation": "All three classic percent questions are this equation with a different unknown.",
+          "latex": "$\\text{part} = \\text{percent} \\times \\text{whole}$"
+        },
+        {
+          "title": "Percent enters as a decimal",
+          "explanation": "Divide by 100 on the way in; multiply by 100 on the way out.",
+          "latex": "$30\\% = 0.30$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pct1-we1",
+          "statement": "What is $32\\%$ of $250$?",
+          "solution": "$p = 0.32 \\times 250 = 80$.",
+          "check": [
+            "Rational(32,100)*250 == 80"
+          ]
+        },
+        {
+          "id": "pct1-we2",
+          "statement": "$18$ is what percent of $40$?",
+          "solution": "$18 = r \\times 40$, so $r = \\frac{18}{40} = 0.45 = 45\\%$.",
+          "check": [
+            "Rational(18,40) == Rational(45,100)"
+          ]
+        },
+        {
+          "id": "pct1-we3",
+          "statement": "$63$ is $84\\%$ of what number?",
+          "solution": "$63 = 0.84w$, so $w = \\frac{63}{0.84} = 75$.",
+          "check": [
+            "Rational(63, Rational(84,100)) == 75"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Multiplying by the raw percent number.",
+          "correction": "$30\\%$ of $150$ is $0.30 \\times 150$, not $30 \\times 150$. Percents must convert to decimals (or fractions) before multiplying.",
+          "authored": true
+        },
+        {
+          "text": "Dividing by the part instead of the percent when finding the whole.",
+          "correction": "“$45$ is $30\\%$ of what?” solves as $w = 45 \\div 0.30$, not $0.30 \\div 45$. The whole is always BIGGER than the part when the percent is under 100.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pct1-t1",
+          "statement": "What is $65\\%$ of $80$?",
+          "solution": "$0.65 \\times 80 = 52$.",
+          "check": [
+            "Rational(65,100)*80 == 52"
+          ]
+        },
+        {
+          "id": "pct1-t2",
+          "statement": "$27$ is $45\\%$ of what number?",
+          "solution": "$w = 27 \\div 0.45 = 60$.",
+          "check": [
+            "Rational(27, Rational(45,100)) == 60"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "percentBar",
+            "eyebrow": "Play with it",
+            "title": "Two scales, one marker",
+            "teach": "The top scale reads percent, the bottom reads value — one marker reads both at once. Slide it and feel how part, percent, and whole lock together.",
+            "config": {
+              "whole": 150,
+              "start": 30
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "One equation",
+            "title": "Three questions, one machine",
+            "beats": [
+              "$\\text{part} = \\text{percent} \\times \\text{whole}$",
+              "Missing part → multiply.",
+              "Missing percent → divide part by whole.",
+              "Missing whole → divide part by percent."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Door policy",
+            "title": "Percents convert at the door",
+            "beats": [
+              "$30\\%$ enters the equation as $0.30$.",
+              "$7.5\\%$ enters as $0.075$.",
+              "Answers that ARE percents exit ×100: $0.45 \\to 45\\%$.",
+              "Mixing forms is the #1 percent bug."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which blank?",
+            "prompt": "“$12$ is $15\\%$ of what number?” What's the answer?",
+            "options": [
+              "$80$",
+              "$1.8$",
+              "$180$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$12 = 0.15w \\to w = 12 \\div 0.15 = 80$.",
+            "check": [
+              "Rational(12, Rational(15,100)) == 80"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Fill the blank",
+            "intro": "Identify part, percent, whole — then solve for the empty seat.",
+            "examples": [
+              {
+                "prompt": "A \\$60 jacket is taxed at $8\\%$. How much is the tax?",
+                "steps": [
+                  "Part missing: $t = 0.08 \\times 60$.",
+                  "$t = 4.80$.",
+                  "Tax: \\$4.80."
+                ],
+                "answer": "\\$4.80",
+                "check": [
+                  "Rational(8,100)*60 == Rational(480,100)"
+                ]
+              },
+              {
+                "prompt": "Riley answered $34$ of $40$ questions correctly. What percent?",
+                "steps": [
+                  "Percent missing: $r = \\frac{34}{40}$.",
+                  "$= 0.85$.",
+                  "$= 85\\%$."
+                ],
+                "answer": "$85\\%$",
+                "check": [
+                  "Rational(34,40) == Rational(85,100)"
+                ]
+              },
+              {
+                "prompt": "A team won $18$ games — $60\\%$ of its season. How many games were played?",
+                "steps": [
+                  "Whole missing: $18 = 0.60w$.",
+                  "$w = 18 \\div 0.60$.",
+                  "$w = 30$ games."
+                ],
+                "answer": "$30$ games",
+                "check": [
+                  "Rational(18, Rational(60,100)) == 30"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Three blanks, no tricks",
+            "intro": "part = percent × whole, every time.",
+            "problems": [
+              {
+                "prompt": "What is $12.5\\%$ of $88$?",
+                "options": [
+                  "$11$",
+                  "$8.8$",
+                  "$12.5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$0.125 \\times 88 = 11$.",
+                "check": [
+                  "Rational(125,1000)*88 == 11"
+                ]
+              },
+              {
+                "prompt": "$54$ is what percent of $120$?",
+                "options": [
+                  "$45\\%$",
+                  "$54\\%$",
+                  "$44\\%$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{54}{120} = 0.45 = 45\\%$.",
+                "check": [
+                  "Rational(54,120) == Rational(45,100)"
+                ]
+              },
+              {
+                "prompt": "$21$ is $28\\%$ of what number?",
+                "options": [
+                  "$75$",
+                  "$58.8$",
+                  "$84$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$w = 21 \\div 0.28 = 75$.",
+                "check": [
+                  "Rational(21, Rational(28,100)) == 75"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Per centum",
+            "body": "“Percent” is Latin *per centum* — “per hundred” — and the $\\%$ symbol evolved from a sloppy abbreviation of *cento* in 15th-century Italian merchant ledgers: the letters melted into two circles and a slash. Merchants needed it because taxes, interest, and exchange fees were all quoted per hundred — the same three applications you're about to master."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$\\text{part} = \\text{percent} \\times \\text{whole}$ answers all three classic questions.",
+              "Convert percents to decimals on the way in, back to percents on the way out.",
+              "Missing whole? Divide the part by the percent."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "percent-change-and-multipliers",
+      "title": "Percent Change & Multipliers",
+      "concreteComparison": "A sneaker drops from \\$80 to \\$60 — that's a $25\\%$ decrease. Here's the Grade 7 upgrade: instead of computing the change and subtracting, ONE multiplication does it all. A $25\\%$ decrease is $\\times 0.75$; a $25\\%$ increase is $\\times 1.25$. Multipliers turn two-step percent problems into one-step ones — and they're the key to everything that follows.",
+      "objective": "Compute percent change from before/after values, and use multipliers (1 ± r) for increases and decreases.",
+      "concept": [
+        "**Percent change** always measures against the ORIGINAL: $\\text{percent change} = \\frac{\\text{change}}{\\text{original}} \\times 100\\%$.",
+        "From \\$80 to \\$60: change is $20$, original is $80$, so $\\frac{20}{80} = 25\\%$ decrease.",
+        "The **multiplier** view: increasing by $r\\%$ multiplies by $(1 + \\frac{r}{100})$; decreasing by $r\\%$ multiplies by $(1 - \\frac{r}{100})$. A $25\\%$ off sale is simply $\\times 0.75$.",
+        "Multipliers reverse cleanly: if a price AFTER a $25\\%$ discount is \\$60, the original was $60 \\div 0.75 = 80$. Dividing by the multiplier undoes the change.",
+        "Warning: a $25\\%$ decrease is NOT undone by a $25\\%$ increase — $80 \\to 60 \\to 75$. The base changed, so the percents don't cancel."
+      ],
+      "keyIdea": "Percent change = change ÷ ORIGINAL; increase → ×(1 + r), decrease → ×(1 − r); divide by the multiplier to go backwards.",
+      "facts": [
+        {
+          "title": "Change over original",
+          "explanation": "The original is always the denominator — never the new value.",
+          "latex": "$\\tfrac{80 - 60}{80} = 25\\%$"
+        },
+        {
+          "title": "The multiplier",
+          "explanation": "One multiplication replaces compute-then-subtract.",
+          "latex": "$-25\\% \\to \\times 0.75,\\; +25\\% \\to \\times 1.25$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pct2-we1",
+          "statement": "A price falls from \\$80 to \\$60. Find the percent change.",
+          "solution": "Change $= 20$; $\\frac{20}{80} = 0.25$ — a $25\\%$ decrease.",
+          "check": [
+            "Rational(80-60, 80) == Rational(25,100)"
+          ]
+        },
+        {
+          "id": "pct2-we2",
+          "statement": "Attendance rose from $240$ to $300$. Find the percent increase.",
+          "solution": "Change $= 60$; $\\frac{60}{240} = 0.25 = 25\\%$ increase.",
+          "check": [
+            "Rational(300-240, 240) == Rational(25,100)"
+          ]
+        },
+        {
+          "id": "pct2-we3",
+          "statement": "A \\$44 game is discounted $35\\%$. Use a multiplier to find the sale price.",
+          "solution": "Multiplier $= 1 - 0.35 = 0.65$; price $= 44 \\times 0.65 = 28.60$ dollars.",
+          "check": [
+            "44*Rational(65,100) == Rational(2860,100)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dividing the change by the NEW value.",
+          "correction": "From \\$80 to \\$60, the change is measured against the original \\$80: $\\frac{20}{80} = 25\\%$, not $\\frac{20}{60} = 33\\%$.",
+          "authored": true
+        },
+        {
+          "text": "Undoing a −25% with a +25%.",
+          "correction": "$80 \\times 0.75 = 60$, but $60 \\times 1.25 = 75 \\neq 80$. To reverse a change, DIVIDE by its multiplier: $60 \\div 0.75 = 80$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pct2-t1",
+          "statement": "A plant grew from $16$ cm to $22$ cm. Find the percent increase.",
+          "solution": "$\\frac{6}{16} = 0.375 = 37.5\\%$.",
+          "check": [
+            "Rational(22-16, 16) == Rational(375,1000)"
+          ]
+        },
+        {
+          "id": "pct2-t2",
+          "statement": "What single multiplier applies a $12\\%$ increase, and what is $50$ after it?",
+          "solution": "$\\times 1.12$; $50 \\times 1.12 = 56$.",
+          "check": [
+            "50*Rational(112,100) == 56"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "percentChangeFinder",
+            "eyebrow": "Play with it",
+            "title": "Before, after, percent",
+            "teach": "Two bars: before and after. The highlighted gap is the change — and the percent it represents is measured against the ORIGINAL bar. Reveal it and check your instinct.",
+            "config": {
+              "original": 80,
+              "final": 60
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The formula",
+            "title": "Original in the basement",
+            "beats": [
+              "$\\text{percent change} = \\frac{\\text{change}}{\\text{original}} \\times 100\\%$",
+              "$80 \\to 60$: $\\frac{20}{80} = 25\\%$ down.",
+              "$60 \\to 80$: $\\frac{20}{60} = 33\\frac{1}{3}\\%$ up!",
+              "Same gap, different original — different percent."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The upgrade",
+            "title": "Meet the multiplier",
+            "beats": [
+              "$+20\\%$ means $\\times 1.20$. $\\;-20\\%$ means $\\times 0.80$.",
+              "\\$44 at $35\\%$ off: $44 \\times 0.65 = 28.60$. One step.",
+              "To go BACKWARDS, divide by the multiplier.",
+              "After a $25\\%$ discount you pay \\$60 → original $60 \\div 0.75 = 80$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Pick the multiplier",
+            "prompt": "Which single multiplier applies an $18\\%$ decrease?",
+            "options": [
+              "$\\times 0.82$",
+              "$\\times 0.18$",
+              "$\\times 1.18$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Decrease by $18\\%$ leaves $82\\%$: multiply by $0.82$. ($\\times 0.18$ would leave only 18%!)",
+            "check": [
+              "1 - Rational(18,100) == Rational(82,100)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Change, both directions",
+            "intro": "Find the original, pick the direction, one clean division or multiplication.",
+            "examples": [
+              {
+                "prompt": "A video's views jumped from $1{,}500$ to $2{,}400$. Percent increase?",
+                "steps": [
+                  "Change: $900$.",
+                  "$\\frac{900}{1500} = 0.6$.",
+                  "$60\\%$ increase."
+                ],
+                "answer": "$60\\%$",
+                "check": [
+                  "Rational(2400-1500, 1500) == Rational(60,100)"
+                ]
+              },
+              {
+                "prompt": "After a $40\\%$ discount, headphones cost \\$33. What was the original price?",
+                "steps": [
+                  "Multiplier: $0.60$.",
+                  "Original $= 33 \\div 0.60$.",
+                  "$= 55$ dollars."
+                ],
+                "answer": "\\$55",
+                "check": [
+                  "Rational(33, Rational(60,100)) == 55"
+                ]
+              },
+              {
+                "prompt": "A \\$150 rent rises $8\\%$. New rent, in one multiplication?",
+                "steps": [
+                  "Multiplier: $1.08$.",
+                  "$150 \\times 1.08 = 162$.",
+                  "New rent: \\$162."
+                ],
+                "answer": "\\$162",
+                "check": [
+                  "150*Rational(108,100) == 162"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Multiplier fluency",
+            "intro": "Direction first, multiplier second.",
+            "problems": [
+              {
+                "prompt": "A town's population fell from $2{,}000$ to $1{,}700$. Percent change?",
+                "options": [
+                  "$15\\%$ decrease",
+                  "$17.6\\%$ decrease",
+                  "$30\\%$ decrease"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{300}{2000} = 0.15 = 15\\%$ down.",
+                "check": [
+                  "Rational(2000-1700, 2000) == Rational(15,100)"
+                ]
+              },
+              {
+                "prompt": "What is $64$ after a $37.5\\%$ decrease?",
+                "options": [
+                  "$40$",
+                  "$24$",
+                  "$26.5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$64 \\times 0.625 = 40$.",
+                "check": [
+                  "64*Rational(625,1000) == 40"
+                ]
+              },
+              {
+                "prompt": "After a $30\\%$ increase, a stock costs \\$91. Original price?",
+                "options": [
+                  "\\$70",
+                  "\\$63.70",
+                  "\\$61"
+                ],
+                "correctIndex": 0,
+                "explanation": "$91 \\div 1.30 = 70$.",
+                "check": [
+                  "Rational(91, Rational(130,100)) == 70"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The asymmetric elevator",
+            "body": "Lose $50\\%$ and you need $+100\\%$ just to get back — a stock that halves must DOUBLE to recover. Investors call this “the asymmetry of loss,” and it's pure denominators: the way down measures against the big number, the way back against the small one. Multiplier arithmetic ($\\times 0.5$ then $\\times 2$) makes it obvious; percent-speak hides it."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Percent change divides by the ORIGINAL, always.",
+              "Increase → $\\times(1 + r)$; decrease → $\\times(1 - r)$.",
+              "Reverse a change by DIVIDING by its multiplier — never by applying the opposite percent."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "markup-discount-and-tax",
+      "title": "Markup, Discount & Tax",
+      "concreteComparison": "A shop buys a hoodie for \\$20 (cost), marks it up $80\\%$ to \\$36 (price tag), then runs a $25\\%$ off sale (\\$27), and the register adds $8\\%$ tax (\\$29.16). Four numbers, three percent moves — and each move is one multiplier. Retail is a multiplier assembly line, and you're about to read it like the manager.",
+      "objective": "Apply markup, discount, and sales tax — separately and chained — using multipliers.",
+      "concept": [
+        "**Markup** raises cost to selling price: an $80\\%$ markup multiplies the cost by $1.80$. Stores mark up to cover rent, wages, and profit.",
+        "**Discount** lowers the tag price: $25\\%$ off multiplies by $0.75$.",
+        "**Sales tax** rides on the FINAL price at the register: $8\\%$ tax multiplies by $1.08$.",
+        "Chained changes MULTIPLY: cost $\\times 1.80 \\times 0.75 \\times 1.08$ is the whole story in one line: $20 \\times 1.80 \\times 0.75 \\times 1.08 = 29.16$.",
+        "Order between discount and tax doesn't change the total ($\\times 0.75 \\times 1.08 = \\times 1.08 \\times 0.75$) — multiplication commutes — but stores must apply tax last by law, and the intermediate numbers differ."
+      ],
+      "keyIdea": "Markup, discount, and tax are multipliers — chain them by multiplying, and read any missing number by dividing.",
+      "facts": [
+        {
+          "title": "Three multipliers",
+          "explanation": "Markup up, discount down, tax up — each is one clean factor.",
+          "latex": "$\\times 1.80,\\; \\times 0.75,\\; \\times 1.08$"
+        },
+        {
+          "title": "Chains multiply",
+          "explanation": "A whole retail story compresses into one product.",
+          "latex": "$20 \\times 1.8 \\times 0.75 \\times 1.08 = 29.16$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pct3-we1",
+          "statement": "A store buys a hoodie for \\$20 and marks it up $80\\%$. Find the tag price.",
+          "solution": "$20 \\times 1.80 = 36$ dollars.",
+          "check": [
+            "20*Rational(180,100) == 36"
+          ]
+        },
+        {
+          "id": "pct3-we2",
+          "statement": "The \\$36 hoodie goes on sale at $25\\%$ off, then $8\\%$ tax is added. Find the register total.",
+          "solution": "$36 \\times 0.75 = 27$; then $27 \\times 1.08 = 29.16$ dollars.",
+          "check": [
+            "36*Rational(75,100) == 27",
+            "27*Rational(108,100) == Rational(2916,100)"
+          ]
+        },
+        {
+          "id": "pct3-we3",
+          "statement": "A laptop rings up at \\$648 after a $20\\%$ discount and $8\\%$ tax. What was the tag price?",
+          "solution": "Undo tax: $648 \\div 1.08 = 600$. Undo discount: $600 \\div 0.80 = 750$ dollars.",
+          "check": [
+            "Rational(648, Rational(108,100)) == 600",
+            "Rational(600, Rational(80,100)) == 750"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding percent changes together.",
+          "correction": "A 25% discount then 8% tax is NOT a 17% discount. Chains multiply: $0.75 \\times 1.08 = 0.81$ — an effective 19% off.",
+          "authored": true
+        },
+        {
+          "text": "Taking the markup percent of the SELLING price.",
+          "correction": "An 80% markup is 80% of the COST: $20 \\times 1.80 = 36$. Percent moves always name their base — read carefully.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pct3-t1",
+          "statement": "A gadget costs the store \\$45 and is marked up $60\\%$. Tag price?",
+          "solution": "$45 \\times 1.60 = 72$ dollars.",
+          "check": [
+            "45*Rational(160,100) == 72"
+          ]
+        },
+        {
+          "id": "pct3-t2",
+          "statement": "A \\$25 meal gets $6\\%$ tax. Register total?",
+          "solution": "$25 \\times 1.06 = 26.50$ dollars.",
+          "check": [
+            "25*Rational(106,100) == Rational(2650,100)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "percentChange",
+            "eyebrow": "Play with it",
+            "title": "The price bar, sliced",
+            "teach": "Watch a price split into “you pay” and “discount” — then flip the mode and watch tax extend the bar past the tag. Every retail move is a resize of this bar.",
+            "config": {
+              "original": 36,
+              "start": 25,
+              "mode": "discount"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The assembly line",
+            "title": "Cost → tag → sale → register",
+            "beats": [
+              "Markup: cost $\\times 1.80 \\to$ tag \\$36.",
+              "Discount: tag $\\times 0.75 \\to$ sale \\$27.",
+              "Tax: sale $\\times 1.08 \\to$ register \\$29.16.",
+              "One line: $20 \\times 1.8 \\times 0.75 \\times 1.08$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Going backwards",
+            "title": "Divide to rewind",
+            "beats": [
+              "Know the total, want the tag? Divide by the tax multiplier.",
+              "$648 \\div 1.08 = 600$ (pre-tax).",
+              "$600 \\div 0.80 = 750$ (pre-discount).",
+              "Rewind the assembly line one factor at a time."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Chain reaction",
+            "prompt": "A \\$50 item is $30\\%$ off, and $10\\%$ tax applies. Register total?",
+            "options": [
+              "\\$38.50",
+              "\\$40",
+              "\\$35"
+            ],
+            "correctIndex": 0,
+            "explanation": "$50 \\times 0.70 = 35$; $35 \\times 1.10 = 38.50$.",
+            "check": [
+              "50*Rational(70,100)*Rational(110,100) == Rational(3850,100)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Retail, decoded",
+            "intro": "Name each multiplier, then chain or rewind.",
+            "examples": [
+              {
+                "prompt": "A bookstore buys novels at \\$8 and sells at \\$14. What's the markup percent?",
+                "steps": [
+                  "Markup: $14 - 8 = 6$.",
+                  "$\\frac{6}{8} = 0.75$.",
+                  "$75\\%$ markup."
+                ],
+                "answer": "$75\\%$",
+                "check": [
+                  "Rational(14-8, 8) == Rational(75,100)"
+                ]
+              },
+              {
+                "prompt": "Sneakers: tag \\$90, sale $40\\%$ off, tax $5\\%$. Total?",
+                "steps": [
+                  "$90 \\times 0.60 = 54$.",
+                  "$54 \\times 1.05 = 56.70$.",
+                  "Register: \\$56.70."
+                ],
+                "answer": "\\$56.70",
+                "check": [
+                  "90*Rational(60,100) == 54",
+                  "54*Rational(105,100) == Rational(5670,100)"
+                ]
+              },
+              {
+                "prompt": "What SINGLE percent change equals $20\\%$ off followed by $20\\%$ tax?",
+                "steps": [
+                  "$0.80 \\times 1.20 = 0.96$.",
+                  "$\\times 0.96$ is a $4\\%$ decrease.",
+                  "Not zero! The two 20s use different bases."
+                ],
+                "answer": "$4\\%$ decrease",
+                "check": [
+                  "Rational(80,100)*Rational(120,100) == Rational(96,100)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Work the register",
+            "intro": "Multipliers forward, division backward.",
+            "problems": [
+              {
+                "prompt": "A café marks up \\$2.50 cost by $120\\%$. Menu price?",
+                "options": [
+                  "\\$5.50",
+                  "\\$3.00",
+                  "\\$5.00"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2.50 \\times 2.20 = 5.50$.",
+                "check": [
+                  "Rational(250,100)*Rational(220,100) == Rational(550,100)"
+                ]
+              },
+              {
+                "prompt": "After $15\\%$ off, a jacket costs \\$68. Tag price?",
+                "options": [
+                  "\\$80",
+                  "\\$78.20",
+                  "\\$83"
+                ],
+                "correctIndex": 0,
+                "explanation": "$68 \\div 0.85 = 80$.",
+                "check": [
+                  "Rational(68, Rational(85,100)) == 80"
+                ]
+              },
+              {
+                "prompt": "Which is cheaper for a \\$100 item: “$30\\%$ off” or “$20\\%$ off then an extra $15\\%$ off”?",
+                "options": [
+                  "$20\\%$ then $15\\%$ (pays \\$68)",
+                  "$30\\%$ off (pays \\$70)",
+                  "identical"
+                ],
+                "correctIndex": 0,
+                "explanation": "Stacked: $0.80 \\times 0.85 = 0.68$ → \\$68. Single: $0.70$ → \\$70. The stacked discounts win by \\$2.",
+                "check": [
+                  "Rational(80,100)*Rational(85,100) == Rational(68,100)",
+                  "Rational(68,100) < Rational(70,100)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The eternal sale",
+            "body": "Regulators in several countries have fined stores for “perpetual discounts” — tags marked up just to show a big percent off. The math tells the story: a \\$40 item marked up to \\$80 and sold “50% off” costs… \\$40. Chained multipliers ($\\times 2 \\times 0.5 = \\times 1$) expose the trick instantly, which is why consumer-protection agencies employ people who do exactly this arithmetic."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Markup ↑ from cost, discount ↓ from tag, tax ↑ at the register — each one multiplier.",
+              "Chains multiply; percents never simply add across different bases.",
+              "Rewind any step by dividing by its multiplier."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "simple-interest",
+      "title": "Simple Interest",
+      "concreteComparison": "You lend your cousin \\$200, and they agree to pay $5\\%$ interest per year. After $3$ years they owe the \\$200 back PLUS $200 \\times 0.05 \\times 3 = 30$ dollars of interest. That's **simple interest**: the same charge every year, computed on the original amount. One formula runs savings accounts, loans, and every “...% per year” sentence: $I = Prt$.",
+      "objective": "Use I = Prt to compute interest, total repayment, and any missing variable.",
+      "concept": [
+        "**Simple interest** charges the same amount every period: $I = Prt$, where $P$ is the **principal** (starting amount), $r$ is the yearly **rate** as a decimal, and $t$ is the **time** in years.",
+        "The **total** after $t$ years is the principal plus its interest: $A = P + I = P(1 + rt)$.",
+        "The formula solves for ANY missing letter with your equation skills: given $I$, $P$, and $t$, the rate is $r = \\frac{I}{Pt}$.",
+        "Time must be in YEARS: $6$ months enters as $t = 0.5$, and $30$ months as $t = 2.5$."
+      ],
+      "keyIdea": "$I = Prt$ and $A = P(1 + rt)$ — the rate enters as a decimal, the time in years.",
+      "facts": [
+        {
+          "title": "The formula",
+          "explanation": "Interest = principal × rate × time, the same slice every year.",
+          "latex": "$I = Prt$"
+        },
+        {
+          "title": "Total owed",
+          "explanation": "Principal plus all the interest, in one multiplier.",
+          "latex": "$A = P(1 + rt)$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pct4-we1",
+          "statement": "\\$200 is lent at $5\\%$ simple interest for $3$ years. Find the interest and the total repayment.",
+          "solution": "$I = 200 \\times 0.05 \\times 3 = 30$; total $= 200 + 30 = 230$ dollars.",
+          "check": [
+            "200*Rational(5,100)*3 == 30",
+            "200 + 30 == 230"
+          ]
+        },
+        {
+          "id": "pct4-we2",
+          "statement": "A savings account holds \\$1,500 at $4\\%$ simple interest. How much interest after $6$ months?",
+          "solution": "$t = 0.5$: $I = 1500 \\times 0.04 \\times 0.5 = 30$ dollars.",
+          "check": [
+            "1500*Rational(4,100)*Rational(1,2) == 30"
+          ]
+        },
+        {
+          "id": "pct4-we3",
+          "statement": "\\$800 grew to \\$920 in $2$ years of simple interest. Find the rate.",
+          "solution": "$I = 120$; $r = \\frac{120}{800 \\times 2} = 0.075 = 7.5\\%$.",
+          "check": [
+            "Rational(920-800, 800*2) == Rational(75,1000)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using months directly as t.",
+          "correction": "$t$ is in YEARS: 6 months is $t = 0.5$, not $t = 6$. Divide months by 12 before entering the formula.",
+          "authored": true
+        },
+        {
+          "text": "Reporting the interest when the question asks the total.",
+          "correction": "$I = Prt$ is only the interest. “How much do they owe?” wants $A = P + I$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pct4-t1",
+          "statement": "\\$600 at $3.5\\%$ simple interest for $4$ years. How much interest?",
+          "solution": "$I = 600 \\times 0.035 \\times 4 = 84$ dollars.",
+          "check": [
+            "600*Rational(35,1000)*4 == 84"
+          ]
+        },
+        {
+          "id": "pct4-t2",
+          "statement": "How long does \\$500 at $6\\%$ take to earn \\$90 of interest?",
+          "solution": "$90 = 500 \\times 0.06 \\times t = 30t$, so $t = 3$ years.",
+          "check": [
+            "500*Rational(6,100)*3 == 90"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The cast",
+            "title": "P, r, t",
+            "beats": [
+              "$P$ — principal, the starting money.",
+              "$r$ — yearly rate, as a decimal ($5\\% \\to 0.05$).",
+              "$t$ — time in years ($6$ months $\\to 0.5$).",
+              "$I = Prt$: multiply the three."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why “simple”?",
+            "title": "The same slice every year",
+            "beats": [
+              "Year 1: \\$200 earns \\$10.",
+              "Year 2: the SAME \\$10 — interest is always on the original.",
+              "After $t$ years: $t$ identical slices.",
+              "(Banks usually compound — interest on interest — that's Grade 10's exponential story.)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Total",
+            "title": "One multiplier again",
+            "beats": [
+              "Owed $=$ principal $+$ interest.",
+              "$A = P + Prt = P(1 + rt)$.",
+              "\\$200 at $5\\%$ for 3 years: $200 \\times 1.15 = 230$.",
+              "The multiplier idea from percent change, recycled."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Run the formula",
+            "prompt": "\\$400 at $6\\%$ simple interest for $2.5$ years. How much INTEREST?",
+            "options": [
+              "\\$60",
+              "\\$460",
+              "\\$24"
+            ],
+            "correctIndex": 0,
+            "explanation": "$I = 400 \\times 0.06 \\times 2.5 = 60$ dollars.",
+            "check": [
+              "400*Rational(6,100)*Rational(25,10) == 60"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "All four unknowns",
+            "intro": "I, P, r, or t — the formula serves whichever is missing.",
+            "examples": [
+              {
+                "prompt": "What principal earns \\$45 at $5\\%$ in $3$ years?",
+                "steps": [
+                  "$45 = P \\times 0.05 \\times 3 = 0.15P$.",
+                  "$P = 45 \\div 0.15$.",
+                  "$P = 300$ dollars."
+                ],
+                "answer": "\\$300",
+                "check": [
+                  "300*Rational(5,100)*3 == 45"
+                ]
+              },
+              {
+                "prompt": "A \\$2,000 loan at $9\\%$ runs $8$ months. Interest?",
+                "steps": [
+                  "$t = \\frac{8}{12} = \\frac{2}{3}$ year.",
+                  "$I = 2000 \\times 0.09 \\times \\frac{2}{3}$.",
+                  "$I = 120$ dollars."
+                ],
+                "answer": "\\$120",
+                "check": [
+                  "2000*Rational(9,100)*Rational(2,3) == 120"
+                ]
+              },
+              {
+                "prompt": "Total repayment on \\$1,200 at $7\\%$ for $5$ years?",
+                "steps": [
+                  "$A = P(1 + rt) = 1200(1 + 0.35)$.",
+                  "$= 1200 \\times 1.35$.",
+                  "$= 1620$ dollars."
+                ],
+                "answer": "\\$1,620",
+                "check": [
+                  "1200*(1 + Rational(7,100)*5) == 1620"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Interest workout",
+            "intro": "Decimals in, years in, then multiply or solve.",
+            "problems": [
+              {
+                "prompt": "\\$900 at $4\\%$ for $18$ months. Interest?",
+                "options": [
+                  "\\$54",
+                  "\\$648",
+                  "\\$36"
+                ],
+                "correctIndex": 0,
+                "explanation": "$t = 1.5$: $900 \\times 0.04 \\times 1.5 = 54$.",
+                "check": [
+                  "900*Rational(4,100)*Rational(15,10) == 54"
+                ]
+              },
+              {
+                "prompt": "At what rate does \\$250 earn \\$40 in $4$ years?",
+                "options": [
+                  "$4\\%$",
+                  "$10\\%$",
+                  "$2.5\\%$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$r = \\frac{40}{250 \\times 4} = 0.04 = 4\\%$.",
+                "check": [
+                  "Rational(40, 250*4) == Rational(4,100)"
+                ]
+              },
+              {
+                "prompt": "Total owed on \\$500 at $8\\%$ for $3$ years?",
+                "options": [
+                  "\\$620",
+                  "\\$120",
+                  "\\$540"
+                ],
+                "correctIndex": 0,
+                "explanation": "$A = 500(1 + 0.24) = 620$ dollars.",
+                "check": [
+                  "500*(1 + Rational(8,100)*3) == 620"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Interest is older than coins",
+            "body": "Loans with interest appear in Sumerian records from around 3000 BC — farmers borrowed seed grain and repaid with a share of the harvest, a thousand years before metal money existed. The Sumerian word for interest, *mash*, literally means “calf”: lend a herd, and the interest is the calves it bears. $I = Prt$ is the cuneiform calf-count, formalized."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$I = Prt$: principal × decimal rate × years.",
+              "Total owed: $A = P(1 + rt)$ — one multiplier.",
+              "Months convert to years; any missing letter yields to equation skills."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "percent-error",
+      "title": "Percent Error",
+      "concreteComparison": "You estimate the jar holds $250$ jellybeans; the count reveals $280$. Your guess was off by $30$ — but is that a GOOD guess? Off by 30 on 280 is different from off by 30 on 60. **Percent error** measures the miss relative to the true value: $\\frac{30}{280} \\approx 10.7\\%$ — pretty sharp, actually.",
+      "objective": "Compute percent error as |measured − actual| ÷ actual, and interpret what it says about accuracy.",
+      "concept": [
+        "**Percent error** compares a measured (or guessed) value to the actual one: $\\text{percent error} = \\frac{|\\text{measured} - \\text{actual}|}{\\text{actual}} \\times 100\\%$.",
+        "The absolute value makes error direction-blind: guessing $250$ when the truth is $280$, or $310$ when the truth is $280$, are both off by 30 — both about $10.7\\%$.",
+        "The denominator is the ACTUAL value — the truth, not your guess. Just like percent change measures against the original, percent error measures against reality.",
+        "Percent error is the language of precision: a $\\pm 1\\%$ scale is trustworthy for cooking; a $\\pm 10\\%$ one is not for medicine."
+      ],
+      "keyIdea": "$\\text{percent error} = \\frac{|\\text{measured} - \\text{actual}|}{\\text{actual}} \\times 100\\%$ — the miss, sized against the truth.",
+      "facts": [
+        {
+          "title": "The formula",
+          "explanation": "Absolute miss over the true value.",
+          "latex": "$\\tfrac{|\\text{measured} - \\text{actual}|}{\\text{actual}}$"
+        },
+        {
+          "title": "Truth in the basement",
+          "explanation": "The denominator is reality, not your guess.",
+          "latex": "divide by ACTUAL"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pct5-we1",
+          "statement": "You estimated $250$ jellybeans; the jar held $280$. Find the percent error.",
+          "solution": "$\\frac{|250 - 280|}{280} = \\frac{30}{280} = \\frac{3}{28} \\approx 10.7\\%$.",
+          "check": [
+            "Abs(250-280) == 30",
+            "Rational(30,280) == Rational(3,28)"
+          ]
+        },
+        {
+          "id": "pct5-we2",
+          "statement": "A scale reads $2.3$ kg for a package that truly weighs $2.5$ kg. Percent error?",
+          "solution": "$\\frac{|2.3 - 2.5|}{2.5} = \\frac{0.2}{2.5} = 0.08 = 8\\%$.",
+          "check": [
+            "Rational(Abs(Rational(23,10) - Rational(25,10)), Rational(25,10)) == Rational(8,100)"
+          ]
+        },
+        {
+          "id": "pct5-we3",
+          "statement": "A recipe predicts $24$ cookies; you baked $30$. Percent error of the prediction?",
+          "solution": "$\\frac{|24 - 30|}{30} = \\frac{6}{30} = 20\\%$.",
+          "check": [
+            "Rational(Abs(24-30), 30) == Rational(20,100)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dividing by the guess instead of the actual.",
+          "correction": "Estimated 250, actual 280: divide the miss by 280 (truth), not 250 (guess). $\\frac{30}{280}$, not $\\frac{30}{250}$.",
+          "authored": true
+        },
+        {
+          "text": "Letting error come out negative.",
+          "correction": "The absolute value bars are part of the formula. Guessing high or low, the ERROR is positive — direction is a separate remark.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pct5-t1",
+          "statement": "A thermometer reads $37.8°$ when the true temperature is $36$. Percent error?",
+          "solution": "$\\frac{|37.8 - 36|}{36} = \\frac{1.8}{36} = 0.05 = 5\\%$.",
+          "check": [
+            "Rational(Abs(Rational(378,10) - 36), 36) == Rational(5,100)"
+          ]
+        },
+        {
+          "id": "pct5-t2",
+          "statement": "You predicted $40$ visitors; $50$ came. Percent error?",
+          "solution": "$\\frac{10}{50} = 20\\%$.",
+          "check": [
+            "Rational(Abs(40-50), 50) == Rational(20,100)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The setup",
+            "title": "Guess vs truth",
+            "beats": [
+              "Measured (or guessed) value: what you said.",
+              "Actual value: what reality said.",
+              "The miss: $|\\text{measured} - \\text{actual}|$.",
+              "Percent error: miss $\\div$ actual, $\\times 100\\%$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why divide?",
+            "title": "A miss needs a scale",
+            "beats": [
+              "Off by 30 on a jar of 280 → sharp guess ($10.7\\%$).",
+              "Off by 30 on a jar of 60 → wild guess ($50\\%$).",
+              "Raw error can't tell these apart; percent error can.",
+              "Same logic as percent change — relative beats absolute."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Size the miss",
+            "prompt": "Measured $45$; actual $50$. Percent error?",
+            "options": [
+              "$10\\%$",
+              "$11.1\\%$",
+              "$5\\%$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\frac{|45-50|}{50} = \\frac{5}{50} = 10\\%$. (Dividing by the guess 45 gives the wrong 11.1%.)",
+            "check": [
+              "Rational(Abs(45-50), 50) == Rational(10,100)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Error in the wild",
+            "intro": "Miss first, then divide by the truth.",
+            "examples": [
+              {
+                "prompt": "A map app estimated $28$ minutes; the drive took $35$. Percent error?",
+                "steps": [
+                  "Miss: $|28 - 35| = 7$.",
+                  "$\\frac{7}{35} = 0.2$.",
+                  "$20\\%$ error."
+                ],
+                "answer": "$20\\%$",
+                "check": [
+                  "Rational(Abs(28-35), 35) == Rational(20,100)"
+                ]
+              },
+              {
+                "prompt": "A 3D printer aims for a $12.5$ mm part but produces $12.3$ mm. Percent error?",
+                "steps": [
+                  "Miss: $0.2$ mm.",
+                  "$\\frac{0.2}{12.5} = 0.016$.",
+                  "$1.6\\%$ — precise enough for most builds."
+                ],
+                "answer": "$1.6\\%$",
+                "check": [
+                  "Rational(Abs(Rational(123,10) - Rational(125,10)), Rational(125,10)) == Rational(16,1000)"
+                ]
+              },
+              {
+                "prompt": "Two students guess a rope's length (true: $8$ m). Ana says $7$ m; Bo says $9.2$ m. Who's relatively closer?",
+                "steps": [
+                  "Ana: $\\frac{1}{8} = 12.5\\%$.",
+                  "Bo: $\\frac{1.2}{8} = 15\\%$.",
+                  "Ana wins — smaller percent error."
+                ],
+                "answer": "Ana ($12.5\\%$ vs $15\\%$)",
+                "check": [
+                  "Rational(1,8) == Rational(125,1000)",
+                  "Rational(12,10)/8 == Rational(15,100)",
+                  "Rational(125,1000) < Rational(15,100)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Judge the accuracy",
+            "intro": "Absolute miss ÷ actual truth.",
+            "problems": [
+              {
+                "prompt": "Estimated \\$60 for groceries; the bill was \\$75. Percent error?",
+                "options": [
+                  "$20\\%$",
+                  "$25\\%$",
+                  "$15\\%$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{15}{75} = 20\\%$.",
+                "check": [
+                  "Rational(Abs(60-75), 75) == Rational(20,100)"
+                ]
+              },
+              {
+                "prompt": "A package labeled $500$ g actually weighs $520$ g. Percent error of the label?",
+                "options": [
+                  "about $3.8\\%$",
+                  "$4\\%$",
+                  "$20\\%$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{20}{520} = \\frac{1}{26} \\approx 3.8\\%$.",
+                "check": [
+                  "Rational(Abs(500-520), 520) == Rational(1,26)"
+                ]
+              },
+              {
+                "prompt": "Whose guess is relatively better: off by $4$ on a true value of $25$, or off by $6$ on a true value of $60$?",
+                "options": [
+                  "off by $6$ on $60$",
+                  "off by $4$ on $25$",
+                  "equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{6}{60} = 10\\%$ beats $\\frac{4}{25} = 16\\%$.",
+                "check": [
+                  "Rational(6,60) == Rational(10,100)",
+                  "Rational(4,25) == Rational(16,100)",
+                  "Rational(10,100) < Rational(16,100)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The 2% cosmic argument",
+            "body": "Astronomers measuring the universe's expansion rate disagree by about $8\\%$ depending on method — and that “small” percent error is one of the biggest crises in modern cosmology, spawning hundreds of papers. In science, percent error isn't a grade on your homework; it's a signal that either your ruler or your theory is broken. Sometimes the theory loses."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Percent error $= \\frac{|\\text{measured} - \\text{actual}|}{\\text{actual}} \\times 100\\%$.",
+              "Divide by the TRUTH, and keep the absolute value bars.",
+              "Relative error compares guesses fairly across different sizes."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "percents-in-the-wild",
+      "title": "Percents in the Wild",
+      "concreteComparison": "Dinner: \\$48.60 of food, $18\\%$ tip, split three ways. A paycheck: \\$640 base plus $4\\%$ commission on \\$2,500 of sales. A jacket: two coupon strategies to compare. Adult life fires percents at you in bursts of two and three — this lesson is target practice with everything from the unit at once.",
+      "objective": "Solve multi-step percent problems mixing tips, commission, taxes, discounts, interest, and comparisons.",
+      "concept": [
+        "**Tips** work like tax — a percent of the bill, added on: an $18\\%$ tip on \\$48.60 makes the total $48.60 \\times 1.18$.",
+        "**Commission** is percent-of-sales pay: total pay $=$ base $+$ rate $\\times$ sales.",
+        "Mental anchors make percents fast: $10\\%$ is a decimal shift; $5\\%$ is half of that; $1\\%$ is two shifts. $18\\% = 10\\% + 5\\% + 1\\% + 1\\% + 1\\%$.",
+        "For comparisons — coupons, plans, deals — compute BOTH endings. The percent that sounds bigger doesn't always win; the base it applies to matters more."
+      ],
+      "keyIdea": "Stack the tools: multipliers for changes, part = percent × whole for slices, mental anchors for speed.",
+      "facts": [
+        {
+          "title": "Tip/total in one step",
+          "explanation": "An 18% tip makes the total 118% of the bill.",
+          "latex": "bill $\\times 1.18$"
+        },
+        {
+          "title": "Commission pay",
+          "explanation": "Percent-of-sales income rides on top of a fixed base.",
+          "latex": "base $+$ rate × sales"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pct6-we1",
+          "statement": "A \\$48.60 dinner gets an $18\\%$ tip and is split among $3$ friends. How much does each pay?",
+          "solution": "Total: $48.60 \\times 1.18 = 57.348 \\approx 57.35$. Each: $57.348 \\div 3 = 19.116 \\approx 19.12$ dollars. (Exact thirds: $\\frac{48.60 \\times 1.18}{3} = 19.116$.)",
+          "check": [
+            "Rational(4860,100)*Rational(118,100) == Rational(57348,1000)",
+            "Rational(57348,1000)/3 == Rational(19116,1000)"
+          ]
+        },
+        {
+          "id": "pct6-we2",
+          "statement": "A salesperson earns \\$640 base plus $4\\%$ commission on \\$2,500 of sales. Total pay?",
+          "solution": "Commission: $0.04 \\times 2500 = 100$. Total: $640 + 100 = 740$ dollars.",
+          "check": [
+            "Rational(4,100)*2500 == 100",
+            "640 + 100 == 740"
+          ]
+        },
+        {
+          "id": "pct6-we3",
+          "statement": "Which saves more on a \\$120 jacket: coupon A ($25\\%$ off) or coupon B (\\$20 off then $10\\%$ off the rest)?",
+          "solution": "A: $120 \\times 0.75 = 90$. B: $(120 - 20) \\times 0.90 = 90$. They tie — both \\$90.",
+          "check": [
+            "120*Rational(75,100) == 90",
+            "(120-20)*Rational(90,100) == 90"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Tipping on the taxed total by accident of habit.",
+          "correction": "Convention varies, but math doesn't: decide the BASE first. An 18% tip on \\$48.60 of food is $48.60 \\times 0.18$ regardless of what tax did.",
+          "authored": true
+        },
+        {
+          "text": "Assuming the bigger percent is the better deal.",
+          "correction": "25% off \\$120 ties with “\\$20 then 10%”. Percents ride on bases — always compute both endings before choosing.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pct6-t1",
+          "statement": "A \\$36 haircut with a $15\\%$ tip — total?",
+          "solution": "$36 \\times 1.15 = 41.40$ dollars.",
+          "check": [
+            "36*Rational(115,100) == Rational(4140,100)"
+          ]
+        },
+        {
+          "id": "pct6-t2",
+          "statement": "Base pay \\$500 plus $6\\%$ commission on \\$3,200 of sales. Total pay?",
+          "solution": "$500 + 0.06 \\times 3200 = 500 + 192 = 692$ dollars.",
+          "check": [
+            "500 + Rational(6,100)*3200 == 692"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "percentChange",
+            "eyebrow": "Play with it",
+            "title": "Tip the bar",
+            "teach": "Set the tip percent and watch the bill's bar extend past the original — a tip is a percent increase you choose at the table.",
+            "config": {
+              "original": 50,
+              "start": 18,
+              "mode": "increase"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Speed round",
+            "title": "The 10-5-1 anchors",
+            "beats": [
+              "$10\\%$: shift the decimal — \\$48.60 → \\$4.86.",
+              "$5\\%$: half of that → \\$2.43.",
+              "$1\\%$: shift twice → \\$0.486.",
+              "$18\\% = 10 + 5 + 1 + 1 + 1$: \\$4.86 + 2.43 + 1.46 ≈ \\$8.75."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Paychecks",
+            "title": "Commission anatomy",
+            "beats": [
+              "Pay $=$ base $+$ rate $\\times$ sales.",
+              "\\$640 + $4\\%$ of \\$2,500.",
+              "$= 640 + 100 = 740$.",
+              "More sales, more pay — the base is the safety net."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Total the table",
+            "prompt": "A \\$60 dinner, $20\\%$ tip, split between $2$ people. Each pays…",
+            "options": [
+              "\\$36",
+              "\\$33",
+              "\\$42"
+            ],
+            "correctIndex": 0,
+            "explanation": "$60 \\times 1.20 = 72$; $72 \\div 2 = 36$.",
+            "check": [
+              "60*Rational(120,100) == 72",
+              "Rational(72,2) == 36"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Bursts of two and three",
+            "intro": "One tool per step; keep the bases straight.",
+            "examples": [
+              {
+                "prompt": "A realtor earns $2.5\\%$ commission on a \\$180,000 house. Commission?",
+                "steps": [
+                  "$0.025 \\times 180000$.",
+                  "$= 4500$.",
+                  "\\$4,500 for the sale."
+                ],
+                "answer": "\\$4,500",
+                "check": [
+                  "Rational(25,1000)*180000 == 4500"
+                ]
+              },
+              {
+                "prompt": "Lunch \\$14.50, tax $8\\%$, tip $20\\%$ on the pre-tax food. Total?",
+                "steps": [
+                  "Tax: $14.50 \\times 0.08 = 1.16$.",
+                  "Tip: $14.50 \\times 0.20 = 2.90$.",
+                  "Total: $14.50 + 1.16 + 2.90 = 18.56$."
+                ],
+                "answer": "\\$18.56",
+                "check": [
+                  "Rational(1450,100)*Rational(8,100) == Rational(116,100)",
+                  "Rational(1450,100)*Rational(20,100) == Rational(290,100)",
+                  "Rational(1450,100) + Rational(116,100) + Rational(290,100) == Rational(1856,100)"
+                ]
+              },
+              {
+                "prompt": "Store A: \\$80 headphones at $30\\%$ off. Store B: \\$75 at $25\\%$ off. Which is cheaper?",
+                "steps": [
+                  "A: $80 \\times 0.70 = 56$.",
+                  "B: $75 \\times 0.75 = 56.25$.",
+                  "Store A by a quarter."
+                ],
+                "answer": "Store A (\\$56 vs \\$56.25)",
+                "check": [
+                  "80*Rational(70,100) == 56",
+                  "75*Rational(75,100) == Rational(5625,100)",
+                  "56 < Rational(5625,100)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Adult-life speed run",
+            "intro": "Choose the tool, mind the base.",
+            "problems": [
+              {
+                "prompt": "A \\$45 bill with $20\\%$ tip. Total?",
+                "options": [
+                  "\\$54",
+                  "\\$49.50",
+                  "\\$56"
+                ],
+                "correctIndex": 0,
+                "explanation": "$45 \\times 1.20 = 54$.",
+                "check": [
+                  "45*Rational(120,100) == 54"
+                ]
+              },
+              {
+                "prompt": "Sales of \\$1,800 at $5\\%$ commission plus \\$300 base. Total pay?",
+                "options": [
+                  "\\$390",
+                  "\\$1,890",
+                  "\\$309"
+                ],
+                "correctIndex": 0,
+                "explanation": "$300 + 0.05 \\times 1800 = 300 + 90 = 390$.",
+                "check": [
+                  "300 + Rational(5,100)*1800 == 390"
+                ]
+              },
+              {
+                "prompt": "\\$200 at $6\\%$ simple interest for $2$ years, versus a flat \\$25 fee. Which costs less?",
+                "options": [
+                  "the interest (\\$24)",
+                  "the flat fee",
+                  "equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "$I = 200 \\times 0.06 \\times 2 = 24 < 25$.",
+                "check": [
+                  "200*Rational(6,100)*2 == 24",
+                  "24 < 25"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The no-tip nations",
+            "body": "In Japan and South Korea, tipping is rare — and can even read as rude — while in the U.S. a 15–20% tip is effectively part of the server's wage. Same arithmetic, opposite customs. Travelers who master the 10-5-1 anchor trick can adapt to any country's percent culture in seconds; the math is the only universal part."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Tips and tax are chosen percent increases; commission is percent-of-sales pay.",
+              "The 10-5-1 anchors make mental percents fast.",
+              "In comparisons, compute both endings — bases beat big-sounding percents."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "pct-pr1",
+      "statement": "What is $85\\%$ of $240$?",
+      "solution": "$0.85 \\times 240 = 204$.",
+      "check": [
+        "Rational(85,100)*240 == 204"
+      ]
+    },
+    {
+      "id": "pct-pr2",
+      "statement": "$51$ is $68\\%$ of what number?",
+      "solution": "$w = 51 \\div 0.68 = 75$.",
+      "check": [
+        "Rational(51, Rational(68,100)) == 75"
+      ]
+    },
+    {
+      "id": "pct-pr3",
+      "statement": "A phone's price fell from \\$250 to \\$210. Find the percent decrease.",
+      "solution": "$\\frac{40}{250} = 0.16 = 16\\%$.",
+      "check": [
+        "Rational(250-210, 250) == Rational(16,100)"
+      ]
+    },
+    {
+      "id": "pct-pr4",
+      "statement": "A \\$65 dress is $20\\%$ off, plus $5\\%$ tax on the sale price. Register total?",
+      "solution": "$65 \\times 0.80 = 52$; $52 \\times 1.05 = 54.60$ dollars.",
+      "check": [
+        "65*Rational(80,100) == 52",
+        "52*Rational(105,100) == Rational(5460,100)"
+      ]
+    },
+    {
+      "id": "pct-pr5",
+      "statement": "After a $15\\%$ markup, a bike sells for \\$276. What did the store pay?",
+      "solution": "$276 \\div 1.15 = 240$ dollars.",
+      "check": [
+        "Rational(276, Rational(115,100)) == 240"
+      ]
+    },
+    {
+      "id": "pct-pr6",
+      "statement": "\\$750 at $4\\%$ simple interest for $30$ months. Find the interest.",
+      "solution": "$t = 2.5$: $I = 750 \\times 0.04 \\times 2.5 = 75$ dollars.",
+      "check": [
+        "750*Rational(4,100)*Rational(25,10) == 75"
+      ]
+    },
+    {
+      "id": "pct-pr7",
+      "statement": "You estimated a movie at $120$ minutes; it ran $150$. Percent error?",
+      "solution": "$\\frac{30}{150} = 20\\%$.",
+      "check": [
+        "Rational(Abs(120-150), 150) == Rational(20,100)"
+      ]
+    },
+    {
+      "id": "pct-pr8",
+      "statement": "A waiter's Friday: \\$82 base plus $18\\%$ tips on \\$460 of tables. Total earnings?",
+      "solution": "Tips: $0.18 \\times 460 = 82.80$. Total: $82 + 82.80 = 164.80$ dollars.",
+      "check": [
+        "Rational(18,100)*460 == Rational(8280,100)",
+        "82 + Rational(8280,100) == Rational(16480,100)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "pct-ty1",
+      "statement": "$36$ is what percent of $160$?",
+      "solution": "$\\frac{36}{160} = 0.225 = 22.5\\%$.",
+      "check": [
+        "Rational(36,160) == Rational(225,1000)"
+      ]
+    },
+    {
+      "id": "pct-ty2",
+      "statement": "A stock rose $25\\%$ on Monday, then fell $20\\%$ on Tuesday. Net change from the start?",
+      "solution": "$1.25 \\times 0.80 = 1.00$ — exactly back to the start: $0\\%$ net.",
+      "check": [
+        "Rational(125,100)*Rational(80,100) == 1"
+      ]
+    },
+    {
+      "id": "pct-ty3",
+      "statement": "After an $8\\%$ tax, a receipt total is \\$97.20. What was the pre-tax price?",
+      "solution": "$97.20 \\div 1.08 = 90$ dollars.",
+      "check": [
+        "Rational(9720,100) / Rational(108,100) == 90"
+      ]
+    },
+    {
+      "id": "pct-ty4",
+      "statement": "How long does \\$1,600 at $4.5\\%$ simple interest take to earn \\$216?",
+      "solution": "$216 = 1600 \\times 0.045 \\times t = 72t$, so $t = 3$ years.",
+      "check": [
+        "1600*Rational(45,1000)*3 == 216"
+      ]
+    },
+    {
+      "id": "pct-ty5",
+      "statement": "A carpenter cut a board to $84$ cm; the plan called for $80$ cm. Percent error?",
+      "solution": "$\\frac{4}{80} = 5\\%$.",
+      "check": [
+        "Rational(Abs(84-80), 80) == Rational(5,100)"
+      ]
+    },
+    {
+      "id": "pct-ty6",
+      "statement": "Which is the better deal on a \\$90 order: free shipping (worth \\$7.50) or $10\\%$ off?",
+      "solution": "$10\\%$ off saves \\$9 > \\$7.50 — the discount wins.",
+      "check": [
+        "90*Rational(10,100) == 9",
+        "9 > Rational(750,100)"
+      ]
+    }
+  ]
+}
