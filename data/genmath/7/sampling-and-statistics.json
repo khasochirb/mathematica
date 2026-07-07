@@ -1,0 +1,1586 @@
+{
+  "slug": "sampling-and-statistics",
+  "title": "Sampling & Statistics",
+  "grade": 7,
+  "blurb": "Random samples, inference about a population, and comparing two data sets with center and spread.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "populations-and-samples",
+      "title": "Populations & Samples",
+      "concreteComparison": "A soup chef doesn't drink the whole pot to check the seasoning — one stirred spoonful speaks for all of it. Pollsters don't ask every voter, and factories don't crash-test every car. The whole pot is the **population**; the spoonful is a **sample** — and the stir is what makes the spoonful trustworthy.",
+      "objective": "Distinguish populations from samples, and explain when and why sampling replaces a census.",
+      "concept": [
+        "The **population** is the entire group you want to know about — every student in the school, every battery off the line. A measurement of everyone is a **census**.",
+        "A **sample** is the subset you actually examine. Good samples let a few hundred stand in for millions.",
+        "Sampling wins when the population is too big (all voters), the testing destroys the item (crash tests, taste tests), or answers are needed fast.",
+        "A sample is only useful if it REPRESENTS the population — same mix, small size. The chef stirs the pot precisely so the spoonful matches the whole."
+      ],
+      "keyIdea": "Population = everyone you care about; sample = who you actually asked; representation is what earns trust.",
+      "facts": [
+        {
+          "title": "Census vs sample",
+          "explanation": "A census measures all; a sample measures a representative few.",
+          "latex": "everyone vs a stand-in subset"
+        },
+        {
+          "title": "When sampling wins",
+          "explanation": "You can't crash-test every car or interview every voter.",
+          "latex": "too big, destructive, or urgent"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sas1-we1",
+          "statement": "A school of $1{,}200$ students surveys $80$ about lunch preferences. Identify the population and the sample.",
+          "solution": "Population: all $1{,}200$ students. Sample: the $80$ surveyed. The sample is $\\frac{80}{1200} = \\frac{1}{15}$ of the population.",
+          "check": [
+            "Rational(80,1200) == Rational(1,15)"
+          ]
+        },
+        {
+          "id": "sas1-we2",
+          "statement": "A factory tests the lifespan of batteries by running them until they die. Census or sample — and why?",
+          "solution": "Sample, necessarily: the test DESTROYS the battery. A census would leave nothing to sell.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "sas1-we3",
+          "statement": "To estimate the average height of $30$ classmates, you measure all $30$. Census or sample?",
+          "solution": "A census — the population is small enough to measure entirely, so no inference is needed.",
+          "check": [
+            "30 == 30"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Calling the sample the population.",
+          "correction": "The population is who you want conclusions ABOUT; the sample is who you actually measured. '80 students' is the sample; 'our school' is the population.",
+          "authored": true
+        },
+        {
+          "text": "Assuming bigger populations need proportionally bigger samples.",
+          "correction": "A well-chosen sample of ~1,000 can represent a country of millions. Representativeness beats raw size.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sas1-t1",
+          "statement": "A biologist nets $150$ fish from a lake holding an unknown number. Name the population and sample.",
+          "solution": "Population: all fish in the lake; sample: the $150$ netted.",
+          "check": [
+            "150 > 0"
+          ]
+        },
+        {
+          "id": "sas1-t2",
+          "statement": "Give one reason a phone maker samples rather than testing every unit for drop damage.",
+          "solution": "Drop-testing damages the phone — destructive testing forces sampling.",
+          "check": [
+            "1 == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The cast",
+            "title": "Pot and spoonful",
+            "beats": [
+              "**Population**: the whole pot — everyone you care about.",
+              "**Sample**: the spoonful — those you measure.",
+              "**Census**: drinking the entire pot.",
+              "Statistics is the art of trusting spoonfuls."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why sample?",
+            "title": "Three good reasons",
+            "beats": [
+              "TOO BIG: every voter, every fish, every tweet.",
+              "DESTRUCTIVE: crash tests, taste tests, battery lifespans.",
+              "TOO SLOW: election night can't wait for a census.",
+              "One good spoonful beats an impossible pot-chug."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Name the parts",
+            "prompt": "A journalist interviews $250$ of a city's $40{,}000$ commuters. The population is…",
+            "options": [
+              "all $40{,}000$ commuters",
+              "the $250$ interviewed",
+              "the journalist's readers"
+            ],
+            "correctIndex": 0,
+            "explanation": "The conclusions are about ALL commuters — that's the population; the 250 are the sample.",
+            "check": [
+              "250 < 40000"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Spot the structure",
+            "intro": "Who do we want to know about? Who did we ask?",
+            "examples": [
+              {
+                "prompt": "A game studio beta-tests with $2{,}000$ of its $3$ million players. Identify both parts and the fraction sampled.",
+                "steps": [
+                  "Population: all 3 million players.",
+                  "Sample: the 2,000 testers.",
+                  "Fraction: $\\frac{2000}{3000000} = \\frac{1}{1500}$."
+                ],
+                "answer": "$\\frac{1}{1500}$ of players",
+                "check": [
+                  "Rational(2000,3000000) == Rational(1,1500)"
+                ]
+              },
+              {
+                "prompt": "Quality control pulls every $50$th jar off a conveyor of $10{,}000$ jars. How many jars get inspected?",
+                "steps": [
+                  "Every 50th of 10,000.",
+                  "$10000 \\div 50 = 200$.",
+                  "Sample size: 200 jars."
+                ],
+                "answer": "$200$ jars",
+                "check": [
+                  "Rational(10000,50) == 200"
+                ]
+              },
+              {
+                "prompt": "When is a census actually the right tool?",
+                "steps": [
+                  "Small populations: your class, one shelf of stock.",
+                  "When the answer must be exact (an election itself IS a census).",
+                  "When measuring is cheap and harmless."
+                ],
+                "answer": "Small, exact, or cheap-to-measure cases",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Population radar",
+            "intro": "Find the whole pot and the spoonful.",
+            "problems": [
+              {
+                "prompt": "A vet clinic weighs $40$ of the town's roughly $6{,}000$ dogs. The sample is…",
+                "options": [
+                  "the $40$ weighed dogs",
+                  "all $6{,}000$ dogs",
+                  "the clinic's staff"
+                ],
+                "correctIndex": 0,
+                "explanation": "The 40 measured dogs are the sample; the town's dogs are the population.",
+                "check": [
+                  "40 < 6000"
+                ]
+              },
+              {
+                "prompt": "Which situation FORCES sampling (a census is impossible)?",
+                "options": [
+                  "Testing how long matches burn",
+                  "Counting books on one shelf",
+                  "Grading a class's quizzes"
+                ],
+                "correctIndex": 0,
+                "explanation": "A burned match is spent — destructive testing rules out a census.",
+                "check": [
+                  "1 == 1"
+                ]
+              },
+              {
+                "prompt": "A survey of $500$ people speaks for a nation of $50$ million. What fraction was sampled?",
+                "options": [
+                  "$\\frac{1}{100000}$",
+                  "$\\frac{1}{1000}$",
+                  "$\\frac{1}{50}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{500}{50000000} = \\frac{1}{100000}$ — tiny, yet potentially trustworthy if chosen well.",
+                "check": [
+                  "Rational(500,50000000) == Rational(1,100000)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The magazine that asked 2 million people — and got it wrong",
+            "body": "In 1936, *Literary Digest* mailed 10 million straw ballots and received 2.4 million back — then confidently predicted the wrong U.S. president. Its mailing lists (car owners, telephone subscribers) skewed wealthy during the Depression. George Gallup called the election correctly with a sample 50 times smaller but properly mixed. Size lost to representativeness, publicly and forever."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Population = the whole group; sample = the measured subset; census = measuring all.",
+              "Sample when the population is huge, the test destroys, or time is short.",
+              "A sample earns trust by REPRESENTING the population, not by being big."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "random-samples-and-bias",
+      "title": "Random Samples & Bias",
+      "concreteComparison": "Survey gym-goers about exercise habits and you'll conclude everyone loves working out. The gym door did the choosing — and it chose badly. A **biased** sample bakes the answer into the question. The fix is randomness: give every member of the population an EQUAL chance of being picked, and no door gets a vote.",
+      "objective": "Recognize biased sampling methods and design simple random samples.",
+      "concept": [
+        "A **random sample** gives every individual an equal chance of selection — names from a hat, random number generators, every-nth-person from a full list.",
+        "**Bias** creeps in whenever the method favors some group: surveying at the gym (exercise questions), online polls (only the motivated respond), asking friends (they resemble you).",
+        "Common bias flavors: **convenience** (whoever's nearby), **voluntary response** (whoever volunteers — usually the loudest opinions), and **undercoverage** (the method misses part of the population).",
+        "Randomness doesn't guarantee a perfect sample — it guarantees NO SYSTEMATIC tilt, and it lets the errors shrink as the sample grows."
+      ],
+      "keyIdea": "Random = every member equally likely; bias = the method tilts the answer before anyone responds.",
+      "facts": [
+        {
+          "title": "Random sample",
+          "explanation": "Hat draws, random numbers, every-nth from a complete list.",
+          "latex": "equal chance for all"
+        },
+        {
+          "title": "Bias signatures",
+          "explanation": "If the METHOD favors a group, the data tilts before you collect it.",
+          "latex": "convenience, volunteers, undercoverage"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sas2-we1",
+          "statement": "To gauge school-lunch opinions, a student surveys the first $30$ people in the pizza line. What's wrong?",
+          "solution": "Convenience + undercoverage: pizza-line students likely like the lunch. Students who bring lunch from home never get asked.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "sas2-we2",
+          "statement": "Design a random sample of $50$ from a school's $1{,}000$ students.",
+          "solution": "Number the full roster $1$–$1000$; use a random number generator to pick $50$ distinct numbers. Every student has probability $\\frac{50}{1000} = \\frac{1}{20}$.",
+          "check": [
+            "Rational(50,1000) == Rational(1,20)"
+          ]
+        },
+        {
+          "id": "sas2-we3",
+          "statement": "A radio host asks listeners to call in about a new tax. $84\\%$ of callers oppose it. Trustworthy?",
+          "solution": "No — voluntary response: angry people call, content people don't. The 84% describes CALLERS, not the city.",
+          "check": [
+            "Rational(84,100) > Rational(1,2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking a big biased sample fixes itself.",
+          "correction": "2.4 million tilted responses still tilt. Bias is a direction, not a noise — more of it just repeats the tilt louder.",
+          "authored": true
+        },
+        {
+          "text": "Confusing 'haphazard' with 'random'.",
+          "correction": "Wandering the hallway asking 'random' people favors the outgoing and the nearby. Real randomness needs a mechanism — numbers, hats, lists.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sas2-t1",
+          "statement": "Name the bias: a website's poll about screen-time limits, answered by whoever clicks.",
+          "solution": "Voluntary response (and undercoverage of people not on the site).",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "sas2-t2",
+          "statement": "A quality engineer tests every $25$th phone from the full production run of $5{,}000$. How many are tested, and is the method sound?",
+          "solution": "$5000 \\div 25 = 200$ tested. Systematic sampling from a COMPLETE list — sound.",
+          "check": [
+            "Rational(5000,25) == 200"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The villain",
+            "title": "Bias picks the answer first",
+            "beats": [
+              "Ask the gym about exercise → 'everyone exercises!'",
+              "The METHOD chose the answer, not the people.",
+              "Bias is a built-in tilt, invisible in the data itself.",
+              "You must inspect HOW the sample was gathered."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The bias family",
+            "title": "Three faces to memorize",
+            "beats": [
+              "**Convenience**: whoever's easiest to reach.",
+              "**Voluntary response**: whoever cares enough to answer — the loud.",
+              "**Undercoverage**: the method can't even see part of the population.",
+              "All three tilt before a single response arrives."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The hero",
+            "title": "Randomness has no favorites",
+            "beats": [
+              "Equal chance for every member — that's the definition.",
+              "Tools: hat draws, random numbers, every-nth from a FULL list.",
+              "Random errors average out; biased errors accumulate.",
+              "No mechanism, no randomness."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Diagnose it",
+            "prompt": "To predict a school election, Amir surveys his own soccer team. The main problem is…",
+            "options": [
+              "convenience bias — teammates aren't the whole school",
+              "sample too large",
+              "the survey is anonymous"
+            ],
+            "correctIndex": 0,
+            "explanation": "His team is nearby and similar to him — a convenience sample that undercovers everyone else.",
+            "check": [
+              "1 == 1"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Fix the method",
+            "intro": "Spot the tilt, then redesign with equal chances.",
+            "examples": [
+              {
+                "prompt": "A city wants park-usage data and surveys people IN the park. Diagnose and fix.",
+                "steps": [
+                  "Bias: park visitors love parks — undercoverage of non-visitors.",
+                  "Fix: sample from the city's resident list at random.",
+                  "Phone/mail random residents; the park stops choosing."
+                ],
+                "answer": "Random sample of ALL residents",
+                "check": [
+                  "1 == 1"
+                ]
+              },
+              {
+                "prompt": "A teacher wants feedback and asks for volunteers to stay after class. Diagnose and fix.",
+                "steps": [
+                  "Voluntary response: strong opinions stay, others leave.",
+                  "Fix: pick names from the roster with a random draw.",
+                  "Every student equally likely — the tilt disappears."
+                ],
+                "answer": "Random draw from the roster",
+                "check": [
+                  "1 == 1"
+                ]
+              },
+              {
+                "prompt": "From a numbered list of $800$ customers, every $16$th is surveyed. Sample size — and one caution.",
+                "steps": [
+                  "$800 \\div 16 = 50$ surveyed.",
+                  "Sound IF the list order is unrelated to opinions.",
+                  "Beware hidden patterns in the list (e.g., sorted by purchase size)."
+                ],
+                "answer": "$50$; check the list for patterns",
+                "check": [
+                  "Rational(800,16) == 50"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Bias detective",
+            "intro": "Judge the method, not the numbers.",
+            "problems": [
+              {
+                "prompt": "Best method to sample $30$ of $600$ students?",
+                "options": [
+                  "Random numbers against the full roster",
+                  "First 30 into the cafeteria",
+                  "Whoever replies to a group chat"
+                ],
+                "correctIndex": 0,
+                "explanation": "Only the roster + random numbers gives everyone an equal chance.",
+                "check": [
+                  "Rational(30,600) == Rational(1,20)"
+                ]
+              },
+              {
+                "prompt": "An online poll finds $91\\%$ favor a controversial rule change. The most likely explanation is…",
+                "options": [
+                  "voluntary response bias",
+                  "the population truly agrees",
+                  "the sample was too random"
+                ],
+                "correctIndex": 0,
+                "explanation": "Click-in polls attract the motivated; the silent majority never votes.",
+                "check": [
+                  "Rational(91,100) > Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "Calling landline phones at 2 PM on weekdays undercovers…",
+                "options": [
+                  "working adults and mobile-only homes",
+                  "retirees",
+                  "no one"
+                ],
+                "correctIndex": 0,
+                "explanation": "Anyone at work or without a landline can never enter the sample.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Wheat, chessboards, and random digits",
+            "body": "Before computers, statisticians drew random samples using books of random digits — the RAND Corporation's *A Million Random Digits* (1955) was a bestseller among scientists and is still in print. Reviewers joked it was 'the book with a million typos, all intentional.' Today your phone generates the digits, but the principle is unchanged: mechanized fairness beats human 'randomness' every time."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Bias is a tilt built into the METHOD — convenience, volunteers, undercoverage.",
+              "Random sampling gives every member an equal chance via a real mechanism.",
+              "Big biased samples stay biased; random errors wash out."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "inference-from-samples",
+      "title": "Inference from Samples",
+      "concreteComparison": "A biologist nets $60$ fish from a lake; $12$ are tagged from last year's release of $500$ tagged fish. If $\\frac{12}{60} = \\frac{1}{5}$ of the lake is tagged, and $500$ fish ARE the tagged ones, the lake holds about $500 \\times 5 = 2{,}500$ fish. That leap — from spoonful to pot — is **inference**, and proportions are the ladder.",
+      "objective": "Scale sample proportions up to population estimates, and recognize that estimates vary from sample to sample.",
+      "concept": [
+        "**Inference** projects a sample's proportion onto the whole population: if $30\\%$ of a random sample likes chess, estimate $30\\%$ of the population does.",
+        "Estimated count $=$ sample proportion $\\times$ population size: $\\frac{18}{60} \\times 1200 = 360$ students.",
+        "The **capture–recapture** trick estimates invisible populations: tag some, resample, and set the tagged proportion equal in sample and lake.",
+        "Different random samples give DIFFERENT estimates — that wobble is normal. Larger samples wobble less; a range of plausible values beats false precision."
+      ],
+      "keyIdea": "Sample proportion × population size = estimate; expect sample-to-sample wobble, shrinking as samples grow.",
+      "facts": [
+        {
+          "title": "Scale up",
+          "explanation": "The sample's fraction, applied to the whole population.",
+          "latex": "$\\tfrac{18}{60} \\times 1200 = 360$"
+        },
+        {
+          "title": "Capture–recapture",
+          "explanation": "Two views of the same proportion — solve for the unknown lake.",
+          "latex": "$\\tfrac{\\text{tagged in sample}}{\\text{sample}} = \\tfrac{\\text{tagged total}}{\\text{population}}$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sas3-we1",
+          "statement": "In a random sample of $60$ students, $18$ walk to school. Estimate the walkers among all $1{,}200$ students.",
+          "solution": "$\\frac{18}{60} = 0.3$; estimate $0.3 \\times 1200 = 360$ walkers.",
+          "check": [
+            "Rational(18,60)*1200 == 360"
+          ]
+        },
+        {
+          "id": "sas3-we2",
+          "statement": "$500$ tagged fish are released. Later, $12$ of a $60$-fish sample are tagged. Estimate the lake's population.",
+          "solution": "$\\frac{12}{60} = \\frac{500}{N} \\to N = \\frac{500 \\times 60}{12} = 2500$ fish.",
+          "check": [
+            "Rational(500*60, 12) == 2500"
+          ]
+        },
+        {
+          "id": "sas3-we3",
+          "statement": "Two random samples of $50$ shoppers find $14$ and $19$ who prefer the new logo. What do you conclude?",
+          "solution": "Estimates: $28\\%$ and $38\\%$. The truth is plausibly around $\\sim 33\\%$ — sample wobble is normal; a bigger sample would narrow it.",
+          "check": [
+            "Rational(14,50) == Rational(28,100)",
+            "Rational(19,50) == Rational(38,100)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reporting the estimate as exact.",
+          "correction": "\"Exactly 360 students walk\" overclaims. The honest phrasing: ABOUT 360, based on this sample.",
+          "authored": true
+        },
+        {
+          "text": "Scaling up a biased sample.",
+          "correction": "Inference launders nothing: 30% of a gym sample scaled to the city just spreads the bias city-wide. Randomness first, inference second.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sas3-t1",
+          "statement": "A random sample: $9$ of $45$ customers want longer hours. Estimate the count among $2{,}000$ customers.",
+          "solution": "$\\frac{9}{45} = 0.2$; estimate $400$.",
+          "check": [
+            "Rational(9,45)*2000 == 400"
+          ]
+        },
+        {
+          "id": "sas3-t2",
+          "statement": "$80$ tagged deer; a later sample finds $4$ tagged among $50$. Estimate the herd.",
+          "solution": "$\\frac{4}{50} = \\frac{80}{N} \\to N = 1000$.",
+          "check": [
+            "Rational(80*50, 4) == 1000"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The ladder",
+            "title": "Proportion, meet population",
+            "beats": [
+              "Random sample: $18$ of $60$ walk to school — $30\\%$.",
+              "Population: $1{,}200$ students.",
+              "Estimate: $0.30 \\times 1200 = 360$ walkers.",
+              "Sample fraction × population = inference."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Counting the invisible",
+            "title": "Capture–recapture",
+            "beats": [
+              "Tag $500$ fish; release; let them mix.",
+              "Recatch $60$; find $12$ tagged.",
+              "$\\frac{12}{60} = \\frac{500}{N}$ — same proportion, two views.",
+              "$N = 2500$. You counted a lake without draining it."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Honesty clause",
+            "title": "Estimates wobble",
+            "beats": [
+              "Two samples, two answers: $28\\%$ vs $38\\%$ — normal.",
+              "Wobble shrinks as samples grow.",
+              "Say ABOUT, give a range when you can.",
+              "Precision you didn't earn is just confidence, misspelled."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Scale it",
+            "prompt": "A random sample of $80$ voters shows $52$ support a measure. Estimate supporters among $15{,}000$ voters.",
+            "options": [
+              "$9{,}750$",
+              "$5{,}200$",
+              "$12{,}000$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\frac{52}{80} = 0.65$; $0.65 \\times 15000 = 9750$.",
+            "check": [
+              "Rational(52,80)*15000 == 9750"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "From spoonful to pot",
+            "intro": "Proportion, scale, and honest wobble.",
+            "examples": [
+              {
+                "prompt": "A random check finds $3$ defective toys in a sample of $120$. Estimate defects in a shipment of $8{,}000$.",
+                "steps": [
+                  "Proportion: $\\frac{3}{120} = 0.025$.",
+                  "$0.025 \\times 8000 = 200$.",
+                  "About $200$ defective toys."
+                ],
+                "answer": "$\\approx 200$",
+                "check": [
+                  "Rational(3,120)*8000 == 200"
+                ]
+              },
+              {
+                "prompt": "A ranger tags $150$ trout. A later sample of $90$ contains $9$ tagged. Estimate the stream population.",
+                "steps": [
+                  "$\\frac{9}{90} = \\frac{150}{N}$.",
+                  "$N = \\frac{150 \\times 90}{9}$.",
+                  "$N = 1500$ trout."
+                ],
+                "answer": "$1500$",
+                "check": [
+                  "Rational(150*90, 9) == 1500"
+                ]
+              },
+              {
+                "prompt": "Three random samples of $100$ students give $23, 27, 25$ bus riders. Give your best population statement for the school of $2{,}000$.",
+                "steps": [
+                  "Estimates: $23\\%, 27\\%, 25\\%$ — centering near $25\\%$.",
+                  "$0.25 \\times 2000 = 500$.",
+                  "\"About $500$ riders, likely between $460$ and $540$.\""
+                ],
+                "answer": "$\\approx 500$ riders",
+                "check": [
+                  "Rational(25,100)*2000 == 500",
+                  "Rational(23,100)*2000 == 460",
+                  "Rational(27,100)*2000 == 540"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Inference reps",
+            "intro": "Fraction first, then multiply — and stay humble.",
+            "problems": [
+              {
+                "prompt": "$21$ of a random $70$ prefer digital books. Estimated preference in a town of $4{,}000$ readers?",
+                "options": [
+                  "about $1{,}200$",
+                  "about $2{,}100$",
+                  "exactly $1{,}200$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{21}{70} = 0.3 \\to 0.3 \\times 4000 = 1200$ — an ABOUT, not an exactly.",
+                "check": [
+                  "Rational(21,70)*4000 == 1200"
+                ]
+              },
+              {
+                "prompt": "$200$ tagged birds; a sample of $40$ has $5$ tagged. Estimated flock size?",
+                "options": [
+                  "$1{,}600$",
+                  "$1{,}000$",
+                  "$8{,}000$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{5}{40} = \\frac{200}{N} \\to N = 1600$.",
+                "check": [
+                  "Rational(200*40, 5) == 1600"
+                ]
+              },
+              {
+                "prompt": "Which change most improves an estimate's reliability?",
+                "options": [
+                  "a larger RANDOM sample",
+                  "a larger convenience sample",
+                  "rounding the answer more"
+                ],
+                "correctIndex": 0,
+                "explanation": "Bigger random samples wobble less; bigger biased samples just repeat the tilt.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Counting the uncountable",
+            "body": "Capture–recapture doesn't just count fish: epidemiologists use it to estimate unreported disease cases, linguists to estimate how many words Shakespeare knew but never wrote (about 35,000!), and software teams to estimate bugs left in code — 'tag' bugs found by tester A, see how many tester B 'recaptures.' One proportion equation, a dozen sciences."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Estimate = sample proportion × population size.",
+              "Capture–recapture equates the tagged proportions in sample and population.",
+              "Estimates wobble between samples — bigger random samples wobble less."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "mean-median-and-outliers",
+      "title": "Mean, Median & Outliers",
+      "concreteComparison": "Nine employees earn around \\$50{,}000; the CEO earns \\$1{,}000{,}000. The **mean** salary is about \\$145{,}000 — a number NOBODY earns. The **median** says \\$50{,}000 — what a typical person actually makes. Two honest centers, one skewed dataset: which number tells the truth depends on the question.",
+      "objective": "Compute mean and median for rational data, and judge which center to trust when outliers strike.",
+      "concept": [
+        "The **mean** adds everything and divides by the count — every value pulls on it, so one giant value drags it far.",
+        "The **median** is the middle of the SORTED list (average the two middles for an even count) — it only cares about position, so outliers barely budge it.",
+        "An **outlier** is a value far from the pack. Means chase outliers; medians ignore them.",
+        "Rule of thumb: symmetric data → mean and median agree, use either; skewed data or outliers → the median describes 'typical' better. Incomes, house prices, and follower counts are median territory."
+      ],
+      "keyIdea": "Mean = balance point (outlier-sensitive); median = middle position (outlier-resistant). Pick by the data's shape.",
+      "facts": [
+        {
+          "title": "Mean",
+          "explanation": "The balance point — every value pulls.",
+          "latex": "$\\tfrac{\\text{sum}}{\\text{count}}$"
+        },
+        {
+          "title": "Median",
+          "explanation": "Position-based, so outliers barely move it.",
+          "latex": "middle of the sorted list"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sas4-we1",
+          "statement": "Find the mean and median of $4, 7, 2, 9, 3$.",
+          "solution": "Mean: $\\frac{25}{5} = 5$. Sorted: $2, 3, 4, 7, 9$ — median $4$.",
+          "check": [
+            "Rational(4+7+2+9+3, 5) == 5"
+          ]
+        },
+        {
+          "id": "sas4-we2",
+          "statement": "Quiz scores: $82, 85, 88, 90, 15$. Compute both centers; which describes a typical score?",
+          "solution": "Mean: $\\frac{360}{5} = 72$. Median: sorted $15, 82, 85, 88, 90 \\to 85$. The median — the 15 is an outlier dragging the mean below every other score.",
+          "check": [
+            "Rational(82+85+88+90+15, 5) == 72",
+            "85 > 72"
+          ]
+        },
+        {
+          "id": "sas4-we3",
+          "statement": "Find the median of $6, 11, 4, 9, 12, 7$.",
+          "solution": "Sorted: $4, 6, 7, 9, 11, 12$. Even count: median $= \\frac{7 + 9}{2} = 8$.",
+          "check": [
+            "Rational(7+9, 2) == 8"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Taking the median before sorting.",
+          "correction": "The median of 4, 7, 2, 9, 3 is NOT 2 (the middle of the unsorted list). Sort first: 2 3 4 7 9 → median 4.",
+          "authored": true
+        },
+        {
+          "text": "Reporting the mean for skewed data without comment.",
+          "correction": "'Average salary \\$145k' at the CEO's company misleads everyone. With outliers, report the median or both.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sas4-t1",
+          "statement": "Find the mean and median of $-3, 5, 1, -1, 8$.",
+          "solution": "Mean: $\\frac{10}{5} = 2$. Sorted: $-3, -1, 1, 5, 8$ — median $1$.",
+          "check": [
+            "Rational(-3+5+1-1+8, 5) == 2"
+          ]
+        },
+        {
+          "id": "sas4-t2",
+          "statement": "Data: $12, 14, 13, 15, 90$. Which center better describes a typical value, and why?",
+          "solution": "Median ($14$): the $90$ is an outlier that inflates the mean to $\\frac{144}{5} = 28.8$.",
+          "check": [
+            "Rational(12+14+13+15+90, 5) == Rational(144,5)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Center 1",
+            "title": "The mean: balance point",
+            "beats": [
+              "Add everything, divide by the count.",
+              "$4, 7, 2, 9, 3$: sum $25$, mean $5$.",
+              "Physically: where the dot plot balances on a fulcrum.",
+              "Every value pulls — including monsters."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Center 2",
+            "title": "The median: middle seat",
+            "beats": [
+              "SORT first. Then take the middle.",
+              "$2, 3, 4, 7, 9 \\to 4$.",
+              "Even count? Average the two middles.",
+              "Only position matters — a 90 or a 90,000 at the end changes nothing."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The duel",
+            "title": "When outliers attack",
+            "beats": [
+              "Salaries: nine at \\$50k, one at \\$1M.",
+              "Mean: $\\frac{9(50000) + 1000000}{10} = 145000$.",
+              "Median: \\$50{,}000.",
+              "Skewed data? Trust the middle seat, not the balance point."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which center?",
+            "prompt": "House prices on a street: eight near \\$200k, one mansion at \\$3M. Which statistic best describes a typical house?",
+            "options": [
+              "the median",
+              "the mean",
+              "the maximum"
+            ],
+            "correctIndex": 0,
+            "explanation": "The mansion drags the mean far above every normal house; the median stays at a typical price.",
+            "check": [
+              "Rational(8*200000 + 3000000, 9) > 200000"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Centers under pressure",
+            "intro": "Compute both; let the shape pick the spokesperson.",
+            "examples": [
+              {
+                "prompt": "Salaries: nine at \\$50{,}000 and one at \\$1{,}000{,}000. Verify the mean.",
+                "steps": [
+                  "Sum: $9 \\times 50000 + 1000000 = 1450000$.",
+                  "Mean: $\\frac{1450000}{10}$.",
+                  "$= 145000$ — nobody's actual salary."
+                ],
+                "answer": "\\$145{,}000",
+                "check": [
+                  "Rational(9*50000 + 1000000, 10) == 145000"
+                ]
+              },
+              {
+                "prompt": "Game scores: $18, 21, 19, 22, 20$. Both centers?",
+                "steps": [
+                  "Mean: $\\frac{100}{5} = 20$.",
+                  "Sorted middle: $20$.",
+                  "Symmetric data — the centers agree; use either."
+                ],
+                "answer": "mean $=$ median $= 20$",
+                "check": [
+                  "Rational(18+21+19+22+20, 5) == 20"
+                ]
+              },
+              {
+                "prompt": "A dataset's mean is $50$ across $8$ values. A 9th value of $140$ arrives. New mean?",
+                "steps": [
+                  "Old sum: $8 \\times 50 = 400$.",
+                  "New sum: $540$; new count: $9$.",
+                  "New mean: $60$ — one value moved it 10 points."
+                ],
+                "answer": "$60$",
+                "check": [
+                  "Rational(8*50 + 140, 9) == 60"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Center check",
+            "intro": "Sort for medians; watch for monsters.",
+            "problems": [
+              {
+                "prompt": "Median of $9, 3, 7, 5, 11, 13, 1$?",
+                "options": [
+                  "$7$",
+                  "$5$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Sorted: $1,3,5,7,9,11,13$ — the fourth value is $7$.",
+                "check": [
+                  "1 + 3 == 4"
+                ]
+              },
+              {
+                "prompt": "Mean of $2.5, 3.5, 4, 6$?",
+                "options": [
+                  "$4$",
+                  "$3.75$",
+                  "$4.5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{16}{4} = 4$.",
+                "check": [
+                  "Rational(25,10) + Rational(35,10) + 4 + 6 == 16",
+                  "Rational(16,4) == 4"
+                ]
+              },
+              {
+                "prompt": "Removing an outlier of $95$ from $\\{10, 12, 11, 95\\}$ changes the mean from $32$ to…",
+                "options": [
+                  "$11$",
+                  "$21$",
+                  "$32$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{33}{3} = 11$ — the mean falls by two-thirds when the monster leaves.",
+                "check": [
+                  "Rational(10+12+11+95, 4) == 32",
+                  "Rational(10+12+11, 3) == 11"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The billionaire walks into a bar",
+            "body": "Statisticians joke: a billionaire walks into a bar and the MEAN patron becomes a millionaire — while the MEDIAN patron still can't afford the fancy beer. Nearly every 'average income rose' headline quietly uses the mean; nearly every 'typical family' claim should use the median. Knowing which was used is half of statistical literacy."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Mean = sum ÷ count; median = middle of the sorted list.",
+              "Outliers drag means and barely touch medians.",
+              "Skewed data (incomes, prices): report the median — or both."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "range-and-mad",
+      "title": "Range & Mean Absolute Deviation",
+      "concreteComparison": "Two pizza shops both average $30$-minute deliveries. Shop A arrives in $28$–$32$ minutes, every time. Shop B swings between $10$ and $55$. Same center, wildly different EXPERIENCE. Centers can't see this — you need a **spread** number, and Grade 7's precision tool is the mean absolute deviation (MAD).",
+      "objective": "Measure spread with range and MAD, and interpret MAD as the typical distance from the mean.",
+      "concept": [
+        "**Range** $=$ max $-$ min: quick, but it only sees the two most extreme values.",
+        "**MAD** (mean absolute deviation) asks: on average, how far is a data point from the mean? Compute the mean, find each $|x - \\text{mean}|$, then average those distances.",
+        "A small MAD means the data hugs its mean (consistent); a large MAD means it sprawls (unpredictable).",
+        "MAD's units are the data's units: 'deliveries typically miss the 30-minute mark by about 12 minutes' is a sentence customers understand."
+      ],
+      "keyIdea": "Range = span of extremes; MAD = the average distance from the mean — the consistency meter.",
+      "facts": [
+        {
+          "title": "Range",
+          "explanation": "Fast, but blind to everything between the extremes.",
+          "latex": "$\\max - \\min$"
+        },
+        {
+          "title": "MAD",
+          "explanation": "The typical miss: average distance from the mean.",
+          "latex": "mean of $|x - \\bar{x}|$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sas5-we1",
+          "statement": "Shop A's deliveries: $28, 29, 30, 31, 32$ minutes. Find the mean and MAD.",
+          "solution": "Mean: $30$. Distances: $2, 1, 0, 1, 2$ — MAD $= \\frac{6}{5} = 1.2$ minutes.",
+          "check": [
+            "Rational(28+29+30+31+32, 5) == 30",
+            "Rational(2+1+0+1+2, 5) == Rational(6,5)"
+          ]
+        },
+        {
+          "id": "sas5-we2",
+          "statement": "Shop B's deliveries: $10, 20, 30, 40, 50$ minutes. Find the MAD and compare with Shop A.",
+          "solution": "Mean: $30$. Distances: $20, 10, 0, 10, 20$ — MAD $= 12$ minutes. Ten times Shop A's $1.2$: same center, far less consistency.",
+          "check": [
+            "Rational(10+20+30+40+50, 5) == 30",
+            "Rational(20+10+0+10+20, 5) == 12"
+          ]
+        },
+        {
+          "id": "sas5-we3",
+          "statement": "Find the range of both shops' data.",
+          "solution": "A: $32 - 28 = 4$. B: $50 - 10 = 40$.",
+          "check": [
+            "32 - 28 == 4",
+            "50 - 10 == 40"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Averaging the deviations WITHOUT absolute value.",
+          "correction": "Raw deviations always sum to zero — the mean is the balance point. The absolute-value bars are what make MAD nonzero and meaningful.",
+          "authored": true
+        },
+        {
+          "text": "Comparing MADs of datasets with different units or scales.",
+          "correction": "A MAD of 5 cm and a MAD of 5 dollars aren't comparable. MAD speaks the data's units — compare like with like.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sas5-t1",
+          "statement": "Data: $6, 8, 10, 12, 14$. Find the mean and the MAD.",
+          "solution": "Mean: $10$; distances $4, 2, 0, 2, 4$ — MAD $= \\frac{12}{5} = 2.4$.",
+          "check": [
+            "Rational(6+8+10+12+14, 5) == 10",
+            "Rational(4+2+0+2+4, 5) == Rational(12,5)"
+          ]
+        },
+        {
+          "id": "sas5-t2",
+          "statement": "Which is more consistent: quiz scores with MAD $2.1$ or MAD $6.8$?",
+          "solution": "MAD $2.1$ — scores typically sit only 2.1 points from their mean.",
+          "check": [
+            "Rational(21,10) < Rational(68,10)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Why centers lie",
+            "title": "Same mean, different worlds",
+            "beats": [
+              "Both shops average $30$ minutes.",
+              "A: $28$–$32$. B: $10$–$55$.",
+              "The mean can't tell them apart.",
+              "Spread is the missing coordinate."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Tool 1",
+            "title": "Range: the quick glance",
+            "beats": [
+              "$\\text{range} = \\max - \\min$.",
+              "A: $4$ minutes. B: $40$ minutes.",
+              "One subtraction — but only the extremes vote.",
+              "A single outlier can inflate it wildly."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Tool 2",
+            "title": "MAD: the typical miss",
+            "beats": [
+              "Step 1: find the mean.",
+              "Step 2: each point's distance $|x - \\bar{x}|$.",
+              "Step 3: average the distances.",
+              "MAD $= 1.2$ min: 'deliveries typically miss by about a minute.'"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Spread reading",
+            "prompt": "Data: $5, 7, 9$. The MAD is…",
+            "options": [
+              "$\\frac{4}{3}$",
+              "$2$",
+              "$0$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Mean $7$; distances $2, 0, 2$; MAD $= \\frac{4}{3} \\approx 1.33$.",
+            "check": [
+              "Rational(5+7+9, 3) == 7",
+              "Rational(2+0+2, 3) == Rational(4,3)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Consistency meters",
+            "intro": "Mean, distances, average of distances.",
+            "examples": [
+              {
+                "prompt": "A gymnast's scores: $9.0, 9.2, 9.4, 9.4$. Find the MAD.",
+                "steps": [
+                  "Mean: $\\frac{37}{4} = 9.25$.",
+                  "Distances: $0.25, 0.05, 0.15, 0.15$.",
+                  "MAD $= \\frac{0.6}{4} = 0.15$."
+                ],
+                "answer": "$0.15$",
+                "check": [
+                  "Rational(90+92+94+94, 40) == Rational(925,100)",
+                  "Rational(Rational(25,100)+Rational(5,100)+Rational(15,100)+Rational(15,100), 4) == Rational(15,100)"
+                ]
+              },
+              {
+                "prompt": "Two classes' test MADs: Class X $= 4$, Class Y $= 11$, same mean $75$. Interpret.",
+                "steps": [
+                  "X: scores typically within $4$ of $75$ — tight, similar mastery.",
+                  "Y: typical miss of $11$ — a wide mix of strong and struggling.",
+                  "Same center, very different classrooms."
+                ],
+                "answer": "X consistent, Y spread out",
+                "check": [
+                  "4 < 11"
+                ]
+              },
+              {
+                "prompt": "Data: $3, 3, 3, 3$. Range and MAD?",
+                "steps": [
+                  "Range: $0$.",
+                  "Every distance from the mean is $0$.",
+                  "MAD $= 0$ — perfect consistency."
+                ],
+                "answer": "both $0$",
+                "check": [
+                  "3 - 3 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Measure the wobble",
+            "intro": "Distances first, then their average.",
+            "problems": [
+              {
+                "prompt": "Data: $2, 4, 6, 8$. MAD?",
+                "options": [
+                  "$2$",
+                  "$3$",
+                  "$5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Mean $5$; distances $3, 1, 1, 3$; MAD $= \\frac{8}{4} = 2$.",
+                "check": [
+                  "Rational(2+4+6+8, 4) == 5",
+                  "Rational(3+1+1+3, 4) == 2"
+                ]
+              },
+              {
+                "prompt": "Which forecast is easier to plan around: daily temps with MAD $1.5°$ or MAD $9°$?",
+                "options": [
+                  "MAD $1.5°$",
+                  "MAD $9°$",
+                  "they're equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "Small MAD = days hug the average — pack one jacket, not four.",
+                "check": [
+                  "Rational(15,10) < 9"
+                ]
+              },
+              {
+                "prompt": "Data: $10, 10, 10, 50$. The range is…",
+                "options": [
+                  "$40$",
+                  "$10$",
+                  "$20$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$50 - 10 = 40$ — one outlier owns the whole range.",
+                "check": [
+                  "50 - 10 == 40"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Factories run on spread",
+            "body": "Modern manufacturing's 'Six Sigma' movement is an obsession with shrinking spread: a bottling line that averages 500 ml is useless if bottles swing between 430 and 570. Engineers track deviation charts hour by hour, and a rising spread halts the line even when the MEAN is perfect. In quality control, consistency isn't a virtue — it's the product."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Range = max − min: fast but extremes-only.",
+              "MAD = average distance from the mean — the typical miss, in the data's units.",
+              "Same mean, different MAD = very different experiences."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "comparing-two-populations",
+      "title": "Comparing Two Populations",
+      "concreteComparison": "Team Falcon averages $52$ points per game; Team Hawk averages $58$. Is Hawk really better — or is that $6$-point gap just noise? It depends on the WOBBLE: if both teams' scores typically vary by $3$ points (MAD), a $6$-point gap is two full wobbles — real. If they vary by $15$, the gap is a shrug. Comparing groups means comparing gaps to spreads.",
+      "objective": "Compare two data sets using their centers and spreads, judging differences as multiples of the MAD.",
+      "concept": [
+        "To compare two groups, compare their **centers** (means or medians) — but always WITH their **spreads** in view.",
+        "The yardstick: express the gap between means as a multiple of the MAD. Gap $\\ge 2$ MADs → the groups genuinely differ; gap under $1$ MAD → heavy overlap, weak evidence.",
+        "Visual version: two dot plots that barely overlap show a real difference; plots that mostly overlap don't — no matter which mean is bigger.",
+        "Remember the source: if the data came from samples, sampling wobble stacks on top. Bigger samples make comparisons trustworthy."
+      ],
+      "keyIdea": "A difference in means matters when it's large COMPARED TO the spread — count it in MADs.",
+      "facts": [
+        {
+          "title": "The yardstick",
+          "explanation": "2+ MADs of separation = a visible, meaningful difference.",
+          "latex": "$\\tfrac{\\text{gap between means}}{\\text{MAD}}$"
+        },
+        {
+          "title": "Overlap test",
+          "explanation": "Mostly-overlapping plots don't, whatever the means say.",
+          "latex": "barely overlapping dot plots differ"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sas6-we1",
+          "statement": "Falcon: mean $52$, MAD $3$. Hawk: mean $58$, MAD $3$. Compare the teams.",
+          "solution": "Gap: $6$ points $= \\frac{6}{3} = 2$ MADs. Two full typical-wobbles apart — Hawk's advantage is real.",
+          "check": [
+            "58 - 52 == 6",
+            "Rational(6,3) == 2"
+          ]
+        },
+        {
+          "id": "sas6-we2",
+          "statement": "Plant food X: mean height $24$ cm, MAD $5$. Plant food Y: mean $26$ cm, MAD $5$. Compare.",
+          "solution": "Gap: $2$ cm $= \\frac{2}{5} = 0.4$ MADs. The distributions mostly overlap — weak evidence of any real difference.",
+          "check": [
+            "26 - 24 == 2",
+            "Rational(2,5) < 1"
+          ]
+        },
+        {
+          "id": "sas6-we3",
+          "statement": "Class A quiz: mean $80$, MAD $4$. Class B: mean $70$, MAD $4$. How separated are they?",
+          "solution": "Gap $10 = 2.5$ MADs — clearly separated performance.",
+          "check": [
+            "80 - 70 == 10",
+            "Rational(10,4) == Rational(5,2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Declaring a winner from means alone.",
+          "correction": "58 beats 52 only if the spread is small. A 6-point gap inside a 15-point typical wobble is noise wearing a trophy.",
+          "authored": true
+        },
+        {
+          "text": "Comparing gaps in absolute terms across contexts.",
+          "correction": "A 6-point gap can be enormous (MAD 2) or trivial (MAD 20). Only the gap-to-MAD ratio travels between problems.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sas6-t1",
+          "statement": "Group P: mean $40$, MAD $6$. Group Q: mean $52$, MAD $6$. Express the gap in MADs.",
+          "solution": "$\\frac{52 - 40}{6} = 2$ MADs — a solid separation.",
+          "check": [
+            "Rational(52-40, 6) == 2"
+          ]
+        },
+        {
+          "id": "sas6-t2",
+          "statement": "Two sleep studies: means $7.1$ and $7.3$ hours, both MAD $0.9$. Meaningful difference?",
+          "solution": "Gap $0.2 \\approx 0.22$ MADs — heavy overlap; not meaningful.",
+          "check": [
+            "Rational(Rational(73,10) - Rational(71,10), Rational(9,10)) == Rational(2,9)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The question",
+            "title": "Bigger — or just noisier?",
+            "beats": [
+              "Hawk 58, Falcon 52: a 6-point gap.",
+              "Every team's scores wobble game to game.",
+              "Is 6 large compared to the wobble?",
+              "That's the ONLY comparison that means anything."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The yardstick",
+            "title": "Measure gaps in MADs",
+            "beats": [
+              "Gap $\\div$ MAD $=$ separations.",
+              "$\\frac{6}{3} = 2$ MADs → distributions barely overlap. Real.",
+              "$\\frac{2}{5} = 0.4$ MADs → mostly overlap. Shrug.",
+              "Rule of thumb: 2+ MADs is a difference you can see."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Eyes first",
+            "title": "Dot plots don't lie",
+            "beats": [
+              "Draw both groups on one number line.",
+              "Barely-touching clouds → genuine difference.",
+              "Heavily overlapping clouds → the means' order is luck.",
+              "The picture and the MAD-count always agree."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Real or noise?",
+            "prompt": "Two keyboards: mean typing speeds $62$ and $68$ wpm, both with MAD $2$. Verdict?",
+            "options": [
+              "Real difference — 3 MADs apart",
+              "Noise — the gap is small",
+              "Impossible to tell"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\frac{68-62}{2} = 3$ MADs — the clouds barely overlap.",
+            "check": [
+              "Rational(68-62, 2) == 3"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Group vs group",
+            "intro": "Centers, spreads, then the ratio.",
+            "examples": [
+              {
+                "prompt": "Morning class: mean $74$, MAD $8$. Afternoon: mean $78$, MAD $8$. Compare honestly.",
+                "steps": [
+                  "Gap: $4$ points.",
+                  "$\\frac{4}{8} = 0.5$ MADs.",
+                  "Mostly overlapping — no confident winner."
+                ],
+                "answer": "$0.5$ MADs — overlap",
+                "check": [
+                  "Rational(78-74, 8) == Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "Brand L bulbs: mean life $1200$ h, MAD $50$. Brand M: mean $1450$ h, MAD $50$. Compare.",
+                "steps": [
+                  "Gap: $250$ hours.",
+                  "$\\frac{250}{50} = 5$ MADs.",
+                  "Massive separation — Brand M genuinely lasts longer."
+                ],
+                "answer": "$5$ MADs — real",
+                "check": [
+                  "Rational(1450-1200, 50) == 5"
+                ]
+              },
+              {
+                "prompt": "Two runners' 5K times (minutes): A $\\{22, 23, 24\\}$, B $\\{20, 25, 30\\}$. Same mean — who's more dependable?",
+                "steps": [
+                  "Both means: $23$ and $25$… compute: A mean $23$, B mean $25$.",
+                  "A's MAD: $\\frac{1+0+1}{3} = \\frac{2}{3}$; B's MAD: $\\frac{5+0+5}{3} = \\frac{10}{3}$.",
+                  "A is far more consistent; B is faster on a good day and slower on a bad one."
+                ],
+                "answer": "A: dependable; B: volatile",
+                "check": [
+                  "Rational(22+23+24, 3) == 23",
+                  "Rational(20+25+30, 3) == 25",
+                  "Rational(1+0+1, 3) == Rational(2,3)",
+                  "Rational(5+0+5, 3) == Rational(10,3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Judge the gap",
+            "intro": "Divide the gap by the MAD before declaring winners.",
+            "problems": [
+              {
+                "prompt": "Gap between means: $9$; MAD of both groups: $3$. Separation in MADs?",
+                "options": [
+                  "$3$",
+                  "$27$",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{9}{3} = 3$ MADs — well separated.",
+                "check": [
+                  "Rational(9,3) == 3"
+                ]
+              },
+              {
+                "prompt": "Which pair shows the STRONGEST evidence of a real difference?",
+                "options": [
+                  "gap $8$, MAD $2$",
+                  "gap $8$, MAD $10$",
+                  "gap $2$, MAD $2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{8}{2} = 4$ MADs beats $0.8$ and $1$.",
+                "check": [
+                  "Rational(8,2) == 4",
+                  "Rational(8,10) < 1",
+                  "Rational(2,2) == 1"
+                ]
+              },
+              {
+                "prompt": "Two groups have identical means. Their MADs are $2$ and $12$. What differs?",
+                "options": [
+                  "consistency — one group is far more variable",
+                  "the centers",
+                  "nothing"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same center, different spread: one group is steady, the other swings.",
+                "check": [
+                  "2 < 12"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "How medicine decides",
+            "body": "Every drug trial is exactly this lesson at industrial scale: the treatment group's mean against the placebo group's mean, judged against the spread. A blood-pressure drop of 4 points 'sounds small' — but if patient-to-patient variation is tiny, it's a breakthrough; if variation is huge, it's noise. The gap-to-spread ratio (statisticians call theirs an *effect size*) is arguably the most consequential fraction in science."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Compare groups by centers AND spreads together.",
+              "Gap ÷ MAD is the yardstick: 2+ MADs = visibly real.",
+              "Same means, different MADs = a consistency story, not a winner story."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "sas-pr1",
+      "statement": "A librarian surveys $45$ of the library's $900$ members. Name the population, the sample, and the sampled fraction.",
+      "solution": "Population: all $900$ members; sample: the $45$; fraction: $\\frac{45}{900} = \\frac{1}{20}$.",
+      "check": [
+        "Rational(45,900) == Rational(1,20)"
+      ]
+    },
+    {
+      "id": "sas-pr2",
+      "statement": "Identify the bias: polling about homework load using volunteers from the after-school study club.",
+      "solution": "Voluntary response plus undercoverage — study-club members aren't typical, and volunteers self-select.",
+      "check": [
+        "1 == 1"
+      ]
+    },
+    {
+      "id": "sas-pr3",
+      "statement": "A random sample finds $12$ of $48$ students bike to school. Estimate bikers among $1{,}600$ students.",
+      "solution": "$\\frac{12}{48} = \\frac{1}{4}$; estimate $400$.",
+      "check": [
+        "Rational(12,48)*1600 == 400"
+      ]
+    },
+    {
+      "id": "sas-pr4",
+      "statement": "$300$ tagged salmon; a later sample of $75$ contains $9$ tagged. Estimate the run size.",
+      "solution": "$\\frac{9}{75} = \\frac{300}{N} \\to N = 2500$.",
+      "check": [
+        "Rational(300*75, 9) == 2500"
+      ]
+    },
+    {
+      "id": "sas-pr5",
+      "statement": "Find the mean and median of $-2, 4, 7, 1, 5$.",
+      "solution": "Mean: $\\frac{15}{5} = 3$; sorted $-2, 1, 4, 5, 7$ — median $4$.",
+      "check": [
+        "Rational(-2+4+7+1+5, 5) == 3"
+      ]
+    },
+    {
+      "id": "sas-pr6",
+      "statement": "Data: $11, 13, 15, 17, 19$. Compute the MAD.",
+      "solution": "Mean $15$; distances $4, 2, 0, 2, 4$; MAD $= \\frac{12}{5} = 2.4$.",
+      "check": [
+        "Rational(11+13+15+17+19, 5) == 15",
+        "Rational(4+2+0+2+4, 5) == Rational(12,5)"
+      ]
+    },
+    {
+      "id": "sas-pr7",
+      "statement": "Two farms' pumpkin weights: means $9$ kg and $12$ kg, both MAD $1.5$. Compare in MADs.",
+      "solution": "Gap $3 = \\frac{3}{1.5} = 2$ MADs — a real difference.",
+      "check": [
+        "Rational(3, Rational(15,10)) == 2"
+      ]
+    },
+    {
+      "id": "sas-pr8",
+      "statement": "Salaries: $40, 42, 44, 46, 200$ (thousands). Give both centers and say which describes 'typical'.",
+      "solution": "Mean: $\\frac{372}{5} = 74.4$k; median: $44$k. The median — the $200$k outlier hijacks the mean.",
+      "check": [
+        "Rational(40+42+44+46+200, 5) == Rational(372,5)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "sas-ty1",
+      "statement": "Design a random sample of $40$ from $800$ concert attendees, and state each person's selection probability.",
+      "solution": "Number ticket stubs $1$–$800$; draw $40$ distinct random numbers. Each attendee: $\\frac{40}{800} = \\frac{1}{20}$.",
+      "check": [
+        "Rational(40,800) == Rational(1,20)"
+      ]
+    },
+    {
+      "id": "sas-ty2",
+      "statement": "A mall survey near the food court finds $70\\%$ 'love mall food.' Explain the flaw in one sentence.",
+      "solution": "Convenience/undercoverage bias: people at the food court already chose mall food — the method preloaded the answer.",
+      "check": [
+        "Rational(70,100) > Rational(1,2)"
+      ]
+    },
+    {
+      "id": "sas-ty3",
+      "statement": "In a random sample, $33$ of $150$ households compost. Estimate composters among $12{,}000$ households, and phrase it honestly.",
+      "solution": "$\\frac{33}{150} = 0.22$: about $2{,}640$ households — an estimate, not an exact count.",
+      "check": [
+        "Rational(33,150)*12000 == 2640"
+      ]
+    },
+    {
+      "id": "sas-ty4",
+      "statement": "Reaction times (ms): $220, 250, 230, 300, 250$. Find the mean and MAD.",
+      "solution": "Mean: $250$. Distances: $30, 0, 20, 50, 0$ — MAD $= 20$ ms.",
+      "check": [
+        "Rational(220+250+230+300+250, 5) == 250",
+        "Rational(30+0+20+50+0, 5) == 20"
+      ]
+    },
+    {
+      "id": "sas-ty5",
+      "statement": "Which shows a REAL difference: means $55$ vs $59$ with MADs $2$, or means $55$ vs $70$ with MADs $20$?",
+      "solution": "First: gap $4 = 2$ MADs — real. Second: gap $15 = 0.75$ MADs — overlap. The FIRST, despite the smaller gap.",
+      "check": [
+        "Rational(59-55, 2) == 2",
+        "Rational(70-55, 20) == Rational(3,4)"
+      ]
+    },
+    {
+      "id": "sas-ty6",
+      "statement": "A dataset of $6$ values has mean $18$. Five of the values are $15, 16, 19, 21, 22$. Find the sixth.",
+      "solution": "Sum must be $108$; known five sum to $93$; sixth $= 15$.",
+      "check": [
+        "6*18 == 108",
+        "15+16+19+21+22 == 93",
+        "108 - 93 == 15"
+      ]
+    }
+  ]
+}

@@ -66,6 +66,7 @@ import equationsAndInequalities from "@/data/genmath/7/equations-and-inequalitie
 import percentApplications from "@/data/genmath/7/percent-applications.json";
 import geometryScaleCircles from "@/data/genmath/7/geometry-scale-and-circles.json";
 import probability7 from "@/data/genmath/7/probability.json";
+import samplingAndStatistics from "@/data/genmath/7/sampling-and-statistics.json";
 // Grade 8 topic JSON imports (added as each topic is authored + published).
 import realNumberSystem from "@/data/genmath/8/the-real-number-system.json";
 import exponentsScientific from "@/data/genmath/8/exponents-and-scientific-notation.json";
@@ -199,7 +200,7 @@ export const GRADE7_SPINE: GradeSpineEntry[] = [
     slug: "sampling-and-statistics",
     title: "Sampling & Statistics",
     blurb: "Random samples, inference about a population, and comparing two data sets with center and spread.",
-    live: false,
+    live: true,
   },
 ];
 
@@ -420,6 +421,7 @@ const grade7Topics: GenMathTopic[] = [
   percentApplications as GenMathTopic,
   geometryScaleCircles as GenMathTopic,
   probability7 as GenMathTopic,
+  samplingAndStatistics as GenMathTopic,
 ];
 
 const grade8Topics: GenMathTopic[] = [
