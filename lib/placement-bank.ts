@@ -5,7 +5,7 @@
 // ramps up. Example, Equations: x+5=10 (easy) → 2x+7x=18 (medium) →
 // 2x+3=11 (hard, two-step).
 
-import { getGrade6Topics, getGeometrySpine, getGrade8Spine, getGrade10Spine, getGrade11Spine, getGrade12Spine } from "@/lib/genmath-lessons";
+import { getGrade6Topics, getGeometrySpine, getGrade7Spine, getGrade8Spine, getGrade10Spine, getGrade11Spine, getGrade12Spine } from "@/lib/genmath-lessons";
 
 export type PlacementQuestion = {
   id: string;
@@ -306,8 +306,50 @@ const G12_CURATED: Curated[] = [
   Q("conic-sections", 3, "$9x^2 - 4y^2 = 36$ is a —", ["hyperbola", "ellipse", "parabola", "circle"], 0, "Opposite signs on the squared terms: the minus sign's curve."),
 ];
 
+
+// ---------------------------------------------------------------------------
+// Grade 7 — one tiered question per difficulty for each of the 7 topics.
+// ---------------------------------------------------------------------------
+const G7_CURATED: Curated[] = [
+  // 1. Proportional Relationships
+  Q("proportional-relationships", 1, "$3$ notebooks cost $\\$12$. What is the unit price?", ["$\\$4$", "$\\$3$", "$\\$12$", "$\\$36$"], 0, "$12 \\div 3 = 4$ dollars per notebook."),
+  Q("proportional-relationships", 2, "You walk $\\tfrac{1}{2}$ mile in $\\tfrac{1}{4}$ hour. Your speed in miles per hour is —", ["$2$", "$\\tfrac{1}{2}$", "$\\tfrac{1}{8}$", "$4$"], 0, "$\\tfrac{1}{2} \\div \\tfrac{1}{4} = 2$ mph."),
+  Q("proportional-relationships", 3, "A proportional relationship contains $(4, 10)$. Its equation is —", ["$y = \\tfrac{5}{2}x$", "$y = \\tfrac{2}{5}x$", "$y = x + 6$", "$y = 40x$"], 0, "$k = \\tfrac{10}{4} = \\tfrac{5}{2}$, so $y = \\tfrac{5}{2}x$."),
+
+  // 2. Rational Number Operations
+  Q("rational-number-operations", 1, "Compute $-\\tfrac{1}{4} + \\tfrac{3}{4}$.", ["$\\tfrac{1}{2}$", "$-\\tfrac{1}{2}$", "$1$", "$-1$"], 0, "Different signs: $\\tfrac{3}{4} - \\tfrac{1}{4} = \\tfrac{2}{4} = \\tfrac{1}{2}$."),
+  Q("rational-number-operations", 2, "Compute $-2.5 - (-4)$.", ["$1.5$", "$-6.5$", "$-1.5$", "$6.5$"], 0, "Add the opposite: $-2.5 + 4 = 1.5$."),
+  Q("rational-number-operations", 3, "Compute $\\left(-\\tfrac{2}{3}\\right) \\div \\tfrac{4}{9}$.", ["$-\\tfrac{3}{2}$", "$\\tfrac{3}{2}$", "$-\\tfrac{8}{27}$", "$\\tfrac{2}{3}$"], 0, "Keep–change–flip: $-\\tfrac{2}{3} \\times \\tfrac{9}{4} = -\\tfrac{3}{2}$."),
+
+  // 3. Equations & Inequalities
+  Q("equations-and-inequalities", 1, "Simplify $3x - 7x$.", ["$-4x$", "$4x$", "$-4$", "$10x$"], 0, "$3 - 7 = -4$, so $-4x$."),
+  Q("equations-and-inequalities", 2, "Solve $2x + 5 = -9$.", ["$x = -7$", "$x = -2$", "$x = 7$", "$x = 2$"], 0, "$2x = -14$, so $x = -7$."),
+  Q("equations-and-inequalities", 3, "Solve $-3x + 4 > 10$.", ["$x < -2$", "$x > -2$", "$x < 2$", "$x > 2$"], 0, "$-3x > 6$; dividing by $-3$ flips: $x < -2$."),
+
+  // 4. Percent Applications
+  Q("percent-applications", 1, "Find $20\\%$ of $45$.", ["$9$", "$20$", "$5$", "$25$"], 0, "$0.20 \\times 45 = 9$."),
+  Q("percent-applications", 2, "A price falls from $\\$80$ to $\\$60$. The percent decrease is —", ["$25\\%$", "$33\\%$", "$20\\%$", "$75\\%$"], 0, "$\\tfrac{20}{80} = 25\\%$ — divide by the ORIGINAL."),
+  Q("percent-applications", 3, "After a $20\\%$ discount, a jacket costs $\\$48$. The original price was —", ["$\\$60$", "$\\$57.60$", "$\\$58$", "$\\$68$"], 0, "$48 \\div 0.80 = 60$: divide by the multiplier."),
+
+  // 5. Geometry: Scale, Angles & Circles
+  Q("geometry-scale-and-circles", 1, "At a scale of $1:50$, a $6$ cm drawing represents —", ["$300$ cm", "$56$ cm", "$3$ cm", "$50$ cm"], 0, "$6 \\times 50 = 300$ cm."),
+  Q("geometry-scale-and-circles", 2, "Two lines cross, making one angle of $110^\\circ$. The angle NEXT to it measures —", ["$70^\\circ$", "$110^\\circ$", "$250^\\circ$", "$90^\\circ$"], 0, "Adjacent angles on a line sum to $180$: $180 - 110 = 70$."),
+  Q("geometry-scale-and-circles", 3, "A circle has radius $6$. Its area, in terms of $\\pi$, is —", ["$36\\pi$", "$12\\pi$", "$6\\pi$", "$36$"], 0, "$A = \\pi r^2 = 36\\pi$. ($12\\pi$ is the circumference.)"),
+
+  // 6. Probability
+  Q("probability", 1, "One die is rolled. $P(\\text{even})$ = —", ["$\\tfrac{1}{2}$", "$\\tfrac{1}{6}$", "$\\tfrac{1}{3}$", "$\\tfrac{2}{3}$"], 0, "Evens $\\{2,4,6\\}$: $\\tfrac{3}{6} = \\tfrac{1}{2}$."),
+  Q("probability", 2, "A spinner landed on red $18$ of $60$ spins. The experimental probability of red is —", ["$0.3$", "$0.18$", "$0.6$", "$0.5$"], 0, "$\\tfrac{18}{60} = 0.3$."),
+  Q("probability", 3, "A coin is flipped and a die is rolled. $P(\\text{heads AND a } 6)$ = —", ["$\\tfrac{1}{12}$", "$\\tfrac{1}{8}$", "$\\tfrac{2}{3}$", "$\\tfrac{1}{6}$"], 0, "Independent: $\\tfrac{1}{2} \\times \\tfrac{1}{6} = \\tfrac{1}{12}$."),
+
+  // 7. Sampling & Statistics
+  Q("sampling-and-statistics", 1, "Find the median of $8, 3, 5, 9, 1$.", ["$5$", "$3$", "$8$", "$9$"], 0, "Sorted: $1, 3, 5, 8, 9$ — middle is $5$."),
+  Q("sampling-and-statistics", 2, "A random sample finds $12$ of $40$ students bike to school. Estimate bikers among $1{,}000$ students.", ["$300$", "$120$", "$480$", "$12$"], 0, "$\\tfrac{12}{40} = 0.3$; $0.3 \\times 1000 = 300$."),
+  Q("sampling-and-statistics", 3, "Data: $6, 8, 10, 12, 14$ (mean $10$). The MAD is —", ["$2.4$", "$4$", "$10$", "$2$"], 0, "Distances $4,2,0,2,4$ average to $\\tfrac{12}{5} = 2.4$."),
+];
+
 let cache: PlacementQuestion[] | null = null;
 let geoCache: PlacementQuestion[] | null = null;
+let g7Cache: PlacementQuestion[] | null = null;
 let g8Cache: PlacementQuestion[] | null = null;
 let g10Cache: PlacementQuestion[] | null = null;
 let g11Cache: PlacementQuestion[] | null = null;
@@ -325,6 +367,13 @@ export function getGeometryPlacementBank(): PlacementQuestion[] {
   const titleBySlug = new Map(getGeometrySpine().map((u) => [u.slug, u.title]));
   geoCache = GEO_CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
   return geoCache;
+}
+
+export function getGrade7PlacementBank(): PlacementQuestion[] {
+  if (g7Cache) return g7Cache;
+  const titleBySlug = new Map(getGrade7Spine().map((t) => [t.slug, t.title]));
+  g7Cache = G7_CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
+  return g7Cache;
 }
 
 export function getGrade8PlacementBank(): PlacementQuestion[] {
