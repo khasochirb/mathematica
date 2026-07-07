@@ -1,0 +1,1585 @@
+{
+  "slug": "rational-number-operations",
+  "title": "Rational Number Operations",
+  "grade": 7,
+  "blurb": "Adding, subtracting, multiplying, and dividing with negatives — integers, fractions, and decimals, all four operations, one number line.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "rationals-on-the-number-line",
+      "title": "Rational Numbers on the Number Line",
+      "concreteComparison": "A freezer reads $-18.5°$C. A diver hovers at $-\\frac{3}{4}$ of a meter — waist deep. Debt on a gift card: $-\\$2.50$. In Grade 6 the negatives you met were integers; now every fraction and decimal gets a negative twin too. Together they're the **rational numbers**, and they all live on one number line.",
+      "objective": "Place negative fractions and decimals on the number line, find opposites, and compare rational numbers.",
+      "concept": [
+        "A **rational number** is any number that can be written as a fraction of integers — and now we include the negative ones: $-\\frac{3}{4}$, $-2.5$, $-\\frac{7}{2}$ are all rational.",
+        "The number line is symmetric around $0$. Every rational number has an **opposite** the same distance from zero on the other side: the opposite of $\\frac{3}{4}$ is $-\\frac{3}{4}$, and $-(-2.5) = 2.5$.",
+        "Comparing works the way it always has: **left is less**. Careful with negatives — $-\\frac{3}{4} > -\\frac{7}{8}$ because $-\\frac{3}{4}$ sits closer to zero, to the RIGHT of $-\\frac{7}{8}$.",
+        "To compare a negative fraction with a negative decimal, put them in the same form first: $-\\frac{3}{4} = -0.75$, which is greater than $-0.8$."
+      ],
+      "keyIdea": "One line holds them all: every rational number has a spot, an opposite, and a left-is-less order.",
+      "facts": [
+        {
+          "title": "Opposites cancel",
+          "explanation": "The opposite of the opposite brings you home.",
+          "latex": "$-(-2.5) = 2.5$"
+        },
+        {
+          "title": "Closer to zero wins (among negatives)",
+          "explanation": "For negatives, the one with SMALLER absolute value is greater.",
+          "latex": "$-\\tfrac{3}{4} > -\\tfrac{7}{8}$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rno1-we1",
+          "statement": "Order from least to greatest: $-\\frac{1}{2}$, $0.4$, $-\\frac{5}{4}$.",
+          "solution": "As decimals: $-0.5$, $0.4$, $-1.25$. Least to greatest: $-\\frac{5}{4}, -\\frac{1}{2}, 0.4$.",
+          "check": [
+            "Rational(-5,4) < Rational(-1,2)",
+            "Rational(-1,2) < Rational(4,10)"
+          ]
+        },
+        {
+          "id": "rno1-we2",
+          "statement": "Which is greater: $-\\frac{3}{4}$ or $-0.8$?",
+          "solution": "$-\\frac{3}{4} = -0.75$. Since $-0.75$ is to the right of $-0.8$, $-\\frac{3}{4}$ is greater.",
+          "check": [
+            "Rational(-3,4) > Rational(-8,10)"
+          ]
+        },
+        {
+          "id": "rno1-we3",
+          "statement": "What is the opposite of $-\\frac{7}{2}$, and what is $\\left|-\\frac{7}{2}\\right|$?",
+          "solution": "The opposite is $\\frac{7}{2}$; the absolute value (distance from zero) is also $\\frac{7}{2}$.",
+          "check": [
+            "-Rational(-7,2) == Rational(7,2)",
+            "Abs(Rational(-7,2)) == Rational(7,2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking −7/8 is greater than −3/4 because 7/8 > 3/4.",
+          "correction": "Negatives flip the race: the FARTHER from zero, the SMALLER. $-\\frac{7}{8} < -\\frac{3}{4}$.",
+          "authored": true
+        },
+        {
+          "text": "Placing −2.5 between −2 and 0.",
+          "correction": "$-2.5$ is farther from zero than $-2$: it sits between $-3$ and $-2$, to the LEFT of $-2$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rno1-t1",
+          "statement": "Compare: $-1.6$ and $-\\frac{3}{2}$.",
+          "solution": "$-\\frac{3}{2} = -1.5$, which is to the right of $-1.6$. So $-1.6 < -\\frac{3}{2}$.",
+          "check": [
+            "Rational(-16,10) < Rational(-3,2)"
+          ]
+        },
+        {
+          "id": "rno1-t2",
+          "statement": "What is $-\\left(-\\frac{2}{5}\\right)$?",
+          "solution": "The opposite of $-\\frac{2}{5}$ is $\\frac{2}{5}$.",
+          "check": [
+            "-Rational(-2,5) == Rational(2,5)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "integerLine",
+            "eyebrow": "Play with it",
+            "title": "The line fills in",
+            "teach": "In Grade 6 the marks were integers. Now the spaces BETWEEN them fill with rational numbers — tap around the line and see negatives, fractions of steps, and opposites mirrored across zero.",
+            "config": {
+              "min": -5,
+              "max": 5,
+              "start": -2
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "New residents",
+            "title": "Negative fractions and decimals",
+            "beats": [
+              "Every fraction and decimal now has a negative twin.",
+              "$-\\frac{3}{4}$ lives three-quarters of a step LEFT of zero.",
+              "$-2.5$ lives halfway between $-3$ and $-2$.",
+              "All of them together: the **rational numbers**."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Mirror image",
+            "title": "Opposites and absolute value",
+            "beats": [
+              "The **opposite** of $x$ is $-x$ — same distance, other side.",
+              "$-(-2.5) = 2.5$: opposite of the opposite is home.",
+              "**Absolute value** is distance from zero: $\\left|-\\frac{7}{2}\\right| = \\frac{7}{2}$.",
+              "Distance is never negative."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Left is less",
+            "prompt": "Which is the SMALLEST: $-\\frac{1}{4}$, $-\\frac{3}{4}$, or $-\\frac{1}{2}$?",
+            "options": [
+              "$-\\frac{3}{4}$",
+              "$-\\frac{1}{4}$",
+              "$-\\frac{1}{2}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Among negatives, farthest from zero is smallest: $-\\frac{3}{4} < -\\frac{1}{2} < -\\frac{1}{4}$.",
+            "check": [
+              "Rational(-3,4) < Rational(-1,2)",
+              "Rational(-1,2) < Rational(-1,4)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Same form, then compare",
+            "intro": "Convert to a common form; then left is less.",
+            "examples": [
+              {
+                "prompt": "Compare $-\\frac{2}{5}$ and $-0.5$.",
+                "steps": [
+                  "$-\\frac{2}{5} = -0.4$.",
+                  "$-0.4$ is right of $-0.5$.",
+                  "So $-\\frac{2}{5} > -0.5$."
+                ],
+                "answer": "$-\\frac{2}{5} > -0.5$",
+                "check": [
+                  "Rational(-2,5) > Rational(-5,10)"
+                ]
+              },
+              {
+                "prompt": "Order: $0.3$, $-\\frac{1}{3}$, $-0.35$.",
+                "steps": [
+                  "$-\\frac{1}{3} \\approx -0.333$.",
+                  "Leftmost: $-0.35$; then $-\\frac{1}{3}$; then $0.3$.",
+                  "$-0.35 < -\\frac{1}{3} < 0.3$."
+                ],
+                "answer": "$-0.35 < -\\frac{1}{3} < 0.3$",
+                "check": [
+                  "Rational(-35,100) < Rational(-1,3)",
+                  "Rational(-1,3) < Rational(3,10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Place and compare",
+            "intro": "Think “distance from zero”, then check the side.",
+            "problems": [
+              {
+                "prompt": "Which is greater: $-\\frac{5}{8}$ or $-\\frac{1}{2}$?",
+                "options": [
+                  "$-\\frac{1}{2}$",
+                  "$-\\frac{5}{8}$",
+                  "They're equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "$-\\frac{5}{8} = -0.625$ is farther left than $-0.5$.",
+                "check": [
+                  "Rational(-1,2) > Rational(-5,8)"
+                ]
+              },
+              {
+                "prompt": "What is $\\left|-1.75\\right|$?",
+                "options": [
+                  "$1.75$",
+                  "$-1.75$",
+                  "$0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Absolute value is the distance from zero: $1.75$.",
+                "check": [
+                  "Abs(Rational(-175,100)) == Rational(7,4)"
+                ]
+              },
+              {
+                "prompt": "Between which two integers does $-\\frac{9}{4}$ sit?",
+                "options": [
+                  "$-3$ and $-2$",
+                  "$-2$ and $-1$",
+                  "$2$ and $3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$-\\frac{9}{4} = -2.25$, between $-3$ and $-2$.",
+                "check": [
+                  "Rational(-9,4) > -3",
+                  "Rational(-9,4) < -2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Below sea level, below zero",
+            "body": "The lowest land on Earth — the shore of the Dead Sea — sits around $-430$ meters, and submarines report depth as negative elevation with decimals: $-127.5$ m. Meteorologists, accountants, and video-game physics engines all run on negative rationals; “half a degree below zero” is a $-0.5$ doing its job."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Rational numbers include negative fractions and decimals — one shared number line.",
+              "Opposites mirror across zero; $-(-x) = x$; absolute value is distance.",
+              "Compare in a common form; for negatives, closer to zero is greater."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "adding-rational-numbers",
+      "title": "Adding Rational Numbers",
+      "concreteComparison": "Your bank account holds \\$5.25. A snack costs \\$7.50 — you pay with the account going negative: $5.25 + (-7.50) = -2.25$. Adding a negative is nothing exotic; it's what your balance does every time you spend. The integer rules you know stretch perfectly to fractions and decimals.",
+      "objective": "Add rational numbers with any signs, using the number line and the same-sign/different-sign rules.",
+      "concept": [
+        "Adding a positive moves you right; adding a negative moves you left. That picture works for ANY rational jump size: $3 + (-4.5)$ lands at $-1.5$.",
+        "**Same signs:** add the absolute values and keep the sign. $(-\\frac{1}{4}) + (-\\frac{1}{2}) = -\\frac{3}{4}$.",
+        "**Different signs:** subtract the smaller absolute value from the larger, and take the sign of the one farther from zero. $\\frac{3}{4} + (-\\frac{1}{4}) = \\frac{1}{2}$.",
+        "A number plus its **opposite** makes $0$: $2.75 + (-2.75) = 0$. Opposites are also called additive inverses, and “canceling to zero” is the fastest simplification in arithmetic."
+      ],
+      "keyIdea": "Same signs: add and keep. Different signs: subtract and take the stronger sign. Opposites make zero.",
+      "facts": [
+        {
+          "title": "Additive inverse",
+          "explanation": "Every rational number cancels with its opposite.",
+          "latex": "$a + (-a) = 0$"
+        },
+        {
+          "title": "Different signs = a tug of war",
+          "explanation": "The side farther from zero wins; the difference is what's left.",
+          "latex": "$\\tfrac{3}{4} + (-\\tfrac{1}{4}) = \\tfrac{1}{2}$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rno2-we1",
+          "statement": "Compute $-\\frac{1}{4} + \\left(-\\frac{1}{2}\\right)$.",
+          "solution": "Same signs: add distances $\\frac{1}{4} + \\frac{1}{2} = \\frac{3}{4}$, keep the negative: $-\\frac{3}{4}$.",
+          "check": [
+            "Rational(-1,4) + Rational(-1,2) == Rational(-3,4)"
+          ]
+        },
+        {
+          "id": "rno2-we2",
+          "statement": "Compute $5.25 + (-7.50)$.",
+          "solution": "Different signs: $7.50 - 5.25 = 2.25$; the negative side is farther from zero, so the answer is $-2.25$.",
+          "check": [
+            "Rational(525,100) + Rational(-750,100) == Rational(-225,100)"
+          ]
+        },
+        {
+          "id": "rno2-we3",
+          "statement": "Compute $-\\frac{2}{3} + \\frac{1}{6}$.",
+          "solution": "Common denominator: $-\\frac{4}{6} + \\frac{1}{6} = -\\frac{3}{6} = -\\frac{1}{2}$.",
+          "check": [
+            "Rational(-2,3) + Rational(1,6) == Rational(-1,2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding absolute values when the signs differ.",
+          "correction": "$\\frac{3}{4} + (-\\frac{1}{4})$ is a tug of war, not a pile-up: SUBTRACT to get $\\frac{1}{2}$, don't add to get $1$.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the common denominator with signed fractions.",
+          "correction": "Signs don't excuse fraction rules: $-\\frac{2}{3} + \\frac{1}{6}$ needs sixths first — $-\\frac{4}{6} + \\frac{1}{6}$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rno2-t1",
+          "statement": "Compute $-\\frac{3}{8} + \\left(-\\frac{1}{8}\\right)$.",
+          "solution": "Same signs: $-\\frac{4}{8} = -\\frac{1}{2}$.",
+          "check": [
+            "Rational(-3,8) + Rational(-1,8) == Rational(-1,2)"
+          ]
+        },
+        {
+          "id": "rno2-t2",
+          "statement": "Compute $-4.6 + 2.1$.",
+          "solution": "Different signs: $4.6 - 2.1 = 2.5$; negative side is stronger: $-2.5$.",
+          "check": [
+            "Rational(-46,10) + Rational(21,10) == Rational(-25,10)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "integerAdd",
+            "eyebrow": "Play with it",
+            "title": "Jumps on the line",
+            "teach": "Adding means jumping: positive jumps go right, negative jumps go left. Set up a sum and watch where you land — the same picture will carry fractions and decimals.",
+            "config": {
+              "a": 3,
+              "b": -5,
+              "min": -8,
+              "max": 8
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Rule 1",
+            "title": "Same signs pile up",
+            "beats": [
+              "Both jumps the same direction — they stack.",
+              "Add the distances, keep the shared sign.",
+              "$(-\\tfrac{1}{4}) + (-\\tfrac{1}{2}) = -\\tfrac{3}{4}$.",
+              "Two lefts make a bigger left."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Rule 2",
+            "title": "Different signs tug",
+            "beats": [
+              "Opposite directions fight — the difference survives.",
+              "Subtract the smaller distance from the larger.",
+              "The sign of the FARTHER-from-zero number wins.",
+              "$5.25 + (-7.50) = -2.25$: the \\$7.50 pull was stronger."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Who wins the tug?",
+            "prompt": "Compute $-\\frac{5}{6} + \\frac{1}{3}$.",
+            "options": [
+              "$-\\frac{1}{2}$",
+              "$\\frac{1}{2}$",
+              "$-\\frac{7}{6}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Sixths: $-\\frac{5}{6} + \\frac{2}{6} = -\\frac{3}{6} = -\\frac{1}{2}$. The negative side was farther from zero.",
+            "check": [
+              "Rational(-5,6) + Rational(1,3) == Rational(-1,2)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Signed sums, step by step",
+            "intro": "Decide same-sign or different-sign FIRST, then compute.",
+            "examples": [
+              {
+                "prompt": "Compute $-2.4 + (-3.35)$.",
+                "steps": [
+                  "Same signs — pile up.",
+                  "$2.4 + 3.35 = 5.75$.",
+                  "Keep the negative: $-5.75$."
+                ],
+                "answer": "$-5.75$",
+                "check": [
+                  "Rational(-24,10) + Rational(-335,100) == Rational(-575,100)"
+                ]
+              },
+              {
+                "prompt": "Compute $\\frac{7}{10} + \\left(-\\frac{2}{5}\\right)$.",
+                "steps": [
+                  "Different signs — tug of war.",
+                  "Tenths: $\\frac{7}{10} - \\frac{4}{10} = \\frac{3}{10}$.",
+                  "Positive was stronger: $\\frac{3}{10}$."
+                ],
+                "answer": "$\\frac{3}{10}$",
+                "check": [
+                  "Rational(7,10) + Rational(-2,5) == Rational(3,10)"
+                ]
+              },
+              {
+                "prompt": "Compute $1.8 + (-1.8) + \\left(-\\frac{5}{8}\\right)$.",
+                "steps": [
+                  "Spot the opposites: $1.8 + (-1.8) = 0$.",
+                  "Only $-\\frac{5}{8}$ remains.",
+                  "Answer: $-\\frac{5}{8}$."
+                ],
+                "answer": "$-\\frac{5}{8}$",
+                "check": [
+                  "Rational(18,10) + Rational(-18,10) + Rational(-5,8) == Rational(-5,8)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Add with signs",
+            "intro": "Same signs add; different signs subtract.",
+            "problems": [
+              {
+                "prompt": "$-\\frac{1}{2} + \\left(-\\frac{1}{3}\\right) = $ ?",
+                "options": [
+                  "$-\\frac{5}{6}$",
+                  "$-\\frac{1}{6}$",
+                  "$\\frac{5}{6}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Sixths: $-\\frac{3}{6} + (-\\frac{2}{6}) = -\\frac{5}{6}$.",
+                "check": [
+                  "Rational(-1,2) + Rational(-1,3) == Rational(-5,6)"
+                ]
+              },
+              {
+                "prompt": "$-6.5 + 9.2 = $ ?",
+                "options": [
+                  "$2.7$",
+                  "$-2.7$",
+                  "$15.7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$9.2 - 6.5 = 2.7$; the positive side was farther from zero.",
+                "check": [
+                  "Rational(-65,10) + Rational(92,10) == Rational(27,10)"
+                ]
+              },
+              {
+                "prompt": "$\\frac{3}{4} + \\left(-\\frac{3}{4}\\right) = $ ?",
+                "options": [
+                  "$0$",
+                  "$\\frac{3}{2}$",
+                  "$-\\frac{9}{16}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Opposites cancel: any number plus its additive inverse is $0$.",
+                "check": [
+                  "Rational(3,4) + Rational(-3,4) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Double-entry zero",
+            "body": "Accountants have run on additive inverses for six hundred years. In double-entry bookkeeping, every transaction is recorded twice — once positive, once negative — and the books “balance” exactly when everything sums to zero. A company's entire ledger is one giant exercise in rational-number addition."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Same signs: add the distances, keep the sign.",
+              "Different signs: subtract; the farther-from-zero sign wins.",
+              "Opposites cancel to zero — spot them first and save work."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "subtracting-rational-numbers",
+      "title": "Subtracting Rational Numbers",
+      "concreteComparison": "The temperature at dusk is $3.5°$ and drops to $-2°$ overnight. How big was the drop? $3.5 - (-2)$… wait, subtracting a negative? Rewrite it: $3.5 + 2 = 5.5$ degrees of falling. Every subtraction is secretly an addition — **add the opposite** — and distances on the thermometer are absolute values of differences.",
+      "objective": "Subtract rational numbers by adding the opposite, and find distances as absolute values of differences.",
+      "concept": [
+        "Subtraction is addition in disguise: $a - b = a + (-b)$. Keep the first number, change subtraction to addition, change the sign of the second. (You met this as keep–change–change.)",
+        "It works for every rational number: $-\\frac{1}{4} - \\frac{1}{2} = -\\frac{1}{4} + (-\\frac{1}{2}) = -\\frac{3}{4}$.",
+        "Subtracting a negative turns into adding a positive: $3.5 - (-2) = 3.5 + 2 = 5.5$. Removing a debt makes you richer.",
+        "**Distance** between two numbers is the absolute value of their difference: $|a - b|$. The gap between $-2$ and $3.5$ is $|{-2} - 3.5| = 5.5$ — same both ways."
+      ],
+      "keyIdea": "$a - b = a + (-b)$ — keep, change, change. Distance $= |a - b|$.",
+      "facts": [
+        {
+          "title": "Keep–change–change",
+          "explanation": "Rewrite every subtraction as adding the opposite, then use the addition rules.",
+          "latex": "$a - b = a + (-b)$"
+        },
+        {
+          "title": "Distance is symmetric",
+          "explanation": "The gap between two numbers doesn't care about order.",
+          "latex": "$|a-b| = |b-a|$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rno3-we1",
+          "statement": "Compute $-\\frac{1}{4} - \\frac{1}{2}$.",
+          "solution": "Add the opposite: $-\\frac{1}{4} + (-\\frac{1}{2}) = -\\frac{3}{4}$.",
+          "check": [
+            "Rational(-1,4) - Rational(1,2) == Rational(-3,4)"
+          ]
+        },
+        {
+          "id": "rno3-we2",
+          "statement": "The temperature falls from $3.5°$ to $-2°$. How many degrees did it drop?",
+          "solution": "Drop $= 3.5 - (-2) = 3.5 + 2 = 5.5$ degrees.",
+          "check": [
+            "Rational(35,10) - (-2) == Rational(55,10)"
+          ]
+        },
+        {
+          "id": "rno3-we3",
+          "statement": "Compute $-2.7 - (-4.2)$.",
+          "solution": "Add the opposite: $-2.7 + 4.2 = 1.5$.",
+          "check": [
+            "Rational(-27,10) - Rational(-42,10) == Rational(15,10)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Changing the sign of the FIRST number.",
+          "correction": "Keep–change–change touches only the second number: $-\\frac{1}{4} - \\frac{1}{2}$ keeps the $-\\frac{1}{4}$ as is.",
+          "authored": true
+        },
+        {
+          "text": "Treating a − (−b) as a − b.",
+          "correction": "Two sign changes make a plus: $3.5 - (-2) = 3.5 + 2$, not $3.5 - 2$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rno3-t1",
+          "statement": "Compute $\\frac{1}{6} - \\frac{2}{3}$.",
+          "solution": "$\\frac{1}{6} + (-\\frac{4}{6}) = -\\frac{3}{6} = -\\frac{1}{2}$.",
+          "check": [
+            "Rational(1,6) - Rational(2,3) == Rational(-1,2)"
+          ]
+        },
+        {
+          "id": "rno3-t2",
+          "statement": "Find the distance between $-1.5$ and $2.25$.",
+          "solution": "$|{-1.5} - 2.25| = |-3.75| = 3.75$.",
+          "check": [
+            "Abs(Rational(-15,10) - Rational(225,100)) == Rational(375,100)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "integerSubtract",
+            "eyebrow": "Play with it",
+            "title": "Subtracting is adding backwards",
+            "teach": "Watch a subtraction transform into adding the opposite — the jump flips direction. This is keep–change–change, live.",
+            "config": {
+              "a": 2,
+              "b": -6,
+              "min": -8,
+              "max": 10
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The rewrite",
+            "title": "Keep, change, change",
+            "beats": [
+              "KEEP the first number.",
+              "CHANGE $-$ to $+$.",
+              "CHANGE the second number's sign.",
+              "$-\\tfrac{1}{4} - \\tfrac{1}{2} = -\\tfrac{1}{4} + (-\\tfrac{1}{2})$ — now it's an addition you already know."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The famous case",
+            "title": "Minus a negative",
+            "beats": [
+              "$3.5 - (-2)$: subtracting a debt.",
+              "Rewrite: $3.5 + 2 = 5.5$.",
+              "Removing cold makes it warmer; removing debt makes you richer.",
+              "Two sign flips always land on plus."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Rewrite first",
+            "prompt": "Compute $-\\frac{2}{5} - \\left(-\\frac{4}{5}\\right)$.",
+            "options": [
+              "$\\frac{2}{5}$",
+              "$-\\frac{6}{5}$",
+              "$-\\frac{2}{5}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$-\\frac{2}{5} + \\frac{4}{5} = \\frac{2}{5}$.",
+            "check": [
+              "Rational(-2,5) - Rational(-4,5) == Rational(2,5)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Signed subtraction",
+            "intro": "Rewrite as adding the opposite, then use yesterday's rules.",
+            "examples": [
+              {
+                "prompt": "Compute $-5.1 - 2.9$.",
+                "steps": [
+                  "Rewrite: $-5.1 + (-2.9)$.",
+                  "Same signs: pile up $5.1 + 2.9 = 8$.",
+                  "Answer: $-8$."
+                ],
+                "answer": "$-8$",
+                "check": [
+                  "Rational(-51,10) - Rational(29,10) == -8"
+                ]
+              },
+              {
+                "prompt": "An elevator goes from floor level $-\\frac{3}{2}$ (basement) to level $4$. How far did it rise?",
+                "steps": [
+                  "Rise $= 4 - (-\\frac{3}{2})$.",
+                  "$= 4 + \\frac{3}{2} = \\frac{11}{2}$.",
+                  "$5\\frac{1}{2}$ floors of climbing."
+                ],
+                "answer": "$\\frac{11}{2}$ floors",
+                "check": [
+                  "4 - Rational(-3,2) == Rational(11,2)"
+                ]
+              },
+              {
+                "prompt": "Find the distance between $-\\frac{7}{4}$ and $-\\frac{1}{4}$.",
+                "steps": [
+                  "Distance $= \\left|-\\frac{7}{4} - (-\\frac{1}{4})\\right|$.",
+                  "$= \\left|-\\frac{6}{4}\\right| = \\frac{3}{2}$.",
+                  "Same answer either direction."
+                ],
+                "answer": "$\\frac{3}{2}$",
+                "check": [
+                  "Abs(Rational(-7,4) - Rational(-1,4)) == Rational(3,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Keep–change–change",
+            "intro": "One rewrite, then add.",
+            "problems": [
+              {
+                "prompt": "$-3.2 - 1.8 = $ ?",
+                "options": [
+                  "$-5$",
+                  "$-1.4$",
+                  "$5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$-3.2 + (-1.8) = -5$.",
+                "check": [
+                  "Rational(-32,10) - Rational(18,10) == -5"
+                ]
+              },
+              {
+                "prompt": "$\\frac{1}{2} - \\left(-\\frac{3}{4}\\right) = $ ?",
+                "options": [
+                  "$\\frac{5}{4}$",
+                  "$-\\frac{1}{4}$",
+                  "$\\frac{1}{4}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{1}{2} + \\frac{3}{4} = \\frac{5}{4}$.",
+                "check": [
+                  "Rational(1,2) - Rational(-3,4) == Rational(5,4)"
+                ]
+              },
+              {
+                "prompt": "The overnight low was $-6.5°$ and the daytime high was $4°$. What was the temperature swing?",
+                "options": [
+                  "$10.5°$",
+                  "$2.5°$",
+                  "$-10.5°$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$|4 - (-6.5)| = 10.5$ degrees.",
+                "check": [
+                  "Abs(4 - Rational(-65,10)) == Rational(105,10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The biggest swing on record",
+            "body": "Loma, Montana holds the world record for a 24-hour temperature swing: from $-48°$C to $+9°$C — a rise of $9 - (-48) = 57$ degrees in one day. Every weather report quietly computes “subtract a negative” whenever the low is below zero."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Every subtraction is adding the opposite: $a - b = a + (-b)$.",
+              "Minus a negative is plus: two flips land on $+$.",
+              "Distance between numbers: $|a - b|$, same in both directions."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "multiplying-rational-numbers",
+      "title": "Multiplying Rational Numbers",
+      "concreteComparison": "A pool drains $\\frac{3}{4}$ of a centimeter every minute — a rate of $-\\frac{3}{4}$ cm per minute. After $8$ minutes, the water level has changed by $8 \\times \\left(-\\frac{3}{4}\\right) = -6$ cm. Multiplying by a negative isn't a trick; it's how repeated loss adds up. The only new thing to manage is the sign.",
+      "objective": "Multiply rational numbers, using the sign rules and fraction multiplication.",
+      "concept": [
+        "Multiply the numbers as if they were positive, then set the sign: **same signs give positive, different signs give negative**.",
+        "Why negative × negative is positive: watch the pattern $-3 \\times 2 = -6$, $-3 \\times 1 = -3$, $-3 \\times 0 = 0$, $-3 \\times (-1) = ?$ Each step ADDS $3$ — so it must continue to $+3$.",
+        "Fractions multiply straight across, signs riding along: $\\left(-\\frac{2}{3}\\right)\\left(-\\frac{9}{10}\\right) = +\\frac{18}{30} = \\frac{3}{5}$.",
+        "For a string of factors, count the negatives: an **even** count makes the product positive, an **odd** count makes it negative."
+      ],
+      "keyIdea": "Multiply the absolute values; same signs $\\to +$, different signs $\\to -$; count negatives for longer products.",
+      "facts": [
+        {
+          "title": "The sign grid",
+          "explanation": "Same signs positive, different signs negative.",
+          "latex": "$(+)(+)=+,\\; (+)(-)=-,\\; (-)(-)=+$"
+        },
+        {
+          "title": "Count the negatives",
+          "explanation": "An even number of negative factors makes a positive product; odd makes negative.",
+          "latex": "$(-1)^{\\text{even}} = 1$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rno4-we1",
+          "statement": "Compute $8 \\times \\left(-\\frac{3}{4}\\right)$.",
+          "solution": "Different signs → negative. $8 \\times \\frac{3}{4} = 6$, so the answer is $-6$.",
+          "check": [
+            "8 * Rational(-3,4) == -6"
+          ]
+        },
+        {
+          "id": "rno4-we2",
+          "statement": "Compute $\\left(-\\frac{2}{3}\\right) \\times \\left(-\\frac{9}{10}\\right)$.",
+          "solution": "Same signs → positive. $\\frac{2 \\times 9}{3 \\times 10} = \\frac{18}{30} = \\frac{3}{5}$.",
+          "check": [
+            "Rational(-2,3) * Rational(-9,10) == Rational(3,5)"
+          ]
+        },
+        {
+          "id": "rno4-we3",
+          "statement": "Compute $(-0.5) \\times (-0.5) \\times (-4)$.",
+          "solution": "Three negatives — odd count → negative. $0.5 \\times 0.5 \\times 4 = 1$, so the answer is $-1$.",
+          "check": [
+            "Rational(-5,10) * Rational(-5,10) * (-4) == -1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Believing “two negatives make a negative-er answer.”",
+          "correction": "Same signs multiply to POSITIVE: $(-\\frac{2}{3})(-\\frac{9}{10}) = +\\frac{3}{5}$. The pattern $-3 \\times 0, -3 \\times (-1), \\ldots$ climbs upward.",
+          "authored": true
+        },
+        {
+          "text": "Applying the sign rule to addition.",
+          "correction": "$(-2) + (-3) = -5$, not $+5$. “Negative times negative is positive” is a MULTIPLICATION rule only.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rno4-t1",
+          "statement": "Compute $\\left(-\\frac{5}{6}\\right) \\times \\frac{3}{10}$.",
+          "solution": "Different signs → negative: $\\frac{5 \\times 3}{6 \\times 10} = \\frac{15}{60} = \\frac{1}{4}$, so $-\\frac{1}{4}$.",
+          "check": [
+            "Rational(-5,6) * Rational(3,10) == Rational(-1,4)"
+          ]
+        },
+        {
+          "id": "rno4-t2",
+          "statement": "Compute $(-1.5) \\times (-6)$.",
+          "solution": "Same signs → positive: $1.5 \\times 6 = 9$.",
+          "check": [
+            "Rational(-15,10) * (-6) == 9"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "integerSignRule",
+            "eyebrow": "Play with it",
+            "title": "The sign machine",
+            "teach": "Feed the machine two signed numbers and watch the sign rule fire: same signs out comes positive, different signs out comes negative.",
+            "config": {
+              "a": -3,
+              "b": -4,
+              "op": "mul"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why it works",
+            "title": "The pattern that proves it",
+            "beats": [
+              "$-3 \\times 2 = -6$",
+              "$-3 \\times 1 = -3$, $\\;-3 \\times 0 = 0$…",
+              "Each step adds $3$. Keep going:",
+              "$-3 \\times (-1) = +3$. Negative times negative HAS to be positive."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "With fractions",
+            "title": "Straight across, sign rides along",
+            "beats": [
+              "Multiply tops, multiply bottoms — Grade 6 skill.",
+              "Decide the sign separately: same $\\to +$, different $\\to -$.",
+              "$\\left(-\\frac{2}{3}\\right)\\left(-\\frac{9}{10}\\right) = +\\frac{18}{30} = \\frac{3}{5}$.",
+              "Simplify at the end (or cancel early)."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Set the sign",
+            "prompt": "Compute $\\left(-\\frac{1}{2}\\right) \\times \\frac{4}{5}$.",
+            "options": [
+              "$-\\frac{2}{5}$",
+              "$\\frac{2}{5}$",
+              "$-\\frac{4}{10}$ and $\\frac{2}{5}$ both"
+            ],
+            "correctIndex": 0,
+            "explanation": "Different signs → negative; $\\frac{1}{2} \\times \\frac{4}{5} = \\frac{4}{10} = \\frac{2}{5}$. Answer: $-\\frac{2}{5}$.",
+            "check": [
+              "Rational(-1,2) * Rational(4,5) == Rational(-2,5)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Products with signs",
+            "intro": "Numbers first, sign second (or sign first — just decide deliberately).",
+            "examples": [
+              {
+                "prompt": "Compute $(-2.5) \\times 3.2$.",
+                "steps": [
+                  "Different signs → negative.",
+                  "$2.5 \\times 3.2 = 8$.",
+                  "Answer: $-8$."
+                ],
+                "answer": "$-8$",
+                "check": [
+                  "Rational(-25,10) * Rational(32,10) == -8"
+                ]
+              },
+              {
+                "prompt": "A stock loses \\$0.75 per day for $6$ days. Total change?",
+                "steps": [
+                  "Change per day: $-0.75$.",
+                  "$6 \\times (-0.75) = -4.5$.",
+                  "The stock is down \\$4.50."
+                ],
+                "answer": "$-4.5$",
+                "check": [
+                  "6 * Rational(-75,100) == Rational(-45,10)"
+                ]
+              },
+              {
+                "prompt": "Compute $\\left(-\\frac{3}{4}\\right)^2$.",
+                "steps": [
+                  "Two negative factors — even → positive.",
+                  "$\\frac{3}{4} \\times \\frac{3}{4} = \\frac{9}{16}$.",
+                  "Answer: $+\\frac{9}{16}$."
+                ],
+                "answer": "$\\frac{9}{16}$",
+                "check": [
+                  "Rational(-3,4)**2 == Rational(9,16)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Multiply with signs",
+            "intro": "Same → positive, different → negative, count for chains.",
+            "problems": [
+              {
+                "prompt": "$\\left(-\\frac{2}{5}\\right) \\times \\left(-\\frac{5}{8}\\right) = $ ?",
+                "options": [
+                  "$\\frac{1}{4}$",
+                  "$-\\frac{1}{4}$",
+                  "$\\frac{10}{40}$ but negative"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same signs → positive: $\\frac{10}{40} = \\frac{1}{4}$.",
+                "check": [
+                  "Rational(-2,5) * Rational(-5,8) == Rational(1,4)"
+                ]
+              },
+              {
+                "prompt": "$(-1) \\times (-1) \\times (-1) \\times (-1) = $ ?",
+                "options": [
+                  "$1$",
+                  "$-1$",
+                  "$-4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Four negatives — even count → positive $1$.",
+                "check": [
+                  "(-1)**4 == 1"
+                ]
+              },
+              {
+                "prompt": "A drone descends at $\\frac{2}{3}$ m per second. Its height change after $9$ seconds?",
+                "options": [
+                  "$-6$ m",
+                  "$6$ m",
+                  "$-\\frac{2}{27}$ m"
+                ],
+                "correctIndex": 0,
+                "explanation": "$9 \\times \\left(-\\frac{2}{3}\\right) = -6$ meters.",
+                "check": [
+                  "9 * Rational(-2,3) == -6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Double negatives in language",
+            "body": "Many languages run the same rule as multiplication: “I am NOT UNhappy” lands on something positive. Logicians call it double negation. But beware — in some languages (and in casual English: “ain't nobody”), stacked negatives INTENSIFY instead of canceling. Math, mercifully, picked one rule and never wavers: $(-)(-) = +$, every time."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Multiply absolute values; same signs → positive, different → negative.",
+              "The counting pattern forces $(-)(-) = +$.",
+              "For chains, count negatives: even → positive, odd → negative."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "dividing-rational-numbers",
+      "title": "Dividing Rational Numbers",
+      "concreteComparison": "Four friends split a $-\\$18$ debt: each owes $-18 \\div 4 = -4.50$. Division inherits multiplication's sign rules wholesale — same signs positive, different signs negative — because every division is a multiplication wearing a mask: dividing by $4$ is multiplying by $\\frac{1}{4}$.",
+      "objective": "Divide rational numbers using the sign rules, reciprocals, and equivalent forms of negative fractions.",
+      "concept": [
+        "Division uses the SAME sign rules as multiplication: same signs → positive, different signs → negative. That's because $a \\div b = a \\times \\frac{1}{b}$.",
+        "To divide fractions, multiply by the reciprocal — keep–change–flip survives the arrival of negatives: $-\\frac{1}{2} \\div \\frac{3}{4} = -\\frac{1}{2} \\times \\frac{4}{3} = -\\frac{2}{3}$.",
+        "A negative fraction wears three equivalent outfits: $\\frac{-a}{b} = \\frac{a}{-b} = -\\frac{a}{b}$. Move the sign wherever it's most convenient — usually out front.",
+        "One absolute rule survives from Grade 6: you can never divide BY zero. $0 \\div 5 = 0$ is fine; $5 \\div 0$ is undefined."
+      ],
+      "keyIdea": "Same sign rules as multiplication; divide fractions by flipping; the minus sign can sit top, bottom, or out front.",
+      "facts": [
+        {
+          "title": "Division is multiplication",
+          "explanation": "That's why the sign rules match.",
+          "latex": "$a \\div b = a \\times \\tfrac{1}{b}$"
+        },
+        {
+          "title": "Three outfits, one number",
+          "explanation": "The sign of a fraction can live on top, on the bottom, or out front.",
+          "latex": "$\\tfrac{-3}{4} = \\tfrac{3}{-4} = -\\tfrac{3}{4}$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rno5-we1",
+          "statement": "Four friends split a $-\\$18$ debt equally. How much does each owe?",
+          "solution": "$-18 \\div 4 = -4.5$ — each friend's balance changes by $-\\$4.50$.",
+          "check": [
+            "Rational(-18,4) == Rational(-45,10)"
+          ]
+        },
+        {
+          "id": "rno5-we2",
+          "statement": "Compute $-\\frac{1}{2} \\div \\frac{3}{4}$.",
+          "solution": "Keep–change–flip: $-\\frac{1}{2} \\times \\frac{4}{3} = -\\frac{4}{6} = -\\frac{2}{3}$.",
+          "check": [
+            "Rational(-1,2) / Rational(3,4) == Rational(-2,3)"
+          ]
+        },
+        {
+          "id": "rno5-we3",
+          "statement": "Compute $\\left(-\\frac{5}{6}\\right) \\div \\left(-\\frac{5}{12}\\right)$.",
+          "solution": "Same signs → positive: $\\frac{5}{6} \\times \\frac{12}{5} = 2$.",
+          "check": [
+            "Rational(-5,6) / Rational(-5,12) == 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Flipping the FIRST fraction.",
+          "correction": "Keep the first, flip the SECOND: $-\\frac{1}{2} \\div \\frac{3}{4} = -\\frac{1}{2} \\times \\frac{4}{3}$.",
+          "authored": true
+        },
+        {
+          "text": "Losing the negative when it sits in the denominator.",
+          "correction": "$\\frac{3}{-4}$ is NEGATIVE three-fourths. Pull the sign out front before computing: $-\\frac{3}{4}$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rno5-t1",
+          "statement": "Compute $-\\frac{3}{5} \\div \\left(-\\frac{9}{10}\\right)$.",
+          "solution": "Same signs → positive: $\\frac{3}{5} \\times \\frac{10}{9} = \\frac{30}{45} = \\frac{2}{3}$.",
+          "check": [
+            "Rational(-3,5) / Rational(-9,10) == Rational(2,3)"
+          ]
+        },
+        {
+          "id": "rno5-t2",
+          "statement": "Compute $7.5 \\div (-2.5)$.",
+          "solution": "Different signs → negative: $7.5 \\div 2.5 = 3$, so $-3$.",
+          "check": [
+            "Rational(75,10) / Rational(-25,10) == -3"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Inherited rules",
+            "title": "Division borrows the sign grid",
+            "beats": [
+              "$a \\div b$ is just $a \\times \\frac{1}{b}$.",
+              "So the sign rules copy over exactly.",
+              "Same signs → positive. Different → negative.",
+              "$-18 \\div 4 = -4.5$; $\\;-18 \\div (-4) = 4.5$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "With fractions",
+            "title": "Keep–change–flip, signed edition",
+            "beats": [
+              "Keep the first fraction (sign and all).",
+              "Change $\\div$ to $\\times$.",
+              "Flip the second fraction.",
+              "$-\\frac{1}{2} \\div \\frac{3}{4} = -\\frac{1}{2} \\times \\frac{4}{3} = -\\frac{2}{3}$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Sign placement",
+            "title": "One number, three outfits",
+            "beats": [
+              "$\\frac{-3}{4}$, $\\frac{3}{-4}$, and $-\\frac{3}{4}$ are the SAME number.",
+              "Park the sign out front — fewest mistakes.",
+              "Two signs in one fraction cancel: $\\frac{-3}{-4} = \\frac{3}{4}$.",
+              "And never divide by zero. Ever."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Divide and sign",
+            "prompt": "Compute $-\\frac{4}{9} \\div \\frac{2}{3}$.",
+            "options": [
+              "$-\\frac{2}{3}$",
+              "$\\frac{2}{3}$",
+              "$-\\frac{8}{27}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$-\\frac{4}{9} \\times \\frac{3}{2} = -\\frac{12}{18} = -\\frac{2}{3}$.",
+            "check": [
+              "Rational(-4,9) / Rational(2,3) == Rational(-2,3)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Quotients with signs",
+            "intro": "Sign first, then flip and multiply.",
+            "examples": [
+              {
+                "prompt": "Compute $-9.6 \\div 4$.",
+                "steps": [
+                  "Different signs → negative.",
+                  "$9.6 \\div 4 = 2.4$.",
+                  "Answer: $-2.4$."
+                ],
+                "answer": "$-2.4$",
+                "check": [
+                  "Rational(-96,10) / 4 == Rational(-24,10)"
+                ]
+              },
+              {
+                "prompt": "A submarine changes depth by $-\\frac{15}{2}$ m over $\\frac{3}{4}$ minute. Meters per minute?",
+                "steps": [
+                  "Rate $= -\\frac{15}{2} \\div \\frac{3}{4}$.",
+                  "$= -\\frac{15}{2} \\times \\frac{4}{3} = -\\frac{60}{6}$.",
+                  "$= -10$ m per minute."
+                ],
+                "answer": "$-10$ m/min",
+                "check": [
+                  "Rational(-15,2) / Rational(3,4) == -10"
+                ]
+              },
+              {
+                "prompt": "Compute $\\frac{-2}{-5} \\div \\frac{4}{15}$.",
+                "steps": [
+                  "$\\frac{-2}{-5} = \\frac{2}{5}$ (two signs cancel).",
+                  "$\\frac{2}{5} \\times \\frac{15}{4} = \\frac{30}{20}$.",
+                  "$= \\frac{3}{2}$."
+                ],
+                "answer": "$\\frac{3}{2}$",
+                "check": [
+                  "Rational(-2,-5) / Rational(4,15) == Rational(3,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Signed division",
+            "intro": "Same rules as multiplication — plus a flip.",
+            "problems": [
+              {
+                "prompt": "$-\\frac{7}{8} \\div \\left(-\\frac{1}{4}\\right) = $ ?",
+                "options": [
+                  "$\\frac{7}{2}$",
+                  "$-\\frac{7}{2}$",
+                  "$\\frac{7}{32}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same signs → positive: $\\frac{7}{8} \\times 4 = \\frac{7}{2}$.",
+                "check": [
+                  "Rational(-7,8) / Rational(-1,4) == Rational(7,2)"
+                ]
+              },
+              {
+                "prompt": "$12 \\div (-0.4) = $ ?",
+                "options": [
+                  "$-30$",
+                  "$30$",
+                  "$-4.8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Different signs → negative: $12 \\div 0.4 = 30$, so $-30$.",
+                "check": [
+                  "12 / Rational(-4,10) == -30"
+                ]
+              },
+              {
+                "prompt": "Which of these is NOT equal to $-\\frac{5}{6}$?",
+                "options": [
+                  "$\\frac{-5}{-6}$",
+                  "$\\frac{-5}{6}$",
+                  "$\\frac{5}{-6}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{-5}{-6}$ has two negatives — they cancel to POSITIVE $\\frac{5}{6}$.",
+                "check": [
+                  "Rational(-5,-6) == Rational(5,6)",
+                  "Rational(5,6) != Rational(-5,6)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why dividing by zero stays illegal",
+            "body": "If $5 \\div 0$ had an answer $q$, then $q \\times 0$ would have to equal $5$ — but anything times zero is zero. No candidate survives, so mathematicians leave it **undefined** rather than break multiplication. Computers agree: dividing by zero either throws an error or returns a special value called `Infinity` that pointedly isn't a number."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Division shares multiplication's sign rules — it IS multiplication by the reciprocal.",
+              "Keep–change–flip works with signs riding along.",
+              "$\\frac{-a}{b} = \\frac{a}{-b} = -\\frac{a}{b}$; park the sign out front. Never divide by zero."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "rational-numbers-in-action",
+      "title": "Rational Numbers in Action",
+      "concreteComparison": "A week of your bank account: $+\\$20$ allowance, $-\\$7.50$ movie, $-\\$3.25$ snacks, $+\\$15$ dog-walking, $-\\$12.75$ gift. One sum with mixed signs tells you Friday's balance change: $+\\$11.50$. Real life rarely hands you one clean operation — it hands you a story, and you pick the operations.",
+      "objective": "Solve multi-step problems that mix all four rational-number operations, including means of signed data.",
+      "concept": [
+        "Real problems chain operations: totals are sums, repeated changes are products, sharing and rates are quotients, and “how far apart” is a subtraction inside an absolute value.",
+        "Order of operations still governs: parentheses, then multiplication and division left to right, then addition and subtraction left to right. Signs don't change the traffic laws.",
+        "The **mean** of signed data works like any mean: add (letting positives and negatives cancel), then divide by the count. Golf scores, temperature anomalies, and account changes all average this way.",
+        "Estimate the SIGN before you compute. A big loss plus a small gain must land negative — if your calculation says otherwise, you caught your own mistake early."
+      ],
+      "keyIdea": "Choose the operation from the story, keep order-of-operations discipline, and predict the sign before computing.",
+      "facts": [
+        {
+          "title": "Mean of signed data",
+          "explanation": "Let the positives and negatives cancel in the sum first.",
+          "latex": "$\\text{mean} = \\tfrac{\\text{sum}}{\\text{count}}$"
+        },
+        {
+          "title": "Sign estimate",
+          "explanation": "Predicting the sign first catches most arithmetic slips.",
+          "latex": "big loss + small gain $< 0$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rno6-we1",
+          "statement": "Account changes this week: $+20, -7.50, -3.25, +15, -12.75$ (dollars). Find the net change.",
+          "solution": "Positives: $35$. Negatives: $-23.50$. Net: $35 - 23.50 = +11.50$ dollars.",
+          "check": [
+            "20 + Rational(-750,100) + Rational(-325,100) + 15 + Rational(-1275,100) == Rational(1150,100)"
+          ]
+        },
+        {
+          "id": "rno6-we2",
+          "statement": "A hiker descends $\\frac{2}{5}$ km per hour for $2.5$ hours, then climbs $\\frac{3}{4}$ km. Net elevation change?",
+          "solution": "Descent: $2.5 \\times \\left(-\\frac{2}{5}\\right) = -1$ km. Then $-1 + \\frac{3}{4} = -\\frac{1}{4}$ km.",
+          "check": [
+            "Rational(25,10) * Rational(-2,5) == -1",
+            "-1 + Rational(3,4) == Rational(-1,4)"
+          ]
+        },
+        {
+          "id": "rno6-we3",
+          "statement": "Four golf rounds: $-3, +2, -5, +2$. Find the mean score per round.",
+          "solution": "Sum: $-3 + 2 - 5 + 2 = -4$. Mean: $-4 \\div 4 = -1$.",
+          "check": [
+            "-3 + 2 - 5 + 2 == -4",
+            "Rational(-4,4) == -1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding all the numbers as positives and slapping a sign on at the end.",
+          "correction": "Signs belong to each number individually. Group positives and negatives, THEN combine: $35 + (-23.50) = 11.50$.",
+          "authored": true
+        },
+        {
+          "text": "Averaging absolute values.",
+          "correction": "The mean of $-3, +2, -5, +2$ uses the SIGNED sum $-4$, not $3+2+5+2 = 12$. Cancellation is the whole point.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rno6-t1",
+          "statement": "Compute $-\\frac{1}{2} + \\frac{3}{4} \\times (-2)$.",
+          "solution": "Multiplication first: $\\frac{3}{4} \\times (-2) = -\\frac{3}{2}$. Then $-\\frac{1}{2} + (-\\frac{3}{2}) = -2$.",
+          "check": [
+            "Rational(-1,2) + Rational(3,4)*(-2) == -2"
+          ]
+        },
+        {
+          "id": "rno6-t2",
+          "statement": "Temperatures at midnight over three nights: $-4.5°, 1.5°, -3°$. Find the mean.",
+          "solution": "Sum: $-6$. Mean: $-6 \\div 3 = -2°$.",
+          "check": [
+            "Rational(-45,10) + Rational(15,10) + (-3) == -6",
+            "Rational(-6,3) == -2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "orderOfOps",
+            "eyebrow": "Play with it",
+            "title": "Traffic laws still apply",
+            "teach": "Work through the expression one legal move at a time — multiplication before addition, even when the signs get involved.",
+            "config": {
+              "stages": [
+                {
+                  "expr": "-2 + 3 \\times (-4)",
+                  "did": "Start — spot the multiplication."
+                },
+                {
+                  "expr": "-2 + (-12)",
+                  "did": "Multiplied: 3 × (−4) = −12 (different signs → negative)."
+                },
+                {
+                  "expr": "-14",
+                  "did": "Added: −2 + (−12) = −14 (same signs pile up)."
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reading stories",
+            "title": "Which operation is hiding?",
+            "beats": [
+              "“Altogether / net” → **add** the signed numbers.",
+              "“Each hour / per day, repeated” → **multiply**.",
+              "“Split / per unit / average” → **divide**.",
+              "“How far apart” → **subtract inside absolute value**."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Insurance",
+            "title": "Predict the sign first",
+            "beats": [
+              "Before computing, ask: should this be positive or negative?",
+              "Big loss + small gain → negative.",
+              "Odd number of negative factors → negative product.",
+              "If the prediction and the answer disagree, recheck — you just caught a bug."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Story to operation",
+            "prompt": "A scuba diver at $-2.5$ m descends $1.5$ m more, three times. Where is the diver?",
+            "options": [
+              "$-7$ m",
+              "$-4$ m",
+              "$-9.5$ m"
+            ],
+            "correctIndex": 0,
+            "explanation": "$-2.5 + 3 \\times (-1.5) = -2.5 - 4.5 = -7$ m.",
+            "check": [
+              "Rational(-25,10) + 3*Rational(-15,10) == -7"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Mixed missions",
+            "intro": "Pick operations from the story; keep the order rules.",
+            "examples": [
+              {
+                "prompt": "A freezer at $-12°$ warms by $2.5°$ per hour for $4$ hours during a power cut. Final temperature?",
+                "steps": [
+                  "Warming: $4 \\times 2.5 = +10$.",
+                  "$-12 + 10 = -2$.",
+                  "Still below zero: $-2°$."
+                ],
+                "answer": "$-2°$",
+                "check": [
+                  "-12 + 4*Rational(25,10) == -2"
+                ]
+              },
+              {
+                "prompt": "Five quiz score changes: $-\\frac{1}{2}, +1, -\\frac{3}{2}, +2, -1$. What's the mean change?",
+                "steps": [
+                  "Sum: $-\\frac{1}{2} + 1 - \\frac{3}{2} + 2 - 1 = 0$.",
+                  "Mean: $0 \\div 5 = 0$.",
+                  "The ups and downs cancel exactly."
+                ],
+                "answer": "$0$",
+                "check": [
+                  "Rational(-1,2) + 1 + Rational(-3,2) + 2 - 1 == 0"
+                ]
+              },
+              {
+                "prompt": "Compute $\\left(-\\frac{1}{2}\\right)^2 - \\frac{3}{4}$.",
+                "steps": [
+                  "Power first: $\\left(-\\frac{1}{2}\\right)^2 = +\\frac{1}{4}$.",
+                  "$\\frac{1}{4} - \\frac{3}{4} = -\\frac{2}{4}$.",
+                  "$= -\\frac{1}{2}$."
+                ],
+                "answer": "$-\\frac{1}{2}$",
+                "check": [
+                  "Rational(-1,2)**2 - Rational(3,4) == Rational(-1,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "All four operations",
+            "intro": "Predict the sign, then compute.",
+            "problems": [
+              {
+                "prompt": "$-6 \\div \\frac{3}{4} + 5 = $ ?",
+                "options": [
+                  "$-3$",
+                  "$3$",
+                  "$-13$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Division first: $-6 \\div \\frac{3}{4} = -8$. Then $-8 + 5 = -3$.",
+                "check": [
+                  "-6 / Rational(3,4) + 5 == -3"
+                ]
+              },
+              {
+                "prompt": "A plant's water level changes by $-\\frac{1}{8}$ liter per day. Change after a $2$-week vacation?",
+                "options": [
+                  "$-\\frac{7}{4}$ L",
+                  "$-\\frac{14}{8}$ L and $-\\frac{7}{4}$ L both",
+                  "$-\\frac{1}{4}$ L"
+                ],
+                "correctIndex": 0,
+                "explanation": "$14 \\times \\left(-\\frac{1}{8}\\right) = -\\frac{14}{8} = -\\frac{7}{4}$ liters.",
+                "check": [
+                  "14 * Rational(-1,8) == Rational(-7,4)"
+                ]
+              },
+              {
+                "prompt": "Three friends split a bill so each pays \\$8.40, then a \\$6 coupon is applied to the total. New total?",
+                "options": [
+                  "\\$19.20",
+                  "\\$25.20",
+                  "\\$2.40"
+                ],
+                "correctIndex": 0,
+                "explanation": "Total: $3 \\times 8.40 = 25.20$; coupon: $25.20 + (-6) = 19.20$.",
+                "check": [
+                  "3*Rational(840,100) - 6 == Rational(1920,100)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Golf, the negative-friendly sport",
+            "body": "Golf is one of the only sports where the BEST scores are negative — “$5$ under par” is written $-5$. Tournament leaderboards are living rational-number charts: a golfer at $-3$ who shoots $+5$ in round two sits at $+2$, and the cut line is literally a signed-number inequality."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Stories choose the operations: net → add, repeated → multiply, share → divide, gap → $|a-b|$.",
+              "Order of operations is unchanged by signs.",
+              "Predict the sign before you compute — free error detection."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "rno-pr1",
+      "statement": "Order from least to greatest: $-0.6$, $-\\frac{2}{3}$, $\\frac{1}{2}$, $-1$.",
+      "solution": "$-1 < -\\frac{2}{3} < -0.6 < \\frac{1}{2}$ (note $-\\frac{2}{3} \\approx -0.667$ is left of $-0.6$).",
+      "check": [
+        "-1 < Rational(-2,3)",
+        "Rational(-2,3) < Rational(-6,10)",
+        "Rational(-6,10) < Rational(1,2)"
+      ]
+    },
+    {
+      "id": "rno-pr2",
+      "statement": "Compute $-\\frac{5}{12} + \\frac{3}{4}$.",
+      "solution": "Twelfths: $-\\frac{5}{12} + \\frac{9}{12} = \\frac{4}{12} = \\frac{1}{3}$.",
+      "check": [
+        "Rational(-5,12) + Rational(3,4) == Rational(1,3)"
+      ]
+    },
+    {
+      "id": "rno-pr3",
+      "statement": "Compute $-1.35 - (-2.6)$.",
+      "solution": "Add the opposite: $-1.35 + 2.6 = 1.25$.",
+      "check": [
+        "Rational(-135,100) - Rational(-26,10) == Rational(125,100)"
+      ]
+    },
+    {
+      "id": "rno-pr4",
+      "statement": "Compute $\\left(-\\frac{3}{8}\\right) \\times \\left(-\\frac{4}{9}\\right)$.",
+      "solution": "Same signs → positive: $\\frac{12}{72} = \\frac{1}{6}$.",
+      "check": [
+        "Rational(-3,8) * Rational(-4,9) == Rational(1,6)"
+      ]
+    },
+    {
+      "id": "rno-pr5",
+      "statement": "Compute $-\\frac{7}{10} \\div \\frac{14}{15}$.",
+      "solution": "$-\\frac{7}{10} \\times \\frac{15}{14} = -\\frac{105}{140} = -\\frac{3}{4}$.",
+      "check": [
+        "Rational(-7,10) / Rational(14,15) == Rational(-3,4)"
+      ]
+    },
+    {
+      "id": "rno-pr6",
+      "statement": "The temperature drops from $1.5°$ to $-6°$ overnight. How large was the drop?",
+      "solution": "$|1.5 - (-6)| = |7.5| = 7.5$ degrees.",
+      "check": [
+        "Abs(Rational(15,10) - (-6)) == Rational(75,10)"
+      ]
+    },
+    {
+      "id": "rno-pr7",
+      "statement": "Compute $-4 + \\left(-\\frac{1}{2}\\right) \\times 6$.",
+      "solution": "Multiply first: $-\\frac{1}{2} \\times 6 = -3$. Then $-4 + (-3) = -7$.",
+      "check": [
+        "-4 + Rational(-1,2)*6 == -7"
+      ]
+    },
+    {
+      "id": "rno-pr8",
+      "statement": "A stock changes by $-0.8, +1.2, -0.5, -0.9$ dollars over four days. Find the net change and the mean daily change.",
+      "solution": "Net: $-1$. Mean: $-1 \\div 4 = -0.25$ dollars per day.",
+      "check": [
+        "Rational(-8,10) + Rational(12,10) + Rational(-5,10) + Rational(-9,10) == -1",
+        "Rational(-1,4) == Rational(-25,100)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "rno-ty1",
+      "statement": "Which is greater: $-\\frac{4}{5}$ or $-\\frac{5}{6}$?",
+      "solution": "$-\\frac{4}{5} = -\\frac{24}{30}$ and $-\\frac{5}{6} = -\\frac{25}{30}$; closer to zero wins: $-\\frac{4}{5}$.",
+      "check": [
+        "Rational(-4,5) > Rational(-5,6)"
+      ]
+    },
+    {
+      "id": "rno-ty2",
+      "statement": "Compute $-\\frac{2}{3} + \\frac{1}{4} - \\left(-\\frac{5}{12}\\right)$.",
+      "solution": "Twelfths: $-\\frac{8}{12} + \\frac{3}{12} + \\frac{5}{12} = 0$.",
+      "check": [
+        "Rational(-2,3) + Rational(1,4) - Rational(-5,12) == 0"
+      ]
+    },
+    {
+      "id": "rno-ty3",
+      "statement": "Compute $(-0.4)^2 \\times (-5)$.",
+      "solution": "$(-0.4)^2 = +0.16$; then $0.16 \\times (-5) = -0.8$.",
+      "check": [
+        "Rational(-4,10)**2 * (-5) == Rational(-8,10)"
+      ]
+    },
+    {
+      "id": "rno-ty4",
+      "statement": "A diver at $-1.25$ m descends $\\frac{3}{4}$ m per minute for $5$ minutes. Final depth?",
+      "solution": "$-1.25 + 5 \\times \\left(-\\frac{3}{4}\\right) = -1.25 - 3.75 = -5$ m.",
+      "check": [
+        "Rational(-125,100) + 5*Rational(-3,4) == -5"
+      ]
+    },
+    {
+      "id": "rno-ty5",
+      "statement": "Compute $\\frac{-3}{-8} \\div \\left(-\\frac{9}{4}\\right)$.",
+      "solution": "$\\frac{-3}{-8} = \\frac{3}{8}$; then $\\frac{3}{8} \\times \\left(-\\frac{4}{9}\\right) = -\\frac{12}{72} = -\\frac{1}{6}$.",
+      "check": [
+        "Rational(-3,-8) / Rational(-9,4) == Rational(-1,6)"
+      ]
+    },
+    {
+      "id": "rno-ty6",
+      "statement": "Five temperature anomalies (degrees vs. average): $-1.2, +0.8, -0.3, +1.5, -1.8$. Find the mean anomaly.",
+      "solution": "Sum: $-1$. Mean: $-1 \\div 5 = -0.2$ degrees.",
+      "check": [
+        "Rational(-12,10) + Rational(8,10) + Rational(-3,10) + Rational(15,10) + Rational(-18,10) == -1",
+        "Rational(-1,5) == Rational(-2,10)"
+      ]
+    }
+  ]
+}

@@ -61,6 +61,7 @@ import geometryAreaVolume from "@/data/genmath/6/geometry-area-volume.json";
 import dataAndStatistics from "@/data/genmath/6/data-and-statistics.json";
 // Grade 7 topic JSON imports (added as each topic is authored + published).
 import proportionalRelationships from "@/data/genmath/7/proportional-relationships.json";
+import rationalNumberOperations from "@/data/genmath/7/rational-number-operations.json";
 // Grade 8 topic JSON imports (added as each topic is authored + published).
 import realNumberSystem from "@/data/genmath/8/the-real-number-system.json";
 import exponentsScientific from "@/data/genmath/8/exponents-and-scientific-notation.json";
@@ -164,7 +165,7 @@ export const GRADE7_SPINE: GradeSpineEntry[] = [
     slug: "rational-number-operations",
     title: "Rational Number Operations",
     blurb: "Adding, subtracting, multiplying, and dividing with negatives — integers, fractions, and decimals, all four operations, one number line.",
-    live: false,
+    live: true,
   },
   {
     slug: "equations-and-inequalities",
@@ -410,6 +411,7 @@ const grade10Topics: GenMathTopic[] = [
 
 const grade7Topics: GenMathTopic[] = [
   proportionalRelationships as GenMathTopic,
+  rationalNumberOperations as GenMathTopic,
 ];
 
 const grade8Topics: GenMathTopic[] = [
