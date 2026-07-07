@@ -64,6 +64,7 @@ import proportionalRelationships from "@/data/genmath/7/proportional-relationshi
 import rationalNumberOperations from "@/data/genmath/7/rational-number-operations.json";
 import equationsAndInequalities from "@/data/genmath/7/equations-and-inequalities.json";
 import percentApplications from "@/data/genmath/7/percent-applications.json";
+import geometryScaleCircles from "@/data/genmath/7/geometry-scale-and-circles.json";
 // Grade 8 topic JSON imports (added as each topic is authored + published).
 import realNumberSystem from "@/data/genmath/8/the-real-number-system.json";
 import exponentsScientific from "@/data/genmath/8/exponents-and-scientific-notation.json";
@@ -185,7 +186,7 @@ export const GRADE7_SPINE: GradeSpineEntry[] = [
     slug: "geometry-scale-and-circles",
     title: "Geometry: Scale, Angles & Circles",
     blurb: "Scale drawings, angle relationships, the triangle inequality, and circles — where \u03c0 finally earns its name.",
-    live: false,
+    live: true,
   },
   {
     slug: "probability",
@@ -416,6 +417,7 @@ const grade7Topics: GenMathTopic[] = [
   rationalNumberOperations as GenMathTopic,
   equationsAndInequalities as GenMathTopic,
   percentApplications as GenMathTopic,
+  geometryScaleCircles as GenMathTopic,
 ];
 
 const grade8Topics: GenMathTopic[] = [

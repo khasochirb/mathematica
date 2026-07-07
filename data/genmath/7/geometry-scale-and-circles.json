@@ -1,0 +1,1646 @@
+{
+  "slug": "geometry-scale-and-circles",
+  "title": "Geometry: Scale, Angles & Circles",
+  "grade": 7,
+  "blurb": "Scale drawings, angle relationships, the triangle inequality, and circles — where π finally earns its name.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "scale-drawings",
+      "title": "Scale Drawings",
+      "concreteComparison": "An architect's blueprint says “scale $1:50$” — every $1$ cm on paper is $50$ cm of real wall. Your bedroom, $4$ m wide, becomes an $8$ cm rectangle you can slide around the page. Scale drawings shrink the world onto paper (or blow bacteria up onto posters) while keeping every proportion intact — they're proportional relationships you can SEE.",
+      "objective": "Use scale factors to convert between drawing lengths and real lengths, and rescale areas correctly.",
+      "concept": [
+        "A **scale** like $1:50$ (or “$1$ cm $= 50$ cm”) is a ratio between drawing length and true length. It's a constant of proportionality wearing a hard hat.",
+        "Drawing → real: MULTIPLY by the scale factor. Real → drawing: DIVIDE. An $8$ cm blueprint wall at $1:50$ is $8 \\times 50 = 400$ cm $= 4$ m.",
+        "Different drawings of the same object have different scales; to compare or redraw, go THROUGH the real size.",
+        "Areas scale by the SQUARE of the factor: at $1:50$, $1$ cm² of paper is $50 \\times 50 = 2500$ cm² of floor. Doubling a photo's width and height quadruples its area."
+      ],
+      "keyIdea": "Scale is a ratio: multiply to go big, divide to go small — and square the factor for areas.",
+      "facts": [
+        {
+          "title": "Lengths scale linearly",
+          "explanation": "One multiplication converts drawing to reality.",
+          "latex": "$8 \\text{ cm} \\times 50 = 400 \\text{ cm}$"
+        },
+        {
+          "title": "Areas scale by the square",
+          "explanation": "Both directions stretch, so area picks up the factor twice.",
+          "latex": "$k = 3 \\to \\text{area} \\times 9$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "gsc1-we1",
+          "statement": "A blueprint uses the scale $1:50$. A wall is $8$ cm on paper. How long is the real wall in meters?",
+          "solution": "$8 \\times 50 = 400$ cm $= 4$ m.",
+          "check": [
+            "8*50 == 400",
+            "Rational(400,100) == 4"
+          ]
+        },
+        {
+          "id": "gsc1-we2",
+          "statement": "A map's scale is $2$ cm $: 15$ km. Two cities are $9$ cm apart on the map. Real distance?",
+          "solution": "Per cm: $\\frac{15}{2} = 7.5$ km. $9 \\times 7.5 = 67.5$ km.",
+          "check": [
+            "Rational(15,2)*9 == Rational(135,2)"
+          ]
+        },
+        {
+          "id": "gsc1-we3",
+          "statement": "A model car is built at $1:24$. The real car is $4.8$ m long. How long is the model in cm?",
+          "solution": "$4.8$ m $= 480$ cm; $480 \\div 24 = 20$ cm.",
+          "check": [
+            "Rational(480,24) == 20"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Multiplying when you should divide.",
+          "correction": "Real → drawing DIVIDES by the scale factor. A 480 cm car at 1:24 becomes 20 cm — if your model came out bigger than the car, flip the operation.",
+          "authored": true
+        },
+        {
+          "text": "Scaling area by the factor once.",
+          "correction": "At scale 3, areas grow by $3^2 = 9$, not 3. A 2×3 photo tripled is 6×9: area 54, nine times 6.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "gsc1-t1",
+          "statement": "At $1:200$, a park path is $12$ cm on the plan. Real length in meters?",
+          "solution": "$12 \\times 200 = 2400$ cm $= 24$ m.",
+          "check": [
+            "12*200 == 2400",
+            "Rational(2400,100) == 24"
+          ]
+        },
+        {
+          "id": "gsc1-t2",
+          "statement": "A drawing is enlarged by a factor of $4$. What happens to its area?",
+          "solution": "Area multiplies by $4^2 = 16$.",
+          "check": [
+            "4**2 == 16"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "similarFigures",
+            "eyebrow": "Play with it",
+            "title": "One shape, every size",
+            "teach": "Drag the scale factor and watch the copy grow and shrink. Sides multiply by the factor — and keep an eye on the area readout: it moves FASTER.",
+            "config": {
+              "start": 2,
+              "show": "measures"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reading a scale",
+            "title": "The ratio with a hard hat",
+            "beats": [
+              "$1:50$ means $1$ unit on paper $= 50$ in the world.",
+              "Drawing → real: MULTIPLY by $50$.",
+              "Real → drawing: DIVIDE by $50$.",
+              "It's a constant of proportionality — Topic 1, on a blueprint."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The square law",
+            "title": "Areas pick it up twice",
+            "beats": [
+              "Scale a rectangle by $k$: width $\\times k$ AND height $\\times k$.",
+              "So area $\\times k^2$.",
+              "$1:50$ → paper cm² is $2500$ real cm².",
+              "Double a pizza's diameter and you get FOUR times the pizza."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Convert it",
+            "prompt": "A map's scale is $1:25{,}000$. A trail is $6$ cm on the map. Real length?",
+            "options": [
+              "$1.5$ km",
+              "$150$ m",
+              "$15$ km"
+            ],
+            "correctIndex": 0,
+            "explanation": "$6 \\times 25000 = 150{,}000$ cm $= 1500$ m $= 1.5$ km.",
+            "check": [
+              "6*25000 == 150000",
+              "Rational(150000, 100000) == Rational(15,10)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Both directions, plus area",
+            "intro": "Multiply out, divide in, square for area.",
+            "examples": [
+              {
+                "prompt": "A poster of a $0.5$ mm ant is drawn at $200:1$. How big is the ant on the poster?",
+                "steps": [
+                  "Enlargement: multiply by $200$.",
+                  "$0.5 \\times 200 = 100$ mm.",
+                  "A $10$ cm ant."
+                ],
+                "answer": "$100$ mm",
+                "check": [
+                  "Rational(5,10)*200 == 100"
+                ]
+              },
+              {
+                "prompt": "A room is $6$ m by $4$ m. At $1:100$, what are the drawing's dimensions and area?",
+                "steps": [
+                  "$600 \\div 100 = 6$ cm; $400 \\div 100 = 4$ cm.",
+                  "Drawing: $6 \\times 4$ cm.",
+                  "Area: $24$ cm² (real: $24$ m² — the factor squared connects them: $24 \\text{ m}^2 = 240000 \\text{ cm}^2 = 24 \\times 100^2$)."
+                ],
+                "answer": "$6$ cm $\\times$ $4$ cm, $24$ cm²",
+                "check": [
+                  "Rational(600,100) == 6",
+                  "Rational(400,100) == 4",
+                  "6*4 == 24",
+                  "24*100**2 == 240000"
+                ]
+              },
+              {
+                "prompt": "Two maps show the same $30$ km road: Map A at $1$ cm $: 5$ km, Map B at $1$ cm $: 3$ km. How long is the road on each?",
+                "steps": [
+                  "A: $30 \\div 5 = 6$ cm.",
+                  "B: $30 \\div 3 = 10$ cm.",
+                  "Smaller scale ratio → longer drawing."
+                ],
+                "answer": "$6$ cm and $10$ cm",
+                "check": [
+                  "Rational(30,5) == 6",
+                  "Rational(30,3) == 10"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Scale fluency",
+            "intro": "Which direction? Then multiply or divide.",
+            "problems": [
+              {
+                "prompt": "At $1:20$, a table is drawn $9$ cm long. Real length?",
+                "options": [
+                  "$180$ cm",
+                  "$45$ cm",
+                  "$29$ cm"
+                ],
+                "correctIndex": 0,
+                "explanation": "$9 \\times 20 = 180$ cm.",
+                "check": [
+                  "9*20 == 180"
+                ]
+              },
+              {
+                "prompt": "A $150$ m bridge must fit a $30$ cm page. Which scale works exactly?",
+                "options": [
+                  "$1:500$",
+                  "$1:50$",
+                  "$1:5000$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$150$ m $= 15{,}000$ cm; $15000 \\div 500 = 30$ cm. ✓",
+                "check": [
+                  "Rational(15000,500) == 30"
+                ]
+              },
+              {
+                "prompt": "A photo is scaled up by factor $5$. Its area becomes…",
+                "options": [
+                  "$25\\times$ bigger",
+                  "$5\\times$ bigger",
+                  "$10\\times$ bigger"
+                ],
+                "correctIndex": 0,
+                "explanation": "Area scales by $5^2 = 25$.",
+                "check": [
+                  "5**2 == 25"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The map that ate Manhattan",
+            "body": "Jorge Luis Borges wrote a one-paragraph story about an empire whose cartographers made a map at scale $1:1$ — exactly as big as the empire itself, and therefore perfectly useless. Every real map is a compromise: the scale factor decides what fits in your pocket and what detail dies. GPS apps re-pick the scale every time you pinch the screen."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A scale is a drawing:real ratio — multiply to real, divide to drawing.",
+              "Route comparisons through the real size.",
+              "Areas scale by the factor SQUARED."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "angle-relationships",
+      "title": "Angle Relationships",
+      "concreteComparison": "Scissors open: as the blades spread, the angle between them grows — and the angle on the OTHER side of the pivot grows identically. Cross two sticks and you've made two pairs of equal angles and four pairs that sum to $180°$. Angles come in relationships, and the relationships let you find every angle from just one.",
+      "objective": "Use complementary, supplementary, vertical, and adjacent angle relationships to find unknown angles — with equations.",
+      "concept": [
+        "**Complementary** angles sum to $90°$ (they complete a corner); **supplementary** angles sum to $180°$ (they complete a straight line).",
+        "**Vertical** angles — the X-shape's opposite pair — are always EQUAL. **Adjacent** angles share a ray and add along whatever they fill.",
+        "One known angle unlocks the rest: if two lines cross and one angle is $35°$, its vertical twin is $35°$ and its two neighbors are $145°$ each.",
+        "Grade 7's upgrade: the unknown can be an expression. If $(2x + 10)°$ and $(3x - 20)°$ are supplementary, then $2x + 10 + 3x - 20 = 180$ — an equation from a picture."
+      ],
+      "keyIdea": "Complements make 90°, supplements make 180°, verticals are equal — and each relationship is an equation waiting to be solved.",
+      "facts": [
+        {
+          "title": "The three sums",
+          "explanation": "Complementary → 90; supplementary → 180; vertical → equal.",
+          "latex": "$90°, 180°, =$"
+        },
+        {
+          "title": "Angles as equations",
+          "explanation": "Angle relationships turn diagrams into solvable equations.",
+          "latex": "$(2x+10) + (3x-20) = 180$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "gsc2-we1",
+          "statement": "Two angles are complementary; one measures $34°$. Find the other.",
+          "solution": "$90 - 34 = 56°$.",
+          "check": [
+            "90 - 34 == 56"
+          ]
+        },
+        {
+          "id": "gsc2-we2",
+          "statement": "Two lines cross, making an angle of $35°$. Find the other three angles.",
+          "solution": "Vertical twin: $35°$. The two neighbors: $180 - 35 = 145°$ each.",
+          "check": [
+            "180 - 35 == 145",
+            "35 + 145 == 180"
+          ]
+        },
+        {
+          "id": "gsc2-we3",
+          "statement": "Angles $(2x + 10)°$ and $(3x - 20)°$ are supplementary. Find $x$ and both angles.",
+          "solution": "$5x - 10 = 180 \\to 5x = 190 \\to x = 38$. Angles: $86°$ and $94°$.",
+          "check": [
+            "5*38 - 10 == 180",
+            "2*38 + 10 == 86",
+            "3*38 - 20 == 94",
+            "86 + 94 == 180"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Swapping complementary and supplementary.",
+          "correction": "Complementary = Corner = 90°; Supplementary = Straight = 180°. The C's and S's line up — use them.",
+          "authored": true
+        },
+        {
+          "text": "Assuming adjacent angles are equal.",
+          "correction": "EQUAL is the vertical pair (across the X). Adjacent angles along a line SUM to 180° — they're only equal if both are 90°.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "gsc2-t1",
+          "statement": "An angle measures $67°$. Find its complement and its supplement.",
+          "solution": "Complement: $23°$; supplement: $113°$.",
+          "check": [
+            "90 - 67 == 23",
+            "180 - 67 == 113"
+          ]
+        },
+        {
+          "id": "gsc2-t2",
+          "statement": "Vertical angles measure $(4x)°$ and $(x + 45)°$. Find $x$.",
+          "solution": "$4x = x + 45 \\to 3x = 45 \\to x = 15$.",
+          "check": [
+            "4*15 == 15 + 45"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "anglePairs",
+            "eyebrow": "Play with it",
+            "title": "The X-machine",
+            "teach": "Tilt the crossing line. Watch the vertical pair stay locked in step while each adjacent pair keeps summing to 180° — the relationships hold at every tilt.",
+            "config": {
+              "mode": "crossing",
+              "initial": 35
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The vocabulary",
+            "title": "Four relationships",
+            "beats": [
+              "**Complementary**: two angles summing to $90°$.",
+              "**Supplementary**: two angles summing to $180°$.",
+              "**Vertical**: opposite angles at an X — always equal.",
+              "**Adjacent**: sharing a ray — they add along what they fill."
+            ]
+          },
+          {
+            "kind": "anglePairs",
+            "eyebrow": "Play with it",
+            "title": "Corner split",
+            "teach": "A right angle split by a ray: the two pieces always total 90°. Slide the ray — as one grows the other shrinks, complement style.",
+            "config": {
+              "mode": "corner",
+              "initial": 30
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "One unlocks all",
+            "prompt": "Two lines cross; one angle is $72°$. What are the OTHER three?",
+            "options": [
+              "$72°, 108°, 108°$",
+              "$72°, 72°, 72°$",
+              "$108°, 108°, 108°$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Vertical twin: $72°$. Both neighbors: $180 - 72 = 108°$.",
+            "check": [
+              "180 - 72 == 108"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Angles by algebra",
+            "intro": "Pick the relationship, write the equation, solve.",
+            "examples": [
+              {
+                "prompt": "Two complementary angles are $(3x)°$ and $(2x + 15)°$. Find both.",
+                "steps": [
+                  "$3x + 2x + 15 = 90$.",
+                  "$5x = 75 \\to x = 15$.",
+                  "Angles: $45°$ and $45°$."
+                ],
+                "answer": "$45°$ and $45°$",
+                "check": [
+                  "5*15 + 15 == 90",
+                  "3*15 == 45",
+                  "2*15 + 15 == 45"
+                ]
+              },
+              {
+                "prompt": "An angle is $24°$ more than its supplement's half. The two are supplementary. Find the angle. (Let the supplement be $s$.)",
+                "steps": [
+                  "Angle $= \\frac{s}{2} + 24$, and angle $+ s = 180$.",
+                  "$\\frac{s}{2} + 24 + s = 180 \\to \\frac{3s}{2} = 156 \\to s = 104$.",
+                  "Angle: $180 - 104 = 76°$."
+                ],
+                "answer": "$76°$",
+                "check": [
+                  "Rational(3,2)*104 == 156",
+                  "Rational(104,2) + 24 == 76",
+                  "76 + 104 == 180"
+                ]
+              },
+              {
+                "prompt": "Three angles fill a straight line: $x°$, $(2x)°$, and $60°$. Find $x$.",
+                "steps": [
+                  "$x + 2x + 60 = 180$.",
+                  "$3x = 120$.",
+                  "$x = 40$ — the angles are $40°, 80°, 60°$."
+                ],
+                "answer": "$x = 40$",
+                "check": [
+                  "3*40 + 60 == 180",
+                  "40 + 80 + 60 == 180"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Relationship radar",
+            "intro": "Name the relationship first; the equation follows.",
+            "problems": [
+              {
+                "prompt": "Angles of $(5x)°$ and $(4x)°$ make a straight line. $x = $ ?",
+                "options": [
+                  "$20$",
+                  "$10$",
+                  "$36$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$9x = 180 \\to x = 20$.",
+                "check": [
+                  "9*20 == 180"
+                ]
+              },
+              {
+                "prompt": "An angle equals its own complement. It measures…",
+                "options": [
+                  "$45°$",
+                  "$90°$",
+                  "$60°$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x + x = 90 \\to x = 45°$.",
+                "check": [
+                  "45 + 45 == 90"
+                ]
+              },
+              {
+                "prompt": "Vertical angles measure $(6x - 10)°$ and $(4x + 30)°$. Each angle is…",
+                "options": [
+                  "$110°$",
+                  "$20°$",
+                  "$70°$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6x - 10 = 4x + 30 \\to x = 20$; each angle $= 6(20) - 10 = 110°$.",
+                "check": [
+                  "6*20 - 10 == 4*20 + 30",
+                  "6*20 - 10 == 110"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Eratosthenes strikes again",
+            "body": "The same angle relationships you just used measured the planet: sunlight hitting Alexandria at $7.2°$ while striking Syene head-on creates equal alternate angles at Earth's center — so the two cities span $7.2°$ of the planet's $360°$. Vertical and supplementary pairs are the grammar; the Earth's circumference was the first great sentence."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Complementary → 90°, supplementary → 180°, vertical → equal.",
+              "One known angle at a crossing unlocks all four.",
+              "Angle relationships are equations — solve them like Topic 3."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "triangles-possible-or-not",
+      "title": "Triangles: Possible or Not?",
+      "concreteComparison": "Take sticks of lengths $3$, $4$, and $10$ and try to make a triangle. The $3$ and $4$ reach toward each other over the $10$… and never touch: $3 + 4 = 7 < 10$. Some triangles simply cannot exist. Two quick tests — one for sides, one for angles — decide which blueprints are buildable.",
+      "objective": "Apply the triangle inequality and the 180° angle sum to decide whether triangles can exist and to find missing angles.",
+      "concept": [
+        "**Triangle inequality:** the two shorter sides must together EXCEED the longest side. $3, 4, 10$ fails ($7 \\le 10$); $3, 4, 6$ works ($7 > 6$).",
+        "Exactly equal is still a fail: $3 + 4 = 7$ with a third side of $7$ collapses flat — a segment, not a triangle.",
+        "**Angle sum:** a triangle's three angles always total $180°$. Two angles determine the third: $180 - 65 - 48 = 67°$.",
+        "The two tests are independent: sides decide if the shape can close; angles describe how it bends once it does. Grade 7 uses both as existence checks and equation generators."
+      ],
+      "keyIdea": "Sides: shortest two must out-reach the longest. Angles: all three sum to exactly 180°.",
+      "facts": [
+        {
+          "title": "Triangle inequality",
+          "explanation": "The two shorter sides must strictly beat the longest.",
+          "latex": "$a + b > c$ (longest side c)"
+        },
+        {
+          "title": "Angle sum",
+          "explanation": "Every triangle, every shape, every size — always 180.",
+          "latex": "$A + B + C = 180°$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "gsc3-we1",
+          "statement": "Can side lengths $3, 4, 10$ form a triangle?",
+          "solution": "Check the longest: $3 + 4 = 7 \\le 10$ — NO, they can't reach.",
+          "check": [
+            "3 + 4 == 7",
+            "7 < 10"
+          ]
+        },
+        {
+          "id": "gsc3-we2",
+          "statement": "Can side lengths $5, 7, 11$ form a triangle?",
+          "solution": "$5 + 7 = 12 > 11$ — YES.",
+          "check": [
+            "5 + 7 > 11"
+          ]
+        },
+        {
+          "id": "gsc3-we3",
+          "statement": "A triangle has angles $65°$ and $48°$. Find the third.",
+          "solution": "$180 - 65 - 48 = 67°$.",
+          "check": [
+            "180 - 65 - 48 == 67"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Checking only one pair of sides.",
+          "correction": "The test that matters is shortest-two vs longest. (If they pass, the other pairs pass automatically.) For 3, 4, 10 test 3 + 4 against 10 — not 4 + 10 against 3.",
+          "authored": true
+        },
+        {
+          "text": "Calling a + b = c a valid triangle.",
+          "correction": "Equality collapses the triangle flat. The inequality is STRICT: $a + b > c$, not $\\ge$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "gsc3-t1",
+          "statement": "Can $6, 6, 12$ form a triangle?",
+          "solution": "$6 + 6 = 12$ — equality means collapse. No.",
+          "check": [
+            "6 + 6 == 12"
+          ]
+        },
+        {
+          "id": "gsc3-t2",
+          "statement": "Angles $(x)°$, $(2x)°$, $(3x)°$ form a triangle. Find $x$.",
+          "solution": "$6x = 180 \\to x = 30$: angles $30°, 60°, 90°$.",
+          "check": [
+            "6*30 == 180",
+            "30 + 60 + 90 == 180"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "triangleInequality",
+            "eyebrow": "Play with it",
+            "title": "Can it close?",
+            "teach": "Adjust the three side lengths and watch the arms try to meet. The moment the two shorter sides stop out-reaching the longest, the triangle dies flat.",
+            "config": {
+              "a": 3,
+              "b": 4,
+              "c": 6,
+              "max": 12
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Test 1",
+            "title": "The reach test",
+            "beats": [
+              "Lay the longest side down as a base.",
+              "The other two must REACH over it and touch.",
+              "$a + b > c$ (with $c$ the longest).",
+              "$3 + 4 > 6$? Yes → triangle. $\\;3 + 4 > 10$? No → flat-pack."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Test 2",
+            "title": "The 180° budget",
+            "beats": [
+              "Every triangle spends exactly $180°$ across its three angles.",
+              "Two known angles fix the third: $180 - 65 - 48 = 67°$.",
+              "Algebra version: $x + 2x + 3x = 180$.",
+              "No triangle ever goes over budget — or under."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Buildable?",
+            "prompt": "Which set of sides CAN form a triangle?",
+            "options": [
+              "$4, 5, 8$",
+              "$2, 3, 6$",
+              "$1, 4, 5$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$4 + 5 = 9 > 8$ ✓. The others fail: $2 + 3 = 5 < 6$ and $1 + 4 = 5$ (collapse).",
+            "check": [
+              "4 + 5 > 8",
+              "2 + 3 < 6",
+              "1 + 4 == 5"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Existence and equations",
+            "intro": "Reach test for sides; budget test for angles.",
+            "examples": [
+              {
+                "prompt": "Two sides of a triangle are $5$ and $9$. What lengths are possible for the third side $x$?",
+                "steps": [
+                  "$x$ must satisfy $5 + 9 > x$ → $x < 14$.",
+                  "And $5 + x > 9$ → $x > 4$.",
+                  "So $4 < x < 14$."
+                ],
+                "answer": "$4 < x < 14$",
+                "check": [
+                  "5 + 9 == 14",
+                  "9 - 5 == 4"
+                ]
+              },
+              {
+                "prompt": "A triangle's angles are $(2x)°$, $(3x)°$, and $(x + 30)°$. Find all three.",
+                "steps": [
+                  "$2x + 3x + x + 30 = 180$.",
+                  "$6x = 150 \\to x = 25$.",
+                  "Angles: $50°, 75°, 55°$."
+                ],
+                "answer": "$50°, 75°, 55°$",
+                "check": [
+                  "6*25 + 30 == 180",
+                  "50 + 75 + 55 == 180"
+                ]
+              },
+              {
+                "prompt": "An isosceles triangle has a $40°$ angle between its two equal sides. Find the base angles.",
+                "steps": [
+                  "Base angles are equal: call each $b$.",
+                  "$40 + 2b = 180 \\to 2b = 140$.",
+                  "$b = 70°$ each."
+                ],
+                "answer": "$70°$ each",
+                "check": [
+                  "40 + 2*70 == 180"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Judge the blueprints",
+            "intro": "Sides reach, angles budget.",
+            "problems": [
+              {
+                "prompt": "Sides $7, 10, 18$ — triangle?",
+                "options": [
+                  "No: $7 + 10 < 18$",
+                  "Yes",
+                  "Only if it's isosceles"
+                ],
+                "correctIndex": 0,
+                "explanation": "$7 + 10 = 17 < 18$: the arms can't touch.",
+                "check": [
+                  "7 + 10 == 17",
+                  "17 < 18"
+                ]
+              },
+              {
+                "prompt": "A right triangle has a $23°$ angle. The third angle is…",
+                "options": [
+                  "$67°$",
+                  "$77°$",
+                  "$157°$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$180 - 90 - 23 = 67°$.",
+                "check": [
+                  "180 - 90 - 23 == 67"
+                ]
+              },
+              {
+                "prompt": "Two sides are $6$ and $11$. Which third side is IMPOSSIBLE?",
+                "options": [
+                  "$18$",
+                  "$8$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6 + 11 = 17 < 18$ — but $8$ and $12$ both fit in $(5, 17)$.",
+                "check": [
+                  "6 + 11 == 17",
+                  "17 < 18"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Triangles hold up the world",
+            "body": "Bridges, cranes, and cell towers are lattices of triangles for one reason: a triangle is the only polygon that CANNOT flex without changing a side length. A square can shear into a rhombus; a triangle with fixed sides is rigid — the triangle inequality's strict “greater than” is literally what keeps the structure standing."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Triangle inequality: shortest two sides must STRICTLY out-reach the longest.",
+              "Third-side range: between the difference and the sum of the other two.",
+              "Angles always total 180° — an equation generator for missing angles."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "circumference",
+      "title": "Circles & Circumference",
+      "concreteComparison": "Wrap a tape measure around a bike wheel: about $220$ cm. Measure straight across: about $70$ cm. Divide: $220 \\div 70 \\approx 3.14$. Do it with a coin, a pizza, a hula hoop — the same $3.14...$ appears every time. That stubborn ratio is $\\pi$, and “circumference $= \\pi d$” is just this experiment written as a formula.",
+      "objective": "Use C = πd = 2πr to find circumference, diameter, or radius.",
+      "concept": [
+        "In every circle, the **circumference** (distance around) divided by the **diameter** (distance across) equals $\\pi \\approx 3.14159...$ — the same for wheels and planets.",
+        "So $C = \\pi d$, and since the diameter is two radii, $C = 2\\pi r$.",
+        "The formula runs backwards: a circle with $C = 31.4$ cm has $d = \\frac{31.4}{\\pi} \\approx 10$ cm.",
+        "Answers can stay EXACT in terms of $\\pi$ ($C = 14\\pi$) or go decimal with an approximation ($\\approx 43.98$). Exact-in-π is the mathematician's habit; decimals are the engineer's."
+      ],
+      "keyIdea": "$C = \\pi d = 2\\pi r$ — around is π times across, in every circle ever drawn.",
+      "facts": [
+        {
+          "title": "The definition of π",
+          "explanation": "Pi IS the around-to-across ratio — the formula just rearranges it.",
+          "latex": "$\\pi = \\tfrac{C}{d}$"
+        },
+        {
+          "title": "Two radii make a diameter",
+          "explanation": "Same formula, radius edition.",
+          "latex": "$C = 2\\pi r$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "gsc4-we1",
+          "statement": "A wheel has diameter $70$ cm. Find its circumference (use $\\pi \\approx \\frac{22}{7}$).",
+          "solution": "$C = \\pi d \\approx \\frac{22}{7} \\times 70 = 220$ cm.",
+          "check": [
+            "Rational(22,7)*70 == 220"
+          ]
+        },
+        {
+          "id": "gsc4-we2",
+          "statement": "A circular garden has radius $4.5$ m. Find its circumference in terms of $\\pi$.",
+          "solution": "$C = 2\\pi r = 2 \\times 4.5 \\times \\pi = 9\\pi$ m $\\approx 28.3$ m.",
+          "check": [
+            "2*Rational(45,10) == 9"
+          ]
+        },
+        {
+          "id": "gsc4-we3",
+          "statement": "A trundle wheel clicks once per meter of circumference. What diameter does it need? (Use $\\pi \\approx 3.14$.)",
+          "solution": "$d = \\frac{C}{\\pi} = \\frac{100}{3.14} \\approx 31.8$ cm.",
+          "check": [
+            "Rational(100, Rational(314,100)) == Rational(10000,314)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the radius in C = πd.",
+          "correction": "$C = \\pi d$ wants the DIAMETER. With radius 5, either double first ($d = 10$) or use $C = 2\\pi r$ — don't feed the 5 to πd.",
+          "authored": true
+        },
+        {
+          "text": "Multiplying by π when solving backwards.",
+          "correction": "From circumference to diameter you DIVIDE: $d = C \\div \\pi$. If your recovered diameter is bigger than the circumference, you multiplied.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "gsc4-t1",
+          "statement": "Find the circumference of a circle with radius $7$ (use $\\pi \\approx \\frac{22}{7}$).",
+          "solution": "$C = 2 \\times \\frac{22}{7} \\times 7 = 44$.",
+          "check": [
+            "2*Rational(22,7)*7 == 44"
+          ]
+        },
+        {
+          "id": "gsc4-t2",
+          "statement": "A circle has circumference $18\\pi$. What is its radius?",
+          "solution": "$2\\pi r = 18\\pi \\to r = 9$.",
+          "check": [
+            "Rational(18,2) == 9"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "circleUnroll",
+            "eyebrow": "Play with it",
+            "title": "Unroll the circle",
+            "teach": "Watch the circle's rim peel off and lie flat: it stretches just past three diameters — 3.14159... of them. That's π, live and in person.",
+            "config": {}
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The discovery",
+            "title": "π is a ratio, not a decoration",
+            "beats": [
+              "Around $\\div$ across $= 3.14159...$ for EVERY circle.",
+              "We named the ratio $\\pi$.",
+              "$C = \\pi d$ — that's the experiment as a formula.",
+              "Radius version: $C = 2\\pi r$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Style guide",
+            "title": "Exact vs approximate",
+            "beats": [
+              "Exact: $C = 14\\pi$ cm. Clean, precise, algebra-friendly.",
+              "Approximate: $C \\approx 43.98$ cm, using $\\pi \\approx 3.14$.",
+              "$\\frac{22}{7}$ is a handy fraction stand-in when 7 divides things.",
+              "Say WHICH you're using — answers differ slightly."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Around from across",
+            "prompt": "A circular table has diameter $1.4$ m. Its circumference is about… (use $\\pi \\approx \\frac{22}{7}$)",
+            "options": [
+              "$4.4$ m",
+              "$2.2$ m",
+              "$6.2$ m"
+            ],
+            "correctIndex": 0,
+            "explanation": "$C = \\frac{22}{7} \\times 1.4 = 4.4$ m.",
+            "check": [
+              "Rational(22,7)*Rational(14,10) == Rational(44,10)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Forwards and backwards",
+            "intro": "πd forward, C ÷ π backward, 2πr when you're given the radius.",
+            "examples": [
+              {
+                "prompt": "A jar lid has radius $3.5$ cm. Circumference? (π ≈ 22/7)",
+                "steps": [
+                  "$C = 2\\pi r = 2 \\times \\frac{22}{7} \\times 3.5$.",
+                  "$= \\frac{22}{7} \\times 7 = 22$.",
+                  "$C = 22$ cm."
+                ],
+                "answer": "$22$ cm",
+                "check": [
+                  "2*Rational(22,7)*Rational(35,10) == 22"
+                ]
+              },
+              {
+                "prompt": "A running track's inner circle measures $400$ m around. Its diameter? (π ≈ 3.14)",
+                "steps": [
+                  "$d = \\frac{C}{\\pi} = \\frac{400}{3.14}$.",
+                  "$\\approx 127.4$ m.",
+                  "About $127$ m across."
+                ],
+                "answer": "$\\approx 127.4$ m",
+                "check": [
+                  "Rational(400, Rational(314,100)) == Rational(40000,314)"
+                ]
+              },
+              {
+                "prompt": "A wheel of diameter $60$ cm rolls forward $10$ full turns. How far does it travel? (π ≈ 3.14)",
+                "steps": [
+                  "One turn $=$ one circumference $= 3.14 \\times 60 = 188.4$ cm.",
+                  "Ten turns: $1884$ cm.",
+                  "$= 18.84$ m."
+                ],
+                "answer": "$18.84$ m",
+                "check": [
+                  "Rational(314,100)*60 == Rational(1884,10)",
+                  "10*Rational(1884,10) == 1884"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "π practice",
+            "intro": "Pick the right form of the formula first.",
+            "problems": [
+              {
+                "prompt": "Radius $10$ cm. Circumference in terms of π?",
+                "options": [
+                  "$20\\pi$ cm",
+                  "$10\\pi$ cm",
+                  "$100\\pi$ cm"
+                ],
+                "correctIndex": 0,
+                "explanation": "$C = 2\\pi r = 20\\pi$.",
+                "check": [
+                  "2*10 == 20"
+                ]
+              },
+              {
+                "prompt": "Circumference $62.8$ m. Diameter? (π ≈ 3.14)",
+                "options": [
+                  "$20$ m",
+                  "$10$ m",
+                  "$31.4$ m"
+                ],
+                "correctIndex": 0,
+                "explanation": "$d = 62.8 \\div 3.14 = 20$ m.",
+                "check": [
+                  "Rational(628,10) / Rational(314,100) == 20"
+                ]
+              },
+              {
+                "prompt": "A pizza cutter wheel (diameter $7$ cm) rolls one full turn. Distance? (π ≈ 22/7)",
+                "options": [
+                  "$22$ cm",
+                  "$14$ cm",
+                  "$44$ cm"
+                ],
+                "correctIndex": 0,
+                "explanation": "$C = \\frac{22}{7} \\times 7 = 22$ cm.",
+                "check": [
+                  "Rational(22,7)*7 == 22"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "π has been dug to 100 trillion digits",
+            "body": "Engineers need only 40 digits of π to compute the circumference of the observable universe to within one atom — yet computers have calculated over 100 trillion digits, mostly to stress-test hardware. The digits never repeat and never end: π is irrational, the first one most people ever meet, hiding inside every wheel they've ever ridden."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "π is the around-to-across ratio of every circle.",
+              "$C = \\pi d = 2\\pi r$; divide by π to go backwards.",
+              "Exact-in-π or decimal-approximate — know which you're giving."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "area-of-circles",
+      "title": "Area of Circles",
+      "concreteComparison": "Slice a pizza into $16$ thin wedges and lay them tip-to-tail, alternating up and down. They form a bumpy near-rectangle: height $=$ the radius, width $=$ half the crust ($\\pi r$). Its area: $\\pi r \\times r = \\pi r^2$. The circle-area formula isn't magic — it's pizza, rearranged.",
+      "objective": "Use A = πr² to find a circle's area, work backwards to the radius, and handle half- and quarter-circles.",
+      "concept": [
+        "A circle's **area** is $A = \\pi r^2$ — the wedge-rearrangement makes a near-rectangle of width $\\pi r$ and height $r$.",
+        "The radius gets SQUARED before π: radius $6$ gives $A = 36\\pi$, not $12\\pi$. Given a diameter, halve it first.",
+        "Backwards: from $A = 49\\pi$, the radius satisfies $r^2 = 49$, so $r = 7$.",
+        "Fractions of circles scale the area: a semicircle is $\\frac{1}{2}\\pi r^2$; a quarter circle $\\frac{1}{4}\\pi r^2$. Composite shapes add or subtract circle pieces from rectangles."
+      ],
+      "keyIdea": "$A = \\pi r^2$ — square the radius, then multiply by π; halves and quarters scale accordingly.",
+      "facts": [
+        {
+          "title": "The formula",
+          "explanation": "Width πr times height r — the pizza rectangle.",
+          "latex": "$A = \\pi r^2$"
+        },
+        {
+          "title": "Diameter trap",
+          "explanation": "Halve the diameter BEFORE squaring.",
+          "latex": "$d = 12 \\to r = 6 \\to A = 36\\pi$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "gsc5-we1",
+          "statement": "Find the area of a circle with radius $6$ cm, in terms of $\\pi$.",
+          "solution": "$A = \\pi \\times 6^2 = 36\\pi$ cm² $\\approx 113.1$ cm².",
+          "check": [
+            "6**2 == 36"
+          ]
+        },
+        {
+          "id": "gsc5-we2",
+          "statement": "A circular rug has diameter $14$ dm. Find its area (use $\\pi \\approx \\frac{22}{7}$).",
+          "solution": "$r = 7$: $A = \\frac{22}{7} \\times 49 = 154$ dm².",
+          "check": [
+            "Rational(14,2) == 7",
+            "Rational(22,7)*49 == 154"
+          ]
+        },
+        {
+          "id": "gsc5-we3",
+          "statement": "A circle has area $49\\pi$ m². Find its radius and circumference.",
+          "solution": "$r^2 = 49 \\to r = 7$; $C = 2\\pi r = 14\\pi$ m.",
+          "check": [
+            "7**2 == 49",
+            "2*7 == 14"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Squaring the diameter.",
+          "correction": "$A = \\pi r^2$ uses the RADIUS. Diameter 14 → radius 7 → $49\\pi$, not $196\\pi$.",
+          "authored": true
+        },
+        {
+          "text": "Multiplying r by 2 instead of squaring.",
+          "correction": "$r^2$ means $r \\times r$: radius 6 gives $36\\pi$, not $12\\pi$. Squaring wins over doubling as soon as $r > 2$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "gsc5-t1",
+          "statement": "Area of a circle with radius $9$, in terms of π?",
+          "solution": "$A = 81\\pi$.",
+          "check": [
+            "9**2 == 81"
+          ]
+        },
+        {
+          "id": "gsc5-t2",
+          "statement": "A semicircular window has radius $2$ m. Its area? (exact)",
+          "solution": "$\\frac{1}{2}\\pi(2^2) = 2\\pi$ m².",
+          "check": [
+            "Rational(1,2)*4 == 2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "arcSector",
+            "eyebrow": "Play with it",
+            "title": "Wedges into rectangles",
+            "teach": "A sector is a pizza wedge of the circle. Watch how the wedge's area scales with its angle — the full 360° pie is πr², and every slice takes its fair share.",
+            "config": {
+              "start": 90,
+              "radius": 6
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The rearrangement",
+            "title": "Pizza proof",
+            "beats": [
+              "Slice the circle into thin wedges.",
+              "Alternate them tip-up, tip-down: a bumpy rectangle.",
+              "Width $= \\pi r$ (half the crust), height $= r$.",
+              "Area $= \\pi r \\times r = \\pi r^2$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Care and feeding",
+            "title": "Square the RADIUS",
+            "beats": [
+              "Given a diameter? Halve it first.",
+              "$d = 14 \\to r = 7 \\to A = 49\\pi$.",
+              "Backwards from area: un-square. $A = 49\\pi \\to r = 7$.",
+              "Half circle: $\\frac{1}{2}\\pi r^2$. Quarter: $\\frac{1}{4}\\pi r^2$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Square first",
+            "prompt": "A circle has radius $5$. Its area in terms of π is…",
+            "options": [
+              "$25\\pi$",
+              "$10\\pi$",
+              "$5\\pi$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$A = \\pi \\times 5^2 = 25\\pi$. ($10\\pi$ is the circumference!)",
+            "check": [
+              "5**2 == 25",
+              "2*5 == 10"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Area three ways",
+            "intro": "Forward, backward, and in pieces.",
+            "examples": [
+              {
+                "prompt": "A sprinkler waters a circle of radius $12$ m. What area does it cover? (π ≈ 3.14)",
+                "steps": [
+                  "$A = \\pi r^2 = 3.14 \\times 144$.",
+                  "$= 452.16$.",
+                  "About $452$ m²."
+                ],
+                "answer": "$\\approx 452.16$ m²",
+                "check": [
+                  "12**2 == 144",
+                  "Rational(314,100)*144 == Rational(45216,100)"
+                ]
+              },
+              {
+                "prompt": "A quarter-circle garden bed has radius $6$ m. Its area, exactly?",
+                "steps": [
+                  "Full circle: $36\\pi$.",
+                  "Quarter: $\\frac{36\\pi}{4}$.",
+                  "$= 9\\pi$ m²."
+                ],
+                "answer": "$9\\pi$ m²",
+                "check": [
+                  "Rational(36,4) == 9"
+                ]
+              },
+              {
+                "prompt": "A ring (annulus) has outer radius $10$ and inner radius $6$. Area of the ring, exactly?",
+                "steps": [
+                  "Outer: $100\\pi$. Inner: $36\\pi$.",
+                  "Subtract: $100\\pi - 36\\pi$.",
+                  "$= 64\\pi$."
+                ],
+                "answer": "$64\\pi$",
+                "check": [
+                  "10**2 == 100",
+                  "6**2 == 36",
+                  "100 - 36 == 64"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "πr² workout",
+            "intro": "Radius in, square it, π it.",
+            "problems": [
+              {
+                "prompt": "Diameter $16$. Area in terms of π?",
+                "options": [
+                  "$64\\pi$",
+                  "$256\\pi$",
+                  "$32\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$r = 8 \\to A = 64\\pi$. Squaring the diameter gives the wrong $256\\pi$.",
+                "check": [
+                  "Rational(16,2) == 8",
+                  "8**2 == 64"
+                ]
+              },
+              {
+                "prompt": "A circle's area is $121\\pi$. Its radius is…",
+                "options": [
+                  "$11$",
+                  "$60.5$",
+                  "$121$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$r^2 = 121 \\to r = 11$.",
+                "check": [
+                  "11**2 == 121"
+                ]
+              },
+              {
+                "prompt": "A semicircular stage has radius $4$ m. Its floor area is… (exact)",
+                "options": [
+                  "$8\\pi$ m²",
+                  "$16\\pi$ m²",
+                  "$4\\pi$ m²"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{1}{2}\\pi(16) = 8\\pi$.",
+                "check": [
+                  "Rational(16,2) == 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why pizza size is sneaky",
+            "body": "A 12-inch pizza has area $36\\pi \\approx 113$ in²; a 16-inch has $64\\pi \\approx 201$ in² — nearly DOUBLE, from just 4 more inches of diameter. That's $r^2$ at work: area grows with the square. Pizza economists (a real hobby) have shown one large is almost always more pizza per dollar than two mediums. Geometry pays for dinner."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$A = \\pi r^2$ — the pizza-wedge rectangle proof.",
+              "Halve diameters before squaring; un-square to go backwards.",
+              "Half/quarter circles and rings: scale or subtract full-circle areas."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "composite-figures-and-solids",
+      "title": "Composite Figures & Solids",
+      "concreteComparison": "A running track is a rectangle with two semicircular caps. A pool deck is a big rectangle minus the pool. An L-shaped room is two rectangles taped together. Real shapes are COMPOSITES — built by adding and subtracting the simple pieces you already own — and real objects have volume and surface area built the same way.",
+      "objective": "Find areas of composite 2D figures and the volume and surface area of right prisms.",
+      "concept": [
+        "**Decompose:** slice a composite shape into rectangles, triangles, and circle parts. Add the pieces — or subtract holes from a surrounding shape.",
+        "A track with a $40 \\times 20$ rectangle and two semicircular ends of radius $10$: rectangle $800$ plus one full circle $100\\pi$ — the two semicircles reunite.",
+        "**Volume of a prism** $=$ area of the base $\\times$ height: $V = Bh$. A box, a tent, a Toblerone — same rule, different base.",
+        "**Surface area** $=$ the sum of every face — think of unfolding the box into its net and adding the rectangles. For a prism: two bases plus the side walls (base perimeter × height)."
+      ],
+      "keyIdea": "Slice 2D composites into knowns; for prisms, V = (base area) × height and SA = sum of the faces.",
+      "facts": [
+        {
+          "title": "Composite strategy",
+          "explanation": "Every weird shape is simple shapes in a trench coat.",
+          "latex": "add pieces, subtract holes"
+        },
+        {
+          "title": "Prism volume",
+          "explanation": "Base area times height — whatever shape the base is.",
+          "latex": "$V = Bh$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "gsc6-we1",
+          "statement": "An L-shaped room is a $6 \\times 4$ m rectangle with a $3 \\times 2$ m rectangle attached. Total area?",
+          "solution": "$24 + 6 = 30$ m².",
+          "check": [
+            "6*4 == 24",
+            "3*2 == 6",
+            "24 + 6 == 30"
+          ]
+        },
+        {
+          "id": "gsc6-we2",
+          "statement": "A track is a $40 \\times 20$ m rectangle with semicircular caps of radius $10$ m on both ends. Total area? (exact)",
+          "solution": "Rectangle: $800$. Two semicircles $=$ one circle: $\\pi(10^2) = 100\\pi$. Total: $800 + 100\\pi$ m².",
+          "check": [
+            "40*20 == 800",
+            "10**2 == 100"
+          ]
+        },
+        {
+          "id": "gsc6-we3",
+          "statement": "A triangular prism has a base triangle of area $12$ cm² and length $9$ cm. Volume?",
+          "solution": "$V = Bh = 12 \\times 9 = 108$ cm³.",
+          "check": [
+            "12*9 == 108"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Double-counting the seam of a decomposition.",
+          "correction": "When you slice an L-shape, the cut line is INTERNAL — count each region once and never add the seam's 'wall'.",
+          "authored": true
+        },
+        {
+          "text": "Confusing volume and surface area.",
+          "correction": "Volume fills the inside (cubic units); surface area wraps the outside (square units). A box of 24 cm³ might need 52 cm² of wrapping paper.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "gsc6-t1",
+          "statement": "A square of side $8$ has a circular hole of radius $2$. Remaining area? (exact)",
+          "solution": "$64 - 4\\pi$.",
+          "check": [
+            "8**2 == 64",
+            "2**2 == 4"
+          ]
+        },
+        {
+          "id": "gsc6-t2",
+          "statement": "A box measures $5 \\times 4 \\times 3$ cm. Volume and surface area?",
+          "solution": "$V = 60$ cm³; $SA = 2(20 + 12 + 15) = 94$ cm².",
+          "check": [
+            "5*4*3 == 60",
+            "2*(20 + 12 + 15) == 94"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "compositeArea",
+            "eyebrow": "Play with it",
+            "title": "Shapes in a trench coat",
+            "teach": "Toggle the decomposition and watch a composite figure fall apart into rectangles you already know. Add the pieces; that's the whole trick.",
+            "config": {
+              "width": 6,
+              "height": 6,
+              "parts": [
+                {
+                  "kind": "rect",
+                  "x": 0,
+                  "y": 0,
+                  "w": 6,
+                  "h": 4,
+                  "area": "24",
+                  "label": "rectangle 6×4"
+                },
+                {
+                  "kind": "rect",
+                  "x": 0,
+                  "y": 4,
+                  "w": 3,
+                  "h": 2,
+                  "area": "6",
+                  "label": "rectangle 3×2"
+                }
+              ],
+              "total": "30",
+              "caption": "The L-shaped room: 24 + 6 = 30 m²"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "2D strategy",
+            "title": "Slice, add, subtract",
+            "beats": [
+              "See a weird shape? Find the simple shapes inside.",
+              "L-shape → two rectangles. Track → rectangle + circle.",
+              "Holes SUBTRACT: deck $=$ big rectangle $-$ pool.",
+              "Label each piece's dimensions before computing anything."
+            ]
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "Play with it",
+            "title": "The prism rule",
+            "teach": "A prism is a base stamped through space. Spin the box: its volume is the base area times the height, and its surface is the six faces you can count.",
+            "config": {
+              "solid": "rectPrism",
+              "l": 5,
+              "w": 4,
+              "h": 3
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Decompose it",
+            "prompt": "A figure is a $10 \\times 6$ rectangle plus a right triangle (base $6$, height $4$) on one end. Total area?",
+            "options": [
+              "$72$",
+              "$84$",
+              "$66$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$60 + \\frac{1}{2}(6)(4) = 60 + 12 = 72$.",
+            "check": [
+              "10*6 == 60",
+              "Rational(6*4,2) == 12",
+              "60 + 12 == 72"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Composites and prisms",
+            "intro": "Slice 2D; stamp 3D.",
+            "examples": [
+              {
+                "prompt": "A window is a $3 \\times 2$ m rectangle topped by a semicircle of radius $1$ m. Total area? (π ≈ 3.14)",
+                "steps": [
+                  "Rectangle: $6$.",
+                  "Semicircle: $\\frac{1}{2}(3.14)(1) = 1.57$.",
+                  "Total: $7.57$ m²."
+                ],
+                "answer": "$7.57$ m²",
+                "check": [
+                  "3*2 == 6",
+                  "Rational(314,100)/2 == Rational(157,100)",
+                  "6 + Rational(157,100) == Rational(757,100)"
+                ]
+              },
+              {
+                "prompt": "A swimming pool deck: a $12 \\times 8$ m rectangle of tiles minus the $8 \\times 4$ m pool. Deck area?",
+                "steps": [
+                  "Big rectangle: $96$.",
+                  "Pool: $32$.",
+                  "Deck: $96 - 32 = 64$ m²."
+                ],
+                "answer": "$64$ m²",
+                "check": [
+                  "12*8 == 96",
+                  "8*4 == 32",
+                  "96 - 32 == 64"
+                ]
+              },
+              {
+                "prompt": "A tent is a triangular prism: base triangle of base $4$ m and height $3$ m, length $5$ m. Volume?",
+                "steps": [
+                  "Base area: $\\frac{1}{2}(4)(3) = 6$.",
+                  "$V = Bh = 6 \\times 5$.",
+                  "$= 30$ m³."
+                ],
+                "answer": "$30$ m³",
+                "check": [
+                  "Rational(4*3,2) == 6",
+                  "6*5 == 30"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Build and unbuild",
+            "intro": "Pieces for area, base × height for volume.",
+            "problems": [
+              {
+                "prompt": "A $9 \\times 9$ square loses a $3 \\times 3$ corner. Remaining area?",
+                "options": [
+                  "$72$",
+                  "$78$",
+                  "$54$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$81 - 9 = 72$.",
+                "check": [
+                  "9*9 == 81",
+                  "3*3 == 9",
+                  "81 - 9 == 72"
+                ]
+              },
+              {
+                "prompt": "A cereal box is $20 \\times 6 \\times 30$ cm. Its volume?",
+                "options": [
+                  "$3600$ cm³",
+                  "$1800$ cm³",
+                  "$360$ cm³"
+                ],
+                "correctIndex": 0,
+                "explanation": "$20 \\times 6 \\times 30 = 3600$ cm³.",
+                "check": [
+                  "20*6*30 == 3600"
+                ]
+              },
+              {
+                "prompt": "Surface area of a cube with edge $4$?",
+                "options": [
+                  "$96$",
+                  "$64$",
+                  "$48$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Six faces of $16$: $6 \\times 16 = 96$.",
+                "check": [
+                  "4**2 == 16",
+                  "6*16 == 96"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why cans are cylinders",
+            "body": "Drink makers care about surface area per volume: metal costs money, and the shape that wraps the most volume in the least material (among easy-to-make shapes) is the cylinder with height ≈ diameter. Real soda cans are slightly taller than optimal — because hands, shelves, and vending machines vote too. Every can on the shelf is a solved composite-surface-area problem."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Composites decompose: add the pieces, subtract the holes.",
+              "Prism volume $= Bh$; surface area $=$ sum of the faces (unfold the net).",
+              "Volume fills (units³); surface wraps (units²)."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "gsc-pr1",
+      "statement": "At a scale of $1:75$, a hallway is $6$ cm on the plan. Real length in meters?",
+      "solution": "$6 \\times 75 = 450$ cm $= 4.5$ m.",
+      "check": [
+        "6*75 == 450",
+        "Rational(450,100) == Rational(45,10)"
+      ]
+    },
+    {
+      "id": "gsc-pr2",
+      "statement": "An angle's supplement is four times its complement. Find the angle.",
+      "solution": "$180 - x = 4(90 - x) \\to 180 - x = 360 - 4x \\to 3x = 180 \\to x = 60°$.",
+      "check": [
+        "180 - 60 == 4*(90 - 60)"
+      ]
+    },
+    {
+      "id": "gsc-pr3",
+      "statement": "Two lines cross; one angle is $(3x + 6)°$ and its vertical twin is $(5x - 30)°$. Find the angle.",
+      "solution": "$3x + 6 = 5x - 30 \\to 2x = 36 \\to x = 18$; angle $= 60°$.",
+      "check": [
+        "3*18 + 6 == 5*18 - 30",
+        "3*18 + 6 == 60"
+      ]
+    },
+    {
+      "id": "gsc-pr4",
+      "statement": "Can sides $8, 15, 23$ form a triangle?",
+      "solution": "$8 + 15 = 23$ — equality collapses flat. No.",
+      "check": [
+        "8 + 15 == 23"
+      ]
+    },
+    {
+      "id": "gsc-pr5",
+      "statement": "A triangle's angles are $(x)°$, $(x + 15)°$, and $(2x - 35)°$. Find them all.",
+      "solution": "$4x - 20 = 180 \\to x = 50$: angles $50°, 65°, 65°$.",
+      "check": [
+        "4*50 - 20 == 180",
+        "50 + 65 + 65 == 180"
+      ]
+    },
+    {
+      "id": "gsc-pr6",
+      "statement": "A circular fountain has circumference $44$ m. Its diameter? (π ≈ 22/7)",
+      "solution": "$d = 44 \\div \\frac{22}{7} = 14$ m.",
+      "check": [
+        "Rational(44, Rational(22,7)) == 14"
+      ]
+    },
+    {
+      "id": "gsc-pr7",
+      "statement": "Find the area of a circle with diameter $18$ cm, in terms of π.",
+      "solution": "$r = 9$: $A = 81\\pi$ cm².",
+      "check": [
+        "Rational(18,2) == 9",
+        "9**2 == 81"
+      ]
+    },
+    {
+      "id": "gsc-pr8",
+      "statement": "A gift box is $12 \\times 8 \\times 5$ cm. Find its volume and surface area.",
+      "solution": "$V = 480$ cm³; $SA = 2(96 + 40 + 60) = 392$ cm².",
+      "check": [
+        "12*8*5 == 480",
+        "2*(96 + 40 + 60) == 392"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "gsc-ty1",
+      "statement": "A model plane at $1:48$ is $25$ cm long. How long is the real plane in meters?",
+      "solution": "$25 \\times 48 = 1200$ cm $= 12$ m.",
+      "check": [
+        "25*48 == 1200",
+        "Rational(1200,100) == 12"
+      ]
+    },
+    {
+      "id": "gsc-ty2",
+      "statement": "Angles $(2x)°$ and $(x + 30)°$ are complementary. Find both angles.",
+      "solution": "$3x + 30 = 90 \\to x = 20$: angles $40°$ and $50°$.",
+      "check": [
+        "3*20 + 30 == 90",
+        "40 + 50 == 90"
+      ]
+    },
+    {
+      "id": "gsc-ty3",
+      "statement": "Two sides of a triangle measure $9$ and $14$. Give the full range for the third side $x$.",
+      "solution": "$14 - 9 < x < 14 + 9$: $\\;5 < x < 23$.",
+      "check": [
+        "14 - 9 == 5",
+        "14 + 9 == 23"
+      ]
+    },
+    {
+      "id": "gsc-ty4",
+      "statement": "A bike wheel has radius $35$ cm. How far does the bike travel in $100$ wheel turns? (π ≈ 22/7)",
+      "solution": "$C = 2 \\times \\frac{22}{7} \\times 35 = 220$ cm; $100$ turns $= 22{,}000$ cm $= 220$ m.",
+      "check": [
+        "2*Rational(22,7)*35 == 220",
+        "100*220 == 22000"
+      ]
+    },
+    {
+      "id": "gsc-ty5",
+      "statement": "A circular pond of radius $3$ m sits in a $10 \\times 8$ m lawn. Grass area? (exact)",
+      "solution": "$80 - 9\\pi$ m².",
+      "check": [
+        "10*8 == 80",
+        "3**2 == 9"
+      ]
+    },
+    {
+      "id": "gsc-ty6",
+      "statement": "A juice carton is a prism with a $7 \\times 4$ cm base and height $15$ cm. Its volume in liters? ($1$ L $= 1000$ cm³)",
+      "solution": "$V = 7 \\times 4 \\times 15 = 420$ cm³ $= 0.42$ L.",
+      "check": [
+        "7*4*15 == 420",
+        "Rational(420,1000) == Rational(42,100)"
+      ]
+    }
+  ]
+}
