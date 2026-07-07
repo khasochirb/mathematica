@@ -1,0 +1,1599 @@
+{
+  "slug": "equations-and-inequalities",
+  "title": "Equations & Inequalities",
+  "grade": 7,
+  "blurb": "Simplifying expressions with negatives, two-step equations, and inequalities — including the flip when you multiply by a negative.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "simplifying-with-negatives",
+      "title": "Simplifying Expressions with Negatives",
+      "concreteComparison": "Your order: $3$ sandwiches and $2$ drinks, then your friend cancels a sandwich and adds a drink. The register thinks $3s + 2d - s + d$ and simplifies to $2s + 3d$ before it ever prices anything. In Grade 6 you combined like terms; now the terms come with signs attached — and the distributive property has to carry a minus through parentheses without dropping it.",
+      "objective": "Combine like terms with negative coefficients and distribute negative factors correctly.",
+      "concept": [
+        "Like terms combine by adding their coefficients — and now the coefficients are rational numbers with signs: $3x - 5x = -2x$, and $-\\frac{1}{2}y - \\frac{1}{4}y = -\\frac{3}{4}y$.",
+        "The distributive property carries a factor to EVERY term inside: $-2(x - 4) = -2x + 8$. The minus multiplies both the $x$ and the $-4$.",
+        "A bare minus before parentheses means multiply by $-1$: $-(3x - 7) = -3x + 7$. Every sign inside flips.",
+        "**Factoring** runs the distributive property backwards: $-3x + 12 = -3(x - 4)$, or equivalently $3(-x + 4)$. Same expression, different outfit."
+      ],
+      "keyIdea": "Signs travel with their terms; a distributed minus flips every sign inside the parentheses.",
+      "facts": [
+        {
+          "title": "Coefficients add",
+          "explanation": "Like terms combine by adding signed coefficients.",
+          "latex": "$3x - 5x = -2x$"
+        },
+        {
+          "title": "The minus multiplies everything",
+          "explanation": "Distributing −1 flips every sign inside.",
+          "latex": "$-(3x - 7) = -3x + 7$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "eqi1-we1",
+          "statement": "Simplify $3x + 2 - 5x + 7$.",
+          "solution": "Group like terms: $(3x - 5x) + (2 + 7) = -2x + 9$.",
+          "check": [
+            "3 - 5 == -2",
+            "2 + 7 == 9"
+          ]
+        },
+        {
+          "id": "eqi1-we2",
+          "statement": "Expand $-2(x - 4)$.",
+          "solution": "Distribute: $-2 \\cdot x + (-2)(-4) = -2x + 8$.",
+          "check": [
+            "-2 * -4 == 8"
+          ]
+        },
+        {
+          "id": "eqi1-we3",
+          "statement": "Simplify $\\frac{1}{2}x - \\frac{3}{4}x + \\frac{1}{4}$.",
+          "solution": "Coefficients: $\\frac{1}{2} - \\frac{3}{4} = -\\frac{1}{4}$, so $-\\frac{1}{4}x + \\frac{1}{4}$.",
+          "check": [
+            "Rational(1,2) - Rational(3,4) == Rational(-1,4)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Distributing the minus to only the first term.",
+          "correction": "$-(3x - 7) = -3x + 7$, not $-3x - 7$. The invisible $-1$ multiplies EVERY term inside.",
+          "authored": true
+        },
+        {
+          "text": "Combining unlike terms.",
+          "correction": "$-2x + 9$ is finished. $x$-terms and plain numbers are different species — they never merge.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "eqi1-t1",
+          "statement": "Simplify $6y - 9 - 8y + 4$.",
+          "solution": "$(6 - 8)y + (-9 + 4) = -2y - 5$.",
+          "check": [
+            "6 - 8 == -2",
+            "-9 + 4 == -5"
+          ]
+        },
+        {
+          "id": "eqi1-t2",
+          "statement": "Expand and simplify $5 - 3(2x - 1)$.",
+          "solution": "$5 - 6x + 3 = -6x + 8$.",
+          "check": [
+            "-3 * 2 == -6",
+            "-3 * -1 == 3",
+            "5 + 3 == 8"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "algebraTiles",
+            "eyebrow": "Play with it",
+            "title": "Like terms find each other",
+            "teach": "Scattered x-tiles and unit tiles — watch them group by species. Combining like terms is just sorting the tiles and counting each pile (signs included).",
+            "config": {
+              "x": 3,
+              "units": 2,
+              "mode": "collect"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Rule 1",
+            "title": "Coefficients carry signs",
+            "beats": [
+              "$3x - 5x$: the coefficients are $+3$ and $-5$.",
+              "Add them: $3 + (-5) = -2$.",
+              "So $3x - 5x = -2x$.",
+              "Rational-number addition, wearing an $x$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Rule 2",
+            "title": "The traveling minus",
+            "beats": [
+              "$-2(x - 4)$: the $-2$ visits EVERY term.",
+              "$-2 \\cdot x = -2x$; $\\;(-2)(-4) = +8$.",
+              "Result: $-2x + 8$.",
+              "A bare minus is a $-1$ in disguise: $-(3x - 7) = -3x + 7$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Flip check",
+            "prompt": "Expand $-(5x - 2)$.",
+            "options": [
+              "$-5x + 2$",
+              "$-5x - 2$",
+              "$5x + 2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The $-1$ multiplies both terms: $-5x$ and $+2$.",
+            "check": [
+              "-1 * 5 == -5",
+              "-1 * -2 == 2"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Simplify with signs",
+            "intro": "Sort the species, add the coefficients, mind the minus.",
+            "examples": [
+              {
+                "prompt": "Simplify $-4a + 7 + 9a - 12$.",
+                "steps": [
+                  "$a$-terms: $-4 + 9 = 5$.",
+                  "Numbers: $7 - 12 = -5$.",
+                  "Result: $5a - 5$."
+                ],
+                "answer": "$5a - 5$",
+                "check": [
+                  "-4 + 9 == 5",
+                  "7 - 12 == -5"
+                ]
+              },
+              {
+                "prompt": "Expand and simplify $2(3x - 1) - 4(x + 2)$.",
+                "steps": [
+                  "$2(3x - 1) = 6x - 2$.",
+                  "$-4(x + 2) = -4x - 8$.",
+                  "Combine: $6x - 4x - 2 - 8 = 2x - 10$."
+                ],
+                "answer": "$2x - 10$",
+                "check": [
+                  "2*3 == 6",
+                  "-4 * 2 == -8",
+                  "6 - 4 == 2",
+                  "-2 - 8 == -10"
+                ]
+              },
+              {
+                "prompt": "Factor $-6x + 15$ using $-3$.",
+                "steps": [
+                  "$-6x = -3 \\cdot 2x$.",
+                  "$15 = -3 \\cdot (-5)$.",
+                  "$-6x + 15 = -3(2x - 5)$."
+                ],
+                "answer": "$-3(2x - 5)$",
+                "check": [
+                  "-3 * 2 == -6",
+                  "-3 * -5 == 15"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Sign-safe simplifying",
+            "intro": "Watch every minus like a hawk.",
+            "problems": [
+              {
+                "prompt": "Simplify $-x + 4x - 7$.",
+                "options": [
+                  "$3x - 7$",
+                  "$-3x - 7$",
+                  "$5x - 7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$-1 + 4 = 3$, so $3x - 7$.",
+                "check": [
+                  "-1 + 4 == 3"
+                ]
+              },
+              {
+                "prompt": "Expand $-3(2x - 5)$.",
+                "options": [
+                  "$-6x + 15$",
+                  "$-6x - 15$",
+                  "$6x - 15$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$-3 \\cdot 2x = -6x$ and $(-3)(-5) = +15$.",
+                "check": [
+                  "-3*2 == -6",
+                  "-3*-5 == 15"
+                ]
+              },
+              {
+                "prompt": "Simplify $\\frac{2}{3}x - x$.",
+                "options": [
+                  "$-\\frac{1}{3}x$",
+                  "$\\frac{1}{3}x$",
+                  "$-\\frac{2}{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{2}{3} - 1 = -\\frac{1}{3}$.",
+                "check": [
+                  "Rational(2,3) - 1 == Rational(-1,3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The costliest dropped minus",
+            "body": "In 1962, NASA's Mariner 1 rocket veered off course seconds after launch and had to be destroyed — investigations traced the failure to a single missing symbol in its guidance equations. Aerospace engineers have retold the story for sixty years as the “most expensive typo in history.” Distribute your minuses; the rocket remembers."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Like terms combine by ADDING signed coefficients: $3x - 5x = -2x$.",
+              "A distributed factor — especially a minus — multiplies EVERY term inside.",
+              "Factoring is distribution in reverse: $-6x + 15 = -3(2x - 5)$."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "two-step-equations",
+      "title": "Two-Step Equations",
+      "concreteComparison": "A taxi charges a \\$3 flat fee plus \\$2 per kilometer, and your ride cost \\$13. How far did you go? The fare machine did two things to your distance: multiplied by $2$, then added $3$. To find $x$, undo them in REVERSE: subtract $3$ (leaving $2x = 10$), then divide by $2$ — you rode $5$ km. Every two-step equation is a two-step machine run backwards.",
+      "objective": "Solve equations of the form px + q = r by undoing operations in reverse order.",
+      "concept": [
+        "An equation like $2x + 3 = 13$ describes a machine: take $x$, multiply by $2$, add $3$, get $13$. Solving means running the machine in reverse.",
+        "Undo in REVERSE order: the machine multiplied then added, so you subtract first, divide second. $2x + 3 = 13 \\to 2x = 10 \\to x = 5$.",
+        "Whatever you do to one side, you must do to the other — the equation is a balance, and both pans move together.",
+        "Always **check** by substituting back: $2(5) + 3 = 13$. ✓ A ten-second check catches almost every slip."
+      ],
+      "keyIdea": "Undo addition/subtraction first, then multiplication/division — reverse of the order of operations.",
+      "facts": [
+        {
+          "title": "Reverse order undo",
+          "explanation": "Strip the added q first, then divide away the p.",
+          "latex": "$px + q = r \\to x = \\tfrac{r - q}{p}$"
+        },
+        {
+          "title": "Balance discipline",
+          "explanation": "An equation stays true only if both sides get identical treatment.",
+          "latex": "same move, both sides"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "eqi2-we1",
+          "statement": "Solve $2x + 3 = 13$.",
+          "solution": "Subtract $3$: $2x = 10$. Divide by $2$: $x = 5$. Check: $2(5) + 3 = 13$. ✓",
+          "check": [
+            "2*5 + 3 == 13"
+          ]
+        },
+        {
+          "id": "eqi2-we2",
+          "statement": "Solve $-4x + 7 = 19$.",
+          "solution": "Subtract $7$: $-4x = 12$. Divide by $-4$: $x = -3$. Check: $-4(-3) + 7 = 19$. ✓",
+          "check": [
+            "-4*-3 + 7 == 19"
+          ]
+        },
+        {
+          "id": "eqi2-we3",
+          "statement": "Solve $\\frac{x}{5} - 2 = 4$.",
+          "solution": "Add $2$: $\\frac{x}{5} = 6$. Multiply by $5$: $x = 30$. Check: $\\frac{30}{5} - 2 = 4$. ✓",
+          "check": [
+            "Rational(30,5) - 2 == 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dividing before subtracting.",
+          "correction": "In $2x + 3 = 13$, dividing everything by 2 first gives $x + \\frac{3}{2} = \\frac{13}{2}$ — legal but messy. Undo the +3 FIRST and the numbers stay clean.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the sign when dividing by a negative.",
+          "correction": "$-4x = 12$ gives $x = -3$, not $3$. The $-4$ divides in with its sign attached.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "eqi2-t1",
+          "statement": "Solve $3x - 8 = 7$.",
+          "solution": "Add $8$: $3x = 15$; divide by $3$: $x = 5$.",
+          "check": [
+            "3*5 - 8 == 7"
+          ]
+        },
+        {
+          "id": "eqi2-t2",
+          "statement": "Solve $\\frac{x}{4} + 6 = 2$.",
+          "solution": "Subtract $6$: $\\frac{x}{4} = -4$; multiply by $4$: $x = -16$.",
+          "check": [
+            "Rational(-16,4) + 6 == 2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "balanceScale",
+            "eyebrow": "Play with it",
+            "title": "Keep it balanced",
+            "teach": "The equation is a pan balance. Remove the same weight from both sides, then split what's left into equal groups — that's the whole algorithm.",
+            "config": {
+              "mode": "add",
+              "b": 3,
+              "rhs": 13
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The machine",
+            "title": "Forward, then backward",
+            "beats": [
+              "$2x + 3 = 13$ is a machine: $\\times 2$, then $+3$.",
+              "To solve, run it backward: $-3$, then $\\div 2$.",
+              "$13 \\to 10 \\to 5$.",
+              "Reverse ORDER matters: last done, first undone."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "With negatives",
+            "title": "Signs ride along",
+            "beats": [
+              "$-4x + 7 = 19$: subtract $7$ from both sides.",
+              "$-4x = 12$.",
+              "Divide by $-4$ — the SIGN comes too: $x = -3$.",
+              "Check: $-4(-3) + 7 = 12 + 7 = 19$. ✓"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "First move",
+            "prompt": "What's the best FIRST move to solve $5x - 9 = 11$?",
+            "options": [
+              "Add $9$ to both sides",
+              "Divide both sides by $5$",
+              "Subtract $11$ from both sides"
+            ],
+            "correctIndex": 0,
+            "explanation": "Strip the $-9$ first: $5x = 20$, then divide to get $x = 4$.",
+            "check": [
+              "5*4 - 9 == 11"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Two undos, in order",
+            "intro": "Add/subtract first, multiply/divide second, check always.",
+            "examples": [
+              {
+                "prompt": "Solve $6x + 5 = -19$.",
+                "steps": [
+                  "Subtract $5$: $6x = -24$.",
+                  "Divide by $6$: $x = -4$.",
+                  "Check: $6(-4) + 5 = -19$. ✓"
+                ],
+                "answer": "$x = -4$",
+                "check": [
+                  "6*-4 + 5 == -19"
+                ]
+              },
+              {
+                "prompt": "Solve $-\\frac{x}{3} + 2 = 7$.",
+                "steps": [
+                  "Subtract $2$: $-\\frac{x}{3} = 5$.",
+                  "Multiply by $-3$: $x = -15$.",
+                  "Check: $-\\frac{-15}{3} + 2 = 5 + 2 = 7$. ✓"
+                ],
+                "answer": "$x = -15$",
+                "check": [
+                  "-Rational(-15,3) + 2 == 7"
+                ]
+              },
+              {
+                "prompt": "The taxi: \\$3 flat fee plus \\$2 per km cost \\$13. How far?",
+                "steps": [
+                  "Equation: $2x + 3 = 13$.",
+                  "$2x = 10$.",
+                  "$x = 5$ km."
+                ],
+                "answer": "$5$ km",
+                "check": [
+                  "2*5 + 3 == 13"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Run it backwards",
+            "intro": "Undo the add, then the multiply.",
+            "problems": [
+              {
+                "prompt": "Solve $4x + 9 = 1$.",
+                "options": [
+                  "$x = -2$",
+                  "$x = 2$",
+                  "$x = \\frac{5}{2}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4x = -8$, so $x = -2$.",
+                "check": [
+                  "4*-2 + 9 == 1"
+                ]
+              },
+              {
+                "prompt": "Solve $\\frac{x}{2} - 5 = -1$.",
+                "options": [
+                  "$x = 8$",
+                  "$x = -8$",
+                  "$x = -12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{x}{2} = 4$, so $x = 8$.",
+                "check": [
+                  "Rational(8,2) - 5 == -1"
+                ]
+              },
+              {
+                "prompt": "Solve $-3x - 4 = 11$.",
+                "options": [
+                  "$x = -5$",
+                  "$x = 5$",
+                  "$x = -\\frac{7}{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$-3x = 15$, so $x = -5$.",
+                "check": [
+                  "-3*-5 - 4 == 11"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Al-jabr, the restoring",
+            "body": "The word **algebra** comes from the Arabic *al-jabr* — “restoring” or “reunion of broken parts” — the title move in a 9th-century book by al-Khwarizmi about moving quantities across an equation to restore balance. His own name, mangled through Latin, became the word **algorithm**. Every time you add $3$ to both sides, you're speaking 1,200-year-old Arabic."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A two-step equation is a machine: undo it in REVERSE order.",
+              "Same move on both sides, always.",
+              "Substitute back to check — ten seconds, near-total protection."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "equations-with-rational-numbers",
+      "title": "Equations with Rational Numbers",
+      "concreteComparison": "You're saving for a \\$45 game. You have \\$12.75, and you can save \\$4.30 a week. The equation $4.30w + 12.75 = 45$ has decimals in every seat — and the same two undo moves crack it: subtract, divide, $w = 7.5$ weeks. Fractions and decimals don't change the algorithm; they just ask you to bring your Grade 7 arithmetic.",
+      "objective": "Solve two-step equations whose coefficients and constants are fractions or decimals.",
+      "concept": [
+        "The algorithm doesn't care what the numbers look like: strip the constant, then divide by the coefficient — even when they're $\\frac{2}{3}$ or $4.30$.",
+        "Dividing by a fraction is multiplying by its reciprocal: if $\\frac{2}{3}x = 8$, multiply both sides by $\\frac{3}{2}$ to get $x = 12$.",
+        "With decimals you can work directly — or multiply the whole equation by $10$ or $100$ first to clear them: $0.4x + 1.2 = 2$ becomes $4x + 12 = 20$.",
+        "With fractions, multiplying through by the common denominator clears them all at once: $\\frac{x}{3} + \\frac{1}{2} = \\frac{5}{6}$ times $6$ becomes $2x + 3 = 5$."
+      ],
+      "keyIdea": "Same two undos; clear fractions/decimals first if it makes the ride smoother.",
+      "facts": [
+        {
+          "title": "Reciprocal undo",
+          "explanation": "Dividing by a fraction = multiplying by its flip.",
+          "latex": "$\\tfrac{2}{3}x = 8 \\to x = 8 \\cdot \\tfrac{3}{2}$"
+        },
+        {
+          "title": "Clear the clutter",
+          "explanation": "One multiplication turns a messy equation into an integer one.",
+          "latex": "multiply through by 10, 100, or the common denominator"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "eqi3-we1",
+          "statement": "Solve $\\frac{2}{3}x - 4 = 2$.",
+          "solution": "Add $4$: $\\frac{2}{3}x = 6$. Multiply by $\\frac{3}{2}$: $x = 9$. Check: $\\frac{2}{3}(9) - 4 = 2$. ✓",
+          "check": [
+            "Rational(2,3)*9 - 4 == 2"
+          ]
+        },
+        {
+          "id": "eqi3-we2",
+          "statement": "Solve $4.30w + 12.75 = 45$ (savings plan).",
+          "solution": "Subtract: $4.30w = 32.25$. Divide: $w = 7.5$ weeks.",
+          "check": [
+            "Rational(430,100)*Rational(75,10) + Rational(1275,100) == 45"
+          ]
+        },
+        {
+          "id": "eqi3-we3",
+          "statement": "Solve $\\frac{x}{4} + \\frac{5}{6} = \\frac{1}{3}$ by clearing fractions.",
+          "solution": "Multiply by $12$: $3x + 10 = 4$. Then $3x = -6$, so $x = -2$.",
+          "check": [
+            "Rational(-2,4) + Rational(5,6) == Rational(1,3)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Multiplying only SOME terms when clearing.",
+          "correction": "Clearing $\\frac{x}{4} + \\frac{5}{6} = \\frac{1}{3}$ by 12 must hit all three terms: $3x + 10 = 4$. A skipped term wrecks the balance.",
+          "authored": true
+        },
+        {
+          "text": "Dividing by the numerator only.",
+          "correction": "$\\frac{2}{3}x = 6$ is undone by $\\times \\frac{3}{2}$ (the whole reciprocal), not by $\\div 2$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "eqi3-t1",
+          "statement": "Solve $\\frac{3}{5}x + 1 = -8$.",
+          "solution": "$\\frac{3}{5}x = -9$; multiply by $\\frac{5}{3}$: $x = -15$.",
+          "check": [
+            "Rational(3,5)*-15 + 1 == -8"
+          ]
+        },
+        {
+          "id": "eqi3-t2",
+          "statement": "Solve $0.25x - 1.5 = 2$.",
+          "solution": "$0.25x = 3.5$; divide: $x = 14$.",
+          "check": [
+            "Rational(25,100)*14 - Rational(15,10) == 2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "evaluator",
+            "eyebrow": "Play with it",
+            "title": "Hunt the solution",
+            "teach": "Slide $x$ and watch $\\frac{1}{2}x + 2$ change. Solving an equation is asking: which $x$ makes the expression hit the target? (Here, try to hit $6$.)",
+            "config": {
+              "a": 0.5,
+              "b": 2,
+              "varName": "x",
+              "min": -10,
+              "max": 10,
+              "start": 0
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Same algorithm",
+            "title": "The numbers changed, not the plan",
+            "beats": [
+              "$\\frac{2}{3}x - 4 = 2$: two-step machine, fraction coefficient.",
+              "Add $4$: $\\frac{2}{3}x = 6$.",
+              "Undo $\\times\\frac{2}{3}$ with $\\times\\frac{3}{2}$: $x = 9$.",
+              "Reciprocals are the divide button for fractions."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Housekeeping",
+            "title": "Clear first, solve second",
+            "beats": [
+              "Decimals: multiply through by $10$ or $100$.",
+              "$0.4x + 1.2 = 2 \\;\\to\\; 4x + 12 = 20$.",
+              "Fractions: multiply by the common denominator.",
+              "$\\frac{x}{3} + \\frac{1}{2} = \\frac{5}{6} \\;\\xrightarrow{\\times 6}\\; 2x + 3 = 5$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Pick the multiplier",
+            "prompt": "To clear all fractions in $\\frac{x}{4} - \\frac{2}{3} = \\frac{1}{6}$, multiply both sides by…",
+            "options": [
+              "$12$",
+              "$4$",
+              "$24$ only"
+            ],
+            "correctIndex": 0,
+            "explanation": "$12$ is the least common denominator of $4, 3, 6$: it gives $3x - 8 = 2$. ($24$ works too but $12$ is smallest.)",
+            "check": [
+              "Rational(12,4) == 3",
+              "Rational(12,3) == 4",
+              "Rational(12,6) == 2"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Fractions and decimals, solved",
+            "intro": "Clear if it helps; then the usual two undos.",
+            "examples": [
+              {
+                "prompt": "Solve $\\frac{x}{4} - \\frac{2}{3} = \\frac{1}{6}$.",
+                "steps": [
+                  "Multiply by $12$: $3x - 8 = 2$.",
+                  "Add $8$: $3x = 10$.",
+                  "Divide: $x = \\frac{10}{3}$."
+                ],
+                "answer": "$x = \\frac{10}{3}$",
+                "check": [
+                  "Rational(10,3)/4 - Rational(2,3) == Rational(1,6)"
+                ]
+              },
+              {
+                "prompt": "Solve $-1.5x + 4 = 8.5$.",
+                "steps": [
+                  "Subtract $4$: $-1.5x = 4.5$.",
+                  "Divide by $-1.5$: $x = -3$.",
+                  "Check: $-1.5(-3) + 4 = 8.5$. ✓"
+                ],
+                "answer": "$x = -3$",
+                "check": [
+                  "Rational(-15,10)*-3 + 4 == Rational(85,10)"
+                ]
+              },
+              {
+                "prompt": "A phone plan costs \\$0.10 per text plus a \\$5.50 base and the bill was \\$9.90. How many texts?",
+                "steps": [
+                  "$0.10t + 5.50 = 9.90$.",
+                  "$0.10t = 4.40$.",
+                  "$t = 44$ texts."
+                ],
+                "answer": "$44$ texts",
+                "check": [
+                  "Rational(10,100)*44 + Rational(550,100) == Rational(990,100)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Rational coefficients",
+            "intro": "Reciprocals and clearing are your friends.",
+            "problems": [
+              {
+                "prompt": "Solve $\\frac{5}{6}x = -10$.",
+                "options": [
+                  "$x = -12$",
+                  "$x = -\\frac{25}{3}$",
+                  "$x = 12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Multiply by $\\frac{6}{5}$: $x = -12$.",
+                "check": [
+                  "Rational(5,6)*-12 == -10"
+                ]
+              },
+              {
+                "prompt": "Solve $0.8x + 2.4 = 0$.",
+                "options": [
+                  "$x = -3$",
+                  "$x = 3$",
+                  "$x = -0.3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$0.8x = -2.4$, so $x = -3$.",
+                "check": [
+                  "Rational(8,10)*-3 + Rational(24,10) == 0"
+                ]
+              },
+              {
+                "prompt": "Solve $\\frac{x}{2} + \\frac{x}{3} = 5$.",
+                "options": [
+                  "$x = 6$",
+                  "$x = 5$",
+                  "$x = \\frac{5}{6}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Multiply by $6$: $3x + 2x = 30$, so $5x = 30$, $x = 6$.",
+                "check": [
+                  "Rational(6,2) + Rational(6,3) == 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why stores price at .99",
+            "body": "Solving $4.30w + 12.75 = 45$ feels harder than $4w + 13 = 45$ — and retailers count on that. Prices like \\$4.99 exploit “left-digit bias”: your brain anchors on the 4 before the .99 lands. People who happily clear decimals from equations are measurably harder to fool — one more argument for multiplying through by 100."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "The two-undo algorithm survives fractions and decimals untouched.",
+              "Undo a fraction coefficient with its reciprocal.",
+              "Clearing (×10, ×100, or the common denominator) buys integer comfort."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "writing-equations",
+      "title": "Writing Equations from Stories",
+      "concreteComparison": "A climbing gym charges \\$12 for shoes plus \\$8 per hour, and you have exactly \\$44. Before you can solve anything, someone has to TURN THAT SENTENCE INTO MATH: $8h + 12 = 44$. That translation — story to equation — is the real superpower; the solving is just cleanup ($h = 4$ hours).",
+      "objective": "Translate word problems into equations of the form px + q = r and solve them.",
+      "concept": [
+        "Name the unknown first: let $h$ be the hours. A one-letter cast list keeps the story straight.",
+        "Find the STRUCTURE: a per-something rate multiplies the unknown, a one-time amount adds on, and “total / costs / is” marks the equals sign. Rate × unknown + flat = total is the Grade 7 workhorse: $px + q = r$.",
+        "Some stories subtract instead: a \\$50 gift card minus \\$7.25 per lunch leaving \\$13.75 gives $50 - 7.25n = 13.75$.",
+        "After solving, answer the QUESTION in units — and sanity-check against the story: hours can't be negative, people come in whole numbers."
+      ],
+      "keyIdea": "Name the unknown, find rate × unknown + flat = total, solve, then answer in the story's units.",
+      "facts": [
+        {
+          "title": "The workhorse",
+          "explanation": "per-unit rate × unknown + one-time amount = total.",
+          "latex": "$px + q = r$"
+        },
+        {
+          "title": "Signal words",
+          "explanation": "The sentence tells you where every number sits.",
+          "latex": "“per” → multiply; “plus/fee” → add; “is/total” → equals"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "eqi4-we1",
+          "statement": "Climbing costs \\$12 for shoes plus \\$8 per hour. You have \\$44. How many hours can you climb?",
+          "solution": "Let $h$ = hours: $8h + 12 = 44$. Then $8h = 32$, so $h = 4$ hours.",
+          "check": [
+            "8*4 + 12 == 44"
+          ]
+        },
+        {
+          "id": "eqi4-we2",
+          "statement": "A \\$50 gift card loses \\$7.25 per lunch. After some lunches, \\$13.75 remains. How many lunches?",
+          "solution": "$50 - 7.25n = 13.75$. Then $7.25n = 36.25$, so $n = 5$ lunches.",
+          "check": [
+            "50 - Rational(725,100)*5 == Rational(1375,100)"
+          ]
+        },
+        {
+          "id": "eqi4-we3",
+          "statement": "Three friends split a dinner bill equally; each pays \\$14.50 after using a \\$6 group coupon. What was the original bill?",
+          "solution": "Let $b$ = bill: $\\frac{b - 6}{3} = 14.50$. Then $b - 6 = 43.50$, so $b = 49.50$ dollars.",
+          "check": [
+            "Rational(Rational(4950,100) - 6, 3) == Rational(1450,100)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Writing numbers in the order the story mentions them.",
+          "correction": "“\\$12 for shoes plus \\$8 per hour” is $8h + 12$, not $12h + 8$. The PER-hour price is the one that multiplies hours.",
+          "authored": true
+        },
+        {
+          "text": "Answering with the solved number and no units.",
+          "correction": "$h = 4$ is algebra; “4 hours” answers the question. Always land back in the story.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "eqi4-t1",
+          "statement": "A plant is $8$ cm tall and grows $1.5$ cm per week. When will it reach $20$ cm?",
+          "solution": "$1.5w + 8 = 20$: $1.5w = 12$, so $w = 8$ weeks.",
+          "check": [
+            "Rational(15,10)*8 + 8 == 20"
+          ]
+        },
+        {
+          "id": "eqi4-t2",
+          "statement": "You buy $4$ identical notebooks and pay with a \\$20 bill, getting \\$7 change. What does one notebook cost?",
+          "solution": "$4n = 20 - 7 = 13$, so $n = 3.25$ dollars.",
+          "check": [
+            "4*Rational(325,100) == 13"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Step 1",
+            "title": "Name the unknown",
+            "beats": [
+              "Pick ONE letter for the thing you want.",
+              "“How many hours?” → let $h$ = hours.",
+              "Say its units out loud.",
+              "Everything else in the story is a known number."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Step 2",
+            "title": "Find the structure",
+            "beats": [
+              "“\\$8 **per** hour” → $8h$ (rate × unknown).",
+              "“**plus** \\$12 for shoes” → $+ 12$ (one-time).",
+              "“you have \\$44” → $= 44$ (the total).",
+              "$8h + 12 = 44$. Story, translated."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Step 3",
+            "title": "Solve, then return to the story",
+            "beats": [
+              "$8h + 12 = 44 \\to 8h = 32 \\to h = 4$.",
+              "Answer the QUESTION: “4 hours of climbing.”",
+              "Sanity: positive? whole where it should be? affordable? ✓",
+              "An equation solved is only half the job."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Translate it",
+            "prompt": "A gym charges \\$25 to join plus \\$15 per month, and Maya has spent \\$115 total. Which equation finds her months $m$?",
+            "options": [
+              "$15m + 25 = 115$",
+              "$25m + 15 = 115$",
+              "$15m - 25 = 115$"
+            ],
+            "correctIndex": 0,
+            "explanation": "\\$15 is PER month (multiplies $m$); \\$25 joins once (adds). Solving: $m = 6$.",
+            "check": [
+              "15*6 + 25 == 115"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Story → equation → answer",
+            "intro": "Name, structure, solve, return.",
+            "examples": [
+              {
+                "prompt": "A baker sells loaves for \\$4.50 each and pays \\$27 for ingredients. How many loaves to break even?",
+                "steps": [
+                  "Break even: earnings = costs.",
+                  "$4.50n = 27$.",
+                  "$n = 6$ loaves."
+                ],
+                "answer": "$6$ loaves",
+                "check": [
+                  "Rational(450,100)*6 == 27"
+                ]
+              },
+              {
+                "prompt": "The temperature is $-3°$ and rises $2.5°$ per hour. When does it hit $7°$?",
+                "steps": [
+                  "$2.5h + (-3) = 7$.",
+                  "$2.5h = 10$.",
+                  "$h = 4$ hours."
+                ],
+                "answer": "$4$ hours",
+                "check": [
+                  "Rational(25,10)*4 - 3 == 7"
+                ]
+              },
+              {
+                "prompt": "Ana has \\$60 and spends \\$4.50 per day on lunch. After how many days will she have \\$24 left?",
+                "steps": [
+                  "$60 - 4.50d = 24$.",
+                  "$4.50d = 36$.",
+                  "$d = 8$ days."
+                ],
+                "answer": "$8$ days",
+                "check": [
+                  "60 - Rational(450,100)*8 == 24"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "You're the translator",
+            "intro": "Structure first, arithmetic second.",
+            "problems": [
+              {
+                "prompt": "A scooter rental is \\$1 to unlock plus \\$0.20 per minute. A ride cost \\$5.60. How many minutes?",
+                "options": [
+                  "$23$",
+                  "$28$",
+                  "$18$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$0.20m + 1 = 5.60$: $0.20m = 4.60$, $m = 23$ minutes.",
+                "check": [
+                  "Rational(20,100)*23 + 1 == Rational(560,100)"
+                ]
+              },
+              {
+                "prompt": "Tickets cost \\$9 each, and a group pays \\$63 after a \\$9 group discount. How many tickets?",
+                "options": [
+                  "$8$",
+                  "$7$",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$9t - 9 = 63$: $9t = 72$, $t = 8$ tickets.",
+                "check": [
+                  "9*8 - 9 == 63"
+                ]
+              },
+              {
+                "prompt": "Half a number, decreased by $7$, is $-3$. What's the number?",
+                "options": [
+                  "$8$",
+                  "$-8$",
+                  "$-20$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{x}{2} - 7 = -3$: $\\frac{x}{2} = 4$, $x = 8$.",
+                "check": [
+                  "Rational(8,2) - 7 == -3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Word problems, 3,800 years old",
+            "body": "The Babylonian clay tablet YBC 4652 poses this: “I found a stone but did not weigh it; after I added a seventh and then an eleventh of the total, it weighed 1 mina.” That's an equation with the unknown wrapped in fractions — homework from 1800 BC. Students have been translating stories into symbols for nearly four millennia; you're in a long line."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Name the unknown; the rest of the story becomes knowns.",
+              "“Per” multiplies, one-time amounts add, “is/total” is the equals sign.",
+              "Solve, then answer in units and sanity-check against the story."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "inequalities",
+      "title": "Solving Inequalities",
+      "concreteComparison": "An elevator's sign reads “maximum $1000$ kg.” That's not an equation — it's an **inequality**: any total weight $w \\le 1000$ is fine. Real limits (speed limits, minimum heights, budgets) are inequalities, and they solve almost exactly like equations… with one famous exception involving negative numbers.",
+      "objective": "Solve one- and two-step inequalities, flipping the symbol when multiplying or dividing by a negative, and graph solutions.",
+      "concept": [
+        "An inequality compares with $<, >, \\le, \\ge$ instead of $=$. Its solution isn't one number — it's a whole RAY of numbers, drawn on a number line.",
+        "Adding or subtracting on both sides works exactly like equations: $x + 3 < 7$ gives $x < 4$.",
+        "Multiplying or dividing both sides by a POSITIVE also works as usual. But by a NEGATIVE, the inequality **flips**: from $-2x < 6$, dividing by $-2$ gives $x > -3$.",
+        "Why the flip? $2 < 5$ is true; multiply both by $-1$ and you get $-2$ and $-5$ — and $-2 > -5$. Negation mirrors the number line, so every order reverses.",
+        "Graph $x > -3$ with an OPEN circle at $-3$ (not included) shading right; $x \\ge -3$ uses a CLOSED circle."
+      ],
+      "keyIdea": "Solve like an equation — but multiplying or dividing by a negative flips the inequality symbol.",
+      "facts": [
+        {
+          "title": "The flip rule",
+          "explanation": "Multiplying/dividing both sides by a negative reverses the order.",
+          "latex": "$-2x < 6 \\to x > -3$"
+        },
+        {
+          "title": "Open vs closed",
+          "explanation": "Strict inequalities exclude the endpoint; ≤ and ≥ include it.",
+          "latex": "$>$ open circle, $\\ge$ closed circle"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "eqi5-we1",
+          "statement": "Solve $3x - 5 > 7$.",
+          "solution": "Add $5$: $3x > 12$. Divide by $3$ (positive — no flip): $x > 4$.",
+          "check": [
+            "3*5 - 5 > 7",
+            "3*4 - 5 == 7"
+          ]
+        },
+        {
+          "id": "eqi5-we2",
+          "statement": "Solve $-2x + 3 \\le 11$.",
+          "solution": "Subtract $3$: $-2x \\le 8$. Divide by $-2$ and FLIP: $x \\ge -4$.",
+          "check": [
+            "-2*-4 + 3 == 11",
+            "-2*0 + 3 <= 11"
+          ]
+        },
+        {
+          "id": "eqi5-we3",
+          "statement": "Solve $\\frac{x}{-3} < 2$.",
+          "solution": "Multiply by $-3$ and FLIP: $x > -6$.",
+          "check": [
+            "Rational(-5,-3) < 2",
+            "Rational(0,-3) < 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Flipping whenever a negative appears anywhere.",
+          "correction": "The flip happens ONLY when you multiply or divide both sides by a negative. $x - 5 > -8$ solves to $x > -3$ with no flip — you only ADDED.",
+          "authored": true
+        },
+        {
+          "text": "Using a closed circle for a strict inequality.",
+          "correction": "$x > 4$ does NOT include $4$: open circle. Closed circles are for $\\ge$ and $\\le$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "eqi5-t1",
+          "statement": "Solve $5x + 2 \\ge 17$.",
+          "solution": "$5x \\ge 15$, so $x \\ge 3$. (No flip — divided by positive 5.)",
+          "check": [
+            "5*3 + 2 == 17",
+            "5*4 + 2 >= 17"
+          ]
+        },
+        {
+          "id": "eqi5-t2",
+          "statement": "Solve $-4x > 20$.",
+          "solution": "Divide by $-4$, flip: $x < -5$.",
+          "check": [
+            "-4*-6 > 20"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "integerCompare",
+            "eyebrow": "Play with it",
+            "title": "Negation mirrors the line",
+            "teach": "Compare two numbers, then imagine multiplying both by −1: each jumps to its mirror image, and their ORDER swaps. That mirror is exactly why the inequality symbol flips.",
+            "config": {
+              "left": 2,
+              "right": 5,
+              "min": -8,
+              "max": 8
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Mostly familiar",
+            "title": "Inequalities solve like equations…",
+            "beats": [
+              "Add or subtract on both sides: order keeps.",
+              "Multiply/divide by a POSITIVE: order keeps.",
+              "$3x - 5 > 7 \\to 3x > 12 \\to x > 4$.",
+              "The answer is a ray: every number past $4$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The exception",
+            "title": "…until a negative multiplies",
+            "beats": [
+              "$2 < 5$. Multiply both by $-1$: $-2$ vs $-5$.",
+              "Now $-2 > -5$ — the order FLIPPED.",
+              "So: multiply or divide by a negative → flip the symbol.",
+              "$-2x \\le 8 \\to x \\ge -4$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Flip or no flip?",
+            "prompt": "Solve $-5x < 15$.",
+            "options": [
+              "$x > -3$",
+              "$x < -3$",
+              "$x < 3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Dividing by $-5$ flips the symbol: $x > -3$. (Test $x = 0$: $0 < 15$. ✓)",
+            "check": [
+              "-5*0 < 15",
+              "-5*-4 > 15"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Two steps, one flip watch",
+            "intro": "Track the symbol at every move; test a value at the end.",
+            "examples": [
+              {
+                "prompt": "Solve $7 - 2x > 1$.",
+                "steps": [
+                  "Subtract $7$: $-2x > -6$.",
+                  "Divide by $-2$, FLIP: $x < 3$.",
+                  "Test $x = 0$: $7 > 1$. ✓"
+                ],
+                "answer": "$x < 3$",
+                "check": [
+                  "7 - 2*0 > 1",
+                  "7 - 2*4 < 1"
+                ]
+              },
+              {
+                "prompt": "Solve $\\frac{x}{2} + 3 \\le 1$.",
+                "steps": [
+                  "Subtract $3$: $\\frac{x}{2} \\le -2$.",
+                  "Multiply by $2$ (positive, no flip): $x \\le -4$.",
+                  "Test $x = -4$: $-2 + 3 = 1 \\le 1$. ✓"
+                ],
+                "answer": "$x \\le -4$",
+                "check": [
+                  "Rational(-4,2) + 3 <= 1"
+                ]
+              },
+              {
+                "prompt": "A quiz needs at least $80$ points; you have $56$ and each extra answer earns $6$. How many more answers $n$?",
+                "steps": [
+                  "$6n + 56 \\ge 80$.",
+                  "$6n \\ge 24$.",
+                  "$n \\ge 4$ — four or more."
+                ],
+                "answer": "$n \\ge 4$",
+                "check": [
+                  "6*4 + 56 == 80",
+                  "6*5 + 56 >= 80"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Mind the symbol",
+            "intro": "Only a negative multiply/divide flips it.",
+            "problems": [
+              {
+                "prompt": "Solve $x + 7 < 3$.",
+                "options": [
+                  "$x < -4$",
+                  "$x > -4$",
+                  "$x < 4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Subtract $7$ — no flip: $x < -4$.",
+                "check": [
+                  "-5 + 7 < 3"
+                ]
+              },
+              {
+                "prompt": "Solve $-\\frac{x}{2} \\ge 3$.",
+                "options": [
+                  "$x \\le -6$",
+                  "$x \\ge -6$",
+                  "$x \\le 6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Multiply by $-2$, flip: $x \\le -6$. (Test $x = -6$: $3 \\ge 3$. ✓)",
+                "check": [
+                  "Rational(6,2) >= 3"
+                ]
+              },
+              {
+                "prompt": "Which number line shows $x \\ge -1$?",
+                "options": [
+                  "Closed circle at $-1$, shaded right",
+                  "Open circle at $-1$, shaded right",
+                  "Closed circle at $-1$, shaded left"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\ge$ includes the endpoint (closed) and everything greater (right).",
+                "check": [
+                  "-1 >= -1",
+                  "0 >= -1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The symbols are young",
+            "body": "The signs $<$ and $>$ first appeared in print in 1631, in a book by Thomas Harriot — published ten years after he died. Legend says a printer invented them from Harriot's manuscript squiggles. The $\\le$ and $\\ge$ variants took another century. Equations are ancient; the neat little alligator mouths are practically modern."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Inequalities solve like equations, and the answer is a ray, not a point.",
+              "Multiply or divide by a negative → FLIP the symbol.",
+              "Graph: open circle for $<,>$; closed for $\\le, \\ge$; shade toward the solutions. Test one value to confirm."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "equations-and-inequalities-in-action",
+      "title": "Equations & Inequalities in Action",
+      "concreteComparison": "You're planning a class party with a \\$150 budget. The room costs \\$40, and pizzas are \\$11 each. “How many pizzas CAN we afford?” isn't an equation — nobody needs the budget to come out exact — it's the inequality $11p + 40 \\le 150$, and its answer $p \\le 10$ is a menu of safe choices. This lesson is about choosing the right tool: $=$ when things must match, $\\le$ or $\\ge$ when they must fit.",
+      "objective": "Choose between equations and inequalities to model problems, solve them, and interpret solution sets in context.",
+      "concept": [
+        "Read the verb: “costs exactly / equals / reaches” wants an equation; “at most / at least / no more than / within budget” wants an inequality.",
+        "“At most” and “no more than” translate to $\\le$; “at least” means $\\ge$; “less than” and “more than” are the strict $<$ and $>$.",
+        "Real-world solution sets get trimmed by reality: pizzas come in whole numbers, so $p \\le 10$ means $0, 1, 2, \\ldots, 10$ — and the practical answer to “how many can we buy” is $10$.",
+        "The same two-step machinery solves both tools; only the final interpretation differs — a single value versus a range of safe choices."
+      ],
+      "keyIdea": "Exact match → equation; limit or budget → inequality; then read the solution back through the story.",
+      "facts": [
+        {
+          "title": "Phrase dictionary",
+          "explanation": "“No more than” is ≤; “no less than” is ≥; strict more/less are > and <.",
+          "latex": "at most $\\to \\le$, at least $\\to \\ge$"
+        },
+        {
+          "title": "Reality trims the ray",
+          "explanation": "Context can restrict a solution ray to whole numbers or positives.",
+          "latex": "$p \\le 10$, $p$ a whole number"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "eqi6-we1",
+          "statement": "Party budget: \\$150 total, \\$40 room, \\$11 per pizza. How many pizzas can you order?",
+          "solution": "$11p + 40 \\le 150 \\to 11p \\le 110 \\to p \\le 10$. Up to $10$ pizzas.",
+          "check": [
+            "11*10 + 40 == 150",
+            "11*9 + 40 <= 150"
+          ]
+        },
+        {
+          "id": "eqi6-we2",
+          "statement": "A phone has $14.5$ GB used of $64$ GB. Apps average $2.2$ GB. How many more apps fit?",
+          "solution": "$2.2a + 14.5 \\le 64 \\to 2.2a \\le 49.5 \\to a \\le 22.5$ — so at most $22$ whole apps.",
+          "check": [
+            "Rational(22,10)*Rational(225,10) + Rational(145,10) == 64",
+            "Rational(22,10)*22 + Rational(145,10) <= 64"
+          ]
+        },
+        {
+          "id": "eqi6-we3",
+          "statement": "A candle is $25$ cm and burns $1.5$ cm per hour. EXACTLY when is it $10$ cm tall?",
+          "solution": "Exact → equation: $25 - 1.5h = 10 \\to 1.5h = 15 \\to h = 10$ hours.",
+          "check": [
+            "25 - Rational(15,10)*10 == 10"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Modeling “at most” with an equation.",
+          "correction": "“At most \\$150” doesn't demand spending exactly \\$150. Budgets are inequalities: $11p + 40 \\le 150$.",
+          "authored": true
+        },
+        {
+          "text": "Reporting fractional answers for whole-number things.",
+          "correction": "$a \\le 22.5$ apps means $22$ apps fit. Round DOWN for “how many fit”; the ceiling only works when partial units exist.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "eqi6-t1",
+          "statement": "Ride tickets cost \\$2.50 each and you have \\$18. At most how many rides?",
+          "solution": "$2.5r \\le 18 \\to r \\le 7.2$ — at most $7$ rides.",
+          "check": [
+            "Rational(25,10)*7 <= 18",
+            "Rational(25,10)*8 > 18"
+          ]
+        },
+        {
+          "id": "eqi6-t2",
+          "statement": "You need an average of at least $90$ on two tests and scored $86$ on the first. What must the second score be?",
+          "solution": "$\\frac{86 + s}{2} \\ge 90 \\to 86 + s \\ge 180 \\to s \\ge 94$.",
+          "check": [
+            "Rational(86 + 94, 2) == 90"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Tool choice",
+            "title": "Equals or fits?",
+            "beats": [
+              "“Exactly / reaches / equals” → equation.",
+              "“At most / at least / budget / limit” → inequality.",
+              "The verb of the story picks the symbol.",
+              "Both solve with the same two-step moves."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Dictionary",
+            "title": "Four phrases, four symbols",
+            "beats": [
+              "at most, no more than $\\to \\le$",
+              "at least, no less than $\\to \\ge$",
+              "less than, under $\\to <$",
+              "more than, over $\\to >$"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Pick the model",
+            "prompt": "“A backpack holds no more than $9$ kg; books weigh $0.8$ kg each.” Which model finds how many books $b$ fit?",
+            "options": [
+              "$0.8b \\le 9$",
+              "$0.8b = 9$",
+              "$0.8b \\ge 9$"
+            ],
+            "correctIndex": 0,
+            "explanation": "“No more than” caps the weight: $0.8b \\le 9$, so $b \\le 11.25$ — at most $11$ books.",
+            "check": [
+              "Rational(8,10)*11 <= 9",
+              "Rational(8,10)*12 > 9"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Model, solve, interpret",
+            "intro": "Choose the symbol, run the machine, land in reality.",
+            "examples": [
+              {
+                "prompt": "A charity walk pays \\$12 flat plus \\$3 per km, and Dana wants to raise at least \\$60. How far must she walk?",
+                "steps": [
+                  "“At least” → $3k + 12 \\ge 60$.",
+                  "$3k \\ge 48$.",
+                  "$k \\ge 16$ km."
+                ],
+                "answer": "$k \\ge 16$",
+                "check": [
+                  "3*16 + 12 == 60",
+                  "3*20 + 12 >= 60"
+                ]
+              },
+              {
+                "prompt": "A theater's revenue was exactly \\$1,250 from \\$12.50 tickets. How many tickets sold?",
+                "steps": [
+                  "Exact → equation: $12.5t = 1250$.",
+                  "$t = 100$.",
+                  "One clean answer — that's the equation's signature."
+                ],
+                "answer": "$100$ tickets",
+                "check": [
+                  "Rational(125,10)*100 == 1250"
+                ]
+              },
+              {
+                "prompt": "A freight elevator (limit $1000$ kg) already holds $340$ kg. Crates weigh $55$ kg. How many more crates?",
+                "steps": [
+                  "$55c + 340 \\le 1000$.",
+                  "$55c \\le 660 \\to c \\le 12$.",
+                  "Exactly $12$ crates fit — the boundary IS whole."
+                ],
+                "answer": "$12$ crates",
+                "check": [
+                  "55*12 + 340 == 1000"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Your model, your call",
+            "intro": "Equation or inequality first, arithmetic second.",
+            "problems": [
+              {
+                "prompt": "Movie night: \\$6 per person plus \\$14 for snacks, with a \\$50 budget. How many people at most?",
+                "options": [
+                  "$6$",
+                  "$7$",
+                  "$5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6p + 14 \\le 50 \\to 6p \\le 36 \\to p \\le 6$: six people.",
+                "check": [
+                  "6*6 + 14 <= 50",
+                  "6*7 + 14 > 50"
+                ]
+              },
+              {
+                "prompt": "A tank holds $500$ L and drains $12.5$ L per minute. EXACTLY when is it empty?",
+                "options": [
+                  "$40$ min",
+                  "$38$ min",
+                  "$45$ min"
+                ],
+                "correctIndex": 0,
+                "explanation": "$500 - 12.5t = 0 \\to t = 40$ minutes.",
+                "check": [
+                  "500 - Rational(125,10)*40 == 0"
+                ]
+              },
+              {
+                "prompt": "You must read at least $150$ pages this week and have read $88$. Pages per day for the next $4$ days?",
+                "options": [
+                  "at least $15.5$",
+                  "at most $15.5$",
+                  "exactly $62$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4p + 88 \\ge 150 \\to 4p \\ge 62 \\to p \\ge 15.5$ pages per day.",
+                "check": [
+                  "4*Rational(155,10) + 88 == 150"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Optimization is grown-up inequalities",
+            "body": "Airlines, delivery routes, and factory schedules are planned by **linear programming** — solving systems of hundreds of thousands of inequalities to find the cheapest plan that fits every limit. The field was born in World War II logistics and now routes your packages. Every constraint in those monsters is a Grade 7 inequality wearing a suit."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Exact match → equation; limits and budgets → inequality.",
+              "“At most” $\\le$, “at least” $\\ge$ — the phrase picks the symbol.",
+              "Interpret the solution in context: trim rays to whole numbers when reality demands."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "eqi-pr1",
+      "statement": "Simplify $4x - 7 - 9x + 2$.",
+      "solution": "$(4 - 9)x + (-7 + 2) = -5x - 5$.",
+      "check": [
+        "4 - 9 == -5",
+        "-7 + 2 == -5"
+      ]
+    },
+    {
+      "id": "eqi-pr2",
+      "statement": "Expand and simplify $3(2x - 4) - (x - 5)$.",
+      "solution": "$6x - 12 - x + 5 = 5x - 7$.",
+      "check": [
+        "3*2 == 6",
+        "6 - 1 == 5",
+        "-12 + 5 == -7"
+      ]
+    },
+    {
+      "id": "eqi-pr3",
+      "statement": "Solve $7x + 4 = -24$.",
+      "solution": "$7x = -28$, so $x = -4$.",
+      "check": [
+        "7*-4 + 4 == -24"
+      ]
+    },
+    {
+      "id": "eqi-pr4",
+      "statement": "Solve $\\frac{3}{4}x - 5 = 1$.",
+      "solution": "$\\frac{3}{4}x = 6$; multiply by $\\frac{4}{3}$: $x = 8$.",
+      "check": [
+        "Rational(3,4)*8 - 5 == 1"
+      ]
+    },
+    {
+      "id": "eqi-pr5",
+      "statement": "Solve $0.6x + 1.8 = 4.2$.",
+      "solution": "$0.6x = 2.4$, so $x = 4$.",
+      "check": [
+        "Rational(6,10)*4 + Rational(18,10) == Rational(42,10)"
+      ]
+    },
+    {
+      "id": "eqi-pr6",
+      "statement": "A gym membership is \\$19 to join plus \\$24 per month. Theo has spent \\$139. For how many months?",
+      "solution": "$24m + 19 = 139$: $24m = 120$, so $m = 5$ months.",
+      "check": [
+        "24*5 + 19 == 139"
+      ]
+    },
+    {
+      "id": "eqi-pr7",
+      "statement": "Solve $-3x + 8 > 2$ and describe the graph.",
+      "solution": "$-3x > -6$; divide by $-3$, flip: $x < 2$. Open circle at $2$, shaded left.",
+      "check": [
+        "-3*0 + 8 > 2",
+        "-3*3 + 8 < 2"
+      ]
+    },
+    {
+      "id": "eqi-pr8",
+      "statement": "Bus fare is \\$2.75 per ride and a monthly pass costs \\$99. At least how many rides make the pass the better deal?",
+      "solution": "$2.75r \\ge 99 \\to r \\ge 36$: from $36$ rides on, the pass wins (or ties).",
+      "check": [
+        "Rational(275,100)*36 == 99"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "eqi-ty1",
+      "statement": "Simplify $-2(3x - 1) + 4x$.",
+      "solution": "$-6x + 2 + 4x = -2x + 2$.",
+      "check": [
+        "-2*3 == -6",
+        "-6 + 4 == -2",
+        "-2*-1 == 2"
+      ]
+    },
+    {
+      "id": "eqi-ty2",
+      "statement": "Solve $-5x + 3 = 28$.",
+      "solution": "$-5x = 25$, so $x = -5$.",
+      "check": [
+        "-5*-5 + 3 == 28"
+      ]
+    },
+    {
+      "id": "eqi-ty3",
+      "statement": "Solve $\\frac{x}{3} + \\frac{1}{2} = -\\frac{5}{6}$.",
+      "solution": "Multiply by $6$: $2x + 3 = -5$, so $2x = -8$, $x = -4$.",
+      "check": [
+        "Rational(-4,3) + Rational(1,2) == Rational(-5,6)"
+      ]
+    },
+    {
+      "id": "eqi-ty4",
+      "statement": "A rope $18.6$ m long is cut into $3$ equal pieces plus a $1.2$ m leftover. How long is each piece?",
+      "solution": "$3p + 1.2 = 18.6$: $3p = 17.4$, so $p = 5.8$ m.",
+      "check": [
+        "3*Rational(58,10) + Rational(12,10) == Rational(186,10)"
+      ]
+    },
+    {
+      "id": "eqi-ty5",
+      "statement": "Solve $4 - \\frac{x}{2} \\le 7$.",
+      "solution": "$-\\frac{x}{2} \\le 3$; multiply by $-2$, flip: $x \\ge -6$.",
+      "check": [
+        "4 - Rational(-6,2) == 7",
+        "4 - Rational(0,2) <= 7"
+      ]
+    },
+    {
+      "id": "eqi-ty6",
+      "statement": "Tickets are \\$8.50 each plus a \\$3 order fee, and you can spend at most \\$54. How many tickets can you buy?",
+      "solution": "$8.5t + 3 \\le 54 \\to 8.5t \\le 51 \\to t \\le 6$: at most $6$ tickets.",
+      "check": [
+        "Rational(85,10)*6 + 3 == 54"
+      ]
+    }
+  ]
+}

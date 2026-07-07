@@ -62,6 +62,7 @@ import dataAndStatistics from "@/data/genmath/6/data-and-statistics.json";
 // Grade 7 topic JSON imports (added as each topic is authored + published).
 import proportionalRelationships from "@/data/genmath/7/proportional-relationships.json";
 import rationalNumberOperations from "@/data/genmath/7/rational-number-operations.json";
+import equationsAndInequalities from "@/data/genmath/7/equations-and-inequalities.json";
 // Grade 8 topic JSON imports (added as each topic is authored + published).
 import realNumberSystem from "@/data/genmath/8/the-real-number-system.json";
 import exponentsScientific from "@/data/genmath/8/exponents-and-scientific-notation.json";
@@ -171,7 +172,7 @@ export const GRADE7_SPINE: GradeSpineEntry[] = [
     slug: "equations-and-inequalities",
     title: "Equations & Inequalities",
     blurb: "Simplifying expressions with negatives, two-step equations, and inequalities — including the flip when you multiply by a negative.",
-    live: false,
+    live: true,
   },
   {
     slug: "percent-applications",
@@ -412,6 +413,7 @@ const grade10Topics: GenMathTopic[] = [
 const grade7Topics: GenMathTopic[] = [
   proportionalRelationships as GenMathTopic,
   rationalNumberOperations as GenMathTopic,
+  equationsAndInequalities as GenMathTopic,
 ];
 
 const grade8Topics: GenMathTopic[] = [
