@@ -104,6 +104,7 @@ import scatterMn from "@/data/genmath/8-mn/scatter-plots-and-bivariate-data.json
 import ratiosMn from "@/data/genmath/6-mn/ratios-and-rates.json";
 import fractionsMn from "@/data/genmath/6-mn/fractions.json";
 import decimalsMn from "@/data/genmath/6-mn/decimals.json";
+import percentagesMn from "@/data/genmath/6-mn/percentages.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -438,6 +439,7 @@ const GENMATH_TOPICS_MN: Record<string, GenMathTopic> = {
   "ratios-and-rates": ratiosMn as GenMathTopic,
   "fractions": fractionsMn as GenMathTopic,
   "decimals": decimalsMn as GenMathTopic,
+  "percentages": percentagesMn as GenMathTopic,
 };
 
 // Locale-aware topic lookup: Mongolian mirror when the site language is "mn"

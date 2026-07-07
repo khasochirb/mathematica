@@ -2174,24 +2174,26 @@
                   "$45\\%$"
                 ],
                 "correctIndex": 2,
-                "explanation": "The change is $9$, and $9 \\div 36 = 25\\%$... wait, $9 \\div 45 = 20\\%$ uses the new amount, so divide by the original $36$: $9 \\div 36 = 25\\%$.",
+                "explanation": "The change is $9$, and $9 \\div 36 = 25\\%$ — divide by the original $36$, not the new $45$.",
                 "check": [
                   "Rational(45-36,36)*100 == 25"
                 ]
               },
               {
-                "prompt": "Which situation does NOT represent a $20\\%$ change? $\\;$ (a) $50 \\to 60\\;$ (b) $40 \\to 48\\;$ (c) $30 \\to 24\\;$ (d) $25 \\to 20$",
+                "prompt": "Which situation does NOT represent a $20\\%$ change? $\\;$ (a) $50 \\to 65\\;$ (b) $40 \\to 48\\;$ (c) $30 \\to 24\\;$ (d) $25 \\to 20$",
                 "options": [
-                  "$50 \\to 60$",
+                  "$50 \\to 65$",
                   "$40 \\to 48$",
                   "$30 \\to 24$",
                   "$25 \\to 20$"
                 ],
                 "correctIndex": 0,
-                "explanation": "$50 \\to 60$ is a $20\\%$ increase too, but $40 \\to 48$ uses change $8$ over $40$ giving... all others are $20\\%$, while only one differs.",
+                "explanation": "$50 \\to 65$ is a change of $15$ on $50$, which is $30\\%$ — the other three are all exactly $20\\%$ changes.",
                 "check": [
-                  "Rational(60-50,50)*100 == 20",
-                  "Rational(48-40,40)*100 == 20"
+                  "Rational(65-50,50)*100 == 30",
+                  "Rational(48-40,40)*100 == 20",
+                  "Rational(30-24,30)*100 == 20",
+                  "Rational(25-20,25)*100 == 20"
                 ]
               },
               {
