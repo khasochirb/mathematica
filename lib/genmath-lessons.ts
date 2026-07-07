@@ -67,6 +67,8 @@ import percentApplications from "@/data/genmath/7/percent-applications.json";
 import geometryScaleCircles from "@/data/genmath/7/geometry-scale-and-circles.json";
 import probability7 from "@/data/genmath/7/probability.json";
 import samplingAndStatistics from "@/data/genmath/7/sampling-and-statistics.json";
+// Grade 9 topic JSON imports (added as each topic is authored + published).
+import equationsAndFormulas from "@/data/genmath/9/equations-and-formulas.json";
 // Grade 8 topic JSON imports (added as each topic is authored + published).
 import realNumberSystem from "@/data/genmath/8/the-real-number-system.json";
 import exponentsScientific from "@/data/genmath/8/exponents-and-scientific-notation.json";
@@ -254,7 +256,7 @@ export const GRADE9_SPINE: GradeSpineEntry[] = [
     slug: "equations-and-formulas",
     title: "Equations & Formulas",
     blurb: "Multi-step equations with variables on both sides, special cases, and literal equations — solving formulas for any letter.",
-    live: false,
+    live: true,
   },
   {
     slug: "inequalities-and-absolute-value",
@@ -469,7 +471,9 @@ const grade7Topics: GenMathTopic[] = [
   samplingAndStatistics as GenMathTopic,
 ];
 
-const grade9Topics: GenMathTopic[] = [];
+const grade9Topics: GenMathTopic[] = [
+  equationsAndFormulas as GenMathTopic,
+];
 
 const grade8Topics: GenMathTopic[] = [
   realNumberSystem as GenMathTopic,

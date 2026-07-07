@@ -1,0 +1,1620 @@
+{
+  "slug": "equations-and-formulas",
+  "title": "Equations & Formulas",
+  "grade": 9,
+  "blurb": "Multi-step equations with variables on both sides, special cases, and literal equations — solving formulas for any letter.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "variables-on-both-sides",
+      "title": "Variables on Both Sides",
+      "concreteComparison": "Two phone plans: Plan A costs $\\$20$ plus $\\$5$ per GB; Plan B costs $\\$8$ per GB with no base fee. When do they cost the same? $20 + 5g = 8g$ — the unknown appears on BOTH sides. The fix is one new move: herd all the $x$'s to one side, all the numbers to the other, and the equation collapses to the kind you've solved for years.",
+      "objective": "Solve equations with variables on both sides by collecting like terms across the equals sign.",
+      "concept": [
+        "When $x$ lives on both sides, SUBTRACT the smaller $x$-term from both sides — the variable herd gathers on one side, and no negatives sneak in.",
+        "$20 + 5g = 8g$: subtract $5g$ to get $20 = 3g$, so $g = \\frac{20}{3} \\approx 6.7$ GB. Above that, Plan A wins.",
+        "The moves are the same balance moves as always: whatever crosses the equals sign does so by being added to or subtracted from BOTH sides.",
+        "Check by substituting into BOTH sides separately — a both-sides equation is only solved when the two sides agree."
+      ],
+      "keyIdea": "Herd the variables to one side (subtract the smaller x-term), the numbers to the other — then it's a two-step equation.",
+      "facts": [
+        {
+          "title": "Herd the x's",
+          "explanation": "Subtract the smaller variable term from both sides.",
+          "latex": "$3x - 4 = 2x + 6 \\to x = 10$"
+        },
+        {
+          "title": "Check both sides",
+          "explanation": "Substitute into each side separately and compare.",
+          "latex": "LHS $=$ RHS at the solution"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "eqf1-we1",
+          "statement": "Solve $3x - 4 = 2x + 6$.",
+          "solution": "Subtract $2x$: $x - 4 = 6$. Add $4$: $x = 10$. Check: $26 = 26$. ✓",
+          "check": [
+            "3*10 - 4 == 2*10 + 6"
+          ]
+        },
+        {
+          "id": "eqf1-we2",
+          "statement": "Plan A costs $20 + 5g$ dollars; Plan B costs $8g$. For what data amount do they cost the same?",
+          "solution": "$20 + 5g = 8g \\to 20 = 3g \\to g = \\frac{20}{3}$ GB (about $6.7$).",
+          "check": [
+            "20 + 5*Rational(20,3) == 8*Rational(20,3)"
+          ]
+        },
+        {
+          "id": "eqf1-we3",
+          "statement": "Solve $7 - 2x = 4x - 11$.",
+          "solution": "Add $2x$: $7 = 6x - 11$. Add $11$: $18 = 6x$, so $x = 3$.",
+          "check": [
+            "7 - 2*3 == 4*3 - 11"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Moving a term without changing its sign.",
+          "correction": "$3x - 4 = 2x + 6$: the $2x$ crosses by SUBTRACTION. Terms never teleport — they cancel on one side and appear (sign-flipped) on the other.",
+          "authored": true
+        },
+        {
+          "text": "Herding onto the side that creates negatives.",
+          "correction": "In $2x + 1 = 5x - 8$, subtract $2x$ (the smaller) to get $1 = 3x - 8$. Subtracting $5x$ works too but births $-3x$ — legal, just accident-prone.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "eqf1-t1",
+          "statement": "Solve $5x + 2 = 3x + 14$.",
+          "solution": "$2x = 12$, so $x = 6$.",
+          "check": [
+            "5*6 + 2 == 3*6 + 14"
+          ]
+        },
+        {
+          "id": "eqf1-t2",
+          "statement": "Solve $9 - x = 2x - 6$.",
+          "solution": "$9 = 3x - 6 \\to 15 = 3x \\to x = 5$.",
+          "check": [
+            "9 - 5 == 2*5 - 6"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "balanceScale",
+            "eyebrow": "Play with it",
+            "title": "Balance, both sides loaded",
+            "teach": "The pans hold x-blocks AND unit weights on each side. Remove matching x-blocks from both pans first — the herd gathers on one side and the equation simplifies before your eyes.",
+            "config": {
+              "mode": "add",
+              "b": 4,
+              "rhs": 10
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The new move",
+            "title": "Herd the variables",
+            "beats": [
+              "$3x - 4 = 2x + 6$ — x's on BOTH sides.",
+              "Subtract the SMALLER x-term ($2x$) from both sides.",
+              "$x - 4 = 6$ — a one-variable-side equation again.",
+              "$x = 10$. New situation, old machinery."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why smaller?",
+            "title": "Dodge the negatives",
+            "beats": [
+              "$2x + 1 = 5x - 8$: two choices of herd direction.",
+              "Subtract $2x$: $1 = 3x - 8$. Clean.",
+              "Subtract $5x$: $-3x + 1 = -8$. Legal but slippery.",
+              "Chasing the bigger herd keeps coefficients positive."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "First move",
+            "prompt": "Best first move for $6x - 5 = 2x + 19$?",
+            "options": [
+              "Subtract $2x$ from both sides",
+              "Add $5$ to the left only",
+              "Divide both sides by $6$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Herd first: $4x - 5 = 19$, then $4x = 24$, $x = 6$.",
+            "check": [
+              "6*6 - 5 == 2*6 + 19"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Herding practice",
+            "intro": "Variables one way, constants the other, then divide.",
+            "examples": [
+              {
+                "prompt": "Solve $8x + 3 = 5x + 18$.",
+                "steps": [
+                  "Subtract $5x$: $3x + 3 = 18$.",
+                  "Subtract $3$: $3x = 15$.",
+                  "$x = 5$. Check: $43 = 43$. ✓"
+                ],
+                "answer": "$x = 5$",
+                "check": [
+                  "8*5 + 3 == 5*5 + 18"
+                ]
+              },
+              {
+                "prompt": "Solve $4 - 3x = 2x - 16$.",
+                "steps": [
+                  "Add $3x$: $4 = 5x - 16$.",
+                  "Add $16$: $20 = 5x$.",
+                  "$x = 4$."
+                ],
+                "answer": "$x = 4$",
+                "check": [
+                  "4 - 3*4 == 2*4 - 16"
+                ]
+              },
+              {
+                "prompt": "Two candles: one is $30$ cm burning $2$ cm/h; the other is $24$ cm burning $1.5$ cm/h. When are they the same height?",
+                "steps": [
+                  "$30 - 2t = 24 - 1.5t$.",
+                  "$30 - 24 = 2t - 1.5t \\to 6 = 0.5t$.",
+                  "$t = 12$ hours."
+                ],
+                "answer": "$t = 12$ h",
+                "check": [
+                  "30 - 2*12 == 24 - Rational(15,10)*12"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Both sides, no fear",
+            "intro": "Subtract the smaller x-term first.",
+            "problems": [
+              {
+                "prompt": "Solve $7x - 2 = 4x + 13$.",
+                "options": [
+                  "$x = 5$",
+                  "$x = 3$",
+                  "$x = 11$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3x = 15 \\to x = 5$.",
+                "check": [
+                  "7*5 - 2 == 4*5 + 13"
+                ]
+              },
+              {
+                "prompt": "Solve $10 - 4x = x$.",
+                "options": [
+                  "$x = 2$",
+                  "$x = -2$",
+                  "$x = \\frac{10}{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Add $4x$: $10 = 5x \\to x = 2$.",
+                "check": [
+                  "10 - 4*2 == 2"
+                ]
+              },
+              {
+                "prompt": "Gym A: \\$30 plus \\$2 per visit. Gym B: \\$5 per visit. Equal cost at how many visits?",
+                "options": [
+                  "$10$",
+                  "$6$",
+                  "$15$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$30 + 2v = 5v \\to 30 = 3v \\to v = 10$.",
+                "check": [
+                  "30 + 2*10 == 5*10"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Break-even, the oldest business question",
+            "body": "Every 'variables on both sides' equation is secretly a MEETING problem: two quantities racing, and you're finding where they tie. Businesses call it the break-even point, physicists call it the intersection of trajectories, and phone-plan shoppers call it Tuesday. One skill, a thousand costumes."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Subtract the smaller variable term — the herd gathers cleanly.",
+              "Then it's the familiar two-step machine.",
+              "Check by evaluating BOTH sides at your solution."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "special-cases",
+      "title": "No Solution & Infinitely Many",
+      "concreteComparison": "Solve $2(x + 3) = 2x + 6$ and everything cancels: $6 = 6$. Solve $2(x + 3) = 2x + 1$ and you get $6 = 1$?! Neither gives an $x$ — because the first equation is true for EVERY number and the second for NONE. Some equations aren't puzzles; they're statements, and the algebra tells you which kind you're holding.",
+      "objective": "Recognize identities (all real numbers) and contradictions (no solution) when the variables cancel.",
+      "concept": [
+        "Most equations are **conditional** — true for specific values. But two special species exist, and both reveal themselves when the variable terms CANCEL.",
+        "If the variables vanish and what's left is TRUE ($6 = 6$), the equation is an **identity**: every real number works. The two sides were the same expression in disguise.",
+        "If the variables vanish and what's left is FALSE ($6 = 1$), it's a **contradiction**: no value can help. The two sides are parallel — always exactly $5$ apart.",
+        "Picture it as lines: one solution = lines crossing once; no solution = parallel lines; infinitely many = the same line drawn twice."
+      ],
+      "keyIdea": "Variables cancel + true statement → all reals; variables cancel + false statement → no solution.",
+      "facts": [
+        {
+          "title": "Identity",
+          "explanation": "Both sides were the same expression — every x works.",
+          "latex": "$6 = 6 \\to$ all real numbers"
+        },
+        {
+          "title": "Contradiction",
+          "explanation": "The sides differ by a constant — no x can close the gap.",
+          "latex": "$6 = 1 \\to$ no solution"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "eqf2-we1",
+          "statement": "Solve $2(x + 3) = 2x + 6$.",
+          "solution": "$2x + 6 = 2x + 6 \\to 6 = 6$ — true with no $x$ left. Identity: ALL real numbers.",
+          "check": [
+            "2*(5 + 3) == 2*5 + 6",
+            "2*(-1 + 3) == 2*-1 + 6"
+          ]
+        },
+        {
+          "id": "eqf2-we2",
+          "statement": "Solve $2(x + 3) = 2x + 1$.",
+          "solution": "$2x + 6 = 2x + 1 \\to 6 = 1$ — false. Contradiction: NO solution.",
+          "check": [
+            "6 != 1"
+          ]
+        },
+        {
+          "id": "eqf2-we3",
+          "statement": "Solve $5x - 2(x + 4) = 3x - 8$.",
+          "solution": "Left: $5x - 2x - 8 = 3x - 8$. Both sides identical → all real numbers.",
+          "check": [
+            "5*7 - 2*(7 + 4) == 3*7 - 8",
+            "5*0 - 2*(0 + 4) == 3*0 - 8"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Writing x = 0 when everything cancels.",
+          "correction": "$6 = 6$ does NOT mean $x = 0$ — it means every x works. 'Zero solutions', 'x = 0', and 'all reals' are three different animals.",
+          "authored": true
+        },
+        {
+          "text": "Grinding on after reaching a false statement.",
+          "correction": "$6 = 1$ is the ANSWER: no solution. There's no algebra left to do — the equation has confessed.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "eqf2-t1",
+          "statement": "Solve $4(x - 1) = 4x - 4$.",
+          "solution": "$4x - 4 = 4x - 4$: identity — all real numbers.",
+          "check": [
+            "4*(9 - 1) == 4*9 - 4"
+          ]
+        },
+        {
+          "id": "eqf2-t2",
+          "statement": "Solve $3x + 7 = 3(x + 1)$.",
+          "solution": "$3x + 7 = 3x + 3 \\to 7 = 3$: false — no solution.",
+          "check": [
+            "7 != 3"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Three species",
+            "title": "Every equation is one of these",
+            "beats": [
+              "**Conditional**: true for specific x's. ($x + 1 = 4$)",
+              "**Identity**: true for ALL x's. ($2x = x + x$)",
+              "**Contradiction**: true for NO x. ($x = x + 5$)",
+              "The solving process itself tells you which."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The tell",
+            "title": "When the x's vanish",
+            "beats": [
+              "Simplify both sides. If the variable terms cancel completely…",
+              "…look at what remains.",
+              "TRUE leftover ($6 = 6$) → identity, all reals.",
+              "FALSE leftover ($6 = 1$) → contradiction, no solution."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The picture",
+            "title": "Lines that cross, clone, or never meet",
+            "beats": [
+              "One solution: the two sides cross once.",
+              "All reals: the same line, drawn twice.",
+              "No solution: parallel lines — same slope, different start.",
+              "$2x + 6$ vs $2x + 1$: forever $5$ apart."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Diagnose it",
+            "prompt": "Solving an equation ends at $-3 = -3$. The solution set is…",
+            "options": [
+              "all real numbers",
+              "$x = -3$",
+              "no solution"
+            ],
+            "correctIndex": 0,
+            "explanation": "A TRUE statement with no x left means every real number satisfies the original equation.",
+            "check": [
+              "-3 == -3"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Name the species",
+            "intro": "Simplify fully; read the leftover.",
+            "examples": [
+              {
+                "prompt": "Solve $6x + 9 = 3(2x + 3)$.",
+                "steps": [
+                  "Right: $6x + 9$.",
+                  "$6x + 9 = 6x + 9 \\to 9 = 9$. True.",
+                  "Identity — all real numbers."
+                ],
+                "answer": "all real numbers",
+                "check": [
+                  "6*4 + 9 == 3*(2*4 + 3)"
+                ]
+              },
+              {
+                "prompt": "Solve $\\frac{1}{2}(8x - 6) = 4x + 5$.",
+                "steps": [
+                  "Left: $4x - 3$.",
+                  "$4x - 3 = 4x + 5 \\to -3 = 5$. False.",
+                  "Contradiction — no solution."
+                ],
+                "answer": "no solution",
+                "check": [
+                  "-3 != 5"
+                ]
+              },
+              {
+                "prompt": "Solve $5(x - 2) = 3x + 2$.",
+                "steps": [
+                  "$5x - 10 = 3x + 2$.",
+                  "$2x = 12 \\to x = 6$.",
+                  "Conditional — exactly one solution."
+                ],
+                "answer": "$x = 6$",
+                "check": [
+                  "5*(6 - 2) == 3*6 + 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Species identification",
+            "intro": "Solve until the equation confesses.",
+            "problems": [
+              {
+                "prompt": "$7x - 3 = 7x + 8$ has…",
+                "options": [
+                  "no solution",
+                  "one solution",
+                  "all real numbers"
+                ],
+                "correctIndex": 0,
+                "explanation": "Subtract $7x$: $-3 = 8$ — false forever.",
+                "check": [
+                  "-3 != 8"
+                ]
+              },
+              {
+                "prompt": "$2(3x + 5) = 6x + 10$ has…",
+                "options": [
+                  "all real numbers",
+                  "no solution",
+                  "$x = 10$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Left expands to exactly the right side: identity.",
+                "check": [
+                  "2*(3*2 + 5) == 6*2 + 10"
+                ]
+              },
+              {
+                "prompt": "$4x + 1 = 2x + 1$ has…",
+                "options": [
+                  "one solution ($x = 0$)",
+                  "no solution",
+                  "all real numbers"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2x = 0 \\to x = 0$ — the x's did NOT fully cancel, so it's conditional.",
+                "check": [
+                  "4*0 + 1 == 2*0 + 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Identities are the good kind of boring",
+            "body": "Mathematicians PRIZE identities: $(a+b)^2 = a^2 + 2ab + b^2$ is 'true for everything,' which makes it a rewriting tool rather than a puzzle. Whole subjects — trigonometry especially — are warehouses of identities used to swap hard expressions for easy ones. The equation that 'solves to nothing' in Grade 9 becomes the workhorse of Grade 12."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Conditional, identity, contradiction — every equation is one of the three.",
+              "Variables cancel: TRUE leftover → all reals; FALSE leftover → no solution.",
+              "Graphically: crossing lines, cloned lines, parallel lines."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "multi-step-pipelines",
+      "title": "The Full Pipeline",
+      "concreteComparison": "$\\frac{2(x - 3)}{5} + 1 = \\frac{x}{2}$ looks like a monster: parentheses, fractions, variables on both sides. But monsters die to checklists. Distribute. Clear fractions. Herd the variables. Two-step finish. Check. Five moves, in order, every time — the same pipeline that assembles cars assembles solutions.",
+      "objective": "Solve equations combining parentheses, fractions, and variables on both sides with a reliable order of moves.",
+      "concept": [
+        "The pipeline: (1) **distribute** to kill parentheses, (2) **clear fractions** by multiplying through by the common denominator, (3) **herd** variables to one side, (4) **two-step finish**, (5) **check**.",
+        "Clearing fractions early keeps every later step in integers: $\\frac{2x - 6}{5} + 1 = \\frac{x}{2}$ times $10$ becomes $2(2x - 6) + 10 = 5x$.",
+        "Steps can occasionally swap — clearing before distributing is fine — but distribute-then-clear never fails.",
+        "Long equations mean more places to drop a sign. Write EVERY line; the pipeline's power is that each move is small enough to be checkable."
+      ],
+      "keyIdea": "Distribute → clear fractions → herd variables → two-step → check. Five small moves beat one heroic leap.",
+      "facts": [
+        {
+          "title": "The pipeline",
+          "explanation": "A fixed order that dismantles any linear equation.",
+          "latex": "distribute, clear, herd, solve, check"
+        },
+        {
+          "title": "Clear with the LCD",
+          "explanation": "One multiplication converts the whole equation to integers.",
+          "latex": "$\\times 10$ kills fifths and halves"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "eqf3-we1",
+          "statement": "Solve $\\frac{2(x - 3)}{5} + 1 = \\frac{x}{2}$.",
+          "solution": "Multiply by $10$: $4(x - 3) + 10 = 5x \\to 4x - 12 + 10 = 5x \\to 4x - 2 = 5x \\to x = -2$.",
+          "check": [
+            "Rational(2*(-2 - 3), 5) + 1 == Rational(-2, 2)"
+          ]
+        },
+        {
+          "id": "eqf3-we2",
+          "statement": "Solve $3(2x - 1) - 4(x + 2) = 7$.",
+          "solution": "$6x - 3 - 4x - 8 = 7 \\to 2x - 11 = 7 \\to 2x = 18 \\to x = 9$.",
+          "check": [
+            "3*(2*9 - 1) - 4*(9 + 2) == 7"
+          ]
+        },
+        {
+          "id": "eqf3-we3",
+          "statement": "Solve $\\frac{x + 4}{3} = \\frac{2x - 1}{5}$.",
+          "solution": "Cross-multiply (or ×15): $5(x + 4) = 3(2x - 1) \\to 5x + 20 = 6x - 3 \\to x = 23$.",
+          "check": [
+            "Rational(23 + 4, 3) == Rational(2*23 - 1, 5)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Multiplying only the fraction terms when clearing.",
+          "correction": "The LCD multiplies EVERY term — including lonely integers. $\\frac{2x-6}{5} + 1 = \\frac{x}{2}$ times 10 turns the +1 into +10.",
+          "authored": true
+        },
+        {
+          "text": "Distributing a negative to the first term only.",
+          "correction": "$-4(x + 2) = -4x - 8$. The minus rides the 4 into BOTH terms — the second term flips too.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "eqf3-t1",
+          "statement": "Solve $2(x + 5) - 3 = 4x - 7$.",
+          "solution": "$2x + 7 = 4x - 7 \\to 14 = 2x \\to x = 7$.",
+          "check": [
+            "2*(7 + 5) - 3 == 4*7 - 7"
+          ]
+        },
+        {
+          "id": "eqf3-t2",
+          "statement": "Solve $\\frac{3x}{4} - \\frac{1}{2} = \\frac{x}{8} + 2$.",
+          "solution": "Multiply by $8$: $6x - 4 = x + 16 \\to 5x = 20 \\to x = 4$.",
+          "check": [
+            "Rational(3*4, 4) - Rational(1,2) == Rational(4,8) + 2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "orderOfOps",
+            "eyebrow": "Play with it",
+            "title": "One legal move at a time",
+            "teach": "Watch a monster equation fall to the pipeline, one line per move — distribute, clear, herd, finish.",
+            "config": {
+              "stages": [
+                {
+                  "expr": "\\frac{2(x-3)}{5} + 1 = \\frac{x}{2}",
+                  "did": "The monster: parentheses, fractions, x on both sides."
+                },
+                {
+                  "expr": "\\frac{2x - 6}{5} + 1 = \\frac{x}{2}",
+                  "did": "Distributed the 2 inside the fraction."
+                },
+                {
+                  "expr": "2(2x - 6) + 10 = 5x",
+                  "did": "Multiplied EVERY term by 10 (the LCD of 5 and 2)."
+                },
+                {
+                  "expr": "4x - 12 + 10 = 5x",
+                  "did": "Distributed again: 2(2x − 6) = 4x − 12."
+                },
+                {
+                  "expr": "4x - 2 = 5x",
+                  "did": "Combined constants: −12 + 10 = −2."
+                },
+                {
+                  "expr": "-2 = x",
+                  "did": "Herded: subtracted 4x from both sides. Done: x = −2."
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The checklist",
+            "title": "Five moves, fixed order",
+            "beats": [
+              "1. Distribute — parentheses die first.",
+              "2. Clear fractions — multiply through by the LCD.",
+              "3. Herd variables to one side.",
+              "4. Two-step finish.",
+              "5. Check in the ORIGINAL equation."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Pro habits",
+            "title": "Write every line",
+            "beats": [
+              "Long equations fail at dropped signs, not hard ideas.",
+              "One move per line — each line checkable.",
+              "Boxes around the final answer; substitution as the seal.",
+              "Speed comes from never redoing work."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Choose the LCD",
+            "prompt": "To clear $\\frac{x}{6} + \\frac{1}{4} = \\frac{x}{3}$, multiply every term by…",
+            "options": [
+              "$12$",
+              "$6$",
+              "$72$ (only)"
+            ],
+            "correctIndex": 0,
+            "explanation": "LCD of $6, 4, 3$ is $12$: gives $2x + 3 = 4x$, so $x = \\frac{3}{2}$.",
+            "check": [
+              "Rational(12,6) == 2",
+              "Rational(12,4) == 3",
+              "Rational(12,3) == 4"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Pipeline reps",
+            "intro": "Same five moves, rising difficulty.",
+            "examples": [
+              {
+                "prompt": "Solve $5 - 2(x - 4) = 3x + 3$.",
+                "steps": [
+                  "Distribute: $5 - 2x + 8 = 3x + 3$.",
+                  "Combine: $13 - 2x = 3x + 3$.",
+                  "Herd: $10 = 5x \\to x = 2$."
+                ],
+                "answer": "$x = 2$",
+                "check": [
+                  "5 - 2*(2 - 4) == 3*2 + 3"
+                ]
+              },
+              {
+                "prompt": "Solve $\\frac{x}{6} + \\frac{1}{4} = \\frac{x}{3}$.",
+                "steps": [
+                  "×12: $2x + 3 = 4x$.",
+                  "Herd: $3 = 2x$.",
+                  "$x = \\frac{3}{2}$."
+                ],
+                "answer": "$x = \\frac{3}{2}$",
+                "check": [
+                  "Rational(Rational(3,2), 6) + Rational(1,4) == Rational(Rational(3,2), 3)"
+                ]
+              },
+              {
+                "prompt": "Solve $\\frac{2x + 1}{3} - \\frac{x - 2}{4} = 2$.",
+                "steps": [
+                  "×12: $4(2x + 1) - 3(x - 2) = 24$.",
+                  "$8x + 4 - 3x + 6 = 24 \\to 5x + 10 = 24$.",
+                  "$5x = 14 \\to x = \\frac{14}{5}$."
+                ],
+                "answer": "$x = \\frac{14}{5}$",
+                "check": [
+                  "Rational(2*Rational(14,5) + 1, 3) - Rational(Rational(14,5) - 2, 4) == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Run the line",
+            "intro": "Distribute, clear, herd, finish, check.",
+            "problems": [
+              {
+                "prompt": "Solve $4(x - 2) + 6 = 2x$.",
+                "options": [
+                  "$x = 1$",
+                  "$x = -1$",
+                  "$x = 7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4x - 2 = 2x \\to 2x = 2 \\to x = 1$.",
+                "check": [
+                  "4*(1 - 2) + 6 == 2*1"
+                ]
+              },
+              {
+                "prompt": "Solve $\\frac{x - 1}{2} = \\frac{x + 3}{4}$.",
+                "options": [
+                  "$x = 5$",
+                  "$x = 7$",
+                  "$x = 1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "×4: $2(x - 1) = x + 3 \\to 2x - 2 = x + 3 \\to x = 5$.",
+                "check": [
+                  "Rational(5 - 1, 2) == Rational(5 + 3, 4)"
+                ]
+              },
+              {
+                "prompt": "Solve $0.3(x + 10) = 0.5x - 1$.",
+                "options": [
+                  "$x = 20$",
+                  "$x = 10$",
+                  "$x = 40$"
+                ],
+                "correctIndex": 0,
+                "explanation": "×10: $3(x + 10) = 5x - 10 \\to 3x + 30 = 5x - 10 \\to 40 = 2x \\to x = 20$.",
+                "check": [
+                  "Rational(3,10)*(20 + 10) == Rational(5,10)*20 - 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Checklists fly planes",
+            "body": "Surgeons and pilots — people whose mistakes cost lives — run written checklists for procedures they've done a thousand times, because ORDER catches what memory drops. The five-move equation pipeline is the same technology: not a crutch for beginners, but the professional habit that makes hard things reliably easy."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Distribute → clear (LCD) → herd → two-step → check.",
+              "The LCD multiplies EVERY term, integers included.",
+              "One move per line; the original equation gives the final verdict."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "literal-equations",
+      "title": "Literal Equations",
+      "concreteComparison": "The formula $C = \\frac{5}{9}(F - 32)$ converts Fahrenheit to Celsius. But a weather app in Ulaanbaatar needs the OTHER direction. Nobody re-derives physics — you SOLVE THE FORMULA for $F$: same balance moves, but the answer is an expression, $F = \\frac{9}{5}C + 32$. Solving for a letter instead of a number is the skill that makes every formula reversible.",
+      "objective": "Rearrange formulas and literal equations to isolate any chosen variable.",
+      "concept": [
+        "A **literal equation** has several letters. 'Solve for $h$' means: isolate $h$ on one side, with everything else — letters included — on the other.",
+        "The moves are IDENTICAL to number equations: undo addition, then multiplication, in reverse order. You just carry letters instead of arithmetic results.",
+        "$A = \\frac{1}{2}bh$ solved for $h$: multiply by $2$ (→ $2A = bh$), divide by $b$ (→ $h = \\frac{2A}{b}$). Two undos, same as ever.",
+        "Rearranged formulas are TOOLS: solve once, reuse forever. Spreadsheets, physics solvers, and unit converters are warehouses of pre-solved literal equations."
+      ],
+      "keyIdea": "Solve for a letter with the same undo moves — the 'answer' is an expression built from the other letters.",
+      "facts": [
+        {
+          "title": "Same moves, new cargo",
+          "explanation": "Undo in reverse order; letters ride along like numbers.",
+          "latex": "$A = \\tfrac{1}{2}bh \\to h = \\tfrac{2A}{b}$"
+        },
+        {
+          "title": "Solve once, use forever",
+          "explanation": "A rearranged formula is a permanent tool, not a one-off answer.",
+          "latex": "$F = \\tfrac{9}{5}C + 32$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "eqf4-we1",
+          "statement": "Solve $A = \\frac{1}{2}bh$ for $h$, then find $h$ when $A = 24$ and $b = 6$.",
+          "solution": "$2A = bh \\to h = \\frac{2A}{b}$. Then $h = \\frac{48}{6} = 8$.",
+          "check": [
+            "Rational(2*24, 6) == 8",
+            "Rational(1,2)*6*8 == 24"
+          ]
+        },
+        {
+          "id": "eqf4-we2",
+          "statement": "Solve $C = \\frac{5}{9}(F - 32)$ for $F$, and convert $C = 25$.",
+          "solution": "$\\frac{9}{5}C = F - 32 \\to F = \\frac{9}{5}C + 32$. At $C = 25$: $F = 45 + 32 = 77$.",
+          "check": [
+            "Rational(9,5)*25 + 32 == 77",
+            "Rational(5,9)*(77 - 32) == 25"
+          ]
+        },
+        {
+          "id": "eqf4-we3",
+          "statement": "Solve $P = 2\\ell + 2w$ for $w$.",
+          "solution": "$P - 2\\ell = 2w \\to w = \\frac{P - 2\\ell}{2}$. Check with $\\ell = 5, w = 3$: $P = 16$ and $\\frac{16 - 10}{2} = 3$. ✓",
+          "check": [
+            "2*5 + 2*3 == 16",
+            "Rational(16 - 2*5, 2) == 3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dividing only one term by the coefficient.",
+          "correction": "$P - 2\\ell = 2w$ → dividing by 2 hits the WHOLE left side: $w = \\frac{P - 2\\ell}{2}$, not $P - \\ell$.",
+          "authored": true
+        },
+        {
+          "text": "Treating the target letter as special mid-solve.",
+          "correction": "Letters obey the same algebra as numbers. If you'd subtract 32 in a number equation, subtract 32 here — don't freeze because it's 'a formula.'",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "eqf4-t1",
+          "statement": "Solve $d = rt$ for $t$, then find $t$ when $d = 240$, $r = 80$.",
+          "solution": "$t = \\frac{d}{r} = \\frac{240}{80} = 3$.",
+          "check": [
+            "Rational(240, 80) == 3",
+            "80*3 == 240"
+          ]
+        },
+        {
+          "id": "eqf4-t2",
+          "statement": "Solve $y = mx + b$ for $x$.",
+          "solution": "$y - b = mx \\to x = \\frac{y - b}{m}$.",
+          "check": [
+            "Rational(11 - 3, 2) == 4",
+            "2*4 + 3 == 11"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Solving for a letter",
+            "beats": [
+              "'Solve for $h$' = get $h$ alone.",
+              "Everything else — numbers AND letters — moves to the other side.",
+              "The answer is an EXPRESSION: $h = \\frac{2A}{b}$.",
+              "Same undo moves you've always used."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Demo",
+            "title": "Fahrenheit, reversed",
+            "beats": [
+              "$C = \\frac{5}{9}(F - 32)$ — solve for $F$.",
+              "×$\\frac{9}{5}$: $\\;\\frac{9}{5}C = F - 32$.",
+              "+32: $\\;F = \\frac{9}{5}C + 32$.",
+              "Two moves, and the formula now runs backwards."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why bother",
+            "title": "Formulas are multi-tools",
+            "beats": [
+              "$d = rt$ answers 'how far?'",
+              "$t = \\frac{d}{r}$ answers 'how long?'",
+              "$r = \\frac{d}{t}$ answers 'how fast?'",
+              "One relationship, three tools — rearrangement is free."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Isolate it",
+            "prompt": "Solve $V = \\ell w h$ for $w$.",
+            "options": [
+              "$w = \\frac{V}{\\ell h}$",
+              "$w = V - \\ell h$",
+              "$w = \\frac{\\ell h}{V}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Divide both sides by $\\ell h$: $w = \\frac{V}{\\ell h}$. (Check: $V = 24, \\ell = 2, h = 3$ gives $w = 4$.)",
+            "check": [
+              "Rational(24, 2*3) == 4",
+              "2*4*3 == 24"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Rearrangement reps",
+            "intro": "Undo in reverse order; letters are cargo.",
+            "examples": [
+              {
+                "prompt": "Solve $I = Prt$ for $r$, then find $r$ when $I = 60$, $P = 500$, $t = 3$.",
+                "steps": [
+                  "Divide by $Pt$: $r = \\frac{I}{Pt}$.",
+                  "$r = \\frac{60}{1500}$.",
+                  "$r = 0.04 = 4\\%$."
+                ],
+                "answer": "$r = \\frac{I}{Pt} = 4\\%$",
+                "check": [
+                  "Rational(60, 500*3) == Rational(4,100)"
+                ]
+              },
+              {
+                "prompt": "Solve $S = \\frac{n}{2}(a + b)$ for $b$.",
+                "steps": [
+                  "×2: $2S = n(a + b)$.",
+                  "÷n: $\\frac{2S}{n} = a + b$.",
+                  "$b = \\frac{2S}{n} - a$."
+                ],
+                "answer": "$b = \\frac{2S}{n} - a$",
+                "check": [
+                  "Rational(2*30, 5) - 4 == 8",
+                  "Rational(5,2)*(4 + 8) == 30"
+                ]
+              },
+              {
+                "prompt": "The area of a trapezoid is $A = \\frac{(b_1 + b_2)h}{2}$. Solve for $h$ and find it when $A = 35$, $b_1 = 4$, $b_2 = 10$.",
+                "steps": [
+                  "$2A = (b_1 + b_2)h$.",
+                  "$h = \\frac{2A}{b_1 + b_2}$.",
+                  "$h = \\frac{70}{14} = 5$."
+                ],
+                "answer": "$h = 5$",
+                "check": [
+                  "Rational(2*35, 4 + 10) == 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Free the variable",
+            "intro": "Reverse order of operations, always.",
+            "problems": [
+              {
+                "prompt": "Solve $C = 2\\pi r$ for $r$.",
+                "options": [
+                  "$r = \\frac{C}{2\\pi}$",
+                  "$r = 2\\pi C$",
+                  "$r = C - 2\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Divide both sides by $2\\pi$.",
+                "check": [
+                  "Rational(44, 2)*Rational(7,22) == 7"
+                ]
+              },
+              {
+                "prompt": "Solve $v = u + at$ for $a$.",
+                "options": [
+                  "$a = \\frac{v - u}{t}$",
+                  "$a = \\frac{v + u}{t}$",
+                  "$a = vt - u$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Subtract $u$, divide by $t$. (Check: $u=2, a=3, t=4 \\to v=14$; $\\frac{14-2}{4} = 3$ ✓)",
+                "check": [
+                  "Rational(14 - 2, 4) == 3"
+                ]
+              },
+              {
+                "prompt": "Using $F = \\frac{9}{5}C + 32$: water boils at $100°$C, which is…",
+                "options": [
+                  "$212°$F",
+                  "$180°$F",
+                  "$132°$F"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{9}{5}(100) + 32 = 180 + 32 = 212$.",
+                "check": [
+                  "Rational(9,5)*100 + 32 == 212"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The formula that saved Apollo 13",
+            "body": "When Apollo 13's systems failed, engineers on the ground re-solved spacecraft power and trajectory formulas for different unknowns in real time — given the electricity LEFT, how long can we run? given the burn time AVAILABLE, what course? Rearranging literal equations under pressure was, quite literally, rocket science that day — and it's the same two undo moves you just practiced."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "'Solve for h' isolates the letter; the answer is an expression.",
+              "Undo in reverse order — letters ride along like numbers.",
+              "Every rearranged formula is a reusable tool."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "modeling-with-equations",
+      "title": "Modeling with Equations",
+      "concreteComparison": "Three consecutive house numbers sum to $84$. A rectangle's length is $3$ more than twice its width, with perimeter $36$. Tickets: adults \\$9, kids \\$5, total \\$188 from $28$ people. None of these SAY 'equation' — but all three become one the moment you name a variable and translate. Grade 9 modeling is Grade 7 translation with more moving parts.",
+      "objective": "Model consecutive-integer, geometry, and mixed-quantity problems with multi-step equations.",
+      "concept": [
+        "Name ONE variable and build everything else FROM it: consecutive integers are $n, n+1, n+2$; 'three more than twice the width' is $2w + 3$.",
+        "Consecutive EVEN or ODD integers step by two: $n, n+2, n+4$.",
+        "Geometry supplies the equation for free: perimeter $= 2\\ell + 2w$, angle sums, equal sides — the shape's rules become your equals sign.",
+        "Two-quantity problems (adult/kid tickets) use one variable and a total: if $a$ adults, then $28 - a$ kids, and the money equation ties them: $9a + 5(28 - a) = 188$.",
+        "Finish by answering the QUESTION — often the other quantity, or a length, not the raw $x$."
+      ],
+      "keyIdea": "One variable, everything expressed from it, one equation from the story's built-in rule — then translate back.",
+      "facts": [
+        {
+          "title": "Consecutive integers",
+          "explanation": "Evens/odds step by two: n, n+2, n+4.",
+          "latex": "$n, n+1, n+2$"
+        },
+        {
+          "title": "Two quantities, one variable",
+          "explanation": "A known total lets one variable carry both counts.",
+          "latex": "$a$ adults $\\to 28 - a$ kids"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "eqf5-we1",
+          "statement": "Three consecutive integers sum to $84$. Find them.",
+          "solution": "$n + (n+1) + (n+2) = 84 \\to 3n + 3 = 84 \\to n = 27$: the integers are $27, 28, 29$.",
+          "check": [
+            "27 + 28 + 29 == 84"
+          ]
+        },
+        {
+          "id": "eqf5-we2",
+          "statement": "A rectangle's length is $3$ more than twice its width; the perimeter is $36$. Find the dimensions.",
+          "solution": "$2w + 2(2w + 3) = 36 \\to 6w + 6 = 36 \\to w = 5$, $\\ell = 13$.",
+          "check": [
+            "2*5 + 2*13 == 36",
+            "13 == 2*5 + 3"
+          ]
+        },
+        {
+          "id": "eqf5-we3",
+          "statement": "$28$ people paid \\$188: adults \\$9, kids \\$5. How many adults?",
+          "solution": "$9a + 5(28 - a) = 188 \\to 4a + 140 = 188 \\to a = 12$ adults (and $16$ kids).",
+          "check": [
+            "9*12 + 5*(28 - 12) == 188"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using two variables when one suffices.",
+          "correction": "With a known total (28 people), the second quantity is 28 − a. One variable, one equation — systems can wait for Grade 8's toolkit.",
+          "authored": true
+        },
+        {
+          "text": "Answering with n when the question asked for something else.",
+          "correction": "'Find the LARGEST of the three integers' wants n + 2 = 29, not n = 27. Reread the question after solving.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "eqf5-t1",
+          "statement": "Two consecutive EVEN integers sum to $46$. Find them.",
+          "solution": "$n + (n + 2) = 46 \\to n = 22$: the integers are $22$ and $24$.",
+          "check": [
+            "22 + 24 == 46"
+          ]
+        },
+        {
+          "id": "eqf5-t2",
+          "statement": "A triangle's angles are $x$, $2x$, and $x + 20$ degrees. Find $x$.",
+          "solution": "$4x + 20 = 180 \\to x = 40$.",
+          "check": [
+            "4*40 + 20 == 180"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The craft",
+            "title": "Build everything from one letter",
+            "beats": [
+              "Pick the variable the story pivots on.",
+              "Express every other quantity FROM it.",
+              "'3 more than twice the width' → $2w + 3$.",
+              "'the rest of the 28 people' → $28 - a$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Free equations",
+            "title": "The story's built-in rule",
+            "beats": [
+              "Sums given → add your expressions.",
+              "Shapes → perimeter/angle formulas supply the '='.",
+              "Money → price × count, summed to the total.",
+              "The rule was in the story before you arrived."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Last step",
+            "title": "Translate BACK",
+            "beats": [
+              "$x = 27$ is algebra, not an answer.",
+              "'The integers are 27, 28, 29' answers.",
+              "Check against the story: do they sum to 84? ✓",
+              "Ask: did the question want $x$… or something built from it?"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Set it up",
+            "prompt": "A board $60$ cm long is cut so one piece is $8$ cm longer than the other. The SHORTER piece is…",
+            "options": [
+              "$26$ cm",
+              "$34$ cm",
+              "$30$ cm"
+            ],
+            "correctIndex": 0,
+            "explanation": "$x + (x + 8) = 60 \\to 2x = 52 \\to x = 26$; the pieces are $26$ and $34$.",
+            "check": [
+              "26 + 34 == 60",
+              "34 - 26 == 8"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Model, solve, translate back",
+            "intro": "One letter, one built-in rule.",
+            "examples": [
+              {
+                "prompt": "The sum of three consecutive ODD integers is $99$. Find the largest.",
+                "steps": [
+                  "$n + (n+2) + (n+4) = 99$.",
+                  "$3n + 6 = 99 \\to n = 31$.",
+                  "Largest: $n + 4 = 35$."
+                ],
+                "answer": "$35$",
+                "check": [
+                  "31 + 33 + 35 == 99"
+                ]
+              },
+              {
+                "prompt": "An isosceles triangle's two equal sides are each $5$ cm longer than the base; the perimeter is $43$ cm. Find the base.",
+                "steps": [
+                  "Base $b$; equal sides $b + 5$ each.",
+                  "$b + 2(b + 5) = 43 \\to 3b + 10 = 43$.",
+                  "$b = 11$ cm."
+                ],
+                "answer": "$11$ cm",
+                "check": [
+                  "11 + 2*(11 + 5) == 43"
+                ]
+              },
+              {
+                "prompt": "A cafe sold $40$ drinks — lattes at \\$4.50, teas at \\$3 — for \\$150. How many lattes?",
+                "steps": [
+                  "$4.5L + 3(40 - L) = 150$.",
+                  "$1.5L + 120 = 150 \\to L = 20$.",
+                  "$20$ lattes, $20$ teas."
+                ],
+                "answer": "$20$ lattes",
+                "check": [
+                  "Rational(45,10)*20 + 3*(40 - 20) == 150"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Story to solution",
+            "intro": "Name, build, equate, answer.",
+            "problems": [
+              {
+                "prompt": "Four consecutive integers sum to $106$. The smallest is…",
+                "options": [
+                  "$25$",
+                  "$26$",
+                  "$24$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4n + 6 = 106 \\to n = 25$.",
+                "check": [
+                  "25 + 26 + 27 + 28 == 106"
+                ]
+              },
+              {
+                "prompt": "A rectangle's length is triple its width; the perimeter is $64$. Its width is…",
+                "options": [
+                  "$8$",
+                  "$16$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2w + 6w = 64 \\to w = 8$ (length $24$).",
+                "check": [
+                  "2*8 + 2*24 == 64",
+                  "24 == 3*8"
+                ]
+              },
+              {
+                "prompt": "$25$ coins — dimes (\\$0.10) and quarters (\\$0.25) — total \\$4. How many quarters?",
+                "options": [
+                  "$10$",
+                  "$15$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$0.25q + 0.10(25 - q) = 4 \\to 0.15q = 1.5 \\to q = 10$.",
+                "check": [
+                  "Rational(25,100)*10 + Rational(10,100)*15 == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Diophantus's tombstone",
+            "body": "A famous ancient puzzle claims the mathematician Diophantus's tomb states: his boyhood lasted 1/6 of his life, his beard grew after 1/12 more, he married after 1/7 more, a son came 5 years later, the son lived half his father's life, and Diophantus died 4 years after him. The equation $\\frac{x}{6} + \\frac{x}{12} + \\frac{x}{7} + 5 + \\frac{x}{2} + 4 = x$ yields $x = 84$ — a life story solved for x, eighteen centuries ago."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Build every quantity from ONE variable; steps of 1 or 2 for consecutive integers.",
+              "Shapes and totals supply the equation for free.",
+              "Translate the solved x back into the story's answer."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "rate-time-and-mixture",
+      "title": "Rate, Time & Mixture Problems",
+      "concreteComparison": "Two trains leave stations $300$ km apart, heading toward each other at $70$ and $80$ km/h. When do they meet? Cue groans — but the setup is one line: distances ADD to $300$, so $70t + 80t = 300$ and $t = 2$ hours. The dreaded 'word problems' of algebra are all one pattern: quantity = rate × time, organized in a table.",
+      "objective": "Solve motion (d = rt) and mixture problems by organizing rate × time or amount × concentration in tables.",
+      "concept": [
+        "**Motion:** $d = rt$ for each traveler. Toward each other → distances ADD to the gap. Same direction → distances EQUAL when one catches the other.",
+        "A **table** with rows for each traveler and columns $r, t, d$ turns the story into algebra mechanically — fill what you know, express the rest, write the distance relationship.",
+        "**Mixture:** amount of 'pure stuff' = concentration × volume. Mixing adds both volumes AND pure amounts: $0.20x + 0.50(10 - x) = 0.30(10)$.",
+        "Work problems run the same engine: job per hour × hours = share of job, shares summing to 1.",
+        "Sanity checks live in the story: meeting times should beat either train alone; mixtures land BETWEEN the two concentrations."
+      ],
+      "keyIdea": "Rate × time = amount, one row per actor; the story says whether the amounts add, match, or average.",
+      "facts": [
+        {
+          "title": "Motion table",
+          "explanation": "Toward each other: distances add. Chasing: distances equal.",
+          "latex": "$d = rt$ per traveler"
+        },
+        {
+          "title": "Mixture equation",
+          "explanation": "Concentration × volume tracks the 'pure stuff' through the pour.",
+          "latex": "pure in + pure in = pure out"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "eqf6-we1",
+          "statement": "Trains $300$ km apart travel toward each other at $70$ and $80$ km/h. When do they meet?",
+          "solution": "$70t + 80t = 300 \\to 150t = 300 \\to t = 2$ hours.",
+          "check": [
+            "70*2 + 80*2 == 300"
+          ]
+        },
+        {
+          "id": "eqf6-we2",
+          "statement": "A cyclist leaves at $12$ km/h. Two hours later, a car follows at $60$ km/h. How long until the car catches up?",
+          "solution": "Cyclist's head start: $24$ km. $60t = 12t + 24 \\to 48t = 24 \\to t = 0.5$ h — thirty minutes.",
+          "check": [
+            "60*Rational(1,2) == 12*Rational(1,2) + 24"
+          ]
+        },
+        {
+          "id": "eqf6-we3",
+          "statement": "How many liters of $20\\%$ juice must mix with $50\\%$ juice to make $10$ L of $30\\%$ juice?",
+          "solution": "$0.20x + 0.50(10 - x) = 3 \\to 5 - 0.3x = 3 \\to x = \\frac{20}{3} \\approx 6.7$ L of the $20\\%$.",
+          "check": [
+            "Rational(20,100)*Rational(20,3) + Rational(50,100)*(10 - Rational(20,3)) == 3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding the rates when travelers move the same direction.",
+          "correction": "Rates add only for HEAD-ON motion. A chase equates distances: 60t = 12t + 24 — the gap closes at the rate DIFFERENCE.",
+          "authored": true
+        },
+        {
+          "text": "Averaging concentrations without volumes.",
+          "correction": "Mixing 20% and 50% gives 35% ONLY for equal volumes. The pure-stuff equation weights each concentration by its liters.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "eqf6-t1",
+          "statement": "Two hikers $18$ km apart walk toward each other at $4$ and $5$ km/h. When do they meet?",
+          "solution": "$9t = 18 \\to t = 2$ hours.",
+          "check": [
+            "4*2 + 5*2 == 18"
+          ]
+        },
+        {
+          "id": "eqf6-t2",
+          "statement": "How much water (0% salt) dilutes $6$ L of $10\\%$ brine to $4\\%$?",
+          "solution": "$0.10(6) = 0.04(6 + x) \\to 0.6 = 0.24 + 0.04x \\to x = 9$ L.",
+          "check": [
+            "Rational(10,100)*6 == Rational(4,100)*(6 + 9)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The table",
+            "title": "One row per actor",
+            "beats": [
+              "Columns: rate, time, distance (or conc., volume, pure).",
+              "Fill knowns; express unknowns from ONE variable.",
+              "The story's geometry writes the equation:",
+              "head-on → add; chase → equate; mix → pure-in = pure-out."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Motion",
+            "title": "Add or equate?",
+            "beats": [
+              "Toward each other: their distances swallow the gap → ADD to it.",
+              "$70t + 80t = 300$.",
+              "Chasing: they've gone the SAME distance at the catch.",
+              "$60t = 12t + 24$ (the head start rides on one side)."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Mixture",
+            "title": "Follow the pure stuff",
+            "beats": [
+              "$20\\%$ juice: each liter carries $0.2$ L of 'pure juice.'",
+              "Pure in from A + pure in from B = pure in the blend.",
+              "$0.2x + 0.5(10 - x) = 0.3(10)$.",
+              "Answers must land BETWEEN the two strengths — sanity check."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Closing speed",
+            "prompt": "Cars $200$ km apart drive toward each other at $45$ and $55$ km/h. Meeting time?",
+            "options": [
+              "$2$ hours",
+              "$4$ hours",
+              "$1.8$ hours"
+            ],
+            "correctIndex": 0,
+            "explanation": "Closing speed $100$ km/h: $\\frac{200}{100} = 2$ h.",
+            "check": [
+              "45*2 + 55*2 == 200"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Tables at work",
+            "intro": "Row per actor; the story picks the relationship.",
+            "examples": [
+              {
+                "prompt": "A boat goes $36$ km downstream in $2$ h and back upstream in $3$ h. Find the boat's still-water speed. (Current $c$, boat $b$.)",
+                "steps": [
+                  "Down: $b + c = 18$. Up: $b - c = 12$.",
+                  "Add the equations: $2b = 30$.",
+                  "$b = 15$ km/h (and $c = 3$)."
+                ],
+                "answer": "$15$ km/h",
+                "check": [
+                  "(15 + 3)*2 == 36",
+                  "(15 - 3)*3 == 36"
+                ]
+              },
+              {
+                "prompt": "Nuts at \\$8/kg mix with raisins at \\$5/kg to make $12$ kg of trail mix worth \\$6/kg. How many kg of nuts?",
+                "steps": [
+                  "$8n + 5(12 - n) = 72$.",
+                  "$3n + 60 = 72 \\to n = 4$.",
+                  "$4$ kg nuts, $8$ kg raisins."
+                ],
+                "answer": "$4$ kg",
+                "check": [
+                  "8*4 + 5*(12 - 4) == 72"
+                ]
+              },
+              {
+                "prompt": "Pipe A fills a tank in $6$ h; pipe B in $3$ h. Together?",
+                "steps": [
+                  "Rates: $\\frac{1}{6} + \\frac{1}{3}$ tank per hour.",
+                  "$= \\frac{1}{2}$ tank/hour.",
+                  "Full tank in $2$ hours."
+                ],
+                "answer": "$2$ hours",
+                "check": [
+                  "Rational(1,6) + Rational(1,3) == Rational(1,2)",
+                  "Rational(1,2)*2 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Rate-table workout",
+            "intro": "Draw the table, then let it write the equation.",
+            "problems": [
+              {
+                "prompt": "A runner at $10$ km/h has a $5$ km head start on a cyclist at $20$ km/h. Catch-up time?",
+                "options": [
+                  "$0.5$ h",
+                  "$1$ h",
+                  "$2$ h"
+                ],
+                "correctIndex": 0,
+                "explanation": "$20t = 10t + 5 \\to t = 0.5$ h.",
+                "check": [
+                  "20*Rational(1,2) == 10*Rational(1,2) + 5"
+                ]
+              },
+              {
+                "prompt": "Mixing $2$ L of $60\\%$ syrup with $4$ L of $30\\%$ syrup gives what strength?",
+                "options": [
+                  "$40\\%$",
+                  "$45\\%$",
+                  "$35\\%$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Pure: $1.2 + 1.2 = 2.4$ L in $6$ L $\\to 40\\%$.",
+                "check": [
+                  "Rational(60,100)*2 + Rational(30,100)*4 == Rational(40,100)*6"
+                ]
+              },
+              {
+                "prompt": "Two printers finish a job in $12$ and $6$ minutes alone. Together?",
+                "options": [
+                  "$4$ min",
+                  "$9$ min",
+                  "$3$ min"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{1}{12} + \\frac{1}{6} = \\frac{1}{4}$ job/min → $4$ minutes.",
+                "check": [
+                  "Rational(1,12) + Rational(1,6) == Rational(1,4)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The fly between the trains",
+            "body": "A classic: two trains 300 km apart approach at a combined 150 km/h while a fly zips back and forth between them at 200 km/h. How far does the fly travel? Summing its infinite zigzags is a nightmare — but the trains meet in 2 hours, so the fly simply flies for 2 hours: 400 km. When John von Neumann answered instantly, the asker laughed 'you saw the trick!' He replied: 'What trick? I summed the series.'"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "One table row per actor: rate × time = amount.",
+              "Head-on adds distances; chases equate them; mixtures track the pure stuff.",
+              "Sanity-check against the story: times, and strengths between the blends."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "eqf-pr1",
+      "statement": "Solve $9x - 7 = 5x + 13$.",
+      "solution": "$4x = 20 \\to x = 5$.",
+      "check": [
+        "9*5 - 7 == 5*5 + 13"
+      ]
+    },
+    {
+      "id": "eqf-pr2",
+      "statement": "Solve $6(x - 2) = 2(3x - 6)$.",
+      "solution": "$6x - 12 = 6x - 12$: identity — all real numbers.",
+      "check": [
+        "6*(3 - 2) == 2*(3*3 - 6)",
+        "6*(0 - 2) == 2*(3*0 - 6)"
+      ]
+    },
+    {
+      "id": "eqf-pr3",
+      "statement": "Solve $\\frac{x}{4} + \\frac{x - 2}{6} = 3$.",
+      "solution": "×12: $3x + 2(x - 2) = 36 \\to 5x = 40 \\to x = 8$.",
+      "check": [
+        "Rational(8,4) + Rational(8 - 2, 6) == 3"
+      ]
+    },
+    {
+      "id": "eqf-pr4",
+      "statement": "Solve $P = a + b + c$ for $b$, and find $b$ when $P = 24$, $a = 7$, $c = 9$.",
+      "solution": "$b = P - a - c = 24 - 7 - 9 = 8$.",
+      "check": [
+        "24 - 7 - 9 == 8",
+        "7 + 8 + 9 == 24"
+      ]
+    },
+    {
+      "id": "eqf-pr5",
+      "statement": "Solve $A = \\frac{1}{2}h(b_1 + b_2)$ for $b_1$.",
+      "solution": "$\\frac{2A}{h} = b_1 + b_2 \\to b_1 = \\frac{2A}{h} - b_2$. (Check: $h=4, b_1=3, b_2=7 \\to A=20$; $\\frac{40}{4} - 7 = 3$ ✓)",
+      "check": [
+        "Rational(1,2)*4*(3 + 7) == 20",
+        "Rational(2*20, 4) - 7 == 3"
+      ]
+    },
+    {
+      "id": "eqf-pr6",
+      "statement": "Five consecutive integers sum to $205$. Find the middle one.",
+      "solution": "$5n + 10 = 205$ with $n$ smallest → $n = 39$; middle is $41$. (Or: the middle IS the mean, $205 \\div 5 = 41$.)",
+      "check": [
+        "39 + 40 + 41 + 42 + 43 == 205",
+        "Rational(205, 5) == 41"
+      ]
+    },
+    {
+      "id": "eqf-pr7",
+      "statement": "A theater sold $150$ tickets — floor seats \\$12, balcony \\$8 — for \\$1{,}560. How many floor seats?",
+      "solution": "$12f + 8(150 - f) = 1560 \\to 4f = 360 \\to f = 90$.",
+      "check": [
+        "12*90 + 8*(150 - 90) == 1560"
+      ]
+    },
+    {
+      "id": "eqf-pr8",
+      "statement": "Two buses $270$ km apart drive toward each other at $60$ and $75$ km/h. When and where (from the slower bus's start) do they meet?",
+      "solution": "$135t = 270 \\to t = 2$ h; slower bus covers $120$ km.",
+      "check": [
+        "60*2 + 75*2 == 270",
+        "60*2 == 120"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "eqf-ty1",
+      "statement": "Solve $4(2x - 3) = 5x + 9$.",
+      "solution": "$8x - 12 = 5x + 9 \\to 3x = 21 \\to x = 7$.",
+      "check": [
+        "4*(2*7 - 3) == 5*7 + 9"
+      ]
+    },
+    {
+      "id": "eqf-ty2",
+      "statement": "Classify: $3(x + 4) - x = 2(x + 6)$.",
+      "solution": "Left: $2x + 12$; right: $2x + 12$ — identity, all real numbers.",
+      "check": [
+        "3*(1 + 4) - 1 == 2*(1 + 6)",
+        "3*(-5 + 4) + 5 == 2*(-5 + 6)"
+      ]
+    },
+    {
+      "id": "eqf-ty3",
+      "statement": "Solve $\\frac{2x - 1}{3} = \\frac{x + 4}{2}$.",
+      "solution": "×6: $2(2x - 1) = 3(x + 4) \\to 4x - 2 = 3x + 12 \\to x = 14$.",
+      "check": [
+        "Rational(2*14 - 1, 3) == Rational(14 + 4, 2)"
+      ]
+    },
+    {
+      "id": "eqf-ty4",
+      "statement": "Solve $s = \\frac{d}{t}$ for $t$, then find how long a $384{,}000$ km trip takes at $800$ km/h.",
+      "solution": "$t = \\frac{d}{s} = \\frac{384000}{800} = 480$ hours (20 days — the Moon is far).",
+      "check": [
+        "Rational(384000, 800) == 480"
+      ]
+    },
+    {
+      "id": "eqf-ty5",
+      "statement": "A wire $90$ cm long is bent into a triangle whose sides are consecutive integers. Find the sides, and confirm they form a valid triangle.",
+      "solution": "$n + (n+1) + (n+2) = 90 \\to 3n + 3 = 90 \\to n = 29$: sides $29, 30, 31$. Triangle check: $29 + 30 = 59 > 31$. ✓",
+      "check": [
+        "29 + 30 + 31 == 90",
+        "29 + 30 > 31"
+      ]
+    },
+    {
+      "id": "eqf-ty6",
+      "statement": "How many liters of pure ($100\\%$) juice must be added to $8$ L of $25\\%$ juice to reach $40\\%$?",
+      "solution": "$0.25(8) + x = 0.40(8 + x) \\to 2 + x = 3.2 + 0.4x \\to 0.6x = 1.2 \\to x = 2$ L.",
+      "check": [
+        "Rational(25,100)*8 + 2 == Rational(40,100)*(8 + 2)"
+      ]
+    }
+  ]
+}
