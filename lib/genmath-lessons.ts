@@ -72,6 +72,7 @@ import equationsAndFormulas from "@/data/genmath/9/equations-and-formulas.json";
 import inequalitiesAbsValue from "@/data/genmath/9/inequalities-and-absolute-value.json";
 import introToFunctions from "@/data/genmath/9/introduction-to-functions.json";
 import linearModelsVariation from "@/data/genmath/9/linear-models-and-variation.json";
+import inequalitiesTwoVars from "@/data/genmath/9/inequalities-in-two-variables.json";
 // Grade 8 topic JSON imports (added as each topic is authored + published).
 import realNumberSystem from "@/data/genmath/8/the-real-number-system.json";
 import exponentsScientific from "@/data/genmath/8/exponents-and-scientific-notation.json";
@@ -283,7 +284,7 @@ export const GRADE9_SPINE: GradeSpineEntry[] = [
     slug: "inequalities-in-two-variables",
     title: "Systems of Inequalities",
     blurb: "Graphing two-variable inequalities, shading half-planes, and systems of inequalities as feasible regions.",
-    live: false,
+    live: true,
   },
   {
     slug: "piecewise-and-absolute-value-graphs",
@@ -479,6 +480,7 @@ const grade9Topics: GenMathTopic[] = [
   inequalitiesAbsValue as GenMathTopic,
   introToFunctions as GenMathTopic,
   linearModelsVariation as GenMathTopic,
+  inequalitiesTwoVars as GenMathTopic,
 ];
 
 const grade8Topics: GenMathTopic[] = [

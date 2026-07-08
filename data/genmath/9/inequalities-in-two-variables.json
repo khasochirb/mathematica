@@ -1,0 +1,1724 @@
+{
+  "slug": "inequalities-in-two-variables",
+  "title": "Systems of Inequalities",
+  "grade": 9,
+  "blurb": "Graphing two-variable inequalities, shading half-planes, and systems of inequalities as feasible regions.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "solutions-in-the-plane",
+      "title": "Solutions in the Plane",
+      "concreteComparison": "The inequality $y > 2x + 1$ isn't asking for one answer — it's running a border checkpoint on the entire plane. The point $(1, 5)$? $5 > 3$: admitted. $(2, 3)$? $3 > 5$ is false: turned away. Every point in the plane gets a yes or no, and the yeses form a whole REGION — half of everything.",
+      "objective": "Test whether points satisfy two-variable inequalities and understand solutions as regions.",
+      "concept": [
+        "A solution of a two-variable inequality is any point $(x, y)$ that makes it TRUE. Substitute both coordinates; the verdict is immediate.",
+        "$(1, 5)$ in $y > 2x + 1$: is $5 > 2(1) + 1 = 3$? Yes — solution. One substitution, one answer.",
+        "Unlike an equation's razor-thin line of solutions, an inequality's solutions fill half the plane: infinitely many points, forming one connected region.",
+        "The boundary line $y = 2x + 1$ splits the plane into two halves; the inequality claims exactly one of them (and, for $\\le$ or $\\ge$, the line itself)."
+      ],
+      "keyIdea": "Substitute the point; true means inside the solution region. Inequalities claim half the plane.",
+      "facts": [
+        {
+          "title": "Point test",
+          "explanation": "One evaluation decides membership.",
+          "latex": "substitute both coordinates"
+        },
+        {
+          "title": "Half the plane",
+          "explanation": "An inequality's solutions form an entire region.",
+          "latex": "boundary line splits it in two"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sys1-we1",
+          "statement": "Is $(1, 5)$ a solution of $y > 2x + 1$? Is $(2, 3)$?",
+          "solution": "$(1,5)$: $5 > 3$ ✓ yes. $(2,3)$: $3 > 5$ ✗ no.",
+          "check": [
+            "5 > 2*1 + 1",
+            "3 < 2*2 + 1"
+          ]
+        },
+        {
+          "id": "sys1-we2",
+          "statement": "Is $(4, 2)$ a solution of $3x - 2y \\le 8$?",
+          "solution": "$12 - 4 = 8 \\le 8$ ✓ — yes, exactly on the boundary, and $\\le$ includes it.",
+          "check": [
+            "3*4 - 2*2 == 8"
+          ]
+        },
+        {
+          "id": "sys1-we3",
+          "statement": "Which of $(0, 0)$, $(5, 1)$, $(2, 6)$ solve $x + y < 6$?",
+          "solution": "$(0,0)$: $0 < 6$ ✓. $(5,1)$: $6 < 6$ ✗ (boundary, excluded by strict $<$). $(2,6)$: $8 < 6$ ✗.",
+          "check": [
+            "0 + 0 < 6",
+            "5 + 1 == 6",
+            "2 + 6 > 6"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Substituting the coordinates into the wrong letters.",
+          "correction": "A point is (x, y) IN THAT ORDER: (1, 5) sends x = 1, y = 5. Swapping them tests a different point entirely.",
+          "authored": true
+        },
+        {
+          "text": "Counting boundary points as solutions of strict inequalities.",
+          "correction": "On y > 2x + 1, points ON the line satisfy equality, not the strict >. They belong only when the symbol is ≥ or ≤.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sys1-t1",
+          "statement": "Is $(-2, 4)$ a solution of $y \\ge x + 5$?",
+          "solution": "$4 \\ge 3$ ✓ — yes.",
+          "check": [
+            "4 >= -2 + 5"
+          ]
+        },
+        {
+          "id": "sys1-t2",
+          "statement": "For $2x + y > 10$: test $(3, 4)$ and $(3, 5)$.",
+          "solution": "$(3,4)$: $10 > 10$ ✗. $(3,5)$: $11 > 10$ ✓.",
+          "check": [
+            "2*3 + 4 == 10",
+            "2*3 + 5 > 10"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "Play with it",
+            "title": "Checkpoint on the plane",
+            "teach": "The line $y = 2x + 1$ passes through these points. Everything ABOVE it satisfies $y > 2x + 1$; everything below fails. Two of the plotted points are off the line — decide which side each lives on.",
+            "config": {
+              "mode": "plot",
+              "min": -4,
+              "max": 6,
+              "points": [
+                {
+                  "x": 0,
+                  "y": 1
+                },
+                {
+                  "x": 1,
+                  "y": 3
+                },
+                {
+                  "x": 1,
+                  "y": 5,
+                  "label": "(1, 5)",
+                  "color": "#3f9d63"
+                },
+                {
+                  "x": 2,
+                  "y": 3,
+                  "label": "(2, 3)",
+                  "color": "#d7503f"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The test",
+            "title": "Substitute and judge",
+            "beats": [
+              "Feed BOTH coordinates in: $x$ first, $y$ second.",
+              "$(1, 5)$ in $y > 2x + 1$: $\\;5 > 3$. ✓",
+              "$(2, 3)$: $\\;3 > 5$. ✗",
+              "Every point in the plane gets a verdict."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The shape of yes",
+            "title": "Half the plane says yes",
+            "beats": [
+              "The boundary $y = 2x + 1$ is a fence.",
+              "One whole SIDE satisfies the inequality.",
+              "The other whole side fails.",
+              "Strict symbols exclude the fence; $\\le, \\ge$ include it."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Run the checkpoint",
+            "prompt": "Which point solves $x - y \\ge 3$?",
+            "options": [
+              "$(6, 2)$",
+              "$(2, 6)$",
+              "$(0, 0)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$6 - 2 = 4 \\ge 3$ ✓; the others give $-4$ and $0$.",
+            "check": [
+              "6 - 2 >= 3",
+              "2 - 6 < 3",
+              "0 - 0 < 3"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Verdicts at speed",
+            "intro": "x first, y second, then read the symbol.",
+            "examples": [
+              {
+                "prompt": "Test $(0, 0)$ in $4x + 3y < 12$ — and explain why the origin is everyone's favorite test point.",
+                "steps": [
+                  "$0 + 0 = 0 < 12$ ✓.",
+                  "Zeros make arithmetic instant.",
+                  "The origin settles most shading questions in one breath."
+                ],
+                "answer": "solution ✓",
+                "check": [
+                  "4*0 + 3*0 < 12"
+                ]
+              },
+              {
+                "prompt": "The line $y = -x + 4$ passes through $(1, 3)$. Which side of it is $(3, 3)$ on, relative to $y > -x + 4$?",
+                "steps": [
+                  "Test: $3 > -3 + 4 = 1$ ✓.",
+                  "$(3,3)$ satisfies the greater-than side.",
+                  "It lives ABOVE the boundary."
+                ],
+                "answer": "the > side (above)",
+                "check": [
+                  "3 > -3 + 4"
+                ]
+              },
+              {
+                "prompt": "A snack budget: $2x + 1.5y \\le 12$ (x sandwiches, y juices). Can you afford 3 sandwiches and 4 juices?",
+                "steps": [
+                  "$2(3) + 1.5(4) = 6 + 6 = 12$.",
+                  "$12 \\le 12$ ✓ — exactly on budget.",
+                  "Affordable, with zero change."
+                ],
+                "answer": "yes — exactly \\$12",
+                "check": [
+                  "2*3 + Rational(3,2)*4 == 12"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Border control",
+            "intro": "Substitute; respect strict vs inclusive.",
+            "problems": [
+              {
+                "prompt": "Which point is NOT a solution of $y < 3x$?",
+                "options": [
+                  "$(1, 3)$",
+                  "$(2, 1)$",
+                  "$(3, 5)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(1,3)$: $3 < 3$ is false (boundary + strict). The others: $1 < 6$ ✓, $5 < 9$ ✓.",
+                "check": [
+                  "3 == 3*1",
+                  "1 < 3*2",
+                  "5 < 3*3"
+                ]
+              },
+              {
+                "prompt": "$(−1, 2)$ in $5x + y \\ge -3$?",
+                "options": [
+                  "yes: $-3 \\ge -3$",
+                  "no: $-3 < -3$",
+                  "can't tell"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5(-1) + 2 = -3$, and $\\ge$ admits the boundary.",
+                "check": [
+                  "5*-1 + 2 == -3"
+                ]
+              },
+              {
+                "prompt": "How many solutions does $y \\le x + 2$ have?",
+                "options": [
+                  "infinitely many — a whole region",
+                  "one",
+                  "two"
+                ],
+                "correctIndex": 0,
+                "explanation": "Every point on or below the line qualifies — half the plane.",
+                "check": [
+                  "0 <= 0 + 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Half-planes run your thermostat",
+            "body": "Control engineers describe safe operating states as inequality regions: temperature under a max, pressure over a min. A device's software constantly point-tests its current state against these half-planes — thousands of substitutions per second. When your laptop fan spins up, a point just crossed a boundary line."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Point test: substitute x and y; true means member.",
+              "An inequality's solutions fill half the plane.",
+              "Strict symbols exclude the boundary; $\\le, \\ge$ include it."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "graphing-half-planes",
+      "title": "Graphing Half-Planes",
+      "concreteComparison": "To graph $y \\le 2x - 1$, you build a fence and paint a side: draw the line $y = 2x - 1$ (SOLID, since $\\le$ keeps it), test one easy point to learn which side is true, and shade that side. Fence, test, paint — three moves, and infinity is mapped.",
+      "objective": "Graph two-variable inequalities: boundary line (solid/dashed), test point, and shading.",
+      "concept": [
+        "Step 1 — FENCE: graph the boundary line from the related equation. Use a SOLID line for $\\le, \\ge$ (the fence belongs) and a DASHED line for $<, >$ (it doesn't).",
+        "Step 2 — TEST: pick an easy point off the line (the origin, if available) and substitute.",
+        "Step 3 — PAINT: shade the side containing your true test point — or the other side if it failed.",
+        "Special fences: $x > 3$ is a vertical dashed line shaded right; $y \\le -2$ is horizontal solid shaded down.",
+        "Solved-form shortcut: with $y$ isolated and a POSITIVE $y$-coefficient, $y >$ shades above, $y <$ shades below. The test point never lies, though."
+      ],
+      "keyIdea": "Fence (solid/dashed), test one point, paint the true side.",
+      "facts": [
+        {
+          "title": "Solid vs dashed",
+          "explanation": "Inclusive symbols keep the fence; strict ones exclude it.",
+          "latex": "$\\le, \\ge$ solid; $<, >$ dashed"
+        },
+        {
+          "title": "The origin trick",
+          "explanation": "Zeros decide the shading instantly.",
+          "latex": "test $(0,0)$ when it's off the line"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sys2-we1",
+          "statement": "Describe the graph of $y \\le 2x - 1$.",
+          "solution": "Solid line through $(0, -1)$ with slope $2$; test $(0,0)$: $0 \\le -1$ FALSE, so shade the side WITHOUT the origin (below the line).",
+          "check": [
+            "0 > 2*0 - 1",
+            "2*2 - 1 == 3",
+            "1 <= 2*2 - 1"
+          ]
+        },
+        {
+          "id": "sys2-we2",
+          "statement": "Describe the graph of $x + y > 4$.",
+          "solution": "Dashed line through $(4, 0)$ and $(0, 4)$; test $(0,0)$: $0 > 4$ false — shade the far side (above/right).",
+          "check": [
+            "0 + 0 < 4",
+            "3 + 3 > 4"
+          ]
+        },
+        {
+          "id": "sys2-we3",
+          "statement": "Describe the graph of $x \\ge -2$.",
+          "solution": "Vertical SOLID line at $x = -2$, shaded right — every point with x-coordinate at least $-2$.",
+          "check": [
+            "0 >= -2",
+            "-3 < -2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Always shading above for > without isolating y.",
+          "correction": "The rule 'greater shades above' needs y ISOLATED with a positive coefficient. In x − y > 2 the safe move is a test point — which shades BELOW here.",
+          "authored": true
+        },
+        {
+          "text": "Testing a point that's ON the boundary.",
+          "correction": "A boundary point gives equality — useless for choosing a side. Pick a point clearly off the fence; the origin, unless the line passes through it.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sys2-t1",
+          "statement": "Solid or dashed, and which side: $y > \\frac{1}{2}x + 3$?",
+          "solution": "Dashed (strict); test $(0,0)$: $0 > 3$ false — shade the non-origin side (above).",
+          "check": [
+            "0 < Rational(1,2)*0 + 3",
+            "5 > Rational(1,2)*2 + 3"
+          ]
+        },
+        {
+          "id": "sys2-t2",
+          "statement": "Describe the graph of $y < 4$.",
+          "solution": "Horizontal dashed line at $y = 4$, shaded below.",
+          "check": [
+            "0 < 4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "systemGraph",
+            "eyebrow": "Play with it",
+            "title": "Two fences, four lands",
+            "teach": "Two boundary lines divide the plane into regions. Study where each line runs — in the next lessons you'll claim sides of each and hunt the overlap.",
+            "config": {
+              "m1": 2,
+              "b1": -1,
+              "m2": -1,
+              "b2": 4,
+              "min": -6,
+              "max": 6
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Move 1",
+            "title": "Build the fence",
+            "beats": [
+              "Graph the RELATED equation as the boundary.",
+              "$\\le$ or $\\ge$: SOLID — the fence is included.",
+              "$<$ or $>$: DASHED — points on it don't count.",
+              "The line's job: separate yes-land from no-land."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Moves 2 & 3",
+            "title": "Test, then paint",
+            "beats": [
+              "Pick the easiest off-line point — usually $(0, 0)$.",
+              "True → shade the test point's side.",
+              "False → shade the OTHER side.",
+              "One honest point beats any memorized rule."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Fence style",
+            "prompt": "The graph of $3x - y < 6$ uses…",
+            "options": [
+              "a dashed line, origin side shaded",
+              "a solid line, origin side shaded",
+              "a dashed line, far side shaded"
+            ],
+            "correctIndex": 0,
+            "explanation": "Strict $<$ → dashed. Test $(0,0)$: $0 < 6$ ✓ — shade the origin's side.",
+            "check": [
+              "3*0 - 0 < 6"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Fence, test, paint",
+            "intro": "Three moves each; narrate them.",
+            "examples": [
+              {
+                "prompt": "Graph $2x + 3y \\ge 6$.",
+                "steps": [
+                  "Fence: solid line through $(3, 0)$ and $(0, 2)$.",
+                  "Test $(0,0)$: $0 \\ge 6$ FALSE.",
+                  "Paint the far side (away from the origin)."
+                ],
+                "answer": "solid, far side",
+                "check": [
+                  "2*3 + 3*0 == 6",
+                  "2*0 + 3*2 == 6",
+                  "2*0 + 3*0 < 6"
+                ]
+              },
+              {
+                "prompt": "Graph $y > -2x$ (the fence runs through the origin!).",
+                "steps": [
+                  "Fence: dashed through $(0,0)$ with slope $-2$.",
+                  "Origin unusable — test $(1, 1)$: $1 > -2$ ✓.",
+                  "Paint the $(1,1)$ side (above)."
+                ],
+                "answer": "dashed, above",
+                "check": [
+                  "1 > -2*1"
+                ]
+              },
+              {
+                "prompt": "A club needs $x + y \\le 20$ members across two teams, with team rosters nonnegative. Describe the full picture.",
+                "steps": [
+                  "Solid fence from $(20, 0)$ to $(0, 20)$, origin side shaded.",
+                  "Plus $x \\ge 0$, $y \\ge 0$: first quadrant only.",
+                  "A shaded triangle — your first feasible region."
+                ],
+                "answer": "triangle with vertices $(0,0), (20,0), (0,20)$",
+                "check": [
+                  "0 + 0 <= 20",
+                  "20 + 0 == 20"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Painter's exam",
+            "intro": "Style the fence, test honestly, paint once.",
+            "problems": [
+              {
+                "prompt": "Which inequality has a SOLID boundary with the origin side shaded?",
+                "options": [
+                  "$x + 2y \\le 8$",
+                  "$x + 2y < 8$",
+                  "$x + 2y \\ge 8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\le$ → solid; $(0,0)$: $0 \\le 8$ ✓ → origin side.",
+                "check": [
+                  "0 + 2*0 <= 8"
+                ]
+              },
+              {
+                "prompt": "The graph of $y \\ge 3x$ shades…",
+                "options": [
+                  "above a solid line through the origin",
+                  "below a dashed line",
+                  "right of a vertical line"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\ge$ solid; test $(0, 5)$ (origin is on the line): $5 \\ge 0$ ✓ — above.",
+                "check": [
+                  "5 >= 3*0"
+                ]
+              },
+              {
+                "prompt": "A point in the shaded region of $x - 2y > 4$ is…",
+                "options": [
+                  "$(6, 0)$",
+                  "$(0, 0)$",
+                  "$(2, 3)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6 - 0 = 6 > 4$ ✓; the origin gives $0 > 4$ ✗.",
+                "check": [
+                  "6 - 2*0 > 4",
+                  "0 - 2*0 < 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Dashed lines are a legal technology",
+            "body": "Cartographers used dashed vs solid boundaries centuries before algebra class did: a solid border on old maps meant settled and owned; dashed meant disputed or unsurveyed. Mathematics borrowed the convention wholesale — a dashed fence is the map's way of saying 'this edge is not yours.' Same symbol, same meaning, four hundred years apart."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Fence: solid for inclusive, dashed for strict.",
+              "Test one honest off-line point (love the origin).",
+              "Paint the true side — half the plane, claimed."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "systems-of-inequalities",
+      "title": "Systems of Inequalities",
+      "concreteComparison": "One inequality paints half the plane. Two paint two overlapping halves — and the SYSTEM's solution is where the paint doubles up: the overlap. Like a treasure map's 'north of the river AND west of the ridge,' each new condition shrinks the search area. Graph each, then hunt the region wearing every color.",
+      "objective": "Solve systems of linear inequalities graphically and verify points against every condition.",
+      "concept": [
+        "A system's solution set is the INTERSECTION: points satisfying EVERY inequality at once.",
+        "Method: graph each half-plane (fence, test, paint), then identify the region covered by ALL shadings.",
+        "Verify candidates against every condition — a point must pass EACH inequality, and one failure ejects it.",
+        "The overlap can be a wedge, a strip, a polygon — or EMPTY, when the conditions contradict (parallel fences painting away from each other).",
+        "Corners of the region sit at fence intersections — solve the boundary equations in pairs to locate them exactly."
+      ],
+      "keyIdea": "Graph every half-plane; the system's solutions live where all the shadings overlap.",
+      "facts": [
+        {
+          "title": "Intersection",
+          "explanation": "One failed test ejects a point from the system.",
+          "latex": "all conditions at once"
+        },
+        {
+          "title": "Corners",
+          "explanation": "The region's vertices are intersections of fence lines.",
+          "latex": "solve boundary pairs"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sys3-we1",
+          "statement": "Is $(2, 3)$ a solution of the system $y > x$ and $x + y < 8$?",
+          "solution": "$3 > 2$ ✓ and $5 < 8$ ✓ — yes, it's in the overlap.",
+          "check": [
+            "3 > 2",
+            "2 + 3 < 8"
+          ]
+        },
+        {
+          "id": "sys3-we2",
+          "statement": "Is $(5, 6)$ in the same system?",
+          "solution": "$6 > 5$ ✓ but $11 < 8$ ✗ — one failure ejects it. No.",
+          "check": [
+            "6 > 5",
+            "5 + 6 > 8"
+          ]
+        },
+        {
+          "id": "sys3-we3",
+          "statement": "Find the corner of the region bounded by $y = x$ and $x + y = 8$.",
+          "solution": "Substitute: $x + x = 8 \\to x = 4$: the corner is $(4, 4)$.",
+          "check": [
+            "4 + 4 == 8",
+            "4 == 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Accepting a point that passes MOST conditions.",
+          "correction": "Systems are ANDs: 2 of 3 is a fail. Test every inequality, and stop at the first ✗.",
+          "authored": true
+        },
+        {
+          "text": "Shading the union instead of the intersection.",
+          "correction": "The answer isn't 'anywhere any paint landed' — it's where ALL paints stack. Trace the deepest shading.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sys3-t1",
+          "statement": "Does $(1, 4)$ solve the system $y \\ge 2x$ and $y \\le x + 5$?",
+          "solution": "$4 \\ge 2$ ✓ and $4 \\le 6$ ✓ — yes.",
+          "check": [
+            "4 >= 2*1",
+            "4 <= 1 + 5"
+          ]
+        },
+        {
+          "id": "sys3-t2",
+          "statement": "Find where the boundaries $y = 2x$ and $y = x + 5$ cross.",
+          "solution": "$2x = x + 5 \\to x = 5$: the corner $(5, 10)$.",
+          "check": [
+            "2*5 == 5 + 5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "systemGraph",
+            "eyebrow": "Play with it",
+            "title": "Where the paints stack",
+            "teach": "Here are the fences $y = 2x$ and $y = x + 5$. Claiming ABOVE the first and BELOW the second traps a wedge between them — every point inside passes both tests. Find their crossing: that's the wedge's corner.",
+            "config": {
+              "m1": 2,
+              "b1": 0,
+              "m2": 1,
+              "b2": 5,
+              "min": -2,
+              "max": 12
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The method",
+            "title": "Paint twice, keep the overlap",
+            "beats": [
+              "Graph inequality 1: fence, test, paint.",
+              "Graph inequality 2 on the same axes.",
+              "The system lives where the shadings STACK.",
+              "Three inequalities? Three coats — same rule."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Verification",
+            "title": "Every gate, every time",
+            "beats": [
+              "Candidate point → test against EACH inequality.",
+              "$(2,3)$: passes $y > x$, passes $x + y < 8$. In.",
+              "$(5,6)$: passes the first, fails the second. Out.",
+              "Systems have no partial credit."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Geometry",
+            "title": "Corners are crossings",
+            "beats": [
+              "Fence lines intersect at the region's corners.",
+              "Solve boundaries in PAIRS (Grade 8 systems skills).",
+              "$y = x$ meets $x + y = 8$ at $(4, 4)$.",
+              "Corners matter — next lessons live on them."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "In or out?",
+            "prompt": "System: $x \\ge 1$, $y \\ge 2$, $x + y \\le 7$. Which point is a solution?",
+            "options": [
+              "$(2, 4)$",
+              "$(0, 5)$",
+              "$(4, 4)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(2,4)$: $2 \\ge 1$ ✓, $4 \\ge 2$ ✓, $6 \\le 7$ ✓. $(0,5)$ fails $x \\ge 1$; $(4,4)$ busts the sum.",
+            "check": [
+              "2 >= 1",
+              "4 >= 2",
+              "2 + 4 <= 7",
+              "4 + 4 > 7"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Overlap hunting",
+            "intro": "Coat by coat; corners by pairs.",
+            "examples": [
+              {
+                "prompt": "Describe the solution region of $y \\le 4$, $y \\ge x$, $x \\ge 0$.",
+                "steps": [
+                  "Below the horizontal $y = 4$; above $y = x$; right of the y-axis.",
+                  "A triangle.",
+                  "Corners: $(0,0)$, $(0,4)$, $(4,4)$."
+                ],
+                "answer": "triangle $(0,0), (0,4), (4,4)$",
+                "check": [
+                  "4 == 4",
+                  "0 >= 0",
+                  "4 >= 4"
+                ]
+              },
+              {
+                "prompt": "Give TWO solutions and TWO non-solutions of $y > x - 2$ and $y < x + 3$.",
+                "steps": [
+                  "The strip between two parallel fences.",
+                  "In: $(0, 0)$ and $(5, 5)$ — both satisfy both.",
+                  "Out: $(0, 4)$ (busts the upper) and $(4, 0)$ (busts the lower)."
+                ],
+                "answer": "in: $(0,0), (5,5)$; out: $(0,4), (4,0)$",
+                "check": [
+                  "0 > 0 - 2",
+                  "0 < 0 + 3",
+                  "4 > 0 + 3",
+                  "0 < 4 - 2"
+                ]
+              },
+              {
+                "prompt": "Why does the system $y > x + 1$ and $y < x - 1$ have NO solutions?",
+                "steps": [
+                  "Parallel fences (slope 1 both).",
+                  "First demands ABOVE the upper line; second demands BELOW the lower.",
+                  "The claims point away from each other: empty overlap."
+                ],
+                "answer": "contradictory strips — empty",
+                "check": [
+                  "0 + 1 > 0 - 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Stacked paint",
+            "intro": "All gates or nothing.",
+            "problems": [
+              {
+                "prompt": "How many of these points solve BOTH $y \\ge -x + 3$ and $y \\le 5$: $(1, 2), (3, 4), (6, 6)$?",
+                "options": [
+                  "two",
+                  "one",
+                  "all three"
+                ],
+                "correctIndex": 0,
+                "explanation": "$(1,2)$: $2 \\ge 2$ ✓, $2 \\le 5$ ✓. $(3,4)$: $4 \\ge 0$ ✓, $4 \\le 5$ ✓. $(6,6)$: fails $y \\le 5$.",
+                "check": [
+                  "2 >= -1 + 3",
+                  "4 >= -3 + 3",
+                  "6 > 5"
+                ]
+              },
+              {
+                "prompt": "The region of $x \\ge 0$, $y \\ge 0$, $x \\le 4$, $y \\le 3$ is…",
+                "options": [
+                  "a $4 \\times 3$ rectangle",
+                  "a triangle",
+                  "an infinite strip"
+                ],
+                "correctIndex": 0,
+                "explanation": "Four fences box in the first-quadrant rectangle with corners up to $(4, 3)$.",
+                "check": [
+                  "4*3 == 12"
+                ]
+              },
+              {
+                "prompt": "Where do the boundaries $y = 3x - 2$ and $y = x + 6$ cross?",
+                "options": [
+                  "$(4, 10)$",
+                  "$(2, 8)$",
+                  "$(4, 8)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3x - 2 = x + 6 \\to x = 4$, $y = 10$.",
+                "check": [
+                  "3*4 - 2 == 10",
+                  "4 + 6 == 10"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Air traffic flies through overlaps",
+            "body": "A plane's allowed position is a system of inequalities: above minimum altitude, below its ceiling, inside its corridor's walls, outside every other plane's protected bubble. Air traffic control software re-tests thousands of these point-in-region questions every second. The 'overlap of all constraints' you just shaded is, at 10,000 meters, the definition of safe."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A system's solutions are the INTERSECTION of its half-planes.",
+              "Test candidates against every condition — one failure ejects.",
+              "Corners sit at boundary crossings; solve fence pairs to find them."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "writing-constraint-systems",
+      "title": "Writing Constraint Systems",
+      "concreteComparison": "A bake sale: brownies take $2$ eggs each, cookies take $1$, and you have $24$ eggs. Oven time: $20$ min per brownie batch, $15$ per cookie batch, at most $300$ minutes. You can't bake negative anything. That's FOUR inequalities before you've measured a cup of flour — real plans are constraint systems, and writing them is the modeling skill.",
+      "objective": "Translate multi-constraint stories into systems of inequalities, including natural nonnegativity constraints.",
+      "concept": [
+        "Name the variables first, with units: $x$ = brownie batches, $y$ = cookie batches.",
+        "Each RESOURCE contributes one inequality: (per-unit use)·(count) summed $\\le$ supply. Eggs: $2x + y \\le 24$; oven: $20x + 15y \\le 300$.",
+        "Add the invisible constraints reality insists on: $x \\ge 0$, $y \\ge 0$ — counts can't go negative. Some stories also demand minimums ('at least 4 cookie batches': $y \\ge 4$).",
+        "Requirements use $\\ge$ (must have at least), capacities use $\\le$ (can't exceed). The story's verbs pick the direction.",
+        "The finished system IS the plan's rulebook; any point satisfying all of it is a legal plan."
+      ],
+      "keyIdea": "One inequality per resource or requirement, plus nonnegativity — the story's rulebook in algebra.",
+      "facts": [
+        {
+          "title": "Resource rows",
+          "explanation": "Each limited resource writes one inequality.",
+          "latex": "use-per-unit \\u00d7 count \\u2264 supply"
+        },
+        {
+          "title": "The invisible pair",
+          "explanation": "Reality's free constraints — never forget them.",
+          "latex": "$x \\ge 0, y \\ge 0$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sys4-we1",
+          "statement": "Write the bake-sale system: eggs ($2$/brownie batch, $1$/cookie batch, $24$ total), oven ($20$ and $15$ min, $300$ total).",
+          "solution": "$2x + y \\le 24$; $20x + 15y \\le 300$; $x \\ge 0$; $y \\ge 0$.",
+          "check": [
+            "2*6 + 8 <= 24",
+            "20*6 + 15*8 <= 300"
+          ]
+        },
+        {
+          "id": "sys4-we2",
+          "statement": "Check: can the sale make $6$ brownie batches and $8$ cookie batches?",
+          "solution": "Eggs: $12 + 8 = 20 \\le 24$ ✓. Oven: $120 + 120 = 240 \\le 300$ ✓. Legal plan.",
+          "check": [
+            "2*6 + 8 == 20",
+            "20*6 + 15*8 == 240"
+          ]
+        },
+        {
+          "id": "sys4-we3",
+          "statement": "A trainer schedules cardio ($c$) and weights ($w$) hours: at least $3$ h cardio, at least $2$ h weights, at most $10$ h total. Write the system.",
+          "solution": "$c \\ge 3$; $w \\ge 2$; $c + w \\le 10$.",
+          "check": [
+            "4 >= 3",
+            "3 >= 2",
+            "4 + 3 <= 10"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Forgetting the nonnegativity pair.",
+          "correction": "Without x ≥ 0, y ≥ 0 the algebra happily 'bakes' −3 batches to free up eggs. Reality's constraints must be written down.",
+          "authored": true
+        },
+        {
+          "text": "Flipping capacity and requirement directions.",
+          "correction": "'At most 300 oven-minutes' is ≤; 'at least 4 batches' is ≥. Swap them and the rulebook demands waste while banning work.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sys4-t1",
+          "statement": "A shelf holds at most $18$ kg; hardcovers weigh $1.2$ kg, paperbacks $0.4$ kg. Write the weight constraint.",
+          "solution": "$1.2h + 0.4p \\le 18$ (plus $h, p \\ge 0$).",
+          "check": [
+            "Rational(12,10)*10 + Rational(4,10)*15 == 18"
+          ]
+        },
+        {
+          "id": "sys4-t2",
+          "statement": "Check: do $10$ hardcovers and $15$ paperbacks fit?",
+          "solution": "$12 + 6 = 18 \\le 18$ ✓ — exactly at capacity.",
+          "check": [
+            "Rational(12,10)*10 + Rational(4,10)*15 <= 18"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Setup",
+            "title": "Variables with units",
+            "beats": [
+              "$x$ = brownie batches, $y$ = cookie batches.",
+              "Units first — every later row inherits them.",
+              "Two variables → a plane of possible plans.",
+              "The constraints will carve out the legal ones."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The rows",
+            "title": "One resource, one row",
+            "beats": [
+              "Eggs: $2x + 1y \\le 24$.",
+              "Oven: $20x + 15y \\le 300$.",
+              "Pattern: per-unit use × count, summed, $\\le$ supply.",
+              "Requirements flip the symbol: at least → $\\ge$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reality",
+            "title": "The free constraints",
+            "beats": [
+              "$x \\ge 0$, $y \\ge 0$: no negative baking.",
+              "They pin the region into the first quadrant.",
+              "Whole-number needs? Note them — the graph stays continuous, the ANSWER gets rounded.",
+              "Rulebook complete: four rows, one legal region."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Write the row",
+            "prompt": "A van carries at most $900$ kg: crates ($x$) weigh $30$ kg, barrels ($y$) weigh $75$ kg. The weight row is…",
+            "options": [
+              "$30x + 75y \\le 900$",
+              "$30x + 75y \\ge 900$",
+              "$x + y \\le 900$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Per-unit weights times counts, capped by capacity: $\\le$.",
+            "check": [
+              "30*10 + 75*8 == 900"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Rulebooks, drafted",
+            "intro": "Variables, resource rows, requirement rows, reality rows.",
+            "examples": [
+              {
+                "prompt": "A florist makes bouquets: small uses $5$ roses, large uses $9$; supply $180$ roses; a standing order requires at least $6$ large. System?",
+                "steps": [
+                  "$5s + 9l \\le 180$ (roses).",
+                  "$l \\ge 6$ (the order).",
+                  "$s \\ge 0$ (reality)."
+                ],
+                "answer": "$5s + 9l \\le 180,\\; l \\ge 6,\\; s \\ge 0$",
+                "check": [
+                  "5*10 + 9*6 <= 180",
+                  "6 >= 6"
+                ]
+              },
+              {
+                "prompt": "Verify the florist can fill $18$ small and $10$ large.",
+                "steps": [
+                  "Roses: $90 + 90 = 180 \\le 180$ ✓.",
+                  "Large: $10 \\ge 6$ ✓.",
+                  "Legal — at full rose capacity."
+                ],
+                "answer": "yes, exactly at capacity",
+                "check": [
+                  "5*18 + 9*10 == 180",
+                  "10 >= 6"
+                ]
+              },
+              {
+                "prompt": "A student budgets study time: math at least twice the science time, total at most $12$ h, science at least $2$ h. System (m, s)?",
+                "steps": [
+                  "$m \\ge 2s$ (the ratio promise).",
+                  "$m + s \\le 12$; $s \\ge 2$.",
+                  "Check $(7, 3)$: $7 \\ge 6$ ✓, $10 \\le 12$ ✓, $3 \\ge 2$ ✓."
+                ],
+                "answer": "$m \\ge 2s,\\; m + s \\le 12,\\; s \\ge 2$",
+                "check": [
+                  "7 >= 2*3",
+                  "7 + 3 <= 12",
+                  "3 >= 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Draft the rulebook",
+            "intro": "Resources cap, requirements floor, reality zeroes.",
+            "problems": [
+              {
+                "prompt": "A budget allows at most \\$60: apps cost \\$4, games \\$12. Which system row is WRONG?",
+                "options": [
+                  "$a + g \\le 60$",
+                  "$4a + 12g \\le 60$",
+                  "$a \\ge 0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The counts must be WEIGHTED by prices — $a + g \\le 60$ caps the item count at 60, not the spend.",
+                "check": [
+                  "4*3 + 12*4 == 60"
+                ]
+              },
+              {
+                "prompt": "'At least $5$ volunteers per shift' translates to…",
+                "options": [
+                  "$v \\ge 5$",
+                  "$v \\le 5$",
+                  "$v = 5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "A floor, not a ceiling: $\\ge$.",
+                "check": [
+                  "5 >= 5",
+                  "7 >= 5"
+                ]
+              },
+              {
+                "prompt": "A plan $(x, y) = (4, -1)$ satisfies every resource row. Verdict?",
+                "options": [
+                  "illegal — it violates $y \\ge 0$",
+                  "legal",
+                  "legal if resources allow"
+                ],
+                "correctIndex": 0,
+                "explanation": "Negative production is reality-banned; the invisible constraints eject it.",
+                "check": [
+                  "-1 < 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The diet problem",
+            "body": "In 1945, economist George Stigler posed the 'diet problem': meet every nutrient requirement (a stack of ≥ rows) as cheaply as possible. He solved 77 foods and 9 nutrients by hand-guessing; today the same constraint-writing feeds prisons, armies, and hospital kitchens by computer. The answer, then and now, is depressingly heavy on flour and cabbage — constraints are honest even when dinner isn't exciting."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Each resource caps a weighted sum ($\\le$); each requirement floors one ($\\ge$).",
+              "Never omit $x \\ge 0, y \\ge 0$ — reality's free rows.",
+              "The finished system is the plan's rulebook; test plans row by row."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "feasible-regions",
+      "title": "Feasible Regions",
+      "concreteComparison": "Graph the bake sale's four inequalities and the legal plans form a neat quadrilateral — the **feasible region**. Every interior point is a workable plan; everything outside breaks a rule. The region's CORNERS are special: they're the plans that push two resources to their limits at once, and they're where the best plans hide.",
+      "objective": "Graph feasible regions from constraint systems and find their corner points.",
+      "concept": [
+        "The **feasible region** is the overlap of all constraint half-planes — the geometry of every legal plan at once.",
+        "With nonnegativity, regions live in the first quadrant, typically polygons: triangles, quadrilaterals, sometimes unbounded wedges.",
+        "**Corner points** (vertices) occur where two boundary lines cross; find them by solving those two equations as a system.",
+        "Corners are maximal-effort plans: each one uses up two constraints completely. Interior points leave slack everywhere.",
+        "Sketch → label each fence → shade the overlap → solve pairs for corners. That inventory of corners is the region's skeleton."
+      ],
+      "keyIdea": "The feasible region is the constraints' overlap; its corners come from solving boundary pairs.",
+      "facts": [
+        {
+          "title": "Region = legal plans",
+          "explanation": "Inside: workable. Outside: rule-breaking.",
+          "latex": "overlap of all half-planes"
+        },
+        {
+          "title": "Corners exhaust pairs",
+          "explanation": "Solve the two boundary equations to pin each vertex.",
+          "latex": "two fences at their limits"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sys5-we1",
+          "statement": "Find the corners of: $x \\ge 0$, $y \\ge 0$, $x + y \\le 6$.",
+          "solution": "The axes and one slanted fence: corners $(0,0)$, $(6,0)$, $(0,6)$ — a triangle.",
+          "check": [
+            "0 + 6 == 6",
+            "6 + 0 == 6"
+          ]
+        },
+        {
+          "id": "sys5-we2",
+          "statement": "Find the corners of: $x \\ge 0$, $y \\ge 0$, $2x + y \\le 8$, $x + 2y \\le 10$.",
+          "solution": "Axis corners $(0,0), (4,0), (0,5)$; the slanted fences cross where $2x + y = 8$ and $x + 2y = 10$: $x = 2, y = 4$. Four corners: $(0,0), (4,0), (2,4), (0,5)$.",
+          "check": [
+            "2*4 + 0 == 8",
+            "0 + 2*5 == 10",
+            "2*2 + 4 == 8",
+            "2 + 2*4 == 10"
+          ]
+        },
+        {
+          "id": "sys5-we3",
+          "statement": "Is the region of $x \\ge 1$ and $y \\ge x$ bounded or unbounded?",
+          "solution": "Unbounded — the wedge opens forever up and right; no ceiling fence closes it.",
+          "check": [
+            "2 >= 1",
+            "5 >= 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reporting fence intersections that aren't corners.",
+          "correction": "Two boundaries may cross OUTSIDE the region (another constraint cuts first). Verify each candidate corner against ALL constraints before listing it.",
+          "authored": true
+        },
+        {
+          "text": "Solving corner systems by guessing from the sketch.",
+          "correction": "Sketches lie at close quarters. Corners come from ALGEBRA — solve the two boundary equations exactly.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sys5-t1",
+          "statement": "Corners of $x \\ge 0$, $y \\ge 0$, $y \\le 4$, $x \\le 3$?",
+          "solution": "The full rectangle: $(0,0), (3,0), (3,4), (0,4)$.",
+          "check": [
+            "3*4 == 12"
+          ]
+        },
+        {
+          "id": "sys5-t2",
+          "statement": "Where do $3x + y = 9$ and $x + y = 5$ cross?",
+          "solution": "Subtract: $2x = 4 \\to x = 2, y = 3$: $(2, 3)$.",
+          "check": [
+            "3*2 + 3 == 9",
+            "2 + 3 == 5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "systemGraph",
+            "eyebrow": "Play with it",
+            "title": "Fences into a pen",
+            "teach": "These two fences — plus the axes — pen in a quadrilateral. Track where each pair crosses; those crossings are the feasible region's corners.",
+            "config": {
+              "m1": -2,
+              "b1": 8,
+              "m2": -0.5,
+              "b2": 5,
+              "min": -1,
+              "max": 10
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The shape",
+            "title": "Legal plans have geometry",
+            "beats": [
+              "Each constraint slices the plane.",
+              "The survivors' overlap: the feasible region.",
+              "First-quadrant polygons, usually.",
+              "Interior = slack everywhere; edges = one resource maxed; corners = two."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Corner hunting",
+            "title": "Vertices by algebra",
+            "beats": [
+              "Pick two boundary EQUATIONS.",
+              "Solve the little system (substitution or elimination).",
+              "$2x + y = 8$ and $x + 2y = 10$ → $(2, 4)$.",
+              "Reject crossings that violate any OTHER constraint."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Count the corners",
+            "prompt": "The region $x \\ge 0, y \\ge 0, x + y \\le 5, y \\le 3$ has how many corners?",
+            "options": [
+              "four",
+              "three",
+              "five"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(0,0), (5,0), (2,3), (0,3)$ — the fence $y = 3$ clips the triangle into a quadrilateral.",
+            "check": [
+              "2 + 3 == 5",
+              "0 + 3 <= 5",
+              "5 + 0 == 5"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Region anatomy",
+            "intro": "Sketch, shade, then corner-by-corner algebra.",
+            "examples": [
+              {
+                "prompt": "Map the bake-sale region: $2x + y \\le 24$, $20x + 15y \\le 300$, $x, y \\ge 0$.",
+                "steps": [
+                  "Egg fence: $(12, 0)$ to $(0, 24)$. Oven fence: $(15, 0)$ to $(0, 20)$.",
+                  "Crossing: $2x + y = 24$, $20x + 15y = 300$ → $\\;y = 24 - 2x \\to 20x + 360 - 30x = 300 \\to x = 6, y = 12$.",
+                  "Corners: $(0,0), (12,0), (6,12), (0,20)$."
+                ],
+                "answer": "$(0,0), (12,0), (6,12), (0,20)$",
+                "check": [
+                  "2*6 + 12 == 24",
+                  "20*6 + 15*12 == 300",
+                  "2*12 + 0 == 24",
+                  "15*20 == 300"
+                ]
+              },
+              {
+                "prompt": "Why is $(15, 0)$ — the oven fence's x-intercept — NOT a corner of that region?",
+                "steps": [
+                  "Test the egg row: $2(15) + 0 = 30 > 24$. ✗",
+                  "It breaks the egg constraint.",
+                  "The egg fence cuts first along the x-axis: $(12, 0)$ is the true corner."
+                ],
+                "answer": "it violates $2x + y \\le 24$",
+                "check": [
+                  "2*15 + 0 == 30",
+                  "30 > 24"
+                ]
+              },
+              {
+                "prompt": "A region has corners $(0,0), (8,0), (5,6), (0,9)$. Which corner maxes BOTH slanted resources?",
+                "steps": [
+                  "Axis corners each leave a resource idle.",
+                  "$(5,6)$ sits at the crossing of the two slanted fences.",
+                  "It's the both-resources-exhausted plan."
+                ],
+                "answer": "$(5, 6)$",
+                "check": [
+                  "5 > 0",
+                  "6 > 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Vertex inventory",
+            "intro": "Solve pairs; audit each candidate against the full rulebook.",
+            "problems": [
+              {
+                "prompt": "Where do $x + y = 7$ and $y = 2x + 1$ cross?",
+                "options": [
+                  "$(2, 5)$",
+                  "$(3, 4)$",
+                  "$(2, 4)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x + 2x + 1 = 7 \\to x = 2, y = 5$.",
+                "check": [
+                  "2 + 5 == 7",
+                  "2*2 + 1 == 5"
+                ]
+              },
+              {
+                "prompt": "The region $x \\ge 2, y \\ge 1, x + y \\le 4$ is…",
+                "options": [
+                  "a triangle with corners $(2,1), (3,1), (2,2)$",
+                  "empty",
+                  "an unbounded wedge"
+                ],
+                "correctIndex": 0,
+                "explanation": "Three fences, three corners — check each satisfies all rows.",
+                "check": [
+                  "2 + 1 <= 4",
+                  "3 + 1 == 4",
+                  "2 + 2 == 4"
+                ]
+              },
+              {
+                "prompt": "A candidate corner fails one constraint by a hair. It is…",
+                "options": [
+                  "not a corner of the region",
+                  "still a corner",
+                  "a rounding error to ignore"
+                ],
+                "correctIndex": 0,
+                "explanation": "Corners must satisfy EVERY constraint — the region's skeleton has no exceptions.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The simplex crawl",
+            "body": "George Dantzig's 1947 simplex algorithm — still the workhorse of industrial planning — solves gigantic constraint systems by CRAWLING along the feasible region's edges from corner to corner, always improving. Airlines, refineries, and shipping fleets run it daily on regions with millions of fences. The corner-hunting you did by hand is the same walk, at planetary scale."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "The feasible region is the overlap — legal plans as geometry.",
+              "Corners come from solving boundary pairs exactly.",
+              "Audit every candidate corner against the FULL rulebook."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "best-point-in-the-region",
+      "title": "The Best Plan in the Region",
+      "concreteComparison": "The bake sale's region holds hundreds of legal plans — but profit is \\$9 per brownie batch and \\$5 per cookie batch, and you want the MOST money. Here's the miracle: you don't check hundreds of plans. The best one always sits at a CORNER of the region. Evaluate profit at four corners, crown the winner. That's optimization — Grade 9 edition.",
+      "objective": "Evaluate an objective at a feasible region's corners to find maximum or minimum plans.",
+      "concept": [
+        "An **objective** scores every plan: profit $P = 9x + 5y$, or cost, or time. Optimization hunts the best score among LEGAL plans.",
+        "**Corner principle:** for a linear objective over a polygon region, the max and min always occur at corners. (Sliding a constant-profit line across the region, the last touch is a vertex.)",
+        "Method: list the corners (last lesson's skill), evaluate the objective at each, compare.",
+        "Ties happen: two corners scoring equally means every plan on the edge between them is optimal too.",
+        "Context still rules: if plans must be whole numbers and the best corner isn't, check the nearby whole-number plans INSIDE the region."
+      ],
+      "keyIdea": "Score the corners, crown the best — linear objectives peak at vertices.",
+      "facts": [
+        {
+          "title": "Corner principle",
+          "explanation": "A sliding score-line leaves the region at a corner.",
+          "latex": "max/min at a vertex"
+        },
+        {
+          "title": "The method",
+          "explanation": "Optimization reduces to a short table.",
+          "latex": "list corners \\u2192 evaluate \\u2192 compare"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sys6-we1",
+          "statement": "Bake sale: corners $(0,0), (12,0), (6,12), (0,20)$; profit $P = 9x + 5y$. Find the best plan.",
+          "solution": "$P$: $0$, $108$, $114$, $100$. Best: $(6, 12)$ — 6 brownie and 12 cookie batches for \\$114.",
+          "check": [
+            "9*12 + 5*0 == 108",
+            "9*6 + 5*12 == 114",
+            "9*0 + 5*20 == 100",
+            "114 > 108"
+          ]
+        },
+        {
+          "id": "sys6-we2",
+          "statement": "Same region, new prices: $P = 10x + 5y$. Now what?",
+          "solution": "$P$: $0$, $120$, $120$, $100$. TIE between $(12,0)$ and $(6,12)$ — the whole edge between them is optimal.",
+          "check": [
+            "10*12 + 5*0 == 120",
+            "10*6 + 5*12 == 120"
+          ]
+        },
+        {
+          "id": "sys6-we3",
+          "statement": "Minimize cost $C = 4x + 3y$ over corners $(2,1), (3,1), (2,2)$.",
+          "solution": "$C$: $11$, $15$, $14$. Minimum at $(2, 1)$: cost $11$.",
+          "check": [
+            "4*2 + 3*1 == 11",
+            "4*3 + 3*1 == 15",
+            "4*2 + 3*2 == 14",
+            "11 < 14"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Evaluating the objective at interior points 'to be safe'.",
+          "correction": "The corner principle is a theorem, not a hunch — interior points never beat the best corner for a linear objective.",
+          "authored": true
+        },
+        {
+          "text": "Optimizing over crossings outside the region.",
+          "correction": "Only TRUE corners (passing every constraint) enter the table. A high score at an illegal point is a fantasy plan.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sys6-t1",
+          "statement": "Corners $(0,0), (5,0), (3,4), (0,6)$; maximize $P = 6x + 4y$.",
+          "solution": "$0, 30, 34, 24$: best at $(3,4)$ with $34$.",
+          "check": [
+            "6*5 + 4*0 == 30",
+            "6*3 + 4*4 == 34",
+            "6*0 + 4*6 == 24",
+            "34 > 30"
+          ]
+        },
+        {
+          "id": "sys6-t2",
+          "statement": "Same corners; maximize $P = 8x + 2y$.",
+          "solution": "$0, 40, 32, 12$: the winner moves to $(5, 0)$ — objectives choose their own champions.",
+          "check": [
+            "8*5 + 2*0 == 40",
+            "8*3 + 2*4 == 32",
+            "40 > 32"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The miracle",
+            "title": "Why corners win",
+            "beats": [
+              "Fix a profit level: $9x + 5y = 60$ is a LINE.",
+              "Raise the profit: the line slides parallel.",
+              "The last point it touches, leaving the region…",
+              "…is a corner. Always. That's the whole theorem."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The table",
+            "title": "Four evaluations, one crown",
+            "beats": [
+              "Corners: $(0,0), (12,0), (6,12), (0,20)$.",
+              "Profits: $0, 108, 114, 100$.",
+              "Champion: $(6, 12)$ at \\$114.",
+              "Hundreds of plans, four computations."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Fine print",
+            "title": "Ties and integers",
+            "beats": [
+              "Equal top scores → the whole edge between them is optimal.",
+              "Fractional best corner but whole-number plans required?",
+              "Check nearby integer points INSIDE the region.",
+              "Objectives change champions — recompute when prices move."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Crown it",
+            "prompt": "Corners $(0,0), (4,0), (0,3)$; objective $P = 5x + 7y$. Maximum?",
+            "options": [
+              "$21$ at $(0,3)$",
+              "$20$ at $(4,0)$",
+              "$41$ at $(4,3)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$P$: $0, 20, 21$ — and $(4,3)$ isn't even in the region (it's no corner).",
+            "check": [
+              "5*4 + 7*0 == 20",
+              "5*0 + 7*3 == 21",
+              "21 > 20"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Optimization drills",
+            "intro": "Corners in, table out, champion crowned.",
+            "examples": [
+              {
+                "prompt": "A workshop: chairs ($x$) and tables ($y$), region corners $(0,0), (10,0), (6,4), (0,7)$. Profit \\$30/chair, \\$50/table. Best output?",
+                "steps": [
+                  "$P = 30x + 50y$.",
+                  "Scores: $0, 300, 380, 350$.",
+                  "Champion: $6$ chairs, $4$ tables → \\$380."
+                ],
+                "answer": "$(6,4)$: \\$380",
+                "check": [
+                  "30*10 == 300",
+                  "30*6 + 50*4 == 380",
+                  "50*7 == 350",
+                  "380 > 350"
+                ]
+              },
+              {
+                "prompt": "A shipper minimizes fuel $F = 2x + 5y$ over corners $(1,2), (4,1), (6,3)$.",
+                "steps": [
+                  "Scores: $12, 13, 27$.",
+                  "Minimum at $(1, 2)$.",
+                  "For minima, small corners near the origin usually star."
+                ],
+                "answer": "$(1,2)$: $F = 12$",
+                "check": [
+                  "2*1 + 5*2 == 12",
+                  "2*4 + 5*1 == 13",
+                  "2*6 + 5*3 == 27",
+                  "12 < 13"
+                ]
+              },
+              {
+                "prompt": "Prices swing: with $P = 4x + 4y$ over corners $(0,0), (8,0), (5,3), (0,8)$, who wins?",
+                "steps": [
+                  "Scores: $0, 32, 32, 32$.",
+                  "Three-way tie!",
+                  "Every plan on the boundary from $(8,0)$ through $(5,3)$ to $(0,8)$ is optimal."
+                ],
+                "answer": "tie — the whole upper boundary",
+                "check": [
+                  "4*8 == 32",
+                  "4*5 + 4*3 == 32",
+                  "4*8 == 32"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Crown the corner",
+            "intro": "Table the corners; the objective picks its champion.",
+            "problems": [
+              {
+                "prompt": "Corners $(0,0), (6,0), (4,3), (0,5)$; maximize $P = 7x + 6y$.",
+                "options": [
+                  "$46$ at $(4,3)$",
+                  "$42$ at $(6,0)$",
+                  "$30$ at $(0,5)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$0, 42, 46, 30$ — the mixed plan wins.",
+                "check": [
+                  "7*6 == 42",
+                  "7*4 + 6*3 == 46",
+                  "6*5 == 30",
+                  "46 > 42"
+                ]
+              },
+              {
+                "prompt": "Minimize $C = 3x + 8y$ over $(2,2), (5,1), (7,4)$.",
+                "options": [
+                  "$(5,1)$: $C = 23$",
+                  "$(2,2)$: $C = 22$",
+                  "$(7,4)$: $C = 53$"
+                ],
+                "correctIndex": 1,
+                "explanation": "$22, 23, 53$: minimum is $22$ at $(2,2)$.",
+                "check": [
+                  "3*2 + 8*2 == 22",
+                  "3*5 + 8*1 == 23",
+                  "22 < 23"
+                ]
+              },
+              {
+                "prompt": "The best corner is $(4.5, 3.5)$ but plans must be whole. You should…",
+                "options": [
+                  "test nearby integer points inside the region",
+                  "round both up automatically",
+                  "declare no solution"
+                ],
+                "correctIndex": 0,
+                "explanation": "Rounding can exit the region; audit the integer neighbors and keep the best legal one.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Optimization won a Nobel",
+            "body": "Leonid Kantorovich began optimizing plywood-factory output in 1939 with exactly this machinery — regions, corners, objectives — and shared the 1975 Nobel in economics for it. During WWII the same math routed Allied convoys; today it schedules kidneys to transplant patients. The four-row corner table you just filled in is the seed of all of it."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Linear objectives peak (and bottom out) at region corners.",
+              "Method: corner list → objective table → champion.",
+              "Ties crown whole edges; integer demands mean auditing neighbors."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "sys-pr1",
+      "statement": "Is $(3, -1)$ a solution of $2x - 3y \\ge 9$?",
+      "solution": "$6 + 3 = 9 \\ge 9$ ✓ — on the boundary, included by $\\ge$.",
+      "check": [
+        "2*3 - 3*-1 == 9"
+      ]
+    },
+    {
+      "id": "sys-pr2",
+      "statement": "Describe the graph of $y < -\\frac{1}{2}x + 3$.",
+      "solution": "Dashed line through $(0,3)$ with slope $-\\frac{1}{2}$; $(0,0)$ gives $0 < 3$ ✓ — shade the origin side (below).",
+      "check": [
+        "0 < Rational(-1,2)*0 + 3"
+      ]
+    },
+    {
+      "id": "sys-pr3",
+      "statement": "Which points solve BOTH $y \\le 2x + 1$ and $y > -x$: $(1, 2)$, $(0, 0)$, $(-2, 3)$?",
+      "solution": "$(1,2)$: $2 \\le 3$ ✓, $2 > -1$ ✓ — in. $(0,0)$: $0 \\le 1$ ✓ but $0 > 0$ ✗. $(-2,3)$: $3 \\le -3$ ✗.",
+      "check": [
+        "2 <= 2*1 + 1",
+        "2 > -1",
+        "0 == 0",
+        "3 > 2*-2 + 1"
+      ]
+    },
+    {
+      "id": "sys-pr4",
+      "statement": "Find where $y = 3x - 4$ and $y = -2x + 6$ cross.",
+      "solution": "$3x - 4 = -2x + 6 \\to x = 2, y = 2$: $(2, 2)$.",
+      "check": [
+        "3*2 - 4 == 2",
+        "-2*2 + 6 == 2"
+      ]
+    },
+    {
+      "id": "sys-pr5",
+      "statement": "Write the system: a backpack holds at most $7$ kg; books weigh $0.9$ kg, binders $0.5$ kg; at least $2$ binders required.",
+      "solution": "$0.9b + 0.5n \\le 7$; $n \\ge 2$; $b \\ge 0$.",
+      "check": [
+        "Rational(9,10)*5 + Rational(5,10)*4 <= 7",
+        "4 >= 2"
+      ]
+    },
+    {
+      "id": "sys-pr6",
+      "statement": "Find the corners of $x \\ge 0$, $y \\ge 0$, $x + 2y \\le 8$, $x \\le 4$.",
+      "solution": "$(0,0), (4,0), (4,2), (0,4)$ — the $x = 4$ fence clips the triangle.",
+      "check": [
+        "4 + 2*2 == 8",
+        "0 + 2*4 == 8"
+      ]
+    },
+    {
+      "id": "sys-pr7",
+      "statement": "Maximize $P = 3x + 4y$ over corners $(0,0), (4,0), (4,2), (0,4)$.",
+      "solution": "$0, 12, 20, 16$: best $(4,2)$ with $P = 20$.",
+      "check": [
+        "3*4 + 4*2 == 20",
+        "3*4 == 12",
+        "4*4 == 16",
+        "20 > 16"
+      ]
+    },
+    {
+      "id": "sys-pr8",
+      "statement": "A region's boundaries cross at $(6, 5)$, but the point violates a third constraint. Is it a corner? What should you do?",
+      "solution": "Not a corner — audit failed. Exclude it and find where the third fence clips the region instead.",
+      "check": [
+        "1 == 1"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "sys-ty1",
+      "statement": "For $5x - 2y < 10$: classify $(2, 0)$, $(4, 5)$, $(0, -5)$.",
+      "solution": "$(2,0)$: $10 < 10$ ✗ (boundary, strict). $(4,5)$: $10 < 10$ ✗ — also boundary! $(0,-5)$: $10 < 10$ ✗. All three sit exactly ON the dashed fence — none are solutions.",
+      "check": [
+        "5*2 - 2*0 == 10",
+        "5*4 - 2*5 == 10",
+        "5*0 - 2*-5 == 10"
+      ]
+    },
+    {
+      "id": "sys-ty2",
+      "statement": "Graph description: $x \\ge -1$ and $y < 2$ — what does the overlap look like?",
+      "solution": "Right of the solid vertical $x = -1$, below the dashed horizontal $y = 2$: an open-cornered quarter-plane.",
+      "check": [
+        "0 >= -1",
+        "0 < 2"
+      ]
+    },
+    {
+      "id": "sys-ty3",
+      "statement": "Check whether $(3, 2)$ is feasible for: $2x + y \\le 10$, $x + 3y \\le 12$, $x, y \\ge 0$.",
+      "solution": "$8 \\le 10$ ✓, $9 \\le 12$ ✓, both nonneg ✓ — feasible.",
+      "check": [
+        "2*3 + 2 == 8",
+        "3 + 3*2 == 9"
+      ]
+    },
+    {
+      "id": "sys-ty4",
+      "statement": "Find all corners of: $x, y \\ge 0$, $3x + 2y \\le 12$, $x + 2y \\le 8$.",
+      "solution": "$(0,0), (4,0), (2,3), (0,4)$ — the slanted fences cross at $3x + 2y = 12$, $x + 2y = 8$: subtract to get $2x = 4$, so $(2, 3)$.",
+      "check": [
+        "3*4 + 2*0 == 12",
+        "3*2 + 2*3 == 12",
+        "2 + 2*3 == 8",
+        "0 + 2*4 == 8"
+      ]
+    },
+    {
+      "id": "sys-ty5",
+      "statement": "Maximize $P = 5x + 6y$ over that region.",
+      "solution": "Corners score $0, 20, 28, 24$: best $(2,3)$ with $P = 28$.",
+      "check": [
+        "5*4 == 20",
+        "5*2 + 6*3 == 28",
+        "6*4 == 24",
+        "28 > 24"
+      ]
+    },
+    {
+      "id": "sys-ty6",
+      "statement": "A snack stand: hot dogs ($x$, \\$2 profit) and burgers ($y$, \\$3 profit); grill fits at most $60$ items; supplies limit burgers to $25$; at least $10$ hot dogs promised. Write the system and find the best plan.",
+      "solution": "$x + y \\le 60$, $y \\le 25$, $x \\ge 10$, $y \\ge 0$. Corners: $(10,0), (60,0), (35,25), (10,25)$. Profits: $20, 120, 145, 95$ — best: $35$ hot dogs, $25$ burgers, \\$145.",
+      "check": [
+        "35 + 25 == 60",
+        "2*35 + 3*25 == 145",
+        "2*60 == 120",
+        "145 > 120"
+      ]
+    }
+  ]
+}
