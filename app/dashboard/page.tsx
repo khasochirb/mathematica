@@ -20,6 +20,9 @@ const i18n = {
     en: "Your stats will appear here once you start practicing.",
     mn: "Дадлага эхлэхэд таны үзүүлэлт энд гарна.",
   },
+  personal_grade: { en: "Grade", mn: "Анги" },
+  personal_focus: { en: "Focus on", mn: "Анхаарах" },
+  personal_open: { en: "Open", mn: "Нээх" },
   empty_p: {
     en: "Topic-by-topic progress, weak spots, and recommendations show up here once you take a test.",
     mn: "Шалгалт өгсний дараа сэдэв тус бүрийн ахиц, сул талууд, зөвлөмж энд гарч ирнэ.",
@@ -209,6 +212,49 @@ export default function DashboardPage() {
           <p className="mt-3 text-[15px]" style={{ color: "var(--fg-2)" }}>
             {hasData ? t("subtitle_with_data") : t("subtitle_no_data")}
           </p>
+
+          {/* Teacher-set personalization: grade badge + suggested focus.
+              Only shown for provisioned accounts (grade/focus present).
+              Everything stays fully explorable — this is a starting point. */}
+          {(user?.grade || user?.focus) && (
+            <div className="mt-4 flex flex-wrap items-center gap-2.5">
+              {user?.grade && (
+                <span
+                  className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[13px] font-medium"
+                  style={{
+                    background: "var(--accent-wash)",
+                    border: "1px solid var(--accent-line)",
+                    color: "var(--accent)",
+                  }}
+                >
+                  {t("personal_grade")} · {user.grade}
+                </span>
+              )}
+              {user?.focus && (
+                <span
+                  className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[13px]"
+                  style={{
+                    background: "var(--bg-2)",
+                    border: "1px solid var(--line)",
+                    color: "var(--fg-2)",
+                  }}
+                >
+                  <Target className="h-3.5 w-3.5" style={{ color: "var(--fg-2)" }} />
+                  {t("personal_focus")}: {user.focus}
+                  {user?.focusHref && (
+                    <Link
+                      href={user.focusHref}
+                      className="ml-1 inline-flex items-center gap-0.5 font-medium"
+                      style={{ color: "var(--accent)" }}
+                    >
+                      {t("personal_open")}
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  )}
+                </span>
+              )}
+            </div>
+          )}
         </section>
 
         {!hasData ? (

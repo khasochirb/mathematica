@@ -44,6 +44,11 @@ export async function GET(req: NextRequest) {
       xpCurrentLevel: globalXp % 1000,
       xpNextLevel: 1000,
       isSubscribed,
+      // Teacher-provisioned personalization (migration 008). Null for
+      // self-signup accounts, which render the default (non-personalized) view.
+      grade: profile?.grade ?? null,
+      focus: profile?.focus ?? null,
+      focusHref: profile?.focus_href ?? null,
     },
   });
 }

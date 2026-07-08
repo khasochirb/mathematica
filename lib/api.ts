@@ -197,6 +197,11 @@ export interface User {
   avatarUrl: string | null;
   globalLevel: number;
   globalXp: number;
+  // Teacher-provisioned personalization (migration 008). Null for
+  // self-signup accounts. `focusHref` links the "Focus on this" shortcut.
+  grade?: string | null;
+  focus?: string | null;
+  focusHref?: string | null;
 }
 
 export interface TopicTree {
