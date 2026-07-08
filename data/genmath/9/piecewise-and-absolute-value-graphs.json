@@ -1,0 +1,1725 @@
+{
+  "slug": "piecewise-and-absolute-value-graphs",
+  "title": "Piecewise & Absolute-Value Graphs",
+  "grade": 9,
+  "blurb": "The V of y = |x|, shifts of it, and functions defined in pieces — including step functions.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "the-v-graph",
+      "title": "The V Graph",
+      "concreteComparison": "Walk along a number line away from home at position $0$: your DISTANCE from home is the same whether you head left or right. Plot distance against position and you get a perfect V — the graph of $y = |x|$. Two straight arms, a sharp corner at the origin, and mirror symmetry: absolute value finally gets a face.",
+      "objective": "Graph y = |x| from its two-armed structure, identify the vertex, slopes, and symmetry.",
+      "concept": [
+        "$y = |x|$ is two lines wearing one name: for $x \\ge 0$ it IS $y = x$ (slope $+1$); for $x < 0$ it is $y = -x$ (slope $-1$).",
+        "The arms meet at the **vertex** $(0, 0)$ — the sharp corner where the rule switches.",
+        "The graph is symmetric across the y-axis: $|-a| = |a|$ means the left arm mirrors the right.",
+        "Coefficients steepen or flip: $y = 2|x|$ has arms of slope $\\pm 2$ (a narrow V); $y = -|x|$ opens downward (a peak, not a valley).",
+        "It passes the vertical line test — one output per input — even at the corner. A V is a function; a sideways V is not."
+      ],
+      "keyIdea": "y = |x| is two rays: slope −1 then +1, hinged at the vertex, mirror-symmetric across the y-axis.",
+      "facts": [
+        {
+          "title": "Two lines, one name",
+          "explanation": "Absolute value is secretly the first piecewise function.",
+          "latex": "$x \\ge 0$: $y = x$; $x < 0$: $y = -x$"
+        },
+        {
+          "title": "The vertex",
+          "explanation": "Where the rule switches, the graph corners.",
+          "latex": "$(0, 0)$ — the hinge"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pwg1-we1",
+          "statement": "Make a table for $y = |x|$ at $x = -3, -1, 0, 1, 3$ and describe the shape.",
+          "solution": "Outputs: $3, 1, 0, 1, 3$ — falling to the vertex, then rising: a V with slopes $\\mp 1$.",
+          "check": [
+            "Abs(-3) == 3",
+            "Abs(-1) == 1",
+            "Abs(0) == 0",
+            "Abs(3) == 3"
+          ]
+        },
+        {
+          "id": "pwg1-we2",
+          "statement": "What are the slope of the left arm and right arm of $y = 3|x|$?",
+          "solution": "Left: $-3$; right: $+3$ — a steep, narrow V.",
+          "check": [
+            "3*Abs(-2) == 6",
+            "3*Abs(2) == 6",
+            "Rational(6,2) == 3"
+          ]
+        },
+        {
+          "id": "pwg1-we3",
+          "statement": "Compare $y = |x|$ and $y = -|x|$ at $x = 4$.",
+          "solution": "$|4| = 4$; $-|4| = -4$: the second V is flipped into a peak with vertex on top.",
+          "check": [
+            "Abs(4) == 4",
+            "-Abs(4) == -4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Drawing the left arm with positive slope.",
+          "correction": "For x < 0 the rule is y = −x: as x moves LEFT, y rises. The left arm falls toward the vertex reading left-to-right — slope −1.",
+          "authored": true
+        },
+        {
+          "text": "Rounding the corner.",
+          "correction": "The V has a genuine sharp point at the vertex, not a smooth bend. |x| is the corner's proudest owner — don't sand it off.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pwg1-t1",
+          "statement": "On $y = |x|$, which points have $y = 5$?",
+          "solution": "$(5, 5)$ and $(-5, 5)$ — the mirror pair.",
+          "check": [
+            "Abs(5) == 5",
+            "Abs(-5) == 5"
+          ]
+        },
+        {
+          "id": "pwg1-t2",
+          "statement": "Which is wider: $y = \\frac{1}{2}|x|$ or $y = 2|x|$?",
+          "solution": "$\\frac{1}{2}|x|$ — smaller arm slopes ($\\pm\\frac{1}{2}$) spread the V wide.",
+          "check": [
+            "Rational(1,2)*Abs(4) == 2",
+            "2*Abs(4) == 8",
+            "2 < 8"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "Play with it",
+            "title": "The V, point by point",
+            "teach": "These are receipts of $y = |x|$. Trace them: down the left arm, corner at the origin, up the right arm — distance from zero, drawn.",
+            "config": {
+              "mode": "plot",
+              "min": -5,
+              "max": 5,
+              "points": [
+                {
+                  "x": -4,
+                  "y": 4
+                },
+                {
+                  "x": -2,
+                  "y": 2
+                },
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 2,
+                  "y": 2
+                },
+                {
+                  "x": 4,
+                  "y": 4
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Anatomy",
+            "title": "Two rays and a hinge",
+            "beats": [
+              "Right of zero: $y = x$, slope $+1$.",
+              "Left of zero: $y = -x$, slope $-1$.",
+              "Hinge (vertex): $(0, 0)$.",
+              "One name, two personalities — your first piecewise function."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Variations",
+            "title": "Steeper, wider, upside-down",
+            "beats": [
+              "$y = a|x|$: arms of slope $\\pm a$.",
+              "Big $|a|$ → narrow V; small → wide.",
+              "Negative $a$ → the V flips into a peak.",
+              "The vertex stays home at the origin — for now."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Arm wrestling",
+            "prompt": "On $y = |x|$, what is the slope of the graph at $x = -7$?",
+            "options": [
+              "$-1$",
+              "$+1$",
+              "$0$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Left of the vertex the rule is $y = -x$: slope $-1$.",
+            "check": [
+              "Abs(-7) == 7",
+              "-(-7) == 7"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "V variations",
+            "intro": "Table a few points; the arms do the rest.",
+            "examples": [
+              {
+                "prompt": "Graph $y = 2|x|$: give its outputs at $x = -2, 0, 2$ and its arm slopes.",
+                "steps": [
+                  "$4, 0, 4$.",
+                  "Arms: slopes $\\pm 2$.",
+                  "A narrow V, vertex at the origin."
+                ],
+                "answer": "narrow V, slopes $\\pm 2$",
+                "check": [
+                  "2*Abs(-2) == 4",
+                  "2*Abs(0) == 0",
+                  "2*Abs(2) == 4"
+                ]
+              },
+              {
+                "prompt": "Where do $y = |x|$ and $y = 4$ intersect?",
+                "steps": [
+                  "Solve $|x| = 4$.",
+                  "$x = \\pm 4$.",
+                  "Points: $(-4, 4)$ and $(4, 4)$ — a horizontal slice through both arms."
+                ],
+                "answer": "$(\\pm 4, 4)$",
+                "check": [
+                  "Abs(4) == 4",
+                  "Abs(-4) == 4"
+                ]
+              },
+              {
+                "prompt": "A downhill skier's speed graph looks like $y = -|x| + $ constant around the peak moment. What does the vertex represent?",
+                "steps": [
+                  "Flipped V: a peak.",
+                  "The vertex is the MAXIMUM.",
+                  "Peak speed at the switch moment; symmetric slowdown either side."
+                ],
+                "answer": "the maximum point",
+                "check": [
+                  "-Abs(0) == 0",
+                  "-Abs(2) == -2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Own the V",
+            "intro": "Arms, vertex, symmetry.",
+            "problems": [
+              {
+                "prompt": "$y = |x|$: which point is on the graph?",
+                "options": [
+                  "$(-6, 6)$",
+                  "$(-6, -6)$",
+                  "$(6, -6)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$|-6| = 6$: left arm, height 6.",
+                "check": [
+                  "Abs(-6) == 6"
+                ]
+              },
+              {
+                "prompt": "$y = -3|x|$ opens…",
+                "options": [
+                  "downward, narrow",
+                  "upward, narrow",
+                  "downward, wide"
+                ],
+                "correctIndex": 0,
+                "explanation": "Negative flips it down; $|a| = 3$ makes it narrow.",
+                "check": [
+                  "-3*Abs(1) == -3",
+                  "-3*Abs(2) == -6"
+                ]
+              },
+              {
+                "prompt": "How many solutions does $|x| = 0$ have — and what does that mean for the V?",
+                "options": [
+                  "one: the vertex alone touches the x-axis",
+                  "two, like always",
+                  "none"
+                ],
+                "correctIndex": 0,
+                "explanation": "Distance zero happens only AT zero: the V kisses the axis at exactly one point.",
+                "check": [
+                  "Abs(0) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The corner that breaks calculus",
+            "body": "The V's sharp vertex is famous in higher math: it's the standard example of a graph with no well-defined slope at a point. Calculus students meet |x| in week one as 'the function you can't differentiate at zero.' The corner you just drew is a certified celebrity — it has been breaking naive theorems since the 1800s."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$y = |x|$: arms of slope $\\pm 1$ hinged at the origin, mirror-symmetric.",
+              "$a|x|$: steeper/wider arms; negative $a$ flips the V into a peak.",
+              "Horizontal slices $|x| = k$ hit both arms: two solutions."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "shifting-the-v",
+      "title": "Shifting the V",
+      "concreteComparison": "The V of $y = |x|$ is a stencil. Want its corner over the point $(3, 1)$? Stamp $y = |x - 3| + 1$. The $-3$ INSIDE slides the stencil right; the $+1$ OUTSIDE lifts it. Once you can read a vertex straight off the equation, absolute-value graphs take ten seconds each.",
+      "objective": "Graph y = a|x − h| + k by reading the vertex (h, k), direction, and arm slopes from the equation.",
+      "concept": [
+        "$y = |x - h| + k$ has its vertex at $(h, k)$: inside shifts move HORIZONTALLY (opposite the visible sign), outside shifts move VERTICALLY (as written).",
+        "The inside sign trap: $|x - 3|$ moves RIGHT to $h = 3$; $|x + 2| = |x - (-2)|$ moves LEFT to $h = -2$.",
+        "$a$ in $y = a|x - h| + k$ still controls steepness and flip: arms have slopes $\\pm a$ from the vertex.",
+        "Fast graphing recipe: plot the vertex, walk the arms out with slope $\\pm a$, done.",
+        "The vertex is the extreme point: minimum when the V opens up ($a > 0$), maximum when it opens down."
+      ],
+      "keyIdea": "Vertex $(h, k)$ reads straight off $a|x - h| + k$; arms leave it with slopes ±a.",
+      "facts": [
+        {
+          "title": "Vertex address",
+          "explanation": "Inside slides sideways (sign flipped); outside slides vertically.",
+          "latex": "$y = a|x - h| + k \\to (h, k)$"
+        },
+        {
+          "title": "Extremes",
+          "explanation": "The corner is the whole graph's peak or floor.",
+          "latex": "$a > 0$: min at vertex; $a < 0$: max"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pwg2-we1",
+          "statement": "Find the vertex and direction of $y = |x - 3| + 1$.",
+          "solution": "Vertex $(3, 1)$, opening upward — minimum value $1$ at $x = 3$.",
+          "check": [
+            "Abs(3 - 3) + 1 == 1",
+            "Abs(5 - 3) + 1 == 3"
+          ]
+        },
+        {
+          "id": "pwg2-we2",
+          "statement": "Find the vertex of $y = |x + 2| - 4$ and its x-intercepts.",
+          "solution": "Vertex $(-2, -4)$. Intercepts: $|x + 2| = 4 \\to x = 2$ or $x = -6$.",
+          "check": [
+            "Abs(-2 + 2) - 4 == -4",
+            "Abs(2 + 2) - 4 == 0",
+            "Abs(-6 + 2) - 4 == 0"
+          ]
+        },
+        {
+          "id": "pwg2-we3",
+          "statement": "Describe $y = -2|x - 1| + 6$: vertex, direction, arm slopes, maximum.",
+          "solution": "Vertex $(1, 6)$; opens DOWN (peak); arms slope $\\mp 2$; maximum value $6$.",
+          "check": [
+            "-2*Abs(1 - 1) + 6 == 6",
+            "-2*Abs(2 - 1) + 6 == 4",
+            "-2*Abs(0 - 1) + 6 == 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading |x + 2| as a shift right.",
+          "correction": "Inside signs lie: |x + 2| = |x − (−2)| — the vertex sits at h = −2, LEFT of the origin.",
+          "authored": true
+        },
+        {
+          "text": "Swapping h and k.",
+          "correction": "The horizontal partner rides INSIDE the bars; the vertical one sits outside. In |x − 3| + 1 the vertex is (3, 1), never (1, 3).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pwg2-t1",
+          "statement": "Vertex of $y = |x - 5| - 2$?",
+          "solution": "$(5, -2)$.",
+          "check": [
+            "Abs(5 - 5) - 2 == -2"
+          ]
+        },
+        {
+          "id": "pwg2-t2",
+          "statement": "What equation puts a V's vertex at $(-1, 3)$ opening upward with arm slopes $\\pm 1$?",
+          "solution": "$y = |x + 1| + 3$.",
+          "check": [
+            "Abs(-1 + 1) + 3 == 3",
+            "Abs(1 + 1) + 3 == 5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "Play with it",
+            "title": "A shifted stencil",
+            "teach": "These points trace $y = |x - 3| + 1$: same V, new home. Find the corner — it's at $(3, 1)$, exactly where the equation said it would be.",
+            "config": {
+              "mode": "plot",
+              "min": -2,
+              "max": 8,
+              "points": [
+                {
+                  "x": 1,
+                  "y": 3
+                },
+                {
+                  "x": 2,
+                  "y": 2
+                },
+                {
+                  "x": 3,
+                  "y": 1,
+                  "label": "vertex",
+                  "color": "#3f9d63"
+                },
+                {
+                  "x": 4,
+                  "y": 2
+                },
+                {
+                  "x": 5,
+                  "y": 3
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The address",
+            "title": "Reading (h, k)",
+            "beats": [
+              "$y = a|x - h| + k$: vertex at $(h, k)$.",
+              "INSIDE: horizontal, sign flipped. $|x - 3|$ → right 3.",
+              "OUTSIDE: vertical, as written. $+1$ → up 1.",
+              "$|x + 2| - 4$: vertex $(-2, -4)$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The recipe",
+            "title": "Vertex, then walk the arms",
+            "beats": [
+              "1. Plot $(h, k)$.",
+              "2. Step right 1, up $a$ — and mirror left.",
+              "3. Extend both rays.",
+              "Ten seconds per graph, honestly earned."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Home address",
+            "prompt": "The vertex of $y = 3|x + 4| - 5$ is…",
+            "options": [
+              "$(-4, -5)$",
+              "$(4, -5)$",
+              "$(-4, 5)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Inside flips: $h = -4$; outside as written: $k = -5$.",
+            "check": [
+              "3*Abs(-4 + 4) - 5 == -5"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Stencil placements",
+            "intro": "Address, direction, arms — then any question falls.",
+            "examples": [
+              {
+                "prompt": "Find the minimum value of $y = |x - 7| + 2$ and where it occurs.",
+                "steps": [
+                  "Opens up: minimum at the vertex.",
+                  "Vertex $(7, 2)$.",
+                  "Minimum value $2$, at $x = 7$."
+                ],
+                "answer": "min $2$ at $x = 7$",
+                "check": [
+                  "Abs(7 - 7) + 2 == 2",
+                  "Abs(8 - 7) + 2 == 3"
+                ]
+              },
+              {
+                "prompt": "Find the x-intercepts of $y = 2|x - 1| - 8$.",
+                "steps": [
+                  "Set $y = 0$: $2|x - 1| = 8 \\to |x - 1| = 4$.",
+                  "$x = 5$ or $x = -3$.",
+                  "Two crossings, symmetric about $x = 1$."
+                ],
+                "answer": "$x = 5, -3$",
+                "check": [
+                  "2*Abs(5 - 1) - 8 == 0",
+                  "2*Abs(-3 - 1) - 8 == 0"
+                ]
+              },
+              {
+                "prompt": "A delivery drone's distance from its hub is $d(t) = |t - 40| \\cdot 0.5$ km ($t$ in minutes). When is it at the hub, and what's happening around then?",
+                "steps": [
+                  "At the hub when $d = 0$: $t = 40$.",
+                  "Before: flying home (left arm falling).",
+                  "After: flying out again — the V is a round trip."
+                ],
+                "answer": "$t = 40$; return-and-depart",
+                "check": [
+                  "Rational(1,2)*Abs(40 - 40) == 0",
+                  "Rational(1,2)*Abs(50 - 40) == 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Place the stencil",
+            "intro": "Vertex first; everything follows.",
+            "problems": [
+              {
+                "prompt": "Which equation has vertex $(2, -3)$ opening upward?",
+                "options": [
+                  "$y = |x - 2| - 3$",
+                  "$y = |x + 2| - 3$",
+                  "$y = |x - 2| + 3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$h = 2$ needs $|x - 2|$; $k = -3$ rides outside.",
+                "check": [
+                  "Abs(2 - 2) - 3 == -3"
+                ]
+              },
+              {
+                "prompt": "The maximum value of $y = -|x + 1| + 7$ is…",
+                "options": [
+                  "$7$",
+                  "$-1$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Downward V peaks at its vertex $(-1, 7)$.",
+                "check": [
+                  "-Abs(-1 + 1) + 7 == 7",
+                  "-Abs(0 + 1) + 7 == 6"
+                ]
+              },
+              {
+                "prompt": "$y = |x - 6|$ and the x-axis meet…",
+                "options": [
+                  "once, at $(6, 0)$",
+                  "twice",
+                  "never"
+                ],
+                "correctIndex": 0,
+                "explanation": "The vertex SITS on the axis: one kiss, no crossing.",
+                "check": [
+                  "Abs(6 - 6) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "One stencil, every graph",
+            "body": "The shift rules you just used — inside slides sideways, outside slides vertically — work for EVERY function, not just the V. Next year the same $-h$ and $+k$ will park parabolas; later, sine waves and exponentials. Mathematicians call it translation; you can call it the only address system you'll ever need to learn twice."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Vertex reads off the equation: $a|x - h| + k \\to (h, k)$, inside sign flipped.",
+              "Graph by plotting the vertex and walking arms of slope $\\pm a$.",
+              "Vertex = minimum (up-V) or maximum (down-V); intercepts come from $|x - h| = $ number."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "reading-piecewise-functions",
+      "title": "Reading Piecewise Functions",
+      "concreteComparison": "A parking garage: free for the first hour, \\$3 per hour for the next three, a flat \\$15 for anything longer. One price RULE would be a lie — the truth needs three rules stitched together, each ruling its own interval. That stitched garment is a **piecewise function**, and evaluating one starts with a single question: which piece owns my input?",
+      "objective": "Evaluate piecewise-defined functions by selecting the correct piece for each input.",
+      "concept": [
+        "A **piecewise function** lists several formulas, each with a DOMAIN CONDITION — an interval of inputs it governs.",
+        "To evaluate $f(a)$: scan the conditions, find the ONE interval containing $a$, and use only that piece's formula.",
+        "Boundary inputs demand care: exactly one piece owns each boundary, marked by $\\le / \\ge$ vs $< / >$ in the conditions.",
+        "Pieces are strangers: never average them, never use two at once. The input's address decides everything.",
+        "Real-life piecewise: tax brackets, shipping tiers, overtime pay, tiered electricity rates — anywhere the rules change at thresholds."
+      ],
+      "keyIdea": "Find the piece whose interval owns the input; use only that formula. Boundaries belong to exactly one piece.",
+      "facts": [
+        {
+          "title": "One owner per input",
+          "explanation": "The interval, not the formula, is where evaluation starts.",
+          "latex": "check the conditions first"
+        },
+        {
+          "title": "Boundary etiquette",
+          "explanation": "Each threshold belongs to exactly one piece.",
+          "latex": "$\\le$ owns the edge; $<$ doesn't"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pwg3-we1",
+          "statement": "For $f(x) = \\begin{cases} x + 5 & x < 0 \\\\ 2x & x \\ge 0 \\end{cases}$, find $f(-3)$, $f(0)$, and $f(4)$.",
+          "solution": "$f(-3)$: first piece, $-3 + 5 = 2$. $f(0)$: SECOND piece ($0 \\ge 0$), $0$. $f(4) = 8$.",
+          "check": [
+            "-3 + 5 == 2",
+            "2*0 == 0",
+            "2*4 == 8"
+          ]
+        },
+        {
+          "id": "pwg3-we2",
+          "statement": "Parking: free for $t \\le 1$; $3(t - 1)$ dollars for $1 < t \\le 4$; \\$15 for $t > 4$. Find the cost at $t = 2.5$ and $t = 6$.",
+          "solution": "$t = 2.5$: middle piece, $3(1.5) = 4.50$. $t = 6$: last piece, \\$15.",
+          "check": [
+            "3*(Rational(25,10) - 1) == Rational(45,10)",
+            "15 == 15"
+          ]
+        },
+        {
+          "id": "pwg3-we3",
+          "statement": "Same garage: what does $t = 4$ cost — and $t = 4.01$?",
+          "solution": "$t = 4$: middle piece ($\\le 4$), $3(3) = 9$. $t = 4.01$: last piece, \\$15 — a six-dollar cliff at the boundary.",
+          "check": [
+            "3*(4 - 1) == 9",
+            "15 - 9 == 6"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the formula that 'looks right' for the output.",
+          "correction": "The INPUT picks the piece. Check the conditions before touching any formula — even if another piece would give a prettier answer.",
+          "authored": true
+        },
+        {
+          "text": "Letting a boundary belong to two pieces.",
+          "correction": "Conditions like x < 0 and x ≥ 0 hand zero to exactly one owner. If your definition gives a boundary two owners (or none), the function is broken.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pwg3-t1",
+          "statement": "For $g(x) = \\begin{cases} x^2 & x \\le 2 \\\\ 3x - 2 & x > 2 \\end{cases}$: find $g(2)$ and $g(5)$.",
+          "solution": "$g(2)$: first piece, $4$. $g(5)$: second, $13$.",
+          "check": [
+            "2**2 == 4",
+            "3*5 - 2 == 13"
+          ]
+        },
+        {
+          "id": "pwg3-t2",
+          "statement": "Overtime pay: $18h$ for $h \\le 40$; $720 + 27(h - 40)$ for $h > 40$. Find the pay for $45$ hours.",
+          "solution": "Second piece: $720 + 27(5) = 855$ dollars.",
+          "check": [
+            "18*40 == 720",
+            "720 + 27*(45 - 40) == 855"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The format",
+            "title": "Formulas with territories",
+            "beats": [
+              "A brace, several rows.",
+              "Each row: a formula AND its interval.",
+              "$f(x) = \\begin{cases} x + 5 & x < 0 \\\\ 2x & x \\ge 0 \\end{cases}$",
+              "Read the RIGHT column first — always."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Evaluation",
+            "title": "Address before arithmetic",
+            "beats": [
+              "To find $f(-3)$: which interval owns $-3$?",
+              "$-3 < 0$: the first piece.",
+              "Compute with ITS formula only: $-3 + 5 = 2$.",
+              "The other piece never hears about it."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Boundaries",
+            "title": "Every edge has one owner",
+            "beats": [
+              "$x < 0$ vs $x \\ge 0$: zero belongs to the second.",
+              "$\\le$ grabs the edge; $<$ declines it.",
+              "Well-built definitions cover every input exactly once.",
+              "Thresholds are where real-world prices jump — read them twice."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Who owns 3?",
+            "prompt": "$f(x) = \\begin{cases} 5 - x & x < 3 \\\\ x^2 & x \\ge 3 \\end{cases}$. What is $f(3)$?",
+            "options": [
+              "$9$",
+              "$2$",
+              "both"
+            ],
+            "correctIndex": 0,
+            "explanation": "$3 \\ge 3$: the second piece owns it. $f(3) = 9$; the first piece has no vote.",
+            "check": [
+              "3**2 == 9",
+              "5 - 3 == 2"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Piece selection drills",
+            "intro": "Interval first, formula second, no averaging.",
+            "examples": [
+              {
+                "prompt": "Cell data: \\$20 covers $2$ GB; beyond that, $20 + 8(g - 2)$. Cost at $g = 1.5$ and $g = 3.5$?",
+                "steps": [
+                  "$1.5 \\le 2$: flat piece, \\$20.",
+                  "$3.5 > 2$: $20 + 8(1.5) = 32$.",
+                  "The plan is piecewise: flat, then sloped."
+                ],
+                "answer": "\\$20; \\$32",
+                "check": [
+                  "20 + 8*(Rational(35,10) - 2) == 32"
+                ]
+              },
+              {
+                "prompt": "For $f(x) = \\begin{cases} -x & x < -1 \\\\ 1 & -1 \\le x \\le 1 \\\\ x & x > 1 \\end{cases}$: compute $f(-4), f(0), f(6)$.",
+                "steps": [
+                  "$-4 < -1$: $-(-4) = 4$.",
+                  "$0$ in the middle: $1$.",
+                  "$6 > 1$: $6$."
+                ],
+                "answer": "$4, 1, 6$",
+                "check": [
+                  "-(-4) == 4",
+                  "1 == 1",
+                  "6 == 6"
+                ]
+              },
+              {
+                "prompt": "Tiered electricity: first $100$ kWh at \\$0.10, the rest at \\$0.25. Write the second piece and price $160$ kWh.",
+                "steps": [
+                  "First 100 cost \\$10.",
+                  "Beyond: $10 + 0.25(k - 100)$.",
+                  "$k = 160$: $10 + 15 = 25$ dollars."
+                ],
+                "answer": "\\$25",
+                "check": [
+                  "Rational(10,100)*100 == 10",
+                  "10 + Rational(25,100)*(160 - 100) == 25"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Territory disputes",
+            "intro": "Scan conditions; boundaries have single owners.",
+            "problems": [
+              {
+                "prompt": "$f(x) = \\begin{cases} 2x + 1 & x \\le 0 \\\\ x - 3 & x > 0 \\end{cases}$: $f(0) = $ ?",
+                "options": [
+                  "$1$",
+                  "$-3$",
+                  "$0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$0 \\le 0$: first piece, $2(0) + 1 = 1$.",
+                "check": [
+                  "2*0 + 1 == 1"
+                ]
+              },
+              {
+                "prompt": "Shipping: \\$5 under $1$ kg; \\$9 for $1$–$5$ kg; \\$9 plus \\$2/kg beyond $5$ ($9 + 2(w-5)$). A $7$ kg parcel costs…",
+                "options": [
+                  "\\$13",
+                  "\\$14",
+                  "\\$23"
+                ],
+                "correctIndex": 0,
+                "explanation": "$7 > 5$: $9 + 2(2) = 13$.",
+                "check": [
+                  "9 + 2*(7 - 5) == 13"
+                ]
+              },
+              {
+                "prompt": "A piecewise definition gives $x = 2$ to BOTH pieces with different outputs. The definition is…",
+                "options": [
+                  "not a function — one input, two outputs",
+                  "fine — pick either",
+                  "a step function"
+                ],
+                "correctIndex": 0,
+                "explanation": "Overlapping territories with disagreeing formulas break the one-output promise.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Your tax return is a piecewise function",
+            "body": "Income tax brackets are the world's most consequential piecewise function — and the most misunderstood. Crossing into a higher bracket taxes only the income INSIDE that bracket, yet surveys show most adults believe a raise can shrink their take-home pay. It can't: the function is piecewise but continuous. Reading conditions carefully is, literally, money."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Piecewise = formulas with territories; the input's interval picks the piece.",
+              "Boundaries belong to exactly one owner ($\\le$ takes the edge; $<$ declines).",
+              "Real thresholds — parking, data, overtime — are piecewise in the wild."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "graphing-piecewise",
+      "title": "Graphing Piecewise Functions",
+      "concreteComparison": "Graphing a piecewise function is tiling a wall: each formula paints only its own strip of x-values, and the seams need finishing — a FILLED dot where a piece owns its endpoint, an OPEN dot where it doesn't. Do the strips meet? The graph flows. Do they miss? The graph JUMPS, and that jump is the garage's price cliff made visible.",
+      "objective": "Graph piecewise functions strip by strip, with correct open/closed endpoints, and spot jumps.",
+      "concept": [
+        "Graph each piece ONLY over its territory: a line segment, a ray, or a curve fragment per row.",
+        "Endpoint etiquette: CLOSED (filled) dot when the condition includes the boundary ($\\le, \\ge$); OPEN dot when it doesn't ($<, >$).",
+        "At each boundary, exactly one piece plants a filled dot; a neighboring open dot may sit above or below it.",
+        "If the pieces' values AGREE at the seam, the graph is continuous there; if they DISAGREE, the graph jumps — a gap you could catch a coin in.",
+        "The V graph is the friendliest example: two rays meeting perfectly at the vertex, seam invisible."
+      ],
+      "keyIdea": "Paint each strip separately; filled vs open dots at every seam; matching values flow, mismatched values jump.",
+      "facts": [
+        {
+          "title": "Dot etiquette",
+          "explanation": "The dot records who owns the seam.",
+          "latex": "$\\le$: filled; $<$: open"
+        },
+        {
+          "title": "Jump detector",
+          "explanation": "Mismatched seam values = a visible cliff.",
+          "latex": "pieces disagree at the boundary"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pwg4-we1",
+          "statement": "Graph $f(x) = \\begin{cases} x + 3 & x < 1 \\\\ 6 - 2x & x \\ge 1 \\end{cases}$ — do the pieces meet at $x = 1$?",
+          "solution": "Left piece approaches $4$ (open dot); right piece starts at $4$ (filled). They AGREE: continuous seam at $(1, 4)$.",
+          "check": [
+            "1 + 3 == 4",
+            "6 - 2*1 == 4"
+          ]
+        },
+        {
+          "id": "pwg4-we2",
+          "statement": "Graph $g(x) = \\begin{cases} 2 & x < 0 \\\\ x - 1 & x \\ge 0 \\end{cases}$ — describe the seam at $x = 0$.",
+          "solution": "Left: height $2$ (open). Right: starts at $-1$ (filled). A JUMP of $3$ units at the seam.",
+          "check": [
+            "2 - -1 == 3",
+            "0 - 1 == -1"
+          ]
+        },
+        {
+          "id": "pwg4-we3",
+          "statement": "Which x-values make $f(x) = \\begin{cases} x + 3 & x < 1 \\\\ 6 - 2x & x \\ge 1 \\end{cases}$ equal to $0$?",
+          "solution": "First piece: $x = -3$ ✓ (it's $< 1$). Second: $6 - 2x = 0 \\to x = 3$ ✓ ($\\ge 1$). Two zeros: $-3$ and $3$.",
+          "check": [
+            "-3 + 3 == 0",
+            "6 - 2*3 == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Extending a piece beyond its territory.",
+          "correction": "Each formula dies at its boundary. Drawing x + 3 past x = 1 paints someone else's strip — erase to the seam.",
+          "authored": true
+        },
+        {
+          "text": "Two filled dots at one seam.",
+          "correction": "One owner per boundary: the piece with ≤/≥ gets the filled dot; its neighbor shows open. Two filled dots at different heights would break the vertical line test.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pwg4-t1",
+          "statement": "At $x = 2$, the pieces of $h(x) = \\begin{cases} x^2 & x \\le 2 \\\\ x + 2 & x > 2 \\end{cases}$ give what values? Continuous or jump?",
+          "solution": "Left owns the seam: $4$ (filled). Right approaches $4$ (open). Equal — continuous.",
+          "check": [
+            "2**2 == 4",
+            "2 + 2 == 4"
+          ]
+        },
+        {
+          "id": "pwg4-t2",
+          "statement": "Sketch plan for $f(x) = \\begin{cases} -x & x < 0 \\\\ 3 & x \\ge 0 \\end{cases}$: describe the two strips.",
+          "solution": "Falling ray into an open dot at $(0, 0)$; then a flat ray from a filled $(0, 3)$ rightward — a 3-unit jump.",
+          "check": [
+            "-(-2) == 2",
+            "3 == 3"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "Play with it",
+            "title": "Two strips, one seam",
+            "teach": "These points sample $f(x) = x + 3$ (left of $x = 1$) and $6 - 2x$ (from $x = 1$ on). Follow them to the seam at $(1, 4)$ — the strips shake hands, so no jump.",
+            "config": {
+              "mode": "plot",
+              "min": -4,
+              "max": 6,
+              "points": [
+                {
+                  "x": -2,
+                  "y": 1
+                },
+                {
+                  "x": 0,
+                  "y": 3
+                },
+                {
+                  "x": 1,
+                  "y": 4,
+                  "label": "seam",
+                  "color": "#3f9d63"
+                },
+                {
+                  "x": 2,
+                  "y": 2
+                },
+                {
+                  "x": 3,
+                  "y": 0
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Strip painting",
+            "title": "Each formula, its territory",
+            "beats": [
+              "Row 1 paints ONLY $x < 1$.",
+              "Row 2 paints ONLY $x \\ge 1$.",
+              "Segments and rays end at the seams.",
+              "No trespassing — the conditions are property lines."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Seam finishing",
+            "title": "Dots and jumps",
+            "beats": [
+              "Owner ($\\le, \\ge$): filled dot at the seam.",
+              "Non-owner ($<, >$): open dot.",
+              "Values agree → the strips flow (continuous).",
+              "Values differ → a jump: the garage's \\$6 cliff, drawn."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Finish the seam",
+            "prompt": "$f(x) = \\begin{cases} x & x < 2 \\\\ 5 & x \\ge 2 \\end{cases}$: at $x = 2$ the graph shows…",
+            "options": [
+              "open dot at $(2,2)$, filled at $(2,5)$",
+              "filled at $(2,2)$, open at $(2,5)$",
+              "two filled dots"
+            ],
+            "correctIndex": 0,
+            "explanation": "The first piece doesn't own 2 (strict <): open at height 2. The second does: filled at 5. A 3-unit jump.",
+            "check": [
+              "5 - 2 == 3"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Seam inspections",
+            "intro": "Paint, dot, and diagnose each boundary.",
+            "examples": [
+              {
+                "prompt": "Graph plan for $f(x) = \\begin{cases} 4 & x \\le -1 \\\\ 3 - x & -1 < x \\le 3 \\\\ x - 3 & x > 3 \\end{cases}$: check both seams.",
+                "steps": [
+                  "Seam $x = -1$: flat piece owns it at $4$; middle approaches $4$ — continuous.",
+                  "Seam $x = 3$: middle owns it at $0$; right approaches $0$ — continuous.",
+                  "Three strips, two smooth seams: an armchair-shaped graph."
+                ],
+                "answer": "both seams continuous",
+                "check": [
+                  "3 - -1 == 4",
+                  "3 - 3 == 0",
+                  "3 - 3 == 0"
+                ]
+              },
+              {
+                "prompt": "The garage prices (free ≤ 1; $3(t-1)$ for $1 < t \\le 4$; \\$15 after): where does the GRAPH jump?",
+                "steps": [
+                  "Seam $t = 1$: $0$ vs $3(0) = 0$ — smooth.",
+                  "Seam $t = 4$: $9$ (owned) vs $15$ — JUMP of 6.",
+                  "The cliff customers feel is the graph's gap."
+                ],
+                "answer": "jump at $t = 4$",
+                "check": [
+                  "3*(1 - 1) == 0",
+                  "3*(4 - 1) == 9",
+                  "15 - 9 == 6"
+                ]
+              },
+              {
+                "prompt": "Solve $f(x) = 2$ for $f(x) = \\begin{cases} x + 3 & x < 1 \\\\ 6 - 2x & x \\ge 1 \\end{cases}$.",
+                "steps": [
+                  "First piece: $x + 3 = 2 \\to x = -1$ ✓ (is $< 1$).",
+                  "Second: $6 - 2x = 2 \\to x = 2$ ✓ ($\\ge 1$).",
+                  "Both survive their territory checks: $x = -1$ or $2$."
+                ],
+                "answer": "$x = -1, 2$",
+                "check": [
+                  "-1 + 3 == 2",
+                  "6 - 2*2 == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Wall tiling exam",
+            "intro": "Territory, dots, seam verdicts.",
+            "problems": [
+              {
+                "prompt": "$f(x) = \\begin{cases} x + 1 & x \\le 0 \\\\ x - 1 & x > 0 \\end{cases}$ at its seam is…",
+                "options": [
+                  "a jump of $2$",
+                  "continuous",
+                  "a jump of $1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Left owns $x=0$ at height $1$; right approaches $-1$: gap of 2.",
+                "check": [
+                  "0 + 1 == 1",
+                  "0 - 1 == -1",
+                  "1 - -1 == 2"
+                ]
+              },
+              {
+                "prompt": "When solving a piece's equation, a candidate landing OUTSIDE that piece's territory is…",
+                "options": [
+                  "rejected — wrong piece",
+                  "kept anyway",
+                  "moved to the other piece"
+                ],
+                "correctIndex": 0,
+                "explanation": "Solutions must live where their formula rules; trespassers are discarded.",
+                "check": [
+                  "1 == 1"
+                ]
+              },
+              {
+                "prompt": "Which function is |x| in disguise?",
+                "options": [
+                  "$f(x) = \\begin{cases} -x & x < 0 \\\\ x & x \\ge 0 \\end{cases}$",
+                  "$f(x) = \\begin{cases} x & x < 0 \\\\ -x & x \\ge 0 \\end{cases}$",
+                  "neither"
+                ],
+                "correctIndex": 0,
+                "explanation": "Negate on the left, identity on the right: that's the V. (The other is −|x|.)",
+                "check": [
+                  "-(-3) == Abs(-3)",
+                  "2 == Abs(2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The jump you hear",
+            "body": "Digital audio is a piecewise story: when sound data is cut and pasted carelessly, the waveform JUMPS at the seam — and your ear hears that discontinuity as a click or pop. Audio engineers 'crossfade' precisely to make the pieces agree at the boundary. Continuity isn't just pretty math; it's the difference between music and static."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Paint each formula only over its territory; finish seams with the right dots.",
+              "Agreeing seam values flow; disagreeing ones jump.",
+              "Piece-equation solutions must pass the territory check."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "step-functions",
+      "title": "Step Functions",
+      "concreteComparison": "Postage: up to $20$ g costs \\$1.50; up to $50$ g, \\$2.40; up to $100$ g, \\$3.60. Between thresholds, NOTHING changes — an extra gram is free until it isn't. The graph is a staircase: flat treads, sudden risers. **Step functions** are piecewise functions whose every piece is a constant — and they price most of modern life.",
+      "objective": "Evaluate and graph step functions, and model tiered pricing with them.",
+      "concept": [
+        "A **step function** is piecewise with CONSTANT pieces: each interval gets one flat value; boundaries jump.",
+        "Graph: horizontal segments (treads) with a filled dot on the owning end and an open dot on the other — a staircase.",
+        "Evaluating means finding the tread under your input: $37$ g postage → the 'up to 50' tread → \\$2.40.",
+        "Rounding functions are steps too: the FLOOR of $x$ (round down) climbs one unit at every integer — ceilings, likewise, star in 'any part of an hour' pricing.",
+        "Danger zones are the risers: at exactly $50$ g the owner ($\\le 50$) charges \\$2.40, but one gram more costs \\$3.60."
+      ],
+      "keyIdea": "Step functions are staircases: flat treads, jump risers, dot etiquette at every edge.",
+      "facts": [
+        {
+          "title": "Flat treads",
+          "explanation": "Inside a tier, changing x changes nothing.",
+          "latex": "constant pieces only"
+        },
+        {
+          "title": "Any-part-of pricing",
+          "explanation": "'Each hour or part thereof' jumps AT the hour marks.",
+          "latex": "ceiling-style rounding"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pwg5-we1",
+          "statement": "Postage: $\\le 20$g: \\$1.50; $\\le 50$g: \\$2.40; $\\le 100$g: \\$3.60. Price letters of $18$ g, $50$ g, and $51$ g.",
+          "solution": "$18$: first tread, \\$1.50. $50$: second tread (owns its edge), \\$2.40. $51$: third tread, \\$3.60.",
+          "check": [
+            "18 < 20",
+            "50 <= 50",
+            "Rational(360,100) - Rational(240,100) == Rational(120,100)"
+          ]
+        },
+        {
+          "id": "pwg5-we2",
+          "statement": "A car park charges \\$4 per hour OR PART: $4\\lceil t \\rceil$ style. What do $1.2$ h and $2$ h cost?",
+          "solution": "$1.2$ h rounds UP to 2 hours: \\$8. Exactly $2$ h: \\$8 (no part begun beyond).",
+          "check": [
+            "4*2 == 8"
+          ]
+        },
+        {
+          "id": "pwg5-we3",
+          "statement": "Describe the graph of the floor function $y = \\lfloor x \\rfloor$ between $0$ and $3$.",
+          "solution": "Treads at heights $0, 1, 2$ over $[0,1), [1,2), [2,3)$: filled dots on the LEFT of each tread, open on the right, rising one per integer.",
+          "check": [
+            "1 - 0 == 1",
+            "2 - 1 == 1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Interpolating between treads.",
+          "correction": "Between thresholds, the answer does NOT slide — 37 g costs exactly what 21 g costs. Steps are flat; only the risers move.",
+          "authored": true
+        },
+        {
+          "text": "Charging the lower tier at one gram past the edge.",
+          "correction": "The riser is vertical: 50 g is \\$2.40 but 50.1 g is \\$3.60. Check which side of every ≤ your input falls.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pwg5-t1",
+          "statement": "Shipping tiers: $\\le 1$ kg \\$5; $\\le 3$ kg \\$8; $\\le 10$ kg \\$14. Price parcels of $2.4$ kg and $3$ kg.",
+          "solution": "$2.4$: second tread, \\$8. $3$: still second (owns the edge), \\$8.",
+          "check": [
+            "8 == 8",
+            "3 <= 3"
+          ]
+        },
+        {
+          "id": "pwg5-t2",
+          "statement": "A boat rental bills \\$25 per HALF hour or part. What does a $70$-minute trip cost?",
+          "solution": "$70$ min = $2$ full halves + a part → $3$ halves: \\$75.",
+          "check": [
+            "25*3 == 75"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The shape",
+            "title": "Treads and risers",
+            "beats": [
+              "Constant pieces: flat treads.",
+              "Threshold jumps: vertical risers (never drawn as graph — the graph is the dots and treads).",
+              "Filled dot on the owning edge; open on the other.",
+              "A staircase, climbing (or falling) by rule."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Evaluation",
+            "title": "Find your tread",
+            "beats": [
+              "Locate the input among the thresholds.",
+              "$37$ g: past 20, not past 50 → the \\$2.40 tread.",
+              "Everything on a tread costs the same.",
+              "Edges: read the $\\le$ carefully — the owner charges less."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Round-up worlds",
+            "title": "'Or part thereof'",
+            "beats": [
+              "Parking, boat rentals, cloud minutes: any PART of a unit bills the whole unit.",
+              "That's the CEILING function: round up always.",
+              "$1.2$ h → 2 billable hours.",
+              "Floors round down: ages, completed levels, whole batches."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the staircase",
+            "prompt": "Tiers: $\\le 2$ km \\$3; $\\le 5$ km \\$7; beyond \\$12. A $5$ km taxi ride costs…",
+            "options": [
+              "\\$7",
+              "\\$12",
+              "\\$10"
+            ],
+            "correctIndex": 0,
+            "explanation": "$5 \\le 5$: the second tread owns its edge.",
+            "check": [
+              "5 <= 5",
+              "12 - 7 == 5"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Staircase economics",
+            "intro": "Tread lookup, edge etiquette, round-up billing.",
+            "examples": [
+              {
+                "prompt": "A streaming service bills \\$2 per started hour. Graph values for $t = 0.5, 1, 1.5, 2$ and name the pattern.",
+                "steps": [
+                  "$0.5 \\to 2$; $1 \\to 2$ (no new hour started).",
+                  "$1.5 \\to 4$; $2 \\to 4$.",
+                  "Ceiling steps: risers just PAST each integer."
+                ],
+                "answer": "$2, 2, 4, 4$",
+                "check": [
+                  "2*1 == 2",
+                  "2*2 == 4"
+                ]
+              },
+              {
+                "prompt": "Movie tickets by age: under 3 free; under 13 \\$6; under 65 \\$11; else \\$8. Price ages 3, 12.9, and 65.",
+                "steps": [
+                  "Age 3: second tier starts AT 3 → \\$6.",
+                  "12.9: still under 13 → \\$6.",
+                  "65: not under 65 → senior \\$8."
+                ],
+                "answer": "\\$6, \\$6, \\$8",
+                "check": [
+                  "11 - 6 == 5",
+                  "11 - 8 == 3"
+                ]
+              },
+              {
+                "prompt": "Why can a step function never pass the horizontal-line-through-a-riser test — i.e., what IS the graph at a jump?",
+                "steps": [
+                  "At the threshold there's ONE dot (the owner's tread).",
+                  "The riser itself is empty space, not graph.",
+                  "Each input still has exactly one output: still a function."
+                ],
+                "answer": "one filled dot; the riser is a gap",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Tier trouble",
+            "intro": "Which tread? Which edge owner?",
+            "problems": [
+              {
+                "prompt": "Data plan: $\\le 5$ GB \\$30; $\\le 20$ GB \\$45; beyond \\$60. What do $5.1$ GB cost?",
+                "options": [
+                  "\\$45",
+                  "\\$30",
+                  "\\$60"
+                ],
+                "correctIndex": 0,
+                "explanation": "Past 5, within 20: the middle tread.",
+                "check": [
+                  "45 - 30 == 15"
+                ]
+              },
+              {
+                "prompt": "The floor function $\\lfloor x \\rfloor$ at $x = 2.999$ equals…",
+                "options": [
+                  "$2$",
+                  "$3$",
+                  "$2.999$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Round DOWN: still on the 2-tread until exactly 3.",
+                "check": [
+                  "3 - 1 == 2"
+                ]
+              },
+              {
+                "prompt": "A copy shop bills \\$0.80 per started set of 10 pages. Printing $34$ pages costs…",
+                "options": [
+                  "\\$3.20",
+                  "\\$2.72",
+                  "\\$2.40"
+                ],
+                "correctIndex": 0,
+                "explanation": "$34$ pages = 4 started sets: $4 \\times 0.80 = 3.20$.",
+                "check": [
+                  "4*Rational(80,100) == Rational(320,100)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The staircase in your GPU",
+            "body": "Every digital image is a step function in two directions: pixels are flat treads of color with risers at their edges. 'Aliasing' — the jagged staircase look on diagonal lines — is literally the step function showing through, and anti-aliasing algorithms exist to fake continuity where mathematics insists on jumps. Your screen renders a few million step functions per frame."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Step functions: constant treads, jump risers, one filled dot per edge.",
+              "Evaluate by tread lookup; respect edge ownership.",
+              "Ceilings bill started units; floors count completed ones."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "piecewise-in-action",
+      "title": "Piecewise Models in Action",
+      "concreteComparison": "A progressive income tax: $10\\%$ on the first \\$10{,}000, $20\\%$ on the next \\$30{,}000, $30\\%$ beyond. An electricity bill with a cheap first block. A wage with overtime kick-in. The most consequential functions in adult life are piecewise — and building them correctly (each piece STARTING from the previous piece's total) is this unit's capstone.",
+      "objective": "Build and use piecewise models for taxes, tiered rates, and wages, ensuring continuity where reality demands it.",
+      "concept": [
+        "Progressive systems tax each SLICE at its own rate: crossing a bracket re-prices only the income inside it.",
+        "Build pieces cumulatively: piece $n$ starts from the TOTAL at the previous threshold, then adds its own rate times the excess: $1000 + 0.20(x - 10000)$ for the second bracket.",
+        "That construction forces CONTINUITY: no honest tax system jumps — earning one more dollar can't cost you two.",
+        "Contrast with step-function pricing (parking): there, jumps are the business model. Choose the model that matches the story's fairness.",
+        "Always sanity-check thresholds: evaluate each piece AT the boundary and confirm the handoff matches."
+      ],
+      "keyIdea": "Cumulative construction — previous total plus rate times excess — makes piecewise models continuous where fairness requires.",
+      "facts": [
+        {
+          "title": "Bracket recipe",
+          "explanation": "Each piece stands on the last piece's shoulders.",
+          "latex": "prev total $+$ rate \\u00d7 excess"
+        },
+        {
+          "title": "Continuity audit",
+          "explanation": "Matching handoffs = no unfair cliffs.",
+          "latex": "evaluate both pieces at each threshold"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pwg6-we1",
+          "statement": "Tax: $10\\%$ up to \\$10k; then $20\\%$ up to \\$40k. Build both pieces and find the tax on \\$25{,}000.",
+          "solution": "Piece 1: $0.10x$. At 10k: \\$1{,}000. Piece 2: $1000 + 0.20(x - 10000)$. At 25k: $1000 + 3000 = 4000$.",
+          "check": [
+            "Rational(10,100)*10000 == 1000",
+            "1000 + Rational(20,100)*(25000 - 10000) == 4000"
+          ]
+        },
+        {
+          "id": "pwg6-we2",
+          "statement": "Verify that tax function is continuous at \\$10{,}000.",
+          "solution": "Piece 1 at 10k: $1000$. Piece 2 at 10k: $1000 + 0.2(0) = 1000$. Handoff matches — no cliff.",
+          "check": [
+            "Rational(10,100)*10000 == 1000",
+            "1000 + Rational(20,100)*0 == 1000"
+          ]
+        },
+        {
+          "id": "pwg6-we3",
+          "statement": "Wages: \\$16/h up to $40$ h, then time-and-a-half. Build the overtime piece and price a $46$-hour week.",
+          "solution": "Base at 40 h: \\$640. Overtime: $640 + 24(h - 40)$. At 46: $640 + 144 = 784$ dollars.",
+          "check": [
+            "16*40 == 640",
+            "Rational(3,2)*16 == 24",
+            "640 + 24*(46 - 40) == 784"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Applying the top rate to ALL income.",
+          "correction": "30% 'bracket' taxes only the slice above its threshold. Whole-income multiplication overtaxes wildly — build cumulatively.",
+          "authored": true
+        },
+        {
+          "text": "Building a bracket from zero instead of the previous total.",
+          "correction": "Piece 2 must START at piece 1's ending value. Forgetting the +1000 makes the model jump DOWNWARD at the threshold — free money for crossing it.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pwg6-t1",
+          "statement": "Electricity: \\$0.10/kWh for the first $200$; \\$0.18 beyond. Build the second piece and price $350$ kWh.",
+          "solution": "First block: \\$20. Beyond: $20 + 0.18(k - 200)$; at 350: $20 + 27 = 47$ dollars.",
+          "check": [
+            "Rational(10,100)*200 == 20",
+            "20 + Rational(18,100)*(350 - 200) == 47"
+          ]
+        },
+        {
+          "id": "pwg6-t2",
+          "statement": "Check that model's handoff at $200$ kWh.",
+          "solution": "Piece 1: \\$20. Piece 2 at 200: $20 + 0 = 20$. Continuous.",
+          "check": [
+            "20 + Rational(18,100)*0 == 20"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The recipe",
+            "title": "Stand on the last piece's shoulders",
+            "beats": [
+              "Compute each threshold's TOTAL first.",
+              "Bracket $n$: (that total) $+$ (its rate)(excess).",
+              "$1000 + 0.20(x - 10000)$.",
+              "The +1000 is the whole trick."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Fairness check",
+            "title": "Continuity is policy",
+            "beats": [
+              "Taxes and wages must not jump — a raise can't shrink pay.",
+              "Audit: evaluate BOTH pieces at each threshold.",
+              "Matching totals → continuous → fair.",
+              "Parking and postage JUMP on purpose: different business, different graph."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Fluency",
+            "title": "Marginal vs average",
+            "beats": [
+              "The bracket rate is MARGINAL: it prices the next dollar.",
+              "The average rate is total tax ÷ total income — always lower in progressive systems.",
+              "\\$25k: tax \\$4k → average 16%, while marginal is 20%.",
+              "Most tax myths die at this distinction."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Bracket arithmetic",
+            "prompt": "Tax: $10\\%$ to \\$10k, $20\\%$ beyond. The tax on \\$12{,}000 is…",
+            "options": [
+              "\\$1{,}400",
+              "\\$2{,}400",
+              "\\$1{,}200"
+            ],
+            "correctIndex": 0,
+            "explanation": "$1000 + 0.20(2000) = 1400$. Whole-income 20% ($2400$) is the classic overcount.",
+            "check": [
+              "1000 + Rational(20,100)*2000 == 1400",
+              "Rational(20,100)*12000 == 2400"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Capstone constructions",
+            "intro": "Thresholds, totals, pieces, audit.",
+            "examples": [
+              {
+                "prompt": "Three brackets: $10\\%$ to 10k, $20\\%$ to 40k, $30\\%$ beyond. Build piece 3 and tax \\$50{,}000.",
+                "steps": [
+                  "Total at 40k: $1000 + 0.2(30000) = 7000$.",
+                  "Piece 3: $7000 + 0.30(x - 40000)$.",
+                  "At 50k: $7000 + 3000 = 10000$."
+                ],
+                "answer": "\\$10{,}000",
+                "check": [
+                  "1000 + Rational(20,100)*30000 == 7000",
+                  "7000 + Rational(30,100)*10000 == 10000"
+                ]
+              },
+              {
+                "prompt": "Average rate on that \\$50{,}000?",
+                "steps": [
+                  "Tax \\$10{,}000 on \\$50{,}000.",
+                  "$\\frac{10000}{50000} = 20\\%$ average.",
+                  "Marginal 30%, average 20% — the gap IS progressivity."
+                ],
+                "answer": "$20\\%$",
+                "check": [
+                  "Rational(10000,50000) == Rational(20,100)"
+                ]
+              },
+              {
+                "prompt": "A rideshare pays drivers \\$0.90/km for the first 100 km/day and \\$1.20/km after. Build the model and find pay for a 140 km day.",
+                "steps": [
+                  "First 100: \\$90.",
+                  "Beyond: $90 + 1.20(k - 100)$.",
+                  "At 140: $90 + 48 = 138$ dollars."
+                ],
+                "answer": "\\$138",
+                "check": [
+                  "Rational(90,100)*100 == 90",
+                  "90 + Rational(120,100)*(140 - 100) == 138"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Build the brackets",
+            "intro": "Previous total + rate × excess, then audit.",
+            "problems": [
+              {
+                "prompt": "Wages \\$20/h to 40 h, double-time after. A 43-hour week pays…",
+                "options": [
+                  "\\$920",
+                  "\\$1{,}720",
+                  "\\$860"
+                ],
+                "correctIndex": 0,
+                "explanation": "$800 + 40(3) = 920$.",
+                "check": [
+                  "20*40 == 800",
+                  "800 + 40*3 == 920"
+                ]
+              },
+              {
+                "prompt": "A model's piece 2 at its threshold gives \\$310, but piece 1 ends at \\$290. The model…",
+                "options": [
+                  "has an unfair \\$20 cliff — rebuild piece 2's constant",
+                  "is fine",
+                  "needs a steeper rate"
+                ],
+                "correctIndex": 0,
+                "explanation": "Handoffs must match; the +constant should equal the previous total.",
+                "check": [
+                  "310 - 290 == 20"
+                ]
+              },
+              {
+                "prompt": "Which system SHOULD be a jumping step function rather than continuous?",
+                "options": [
+                  "airmail postage by weight tier",
+                  "income tax",
+                  "overtime wages"
+                ],
+                "correctIndex": 0,
+                "explanation": "Postage prices the tier, not the gram — jumps are the design. Taxes and wages must flow.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The 102% tax that wasn't",
+            "body": "Britain's 1970s 'super-tax' era spawned legends of rates above 100% — and one was true: with surcharges, some investment income briefly faced a 98% MARGINAL rate, and careful piecewise arithmetic shows certain edge cases where poorly drafted thresholds genuinely cost more than a pound per extra pound. Parliament's fix was exactly your continuity audit: evaluate both pieces at the seam, and make them shake hands."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Brackets price slices; build each piece on the previous total.",
+              "Continuity audits keep taxes and wages fair; steps jump by design.",
+              "Marginal rates price the next dollar; averages summarize the whole."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "pwg-pr1",
+      "statement": "Give the vertex and opening direction of $y = |x + 6| - 3$.",
+      "solution": "Vertex $(-6, -3)$, opening upward.",
+      "check": [
+        "Abs(-6 + 6) - 3 == -3"
+      ]
+    },
+    {
+      "id": "pwg-pr2",
+      "statement": "Find the x-intercepts of $y = |x - 2| - 5$.",
+      "solution": "$|x - 2| = 5 \\to x = 7$ or $x = -3$.",
+      "check": [
+        "Abs(7 - 2) - 5 == 0",
+        "Abs(-3 - 2) - 5 == 0"
+      ]
+    },
+    {
+      "id": "pwg-pr3",
+      "statement": "For $f(x) = \\begin{cases} 4 - x & x < 2 \\\\ x^2 - 2 & x \\ge 2 \\end{cases}$: find $f(-1)$, $f(2)$, $f(3)$.",
+      "solution": "$f(-1) = 5$; $f(2) = 2$ (second piece owns it); $f(3) = 7$.",
+      "check": [
+        "4 - -1 == 5",
+        "2**2 - 2 == 2",
+        "3**2 - 2 == 7"
+      ]
+    },
+    {
+      "id": "pwg-pr4",
+      "statement": "Is that $f$ continuous at $x = 2$?",
+      "solution": "Left approaches $4 - 2 = 2$; right starts at $2$. Equal — continuous.",
+      "check": [
+        "4 - 2 == 2",
+        "2**2 - 2 == 2"
+      ]
+    },
+    {
+      "id": "pwg-pr5",
+      "statement": "Bike rental: \\$12 flat for up to $2$ h, then $12 + 5(t - 2)$. Cost of $4.5$ hours?",
+      "solution": "$12 + 5(2.5) = 24.50$ dollars.",
+      "check": [
+        "12 + 5*(Rational(45,10) - 2) == Rational(245,10)"
+      ]
+    },
+    {
+      "id": "pwg-pr6",
+      "statement": "Tiered water: \\$0.004/L to $10{,}000$ L, then \\$0.007/L. Build piece 2 and price $16{,}000$ L.",
+      "solution": "Block 1: \\$40. Piece 2: $40 + 0.007(L - 10000)$; at 16k: $40 + 42 = 82$ dollars.",
+      "check": [
+        "Rational(4,1000)*10000 == 40",
+        "40 + Rational(7,1000)*(16000 - 10000) == 82"
+      ]
+    },
+    {
+      "id": "pwg-pr7",
+      "statement": "A ferry bills \\$7 per started half hour. Price a $80$-minute crossing.",
+      "solution": "$80$ min = 3 started halves: \\$21.",
+      "check": [
+        "7*3 == 21"
+      ]
+    },
+    {
+      "id": "pwg-pr8",
+      "statement": "The maximum value of $y = -\\frac{1}{2}|x - 4| + 3$ is what, and where?",
+      "solution": "Downward V: max $3$ at $x = 4$.",
+      "check": [
+        "Rational(-1,2)*Abs(4 - 4) + 3 == 3",
+        "Rational(-1,2)*Abs(6 - 4) + 3 == 2"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "pwg-ty1",
+      "statement": "Sketch plan for $y = 2|x + 1| - 4$: vertex, arm slopes, x-intercepts.",
+      "solution": "Vertex $(-1, -4)$; arms $\\pm 2$; intercepts where $2|x+1| = 4$: $x = 1$ or $x = -3$.",
+      "check": [
+        "2*Abs(1 + 1) - 4 == 0",
+        "2*Abs(-3 + 1) - 4 == 0"
+      ]
+    },
+    {
+      "id": "pwg-ty2",
+      "statement": "Write $y = |x|$ as a piecewise function.",
+      "solution": "$y = -x$ for $x < 0$; $y = x$ for $x \\ge 0$.",
+      "check": [
+        "-(-5) == Abs(-5)",
+        "5 == Abs(5)"
+      ]
+    },
+    {
+      "id": "pwg-ty3",
+      "statement": "For $g(x) = \\begin{cases} 2x + 7 & x \\le -2 \\\\ 3 & -2 < x < 1 \\\\ 4 - x & x \\ge 1 \\end{cases}$: evaluate $g(-2), g(0), g(1)$ and name any jump.",
+      "solution": "$g(-2) = 3$ (first piece), $g(0) = 3$, $g(1) = 3$. All three seams meet at 3 — fully continuous, no jumps.",
+      "check": [
+        "2*-2 + 7 == 3",
+        "4 - 1 == 3"
+      ]
+    },
+    {
+      "id": "pwg-ty4",
+      "statement": "Solve $f(x) = 1$ for $f(x) = \\begin{cases} x + 4 & x < 0 \\\\ 5 - 2x & x \\ge 0 \\end{cases}$.",
+      "solution": "Piece 1: $x = -3$ ✓ ($< 0$). Piece 2: $5 - 2x = 1 \\to x = 2$ ✓. Both: $x = -3, 2$.",
+      "check": [
+        "-3 + 4 == 1",
+        "5 - 2*2 == 1"
+      ]
+    },
+    {
+      "id": "pwg-ty5",
+      "statement": "Parking: first hour free; then \\$2.50 per started hour. Price stays of $50$ min, $1.5$ h, and $3$ h — and where are the risers?",
+      "solution": "$50$ min: \\$0. $1.5$ h: 1 started paid hour, \\$2.50. $3$ h: 2 paid hours, \\$5. Risers just past $t = 1, 2, 3, \\ldots$",
+      "check": [
+        "Rational(250,100)*1 == Rational(250,100)",
+        "Rational(250,100)*2 == 5"
+      ]
+    },
+    {
+      "id": "pwg-ty6",
+      "statement": "Tax: $12\\%$ to \\$15k, $22\\%$ to \\$45k, $32\\%$ beyond. Compute the tax and average rate on \\$60{,}000.",
+      "solution": "Totals: 15k → 1800; 45k → $1800 + 6600 = 8400$. At 60k: $8400 + 0.32(15000) = 13200$. Average: $\\frac{13200}{60000} = 22\\%$.",
+      "check": [
+        "Rational(12,100)*15000 == 1800",
+        "1800 + Rational(22,100)*30000 == 8400",
+        "8400 + Rational(32,100)*15000 == 13200",
+        "Rational(13200,60000) == Rational(22,100)"
+      ]
+    }
+  ]
+}

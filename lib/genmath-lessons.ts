@@ -73,6 +73,7 @@ import inequalitiesAbsValue from "@/data/genmath/9/inequalities-and-absolute-val
 import introToFunctions from "@/data/genmath/9/introduction-to-functions.json";
 import linearModelsVariation from "@/data/genmath/9/linear-models-and-variation.json";
 import inequalitiesTwoVars from "@/data/genmath/9/inequalities-in-two-variables.json";
+import piecewiseAbsGraphs from "@/data/genmath/9/piecewise-and-absolute-value-graphs.json";
 // Grade 8 topic JSON imports (added as each topic is authored + published).
 import realNumberSystem from "@/data/genmath/8/the-real-number-system.json";
 import exponentsScientific from "@/data/genmath/8/exponents-and-scientific-notation.json";
@@ -290,7 +291,7 @@ export const GRADE9_SPINE: GradeSpineEntry[] = [
     slug: "piecewise-and-absolute-value-graphs",
     title: "Piecewise & Absolute-Value Graphs",
     blurb: "The V of y = |x|, shifts of it, and functions defined in pieces \u2014 including step functions.",
-    live: false,
+    live: true,
   },
   {
     slug: "data-distributions",
@@ -481,6 +482,7 @@ const grade9Topics: GenMathTopic[] = [
   introToFunctions as GenMathTopic,
   linearModelsVariation as GenMathTopic,
   inequalitiesTwoVars as GenMathTopic,
+  piecewiseAbsGraphs as GenMathTopic,
 ];
 
 const grade8Topics: GenMathTopic[] = [
