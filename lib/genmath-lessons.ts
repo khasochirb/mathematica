@@ -69,6 +69,7 @@ import probability7 from "@/data/genmath/7/probability.json";
 import samplingAndStatistics from "@/data/genmath/7/sampling-and-statistics.json";
 // Grade 9 topic JSON imports (added as each topic is authored + published).
 import equationsAndFormulas from "@/data/genmath/9/equations-and-formulas.json";
+import inequalitiesAbsValue from "@/data/genmath/9/inequalities-and-absolute-value.json";
 // Grade 8 topic JSON imports (added as each topic is authored + published).
 import realNumberSystem from "@/data/genmath/8/the-real-number-system.json";
 import exponentsScientific from "@/data/genmath/8/exponents-and-scientific-notation.json";
@@ -262,7 +263,7 @@ export const GRADE9_SPINE: GradeSpineEntry[] = [
     slug: "inequalities-and-absolute-value",
     title: "Inequalities & Absolute Value",
     blurb: "Compound inequalities (and/or), absolute-value equations, and absolute-value inequalities — distances on the number line.",
-    live: false,
+    live: true,
   },
   {
     slug: "introduction-to-functions",
@@ -473,6 +474,7 @@ const grade7Topics: GenMathTopic[] = [
 
 const grade9Topics: GenMathTopic[] = [
   equationsAndFormulas as GenMathTopic,
+  inequalitiesAbsValue as GenMathTopic,
 ];
 
 const grade8Topics: GenMathTopic[] = [

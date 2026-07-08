@@ -1,0 +1,1646 @@
+{
+  "slug": "inequalities-and-absolute-value",
+  "title": "Inequalities & Absolute Value",
+  "grade": 9,
+  "blurb": "Compound inequalities (and/or), absolute-value equations, and absolute-value inequalities — distances on the number line.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "multi-step-inequalities",
+      "title": "Multi-Step Inequalities",
+      "concreteComparison": "A freelancer charges a \\$40 setup fee plus \\$25 an hour and wants each job to earn MORE than \\$190. That's $25h + 40 > 190$ — an inequality with the full equation pipeline inside it: distribute, herd, divide. Everything transfers, with one alarm bell you already know: divide by a negative and the symbol flips.",
+      "objective": "Solve inequalities requiring distribution and variables on both sides, and express solutions on the number line.",
+      "concept": [
+        "Multi-step inequalities run the SAME pipeline as equations: distribute, herd variables, isolate — the $<, >, \\le, \\ge$ just rides along.",
+        "The flip rule survives intact from Grade 7: multiplying or dividing both sides by a NEGATIVE reverses the symbol. Adding, subtracting, or positive-scaling never flips.",
+        "Solutions are rays: draw them with an open circle (strict) or closed circle (inclusive) and a shaded direction.",
+        "Test one number from your ray in the ORIGINAL inequality — a solved ray that fails its own test always means a missed flip."
+      ],
+      "keyIdea": "Equation pipeline + the flip rule = every linear inequality; verify with a test point.",
+      "facts": [
+        {
+          "title": "The pipeline carries over",
+          "explanation": "The inequality symbol rides along through every legal move.",
+          "latex": "distribute \\u2192 herd \\u2192 isolate"
+        },
+        {
+          "title": "Flip only on negative scaling",
+          "explanation": "Adding and subtracting never flip; only ×/÷ by negatives do.",
+          "latex": "$-2x > 6 \\to x < -3$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "iav1-we1",
+          "statement": "Solve $25h + 40 > 190$.",
+          "solution": "$25h > 150 \\to h > 6$. Jobs longer than $6$ hours qualify.",
+          "check": [
+            "25*7 + 40 > 190",
+            "25*6 + 40 == 190"
+          ]
+        },
+        {
+          "id": "iav1-we2",
+          "statement": "Solve $3(x - 2) \\le 5x + 8$.",
+          "solution": "$3x - 6 \\le 5x + 8 \\to -14 \\le 2x \\to x \\ge -7$.",
+          "check": [
+            "3*(-7 - 2) <= 5*-7 + 8",
+            "3*(0 - 2) <= 5*0 + 8"
+          ]
+        },
+        {
+          "id": "iav1-we3",
+          "statement": "Solve $7 - 2x > 15$.",
+          "solution": "$-2x > 8$; divide by $-2$ and FLIP: $x < -4$. Test $x = -5$: $7 + 10 = 17 > 15$. ✓",
+          "check": [
+            "7 - 2*-5 > 15"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Flipping when subtracting a variable term.",
+          "correction": "Moving $5x$ across by subtraction never flips the symbol — only MULTIPLYING or DIVIDING by a negative does.",
+          "authored": true
+        },
+        {
+          "text": "Shading toward the variable's side of the symbol.",
+          "correction": "Read the solved form: $x < -4$ shades LEFT of −4. When unsure, test a point instead of trusting the arrow's direction.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "iav1-t1",
+          "statement": "Solve $4x - 9 \\ge 2x + 5$.",
+          "solution": "$2x \\ge 14 \\to x \\ge 7$.",
+          "check": [
+            "4*7 - 9 == 2*7 + 5",
+            "4*8 - 9 >= 2*8 + 5"
+          ]
+        },
+        {
+          "id": "iav1-t2",
+          "statement": "Solve $-3(x + 2) > 9$.",
+          "solution": "$-3x - 6 > 9 \\to -3x > 15 \\to x < -5$.",
+          "check": [
+            "-3*(-6 + 2) > 9"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Old friends",
+            "title": "The pipeline, symbol aboard",
+            "beats": [
+              "Distribute. Herd. Isolate.",
+              "$3(x - 2) \\le 5x + 8$",
+              "$3x - 6 \\le 5x + 8 \\;\\to\\; -14 \\le 2x$",
+              "$x \\ge -7$. Same machine, inequality cargo."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The alarm",
+            "title": "One flip, one trigger",
+            "beats": [
+              "Trigger: multiplying or dividing both sides by a NEGATIVE.",
+              "$-2x > 8 \\to x < -4$ — flipped.",
+              "$x - 5 > -8 \\to x > -3$ — no flip (only added).",
+              "Herding variables never flips. Scaling by negatives always does."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Insurance",
+            "title": "The test point",
+            "beats": [
+              "Pick an easy number from your answer ray.",
+              "Substitute into the ORIGINAL inequality.",
+              "True → ray confirmed. False → you missed a flip.",
+              "$x < -4$: try $-5$. $\\;7 - 2(-5) = 17 > 15$. ✓"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Flip or not?",
+            "prompt": "Solve $12 - 4x \\le 2x$.",
+            "options": [
+              "$x \\ge 2$",
+              "$x \\le 2$",
+              "$x \\ge -2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Add $4x$: $12 \\le 6x \\to x \\ge 2$. No flip — we never scaled by a negative.",
+            "check": [
+              "12 - 4*2 <= 2*2",
+              "12 - 4*3 <= 2*3"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Rays, earned properly",
+            "intro": "Pipeline through; test a point at the end.",
+            "examples": [
+              {
+                "prompt": "Solve $\\frac{x}{2} - 3 > \\frac{x}{6} + 1$.",
+                "steps": [
+                  "×6: $3x - 18 > x + 6$.",
+                  "$2x > 24 \\to x > 12$.",
+                  "Test $x = 18$: $6 > 4$. ✓"
+                ],
+                "answer": "$x > 12$",
+                "check": [
+                  "Rational(18,2) - 3 > Rational(18,6) + 1"
+                ]
+              },
+              {
+                "prompt": "Solve $5 - 2(x - 1) \\ge 3 - x$.",
+                "steps": [
+                  "$5 - 2x + 2 \\ge 3 - x$.",
+                  "$7 - 2x \\ge 3 - x \\to 4 \\ge x$.",
+                  "$x \\le 4$."
+                ],
+                "answer": "$x \\le 4$",
+                "check": [
+                  "5 - 2*(4 - 1) >= 3 - 4",
+                  "5 - 2*(0 - 1) >= 3 - 0"
+                ]
+              },
+              {
+                "prompt": "A moving van rents for \\$60 plus \\$0.80 per km, on a \\$140 budget. How far can you drive?",
+                "steps": [
+                  "$0.8k + 60 \\le 140$.",
+                  "$0.8k \\le 80$.",
+                  "$k \\le 100$ km."
+                ],
+                "answer": "$k \\le 100$ km",
+                "check": [
+                  "Rational(8,10)*100 + 60 == 140"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Solve and shade",
+            "intro": "Track the symbol at every line.",
+            "problems": [
+              {
+                "prompt": "Solve $2(3x + 1) < 4x - 6$.",
+                "options": [
+                  "$x < -4$",
+                  "$x > -4$",
+                  "$x < 4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6x + 2 < 4x - 6 \\to 2x < -8 \\to x < -4$.",
+                "check": [
+                  "2*(3*-5 + 1) < 4*-5 - 6"
+                ]
+              },
+              {
+                "prompt": "Solve $\\frac{-x}{3} \\ge 2$.",
+                "options": [
+                  "$x \\le -6$",
+                  "$x \\ge -6$",
+                  "$x \\le 6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Multiply by $-3$, FLIP: $x \\le -6$.",
+                "check": [
+                  "Rational(6,3) >= 2"
+                ]
+              },
+              {
+                "prompt": "Which value is in the solution set of $9 - x > 2x$?",
+                "options": [
+                  "$0$",
+                  "$3$",
+                  "$5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x < 3$: only $0$ qualifies. Test: $9 > 0$. ✓",
+                "check": [
+                  "9 - 0 > 2*0",
+                  "9 - 5 < 2*5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Budgets are inequalities with lawyers",
+            "body": "Engineering specs are written almost entirely in inequalities: a bridge cable must hold AT LEAST five times its working load, a processor must stay UNDER 100°C, an aircraft part must weigh NO MORE THAN its budget. Design engineers speak of 'margins' — how far inside the inequality you are. Equations describe the world; inequalities keep it safe."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "The full equation pipeline works on inequalities — the symbol rides along.",
+              "Flip ONLY when multiplying/dividing by a negative.",
+              "Seal every answer with a test point in the original."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "compound-inequalities",
+      "title": "Compound Inequalities",
+      "concreteComparison": "A rollercoaster sign: riders must be at least $120$ cm AND at most $195$ cm. A parking rule: free for under $30$ minutes OR after $18{:}00$. Real-world conditions come in pairs, joined by two tiny words — and the words matter. AND traps you between two fences; OR opens two separate gates.",
+      "objective": "Solve AND (between) and OR (either side) compound inequalities and graph their solution sets.",
+      "concept": [
+        "An **AND** compound like $-2 < x \\le 3$ demands BOTH conditions: the solution is the overlap — a segment between two fences.",
+        "Sandwich form solves all three parts at once: $-5 \\le 2x + 1 < 7$ → subtract 1 everywhere, divide by 2 everywhere: $-3 \\le x < 3$.",
+        "An **OR** compound like $x < -1$ or $x > 4$ accepts EITHER condition: the solution is two rays pointing away from each other.",
+        "Graphs tell the story instantly: AND = one segment (possibly empty!); OR = two rays (possibly everything!). Always sketch.",
+        "Watch for impossible ANDs ($x < 1$ and $x > 5$: nothing) and trivial ORs ($x < 5$ or $x > 1$: everything)."
+      ],
+      "keyIdea": "AND = overlap (a segment); OR = union (two rays). Sandwiches solve three parts at once.",
+      "facts": [
+        {
+          "title": "AND = between",
+          "explanation": "Both fences at once — the overlap segment.",
+          "latex": "$-3 \\le x < 3$"
+        },
+        {
+          "title": "OR = either",
+          "explanation": "Two rays; membership in either one admits you.",
+          "latex": "$x < -1$ or $x > 4$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "iav2-we1",
+          "statement": "Solve $-5 \\le 2x + 1 < 7$.",
+          "solution": "Subtract $1$ everywhere: $-6 \\le 2x < 6$. Divide by $2$: $-3 \\le x < 3$.",
+          "check": [
+            "2*-3 + 1 == -5",
+            "2*0 + 1 < 7",
+            "-5 <= 2*0 + 1"
+          ]
+        },
+        {
+          "id": "iav2-we2",
+          "statement": "Solve: $3x + 2 < -4$ or $2x - 1 > 5$.",
+          "solution": "Left: $x < -2$. Right: $x > 3$. Solution: $x < -2$ or $x > 3$ — two outward rays.",
+          "check": [
+            "3*-3 + 2 < -4",
+            "2*4 - 1 > 5"
+          ]
+        },
+        {
+          "id": "iav2-we3",
+          "statement": "A coaster requires height $h$ with $120 \\le h \\le 195$ (cm). Is a $118$ cm child admitted? A $195$ cm adult?",
+          "solution": "$118 < 120$ — no. $195 \\le 195$ — yes, exactly at the fence, and $\\le$ includes it.",
+          "check": [
+            "118 < 120",
+            "195 <= 195"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Operating on only two of a sandwich's three parts.",
+          "correction": "$-5 \\le 2x + 1 < 7$: the −1 and ÷2 hit ALL THREE zones, or the sandwich falls apart.",
+          "authored": true
+        },
+        {
+          "text": "Writing an OR answer as a sandwich.",
+          "correction": "x < −2 or x > 3 is NOT '−2 > x > 3' (nonsense) — two outward rays can't be written as one between-statement.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "iav2-t1",
+          "statement": "Solve $1 < \\frac{x + 3}{2} \\le 4$.",
+          "solution": "×2: $2 < x + 3 \\le 8$; −3: $-1 < x \\le 5$.",
+          "check": [
+            "Rational(0 + 3, 2) > 1",
+            "Rational(5 + 3, 2) <= 4"
+          ]
+        },
+        {
+          "id": "iav2-t2",
+          "statement": "Solve: $4x \\ge 12$ or $x + 5 < 2$.",
+          "solution": "$x \\ge 3$ or $x < -3$.",
+          "check": [
+            "4*3 >= 12",
+            "-4 + 5 < 2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Two words",
+            "title": "AND traps, OR opens",
+            "beats": [
+              "AND: both conditions — the OVERLAP.",
+              "$-2 < x \\le 3$: a fenced segment.",
+              "OR: either condition — the UNION.",
+              "$x < -1$ or $x > 4$: two rays fleeing the middle."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The sandwich",
+            "title": "Three zones, one operation",
+            "beats": [
+              "$-5 \\le 2x + 1 < 7$ — x trapped in the middle.",
+              "Subtract 1 EVERYWHERE: $-6 \\le 2x < 6$.",
+              "Divide by 2 EVERYWHERE: $-3 \\le x < 3$.",
+              "(Divide a sandwich by a negative? All symbols flip — and the sandwich reverses.)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Edge cases",
+            "title": "Empty and everything",
+            "beats": [
+              "$x < 1$ AND $x > 5$: no overlap — empty set.",
+              "$x < 5$ OR $x > 1$: covers the whole line.",
+              "A sketch exposes both instantly.",
+              "Always draw before you declare."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the graph",
+            "prompt": "Which compound has NO solution?",
+            "options": [
+              "$x > 4$ and $x < 2$",
+              "$x > 2$ and $x < 4$",
+              "$x < 4$ or $x > 2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "No number is both above 4 AND below 2 — the fences don't overlap.",
+            "check": [
+              "4 > 2"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Fences and gates",
+            "intro": "Solve each part; then overlap or unite.",
+            "examples": [
+              {
+                "prompt": "Solve $-7 < 3x - 1 \\le 8$.",
+                "steps": [
+                  "+1 everywhere: $-6 < 3x \\le 9$.",
+                  "÷3: $-2 < x \\le 3$.",
+                  "Segment: open at −2, closed at 3."
+                ],
+                "answer": "$-2 < x \\le 3$",
+                "check": [
+                  "3*0 - 1 > -7",
+                  "3*3 - 1 <= 8"
+                ]
+              },
+              {
+                "prompt": "Solve: $5 - x > 7$ or $2x + 3 \\ge 11$.",
+                "steps": [
+                  "Left: $-x > 2 \\to x < -2$ (flip).",
+                  "Right: $2x \\ge 8 \\to x \\ge 4$.",
+                  "Union: $x < -2$ or $x \\ge 4$."
+                ],
+                "answer": "$x < -2$ or $x \\ge 4$",
+                "check": [
+                  "5 - -3 > 7",
+                  "2*4 + 3 >= 11"
+                ]
+              },
+              {
+                "prompt": "Normal human body temperature is roughly $36.1 \\le T \\le 37.2$ (°C). Express a FEVER as an inequality.",
+                "steps": [
+                  "Fever = outside the top fence.",
+                  "$T > 37.2$.",
+                  "(Hypothermia would be $T < 35$ — another one-sided condition.)"
+                ],
+                "answer": "$T > 37.2$",
+                "check": [
+                  "Rational(372,10) > Rational(361,10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Overlap or union?",
+            "intro": "Sketch as you solve.",
+            "problems": [
+              {
+                "prompt": "Solve $0 \\le \\frac{x - 4}{3} < 2$.",
+                "options": [
+                  "$4 \\le x < 10$",
+                  "$0 \\le x < 6$",
+                  "$4 < x \\le 10$"
+                ],
+                "correctIndex": 0,
+                "explanation": "×3: $0 \\le x - 4 < 6$; +4: $4 \\le x < 10$.",
+                "check": [
+                  "Rational(4 - 4, 3) >= 0",
+                  "Rational(9 - 4, 3) < 2"
+                ]
+              },
+              {
+                "prompt": "The solution of '$x \\ge 1$ and $x \\ge 3$' is…",
+                "options": [
+                  "$x \\ge 3$",
+                  "$x \\ge 1$",
+                  "$1 \\le x \\le 3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both fences point the same way — the stricter one ($\\ge 3$) rules.",
+                "check": [
+                  "3 >= 1"
+                ]
+              },
+              {
+                "prompt": "A thermostat keeps $19 \\le T \\le 23$. Which temperature triggers the system?",
+                "options": [
+                  "$18.5°$",
+                  "$21°$",
+                  "$23°$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$18.5 < 19$ falls outside the band; $21$ and $23$ are inside (23 is exactly on the closed fence).",
+                "check": [
+                  "Rational(185,10) < 19",
+                  "23 <= 23"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The Goldilocks zone",
+            "body": "Astronomers hunting habitable planets solve a giant AND: close enough to the star for liquid water AND far enough not to boil — a ring-shaped 'Goldilocks zone' that is literally a compound inequality in orbital radius. Earth sits comfortably inside; Venus fails the left fence, Mars scrapes the right. Every exoplanet headline you've read was a sandwich inequality wearing a telescope."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "AND = overlap segment; OR = union of rays.",
+              "Sandwiches: one operation, all three zones.",
+              "Sketch always — empty ANDs and everything-ORs hide in the algebra."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "absolute-value-equations",
+      "title": "Absolute-Value Equations",
+      "concreteComparison": "A bottling machine targets $500$ ml but tolerates being off by exactly $4$ ml before rejecting. Which volumes sit EXACTLY at the limit? The ones $4$ away from $500$: both $496$ and $504$. 'Distance from the target equals 4' is $|v - 500| = 4$ — and distance questions always have TWO answers, one on each side.",
+      "objective": "Solve absolute-value equations by splitting into two cases, checking for extraneous cases and no-solution traps.",
+      "concept": [
+        "$|X| = k$ (with $k > 0$) means X sits $k$ away from zero — two spots: $X = k$ or $X = -k$. Every absolute-value equation splits into two ordinary ones.",
+        "ISOLATE the absolute value first: $2|x - 1| + 3 = 11 \\to |x - 1| = 4$, THEN split into $x - 1 = 4$ or $x - 1 = -4$.",
+        "$|X| = 0$ has exactly one solution ($X = 0$), and $|X| = -5$ has NONE — distance can't be negative. Check the right side before splitting.",
+        "Read $|x - a|$ as 'distance between $x$ and $a$' — the geometry makes every equation a sentence: $|v - 500| = 4$ says 'v is 4 away from 500.'"
+      ],
+      "keyIdea": "Isolate the bars, check the right side's sign, then split: $X = k$ or $X = -k$.",
+      "facts": [
+        {
+          "title": "Two cases",
+          "explanation": "Distance k from zero happens twice (k > 0).",
+          "latex": "$|X| = k \\to X = \\pm k$"
+        },
+        {
+          "title": "Impossible equations",
+          "explanation": "Absolute values never go negative — check before splitting.",
+          "latex": "$|X| = -5$: no solution"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "iav3-we1",
+          "statement": "Solve $|x - 500| = 4$.",
+          "solution": "$x - 500 = 4$ or $x - 500 = -4$: $\\;x = 504$ or $x = 496$.",
+          "check": [
+            "Abs(504 - 500) == 4",
+            "Abs(496 - 500) == 4"
+          ]
+        },
+        {
+          "id": "iav3-we2",
+          "statement": "Solve $2|x - 1| + 3 = 11$.",
+          "solution": "Isolate: $|x - 1| = 4$. Split: $x = 5$ or $x = -3$.",
+          "check": [
+            "2*Abs(5 - 1) + 3 == 11",
+            "2*Abs(-3 - 1) + 3 == 11"
+          ]
+        },
+        {
+          "id": "iav3-we3",
+          "statement": "Solve $|3x + 2| = -7$.",
+          "solution": "An absolute value can't equal a negative number. NO solution — no algebra required.",
+          "check": [
+            "Abs(1) > -7"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Splitting before isolating.",
+          "correction": "$2|x - 1| + 3 = 11$: dividing the ±11 into cases first is wrong. Strip the 2 and the 3 to get |x − 1| = 4, THEN split.",
+          "authored": true
+        },
+        {
+          "text": "Negating the whole equation instead of the right side.",
+          "correction": "The second case of $|x - 1| = 4$ is $x - 1 = -4$ — the INSIDE equals the negative — not $-(x-1) = -4$, which just repeats case one.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "iav3-t1",
+          "statement": "Solve $|x + 3| = 7$.",
+          "solution": "$x + 3 = \\pm 7$: $\\;x = 4$ or $x = -10$.",
+          "check": [
+            "Abs(4 + 3) == 7",
+            "Abs(-10 + 3) == 7"
+          ]
+        },
+        {
+          "id": "iav3-t2",
+          "statement": "Solve $3|2x - 4| = 12$.",
+          "solution": "$|2x - 4| = 4 \\to 2x - 4 = \\pm 4 \\to x = 4$ or $x = 0$.",
+          "check": [
+            "3*Abs(2*4 - 4) == 12",
+            "3*Abs(2*0 - 4) == 12"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "integerLine",
+            "eyebrow": "Play with it",
+            "title": "Distance has two homes",
+            "teach": "Slide along the line and watch the distance-from-zero readout: every positive distance is achieved at TWO spots, one left, one right. That symmetry is the whole theory of absolute-value equations.",
+            "config": {
+              "min": -8,
+              "max": 8,
+              "start": 4
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The split",
+            "title": "One equation becomes two",
+            "beats": [
+              "$|X| = 4$: X is 4 from zero.",
+              "Right side: $X = 4$. Left side: $X = -4$.",
+              "Solve both; keep both.",
+              "$|x - 1| = 4 \\to x = 5$ or $x = -3$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "House rules",
+            "title": "Isolate first, sanity-check the sign",
+            "beats": [
+              "Strip everything OUTSIDE the bars first.",
+              "$2|x-1| + 3 = 11 \\to |x-1| = 4$. Now split.",
+              "$|X| = 0$? One solution. $|X| = -5$? NONE.",
+              "Distance is never negative — read the right side before working."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Count the solutions",
+            "prompt": "How many solutions does $|4x - 8| = 0$ have?",
+            "options": [
+              "exactly one",
+              "two",
+              "none"
+            ],
+            "correctIndex": 0,
+            "explanation": "Distance zero means $4x - 8 = 0$ exactly: $x = 2$, the only point AT the target.",
+            "check": [
+              "Abs(4*2 - 8) == 0"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Split with discipline",
+            "intro": "Isolate, sign-check, split, verify both.",
+            "examples": [
+              {
+                "prompt": "Solve $\\frac{|x + 2|}{3} = 2$.",
+                "steps": [
+                  "Isolate: $|x + 2| = 6$.",
+                  "Split: $x + 2 = \\pm 6$.",
+                  "$x = 4$ or $x = -8$."
+                ],
+                "answer": "$x = 4$ or $x = -8$",
+                "check": [
+                  "Abs(4 + 2) == 6",
+                  "Abs(-8 + 2) == 6"
+                ]
+              },
+              {
+                "prompt": "Solve $|5 - 2x| = 9$.",
+                "steps": [
+                  "$5 - 2x = 9 \\to x = -2$.",
+                  "$5 - 2x = -9 \\to x = 7$.",
+                  "Both check: $|9| = |-9| = 9$. ✓"
+                ],
+                "answer": "$x = -2$ or $x = 7$",
+                "check": [
+                  "Abs(5 - 2*-2) == 9",
+                  "Abs(5 - 2*7) == 9"
+                ]
+              },
+              {
+                "prompt": "A part is acceptable when its width $w$ satisfies $|w - 25| = 0.5$ AT the tolerance limit. Find the limit widths.",
+                "steps": [
+                  "$w - 25 = \\pm 0.5$.",
+                  "$w = 25.5$ or $w = 24.5$ mm.",
+                  "Between them: acceptable; beyond: rejected."
+                ],
+                "answer": "$24.5$ and $25.5$ mm",
+                "check": [
+                  "Abs(Rational(255,10) - 25) == Rational(1,2)",
+                  "Abs(Rational(245,10) - 25) == Rational(1,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Two, one, or none",
+            "intro": "Isolate the bars before anything else.",
+            "problems": [
+              {
+                "prompt": "Solve $|x - 6| = 2$.",
+                "options": [
+                  "$x = 4$ or $x = 8$",
+                  "$x = 8$ only",
+                  "$x = \\pm 2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two points sit 2 away from 6: $4$ and $8$.",
+                "check": [
+                  "Abs(4 - 6) == 2",
+                  "Abs(8 - 6) == 2"
+                ]
+              },
+              {
+                "prompt": "Solve $|2x + 1| + 5 = 4$.",
+                "options": [
+                  "no solution",
+                  "$x = -1$",
+                  "$x = 0$ or $x = -1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Isolating gives $|2x + 1| = -1$ — impossible.",
+                "check": [
+                  "Abs(3) > -1"
+                ]
+              },
+              {
+                "prompt": "Solve $4|x| - 3 = 13$.",
+                "options": [
+                  "$x = \\pm 4$",
+                  "$x = 4$ only",
+                  "$x = \\pm \\frac{13}{4}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$|x| = 4 \\to x = \\pm 4$.",
+                "check": [
+                  "4*Abs(4) - 3 == 13",
+                  "4*Abs(-4) - 3 == 13"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Tolerance is a two-sided promise",
+            "body": "Machine shops literally stamp absolute-value equations on blueprints: '25 ± 0.5 mm' IS $|w - 25| \\le 0.5$ in engineering shorthand. A part can fail by being too big OR too small — two cases, just like your algebra. The ± notation predates the |x| notation by centuries; manufacturing was solving both cases long before math class named them."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$|X| = k$ splits into $X = k$ and $X = -k$ (two spots at distance k).",
+              "Isolate the bars first; $|X| = $ negative means no solution.",
+              "Read $|x - a| = k$ as 'x is k away from a' — geometry first."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "absolute-value-inequalities",
+      "title": "Absolute-Value Inequalities",
+      "concreteComparison": "The bottling machine ACCEPTS volumes within $4$ ml of $500$: $|v - 500| \\le 4$ — that's a BAND from $496$ to $504$. Quality control REJECTS volumes more than $4$ away: $|v - 500| > 4$ — everything OUTSIDE the band, two tails. Less-than hugs the target; greater-than flees it. Two pictures, and every absolute-value inequality is one of them.",
+      "objective": "Solve |X| < k (between) and |X| > k (outside) inequalities and connect them to compound inequalities.",
+      "concept": [
+        "$|X| < k$ means 'within $k$ of zero': the segment $-k < X < k$. It UNPACKS into an AND sandwich.",
+        "$|X| > k$ means 'farther than $k$ from zero': two tails, $X < -k$ or $X > k$. It unpacks into an OR.",
+        "Memory hook: less-th**AN**d (|X| < k → AND/between); great**OR** (|X| > k → OR/outside).",
+        "Same discipline as equations: isolate the absolute value FIRST, and mind the impossible cases — $|X| < -2$ has no solution; $|X| > -2$ is true for EVERYTHING.",
+        "$|x - a| < k$ reads 'x is within k of a' — the interval centered at $a$ with radius $k$: $(a - k, \\; a + k)$."
+      ],
+      "keyIdea": "Less-than → between (AND); greater-than → outside (OR). Isolate first; centers and radii do the rest.",
+      "facts": [
+        {
+          "title": "Within",
+          "explanation": "A band around the center — an AND.",
+          "latex": "$|X| < k \\to -k < X < k$"
+        },
+        {
+          "title": "Beyond",
+          "explanation": "Two tails fleeing the center — an OR.",
+          "latex": "$|X| > k \\to X < -k$ or $X > k$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "iav4-we1",
+          "statement": "Solve $|v - 500| \\le 4$.",
+          "solution": "$-4 \\le v - 500 \\le 4 \\to 496 \\le v \\le 504$: the acceptance band.",
+          "check": [
+            "Abs(496 - 500) <= 4",
+            "Abs(500 - 500) <= 4",
+            "Abs(504 - 500) <= 4"
+          ]
+        },
+        {
+          "id": "iav4-we2",
+          "statement": "Solve $|2x - 3| > 5$.",
+          "solution": "$2x - 3 > 5$ or $2x - 3 < -5$: $\\;x > 4$ or $x < -1$.",
+          "check": [
+            "Abs(2*5 - 3) > 5",
+            "Abs(2*-2 - 3) > 5"
+          ]
+        },
+        {
+          "id": "iav4-we3",
+          "statement": "Solve $3|x + 1| - 2 < 7$.",
+          "solution": "Isolate: $|x + 1| < 3 \\to -3 < x + 1 < 3 \\to -4 < x < 2$.",
+          "check": [
+            "3*Abs(0 + 1) - 2 < 7",
+            "3*Abs(-3 + 1) - 2 < 7"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Unpacking |X| > k as a sandwich.",
+          "correction": "Greater-than means OUTSIDE: two tails ($X < -k$ or $X > k$), never $-k < X < k$ — that's the less-than picture.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting to flip the second tail's inequality.",
+          "correction": "$|2x - 3| > 5$: the second case is $2x - 3 < -5$ — the symbol REVERSES with the negated side.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "iav4-t1",
+          "statement": "Solve $|x - 2| < 5$.",
+          "solution": "$-5 < x - 2 < 5 \\to -3 < x < 7$.",
+          "check": [
+            "Abs(0 - 2) < 5",
+            "Abs(6 - 2) < 5"
+          ]
+        },
+        {
+          "id": "iav4-t2",
+          "statement": "Solve $|x + 4| \\ge 2$.",
+          "solution": "$x + 4 \\ge 2$ or $x + 4 \\le -2$: $\\;x \\ge -2$ or $x \\le -6$.",
+          "check": [
+            "Abs(-2 + 4) >= 2",
+            "Abs(-6 + 4) >= 2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Picture 1",
+            "title": "Less-than hugs",
+            "beats": [
+              "$|X| < k$: within $k$ of zero.",
+              "One band: $-k < X < k$.",
+              "An AND, wearing bars.",
+              "$|v - 500| \\le 4$: the segment $[496, 504]$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Picture 2",
+            "title": "Greater-than flees",
+            "beats": [
+              "$|X| > k$: farther than $k$ from zero.",
+              "Two tails: $X < -k$ or $X > k$.",
+              "An OR, wearing bars.",
+              "Reject band: $v < 496$ or $v > 504$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reading centers",
+            "title": "Center ± radius",
+            "beats": [
+              "$|x - a| < k$: within $k$ of the center $a$.",
+              "Interval: $(a - k, a + k)$.",
+              "$|x - 10| < 3 \\to (7, 13)$ — no algebra needed.",
+              "The bars are a compass drawing an interval."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Band or tails?",
+            "prompt": "The solution of $|x - 3| \\ge 1$ is…",
+            "options": [
+              "$x \\le 2$ or $x \\ge 4$",
+              "$2 \\le x \\le 4$",
+              "$x \\ge 4$ only"
+            ],
+            "correctIndex": 0,
+            "explanation": "At least 1 away from 3: outside the band — two tails from 2 and 4.",
+            "check": [
+              "Abs(2 - 3) >= 1",
+              "Abs(4 - 3) >= 1",
+              "Abs(3 - 3) < 1"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Bands and tails, solved",
+            "intro": "Isolate; choose the picture; unpack.",
+            "examples": [
+              {
+                "prompt": "Solve $2|x - 5| \\le 6$.",
+                "steps": [
+                  "Isolate: $|x - 5| \\le 3$.",
+                  "Band: $-3 \\le x - 5 \\le 3$.",
+                  "$2 \\le x \\le 8$."
+                ],
+                "answer": "$2 \\le x \\le 8$",
+                "check": [
+                  "Abs(2 - 5) <= 3",
+                  "Abs(8 - 5) <= 3"
+                ]
+              },
+              {
+                "prompt": "Solve $|3x + 6| > 9$.",
+                "steps": [
+                  "$3x + 6 > 9 \\to x > 1$.",
+                  "$3x + 6 < -9 \\to x < -5$.",
+                  "Tails: $x < -5$ or $x > 1$."
+                ],
+                "answer": "$x < -5$ or $x > 1$",
+                "check": [
+                  "Abs(3*2 + 6) > 9",
+                  "Abs(3*-6 + 6) > 9"
+                ]
+              },
+              {
+                "prompt": "A thermostat is 'in range' when $|T - 21| < 2$ (°C). Express the range, and classify $T = 23$.",
+                "steps": [
+                  "Band: $19 < T < 23$.",
+                  "$T = 23$: $|23 - 21| = 2$, NOT $< 2$.",
+                  "Exactly on the fence — out of range (strict)."
+                ],
+                "answer": "$19 < T < 23$; $23$ is out",
+                "check": [
+                  "Abs(23 - 21) == 2",
+                  "Abs(20 - 21) < 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Unpack the bars",
+            "intro": "AND for <, OR for > — after isolating.",
+            "problems": [
+              {
+                "prompt": "Solve $|x + 1| \\le 4$.",
+                "options": [
+                  "$-5 \\le x \\le 3$",
+                  "$x \\le 3$",
+                  "$x \\le -5$ or $x \\ge 3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$-4 \\le x + 1 \\le 4 \\to -5 \\le x \\le 3$.",
+                "check": [
+                  "Abs(-5 + 1) <= 4",
+                  "Abs(3 + 1) <= 4"
+                ]
+              },
+              {
+                "prompt": "Solve $|2x| - 3 > 5$.",
+                "options": [
+                  "$x < -4$ or $x > 4$",
+                  "$-4 < x < 4$",
+                  "$x > 4$ only"
+                ],
+                "correctIndex": 0,
+                "explanation": "$|2x| > 8 \\to 2x > 8$ or $2x < -8$.",
+                "check": [
+                  "Abs(2*5) - 3 > 5",
+                  "Abs(2*-5) - 3 > 5"
+                ]
+              },
+              {
+                "prompt": "Which inequality describes 'x is within 0.5 of 7'?",
+                "options": [
+                  "$|x - 7| \\le 0.5$",
+                  "$|x + 7| \\le 0.5$",
+                  "$|x - 0.5| \\le 7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Distance from 7 (the center) at most 0.5 (the radius).",
+                "check": [
+                  "Abs(Rational(72,10) - 7) <= Rational(1,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "GPS lives inside a band",
+            "body": "Your phone's GPS reading is really a band inequality: 'you are within 5 meters of here' is $|\\text{position} - \\text{estimate}| < 5$ in two dimensions — a disk. Surveyors, missile engineers, and delivery apps all speak in 'error radius.' When the app's blue circle shrinks, the k in your inequality just got smaller."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$|X| < k$: band between $-k$ and $k$ (AND).",
+              "$|X| > k$: two tails beyond $\\pm k$ (OR).",
+              "$|x - a| < k$ is the interval centered at $a$ with radius $k$."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "inequality-word-problems",
+      "title": "Modeling with Inequalities",
+      "concreteComparison": "A delivery drone can carry at most $2.5$ kg. A student needs an exam average of at least $85$ across four tests. A machine part passes if it's within $0.3$ mm of spec. Three stories, three tools — plain, compound, absolute-value — and choosing the RIGHT inequality is the actual skill. The solving is yesterday's work.",
+      "objective": "Translate constraints into plain, compound, or absolute-value inequalities and interpret solution sets in context.",
+      "concept": [
+        "Phrase dictionary, extended: 'at most' → $\\le$, 'at least' → $\\ge$, 'between a and b' → sandwich, 'within k of a' → $|x - a| \\le k$, 'differs from a by more than k' → $|x - a| > k$.",
+        "Averages hide inequalities: 'average of four tests at least 85' means $\\frac{s_1 + s_2 + s_3 + s_4}{4} \\ge 85$ — multiply through and solve for the unknown test.",
+        "Real-world sets get trimmed: counts are whole numbers, weights are nonnegative, and a 'solution' outside physical limits is a red flag to re-read the story.",
+        "Answer the question in the story's language: 'she needs at least a 94' beats '$s \\ge 94$'."
+      ],
+      "keyIdea": "Match the phrase to the tool — plain, sandwich, or bars — then solve with yesterday's machinery.",
+      "facts": [
+        {
+          "title": "Extended dictionary",
+          "explanation": "The phrase names the inequality type before any algebra.",
+          "latex": "within $\\to |\\cdot| \\le$; between $\\to$ sandwich"
+        },
+        {
+          "title": "Averages unpack",
+          "explanation": "Multiply through by the count to free the unknown.",
+          "latex": "$\\tfrac{\\text{sum}}{n} \\ge 85 \\to \\text{sum} \\ge 85n$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "iav5-we1",
+          "statement": "Riya scored $82, 88, 79$ on three tests. What must she score on the fourth for an average of at least $85$?",
+          "solution": "$\\frac{249 + s}{4} \\ge 85 \\to 249 + s \\ge 340 \\to s \\ge 91$.",
+          "check": [
+            "82 + 88 + 79 == 249",
+            "Rational(249 + 91, 4) == 85"
+          ]
+        },
+        {
+          "id": "iav5-we2",
+          "statement": "A drone carries at most $2.5$ kg and already holds a $0.7$ kg camera. How many $0.3$ kg sensor packs can it add?",
+          "solution": "$0.3p + 0.7 \\le 2.5 \\to 0.3p \\le 1.8 \\to p \\le 6$: at most $6$ packs.",
+          "check": [
+            "Rational(3,10)*6 + Rational(7,10) == Rational(25,10)"
+          ]
+        },
+        {
+          "id": "iav5-we3",
+          "statement": "A part passes inspection when its length is within $0.3$ mm of $120$ mm. Write and solve the inequality.",
+          "solution": "$|L - 120| \\le 0.3 \\to 119.7 \\le L \\le 120.3$ mm.",
+          "check": [
+            "Abs(Rational(1197,10) - 120) <= Rational(3,10)",
+            "Abs(Rational(1203,10) - 120) <= Rational(3,10)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Turning 'within' into a plain one-sided inequality.",
+          "correction": "'Within 0.3 of 120' bounds BOTH sides — it's |L − 120| ≤ 0.3, not L ≤ 120.3 alone.",
+          "authored": true
+        },
+        {
+          "text": "Averaging only the known scores.",
+          "correction": "The unknown test belongs INSIDE the average: (249 + s)/4, not 249/3 compared to 85.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "iav5-t1",
+          "statement": "Tickets cost \\$14 and a group has at most \\$100 after paying \\$16 for parking. How many tickets can they buy?",
+          "solution": "$14t + 16 \\le 100 \\to t \\le 6$: at most $6$ tickets.",
+          "check": [
+            "14*6 + 16 == 100"
+          ]
+        },
+        {
+          "id": "iav5-t2",
+          "statement": "A recipe stays safe when the oven is within $15°$ of $180°$C. Express the safe band.",
+          "solution": "$|T - 180| \\le 15 \\to 165 \\le T \\le 195$.",
+          "check": [
+            "Abs(165 - 180) <= 15",
+            "Abs(195 - 180) <= 15"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Tool shed",
+            "title": "Three inequalities, three jobs",
+            "beats": [
+              "One-sided limit → plain: $0.3p + 0.7 \\le 2.5$.",
+              "Two fences → sandwich: $19 \\le T \\le 23$.",
+              "Distance from a target → bars: $|L - 120| \\le 0.3$.",
+              "The story's PHRASE picks the tool."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Averages",
+            "title": "The most common disguise",
+            "beats": [
+              "'Average at least 85' over 4 tests:",
+              "$\\frac{249 + s}{4} \\ge 85$.",
+              "×4: $249 + s \\ge 340$.",
+              "$s \\ge 91$ — the fourth test's job description."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reality check",
+            "title": "Trim to the possible",
+            "beats": [
+              "Counts are whole: $p \\le 6.33$ means 6 packs.",
+              "Weights, lengths, times: nonnegative.",
+              "A negative 'solution' usually means a set-up slip.",
+              "End in the story's units and words."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Pick the tool",
+            "prompt": "'The pool's pH must stay within $0.4$ of $7.2$.' Which model?",
+            "options": [
+              "$|p - 7.2| \\le 0.4$",
+              "$p \\le 7.6$",
+              "$p \\ge 6.8$"
+            ],
+            "correctIndex": 0,
+            "explanation": "'Within' bounds both directions — the bars capture both fences at once ($6.8 \\le p \\le 7.6$).",
+            "check": [
+              "Abs(Rational(68,10) - Rational(72,10)) <= Rational(4,10)",
+              "Abs(Rational(76,10) - Rational(72,10)) <= Rational(4,10)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Constraints, translated",
+            "intro": "Phrase → tool → solve → story-language answer.",
+            "examples": [
+              {
+                "prompt": "A phone plan includes $10$ GB; each extra GB costs \\$3. Keep the bill's extras under \\$20 — how many extra GB?",
+                "steps": [
+                  "$3g < 20$.",
+                  "$g < \\frac{20}{3} \\approx 6.67$.",
+                  "At most 6 whole extra GB."
+                ],
+                "answer": "$g \\le 6$",
+                "check": [
+                  "3*6 < 20",
+                  "3*7 > 20"
+                ]
+              },
+              {
+                "prompt": "An elevator (limit $630$ kg) carries a $70$ kg operator. How many $80$ kg passengers may ride?",
+                "steps": [
+                  "$80p + 70 \\le 630$.",
+                  "$80p \\le 560 \\to p \\le 7$.",
+                  "Seven passengers, exactly at the limit."
+                ],
+                "answer": "$p \\le 7$",
+                "check": [
+                  "80*7 + 70 == 630"
+                ]
+              },
+              {
+                "prompt": "Bowling scores $145$ and $172$; what third score keeps the average between $150$ and $170$ inclusive?",
+                "steps": [
+                  "$150 \\le \\frac{317 + s}{3} \\le 170$.",
+                  "$450 \\le 317 + s \\le 510$.",
+                  "$133 \\le s \\le 193$."
+                ],
+                "answer": "$133 \\le s \\le 193$",
+                "check": [
+                  "145 + 172 == 317",
+                  "Rational(317 + 133, 3) == 150",
+                  "Rational(317 + 193, 3) == 170"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Model the constraint",
+            "intro": "Tool first, algebra second, story-answer last.",
+            "problems": [
+              {
+                "prompt": "A charity needs at least \\$500; it has \\$140 and sells bracelets at \\$8. How many must it sell?",
+                "options": [
+                  "at least $45$",
+                  "at least $44$",
+                  "exactly $45$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$8b + 140 \\ge 500 \\to b \\ge 45$.",
+                "check": [
+                  "8*45 + 140 == 500"
+                ]
+              },
+              {
+                "prompt": "A package ships free when its weight is between $1$ and $5$ kg inclusive. Which weight does NOT qualify?",
+                "options": [
+                  "$0.8$ kg",
+                  "$1$ kg",
+                  "$4.9$ kg"
+                ],
+                "correctIndex": 0,
+                "explanation": "$0.8 < 1$ misses the band; the fences at 1 and 5 are included.",
+                "check": [
+                  "Rational(8,10) < 1"
+                ]
+              },
+              {
+                "prompt": "A dart lands 'in the ring' when its distance from center differs from $10$ cm by less than $1$ cm. Which model?",
+                "options": [
+                  "$|d - 10| < 1$",
+                  "$d < 11$",
+                  "$9 < d$ only"
+                ],
+                "correctIndex": 0,
+                "explanation": "'Differs from 10 by less than 1' is a band: $9 < d < 11$.",
+                "check": [
+                  "Abs(Rational(105,10) - 10) < 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The GPA rescue equation",
+            "body": "Every student who has ever computed 'what do I need on the final?' was solving an average inequality — usually at midnight. Professors report it's the single most-practiced piece of algebra in adult life. The formula never changes: required total minus points banked. Now you can do it BEFORE midnight."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Phrases choose tools: limits → plain; between → sandwich; within → bars.",
+              "Averages unpack by multiplying through by the count.",
+              "Trim to whole numbers and physical sense; answer in story language."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "inequalities-in-action",
+      "title": "Inequalities in Action",
+      "concreteComparison": "A start-up sells phone cases at \\$15 that cost \\$6 to make, with \\$1{,}800 monthly fixed costs. 'When are we profitable?' is an inequality. 'Keep defects within 2% of the 5% target' is another. This capstone runs the whole toolkit — plain, compound, absolute value, and the modeling instincts — on the problems businesses actually solve.",
+      "objective": "Combine all inequality types to analyze profit, constraints, and tolerance problems.",
+      "concept": [
+        "**Profit**: income > costs. With price $p$, unit cost $c$, fixed costs $F$: profitable when $pn > cn + F$, i.e. $n > \\frac{F}{p - c}$ — the break-even count, crossed.",
+        "**Feasibility**: several constraints must hold at once — an AND of inequalities. The solution is whatever survives every fence.",
+        "**Tolerance**: quality targets are absolute-value bands around a spec; tightening quality means shrinking $k$.",
+        "Boundaries are decision points: solving the matching EQUATION finds the fence; the inequality tells you which side of it you want to live on."
+      ],
+      "keyIdea": "Break-even = the fence; profit = the side you want. Stack constraints with AND; quality is a shrinking band.",
+      "facts": [
+        {
+          "title": "Break-even, crossed",
+          "explanation": "Fixed costs divided by per-unit margin — profit lives past it.",
+          "latex": "$n > \\tfrac{F}{p - c}$"
+        },
+        {
+          "title": "Feasible = survives all fences",
+          "explanation": "Each requirement trims the set; what remains is feasible.",
+          "latex": "AND of constraints"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "iav6-we1",
+          "statement": "Cases sell at \\$15, cost \\$6 to make, fixed costs \\$1{,}800/month. How many sales make a profitable month?",
+          "solution": "$15n > 6n + 1800 \\to 9n > 1800 \\to n > 200$: from the $201$st case on.",
+          "check": [
+            "15*200 == 6*200 + 1800",
+            "15*201 > 6*201 + 1800"
+          ]
+        },
+        {
+          "id": "iav6-we2",
+          "statement": "A budget requires: venue \\$400, food \\$12 per guest, total at most \\$1{,}000, and at least $30$ guests. Feasible guest counts?",
+          "solution": "$12g + 400 \\le 1000 \\to g \\le 50$; with $g \\ge 30$: $\\;30 \\le g \\le 50$.",
+          "check": [
+            "12*50 + 400 == 1000",
+            "12*30 + 400 <= 1000"
+          ]
+        },
+        {
+          "id": "iav6-we3",
+          "statement": "A factory targets a $5\\%$ defect rate, acceptable within $2$ percentage points. Express the acceptable band.",
+          "solution": "$|d - 5| \\le 2 \\to 3 \\le d \\le 7$ (percent).",
+          "check": [
+            "Abs(3 - 5) <= 2",
+            "Abs(7 - 5) <= 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Calling the break-even count 'profitable'.",
+          "correction": "AT n = 200, income EQUALS costs — profit is zero. Profit starts strictly past the fence: n > 200.",
+          "authored": true
+        },
+        {
+          "text": "Checking constraints one at a time and keeping partial answers.",
+          "correction": "Feasibility is an AND: a guest count of 55 passes the minimum but busts the budget. Every fence must hold simultaneously.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "iav6-t1",
+          "statement": "A tutor charges \\$30/hour with \\$240 of monthly software costs. Hours needed for a profitable month?",
+          "solution": "$30h > 240 \\to h > 8$: from the $9$th hour.",
+          "check": [
+            "30*8 == 240",
+            "30*9 > 240"
+          ]
+        },
+        {
+          "id": "iav6-t2",
+          "statement": "Feasible study plan: at least $2$ h of math, at most $6$ h total, and $1.5$ h of science. How much math is possible?",
+          "solution": "$m \\ge 2$ and $m + 1.5 \\le 6$: $\\;2 \\le m \\le 4.5$ hours.",
+          "check": [
+            "2 + Rational(15,10) <= 6",
+            "Rational(45,10) + Rational(15,10) == 6"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Profit",
+            "title": "The fence and the good side",
+            "beats": [
+              "Income: $15n$. Costs: $6n + 1800$.",
+              "Fence (break-even): $15n = 6n + 1800 \\to n = 200$.",
+              "Profit: $n > 200$ — strictly past the fence.",
+              "Margin per unit ($9$) divides the fixed load ($1800$)."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Feasibility",
+            "title": "Stack the fences",
+            "beats": [
+              "Budget: $g \\le 50$. Attendance: $g \\ge 30$.",
+              "Feasible: the overlap, $30 \\le g \\le 50$.",
+              "Add a fence, shrink the set.",
+              "Optimization (Grade 12+) hunts the BEST point inside."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Quality",
+            "title": "Bands that shrink",
+            "beats": [
+              "Target $5\\%$, tolerance $\\pm 2$: $|d - 5| \\le 2$.",
+              "Six-sigma factories shrink $k$ relentlessly.",
+              "Tighter band → better product, harder maths.",
+              "The band IS the quality standard, written in algebra."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Cross the fence",
+            "prompt": "Lemonade: \\$2 per cup, \\$0.50 ingredients per cup, \\$18 stand rental. Profitable from which cup?",
+            "options": [
+              "the $13$th",
+              "the $12$th",
+              "the $36$th"
+            ],
+            "correctIndex": 0,
+            "explanation": "$1.5n > 18 \\to n > 12$: cup 12 breaks even; cup 13 earns.",
+            "check": [
+              "Rational(3,2)*12 == 18",
+              "Rational(3,2)*13 > 18"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "The toolkit, deployed",
+            "intro": "Fence, side, stack, band.",
+            "examples": [
+              {
+                "prompt": "A gym's monthly costs are \\$5{,}400; memberships are \\$45. Members needed to profit?",
+                "steps": [
+                  "$45m > 5400$.",
+                  "$m > 120$.",
+                  "From the $121$st member."
+                ],
+                "answer": "$m > 120$",
+                "check": [
+                  "45*120 == 5400",
+                  "45*121 > 5400"
+                ]
+              },
+              {
+                "prompt": "A truck route pays \\$0.60/km minus \\$90/day fuel-and-fees, and regulations cap driving at $600$ km/day. Profitable AND legal range?",
+                "steps": [
+                  "Profit: $0.6k > 90 \\to k > 150$.",
+                  "Legal: $k \\le 600$.",
+                  "Feasible: $150 < k \\le 600$."
+                ],
+                "answer": "$150 < k \\le 600$",
+                "check": [
+                  "Rational(6,10)*150 == 90",
+                  "Rational(6,10)*600 == 360",
+                  "360 > 90"
+                ]
+              },
+              {
+                "prompt": "A juice bottle's label says $330$ ml, legal when within $2\\%$ of the label. Express and solve.",
+                "steps": [
+                  "Tolerance: $0.02 \\times 330 = 6.6$ ml.",
+                  "$|v - 330| \\le 6.6$.",
+                  "$323.4 \\le v \\le 336.6$ ml."
+                ],
+                "answer": "$323.4$–$336.6$ ml",
+                "check": [
+                  "Rational(2,100)*330 == Rational(66,10)",
+                  "Abs(Rational(3234,10) - 330) <= Rational(66,10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Business hours",
+            "intro": "Choose fences deliberately; report the good side.",
+            "problems": [
+              {
+                "prompt": "Bake sale: cupcakes \\$3 each, ingredients \\$0.75 each, table fee \\$27. Profit needs…",
+                "options": [
+                  "more than $12$ sold",
+                  "at least $12$ sold",
+                  "more than $9$ sold"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2.25n > 27 \\to n > 12$.",
+                "check": [
+                  "Rational(9,4)*12 == 27"
+                ]
+              },
+              {
+                "prompt": "Constraints: $x \\ge 4$, $x \\le 9$, and $x \\ne 6$… which value is feasible?",
+                "options": [
+                  "$7$",
+                  "$6$",
+                  "$10$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$7$ passes all three fences; $6$ is excluded, $10$ busts the cap.",
+                "check": [
+                  "7 >= 4",
+                  "7 <= 9"
+                ]
+              },
+              {
+                "prompt": "A resistor is usable within $5\\%$ of $200$ ohms. Which reading FAILS?",
+                "options": [
+                  "$211$",
+                  "$208$",
+                  "$192$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Band: $190 \\le R \\le 210$; $211$ is out by 1.",
+                "check": [
+                  "Rational(5,100)*200 == 10",
+                  "Abs(211 - 200) > 10",
+                  "Abs(208 - 200) <= 10"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The million-dollar comma",
+            "body": "Contracts are inequalities in prose, and the difference between 'at least' and 'more than' — one unit — has decided real lawsuits over bonuses, shipping loads, and election recounts. Lawyers bill hundreds an hour to argue about whether a fence is open or closed. You now settle the same question with a circle: filled or hollow."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Break-even is the fence; profit is strictly beyond it.",
+              "Feasibility stacks fences with AND — every constraint must hold.",
+              "Quality specs are absolute-value bands; tightening quality shrinks k."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "iav-pr1",
+      "statement": "Solve $5x - 3 > 3x + 9$.",
+      "solution": "$2x > 12 \\to x > 6$.",
+      "check": [
+        "5*7 - 3 > 3*7 + 9",
+        "5*6 - 3 == 3*6 + 9"
+      ]
+    },
+    {
+      "id": "iav-pr2",
+      "statement": "Solve $6 - 2(x - 1) \\le 4x + 2$.",
+      "solution": "$8 - 2x \\le 4x + 2 \\to 6 \\le 6x \\to x \\ge 1$.",
+      "check": [
+        "6 - 2*(1 - 1) <= 4*1 + 2",
+        "6 - 2*(3 - 1) <= 4*3 + 2"
+      ]
+    },
+    {
+      "id": "iav-pr3",
+      "statement": "Solve $-3 \\le \\frac{x - 1}{2} < 2$.",
+      "solution": "×2: $-6 \\le x - 1 < 4$; +1: $-5 \\le x < 5$.",
+      "check": [
+        "Rational(-5 - 1, 2) == -3",
+        "Rational(4 - 1, 2) < 2"
+      ]
+    },
+    {
+      "id": "iav-pr4",
+      "statement": "Solve: $2x + 7 < 1$ or $3x - 5 \\ge 7$.",
+      "solution": "$x < -3$ or $x \\ge 4$.",
+      "check": [
+        "2*-4 + 7 < 1",
+        "3*4 - 5 >= 7"
+      ]
+    },
+    {
+      "id": "iav-pr5",
+      "statement": "Solve $|2x - 5| = 9$.",
+      "solution": "$2x - 5 = \\pm 9$: $\\;x = 7$ or $x = -2$.",
+      "check": [
+        "Abs(2*7 - 5) == 9",
+        "Abs(2*-2 - 5) == 9"
+      ]
+    },
+    {
+      "id": "iav-pr6",
+      "statement": "Solve $|x + 4| \\le 6$.",
+      "solution": "$-6 \\le x + 4 \\le 6 \\to -10 \\le x \\le 2$.",
+      "check": [
+        "Abs(-10 + 4) <= 6",
+        "Abs(2 + 4) <= 6"
+      ]
+    },
+    {
+      "id": "iav-pr7",
+      "statement": "Solve $|3x - 1| > 8$.",
+      "solution": "$3x - 1 > 8$ or $3x - 1 < -8$: $\\;x > 3$ or $x < -\\frac{7}{3}$.",
+      "check": [
+        "Abs(3*4 - 1) > 8",
+        "Abs(3*-3 - 1) > 8"
+      ]
+    },
+    {
+      "id": "iav-pr8",
+      "statement": "Test scores $78, 91, 84$: what fourth score gives an average of at least $85$?",
+      "solution": "$\\frac{253 + s}{4} \\ge 85 \\to s \\ge 87$.",
+      "check": [
+        "78 + 91 + 84 == 253",
+        "Rational(253 + 87, 4) == 85"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "iav-ty1",
+      "statement": "Solve $4(x + 2) - 7 > 2x + 5$.",
+      "solution": "$4x + 1 > 2x + 5 \\to x > 2$.",
+      "check": [
+        "4*(3 + 2) - 7 > 2*3 + 5"
+      ]
+    },
+    {
+      "id": "iav-ty2",
+      "statement": "Solve $-1 < 4 - x \\le 6$ (careful with the flip).",
+      "solution": "Subtract 4: $-5 < -x \\le 2$. Multiply by −1 and REVERSE everything: $5 > x \\ge -2$, i.e. $-2 \\le x < 5$.",
+      "check": [
+        "-1 < 4 - -2",
+        "4 - -2 <= 6",
+        "-1 < 4 - 4"
+      ]
+    },
+    {
+      "id": "iav-ty3",
+      "statement": "Solve $3|x - 2| - 4 = 8$.",
+      "solution": "$|x - 2| = 4 \\to x = 6$ or $x = -2$.",
+      "check": [
+        "3*Abs(6 - 2) - 4 == 8",
+        "3*Abs(-2 - 2) - 4 == 8"
+      ]
+    },
+    {
+      "id": "iav-ty4",
+      "statement": "Solve $|5 - x| < 3$ and describe the graph.",
+      "solution": "$-3 < 5 - x < 3 \\to 2 < x < 8$: open band from 2 to 8.",
+      "check": [
+        "Abs(5 - 3) < 3",
+        "Abs(5 - 7) < 3"
+      ]
+    },
+    {
+      "id": "iav-ty5",
+      "statement": "How many solutions: (a) $|x| = -2$, (b) $|x| = 0$, (c) $|x| > -2$?",
+      "solution": "(a) none; (b) exactly one ($x = 0$); (c) all real numbers — distance always beats a negative.",
+      "check": [
+        "Abs(0) == 0",
+        "Abs(5) > -2"
+      ]
+    },
+    {
+      "id": "iav-ty6",
+      "statement": "A courier van (limit $1{,}200$ kg) already holds $250$ kg. Boxes weigh $38$ kg. How many boxes fit, and does the answer change at a $1{,}190$ kg limit?",
+      "solution": "$38b + 250 \\le 1200 \\to b \\le 25$. At $1190$: $38b \\le 940 \\to b \\le 24.7$ — so $24$: yes, one fewer box.",
+      "check": [
+        "38*25 + 250 == 1200",
+        "38*24 + 250 <= 1190",
+        "38*25 + 250 > 1190"
+      ]
+    }
+  ]
+}
