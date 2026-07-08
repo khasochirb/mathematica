@@ -1,0 +1,1659 @@
+{
+  "slug": "introduction-to-functions",
+  "title": "Introduction to Functions",
+  "grade": 9,
+  "blurb": "Function notation, domain and range, the vertical line test, and reading graphs qualitatively.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "what-is-a-function",
+      "title": "What Is a Function?",
+      "concreteComparison": "A vending machine: press B4, get the same granola bar every time. Press it twice, same bar twice. Now imagine a machine where B4 sometimes drops chips and sometimes a soda — you'd call it broken. A **function** is any un-broken machine: every input gets exactly ONE output. Same button, same snack, forever.",
+      "objective": "Define functions as one-output-per-input rules, and test relations (sets, tables, mappings) for function-hood.",
+      "concept": [
+        "A **relation** is any pairing of inputs with outputs. A **function** is a relation with a promise: each input maps to EXACTLY ONE output.",
+        "Repeated inputs with DIFFERENT outputs break the promise: $\\{(1, 2), (1, 3)\\}$ is not a function — pressing 1 gives two different snacks.",
+        "Repeated OUTPUTS are fine: $\\{(1, 2), (5, 2)\\}$ is a function. Two buttons may vend the same snack; one button may not vend two.",
+        "Functions hide everywhere: each student → their ID number (function); each ID → its student (also a function); each parent → their child (NOT a function if they have two kids)."
+      ],
+      "keyIdea": "Function = every input has exactly one output. Repeated inputs must agree; repeated outputs are harmless.",
+      "facts": [
+        {
+          "title": "The promise",
+          "explanation": "Same button, same snack, every time.",
+          "latex": "one input \\u2192 one output"
+        },
+        {
+          "title": "Outputs may repeat",
+          "explanation": "Different inputs are allowed to share an output.",
+          "latex": "$\\{(1,2), (5,2)\\}$ ✓"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "fun1-we1",
+          "statement": "Is $\\{(2, 5), (3, 7), (4, 5)\\}$ a function?",
+          "solution": "Inputs $2, 3, 4$ are all different — each has one output. YES (the repeated output $5$ is fine).",
+          "check": [
+            "2 != 3",
+            "3 != 4"
+          ]
+        },
+        {
+          "id": "fun1-we2",
+          "statement": "Is $\\{(1, 4), (2, 6), (1, 8)\\}$ a function?",
+          "solution": "Input $1$ appears twice with different outputs ($4$ and $8$). NO — the promise is broken.",
+          "check": [
+            "4 != 8"
+          ]
+        },
+        {
+          "id": "fun1-we3",
+          "statement": "A table maps each city to its country. Is it a function? What about each country to its cities?",
+          "solution": "City → country: each city has ONE country — function. Country → cities: one country has MANY cities — not a function.",
+          "check": [
+            "1 == 1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Rejecting a relation because outputs repeat.",
+          "correction": "{(1,2), (5,2)} IS a function. The rule polices INPUTS: only a repeated input with different outputs disqualifies.",
+          "authored": true
+        },
+        {
+          "text": "Judging by the formula's looks instead of the pairing.",
+          "correction": "Even a weird rule — 'every input maps to 7' — is a function. Constant machines keep the promise perfectly.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "fun1-t1",
+          "statement": "Is $\\{(0, 1), (1, 1), (2, 1)\\}$ a function?",
+          "solution": "Yes — every input distinct, one output each (all happen to be $1$).",
+          "check": [
+            "0 != 1",
+            "1 != 2"
+          ]
+        },
+        {
+          "id": "fun1-t2",
+          "statement": "Each person → their birthday: function or not?",
+          "solution": "Function — everyone has exactly one birthday. (Birthday → people would NOT be: many share a date.)",
+          "check": [
+            "1 == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The machine",
+            "title": "One button, one snack",
+            "beats": [
+              "Input goes in. Output comes out.",
+              "A FUNCTION vends the same output for the same input, always.",
+              "$\\{(1,2), (1,3)\\}$: button 1 vends two things — broken.",
+              "$\\{(1,2), (5,2)\\}$: two buttons, same snack — fine."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Detecting",
+            "title": "Police the inputs",
+            "beats": [
+              "Scan the input column for repeats.",
+              "No repeated inputs → function, guaranteed.",
+              "Repeated input? Check its outputs: same → still fine; different → not a function.",
+              "Outputs never disqualify anything."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "In the wild",
+            "title": "Functions you already use",
+            "beats": [
+              "Student → ID number. ✓",
+              "Barcode → price. ✓ (Imagine if it weren't!)",
+              "Person → phone number: fails if someone owns two phones.",
+              "Every lookup table that WORKS is a function."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Broken or working?",
+            "prompt": "Which relation is NOT a function?",
+            "options": [
+              "$\\{(3, 1), (3, 5), (4, 2)\\}$",
+              "$\\{(1, 1), (2, 4), (3, 9)\\}$",
+              "$\\{(5, 2), (6, 2), (7, 2)\\}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Input $3$ vends both $1$ and $5$ — the broken machine.",
+            "check": [
+              "1 != 5"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Function patrol",
+            "intro": "Inputs first, outputs never.",
+            "examples": [
+              {
+                "prompt": "A mapping sends $\\{-2, 0, 2\\}$ each to its square. List the pairs — function?",
+                "steps": [
+                  "$(-2, 4), (0, 0), (2, 4)$.",
+                  "All inputs distinct.",
+                  "Function ✓ — outputs $4$ repeat harmlessly."
+                ],
+                "answer": "Yes",
+                "check": [
+                  "(-2)**2 == 4",
+                  "2**2 == 4",
+                  "0**2 == 0"
+                ]
+              },
+              {
+                "prompt": "A table shows the same store's opening hours: Mon→9, Tue→9, Wed→10, Mon→8. Function?",
+                "steps": [
+                  "Input Mon appears twice: 9 and 8.",
+                  "Different outputs for one input.",
+                  "Not a function — the table contradicts itself."
+                ],
+                "answer": "No",
+                "check": [
+                  "9 != 8"
+                ]
+              },
+              {
+                "prompt": "The rule 'input any number, output the number of letters when spelled in English' — e.g. 4 → four → 4 letters. Function?",
+                "steps": [
+                  "Each number has ONE spelling, hence one letter-count.",
+                  "Repeats like 5→4 and 9→4 are fine.",
+                  "Function ✓ — strange but law-abiding."
+                ],
+                "answer": "Yes",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Patrol duty",
+            "intro": "Hunt repeated inputs with conflicting outputs.",
+            "problems": [
+              {
+                "prompt": "$\\{(1, 3), (2, 3), (3, 3)\\}$ — function?",
+                "options": [
+                  "Yes",
+                  "No — outputs repeat",
+                  "Only if sorted"
+                ],
+                "correctIndex": 0,
+                "explanation": "Three distinct inputs, one output each. Output repetition is legal.",
+                "check": [
+                  "1 != 2",
+                  "2 != 3"
+                ]
+              },
+              {
+                "prompt": "A relation pairs each square with its side: $(25, 5), (25, -5)$. Function?",
+                "options": [
+                  "No — input 25 has two outputs",
+                  "Yes",
+                  "Yes, since -5 = 5"
+                ],
+                "correctIndex": 0,
+                "explanation": "One input, two different outputs: not a function. (This is why 'square root' is DEFINED as the positive one!)",
+                "check": [
+                  "5 != -5"
+                ]
+              },
+              {
+                "prompt": "Which real-world pairing IS a function?",
+                "options": [
+                  "each car → its license plate",
+                  "each teacher → their students",
+                  "each country → its rivers"
+                ],
+                "correctIndex": 0,
+                "explanation": "A car has exactly one plate; teachers and countries map to many.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The word is younger than you'd think",
+            "body": "'Function' entered math in a 1673 manuscript of Leibniz, but the modern one-output-per-input definition only settled in the 1830s with Dirichlet — who scandalized colleagues with a 'function' that outputs 1 for rational inputs and 0 for irrational ones. No formula, no graphable curve, just a rule. The vending-machine promise, it turns out, is the ONLY requirement."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A function pairs every input with exactly ONE output.",
+              "Repeated inputs must agree; repeated outputs are fine.",
+              "Test tables and sets by policing the input column."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "function-notation",
+      "title": "Function Notation",
+      "concreteComparison": "Instead of 'the machine that doubles and adds one,' mathematicians write $f(x) = 2x + 1$ — and instead of 'feed it 3,' they write $f(3)$. The notation is a NAME TAG plus a FEED SLOT: $f$ names the machine, the parentheses hold what you feed it, and $f(3) = 7$ reports what fell out.",
+      "objective": "Read and evaluate function notation, including expressions as inputs, and solve f(x) = k for x.",
+      "concept": [
+        "$f(x) = 2x + 1$ names a machine $f$ whose recipe is 'double, add one.' $f(3)$ means 'the output when the input is 3' — substitute: $f(3) = 2(3) + 1 = 7$.",
+        "READ CAREFULLY: $f(3)$ is not multiplication. The parentheses after a function name are a feed slot, not a product.",
+        "Inputs can be expressions: $f(a + 2) = 2(a + 2) + 1 = 2a + 5$ — substitute the WHOLE package everywhere $x$ appears.",
+        "The reverse question '$f(x) = 15$, find $x$' is an equation: $2x + 1 = 15 \\to x = 7$. Evaluating goes input→output; solving goes output→input.",
+        "Different letters name different machines: $g(x) = x^2$ and $f(x) = 2x + 1$ coexist, and $f(2) \\ne g(2)$."
+      ],
+      "keyIdea": "$f(3)$ = 'feed 3 to machine f'; substitute the whole input everywhere x appears; f(x) = k runs the machine backwards.",
+      "facts": [
+        {
+          "title": "Feed slot, not product",
+          "explanation": "Parentheses after a function name hold the input.",
+          "latex": "$f(3) \\ne f \\times 3$"
+        },
+        {
+          "title": "Two directions",
+          "explanation": "f(3) computes an output; f(x) = 15 hunts the input.",
+          "latex": "evaluate: in\\u2192out; solve: out\\u2192in"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "fun2-we1",
+          "statement": "Given $f(x) = 2x + 1$, find $f(3)$, $f(0)$, and $f(-4)$.",
+          "solution": "$f(3) = 7$; $f(0) = 1$; $f(-4) = -7$.",
+          "check": [
+            "2*3 + 1 == 7",
+            "2*0 + 1 == 1",
+            "2*-4 + 1 == -7"
+          ]
+        },
+        {
+          "id": "fun2-we2",
+          "statement": "Given $g(x) = x^2 - 3x$, find $g(5)$.",
+          "solution": "$g(5) = 25 - 15 = 10$.",
+          "check": [
+            "5**2 - 3*5 == 10"
+          ]
+        },
+        {
+          "id": "fun2-we3",
+          "statement": "Given $f(x) = 2x + 1$, solve $f(x) = 15$.",
+          "solution": "$2x + 1 = 15 \\to x = 7$.",
+          "check": [
+            "2*7 + 1 == 15"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Treating f(3) as f times 3.",
+          "correction": "f isn't a number — it's a machine's name. f(3) means 'run the machine on 3', never multiplication.",
+          "authored": true
+        },
+        {
+          "text": "Substituting an expression input into only the first x.",
+          "correction": "$g(x) = x^2 - 3x$ at $x = a+1$: BOTH x's take the package: $(a+1)^2 - 3(a+1)$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "fun2-t1",
+          "statement": "Given $h(x) = 4x - 5$, find $h(2)$ and $h\\left(\\frac{1}{2}\\right)$.",
+          "solution": "$h(2) = 3$; $h(\\frac{1}{2}) = 2 - 5 = -3$.",
+          "check": [
+            "4*2 - 5 == 3",
+            "4*Rational(1,2) - 5 == -3"
+          ]
+        },
+        {
+          "id": "fun2-t2",
+          "statement": "Given $h(x) = 4x - 5$, solve $h(x) = 11$.",
+          "solution": "$4x - 5 = 11 \\to x = 4$.",
+          "check": [
+            "4*4 - 5 == 11"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "evaluator",
+            "eyebrow": "Play with it",
+            "title": "The feed slot, live",
+            "teach": "This is $f(x) = 2x + 1$ as a physical machine: slide the input and watch $f(\\text{input})$ update. Evaluating IS this slider, frozen at one spot.",
+            "config": {
+              "a": 2,
+              "b": 1,
+              "varName": "x",
+              "min": -6,
+              "max": 6,
+              "start": 3
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Grammar",
+            "title": "Name tag + feed slot",
+            "beats": [
+              "$f(x) = 2x + 1$: machine $f$, recipe $2x + 1$.",
+              "$f(3)$: feed 3. Output: $2(3) + 1 = 7$.",
+              "Say it 'f of 3', never 'f times 3.'",
+              "$g$, $h$, $P$, $C$… any letter can name a machine."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Packages",
+            "title": "Whole input, every slot",
+            "beats": [
+              "$f(a + 2)$: the input is the PACKAGE $a + 2$.",
+              "$f(a+2) = 2(a + 2) + 1 = 2a + 5$.",
+              "Every $x$ in the recipe takes the whole package.",
+              "Parentheses around the package prevent 99% of errors."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Feed it",
+            "prompt": "Given $f(x) = 3x - 4$, what is $f(-2)$?",
+            "options": [
+              "$-10$",
+              "$2$",
+              "$-6$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$3(-2) - 4 = -6 - 4 = -10$.",
+            "check": [
+              "3*-2 - 4 == -10"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Both directions",
+            "intro": "Evaluate forward; solve backward.",
+            "examples": [
+              {
+                "prompt": "Given $C(m) = 0.25m + 12$ (phone bill for $m$ minutes), find $C(80)$ and interpret.",
+                "steps": [
+                  "$C(80) = 0.25(80) + 12$.",
+                  "$= 20 + 12 = 32$.",
+                  "80 minutes costs \\$32."
+                ],
+                "answer": "\\$32",
+                "check": [
+                  "Rational(25,100)*80 + 12 == 32"
+                ]
+              },
+              {
+                "prompt": "Same bill: solve $C(m) = 47$ and interpret.",
+                "steps": [
+                  "$0.25m + 12 = 47$.",
+                  "$0.25m = 35 \\to m = 140$.",
+                  "A \\$47 bill buys 140 minutes."
+                ],
+                "answer": "$m = 140$",
+                "check": [
+                  "Rational(25,100)*140 + 12 == 47"
+                ]
+              },
+              {
+                "prompt": "Given $g(x) = x^2 + 1$, find $g(2t)$.",
+                "steps": [
+                  "Package: $2t$, into every slot.",
+                  "$(2t)^2 + 1$.",
+                  "$= 4t^2 + 1$."
+                ],
+                "answer": "$4t^2 + 1$",
+                "check": [
+                  "(2*3)**2 + 1 == 4*3**2 + 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Notation fluency",
+            "intro": "Feed slot in, equation back.",
+            "problems": [
+              {
+                "prompt": "$f(x) = x^2 - 2x$: find $f(4)$.",
+                "options": [
+                  "$8$",
+                  "$24$",
+                  "$4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$16 - 8 = 8$.",
+                "check": [
+                  "4**2 - 2*4 == 8"
+                ]
+              },
+              {
+                "prompt": "$p(x) = 5x + 3$: solve $p(x) = -12$.",
+                "options": [
+                  "$x = -3$",
+                  "$x = 3$",
+                  "$x = -\\frac{9}{5}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5x = -15 \\to x = -3$.",
+                "check": [
+                  "5*-3 + 3 == -12"
+                ]
+              },
+              {
+                "prompt": "$f(x) = 2x + 1$ and $g(x) = x^2$: which is larger, $f(3)$ or $g(3)$?",
+                "options": [
+                  "$g(3) = 9$",
+                  "$f(3) = 7$",
+                  "they're equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "$g(3) = 9 > 7 = f(3)$.",
+                "check": [
+                  "3**2 == 9",
+                  "2*3 + 1 == 7",
+                  "9 > 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Euler's shorthand conquered the world",
+            "body": "The notation $f(x)$ debuted in a 1734 paper by Leonhard Euler — a man so prolific that publishers were still printing his backlog decades after his death. His feed-slot shorthand beat rival notations because it names the machine SEPARATELY from the input, letting you talk about $f$ itself. Every programming language's `f(x)` function call is Euler's 290-year-old idea, compiling today."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$f(x) = $ recipe; $f(3) = $ the output at input 3 — never multiplication.",
+              "Expression inputs substitute as whole packages, every slot.",
+              "$f(x) = k$ is an equation: run the machine backwards."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "domain-and-range",
+      "title": "Domain & Range",
+      "concreteComparison": "A pizza place delivers only within $8$ km, and a slice costs \\$4 — so an order's total is $4s$ for $s$ slices, but $s$ can only be a positive whole number, and delivery distance only lives in $[0, 8]$. Every function has a guest list of allowed inputs (the **domain**) and a menu of possible outputs (the **range**). Forgetting them is how apps crash.",
+      "objective": "Find domains and ranges from ordered pairs, rules, and real contexts, spotting excluded inputs.",
+      "concept": [
+        "The **domain** is the set of allowed inputs; the **range** is the set of outputs the function actually produces.",
+        "For listed pairs, just read the columns: domain $=$ all first coordinates, range $=$ all seconds (no repeats needed).",
+        "For rules, hunt the forbidden: $f(x) = \\frac{1}{x - 4}$ can't take $x = 4$ (division by zero) — the domain is all reals EXCEPT $4$.",
+        "Context restricts harder than algebra: 'slices ordered' must be a nonnegative whole number; 'hours worked' can't exceed the week. Real-world domains are trimmed by meaning.",
+        "Range follows from domain: for $f(x) = x^2$ over all reals, outputs are $y \\ge 0$ — squares never go negative."
+      ],
+      "keyIdea": "Domain = legal inputs (watch for division by zero and context); range = the outputs actually produced.",
+      "facts": [
+        {
+          "title": "Read the columns",
+          "explanation": "For listed pairs, no computation needed.",
+          "latex": "domain: firsts; range: seconds"
+        },
+        {
+          "title": "Forbidden inputs",
+          "explanation": "Division by zero is the Grade 9 domain-killer.",
+          "latex": "$\\tfrac{1}{x-4}$: $x \\ne 4$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "fun3-we1",
+          "statement": "Find the domain and range of $\\{(1, 3), (2, 5), (4, 3)\\}$.",
+          "solution": "Domain $\\{1, 2, 4\\}$; range $\\{3, 5\\}$ (the repeated 3 lists once).",
+          "check": [
+            "1 != 2",
+            "3 != 5"
+          ]
+        },
+        {
+          "id": "fun3-we2",
+          "statement": "Find the domain of $f(x) = \\frac{6}{x - 4}$.",
+          "solution": "Denominator dies at $x = 4$: domain is all real numbers except $4$.",
+          "check": [
+            "4 - 4 == 0",
+            "Rational(6, 5 - 4) == 6"
+          ]
+        },
+        {
+          "id": "fun3-we3",
+          "statement": "A theater seats $250$; tickets cost \\$12. Revenue is $R(t) = 12t$. State the realistic domain and range.",
+          "solution": "Domain: whole numbers $0 \\le t \\le 250$. Range: $\\{0, 12, 24, \\ldots, 3000\\}$ — up to $12 \\times 250 = 3000$ dollars.",
+          "check": [
+            "12*250 == 3000"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reporting the range as 'everything the formula could make'.",
+          "correction": "Range is what the function produces OVER ITS DOMAIN. Cap the tickets at 250 and the revenue caps at \\$3,000.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting context restrictions.",
+          "correction": "Algebra allows t = 2.5 tickets and t = −3; the box office does not. Real domains obey the story, not just the formula.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "fun3-t1",
+          "statement": "Find the domain of $g(x) = \\frac{x + 1}{x + 5}$.",
+          "solution": "All reals except $x = -5$.",
+          "check": [
+            "-5 + 5 == 0",
+            "Rational(0 + 1, 0 + 5) == Rational(1,5)"
+          ]
+        },
+        {
+          "id": "fun3-t2",
+          "statement": "For $f(x) = x^2 + 2$ over all reals, what is the range?",
+          "solution": "$x^2 \\ge 0$, so $f(x) \\ge 2$: range $y \\ge 2$.",
+          "check": [
+            "0**2 + 2 == 2",
+            "3**2 + 2 == 11"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Two sets",
+            "title": "Guest list and menu",
+            "beats": [
+              "**Domain**: inputs the machine accepts.",
+              "**Range**: outputs it actually serves.",
+              "Pairs: read the two columns.",
+              "Rules: hunt what's forbidden."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Forbidden inputs",
+            "title": "The zero in the basement",
+            "beats": [
+              "$f(x) = \\frac{6}{x - 4}$: try $x = 4$…",
+              "$\\frac{6}{0}$ — undefined. Bounced at the door.",
+              "Domain: all reals, $x \\ne 4$.",
+              "Set the denominator $= 0$; those solutions are the ban list."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Context",
+            "title": "Reality trims harder",
+            "beats": [
+              "Tickets: whole, nonnegative, at most the seats.",
+              "Hours: $0 \\le h \\le 168$ per week.",
+              "The formula never knows this — YOU do.",
+              "Real-world domain = algebra's domain ∩ common sense."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Bounce the input",
+            "prompt": "Which input is NOT in the domain of $f(x) = \\frac{x}{2x - 10}$?",
+            "options": [
+              "$5$",
+              "$0$",
+              "$-5$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$2(5) - 10 = 0$ — division by zero. ($x = 0$ is fine: $f(0) = 0$.)",
+            "check": [
+              "2*5 - 10 == 0",
+              "Rational(0, 2*0 - 10) == 0"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Domains, three ways",
+            "intro": "Pairs, rules, and reality.",
+            "examples": [
+              {
+                "prompt": "Domain and range of $\\{(-3, 0), (0, 4), (3, 0), (6, 4)\\}$?",
+                "steps": [
+                  "Domain: $\\{-3, 0, 3, 6\\}$.",
+                  "Range: $\\{0, 4\\}$.",
+                  "Repeats list once."
+                ],
+                "answer": "D $\\{-3,0,3,6\\}$, R $\\{0,4\\}$",
+                "check": [
+                  "0 != 4"
+                ]
+              },
+              {
+                "prompt": "Domain of $h(x) = \\frac{2x}{(x - 1)(x + 3)}$?",
+                "steps": [
+                  "Denominator zero at $x = 1$ and $x = -3$.",
+                  "Ban both.",
+                  "All reals except $1$ and $-3$."
+                ],
+                "answer": "$x \\ne 1, -3$",
+                "check": [
+                  "(1 - 1)*(1 + 3) == 0",
+                  "(-3 - 1)*(-3 + 3) == 0"
+                ]
+              },
+              {
+                "prompt": "A drone flies at $12$ m/s with a $25$-minute battery: distance $d(t) = 12t$ (t in seconds). Domain and range?",
+                "steps": [
+                  "$25$ min $= 1500$ s: domain $0 \\le t \\le 1500$.",
+                  "Range: $0 \\le d \\le 18000$ meters.",
+                  "The battery — not algebra — sets the fence."
+                ],
+                "answer": "$0 \\le t \\le 1500$; $0 \\le d \\le 18{,}000$",
+                "check": [
+                  "25*60 == 1500",
+                  "12*1500 == 18000"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Guest lists",
+            "intro": "Ban division by zero; obey the story.",
+            "problems": [
+              {
+                "prompt": "Domain of $f(x) = \\frac{7}{x + 2}$?",
+                "options": [
+                  "all reals except $-2$",
+                  "all reals except $2$",
+                  "$x > -2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$x + 2 = 0$ at $x = -2$ — the only ban.",
+                "check": [
+                  "-2 + 2 == 0"
+                ]
+              },
+              {
+                "prompt": "Range of $\\{(1, 5), (2, 7), (3, 5), (4, 9)\\}$?",
+                "options": [
+                  "$\\{5, 7, 9\\}$",
+                  "$\\{1, 2, 3, 4\\}$",
+                  "$\\{5, 7, 5, 9\\}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Outputs, listed once each.",
+                "check": [
+                  "5 != 7",
+                  "7 != 9"
+                ]
+              },
+              {
+                "prompt": "A parking garage charges $G(h) = 3h$ for up to $24$ hours. The realistic domain is…",
+                "options": [
+                  "$0 \\le h \\le 24$",
+                  "all real numbers",
+                  "$h \\ge 24$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Hours parked live between 0 and the garage's daily limit.",
+                "check": [
+                  "3*24 == 72"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Crashes are domain errors",
+            "body": "In 1996 the Ariane 5 rocket exploded 37 seconds after launch: a velocity number exceeded the domain its software expected, overflowed, and the guidance system resigned mid-flight. Cost: about \\$370 million. Programmers now speak of 'input validation' — a billion-dollar industry that is, at heart, writing down the domain BEFORE running the function."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Domain = legal inputs; range = produced outputs.",
+              "Ban denominator zeros; list set-columns once.",
+              "Context (seats, batteries, weeks) trims domains beyond the algebra."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "graphs-and-the-vertical-line-test",
+      "title": "Graphs & the Vertical Line Test",
+      "concreteComparison": "A graph is a function's photo album: every point $(x, y)$ says 'input $x$ produced output $y$.' So what does a BROKEN machine look like on camera? Two points stacked vertically — one input, two outputs. Slide a vertical line across any graph: if it ever crosses twice, the machine in the photo is broken. That's the **vertical line test**.",
+      "objective": "Read function values from graphs and apply the vertical line test to identify functions.",
+      "concept": [
+        "On a function's graph, $f(3) = 7$ appears as the point $(3, 7)$: inputs run horizontally, outputs vertically.",
+        "To read $f(a)$ from a graph: find $a$ on the x-axis, travel vertically to the curve, read the height.",
+        "**Vertical line test (VLT):** a graph shows a function exactly when NO vertical line hits it more than once — one input, one output, visually enforced.",
+        "Lines (non-vertical), parabolas opening up/down, and V-shapes all pass. Circles and sideways parabolas fail — pick the x where a vertical line slices through twice.",
+        "Solving $f(x) = k$ graphically: draw the HORIZONTAL line $y = k$ and read the x's where it crosses — there may be several (that's legal: repeated outputs)."
+      ],
+      "keyIdea": "Graph reading: over to x, up to the curve, out to y. Function ⟺ every vertical line hits at most once.",
+      "facts": [
+        {
+          "title": "Points are receipts",
+          "explanation": "The graph is the set of all input-output receipts.",
+          "latex": "$(3, 7)$ on the graph $\\iff f(3) = 7$"
+        },
+        {
+          "title": "VLT",
+          "explanation": "Two stacked points = one input with two outputs.",
+          "latex": "vertical line hits twice \\u2192 not a function"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "fun4-we1",
+          "statement": "A graph passes through $(2, 5)$ and $(4, 5)$ but has no other points at $x = 2$ or $x = 4$. What are $f(2)$ and $f(4)$? Does the repetition break anything?",
+          "solution": "$f(2) = 5$ and $f(4) = 5$. Repeated OUTPUTS are legal — the VLT only forbids stacked points.",
+          "check": [
+            "5 == 5",
+            "2 != 4"
+          ]
+        },
+        {
+          "id": "fun4-we2",
+          "statement": "A circle of radius $3$ centered at the origin: function or not?",
+          "solution": "Not a function: the vertical line $x = 0$ hits it at $(0, 3)$ AND $(0, -3)$ — one input, two outputs.",
+          "check": [
+            "3 != -3",
+            "0**2 + 3**2 == 9"
+          ]
+        },
+        {
+          "id": "fun4-we3",
+          "statement": "The graph of $f$ crosses the horizontal line $y = 4$ at $x = -1$ and $x = 6$. What does that tell you?",
+          "solution": "$f(-1) = 4$ and $f(6) = 4$: the equation $f(x) = 4$ has two solutions — perfectly legal.",
+          "check": [
+            "-1 != 6"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Applying a HORIZONTAL line test to check function-hood.",
+          "correction": "Horizontal lines police repeated outputs, which are legal. Function-hood is the VERTICAL line test only.",
+          "authored": true
+        },
+        {
+          "text": "Reading f(3) by finding 3 on the y-axis.",
+          "correction": "Inputs live on the x-axis. Over to x = 3 FIRST, then up/down to the curve, then out to the height.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "fun4-t1",
+          "statement": "A vertical line at $x = 2$ crosses a graph at heights $1$ and $6$. Function?",
+          "solution": "No — input $2$ shows two outputs.",
+          "check": [
+            "1 != 6"
+          ]
+        },
+        {
+          "id": "fun4-t2",
+          "statement": "On the graph of $f(x) = x^2$, what points have height $9$?",
+          "solution": "$(3, 9)$ and $(-3, 9)$: $f(x) = 9$ has two solutions.",
+          "check": [
+            "3**2 == 9",
+            "(-3)**2 == 9"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "Play with it",
+            "title": "Receipts on display",
+            "teach": "These points are receipts of the function $f(x) = x^2 - 2$ at $x = -2, -1, 0, 1, 2$. Check any of them: over to the x, up (or down) to the point, out to the height.",
+            "config": {
+              "mode": "plot",
+              "min": -4,
+              "max": 4,
+              "points": [
+                {
+                  "x": -2,
+                  "y": 2
+                },
+                {
+                  "x": -1,
+                  "y": -1
+                },
+                {
+                  "x": 0,
+                  "y": -2
+                },
+                {
+                  "x": 1,
+                  "y": -1
+                },
+                {
+                  "x": 2,
+                  "y": 2
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reading",
+            "title": "Over, up, out",
+            "beats": [
+              "To read $f(a)$: find $a$ on the x-axis.",
+              "Travel vertically to the curve.",
+              "Read the height — that's the output.",
+              "$(3, 7)$ on the graph IS the statement $f(3) = 7$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The test",
+            "title": "Vertical lines as inspectors",
+            "beats": [
+              "Sweep a vertical line across the graph.",
+              "Each position asks: how many outputs does THIS input have?",
+              "Ever two or more → not a function.",
+              "Circles fail; parabolas (up/down) pass; V-shapes pass."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Inspect it",
+            "prompt": "Which graph FAILS the vertical line test?",
+            "options": [
+              "a circle",
+              "a straight line with slope 2",
+              "a V-shaped graph"
+            ],
+            "correctIndex": 0,
+            "explanation": "Any vertical line through a circle's interior hits it twice — top and bottom.",
+            "check": [
+              "2 > 1"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Graphs interrogated",
+            "intro": "Over-up-out for values; sweep for function-hood.",
+            "examples": [
+              {
+                "prompt": "From a graph: $f(0) = 3$, $f(2) = 0$, $f(5) = 3$. Solve $f(x) = 3$ and $f(x) = 0$ from this data.",
+                "steps": [
+                  "Height 3 occurs at $x = 0$ and $x = 5$.",
+                  "Height 0 occurs at $x = 2$.",
+                  "$f(x) = 3$: two solutions; $f(x) = 0$: one (the x-intercept)."
+                ],
+                "answer": "$x \\in \\{0, 5\\}$; $x = 2$",
+                "check": [
+                  "0 != 5"
+                ]
+              },
+              {
+                "prompt": "The point $(4, -1)$ is on the graph of $g$. Rewrite as notation, and give one point NOT allowed on the graph.",
+                "steps": [
+                  "$g(4) = -1$.",
+                  "Any other point at $x = 4$, e.g. $(4, 2)$, is banned.",
+                  "One input, one output — VLT in action."
+                ],
+                "answer": "$g(4) = -1$; $(4, 2)$ forbidden",
+                "check": [
+                  "-1 != 2"
+                ]
+              },
+              {
+                "prompt": "A sideways parabola contains $(4, 2)$ and $(4, -2)$. Verdict?",
+                "steps": [
+                  "Vertical line $x = 4$: two hits.",
+                  "Fails the VLT.",
+                  "Not a function (of x)."
+                ],
+                "answer": "not a function",
+                "check": [
+                  "2 != -2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Sweep and read",
+            "intro": "Inputs horizontal, outputs vertical, inspectors vertical.",
+            "problems": [
+              {
+                "prompt": "The graph of $f$ contains $(1, 4), (2, 7), (3, 4)$. What is $f(3)$?",
+                "options": [
+                  "$4$",
+                  "$3$",
+                  "$7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Over to $x = 3$, up to height $4$.",
+                "check": [
+                  "4 == 4"
+                ]
+              },
+              {
+                "prompt": "Which set of points could NOT lie on one function's graph?",
+                "options": [
+                  "$(5, 1)$ and $(5, 3)$",
+                  "$(1, 5)$ and $(3, 5)$",
+                  "$(0, 0)$ and $(1, 1)$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Stacked at $x = 5$: one input, two outputs.",
+                "check": [
+                  "1 != 3"
+                ]
+              },
+              {
+                "prompt": "The horizontal line $y = 2$ crosses a function's graph three times. This means…",
+                "options": [
+                  "$f(x) = 2$ has three solutions",
+                  "the graph is not a function",
+                  "the range is $\\{2\\}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Three inputs share the output 2 — legal, and useful for solving.",
+                "check": [
+                  "3 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The ECG is a function on purpose",
+            "body": "A heartbeat monitor draws voltage against time — and it MUST pass the vertical line test, because time can't hold two voltages at once. Engineers designing instruments choose which variable goes on the x-axis precisely so the trace is a function; a spirograph pattern would be useless in an ICU. Choosing axes to force function-hood is real design work."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Graphs are receipts: $(a, b)$ means $f(a) = b$; read over-up-out.",
+              "Function ⟺ every vertical line hits at most once.",
+              "Horizontal lines solve $f(x) = k$ — multiple crossings are legal."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "linear-vs-nonlinear",
+      "title": "Linear or Not?",
+      "concreteComparison": "Fill a swimming pool with a steady hose: the depth climbs the same amount every minute — a straight-line story. Now fill a cone-shaped glass: the level ROCKETS at the narrow bottom and crawls near the rim. Same hose, different shapes. Constant-rate stories graph as lines; changing-rate stories bend — and you can tell which is which from a table before drawing anything.",
+      "objective": "Classify functions as linear or nonlinear from tables (constant first differences), equations, and graphs.",
+      "concept": [
+        "A **linear** function has a constant rate of change: equal input steps always produce equal output steps. Its graph is a straight line, its equation fits $y = mx + b$.",
+        "**Table test:** if $x$ steps evenly, compute the output jumps (first differences). All equal → linear. Anything else → nonlinear.",
+        "**Equation test:** $x$ appears only to the first power, not inside squares, absolute values, denominators, or exponents. $y = 3x - 5$ ✓; $y = x^2$, $y = |x|$, $y = \\frac{2}{x}$, $y = 2^x$ ✗.",
+        "Nonlinear tables often confess their type: differences that GROW by a constant hint at squares; outputs that MULTIPLY by a constant hint at exponentials (Grade 10's star).",
+        "Rate language settles real stories: 'same amount every minute' → linear; 'slows down as it fills' → nonlinear."
+      ],
+      "keyIdea": "Linear = constant first differences = straight line = y = mx + b. One failed check fails them all.",
+      "facts": [
+        {
+          "title": "Table test",
+          "explanation": "Constant first differences are linearity's fingerprint.",
+          "latex": "equal x-steps, equal y-jumps"
+        },
+        {
+          "title": "Equation test",
+          "explanation": "Squares, bars, denominators, exponents all bend the graph.",
+          "latex": "x to the first power only"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "fun5-we1",
+          "statement": "Table: $x = 1, 2, 3, 4$; $y = 5, 8, 11, 14$. Linear?",
+          "solution": "Jumps: $3, 3, 3$ — constant. Linear, rate $3$ (in fact $y = 3x + 2$).",
+          "check": [
+            "8 - 5 == 3",
+            "11 - 8 == 3",
+            "14 - 11 == 3",
+            "3*4 + 2 == 14"
+          ]
+        },
+        {
+          "id": "fun5-we2",
+          "statement": "Table: $x = 1, 2, 3, 4$; $y = 1, 4, 9, 16$. Linear?",
+          "solution": "Jumps: $3, 5, 7$ — growing. Nonlinear (these are squares).",
+          "check": [
+            "4 - 1 == 3",
+            "9 - 4 == 5",
+            "16 - 9 == 7",
+            "3 != 5"
+          ]
+        },
+        {
+          "id": "fun5-we3",
+          "statement": "Classify: $y = 4 - \\frac{x}{2}$, $\\;y = x(x + 1)$, $\\;y = \\frac{6}{x}$.",
+          "solution": "First: linear ($m = -\\frac{1}{2}$). Second: expands to $x^2 + x$ — nonlinear. Third: $x$ in the denominator — nonlinear.",
+          "check": [
+            "4 - Rational(2,2) == 3",
+            "2*(2 + 1) == 6",
+            "Rational(6,3) == 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Calling any increasing table linear.",
+          "correction": "Increasing isn't the test — CONSTANT JUMPS are. 1, 4, 9, 16 increases but the jumps 3, 5, 7 betray a curve.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting to check that x steps evenly first.",
+          "correction": "First differences only work over EQUAL x-steps. If x jumps 1, 2, 5… compute rates (Δy/Δx) instead.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "fun5-t1",
+          "statement": "Table: $x = 0, 2, 4, 6$; $y = 7, 3, -1, -5$. Linear? If so, find the rate.",
+          "solution": "Jumps: $-4, -4, -4$ over steps of $2$ — linear with rate $\\frac{-4}{2} = -2$.",
+          "check": [
+            "3 - 7 == -4",
+            "-1 - 3 == -4",
+            "Rational(-4, 2) == -2"
+          ]
+        },
+        {
+          "id": "fun5-t2",
+          "statement": "Is $y = 2x(3 - x)$ linear?",
+          "solution": "Expand: $6x - 2x^2$ — the square makes it nonlinear.",
+          "check": [
+            "2*1*(3 - 1) == 4",
+            "6*1 - 2*1**2 == 4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The fingerprint",
+            "title": "Constant jumps",
+            "beats": [
+              "March x by equal steps.",
+              "Watch the y-jumps (first differences).",
+              "All identical → LINEAR. Rate = jump ÷ step.",
+              "$5, 8, 11, 14$: jumps $3, 3, 3$. Line confirmed."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Equation X-ray",
+            "title": "Where does x live?",
+            "beats": [
+              "First power only → linear: $y = 3x - 5$. ✓",
+              "$x^2$, $|x|$, $\\frac{1}{x}$, $2^x$ → bends. ✗",
+              "Disguises exist: $y = x(x+1)$ hides a square.",
+              "Expand before judging."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Bend forensics",
+            "title": "What KIND of curve?",
+            "beats": [
+              "Jumps growing by a constant ($3, 5, 7$): a square's signature.",
+              "Outputs MULTIPLYING ($2, 6, 18, 54$): exponential — Grade 10's headliner.",
+              "V-shaped jumps ($-2, -1, 1, 2$…): absolute value.",
+              "The differences are a curve's fingerprints."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the jumps",
+            "prompt": "$x = 1,2,3,4$; $y = 10, 7, 4, 1$. Verdict?",
+            "options": [
+              "linear, rate $-3$",
+              "nonlinear",
+              "linear, rate $3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Jumps $-3, -3, -3$: constant and negative — a falling line.",
+            "check": [
+              "7 - 10 == -3",
+              "4 - 7 == -3",
+              "1 - 4 == -3"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Classify with evidence",
+            "intro": "Jumps for tables, x-ray for equations, rate-language for stories.",
+            "examples": [
+              {
+                "prompt": "A gym charges \\$50 to join plus \\$30/month. Linear? Graph shape?",
+                "steps": [
+                  "Cost: $C = 30m + 50$.",
+                  "x to the first power: linear.",
+                  "A straight line starting at $(0, 50)$ climbing 30 per month."
+                ],
+                "answer": "linear",
+                "check": [
+                  "30*2 + 50 == 110",
+                  "110 - 80 == 30"
+                ]
+              },
+              {
+                "prompt": "A ball's height: $t = 0, 1, 2, 3$; $h = 0, 25, 40, 45$. Linear?",
+                "steps": [
+                  "Jumps: $25, 15, 5$.",
+                  "Shrinking — gravity is braking the rise.",
+                  "Nonlinear (quadratic, as Grade 10 will show)."
+                ],
+                "answer": "nonlinear",
+                "check": [
+                  "25 - 0 == 25",
+                  "40 - 25 == 15",
+                  "45 - 40 == 5",
+                  "25 != 15"
+                ]
+              },
+              {
+                "prompt": "Bacteria double hourly: $1, 2, 4, 8$. Linear?",
+                "steps": [
+                  "Jumps: $1, 2, 4$ — not constant.",
+                  "But RATIOS are constant ($\\times 2$).",
+                  "Nonlinear — exponential growth."
+                ],
+                "answer": "nonlinear (exponential)",
+                "check": [
+                  "Rational(2,1) == 2",
+                  "Rational(4,2) == 2",
+                  "Rational(8,4) == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Line or curve?",
+            "intro": "Demand constant jumps; expand disguises.",
+            "problems": [
+              {
+                "prompt": "Which equation is linear?",
+                "options": [
+                  "$y = \\frac{x}{3} - 7$",
+                  "$y = \\frac{3}{x} - 7$",
+                  "$y = x^2 - 7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{x}{3}$ is $\\frac{1}{3} \\cdot x$ — first power. The others hide a denominator-x and a square.",
+                "check": [
+                  "Rational(6,3) - 7 == -5"
+                ]
+              },
+              {
+                "prompt": "$x = 2, 4, 6$; $y = 1, 5, 9$. The rate of change is…",
+                "options": [
+                  "$2$",
+                  "$4$",
+                  "$\\frac{1}{2}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Jumps of $4$ over x-steps of $2$: rate $= \\frac{4}{2} = 2$.",
+                "check": [
+                  "Rational(5 - 1, 4 - 2) == 2"
+                ]
+              },
+              {
+                "prompt": "Which story is NONLINEAR?",
+                "options": [
+                  "a car's stopping distance vs speed (doubling speed quadruples it)",
+                  "a taxi's fare vs distance at a fixed per-km rate",
+                  "a salary of \\$22 per hour vs hours"
+                ],
+                "correctIndex": 0,
+                "explanation": "Quadrupling from doubling is a square law; the others are constant-rate.",
+                "check": [
+                  "2**2 == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Stopping distance is the deadly square",
+            "body": "Driving instructors hammer one nonlinear fact: doubling your speed roughly QUADRUPLES your braking distance, because kinetic energy grows with the square of speed. At 30 km/h a car stops in ~6 m; at 60 km/h, ~24 m. Road-safety campaigns are, mathematically, a war against drivers' linear intuition in a quadratic world."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Linear = constant first differences = straight line = $y = mx + b$.",
+              "X-ray equations: x must stay at the first power, undisguised.",
+              "Growing jumps → squares; constant ratios → exponentials."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "interpreting-graphs",
+      "title": "Interpreting Graphs",
+      "concreteComparison": "A distance-time graph of your walk to school tells a story without a single word: steep at the start (you were late), flat in the middle (you stopped for a friend), gently rising at the end (strolling). Reading graphs as STORIES — where they rise, fall, flatten, and peak — is how scientists skim data and how you'll ace every 'describe the journey' question ever written.",
+      "objective": "Describe where functions increase, decrease, and stay constant; identify intercepts and extremes; match graphs to stories.",
+      "concept": [
+        "A graph **increases** where it rises left-to-right, **decreases** where it falls, and is **constant** where it runs flat — always described by the INPUT intervals where the behavior happens.",
+        "**Intercepts** anchor the story: the y-intercept is the starting value (input 0); x-intercepts are where the output hits zero.",
+        "**Maximums and minimums** are the peaks and valleys — the biggest and smallest outputs, and WHERE they occur.",
+        "In a distance-time graph, steepness IS speed: steeper = faster, flat = stopped. In a height-time graph of a ball, the peak is the top of the flight.",
+        "Matching stories to graphs: translate each phrase into rise/fall/flat pieces, then check the ORDER of the pieces."
+      ],
+      "keyIdea": "Read graphs left to right as stories: rises, falls, flats, anchored by intercepts and peaks.",
+      "facts": [
+        {
+          "title": "Behavior lives on x-intervals",
+          "explanation": "Say WHERE (inputs), not just what.",
+          "latex": "increasing for $0 < t < 5$"
+        },
+        {
+          "title": "Steepness is rate",
+          "explanation": "On distance-time graphs, slope reads as speed.",
+          "latex": "steeper = faster"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "fun6-we1",
+          "statement": "A hiker's distance-time graph rises for $t = 0$ to $2$ h, is flat from $2$ to $3$, then rises less steeply from $3$ to $5$. Tell the story.",
+          "solution": "Hiked for 2 hours, rested an hour, then continued slower until hour 5.",
+          "check": [
+            "2 - 0 == 2",
+            "3 - 2 == 1",
+            "5 - 3 == 2"
+          ]
+        },
+        {
+          "id": "fun6-we2",
+          "statement": "A ball's height is $h(t) = 20t - 5t^2$ (meters). Compute $h(0), h(2), h(4)$ and locate the peak time.",
+          "solution": "$h(0) = 0$, $h(2) = 20$, $h(4) = 0$: up then down, peak at $t = 2$ (by symmetry between the zeros).",
+          "check": [
+            "20*0 - 5*0**2 == 0",
+            "20*2 - 5*2**2 == 20",
+            "20*4 - 5*4**2 == 0"
+          ]
+        },
+        {
+          "id": "fun6-we3",
+          "statement": "A bank balance graph starts at $y = 120$, falls to cross zero at $t = 8$, and keeps falling. Interpret both intercepts.",
+          "solution": "y-intercept $120$: the starting balance. x-intercept $t = 8$: the moment the account hits zero — broke by week 8.",
+          "check": [
+            "120 > 0",
+            "8 > 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Describing increase/decrease with y-values.",
+          "correction": "'Increasing from 3 to 7' should name INPUTS: 'increasing for 1 < x < 4.' Behavior is located by where, not how high.",
+          "authored": true
+        },
+        {
+          "text": "Reading a flat distance-time segment as constant speed.",
+          "correction": "Flat distance means NO distance gained — the walker is STOPPED. Constant speed is a straight but SLOPED segment.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "fun6-t1",
+          "statement": "A temperature graph falls from midnight to 6 AM, rises until 3 PM, then falls again. When was the day's minimum?",
+          "solution": "At 6 AM — the valley where falling turns to rising.",
+          "check": [
+            "6 < 15"
+          ]
+        },
+        {
+          "id": "fun6-t2",
+          "statement": "On a distance-time graph, segment A climbs $60$ km in $1$ h; segment B climbs $60$ km in $2$ h. Which is steeper, and what does that mean?",
+          "solution": "A: steeper — $60$ km/h vs $30$ km/h. Steepness is speed.",
+          "check": [
+            "Rational(60,1) == 60",
+            "Rational(60,2) == 30",
+            "60 > 30"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Story grammar",
+            "title": "Rise, fall, flat",
+            "beats": [
+              "Read left to right, like text.",
+              "Rising = growing. Falling = shrinking. Flat = paused.",
+              "Name the INPUT interval for each behavior.",
+              "'Increasing for $0 < t < 2$' — where, then what."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Anchors",
+            "title": "Intercepts and peaks",
+            "beats": [
+              "y-intercept: the value at input 0 — the story's opening line.",
+              "x-intercepts: where the output is zero — sea level crossings.",
+              "Max/min: peaks and valleys, with their locations.",
+              "Four anchors pin down almost any graph."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Speed reading",
+            "title": "Slope as pace",
+            "beats": [
+              "Distance-time: steep = fast, flat = stopped.",
+              "Height-time: peak = top of flight, zeros = ground.",
+              "Balance-time: falling through zero = going broke.",
+              "The axes' LABELS decide what steepness means."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the pause",
+            "prompt": "On a distance-time graph, a horizontal segment means the traveler is…",
+            "options": [
+              "stopped",
+              "moving at constant speed",
+              "moving backwards"
+            ],
+            "correctIndex": 0,
+            "explanation": "Time passes, distance doesn't change: parked. (Constant speed would be a sloped straight segment.)",
+            "check": [
+              "0 == 0"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Graphs as prose",
+            "intro": "Anchor, then narrate interval by interval.",
+            "examples": [
+              {
+                "prompt": "A bathtub graph: water rises fast for 3 min, sits constant for 10, then falls to zero in 2. Narrate.",
+                "steps": [
+                  "0–3: filling (steep rise).",
+                  "3–13: bath in use (flat).",
+                  "13–15: draining (fall to the x-intercept)."
+                ],
+                "answer": "fill, soak, drain",
+                "check": [
+                  "3 + 10 + 2 == 15"
+                ]
+              },
+              {
+                "prompt": "$f$ has y-intercept $4$, increases to a max of $9$ at $x = 2$, decreases through the x-intercept at $x = 5$. Sketch mentally, then solve $f(x) = 0$ and state the range's top.",
+                "steps": [
+                  "Starts at $(0, 4)$, peaks at $(2, 9)$, hits zero at $(5, 0)$.",
+                  "$f(x) = 0$ at $x = 5$ (from the data given).",
+                  "Largest output: $9$."
+                ],
+                "answer": "$x = 5$; max $9$",
+                "check": [
+                  "9 > 4",
+                  "5 > 2"
+                ]
+              },
+              {
+                "prompt": "Match: 'a runner sprints, jogs, then sprints again' to a distance-time shape.",
+                "steps": [
+                  "Sprint: steep rise.",
+                  "Jog: gentler rise (NOT flat — still moving).",
+                  "Shape: steep–gentle–steep, always climbing."
+                ],
+                "answer": "steep, gentle, steep",
+                "check": [
+                  "3 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Narrate the picture",
+            "intro": "Anchors first, intervals second, story last.",
+            "problems": [
+              {
+                "prompt": "A profit graph crosses the x-axis at month $6$ heading upward. Interpretation?",
+                "options": [
+                  "losses before month 6, profits after",
+                  "profits before month 6",
+                  "the company closed"
+                ],
+                "correctIndex": 0,
+                "explanation": "Below zero = losing money; the crossing is break-even; above = profit.",
+                "check": [
+                  "6 > 0"
+                ]
+              },
+              {
+                "prompt": "A drone's height increases for $0 < t < 4$, is constant for $4 < t < 9$, decreases for $9 < t < 12$. When is it hovering?",
+                "options": [
+                  "$4 < t < 9$",
+                  "$0 < t < 4$",
+                  "$9 < t < 12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Constant height = hover.",
+                "check": [
+                  "9 - 4 == 5"
+                ]
+              },
+              {
+                "prompt": "Which story matches: flat, then steeply falling, then flat at a lower level?",
+                "options": [
+                  "water level as a dam gate opens briefly",
+                  "a car accelerating from rest",
+                  "a savings account with steady deposits"
+                ],
+                "correctIndex": 0,
+                "explanation": "Hold, rapid drop, hold — the reservoir sluice story.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The graph that spots lies",
+            "body": "Auditors catch fraud by READING graphs the way you just did: real revenue wiggles, fake revenue is suspiciously smooth. In one famous case, investigators flagged a company because its quarterly earnings graph rose in an almost perfect straight line for years — nature is rarely that linear. The skill of 'this shape tells a story, and the story doesn't add up' begins exactly here."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Narrate graphs left to right: rise, fall, flat — located by input intervals.",
+              "Intercepts and extremes are the story's anchors.",
+              "Axis labels give slope its meaning: speed, drain rate, profit pace."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "fun-pr1",
+      "statement": "Is $\\{(4, 2), (5, 2), (4, 7)\\}$ a function? Why or why not?",
+      "solution": "No — input $4$ has outputs $2$ and $7$.",
+      "check": [
+        "2 != 7"
+      ]
+    },
+    {
+      "id": "fun-pr2",
+      "statement": "Given $f(x) = 3x - 8$, find $f(5)$ and $f(-2)$.",
+      "solution": "$f(5) = 7$; $f(-2) = -14$.",
+      "check": [
+        "3*5 - 8 == 7",
+        "3*-2 - 8 == -14"
+      ]
+    },
+    {
+      "id": "fun-pr3",
+      "statement": "Given $g(x) = x^2 + 4x$, find $g(-3)$.",
+      "solution": "$9 - 12 = -3$.",
+      "check": [
+        "(-3)**2 + 4*-3 == -3"
+      ]
+    },
+    {
+      "id": "fun-pr4",
+      "statement": "Solve $f(x) = 20$ for $f(x) = 6x - 4$.",
+      "solution": "$6x - 4 = 20 \\to x = 4$.",
+      "check": [
+        "6*4 - 4 == 20"
+      ]
+    },
+    {
+      "id": "fun-pr5",
+      "statement": "Find the domain of $f(x) = \\frac{x - 3}{x + 7}$.",
+      "solution": "All reals except $x = -7$.",
+      "check": [
+        "-7 + 7 == 0",
+        "Rational(3 - 3, 3 + 7) == 0"
+      ]
+    },
+    {
+      "id": "fun-pr6",
+      "statement": "A car rental charges $C(d) = 45d$ for up to $14$ days. State the realistic domain and range.",
+      "solution": "Domain: whole days $1 \\le d \\le 14$ (or $0$–$14$); range: multiples of $45$ up to $630$.",
+      "check": [
+        "45*14 == 630"
+      ]
+    },
+    {
+      "id": "fun-pr7",
+      "statement": "Table: $x = 3, 6, 9, 12$; $y = 20, 14, 8, 2$. Linear? Give the rate if so.",
+      "solution": "Jumps $-6$ over steps of $3$: linear, rate $-2$.",
+      "check": [
+        "14 - 20 == -6",
+        "Rational(-6, 3) == -2"
+      ]
+    },
+    {
+      "id": "fun-pr8",
+      "statement": "A cyclist's distance-time graph: steep for $0$–$1$ h, flat $1$–$1.5$, gentle $1.5$–$3$. When was she fastest, and what was she doing from $1$ to $1.5$?",
+      "solution": "Fastest in the first hour (steepest); from $1$ to $1.5$ she was stopped.",
+      "check": [
+        "Rational(3,2) - 1 == Rational(1,2)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "fun-ty1",
+      "statement": "Which pairing is a function: each book → its page count, or each page count → books with that count?",
+      "solution": "Book → page count (one number per book). The reverse fails: many books share a count.",
+      "check": [
+        "1 == 1"
+      ]
+    },
+    {
+      "id": "fun-ty2",
+      "statement": "Given $f(x) = \\frac{x + 6}{2}$, find $f(10)$ and solve $f(x) = 3$.",
+      "solution": "$f(10) = 8$; $\\frac{x + 6}{2} = 3 \\to x = 0$.",
+      "check": [
+        "Rational(10 + 6, 2) == 8",
+        "Rational(0 + 6, 2) == 3"
+      ]
+    },
+    {
+      "id": "fun-ty3",
+      "statement": "Given $g(x) = 2x^2 - x$, compute $g(3) - g(1)$.",
+      "solution": "$g(3) = 15$, $g(1) = 1$: difference $14$.",
+      "check": [
+        "2*3**2 - 3 == 15",
+        "2*1**2 - 1 == 1",
+        "15 - 1 == 14"
+      ]
+    },
+    {
+      "id": "fun-ty4",
+      "statement": "A graph contains $(2, 3)$ and $(2, -3)$. Can it be a function? What test decides?",
+      "solution": "No — the vertical line $x = 2$ hits twice; the vertical line test fails.",
+      "check": [
+        "3 != -3"
+      ]
+    },
+    {
+      "id": "fun-ty5",
+      "statement": "Table: $x = 1, 2, 3, 4$; $y = 2, 6, 18, 54$. Linear? Describe the actual pattern.",
+      "solution": "Jumps $4, 12, 36$ — not linear. Each output is $3\\times$ the last: exponential growth.",
+      "check": [
+        "Rational(6,2) == 3",
+        "Rational(18,6) == 3",
+        "Rational(54,18) == 3"
+      ]
+    },
+    {
+      "id": "fun-ty6",
+      "statement": "A drone's height graph: rises $0$–$3$ s to a max of $40$ m, constant $3$–$8$ s, falls to $0$ at $t = 12$. Give the domain, range, and the hover interval.",
+      "solution": "Domain $0 \\le t \\le 12$; range $0 \\le h \\le 40$; hovering for $3 \\le t \\le 8$.",
+      "check": [
+        "12 - 0 == 12",
+        "40 > 0",
+        "8 - 3 == 5"
+      ]
+    }
+  ]
+}

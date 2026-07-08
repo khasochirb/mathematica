@@ -70,6 +70,7 @@ import samplingAndStatistics from "@/data/genmath/7/sampling-and-statistics.json
 // Grade 9 topic JSON imports (added as each topic is authored + published).
 import equationsAndFormulas from "@/data/genmath/9/equations-and-formulas.json";
 import inequalitiesAbsValue from "@/data/genmath/9/inequalities-and-absolute-value.json";
+import introToFunctions from "@/data/genmath/9/introduction-to-functions.json";
 // Grade 8 topic JSON imports (added as each topic is authored + published).
 import realNumberSystem from "@/data/genmath/8/the-real-number-system.json";
 import exponentsScientific from "@/data/genmath/8/exponents-and-scientific-notation.json";
@@ -269,7 +270,7 @@ export const GRADE9_SPINE: GradeSpineEntry[] = [
     slug: "introduction-to-functions",
     title: "Introduction to Functions",
     blurb: "Function notation, domain and range, the vertical line test, and reading graphs qualitatively.",
-    live: false,
+    live: true,
   },
   {
     slug: "linear-models-and-variation",
@@ -475,6 +476,7 @@ const grade7Topics: GenMathTopic[] = [
 const grade9Topics: GenMathTopic[] = [
   equationsAndFormulas as GenMathTopic,
   inequalitiesAbsValue as GenMathTopic,
+  introToFunctions as GenMathTopic,
 ];
 
 const grade8Topics: GenMathTopic[] = [
