@@ -27,7 +27,8 @@
     "verify:refinement-loop-analytics": "vitest run scripts/verify-refinement-loop-analytics.test.ts",
     "verify:lessons": "vitest run scripts/verify-lessons.test.ts",
     "verify:genmath": "python3 scripts/verify-genmath.py",
-    "verify:genmath-interactive": "vitest run scripts/verify-genmath-interactive.test.ts"
+    "verify:genmath-interactive": "vitest run scripts/verify-genmath-interactive.test.ts",
+    "verify:ptest": "python3 scripts/verify-practice-test.py"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.101.1",
