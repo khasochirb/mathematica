@@ -74,6 +74,7 @@ import introToFunctions from "@/data/genmath/9/introduction-to-functions.json";
 import linearModelsVariation from "@/data/genmath/9/linear-models-and-variation.json";
 import inequalitiesTwoVars from "@/data/genmath/9/inequalities-in-two-variables.json";
 import piecewiseAbsGraphs from "@/data/genmath/9/piecewise-and-absolute-value-graphs.json";
+import dataDistributions from "@/data/genmath/9/data-distributions.json";
 // Grade 8 topic JSON imports (added as each topic is authored + published).
 import realNumberSystem from "@/data/genmath/8/the-real-number-system.json";
 import exponentsScientific from "@/data/genmath/8/exponents-and-scientific-notation.json";
@@ -297,7 +298,7 @@ export const GRADE9_SPINE: GradeSpineEntry[] = [
     slug: "data-distributions",
     title: "Data Distributions",
     blurb: "Histograms, box plots, quartiles and IQR \u2014 the shape of data and how to compare distributions.",
-    live: false,
+    live: true,
   },
 ];
 
@@ -483,6 +484,7 @@ const grade9Topics: GenMathTopic[] = [
   linearModelsVariation as GenMathTopic,
   inequalitiesTwoVars as GenMathTopic,
   piecewiseAbsGraphs as GenMathTopic,
+  dataDistributions as GenMathTopic,
 ];
 
 const grade8Topics: GenMathTopic[] = [

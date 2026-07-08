@@ -1,0 +1,1654 @@
+{
+  "slug": "data-distributions",
+  "title": "Data Distributions",
+  "grade": 9,
+  "blurb": "Histograms, box plots, quartiles and IQR — the shape of data and how to compare distributions.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "dot-plots-and-histograms",
+      "title": "Dot Plots & Histograms",
+      "concreteComparison": "Thirty quiz scores in a list are noise; the same thirty stacked as dots over a number line are a LANDSCAPE — you instantly see the crowd at 80, the loner at 35. For bigger data, histograms trade individual dots for BINS: bars counting how many values fall in each range. Both displays answer the first question of statistics: where does the data LIVE?",
+      "objective": "Build and read dot plots and histograms, choosing sensible bins.",
+      "concept": [
+        "A **dot plot** stacks one dot per value above a number line — every individual visible, perfect for small data sets.",
+        "A **histogram** groups values into equal-width **bins** and draws bar heights as counts (frequencies). Individuals vanish; shape emerges.",
+        "Bin width is a decision: too wide smooths away detail, too narrow shatters the shape. Aim for 5–10 bins covering the data.",
+        "Histogram bars TOUCH (the number line is continuous territory); bar charts of categories keep gaps.",
+        "Read totals from a histogram by adding bar heights; you can count 'how many below 20' but never recover exact values."
+      ],
+      "keyIdea": "Dot plots show individuals; histograms bin them into shape. Bin width is a choice that changes the picture.",
+      "facts": [
+        {
+          "title": "Dot plot",
+          "explanation": "Small data, full detail.",
+          "latex": "one dot per value"
+        },
+        {
+          "title": "Histogram",
+          "explanation": "Big data, shape over detail; bars touch.",
+          "latex": "equal bins, count heights"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "dd1-we1",
+          "statement": "Quiz scores: $7, 8, 8, 9, 8, 7, 10, 8$. Describe the dot plot.",
+          "solution": "Dots: one at 7 (×2), a stack of four at 8, one at 9, one at 10 — a peak at 8 with a short right tail.",
+          "check": [
+            "2 + 4 + 1 + 1 == 8"
+          ]
+        },
+        {
+          "id": "dd1-we2",
+          "statement": "Commute minutes for 20 workers, binned by 10: $[0,10)$: 3, $[10,20)$: 8, $[20,30)$: 6, $[30,40)$: 3. How many commute under 20 minutes, and what fraction is that?",
+          "solution": "$3 + 8 = 11$ of $20$: $\\frac{11}{20} = 55\\%$.",
+          "check": [
+            "3 + 8 == 11",
+            "Rational(11,20) == Rational(55,100)"
+          ]
+        },
+        {
+          "id": "dd1-we3",
+          "statement": "A histogram of 60 values uses bins of width 5 from 0 to 40. How many bars, and what's lost compared to a dot plot?",
+          "solution": "$40 \\div 5 = 8$ bars. Lost: the individual values — only counts per range survive.",
+          "check": [
+            "Rational(40,5) == 8"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading a histogram bar as one data value.",
+          "correction": "A bar of height 8 means EIGHT values live in that bin — the bar counts residents, it isn't a resident.",
+          "authored": true
+        },
+        {
+          "text": "Using unequal bin widths.",
+          "correction": "A double-wide bin catches double the values and lies about shape. Keep every bin the same width, no exceptions at this level.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "dd1-t1",
+          "statement": "Data: $2, 3, 3, 3, 4, 4, 7$. Which display shows the value $7$ as clearly separate?",
+          "solution": "The dot plot — a lone dot at 7 with a gap; a wide-binned histogram might hide it inside a bar.",
+          "check": [
+            "2 + 3 + 2 == 7"
+          ]
+        },
+        {
+          "id": "dd1-t2",
+          "statement": "A histogram has bars of heights $4, 9, 12, 5$. How many data values in all?",
+          "solution": "$4 + 9 + 12 + 5 = 30$.",
+          "check": [
+            "4 + 9 + 12 + 5 == 30"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Display 1",
+            "title": "Dot plots: everyone visible",
+            "beats": [
+              "One dot per value, stacked over a number line.",
+              "Repeats pile up into towers.",
+              "Gaps and loners stay visible.",
+              "Best under ~30 values — after that, dots blur."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Display 2",
+            "title": "Histograms: shape from bins",
+            "beats": [
+              "Slice the axis into EQUAL bins.",
+              "Count residents per bin; draw bars that touch.",
+              "Individuals dissolve; the crowd's shape appears.",
+              "Heights sum to the data count."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The knob",
+            "title": "Bin width changes the story",
+            "beats": [
+              "Width 20: two chunky bars, no detail.",
+              "Width 1: a skyline of splinters.",
+              "5–10 bins usually shows honest shape.",
+              "Same data, different bins → different-LOOKING truths. Choose deliberately."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Count the crowd",
+            "prompt": "Histogram bars: $[50,60)$: 5, $[60,70)$: 11, $[70,80)$: 9. How many values are at least $60$?",
+            "options": [
+              "$20$",
+              "$25$",
+              "$11$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$11 + 9 = 20$ live in the bins from 60 up.",
+            "check": [
+              "11 + 9 == 20",
+              "5 + 11 + 9 == 25"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Landscapes from lists",
+            "intro": "Stack the dots or fill the bins — then read.",
+            "examples": [
+              {
+                "prompt": "Build bins of width 10 for: $12, 27, 31, 8, 22, 25, 38, 15, 24, 29$ (range 0–40). Give the counts.",
+                "steps": [
+                  "$[0,10)$: one (8).",
+                  "$[10,20)$: 12, 15 → two. $[20,30)$: 22, 24, 25, 27, 29 → five.",
+                  "$[30,40)$: 31, 38 → two. Counts: 1, 2, 5, 2."
+                ],
+                "answer": "1, 2, 5, 2",
+                "check": [
+                  "1 + 2 + 5 + 2 == 10"
+                ]
+              },
+              {
+                "prompt": "From those bins: what percent of values land in the modal (tallest) bin?",
+                "steps": [
+                  "Tallest: $[20,30)$ with 5.",
+                  "$\\frac{5}{10} = 50\\%$.",
+                  "Half the data crowds one bin — a strong peak."
+                ],
+                "answer": "$50\\%$",
+                "check": [
+                  "Rational(5,10) == Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "A library logs 200 visit lengths; the first three bins (width 15) hold 40, 70, 55. How many visits reached the last bin?",
+                "steps": [
+                  "Sum known: $40 + 70 + 55 = 165$.",
+                  "$200 - 165 = 35$.",
+                  "Bar heights always ration the total."
+                ],
+                "answer": "$35$",
+                "check": [
+                  "40 + 70 + 55 == 165",
+                  "200 - 165 == 35"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Display duty",
+            "intro": "Dots for detail, bins for bulk.",
+            "problems": [
+              {
+                "prompt": "Best display for 12 shoe sizes?",
+                "options": [
+                  "a dot plot",
+                  "a histogram with width-10 bins",
+                  "a pie chart"
+                ],
+                "correctIndex": 0,
+                "explanation": "Twelve values deserve individual dots.",
+                "check": [
+                  "12 < 30"
+                ]
+              },
+              {
+                "prompt": "A histogram's bars have heights $6, 14, 10$; the middle bin is $[20, 30)$. How many values are under $30$?",
+                "options": [
+                  "$20$",
+                  "$14$",
+                  "$30$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6 + 14 = 20$ occupy the bins below 30.",
+                "check": [
+                  "6 + 14 == 20"
+                ]
+              },
+              {
+                "prompt": "Why do histogram bars touch?",
+                "options": [
+                  "the bins tile a continuous number line with no gaps",
+                  "to look tidy",
+                  "they don't — that's a bar chart"
+                ],
+                "correctIndex": 0,
+                "explanation": "Adjacent bins share an edge; empty bins show as zero-height gaps, not spacing.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The histogram that named itself",
+            "body": "Karl Pearson coined 'histogram' in 1891 lectures — likely from the Greek *histos* (mast, or anything upright) — for his new upright-bar displays of frequencies. He needed them because Victorian datasets (thousands of skull measurements, crab shells, poverty records) had outgrown the dot-by-dot displays of earlier statisticians. Big data, 1890s edition, invented your Grade 9 homework."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Dot plots keep individuals; histograms trade them for binned shape.",
+              "Equal bin widths, bars touching, heights summing to the count.",
+              "Bin width is a chosen lens — pick 5–10 honest bins."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "shape-of-distributions",
+      "title": "The Shape of Data",
+      "concreteComparison": "Plot adult heights: a symmetric hill. Plot household incomes: a mountain hugging the left with a long tail of millionaires trailing right. Plot coin-flip counts: flat as a table. Distributions have SHAPES — symmetric, skewed, uniform, twin-peaked — and the shape decides which summary numbers you can trust.",
+      "objective": "Describe distribution shapes (symmetric, skewed, uniform, bimodal), spot outliers, and match shape to the right center.",
+      "concept": [
+        "**Symmetric**: left and right halves mirror; mean ≈ median, both mid-hill.",
+        "**Skewed right**: a long tail toward HIGH values (incomes, house prices) — the tail drags the MEAN above the median.",
+        "**Skewed left**: tail toward low values (easy-test scores) — mean below median.",
+        "**Uniform**: all bins similar (fair die rolls); **bimodal**: two peaks, often two MIXED populations (morning and evening gym crowds).",
+        "Skew or outliers → report the MEDIAN; clean symmetry → the mean is safe and efficient. The skew's tail direction NAMES the skew."
+      ],
+      "keyIdea": "Name the shape first; the shape picks the center — tails drag means, medians hold their ground.",
+      "facts": [
+        {
+          "title": "Tail names the skew",
+          "explanation": "The skew direction is the TAIL's direction, not the peak's.",
+          "latex": "tail right = skewed right"
+        },
+        {
+          "title": "Mean chases tails",
+          "explanation": "Medians resist; means get dragged toward the tail.",
+          "latex": "skewed right: mean > median"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "dd2-we1",
+          "statement": "Incomes (thousands): $30, 35, 38, 40, 42, 45, 250$. Compute the mean and median; explain the gap.",
+          "solution": "Median: $40$. Mean: $\\frac{480}{7} \\approx 68.6$ — the 250 tail drags the mean far right of the median: right skew.",
+          "check": [
+            "30 + 35 + 38 + 40 + 42 + 45 + 250 == 480",
+            "Rational(480,7) > 40"
+          ]
+        },
+        {
+          "id": "dd2-we2",
+          "statement": "A histogram of 500 fair die rolls shows six bars of heights $84, 80, 86, 83, 82, 85$. Shape?",
+          "solution": "Uniform — every face equally likely, bars near-level.",
+          "check": [
+            "84 + 80 + 86 + 83 + 82 + 85 == 500"
+          ]
+        },
+        {
+          "id": "dd2-we3",
+          "statement": "A gym's arrival-time histogram peaks at 7 AM and again at 6 PM. Shape and story?",
+          "solution": "Bimodal — two mixed populations: before-work and after-work crowds.",
+          "check": [
+            "7 < 18"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Naming the skew after the peak's side.",
+          "correction": "Skew follows the TAIL. A histogram piled up on the left with a right tail is skewed RIGHT — the name feels backwards until you watch the tail.",
+          "authored": true
+        },
+        {
+          "text": "Reporting the mean for skewed data without comment.",
+          "correction": "One long tail and the mean stops describing anyone typical. Skew → median, or report both and say why.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "dd2-t1",
+          "statement": "Test scores mostly 85–100 with a few stragglers in the 40s. Shape, and which center to report?",
+          "solution": "Skewed LEFT (low tail); report the median.",
+          "check": [
+            "40 < 85"
+          ]
+        },
+        {
+          "id": "dd2-t2",
+          "statement": "For symmetric data with mean $70$, roughly what is the median?",
+          "solution": "About $70$ — symmetry keeps the two centers together.",
+          "check": [
+            "70 == 70"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The gallery",
+            "title": "Four classic shapes",
+            "beats": [
+              "Symmetric: a mirrored hill (heights, measurement errors).",
+              "Skewed: one long tail (incomes right, easy tests left).",
+              "Uniform: flat (fair dice, lottery digits).",
+              "Bimodal: twin peaks (two populations sharing one plot)."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Nomenclature",
+            "title": "The tail does the naming",
+            "beats": [
+              "Find the LONG thin side — the tail.",
+              "Tail right → skewed right. Tail left → skewed left.",
+              "The crowd's pile sits OPPOSITE the name.",
+              "Feels backwards exactly once; then it's yours."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Consequence",
+            "title": "Tails drag means",
+            "beats": [
+              "Median: middle by POSITION — tails can't move it much.",
+              "Mean: balances by VALUE — tails pull hard.",
+              "Skewed right: mean > median. Left: mean < median.",
+              "The gap between them measures the drag."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Name that shape",
+            "prompt": "House prices: most cluster near \\$200k, a few mansions stretch past \\$2M. The distribution is…",
+            "options": [
+              "skewed right, median-worthy",
+              "skewed left",
+              "symmetric"
+            ],
+            "correctIndex": 0,
+            "explanation": "The expensive tail points right; the median resists the mansions.",
+            "check": [
+              "2000000 > 200000"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Shape diagnosis",
+            "intro": "Tail, name, center — in that order.",
+            "examples": [
+              {
+                "prompt": "Waiting times at a clinic: $5, 8, 10, 12, 15, 18, 20, 65$ minutes. Diagnose.",
+                "steps": [
+                  "One value (65) trails far right.",
+                  "Median: $\\frac{12 + 15}{2} = 13.5$; mean: $\\frac{153}{8} \\approx 19.1$.",
+                  "Mean > median: right skew — report 13.5 as typical."
+                ],
+                "answer": "right-skewed; median $13.5$",
+                "check": [
+                  "5+8+10+12+15+18+20+65 == 153",
+                  "Rational(12+15,2) == Rational(27,2)",
+                  "Rational(153,8) > Rational(27,2)"
+                ]
+              },
+              {
+                "prompt": "Two classes' scores plotted together peak at 65 and 90. What happened, and what should you do?",
+                "steps": [
+                  "Bimodal — likely two different groups mixed.",
+                  "Split the data by class and re-plot.",
+                  "One summary number would describe NOBODY."
+                ],
+                "answer": "bimodal: split and re-analyze",
+                "check": [
+                  "90 - 65 == 25"
+                ]
+              },
+              {
+                "prompt": "Battery lifetimes are symmetric around 300 hours. Which center do you report, and why is either fine?",
+                "steps": [
+                  "Symmetry: mean ≈ median ≈ 300.",
+                  "Report the mean (it uses every value efficiently).",
+                  "With no tails, nothing drags it."
+                ],
+                "answer": "mean ≈ median ≈ 300",
+                "check": [
+                  "300 == 300"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Gallery walk",
+            "intro": "Watch the tail; distrust dragged means.",
+            "problems": [
+              {
+                "prompt": "A dataset has mean $54$ and median $41$. Its likely shape?",
+                "options": [
+                  "skewed right",
+                  "skewed left",
+                  "symmetric"
+                ],
+                "correctIndex": 0,
+                "explanation": "Mean well ABOVE median: a right tail is dragging it.",
+                "check": [
+                  "54 > 41"
+                ]
+              },
+              {
+                "prompt": "Rolling one fair die 6,000 times gives a histogram that's…",
+                "options": [
+                  "roughly uniform",
+                  "bell-shaped",
+                  "skewed right"
+                ],
+                "correctIndex": 0,
+                "explanation": "Each face expects ~1000 — level bars.",
+                "check": [
+                  "Rational(6000,6) == 1000"
+                ]
+              },
+              {
+                "prompt": "Ages at a toddler-and-grandparent picnic form which shape?",
+                "options": [
+                  "bimodal",
+                  "uniform",
+                  "skewed right"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two age clusters, two peaks — mixed populations.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The billionaire in the bar, again",
+            "body": "Economists track BOTH average and median income precisely because the income distribution is famously right-skewed: in many countries the mean runs 20–40% above the median, and the GAP itself is a published inequality statistic. When two honest summary numbers disagree, the disagreement is data — the skew, quantified."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Shapes: symmetric, skewed (tail names it), uniform, bimodal.",
+              "Tails drag means; medians hold position.",
+              "Skew or outliers → median; symmetry → mean; twin peaks → split the data."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "quartiles-and-iqr",
+      "title": "Quartiles & the IQR",
+      "concreteComparison": "The median cuts data in half. Cut each HALF in half again and you've posted four quarter-markers — the **quartiles**. The distance between the outer two, $Q_3 - Q_1$, fences the middle 50% of the data: the **interquartile range**. It's the spread statistic that outliers can't bribe.",
+      "objective": "Compute the five-number summary (min, Q1, median, Q3, max) and the IQR.",
+      "concept": [
+        "SORT first. The **median** ($Q_2$) splits the data; $Q_1$ is the median of the lower half, $Q_3$ of the upper half.",
+        "Convention: with an odd count, the middle value sits out of both halves.",
+        "The **five-number summary** — min, $Q_1$, median, $Q_3$, max — sketches the whole distribution in five numbers.",
+        "**IQR** $= Q_3 - Q_1$: the width of the middle 50%. Because it ignores the outer quarters entirely, outliers can't touch it.",
+        "IQR vs range: range uses the two most extreme (least trustworthy) values; IQR uses the crowd's core."
+      ],
+      "keyIdea": "Sort, split, split again: five numbers summarize everything, and Q3 − Q1 measures outlier-proof spread.",
+      "facts": [
+        {
+          "title": "Five-number summary",
+          "explanation": "The distribution's skeleton.",
+          "latex": "min, $Q_1$, med, $Q_3$, max"
+        },
+        {
+          "title": "IQR",
+          "explanation": "Width of the middle 50% — immune to extremes.",
+          "latex": "$Q_3 - Q_1$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "dd3-we1",
+          "statement": "Find the five-number summary of $3, 5, 7, 8, 9, 12, 13, 15$.",
+          "solution": "Median $\\frac{8+9}{2} = 8.5$; lower half $3,5,7,8$: $Q_1 = 6$; upper half: $Q_3 = 12.5$. Summary: $3, 6, 8.5, 12.5, 15$.",
+          "check": [
+            "Rational(8+9,2) == Rational(17,2)",
+            "Rational(5+7,2) == 6",
+            "Rational(12+13,2) == Rational(25,2)"
+          ]
+        },
+        {
+          "id": "dd3-we2",
+          "statement": "Compute the IQR of that data.",
+          "solution": "$12.5 - 6 = 6.5$.",
+          "check": [
+            "Rational(25,2) - 6 == Rational(13,2)"
+          ]
+        },
+        {
+          "id": "dd3-we3",
+          "statement": "Replace the max $15$ with $150$. What happens to the range and the IQR?",
+          "solution": "Range explodes from $12$ to $147$; the IQR stays exactly $6.5$ — quartiles never saw the change.",
+          "check": [
+            "15 - 3 == 12",
+            "150 - 3 == 147",
+            "Rational(25,2) - 6 == Rational(13,2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Finding quartiles before sorting.",
+          "correction": "Quartiles are POSITIONS in the sorted list. Unsorted data gives meaningless quarter-markers — sort first, always.",
+          "authored": true
+        },
+        {
+          "text": "Including the median in both halves (odd counts).",
+          "correction": "With an odd count, the middle value referees from the sideline: neither half claims it under our convention.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "dd3-t1",
+          "statement": "Five-number summary of $2, 4, 4, 5, 6, 7, 9$ (odd count!).",
+          "solution": "Median $5$ (sits out); lower $2,4,4$: $Q_1 = 4$; upper $6,7,9$: $Q_3 = 7$. Summary: $2, 4, 5, 7, 9$.",
+          "check": [
+            "4 == 4",
+            "7 == 7",
+            "9 - 2 == 7"
+          ]
+        },
+        {
+          "id": "dd3-t2",
+          "statement": "IQR of that data — and what fraction of values does it fence?",
+          "solution": "$7 - 4 = 3$; it spans the middle $50\\%$.",
+          "check": [
+            "7 - 4 == 3",
+            "Rational(1,2) == Rational(50,100)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The cuts",
+            "title": "Half, then half again",
+            "beats": [
+              "Sort. Median splits the data.",
+              "$Q_1$: median of the LOWER half.",
+              "$Q_3$: median of the UPPER half.",
+              "Odd count? The middle value joins neither half."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Five numbers",
+            "title": "A skeleton summary",
+            "beats": [
+              "min, $Q_1$, median, $Q_3$, max.",
+              "Quarter of the data between each neighbor pair.",
+              "Five numbers — any dataset, any size.",
+              "Next lesson draws this skeleton as a box."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The spread",
+            "title": "IQR: the unbribable",
+            "beats": [
+              "IQR $= Q_3 - Q_1$: the middle 50%'s width.",
+              "Outliers live OUTSIDE the quartiles — no vote.",
+              "Range: extremes only. IQR: the core.",
+              "Skewed data reports median + IQR as its honest pair."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Quarter markers",
+            "prompt": "Data: $1, 3, 5, 7, 9, 11, 13, 15$. The IQR is…",
+            "options": [
+              "$8$",
+              "$14$",
+              "$7$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$Q_1 = 4$, $Q_3 = 12$: IQR $= 8$. (The range is 14.)",
+            "check": [
+              "Rational(3+5,2) == 4",
+              "Rational(11+13,2) == 12",
+              "12 - 4 == 8",
+              "15 - 1 == 14"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Summaries assembled",
+            "intro": "Sort, cut, cut, subtract.",
+            "examples": [
+              {
+                "prompt": "Marathon times (min): $195, 201, 210, 214, 220, 228, 231, 240, 258, 302$. Five-number summary?",
+                "steps": [
+                  "Median: $\\frac{220 + 228}{2} = 224$.",
+                  "$Q_1 = 210$, $Q_3 = 240$ (medians of the halves of five).",
+                  "Summary: $195, 210, 224, 240, 302$."
+                ],
+                "answer": "$195, 210, 224, 240, 302$",
+                "check": [
+                  "Rational(220+228,2) == 224",
+                  "240 - 210 == 30"
+                ]
+              },
+              {
+                "prompt": "That runner data: IQR, and is the 302 affecting it?",
+                "steps": [
+                  "IQR $= 240 - 210 = 30$.",
+                  "302 sits beyond $Q_3$ — outside the quartiles' sight.",
+                  "Drop it to 260 or raise it to 400: IQR stays 30."
+                ],
+                "answer": "IQR $= 30$, untouched",
+                "check": [
+                  "240 - 210 == 30"
+                ]
+              },
+              {
+                "prompt": "A class's quartiles are $Q_1 = 62$, $Q_3 = 84$. What can you say about the middle half of students?",
+                "steps": [
+                  "The central 50% scored between 62 and 84.",
+                  "IQR $= 22$ points of core spread.",
+                  "Nothing yet about the top or bottom quarters — the summary's other numbers hold those."
+                ],
+                "answer": "middle 50% within $[62, 84]$",
+                "check": [
+                  "84 - 62 == 22"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Cut with confidence",
+            "intro": "Sorted, split, subtract.",
+            "problems": [
+              {
+                "prompt": "Data: $10, 20, 30, 40, 50, 60$. $Q_1$ and $Q_3$?",
+                "options": [
+                  "$20$ and $50$",
+                  "$15$ and $55$",
+                  "$30$ and $40$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Halves of three: $Q_1 = 20$, $Q_3 = 50$.",
+                "check": [
+                  "50 - 20 == 30"
+                ]
+              },
+              {
+                "prompt": "Which statistic changes if the maximum grows tenfold: range or IQR?",
+                "options": [
+                  "range only",
+                  "IQR only",
+                  "both"
+                ],
+                "correctIndex": 0,
+                "explanation": "The max is range's whole right side; quartiles never consult it.",
+                "check": [
+                  "1 == 1"
+                ]
+              },
+              {
+                "prompt": "A five-number summary reads $12, 18, 25, 33, 71$. The middle half spans…",
+                "options": [
+                  "$15$ units ($18$ to $33$)",
+                  "$59$ units",
+                  "$13$ units"
+                ],
+                "correctIndex": 0,
+                "explanation": "IQR $= 33 - 18 = 15$.",
+                "check": [
+                  "33 - 18 == 15",
+                  "71 - 12 == 59"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Tukey's quick arithmetic",
+            "body": "Quartiles and the five-number summary were championed by John Tukey, whose 1977 book *Exploratory Data Analysis* preached statistics you could do with a pencil while the data was still warm. He wanted summaries 'resistant' to wild values — the IQR is resistance incarnate. Tukey also coined the words 'software' and 'bit'; the man summarized more than data."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Sort, halve, halve again: min, $Q_1$, median, $Q_3$, max.",
+              "Odd counts bench the median from both halves.",
+              "IQR $= Q_3 - Q_1$: core spread that extremes can't bribe."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "box-plots",
+      "title": "Box Plots",
+      "concreteComparison": "Take the five-number summary and DRAW it: a box from $Q_1$ to $Q_3$ with the median as a wall inside, whiskers reaching to min and max. One glance now shows center, spread, and skew — and stacking two boxes on one axis compares whole datasets faster than any table. The box plot is the five-number summary wearing its display clothes.",
+      "objective": "Construct box plots from five-number summaries and read center, spread, and skew from them.",
+      "concept": [
+        "The **box** spans $Q_1$ to $Q_3$ (the IQR — the middle 50%); the line inside marks the median.",
+        "**Whiskers** run from the box to the min and max (for now — next lesson trims them at outlier fences).",
+        "Each of the four sections (whisker, box-half, box-half, whisker) holds a QUARTER of the data — longer sections mean that quarter is more spread out, not more populated.",
+        "Skew shows instantly: a longer right whisker + median crowding the box's left wall = right skew.",
+        "Box plots hide bimodality (a two-peaked dataset gets one innocent box) — pair with a histogram when shape matters."
+      ],
+      "keyIdea": "Box = middle 50%, wall = median, whiskers = tails; every section holds a quarter of the data.",
+      "facts": [
+        {
+          "title": "Quarter per section",
+          "explanation": "Section LENGTH shows that quarter's spread, never its count.",
+          "latex": "each piece holds 25%"
+        },
+        {
+          "title": "Skew at a glance",
+          "explanation": "Whisker asymmetry and an off-center median tell the tail's story.",
+          "latex": "long right whisker = right skew"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "dd4-we1",
+          "statement": "Draw the box plot of the summary $3, 6, 8.5, 12.5, 15$: describe each piece.",
+          "solution": "Whisker $3\\to6$; box $6\\to12.5$ with the median wall at $8.5$; whisker $12.5\\to15$.",
+          "check": [
+            "Rational(25,2) - 6 == Rational(13,2)",
+            "15 - Rational(25,2) == Rational(5,2)"
+          ]
+        },
+        {
+          "id": "dd4-we2",
+          "statement": "A box plot: min $10$, $Q_1 = 30$, median $35$, $Q_3 = 40$, max $85$. Diagnose the shape.",
+          "solution": "Left whisker $20$ long, right whisker $45$ long, median near the box's center-right: strongly right-skewed.",
+          "check": [
+            "30 - 10 == 20",
+            "85 - 40 == 45",
+            "45 > 20"
+          ]
+        },
+        {
+          "id": "dd4-we3",
+          "statement": "In that plot, what fraction of values exceed $40$?",
+          "solution": "$Q_3 = 40$: a quarter of the data sits beyond it — $25\\%$.",
+          "check": [
+            "Rational(1,4) == Rational(25,100)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading a long section as 'more data'.",
+          "correction": "Every section holds exactly 25%. A long whisker means that quarter is STRETCHED, not crowded.",
+          "authored": true
+        },
+        {
+          "text": "Marking the mean inside the box.",
+          "correction": "The wall is the MEDIAN. Box plots are quartile machines; the mean appears only if you add it deliberately (some plots use a diamond).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "dd4-t1",
+          "statement": "Summary $12, 18, 25, 33, 71$: which section is longest, and what does that mean?",
+          "solution": "The right whisker ($33 \\to 71$, length $38$): the top quarter is stretched — right skew.",
+          "check": [
+            "71 - 33 == 38",
+            "38 > 8"
+          ]
+        },
+        {
+          "id": "dd4-t2",
+          "statement": "What percent of that data lies inside the box?",
+          "solution": "$Q_1$ to $Q_3$: the middle $50\\%$.",
+          "check": [
+            "Rational(1,2) == Rational(50,100)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Construction",
+            "title": "Five numbers become a picture",
+            "beats": [
+              "Box: $Q_1$ to $Q_3$.",
+              "Wall inside: the median.",
+              "Whiskers: out to min and max.",
+              "Above a number line, everything to scale."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reading",
+            "title": "Quarters, not crowds",
+            "beats": [
+              "Four sections, 25% EACH — by definition.",
+              "Long section = that quarter spread thin.",
+              "Short section = that quarter packed tight.",
+              "The box's width IS the IQR."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Diagnosis",
+            "title": "Skew and its limits",
+            "beats": [
+              "Long right whisker, median hugging the left wall: right skew.",
+              "Mirror image: left skew.",
+              "But twin peaks hide inside one calm box…",
+              "…so pair the box with a histogram when shape is the question."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Box literacy",
+            "prompt": "A box plot's box runs from $20$ to $32$ with the wall at $23$. The IQR and the crowded half of the box are…",
+            "options": [
+              "IQR $12$; lower half tighter",
+              "IQR $12$; upper half tighter",
+              "IQR $3$; lower half"
+            ],
+            "correctIndex": 0,
+            "explanation": "IQR $= 32 - 20 = 12$; the wall at 23 leaves only 3 units for the second quarter — that quarter is packed.",
+            "check": [
+              "32 - 20 == 12",
+              "23 - 20 == 3",
+              "32 - 23 == 9"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Boxes decoded",
+            "intro": "Build, read quarters, call the skew.",
+            "examples": [
+              {
+                "prompt": "Sleep hours: summary $5, 6.5, 7, 8, 10$. Build and interpret.",
+                "steps": [
+                  "Box $6.5$–$8$, wall at $7$; whiskers to $5$ and $10$.",
+                  "Right whisker (2) longer than left (1.5): mild right skew.",
+                  "Middle 50% sleep between 6.5 and 8 hours."
+                ],
+                "answer": "mild right skew; core 6.5–8h",
+                "check": [
+                  "8 - Rational(13,2) == Rational(3,2)",
+                  "10 - 8 == 2"
+                ]
+              },
+              {
+                "prompt": "Two plots share an axis: Class A box $60$–$80$ (wall $70$), Class B box $68$–$76$ (wall $72$). Same whisker spans. Compare.",
+                "steps": [
+                  "B's box is narrower: IQR 8 vs 20 — more consistent.",
+                  "B's median is higher: 72 vs 70.",
+                  "B: slightly better AND steadier."
+                ],
+                "answer": "B higher and tighter",
+                "check": [
+                  "80 - 60 == 20",
+                  "76 - 68 == 8",
+                  "72 > 70"
+                ]
+              },
+              {
+                "prompt": "A box plot of $40$ values has its wall at $55$. How many values are at most $55$ (about)?",
+                "steps": [
+                  "The wall is the median.",
+                  "Half the data at or below it.",
+                  "About $20$ values."
+                ],
+                "answer": "$\\approx 20$",
+                "check": [
+                  "Rational(40,2) == 20"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Read the boxes",
+            "intro": "Quarters by definition; lengths show spread.",
+            "problems": [
+              {
+                "prompt": "A box plot shows min $2$, $Q_1 = 8$, median $9$, $Q_3 = 10$, max $28$. The shape is…",
+                "options": [
+                  "right-skewed — long right whisker",
+                  "left-skewed",
+                  "symmetric"
+                ],
+                "correctIndex": 0,
+                "explanation": "Right whisker 18 vs left 6; the box hugs low values.",
+                "check": [
+                  "28 - 10 == 18",
+                  "8 - 2 == 6",
+                  "18 > 6"
+                ]
+              },
+              {
+                "prompt": "What fraction of data lies between $Q_1$ and the median?",
+                "options": [
+                  "$25\\%$",
+                  "$50\\%$",
+                  "depends on the plot"
+                ],
+                "correctIndex": 0,
+                "explanation": "One box-half = one quarter, always.",
+                "check": [
+                  "Rational(1,4) == Rational(25,100)"
+                ]
+              },
+              {
+                "prompt": "Two datasets share a median, but A's box is twice as wide as B's. Then…",
+                "options": [
+                  "A's middle half is more spread out",
+                  "A has more data",
+                  "A's mean is higher"
+                ],
+                "correctIndex": 0,
+                "explanation": "Box width is IQR — spread, not count, not mean.",
+                "check": [
+                  "2 > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Boxes in the courtroom",
+            "body": "Box plots regularly appear as legal evidence — pay-equity cases compare salary boxes by gender, discrimination suits compare test-score boxes by group — because judges and juries can read 'this box sits higher than that box' without a statistics degree. Tukey designed them for exactly that: maximum honest information, minimum training required."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Box $Q_1$–$Q_3$ with the median wall; whiskers to the extremes.",
+              "Every section holds 25% — length means spread.",
+              "Whisker asymmetry calls the skew; pair with a histogram for hidden peaks."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "outliers-and-fences",
+      "title": "Outliers & the 1.5·IQR Fences",
+      "concreteComparison": "Is that \\$302-minute marathon time genuinely 'extreme,' or just the slow end of normal? Eyeballing invites arguments; statistics builds FENCES: anything beyond $1.5 \\times \\text{IQR}$ outside the box is officially an **outlier**. Same rule for everyone, no debates — and box-plot whiskers stop at the last value INSIDE the fences.",
+      "objective": "Apply the 1.5·IQR rule to identify outliers and draw fenced box plots.",
+      "concept": [
+        "Fences: lower $= Q_1 - 1.5 \\cdot \\text{IQR}$, upper $= Q_3 + 1.5 \\cdot \\text{IQR}$. Values beyond either fence are **outliers**.",
+        "In fenced box plots, whiskers extend only to the most extreme values WITHIN the fences; outliers get individual dots.",
+        "Outliers aren't criminals: investigate before deleting. A typo dies; a genuine extreme (the actual slowest runner) stays, plotted as its dot.",
+        "The rule inherits the IQR's immunity: outliers can't move the fences that judge them (they're outside the quartiles already).",
+        "1.5 is convention — a good default fence height, agreed on so everyone's outliers match."
+      ],
+      "keyIdea": "Fences at Q1 − 1.5·IQR and Q3 + 1.5·IQR; beyond them, dots — and an investigation, not an automatic deletion.",
+      "facts": [
+        {
+          "title": "The fences",
+          "explanation": "The standard, argument-free outlier boundary.",
+          "latex": "$Q_1 - 1.5\\,\\text{IQR}$, $Q_3 + 1.5\\,\\text{IQR}$"
+        },
+        {
+          "title": "Whisker rule",
+          "explanation": "Outliers appear as separate dots beyond the whiskers.",
+          "latex": "stop at the last inside value"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "dd5-we1",
+          "statement": "Data with $Q_1 = 210$, $Q_3 = 240$: build the fences.",
+          "solution": "IQR $= 30$; $1.5 \\times 30 = 45$. Fences: $210 - 45 = 165$ and $240 + 45 = 285$.",
+          "check": [
+            "240 - 210 == 30",
+            "Rational(3,2)*30 == 45",
+            "210 - 45 == 165",
+            "240 + 45 == 285"
+          ]
+        },
+        {
+          "id": "dd5-we2",
+          "statement": "Marathon times ran $195$ to $302$. Which values are outliers under those fences?",
+          "solution": "$302 > 285$: outlier. $195 > 165$: inside. Only the 302.",
+          "check": [
+            "302 > 285",
+            "195 > 165"
+          ]
+        },
+        {
+          "id": "dd5-we3",
+          "statement": "Where does the fenced plot's right whisker end if the largest inside value is $258$?",
+          "solution": "At $258$ — the last value within the fence; $302$ becomes a dot.",
+          "check": [
+            "258 < 285",
+            "302 > 285"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Drawing whiskers to the fences themselves.",
+          "correction": "Whiskers stop at the most extreme DATA value inside the fences — the fence is a judge's line, not a data point.",
+          "authored": true
+        },
+        {
+          "text": "Deleting every outlier automatically.",
+          "correction": "The rule FLAGS; humans judge. A data-entry typo dies, a real extreme value stays (as a dot) and often carries the story's most interesting news.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "dd5-t1",
+          "statement": "$Q_1 = 20$, $Q_3 = 36$: fences?",
+          "solution": "IQR $16$; $1.5 \\times 16 = 24$: fences $-4$ and $60$.",
+          "check": [
+            "36 - 20 == 16",
+            "Rational(3,2)*16 == 24",
+            "20 - 24 == -4",
+            "36 + 24 == 60"
+          ]
+        },
+        {
+          "id": "dd5-t2",
+          "statement": "With those fences, classify $58$, $60$, and $65$.",
+          "solution": "$58$: inside. $60$: exactly ON the fence — inside (the rule says beyond). $65$: outlier.",
+          "check": [
+            "58 < 60",
+            "65 > 60"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Building code",
+            "title": "Fences from the box",
+            "beats": [
+              "IQR first: $Q_3 - Q_1$.",
+              "Step $1.5 \\times$ IQR beyond each box wall.",
+              "Lower: $Q_1 - 1.5\\,$IQR. Upper: $Q_3 + 1.5\\,$IQR.",
+              "Beyond either: outlier, by definition."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Drawing",
+            "title": "Whiskers and dots",
+            "beats": [
+              "Whiskers reach the last value INSIDE each fence.",
+              "Outliers plot as lone dots beyond.",
+              "The plot now shows normal spread AND flags extremes.",
+              "One picture, complete testimony."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Judgment",
+            "title": "Flagged, not convicted",
+            "beats": [
+              "Typos and glitches: fix or drop.",
+              "Genuine extremes: keep — dots and all.",
+              "The 302-minute runner FINISHED; that's data.",
+              "Rule flags; humans decide."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Fence math",
+            "prompt": "$Q_1 = 14$, $Q_3 = 22$. Which value is an outlier?",
+            "options": [
+              "$35$",
+              "$33$",
+              "$4$"
+            ],
+            "correctIndex": 0,
+            "explanation": "IQR $8$, step $12$: fences $2$ and $34$. Only $35$ crosses; $33$ and $4$ stay inside.",
+            "check": [
+              "22 - 14 == 8",
+              "22 + 12 == 34",
+              "35 > 34",
+              "33 < 34",
+              "4 > 2"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Fence patrol",
+            "intro": "IQR, step, fences, verdicts, dots.",
+            "examples": [
+              {
+                "prompt": "Salaries (k): summary $38, 45, 52, 61, 110$. Fence and flag.",
+                "steps": [
+                  "IQR $16$; step $24$.",
+                  "Fences: $21$ and $85$.",
+                  "$110 > 85$: the executive salary is an official outlier."
+                ],
+                "answer": "fences $21$/$85$; $110$ flagged",
+                "check": [
+                  "61 - 45 == 16",
+                  "Rational(3,2)*16 == 24",
+                  "61 + 24 == 85",
+                  "110 > 85"
+                ]
+              },
+              {
+                "prompt": "With the largest inside salary at $78$k, describe the fenced plot's right side.",
+                "steps": [
+                  "Whisker ends at 78.",
+                  "A dot floats at 110.",
+                  "Readers see BOTH the normal range and the exception."
+                ],
+                "answer": "whisker to 78, dot at 110",
+                "check": [
+                  "78 < 85"
+                ]
+              },
+              {
+                "prompt": "A sensor log's fences are $-2$ and $58$; readings include $-40$ and $57$. Investigate.",
+                "steps": [
+                  "$-40$: far past the lower fence — and physically impossible for this sensor: a glitch. Drop it.",
+                  "$57$: inside; keep.",
+                  "Same rule, two different fates — investigation decides."
+                ],
+                "answer": "drop the glitch, keep 57",
+                "check": [
+                  "-40 < -2",
+                  "57 < 58"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Judge fairly",
+            "intro": "Fences first; verdicts second; judgment last.",
+            "problems": [
+              {
+                "prompt": "$Q_1 = 30$, $Q_3 = 50$: the upper fence is…",
+                "options": [
+                  "$80$",
+                  "$75$",
+                  "$65$"
+                ],
+                "correctIndex": 0,
+                "explanation": "IQR $20$; $50 + 30 = 80$.",
+                "check": [
+                  "50 - 30 == 20",
+                  "Rational(3,2)*20 == 30",
+                  "50 + 30 == 80"
+                ]
+              },
+              {
+                "prompt": "A value sits exactly at the upper fence. It is…",
+                "options": [
+                  "not an outlier — the rule says beyond",
+                  "an outlier",
+                  "half an outlier"
+                ],
+                "correctIndex": 0,
+                "explanation": "Fences are the last legal ground; only values strictly beyond are flagged.",
+                "check": [
+                  "80 == 80"
+                ]
+              },
+              {
+                "prompt": "The honest response to a genuine (non-error) outlier is to…",
+                "options": [
+                  "keep it, plotted as a dot, and mention it",
+                  "delete it for a cleaner plot",
+                  "average it with its neighbor"
+                ],
+                "correctIndex": 0,
+                "explanation": "Real extremes are findings, not blemishes.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The outlier that saved the ozone layer",
+            "body": "In the 1980s, NASA satellites recorded Antarctic ozone readings so low that processing software had flagged them as outliers for YEARS. When ground teams reported the ozone hole independently, scientists re-examined the flagged data — the 'errors' were the discovery. The 1.5·IQR rule flags; only investigation convicts. Sometimes the dot beyond the fence is the headline."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Fences: $Q_1 - 1.5\\,$IQR and $Q_3 + 1.5\\,$IQR; beyond = outlier.",
+              "Whiskers stop at the last inside value; outliers become dots.",
+              "Flag by rule, judge by investigation — typos die, discoveries live."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "comparing-distributions",
+      "title": "Comparing Distributions",
+      "concreteComparison": "Two fertilizers, forty tomato plants each. Fertilizer A's yield box sits higher — but it's also twice as wide, with outliers below. Which do you plant? Side-by-side box plots on ONE axis turn 'which is better' into geometry: compare centers, compare spreads, check overlap, inspect tails. The unit's capstone is an argument you can draw.",
+      "objective": "Compare two or more distributions using aligned box plots and histograms: center, spread, shape, and outliers.",
+      "concept": [
+        "Align the displays on ONE shared axis — different scales make comparison meaningless.",
+        "Compare in order: CENTERS (medians — who's typically better?), SPREADS (IQRs — who's more consistent?), SHAPE and OUTLIERS (whose tails threaten?).",
+        "Overlap matters: barely-overlapping boxes signal a real difference; heavy overlap means the medians' order might be luck (Grade 7's gap-to-spread instinct, upgraded to quartiles).",
+        "Consistency can beat average: a slightly lower median with a tiny IQR may be the better choice when reliability pays.",
+        "State conclusions in context with numbers: 'B's median yield is 2 kg higher, and its IQR is half of A's — B is better AND steadier.'"
+      ],
+      "keyIdea": "One axis, then centers → spreads → shapes → outliers; overlap tempers every verdict.",
+      "facts": [
+        {
+          "title": "Comparison order",
+          "explanation": "Four checks, one verdict.",
+          "latex": "center, spread, shape, outliers"
+        },
+        {
+          "title": "Overlap test",
+          "explanation": "Heavily overlapping middles make median differences fragile.",
+          "latex": "distinct boxes = convincing gap"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "dd6-we1",
+          "statement": "Fertilizer A: summary $2, 5, 7, 10, 14$ (kg). B: $6, 7.5, 9, 10, 12$. Compare centers and spreads.",
+          "solution": "Medians: $7$ vs $9$ — B higher by 2. IQRs: $5$ vs $2.5$ — B half as spread. B is better and steadier.",
+          "check": [
+            "10 - 5 == 5",
+            "10 - Rational(15,2) == Rational(5,2)",
+            "9 > 7"
+          ]
+        },
+        {
+          "id": "dd6-we2",
+          "statement": "Do A and B's boxes overlap much?",
+          "solution": "A's box: $5$–$10$; B's: $7.5$–$10$. B's whole box fits inside A's upper half — moderate overlap; B's advantage is real but not overwhelming.",
+          "check": [
+            "Rational(15,2) > 5",
+            "10 == 10"
+          ]
+        },
+        {
+          "id": "dd6-we3",
+          "statement": "A's min is $2$ kg (a struggling plant); B's is $6$. What does the LOW tail say?",
+          "solution": "A risks near-failures; B's worst case is respectable. For a farmer who can't afford a bad season, B wins twice.",
+          "check": [
+            "6 > 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Comparing plots drawn on different axes.",
+          "correction": "A taller-looking box on a zoomed axis means nothing. Redraw both summaries on one shared scale before any comparison.",
+          "authored": true
+        },
+        {
+          "text": "Declaring victory on medians alone.",
+          "correction": "A higher median with a huge IQR and scary low tail can lose to a steady rival. Run all four checks — center, spread, shape, outliers.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "dd6-t1",
+          "statement": "Bus route X: median $31$ min, IQR $4$. Route Y: median $29$, IQR $18$. You have a fixed 35-minute window — which route?",
+          "solution": "X: consistently ~$31$, almost always fits. Y averages faster but swings wildly — an 18-wide middle risks blowing the window. Choose X.",
+          "check": [
+            "31 > 29",
+            "18 > 4"
+          ]
+        },
+        {
+          "id": "dd6-t2",
+          "statement": "Two classes' medians differ by $2$ points; both IQRs are $30$. Convinced of a real difference?",
+          "solution": "No — a 2-point gap inside 30-wide middles is heavy overlap; the order could easily be luck.",
+          "check": [
+            "Rational(2,30) < Rational(1,2)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Setup",
+            "title": "One axis to rule them",
+            "beats": [
+              "Stack the box plots on a SHARED number line.",
+              "Now heights, widths, and positions actually compare.",
+              "Histogram pairs: same bins, same axis.",
+              "Alignment first; conclusions second."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The checklist",
+            "title": "Four comparisons, in order",
+            "beats": [
+              "1. Medians: who's typically ahead?",
+              "2. IQRs: who's steadier?",
+              "3. Shapes: symmetric or skewed — which way?",
+              "4. Outliers and tails: whose worst case bites?"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Verdicts",
+            "title": "Overlap and context",
+            "beats": [
+              "Distinct boxes: difference you can bank on.",
+              "Nested/overlapping boxes: speak carefully.",
+              "Consistency sometimes outranks average — deadlines, medicine, machines.",
+              "Numbers + context = a conclusion that survives questions."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Pick with the plots",
+            "prompt": "Archer P: median $8.6$, IQR $0.4$. Archer Q: median $8.9$, IQR $3.0$. One shot decides the match — who do you send?",
+            "options": [
+              "P — nearly always ~8.6",
+              "Q — higher median",
+              "flip a coin"
+            ],
+            "correctIndex": 0,
+            "explanation": "Q's wide spread means real risk of a terrible arrow; P's tiny IQR nearly guarantees 8.6-ish. Reliability wins single trials.",
+            "check": [
+              "Rational(89,10) > Rational(86,10)",
+              "3 > Rational(4,10)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Full-checklist verdicts",
+            "intro": "Centers, spreads, shapes, tails — then decide.",
+            "examples": [
+              {
+                "prompt": "Two stores' daily sales (k\\$): S: $4, 6, 8, 10, 12$; T: $7, 7.5, 8, 8.5, 9$. Same median — now what?",
+                "steps": [
+                  "Medians tie at 8.",
+                  "IQRs: 4 vs 1 — T is four times steadier.",
+                  "T forecasts, staffs, and stocks with confidence: T wins the tie."
+                ],
+                "answer": "T — same center, far steadier",
+                "check": [
+                  "10 - 6 == 4",
+                  "Rational(17,2) - Rational(15,2) == 1",
+                  "4 > 1"
+                ]
+              },
+              {
+                "prompt": "Plant heights: greenhouse median $34$, IQR $6$, no outliers; outdoor median $30$, IQR $6$, three low outliers (frost). Verdict?",
+                "steps": [
+                  "Same spread; greenhouse +4 center.",
+                  "Outdoor's frost dots reveal a hazard, not noise.",
+                  "Greenhouse: higher AND safer — clean sweep."
+                ],
+                "answer": "greenhouse on all checks",
+                "check": [
+                  "34 - 30 == 4",
+                  "6 == 6"
+                ]
+              },
+              {
+                "prompt": "Your study methods: flashcards median $82$, IQR $10$; rereading median $78$, IQR $10$, boxes heavily overlapping. Honest conclusion?",
+                "steps": [
+                  "Flashcards +4 with equal spread — promising, not proven.",
+                  "Overlap says luck could explain it.",
+                  "Say: 'flashcards look better; more quizzes would firm it up.'"
+                ],
+                "answer": "lean flashcards, admit overlap",
+                "check": [
+                  "82 - 78 == 4",
+                  "Rational(4,10) < 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "The capstone calls",
+            "intro": "All four checks; context writes the verdict.",
+            "problems": [
+              {
+                "prompt": "Two routes tie on median; A's IQR is $3$, B's is $12$. For a job interview you pick…",
+                "options": [
+                  "A — the steady one",
+                  "B — same median anyway",
+                  "either"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal centers, unequal risk: take the narrow box when being late is expensive.",
+                "check": [
+                  "12 > 3"
+                ]
+              },
+              {
+                "prompt": "Team L's box sits entirely above team M's box (no overlap). This means…",
+                "options": [
+                  "L's middle half beats M's middle half entirely — a convincing gap",
+                  "L has more players",
+                  "M has outliers"
+                ],
+                "correctIndex": 0,
+                "explanation": "Non-overlapping boxes are the strongest visual verdict two datasets can give.",
+                "check": [
+                  "1 == 1"
+                ]
+              },
+              {
+                "prompt": "A comparison is drawn with each box plot on its own differently-scaled axis. Your first move is to…",
+                "options": [
+                  "redraw both on one shared axis",
+                  "compare the box widths as printed",
+                  "trust the medians"
+                ],
+                "correctIndex": 0,
+                "explanation": "No shared scale, no comparison — alignment precedes analysis.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Florence Nightingale, chart warrior",
+            "body": "Florence Nightingale compared distributions to save lives: her 1858 charts showed soldiers dying of preventable disease at rates dwarfing battle deaths, comparing month against month and hospital against hospital. Parliament, which had ignored her tables, could not ignore her pictures — sanitation reform followed. Comparing distributions honestly isn't a homework skill; it's how the case for change gets made."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Align on one axis, then compare centers, spreads, shapes, outliers — in order.",
+              "Overlap tempers verdicts; distinct boxes make them strong.",
+              "Consistency can outrank a higher median when stakes punish bad days."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "dd-pr1",
+      "statement": "A histogram (bin width 10) has heights $2, 7, 12, 6, 3$. How many values total, and what fraction sits in the tallest bin?",
+      "solution": "Total $30$; tallest holds $\\frac{12}{30} = 40\\%$.",
+      "check": [
+        "2 + 7 + 12 + 6 + 3 == 30",
+        "Rational(12,30) == Rational(40,100)"
+      ]
+    },
+    {
+      "id": "dd-pr2",
+      "statement": "A dataset's mean is $88$ and median is $73$. Which way is it skewed, and which center should headline?",
+      "solution": "Mean above median: skewed right; report the median $73$.",
+      "check": [
+        "88 > 73"
+      ]
+    },
+    {
+      "id": "dd-pr3",
+      "statement": "Find the five-number summary of $11, 14, 15, 18, 20, 23, 25, 29$.",
+      "solution": "Median $19$; $Q_1 = 14.5$; $Q_3 = 24$. Summary: $11, 14.5, 19, 24, 29$.",
+      "check": [
+        "Rational(18+20,2) == 19",
+        "Rational(14+15,2) == Rational(29,2)",
+        "Rational(23+25,2) == 24"
+      ]
+    },
+    {
+      "id": "dd-pr4",
+      "statement": "Compute that data's IQR and range.",
+      "solution": "IQR $= 24 - 14.5 = 9.5$; range $= 18$.",
+      "check": [
+        "24 - Rational(29,2) == Rational(19,2)",
+        "29 - 11 == 18"
+      ]
+    },
+    {
+      "id": "dd-pr5",
+      "statement": "With $Q_1 = 14.5$ and $Q_3 = 24$: build the fences and test the value $40$.",
+      "solution": "Step $= 1.5 \\times 9.5 = 14.25$; fences $0.25$ and $38.25$. $40 > 38.25$: outlier.",
+      "check": [
+        "Rational(3,2)*Rational(19,2) == Rational(57,4)",
+        "24 + Rational(57,4) == Rational(153,4)",
+        "40 > Rational(153,4)"
+      ]
+    },
+    {
+      "id": "dd-pr6",
+      "statement": "A box plot: $6, 10, 12, 18, 30$. Which quarter of the data is most spread out?",
+      "solution": "The top quarter: $18 \\to 30$ spans $12$ — longer than any other section.",
+      "check": [
+        "30 - 18 == 12",
+        "10 - 6 == 4",
+        "12 - 10 == 2",
+        "18 - 12 == 6",
+        "12 > 6"
+      ]
+    },
+    {
+      "id": "dd-pr7",
+      "statement": "Brand U bulbs: median $1{,}150$ h, IQR $80$. Brand V: median $1{,}190$ h, IQR $400$. Which brand for a hard-to-reach fixture, and why?",
+      "solution": "U — replacing bulbs is costly, and U's tight IQR means dependable lifetimes; V's occasional early burnouts hurt more than its higher median helps.",
+      "check": [
+        "1190 > 1150",
+        "400 > 80"
+      ]
+    },
+    {
+      "id": "dd-pr8",
+      "statement": "A 41-value dataset's box plot has its median wall at $62$. About how many values exceed $62$?",
+      "solution": "About half: $\\approx 20$ values.",
+      "check": [
+        "Rational(41 - 1, 2) == 20"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "dd-ty1",
+      "statement": "Sketch-plan a histogram for data ranging $0$–$60$ with $45$ values: pick a bin width and justify it.",
+      "solution": "Width $10$ → $6$ bins: inside the 5–10 sweet spot; width 5 (12 bins) splinters 45 values thin.",
+      "check": [
+        "Rational(60,10) == 6",
+        "Rational(60,5) == 12"
+      ]
+    },
+    {
+      "id": "dd-ty2",
+      "statement": "Reaction times mostly cluster near $250$ ms with a stretched tail of slow trials at $600+$. Name the shape and the honest center.",
+      "solution": "Skewed right; the median.",
+      "check": [
+        "600 > 250"
+      ]
+    },
+    {
+      "id": "dd-ty3",
+      "statement": "Data: $4, 7, 8, 9, 10, 12, 15, 21, 50$ (already sorted, odd count). Five-number summary and IQR?",
+      "solution": "Median $10$ (benched); lower $4,7,8,9$: $Q_1 = 7.5$; upper $12,15,21,50$: $Q_3 = 18$. Summary $4, 7.5, 10, 18, 50$; IQR $10.5$.",
+      "check": [
+        "Rational(7+8,2) == Rational(15,2)",
+        "Rational(15+21,2) == 18",
+        "18 - Rational(15,2) == Rational(21,2)"
+      ]
+    },
+    {
+      "id": "dd-ty4",
+      "statement": "Fence that data and classify the $50$.",
+      "solution": "Step $= 1.5 \\times 10.5 = 15.75$; upper fence $33.75$. $50$ is an outlier — whisker stops at $21$, dot at $50$.",
+      "check": [
+        "Rational(3,2)*Rational(21,2) == Rational(63,4)",
+        "18 + Rational(63,4) == Rational(135,4)",
+        "50 > Rational(135,4)",
+        "21 < Rational(135,4)"
+      ]
+    },
+    {
+      "id": "dd-ty5",
+      "statement": "Two box plots on one axis: Farm A $10, 14, 16, 18, 22$; Farm B $8, 15, 19, 21, 24$. Run the four-check comparison.",
+      "solution": "Centers: B ahead ($19$ vs $16$). Spreads: IQRs $4$ vs $6$ — A steadier. Shapes: both mild. Tails: B dips lower (8). Verdict: B for yield, A for consistency; boxes overlap, so B's edge is modest.",
+      "check": [
+        "19 > 16",
+        "18 - 14 == 4",
+        "21 - 15 == 6",
+        "8 < 10"
+      ]
+    },
+    {
+      "id": "dd-ty6",
+      "statement": "A reporter compares two hospitals' recovery times using only the two means. Name TWO displays or statistics from this unit that would make the comparison honest, and say why.",
+      "solution": "Aligned box plots (centers AND spreads AND outliers visible) and the medians+IQRs (skew-resistant center and core spread) — recovery times are right-skewed, so means alone mislead.",
+      "check": [
+        "1 == 1"
+      ]
+    }
+  ]
+}
