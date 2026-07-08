@@ -71,6 +71,7 @@ import samplingAndStatistics from "@/data/genmath/7/sampling-and-statistics.json
 import equationsAndFormulas from "@/data/genmath/9/equations-and-formulas.json";
 import inequalitiesAbsValue from "@/data/genmath/9/inequalities-and-absolute-value.json";
 import introToFunctions from "@/data/genmath/9/introduction-to-functions.json";
+import linearModelsVariation from "@/data/genmath/9/linear-models-and-variation.json";
 // Grade 8 topic JSON imports (added as each topic is authored + published).
 import realNumberSystem from "@/data/genmath/8/the-real-number-system.json";
 import exponentsScientific from "@/data/genmath/8/exponents-and-scientific-notation.json";
@@ -276,7 +277,7 @@ export const GRADE9_SPINE: GradeSpineEntry[] = [
     slug: "linear-models-and-variation",
     title: "Linear Models & Variation",
     blurb: "Writing linear models from context, direct variation revisited, and inverse variation \u2014 y = k/x, the other proportionality.",
-    live: false,
+    live: true,
   },
   {
     slug: "inequalities-in-two-variables",
@@ -477,6 +478,7 @@ const grade9Topics: GenMathTopic[] = [
   equationsAndFormulas as GenMathTopic,
   inequalitiesAbsValue as GenMathTopic,
   introToFunctions as GenMathTopic,
+  linearModelsVariation as GenMathTopic,
 ];
 
 const grade8Topics: GenMathTopic[] = [

@@ -1,0 +1,1700 @@
+{
+  "slug": "linear-models-and-variation",
+  "title": "Linear Models & Variation",
+  "grade": 9,
+  "blurb": "Writing linear models from context, direct variation revisited, and inverse variation — y = k/x, the other proportionality.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "building-linear-models",
+      "title": "Building Linear Models",
+      "concreteComparison": "A candle starts at $25$ cm and burns $2$ cm per hour: height $= 25 - 2t$. A gym membership starts at \\$50 and adds \\$30 a month: cost $= 30m + 50$. Every steady-change story has the same skeleton — a STARTING VALUE and a RATE — and $y = mx + b$ is that skeleton with name tags: $b$ is where you start, $m$ is how fast you move.",
+      "objective": "Build y = mx + b models from stories, interpreting slope as rate and intercept as starting value.",
+      "concept": [
+        "In $y = mx + b$: the y-intercept $b$ is the value at time/amount zero (the starting value), and the slope $m$ is the change per unit — the rate, with its sign.",
+        "Growth stories get positive $m$ (savings, plant height); depletion stories get negative $m$ (burning candles, draining tanks, loans being paid off).",
+        "UNITS anchor everything: $m$ is 'cm per hour' or 'dollars per month' — say the units and the model practically writes itself.",
+        "Once built, the model answers both directions: evaluate for outputs ($h(3) = 25 - 6 = 19$) or solve for inputs (when is the candle gone? $25 - 2t = 0 \\to t = 12.5$ h)."
+      ],
+      "keyIdea": "Starting value → b, rate (with sign) → m; then y = mx + b answers every question in the story.",
+      "facts": [
+        {
+          "title": "The name tags",
+          "explanation": "Intercept anchors the story at zero; slope moves it.",
+          "latex": "$b$ = start, $m$ = rate"
+        },
+        {
+          "title": "Sign tells the story",
+          "explanation": "Growth is positive slope; depletion is negative.",
+          "latex": "burning candle: $m = -2$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "lmv1-we1",
+          "statement": "A candle is $25$ cm tall and burns $2$ cm/h. Build the model and find the height after $3$ hours.",
+          "solution": "$h = 25 - 2t$; $h(3) = 25 - 6 = 19$ cm.",
+          "check": [
+            "25 - 2*3 == 19"
+          ]
+        },
+        {
+          "id": "lmv1-we2",
+          "statement": "Same candle: when does it burn out?",
+          "solution": "$25 - 2t = 0 \\to t = 12.5$ hours.",
+          "check": [
+            "25 - 2*Rational(25,2) == 0"
+          ]
+        },
+        {
+          "id": "lmv1-we3",
+          "statement": "A phone battery is at $80\\%$ and drains $12\\%$ per hour of video. Model, and find the charge after $2.5$ hours.",
+          "solution": "$B = 80 - 12t$; $B(2.5) = 80 - 30 = 50\\%$.",
+          "check": [
+            "80 - 12*Rational(25,10) == 50"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Swapping the roles of m and b.",
+          "correction": "The PER-unit number is the slope; the one-time number is the intercept. '\\$30 a month plus \\$50 to join' is 30m + 50, never 50m + 30.",
+          "authored": true
+        },
+        {
+          "text": "Dropping the negative on depletion rates.",
+          "correction": "A draining tank's rate is −8 L/min. Writing +8 makes the tank fill — the model's story must match reality's direction.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "lmv1-t1",
+          "statement": "A pool holds $2{,}000$ L and drains at $80$ L/min. Build the model; how much remains after $15$ min?",
+          "solution": "$V = 2000 - 80t$; $V(15) = 800$ L.",
+          "check": [
+            "2000 - 80*15 == 800"
+          ]
+        },
+        {
+          "id": "lmv1-t2",
+          "statement": "A sapling is $120$ cm and grows $15$ cm per year. When does it reach $210$ cm?",
+          "solution": "$120 + 15y = 210 \\to y = 6$ years.",
+          "check": [
+            "120 + 15*6 == 210"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "evaluator",
+            "eyebrow": "Play with it",
+            "title": "The model, live",
+            "teach": "This slider is the candle: $h = 25 - 2t$... rendered here as $-2x + 25$. Slide time forward and watch the height fall at exactly 2 cm per unit — the slope, visible.",
+            "config": {
+              "a": -2,
+              "b": 25,
+              "varName": "t",
+              "min": 0,
+              "max": 12,
+              "start": 3
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The skeleton",
+            "title": "Start + rate × time",
+            "beats": [
+              "Every steady story: a starting value and a rate.",
+              "$y = mx + b$: $b$ starts, $m$ moves.",
+              "Candle: $h = 25 - 2t$.",
+              "Gym: $C = 30m + 50$. Same skeleton, different clothes."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Signs and units",
+            "title": "Read the direction",
+            "beats": [
+              "Growing? $m > 0$. Draining, burning, owing less? $m < 0$.",
+              "Say the units: 'cm per hour,' 'liters per minute.'",
+              "The per-word finds $m$; the flat word (fee, initial, starts at) finds $b$.",
+              "Units wrong → model wrong. Always."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Tag the numbers",
+            "prompt": "'A scooter rental: \\$3 to unlock plus \\$0.40 per minute.' The model is…",
+            "options": [
+              "$C = 0.4t + 3$",
+              "$C = 3t + 0.4$",
+              "$C = 3.4t$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Per-minute price is the slope; the unlock fee is the intercept.",
+            "check": [
+              "Rational(4,10)*10 + 3 == 7"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Stories to skeletons",
+            "intro": "Find b, find m (with sign), then interrogate the model.",
+            "examples": [
+              {
+                "prompt": "An airplane at $10{,}000$ m descends $400$ m per minute. Model, and altitude after $12$ minutes?",
+                "steps": [
+                  "$A = 10000 - 400t$.",
+                  "$A(12) = 10000 - 4800$.",
+                  "$= 5200$ m."
+                ],
+                "answer": "$5{,}200$ m",
+                "check": [
+                  "10000 - 400*12 == 5200"
+                ]
+              },
+              {
+                "prompt": "Same plane: when does it land?",
+                "steps": [
+                  "$10000 - 400t = 0$.",
+                  "$t = 25$ minutes.",
+                  "The x-intercept IS the landing."
+                ],
+                "answer": "$t = 25$ min",
+                "check": [
+                  "10000 - 400*25 == 0"
+                ]
+              },
+              {
+                "prompt": "A freelancer has \\$1{,}400 saved and adds \\$250 a week. When does she cross \\$3{,}000?",
+                "steps": [
+                  "$S = 250w + 1400$.",
+                  "$250w + 1400 = 3000 \\to w = 6.4$.",
+                  "During week 7 (first full week past: $w = 7$)."
+                ],
+                "answer": "$w = 6.4$ (week 7)",
+                "check": [
+                  "250*Rational(32,5) + 1400 == 3000"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Model builder",
+            "intro": "b from the flat number, m from the per-number.",
+            "problems": [
+              {
+                "prompt": "A printer has $300$ sheets and uses $25$ per day. Model?",
+                "options": [
+                  "$P = 300 - 25d$",
+                  "$P = 25d + 300$",
+                  "$P = 300d - 25$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Start 300, DEPLETING at 25/day: negative rate.",
+                "check": [
+                  "300 - 25*4 == 200"
+                ]
+              },
+              {
+                "prompt": "Using $P = 300 - 25d$: when does the paper run out?",
+                "options": [
+                  "day $12$",
+                  "day $10$",
+                  "day $15$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$300 - 25d = 0 \\to d = 12$.",
+                "check": [
+                  "300 - 25*12 == 0"
+                ]
+              },
+              {
+                "prompt": "A taxi costs $C = 2.5k + 4$. What does the $4$ mean?",
+                "options": [
+                  "the base fare before any distance",
+                  "the per-km rate",
+                  "the total for 1 km"
+                ],
+                "correctIndex": 0,
+                "explanation": "At $k = 0$ you already owe \\$4 — the flag-drop fee. (1 km costs $6.50$, not 4.)",
+                "check": [
+                  "Rational(25,10)*0 + 4 == 4",
+                  "Rational(25,10)*1 + 4 == Rational(65,10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Every invoice is a linear model",
+            "body": "Plumbers, lawyers, cloud-computing platforms, and wedding photographers all price with $mx + b$: a call-out fee plus an hourly rate, a retainer plus billables, a monthly base plus per-gigabyte. Businesses call the intercept a 'fixed cost' and the slope a 'variable cost' — accounting invented your algebra homework and charges \\$400/hour for it."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Starting value → $b$; per-unit rate (signed) → $m$.",
+              "Evaluate the model for outputs; solve it for inputs; the x-intercept is 'empty/landing/broke.'",
+              "Units narrate the model — say them out loud."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "models-from-data",
+      "title": "Models from Two Data Points",
+      "concreteComparison": "A photographer charges \\$95 for a $1$-hour shoot and \\$215 for a $4$-hour shoot — but her website never states the hourly rate. Two receipts are enough: the price climbed \\$120 over $3$ extra hours, so \\$40/hour, and working backwards the booking fee is \\$55. Two points determine the whole line — that's not a slogan, it's an algorithm.",
+      "objective": "Find the rate from two data points, recover the starting value, and write the linear model.",
+      "concept": [
+        "The rate between two points is the change in output over the change in input: $m = \\frac{y_2 - y_1}{x_2 - x_1}$ — the slope formula wearing work clothes.",
+        "With $m$ known, recover $b$ by substituting either point into $y = mx + b$ and solving.",
+        "The photographer: $m = \\frac{215 - 95}{4 - 1} = 40$; then $95 = 40(1) + b \\to b = 55$. Model: $C = 40h + 55$.",
+        "Always CHECK with the unused point: $C(4) = 160 + 55 = 215$. ✓ Two points build the model; the second point audits it.",
+        "Interpolation (between your data) is trustworthy; extrapolation (far beyond it) is a bet that the trend continues."
+      ],
+      "keyIdea": "$m = \\frac{\\Delta y}{\\Delta x}$ from the two points, then one substitution recovers b — and the other point audits.",
+      "facts": [
+        {
+          "title": "Rate from receipts",
+          "explanation": "Change in output over change in input.",
+          "latex": "$m = \\tfrac{y_2 - y_1}{x_2 - x_1}$"
+        },
+        {
+          "title": "Audit rule",
+          "explanation": "The second data point verifies the finished model.",
+          "latex": "check with the unused point"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "lmv2-we1",
+          "statement": "Shoots cost \\$95 for $1$ h and \\$215 for $4$ h. Find the model.",
+          "solution": "$m = \\frac{215 - 95}{4 - 1} = 40$; $b = 95 - 40 = 55$. Model: $C = 40h + 55$.",
+          "check": [
+            "Rational(215 - 95, 4 - 1) == 40",
+            "40*1 + 55 == 95",
+            "40*4 + 55 == 215"
+          ]
+        },
+        {
+          "id": "lmv2-we2",
+          "statement": "A tank holds $46$ L after $2$ min of filling and $94$ L after $8$ min. Rate, starting amount, and model?",
+          "solution": "$m = \\frac{94 - 46}{8 - 2} = 8$ L/min; $b = 46 - 16 = 30$ L. Model: $V = 8t + 30$.",
+          "check": [
+            "Rational(94 - 46, 8 - 2) == 8",
+            "8*2 + 30 == 46",
+            "8*8 + 30 == 94"
+          ]
+        },
+        {
+          "id": "lmv2-we3",
+          "statement": "A spring is $14$ cm with $20$ g hanging and $20$ cm with $50$ g. Predict its natural (unloaded) length.",
+          "solution": "$m = \\frac{20 - 14}{50 - 20} = 0.2$ cm/g; $b = 14 - 0.2(20) = 10$ cm — the length with zero weight.",
+          "check": [
+            "Rational(20 - 14, 50 - 20) == Rational(2,10)",
+            "Rational(2,10)*20 + 10 == 14",
+            "Rational(2,10)*50 + 10 == 20"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dividing Δx by Δy.",
+          "correction": "Rate is output-change over input-change: dollars per hour, not hours per dollar. Keep the y's on top.",
+          "authored": true
+        },
+        {
+          "text": "Subtracting the points in mismatched order.",
+          "correction": "(215 − 95)/(1 − 4) mixes directions and flips the sign. Pick one point as 'second' and stay consistent in both numerator and denominator.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "lmv2-t1",
+          "statement": "A gym's total cost: \\$130 after $2$ months, \\$250 after $6$ months. Find the monthly rate and joining fee.",
+          "solution": "$m = \\frac{250 - 130}{6 - 2} = 30$; $b = 130 - 60 = 70$: \\$30/month, \\$70 to join.",
+          "check": [
+            "Rational(250 - 130, 6 - 2) == 30",
+            "30*2 + 70 == 130"
+          ]
+        },
+        {
+          "id": "lmv2-t2",
+          "statement": "Using $C = 30m + 70$, what does $10$ months cost?",
+          "solution": "$C(10) = 300 + 70 = 370$ dollars.",
+          "check": [
+            "30*10 + 70 == 370"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Step 1",
+            "title": "Rate from two receipts",
+            "beats": [
+              "Two data points $= (x_1, y_1)$ and $(x_2, y_2)$.",
+              "$m = \\frac{y_2 - y_1}{x_2 - x_1}$ — output change over input change.",
+              "Photographer: $\\frac{215 - 95}{4 - 1} = \\frac{120}{3} = 40$ dollars/hour.",
+              "Same subtraction ORDER top and bottom."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Step 2",
+            "title": "Recover the start",
+            "beats": [
+              "Drop $m$ and ONE point into $y = mx + b$.",
+              "$95 = 40(1) + b \\to b = 55$.",
+              "Model: $C = 40h + 55$.",
+              "$b$ is the booking fee no receipt showed directly."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Step 3",
+            "title": "Audit, then predict carefully",
+            "beats": [
+              "Check the UNUSED point: $40(4) + 55 = 215$. ✓",
+              "Interpolate freely between your data.",
+              "Extrapolate with humility — trends bend eventually.",
+              "A spring model fails long before 5,000 grams."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Two receipts",
+            "prompt": "A courier charges \\$19 for a $3$ kg parcel and \\$31 for a $7$ kg parcel. The per-kg rate is…",
+            "options": [
+              "\\$3",
+              "\\$4",
+              "\\$12"
+            ],
+            "correctIndex": 0,
+            "explanation": "$m = \\frac{31 - 19}{7 - 3} = \\frac{12}{4} = 3$ (and the base fee works out to \\$10).",
+            "check": [
+              "Rational(31 - 19, 7 - 3) == 3",
+              "3*3 + 10 == 19"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Model archaeology",
+            "intro": "Dig the rate from the data; the start follows.",
+            "examples": [
+              {
+                "prompt": "A car's odometer: $34{,}120$ km in March ($t = 3$) and $37{,}720$ km in September ($t = 9$). Monthly driving rate and January-1 reading?",
+                "steps": [
+                  "$m = \\frac{37720 - 34120}{9 - 3} = 600$ km/month.",
+                  "$b = 34120 - 600(3) = 32320$.",
+                  "Model: $D = 600t + 32320$."
+                ],
+                "answer": "$600$ km/mo; $32{,}320$ km",
+                "check": [
+                  "Rational(37720 - 34120, 9 - 3) == 600",
+                  "600*3 + 32320 == 34120"
+                ]
+              },
+              {
+                "prompt": "Temperature fell steadily: $14°$ at $18{:}00$ ($t=0$) and $5°$ at midnight ($t=6$). Model and the 21:00 reading?",
+                "steps": [
+                  "$m = \\frac{5 - 14}{6} = -1.5$ °/h.",
+                  "$T = 14 - 1.5t$.",
+                  "$T(3) = 9.5°$."
+                ],
+                "answer": "$9.5°$",
+                "check": [
+                  "Rational(5 - 14, 6) == Rational(-3,2)",
+                  "14 - Rational(3,2)*3 == Rational(19,2)"
+                ]
+              },
+              {
+                "prompt": "A phone plan: $220$ texts cost \\$13.40; $400$ texts cost \\$18.80. Is there a base fee?",
+                "steps": [
+                  "$m = \\frac{18.80 - 13.40}{400 - 220} = 0.03$ per text.",
+                  "$b = 13.40 - 0.03(220) = 6.80$.",
+                  "Yes: \\$6.80 base."
+                ],
+                "answer": "\\$6.80 base, 3¢/text",
+                "check": [
+                  "Rational(1880 - 1340, 100*(400 - 220)) == Rational(3,100)",
+                  "Rational(3,100)*220 + Rational(680,100) == Rational(1340,100)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Receipt forensics",
+            "intro": "Rate, then start, then audit.",
+            "problems": [
+              {
+                "prompt": "Points $(2, 11)$ and $(5, 26)$: the line through them is…",
+                "options": [
+                  "$y = 5x + 1$",
+                  "$y = 3x + 5$",
+                  "$y = 5x - 1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$m = \\frac{26 - 11}{5 - 2} = 5$; $b = 11 - 10 = 1$.",
+                "check": [
+                  "Rational(26 - 11, 5 - 2) == 5",
+                  "5*2 + 1 == 11",
+                  "5*5 + 1 == 26"
+                ]
+              },
+              {
+                "prompt": "A candle: $18$ cm after $2$ h, $10.5$ cm after $7$ h. Burn rate?",
+                "options": [
+                  "$1.5$ cm/h",
+                  "$2.5$ cm/h",
+                  "$7.5$ cm/h"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{10.5 - 18}{7 - 2} = \\frac{-7.5}{5} = -1.5$: burning at 1.5 cm/h.",
+                "check": [
+                  "Rational(Rational(105,10) - 18, 7 - 2) == Rational(-3,2)"
+                ]
+              },
+              {
+                "prompt": "Same candle — original height?",
+                "options": [
+                  "$21$ cm",
+                  "$19.5$ cm",
+                  "$24$ cm"
+                ],
+                "correctIndex": 0,
+                "explanation": "$b = 18 + 1.5(2) = 21$ cm.",
+                "check": [
+                  "21 - Rational(3,2)*2 == 18",
+                  "21 - Rational(3,2)*7 == Rational(21,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Absolute zero was an extrapolation",
+            "body": "In the 1800s, physicists measured gas volumes at a few temperatures, drew the line through their data points, and extended it left until volume hit zero: about −273°C. No lab could reach it, but the LINE pointed there. That extrapolated x-intercept became absolute zero, the anchor of the Kelvin scale — the most productive 'solve mx + b = 0' in scientific history."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$m = \\frac{y_2 - y_1}{x_2 - x_1}$: consistent order, outputs on top.",
+              "One substitution recovers $b$; the unused point audits.",
+              "Interpolate confidently; extrapolate carefully."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "direct-variation",
+      "title": "Direct Variation",
+      "concreteComparison": "Gas costs \\$1.60 per liter: twice the liters, twice the bill; zero liters, zero bill. That's **direct variation** — $y = kx$ — the purest linear model, with no fee, no head start, no intercept. You met it in Grade 7 as proportionality; Grade 9 dresses it in function clothes and puts it to work.",
+      "objective": "Model direct variation with y = kx, find k from one pair, and recognize direct variation in tables and graphs.",
+      "concept": [
+        "$y$ **varies directly** with $x$ when $y = kx$ for a constant $k \\ne 0$ — a linear model whose intercept is exactly zero.",
+        "One data pair pins down $k$: if $y = 24$ when $x = 4$, then $k = \\frac{y}{x} = 6$, and the whole relationship is $y = 6x$.",
+        "Fingerprints: the graph is a line THROUGH THE ORIGIN; in tables, the ratio $\\frac{y}{x}$ is the same in every row.",
+        "Direct variation scales perfectly: double $x$, double $y$; triple one, triple the other. A fee — any nonzero intercept — breaks the scaling.",
+        "$k$ inherits meaning from context: price per liter, grams per cm³ (density), pay per hour."
+      ],
+      "keyIdea": "Direct variation is y = kx: line through the origin, constant ratio y/x, perfect doubling.",
+      "facts": [
+        {
+          "title": "One pair finds k",
+          "explanation": "Then y = kx handles every other pair.",
+          "latex": "$k = \\tfrac{y}{x}$"
+        },
+        {
+          "title": "The fingerprints",
+          "explanation": "Any intercept or drifting ratio disqualifies.",
+          "latex": "through origin; $\\tfrac{y}{x}$ constant"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "lmv3-we1",
+          "statement": "$y$ varies directly with $x$, and $y = 24$ when $x = 4$. Find $k$ and the value of $y$ at $x = 7$.",
+          "solution": "$k = \\frac{24}{4} = 6$; $y = 6(7) = 42$.",
+          "check": [
+            "Rational(24,4) == 6",
+            "6*7 == 42"
+          ]
+        },
+        {
+          "id": "lmv3-we2",
+          "statement": "A car uses fuel directly with distance: $18$ L for $240$ km. How much for $400$ km?",
+          "solution": "$k = \\frac{18}{240} = 0.075$ L/km; $0.075 \\times 400 = 30$ L.",
+          "check": [
+            "Rational(18,240) == Rational(75,1000)",
+            "Rational(75,1000)*400 == 30"
+          ]
+        },
+        {
+          "id": "lmv3-we3",
+          "statement": "Which table shows direct variation: A: $(2, 5), (4, 10), (6, 15)$ or B: $(2, 5), (4, 9), (6, 13)$?",
+          "solution": "A: ratios $2.5, 2.5, 2.5$ — direct ($y = 2.5x$). B: ratios drift ($2.5, 2.25, 2.17...$) — linear but with an intercept, not direct.",
+          "check": [
+            "Rational(5,2) == Rational(10,4)",
+            "Rational(10,4) == Rational(15,6)",
+            "Rational(5,2) != Rational(9,4)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Calling every linear relationship 'direct variation'.",
+          "correction": "y = 3x + 5 is linear but NOT direct — the +5 breaks through-the-origin and the doubling property.",
+          "authored": true
+        },
+        {
+          "text": "Finding k by subtracting instead of dividing.",
+          "correction": "k is the RATIO y/x, not the difference. y = 24 at x = 4 gives k = 6, not 20.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "lmv3-t1",
+          "statement": "$y$ varies directly with $x$; $y = 35$ when $x = 14$. Find $y$ when $x = 6$.",
+          "solution": "$k = \\frac{35}{14} = 2.5$; $y = 15$.",
+          "check": [
+            "Rational(35,14) == Rational(5,2)",
+            "Rational(5,2)*6 == 15"
+          ]
+        },
+        {
+          "id": "lmv3-t2",
+          "statement": "Wages vary directly with hours: $\\$202.50$ for $15$ h. What's the rate, and the pay for $22$ h?",
+          "solution": "$k = 13.50$/h; $22$ h pays $297$ dollars.",
+          "check": [
+            "Rational(20250,100)/15 == Rational(135,10)",
+            "Rational(135,10)*22 == 297"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "Play with it",
+            "title": "Through the origin, always",
+            "teach": "These points belong to $y = 1.5x$ — direct variation. Notice the perfect ray from $(0,0)$: no fee, no head start, doubling x doubles y.",
+            "config": {
+              "mode": "plot",
+              "min": 0,
+              "max": 8,
+              "points": [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 2,
+                  "y": 3
+                },
+                {
+                  "x": 4,
+                  "y": 6
+                }
+              ]
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Definition",
+            "title": "kx and nothing else",
+            "beats": [
+              "$y = kx$: rate times input, zero intercept.",
+              "One pair pins $k = \\frac{y}{x}$.",
+              "$(4, 24) \\to k = 6 \\to y = 6x$ forever.",
+              "Grade 7's constant of proportionality, now a function."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Recognition",
+            "title": "Fingerprints at the scene",
+            "beats": [
+              "Graph: a line through $(0, 0)$.",
+              "Table: $\\frac{y}{x}$ identical in every row.",
+              "Story: 'zero gives zero' plus steady rate.",
+              "Any of the three confirms; any failure denies."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Direct or just linear?",
+            "prompt": "Which relationship is DIRECT variation?",
+            "options": [
+              "pay $= 18 \\times$ hours",
+              "taxi fare $= 2.5 \\times$ km $+ 4$",
+              "candle height $= 25 - 2t$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Only the pay has no added constant — zero hours, zero pay.",
+            "check": [
+              "18*0 == 0",
+              "Rational(25,10)*0 + 4 == 4"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "k at work",
+            "intro": "Ratio once, multiply forever.",
+            "examples": [
+              {
+                "prompt": "Density: $54$ g of aluminum occupies $20$ cm³. Mass varies directly with volume — find the mass of $35$ cm³.",
+                "steps": [
+                  "$k = \\frac{54}{20} = 2.7$ g/cm³ (the density).",
+                  "$m = 2.7 \\times 35$.",
+                  "$= 94.5$ g."
+                ],
+                "answer": "$94.5$ g",
+                "check": [
+                  "Rational(54,20) == Rational(27,10)",
+                  "Rational(27,10)*35 == Rational(189,2)"
+                ]
+              },
+              {
+                "prompt": "On a map, distance varies directly: $3$ cm represents $75$ km. What does $8$ cm represent?",
+                "steps": [
+                  "$k = 25$ km/cm.",
+                  "$8 \\times 25 = 200$.",
+                  "$200$ km."
+                ],
+                "answer": "$200$ km",
+                "check": [
+                  "Rational(75,3) == 25",
+                  "25*8 == 200"
+                ]
+              },
+              {
+                "prompt": "Does the table $(3, 12), (5, 20), (9, 36)$ show direct variation? Give the model if so.",
+                "steps": [
+                  "Ratios: $4, 4, 4$.",
+                  "Constant — direct.",
+                  "$y = 4x$."
+                ],
+                "answer": "$y = 4x$",
+                "check": [
+                  "Rational(12,3) == 4",
+                  "Rational(20,5) == 4",
+                  "Rational(36,9) == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Ratio patrol",
+            "intro": "Divide y by x; constancy is the confession.",
+            "problems": [
+              {
+                "prompt": "$y$ varies directly with $x$; $y = 18$ at $x = 12$. The model is…",
+                "options": [
+                  "$y = 1.5x$",
+                  "$y = 6x$",
+                  "$y = x + 6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$k = \\frac{18}{12} = 1.5$.",
+                "check": [
+                  "Rational(18,12) == Rational(3,2)"
+                ]
+              },
+              {
+                "prompt": "Using $y = 1.5x$: find $x$ when $y = 33$.",
+                "options": [
+                  "$22$",
+                  "$49.5$",
+                  "$31.5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$1.5x = 33 \\to x = 22$.",
+                "check": [
+                  "Rational(3,2)*22 == 33"
+                ]
+              },
+              {
+                "prompt": "A recipe scales directly. $4$ servings need $300$ g of rice; a banquet needs $2.4$ kg. How many servings?",
+                "options": [
+                  "$32$",
+                  "$24$",
+                  "$30$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$k = 75$ g/serving; $2400 \\div 75 = 32$ servings.",
+                "check": [
+                  "Rational(300,4) == 75",
+                  "Rational(2400,75) == 32"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Hooke's one-line law",
+            "body": "Robert Hooke published his spring law in 1676 as a Latin anagram — 'ceiiinosssttuv' — to claim priority without revealing it. Decoded two years later: *ut tensio, sic vis* — 'as the stretch, so the force.' In symbols: $F = kx$, direct variation. Every scale, every suspension bridge cable, every mattress spring still obeys the sentence he scrambled."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Direct variation is $y = kx$ — the interceptless line.",
+              "One pair gives $k = \\frac{y}{x}$; then multiply.",
+              "Fingerprints: through the origin, constant ratio, perfect doubling."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "inverse-variation",
+      "title": "Inverse Variation",
+      "concreteComparison": "A $240$ km road trip: at $60$ km/h it takes $4$ hours; at $80$, only $3$; at $120$, just $2$. Speed UP, time DOWN — but not randomly: speed × time is always $240$. That locked product is **inverse variation**, $y = \\frac{k}{x}$: the more you take of one, the less you get of the other, with the product standing guard.",
+      "objective": "Model inverse variation with y = k/x (xy = k), find k, and distinguish inverse from direct variation.",
+      "concept": [
+        "$y$ **varies inversely** with $x$ when $y = \\frac{k}{x}$ — equivalently, the PRODUCT $xy = k$ is constant.",
+        "One pair pins $k$ by multiplying: at $60$ km/h the trip takes $4$ h, so $k = 240$, and time $= \\frac{240}{\\text{speed}}$ forever after.",
+        "Fingerprints: in tables the PRODUCT $xy$ repeats; doubling $x$ HALVES $y$; the graph is a falling curve (a hyperbola) that never touches either axis.",
+        "Contrast: direct variation has constant RATIO (both grow together); inverse has constant PRODUCT (one grows, the other shrinks).",
+        "$x = 0$ is banned — you can't drive the trip at zero speed — so the domain excludes zero automatically."
+      ],
+      "keyIdea": "Inverse variation locks the product: xy = k. Double one factor, halve the other.",
+      "facts": [
+        {
+          "title": "The locked product",
+          "explanation": "Multiply any pair to find k; the product never changes.",
+          "latex": "$xy = k$"
+        },
+        {
+          "title": "Ratio vs product",
+          "explanation": "Two fingerprints, two different crimes.",
+          "latex": "direct: $\\tfrac{y}{x}$ const; inverse: $xy$ const"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "lmv4-we1",
+          "statement": "A $240$ km trip: $y$ hours at $x$ km/h vary inversely. Find the time at $96$ km/h.",
+          "solution": "$k = 240$: $y = \\frac{240}{96} = 2.5$ hours.",
+          "check": [
+            "60*4 == 240",
+            "Rational(240,96) == Rational(5,2)"
+          ]
+        },
+        {
+          "id": "lmv4-we2",
+          "statement": "$y$ varies inversely with $x$; $y = 6$ when $x = 4$. Find $y$ when $x = 8$.",
+          "solution": "$k = 24$; $y = \\frac{24}{8} = 3$ — x doubled, y halved.",
+          "check": [
+            "6*4 == 24",
+            "Rational(24,8) == 3"
+          ]
+        },
+        {
+          "id": "lmv4-we3",
+          "statement": "Which varies inversely: A: $(2, 18), (3, 12), (6, 6)$ or B: $(2, 4), (3, 6), (6, 12)$?",
+          "solution": "A: products $36, 36, 36$ — inverse ($y = \\frac{36}{x}$). B: ratios $2, 2, 2$ — direct.",
+          "check": [
+            "2*18 == 36",
+            "3*12 == 36",
+            "6*6 == 36",
+            "Rational(4,2) == 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Finding k by dividing in an inverse problem.",
+          "correction": "Inverse variation multiplies: k = xy. Dividing gives direct variation's constant — the wrong fingerprint.",
+          "authored": true
+        },
+        {
+          "text": "Thinking 'inverse' means y is negative or decreasing linearly.",
+          "correction": "Inverse variation falls along a CURVE: from x=1 to 2 y halves; from 2 to 3 it only drops a third. Equal x-steps do NOT cut equal y-amounts.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "lmv4-t1",
+          "statement": "$y$ varies inversely with $x$; $y = 15$ when $x = 2$. Find $y$ when $x = 5$.",
+          "solution": "$k = 30$: $y = 6$.",
+          "check": [
+            "15*2 == 30",
+            "Rational(30,5) == 6"
+          ]
+        },
+        {
+          "id": "lmv4-t2",
+          "statement": "Eight painters finish a job in $9$ days (workers × days locked). How long for $12$ painters?",
+          "solution": "$k = 72$ painter-days: $\\frac{72}{12} = 6$ days.",
+          "check": [
+            "8*9 == 72",
+            "Rational(72,12) == 6"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "rateMeter",
+            "eyebrow": "Play with it",
+            "title": "The seesaw of speed and time",
+            "teach": "Fix the distance in your head at 240 km and slide the two dials: whenever speed × time = 240, you've found a legal trip. Feel how climbing one dial forces the other down — the locked product in your hands.",
+            "config": {
+              "topLabel": "Distance",
+              "topUnit": "km",
+              "top": 240,
+              "topMax": 240,
+              "topStep": 10,
+              "bottomLabel": "Time",
+              "bottomUnit": "hours",
+              "bottom": 4,
+              "bottomMax": 12,
+              "bottomStep": 1,
+              "rateUnit": "km per hour"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Definition",
+            "title": "The locked product",
+            "beats": [
+              "$y = \\frac{k}{x}$, i.e. $xy = k$.",
+              "Trip: speed × time $= 240$, always.",
+              "One pair, multiplied, reveals $k$.",
+              "Then divide $k$ by any $x$ to get its $y$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Recognition",
+            "title": "Product patrol",
+            "beats": [
+              "Table test: multiply each row — same product every time?",
+              "$(2, 18), (3, 12), (6, 6)$: all products $36$. Inverse.",
+              "Doubling test: $x$ doubles ⟹ $y$ halves.",
+              "Graph: a falling curve hugging both axes, touching neither."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Face-off",
+            "title": "Direct vs inverse",
+            "beats": [
+              "Direct: partners — both rise together ($\\frac{y}{x}$ locked).",
+              "Inverse: seesaw — one rises, one falls ($xy$ locked).",
+              "More hours → more pay: direct.",
+              "More workers → fewer days: inverse."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which fingerprint?",
+            "prompt": "$y$ varies inversely with $x$, and $y = 10$ when $x = 3$. What is $y$ when $x = 6$?",
+            "options": [
+              "$5$",
+              "$20$",
+              "$13$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$k = 30$; doubling $x$ (3→6) halves $y$: $\\frac{30}{6} = 5$.",
+            "check": [
+              "10*3 == 30",
+              "Rational(30,6) == 5"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Seesaws everywhere",
+            "intro": "Multiply to find k; divide to answer.",
+            "examples": [
+              {
+                "prompt": "Sharing a \\$180 prize equally: how does each share change from $4$ to $9$ winners?",
+                "steps": [
+                  "$k = 180$ (the pot).",
+                  "4 winners: \\$45 each. 9 winners: \\$20 each.",
+                  "share $= \\frac{180}{n}$ — pure inverse variation."
+                ],
+                "answer": "\\$45 → \\$20",
+                "check": [
+                  "Rational(180,4) == 45",
+                  "Rational(180,9) == 20"
+                ]
+              },
+              {
+                "prompt": "A gear pair: a $40$-tooth gear at $150$ RPM drives a $24$-tooth gear. Teeth × speed is locked — find the small gear's RPM.",
+                "steps": [
+                  "$k = 40 \\times 150 = 6000$.",
+                  "$\\frac{6000}{24} = 250$.",
+                  "The small gear spins faster: $250$ RPM."
+                ],
+                "answer": "$250$ RPM",
+                "check": [
+                  "40*150 == 6000",
+                  "Rational(6000,24) == 250"
+                ]
+              },
+              {
+                "prompt": "At constant temperature, gas pressure varies inversely with volume: $P = 120$ kPa at $V = 2$ L. Find $P$ at $V = 5$ L.",
+                "steps": [
+                  "$k = 240$.",
+                  "$P = \\frac{240}{5}$.",
+                  "$= 48$ kPa — squeezed less, pushes less."
+                ],
+                "answer": "$48$ kPa",
+                "check": [
+                  "120*2 == 240",
+                  "Rational(240,5) == 48"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Lock the product",
+            "intro": "xy = k; then one division.",
+            "problems": [
+              {
+                "prompt": "$y$ varies inversely with $x$; $y = 8$ at $x = 6$. Find $x$ when $y = 12$.",
+                "options": [
+                  "$4$",
+                  "$9$",
+                  "$16$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$k = 48$; $x = \\frac{48}{12} = 4$.",
+                "check": [
+                  "8*6 == 48",
+                  "Rational(48,12) == 4"
+                ]
+              },
+              {
+                "prompt": "A playlist of fixed total length: $3$-minute songs → $40$ songs. How many $5$-minute songs fit?",
+                "options": [
+                  "$24$",
+                  "$66$",
+                  "$67$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$k = 120$ minutes; $\\frac{120}{5} = 24$ songs.",
+                "check": [
+                  "3*40 == 120",
+                  "Rational(120,5) == 24"
+                ]
+              },
+              {
+                "prompt": "Which pair of quantities varies INVERSELY?",
+                "options": [
+                  "number of workers and days to finish a fixed job",
+                  "hours worked and total pay",
+                  "liters bought and total price"
+                ],
+                "correctIndex": 0,
+                "explanation": "The job is the locked product; pay and price are direct.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Boyle's bell jar",
+            "body": "Robert Boyle discovered pressure-volume inverse variation in 1662 with a J-shaped tube of mercury, publishing data tables where the product PV barely wavered — one of the first LAWS extracted from a table's fingerprint. Divers live by it today: air at 30 m depth occupies a quarter of its surface volume, which is why ascending without exhaling is the one unforgivable scuba sin."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Inverse variation: $y = \\frac{k}{x}$, the product $xy$ locked at $k$.",
+              "Multiply a pair to find $k$; doubling one factor halves the other.",
+              "Direct = locked ratio (partners); inverse = locked product (seesaw)."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "classifying-relationships",
+      "title": "Direct, Inverse, or Neither?",
+      "concreteComparison": "Three tables land on your desk: one from a bakery (flour vs loaves), one from a road trip (speed vs time), one from a taxi (distance vs fare). Which is direct, which inverse, which neither? Two quick computations — the ratio $\\frac{y}{x}$ and the product $xy$ — sort ANY table into its family. It's chemistry-lab titration for relationships.",
+      "objective": "Classify tables and stories as direct variation, inverse variation, linear-with-intercept, or neither.",
+      "concept": [
+        "Run BOTH tests on a table: constant ratio $\\frac{y}{x}$ → direct; constant product $xy$ → inverse.",
+        "If neither is constant, check first differences: constant jumps over even x-steps → linear WITH an intercept ($y = mx + b$, $b \\ne 0$) — proportional's cousin, not its twin.",
+        "Nothing constant at all → neither family; the relationship needs stronger tools (quadratics, exponentials — coming in Grade 10).",
+        "Stories classify by structure: 'zero gives zero + steady rate' → direct; 'fixed total being shared/split' → inverse; 'fee plus rate' → linear-with-intercept.",
+        "One counterexample row settles everything — you never need to check beyond the first mismatch."
+      ],
+      "keyIdea": "Compute y/x and xy for every row: constant ratio → direct; constant product → inverse; constant jumps → linear; else neither.",
+      "facts": [
+        {
+          "title": "The two-test sweep",
+          "explanation": "Two divisions and two multiplications classify any table.",
+          "latex": "ratio, then product"
+        },
+        {
+          "title": "Story structures",
+          "explanation": "The plot reveals the family before any numbers do.",
+          "latex": "zero-zero \\u2192 direct; fixed pot \\u2192 inverse; fee+rate \\u2192 linear"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "lmv5-we1",
+          "statement": "Classify: $(1, 4), (2, 8), (5, 20)$.",
+          "solution": "Ratios: $4, 4, 4$ — DIRECT, $y = 4x$.",
+          "check": [
+            "Rational(4,1) == 4",
+            "Rational(8,2) == 4",
+            "Rational(20,5) == 4"
+          ]
+        },
+        {
+          "id": "lmv5-we2",
+          "statement": "Classify: $(1, 24), (2, 12), (4, 6)$.",
+          "solution": "Ratios drift ($24, 6, 1.5$), but products: $24, 24, 24$ — INVERSE, $y = \\frac{24}{x}$.",
+          "check": [
+            "1*24 == 24",
+            "2*12 == 24",
+            "4*6 == 24"
+          ]
+        },
+        {
+          "id": "lmv5-we3",
+          "statement": "Classify: $(1, 7), (2, 9), (3, 11)$.",
+          "solution": "Ratios drift, products drift, but jumps are $2, 2$ — LINEAR with intercept: $y = 2x + 5$.",
+          "check": [
+            "9 - 7 == 2",
+            "11 - 9 == 2",
+            "2*3 + 5 == 11"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Stopping after the ratio test.",
+          "correction": "A drifting ratio doesn't mean 'neither' — check the product (inverse) and the jumps (linear) before giving up.",
+          "authored": true
+        },
+        {
+          "text": "Classifying by whether y goes up or down.",
+          "correction": "Direction isn't family: y = −3x is DIRECT variation that falls; y = 24/x is inverse and also falls. Run the tests, not the vibes.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "lmv5-t1",
+          "statement": "Classify: $(2, 30), (5, 12), (6, 10)$.",
+          "solution": "Products: $60, 60, 60$ — inverse, $y = \\frac{60}{x}$.",
+          "check": [
+            "2*30 == 60",
+            "5*12 == 60",
+            "6*10 == 60"
+          ]
+        },
+        {
+          "id": "lmv5-t2",
+          "statement": "Classify: 'a plumber charges \\$60 to show up plus \\$45 per hour.'",
+          "solution": "Fee plus rate: linear with intercept ($C = 45h + 60$) — not direct (zero hours still costs \\$60).",
+          "check": [
+            "45*0 + 60 == 60"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The sweep",
+            "title": "Two tests, four verdicts",
+            "beats": [
+              "Test 1: $\\frac{y}{x}$ constant? → DIRECT.",
+              "Test 2: $xy$ constant? → INVERSE.",
+              "Test 3: jumps constant? → LINEAR (fee + rate).",
+              "All fail → NEITHER (stronger math ahead)."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Story sorting",
+            "title": "Plots have structures",
+            "beats": [
+              "'Zero gives zero, steady rate' → direct.",
+              "'Fixed pot split among more' → inverse.",
+              "'Fee, then a rate' → linear-with-intercept.",
+              "'Doubling input quadruples output' → neither (that's a square)."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Efficiency",
+            "title": "One mismatch ends the test",
+            "beats": [
+              "Row 1 ratio: 4. Row 2 ratio: 3.9 — direct is DEAD.",
+              "Move to the product test immediately.",
+              "Verdicts need consistency across ALL rows…",
+              "…but failure needs only one traitor."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Sort it",
+            "prompt": "Classify $(3, 8), (6, 4), (12, 2)$.",
+            "options": [
+              "inverse — products all $24$",
+              "direct — it halves",
+              "linear — jumps of $-4$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$3(8) = 6(4) = 12(2) = 24$: locked product. (The jumps are −4, −2 — not constant.)",
+            "check": [
+              "3*8 == 24",
+              "6*4 == 24",
+              "12*2 == 24",
+              "4 - 8 == -4",
+              "2 - 4 == -2"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "The sorting office",
+            "intro": "Ratio, product, jumps — in that order.",
+            "examples": [
+              {
+                "prompt": "Classify and model: $(2, 9), (4, 18), (7, 31.5)$.",
+                "steps": [
+                  "Ratios: $4.5, 4.5, 4.5$.",
+                  "Direct.",
+                  "$y = 4.5x$."
+                ],
+                "answer": "direct: $y = 4.5x$",
+                "check": [
+                  "Rational(9,2) == Rational(9,2)",
+                  "Rational(18,4) == Rational(9,2)",
+                  "Rational(315,70) == Rational(9,2)"
+                ]
+              },
+              {
+                "prompt": "Classify and model: $(1, 10), (2, 17), (3, 24)$.",
+                "steps": [
+                  "Ratios drift; products drift.",
+                  "Jumps: $7, 7$ — linear.",
+                  "$y = 7x + 3$."
+                ],
+                "answer": "linear: $y = 7x + 3$",
+                "check": [
+                  "17 - 10 == 7",
+                  "24 - 17 == 7",
+                  "7*3 + 3 == 24"
+                ]
+              },
+              {
+                "prompt": "Classify: $(1, 2), (2, 8), (3, 18)$.",
+                "steps": [
+                  "Ratios: $2, 4, 6$ — no. Products: $2, 16, 54$ — no.",
+                  "Jumps: $6, 10$ — no.",
+                  "Neither: (it's $y = 2x^2$, a Grade 10 guest)."
+                ],
+                "answer": "neither (quadratic)",
+                "check": [
+                  "2*1**2 == 2",
+                  "2*2**2 == 8",
+                  "2*3**2 == 18"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Family reunion",
+            "intro": "Two tests before any verdict.",
+            "problems": [
+              {
+                "prompt": "$(4, 3), (8, 1.5), (2, 6)$ is…",
+                "options": [
+                  "inverse: $xy = 12$",
+                  "direct: $k = 0.75$",
+                  "linear: $b = 3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Products: $12, 12, 12$.",
+                "check": [
+                  "4*3 == 12",
+                  "8*Rational(3,2) == 12",
+                  "2*6 == 12"
+                ]
+              },
+              {
+                "prompt": "'Each ticket costs \\$11; no other charges.' The relationship between tickets and total is…",
+                "options": [
+                  "direct variation",
+                  "inverse variation",
+                  "linear with intercept"
+                ],
+                "correctIndex": 0,
+                "explanation": "Zero tickets, zero dollars; steady \\$11 rate: $y = 11x$.",
+                "check": [
+                  "11*0 == 0",
+                  "11*3 == 33"
+                ]
+              },
+              {
+                "prompt": "A table's jumps are constant but its y/x ratio is not. The relationship is…",
+                "options": [
+                  "linear with a nonzero intercept",
+                  "direct variation",
+                  "inverse variation"
+                ],
+                "correctIndex": 0,
+                "explanation": "Constant jumps = linear; drifting ratio = the intercept isn't zero.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Kepler's ten-year sort",
+            "body": "Johannes Kepler spent nearly a decade testing relationships between planets' orbital times and distances — trying ratios, products, and stranger recipes against Tycho Brahe's data until (T squared over R cubed) came out constant for every planet. His 'harmonic law' of 1619 is exactly your classification game, played against the solar system, without a calculator."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Sweep: ratio → product → jumps; first constant wins.",
+              "Story structures pre-classify: zero-zero, fixed pot, fee-plus-rate.",
+              "One mismatched row kills a family; consistency across all rows crowns one."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "variation-in-action",
+      "title": "Variation in Action",
+      "concreteComparison": "A seesaw balances a $60$ kg parent at $1$ m against a $20$ kg child at $3$ m: weight × distance locked. A charity divides a fixed grant among more families; the share shrinks on schedule. A pay-per-page translator quotes jobs by pure multiplication. The capstone: pick the model — direct, inverse, or full linear — and ride it to the answer.",
+      "objective": "Solve applied problems by selecting and combining direct variation, inverse variation, and linear models.",
+      "concept": [
+        "Model selection is the first move: 'zero gives zero' → $y = kx$; 'fixed total / balance / trade-off' → $xy = k$; 'fee plus rate' → $y = mx + b$.",
+        "Levers and seesaws are inverse variation in disguise: weight × distance from the pivot is locked on a balanced beam.",
+        "Some problems chain models: find a rate with direct variation, then feed it into a linear budget model.",
+        "Every answer should re-enter the story: units, plausibility, and the direction of change (did more workers really mean fewer days?)."
+      ],
+      "keyIdea": "Choose the model from the story's structure, solve with its one constant, and sanity-check the direction.",
+      "facts": [
+        {
+          "title": "Lever law",
+          "explanation": "Balanced beams lock the weight-distance product on each side.",
+          "latex": "$w_1 d_1 = w_2 d_2$"
+        },
+        {
+          "title": "Model menu",
+          "explanation": "Three tools cover most steady real-world stories.",
+          "latex": "$kx$, $\\tfrac{k}{x}$, $mx + b$"
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "lmv6-we1",
+          "statement": "A $60$ kg parent sits $1$ m from a seesaw's pivot. Where must a $20$ kg child sit to balance?",
+          "solution": "$60 \\times 1 = 20 \\times d \\to d = 3$ m.",
+          "check": [
+            "60*1 == 20*3"
+          ]
+        },
+        {
+          "id": "lmv6-we2",
+          "statement": "A grant of \\$5{,}400 is split equally. Compare shares for $12$ vs $18$ families.",
+          "solution": "Inverse: $\\frac{5400}{12} = 450$ vs $\\frac{5400}{18} = 300$ — fifty percent more families, one-third smaller shares.",
+          "check": [
+            "Rational(5400,12) == 450",
+            "Rational(5400,18) == 300"
+          ]
+        },
+        {
+          "id": "lmv6-we3",
+          "statement": "Translation costs vary directly at \\$0.14 per word; rush jobs add a flat \\$25. Cost of a $2{,}300$-word rush job?",
+          "solution": "Chained: direct part $0.14 \\times 2300 = 322$; plus the fee: $347$ dollars.",
+          "check": [
+            "Rational(14,100)*2300 == 322",
+            "322 + 25 == 347"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Balancing a lever with addition.",
+          "correction": "Levers lock the PRODUCT weight × distance, not the sum. A lighter child needs proportionally MORE distance, found by dividing.",
+          "authored": true
+        },
+        {
+          "text": "Using yesterday's k in today's problem.",
+          "correction": "Each story has its own constant. A new trip, pot, or pay rate means recomputing k from the new data — constants don't transfer between stories.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "lmv6-t1",
+          "statement": "Two kids balance: $32$ kg at $1.5$ m, and a $24$ kg kid at what distance?",
+          "solution": "$32 \\times 1.5 = 48 = 24d \\to d = 2$ m.",
+          "check": [
+            "32*Rational(3,2) == 48",
+            "24*2 == 48"
+          ]
+        },
+        {
+          "id": "lmv6-t2",
+          "statement": "Cementing a walkway takes $6$ workers $10$ hours. The client wants it in $4$ hours — how many workers?",
+          "solution": "$k = 60$ worker-hours: $\\frac{60}{4} = 15$ workers.",
+          "check": [
+            "6*10 == 60",
+            "Rational(60,4) == 15"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Selection",
+            "title": "Read the structure first",
+            "beats": [
+              "Zero-zero + steady rate → $y = kx$.",
+              "Fixed pot, balance, trade-off → $xy = k$.",
+              "Fee + rate → $y = mx + b$.",
+              "The story picks the tool; the tool does the arithmetic."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Physics corner",
+            "title": "The lever law",
+            "beats": [
+              "Balanced seesaw: $w_1 d_1 = w_2 d_2$.",
+              "$60 \\times 1 = 20 \\times 3$. ✓",
+              "Archimedes: 'Give me a place to stand and I will move the Earth.'",
+              "He meant: with enough $d$, any $w$ balances — the product is king."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Chains",
+            "title": "Models feeding models",
+            "beats": [
+              "Direct rate first: $0.14 \\times 2300 = 322$.",
+              "Linear wrapper second: $+ 25$ rush fee.",
+              "Total: $347$.",
+              "Real problems stack simple models like LEGO."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Pick the tool",
+            "prompt": "'A water tank empties through more pipes in less time (pipes × hours fixed at 24).' With $8$ pipes it takes…",
+            "options": [
+              "$3$ hours",
+              "$16$ hours",
+              "$32$ hours"
+            ],
+            "correctIndex": 0,
+            "explanation": "Locked product $24$: $\\frac{24}{8} = 3$ hours.",
+            "check": [
+              "Rational(24,8) == 3"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "The full toolkit",
+            "intro": "Structure → model → constant → answer → sanity.",
+            "examples": [
+              {
+                "prompt": "Streaming royalties vary directly: $45{,}000$ plays earned \\$180. What do $170{,}000$ plays earn?",
+                "steps": [
+                  "$k = \\frac{180}{45000} = 0.004$ per play.",
+                  "$0.004 \\times 170000$.",
+                  "$= 680$ dollars."
+                ],
+                "answer": "\\$680",
+                "check": [
+                  "Rational(180,45000) == Rational(4,1000)",
+                  "Rational(4,1000)*170000 == 680"
+                ]
+              },
+              {
+                "prompt": "A camping food supply feeds $6$ people for $10$ days. Two more campers join — how long does it last?",
+                "steps": [
+                  "Locked pot: $60$ person-days.",
+                  "$\\frac{60}{8}$.",
+                  "$= 7.5$ days."
+                ],
+                "answer": "$7.5$ days",
+                "check": [
+                  "6*10 == 60",
+                  "Rational(60,8) == Rational(15,2)"
+                ]
+              },
+              {
+                "prompt": "A wrench: $200$ N of force at $0.25$ m loosens a bolt. Same torque with $0.40$ m of handle?",
+                "steps": [
+                  "Torque locked: $200 \\times 0.25 = 50$.",
+                  "$F = \\frac{50}{0.4}$.",
+                  "$= 125$ N — longer handle, easier turn."
+                ],
+                "answer": "$125$ N",
+                "check": [
+                  "200*Rational(25,100) == 50",
+                  "Rational(50, Rational(4,10)) == 125"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Deploy the models",
+            "intro": "Structure first; constants are story-local.",
+            "problems": [
+              {
+                "prompt": "Fabric costs vary directly: $3.5$ m costs \\$42. What does $5$ m cost?",
+                "options": [
+                  "\\$60",
+                  "\\$52.50",
+                  "\\$70"
+                ],
+                "correctIndex": 0,
+                "explanation": "$k = 12$ per meter; $12 \\times 5 = 60$.",
+                "check": [
+                  "Rational(42, Rational(35,10)) == 12",
+                  "12*5 == 60"
+                ]
+              },
+              {
+                "prompt": "A generator's fuel lasts $18$ hours at $50\\%$ load. Load × hours is locked — at $75\\%$ load it lasts…",
+                "options": [
+                  "$12$ h",
+                  "$13.5$ h",
+                  "$27$ h"
+                ],
+                "correctIndex": 0,
+                "explanation": "$k = 900$: $\\frac{900}{75} = 12$ hours.",
+                "check": [
+                  "50*18 == 900",
+                  "Rational(900,75) == 12"
+                ]
+              },
+              {
+                "prompt": "A cyclist balances gears: $48$ teeth in front at $60$ RPM drive a rear gear at $160$ RPM. Rear teeth?",
+                "options": [
+                  "$18$",
+                  "$128$",
+                  "$20$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Locked: $48 \\times 60 = 2880 = t \\times 160 \\to t = 18$.",
+                "check": [
+                  "48*60 == 2880",
+                  "Rational(2880,160) == 18"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Archimedes ran the numbers",
+            "body": "Archimedes didn't just boast about moving the Earth — legend says he demonstrated the lever law by single-handedly dragging a fully loaded ship across a beach using compound pulleys, as King Hiero watched. The locked product $w_1 d_1 = w_2 d_2$ let one man trade distance for force. Every bottle opener, wheelbarrow, and nail-pulling hammer in your house is still running his equation."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Story structure selects the model; each story owns its constant.",
+              "Levers, gears, and shared pots are locked products.",
+              "Chain simple models for compound problems; sanity-check the direction."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "lmv-pr1",
+      "statement": "A hot tub holds $900$ L and drains at $60$ L/min. Build the model and find when it's empty.",
+      "solution": "$V = 900 - 60t$; empty at $t = 15$ min.",
+      "check": [
+        "900 - 60*15 == 0"
+      ]
+    },
+    {
+      "id": "lmv-pr2",
+      "statement": "A tutoring service: $3$ sessions cost \\$155; $8$ sessions cost \\$330. Per-session rate and registration fee?",
+      "solution": "$m = \\frac{330 - 155}{8 - 3} = 35$; $b = 155 - 105 = 50$: \\$35/session after a \\$50 fee.",
+      "check": [
+        "Rational(330 - 155, 8 - 3) == 35",
+        "35*3 + 50 == 155",
+        "35*8 + 50 == 330"
+      ]
+    },
+    {
+      "id": "lmv-pr3",
+      "statement": "$y$ varies directly with $x$: $y = 51$ when $x = 12$. Find $y$ at $x = 20$.",
+      "solution": "$k = 4.25$; $y = 85$.",
+      "check": [
+        "Rational(51,12) == Rational(17,4)",
+        "Rational(17,4)*20 == 85"
+      ]
+    },
+    {
+      "id": "lmv-pr4",
+      "statement": "$y$ varies inversely with $x$: $y = 9$ when $x = 8$. Find $y$ at $x = 6$.",
+      "solution": "$k = 72$; $y = 12$.",
+      "check": [
+        "9*8 == 72",
+        "Rational(72,6) == 12"
+      ]
+    },
+    {
+      "id": "lmv-pr5",
+      "statement": "Classify: $(2, 7), (4, 11), (6, 15)$ — and give the model.",
+      "solution": "Jumps $4, 4$ over steps of $2$: linear, $y = 2x + 3$ (ratio drifts, so not direct).",
+      "check": [
+        "11 - 7 == 4",
+        "15 - 11 == 4",
+        "2*6 + 3 == 15"
+      ]
+    },
+    {
+      "id": "lmv-pr6",
+      "statement": "Nine identical pumps fill a reservoir in $16$ hours. How long for $12$ pumps?",
+      "solution": "$k = 144$ pump-hours: $\\frac{144}{12} = 12$ hours.",
+      "check": [
+        "9*16 == 144",
+        "Rational(144,12) == 12"
+      ]
+    },
+    {
+      "id": "lmv-pr7",
+      "statement": "A $75$ kg adult sits $0.8$ m from a seesaw pivot. How far out must a $40$ kg child sit?",
+      "solution": "$75 \\times 0.8 = 60 = 40d \\to d = 1.5$ m.",
+      "check": [
+        "75*Rational(8,10) == 60",
+        "40*Rational(3,2) == 60"
+      ]
+    },
+    {
+      "id": "lmv-pr8",
+      "statement": "Ride-hail fare: \\$2.20 base plus a per-km rate; a $9$ km trip cost \\$13. Find the rate and the cost of a $15$ km trip.",
+      "solution": "$9r + 2.2 = 13 \\to r = 1.2$; $15$ km: $18 + 2.2 = 20.20$ dollars.",
+      "check": [
+        "9*Rational(12,10) + Rational(22,10) == 13",
+        "15*Rational(12,10) + Rational(22,10) == Rational(202,10)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "lmv-ty1",
+      "statement": "An elevator descends from floor height $86$ m at $1.4$ m/s. Model its height and find when it reaches $30$ m.",
+      "solution": "$h = 86 - 1.4t$; $86 - 1.4t = 30 \\to t = 40$ s.",
+      "check": [
+        "86 - Rational(14,10)*40 == 30"
+      ]
+    },
+    {
+      "id": "lmv-ty2",
+      "statement": "The line through $(3, 4)$ and $(9, 22)$: slope, intercept, equation?",
+      "solution": "$m = 3$; $b = 4 - 9 = -5$; $y = 3x - 5$.",
+      "check": [
+        "Rational(22 - 4, 9 - 3) == 3",
+        "3*3 - 5 == 4",
+        "3*9 - 5 == 22"
+      ]
+    },
+    {
+      "id": "lmv-ty3",
+      "statement": "Ink usage varies directly with pages: $210$ pages use $6$ mL. How many pages does a $20$ mL cartridge print?",
+      "solution": "$k = 35$ pages/mL: $700$ pages.",
+      "check": [
+        "Rational(210,6) == 35",
+        "35*20 == 700"
+      ]
+    },
+    {
+      "id": "lmv-ty4",
+      "statement": "Travel time varies inversely with speed: $5$ h at $72$ km/h. How fast to make it in $4$ h?",
+      "solution": "$k = 360$ km: $\\frac{360}{4} = 90$ km/h.",
+      "check": [
+        "5*72 == 360",
+        "Rational(360,4) == 90"
+      ]
+    },
+    {
+      "id": "lmv-ty5",
+      "statement": "Classify each: (a) $(1, 6), (2, 12), (5, 30)$; (b) $(1, 60), (4, 15), (10, 6)$; (c) $(1, 5), (2, 7), (4, 11)$.",
+      "solution": "(a) ratios all $6$: direct. (b) products all $60$: inverse. (c) jumps $2$ per unit step: linear, $y = 2x + 3$.",
+      "check": [
+        "Rational(6,1) == 6",
+        "Rational(30,5) == 6",
+        "1*60 == 60",
+        "10*6 == 60",
+        "2*4 + 3 == 11"
+      ]
+    },
+    {
+      "id": "lmv-ty6",
+      "statement": "A relief shipment feeds $150$ people for $21$ days. If $75$ more people arrive after day $0$, how long does the food last in total?",
+      "solution": "$k = 3150$ person-days; $225$ people: $\\frac{3150}{225} = 14$ days.",
+      "check": [
+        "150*21 == 3150",
+        "Rational(3150,225) == 14"
+      ]
+    }
+  ]
+}
