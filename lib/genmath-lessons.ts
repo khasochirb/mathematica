@@ -131,6 +131,7 @@ import g7ProportionalMn from "@/data/genmath/7-mn/proportional-relationships.jso
 import g7RationalOpsMn from "@/data/genmath/7-mn/rational-number-operations.json";
 import g7EqIneqMn from "@/data/genmath/7-mn/equations-and-inequalities.json";
 import g7PercentMn from "@/data/genmath/7-mn/percent-applications.json";
+import g7GeoScaleMn from "@/data/genmath/7-mn/geometry-scale-and-circles.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -603,6 +604,7 @@ const GENMATH_TOPICS_MN: Record<string, GenMathTopic> = {
   "rational-number-operations": g7RationalOpsMn as GenMathTopic,
   "equations-and-inequalities": g7EqIneqMn as GenMathTopic,
   "percent-applications": g7PercentMn as GenMathTopic,
+  "geometry-scale-and-circles": g7GeoScaleMn as GenMathTopic,
 };
 
 // Locale-aware topic lookup: Mongolian mirror when the site language is "mn"
