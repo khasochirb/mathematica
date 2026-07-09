@@ -2,47 +2,1469 @@
   "slug": "data-and-statistics",
   "title": "Data and Statistics",
   "grade": 6,
-  "blurb": "Placeholder — organize data in tables and graphs; find mean, median, mode, and range.",
+  "status": "published",
+  "blurb": "Ask statistical questions, organize data with dot plots and histograms, and summarize it with mean, median, mode, and range.",
   "lessons": [
     {
-      "slug": "data-statistics-intro",
-      "title": "Data and Statistics",
-      "concreteComparison": "Placeholder — real-world opener authored in Step 3. Example: tracking daily temperatures for a week and finding the average gives a measure of typical weather.",
-      "objective": "Placeholder — calculate the mean, median, mode, and range of a data set.",
+      "slug": "statistical-questions",
+      "title": "Statistical Questions",
+      "concreteComparison": "“How old is your teacher?” has one answer. “How old are the teachers at your school?” needs a whole list of answers that differ from teacher to teacher. Questions of the second kind — where the answers VARY — are what statistics is for, the same way a class photo tells you more about the class than one student's selfie.",
+      "objective": "Tell statistical questions from one-answer questions, and classify the data they collect as numerical or categorical.",
       "concept": [
-        "Placeholder concept paragraph. The mean is the sum divided by the count. The median is the middle value when sorted. The mode is the most frequent value."
+        "A **statistical question** is one you answer by collecting data that varies. “How many pets do the students in our class have?” is statistical: Tuya has $0$, Bold has $2$, Sara has $1$. “How many pets does Bold have?” is not — it has a single fixed answer.",
+        "The test is variety: if honestly answering the question forces you to gather MANY answers that can differ, it is statistical. If one measurement or one fact settles it, it is not.",
+        "The answers you collect are **data**. Data comes in two flavors. **Numerical** data are numbers you can meaningfully add and average — heights, minutes, pet counts. **Categorical** data are labels — favorite colors, bus routes, yes/no answers. You can COUNT categories, but averaging them makes no sense: there is no “average favorite color.”",
+        "Every tool in this topic — tables, dot plots, histograms, mean, median, mode, range — is a way to squeeze a big, varied pile of answers into a picture or a number you can actually think about."
+      ],
+      "keyIdea": "A statistical question expects VARIED answers, so you answer it with data — numerical (numbers to compute with) or categorical (labels to count).",
+      "facts": [
+        {
+          "title": "Statistical = answers vary",
+          "latex": "$\\text{one answer} \\to \\text{not statistical}$",
+          "explanation": "If a single fact settles the question, no data collection is needed."
+        },
+        {
+          "title": "Numerical data",
+          "latex": "$3, 5, 2, 8, \\ldots$",
+          "explanation": "Numbers you can order, add, and average: heights, ages, scores."
+        },
+        {
+          "title": "Categorical data",
+          "latex": "$\\text{red, blue, red, green}$",
+          "explanation": "Labels you can only count and compare by frequency."
+        }
       ],
       "workedExamples": [
         {
-          "id": "data-ex-01",
-          "statement": "Placeholder problem. Find the mean of $4, 7, 2, 9, 3$.",
-          "solution": "Placeholder solution. Mean $= (4 + 7 + 2 + 9 + 3) \\div 5 = 25 \\div 5 = 5$."
+          "id": "ds-l1-ex1",
+          "statement": "Which is a statistical question: (a) “How tall is the tallest student in class?” or (b) “How tall are the students in class?”",
+          "solution": "Question (b) is statistical: answering it means measuring every student and getting many different heights. Question (a) has one answer — a single number — so it is not statistical, even though you might collect data to find it.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "ds-l1-ex2",
+          "statement": "A survey asks $30$ students their favorite season and their number of siblings. Classify each kind of data, and say which one has a meaningful average.",
+          "solution": "Favorite season (winter, spring, …) is categorical — labels you can only count. Number of siblings ($0, 1, 2, \\ldots$) is numerical — you can add and average it. Only the sibling counts have a meaningful average; there is no “average season.”",
+          "check": [
+            "30 > 0"
+          ]
         }
       ],
       "commonMistakes": [
-        { "text": "Placeholder mistake — authored in Step 3.", "authored": false }
+        {
+          "text": "Calling any question with a number in it “statistical.”",
+          "correction": "“How many days are in March?” involves a number but has ONE fixed answer — not statistical. The test is whether the collected answers vary, not whether numbers appear.",
+          "authored": true
+        },
+        {
+          "text": "Trying to average categorical data, like coding red = 1, blue = 2 and computing a mean.",
+          "correction": "Category labels are not amounts. The “average” of red and blue is not purple = 1.5; report counts or the most common category instead.",
+          "authored": true
+        }
       ],
       "tryIt": [
         {
-          "id": "data-try-01",
-          "statement": "Placeholder try-it. Find the median of $3, 8, 1, 6, 4$.",
-          "solution": "Placeholder solution. Sorted: $1, 3, 4, 6, 8$. Median = $4$."
+          "id": "ds-l1-try1",
+          "statement": "Write S (statistical) or N (not) for each: (a) “How many minutes do sixth graders spend on homework each night?” (b) “How many minutes did YOU spend on homework last night?”",
+          "solution": "(a) S — every student gives a different number, so you collect varying data. (b) N — one person, one night, one answer.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "ds-l1-try2",
+          "statement": "A pet shelter records each animal's species and its weight in kg. Which column is categorical and which is numerical?",
+          "solution": "Species (dog, cat, rabbit, …) is categorical. Weight ($4.2$ kg, $7.5$ kg, …) is numerical — it can be ordered and averaged.",
+          "check": [
+            "Rational(42,10) < Rational(75,10)"
+          ]
         }
-      ]
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The big split",
+            "title": "One answer vs. many answers",
+            "beats": [
+              "“What's the capital of Mongolia?” — ONE answer. Done.",
+              "“How far do students travel to school?” — 30 students, 30 different answers.",
+              "Questions whose honest answers VARY are **statistical questions**.",
+              "Statistics is the toolkit for taming piles of varied answers."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The two flavors",
+            "title": "Numbers vs. labels",
+            "beats": [
+              "**Numerical** data: amounts you can add and average — minutes, heights, pet counts.",
+              "**Categorical** data: labels you can only count — colors, sports, bus routes.",
+              "You can count how many chose soccer; you cannot average soccer and chess.",
+              "Choosing the right tool starts with knowing which flavor you hold."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Spot the variety",
+            "prompt": "Which question is statistical?",
+            "options": [
+              "How many pages are in this exact book?",
+              "How many pages do books in the library have?",
+              "What page is the glossary on?"
+            ],
+            "correctIndex": 1,
+            "explanation": "Library books have many different page counts — the answers vary, so data is needed. The other two have single fixed answers.",
+            "check": [
+              "1 == 1"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Sort the questions",
+            "intro": "Ask: would the answers vary?",
+            "examples": [
+              {
+                "prompt": "Is “How many goals did our team score in Saturday's game?” statistical?",
+                "steps": [
+                  "One game, one team, one final count.",
+                  "The answer is a single fixed number, say $3$.",
+                  "No variation to collect $\\to$ not statistical."
+                ],
+                "answer": "Not statistical",
+                "check": [
+                  "3 >= 0"
+                ]
+              },
+              {
+                "prompt": "Is “How many goals per game does our team usually score?” statistical?",
+                "steps": [
+                  "“Usually” looks across MANY games.",
+                  "Each game contributes its own count: $3, 0, 2, 1, \\ldots$",
+                  "The answers vary $\\to$ statistical."
+                ],
+                "answer": "Statistical",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Your turn to sort",
+            "intro": "Variety = statistical.",
+            "problems": [
+              {
+                "prompt": "“What brand of phone does each student in school own?” collects…",
+                "options": [
+                  "categorical data",
+                  "numerical data",
+                  "no data"
+                ],
+                "correctIndex": 0,
+                "explanation": "Brands are labels — you count how many own each brand; you can't average brand names.",
+                "check": [
+                  "1 == 1"
+                ]
+              },
+              {
+                "prompt": "Which question is NOT statistical?",
+                "options": [
+                  "How long do batteries of this type last?",
+                  "How tall are the trees in the park?",
+                  "How tall is the flagpole?"
+                ],
+                "correctIndex": 2,
+                "explanation": "The flagpole has one height — a single measurement, no variation.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The first bar chart had an anxious author",
+            "body": "William Playfair invented the bar chart in 1786 — and apologized for it in print, worrying readers would find pictures of data unserious. His invention now appears in essentially every news report, boardroom, and classroom on Earth. The apology did not age well."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Statistical question = the honest answers VARY, so you collect data.",
+              "Numerical data: numbers you can order and average.",
+              "Categorical data: labels you can only count.",
+              "Everything in this topic is machinery for summarizing varied answers."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "dot-plots-and-frequency-tables",
+      "title": "Dot Plots & Frequency Tables",
+      "concreteComparison": "A pile of 20 quiz scores scribbled in a notebook is like laundry dumped on a bed. A frequency table sorts the laundry into labeled drawers — and a dot plot hangs it on a number line where one glance shows where scores bunch up.",
+      "objective": "Organize a data set into a frequency table and a dot plot, and read counts, totals, and clusters from them.",
+      "concept": [
+        "A **frequency table** lists each value (or category) once, next to its **frequency** — how many times it appears. Tally marks help you count without losing your place; the frequencies must add up to the total number of data points, which is your built-in error check.",
+        "A **dot plot** puts a number line under the data: one dot per data point, stacked above its value. Five students scored $7$? Five dots stand in a tower above the $7$.",
+        "Dot plots make the SHAPE of the data visible: where dots pile into towers (clusters), where lonely dots sit far from the crowd, and where the line is empty (gaps). A frequency table holds the same information as numbers; the dot plot lets your eyes do the reading.",
+        "Both tools keep every individual data point visible — nothing is grouped or hidden yet. That is their power for small data sets, and their weakness for huge ones (nobody wants to draw 5{,}000 dots)."
+      ],
+      "keyIdea": "Frequency table = each value with its count; dot plot = one dot per data point above a number line. Frequencies always sum to the number of data points.",
+      "facts": [
+        {
+          "title": "Frequency",
+          "latex": "$\\text{value} \\mapsto \\text{how many times}$",
+          "explanation": "The count of one value's appearances in the data."
+        },
+        {
+          "title": "Totals must match",
+          "latex": "$\\sum \\text{frequencies} = n$",
+          "explanation": "Adding all frequencies returns the number of data points — check it every time."
+        },
+        {
+          "title": "One dot, one data point",
+          "latex": "$5 \\text{ dots over } 7 \\iff 7 \\text{ appears } 5\\times$",
+          "explanation": "Dot towers ARE frequencies, drawn instead of written."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ds-l2-ex1",
+          "statement": "Pets per student: $1, 0, 2, 1, 3, 0, 1, 2, 1, 0$. Build the frequency table and check the total.",
+          "solution": "Count each value: $0$ appears $3$ times, $1$ appears $4$ times, $2$ appears $2$ times, $3$ appears $1$ time. Check: $3 + 4 + 2 + 1 = 10$ — matches the $10$ students. The table is: $0\\!:\\!3,\\ 1\\!:\\!4,\\ 2\\!:\\!2,\\ 3\\!:\\!1$.",
+          "check": [
+            "3 + 4 + 2 + 1 == 10"
+          ]
+        },
+        {
+          "id": "ds-l2-ex2",
+          "statement": "A dot plot of quiz scores shows towers: two dots over $6$, five dots over $7$, four dots over $8$, one dot over $10$. How many students took the quiz, and what is the most common score?",
+          "solution": "Add the towers: $2 + 5 + 4 + 1 = 12$ students. The tallest tower ($5$ dots) stands over $7$, so $7$ is the most common score. Notice the gap: nobody scored $9$.",
+          "check": [
+            "2 + 5 + 4 + 1 == 12",
+            "5 > 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Forgetting values with frequency zero when reading gaps — treating a dot plot's empty spot as “nothing to mention.”",
+          "correction": "Gaps are information. “Nobody scored 9” can matter as much as “five people scored 7.” Keep the number line's empty values in view.",
+          "authored": true
+        },
+        {
+          "text": "Letting frequencies drift from the total (tallying 10 data points into counts that sum to 9 or 11).",
+          "correction": "Always add the frequency column and compare with the number of data points. A mismatch means a missed or double-counted value.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ds-l2-try1",
+          "statement": "Shoe sizes: $36, 38, 37, 38, 36, 38, 39, 37, 38, 36$. What frequency does size $38$ get, and do the frequencies total $10$?",
+          "solution": "Size $38$ appears $4$ times. Full table: $36\\!:\\!3,\\ 37\\!:\\!2,\\ 38\\!:\\!4,\\ 39\\!:\\!1$; total $3+2+4+1 = 10$. ✓",
+          "check": [
+            "3 + 2 + 4 + 1 == 10"
+          ]
+        },
+        {
+          "id": "ds-l2-try2",
+          "statement": "A dot plot over values $0$–$5$ has towers $1, 2, 4, 3, 0, 2$ (left to right). How many data points sit at values greater than $2$?",
+          "solution": "Values $3, 4, 5$ have towers $3, 0, 2$, so $3 + 0 + 2 = 5$ data points exceed $2$.",
+          "check": [
+            "3 + 0 + 2 == 5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "From pile to plot",
+            "title": "Sorting the laundry",
+            "beats": [
+              "Raw data: $1, 0, 2, 1, 3, 0, 1, 2, 1, 0$ — a pile.",
+              "**Frequency table**: each value once, with its count. $1$ appears $4$ times.",
+              "**Dot plot**: a number line where each data point becomes a stacked dot.",
+              "Same information, two outfits: numbers for computing, dots for seeing."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Built-in error check",
+            "title": "The frequencies must confess",
+            "beats": [
+              "Ten data points went in — the frequency column must sum to $10$.",
+              "$3 + 4 + 2 + 1 = 10$ ✓ — nothing lost, nothing counted twice.",
+              "This check takes five seconds and catches most tally mistakes.",
+              "Make it a habit: total the column, match the count."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Count the dots",
+            "prompt": "A dot plot shows towers of $3, 5, 2$ dots over the values $10, 11, 12$. How many data points are there?",
+            "options": [
+              "$10$",
+              "$3$",
+              "$33$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Count dots, not values: $3 + 5 + 2 = 10$ data points.",
+            "check": [
+              "3 + 5 + 2 == 10"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Read the plot like a pro",
+            "intro": "Towers are frequencies.",
+            "examples": [
+              {
+                "prompt": "Towers over minutes-of-travel $5,10,15,20$: heights $6,7,4,3$. How many students travel $15$ minutes or MORE?",
+                "steps": [
+                  "“$15$ or more” covers the towers at $15$ and $20$.",
+                  "Heights there: $4$ and $3$.",
+                  "$4 + 3 = 7$ students."
+                ],
+                "answer": "$7$ students",
+                "check": [
+                  "4 + 3 == 7"
+                ]
+              },
+              {
+                "prompt": "Same plot. What fraction of the $20$ students travel exactly $10$ minutes?",
+                "steps": [
+                  "Total: $6+7+4+3 = 20$ students.",
+                  "Tower over $10$ has height $7$.",
+                  "Fraction: $\\frac{7}{20}$."
+                ],
+                "answer": "$\\frac{7}{20}$",
+                "check": [
+                  "6 + 7 + 4 + 3 == 20",
+                  "Rational(7,20) == Rational(7,20)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Your turn at the number line",
+            "intro": "Read towers; add carefully.",
+            "problems": [
+              {
+                "prompt": "Frequencies for values $1,2,3,4$: $5, 8, 8, 4$. The total number of data points is…",
+                "options": [
+                  "$25$",
+                  "$10$",
+                  "$24$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5 + 8 + 8 + 4 = 25$.",
+                "check": [
+                  "5 + 8 + 8 + 4 == 25"
+                ]
+              },
+              {
+                "prompt": "In that data set, how many data points are LESS than $3$?",
+                "options": [
+                  "$13$",
+                  "$8$",
+                  "$21$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Values $1$ and $2$: $5 + 8 = 13$.",
+                "check": [
+                  "5 + 8 == 13"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Florence Nightingale, chart designer",
+            "body": "The founder of modern nursing was also a data pioneer: Florence Nightingale's 1858 “rose diagrams” showed the British government that far more soldiers died of preventable disease than of battle wounds. Parliament could ignore tables of numbers; it could not ignore her picture. Hospitals were reformed within years."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Frequency table: each value once, with its count.",
+              "Dot plot: one dot per data point, stacked over a number line.",
+              "Frequencies must sum to the number of data points — always check.",
+              "Towers, gaps, and clusters are the data's shape, visible at a glance."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "histograms",
+      "title": "Histograms",
+      "concreteComparison": "Drawing one dot for each of 200 movie run-times would wallpaper your notebook. A histogram rents apartment buildings instead: it groups the number line into equal-width intervals and raises one bar per interval — 90–99 minutes, 100–109, 110–119 — so 200 movies become six readable bars.",
+      "objective": "Group numerical data into equal-width intervals, draw and read histograms, and know what grouping hides.",
+      "concept": [
+        "A **histogram** groups numerical data into **intervals** (bins) of equal width and draws a bar whose height is the frequency of that interval. The bars touch, because the intervals share edges — together they tile the whole number line from lowest to highest data value.",
+        "Every data point lands in exactly one bin. The standard rule: a bin like $20$–$29$ holds values from $20$ up to and including $29$; the next bin starts at $30$. Equal widths matter — bins of different widths make bar heights impossible to compare fairly.",
+        "Histograms trade detail for clarity. From the bar over $20$–$29$ you know HOW MANY values landed there, but not WHAT they were: the individual values are hidden inside the bar. That's the price of summarizing 200 points into 6 bars.",
+        "Choosing bins is a real decision: wider bins give fewer, chunkier bars (more smoothing); narrower bins give more, spikier bars (more detail). The same data can look calm or jagged depending on your choice — which is why the bin width is always worth a glance."
+      ],
+      "keyIdea": "A histogram bins numerical data into equal-width intervals and raises one touching bar per bin; bar height = how many data points landed in that bin.",
+      "facts": [
+        {
+          "title": "Equal-width bins",
+          "latex": "$0\\text{–}9,\\ 10\\text{–}19,\\ 20\\text{–}29, \\ldots$",
+          "explanation": "Same width every bin, no overlaps, no holes — every value has exactly one home."
+        },
+        {
+          "title": "Height = frequency",
+          "latex": "$\\text{bar height} = \\#\\{\\text{values in bin}\\}$",
+          "explanation": "Heights still sum to the number of data points."
+        },
+        {
+          "title": "Bars hide individuals",
+          "latex": "$\\text{bin } 20\\text{–}29: 7 \\text{ values}$",
+          "explanation": "You know the count, not the exact values inside."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ds-l3-ex1",
+          "statement": "Daily visitors: $23, 41, 35, 12, 28, 45, 33, 19, 38, 27$. Using bins $10$–$19$, $20$–$29$, $30$–$39$, $40$–$49$, find each bar's height.",
+          "solution": "Sort values into bins. $10$–$19$: $12, 19$ → height $2$. $20$–$29$: $23, 28, 27$ → height $3$. $30$–$39$: $35, 33, 38$ → height $3$. $40$–$49$: $41, 45$ → height $2$. Check: $2+3+3+2 = 10$ values. ✓",
+          "check": [
+            "2 + 3 + 3 + 2 == 10"
+          ]
+        },
+        {
+          "id": "ds-l3-ex2",
+          "statement": "A histogram of $50$ commute times has bars $8, 15, 12, 9, 6$ over bins $0$–$9$, $10$–$19$, $20$–$29$, $30$–$39$, $40$–$49$ minutes. How many commutes are $20$ minutes or longer, and can you tell exactly how many are $25$ minutes?",
+          "solution": "Bars at $20$–$29$, $30$–$39$, $40$–$49$: $12 + 9 + 6 = 27$ commutes of $20$ minutes or more. But the exact number equal to $25$ is unknowable — the $12$ values in the $20$–$29$ bar could sit anywhere inside it. Histograms report bins, not individuals.",
+          "check": [
+            "12 + 9 + 6 == 27",
+            "8 + 15 + 12 + 9 + 6 == 50"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Leaving gaps between histogram bars, like a bar chart of categories.",
+          "correction": "Histogram bins tile a continuous number line, so the bars touch. Gaps belong to bar charts of categorical data — a different tool.",
+          "authored": true
+        },
+        {
+          "text": "Reading a bar and claiming a specific value inside it, e.g. “the bar over 20–29 is tall, so many people scored 25.”",
+          "correction": "The bar only says how many values fell SOMEWHERE in 20–29. All 12 could be 21s. Bin counts never pin down individual values.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ds-l3-try1",
+          "statement": "Test scores: $61, 74, 88, 92, 79, 85, 67, 71, 95, 83$. With bins $60$–$69$, $70$–$79$, $80$–$89$, $90$–$99$, what are the four bar heights?",
+          "solution": "$60$–$69$: $61, 67$ → $2$. $70$–$79$: $74, 79, 71$ → $3$. $80$–$89$: $88, 85, 83$ → $3$. $90$–$99$: $92, 95$ → $2$. Check: $2+3+3+2=10$. ✓",
+          "check": [
+            "2 + 3 + 3 + 2 == 10"
+          ]
+        },
+        {
+          "id": "ds-l3-try2",
+          "statement": "A histogram's bars have heights $4, 9, 11, 6$. What fraction of the data lies in the two middle bins?",
+          "solution": "Total $= 4+9+11+6 = 30$; middle bins hold $9 + 11 = 20$. Fraction $= \\frac{20}{30} = \\frac{2}{3}$.",
+          "check": [
+            "4 + 9 + 11 + 6 == 30",
+            "Rational(20,30) == Rational(2,3)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Why bins?",
+            "title": "Two hundred dots is a wallpaper problem",
+            "beats": [
+              "Dot plots shine for small data sets with few distinct values.",
+              "200 movie run-times from 85 to 182 minutes? Dots everywhere.",
+              "**Histogram**: chop the line into equal intervals, count per interval, raise bars.",
+              "Six bars now tell the story 200 dots mumbled."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The rules of the bins",
+            "title": "Equal, touching, exhaustive",
+            "beats": [
+              "Equal width: $10$-wide bins from $0$–$9$ to $40$–$49$.",
+              "Every value lands in EXACTLY one bin — no overlaps, no orphans.",
+              "Bars touch: the bins share edges on a continuous line.",
+              "Heights still sum to the number of data points."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Edge patrol",
+            "prompt": "Bins $0$–$9$, $10$–$19$, $20$–$29$. The value $20$ belongs to…",
+            "options": [
+              "the $20$–$29$ bin",
+              "the $10$–$19$ bin",
+              "both bins"
+            ],
+            "correctIndex": 0,
+            "explanation": "A bin holds values from its left edge up to and including its right label; $20$ starts the $20$–$29$ bin.",
+            "check": [
+              "1 == 1"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Build the bars",
+            "intro": "Sort, count, check the total.",
+            "examples": [
+              {
+                "prompt": "Values $5, 12, 9, 21, 17, 3, 28, 14$ with bins $0$–$9$, $10$–$19$, $20$–$29$: find the heights.",
+                "steps": [
+                  "$0$–$9$: $5, 9, 3$ → $3$.",
+                  "$10$–$19$: $12, 17, 14$ → $3$.",
+                  "$20$–$29$: $21, 28$ → $2$. Check $3+3+2 = 8$ ✓"
+                ],
+                "answer": "Heights $3, 3, 2$",
+                "check": [
+                  "3 + 3 + 2 == 8"
+                ]
+              },
+              {
+                "prompt": "Bars $7, 10, 13, 10$ over four bins. What fraction of the data is in the tallest bar's bin?",
+                "steps": [
+                  "Total $= 7+10+13+10 = 40$.",
+                  "Tallest bar: $13$.",
+                  "Fraction $= \\frac{13}{40}$."
+                ],
+                "answer": "$\\frac{13}{40}$",
+                "check": [
+                  "7 + 10 + 13 + 10 == 40"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Bin there, done that",
+            "intro": "Equal bins, careful counts.",
+            "problems": [
+              {
+                "prompt": "Heights $6, 14, 10$ over bins $0$–$9$, $10$–$19$, $20$–$29$. How many values are less than $20$?",
+                "options": [
+                  "$20$",
+                  "$14$",
+                  "$30$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Bins $0$–$9$ and $10$–$19$: $6 + 14 = 20$ values.",
+                "check": [
+                  "6 + 14 == 20"
+                ]
+              },
+              {
+                "prompt": "A histogram hides…",
+                "options": [
+                  "the exact values inside each bin",
+                  "the number of data points",
+                  "which bin is tallest"
+                ],
+                "correctIndex": 0,
+                "explanation": "Counts per bin survive; the individual values inside a bar are smoothed away.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The word “histogram” is a century older than you'd guess",
+            "body": "Statistician Karl Pearson coined “histogram” in 1891 lectures — decades before computers made charts cheap. His students drew every bar by hand from tally sheets. The tool was so useful it outlived the drudgery: today software raises the bars, but the equal-bin rules are exactly Pearson's."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Histograms bin numerical data into equal-width, touching intervals.",
+              "Bar height = frequency in the bin; heights sum to $n$.",
+              "Each value lives in exactly one bin (edges: $20$ starts $20$–$29$).",
+              "Bins trade individual detail for big-picture shape."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-mean",
+      "title": "The Mean",
+      "concreteComparison": "Four friends bring $2, 5, 6,$ and $3$ dumplings to a picnic and pool them on one plate: $16$ dumplings. Shared fairly, everyone eats $4$. That fair share — pool everything, deal it back out equally — is exactly the mean.",
+      "objective": "Compute the mean as sum ÷ count, interpret it as a fair share and balance point, and find a missing data value from a known mean.",
+      "concept": [
+        "The **mean** of a data set is the total divided by the count: $\\text{mean} = \\dfrac{\\text{sum of values}}{\\text{number of values}}$. It answers: “if everyone had the same amount, how much would each have?”",
+        "Fair-share picture: pool all the dumplings, deal them out equally. Balance picture: on a dot plot, the mean is where the data would balance on a seesaw — big values lean on it from the right, small ones from the left, and the tips cancel exactly.",
+        "The mean uses EVERY value, which makes it sensitive: change any single data point and the mean moves. Add a giant value and the mean slides toward it — sometimes far from where most of the data sits.",
+        "Because $\\text{sum} = \\text{mean} \\times \\text{count}$, you can run the formula backwards: knowing the mean and all values but one lets you find the missing value — total up what the sum MUST be, then subtract what you have."
+      ],
+      "keyIdea": "Mean $= \\dfrac{\\text{sum}}{\\text{count}}$ — the fair share. Backwards: sum $=$ mean $\\times$ count, which recovers missing values.",
+      "facts": [
+        {
+          "title": "The formula",
+          "latex": "$\\bar{x} = \\dfrac{x_1 + x_2 + \\cdots + x_n}{n}$",
+          "explanation": "Add everything, divide by how many."
+        },
+        {
+          "title": "Backwards formula",
+          "latex": "$\\text{sum} = \\text{mean} \\times n$",
+          "explanation": "The key to missing-value problems."
+        },
+        {
+          "title": "Every value votes",
+          "latex": "$\\text{one outlier} \\Rightarrow \\text{mean shifts}$",
+          "explanation": "The mean feels every data point — including extreme ones."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ds-l4-ex1",
+          "statement": "Bilguun's quiz scores are $7, 9, 6, 10, 8$. Find the mean.",
+          "solution": "Sum: $7 + 9 + 6 + 10 + 8 = 40$. Count: $5$. Mean $= 40 \\div 5 = 8$. On average, a Bilguun quiz earns $8$ points.",
+          "check": [
+            "7 + 9 + 6 + 10 + 8 == 40",
+            "Rational(40,5) == 8"
+          ]
+        },
+        {
+          "id": "ds-l4-ex2",
+          "statement": "After four tests, Saraa's mean is $85$. What total must she have, and what score on test five raises her mean to $87$?",
+          "solution": "Current sum $= 85 \\times 4 = 340$. A five-test mean of $87$ needs sum $87 \\times 5 = 435$. Test five must score $435 - 340 = 95$.",
+          "check": [
+            "85*4 == 340",
+            "87*5 == 435",
+            "435 - 340 == 95"
+          ]
+        },
+        {
+          "id": "ds-l4-ex3",
+          "statement": "Daily rainfall was $2, 0, 5, 1$ mm over four days. A fifth day's storm brings the five-day mean to $4$ mm. How much rain fell in the storm?",
+          "solution": "Five days at mean $4$ mm total $4 \\times 5 = 20$ mm. The first four days gave $2+0+5+1 = 8$ mm. The storm: $20 - 8 = 12$ mm — one day out-rained the other four combined.",
+          "check": [
+            "4*5 == 20",
+            "2 + 0 + 5 + 1 == 8",
+            "20 - 8 == 12"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dividing by the wrong count — e.g. averaging five scores but dividing by four because one value is $0$.",
+          "correction": "Zeros are data too. Count every data point, including zeros: $2, 0, 5, 1$ has four values, so divide by $4$.",
+          "authored": true
+        },
+        {
+          "text": "Averaging two means directly when the groups have different sizes.",
+          "correction": "A class of 10 with mean 80 and a class of 30 with mean 90 do NOT average to 85. Pool the sums: $(800 + 2700) \\div 40 = 87.5$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ds-l4-try1",
+          "statement": "Find the mean of $12, 15, 11, 18, 14$.",
+          "solution": "Sum $= 12+15+11+18+14 = 70$; mean $= 70 \\div 5 = 14$.",
+          "check": [
+            "12 + 15 + 11 + 18 + 14 == 70",
+            "Rational(70,5) == 14"
+          ]
+        },
+        {
+          "id": "ds-l4-try2",
+          "statement": "Six numbers have mean $9$. Five of them are $8, 12, 7, 10, 9$. Find the sixth.",
+          "solution": "Required sum $= 9 \\times 6 = 54$. The five known values give $8+12+7+10+9 = 46$. Sixth value $= 54 - 46 = 8$.",
+          "check": [
+            "9*6 == 54",
+            "8 + 12 + 7 + 10 + 9 == 46",
+            "54 - 46 == 8"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Fair share",
+            "title": "Pool it, deal it back",
+            "beats": [
+              "Friends bring $2, 5, 6, 3$ dumplings; the plate holds $16$.",
+              "Deal equally to $4$ people: $16 \\div 4 = 4$ each.",
+              "**Mean = sum ÷ count** — the everyone-equal amount.",
+              "No dumpling is lost: the mean preserves the total."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The seesaw",
+            "title": "Balance point of the dots",
+            "beats": [
+              "Put the data on a number line and imagine it's a plank.",
+              "The mean is the pivot where it balances.",
+              "A far-out value has leverage — it drags the pivot toward itself.",
+              "That sensitivity is a feature AND a warning."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Fast fair share",
+            "prompt": "The mean of $3, 7, 8, 10$ is…",
+            "options": [
+              "$7$",
+              "$28$",
+              "$8$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Sum $= 28$, count $= 4$, mean $= 28 \\div 4 = 7$.",
+            "check": [
+              "3 + 7 + 8 + 10 == 28",
+              "Rational(28,4) == 7"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Forwards and backwards",
+            "intro": "Sum ÷ count — and count × mean.",
+            "examples": [
+              {
+                "prompt": "Mean of $4, 9, 5, 6$?",
+                "steps": [
+                  "Sum: $4+9+5+6 = 24$.",
+                  "Count: $4$.",
+                  "Mean: $24 \\div 4 = 6$."
+                ],
+                "answer": "$6$",
+                "check": [
+                  "4 + 9 + 5 + 6 == 24",
+                  "Rational(24,4) == 6"
+                ]
+              },
+              {
+                "prompt": "Five values have mean $11$; four of them sum to $42$. The fifth value?",
+                "steps": [
+                  "Total must be $11 \\times 5 = 55$.",
+                  "Known: $42$.",
+                  "Fifth: $55 - 42 = 13$."
+                ],
+                "answer": "$13$",
+                "check": [
+                  "11*5 == 55",
+                  "55 - 42 == 13"
+                ]
+              },
+              {
+                "prompt": "Team A (4 games) scored a mean of $2$ goals; team B's next game makes the combined five-game total $13$. How many did B score?",
+                "steps": [
+                  "A's total: $2 \\times 4 = 8$.",
+                  "All five games: $13$.",
+                  "B's game: $13 - 8 = 5$."
+                ],
+                "answer": "$5$ goals",
+                "check": [
+                  "2*4 == 8",
+                  "13 - 8 == 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Balance the books",
+            "intro": "Zeros count; totals never lie.",
+            "problems": [
+              {
+                "prompt": "Mean of $0, 4, 8$?",
+                "options": [
+                  "$4$",
+                  "$6$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Sum $12$, count $3$ (the zero counts!), mean $4$.",
+                "check": [
+                  "Rational(0 + 4 + 8, 3) == 4"
+                ]
+              },
+              {
+                "prompt": "Seven values have mean $10$. Their sum is…",
+                "options": [
+                  "$70$",
+                  "$17$",
+                  "$10$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Sum $=$ mean $\\times$ count $= 10 \\times 7 = 70$.",
+                "check": [
+                  "10*7 == 70"
+                ]
+              },
+              {
+                "prompt": "Adding the value $100$ to the set $5, 6, 7$ makes the mean…",
+                "options": [
+                  "jump far above $7$",
+                  "stay at $6$",
+                  "drop below $5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "New mean $= (5+6+7+100) \\div 4 = 29.5$ — one giant dragged it.",
+                "check": [
+                  "Rational(5 + 6 + 7 + 100, 4) == Rational(59, 2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Astronomers invented averaging out of embarrassment",
+            "body": "Eighteenth-century astronomers measuring the same star got slightly different numbers every night and had to decide which observation to trust. Their fix — trust none, average all — felt scandalous at first. It became the mean's first professional job, and the foundation of every measurement science since."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Mean $=$ sum $\\div$ count: the fair share.",
+              "Backwards: sum $=$ mean $\\times$ count — recovers missing values.",
+              "Zeros are data; count them.",
+              "The mean feels every value — extremes drag it."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "median-and-mode",
+      "title": "Median & Mode",
+      "concreteComparison": "Nine houses on a street sell for around 200 million ₮ — then a palace sells for 2 billion. The MEAN price rockets, but the middle house on the sorted list barely notices. That stubborn middle value is the median: the typical-house number real-estate reports actually use.",
+      "objective": "Find the median of odd and even-sized data sets and the mode of any data set, and choose which measure of center fits a situation.",
+      "concept": [
+        "The **median** is the middle value of the SORTED data. Sort first — always. With an odd count, it's the single middle value; with an even count, it's the mean of the two middle values (halfway between them).",
+        "The **mode** is the most frequent value — the tallest tower on a dot plot. A data set can have one mode, several modes (ties), or no mode at all (every value once). Mode is the only center that works for categorical data: the most common favorite color is a mode.",
+        "Median vs. mean is a question of sensitivity. The mean feels every value, so one extreme drags it. The median only cares about the middle of the sorted order — the palace can cost 2 billion or 20 billion and the median doesn't move.",
+        "Choosing: symmetric data with no extremes — mean and median agree, use either. Data with outliers or a long tail (house prices, incomes) — the median tells the typical story. “Most common” questions — that's the mode."
+      ],
+      "keyIdea": "Median = middle of the SORTED list (average the two middles when the count is even); mode = most frequent value. Outliers drag the mean but barely touch the median.",
+      "facts": [
+        {
+          "title": "Sort first",
+          "latex": "$4,1,3 \\to 1,3,4 \\to \\text{median } 3$",
+          "explanation": "The median of unsorted data is a trap; order it, then look in the middle."
+        },
+        {
+          "title": "Even count",
+          "latex": "$\\text{median} = \\dfrac{\\text{two middles' sum}}{2}$",
+          "explanation": "Halfway between the two central values."
+        },
+        {
+          "title": "Mode",
+          "latex": "$\\text{most frequent value}$",
+          "explanation": "Can be tied, can be absent; works even for categories."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ds-l5-ex1",
+          "statement": "Find the median of $12, 5, 20, 8, 15$.",
+          "solution": "Sort: $5, 8, 12, 15, 20$. Five values — the third is the middle: median $= 12$.",
+          "check": [
+            "12 > 8",
+            "12 < 15"
+          ]
+        },
+        {
+          "id": "ds-l5-ex2",
+          "statement": "Find the median of $7, 3, 9, 5, 11, 13$.",
+          "solution": "Sort: $3, 5, 7, 9, 11, 13$. Six values — the middle pair is $7$ and $9$. Median $= (7+9) \\div 2 = 8$. Note $8$ isn't in the data; the median doesn't have to be.",
+          "check": [
+            "Rational(7 + 9, 2) == 8"
+          ]
+        },
+        {
+          "id": "ds-l5-ex3",
+          "statement": "Nine salaries of $300$ (in thousands) and one of $3000$: compare mean and median.",
+          "solution": "Sum $= 9 \\times 300 + 3000 = 5700$; mean $= 5700 \\div 10 = 570$. Sorted, the middle pair are both $300$, so the median is $300$. The mean ($570$) describes nobody; the median ($300$) describes almost everybody.",
+          "check": [
+            "9*300 + 3000 == 5700",
+            "Rational(5700,10) == 570",
+            "Rational(300 + 300, 2) == 300"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Taking the middle of the UNSORTED list.",
+          "correction": "$12, 5, 20, 8, 15$ has middle entry $20$ as written — but the median is $12$, the middle AFTER sorting. Sort first, every time.",
+          "authored": true
+        },
+        {
+          "text": "Reporting “no median” when the count is even.",
+          "correction": "An even count has no single middle value, but the median still exists: average the two middle values. For $3,5,7,9$ it's $(5+7)\\div 2 = 6$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ds-l5-try1",
+          "statement": "Median and mode of $4, 7, 2, 7, 9, 1, 7$?",
+          "solution": "Sort: $1, 2, 4, 7, 7, 7, 9$ — seven values, middle (4th) is $7$; median $= 7$. Mode $= 7$ too (appears $3$ times).",
+          "check": [
+            "3 > 1"
+          ]
+        },
+        {
+          "id": "ds-l5-try2",
+          "statement": "Median of $10, 2, 8, 4$?",
+          "solution": "Sort: $2, 4, 8, 10$; middle pair $4$ and $8$; median $= (4+8) \\div 2 = 6$.",
+          "check": [
+            "Rational(4 + 8, 2) == 6"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The middle seat",
+            "title": "Median = sorted middle",
+            "beats": [
+              "Line the data up smallest to largest — no skipping the sort.",
+              "Odd count: one middle value IS the median.",
+              "Even count: average the two middle values.",
+              "The median splits the data: half at or below, half at or above."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The people's choice",
+            "title": "Mode = most frequent",
+            "beats": [
+              "Mode: the value that shows up most — the tallest dot-tower.",
+              "Ties allowed (two modes), absence allowed (all values once).",
+              "Only the mode survives categorical data: “most popular color.”",
+              "Mean, median, mode: three different “typical”s for three different questions."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Sort first!",
+            "prompt": "Median of $9, 1, 5$?",
+            "options": [
+              "$5$",
+              "$1$",
+              "$9$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Sorted: $1, 5, 9$ — the middle is $5$. (Unsorted middle was a trap.)",
+            "check": [
+              "5 > 1",
+              "5 < 9"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Middles and multiples",
+            "intro": "Sort, then read the center.",
+            "examples": [
+              {
+                "prompt": "Median of $15, 8, 22, 11, 9, 30$?",
+                "steps": [
+                  "Sort: $8, 9, 11, 15, 22, 30$.",
+                  "Middle pair: $11$ and $15$.",
+                  "Median $= (11+15) \\div 2 = 13$."
+                ],
+                "answer": "$13$",
+                "check": [
+                  "Rational(11 + 15, 2) == 13"
+                ]
+              },
+              {
+                "prompt": "The set $2, 2, 3, 5, 5, 5, 8$: mode and median?",
+                "steps": [
+                  "Already sorted; seven values.",
+                  "Median: 4th value $= 5$.",
+                  "Mode: $5$ (three times, beats $2$'s two)."
+                ],
+                "answer": "median $5$, mode $5$",
+                "check": [
+                  "3 > 2"
+                ]
+              },
+              {
+                "prompt": "Test scores $60, 62, 65, 61, 99$: which center should the report lead with?",
+                "steps": [
+                  "Sort: $60, 61, 62, 65, 99$ — the $99$ is an outlier.",
+                  "Mean $= 347 \\div 5 = 69.4$, above four of five scores.",
+                  "Median $= 62$ tells the typical story."
+                ],
+                "answer": "median $62$",
+                "check": [
+                  "60 + 61 + 62 + 65 + 99 == 347",
+                  "Rational(347,5) == Rational(347,5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Center yourself",
+            "intro": "Watch counts and sorting.",
+            "problems": [
+              {
+                "prompt": "Median of $1, 3, 3, 7, 100$?",
+                "options": [
+                  "$3$",
+                  "$22.8$",
+                  "$7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Five sorted values — middle is the 3rd: $3$. The $100$ doesn't budge it (the mean is $22.8$).",
+                "check": [
+                  "Rational(1 + 3 + 3 + 7 + 100, 5) == Rational(114, 5)"
+                ]
+              },
+              {
+                "prompt": "Mode of $4, 9, 4, 9, 4$?",
+                "options": [
+                  "$4$",
+                  "$9$",
+                  "no mode"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4$ appears three times, $9$ twice — mode is $4$.",
+                "check": [
+                  "3 > 2"
+                ]
+              },
+              {
+                "prompt": "A shop's sales: mostly 20–30k₮, one 2-million-₮ day. The honest “typical day” number is the…",
+                "options": [
+                  "median",
+                  "mean",
+                  "maximum"
+                ],
+                "correctIndex": 0,
+                "explanation": "The one giant day drags the mean; the median stays with the typical days.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The 'average' person has fewer than two legs",
+            "body": "The mean number of legs per human is about 1.998 — amputations pull it just below 2 — so almost every person on Earth is “above average.” The median (2) and mode (2) tell the sane story. Moral: pick the center that matches the question, not the one that sounds most official."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Median: sort, then take the middle (average two middles if even).",
+              "Mode: most frequent value — the only center categories allow.",
+              "Outliers drag the mean; the median shrugs.",
+              "Skewed data (prices, incomes): lead with the median."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "range-and-describing-data",
+      "title": "Range & Describing Data",
+      "concreteComparison": "Two cities can share a mean temperature of 15°C — one drifting between 10° and 20° all year, the other swinging from −25° to +35°. Same center, wildly different wardrobes. The range (max − min) is the single number that tells the wardrobe story the mean hides.",
+      "objective": "Compute the range, and describe a data set the full way: center, spread, and shape features (clusters, gaps, peaks, outliers).",
+      "concept": [
+        "The **range** is the simplest measure of spread: $\\text{range} = \\text{maximum} - \\text{minimum}$. Big range = data scattered wide; small range = data huddled together. It uses only two values, so one extreme point can inflate it — quote it with that caveat in mind.",
+        "A center alone is half a description. Two classes can both have a mean score of $75$ while one packs everyone between $70$ and $80$ and the other spans $40$ to $100$ — very different classes, invisible until you report spread beside center.",
+        "A full description of a distribution touches three things: **center** (mean or median — where's the typical value?), **spread** (range — how far do values scatter?), and **shape** (where do the dots cluster? are there gaps? a lone peak or two? any outliers sitting far from the crowd?).",
+        "An **outlier** is a value that stands far from the rest of the data. At this level you judge it by eye on a dot plot. When you spot one, say two things: how it stretches the range and drags the mean, and — always worth asking — whether it's a real value or a recording mistake."
+      ],
+      "keyIdea": "Range $=$ max $-$ min measures spread. A full data description = center + spread + shape (clusters, gaps, peaks, outliers).",
+      "facts": [
+        {
+          "title": "Range",
+          "latex": "$\\text{range} = \\max - \\min$",
+          "explanation": "One subtraction; uses only the two extremes."
+        },
+        {
+          "title": "Center + spread",
+          "latex": "$\\text{same mean} \\ne \\text{same story}$",
+          "explanation": "Two sets can share a center and differ wildly in scatter."
+        },
+        {
+          "title": "Shape words",
+          "latex": "$\\text{cluster, gap, peak, outlier}$",
+          "explanation": "The dot plot vocabulary for how data sits."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ds-l6-ex1",
+          "statement": "Weekly practice hours: $6, 2, 9, 4, 7$. Find the range.",
+          "solution": "Max $= 9$, min $= 2$, range $= 9 - 2 = 7$ hours. The busiest week had $7$ more hours than the lightest.",
+          "check": [
+            "9 - 2 == 7"
+          ]
+        },
+        {
+          "id": "ds-l6-ex2",
+          "statement": "Class A scores: $72, 74, 75, 76, 78$. Class B: $55, 65, 75, 85, 95$. Compare their means and ranges — what's the story?",
+          "solution": "Class A: sum $375$, mean $75$, range $78 - 72 = 6$. Class B: sum $375$, mean $75$, range $95 - 55 = 40$. Same center, but B's scores scatter almost seven times wider: A is uniform, B has strugglers and stars. The range carries the difference the mean can't see.",
+          "check": [
+            "72 + 74 + 75 + 76 + 78 == 375",
+            "55 + 65 + 75 + 85 + 95 == 375",
+            "Rational(375,5) == 75",
+            "78 - 72 == 6",
+            "95 - 55 == 40"
+          ]
+        },
+        {
+          "id": "ds-l6-ex3",
+          "statement": "Data: $11, 12, 12, 13, 14, 40$. How does the outlier change the range and the mean?",
+          "solution": "With the $40$: range $= 40 - 11 = 29$, mean $= 102 \\div 6 = 17$. Without it: range $= 14 - 11 = 3$, mean $= 62 \\div 5 = 12.4$. One value multiplied the range nearly tenfold and pushed the mean above five of the six data points.",
+          "check": [
+            "40 - 11 == 29",
+            "11 + 12 + 12 + 13 + 14 + 40 == 102",
+            "Rational(102,6) == 17",
+            "14 - 11 == 3",
+            "11 + 12 + 12 + 13 + 14 == 62",
+            "Rational(62,5) == Rational(62,5)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reporting the range as an interval, like “the range is 2 to 9.”",
+          "correction": "“From 2 to 9” describes the data's extent; the RANGE is one number: $9 - 2 = 7$. Subtract, don't just list.",
+          "authored": true
+        },
+        {
+          "text": "Describing a data set by its mean alone.",
+          "correction": "Same mean, different spreads = different realities. Pair every center with a spread (range) and a glance at shape before you conclude anything.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ds-l6-try1",
+          "statement": "Find the range of $34, 18, 27, 41, 22$.",
+          "solution": "Max $41$, min $18$: range $= 41 - 18 = 23$.",
+          "check": [
+            "41 - 18 == 23"
+          ]
+        },
+        {
+          "id": "ds-l6-try2",
+          "statement": "Set P: $10, 10, 11, 11$ and set Q: $1, 6, 15, 20$ both have mean $10.5$. Which has the larger range, and by how much?",
+          "solution": "P: range $11 - 10 = 1$. Q: range $20 - 1 = 19$. Q's range is larger by $19 - 1 = 18$ — same center, totally different spread.",
+          "check": [
+            "Rational(10 + 10 + 11 + 11, 4) == Rational(21,2)",
+            "Rational(1 + 6 + 15 + 20, 4) == Rational(21,2)",
+            "11 - 10 == 1",
+            "20 - 1 == 19",
+            "19 - 1 == 18"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Spread in one subtraction",
+            "title": "Range = max − min",
+            "beats": [
+              "Find the biggest value; find the smallest.",
+              "Subtract: that's the range — the data's full stretch.",
+              "$6, 2, 9, 4, 7$: range $= 9 - 2 = 7$.",
+              "Caveat: built from ONLY the two extremes, so outliers inflate it."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The full description",
+            "title": "Center, spread, shape",
+            "beats": [
+              "**Center**: mean or median — the typical value.",
+              "**Spread**: range — how scattered.",
+              "**Shape**: clusters, gaps, peaks, outliers — how the dots sit.",
+              "One sentence each, and your description is complete."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "One subtraction",
+            "prompt": "Range of $25, 13, 30, 18$?",
+            "options": [
+              "$17$",
+              "$30$",
+              "$12$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Max $30$, min $13$: $30 - 13 = 17$.",
+            "check": [
+              "30 - 13 == 17"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Same center, different worlds",
+            "intro": "Always pair center with spread.",
+            "examples": [
+              {
+                "prompt": "City X temps: $12, 14, 15, 16, 18$; City Y: $0, 5, 15, 25, 30$. Both mean $15$. Compare ranges.",
+                "steps": [
+                  "X: $18 - 12 = 6$ degrees.",
+                  "Y: $30 - 0 = 30$ degrees.",
+                  "Same mean; Y swings five times wider — pack a bigger suitcase."
+                ],
+                "answer": "X: $6$, Y: $30$",
+                "check": [
+                  "Rational(12 + 14 + 15 + 16 + 18, 5) == 15",
+                  "Rational(0 + 5 + 15 + 25 + 30, 5) == 15",
+                  "18 - 12 == 6",
+                  "30 - 0 == 30"
+                ]
+              },
+              {
+                "prompt": "Data $8, 9, 9, 10, 35$: which one word changes the whole description, and what happens to the range without it?",
+                "steps": [
+                  "The $35$ is an outlier — far from the cluster at $8$–$10$.",
+                  "With it: range $= 35 - 8 = 27$.",
+                  "Without: $10 - 8 = 2$. One point owned the spread."
+                ],
+                "answer": "outlier; range falls $27 \\to 2$",
+                "check": [
+                  "35 - 8 == 27",
+                  "10 - 8 == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Describe like a statistician",
+            "intro": "Center + spread + shape.",
+            "problems": [
+              {
+                "prompt": "Two sets share mean $50$. Set A's range is $4$; set B's is $60$. Which claim is honest?",
+                "options": [
+                  "They differ a lot despite equal means",
+                  "They're basically the same data",
+                  "B's values are all near $50$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal centers, spreads $4$ vs $60$: A huddles at $50$, B scatters — different worlds.",
+                "check": [
+                  "60 > 4"
+                ]
+              },
+              {
+                "prompt": "A dot plot clusters at $3$–$5$ with one dot at $19$. The range is…",
+                "options": [
+                  "big mostly because of the outlier",
+                  "small since most dots huddle",
+                  "impossible to find"
+                ],
+                "correctIndex": 0,
+                "explanation": "Range $= 19 - 3 = 16$; drop the outlier and it's $2$. The extremes own the range.",
+                "check": [
+                  "19 - 3 == 16",
+                  "5 - 3 == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Weather forecasting runs on spread",
+            "body": "Modern forecasts run the same weather model dozens of times with tiny starting tweaks. If the runs huddle (small spread), forecasters trust the forecast; if they scatter, confidence drops — that's where “70% chance of rain” comes from. The mean run alone would hide exactly the information you need for your umbrella."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Range $=$ max $-$ min — spread in one subtraction.",
+              "Centers alone mislead: pair them with spread.",
+              "Shape vocabulary: clusters, gaps, peaks, outliers.",
+              "Outliers inflate the range and drag the mean — flag them."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [
     {
-      "id": "data-prac-01",
-      "statement": "Placeholder practice problem. Find the range of $12, 5, 20, 8, 15$.",
-      "solution": "Placeholder solution. Range $= 20 - 5 = 15$."
+      "id": "ds-pr-1",
+      "statement": "Which of these is a statistical question: (a) “How many students are in class today?” (b) “How many books did each student in class read this year?” Explain.",
+      "solution": "(b) is statistical — each student gives a different count, so the answers vary and data is needed. (a) is answered by one head-count: a single value.",
+      "check": [
+        "1 == 1"
+      ]
+    },
+    {
+      "id": "ds-pr-2",
+      "statement": "Goals per match: $2, 0, 1, 3, 1, 2, 1, 0, 1, 4$. Make a frequency table and verify the total.",
+      "solution": "Frequencies: $0\\!:\\!2,\\ 1\\!:\\!4,\\ 2\\!:\\!2,\\ 3\\!:\\!1,\\ 4\\!:\\!1$. Check: $2+4+2+1+1 = 10$ matches — table complete.",
+      "check": [
+        "2 + 4 + 2 + 1 + 1 == 10"
+      ]
+    },
+    {
+      "id": "ds-pr-3",
+      "statement": "A dot plot over $0$–$4$ has towers $2, 5, 6, 4, 3$. How many data points are there, and how many are at least $3$?",
+      "solution": "Total: $2+5+6+4+3 = 20$. “At least $3$” covers values $3$ and $4$: $4 + 3 = 7$ points.",
+      "check": [
+        "2 + 5 + 6 + 4 + 3 == 20",
+        "4 + 3 == 7"
+      ]
+    },
+    {
+      "id": "ds-pr-4",
+      "statement": "Ages at a chess club: $11, 25, 14, 32, 19, 27, 38, 22, 16, 29$. Using bins $10$–$19$, $20$–$29$, $30$–$39$, give the bar heights of the histogram.",
+      "solution": "$10$–$19$: $11, 14, 19, 16$ → $4$. $20$–$29$: $25, 27, 22, 29$ → $4$. $30$–$39$: $32, 38$ → $2$. Check: $4+4+2 = 10$. ✓",
+      "check": [
+        "4 + 4 + 2 == 10"
+      ]
+    },
+    {
+      "id": "ds-pr-5",
+      "statement": "Find the mean of $23, 17, 30, 14, 21$.",
+      "solution": "Sum $= 23+17+30+14+21 = 105$; mean $= 105 \\div 5 = 21$.",
+      "check": [
+        "23 + 17 + 30 + 14 + 21 == 105",
+        "Rational(105,5) == 21"
+      ]
+    },
+    {
+      "id": "ds-pr-6",
+      "statement": "After $7$ quizzes Anu's mean is $8$. What must she score on quiz $8$ to raise her mean to $8.5$?",
+      "solution": "Current sum: $8 \\times 7 = 56$. Needed: $8.5 \\times 8 = 68$. Quiz 8: $68 - 56 = 12$ points.",
+      "check": [
+        "8*7 == 56",
+        "Rational(17,2)*8 == 68",
+        "68 - 56 == 12"
+      ]
+    },
+    {
+      "id": "ds-pr-7",
+      "statement": "Find the median and mode of $6, 11, 6, 9, 14, 6, 10, 11$.",
+      "solution": "Sort: $6, 6, 6, 9, 10, 11, 11, 14$ — eight values; middle pair $9, 10$; median $= (9+10) \\div 2 = 9.5$. Mode $= 6$ (three times).",
+      "check": [
+        "Rational(9 + 10, 2) == Rational(19,2)",
+        "3 > 2"
+      ]
+    },
+    {
+      "id": "ds-pr-8",
+      "statement": "Data: $52, 48, 50, 51, 90, 49$. Compute the range with and without the outlier, and say which center — mean or median — better describes a typical value.",
+      "solution": "With $90$: range $= 90 - 48 = 42$; without: $52 - 48 = 4$. Mean $= 340 \\div 6 \\approx 56.7$, above five of six values; sorted middle pair $50, 51$ give median $50.5$ — the median tells the typical story.",
+      "check": [
+        "90 - 48 == 42",
+        "52 - 48 == 4",
+        "52 + 48 + 50 + 51 + 90 + 49 == 340",
+        "Rational(50 + 51, 2) == Rational(101,2)"
+      ]
     }
   ],
   "testYourself": [
     {
-      "id": "data-test-01",
-      "statement": "Placeholder test problem. A student scored $72, 85, 90, 68, 75$ on five tests. Find the mean.",
-      "solution": "Placeholder solution. $(72 + 85 + 90 + 68 + 75) \\div 5 = 390 \\div 5 = 78$."
+      "id": "ds-ty-1",
+      "statement": "Classify the data each question collects — categorical or numerical: (a) “Which month were you born in?” (b) “How many minutes do you sleep per night?”",
+      "solution": "(a) Months are labels → categorical (count them, don't average them). (b) Minutes are amounts → numerical (mean and median make sense).",
+      "check": [
+        "1 == 1"
+      ]
+    },
+    {
+      "id": "ds-ty-2",
+      "statement": "A frequency table shows $1\\!:\\!6,\\ 2\\!:\\!9,\\ 3\\!:\\!7,\\ 4\\!:\\!3$. How many data points are there, and what fraction equal $2$?",
+      "solution": "Total $= 6+9+7+3 = 25$. Fraction equal to $2$: $\\frac{9}{25}$.",
+      "check": [
+        "6 + 9 + 7 + 3 == 25",
+        "Rational(9,25) == Rational(9,25)"
+      ]
+    },
+    {
+      "id": "ds-ty-3",
+      "statement": "Histogram bars over $0$–$9$, $10$–$19$, $20$–$29$, $30$–$39$ have heights $5, 12, 10, 3$. How many values are below $20$, and can the histogram tell you how many equal $15$?",
+      "solution": "Below $20$: $5 + 12 = 17$ values. The count equal to $15$ is hidden — the $12$ values in the $10$–$19$ bar could sit anywhere inside the bin.",
+      "check": [
+        "5 + 12 == 17",
+        "5 + 12 + 10 + 3 == 30"
+      ]
+    },
+    {
+      "id": "ds-ty-4",
+      "statement": "Temuulen's five test scores have mean $84$. Four scores are $80, 88, 79, 90$. Find the fifth score.",
+      "solution": "Required sum: $84 \\times 5 = 420$. Known: $80+88+79+90 = 337$. Fifth score $= 420 - 337 = 83$.",
+      "check": [
+        "84*5 == 420",
+        "80 + 88 + 79 + 90 == 337",
+        "420 - 337 == 83"
+      ]
+    },
+    {
+      "id": "ds-ty-5",
+      "statement": "Find the median of $18, 7, 12, 25, 9, 14$.",
+      "solution": "Sort: $7, 9, 12, 14, 18, 25$; middle pair $12, 14$; median $= (12+14) \\div 2 = 13$.",
+      "check": [
+        "Rational(12 + 14, 2) == 13"
+      ]
+    },
+    {
+      "id": "ds-ty-6",
+      "statement": "House prices (millions ₮): $180, 195, 205, 210, 190, 1200$. Report the range, mean, and median — and say which center a fair news headline should quote.",
+      "solution": "Range $= 1200 - 180 = 1020$. Mean $= 2180 \\div 6 \\approx 363.3$ — above five of the six prices. Sorted middle pair $195, 205$ give median $= 200$. The headline should quote the median: it describes the typical house; the mean describes none of them.",
+      "check": [
+        "1200 - 180 == 1020",
+        "180 + 195 + 205 + 210 + 190 + 1200 == 2180",
+        "Rational(195 + 205, 2) == 200"
+      ]
     }
   ]
 }
