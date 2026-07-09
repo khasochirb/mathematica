@@ -43,7 +43,7 @@ export default function MathLandingPage() {
 
         {/* Subject courses */}
         <div className="eyebrow mb-4">Courses</div>
-        <div className="mb-10">
+        <div className="mb-10 space-y-3">
           <Link
             href="/math/geometry"
             className="card-edit p-6 flex flex-col gap-2 transition-colors"
@@ -72,6 +72,36 @@ export default function MathLandingPage() {
             <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>
               From points and lines to proof, circles, and trigonometry — taught from zero,
               one continuous track. 13 units.
+            </span>
+          </Link>
+          <Link
+            href="/math/prob-stats"
+            className="card-edit p-6 flex flex-col gap-2 transition-colors"
+            style={{ textDecoration: "none" }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--accent-line)";
+              (e.currentTarget as HTMLAnchorElement).style.background = "var(--accent-wash)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.borderColor = "";
+              (e.currentTarget as HTMLAnchorElement).style.background = "";
+            }}
+          >
+            <span
+              className="mono text-[10px] uppercase"
+              style={{ color: "var(--accent)", letterSpacing: "0.08em" }}
+            >
+              New · Full course
+            </span>
+            <span
+              className="serif"
+              style={{ fontSize: 32, fontWeight: 400, letterSpacing: "-0.02em", color: "var(--fg)" }}
+            >
+              Combinatorics, Probability &amp; Statistics
+            </span>
+            <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>
+              Count first, then measure chance, then read data honestly — one continuous
+              track in three acts. 12 units.
             </span>
           </Link>
         </div>

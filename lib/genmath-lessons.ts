@@ -147,6 +147,7 @@ import geometryAreaPerimeter from "@/data/genmath/geometry/area-and-perimeter.js
 import geometrySurfaceVolume from "@/data/genmath/geometry/surface-area-and-volume.json";
 import geometryTransformations from "@/data/genmath/geometry/transformations.json";
 import geometryCoordinate from "@/data/genmath/geometry/coordinate-geometry.json";
+import psCountingPrinciples from "@/data/genmath/prob-stats/counting-principles.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -786,6 +787,135 @@ export function getGeometryLesson(
   lessonSlug: string
 ): GenMathLesson | null {
   const unit = getGeometryUnit(unitSlug);
+  if (!unit) return null;
+  return unit.lessons.find((l) => l.slug === lessonSlug) ?? null;
+}
+
+// ---------------------------------------------------------------------------
+// Combinatorics, Probability & Statistics — the second standalone course.
+// Same architecture as Geometry: one near-linear spine in three acts
+// (count → chance → data), same lesson schema, same verify:genmath gate.
+// Units reuse the GeometryUnit shape (unit number + buildsOn, no grade).
+// ---------------------------------------------------------------------------
+
+export type CourseUnit = GeometryUnit;
+
+export const PROBSTAT_SPINE: GeometrySpineEntry[] = [
+  {
+    unit: 1,
+    slug: "counting-principles",
+    title: "Counting Principles",
+    blurb: "The multiplication and addition principles, complementary counting, and organized lists — how to count without counting.",
+    buildsOn: "Nothing — the course starts here, from zero.",
+    live: true,
+  },
+  {
+    unit: 2,
+    slug: "permutations",
+    title: "Permutations & Arrangements",
+    blurb: "Factorials, arrangements of all or some objects, repeated letters, and seating with restrictions.",
+    buildsOn: "The multiplication principle from Unit 1.",
+    live: false,
+  },
+  {
+    unit: 3,
+    slug: "combinations",
+    title: "Combinations",
+    blurb: "Choosing without order: nCr, committees, at-least and at-most counts, and when order matters vs when it doesn't.",
+    buildsOn: "Permutations (Unit 2) — combinations are permutations with the order divided out.",
+    live: false,
+  },
+  {
+    unit: 4,
+    slug: "binomial-theorem",
+    title: "Pascal's Triangle & the Binomial Theorem",
+    blurb: "The triangle that counts everything: binomial coefficients, expanding powers, and finding specific terms.",
+    buildsOn: "Combinations (Unit 3) — Pascal's triangle IS nCr in disguise.",
+    live: false,
+  },
+  {
+    unit: 5,
+    slug: "probability-models",
+    title: "Probability Models",
+    blurb: "Sample spaces, events, equally-likely outcomes, complements, and the addition rule with Venn diagrams.",
+    buildsOn: "Counting (Units 1–3) — probability is counting favorable over counting all.",
+    live: false,
+  },
+  {
+    unit: 6,
+    slug: "conditional-probability",
+    title: "Conditional Probability & Independence",
+    blurb: "How information changes chance: P(A|B), the multiplication rule, independence, weighted trees, and Bayes by table.",
+    buildsOn: "Probability models from Unit 5.",
+    live: false,
+  },
+  {
+    unit: 7,
+    slug: "random-variables",
+    title: "Random Variables & Expected Value",
+    blurb: "Turning outcomes into numbers: probability distributions, expected value, variance, and what makes a game fair.",
+    buildsOn: "Units 5–6 — distributions are probability models wearing numbers.",
+    live: false,
+  },
+  {
+    unit: 8,
+    slug: "binomial-distribution",
+    title: "The Binomial Distribution",
+    blurb: "Repeated independent trials: binomial probabilities, expected count np, shape, and simulation.",
+    buildsOn: "Combinations (Unit 3) and random variables (Unit 7) — the course's two halves meet here.",
+    live: false,
+  },
+  {
+    unit: 9,
+    slug: "describing-data",
+    title: "Describing Data",
+    blurb: "Center and spread done right: mean, median, IQR, standard deviation, boxplots, and the 1.5×IQR outlier fence.",
+    buildsOn: "Expected value (Unit 7) — the mean of data is expectation seen from below.",
+    live: false,
+  },
+  {
+    unit: 10,
+    slug: "distributions-and-position",
+    title: "Distribution Shape & Position",
+    blurb: "Histograms and shape, percentiles, z-scores, and the normal curve with the 68–95–99.7 rule.",
+    buildsOn: "Center and spread from Unit 9.",
+    live: false,
+  },
+  {
+    unit: 11,
+    slug: "two-variable-data",
+    title: "Two-Variable Data",
+    blurb: "Scatterplots, the correlation coefficient, the least-squares line, and why correlation is not causation.",
+    buildsOn: "One-variable tools from Units 9–10.",
+    live: false,
+  },
+  {
+    unit: 12,
+    slug: "inference-and-studies",
+    title: "Sampling, Studies & Inference",
+    blurb: "Random sampling, bias, experiments vs observation, simulation-based inference, and margin of error — the capstone.",
+    buildsOn: "Everything — probability (Units 5–8) judges what data (Units 9–11) shows.",
+    live: false,
+  },
+];
+
+const probStatUnits: CourseUnit[] = [
+  psCountingPrinciples as unknown as CourseUnit,
+];
+
+export function getProbStatSpine(): GeometrySpineEntry[] {
+  return PROBSTAT_SPINE;
+}
+
+export function getProbStatUnit(unitSlug: string): CourseUnit | null {
+  return probStatUnits.find((u) => u.slug === unitSlug) ?? null;
+}
+
+export function getProbStatLesson(
+  unitSlug: string,
+  lessonSlug: string
+): GenMathLesson | null {
+  const unit = getProbStatUnit(unitSlug);
   if (!unit) return null;
   return unit.lessons.find((l) => l.slug === lessonSlug) ?? null;
 }
