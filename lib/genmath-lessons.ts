@@ -154,6 +154,7 @@ import psBinomialTheorem from "@/data/genmath/prob-stats/binomial-theorem.json";
 import psProbabilityModels from "@/data/genmath/prob-stats/probability-models.json";
 import psConditional from "@/data/genmath/prob-stats/conditional-probability.json";
 import psRandomVariables from "@/data/genmath/prob-stats/random-variables.json";
+import psBinomialDist from "@/data/genmath/prob-stats/binomial-distribution.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -869,7 +870,7 @@ export const PROBSTAT_SPINE: GeometrySpineEntry[] = [
     title: "The Binomial Distribution",
     blurb: "Repeated independent trials: binomial probabilities, expected count np, shape, and simulation.",
     buildsOn: "Combinations (Unit 3) and random variables (Unit 7) — the course's two halves meet here.",
-    live: false,
+    live: true,
   },
   {
     unit: 9,
@@ -913,6 +914,7 @@ const probStatUnits: CourseUnit[] = [
   psProbabilityModels as unknown as CourseUnit,
   psConditional as unknown as CourseUnit,
   psRandomVariables as unknown as CourseUnit,
+  psBinomialDist as unknown as CourseUnit,
 ];
 
 export function getProbStatSpine(): GeometrySpineEntry[] {
