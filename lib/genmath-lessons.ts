@@ -148,6 +148,7 @@ import geometrySurfaceVolume from "@/data/genmath/geometry/surface-area-and-volu
 import geometryTransformations from "@/data/genmath/geometry/transformations.json";
 import geometryCoordinate from "@/data/genmath/geometry/coordinate-geometry.json";
 import psCountingPrinciples from "@/data/genmath/prob-stats/counting-principles.json";
+import psPermutations from "@/data/genmath/prob-stats/permutations.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -815,7 +816,7 @@ export const PROBSTAT_SPINE: GeometrySpineEntry[] = [
     title: "Permutations & Arrangements",
     blurb: "Factorials, arrangements of all or some objects, repeated letters, and seating with restrictions.",
     buildsOn: "The multiplication principle from Unit 1.",
-    live: false,
+    live: true,
   },
   {
     unit: 3,
@@ -901,6 +902,7 @@ export const PROBSTAT_SPINE: GeometrySpineEntry[] = [
 
 const probStatUnits: CourseUnit[] = [
   psCountingPrinciples as unknown as CourseUnit,
+  psPermutations as unknown as CourseUnit,
 ];
 
 export function getProbStatSpine(): GeometrySpineEntry[] {

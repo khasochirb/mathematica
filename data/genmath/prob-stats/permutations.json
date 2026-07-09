@@ -1,0 +1,1156 @@
+{
+  "slug": "permutations",
+  "title": "Permutations & Arrangements",
+  "unit": 2,
+  "status": "published",
+  "blurb": "Factorials, arrangements of all or some objects, repeated letters, and seating with restrictions.",
+  "buildsOn": "The multiplication principle from Unit 1.",
+  "lessons": [
+    {
+      "slug": "factorials",
+      "title": "Factorials: Arranging Everything",
+      "concreteComparison": "Five friends line up for a photo. The photographer tries every ordering to find the best one, at one second per ordering. How long will this take? First spot: $5$ choices. Next: $4$. Then $3$, $2$, $1$. That's $5 \\times 4 \\times 3 \\times 2 \\times 1 = 120$ seconds — two minutes of shuffling. The product has a name: $5!$, \"five factorial\", and it counts every way to arrange five things.",
+      "objective": "Count arrangements of ALL n objects with n!, compute and simplify factorials, and explain why 0! = 1.",
+      "concept": [
+        "Arranging ALL of $n$ distinct objects in a row is the multiplication principle with shrinking slots run to the end: $n \\times (n-1) \\times (n-2) \\times \\cdots \\times 1$. The product is written $n!$ and read \"$n$ factorial\".",
+        "Factorials grow violently: $3! = 6$, $5! = 120$, $10! = 3{,}628{,}800$, and $13!$ already passes six billion. This explosion is why arrangement puzzles get impossible to brute-force so fast.",
+        "Factorials simplify by CANCELING, not computing: $\\frac{8!}{6!} = \\frac{8 \\times 7 \\times 6!}{6!} = 8 \\times 7 = 56$. Expand the bigger one just far enough to reach the smaller one.",
+        "**$0! = 1$** by definition — there is exactly ONE way to arrange nothing (do nothing). The convention keeps every formula in the next lessons working without special cases."
+      ],
+      "keyIdea": "n! = n × (n−1) × ⋯ × 1 counts the arrangements of all n distinct objects — and factorials cancel, they don't get computed.",
+      "facts": [
+        {
+          "title": "Factorial",
+          "latex": "n! = n \\times (n-1) \\times \\cdots \\times 2 \\times 1",
+          "explanation": "The shrinking-slot product for arranging all n objects; 0! = 1 by definition."
+        },
+        {
+          "title": "Cancel, don't compute",
+          "latex": "\\frac{8!}{6!} = 8 \\times 7 = 56",
+          "explanation": "Expand the larger factorial only until it swallows the smaller one."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pm-l1-w1",
+          "statement": "Five friends line up for a photo. How many different orders are possible?",
+          "solution": "Shrinking slots for ALL of them: $5 \\times 4 \\times 3 \\times 2 \\times 1 = 5! = 120$ orders.",
+          "check": ["factorial(5) == 120"]
+        },
+        {
+          "id": "pm-l1-w2",
+          "statement": "Compute $\\frac{9!}{7!}$ without a calculator.",
+          "solution": "Expand $9!$ just far enough: $9! = 9 \\times 8 \\times 7!$. So $\\frac{9!}{7!} = \\frac{9 \\times 8 \\times 7!}{7!} = 9 \\times 8 = 72$.",
+          "check": ["factorial(9)/factorial(7) == 72"]
+        },
+        {
+          "id": "pm-l1-w3",
+          "statement": "A bookshelf holds $4$ novels and you also have $1$ atlas that must stay in your bag. How many ways can the shelf be arranged — and what does $0!$ have to do with the empty bag pocket?",
+          "solution": "The shelf arranges $4$ books: $4! = 24$ ways. The bag's empty pocket can be \"arranged\" in exactly one way — do nothing — which is why mathematicians define $0! = 1$: it makes \"arrangements of nothing\" count as one, keeping later formulas seamless.",
+          "check": ["factorial(4) == 24", "factorial(0) == 1"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Computing giant factorials digit by digit.",
+          "correction": "Almost every factorial you meet lives in a fraction. Cancel first: 100!/98! is just 100 × 99 = 9900 — no one computes 100!.",
+          "authored": true
+        },
+        {
+          "text": "Assuming 0! = 0.",
+          "correction": "0! = 1: there is one way to arrange nothing. The next lesson's formula nPr = n!/(n−r)! silently relies on it when r = n.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pm-l1-t1",
+          "statement": "How many ways can $6$ different trophies be arranged on one shelf?",
+          "solution": "$6! = 720$ arrangements.",
+          "check": ["factorial(6) == 720"]
+        },
+        {
+          "id": "pm-l1-t2",
+          "statement": "Simplify $\\frac{12!}{10!}$.",
+          "solution": "$\\frac{12 \\times 11 \\times 10!}{10!} = 132$.",
+          "check": ["factorial(12)/factorial(10) == 132"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The hook",
+            "title": "Two minutes of shuffling",
+            "beats": [
+              "Five friends, one photo, EVERY ordering tried.",
+              "Slots shrink: $5 \\times 4 \\times 3 \\times 2 \\times 1$.",
+              "$= 120$ orderings. At one per second: two minutes.",
+              "The product earns a name: $5!$ — five factorial."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The explosion",
+            "title": "Factorials grow violently",
+            "beats": [
+              "$3! = 6$. $5! = 120$. $10! = 3{,}628{,}800$.",
+              "$13!$ passes six BILLION.",
+              "Ten friends in a photo: more orderings than seconds in a month.",
+              "This growth is why arrangement puzzles resist brute force."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "First factorial",
+            "title": "Race finishers",
+            "prompt": "Four runners finish a race with no ties. How many finish orders are possible?",
+            "options": ["$24$", "$16$", "$10$"],
+            "correctIndex": 0,
+            "explanation": "All four get arranged: $4! = 4 \\times 3 \\times 2 \\times 1 = 24$. The distractor $16$ is $4^2$ (repeats don't happen in a finish order); $10$ is $4 + 3 + 2 + 1$, adding when slots multiply.",
+            "check": ["factorial(4) == 24"]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The skill",
+            "title": "Cancel, don't compute",
+            "beats": [
+              "$\\frac{8!}{6!}$: DON'T compute $40320 / 720$.",
+              "Expand the big one until it swallows the small one: $8! = 8 \\times 7 \\times 6!$.",
+              "Cancel the $6!$: answer $8 \\times 7 = 56$.",
+              "Factorials live in fractions — cancellation is the whole game."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The photo lineup",
+            "problemId": "pm-l1-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Cancel the stack",
+            "problemId": "pm-l1-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Why 0! = 1",
+            "problemId": "pm-l1-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Cancellation drill",
+            "title": "No calculators needed",
+            "prompt": "$\\frac{20!}{18!} = $ ?",
+            "options": ["$380$", "$2$", "$400$"],
+            "correctIndex": 0,
+            "explanation": "$20! = 20 \\times 19 \\times 18!$, so the quotient is $20 \\times 19 = 380$. The $2$ subtracts factorials' arguments; $400$ is $20^2$.",
+            "check": ["factorial(20)/factorial(18) == 380"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Notation care",
+            "title": "The ! binds tight",
+            "body": "$2 \\cdot 3!$ means $2 \\times 6 = 12$, not $6! = 720$ — the factorial applies to the number it touches. And $(3!)! = 6! = 720$ is a real (and different) thing. When in doubt, add parentheses."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Trophy shelf",
+            "problemId": "pm-l1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Quick cancel",
+            "problemId": "pm-l1-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "52! is effectively infinite",
+            "body": "A shuffled deck of cards can be ordered in $52!$ ways — a $68$-digit number. If every human who ever lived had shuffled a deck every second since the universe began, the chance that any two fair shuffles in history matched is essentially zero. Every good shuffle you've ever done was probably the first time the universe saw that exact deck."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Arranging all n objects: n! — the shrinking-slot product run to the end.",
+              "Simplify factorial fractions by cancellation, never brute computation.",
+              "0! = 1: one way to arrange nothing, and the formulas depend on it."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "permutations-of-some",
+      "title": "Permutations: Arranging Some",
+      "concreteComparison": "Eight sprinters race, but the podium only has three steps. Gold, silver, bronze — order matters, but FIVE runners get nothing. You're not arranging all eight; you're arranging three OUT OF eight: $8 \\times 7 \\times 6 = 336$ podiums. That count has a name — the permutation $P(8,3)$ — and a factorial formula that does the trimming for you.",
+      "objective": "Count ordered selections of r objects from n with P(n, r) = n!/(n−r)!, and recognize when a problem is a permutation.",
+      "concept": [
+        "A **permutation** $P(n, r)$ counts ordered lineups of $r$ objects chosen from $n$ distinct ones. Slots view: $r$ shrinking slots starting at $n$: $P(8,3) = 8 \\times 7 \\times 6 = 336$.",
+        "The factorial formula trims the tail: $P(n,r) = \\frac{n!}{(n-r)!}$. The $(n-r)!$ in the basement cancels exactly the factors you DON'T use — $\\frac{8!}{5!}$ deletes $5 \\times 4 \\times 3 \\times 2 \\times 1$ and leaves $8 \\times 7 \\times 6$.",
+        "Edge cases confirm the formula: $P(n, n) = \\frac{n!}{0!} = n!$ (arranging everyone — last lesson), and $P(n, 1) = n$ (one slot, $n$ choices). This is where $0! = 1$ earns its keep.",
+        "The permutation SIGNATURE: distinct objects, no reuse, and ORDER MATTERS — swapping two chosen objects gives a different outcome (gold vs silver is a real difference). If swapping wouldn't matter, you want combinations — that's Unit 3."
+      ],
+      "keyIdea": "P(n, r) = n!/(n−r)! — r shrinking slots from n; use it when order genuinely matters.",
+      "facts": [
+        {
+          "title": "Permutations of r from n",
+          "latex": "P(n, r) = \\frac{n!}{(n-r)!} = n \\times (n-1) \\times \\cdots \\times (n-r+1)",
+          "explanation": "r shrinking slots starting at n; the (n−r)! cancels the unused tail."
+        },
+        {
+          "title": "The signature",
+          "latex": "\\text{distinct, no reuse, ORDER MATTERS}",
+          "explanation": "Gold-silver-bronze differs from bronze-silver-gold: that's what makes it a permutation."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pm-l2-w1",
+          "statement": "Eight sprinters race for gold, silver, and bronze. How many different podiums are possible?",
+          "solution": "Three shrinking slots from eight: $P(8,3) = 8 \\times 7 \\times 6 = 336$. Formula check: $\\frac{8!}{5!} = 336$. ✓",
+          "check": ["8*7*6 == 336", "factorial(8)/factorial(5) == 336"]
+        },
+        {
+          "id": "pm-l2-w2",
+          "statement": "A club of $10$ people elects a president, a secretary, and a treasurer (no one holds two jobs). How many outcomes are possible?",
+          "solution": "The jobs are DIFFERENT, so order matters: president $10$ ways, secretary $9$, treasurer $8$ — $P(10,3) = 10 \\times 9 \\times 8 = 720$ outcomes.",
+          "check": ["10*9*8 == 720", "factorial(10)/factorial(7) == 720"]
+        },
+        {
+          "id": "pm-l2-w3",
+          "statement": "How many $4$-letter codes (no repeated letters) can be formed from the $7$ letters A–G?",
+          "solution": "Four shrinking slots from seven: $P(7,4) = 7 \\times 6 \\times 5 \\times 4 = 840$ codes. Codes are ordered — ABCD and DCBA differ — so permutations are the right tool.",
+          "check": ["7*6*5*4 == 840", "factorial(7)/factorial(3) == 840"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dividing by r! out of habit.",
+          "correction": "P(8,3) = 336, full stop. Dividing by 3! = 6 gives 56 — that's the COMBINATION count, for when medals are identical. Ask: does swapping two picks change the outcome? Yes → permutation, don't divide.",
+          "authored": true
+        },
+        {
+          "text": "Writing n!/(n−r)! as n! − (n−r)! or n!/r!.",
+          "correction": "The basement is (n−r)!, the UNUSED tail: P(8,3) = 8!/5!, not 8!/3!. Slot-check every formula answer: 8 × 7 × 6 has three factors for three slots.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pm-l2-t1",
+          "statement": "From $12$ paintings, a gallery hangs $2$ — one in the lobby, one in the hall. How many ways?",
+          "solution": "Different rooms → order matters: $P(12,2) = 12 \\times 11 = 132$.",
+          "check": ["12*11 == 132"]
+        },
+        {
+          "id": "pm-l2-t2",
+          "statement": "Compute $P(6, 6)$ and say what it counts.",
+          "solution": "$P(6,6) = \\frac{6!}{0!} = 720$ — arranging ALL six objects, which is just $6!$.",
+          "check": ["factorial(6)/factorial(0) == 720"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The hook",
+            "title": "Three steps, eight runners",
+            "beats": [
+              "Eight sprinters, but the podium has THREE steps.",
+              "Gold: $8$ ways. Silver: $7$. Bronze: $6$.",
+              "$8 \\times 7 \\times 6 = 336$ podiums — five runners get nothing.",
+              "Arranging SOME of the objects: that's a permutation, $P(8,3)$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The formula",
+            "title": "The tail-trimming factorial",
+            "beats": [
+              "$P(n,r) = \\dfrac{n!}{(n-r)!}$.",
+              "$\\frac{8!}{5!}$: the $5!$ cancels exactly the five factors you never used.",
+              "What survives: $8 \\times 7 \\times 6$ — the three slots.",
+              "Edge check: $P(n,n) = \\frac{n!}{0!} = n!$ — last lesson, recovered. ($0!=1$ earning its keep.)"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Slots or formula",
+            "title": "Student council",
+            "prompt": "From $9$ candidates, a class picks a president and a vice-president. How many outcomes?",
+            "options": ["$72$", "$81$", "$36$"],
+            "correctIndex": 0,
+            "explanation": "$P(9,2) = 9 \\times 8 = 72$ — the jobs differ, so order matters. $81$ is $9^2$ (lets one person hold both jobs); $36$ divides by $2$, treating the jobs as identical (that's a combination — Unit 3).",
+            "check": ["9*8 == 72"]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Recognition",
+            "title": "The permutation signature",
+            "beats": [
+              "Distinct objects. No reuse. And the big one: ORDER MATTERS.",
+              "Test: swap two of your picks. Different outcome? Permutation.",
+              "Gold↔silver swap: different podium. Permutation. ✓",
+              "Two identical concert tickets to hand out? Swapping changes nothing — NOT a permutation. Hold that thought for Unit 3."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The podium",
+            "problemId": "pm-l2-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Club officers",
+            "problemId": "pm-l2-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Four-letter codes",
+            "problemId": "pm-l2-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Signature check",
+            "title": "Permutation or not?",
+            "prompt": "Which situation is a PERMUTATION?",
+            "options": ["Choosing 1st, 2nd, 3rd prize winners from 20 entries", "Choosing 3 equal winners from 20 entries", "Rolling a die 3 times"],
+            "correctIndex": 0,
+            "explanation": "Ranked prizes: swapping two winners changes who gets 1st — order matters, $P(20,3)$. Equal winners: swaps change nothing (combination). Die rolls: repeats allowed, that's plain multiplication $6^3$.",
+            "check": ["20*19*18 == 6840"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Slots first, formula second",
+            "body": "Write the shrinking slots BEFORE reaching for n!/(n−r)!: the slots are self-checking (three slots for three podium steps), and the formula is just their compressed spelling. If slots and formula disagree, trust the slots and find the arithmetic slip."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Two rooms, twelve paintings",
+            "problemId": "pm-l2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The edge case",
+            "problemId": "pm-l2-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why ranked ballots explode",
+            "body": "An election where voters RANK 5 of 10 candidates has $P(10,5) = 30{,}240$ possible ballots — which is why ranked-choice tallying software is genuinely harder to audit than pick-one ballots with just 10. Election commissions employ combinatorialists for exactly this arithmetic."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "P(n,r) = n!/(n−r)!: r shrinking slots starting from n.",
+              "Signature: distinct, no reuse, order matters (the swap test).",
+              "P(n,n) = n! and P(n,1) = n — the formula contains the old cases."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "repeated-letters",
+      "title": "Arrangements with Repeated Objects",
+      "concreteComparison": "Rearrange the letters of MOON. Treat the two O's as different — O₁ and O₂ — and you'd count $4! = 24$. But MO₁O₂N and MO₂O₁N look IDENTICAL on paper: every real arrangement got counted twice, once per way of ordering the O's. Real count: $\\frac{24}{2} = 12$. Repeats overcount by the repeats' own arrangements — so divide them back out.",
+      "objective": "Count arrangements of objects with repeats using n! divided by the factorial of each repeat count.",
+      "concept": [
+        "When some objects are identical, $n!$ overcounts: every real arrangement is hit once for each way of shuffling the identical copies among themselves — that's $k!$ hits for a letter repeated $k$ times.",
+        "The repair is Unit 1's divide-out-the-overcount move: $$\\text{arrangements} = \\frac{n!}{k_1! \\, k_2! \\cdots}$$ with one factorial in the basement per repeated symbol.",
+        "MISSISSIPPI: $11$ letters with I×4, S×4, P×2 gives $\\frac{11!}{4! \\, 4! \\, 2!} = 34{,}650$ — down from $11! = 39{,}916{,}800$. The repeats crush the count by a factor of over a thousand.",
+        "The same formula counts lattice paths: a path that goes $3$ blocks east and $2$ blocks north is a word in E's and N's — EENEN and friends — so there are $\\frac{5!}{3! \\, 2!} = 10$ shortest routes."
+      ],
+      "keyIdea": "Identical objects overcount by their own arrangements: divide n! by k! for every symbol repeated k times.",
+      "facts": [
+        {
+          "title": "The repeated-objects rule",
+          "latex": "\\frac{n!}{k_1! \\, k_2! \\cdots k_m!}",
+          "explanation": "One basement factorial per repeated symbol — each divides out that symbol's internal shuffles."
+        },
+        {
+          "title": "Paths are words",
+          "latex": "\\frac{5!}{3! \\, 2!} = 10",
+          "explanation": "A 3-east, 2-north walk is an arrangement of EEENN — repeated-letter counting in disguise."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pm-l3-w1",
+          "statement": "How many distinct arrangements does the word MOON have?",
+          "solution": "Four letters with O repeated twice: $\\frac{4!}{2!} = \\frac{24}{2} = 12$. The division undoes the double-count from the two O's swapping places invisibly.",
+          "check": ["factorial(4)/factorial(2) == 12"]
+        },
+        {
+          "id": "pm-l3-w2",
+          "statement": "How many distinct arrangements does MISSISSIPPI have?",
+          "solution": "Eleven letters: I appears $4$ times, S appears $4$ times, P appears $2$ times (M once). Count: $\\frac{11!}{4! \\, 4! \\, 2!} = \\frac{39{,}916{,}800}{24 \\times 24 \\times 2} = 34{,}650$.",
+          "check": ["factorial(11)/(factorial(4)*factorial(4)*factorial(2)) == 34650"]
+        },
+        {
+          "id": "pm-l3-w3",
+          "statement": "A city walk goes $3$ blocks east and $2$ blocks north. How many different shortest routes are there?",
+          "solution": "Each shortest route is a word with three E's and two N's, like EENEN. Arrangements of EEENN: $\\frac{5!}{3! \\, 2!} = \\frac{120}{12} = 10$ routes.",
+          "check": ["factorial(5)/(factorial(3)*factorial(2)) == 10"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dividing by the repeat COUNT instead of its factorial.",
+          "correction": "Three identical A's overcount by 3! = 6 (their arrangements), not by 3. BANANA is 6!/(3!·2!) = 60, not 6!/(3·2) = 120.",
+          "authored": true
+        },
+        {
+          "text": "Only dividing out ONE of several repeated symbols.",
+          "correction": "MISSISSIPPI needs 4!, 4!, AND 2! in the basement — every repeated symbol shuffles internally on its own. Inventory the letters before you write the fraction.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pm-l3-t1",
+          "statement": "How many distinct arrangements does the word LEVEL have?",
+          "solution": "Five letters, L×2 and E×2: $\\frac{5!}{2! \\, 2!} = \\frac{120}{4} = 30$.",
+          "check": ["factorial(5)/(factorial(2)*factorial(2)) == 30"]
+        },
+        {
+          "id": "pm-l3-t2",
+          "statement": "A walk goes $4$ blocks east and $1$ block north. How many shortest routes?",
+          "solution": "Words with EEEEN: $\\frac{5!}{4! \\, 1!} = 5$ routes — the N can sit in any of the $5$ positions.",
+          "check": ["factorial(5)/factorial(4) == 5"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The hook",
+            "title": "The invisible twins",
+            "beats": [
+              "Rearrange MOON. Pretend the O's are twins: O₁, O₂.",
+              "Then $4! = 24$ arrangements... but MO₁O₂N and MO₂O₁N LOOK identical.",
+              "Every real arrangement was counted twice — once per O-ordering.",
+              "Divide the overcount out: $24 / 2 = 12$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The rule",
+            "title": "One basement factorial per repeat",
+            "beats": [
+              "A symbol repeated $k$ times shuffles internally in $k!$ invisible ways.",
+              "$$\\frac{n!}{k_1! \\, k_2! \\cdots}$$ — divide each repeat's shuffles out.",
+              "This is Unit 1's \"count ordered, divide the overcount\" move, industrialized.",
+              "Inventory the symbols FIRST, then write the fraction."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Inventory first",
+            "title": "Word check",
+            "prompt": "How many distinct arrangements does BANANA have? (B×1, A×3, N×2)",
+            "options": ["$60$", "$120$", "$720$"],
+            "correctIndex": 0,
+            "explanation": "$\\frac{6!}{3! \\, 2!} = \\frac{720}{12} = 60$. The $120$ divides by $3 \\times 2$ instead of $3! \\times 2!$; the $720$ forgets the repeats entirely.",
+            "check": ["factorial(6)/(factorial(3)*factorial(2)) == 60"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "MOON",
+            "problemId": "pm-l3-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "MISSISSIPPI",
+            "problemId": "pm-l3-w2"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The disguise",
+            "title": "Paths are words",
+            "beats": [
+              "Walk $3$ blocks east, $2$ north — any order.",
+              "Each route IS a word: EENEN, ENEEN, NNEEE...",
+              "Three identical E's, two identical N's: $\\frac{5!}{3! \\, 2!} = 10$.",
+              "Grid-path puzzles are repeated-letter puzzles wearing a trench coat."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "City routes",
+            "problemId": "pm-l3-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Path drill",
+            "title": "Bigger grid",
+            "prompt": "How many shortest routes go $2$ blocks east and $2$ blocks north?",
+            "options": ["$6$", "$4$", "$24$"],
+            "correctIndex": 0,
+            "explanation": "Words in EENN: $\\frac{4!}{2! \\, 2!} = 6$. The $4$ counts letters, not arrangements; $24$ is $4!$, ignoring that the E's (and N's) are identical.",
+            "check": ["factorial(4)/(factorial(2)*factorial(2)) == 6"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Sanity check",
+            "title": "The answer must divide cleanly",
+            "body": "n! divided by repeat factorials ALWAYS comes out a whole number — arrangements can't be fractional. If your division leaves a remainder, the letter inventory is wrong. Recount the letters."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "LEVEL",
+            "problemId": "pm-l3-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "One block north",
+            "problemId": "pm-l3-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "DNA is a four-letter word problem",
+            "body": "A DNA strand is a sequence over A, C, G, T — and biologists count possible strands with exactly the arithmetic of this lesson. A short strand with 10 A's, 10 C's, 10 G's and 10 T's already has about $10^{21}$ distinct arrangements: repeated-letter counting is why tiny genomes can encode staggering variety."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Identical copies overcount by their own k! internal shuffles — divide them out.",
+              "One basement factorial PER repeated symbol; inventory before computing.",
+              "Grid paths are words with repeated letters: same formula, new costume."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "circular-arrangements",
+      "title": "Circular Arrangements",
+      "concreteComparison": "Five friends sit around a round table for hotpot. Everyone stands up and shifts one seat left — and the seating is... exactly the same: same neighbors, same conversations. Around a circle, ROTATIONS don't count as new arrangements. Of the $5! = 120$ row-arrangements, every real seating got counted $5$ times (once per rotation), so the true count is $\\frac{120}{5} = 4! = 24$.",
+      "objective": "Count circular arrangements with (n−1)!, by fixing one person or dividing rotations out.",
+      "concept": [
+        "In a row, all $n!$ orderings differ. Around a circle, an arrangement and its $n$ rotations are the SAME seating — same neighbors all around — so $n!$ overcounts by a factor of $n$: $$\\text{circular arrangements} = \\frac{n!}{n} = (n-1)!$$",
+        "The slicker derivation: **fix one person** as an anchor (rotations are now used up), and arrange the remaining $n - 1$ freely: $(n-1)!$ directly.",
+        "Restrictions combine with the anchor trick: seat the restricted person or block first, then count the rest relative to them — the Unit 1 habits carry straight over.",
+        "Watch the fine print: if seats are NUMBERED (a labeled chair matters), rotations DO differ and the count returns to plain $n!$. And if flipping the circle over also counts as the same (a necklace, a key ring), divide by $2$ more."
+      ],
+      "keyIdea": "A circle kills rotations: fix one person and arrange the rest — (n−1)! seatings.",
+      "facts": [
+        {
+          "title": "Round-table arrangements",
+          "latex": "\\frac{n!}{n} = (n-1)!",
+          "explanation": "Each real seating appears n times among the row-orderings, once per rotation."
+        },
+        {
+          "title": "The anchor trick",
+          "latex": "\\text{fix one} \\to (n-1)! \\text{ for the rest}",
+          "explanation": "Pinning one person spends the rotational freedom; everyone else arranges relative to the anchor."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pm-l4-w1",
+          "statement": "Five friends sit around a round table. How many genuinely different seatings are there?",
+          "solution": "Anchor one friend anywhere (rotations spent). The other four arrange around them: $4! = 24$ seatings. Equivalent view: $\\frac{5!}{5} = \\frac{120}{5} = 24$. ✓",
+          "check": ["factorial(4) == 24", "factorial(5)/5 == 24"]
+        },
+        {
+          "id": "pm-l4-w2",
+          "statement": "Six knights sit at a round table, but Sir Ana and Sir Bat must sit together. How many seatings?",
+          "solution": "Glue the pair into a block (Unit 1's trick): now $5$ units around a circle $= (5-1)! = 24$ arrangements, times $2$ orders inside the block: $24 \\times 2 = 48$ seatings.",
+          "check": ["factorial(4)*2 == 48"]
+        },
+        {
+          "id": "pm-l4-w3",
+          "statement": "Eight charms go on a bracelet that can be rotated AND flipped over. How many distinct bracelets?",
+          "solution": "Rotations: $\\frac{8!}{8} = 7! = 5040$. Flipping the bracelet over makes each arrangement coincide with its mirror twin, halving again: $\\frac{5040}{2} = 2520$ distinct bracelets.",
+          "check": ["factorial(7) == 5040", "factorial(7)/2 == 2520"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using n! at a round table.",
+          "correction": "Five friends at a circle: 4! = 24, not 120 — rotating everyone one seat changes nothing. Only NUMBERED seats restore n!.",
+          "authored": true
+        },
+        {
+          "text": "Anchoring TWO people to \"be extra safe\".",
+          "correction": "One anchor spends the rotational symmetry exactly. Fixing a second person adds a restriction the problem never had and undercounts. One pin, then freedom.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pm-l4-t1",
+          "statement": "How many ways can $7$ people sit around a round table?",
+          "solution": "$(7-1)! = 6! = 720$ seatings.",
+          "check": ["factorial(6) == 720"]
+        },
+        {
+          "id": "pm-l4-t2",
+          "statement": "Four different keys go on a key ring (rotations and flips both don't matter). How many distinct rings?",
+          "solution": "Rotations: $(4-1)! = 6$; flips halve: $\\frac{6}{2} = 3$ distinct rings.",
+          "check": ["factorial(3)/2 == 3"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The hook",
+            "title": "Everyone shift left!",
+            "beats": [
+              "Five friends around a hotpot table. Everyone moves one seat left.",
+              "Same neighbors. Same conversations. Same seating.",
+              "Around a circle, rotations aren't new arrangements.",
+              "$5! = 120$ counts each real seating $5$ times: truth is $\\frac{120}{5} = 24$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The trick",
+            "title": "Pin one, free the rest",
+            "beats": [
+              "Slicker: FIX one person as the anchor.",
+              "Pinning them spends the rotational freedom completely.",
+              "The other $n - 1$ arrange relative to the anchor: $(n-1)!$.",
+              "One pin only — a second pin invents a restriction that isn't there."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "First circle",
+            "title": "Card players",
+            "prompt": "Four players sit around a square card table (only neighbors matter, seats unlabeled). How many seatings?",
+            "options": ["$6$", "$24$", "$12$"],
+            "correctIndex": 0,
+            "explanation": "$(4-1)! = 3! = 6$. The $24$ is the row-count $4!$ — it counts each circle four times. $12$ halves for a flip nobody mentioned.",
+            "check": ["factorial(3) == 6"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The hotpot table",
+            "problemId": "pm-l4-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Knights together",
+            "problemId": "pm-l4-w2"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Fine print",
+            "title": "Numbered seats & flippable rings",
+            "beats": [
+              "Seats NUMBERED (chair 1 is special)? Rotations now differ: back to $n!$.",
+              "Object flippable (necklace, bracelet, key ring)? Mirror twins merge: divide by $2$ more.",
+              "Ask two questions of every circle: do rotations matter? do flips?",
+              "The physical situation decides the denominator — not habit."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The bracelet",
+            "problemId": "pm-l4-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Fine-print check",
+            "title": "The Ferris wheel",
+            "prompt": "Six numbered cabins on a Ferris wheel get six painted designs, one each. Do rotations reduce the count?",
+            "options": ["No — cabins are numbered, so it's $6!$", "Yes — circles always give $(n-1)!$", "Yes, and flips halve it too"],
+            "correctIndex": 0,
+            "explanation": "The cabins are LABELED — rotating the designs puts design A in a different numbered cabin, a genuinely different outcome. $6! = 720$. \"Circle\" is not a magic word; unlabeled positions are what kill rotations.",
+            "check": ["factorial(6) == 720"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Ask what makes two outcomes 'the same'",
+            "body": "Every circular problem hides an equivalence question: which physical motions leave the outcome indistinguishable? Rotation? Flip? Nothing? Count the row-arrangements, then divide by the number of motions that produce look-alikes. That one habit handles tables, necklaces, and Ferris wheels alike."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Seven at a table",
+            "problemId": "pm-l4-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The key ring",
+            "problemId": "pm-l4-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "King Arthur's PR move",
+            "body": "The Round Table legend is combinatorics as politics: with no head seat, no knight outranks another — precisely BECAUSE rotations don't change the seating. The math that makes circular counts smaller ((n−1)! instead of n!) is the same symmetry that made the table egalitarian. Arthur chose the geometry with the smaller sample space."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Round tables: (n−1)! — pin one person, arrange the rest.",
+              "Blocks and restrictions combine with the anchor trick as in Unit 1.",
+              "Numbered seats restore n!; flippable objects divide by 2 more."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "arrangements-with-restrictions",
+      "title": "Arrangements under Restrictions",
+      "concreteComparison": "A wedding photographer lines up $3$ adults and $3$ kids, but the kids must alternate with the adults so nobody's blocked. Or the two feuding cousins must NOT stand together. Every real-world lineup comes with rules — and every rule is handled by three tools you already own: fussy-first slots, glue blocks, and subtract-the-opposite.",
+      "objective": "Combine factorial tools with Unit 1's restriction tricks: ends, blocks, separations, and alternating patterns.",
+      "concept": [
+        "**Fussy first, factorial after:** place the restricted people (ends, fixed spots) first, then the free ones fill remaining seats in factorial fashion. Two specific people on the two ends of a row of $6$: $2$ ways to assign the ends, then $4!$ for the middle $= 48$.",
+        "**Blocks (together):** glue, arrange units, multiply by internal orders — now with bigger numbers: $5$ people with a specific pair adjacent is $4! \\times 2! = 48$.",
+        "**Separation (not together):** complementary counting — ALL minus TOGETHER: $5! - 48 = 72$. Direct separation counting exists but the subtraction is almost always cleaner.",
+        "**Alternating patterns:** decide the pattern skeleton first (BGBGBG or GBGBGB), then fill each gender's slots factorially. $3$ boys and $3$ girls alternating: $2$ skeletons $\\times 3! \\times 3! = 72$."
+      ],
+      "keyIdea": "Every arrangement restriction is ends-first, a glue block, a subtraction, or a pattern skeleton — usually in combination.",
+      "facts": [
+        {
+          "title": "Not-together",
+          "latex": "\\text{apart} = \\text{all} - \\text{together}",
+          "explanation": "Complementary counting turns the awkward separation condition into one subtraction."
+        },
+        {
+          "title": "Alternating",
+          "latex": "2 \\times 3! \\times 3! = 72",
+          "explanation": "Choose the skeleton (who gets odd seats), then arrange each group within its slots."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pm-l5-w1",
+          "statement": "Six students line up, and the two class captains must take the two END positions. How many lineups?",
+          "solution": "Fussy first: the captains take the ends — $2$ ways (who's left, who's right). The other four fill the middle: $4! = 24$. Total: $2 \\times 24 = 48$.",
+          "check": ["2*factorial(4) == 48"]
+        },
+        {
+          "id": "pm-l5-w2",
+          "statement": "Five friends line up for a photo. Two of them just argued and refuse to stand next to each other. How many lineups?",
+          "solution": "All lineups: $5! = 120$. Together (glue): $4! \\times 2! = 48$. Apart: $120 - 48 = 72$ lineups. Subtracting the enemy beats chasing the separated cases directly.",
+          "check": ["factorial(5) - factorial(4)*factorial(2) == 72"]
+        },
+        {
+          "id": "pm-l5-w3",
+          "statement": "Three boys and three girls line up so that boys and girls alternate. How many lineups?",
+          "solution": "Skeleton first: BGBGBG or GBGBGB — $2$ patterns. Fill the boy slots: $3! = 6$; fill the girl slots: $3! = 6$. Total: $2 \\times 6 \\times 6 = 72$.",
+          "check": ["2*factorial(3)*factorial(3) == 72"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Forgetting the 2 ways to assign the two ends.",
+          "correction": "\"Captains on the ends\" has TWO sub-choices: captain A left / B right, or the reverse. It's 2 × 4!, not just 4!.",
+          "authored": true
+        },
+        {
+          "text": "Counting only one alternating skeleton.",
+          "correction": "With equal group sizes both starts work (BGBGBG and GBGBGB) — multiply by 2. With sizes 4 and 3, only the larger group can start: one skeleton. Check the sizes before choosing the multiplier.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pm-l5-t1",
+          "statement": "Seven books go on a shelf; the two largest must occupy the two ends. How many arrangements?",
+          "solution": "Ends: $2$ ways. Middle five: $5! = 120$. Total: $240$.",
+          "check": ["2*factorial(5) == 240"]
+        },
+        {
+          "id": "pm-l5-t2",
+          "statement": "Six singers perform in a row, but the two sopranos must NOT be adjacent. How many orders?",
+          "solution": "All: $6! = 720$. Together: $5! \\times 2 = 240$. Apart: $720 - 240 = 480$.",
+          "check": ["factorial(6) - factorial(5)*2 == 480"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The toolkit",
+            "title": "Three tools, all yours already",
+            "beats": [
+              "Fussy first: restricted people take their seats before anyone else.",
+              "Glue: together-pairs become one block; multiply by inside orders.",
+              "Subtract: NOT-together = ALL − TOGETHER.",
+              "New today: bigger numbers, and PATTERN skeletons."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Captains on the ends",
+            "problemId": "pm-l5-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Ends drill",
+            "title": "One VIP, one end",
+            "prompt": "Five performers line up; the headliner insists on an END spot. How many lineups?",
+            "options": ["$48$", "$24$", "$120$"],
+            "correctIndex": 0,
+            "explanation": "Headliner picks an end: $2$ ways. The other four: $4! = 24$. Total $2 \\times 24 = 48$. The $24$ forgets there are two ends; $120$ ignores the restriction.",
+            "check": ["2*factorial(4) == 48"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The feud",
+            "problemId": "pm-l5-w2"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "New pattern",
+            "title": "Alternating skeletons",
+            "beats": [
+              "\"Boys and girls alternate\" — decide the SKELETON first: BGBGBG or GBGBGB.",
+              "Equal groups: both skeletons work → factor of $2$.",
+              "Then each group arranges within its own slots: $3! \\times 3!$.",
+              "Unequal groups ($4$ and $3$): only the big group can start — one skeleton."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Alternating photo",
+            "problemId": "pm-l5-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Skeleton check",
+            "title": "Four and three",
+            "prompt": "Four adults and $3$ kids line up alternating (no two of the same type adjacent). How many lineups?",
+            "options": ["$4! \\times 3! = 144$", "$2 \\times 4! \\times 3! = 288$", "$7! = 5040$"],
+            "correctIndex": 0,
+            "explanation": "With $4$ adults and $3$ kids the only skeleton is A K A K A K A — the adults must take the $4$ outer slots. One skeleton: $4! \\times 3! = 144$. The $288$ doubles for a second skeleton that can't exist.",
+            "check": ["factorial(4)*factorial(3) == 144"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Strategy",
+            "title": "Restrictions stack — handle them in order of fussiness",
+            "body": "When a problem has TWO restrictions (a block AND an end-rule), satisfy the fussiest first, re-count what's left, and keep the multiplication going. If the restrictions fight each other, split into cases (Unit 1) — the principles compose; they never conflict."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Heavy bookends",
+            "problemId": "pm-l5-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Separated sopranos",
+            "problemId": "pm-l5-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Concert setlists are restriction problems",
+            "body": "Touring bands order setlists under exactly these constraints: the opener and closer are fixed (fussy first), certain songs must be adjacent for instrument changes (blocks), and two slow songs shouldn't touch (separation). Crew software literally enumerates restricted permutations — a stadium show is a factorial with stage lights."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Ends and fixed spots: place them first, factorial the rest.",
+              "Not-together: all minus together — subtraction beats case-chasing.",
+              "Alternating: count the skeletons, then arrange each group in its slots."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "choosing-the-right-tool",
+      "title": "Choosing the Right Tool",
+      "concreteComparison": "Four problems, four different answers: a 3-letter code with repeats allowed ($26^3$), without repeats ($26 \\times 25 \\times 24$), the arrangements of MOM ($\\frac{3!}{2!}$), and three people at a round table ($2!$). Same-sized casts, wildly different counts. The hard part of counting was never the arithmetic — it's HEARING which situation you're in.",
+      "objective": "Diagnose a counting problem — repeats? order? identical objects? circle? — and dispatch it to the right formula.",
+      "concept": [
+        "Four diagnostic questions sort almost every arrangement problem: (1) Can objects REPEAT? (2) Does ORDER matter? (3) Are some objects IDENTICAL? (4) Is the layout a CIRCLE?",
+        "Repeats allowed → plain multiplication $n^r$. No repeats, arranging some → $P(n,r)$. Arranging all → $n!$. Identical copies present → divide by their factorials. Circle → $(n-1)!$, with the flip question for necklaces.",
+        "The diagnosis happens in the STORY, not the numbers: \"digits may repeat\" (powers), \"all different\" (permutation), \"the word BANANA\" (repeated letters), \"around a table\" (circle). Underline those phrases before touching arithmetic.",
+        "When in doubt, shrink the problem to a size you can LIST (Unit 1's ground truth) and check your formula against the list. A 30-second list catches a wrong-tool choice before it costs the whole problem."
+      ],
+      "keyIdea": "Diagnose before computing: repeats → n^r; ordered no-repeat → P(n,r) or n!; identical copies → divide; circle → (n−1)!.",
+      "facts": [
+        {
+          "title": "The dispatch table",
+          "latex": "n^r, \\quad P(n,r), \\quad n!, \\quad \\tfrac{n!}{k_1!k_2!\\cdots}, \\quad (n-1)!",
+          "explanation": "Repeats; ordered selection; full arrangement; identical objects; circle — one formula per situation."
+        },
+        {
+          "title": "The shrink test",
+          "latex": "\\text{shrink} \\to \\text{list} \\to \\text{check}",
+          "explanation": "A tiny listed version of the problem exposes a wrong-tool choice in seconds."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pm-l6-w1",
+          "statement": "Diagnose and count: how many $4$-digit ATM codes are possible (digits $0$–$9$, repeats allowed)?",
+          "solution": "Diagnosis: repeats ALLOWED, order matters — plain multiplication: $10^4 = 10{,}000$ codes. No shrinking slots because nothing is used up.",
+          "check": ["10**4 == 10000"]
+        },
+        {
+          "id": "pm-l6-w2",
+          "statement": "Diagnose and count: a relay team of $4$ runners must choose their running ORDER. How many orders?",
+          "solution": "Diagnosis: all four arranged, no repeats (a runner runs once), order matters, straight line — $4! = 24$ orders.",
+          "check": ["factorial(4) == 24"]
+        },
+        {
+          "id": "pm-l6-w3",
+          "statement": "Diagnose and count: how many distinct arrangements does the word TATTOO have?",
+          "solution": "Diagnosis: arranging all letters, but with IDENTICAL copies — T×3, O×2, A×1. Count: $\\frac{6!}{3! \\, 2!} = \\frac{720}{12} = 60$ arrangements.",
+          "check": ["factorial(6)/(factorial(3)*factorial(2)) == 60"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reaching for the most recent formula instead of the right one.",
+          "correction": "After a permutations lesson, everything looks like P(n,r). Run the four diagnostic questions FIRST — repeats? order? identical? circle? — and let the answers pick the formula.",
+          "authored": true
+        },
+        {
+          "text": "Skipping the shrink test on a shaky diagnosis.",
+          "correction": "Unsure whether rotations matter or letters repeat? Build the 3-object version and LIST it. Thirty seconds of listing beats a confidently wrong 5040.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pm-l6-t1",
+          "statement": "A quiz has $5$ true/false questions. How many answer sheets are possible? (Diagnose first!)",
+          "solution": "Repeats allowed (T can appear many times), order matters: $2^5 = 32$ sheets.",
+          "check": ["2**5 == 32"]
+        },
+        {
+          "id": "pm-l6-t2",
+          "statement": "From $9$ dancers, a choreographer places $3$ in a front line (left, center, right). How many placements?",
+          "solution": "No repeats, order matters, arranging SOME: $P(9,3) = 9 \\times 8 \\times 7 = 504$.",
+          "check": ["9*8*7 == 504"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The hook",
+            "title": "Same cast, four different counts",
+            "beats": [
+              "$3$-letter code, repeats OK: $26^3 = 17576$.",
+              "Repeats banned: $26 \\times 25 \\times 24 = 15600$.",
+              "The word MOM: $\\frac{3!}{2!} = 3$.",
+              "Three at a round table: $2! = 2$. The STORY picks the formula."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The method",
+            "title": "Four diagnostic questions",
+            "beats": [
+              "1 — Can objects REPEAT? (yes → powers $n^r$)",
+              "2 — Does ORDER matter? (arranging vs choosing — choosing waits for Unit 3)",
+              "3 — Are copies IDENTICAL? (yes → divide by their factorials)",
+              "4 — Is it a CIRCLE? (yes → $(n-1)!$, and ask about flips)"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Diagnose",
+            "title": "Case 1",
+            "prompt": "How many $5$-character passwords use lowercase letters, repeats allowed?",
+            "options": ["$26^5$", "$P(26,5)$", "$26!/5!$"],
+            "correctIndex": 0,
+            "explanation": "\"Repeats allowed\" is the giveaway: nothing shrinks, every slot has $26$ options — $26^5$. $P(26,5)$ would ban repeated letters the problem explicitly allows.",
+            "check": ["26**5 == 11881376"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "ATM codes",
+            "problemId": "pm-l6-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Relay order",
+            "problemId": "pm-l6-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "TATTOO",
+            "problemId": "pm-l6-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Diagnose",
+            "title": "Case 2",
+            "prompt": "Five children ride a merry-go-round with $5$ identical unlabeled horses in a circle. How many ways can they sit?",
+            "options": ["$4! = 24$", "$5! = 120$", "$5^5$"],
+            "correctIndex": 0,
+            "explanation": "Circle, unlabeled positions → rotations are the same ride: $(5-1)! = 24$. $120$ treats it as a row; $5^5$ would let children repeat like digits — kids can't.",
+            "check": ["factorial(4) == 24"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "The safety net",
+            "title": "Shrink and list",
+            "body": "Any diagnosis you're unsure of: rebuild the problem with 3 objects and WRITE THE LIST (Lesson 1 never stops paying rent). If the mini-list has 3 entries and your formula predicts 6, the formula is wrong — and you found out for free."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "True/false sheets",
+            "problemId": "pm-l6-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The front line",
+            "problemId": "pm-l6-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The locker \"permutation\" lie",
+            "body": "Combination locks are misnamed twice over: a 3-number code on a 40-number dial is neither a combination (order MATTERS — 10-20-30 won't open a 30-20-10 lock) nor repeat-free (many locks allow 10-10-25). It's $40^3 = 64{,}000$ plain sequences. Diagnose the situation, not the marketing."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Diagnose with four questions: repeats, order, identical copies, circle.",
+              "Dispatch: n^r · P(n,r) · n! · n!/(repeats!) · (n−1)!.",
+              "Shaky diagnosis? Shrink to 3 objects and list — the ground truth is free."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "pm-p-1",
+      "statement": "How many ways can $7$ different flags be raised on one vertical pole (all seven, top to bottom order matters)?",
+      "solution": "Arranging all seven: $7! = 5040$ ways.",
+      "check": ["factorial(7) == 5040"]
+    },
+    {
+      "id": "pm-p-2",
+      "statement": "Simplify $\\frac{15!}{13!}$ without computing either factorial.",
+      "solution": "$15! = 15 \\times 14 \\times 13!$, so the quotient is $15 \\times 14 = 210$.",
+      "check": ["factorial(15)/factorial(13) == 210"]
+    },
+    {
+      "id": "pm-p-3",
+      "statement": "A theater gives a first-, second-, and third-prize ticket to $3$ of the $11$ audience members. How many ways can the prizes land?",
+      "solution": "Ranked prizes → order matters: $P(11,3) = 11 \\times 10 \\times 9 = 990$.",
+      "check": ["11*10*9 == 990"]
+    },
+    {
+      "id": "pm-p-4",
+      "statement": "How many distinct arrangements does the word SEEDED have?",
+      "solution": "Six letters: E×3, D×2, S×1. $\\frac{6!}{3! \\, 2!} = \\frac{720}{12} = 60$.",
+      "check": ["factorial(6)/(factorial(3)*factorial(2)) == 60"]
+    },
+    {
+      "id": "pm-p-5",
+      "statement": "How many ways can $6$ friends sit around a circular campfire?",
+      "solution": "Circle: $(6-1)! = 5! = 120$ seatings.",
+      "check": ["factorial(5) == 120"]
+    },
+    {
+      "id": "pm-p-6",
+      "statement": "Five trophies go on a shelf, and the gold trophy must be in the exact center. How many arrangements?",
+      "solution": "The center is forced ($1$ way); the other four arrange freely: $4! = 24$.",
+      "check": ["factorial(4) == 24"]
+    },
+    {
+      "id": "pm-p-7",
+      "statement": "Seven students line up, but two specific students must stand together. How many lineups?",
+      "solution": "Glue the pair: $6$ units arrange in $6! = 720$ ways, times $2$ internal orders $= 1440$.",
+      "check": ["factorial(6)*2 == 1440"]
+    },
+    {
+      "id": "pm-p-8",
+      "statement": "A walk goes $4$ blocks east and $3$ blocks north. How many shortest routes are there?",
+      "solution": "Words with E×4, N×3: $\\frac{7!}{4! \\, 3!} = \\frac{5040}{144} = 35$ routes.",
+      "check": ["factorial(7)/(factorial(4)*factorial(3)) == 35"]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "pm-ty-1",
+      "statement": "A playlist has $8$ songs. How many ways can it play all $8$ with no repeats — and how many ways can it play just an opening block of $3$?",
+      "solution": "All eight: $8! = 40320$. Opening three (ordered): $P(8,3) = 8 \\times 7 \\times 6 = 336$.",
+      "check": ["factorial(8) == 40320", "8*7*6 == 336"]
+    },
+    {
+      "id": "pm-ty-2",
+      "statement": "How many distinct arrangements does the word BALLOON have?",
+      "solution": "Seven letters: L×2, O×2, and B, A, N once each. $\\frac{7!}{2! \\, 2!} = \\frac{5040}{4} = 1260$.",
+      "check": ["factorial(7)/(factorial(2)*factorial(2)) == 1260"]
+    },
+    {
+      "id": "pm-ty-3",
+      "statement": "Eight diplomats sit at a round table. The two rival ambassadors must NOT sit next to each other. How many seatings?",
+      "solution": "All circular seatings: $7! = 5040$. Together: glue the rivals — $7$ units in a circle $= 6! = 720$, times $2$ internal orders $= 1440$. Apart: $5040 - 1440 = 3600$.",
+      "check": ["factorial(7) == 5040", "factorial(6)*2 == 1440", "5040 - 1440 == 3600"]
+    },
+    {
+      "id": "pm-ty-4",
+      "statement": "Four math books and $3$ novels line a shelf so that the $4$ math books stay together as a block. How many arrangements?",
+      "solution": "Glue the math block: $4$ units ($3$ novels + block) arrange in $4! = 24$ ways; inside the block the math books arrange in $4! = 24$ ways. Total: $24 \\times 24 = 576$.",
+      "check": ["factorial(4)*factorial(4) == 576"]
+    },
+    {
+      "id": "pm-ty-5",
+      "statement": "Three girls and $3$ boys sit in a row of $6$ so that no two girls are adjacent AND no two boys are adjacent. How many seatings?",
+      "solution": "Full alternation is forced: skeletons GBGBGB or BGBGBG — $2$ choices. Girls fill their slots $3!$ ways, boys $3!$: $2 \\times 6 \\times 6 = 72$.",
+      "check": ["2*factorial(3)*factorial(3) == 72"]
+    },
+    {
+      "id": "pm-ty-6",
+      "statement": "Which is bigger, and by how much: the number of $4$-letter codes from A–J with repeats allowed, or without?",
+      "solution": "With repeats: $10^4 = 10000$. Without: $10 \\times 9 \\times 8 \\times 7 = 5040$. Repeats-allowed is bigger by $10000 - 5040 = 4960$ codes — exactly the codes containing at least one repeat (Unit 1's complement!).",
+      "check": ["10**4 == 10000", "10*9*8*7 == 5040", "10000 - 5040 == 4960"]
+    }
+  ]
+}
