@@ -151,6 +151,7 @@ import psCountingPrinciples from "@/data/genmath/prob-stats/counting-principles.
 import psPermutations from "@/data/genmath/prob-stats/permutations.json";
 import psCombinations from "@/data/genmath/prob-stats/combinations.json";
 import psBinomialTheorem from "@/data/genmath/prob-stats/binomial-theorem.json";
+import psProbabilityModels from "@/data/genmath/prob-stats/probability-models.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -842,7 +843,7 @@ export const PROBSTAT_SPINE: GeometrySpineEntry[] = [
     title: "Probability Models",
     blurb: "Sample spaces, events, equally-likely outcomes, complements, and the addition rule with Venn diagrams.",
     buildsOn: "Counting (Units 1–3) — probability is counting favorable over counting all.",
-    live: false,
+    live: true,
   },
   {
     unit: 6,
@@ -907,6 +908,7 @@ const probStatUnits: CourseUnit[] = [
   psPermutations as unknown as CourseUnit,
   psCombinations as unknown as CourseUnit,
   psBinomialTheorem as unknown as CourseUnit,
+  psProbabilityModels as unknown as CourseUnit,
 ];
 
 export function getProbStatSpine(): GeometrySpineEntry[] {

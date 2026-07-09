@@ -1,0 +1,1112 @@
+{
+  "slug": "probability-models",
+  "title": "Probability Models",
+  "unit": 5,
+  "status": "published",
+  "blurb": "Sample spaces, events, equally-likely outcomes, complements, and the addition rule with Venn diagrams.",
+  "buildsOn": "Counting (Units 1–3) — probability is counting favorable over counting all.",
+  "lessons": [
+    {
+      "slug": "probability-as-counting",
+      "title": "Probability Is Counting, Twice",
+      "concreteComparison": "\"What's the chance a random $2$-topping pizza from our $8$ toppings has mushrooms?\" Act One counted the menu: $C(8,2) = 28$ pizzas total, and mushroom pizzas pair the mushroom with one of the $7$ others: $7$. Chance: $\\frac{7}{28} = \\frac{1}{4}$. Every probability in this act is two counts from Act One, stacked as a fraction.",
+      "objective": "Compute probabilities of equally-likely outcomes as favorable-count over total-count, using the Act One toolkit for both counts.",
+      "concept": [
+        "**Probability** lives on the scale $0$ (impossible) to $1$ (certain). For a sample space of EQUALLY LIKELY outcomes: $$P(\\text{event}) = \\frac{\\text{favorable outcomes}}{\\text{total outcomes}}$$",
+        "Both counts come from Act One — multiplication principle, permutations, combinations, complements. The mathematics is old; only the fraction is new.",
+        "The equally-likely requirement is real: outcomes must be the SAME kind of object, counted the same way. Mixing \"pizzas\" in the numerator with \"toppings\" in the denominator breaks the fraction — numerator and denominator must count the same universe.",
+        "Probabilities of all outcomes sum to $1$, so probabilities give you a free audit: an answer above $1$ or below $0$ isn't a probability, it's a counting bug wearing a costume."
+      ],
+      "keyIdea": "P = favorable/total for equally likely outcomes — two Act One counts of the SAME universe, stacked.",
+      "facts": [
+        {
+          "title": "The definition",
+          "latex": "P(E) = \\frac{|E|}{|S|}",
+          "explanation": "Favorable outcomes over all outcomes, both counted in the same sample space S."
+        },
+        {
+          "title": "The scale",
+          "latex": "0 \\le P(E) \\le 1",
+          "explanation": "Impossible to certain; outside this range means the counting broke."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pb-l1-w1",
+          "statement": "A random $2$-topping pizza is built from $8$ toppings. What is the probability it includes mushrooms?",
+          "solution": "Universe: $C(8,2) = 28$ pizzas. Favorable: mushroom + one of the other $7$ toppings $= 7$. $P = \\frac{7}{28} = \\frac{1}{4}$.",
+          "check": ["binomial(8, 2) == 28", "7/28 == 1/4"]
+        },
+        {
+          "id": "pb-l1-w2",
+          "statement": "Two dice are rolled. What is the probability the sum is $8$?",
+          "solution": "Universe: $6 \\times 6 = 36$ ordered rolls. Favorable: $(2,6), (3,5), (4,4), (5,3), (6,2)$ — five. $P = \\frac{5}{36}$.",
+          "check": ["6*6 == 36", "5/36 == 5/36"]
+        },
+        {
+          "id": "pb-l1-w3",
+          "statement": "A $4$-digit PIN is chosen at random (digits $0$–$9$, repeats allowed). What is the probability all four digits are different?",
+          "solution": "Universe: $10^4 = 10000$. Favorable: $10 \\times 9 \\times 8 \\times 7 = 5040$ (Unit 2's shrinking slots). $P = \\frac{5040}{10000} = 0.504$ — a hair better than half.",
+          "check": ["10*9*8*7 == 5040", "5040/10000 == 504/1000"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Counting the numerator and denominator in different universes.",
+          "correction": "If the denominator counts ORDERED rolls (36), the numerator must count ordered rolls too — (3,5) and (5,3) both. Choose one universe, count both layers in it.",
+          "authored": true
+        },
+        {
+          "text": "Trusting 'two outcomes, so 50-50'.",
+          "correction": "Win-or-lose isn't 1/2 unless both are equally likely. The formula needs a sample space of EQUAL outcomes — build it from fair coins, fair dice, or uniform random draws, not from wishful symmetry.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pb-l1-t1",
+          "statement": "A letter is drawn at random from БАЯРЛАЛАА ($9$ letters). What is the probability it is А?",
+          "solution": "А appears $4$ times among $9$: $P = \\frac{4}{9}$.",
+          "check": ["4/9 == 4/9"]
+        },
+        {
+          "id": "pb-l1-t2",
+          "statement": "A committee of $2$ is drawn at random from $4$ girls and $3$ boys. Probability both are girls?",
+          "solution": "Universe: $C(7,2) = 21$; favorable: $C(4,2) = 6$. $P = \\frac{6}{21} = \\frac{2}{7}$.",
+          "check": ["binomial(4, 2) == 6", "binomial(7, 2) == 21", "6/21 == 2/7"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Act Two opens",
+            "title": "Two counts, one fraction",
+            "beats": [
+              "\"Chance a random 2-topping pizza has mushrooms?\"",
+              "Total pizzas: $C(8,2) = 28$ — Act One.",
+              "Mushroom pizzas: $7$ — Act One again.",
+              "$P = \\frac{7}{28} = \\frac{1}{4}$. Probability is counting, stacked."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The rules",
+            "title": "The fraction's fine print",
+            "beats": [
+              "Outcomes must be EQUALLY LIKELY — fair dice, fair draws.",
+              "Numerator and denominator count the SAME universe.",
+              "Scale: $0 \\le P \\le 1$; all outcomes together sum to $1$.",
+              "An answer of $1.4$ is a counting bug, not a probability."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "First fraction",
+            "title": "One die",
+            "prompt": "A fair die is rolled. $P(\\text{multiple of } 3)$?",
+            "options": ["$\\frac{1}{3}$", "$\\frac{1}{2}$", "$\\frac{1}{6}$"],
+            "correctIndex": 0,
+            "explanation": "Favorable: $\\{3, 6\\}$ — two of six: $\\frac{2}{6} = \\frac{1}{3}$. The $\\frac{1}{6}$ counts only the $3$; $\\frac{1}{2}$ overcounts.",
+            "check": ["2/6 == 1/3"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The mushroom pizza",
+            "problemId": "pb-l1-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Sum of eight",
+            "problemId": "pb-l1-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "All-different PIN",
+            "problemId": "pb-l1-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Universe discipline",
+            "title": "Ordered or not — just match",
+            "prompt": "Two coins flip. Bilguun says $P(\\text{one head, one tail}) = \\frac{1}{3}$ (\"HH, one-of-each, TT — three outcomes\"). What went wrong?",
+            "options": ["His three outcomes aren't equally likely", "Nothing — it's $\\frac{1}{3}$", "He should divide by 4 anyway"],
+            "correctIndex": 0,
+            "explanation": "\"One of each\" bundles TWO equally-likely outcomes (HT and TH), so his list isn't uniform. In the fair universe $\\{HH, HT, TH, TT\\}$: $P = \\frac{2}{4} = \\frac{1}{2}$. Equal likelihood is a property you must CHECK, not assume.",
+            "check": ["2/4 == 1/2"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Name the universe out loud",
+            "body": "Start every problem with one sentence: \"The universe is all ___ , and there are ___ of them.\" (All 2-topping pizzas: 28. All ordered dice rolls: 36.) Once the universe is named, the favorable count almost always follows from an Act One tool — and universe-mixing bugs become impossible."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Letter draw",
+            "problemId": "pb-l1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Two-girl committee",
+            "problemId": "pb-l1-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The 1654 problem that started it all",
+            "body": "Probability theory's founding question — the Chevalier de Méré's dice bets, settled by Pascal and Fermat — was answered exactly the way you just worked: count the equally-likely outcomes, count the favorable ones, divide. Three hundred and seventy years later, that's still lesson one, because it still works."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "P(E) = favorable/total over equally likely outcomes.",
+              "Both counts use Act One tools, in ONE consistent universe.",
+              "0 ≤ P ≤ 1 and everything sums to 1 — free audits, always on."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "events-and-complements",
+      "title": "Events & Complements",
+      "concreteComparison": "An event isn't one outcome — it's a CLUB of outcomes. \"The sum is even\" admits $18$ of the $36$ dice rolls. And every club defines its non-members: \"at least one six\" has a complement — \"no sixes\" — whose members are easier to count: $\\frac{25}{36}$ outside, so $\\frac{11}{36}$ inside. You did this exact move with counts in Unit 1; now it wears probabilities.",
+      "objective": "Treat events as sets of outcomes, and compute P(not A) = 1 − P(A), especially for at-least-one events.",
+      "concept": [
+        "An **event** is a subset of the sample space — every outcome is in or out. Events can be described in words (\"sum is even\") but they ARE sets, and their probability is their size over the universe's size.",
+        "**The complement rule:** $A$ and not-$A$ split the universe, so $$P(\\text{not } A) = 1 - P(A)$$ — Unit 1's total-minus-unwanted, divided through by the universe size.",
+        "\"**At least one**\" remains the trigger phrase: its complement \"none\" is a single clean count. $P(\\text{at least one six in two dice}) = 1 - \\frac{25}{36} = \\frac{11}{36}$.",
+        "Special clubs: the **impossible event** (empty set, $P = 0$) and the **certain event** (whole space, $P = 1$). Every other event lives strictly between — and an event plus its complement always accounts for the entire $1$."
+      ],
+      "keyIdea": "Events are outcome-sets; P(not A) = 1 − P(A), and 'at least one' flips to the single count 'none'.",
+      "facts": [
+        {
+          "title": "The complement rule",
+          "latex": "P(\\bar{A}) = 1 - P(A)",
+          "explanation": "The event and its complement partition the sample space, so their probabilities share the 1."
+        },
+        {
+          "title": "At least one",
+          "latex": "P(\\text{at least one}) = 1 - P(\\text{none})",
+          "explanation": "The sprawling event's complement is one clean multiplication."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pb-l2-w1",
+          "statement": "Two dice are rolled. Find $P(\\text{at least one six})$.",
+          "solution": "Complement — no sixes: each die has $5$ safe faces, $5 \\times 5 = 25$ of $36$. $P(\\text{none}) = \\frac{25}{36}$, so $P(\\text{at least one}) = 1 - \\frac{25}{36} = \\frac{11}{36}$.",
+          "check": ["1 - 25/36 == 11/36"]
+        },
+        {
+          "id": "pb-l2-w2",
+          "statement": "A family plans $4$ children. Assuming boy/girl equally likely, find $P(\\text{at least one girl})$.",
+          "solution": "Universe: $2^4 = 16$ birth orders. Complement — all boys: $1$ outcome. $P = 1 - \\frac{1}{16} = \\frac{15}{16}$.",
+          "check": ["1 - 1/16 == 15/16", "2**4 == 16"]
+        },
+        {
+          "id": "pb-l2-w3",
+          "statement": "A $5$-card hand is dealt. Find $P(\\text{at least one ace})$ as a formula and evaluate it as a fraction of hands.",
+          "solution": "Complement — ace-free hands: $C(48,5) = 1{,}712{,}304$ of $C(52,5) = 2{,}598{,}960$. $P(\\text{at least one ace}) = 1 - \\frac{C(48,5)}{C(52,5)} = 1 - \\frac{1712304}{2598960} \\approx 0.341$. About one hand in three carries an ace.",
+          "check": ["binomial(48, 5) == 1712304", "binomial(52, 5) == 2598960"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Complementing only part of the description.",
+          "correction": "The complement of \"at least one six\" is \"no sixes\" — not \"at least one non-six\". Write the complement in words and verify the two descriptions cover everything exactly once.",
+          "authored": true
+        },
+        {
+          "text": "Subtracting from the wrong side: P(A) − 1.",
+          "correction": "It's 1 − P(A). A negative probability is the formula upside down.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pb-l2-t1",
+          "statement": "Three coins are flipped. Find $P(\\text{at least one tail})$.",
+          "solution": "Complement — all heads: $\\frac{1}{8}$. $P = 1 - \\frac{1}{8} = \\frac{7}{8}$.",
+          "check": ["1 - 1/8 == 7/8"]
+        },
+        {
+          "id": "pb-l2-t2",
+          "statement": "One die is rolled. Events: $A = $ \"roll is even\", so what is $P(\\text{not } A)$ — and which outcomes form it?",
+          "solution": "$P(A) = \\frac{3}{6} = \\frac{1}{2}$; not-$A$ is the odd club $\\{1, 3, 5\\}$: $P = \\frac{1}{2}$.",
+          "check": ["1 - 3/6 == 1/2"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The upgrade",
+            "title": "Events are clubs",
+            "beats": [
+              "An event isn't one outcome — it's a SET of outcomes.",
+              "\"Sum is even\": 18 members out of 36 rolls.",
+              "$P(\\text{event}) = \\frac{\\text{members}}{\\text{universe}}$.",
+              "Every set idea you own now applies to chance."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The rule",
+            "title": "The complement, at probability scale",
+            "beats": [
+              "$A$ and not-$A$ split the universe — no overlap, nothing missed.",
+              "$P(\\text{not } A) = 1 - P(A)$.",
+              "Unit 1's subtraction, divided by the universe size.",
+              "Trigger: \"at least one\" → count \"none\" instead."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Name the complement",
+            "title": "Words first",
+            "prompt": "The complement of \"at least one head in five flips\" is…",
+            "options": ["all five flips are tails", "at least one tail", "exactly one head"],
+            "correctIndex": 0,
+            "explanation": "\"At least one head\" fails only when NO head appears — all tails, probability $\\frac{1}{32}$. \"At least one tail\" overlaps the original event; \"exactly one head\" is inside it.",
+            "check": ["1 - 1/32 == 31/32"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "At least one six",
+            "problemId": "pb-l2-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "At least one girl",
+            "problemId": "pb-l2-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "At least one ace",
+            "problemId": "pb-l2-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Scale audit",
+            "title": "Sum to one",
+            "prompt": "$P(\\text{rain}) = 0.3$, and a forecaster claims $P(\\text{no rain}) = 0.6$. Verdict?",
+            "options": ["Impossible — complements must sum to 1", "Fine — forecasts are approximate", "Fine if it might snow"],
+            "correctIndex": 0,
+            "explanation": "Rain and no-rain split the universe: $0.3 + 0.6 = 0.9 \\ne 1$. The missing $0.1$ isn't weather, it's a bookkeeping hole. (Snow IS \"no rain\" — the complement absorbs everything else.)",
+            "check": ["1 - 3/10 == 7/10"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Reflex",
+            "title": "Hear 'at least', think '1 minus none'",
+            "body": "This reflex will fire constantly for the rest of the course — binomial distributions, card hands, quality control. Train it now: every \"at least one\" gets rewritten as 1 − P(none) BEFORE any counting starts. The direct route exists, and it's almost always case soup."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "At least one tail",
+            "problemId": "pb-l2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The odd club",
+            "problemId": "pb-l2-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The birthday paradox, properly yours now",
+            "body": "In a room of 23 people, P(some two share a birthday) ≈ 0.507 — computed exactly as this lesson taught: the complement (all 23 birthdays different) is one long shrinking-slot product, $\\frac{365 \\times 364 \\times \\cdots \\times 343}{365^{23}}$, and 1 minus it wins bar bets. Every tool in that formula is now yours."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Events are subsets; probability is membership over universe.",
+              "P(not A) = 1 − P(A) — the piles must sum to 1 (free audit).",
+              "'At least one' → 1 − P(none), a reflex worth training."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-addition-rule",
+      "title": "The Addition Rule",
+      "concreteComparison": "Draw one card: $P(\\text{king}) = \\frac{4}{52}$, $P(\\text{heart}) = \\frac{13}{52}$. So $P(\\text{king or heart}) = \\frac{17}{52}$? Count the club: $13$ hearts plus the $3$ non-heart kings $= 16$ — the king of hearts was standing in BOTH lines and got counted twice. $\\frac{16}{52}$, not $\\frac{17}{52}$. Unit 1's inclusion-exclusion, now with probabilities.",
+      "objective": "Compute P(A or B) with the addition rule, recognizing when the overlap term vanishes (mutually exclusive events).",
+      "concept": [
+        "**The addition rule:** $$P(A \\text{ or } B) = P(A) + P(B) - P(A \\text{ and } B)$$ — inclusion-exclusion divided through by the universe size. The overlap was added twice; subtract it once.",
+        "**Mutually exclusive** events can't co-occur — the overlap is empty, $P(A \\text{ and } B) = 0$ — and only then does plain addition hold: $P(\\text{roll } 1 \\text{ or } 2) = \\frac{1}{6} + \\frac{1}{6}$.",
+        "The rule runs in every direction: given any three of the four quantities $P(A), P(B), P(A \\text{ and } B), P(A \\text{ or } B)$, solve for the fourth like any equation.",
+        "Combined with complements it answers \"neither\": $P(\\text{neither } A \\text{ nor } B) = 1 - P(A \\text{ or } B)$ — the outside of the union."
+      ],
+      "keyIdea": "P(A or B) = P(A) + P(B) − P(A and B); the overlap term is 0 exactly when the events are mutually exclusive.",
+      "facts": [
+        {
+          "title": "The addition rule",
+          "latex": "P(A \\cup B) = P(A) + P(B) - P(A \\cap B)",
+          "explanation": "Inclusion-exclusion over the universe size — subtract the double-counted overlap."
+        },
+        {
+          "title": "Mutually exclusive",
+          "latex": "P(A \\cap B) = 0 \\;\\Rightarrow\\; P(A \\cup B) = P(A) + P(B)",
+          "explanation": "No shared outcomes: plain addition is legal only here."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pb-l3-w1",
+          "statement": "One card is drawn. Find $P(\\text{king or heart})$.",
+          "solution": "$P(K) = \\frac{4}{52}$, $P(H) = \\frac{13}{52}$, overlap (king of hearts) $= \\frac{1}{52}$. $P(K \\cup H) = \\frac{4 + 13 - 1}{52} = \\frac{16}{52} = \\frac{4}{13}$.",
+          "check": ["4/52 + 13/52 - 1/52 == 16/52", "16/52 == 4/13"]
+        },
+        {
+          "id": "pb-l3-w2",
+          "statement": "One die is rolled. Find $P(\\text{even or greater than } 4)$.",
+          "solution": "Even: $\\{2,4,6\\}$, $\\frac{3}{6}$. Greater than 4: $\\{5,6\\}$, $\\frac{2}{6}$. Overlap: $\\{6\\}$, $\\frac{1}{6}$. Union: $\\frac{3 + 2 - 1}{6} = \\frac{4}{6} = \\frac{2}{3}$ — the club $\\{2, 4, 5, 6\\}$, counted directly, agrees.",
+          "check": ["3/6 + 2/6 - 1/6 == 4/6", "4/6 == 2/3"]
+        },
+        {
+          "id": "pb-l3-w3",
+          "statement": "In a class, $P(\\text{plays music}) = 0.45$, $P(\\text{plays sport}) = 0.60$, and $P(\\text{plays both}) = 0.25$. Find the probability a random student plays NEITHER.",
+          "solution": "Union first: $0.45 + 0.60 - 0.25 = 0.80$. Neither is the outside: $1 - 0.80 = 0.20$.",
+          "check": ["45/100 + 60/100 - 25/100 == 80/100", "1 - 80/100 == 20/100"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding probabilities of overlapping events.",
+          "correction": "P(king) + P(heart) = 17/52 double-counts the king of hearts. Ask first: CAN both happen at once? If yes, the overlap term is mandatory.",
+          "authored": true
+        },
+        {
+          "text": "Assuming events with probabilities summing over 1 are impossible.",
+          "correction": "P(music) + P(sport) = 1.05 is fine — it just proves they overlap by at least 0.05. Only the UNION is capped at 1.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pb-l3-t1",
+          "statement": "One die: find $P(\\text{odd or a } 6)$.",
+          "solution": "Odd $\\frac{3}{6}$, six $\\frac{1}{6}$, no overlap (6 is even): $\\frac{4}{6} = \\frac{2}{3}$.",
+          "check": ["3/6 + 1/6 == 4/6"]
+        },
+        {
+          "id": "pb-l3-t2",
+          "statement": "$P(A) = 0.5$, $P(B) = 0.4$, $P(A \\cup B) = 0.7$. Find $P(A \\cap B)$.",
+          "solution": "Rearrange: $P(A \\cap B) = 0.5 + 0.4 - 0.7 = 0.2$.",
+          "check": ["5/10 + 4/10 - 7/10 == 2/10"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The hook",
+            "title": "The king of hearts, counted twice",
+            "beats": [
+              "$P(\\text{king}) = \\frac{4}{52}$, $P(\\text{heart}) = \\frac{13}{52}$.",
+              "Add: $\\frac{17}{52}$? Count the club: $13$ hearts $+ 3$ other kings $= 16$.",
+              "One card stood in both lines.",
+              "$P(A \\text{ or } B) = P(A) + P(B) - P(\\text{both})$. Old friend, new outfit."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The special case",
+            "title": "Mutually exclusive: when adding is legal",
+            "beats": [
+              "Some pairs CAN'T co-occur: roll a 1 or a 2. Overlap empty.",
+              "$P(\\text{both}) = 0$ → plain addition holds.",
+              "That's the ONLY time it holds.",
+              "Ask \"can both happen?\" before every addition. Every time."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Overlap radar",
+            "title": "Can both happen?",
+            "prompt": "Which pair of one-die events is mutually exclusive?",
+            "options": ["\"roll ≤ 2\" and \"roll ≥ 5\"", "\"even\" and \"multiple of 3\"", "\"odd\" and \"prime\""],
+            "correctIndex": 0,
+            "explanation": "No roll is both ≤2 and ≥5. But 6 is even AND a multiple of 3; and 3, 5, 7... — 3 and 5 are odd primes. Overlap radar beats intuition: check for a shared member.",
+            "check": ["2/6 + 2/6 == 4/6"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "King or heart",
+            "problemId": "pb-l3-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Even or big",
+            "problemId": "pb-l3-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Neither music nor sport",
+            "problemId": "pb-l3-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Solve for the fourth",
+            "title": "The rule as an equation",
+            "prompt": "$P(A) = 0.6$, $P(B) = 0.5$, $P(A \\cap B) = 0.3$. Then $P(A \\cup B) = $ ?",
+            "options": ["$0.8$", "$1.1$", "$0.4$"],
+            "correctIndex": 0,
+            "explanation": "$0.6 + 0.5 - 0.3 = 0.8$. The $1.1$ forgot the overlap (and broke the scale — a free red flag); $0.4$ subtracted twice.",
+            "check": ["6/10 + 5/10 - 3/10 == 8/10"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Language warning",
+            "title": "'Or' is inclusive in mathematics",
+            "body": "In everyday speech \"soup or salad\" means one, not both. In probability, \"A or B\" ALWAYS includes the both-case — the union. If a problem means \"exactly one of A, B\", it must say so (and then you want P(A) + P(B) − 2P(A∩B)). Read \"or\" as \"at least one of\"."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Odd or six",
+            "problemId": "pb-l3-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Find the overlap",
+            "problemId": "pb-l3-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Insurance is the addition rule at scale",
+            "body": "Actuaries price bundled policies with exactly this rule: P(claim on flood OR fire) can't be priced by adding the two rates when one storm causes both — the overlap is where bundled-policy discounts (and insurer bankruptcies) come from. The subtraction term has a dollar sign on it."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "P(A or B) = P(A) + P(B) − P(A and B), always.",
+              "The overlap term is 0 only for mutually exclusive events — check, don't assume.",
+              "Neither = 1 − union; and the rule solves for any missing piece."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "tables-and-venn",
+      "title": "Two-Way Tables & Venn Diagrams",
+      "concreteComparison": "A survey of $100$ students: $60$ have a bike, $45$ have a skateboard, $25$ have both. Quick — how many have a bike but NO skateboard? A Venn diagram answers before you finish reading: the bike circle holds $60$, its overlap holds $25$, so bike-only is $35$. Organize first, and every probability in the story becomes a lookup instead of a derivation.",
+      "objective": "Organize joint information in Venn diagrams and two-way tables, then read off any probability — unions, overlaps, 'only's, and neithers.",
+      "concept": [
+        "A **Venn diagram** stores four region counts (A-only, both, B-only, neither) that always sum to the total. Fill the OVERLAP first, then subtract to get the 'only' regions, then the outside absorbs the rest.",
+        "A **two-way table** stores the same information with room to grow: rows for A/not-A, columns for B/not-B — four cells plus margins. The margins (row and column totals) are the single-event counts; the cells are the joint counts.",
+        "Every probability in the story is now a lookup: $P(\\text{bike only}) = \\frac{35}{100}$, $P(\\text{neither}) = \\frac{20}{100}$, $P(\\text{bike or skateboard}) = \\frac{80}{100}$ — no formula juggling, just region arithmetic.",
+        "The two tools are one tool: the table's four inner cells ARE the Venn's four regions. Tables scale better to real data (and to conditional probability, next unit); Venns are faster for two-set word problems."
+      ],
+      "keyIdea": "Fill the overlap first; the four regions sum to the total, and every probability becomes a region lookup.",
+      "facts": [
+        {
+          "title": "Region arithmetic",
+          "latex": "\\text{A-only} = |A| - |A \\cap B|",
+          "explanation": "Overlap first, subtract for the 'only' regions, the outside absorbs the rest."
+        },
+        {
+          "title": "Table = Venn",
+          "latex": "4 \\text{ cells} \\leftrightarrow 4 \\text{ regions}",
+          "explanation": "Two representations of the same joint counts; margins hold the single-event totals."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pb-l4-w1",
+          "statement": "Of $100$ students: $60$ have a bike, $45$ a skateboard, $25$ both. Build the Venn regions and find $P(\\text{neither})$.",
+          "solution": "Overlap: $25$. Bike-only: $60 - 25 = 35$. Skateboard-only: $45 - 25 = 20$. Sum so far: $80$; neither: $100 - 80 = 20$. $P(\\text{neither}) = \\frac{20}{100} = \\frac{1}{5}$.",
+          "check": ["60 - 25 == 35", "45 - 25 == 20", "100 - (35 + 25 + 20) == 20", "20/100 == 1/5"]
+        },
+        {
+          "id": "pb-l4-w2",
+          "statement": "From the same survey, find $P(\\text{exactly one of the two})$.",
+          "solution": "\"Exactly one\" is the two 'only' regions: $35 + 20 = 55$. $P = \\frac{55}{100} = \\frac{11}{20}$. (Note it's NOT the union $80$ — the union includes the both-region.)",
+          "check": ["35 + 20 == 55", "55/100 == 11/20"]
+        },
+        {
+          "id": "pb-l4-w3",
+          "statement": "A school of $200$: $110$ study English, $80$ study Japanese, $150$ study at least one. Fill the table and find how many study BOTH.",
+          "solution": "Addition rule backwards: $|E \\cap J| = 110 + 80 - 150 = 40$. Regions: English-only $70$, both $40$, Japanese-only $40$, neither $200 - 150 = 50$. Cross-check: $70+40+40+50 = 200$ ✓.",
+          "check": ["110 + 80 - 150 == 40", "70 + 40 + 40 + 50 == 200"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Writing the full set size into the 'only' region.",
+          "correction": "The bike circle's 60 includes the 25 both-owners. Bike-ONLY is 60 − 25 = 35. Fill the overlap first and this mistake becomes impossible.",
+          "authored": true
+        },
+        {
+          "text": "Confusing 'exactly one' with 'or'.",
+          "correction": "'Or' (union) includes the both-region; 'exactly one' excludes it. On the Venn they're different region sets: 35+25+20 = 80 vs 35+20 = 55.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pb-l4-t1",
+          "statement": "Of $50$ diners: $30$ ordered soup, $22$ ordered salad, $12$ ordered both. How many ordered neither?",
+          "solution": "Soup-only $18$, both $12$, salad-only $10$ — total $40$; neither: $10$.",
+          "check": ["50 - (18 + 12 + 10) == 10"]
+        },
+        {
+          "id": "pb-l4-t2",
+          "statement": "From that table, find $P(\\text{salad but no soup})$.",
+          "solution": "Salad-only region: $10$ of $50$: $P = \\frac{10}{50} = \\frac{1}{5}$.",
+          "check": ["10/50 == 1/5"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The tool",
+            "title": "Four regions, total known",
+            "beats": [
+              "Two overlapping events split the world into FOUR regions.",
+              "A-only · both · B-only · neither — summing to the total.",
+              "Fill the OVERLAP first. Subtract for the 'only's. The outside absorbs the rest.",
+              "Then every question is a lookup."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Bikes and skateboards",
+            "problemId": "pb-l4-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Region drill",
+            "title": "Read the regions",
+            "prompt": "With bike-only $35$, both $25$, skateboard-only $20$, neither $20$: $P(\\text{has a skateboard})$?",
+            "options": ["$\\frac{45}{100}$", "$\\frac{20}{100}$", "$\\frac{70}{100}$"],
+            "correctIndex": 0,
+            "explanation": "The skateboard circle is both + skateboard-only $= 25 + 20 = 45$. The $20$ is only-skateboard (forgot the overlap); $70$ grabbed a margin from the wrong event.",
+            "check": ["25 + 20 == 45"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Exactly one",
+            "problemId": "pb-l4-w2"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Tool two",
+            "title": "The two-way table",
+            "beats": [
+              "Rows: A / not-A. Columns: B / not-B. Four cells + margins.",
+              "Cells are joints; margins are singles; corner is the total.",
+              "It's the Venn, straightened — and it scales to real data.",
+              "Next unit's conditional probability reads straight off it."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Backwards to the overlap",
+            "problemId": "pb-l4-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Table drill",
+            "title": "Fill the missing cell",
+            "prompt": "A table shows: total $80$, likes-cats $50$, likes-dogs $46$, likes-neither $4$. How many like BOTH?",
+            "options": ["$20$", "$16$", "$26$"],
+            "correctIndex": 0,
+            "explanation": "At least one: $80 - 4 = 76$. Both: $50 + 46 - 76 = 20$. The addition rule runs backwards through a table as easily as forward.",
+            "check": ["50 + 46 - (80 - 4) == 20"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Discipline",
+            "title": "Draw before you derive",
+            "body": "Any problem naming two overlapping categories earns a 20-second Venn or table BEFORE any probability formula. Regions make 'only', 'exactly one', 'neither', and 'or' unambiguous — most addition-rule errors are really region-reading errors that a drawing would have blocked."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Soup and salad",
+            "problemId": "pb-l4-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Salad, hold the soup",
+            "problemId": "pb-l4-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Venn's diagram was a logic machine",
+            "body": "John Venn introduced his diagrams in 1880 to mechanize syllogisms — Victorian logicians literally shaded regions to check arguments. Statisticians hijacked them for probability within a generation. The four-region picture you just drew is a 145-year-old proof assistant that still fits on a napkin."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Overlap first, 'only's by subtraction, outside absorbs the rest.",
+              "Tables = Venns with margins; both make probabilities lookups.",
+              "'Or', 'exactly one', 'neither' are region sets — draw, then read."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "combinatorial-probability",
+      "title": "Probability with Chooses",
+      "concreteComparison": "A quality inspector draws $3$ phones from a box of $12$ that hides $4$ defective units. $P(\\text{all three fine})$? Universe: $C(12,3) = 220$ draws. Favorable: all from the $8$ good ones, $C(8,3) = 56$. $P = \\frac{56}{220} = \\frac{14}{55} \\approx 0.25$. Act One's chooses now live inside probability fractions — numerator AND denominator.",
+      "objective": "Compute probabilities of unordered draws using combinations in both layers of the fraction, including quota and at-least events.",
+      "concept": [
+        "When a handful is drawn at once (cards, committee members, sampled products), the natural universe is UNORDERED: $C(n, r)$ draws, all equally likely.",
+        "Quota events put a choose per pool in the numerator (Unit 3): $P(\\text{exactly } 2 \\text{ defective of } 3) = \\frac{C(4,2) \\, C(8,1)}{C(12,3)}$ — defectives from defectives, good from good.",
+        "\"At least one defective\" bows to the complement reflex: $1 - P(\\text{none}) = 1 - \\frac{C(8,3)}{C(12,3)}$.",
+        "Sanity net: the exact-count probabilities over all possible counts must sum to $1$ — $P(0) + P(1) + P(2) + P(3) = 1$ for three draws. When your quota cases don't sum to one, a pool or a case is mislabeled. (This distribution-over-counts view becomes the star of Unit 7.)"
+      ],
+      "keyIdea": "Unordered draws: chooses upstairs and down — quota products for exact counts, complement for at-least, and exact-counts sum to 1.",
+      "facts": [
+        {
+          "title": "Quota probability",
+          "latex": "P = \\frac{C(4,2)\\,C(8,1)}{C(12,3)}",
+          "explanation": "Each category chosen from its own pool, over the unordered universe."
+        },
+        {
+          "title": "The distribution audit",
+          "latex": "\\sum_k P(\\text{exactly } k) = 1",
+          "explanation": "Exact-count probabilities across all k must exhaust the universe."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pb-l5-w1",
+          "statement": "A box holds $8$ good and $4$ defective phones. Three are drawn at random. Find $P(\\text{all good})$.",
+          "solution": "Universe: $C(12,3) = 220$. Favorable: $C(8,3) = 56$. $P = \\frac{56}{220} = \\frac{14}{55}$.",
+          "check": ["binomial(8, 3) == 56", "binomial(12, 3) == 220", "56/220 == 14/55"]
+        },
+        {
+          "id": "pb-l5-w2",
+          "statement": "Same box, same draw. Find $P(\\text{exactly one defective})$.",
+          "solution": "Quota: $1$ defective from $4$, $2$ good from $8$: $C(4,1) \\, C(8,2) = 4 \\times 28 = 112$. $P = \\frac{112}{220} = \\frac{28}{55}$.",
+          "check": ["binomial(4, 1)*binomial(8, 2) == 112", "112/220 == 28/55"]
+        },
+        {
+          "id": "pb-l5-w3",
+          "statement": "A $5$-card hand is dealt. Find $P(\\text{all five are the same suit — a flush, counting straight flushes too})$.",
+          "solution": "Choose the suit ($4$ ways), then $5$ of its $13$ cards: $4 \\times C(13,5) = 4 \\times 1287 = 5148$ hands. $P = \\frac{5148}{2598960} = \\frac{33}{16660} \\approx 0.00198$ — about one hand in $505$.",
+          "check": ["4*binomial(13, 5) == 5148", "binomial(52, 5) == 2598960", "5148/2598960 == 33/16660"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Mixing an unordered numerator with an ordered denominator.",
+          "correction": "If the universe is C(12,3) unordered draws, favorable must be unordered too. Mixing C's with slot-products silently changes one layer's universe — the fraction stops meaning anything.",
+          "authored": true
+        },
+        {
+          "text": "Computing 'at least one defective' by locking one defective in.",
+          "correction": "C(4,1)·C(11,2)/C(12,3) overcounts multi-defective draws (Unit 3's reserve-one trap, at probability scale). Complement: 1 − C(8,3)/C(12,3).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pb-l5-t1",
+          "statement": "From $6$ red and $4$ blue marbles, $2$ are drawn together. Find $P(\\text{both red})$.",
+          "solution": "$\\frac{C(6,2)}{C(10,2)} = \\frac{15}{45} = \\frac{1}{3}$.",
+          "check": ["binomial(6, 2) == 15", "binomial(10, 2) == 45", "15/45 == 1/3"]
+        },
+        {
+          "id": "pb-l5-t2",
+          "statement": "Same bag: find $P(\\text{at least one blue})$.",
+          "solution": "Complement of both-red: $1 - \\frac{1}{3} = \\frac{2}{3}$.",
+          "check": ["1 - 1/3 == 2/3"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The merge",
+            "title": "Chooses move into the fraction",
+            "beats": [
+              "Draw $3$ phones from $12$ ($4$ hidden defects).",
+              "Universe: $C(12,3) = 220$ unordered draws — equally likely.",
+              "All-good: $C(8,3) = 56$ of them.",
+              "$P = \\frac{56}{220} \\approx 0.25$. Act One upstairs AND down."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "All good",
+            "problemId": "pb-l5-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Exactly one defective",
+            "problemId": "pb-l5-w2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quota drill",
+            "title": "Two defective",
+            "prompt": "Same box ($8$ good, $4$ bad, draw $3$): $P(\\text{exactly two defective})$?",
+            "options": ["$\\frac{C(4,2)C(8,1)}{C(12,3)} = \\frac{48}{220}$", "$\\frac{C(4,2)}{C(12,3)} = \\frac{6}{220}$", "$\\frac{C(4,2)C(10,1)}{C(12,3)}$"],
+            "correctIndex": 0,
+            "explanation": "Two bad from $4$, one good from $8$: $6 \\times 8 = 48$ over $220$. Forgetting the good phone's choose ($6/220$) or drawing it from a mislabeled pool of $10$ both break the quota.",
+            "check": ["binomial(4, 2)*binomial(8, 1) == 48"]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The audit",
+            "title": "Exact counts must sum to 1",
+            "beats": [
+              "$P(0 \\text{ def}) = \\frac{56}{220}$, $P(1) = \\frac{112}{220}$, $P(2) = \\frac{48}{220}$, $P(3) = \\frac{4}{220}$.",
+              "Sum: $\\frac{220}{220} = 1$. ✓",
+              "The universe is exhausted — nothing double-counted, nothing missed.",
+              "This little table is called a DISTRIBUTION. Unit 7 makes it the star."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The flush",
+            "problemId": "pb-l5-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Reflex check",
+            "title": "At least one, again",
+            "prompt": "Box of $8$ good, $4$ bad, draw $3$: best route to $P(\\text{at least one defective})$?",
+            "options": ["$1 - \\frac{C(8,3)}{C(12,3)} = \\frac{164}{220}$", "$\\frac{C(4,1)C(11,2)}{C(12,3)}$", "Sum $P(1) + P(2)$"],
+            "correctIndex": 0,
+            "explanation": "Complement of all-good: $1 - \\frac{56}{220} = \\frac{164}{220}$. Locking one defective in overcounts (the reserve-one trap); summing $P(1) + P(2)$ forgets $P(3)$.",
+            "check": ["1 - 56/220 == 164/220"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Layout habit",
+            "title": "Write the fraction as a story",
+            "body": "Lay out every combinatorial probability as (quota chooses)/(universe choose) with the pools labeled: bad 4 | good 8 | draw 3. When the story is visible in the fraction, wrong pools and missing chooses announce themselves."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Both red",
+            "problemId": "pb-l5-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "At least one blue",
+            "problemId": "pb-l5-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Acceptance sampling ships your phone",
+            "body": "Factories accept or reject entire shipments based on exactly the box-of-phones computation: draw a sample, and if it holds too many defectives, the lot fails. International standards (ISO 2859) are printed tables of these choose-fractions — a warehouse gate is a hypergeometric probability with a barcode scanner."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Unordered draws: C(n,r) universe, quota chooses upstairs.",
+              "At-least events: complement first, always.",
+              "Exact-count probabilities sum to 1 — the distribution audit."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "odds-and-the-long-run",
+      "title": "Odds & the Long Run",
+      "concreteComparison": "A horse is quoted at odds of \"$3$ to $1$ against\". That's NOT a probability of $\\frac{1}{3}$: it says for every $1$ way to win there are $3$ ways to lose — $P(\\text{win}) = \\frac{1}{4}$. And what does $\\frac{1}{4}$ MEAN? Not \"wins every fourth race\" — it means that over MANY races, the winning fraction settles near $25\\%$. Two translations — odds to probability, and probability to long-run frequency — finish this unit's foundation.",
+      "objective": "Convert between odds and probability, and interpret probability as long-run relative frequency with expected counts.",
+      "concept": [
+        "**Odds** compare favorable to UNfavorable: odds of $a$ to $b$ in favor means $P = \\frac{a}{a+b}$. Odds $3$:$1$ against winning means $1$ favorable, $3$ unfavorable: $P(\\text{win}) = \\frac{1}{4}$. Probability compares favorable to TOTAL — the denominators differ.",
+        "**Long-run meaning:** $P = \\frac{1}{4}$ promises nothing about four races. It says the observed fraction of wins CONVERGES toward $\\frac{1}{4}$ as the number of races grows — the law of large numbers, informally.",
+        "**Expected count** scales the promise: in $n$ trials, expect about $n \\times P$ occurrences — $200$ rolls of a die → about $\\frac{200}{6} \\approx 33$ sixes. \"About\" is honest: the count wobbles around the expectation, and the wobble SHRINKS relative to $n$.",
+        "The gambler's fallacy dies here: a coin that just landed heads five times has NO memory — $P(\\text{heads})$ is still $\\frac{1}{2}$. The long run balances by DILUTION (millions of future flips swamp five), not by compensation."
+      ],
+      "keyIdea": "Odds a:b ↔ P = a/(a+b); probability is a long-run frequency — expected count ≈ nP, with no memory and no due-ness.",
+      "facts": [
+        {
+          "title": "Odds to probability",
+          "latex": "\\text{odds } a{:}b \\text{ in favor} \\;\\Rightarrow\\; P = \\frac{a}{a+b}",
+          "explanation": "Odds compare favorable to unfavorable; probability compares favorable to total."
+        },
+        {
+          "title": "Expected count",
+          "latex": "\\text{expected} \\approx n \\times P",
+          "explanation": "The long-run promise, scaled to n trials — a center, not a guarantee."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pb-l6-w1",
+          "statement": "A horse's odds are $3$:$1$ against. Find the implied probability of winning — and of losing.",
+          "solution": "Against means $3$ unfavorable per $1$ favorable. $P(\\text{win}) = \\frac{1}{1+3} = \\frac{1}{4}$; $P(\\text{lose}) = \\frac{3}{4}$. (Check: they sum to $1$ ✓.)",
+          "check": ["1/(1+3) == 1/4", "3/4 + 1/4 == 1"]
+        },
+        {
+          "id": "pb-l6-w2",
+          "statement": "One die: express $P(\\text{roll a } 6)$ as odds in favor.",
+          "solution": "Favorable: $1$ face; unfavorable: $5$ faces. Odds in favor: $1$:$5$. (Probability $\\frac{1}{6}$ — note the different denominators: odds use $5$, probability uses $6$.)",
+          "check": ["1/(1+5) == 1/6"]
+        },
+        {
+          "id": "pb-l6-w3",
+          "statement": "A basketball player makes $70\\%$ of her free throws. In a season of $250$ attempts, how many makes should the team expect — and should anyone panic if she hits $165$?",
+          "solution": "Expected: $250 \\times 0.7 = 175$ makes. An observed $165$ is $10$ under — a wobble of $4\\%$ of the attempts, well within normal variation for a season. Expected counts are centers, not contracts.",
+          "check": ["250*7/10 == 175"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading odds a:b as probability a/b.",
+          "correction": "Odds 3:1 against → P(win) = 1/4, not 1/3. Odds compare win-ways to lose-ways; probability needs the TOTAL underneath: a/(a+b).",
+          "authored": true
+        },
+        {
+          "text": "Believing a result is 'due'.",
+          "correction": "Five heads in a row changes nothing: the next flip is still 1/2. Randomness has no memory; the long run balances by swamping the streak, not by reversing it.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pb-l6-t1",
+          "statement": "Odds are $2$:$3$ in favor of rain. Find $P(\\text{rain})$.",
+          "solution": "$P = \\frac{2}{2+3} = \\frac{2}{5}$.",
+          "check": ["2/(2+3) == 2/5"]
+        },
+        {
+          "id": "pb-l6-t2",
+          "statement": "A spinner lands on gold with $P = \\frac{3}{20}$. About how many golds in $400$ spins?",
+          "solution": "Expected: $400 \\times \\frac{3}{20} = 60$ golds.",
+          "check": ["400*3/20 == 60"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Translation one",
+            "title": "Odds are not probabilities",
+            "beats": [
+              "Odds $3$:$1$ against: $3$ lose-ways per $1$ win-way.",
+              "$P(\\text{win}) = \\frac{1}{1 + 3} = \\frac{1}{4}$ — NOT $\\frac{1}{3}$.",
+              "Odds compare favorable to UNfavorable.",
+              "Probability compares favorable to TOTAL. Add before dividing."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The horse",
+            "problemId": "pb-l6-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Six, as odds",
+            "problemId": "pb-l6-w2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Conversion drill",
+            "title": "Both directions",
+            "prompt": "$P(\\text{event}) = \\frac{2}{7}$. The odds IN FAVOR are…",
+            "options": ["$2$:$5$", "$2$:$7$", "$5$:$2$"],
+            "correctIndex": 0,
+            "explanation": "Favorable $2$, total $7$ → unfavorable $5$: odds $2$:$5$ in favor. Writing $2$:$7$ mixes the two systems; $5$:$2$ states the odds AGAINST.",
+            "check": ["2/(2+5) == 2/7"]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Translation two",
+            "title": "What probability promises",
+            "beats": [
+              "$P = \\frac{1}{4}$ does NOT mean \"every fourth time\".",
+              "It means: over many trials, the fraction settles near $\\frac{1}{4}$.",
+              "Expected count in $n$ trials: about $nP$ — a center with wobble.",
+              "The law of large numbers: more trials, tighter fraction."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The free-throw season",
+            "problemId": "pb-l6-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "The fallacy",
+            "title": "No memory",
+            "prompt": "A fair coin lands heads $5$ times running. $P(\\text{heads on flip } 6)$?",
+            "options": ["$\\frac{1}{2}$", "less than $\\frac{1}{2}$ — tails is due", "more than $\\frac{1}{2}$ — heads is hot"],
+            "correctIndex": 0,
+            "explanation": "The coin stores nothing. Both \"due\" and \"hot\" project memory onto metal. The long run balances streaks by dilution — millions of future flips — not by compensation on the next one.",
+            "check": ["1/2 == 1/2"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Reading the world",
+            "title": "Sportsbook odds contain a fee",
+            "body": "Real betting odds imply probabilities that sum to MORE than 1 across all outcomes — the excess is the bookmaker's margin. Convert quoted odds to probabilities and add them up: the total minus 1 is the house's cut. A useful literacy test for any market you meet."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Rain odds",
+            "problemId": "pb-l6-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Gold count",
+            "problemId": "pb-l6-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Kerrich's prison-camp experiment",
+            "body": "Interned in Denmark during WWII, mathematician John Kerrich flipped a coin 10,000 times and logged every result: 5,067 heads — 50.67%. His hand-made dataset remains the classic demonstration that observed frequency really does settle onto probability. The long run isn't a metaphor; a patient man in a camp measured it."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned — Unit 5 complete",
+            "points": [
+              "Odds a:b ↔ P = a/(a+b): favorable-to-unfavorable vs favorable-to-total.",
+              "Probability is long-run frequency; expected count ≈ nP, wobble included.",
+              "No memory, nothing is 'due' — next: how INFORMATION changes chance."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "pb-p-1",
+      "statement": "A fair die is rolled once. Find $P(\\text{prime number})$.",
+      "solution": "Primes on a die: $\\{2, 3, 5\\}$ — three of six: $P = \\frac{3}{6} = \\frac{1}{2}$.",
+      "check": ["3/6 == 1/2"]
+    },
+    {
+      "id": "pb-p-2",
+      "statement": "Two dice are rolled. Find $P(\\text{sum} = 7 \\text{ or sum} = 11)$.",
+      "solution": "Sum 7: $6$ ways; sum 11: $2$ ways; mutually exclusive (one sum per roll): $\\frac{6 + 2}{36} = \\frac{8}{36} = \\frac{2}{9}$.",
+      "check": ["(6 + 2)/36 == 2/9"]
+    },
+    {
+      "id": "pb-p-3",
+      "statement": "Four coins are flipped. Find $P(\\text{at least one head})$.",
+      "solution": "Complement — all tails: $\\frac{1}{16}$. $P = 1 - \\frac{1}{16} = \\frac{15}{16}$.",
+      "check": ["1 - 1/16 == 15/16"]
+    },
+    {
+      "id": "pb-p-4",
+      "statement": "One card is drawn. Find $P(\\text{queen or spade})$.",
+      "solution": "$\\frac{4}{52} + \\frac{13}{52} - \\frac{1}{52} = \\frac{16}{52} = \\frac{4}{13}$.",
+      "check": ["4/52 + 13/52 - 1/52 == 4/13"]
+    },
+    {
+      "id": "pb-p-5",
+      "statement": "Of $60$ gym members, $35$ lift weights, $28$ swim, $15$ do both. Find $P(\\text{a random member does neither})$.",
+      "solution": "Union: $35 + 28 - 15 = 48$; neither: $60 - 48 = 12$. $P = \\frac{12}{60} = \\frac{1}{5}$.",
+      "check": ["35 + 28 - 15 == 48", "12/60 == 1/5"]
+    },
+    {
+      "id": "pb-p-6",
+      "statement": "A drawer holds $5$ black and $3$ white socks. Two are drawn together. Find $P(\\text{both black})$.",
+      "solution": "$\\frac{C(5,2)}{C(8,2)} = \\frac{10}{28} = \\frac{5}{14}$.",
+      "check": ["binomial(5, 2) == 10", "binomial(8, 2) == 28", "10/28 == 5/14"]
+    },
+    {
+      "id": "pb-p-7",
+      "statement": "From a shelf of $7$ novels and $3$ comics, $3$ books are grabbed at random. Find $P(\\text{exactly one comic})$.",
+      "solution": "$\\frac{C(3,1) C(7,2)}{C(10,3)} = \\frac{3 \\times 21}{120} = \\frac{63}{120} = \\frac{21}{40}$.",
+      "check": ["binomial(3,1)*binomial(7,2) == 63", "binomial(10, 3) == 120", "63/120 == 21/40"]
+    },
+    {
+      "id": "pb-p-8",
+      "statement": "Odds are $4$:$1$ against a team winning. Find $P(\\text{win})$, and the expected wins in a $40$-game season at that rate.",
+      "solution": "$P = \\frac{1}{5}$; expected wins: $40 \\times \\frac{1}{5} = 8$.",
+      "check": ["1/(1+4) == 1/5", "40/5 == 8"]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "pb-ty-1",
+      "statement": "A $3$-digit code is chosen at random ($000$–$999$). Find $P(\\text{all three digits are different})$.",
+      "solution": "Universe: $10^3 = 1000$. All different: $10 \\times 9 \\times 8 = 720$. $P = \\frac{720}{1000} = \\frac{18}{25}$.",
+      "check": ["10*9*8 == 720", "720/1000 == 18/25"]
+    },
+    {
+      "id": "pb-ty-2",
+      "statement": "Two dice: find $P(\\text{sum is even or sum} > 9)$.",
+      "solution": "Even sums: $18$ of $36$. Sums $> 9$ ($10, 11, 12$): $3 + 2 + 1 = 6$. Overlap (even AND $>9$: sums $10, 12$): $3 + 1 = 4$. Union: $\\frac{18 + 6 - 4}{36} = \\frac{20}{36} = \\frac{5}{9}$.",
+      "check": ["(18 + 6 - 4)/36 == 5/9"]
+    },
+    {
+      "id": "pb-ty-3",
+      "statement": "In a survey of $120$ students, $70$ use the library, $50$ use the gym, and $30$ use both. Find $P(\\text{exactly one of the two})$ for a random student.",
+      "solution": "Library-only: $40$; gym-only: $20$. Exactly one: $60$ of $120$: $P = \\frac{1}{2}$.",
+      "check": ["70 - 30 == 40", "50 - 30 == 20", "(40 + 20)/120 == 1/2"]
+    },
+    {
+      "id": "pb-ty-4",
+      "statement": "A jar holds $6$ mint, $5$ toffee, and $4$ chocolate candies. Three are drawn together. Find $P(\\text{one of each type})$.",
+      "solution": "Favorable: $C(6,1)C(5,1)C(4,1) = 120$. Universe: $C(15,3) = 455$. $P = \\frac{120}{455} = \\frac{24}{91}$.",
+      "check": ["6*5*4 == 120", "binomial(15, 3) == 455", "120/455 == 24/91"]
+    },
+    {
+      "id": "pb-ty-5",
+      "statement": "A $4$-person team is drawn at random from $5$ girls and $4$ boys. Find $P(\\text{at least one boy})$.",
+      "solution": "Complement — all girls: $\\frac{C(5,4)}{C(9,4)} = \\frac{5}{126}$. $P = 1 - \\frac{5}{126} = \\frac{121}{126}$.",
+      "check": ["binomial(5, 4) == 5", "binomial(9, 4) == 126", "1 - 5/126 == 121/126"]
+    },
+    {
+      "id": "pb-ty-6",
+      "statement": "A weather service says odds are $7$:$3$ in favor of snow. Convert to a probability, state the expected snowy days over the next $30$ days at that rate, and explain what the expectation does NOT promise.",
+      "solution": "$P = \\frac{7}{10}$. Expected: $30 \\times 0.7 = 21$ snowy days. It does NOT promise exactly $21$ — the observed count wobbles around the expectation; only the long-run FRACTION is pinned down.",
+      "check": ["7/(7+3) == 7/10", "30*7/10 == 21"]
+    }
+  ]
+}
