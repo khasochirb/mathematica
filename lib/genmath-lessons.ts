@@ -156,6 +156,7 @@ import psConditional from "@/data/genmath/prob-stats/conditional-probability.jso
 import psRandomVariables from "@/data/genmath/prob-stats/random-variables.json";
 import psBinomialDist from "@/data/genmath/prob-stats/binomial-distribution.json";
 import psDescribingData from "@/data/genmath/prob-stats/describing-data.json";
+import psDistPosition from "@/data/genmath/prob-stats/distributions-and-position.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -887,7 +888,7 @@ export const PROBSTAT_SPINE: GeometrySpineEntry[] = [
     title: "Distribution Shape & Position",
     blurb: "Histograms and shape, percentiles, z-scores, and the normal curve with the 68–95–99.7 rule.",
     buildsOn: "Center and spread from Unit 9.",
-    live: false,
+    live: true,
   },
   {
     unit: 11,
@@ -917,6 +918,7 @@ const probStatUnits: CourseUnit[] = [
   psRandomVariables as unknown as CourseUnit,
   psBinomialDist as unknown as CourseUnit,
   psDescribingData as unknown as CourseUnit,
+  psDistPosition as unknown as CourseUnit,
 ];
 
 export function getProbStatSpine(): GeometrySpineEntry[] {
