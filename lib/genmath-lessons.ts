@@ -153,6 +153,7 @@ import psCombinations from "@/data/genmath/prob-stats/combinations.json";
 import psBinomialTheorem from "@/data/genmath/prob-stats/binomial-theorem.json";
 import psProbabilityModels from "@/data/genmath/prob-stats/probability-models.json";
 import psConditional from "@/data/genmath/prob-stats/conditional-probability.json";
+import psRandomVariables from "@/data/genmath/prob-stats/random-variables.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -860,7 +861,7 @@ export const PROBSTAT_SPINE: GeometrySpineEntry[] = [
     title: "Random Variables & Expected Value",
     blurb: "Turning outcomes into numbers: probability distributions, expected value, variance, and what makes a game fair.",
     buildsOn: "Units 5–6 — distributions are probability models wearing numbers.",
-    live: false,
+    live: true,
   },
   {
     unit: 8,
@@ -911,6 +912,7 @@ const probStatUnits: CourseUnit[] = [
   psBinomialTheorem as unknown as CourseUnit,
   psProbabilityModels as unknown as CourseUnit,
   psConditional as unknown as CourseUnit,
+  psRandomVariables as unknown as CourseUnit,
 ];
 
 export function getProbStatSpine(): GeometrySpineEntry[] {

@@ -1,0 +1,1112 @@
+{
+  "slug": "random-variables",
+  "title": "Random Variables & Expected Value",
+  "unit": 7,
+  "status": "published",
+  "blurb": "Turning outcomes into numbers: probability distributions, expected value, variance, and what makes a game fair.",
+  "buildsOn": "Units 5–6 — distributions are probability models wearing numbers.",
+  "lessons": [
+    {
+      "slug": "random-variables-and-distributions",
+      "title": "Random Variables & Their Distributions",
+      "concreteComparison": "Flip two coins and count the heads. The experiment's outcomes are HH, HT, TH, TT — but what you WROTE DOWN was a number: $2, 1, 1, 0$. That number-with-a-random-value is a **random variable**, and its complete personality fits in a tiny table: $P(0) = \\frac{1}{4}$, $P(1) = \\frac{1}{2}$, $P(2) = \\frac{1}{4}$. Once chance wears numbers, you can do arithmetic on luck.",
+      "objective": "Define random variables, build their probability distributions from sample spaces, and verify distributions sum to 1.",
+      "concept": [
+        "A **random variable** $X$ assigns a NUMBER to every outcome of an experiment: heads counted, sum rolled, defectives drawn, money won. Same experiment, different questions → different random variables.",
+        "Its **probability distribution** is the table of each possible value with its probability — built by collecting the outcomes that map to each value: $X = 1$ collects HT and TH, so $P(X{=}1) = \\frac{2}{4}$.",
+        "The audit never changes: every probability in $[0, 1]$, and the column sums to EXACTLY $1$. A distribution that sums to $0.95$ has a missing value or a counting slip.",
+        "Cumulative questions read off the same table: $P(X \\ge 1) = P(1) + P(2) = \\frac{3}{4}$ — or complement: $1 - P(0)$. Everything from Units 5–6 applies; the events just have numeric names now."
+      ],
+      "keyIdea": "A random variable numbers the outcomes; its distribution table (values + probabilities summing to 1) is its complete description.",
+      "facts": [
+        {
+          "title": "The distribution",
+          "latex": "\\sum_x P(X = x) = 1",
+          "explanation": "All values' probabilities exhaust the experiment — the audit that catches missing cases."
+        },
+        {
+          "title": "Collecting outcomes",
+          "latex": "P(X = 1) = \\frac{|\\{HT, TH\\}|}{4} = \\frac{1}{2}",
+          "explanation": "Each value's probability gathers every outcome that maps to it."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rv-l1-w1",
+          "statement": "Two coins are flipped; $X = $ number of heads. Build the distribution of $X$.",
+          "solution": "Outcomes: HH, HT, TH, TT (equally likely). $X = 0$: TT → $\\frac{1}{4}$. $X = 1$: HT, TH → $\\frac{2}{4}$. $X = 2$: HH → $\\frac{1}{4}$. Audit: $\\frac{1}{4} + \\frac{2}{4} + \\frac{1}{4} = 1$ ✓.",
+          "check": ["1/4 + 2/4 + 1/4 == 1"]
+        },
+        {
+          "id": "rv-l1-w2",
+          "statement": "Two dice are rolled; $X = $ the sum. Find $P(X = 7)$, $P(X = 2)$, and $P(X \\ge 10)$.",
+          "solution": "Of $36$ rolls: sum $7$ has $6$ ways → $\\frac{6}{36} = \\frac{1}{6}$; sum $2$ has $1$ way → $\\frac{1}{36}$; sums $10, 11, 12$ have $3 + 2 + 1 = 6$ ways → $P(X \\ge 10) = \\frac{6}{36} = \\frac{1}{6}$.",
+          "check": ["6/36 == 1/6", "(3 + 2 + 1)/36 == 1/6"]
+        },
+        {
+          "id": "rv-l1-w3",
+          "statement": "A distribution is proposed: $P(X{=}1) = 0.2$, $P(X{=}2) = 0.5$, $P(X{=}3) = 0.4$. Diagnose it.",
+          "solution": "Sum: $0.2 + 0.5 + 0.4 = 1.1 > 1$ — not a distribution. Something is double-counted (or a probability is wrong). The sum-to-one audit rejects it before any further work.",
+          "check": ["2/10 + 5/10 + 4/10 == 11/10"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Listing the VALUES as if equally likely.",
+          "correction": "X = heads in two flips takes values 0, 1, 2 — but they're NOT 1/3 each. Probabilities come from counting outcomes per value: 1/4, 1/2, 1/4.",
+          "authored": true
+        },
+        {
+          "text": "Skipping the sum-to-1 audit.",
+          "correction": "It takes five seconds and catches missing values, double counts, and arithmetic slips. No distribution leaves the desk unsummed.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rv-l1-t1",
+          "statement": "One die is rolled; $X = 1$ if the roll is a six, else $X = 0$. Build the distribution.",
+          "solution": "$P(X{=}1) = \\frac{1}{6}$, $P(X{=}0) = \\frac{5}{6}$. Sum $= 1$ ✓. (This tiny two-value variable is called a Bernoulli trial — Unit 8's atom.)",
+          "check": ["1/6 + 5/6 == 1"]
+        },
+        {
+          "id": "rv-l1-t2",
+          "statement": "Three coins; $X = $ number of heads. Find $P(X \\ge 2)$.",
+          "solution": "$P(2) = \\frac{3}{8}$, $P(3) = \\frac{1}{8}$: $P(X \\ge 2) = \\frac{4}{8} = \\frac{1}{2}$.",
+          "check": ["3/8 + 1/8 == 1/2"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Chance wears numbers",
+            "beats": [
+              "Two coins: outcomes HH, HT, TH, TT.",
+              "You wrote down: $2, 1, 1, 0$ — the HEAD COUNT.",
+              "A random variable = a number attached to every outcome.",
+              "Numbers unlock arithmetic on luck: averages, spreads, prices."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The table",
+            "title": "The distribution is the personality",
+            "beats": [
+              "List each possible VALUE.",
+              "Collect the outcomes mapping to it; that's its probability.",
+              "$P(0){=}\\frac{1}{4}$, $P(1){=}\\frac{1}{2}$, $P(2){=}\\frac{1}{4}$.",
+              "Audit: sums to exactly $1$. Every time. No exceptions."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Collect drill",
+            "title": "Why is 1 the favorite?",
+            "prompt": "For two coins, why is $P(X{=}1) = \\frac{1}{2}$ while $P(X{=}0) = \\frac{1}{4}$?",
+            "options": ["Two outcomes (HT, TH) map to 1; only TT maps to 0", "Middle values are always likelier", "It isn't — all three values are $\\frac{1}{3}$"],
+            "correctIndex": 0,
+            "explanation": "Probabilities count the OUTCOMES behind each value: 1 collects two of the four; 0 collects one. \"Middle values likelier\" happens often (more ways to balance) but the reason is always the outcome count — never a law you can skip checking.",
+            "check": ["2/4 == 1/2"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Heads counted",
+            "problemId": "rv-l1-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The sum of two dice",
+            "problemId": "rv-l1-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Reject the impostor",
+            "problemId": "rv-l1-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Cumulative drill",
+            "title": "At least, again",
+            "prompt": "Three coins, $X = $ heads. $P(X \\ge 1) = $ ?",
+            "options": ["$\\frac{7}{8}$", "$\\frac{3}{8}$", "$\\frac{1}{2}$"],
+            "correctIndex": 0,
+            "explanation": "Complement reflex: $1 - P(X{=}0) = 1 - \\frac{1}{8} = \\frac{7}{8}$. Unit 5's move, now in random-variable clothes.",
+            "check": ["1 - 1/8 == 7/8"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Notation",
+            "title": "Capital X, little x",
+            "body": "Capital $X$ names the random variable (the machine); lowercase $x$ names a particular value (an output). $P(X = x)$ reads \"the probability the machine outputs $x$\". Sloppy case leads to sloppy thinking — keep the machine and its outputs distinct."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The six-detector",
+            "problemId": "rv-l1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "At least two heads",
+            "problemId": "rv-l1-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Insurance tables predate the theory",
+            "body": "Edmond Halley (of comet fame) built life-expectancy tables for the city of Breslau in 1693 — distribution tables of age-at-death, used to price annuities — decades before random variables were formalized. Business needed the table before mathematics named it."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Random variables number the outcomes; distributions tabulate value ↦ probability.",
+              "Collect outcomes per value; audit the sum to 1 always.",
+              "Cumulative events use the same table — complements included."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "expected-value",
+      "title": "Expected Value",
+      "concreteComparison": "A raffle sells $100$ tickets at $1000₮$ each; one wins $50{,}000₮$. Is a ticket worth it? Your winnings-per-ticket, averaged over ALL tickets: $\\frac{50000}{100} = 500₮$ — you pay $1000₮$ for something worth $500₮$ on average. That long-run per-play average is the **expected value**, and it's the single most useful number a distribution owns.",
+      "objective": "Compute E(X) = Σ x·P(x), interpret it as the long-run average, and locate it as the distribution's balance point.",
+      "concept": [
+        "The **expected value** weighs each value by its probability: $$E(X) = \\sum_x x \\cdot P(X = x)$$ — the long-run average of the variable over many repetitions of the experiment.",
+        "It is NOT the most likely value and often isn't even a possible one: a die's expectation is $E(X) = \\frac{1+2+3+4+5+6}{6} = 3.5$ — a value no face shows. \"Expected\" means average, not anticipated.",
+        "Physically, $E(X)$ is the distribution's BALANCE POINT: put the probabilities as weights on a number line and $E(X)$ is where it balances. Skewed weights drag the balance toward the heavy tail.",
+        "Interpretation discipline: $E(X) = 500₮$ per raffle ticket means that across thousands of tickets the average payout settles near $500₮$ — single plays wobble freely. It's Unit 5's long-run promise with numbers attached."
+      ],
+      "keyIdea": "E(X) = Σ x·P(x): probability-weighted average = long-run per-play value = the distribution's balance point.",
+      "facts": [
+        {
+          "title": "Expected value",
+          "latex": "E(X) = \\sum_x x\\,P(X = x)",
+          "explanation": "Each value weighted by its probability — the long-run average."
+        },
+        {
+          "title": "Not a prediction",
+          "latex": "E(\\text{die}) = 3.5",
+          "explanation": "The average need not be a possible value; 'expected' means mean, not anticipated."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rv-l2-w1",
+          "statement": "Compute the expected value of one fair die roll.",
+          "solution": "$E(X) = \\frac{1}{6}(1 + 2 + 3 + 4 + 5 + 6) = \\frac{21}{6} = 3.5$. No face shows $3.5$ — it's the long-run average of many rolls, not a forecast of one.",
+          "check": ["(1 + 2 + 3 + 4 + 5 + 6)/6 == 7/2"]
+        },
+        {
+          "id": "rv-l2-w2",
+          "statement": "The raffle: $100$ tickets, one $50{,}000₮$ prize. Find the expected winnings per $1000₮$ ticket, and the expected NET.",
+          "solution": "$E(\\text{winnings}) = 50000 \\times \\frac{1}{100} + 0 \\times \\frac{99}{100} = 500₮$. Net of the ticket price: $500 - 1000 = -500₮$ per play. Buyers donate, on average, half the ticket price.",
+          "check": ["50000/100 == 500", "500 - 1000 == -500"]
+        },
+        {
+          "id": "rv-l2-w3",
+          "statement": "$X = $ number of heads in two coin flips. Find $E(X)$ from the distribution.",
+          "solution": "$E(X) = 0 \\cdot \\frac{1}{4} + 1 \\cdot \\frac{1}{2} + 2 \\cdot \\frac{1}{4} = 1$. Balance check: the distribution is symmetric around $1$ — the balance point confirms it.",
+          "check": ["0*(1/4) + 1*(1/2) + 2*(1/4) == 1"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Averaging the values without the weights.",
+          "correction": "(0 + 1 + 2)/3 = 1 happens to work for symmetric coins but fails in general: the raffle's (0 + 50000)/2 = 25000₮ is fantasy. Weights are the whole point: Σ x·P(x).",
+          "authored": true
+        },
+        {
+          "text": "Expecting the expected value.",
+          "correction": "E = 3.5 doesn't predict any roll, and E = −500₮ doesn't mean each ticket loses exactly 500₮. It's the long-run per-play average — singles wobble.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rv-l2-t1",
+          "statement": "A spinner pays $0₮$ with probability $\\frac{1}{2}$, $200₮$ with probability $\\frac{1}{3}$, and $600₮$ with probability $\\frac{1}{6}$. Find $E(\\text{payout})$.",
+          "solution": "$0 \\cdot \\frac{1}{2} + 200 \\cdot \\frac{1}{3} + 600 \\cdot \\frac{1}{6} = 0 + \\frac{200}{3} + 100 = \\frac{500}{3} \\approx 166.7₮$.",
+          "check": ["0*(1/2) + 200*(1/3) + 600*(1/6) == 500/3"]
+        },
+        {
+          "id": "rv-l2-t2",
+          "statement": "$X$ takes values $-2, 0, 4$ with probabilities $0.5, 0.3, 0.2$. Find $E(X)$.",
+          "solution": "$-2(0.5) + 0(0.3) + 4(0.2) = -1 + 0 + 0.8 = -0.2$.",
+          "check": ["-2*(5/10) + 0*(3/10) + 4*(2/10) == -2/10"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The hook",
+            "title": "What is a raffle ticket worth?",
+            "beats": [
+              "$100$ tickets at $1000₮$; one wins $50{,}000₮$.",
+              "Average winnings per ticket: $\\frac{50000}{100} = 500₮$.",
+              "You pay $1000₮$ for an average of $500₮$.",
+              "That per-play average is the EXPECTED VALUE — the price tag of chance."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The formula",
+            "title": "Weigh, then add",
+            "beats": [
+              "$E(X) = \\sum x \\cdot P(x)$ — every value times its weight.",
+              "Die: $\\frac{1+2+\\cdots+6}{6} = 3.5$. Not a possible roll!",
+              "\"Expected\" = long-run average, NOT the likeliest outcome.",
+              "Picture: probabilities as weights on a ruler — $E(X)$ is the balance point."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "First expectation",
+            "title": "Weighted, not naive",
+            "prompt": "$X$ pays $10$ with probability $0.9$ and $100$ with probability $0.1$. $E(X) = $ ?",
+            "options": ["$19$", "$55$", "$10$"],
+            "correctIndex": 0,
+            "explanation": "$10(0.9) + 100(0.1) = 9 + 10 = 19$. The $55$ is the unweighted midpoint — ignoring that $100$ is rare; $10$ ignores the jackpot entirely.",
+            "check": ["10*(9/10) + 100*(1/10) == 19"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The 3.5 that never rolls",
+            "problemId": "rv-l2-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Pricing the raffle",
+            "problemId": "rv-l2-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Balance point",
+            "problemId": "rv-l2-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Interpretation",
+            "title": "What −500₮ means",
+            "prompt": "The raffle's expected NET is $-500₮$ per ticket. Which reading is right?",
+            "options": ["Over many tickets, losses average about 500₮ each", "Every ticket loses exactly 500₮", "Half the tickets lose 1000₮"],
+            "correctIndex": 0,
+            "explanation": "Expectation speaks about the long-run average. Individual tickets lose $1000₮$ (the 99%) or gain $49{,}000₮$ (the lucky 1%); NO ticket loses 500₮. The average is a center, not an experience.",
+            "check": ["(99*(-1000) + 49000)/100 == -500"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Skew sense",
+            "title": "Rare jackpots drag averages",
+            "body": "A tiny probability on a huge value moves E(X) far above the typical outcome — most lottery players do worse than the (already negative) expectation suggests \"feels\" typical. When a distribution is skewed, report E(X) AND the most likely outcome; they tell different truths."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Spinner payout",
+            "problemId": "rv-l2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Negative values welcome",
+            "problemId": "rv-l2-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The concept is older than the word 'probability'",
+            "body": "Pascal and Fermat's 1654 letters solved the \"problem of points\" — how to split a pot when a game stops early — by computing what each player could EXPECT from the unplayed rounds. Expected value came first; probability was formalized to serve it. The money question built the mathematics."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "E(X) = Σ x·P(x) — the probability-weighted average.",
+              "It's the long-run per-play value and the balance point; often not a possible value.",
+              "Skewed distributions: expectation and typical outcome diverge — report with care."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "fair-games",
+      "title": "Fair Games & the House Edge",
+      "concreteComparison": "A carnival dice game: pay $500₮$, roll one die, win $100₮$ times the roll. Average winnings: $100 \\times 3.5 = 350₮$ — the stall pockets $150₮$ per play, every play, forever. What entry fee WOULD make it fair? Exactly $350₮$: the expected winnings. A game is **fair** when the price equals the expectation — and almost nothing you can pay to play is.",
+      "objective": "Price games with expected value: compute expected net, define fairness, and quantify the house edge.",
+      "concept": [
+        "A game is **fair** when the expected NET is zero — entry fee equals expected winnings: $E(\\text{net}) = E(\\text{winnings}) - \\text{fee} = 0$. Fair games neither enrich nor drain either side in the long run.",
+        "The **house edge** is the negative of the player's expected net, often expressed per unit staked: the carnival's $150₮$ on a $500₮$ fee is a $30\\%$ edge — brutal by casino standards ($1$–$5\\%$), generous by lottery standards ($\\approx 50\\%$).",
+        "Two equivalent framings — get comfortable with both: expected NET (fold the fee into the values as losses/gains) or expected WINNINGS minus fee. Same answer, different bookkeeping.",
+        "Fairness math also SETS prizes: to make a fee $F$ fair with win-probability $p$, the prize must be $\\frac{F}{p}$. A fair $1$-in-$100$ raffle at $1000₮$ per ticket needs a $100{,}000₮$ prize — real raffles offering half that are running a $50\\%$ edge."
+      ],
+      "keyIdea": "Fair means E(net) = 0 — fee equals expected winnings; the shortfall is the house edge, and it compounds forever.",
+      "facts": [
+        {
+          "title": "Fairness",
+          "latex": "E(\\text{net}) = E(\\text{winnings}) - \\text{fee} = 0",
+          "explanation": "The price of a fair game is exactly its expected payout."
+        },
+        {
+          "title": "Fair prize",
+          "latex": "\\text{prize} = \\frac{\\text{fee}}{p}",
+          "explanation": "Win probability p at fee F is fair only when the prize refunds F/p."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rv-l3-w1",
+          "statement": "Carnival game: pay $500₮$, roll a die, win $100₮ \\times$ roll. Find the player's expected net and the fair fee.",
+          "solution": "$E(\\text{winnings}) = 100 \\times E(\\text{roll}) = 100 \\times 3.5 = 350₮$. Net: $350 - 500 = -150₮$ per play. Fair fee: $350₮$.",
+          "check": ["100*7/2 == 350", "350 - 500 == -150"]
+        },
+        {
+          "id": "rv-l3-w2",
+          "statement": "A wheel has $10$ equal sectors: one pays $2000₮$, two pay $500₮$, the rest pay nothing. What entry fee makes the game fair?",
+          "solution": "$E(\\text{winnings}) = 2000 \\cdot \\frac{1}{10} + 500 \\cdot \\frac{2}{10} + 0 \\cdot \\frac{7}{10} = 200 + 100 = 300₮$. Fair fee: $300₮$.",
+          "check": ["2000/10 + 500*2/10 == 300"]
+        },
+        {
+          "id": "rv-l3-w3",
+          "statement": "A bet pays even money ($+x$ or $-x$) on \"at least one six in two dice\". Using $P = \\frac{11}{36}$, find the player's expected net per $360₮$ staked.",
+          "solution": "$E(\\text{net}) = 360 \\cdot \\frac{11}{36} - 360 \\cdot \\frac{25}{36} = 110 - 250 = -140₮$. Even-money odds on an $11$-in-$36$ event is a terrible trade — fair odds would pay $\\frac{25}{11}$ times the stake.",
+          "check": ["360*11/36 - 360*25/36 == -140"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Judging a game by its best case.",
+          "correction": "\"You can win 2000₮!\" prices the dream, not the game. The game's worth is Σ payout·probability — 300₮ here. Compare the FEE to the EXPECTATION, never to the jackpot.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the fee is paid on every play.",
+          "correction": "Expected NET folds in the certain cost: winnings minus fee. A game with positive expected winnings can still be a loser after the entry price.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rv-l3-t1",
+          "statement": "Pay $200₮$; flip a coin; heads pays $500₮$, tails nothing. Fair, favorable, or unfavorable?",
+          "solution": "$E(\\text{winnings}) = 250₮ > 200₮$ fee: FAVORABLE by $50₮$ per play. (Grab it — they're rare.)",
+          "check": ["500/2 - 200 == 50"]
+        },
+        {
+          "id": "rv-l3-t2",
+          "statement": "A $1$-in-$20$ scratch card pays a single $3000₮$ prize. What's the fair price per card?",
+          "solution": "$E = \\frac{3000}{20} = 150₮$.",
+          "check": ["3000/20 == 150"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The hook",
+            "title": "The stall never loses",
+            "beats": [
+              "Pay $500₮$, roll a die, win $100₮ \\times$ roll.",
+              "Expected winnings: $100 \\times 3.5 = 350₮$.",
+              "The stall keeps $150₮$ per play. Every play. Forever.",
+              "Fair would be a $350₮$ fee — fee $=$ expectation."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The definitions",
+            "title": "Fair, favorable, edged",
+            "beats": [
+              "Fair: $E(\\text{net}) = 0$. Favorable: positive. House-edged: negative.",
+              "Edge as a rate: $\\frac{150}{500} = 30\\%$ of every fee, kept.",
+              "Casinos run $1$–$5\\%$; lotteries $\\approx 50\\%$. Carnivals: ambitious.",
+              "Setting prizes: fair prize $= \\frac{\\text{fee}}{p}$."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Price it",
+            "title": "The fair fee",
+            "prompt": "A game pays $600₮$ with probability $\\frac{1}{4}$ (else nothing). The fair entry fee is…",
+            "options": ["$150₮$", "$600₮$", "$300₮$"],
+            "correctIndex": 0,
+            "explanation": "$E(\\text{winnings}) = 600 \\times \\frac{1}{4} = 150₮$ — that's the fair price. $600₮$ prices the jackpot; $300₮$ halves it for no reason the distribution knows.",
+            "check": ["600/4 == 150"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The carnival audit",
+            "problemId": "rv-l3-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Pricing the wheel",
+            "problemId": "rv-l3-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Even money, uneven odds",
+            "problemId": "rv-l3-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Edge detection",
+            "title": "Rank the games",
+            "prompt": "Which game treats the player best? A: fee $100₮$, $E(\\text{win}) = 95₮$. B: fee $1000₮$, $E(\\text{win}) = 900₮$. C: fee $50₮$, $E(\\text{win}) = 51₮$.",
+            "options": ["C — the only positive net", "B — biggest expected winnings", "A — smallest loss"],
+            "correctIndex": 0,
+            "explanation": "Nets: A $-5₮$, B $-100₮$, C $+1₮$. Only C is favorable. Big expected winnings mean nothing next to a bigger fee — always compute the NET.",
+            "check": ["51 - 50 == 1", "95 - 100 == -5", "900 - 1000 == -100"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Life application",
+            "title": "Expected value is a long-run tool",
+            "body": "EV rules decisions you make MANY times (pricing, repeated bets, business offers). For one-shot high-stakes choices, the spread matters as much as the mean — next lesson builds exactly that number. A fair coin flip for your house is fair in EV and insane in variance."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "A rare favorable game",
+            "problemId": "rv-l3-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Scratch card pricing",
+            "problemId": "rv-l3-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Roulette's edge is one green pocket",
+            "body": "European roulette pays 36-to-1 odds on a wheel with 37 pockets — the single green zero IS the house edge: expected net = −1/37 ≈ −2.7% of every bet. American wheels add a second zero, doubling the edge. Entire glass palaces are financed by one or two pockets of arithmetic."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Fair: fee = expected winnings; edge = the shortfall, kept forever.",
+              "Compare fee to expectation, never to the jackpot.",
+              "EV governs repeated decisions; one-shots also need the spread (next)."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "variance-and-spread",
+      "title": "Variance & Standard Deviation",
+      "concreteComparison": "Two investments both average $+100₮$ per month. Plan A: always exactly $+100₮$. Plan B: $+1100₮$ half the months, $-900₮$ the other half. Same expectation, wildly different lives. The number that separates them measures how far outcomes stray from the mean — the **variance**, and its square root, the **standard deviation**.",
+      "objective": "Compute Var(X) = E[(X−μ)²] and SD, and interpret them as the distribution's risk/spread.",
+      "concept": [
+        "**Variance** averages the SQUARED distance from the mean: $$\\text{Var}(X) = \\sum_x (x - \\mu)^2 P(x), \\quad \\mu = E(X)$$ Squaring kills the sign (deviations don't cancel) and punishes big misses more than small ones.",
+        "**Standard deviation** $\\sigma = \\sqrt{\\text{Var}(X)}$ restores the original units — ₮, heads, points — making it the reportable number: \"averages $100₮$, typically $\\pm 1000₮$\" tells the whole Plan-B story.",
+        "The computing shortcut: $\\text{Var}(X) = E(X^2) - [E(X)]^2$ — average of the squares minus square of the average. Same answer, less arithmetic (one pass for $E(X^2)$).",
+        "Interpretation: $\\sigma = 0$ means certainty (Plan A); larger $\\sigma$ means riskier/spreader. Two distributions with equal means are compared BY their $\\sigma$ — expectation prices a game, deviation prices its drama."
+      ],
+      "keyIdea": "Var(X) = Σ(x−μ)²P(x) = E(X²) − μ²; σ = √Var puts spread back in the variable's own units.",
+      "facts": [
+        {
+          "title": "Variance",
+          "latex": "\\text{Var}(X) = E[(X - \\mu)^2] = E(X^2) - \\mu^2",
+          "explanation": "Mean squared deviation; the shortcut form needs one extra column, not a new table."
+        },
+        {
+          "title": "Standard deviation",
+          "latex": "\\sigma = \\sqrt{\\text{Var}(X)}",
+          "explanation": "Spread in the variable's own units — the honest companion to every mean."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rv-l4-w1",
+          "statement": "Plan A pays $+100$ always; Plan B pays $+1100$ or $-900$, each with probability $\\frac{1}{2}$. Verify equal means, then compute each SD.",
+          "solution": "Means: A is $100$; B: $\\frac{1100 - 900}{2} = 100$ ✓. Var(A) $= 0$, so $\\sigma_A = 0$. Var(B): deviations $\\pm 1000$, squared $10^6$ each: $\\text{Var} = 10^6$, $\\sigma_B = 1000$. Same mean; B carries $1000$-unit typical swings.",
+          "check": ["(1100 - 900)/2 == 100", "((1100-100)**2 + (-900-100)**2)/2 == 1000000", "sqrt(1000000) == 1000"]
+        },
+        {
+          "id": "rv-l4-w2",
+          "statement": "$X = $ heads in two coin flips. Compute Var$(X)$ and $\\sigma$ via the shortcut.",
+          "solution": "$\\mu = 1$ (earlier). $E(X^2) = 0^2 \\cdot \\frac{1}{4} + 1^2 \\cdot \\frac{1}{2} + 2^2 \\cdot \\frac{1}{4} = \\frac{1}{2} + 1 = \\frac{3}{2}$. Var $= \\frac{3}{2} - 1^2 = \\frac{1}{2}$; $\\sigma = \\frac{1}{\\sqrt{2}} \\approx 0.71$ heads.",
+          "check": ["0*(1/4) + 1*(1/2) + 4*(1/4) == 3/2", "3/2 - 1 == 1/2"]
+        },
+        {
+          "id": "rv-l4-w3",
+          "statement": "One fair die: compute Var$(X)$ with the shortcut, given $E(X) = \\frac{7}{2}$.",
+          "solution": "$E(X^2) = \\frac{1 + 4 + 9 + 16 + 25 + 36}{6} = \\frac{91}{6}$. Var $= \\frac{91}{6} - \\left(\\frac{7}{2}\\right)^2 = \\frac{91}{6} - \\frac{49}{4} = \\frac{182 - 147}{12} = \\frac{35}{12} \\approx 2.92$; $\\sigma \\approx 1.71$.",
+          "check": ["(1 + 4 + 9 + 16 + 25 + 36)/6 == 91/6", "91/6 - 49/4 == 35/12"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Averaging raw deviations.",
+          "correction": "Σ(x−μ)P(x) = 0 always — the mean is the balance point, deviations cancel by design. SQUARE first: that's the entire reason variance exists.",
+          "authored": true
+        },
+        {
+          "text": "Reporting variance in place of SD.",
+          "correction": "Var(B) = 1,000,000 'tugrik-squared' is unreadable; σ = 1000₮ speaks the game's language. Compute Var, REPORT σ.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rv-l4-t1",
+          "statement": "$X$ takes values $0$ and $10$, each with probability $\\frac{1}{2}$. Find $\\mu$, Var, and $\\sigma$.",
+          "solution": "$\\mu = 5$; deviations $\\pm 5$, squared $25$: Var $= 25$, $\\sigma = 5$.",
+          "check": ["(0 + 10)/2 == 5", "((0-5)**2 + (10-5)**2)/2 == 25", "sqrt(25) == 5"]
+        },
+        {
+          "id": "rv-l4-t2",
+          "statement": "Which is riskier: $Y$ paying $4$ or $6$ ($50$/$50$), or $Z$ paying $0$ or $10$ ($50$/$50$)? Compare $\\sigma$'s.",
+          "solution": "Both means are $5$. $\\sigma_Y = 1$; $\\sigma_Z = 5$. $Z$ is five times spreadier — same price, five times the drama.",
+          "check": ["((4-5)**2 + (6-5)**2)/2 == 1", "((0-5)**2 + (10-5)**2)/2 == 25"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The hook",
+            "title": "Same average, different lives",
+            "beats": [
+              "Plan A: $+100₮$ every month. Plan B: $+1100$ or $-900$, coin flip.",
+              "Both AVERAGE $+100₮$. Expectation can't tell them apart.",
+              "The missing number: how far outcomes STRAY from the mean.",
+              "Variance measures it. Standard deviation reports it."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The formula",
+            "title": "Square the misses, weigh, average",
+            "beats": [
+              "$\\text{Var}(X) = \\sum (x - \\mu)^2 P(x)$.",
+              "Squaring: kills sign cancellation, punishes big misses extra.",
+              "$\\sigma = \\sqrt{\\text{Var}}$ — back to real units.",
+              "Shortcut: $\\text{Var} = E(X^2) - \\mu^2$. Learn both; use the shortcut."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Why square?",
+            "title": "The cancellation trap",
+            "prompt": "For any distribution, $\\sum (x - \\mu) P(x)$ equals…",
+            "options": ["$0$ — always", "Var$(X)$", "$\\sigma$"],
+            "correctIndex": 0,
+            "explanation": "The mean IS the balance point: weighted deviations cancel exactly, every time. That universal zero is why variance squares before averaging — otherwise every distribution would look riskless.",
+            "check": ["(1100-100)*(1/2) + (-900-100)*(1/2) == 0"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Plans A and B",
+            "problemId": "rv-l4-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Two coins, spread",
+            "problemId": "rv-l4-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The die's spread",
+            "problemId": "rv-l4-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Spread sense",
+            "title": "Rank by risk",
+            "prompt": "Three $50/50$ games, all with mean $0$: A pays $\\pm 1$; B pays $\\pm 10$; C pays $\\pm 100$. Their $\\sigma$'s are…",
+            "options": ["$1, 10, 100$", "$1, 100, 10000$", "all equal — same mean"],
+            "correctIndex": 0,
+            "explanation": "For symmetric $\\pm a$ games, deviations are $\\pm a$: Var $= a^2$, $\\sigma = a$. (Option 2 lists the VARIANCES.) Same expectation, three risk levels — σ is the number that knows.",
+            "check": ["sqrt(((1)**2 + (-1)**2)/2) == 1", "sqrt(((10)**2 + (-10)**2)/2) == 10"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Reporting",
+            "title": "Mean ± SD is the honest headline",
+            "body": "\"Averages 100₮\" is half a sentence. \"Averages 100₮, typically ±1000₮\" is a decision-ready one. Wherever you report an expectation — grades, delivery times, returns — attach the σ or expect to be misunderstood."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Zero or ten",
+            "problemId": "rv-l4-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Risk ranking",
+            "problemId": "rv-l4-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Markowitz won a Nobel for mean-vs-σ",
+            "body": "Modern portfolio theory (Nobel 1990) formalizes exactly this lesson: every investment is a (mean, σ) pair, and rational investors trade expected return against standard deviation. The two-column table you just computed for coin flips runs trillion-dollar pension funds."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Var = Σ(x−μ)²P(x) = E(X²) − μ²; σ = √Var, in real units.",
+              "Raw deviations always cancel — squaring is the fix, not a habit.",
+              "Equal means are separated by σ: expectation prices, deviation warns."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "linearity-of-expectation",
+      "title": "Combining Expectations",
+      "concreteComparison": "A taxi charges a $2000₮$ flag fee plus $1500₮$ per km, and your ride length averages $6$ km. Expected fare? You could build the fare's whole distribution... or just push the expectation through the formula: $E(\\text{fare}) = 2000 + 1500 \\times 6 = 11{,}000₮$. Expectation slides through additions and multiplications-by-constants untouched — the most laborsaving fact in the unit.",
+      "objective": "Use linearity — E(aX + b) = aE(X) + b and E(X + Y) = E(X) + E(Y) — to compute expectations without rebuilding distributions.",
+      "concept": [
+        "**Scaling and shifting:** $E(aX + b) = a\\,E(X) + b$ — constants factor out, shifts pass through. (Spread behaves differently: adding $b$ leaves $\\sigma$ alone, scaling multiplies it: $\\sigma_{aX+b} = |a|\\sigma_X$.)",
+        "**Addition:** $E(X + Y) = E(X) + E(Y)$ — ALWAYS, even when $X$ and $Y$ are dependent. This is linearity's superpower: no independence check needed for expectations of sums.",
+        "Consequence: expectations of COUNTS decompose. Two dice: $E(\\text{sum}) = 3.5 + 3.5 = 7$ — no $36$-outcome table required. Ten dice: $35$, instantly.",
+        "The decomposition trick scales absurdly: the expected number of heads in $n$ flips is $n \\times \\frac{1}{2}$ because the count is a SUM of $n$ one-flip indicator variables, each with expectation $\\frac{1}{2}$. (Unit 8 builds its main formula on exactly this.)"
+      ],
+      "keyIdea": "E(aX + b) = aE(X) + b and E(X+Y) = E(X) + E(Y) — the latter without ANY independence requirement; counts decompose into indicator sums.",
+      "facts": [
+        {
+          "title": "Linearity",
+          "latex": "E(aX + b) = a\\,E(X) + b, \\qquad E(X + Y) = E(X) + E(Y)",
+          "explanation": "Expectations pass through linear formulas; the sum rule holds even for dependent variables."
+        },
+        {
+          "title": "Spread scales differently",
+          "latex": "\\sigma_{aX + b} = |a|\\,\\sigma_X",
+          "explanation": "Shifts don't spread; scaling stretches deviations by |a|."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rv-l5-w1",
+          "statement": "Taxi fare: $2000₮$ flag plus $1500₮$/km; ride length $X$ has $E(X) = 6$ km. Find the expected fare.",
+          "solution": "Fare $= 1500X + 2000$: $E = 1500 \\times 6 + 2000 = 11{,}000₮$. No distribution needed — linearity carries the expectation through.",
+          "check": ["1500*6 + 2000 == 11000"]
+        },
+        {
+          "id": "rv-l5-w2",
+          "statement": "Find the expected sum of two dice — then of ten dice.",
+          "solution": "Each die: $E = 3.5$. Sum rule: two dice $\\to 3.5 + 3.5 = 7$; ten dice $\\to 10 \\times 3.5 = 35$. (Compare: the ten-dice distribution has $6^{10} \\approx 60$ million outcomes. Linearity skipped all of them.)",
+          "check": ["7/2 + 7/2 == 7", "10*7/2 == 35"]
+        },
+        {
+          "id": "rv-l5-w3",
+          "statement": "A quiz has $8$ questions; a guesser is right on each with probability $\\frac{1}{4}$. Find the expected number correct — via indicators.",
+          "solution": "Write the count as $X = I_1 + \\cdots + I_8$, where $I_k = 1$ if question $k$ is right. Each $E(I_k) = \\frac{1}{4}$. Sum: $E(X) = 8 \\times \\frac{1}{4} = 2$. No binomial table, no cases — eight tiny expectations, added.",
+          "check": ["8/4 == 2"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Demanding independence for E(X + Y).",
+          "correction": "The sum rule needs NO independence — that's what makes it magic. (Variances DO care: Var(X+Y) = Var(X) + Var(Y) only for independent X, Y.)",
+          "authored": true
+        },
+        {
+          "text": "Pushing expectation through nonlinear formulas.",
+          "correction": "E(X²) ≠ [E(X)]² (their gap IS the variance!), and E(1/X) ≠ 1/E(X). Linearity covers aX + b and sums — nothing curvier.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rv-l5-t1",
+          "statement": "$E(X) = 12$. Find $E(3X - 5)$.",
+          "solution": "$3 \\times 12 - 5 = 31$.",
+          "check": ["3*12 - 5 == 31"]
+        },
+        {
+          "id": "rv-l5-t2",
+          "statement": "A shop's morning revenue averages $80{,}000₮$ and afternoon revenue averages $120{,}000₮$ (they're strongly dependent — busy days are busy all day). Expected daily total?",
+          "solution": "Linearity doesn't care about the dependence: $E = 80{,}000 + 120{,}000 = 200{,}000₮$.",
+          "check": ["80000 + 120000 == 200000"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The shortcut",
+            "title": "Push the mean through the formula",
+            "beats": [
+              "Fare $= 1500X + 2000$, $E(X) = 6$ km.",
+              "$E(\\text{fare}) = 1500 \\times 6 + 2000 = 11{,}000₮$.",
+              "No fare distribution was ever built.",
+              "$E(aX + b) = aE(X) + b$ — expectation slides through linear math."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The superpower",
+            "title": "Sums add — no permission needed",
+            "beats": [
+              "$E(X + Y) = E(X) + E(Y)$. ALWAYS.",
+              "Dependent, independent, hostile — doesn't matter.",
+              "Two dice: $E(\\text{sum}) = 7$ without the 36-cell table.",
+              "(Variance is the picky one — IT demands independence to add.)"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Linearity drill",
+            "title": "Through the formula",
+            "prompt": "$E(X) = 20$, and $Y = 5X + 30$. $E(Y) = $ ?",
+            "options": ["$130$", "$250$", "$100$"],
+            "correctIndex": 0,
+            "explanation": "$5 \\times 20 + 30 = 130$. The $250$ multiplied the shift too; $100$ dropped it. Constants scale, shifts add — separately.",
+            "check": ["5*20 + 30 == 130"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The taxi",
+            "problemId": "rv-l5-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Ten dice, no table",
+            "problemId": "rv-l5-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Indicators: the pro move",
+            "problemId": "rv-l5-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "The boundary",
+            "title": "Where linearity stops",
+            "prompt": "$E(X) = 3$. Which is guaranteed?",
+            "options": ["$E(2X + 1) = 7$", "$E(X^2) = 9$", "$E(1/X) = 1/3$"],
+            "correctIndex": 0,
+            "explanation": "Only the LINEAR one: $2(3) + 1 = 7$. $E(X^2) = 9 + \\text{Var}(X) \\ge 9$ — the gap is literally the variance; and $E(1/X)$ obeys no such shortcut. Curves bend expectations.",
+            "check": ["2*3 + 1 == 7"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "The indicator habit",
+            "title": "Count = sum of tiny 0/1 questions",
+            "body": "Any COUNT (heads, defects, matches, birthdays shared) is a sum of indicator variables — one per trial, each worth its own little probability. Expected count = sum of those probabilities. This one habit computes in one line what case-work computes in pages."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Scale and shift",
+            "problemId": "rv-l5-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Dependent? Don't care.",
+            "problemId": "rv-l5-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The birthday-pairs one-liner",
+            "body": "Expected number of shared-birthday PAIRS in a class of 23: there are C(23,2) = 253 pairs, each matching with probability 1/365 — linearity gives 253/365 ≈ 0.69 expected pairs, in one line, despite the pairs being wildly dependent on each other. Linearity doesn't just save work; it makes impossible-looking questions polite."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "E(aX + b) = aE(X) + b; σ scales by |a| and ignores shifts.",
+              "E(X + Y) = E(X) + E(Y) with NO independence requirement.",
+              "Counts decompose into indicators — expected count = sum of probabilities."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "decisions-with-expected-value",
+      "title": "Capstone: Decisions Under Risk",
+      "concreteComparison": "Insurance is a bet you HOPE to lose: you pay $120{,}000₮$ a year so that a $1\\%$-chance $8{,}000{,}000₮$ disaster costs you nothing. The company's expected payout is $80{,}000₮$ — they pocket $40{,}000₮$ on average. Negative expected value... and possibly still the right choice. This capstone is where expectation, variance, and judgment meet.",
+      "objective": "Analyze real decisions — insurance, warranties, lotteries, business choices — with expected value AND spread, and know when EV alone misleads.",
+      "concept": [
+        "The EV workflow for any decision: list the outcomes of each option, attach probabilities and values, compute each option's $E$, compare. For REPEATED decisions, higher EV wins — the long run will collect it.",
+        "Insurance flips the sign sensibly: buyers accept negative EV to DELETE a catastrophic branch they cannot afford to experience even once. You're not buying average outcomes; you're buying a ceiling on the worst one. Variance reduction has real value that EV doesn't measure.",
+        "Same logic condemns most extended warranties and lotteries: negative EV AND no catastrophe being deleted (a broken blender is annoying, not ruinous; a lottery ticket deletes nothing). Negative EV is only justifiable when it buys survival or bounded downside.",
+        "The honest decision recipe: compute EV, compute (or eyeball) the spread, ask \"can I afford the worst branch, and how many times will I make this choice?\" Repeated + affordable → follow EV. One-shot + ruinous tail → pay to remove the tail."
+      ],
+      "keyIdea": "Compute EV to price the choice; check the worst branch to see if EV is even the right judge — repeated & affordable follows EV, ruinous tails justify paying to delete them.",
+      "facts": [
+        {
+          "title": "The decision recipe",
+          "latex": "\\text{EV each option} \\to \\text{worst branch} \\to \\text{repeatable?}",
+          "explanation": "Expectation compares; the tail and the repetition count decide whether expectation rules."
+        },
+        {
+          "title": "Insurance logic",
+          "latex": "E < 0 \\; \\text{but} \\; \\max(\\text{loss}) \\to \\text{bounded}",
+          "explanation": "Negative EV can be rational when it deletes an unaffordable branch."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rv-l6-w1",
+          "statement": "Insurance: premium $120{,}000₮$/year against a $1\\%$-chance $8{,}000{,}000₮$ loss. Compute both sides' expected values, and say why a rational person might still buy.",
+          "solution": "Company: collects $120{,}000$, expects to pay $0.01 \\times 8{,}000{,}000 = 80{,}000$ — nets $+40{,}000₮$ per policy. Buyer: EV $= -40{,}000₮$. Rational anyway IF an $8$M₮ hit is unsurvivable: the premium converts a ruinous $1\\%$ branch into a certain, affordable cost. EV prices the average; the buyer is pricing the worst case.",
+          "check": ["8000000/100 == 80000", "120000 - 80000 == 40000"]
+        },
+        {
+          "id": "rv-l6-w2",
+          "statement": "A $25{,}000₮$ extended warranty covers a $2\\%$-chance $300{,}000₮$ repair. Analyze it.",
+          "solution": "Expected repair cost: $0.02 \\times 300{,}000 = 6{,}000₮$ — the warranty charges $25{,}000₮$ for it: EV $= -19{,}000₮$, more than four times the fair price. And the deleted branch ($300$K) is unpleasant, not ruinous. Skip it; self-insure small stuff.",
+          "check": ["300000*2/100 == 6000", "25000 - 6000 == 19000"]
+        },
+        {
+          "id": "rv-l6-w3",
+          "statement": "A food stall chooses: location A nets $200{,}000₮$/day rain or shine; location B nets $500{,}000₮$ on dry days but $-100{,}000₮$ on rainy ones. With $P(\\text{rain}) = 0.4$, compare for a season.",
+          "solution": "$E_B = 0.6 \\times 500{,}000 + 0.4 \\times (-100{,}000) = 300{,}000 - 40{,}000 = 260{,}000₮ > E_A = 200{,}000₮$. Over a SEASON (repeated daily), B's edge compounds and rainy losses average out — take B if the stall can absorb losing days; take A if a bad week would sink the business. EV picks B; solvency has a vote.",
+          "check": ["(6/10)*500000 + (4/10)*(-100000) == 260000"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Applying long-run EV logic to a one-shot ruinous bet.",
+          "correction": "EV = long-run average. If the worst branch ends the game (bankruptcy, no retake), there IS no long run for averages to save you. Bound the tail first, optimize EV second.",
+          "authored": true
+        },
+        {
+          "text": "Buying every negative-EV comfort.",
+          "correction": "Insurance logic covers CATASTROPHES only. Warranties on blenders and lottery tickets are negative EV with no ruin being prevented — pure edge donated. Same math, opposite verdicts, depending on the tail.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rv-l6-t1",
+          "statement": "Bike insurance costs $30{,}000₮$/year; theft probability $5\\%$; bike worth $400{,}000₮$. Fair price? Your call?",
+          "solution": "Fair: $0.05 \\times 400{,}000 = 20{,}000₮$ — the premium runs $10{,}000₮$ over. If losing $400$K is absorbable, skip; if it's your only transport to work, the tail may be worth deleting.",
+          "check": ["400000*5/100 == 20000", "30000 - 20000 == 10000"]
+        },
+        {
+          "id": "rv-l6-t2",
+          "statement": "Choose: certain $90{,}000₮$, or a $50\\%$ shot at $200{,}000₮$. Compare EVs; when would you take the certain money anyway?",
+          "solution": "Gamble's EV: $100{,}000₮ > 90{,}000₮$. Repeated many times: gamble. One-shot with the money needed for rent: the certain $90$K's zero variance is worth the $10$K of EV.",
+          "check": ["200000/2 == 100000"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The finale",
+            "title": "A bet you hope to lose",
+            "beats": [
+              "Insurance: pay $120$K₮/year against a $1\\%$, $8$M₮ disaster.",
+              "Company's expected payout: $80$K₮. They keep $40$K₮ on average.",
+              "Your EV is negative — and buying might STILL be right.",
+              "Expectation prices the average. Some decisions are about the worst case."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The recipe",
+            "title": "EV, tail, repetition",
+            "beats": [
+              "1 — Compute each option's EV. (You can, now.)",
+              "2 — Stare at the worst branch: survivable?",
+              "3 — How many times will you make this choice?",
+              "Repeated + survivable → EV rules. One-shot + ruinous → cap the tail."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Insurance, both sides",
+            "problemId": "rv-l6-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The warranty autopsy",
+            "problemId": "rv-l6-w2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Same math, two verdicts",
+            "title": "Why insure the house but not the blender?",
+            "prompt": "Both contracts have negative EV. What separates them?",
+            "options": ["Only the house's loss branch is unaffordable — deleting IT is worth paying for", "The blender warranty has better EV", "Nothing — buy both or neither"],
+            "correctIndex": 0,
+            "explanation": "Insurance logic prices the TAIL, not the average: an 8M₮ house loss can end your finances; a 300K₮ repair stings and passes. Pay to delete ruin; self-insure inconvenience.",
+            "check": ["25000 - 6000 == 19000"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Choosing the stall's corner",
+            "problemId": "rv-l6-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "One-shot judgment",
+            "title": "Rent is due",
+            "prompt": "Certain $90$K₮ vs a $50\\%$ shot at $200$K₮ (EV $100$K), exactly once, and you need $85$K₮ for rent tonight. Take…",
+            "options": ["The certain $90$K — the gamble's losing branch misses rent", "The gamble — higher EV always wins", "Flip a coin to decide"],
+            "correctIndex": 0,
+            "explanation": "The gamble's worst branch ($0$) is unsurvivable tonight; there's no long run in a one-shot. EV picks the gamble ONLY when you can afford to lose and repeat. Constraints outrank averages.",
+            "check": ["200000/2 == 100000"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Graduation",
+            "title": "You now out-reason the carnival",
+            "body": "Unit 7's kit: distributions describe, expectation prices, variance warns, linearity computes, and the tail-test decides. Next unit: the single most useful distribution in the world — repeated yes/no trials — where Act One's chooses and Act Two's independence finally shake hands."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The bike question",
+            "problemId": "rv-l6-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Certain vs coin flip",
+            "problemId": "rv-l6-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The St. Petersburg lesson",
+            "body": "A 1713 puzzle offers a coin game with INFINITE expected value — yet nobody sane pays more than a few coins to play. Daniel Bernoulli's resolution founded utility theory: money's value bends (the second million matters less than the first), so raw EV can't be the whole story of rational choice. Your rent-night instinct has a 300-year-old theorem behind it."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned — Unit 7 complete",
+            "points": [
+              "EV compares options; the worst branch decides if EV is the judge.",
+              "Pay to delete ruin (insurance); never pay to delete inconvenience (warranties, lotteries).",
+              "Next: the binomial — counting successes across repeated trials."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "rv-p-1",
+      "statement": "One die is rolled; $X = 1$ if the roll is even, else $0$. Build the distribution and find $E(X)$.",
+      "solution": "$P(X{=}1) = \\frac{1}{2}$, $P(X{=}0) = \\frac{1}{2}$; $E(X) = \\frac{1}{2}$.",
+      "check": ["1/2 + 1/2 == 1", "1*(1/2) + 0*(1/2) == 1/2"]
+    },
+    {
+      "id": "rv-p-2",
+      "statement": "$X$ takes values $2, 5, 10$ with probabilities $0.5, 0.3, 0.2$. Find $E(X)$.",
+      "solution": "$2(0.5) + 5(0.3) + 10(0.2) = 1 + 1.5 + 2 = 4.5$.",
+      "check": ["2*(5/10) + 5*(3/10) + 10*(2/10) == 45/10"]
+    },
+    {
+      "id": "rv-p-3",
+      "statement": "A raffle sells $250$ tickets at $400₮$; prizes are one $40{,}000₮$ and two $10{,}000₮$. Find the expected net per ticket.",
+      "solution": "$E(\\text{win}) = \\frac{40000 + 2 \\times 10000}{250} = \\frac{60000}{250} = 240₮$; net $= 240 - 400 = -160₮$.",
+      "check": ["(40000 + 2*10000)/250 == 240", "240 - 400 == -160"]
+    },
+    {
+      "id": "rv-p-4",
+      "statement": "What entry fee makes this game fair: draw one card, win $2600₮$ if it's a heart?",
+      "solution": "$E = 2600 \\times \\frac{13}{52} = 650₮$.",
+      "check": ["2600*13/52 == 650"]
+    },
+    {
+      "id": "rv-p-5",
+      "statement": "$X$ pays $\\pm 4$ with equal probability. Find Var$(X)$ and $\\sigma$.",
+      "solution": "$\\mu = 0$; squared deviations $16$ each: Var $= 16$, $\\sigma = 4$.",
+      "check": ["((4)**2 + (-4)**2)/2 == 16", "sqrt(16) == 4"]
+    },
+    {
+      "id": "rv-p-6",
+      "statement": "$E(X) = 8$ and $Y = 4X + 12$. Find $E(Y)$.",
+      "solution": "$4 \\times 8 + 12 = 44$.",
+      "check": ["4*8 + 12 == 44"]
+    },
+    {
+      "id": "rv-p-7",
+      "statement": "Five dice are rolled. Find the expected total, and the expected number of sixes.",
+      "solution": "Total: $5 \\times 3.5 = 17.5$. Sixes (indicators): $5 \\times \\frac{1}{6} = \\frac{5}{6}$.",
+      "check": ["5*7/2 == 35/2", "5/6 == 5/6"]
+    },
+    {
+      "id": "rv-p-8",
+      "statement": "Phone insurance: $18{,}000₮$/year, covers a $6\\%$-chance $250{,}000₮$ replacement. Find the fair premium and the company's expected margin.",
+      "solution": "Fair: $0.06 \\times 250{,}000 = 15{,}000₮$; margin $= 18{,}000 - 15{,}000 = 3{,}000₮$ per policy.",
+      "check": ["250000*6/100 == 15000", "18000 - 15000 == 3000"]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "rv-ty-1",
+      "statement": "Three coins are flipped; $X = $ number of heads. Build the full distribution, then find $E(X)$ and Var$(X)$.",
+      "solution": "$P(0) = \\frac{1}{8}, P(1) = \\frac{3}{8}, P(2) = \\frac{3}{8}, P(3) = \\frac{1}{8}$ (sums to 1 ✓). $E = \\frac{0 + 3 + 6 + 3}{8} = \\frac{3}{2}$. $E(X^2) = \\frac{0 + 3 + 12 + 9}{8} = 3$; Var $= 3 - \\frac{9}{4} = \\frac{3}{4}$.",
+      "check": ["1/8 + 3/8 + 3/8 + 1/8 == 1", "(0 + 3 + 6 + 3)/8 == 3/2", "3 - 9/4 == 3/4"]
+    },
+    {
+      "id": "rv-ty-2",
+      "statement": "A game: pay $300₮$, draw one card. Aces pay $2000₮$, other face cards (J, Q, K) pay $500₮$, anything else pays nothing. Fair, favorable, or edged — by how much?",
+      "solution": "$E(\\text{win}) = 2000 \\cdot \\frac{4}{52} + 500 \\cdot \\frac{12}{52} = \\frac{8000 + 6000}{52} = \\frac{14000}{52} \\approx 269₮$. Net $\\approx -31₮$: house-edged by about $10\\%$ of the fee.",
+      "check": ["2000*4/52 + 500*12/52 == 14000/52"]
+    },
+    {
+      "id": "rv-ty-3",
+      "statement": "Games $Y$ ($\\pm 2$, 50/50) and $Z$ ($\\pm 20$, 50/50) both cost nothing. Compute both $\\sigma$'s, and say which a rent-constrained player prefers and why.",
+      "solution": "Both means $0$; $\\sigma_Y = 2$, $\\sigma_Z = 20$. Equal EV — the constrained player takes $Y$: identical average, one-tenth the swing; the worst branch is survivable.",
+      "check": ["((2)**2 + (-2)**2)/2 == 4", "sqrt(4) == 2", "((20)**2 + (-20)**2)/2 == 400", "sqrt(400) == 20"]
+    },
+    {
+      "id": "rv-ty-4",
+      "statement": "A delivery service charges $3000₮$ base plus $800₮$/km. Distances average $7$ km. Find the expected charge, and what happens to it if every distance grows by exactly $2$ km.",
+      "solution": "$E = 800 \\times 7 + 3000 = 8600₮$. Distances $+2$ km: $E(\\text{new}) = 800 \\times 9 + 3000 = 10{,}200₮$ — linearity shifts the mean by $800 \\times 2 = 1600₮$, no distribution rebuilt.",
+      "check": ["800*7 + 3000 == 8600", "800*9 + 3000 == 10200"]
+    },
+    {
+      "id": "rv-ty-5",
+      "statement": "A $20$-question multiple-choice test has $4$ options per question. Using indicators, find the expected score of a pure guesser, and the expected score under \"$+1$ right, $-\\frac{1}{3}$ wrong\" scoring.",
+      "solution": "Right-count: $E = 20 \\times \\frac{1}{4} = 5$. Penalty scoring per question: $\\frac{1}{4}(1) + \\frac{3}{4}(-\\frac{1}{3}) = \\frac{1}{4} - \\frac{1}{4} = 0$ — total expected score $0$: the classic penalty exactly cancels blind guessing.",
+      "check": ["20/4 == 5", "(1/4)*1 + (3/4)*(-1/3) == 0"]
+    },
+    {
+      "id": "rv-ty-6",
+      "statement": "Crop insurance costs $500{,}000₮$; drought probability $8\\%$ would cost the farm $5{,}000{,}000₮$. Compute the fair premium, the EV of buying, and give the two-sentence recommendation a good advisor would.",
+      "solution": "Fair: $0.08 \\times 5M = 400{,}000₮$; buying has EV $-100{,}000₮$. Recommendation: the premium runs $25\\%$ over fair — but if a $5$M₮ loss would end the farm, buy anyway: you're deleting an unsurvivable branch, and that's what insurance is FOR. If the farm holds reserves that could absorb it, self-insure and bank the edge.",
+      "check": ["5000000*8/100 == 400000", "500000 - 400000 == 100000"]
+    }
+  ]
+}
