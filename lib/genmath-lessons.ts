@@ -149,6 +149,7 @@ import geometryTransformations from "@/data/genmath/geometry/transformations.jso
 import geometryCoordinate from "@/data/genmath/geometry/coordinate-geometry.json";
 import psCountingPrinciples from "@/data/genmath/prob-stats/counting-principles.json";
 import psPermutations from "@/data/genmath/prob-stats/permutations.json";
+import psCombinations from "@/data/genmath/prob-stats/combinations.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -824,7 +825,7 @@ export const PROBSTAT_SPINE: GeometrySpineEntry[] = [
     title: "Combinations",
     blurb: "Choosing without order: nCr, committees, at-least and at-most counts, and when order matters vs when it doesn't.",
     buildsOn: "Permutations (Unit 2) — combinations are permutations with the order divided out.",
-    live: false,
+    live: true,
   },
   {
     unit: 4,
@@ -903,6 +904,7 @@ export const PROBSTAT_SPINE: GeometrySpineEntry[] = [
 const probStatUnits: CourseUnit[] = [
   psCountingPrinciples as unknown as CourseUnit,
   psPermutations as unknown as CourseUnit,
+  psCombinations as unknown as CourseUnit,
 ];
 
 export function getProbStatSpine(): GeometrySpineEntry[] {
