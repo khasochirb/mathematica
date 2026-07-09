@@ -21,6 +21,10 @@ org chart: it tells you how we work and which specialist manual to open.
 |------|---------------|------|
 | Everyone | `company-handbook` (this) | Start of any task |
 | Content author (tests) | `practice-test-authoring` + hub skill (`esh-practice-test`, `sat-practice-test`, `ib-practice-test`) | Writing/editing exam content |
+| SAT class author | `sat-course` | SAT curriculum, lessons, drills, diagnostics |
+| IB class author | `ib-course` | IB AA/AI SL/HL curriculum, lessons, drills |
+| Taxonomy steward | `skill-taxonomy` | Designing/applying/auditing question tags |
+| Analytics engineer | `performance-analytics` | Dashboards, mastery math, gap reports |
 | Content reviewer | `content-reviewer` | Reviewing any lesson/problem/test before ship |
 | Translator | `mn-translation` | Any Mongolian mirror work |
 | Code reviewer | `code-reviewer` | Reviewing any TS/TSX/py diff |
