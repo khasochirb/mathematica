@@ -152,6 +152,7 @@ import psPermutations from "@/data/genmath/prob-stats/permutations.json";
 import psCombinations from "@/data/genmath/prob-stats/combinations.json";
 import psBinomialTheorem from "@/data/genmath/prob-stats/binomial-theorem.json";
 import psProbabilityModels from "@/data/genmath/prob-stats/probability-models.json";
+import psConditional from "@/data/genmath/prob-stats/conditional-probability.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -851,7 +852,7 @@ export const PROBSTAT_SPINE: GeometrySpineEntry[] = [
     title: "Conditional Probability & Independence",
     blurb: "How information changes chance: P(A|B), the multiplication rule, independence, weighted trees, and Bayes by table.",
     buildsOn: "Probability models from Unit 5.",
-    live: false,
+    live: true,
   },
   {
     unit: 7,
@@ -909,6 +910,7 @@ const probStatUnits: CourseUnit[] = [
   psCombinations as unknown as CourseUnit,
   psBinomialTheorem as unknown as CourseUnit,
   psProbabilityModels as unknown as CourseUnit,
+  psConditional as unknown as CourseUnit,
 ];
 
 export function getProbStatSpine(): GeometrySpineEntry[] {

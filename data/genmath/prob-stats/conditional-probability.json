@@ -1,0 +1,1123 @@
+{
+  "slug": "conditional-probability",
+  "title": "Conditional Probability & Independence",
+  "unit": 6,
+  "status": "published",
+  "blurb": "How information changes chance: P(A|B), the multiplication rule, independence, weighted trees, and Bayes by table.",
+  "buildsOn": "Probability models from Unit 5.",
+  "lessons": [
+    {
+      "slug": "shrinking-the-universe",
+      "title": "Conditional Probability: Shrinking the Universe",
+      "concreteComparison": "Two dice were rolled behind a screen, and your friend peeks: \"the sum is $8$.\" What's the chance it was double fours? Without the peek: $\\frac{1}{36}$. With it, the universe SHRINKS to the five rolls summing to $8$ — and $(4,4)$ is one of them: $\\frac{1}{5}$. Information doesn't change the dice; it changes which outcomes are still possible.",
+      "objective": "Compute conditional probabilities P(A|B) by restricting the sample space, from counts and from two-way tables.",
+      "concept": [
+        "**Conditional probability** $P(A \\mid B)$ — \"probability of $A$ GIVEN $B$\" — re-asks the question inside a smaller universe: only the outcomes where $B$ happened remain, and $A$'s chance is its share of THAT club: $$P(A \\mid B) = \\frac{P(A \\text{ and } B)}{P(B)} = \\frac{|A \\cap B|}{|B|}$$",
+        "On a two-way table, conditioning means picking ONE ROW (or column) and reading the fraction inside it. \"Given the student has a bike, what's the chance of a skateboard?\" — look only in the bike row.",
+        "Order matters: $P(A \\mid B) \\ne P(B \\mid A)$ in general. The share of bikers who skate is not the share of skaters who bike — different denominators, different clubs. (Confusing them is Lesson 5's famous fallacy.)",
+        "Every probability you computed before was secretly conditional on the whole universe — conditioning just moves the denominator."
+      ],
+      "keyIdea": "P(A|B) = P(A and B)/P(B): the given event becomes the new universe; A's chance is its share of it.",
+      "facts": [
+        {
+          "title": "The definition",
+          "latex": "P(A \\mid B) = \\frac{P(A \\cap B)}{P(B)}",
+          "explanation": "Restrict to B's outcomes; measure A's share inside."
+        },
+        {
+          "title": "Not symmetric",
+          "latex": "P(A \\mid B) \\ne P(B \\mid A) \\text{ in general}",
+          "explanation": "Different denominators — the share of bikers who skate isn't the share of skaters who bike."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cd-l1-w1",
+          "statement": "Two dice are rolled; you learn the sum is $8$. Find $P(\\text{both dice show } 4 \\mid \\text{sum} = 8)$.",
+          "solution": "The new universe: rolls summing to $8$ — $(2,6),(3,5),(4,4),(5,3),(6,2)$: five outcomes. $(4,4)$ is one. $P = \\frac{1}{5}$. (Unconditionally it was $\\frac{1}{36}$ — the peek quintupled-plus the odds.)",
+          "check": ["1/5 == 1/5", "5/36 == 5/36"]
+        },
+        {
+          "id": "cd-l1-w2",
+          "statement": "From the Unit 5 survey ($100$ students: bike-only $35$, both $25$, skateboard-only $20$, neither $20$): find $P(\\text{skateboard} \\mid \\text{bike})$.",
+          "solution": "Given bike: the universe shrinks to the $60$ bike owners. Skateboarders among them: the both-region, $25$. $P = \\frac{25}{60} = \\frac{5}{12}$.",
+          "check": ["25/60 == 5/12"]
+        },
+        {
+          "id": "cd-l1-w3",
+          "statement": "Same survey: find $P(\\text{bike} \\mid \\text{skateboard})$, and compare with the previous answer.",
+          "solution": "Given skateboard: universe is the $45$ skateboarders; bikers among them: $25$. $P = \\frac{25}{45} = \\frac{5}{9}$. Note $\\frac{5}{9} \\ne \\frac{5}{12}$: same overlap, different denominators. Conditioning direction matters.",
+          "check": ["25/45 == 5/9"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the original universe's denominator after conditioning.",
+          "correction": "P(skateboard | bike) = 25/60, not 25/100. The 'given' throws away every outcome outside B — including from the denominator.",
+          "authored": true
+        },
+        {
+          "text": "Swapping P(A|B) for P(B|A).",
+          "correction": "They answer different questions with different denominators: 25/60 vs 25/45 in the survey. Say the denominator out loud: 'out of the ones where B happened...'.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cd-l1-t1",
+          "statement": "One die is rolled and you learn the result is even. Find $P(\\text{it's a } 6 \\mid \\text{even})$.",
+          "solution": "New universe $\\{2, 4, 6\\}$: $P = \\frac{1}{3}$.",
+          "check": ["1/3 == 1/3"]
+        },
+        {
+          "id": "cd-l1-t2",
+          "statement": "A class has $12$ girls ($7$ in the choir) and $10$ boys ($4$ in the choir). A random CHOIR member is picked. Find $P(\\text{girl} \\mid \\text{choir})$.",
+          "solution": "Choir universe: $7 + 4 = 11$; girls among them: $7$. $P = \\frac{7}{11}$.",
+          "check": ["7/11 == 7/11"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The hook",
+            "title": "The peek",
+            "beats": [
+              "Dice behind a screen. Friend peeks: \"sum is 8.\"",
+              "Double fours? The universe is no longer 36 rolls.",
+              "It's the FIVE rolls summing to 8 — and (4,4) is one.",
+              "$\\frac{1}{36} \\to \\frac{1}{5}$. Information shrinks universes."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The definition",
+            "title": "Given = new denominator",
+            "beats": [
+              "$P(A \\mid B) = \\dfrac{P(A \\text{ and } B)}{P(B)}$.",
+              "$B$ is the new universe; $A$'s chance is its share INSIDE.",
+              "On a table: condition = pick one row, read within it.",
+              "Every earlier probability was conditional on 'everything'."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "First condition",
+            "title": "Given even",
+            "prompt": "A die shows an even number. $P(\\text{it's a } 2 \\mid \\text{even})$?",
+            "options": ["$\\frac{1}{3}$", "$\\frac{1}{6}$", "$\\frac{1}{2}$"],
+            "correctIndex": 0,
+            "explanation": "The universe shrank to $\\{2, 4, 6\\}$: one of three. $\\frac{1}{6}$ kept the old denominator — the exact mistake conditioning exists to fix.",
+            "check": ["1/3 == 1/3"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Sum is eight",
+            "problemId": "cd-l1-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Given bike",
+            "problemId": "cd-l1-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The other direction",
+            "problemId": "cd-l1-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Direction drill",
+            "title": "Which denominator?",
+            "prompt": "In a school, $40$ students play chess, $100$ play football, $20$ play both. $P(\\text{chess} \\mid \\text{football})$?",
+            "options": ["$\\frac{20}{100} = \\frac{1}{5}$", "$\\frac{20}{40} = \\frac{1}{2}$", "$\\frac{20}{120}$"],
+            "correctIndex": 0,
+            "explanation": "Given football: denominator $100$. The $\\frac{20}{40}$ answers the REVERSED question $P(\\text{football} \\mid \\text{chess})$; $\\frac{20}{120}$ invents a universe by adding overlapping groups.",
+            "check": ["20/100 == 1/5"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Speech habit",
+            "title": "Say 'out of' before every answer",
+            "body": "Force the sentence: \"OUT OF the 60 bike owners, 25 skate — 25/60.\" If you can't finish \"out of the ___\", you haven't identified the conditioning event, and any fraction you write is a guess."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Given even",
+            "problemId": "cd-l1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Choir member",
+            "problemId": "cd-l1-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Card counters shrink universes for a living",
+            "body": "Blackjack card counting is applied conditional probability: every card seen shrinks the deck-universe, and the running count tracks how the conditional odds of high cards drift. Casinos can't outlaw arithmetic — so they shuffle more often, restoring the bigger universe."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "P(A|B) = P(A∩B)/P(B): the given event is the new universe.",
+              "On tables: condition = read within one row or column.",
+              "P(A|B) ≠ P(B|A) — the denominator names the club you're in."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-multiplication-rule",
+      "title": "The Multiplication Rule & Weighted Trees",
+      "concreteComparison": "A bag holds $3$ red and $2$ blue marbles. Draw two, no putting back. $P(\\text{both red})$? First red: $\\frac{3}{5}$. But the second draw stares at a CHANGED bag — $2$ reds among $4$: $\\frac{2}{4}$. Chain them: $\\frac{3}{5} \\times \\frac{2}{4} = \\frac{3}{10}$. Rearranging the conditional-probability definition gives the engine of every sequential experiment.",
+      "objective": "Compute joint probabilities with P(A and B) = P(A)·P(B|A), and organize multi-stage experiments as weighted trees.",
+      "concept": [
+        "Rearranging the definition: $$P(A \\text{ and } B) = P(A) \\times P(B \\mid A)$$ — the chance of the first thing, times the chance of the second GIVEN the first already happened.",
+        "**Weighted trees** draw the rule: each branch carries its conditional probability, each root-to-leaf path multiplies its branches, and the leaves' probabilities sum to $1$ (audit!).",
+        "**Without replacement** is the signature case: the second draw's probabilities depend on the first draw's result. With replacement, the bag resets and the branches repeat.",
+        "Longer chains just keep multiplying: $P(A \\text{ and } B \\text{ and } C) = P(A) \\, P(B \\mid A) \\, P(C \\mid A \\text{ and } B)$ — each factor conditioned on everything before it. Drawing the tree keeps the bookkeeping honest."
+      ],
+      "keyIdea": "P(A and B) = P(A) · P(B|A): multiply along tree branches, each weighted by what's already happened; leaves sum to 1.",
+      "facts": [
+        {
+          "title": "The multiplication rule",
+          "latex": "P(A \\cap B) = P(A)\\,P(B \\mid A)",
+          "explanation": "First event's chance times the second's chance in the updated universe."
+        },
+        {
+          "title": "The tree audit",
+          "latex": "\\sum_{\\text{leaves}} P = 1",
+          "explanation": "All path probabilities together must exhaust the experiment."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cd-l2-w1",
+          "statement": "A bag holds $3$ red and $2$ blue marbles; two are drawn without replacement. Find $P(\\text{both red})$.",
+          "solution": "$P(R_1) = \\frac{3}{5}$; given a red is gone, $P(R_2 \\mid R_1) = \\frac{2}{4}$. Multiply: $\\frac{3}{5} \\times \\frac{2}{4} = \\frac{6}{20} = \\frac{3}{10}$.",
+          "check": ["(3/5)*(2/4) == 3/10"]
+        },
+        {
+          "id": "cd-l2-w2",
+          "statement": "Same bag, same draw. Build all four leaves of the tree and verify they sum to $1$.",
+          "solution": "RR: $\\frac{3}{5} \\cdot \\frac{2}{4} = \\frac{6}{20}$. RB: $\\frac{3}{5} \\cdot \\frac{2}{4} = \\frac{6}{20}$. BR: $\\frac{2}{5} \\cdot \\frac{3}{4} = \\frac{6}{20}$. BB: $\\frac{2}{5} \\cdot \\frac{1}{4} = \\frac{2}{20}$. Sum: $\\frac{20}{20} = 1$ ✓.",
+          "check": ["(3/5)*(2/4) + (3/5)*(2/4) + (2/5)*(3/4) + (2/5)*(1/4) == 1"]
+        },
+        {
+          "id": "cd-l2-w3",
+          "statement": "Three cards are drawn from a deck without replacement. Find $P(\\text{all three are hearts})$.",
+          "solution": "Chain of three: $\\frac{13}{52} \\times \\frac{12}{51} \\times \\frac{11}{50} = \\frac{1716}{132600} = \\frac{11}{850}$. Each factor sees the deck the previous draws left behind.",
+          "check": ["(13/52)*(12/51)*(11/50) == 11/850"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Freezing the bag after the first draw.",
+          "correction": "Without replacement, the second factor uses the UPDATED counts: 2/4, not 3/5 again. Ask at every branch: what does the bag look like NOW?",
+          "authored": true
+        },
+        {
+          "text": "Adding branch probabilities along a path.",
+          "correction": "ALONG a path (and-then-and) you multiply; ACROSS different paths you add. 3/5 + 2/4 exceeds 1 — the scale itself vetoes it.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cd-l2-t1",
+          "statement": "A drawer holds $4$ white and $6$ black socks. Two are pulled without replacement. Find $P(\\text{both white})$.",
+          "solution": "$\\frac{4}{10} \\times \\frac{3}{9} = \\frac{12}{90} = \\frac{2}{15}$.",
+          "check": ["(4/10)*(3/9) == 2/15"]
+        },
+        {
+          "id": "cd-l2-t2",
+          "statement": "Same drawer: find $P(\\text{one of each color, in either order})$.",
+          "solution": "WB: $\\frac{4}{10} \\cdot \\frac{6}{9} = \\frac{24}{90}$; BW: $\\frac{6}{10} \\cdot \\frac{4}{9} = \\frac{24}{90}$. Add across paths: $\\frac{48}{90} = \\frac{8}{15}$.",
+          "check": ["(4/10)*(6/9) + (6/10)*(4/9) == 8/15"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The rule",
+            "title": "The definition, rearranged",
+            "beats": [
+              "$P(A \\mid B) = \\frac{P(A \\cap B)}{P(B)}$ — multiply both sides by $P(B)$:",
+              "$P(A \\text{ and } B) = P(A) \\times P(B \\mid A)$.",
+              "First chance, times second chance GIVEN the first happened.",
+              "This one line runs every sequential experiment."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Both red",
+            "problemId": "cd-l2-w1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The picture",
+            "title": "Weighted trees",
+            "beats": [
+              "Branch = conditional probability of that step.",
+              "Path = multiply the branches along it.",
+              "Event spanning several paths = ADD those paths.",
+              "Audit: ALL leaves sum to exactly 1. Always check."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The full tree",
+            "problemId": "cd-l2-w2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Update drill",
+            "title": "The bag now",
+            "prompt": "Bag: $5$ green, $3$ yellow, drawn without replacement. After one GREEN is drawn, $P(\\text{green on draw 2})$?",
+            "options": ["$\\frac{4}{7}$", "$\\frac{5}{8}$", "$\\frac{4}{8}$"],
+            "correctIndex": 0,
+            "explanation": "The bag NOW holds $4$ green among $7$ total: $\\frac{4}{7}$. Keeping $\\frac{5}{8}$ freezes the bag; $\\frac{4}{8}$ updates the greens but forgets the total also shrank.",
+            "check": ["4/7 == 4/7"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Three hearts",
+            "problemId": "cd-l2-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Path vs paths",
+            "title": "Multiply or add?",
+            "prompt": "For $P(\\text{one white, one black — either order})$ from $4$W/$6$B without replacement, you…",
+            "options": ["multiply along each order, then ADD the two paths", "multiply all four numbers together", "add $\\frac{4}{10}$ and $\\frac{6}{10}$"],
+            "correctIndex": 0,
+            "explanation": "WB and BW are different paths to the same event: each path multiplies ($\\frac{4}{10}\\cdot\\frac{6}{9}$ and $\\frac{6}{10}\\cdot\\frac{4}{9}$), and the paths add: $\\frac{8}{15}$. Along = ×, across = +.",
+            "check": ["(4/10)*(6/9) + (6/10)*(4/9) == 8/15"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Connection",
+            "title": "Trees and chooses agree",
+            "body": "P(both red) = (3/5)(2/4) = 3/10 — and Unit 5's choose route gives C(3,2)/C(5,2) = 3/10. Sequential trees and unordered chooses are two honest bookkeepings of one experiment. When both are available, computing each is the strongest check you own."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Both white",
+            "problemId": "cd-l2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "One of each",
+            "problemId": "cd-l2-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The chain rule runs your autocomplete",
+            "body": "Language models predict text with exactly this lesson's chain: P(sentence) = P(word₁) · P(word₂|word₁) · P(word₃|words so far)... Every next-word suggestion on your phone keyboard is a branch weight in a colossal conditional tree. You now know the formula your autocomplete lives by."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "P(A and B) = P(A)·P(B|A) — condition every factor on the past.",
+              "Trees: multiply along paths, add across paths, leaves sum to 1.",
+              "Without replacement = updated counts at every branch."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "independence",
+      "title": "Independence",
+      "concreteComparison": "Does knowing the first coin landed heads change your forecast for the second? No — $P(H_2 \\mid H_1) = \\frac{1}{2}$, same as ever. The coins are **independent**: information about one is worthless about the other. But the two marble draws last lesson? Very much not — the first draw rewrote the second's odds. Independence isn't a vibe; it's an equation you can check.",
+      "objective": "Define independence via P(A|B) = P(A), test it numerically, and multiply plain probabilities only when it holds.",
+      "concept": [
+        "Events are **independent** when the conditional equals the unconditional: $$P(A \\mid B) = P(A)$$ — knowing $B$ teaches you nothing about $A$. Equivalent test: $P(A \\text{ and } B) = P(A) \\times P(B)$ (the multiplication rule with the conditioning gone).",
+        "Independence is CHECKED, not assumed: separate coins, separate dice, draws WITH replacement — independent. Draws without replacement, weather on consecutive days, height and shoe size — dependent.",
+        "**Independent ≠ mutually exclusive** — they're near opposites. Mutually exclusive events can't co-occur, so knowing one happened DESTROYS the other ($P(A \\mid B) = 0$): maximum dependence. Independent events co-occur exactly as often as the product predicts.",
+        "For independent chains, the rule simplifies beautifully: $P(\\text{all of } A_1 \\ldots A_n) = P(A_1) \\cdots P(A_n)$ — and with complements: $P(\\text{at least one}) = 1 - \\prod P(\\text{not } A_i)$, the workhorse of reliability."
+      ],
+      "keyIdea": "Independent means P(A|B) = P(A) — equivalently P(A and B) = P(A)P(B); check it, don't assume it, and never confuse it with mutually exclusive.",
+      "facts": [
+        {
+          "title": "The test",
+          "latex": "P(A \\cap B) = P(A)\\,P(B) \\iff \\text{independent}",
+          "explanation": "Compare the joint probability to the product — equality is the definition."
+        },
+        {
+          "title": "Not mutual exclusivity",
+          "latex": "\\text{mutually exclusive} \\Rightarrow P(A \\mid B) = 0",
+          "explanation": "Exclusive events are maximally DEPENDENT: one happening kills the other."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cd-l3-w1",
+          "statement": "A coin is flipped and a die is rolled. Find $P(\\text{heads and a } 6)$, justifying the shortcut.",
+          "solution": "The coin can't feel the die: independent. $P = \\frac{1}{2} \\times \\frac{1}{6} = \\frac{1}{12}$. (Check against the $12$-outcome universe: one outcome (H,6) of twelve ✓.)",
+          "check": ["(1/2)*(1/6) == 1/12"]
+        },
+        {
+          "id": "cd-l3-w2",
+          "statement": "In a class of $36$: $18$ like math, $12$ like art, $6$ like both. Are \"likes math\" and \"likes art\" independent?",
+          "solution": "Test: $P(M)P(A) = \\frac{18}{36} \\times \\frac{12}{36} = \\frac{1}{2} \\times \\frac{1}{3} = \\frac{1}{6}$; observed joint: $P(M \\cap A) = \\frac{6}{36} = \\frac{1}{6}$. Equal — independent. (Equivalently: $P(A \\mid M) = \\frac{6}{18} = \\frac{1}{3} = P(A)$ ✓.)",
+          "check": ["(18/36)*(12/36) == 1/6", "6/36 == 1/6", "6/18 == 12/36"]
+        },
+        {
+          "id": "cd-l3-w3",
+          "statement": "A machine has three independent safety sensors, each failing with probability $0.1$. Find $P(\\text{at least one sensor works})$.",
+          "solution": "Complement — ALL fail: $0.1^3 = 0.001$. At least one works: $1 - 0.001 = 0.999$. Independence justifies the product; the complement dodges the cases. Three cheap sensors beat one $99\\%$ sensor.",
+          "check": ["1 - (1/10)**3 == 999/1000"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Multiplying plain probabilities for dependent events.",
+          "correction": "P(both red) from a bag without replacement is (3/5)(2/4), not (3/5)². The shortcut P(A)P(B) is EARNED by independence, never free.",
+          "authored": true
+        },
+        {
+          "text": "Calling mutually exclusive events independent.",
+          "correction": "They're opposites: exclusive means P(A|B) = 0 ≠ P(A) — total dependence. Independent events CAN and do co-occur, at exactly the product rate.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cd-l3-t1",
+          "statement": "Two fair dice: find $P(\\text{both show } 6)$, naming the property you used.",
+          "solution": "Independence: $\\frac{1}{6} \\times \\frac{1}{6} = \\frac{1}{36}$.",
+          "check": ["(1/6)*(1/6) == 1/36"]
+        },
+        {
+          "id": "cd-l3-t2",
+          "statement": "A survey: $P(\\text{tea}) = 0.6$, $P(\\text{coffee}) = 0.5$, $P(\\text{both}) = 0.2$. Independent?",
+          "solution": "Product: $0.6 \\times 0.5 = 0.3 \\ne 0.2$ observed. NOT independent — tea drinkers are less likely than chance to also drink coffee.",
+          "check": ["(6/10)*(5/10) == 3/10"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Worthless information",
+            "beats": [
+              "First coin: heads. Second coin's forecast: still $\\frac{1}{2}$.",
+              "$P(A \\mid B) = P(A)$: knowing $B$ taught you NOTHING.",
+              "That's independence — and it's an equation, not a feeling.",
+              "The marble draws failed it: $\\frac{2}{4} \\ne \\frac{3}{5}$."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The test",
+            "title": "Check the product",
+            "beats": [
+              "Equivalent test: is $P(A \\text{ and } B) = P(A) \\times P(B)$?",
+              "Compute the joint. Compute the product. Compare.",
+              "Equal → independent. Unequal → dependent, and the gap's direction tells you HOW.",
+              "Never assume — coins yes, consecutive weather days no."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Coin and die",
+            "problemId": "cd-l3-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Math and art",
+            "problemId": "cd-l3-w2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Test drill",
+            "title": "Run the numbers",
+            "prompt": "$P(A) = 0.4$, $P(B) = 0.5$, $P(A \\cap B) = 0.1$. Independent?",
+            "options": ["No — the product is $0.2 \\ne 0.1$", "Yes — both are between 0 and 1", "Can't tell without P(A ∪ B)"],
+            "correctIndex": 0,
+            "explanation": "Independence demands joint = product: $0.4 \\times 0.5 = 0.2$, but the joint is $0.1$ — A and B co-occur HALF as often as independence predicts. The union adds nothing; the test is complete with these three numbers.",
+            "check": ["(4/10)*(5/10) == 2/10"]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The confusion to kill",
+            "title": "Exclusive is not independent",
+            "beats": [
+              "Mutually exclusive: can't BOTH happen. $P(A \\mid B) = 0$.",
+              "That's maximum dependence — B's happening executes A.",
+              "Independent events co-occur at exactly the product rate.",
+              "Roll one die: \"even\" and \"odd\" are exclusive. \"Even\" and \"$\\le 4$\"? Test it: $P(\\text{even} \\cap \\le 4) = \\frac{2}{6}$, product $= \\frac{3}{6} \\cdot \\frac{4}{6} = \\frac{2}{6}$. Independent!"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Three sensors",
+            "problemId": "cd-l3-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Reliability",
+            "title": "Redundancy math",
+            "prompt": "Two independent backups each work with probability $0.9$. $P(\\text{at least one works})$?",
+            "options": ["$0.99$", "$0.81$", "$1.8$"],
+            "correctIndex": 0,
+            "explanation": "Complement: both fail $= 0.1 \\times 0.1 = 0.01$; at least one works $= 0.99$. The $0.81$ is BOTH working; $1.8$ added probabilities — the scale vetoes it on sight.",
+            "check": ["1 - (1/10)*(1/10) == 99/100"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Modeling honesty",
+            "title": "Independence is an assumption with consequences",
+            "body": "Real failures cluster: two sensors on the same power line fail TOGETHER when it cuts out. When you invoke independence, say why the mechanism justifies it — separate coins yes, same-storm insurance claims no. Mis-assumed independence is how financial models blow up."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Double six",
+            "problemId": "cd-l3-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Tea and coffee",
+            "problemId": "cd-l3-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The 1907 typhoid cook",
+            "body": "Epidemiology's founding insight is a dependence test: cases of typhoid clustering around one asymptomatic cook (Mary Mallon) co-occurred far above the independence baseline — P(sick | near Mary) ≫ P(sick). The arithmetic you just did on tea and coffee is, at scale, how outbreaks get traced to kitchens, wells, and wet markets."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Independent: P(A|B) = P(A), equivalently joint = product. Check numerically.",
+              "Mutually exclusive is maximal dependence, not independence.",
+              "Independent chains: multiply; 'at least one' via 1 − product of complements."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "total-probability",
+      "title": "Adding Across the Tree",
+      "concreteComparison": "Your school has two buses. The old bus runs $70\\%$ of mornings and is late $10\\%$ of the time; the new bus covers the other $30\\%$ and is late just $2\\%$ of the time. What fraction of mornings are you late? Neither $10\\%$ nor $2\\%$ — you need BOTH paths through the tree: $0.7 \\times 0.1 + 0.3 \\times 0.02 = 0.076$. When an event can arrive by several routes, its probability is the sum over routes.",
+      "objective": "Compute total probabilities by multiplying along each branch of a scenario tree and adding across the branches.",
+      "concept": [
+        "**The law of total probability** (tree form): when scenarios $B_1, B_2, \\ldots$ split the world (each morning exactly one bus runs), an event $A$'s probability collects every route: $$P(A) = P(B_1)P(A \\mid B_1) + P(B_2)P(A \\mid B_2) + \\cdots$$",
+        "It's the tree discipline from Lesson 2, formalized: multiply ALONG each scenario branch, add ACROSS scenarios. The scenario probabilities must sum to $1$ (they partition the world) — audit before computing.",
+        "The result always lands BETWEEN the extreme conditionals ($2\\%$ and $10\\%$ here), pulled toward the more common scenario — a weighted average, which is a sanity check you can run by eye.",
+        "This structure — scenarios weighted by likelihood, outcomes conditioned on scenario — is the skeleton of the next lesson, where we run the tree BACKWARD."
+      ],
+      "keyIdea": "P(A) = Σ P(scenario) · P(A | scenario) — multiply along branches, add across them; the answer is a weighted average of the conditionals.",
+      "facts": [
+        {
+          "title": "Total probability",
+          "latex": "P(A) = \\sum_i P(B_i)\\,P(A \\mid B_i)",
+          "explanation": "Scenarios partition the world; A's probability is collected route by route."
+        },
+        {
+          "title": "The eyeball audit",
+          "latex": "\\min_i P(A \\mid B_i) \\le P(A) \\le \\max_i P(A \\mid B_i)",
+          "explanation": "A weighted average lives between its extremes, nearer the heavier weight."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cd-l4-w1",
+          "statement": "The old bus runs $70\\%$ of mornings (late $10\\%$ of the time); the new bus runs $30\\%$ (late $2\\%$). Find $P(\\text{late})$.",
+          "solution": "Two routes to lateness: old-and-late $0.7 \\times 0.1 = 0.07$; new-and-late $0.3 \\times 0.02 = 0.006$. Total: $0.076$ — between $2\\%$ and $10\\%$, close to the old bus's rate because it runs more often. ✓",
+          "check": ["(7/10)*(1/10) + (3/10)*(2/100) == 76/1000"]
+        },
+        {
+          "id": "cd-l4-w2",
+          "statement": "Factory line A makes $60\\%$ of output with $3\\%$ defects; line B makes $40\\%$ with $8\\%$ defects. What fraction of all output is defective?",
+          "solution": "$P(\\text{def}) = 0.6 \\times 0.03 + 0.4 \\times 0.08 = 0.018 + 0.032 = 0.05$ — five percent overall.",
+          "check": ["(6/10)*(3/100) + (4/10)*(8/100) == 5/100"]
+        },
+        {
+          "id": "cd-l4-w3",
+          "statement": "A student guesses on $30\\%$ of quiz questions (correct $25\\%$ of the time when guessing) and knows the rest (correct $95\\%$ of the time). What's the overall probability of a correct answer?",
+          "solution": "$P(\\text{correct}) = 0.3 \\times 0.25 + 0.7 \\times 0.95 = 0.075 + 0.665 = 0.74$.",
+          "check": ["(3/10)*(25/100) + (7/10)*(95/100) == 74/100"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Averaging the conditionals without weights.",
+          "correction": "(10% + 2%)/2 = 6% ignores that the old bus runs 70% of mornings. The weights ARE the scenario probabilities: 0.7·10% + 0.3·2% = 7.6%.",
+          "authored": true
+        },
+        {
+          "text": "Scenarios that don't partition.",
+          "correction": "If scenario probabilities don't sum to 1 (or can overlap), the formula collects routes from a broken map. Check the split before multiplying anything.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cd-l4-t1",
+          "statement": "It rains $20\\%$ of days. You forget your umbrella $50\\%$ of rainy days and $90\\%$ of dry days... wait — find $P(\\text{caught umbrella-less in rain})$.",
+          "solution": "One route: rain AND forgot $= 0.2 \\times 0.5 = 0.1$ — one morning in ten.",
+          "check": ["(2/10)*(5/10) == 1/10"]
+        },
+        {
+          "id": "cd-l4-t2",
+          "statement": "Two coin types in a jar: $80\\%$ fair, $20\\%$ double-headed. A random coin is flipped once. Find $P(\\text{heads})$.",
+          "solution": "$0.8 \\times \\frac{1}{2} + 0.2 \\times 1 = 0.4 + 0.2 = 0.6$.",
+          "check": ["(8/10)*(1/2) + (2/10)*1 == 6/10"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The hook",
+            "title": "Late by two roads",
+            "beats": [
+              "Old bus ($70\\%$ of mornings): late $10\\%$. New bus ($30\\%$): late $2\\%$.",
+              "Your lateness rate is NEITHER number.",
+              "Route 1: old-and-late $= 0.07$. Route 2: new-and-late $= 0.006$.",
+              "Add the routes: $7.6\\%$. Events collect probability from every path in."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The law",
+            "title": "Multiply along, add across",
+            "beats": [
+              "Scenarios split the world — their probabilities sum to $1$.",
+              "$P(A) = \\sum P(\\text{scenario}) \\times P(A \\mid \\text{scenario})$.",
+              "It's a WEIGHTED average: the answer sits between the conditionals,",
+              "pulled toward the likelier scenario. Eyeball-checkable."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Eyeball first",
+            "title": "Where must it land?",
+            "prompt": "Scenario X ($90\\%$ likely) gives event E with probability $0.5$; scenario Y ($10\\%$) gives it with $0.9$. $P(E)$ is…",
+            "options": ["$0.54$ — just above $0.5$", "$0.70$ — the midpoint", "$0.86$ — near $0.9$"],
+            "correctIndex": 0,
+            "explanation": "$0.9 \\times 0.5 + 0.1 \\times 0.9 = 0.45 + 0.09 = 0.54$ — hugging the heavy scenario's $0.5$. Midpoints ignore weights; landing near $0.9$ would need Y to dominate.",
+            "check": ["(9/10)*(5/10) + (1/10)*(9/10) == 54/100"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The two buses",
+            "problemId": "cd-l4-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Two factory lines",
+            "problemId": "cd-l4-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Guessing and knowing",
+            "problemId": "cd-l4-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Assemble it",
+            "title": "Your turn to route",
+            "prompt": "$25\\%$ of emails are spam; spam contains the word \"free\" $60\\%$ of the time, real mail $8\\%$. $P(\\text{a random email says \"free\"})$?",
+            "options": ["$0.21$", "$0.68$", "$0.15$"],
+            "correctIndex": 0,
+            "explanation": "$0.25 \\times 0.6 + 0.75 \\times 0.08 = 0.15 + 0.06 = 0.21$. The $0.68$ adds the conditionals raw; $0.15$ counts only the spam route. (Hold this example — next lesson runs it backward.)",
+            "check": ["(25/100)*(6/10) + (75/100)*(8/100) == 21/100"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Layout",
+            "title": "Draw the two-level tree, label everything",
+            "body": "Level 1: scenarios with their probabilities (must sum to 1 — write the check). Level 2: the event's conditional under each. The formula then reads straight off the picture, and missing routes become visually obvious."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Rain and forgetfulness",
+            "problemId": "cd-l4-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The trick jar",
+            "problemId": "cd-l4-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Your inbox runs this formula",
+            "body": "Spam filters literally compute today's lesson: the overall rate of a word arriving is its spam-route contribution plus its ham-route contribution. The filter's REAL question, though — \"given the word, what's the chance it's spam?\" — runs the tree backward. That's the next lesson, and it has a famous name."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "P(A) = Σ P(scenario)·P(A|scenario) over a genuine partition.",
+              "Weighted average: lands between conditionals, near the heavy weight.",
+              "Draw the two-level tree; the formula is the picture."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "bayes-by-table",
+      "title": "Reversing the Tree: Bayes by Table",
+      "concreteComparison": "A disease affects $1$ person in $100$. The test catches $90\\%$ of the sick — and falsely flags $9\\%$ of the healthy. You test positive. Most people guess \"$90\\%$ I'm sick.\" Run $1000$ people through: $10$ sick → $9$ true positives; $990$ healthy → $89$ false positives. Of the $98$ positives, only $9$ are sick: about $9\\%$. The test is fine; the intuition ignored how RARE the disease is.",
+      "objective": "Reverse conditional probabilities with the natural-frequency table method — from P(evidence|cause) to P(cause|evidence).",
+      "concept": [
+        "Tests and testimony report $P(\\text{evidence} \\mid \\text{cause})$ — \"the test flags $90\\%$ of the sick.\" Decisions need the reverse: $P(\\text{cause} \\mid \\text{evidence})$ — \"I flagged positive; am I sick?\" The two differ whenever the cause is rare.",
+        "**The natural-frequency method**: imagine $1000$ (or $10{,}000$) people; split them by the BASE RATE (sick vs healthy); apply each group's test behavior; then condition = read within the positive column: $$P(\\text{sick} \\mid +) = \\frac{\\text{true positives}}{\\text{all positives}}$$",
+        "This IS Bayes' theorem — $P(B \\mid A) = \\frac{P(B) P(A \\mid B)}{P(A)}$ with last lesson's total probability in the denominator — but the table makes it arithmetic instead of algebra.",
+        "The moral quantified: when a condition is rare, even an accurate test's positives are mostly FALSE, because the healthy crowd is so much larger that its small error rate out-produces the sick crowd's hits. Base rates are not optional."
+      ],
+      "keyIdea": "Run 1000 imaginary people through the base rate and the test; P(cause|evidence) = true positives over ALL positives.",
+      "facts": [
+        {
+          "title": "Bayes, table form",
+          "latex": "P(\\text{sick} \\mid +) = \\frac{\\text{true } +}{\\text{true } + \\; + \\; \\text{false } +}",
+          "explanation": "Condition on the evidence column of the frequency table."
+        },
+        {
+          "title": "The base-rate law",
+          "latex": "\\text{rare cause} \\Rightarrow \\text{positives are mostly false}",
+          "explanation": "The huge healthy group's small error rate outweighs the tiny sick group's hit rate."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cd-l5-w1",
+          "statement": "Disease rate $1\\%$; test sensitivity $90\\%$ (catches the sick); false-positive rate $9\\%$ (flags the healthy). You test positive. Find $P(\\text{sick} \\mid +)$.",
+          "solution": "Imagine $1000$ people: sick $10$ → true positives $9$; healthy $990$ → false positives $0.09 \\times 990 = 89.1 \\approx 89$. Positives: $9 + 89 = 98$. $P(\\text{sick} \\mid +) = \\frac{9}{98} \\approx 0.092$ — about $9\\%$, not $90\\%$.",
+          "check": ["(9/10)*10 == 9", "9/98 == 9/98"]
+        },
+        {
+          "id": "cd-l5-w2",
+          "statement": "From Lesson 4's inbox: $25\\%$ of mail is spam; \"free\" appears in $60\\%$ of spam and $8\\%$ of real mail. An email says \"free\". Find $P(\\text{spam} \\mid \\text{\"free\"})$.",
+          "solution": "Per $400$ emails: spam $100$ → $60$ say \"free\"; real $300$ → $24$ say \"free\". Of the $84$ \"free\" emails, $60$ are spam: $P = \\frac{60}{84} = \\frac{5}{7} \\approx 0.71$.",
+          "check": ["60/84 == 5/7", "(25*4)*6/10 == 60", "(75*4)*8/100 == 24"]
+        },
+        {
+          "id": "cd-l5-w3",
+          "statement": "Two jars: jar A ($3$ red, $1$ blue), jar B ($1$ red, $3$ blue). A fair coin picks the jar; a red marble is drawn. Find $P(\\text{jar A} \\mid \\text{red})$.",
+          "solution": "Per $8$ runs: jar A $4$ times → $3$ reds; jar B $4$ times → $1$ red. Of the $4$ reds, $3$ came from A: $P = \\frac{3}{4}$. Red evidence tripled A's odds against B.",
+          "check": ["3/4 == 3/4", "(1/2)*(3/4)/((1/2)*(3/4) + (1/2)*(1/4)) == 3/4"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reporting the test's accuracy as your probability of being sick.",
+          "correction": "P(+|sick) = 0.9 is about the TEST; P(sick|+) ≈ 0.09 is about YOU. Rare condition → mostly false positives. Build the 1000-person table before believing any positive.",
+          "authored": true
+        },
+        {
+          "text": "Dividing true positives by the sick count instead of the positive count.",
+          "correction": "The conditioning event is TESTING POSITIVE — the denominator is all 98 positives, not the 10 sick. The evidence column is the new universe.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cd-l5-t1",
+          "statement": "Airport scanner: $2\\%$ of bags contain a banned item; the scanner beeps for $95\\%$ of those and $10\\%$ of clean bags. A bag beeps. Estimate $P(\\text{banned} \\mid \\text{beep})$ per $1000$ bags.",
+          "solution": "Banned $20$ → beeps $19$; clean $980$ → beeps $98$. $P = \\frac{19}{117} \\approx 0.16$.",
+          "check": ["19/117 == 19/117", "95*20/100 == 19", "10*980/100 == 98"]
+        },
+        {
+          "id": "cd-l5-t2",
+          "statement": "In the two-jar problem, suppose the marble drawn was BLUE. Find $P(\\text{jar A} \\mid \\text{blue})$.",
+          "solution": "Per $8$ runs: A gives $1$ blue, B gives $3$. $P(A \\mid \\text{blue}) = \\frac{1}{4}$.",
+          "check": ["1/4 == 1/4"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The shock",
+            "title": "Positive ≠ probably sick",
+            "beats": [
+              "Disease: $1$ in $100$. Test catches $90\\%$, false-flags $9\\%$.",
+              "You test positive. Intuition says $90\\%$ sick.",
+              "Truth: about $9\\%$.",
+              "The intuition skipped one number — how RARE the disease is."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The method",
+            "title": "A thousand imaginary people",
+            "beats": [
+              "Take $1000$ people. Base rate splits them: $10$ sick, $990$ healthy.",
+              "Test behavior per group: $9$ true positives; $\\approx 89$ false positives.",
+              "Condition on the EVIDENCE: of $98$ positives, $9$ are sick.",
+              "$P(\\text{sick} \\mid +) = \\frac{9}{98} \\approx 9\\%$. Arithmetic, not algebra."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The medical test",
+            "problemId": "cd-l5-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Base-rate radar",
+            "title": "What makes positives lie?",
+            "prompt": "Same test ($90\\%$ catch, $9\\%$ false-flag), but the disease affects $30\\%$ of a high-risk clinic. Does $P(\\text{sick} \\mid +)$ rise or fall vs the $9\\%$ before?",
+            "options": ["Rises a lot — around $81\\%$", "Stays about $9\\%$ — the test didn't change", "Falls — more sick people means more errors"],
+            "correctIndex": 0,
+            "explanation": "Per $1000$: sick $300$ → $270$ true positives; healthy $700$ → $63$ false. $\\frac{270}{333} \\approx 81\\%$. Same test, different base rate, opposite verdict — the base rate was always the hidden lever.",
+            "check": ["270/333 == 270/333", "(9/10)*300 == 270", "(9/100)*700 == 63"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Spam, reversed",
+            "problemId": "cd-l5-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Two jars",
+            "problemId": "cd-l5-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Direction check",
+            "title": "Which question is which?",
+            "prompt": "\"$95\\%$ of umbrella-carriers stay dry\" and \"$95\\%$ of dry people carried umbrellas\" are…",
+            "options": ["Different claims — P(dry|umbrella) vs P(umbrella|dry)", "The same claim, reworded", "Both meaningless without rain data"],
+            "correctIndex": 0,
+            "explanation": "Conditioning direction flips the denominator club: umbrella-carriers vs dry people. They coincide only by luck. Every Bayes problem is exactly this distinction wearing a lab coat.",
+            "check": ["1/2 == 1/2"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Lifetime tool",
+            "title": "Demand the base rate",
+            "body": "Whenever anyone quotes a test accuracy, an alarm's hit rate, or an AI detector's precision — ask \"how common is the thing being detected?\" before reacting to any positive. The 1000-person table takes ninety seconds and has corrected doctors, judges, and news headlines."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The beeping bag",
+            "problemId": "cd-l5-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Blue evidence",
+            "problemId": "cd-l5-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Doctors got it wrong too",
+            "body": "In a famous study, physicians were asked our exact test question — and most answered \"about 90%\" when the truth was near 9%. Reframing as natural frequencies (\"of 1000 people...\") flipped the majority to correct answers. The table isn't a crutch; it's how experts avoid a documented, dangerous illusion."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Tests give P(evidence|cause); decisions need P(cause|evidence).",
+              "1000-person table: base rate splits, test behaves, condition on the evidence column.",
+              "Rare causes make positives mostly false — base rates rule."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "conditional-reasoning-capstone",
+      "title": "Capstone: Reasoning Under Uncertainty",
+      "concreteComparison": "A game show hides a prize behind one of three doors. You pick door 1. The host — who KNOWS where the prize is — opens door 3, showing nothing, and offers a switch to door 2. Half the world says \"50-50 now.\" The tree says: switching wins $\\frac{2}{3}$ of the time. Your pick was right $\\frac{1}{3}$ of the time and the host's reveal carried information about the other two doors. This unit ends where intuition breaks — and the tools hold.",
+      "objective": "Deploy the full conditional toolkit — trees, tables, independence tests, Bayes — on problems where intuition fails.",
+      "concept": [
+        "The **Monty Hall problem** yields to a tree: your initial pick is right $\\frac{1}{3}$ (switching loses) and wrong $\\frac{2}{3}$ (the host's forced reveal leaves the prize on the OTHER door — switching wins). The host's knowledge is what breaks the 50-50 illusion: his door-opening was CONDITIONED on the prize's location.",
+        "The **prosecutor's fallacy** is Bayes-direction confusion in court: \"the DNA match probability is $1$ in a million\" is $P(\\text{match} \\mid \\text{innocent})$, not $P(\\text{innocent} \\mid \\text{match})$ — in a city of $10$ million, about $10$ innocents match, and the defendant is one of perhaps $11$ matchers.",
+        "**Streaks and hot hands**: under independence, a run of successes doesn't change the next trial — but real processes aren't always independent, so the honest move is to TEST (compare conditional to unconditional rates) rather than assume either way.",
+        "The unit's full kit: shrink the universe (definition), chain the past (multiplication rule), test information's worth (independence), collect routes (total probability), reverse the direction (Bayes). Every hard problem here is those five moves in some order."
+      ],
+      "keyIdea": "When intuition and the tree disagree, trust the tree — and know WHICH conditional direction a claim states before believing it.",
+      "facts": [
+        {
+          "title": "Monty Hall",
+          "latex": "P(\\text{win} \\mid \\text{switch}) = \\tfrac{2}{3}",
+          "explanation": "Your first pick was wrong 2/3 of the time, and the host's informed reveal preserves that."
+        },
+        {
+          "title": "The direction alarm",
+          "latex": "P(\\text{evidence} \\mid \\text{innocent}) \\ne P(\\text{innocent} \\mid \\text{evidence})",
+          "explanation": "Courtrooms, headlines, and tests routinely state one and imply the other."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cd-l6-w1",
+          "statement": "Monty Hall: you pick door 1; the informed host opens an empty door and offers a switch. Compute $P(\\text{win} \\mid \\text{switch})$ by cases.",
+          "solution": "Case A — your pick was RIGHT ($P = \\frac{1}{3}$): the host opens either empty door; switching LOSES. Case B — your pick was WRONG ($P = \\frac{2}{3}$): the only empty door left is forced open, and the other closed door HOLDS the prize; switching WINS. $P(\\text{win} \\mid \\text{switch}) = \\frac{2}{3}$.",
+          "check": ["1/3 + 2/3 == 1", "2/3 == 2/3"]
+        },
+        {
+          "id": "cd-l6-w2",
+          "statement": "A DNA profile matches $1$ in a million innocent people. In a city of $10$ million, a suspect matches. Estimate $P(\\text{innocent} \\mid \\text{match})$ if the true perpetrator is in the city and no other evidence exists.",
+          "solution": "Expected innocent matchers: $10^7 \\times 10^{-6} = 10$. Matchers: $10$ innocent $+ 1$ guilty $= 11$. $P(\\text{innocent} \\mid \\text{match}) = \\frac{10}{11} \\approx 0.91$ — the million-to-one figure described the EVIDENCE given innocence, not innocence given the evidence.",
+          "check": ["10**7/10**6 == 10", "10/11 == 10/11"]
+        },
+        {
+          "id": "cd-l6-w3",
+          "statement": "A basketball player hits $50\\%$ of shots. Over many games, someone counts: after a made shot she hits $50\\%$; after a miss she hits $50\\%$. What do the data say about the \"hot hand\" here — and what WOULD hotness look like?",
+          "solution": "Test: $P(\\text{hit} \\mid \\text{previous hit}) = 0.5 = P(\\text{hit})$ — independence holds; no hot hand in these numbers. Hotness would be a GAP: $P(\\text{hit} \\mid \\text{hit}) > P(\\text{hit})$. The method matters more than the verdict: compare conditional to unconditional, don't vibe.",
+          "check": ["1/2 == 1/2"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Treating the host's reveal as fresh randomness.",
+          "correction": "Monty KNOWS where the prize is — his choice is conditioned on it, which is why the reveal carries information. An ignorant host who happened to open an empty door WOULD leave 50-50. The conditioning structure, not the open door, decides the answer.",
+          "authored": true
+        },
+        {
+          "text": "Accepting any quoted conditional without checking its direction.",
+          "correction": "\"99% of shark attacks happen in shallow water\" doesn't make shallow water dangerous — most SWIMMING happens there. Ask: conditioned on what? Reversed, would it still support the claim?",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cd-l6-t1",
+          "statement": "In Monty Hall with $100$ doors (you pick one, the informed host opens $98$ empty others), find $P(\\text{win} \\mid \\text{switch})$.",
+          "solution": "Your pick was right $\\frac{1}{100}$ of the time; wrong $\\frac{99}{100}$ — and then the one unopened door has the prize. Switching wins $\\frac{99}{100}$.",
+          "check": ["99/100 == 99/100"]
+        },
+        {
+          "id": "cd-l6-t2",
+          "statement": "A lie detector is \"$80\\%$ accurate\" in both directions, and $5\\%$ of screened employees lie. Per $1000$ screenings, find $P(\\text{liar} \\mid \\text{flagged})$.",
+          "solution": "Liars $50$ → flagged $40$; truthful $950$ → flagged $190$. $P = \\frac{40}{230} = \\frac{4}{23} \\approx 0.17$ — five of six flags are false.",
+          "check": ["40/230 == 4/23", "80*50/100 == 40", "20*950/100 == 190"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The finale",
+            "title": "Three doors, one furious debate",
+            "beats": [
+              "Pick door 1. The HOST — who knows — opens an empty door 3.",
+              "Switch to door 2? Half the world says 50-50.",
+              "Your pick was wrong $\\frac{2}{3}$ of the time — and in ALL those cases, switching wins.",
+              "The host's knowledge made his reveal informative. Trees beat vibes."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Monty Hall, by cases",
+            "problemId": "cd-l6-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Stress test",
+            "title": "The ignorant host",
+            "prompt": "Same show, but the host DOESN'T know and opened door 3 at random — it happened to be empty. Now switching wins with probability…",
+            "options": ["$\\frac{1}{2}$ — his luck carried no information", "$\\frac{2}{3}$ — same as before", "$\\frac{1}{3}$ — switching is now worse"],
+            "correctIndex": 0,
+            "explanation": "Condition on the OBSERVED event \"random door 3 was empty\": surviving cases are prize-behind-1 and prize-behind-2, equally likely → $\\frac{1}{2}$. The informed host's reveal was FORCED in the wrong-pick cases; the ignorant host's wasn't. Conditioning structure is everything.",
+            "check": ["1/2 == 1/2"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The courtroom",
+            "problemId": "cd-l6-w2"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The pattern",
+            "title": "Direction confusion, everywhere",
+            "beats": [
+              "\"1-in-a-million match\" is $P(\\text{match} \\mid \\text{innocent})$.",
+              "The jury needs $P(\\text{innocent} \\mid \\text{match})$ — in a big city, $\\approx \\frac{10}{11}$.",
+              "Sharks, umbrellas, test scores: headlines state one direction, imply the other.",
+              "Your alarm: \"conditioned on WHAT? and which way?\""
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Testing the hot hand",
+            "problemId": "cd-l6-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Kit check",
+            "title": "Name the move",
+            "prompt": "\"Of flagged employees, how many actually lied?\" is solved by which tool?",
+            "options": ["Bayes by table — reverse the conditional", "Independence test", "Plain multiplication rule"],
+            "correctIndex": 0,
+            "explanation": "The detector's accuracy is P(flag|liar); the question is P(liar|flag) — a reversal, so: base rate, 1000-person table, condition on the flag column. (Answer: about 17% — most flags are false.)",
+            "check": ["40/230 == 4/23"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Graduation",
+            "title": "The five moves",
+            "body": "Shrink the universe. Chain the past. Test what information is worth. Collect the routes. Reverse the direction. Every uncertainty puzzle in this unit — and most you'll meet in life — is these five moves in some order. Next unit: putting NUMBERS on outcomes, and letting chance pay out."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "A hundred doors",
+            "problemId": "cd-l6-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The lie detector",
+            "problemId": "cd-l6-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "10,000 letters, including PhDs",
+            "body": "When Marilyn vos Savant published the correct Monty Hall answer (switch: 2/3) in 1990, she received some 10,000 letters insisting she was wrong — around a thousand signed by PhDs. Simulations eventually convinced the holdouts. You now hold reasoning tools that outperformed a mailbag of doctorates."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned — Unit 6 complete",
+            "points": [
+              "Conditioning structure (who knows what, and when) decides the answer.",
+              "Always identify a conditional's direction before believing its implication.",
+              "Five moves cover it all — next: random variables put numbers on chance."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "cd-p-1",
+      "statement": "One die is rolled and you're told the result is at least $4$. Find $P(\\text{it's a } 6 \\mid \\text{at least } 4)$.",
+      "solution": "New universe $\\{4, 5, 6\\}$: $P = \\frac{1}{3}$.",
+      "check": ["1/3 == 1/3"]
+    },
+    {
+      "id": "cd-p-2",
+      "statement": "In a club, $28$ members ski, $16$ snowboard, $10$ do both. Find $P(\\text{snowboards} \\mid \\text{skis})$.",
+      "solution": "Given skiing: universe $28$, snowboarders inside: $10$. $P = \\frac{10}{28} = \\frac{5}{14}$.",
+      "check": ["10/28 == 5/14"]
+    },
+    {
+      "id": "cd-p-3",
+      "statement": "Two cards are drawn without replacement. Find $P(\\text{both are kings})$.",
+      "solution": "$\\frac{4}{52} \\times \\frac{3}{51} = \\frac{12}{2652} = \\frac{1}{221}$.",
+      "check": ["(4/52)*(3/51) == 1/221"]
+    },
+    {
+      "id": "cd-p-4",
+      "statement": "$P(A) = 0.3$, $P(B) = 0.6$, and $A, B$ are independent. Find $P(A \\text{ and } B)$ and $P(A \\text{ or } B)$.",
+      "solution": "And: $0.3 \\times 0.6 = 0.18$. Or: $0.3 + 0.6 - 0.18 = 0.72$.",
+      "check": ["(3/10)*(6/10) == 18/100", "3/10 + 6/10 - 18/100 == 72/100"]
+    },
+    {
+      "id": "cd-p-5",
+      "statement": "A basket has $5$ apples and $3$ oranges. Two fruits are grabbed without replacement. Find $P(\\text{apple then orange})$.",
+      "solution": "$\\frac{5}{8} \\times \\frac{3}{7} = \\frac{15}{56}$.",
+      "check": ["(5/8)*(3/7) == 15/56"]
+    },
+    {
+      "id": "cd-p-6",
+      "statement": "Machine A makes $70\\%$ of parts ($2\\%$ defective); machine B makes $30\\%$ ($6\\%$ defective). Find the overall defect rate.",
+      "solution": "$0.7 \\times 0.02 + 0.3 \\times 0.06 = 0.014 + 0.018 = 0.032$.",
+      "check": ["(7/10)*(2/100) + (3/10)*(6/100) == 32/1000"]
+    },
+    {
+      "id": "cd-p-7",
+      "statement": "Using the factory above, a random part is defective. Find $P(\\text{it came from B} \\mid \\text{defective})$.",
+      "solution": "Per $1000$ parts: A's defects $14$, B's defects $18$. $P = \\frac{18}{32} = \\frac{9}{16}$ — B makes fewer parts but most of the defects.",
+      "check": ["18/32 == 9/16"]
+    },
+    {
+      "id": "cd-p-8",
+      "statement": "Three independent alarm sensors each detect an intruder with probability $0.8$. Find $P(\\text{at least one detects})$.",
+      "solution": "All miss: $0.2^3 = 0.008$. At least one: $1 - 0.008 = 0.992$.",
+      "check": ["1 - (2/10)**3 == 992/1000"]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "cd-ty-1",
+      "statement": "Two dice are rolled. Find $P(\\text{sum} = 8 \\mid \\text{first die shows an even number})$.",
+      "solution": "Given first die even: $18$ outcomes. Sums of 8 among them: $(2,6), (4,4), (6,2)$ — three. $P = \\frac{3}{18} = \\frac{1}{6}$.",
+      "check": ["3/18 == 1/6"]
+    },
+    {
+      "id": "cd-ty-2",
+      "statement": "A jar holds $6$ red and $4$ green candies. Three are eaten one after another (no replacement). Find $P(\\text{all three red})$.",
+      "solution": "$\\frac{6}{10} \\times \\frac{5}{9} \\times \\frac{4}{8} = \\frac{120}{720} = \\frac{1}{6}$.",
+      "check": ["(6/10)*(5/9)*(4/8) == 1/6"]
+    },
+    {
+      "id": "cd-ty-3",
+      "statement": "For one die, test whether $A = $ \"roll $\\le 4$\" and $B = $ \"roll is even\" are independent.",
+      "solution": "$P(A) = \\frac{4}{6}$, $P(B) = \\frac{3}{6}$, product $= \\frac{12}{36} = \\frac{1}{3}$. Joint: rolls $\\le 4$ AND even $= \\{2, 4\\}$: $\\frac{2}{6} = \\frac{1}{3}$. Equal — independent.",
+      "check": ["(4/6)*(3/6) == 1/3", "2/6 == 1/3"]
+    },
+    {
+      "id": "cd-ty-4",
+      "statement": "City forecast: rain $30\\%$ of days. Given rain, the bus is late with probability $0.4$; given no rain, $0.1$. Find $P(\\text{late})$, then $P(\\text{it rained} \\mid \\text{late})$.",
+      "solution": "Total: $0.3 \\times 0.4 + 0.7 \\times 0.1 = 0.12 + 0.07 = 0.19$. Reverse: $\\frac{0.12}{0.19} = \\frac{12}{19} \\approx 0.63$ — late days are rainy days almost two times in three.",
+      "check": ["(3/10)*(4/10) + (7/10)*(1/10) == 19/100", "(12/100)/(19/100) == 12/19"]
+    },
+    {
+      "id": "cd-ty-5",
+      "statement": "A screening test for a $2\\%$-prevalence condition has sensitivity $95\\%$ and false-positive rate $8\\%$. Per $1000$ people, find $P(\\text{condition} \\mid \\text{positive})$.",
+      "solution": "With condition: $20$ → $19$ true positives. Without: $980$ → $78.4 \\approx 78$ false positives. $P = \\frac{19}{97} \\approx 0.196$ — under $20\\%$ despite the \"95% accurate\" label.",
+      "check": ["95*20/100 == 19", "19/97 == 19/97"]
+    },
+    {
+      "id": "cd-ty-6",
+      "statement": "A game: draw one card; if it's a heart you draw AGAIN (without replacement) and win if the second is also a heart. Find $P(\\text{win})$, and explain which two tools you chained.",
+      "solution": "$P(\\text{heart then heart}) = \\frac{13}{52} \\times \\frac{12}{51} = \\frac{1}{17}$. Tools: the multiplication rule (chain the draws) with the second factor CONDITIONED on the first (updated deck) — Unit 6's first two lessons in one line.",
+      "check": ["(13/52)*(12/51) == 1/17"]
+    }
+  ]
+}
