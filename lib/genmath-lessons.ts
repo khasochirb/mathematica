@@ -127,6 +127,7 @@ import exprMn from "@/data/genmath/6-mn/expressions-and-equations.json";
 import coordMn from "@/data/genmath/6-mn/coordinate-plane.json";
 import geoAvMn from "@/data/genmath/6-mn/geometry-area-volume.json";
 import dataStatsMn from "@/data/genmath/6-mn/data-and-statistics.json";
+import g7ProportionalMn from "@/data/genmath/7-mn/proportional-relationships.json";
 import geometryFoundations from "@/data/genmath/geometry/foundations.json";
 import geometryReasoning from "@/data/genmath/geometry/reasoning-and-proof.json";
 import geometryParallel from "@/data/genmath/geometry/parallel-and-perpendicular.json";
@@ -594,6 +595,8 @@ const GENMATH_TOPICS_MN: Record<string, GenMathTopic> = {
   "coordinate-plane": coordMn as GenMathTopic,
   "geometry-area-volume": geoAvMn as GenMathTopic,
   "data-and-statistics": dataStatsMn as GenMathTopic,
+  // Grade 7 mirrors (grown one topic at a time; slug-keyed, grade-agnostic).
+  "proportional-relationships": g7ProportionalMn as GenMathTopic,
 };
 
 // Locale-aware topic lookup: Mongolian mirror when the site language is "mn"
