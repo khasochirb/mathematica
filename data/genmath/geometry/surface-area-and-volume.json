@@ -2541,6 +2541,135 @@
       }
     }
   ],
-  "practice": [],
-  "testYourself": []
+  "practice": [
+    {
+      "id": "geo11-pr-1",
+      "statement": "A rectangular prism measures $8 \\times 5 \\times 4$. Find its volume and surface area.",
+      "solution": "$V = 8 \\cdot 5 \\cdot 4 = 160$. $SA = 2(40 + 32 + 20) = 184$ square units.",
+      "check": [
+        "Eq(8*5*4, 160)",
+        "Eq(2*(8*5 + 8*4 + 5*4), 184)"
+      ]
+    },
+    {
+      "id": "geo11-pr-2",
+      "statement": "A cylinder has radius $3$ and height $10$. Find its exact volume and total surface area.",
+      "solution": "$V = \\pi r^2 h = 90\\pi$. $SA = 2\\pi r^2 + 2\\pi r h = 18\\pi + 60\\pi = 78\\pi$.",
+      "check": [
+        "Eq(pi*3**2*10, 90*pi)",
+        "Eq(2*pi*3**2 + 2*pi*3*10, 78*pi)"
+      ]
+    },
+    {
+      "id": "geo11-pr-3",
+      "statement": "A square pyramid has base edge $6$ and height $4$. Find its volume, and its surface area given slant height $5$.",
+      "solution": "$V = \\tfrac{1}{3} B h = \\tfrac{1}{3}(36)(4) = 48$. $SA = 36 + 4 \\cdot \\tfrac{1}{2}(6)(5) = 36 + 60 = 96$. (Slant: $\\sqrt{3^2 + 4^2} = 5$. ✓)",
+      "check": [
+        "Eq(Rational(36*4, 3), 48)",
+        "Eq(36 + 4*Rational(6*5, 2), 96)",
+        "Eq(sqrt(3**2 + 4**2), 5)"
+      ]
+    },
+    {
+      "id": "geo11-pr-4",
+      "statement": "A cone has radius $5$ and height $12$. Find its exact volume and total surface area.",
+      "solution": "$V = \\tfrac{1}{3}\\pi r^2 h = \\tfrac{1}{3}\\pi(25)(12) = 100\\pi$. Slant $l = \\sqrt{25 + 144} = 13$, so $SA = \\pi r^2 + \\pi r l = 25\\pi + 65\\pi = 90\\pi$.",
+      "check": [
+        "Eq(Rational(25*12, 3)*pi, 100*pi)",
+        "Eq(sqrt(5**2 + 12**2), 13)",
+        "Eq(pi*5**2 + pi*5*13, 90*pi)"
+      ]
+    },
+    {
+      "id": "geo11-pr-5",
+      "statement": "Find the exact volume and surface area of a sphere with radius $3$.",
+      "solution": "$V = \\tfrac{4}{3}\\pi r^3 = 36\\pi$ and $SA = 4\\pi r^2 = 36\\pi$ — numerically equal at exactly $r = 3$.",
+      "check": [
+        "Eq(Rational(4, 3)*pi*3**3, 36*pi)",
+        "Eq(4*pi*3**2, 36*pi)"
+      ]
+    },
+    {
+      "id": "geo11-pr-6",
+      "statement": "A cube has edge $7$. Find its volume and surface area.",
+      "solution": "$V = 7^3 = 343$; $SA = 6 \\cdot 7^2 = 294$.",
+      "check": [
+        "Eq(7**3, 343)",
+        "Eq(6*7**2, 294)"
+      ]
+    },
+    {
+      "id": "geo11-pr-7",
+      "statement": "A silo is a cylinder (radius $2$, height $5$) topped by a hemisphere of radius $2$. Find its exact total volume.",
+      "solution": "Cylinder: $20\\pi$. Hemisphere: $\\tfrac{1}{2} \\cdot \\tfrac{4}{3}\\pi(8) = \\tfrac{16\\pi}{3}$. Total: $20\\pi + \\tfrac{16\\pi}{3} = \\tfrac{76\\pi}{3}$.",
+      "check": [
+        "Eq(pi*2**2*5, 20*pi)",
+        "Eq(Rational(1,2)*Rational(4,3)*pi*2**3, Rational(16,3)*pi)",
+        "Eq(20*pi + Rational(16,3)*pi, Rational(76,3)*pi)"
+      ]
+    },
+    {
+      "id": "geo11-pr-8",
+      "statement": "Every edge of a prism is doubled. What happens to its surface area and its volume?",
+      "solution": "Lengths $\\times 2$ ⟹ areas $\\times 2^2 = 4$ and volumes $\\times 2^3 = 8$. Skin quadruples; capacity octuples — the square-cube law.",
+      "check": [
+        "Eq(2**2, 4)",
+        "Eq(2**3, 8)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "geo11-ty-1",
+      "statement": "A prism has base area $24$ and height $7$. Find its volume.",
+      "solution": "$V = Bh = 24 \\times 7 = 168$.",
+      "check": [
+        "Eq(24*7, 168)"
+      ]
+    },
+    {
+      "id": "geo11-ty-2",
+      "statement": "A cylinder of height $3$ has volume $75\\pi$. Find its radius.",
+      "solution": "$\\pi r^2 (3) = 75\\pi \\Rightarrow r^2 = 25 \\Rightarrow r = 5$.",
+      "check": [
+        "Eq(Rational(75, 3), 25)",
+        "Eq(sqrt(25), 5)"
+      ]
+    },
+    {
+      "id": "geo11-ty-3",
+      "statement": "A pyramid has a square base of area $49$ and height $9$. Find its volume.",
+      "solution": "$V = \\tfrac{1}{3}Bh = \\tfrac{1}{3}(49)(9) = 147$.",
+      "check": [
+        "Eq(Rational(49*9, 3), 147)"
+      ]
+    },
+    {
+      "id": "geo11-ty-4",
+      "statement": "A cone has radius $9$ and slant height $15$. Find its height and exact volume.",
+      "solution": "$h = \\sqrt{15^2 - 9^2} = 12$. $V = \\tfrac{1}{3}\\pi(81)(12) = 324\\pi$.",
+      "check": [
+        "Eq(sqrt(15**2 - 9**2), 12)",
+        "Eq(Rational(81*12, 3)*pi, 324*pi)"
+      ]
+    },
+    {
+      "id": "geo11-ty-5",
+      "statement": "A sphere has surface area $100\\pi$. Find its radius and exact volume.",
+      "solution": "$4\\pi r^2 = 100\\pi \\Rightarrow r = 5$. $V = \\tfrac{4}{3}\\pi(125) = \\tfrac{500\\pi}{3}$.",
+      "check": [
+        "Eq(sqrt(Rational(100, 4)), 5)",
+        "Eq(Rational(4, 3)*pi*5**3, Rational(500, 3)*pi)"
+      ]
+    },
+    {
+      "id": "geo11-ty-6",
+      "statement": "A solid hemisphere has radius $6$. Find its exact volume and its TOTAL surface area (curved part plus flat disk).",
+      "solution": "Volume: $\\tfrac{1}{2} \\cdot \\tfrac{4}{3}\\pi(216) = 144\\pi$. Surface: half-sphere $2\\pi r^2 = 72\\pi$ plus the flat disk $\\pi r^2 = 36\\pi$, total $108\\pi$.",
+      "check": [
+        "Eq(Rational(1,2)*Rational(4,3)*pi*6**3, 144*pi)",
+        "Eq(2*pi*6**2 + pi*6**2, 108*pi)"
+      ]
+    }
+  ]
 }

@@ -2700,6 +2700,132 @@
       }
     }
   ],
-  "practice": [],
-  "testYourself": []
+  "practice": [
+    {
+      "id": "geo6-pr-1",
+      "statement": "Find the sum of the interior angles of a heptagon ($7$ sides).",
+      "solution": "$(n - 2) \\cdot 180 = 5 \\cdot 180 = 900°$.",
+      "check": [
+        "Eq((7 - 2)*180, 900)"
+      ]
+    },
+    {
+      "id": "geo6-pr-2",
+      "statement": "Find each interior angle and each exterior angle of a regular decagon.",
+      "solution": "Interior: $\\dfrac{(10-2) \\cdot 180}{10} = \\dfrac{1440}{10} = 144°$. Exterior: $180 - 144 = 36°$ (or $360/10$ directly).",
+      "check": [
+        "Eq(Rational((10 - 2)*180, 10), 144)",
+        "Eq(180 - 144, 36)",
+        "Eq(Rational(360, 10), 36)"
+      ]
+    },
+    {
+      "id": "geo6-pr-3",
+      "statement": "Find each exterior angle of a regular $15$-gon, and state what all the exterior angles of ANY polygon sum to.",
+      "solution": "Exterior angles of any polygon sum to $360°$; regular $15$-gon: $360 \\div 15 = 24°$ each.",
+      "check": [
+        "Eq(Rational(360, 15), 24)",
+        "Eq(15*24, 360)"
+      ]
+    },
+    {
+      "id": "geo6-pr-4",
+      "statement": "In parallelogram $ABCD$, opposite angles measure $(3x + 15)°$ and $(5x - 25)°$. Find these angles and a consecutive angle.",
+      "solution": "Opposite angles are equal: $3x + 15 = 5x - 25 \\Rightarrow x = 20$, so they measure $75°$. Consecutive angles are supplementary: $180 - 75 = 105°$.",
+      "check": [
+        "Eq(3*20 + 15, 5*20 - 25)",
+        "Eq(3*20 + 15, 75)",
+        "Eq(180 - 75, 105)"
+      ]
+    },
+    {
+      "id": "geo6-pr-5",
+      "statement": "The diagonals of parallelogram $ABCD$ meet at $M$. If $AM = 2x + 3$ and $MC = 4x - 9$, find $AC$.",
+      "solution": "Diagonals of a parallelogram bisect each other: $2x + 3 = 4x - 9 \\Rightarrow x = 6$. Each half is $15$, so $AC = 30$.",
+      "check": [
+        "Eq(2*6 + 3, 4*6 - 9)",
+        "Eq(2*6 + 3, 15)",
+        "Eq(2*15, 30)"
+      ]
+    },
+    {
+      "id": "geo6-pr-6",
+      "statement": "A rhombus has diagonals $12$ and $16$. Find its side length.",
+      "solution": "Rhombus diagonals are perpendicular bisectors of each other, so each side is the hypotenuse of a right triangle with legs $6$ and $8$: side $= \\sqrt{36 + 64} = 10$.",
+      "check": [
+        "Eq(sqrt(6**2 + 8**2), 10)"
+      ]
+    },
+    {
+      "id": "geo6-pr-7",
+      "statement": "A trapezoid has bases $9$ and $17$. Find the length of its midsegment.",
+      "solution": "The midsegment averages the bases: $\\dfrac{9 + 17}{2} = 13$.",
+      "check": [
+        "Eq(Rational(9 + 17, 2), 13)"
+      ]
+    },
+    {
+      "id": "geo6-pr-8",
+      "statement": "A kite has angles $100°$ and $60°$ at the ends of its axis of symmetry, and equal angles $x°$ at the two side vertices. Find $x$.",
+      "solution": "Quadrilateral angles sum to $360°$: $100 + 60 + 2x = 360 \\Rightarrow 2x = 200 \\Rightarrow x = 100°$.",
+      "check": [
+        "Eq(100 + 60 + 2*100, 360)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "geo6-ty-1",
+      "statement": "Find the sum of the interior angles of a $12$-gon.",
+      "solution": "$(12 - 2) \\cdot 180 = 1800°$.",
+      "check": [
+        "Eq((12 - 2)*180, 1800)"
+      ]
+    },
+    {
+      "id": "geo6-ty-2",
+      "statement": "Each exterior angle of a regular polygon measures $30°$. How many sides does it have?",
+      "solution": "Exterior angles sum to $360°$: $n = 360 \\div 30 = 12$ sides.",
+      "check": [
+        "Eq(Rational(360, 30), 12)"
+      ]
+    },
+    {
+      "id": "geo6-ty-3",
+      "statement": "Consecutive angles of a parallelogram measure $(2x + 40)°$ and $(3x - 10)°$. Find both.",
+      "solution": "Consecutive angles are supplementary: $2x + 40 + 3x - 10 = 180 \\Rightarrow 5x = 150 \\Rightarrow x = 30$. Angles: $100°$ and $80°$.",
+      "check": [
+        "Eq(5*30 + 30, 180)",
+        "Eq(2*30 + 40, 100)",
+        "Eq(3*30 - 10, 80)",
+        "Eq(100 + 80, 180)"
+      ]
+    },
+    {
+      "id": "geo6-ty-4",
+      "statement": "In rectangle $ABCD$, the diagonals measure $AC = 5x - 7$ and $BD = 3x + 9$. Find the diagonal length.",
+      "solution": "Rectangle diagonals are equal: $5x - 7 = 3x + 9 \\Rightarrow x = 8$. Each diagonal is $5(8) - 7 = 33$.",
+      "check": [
+        "Eq(5*8 - 7, 3*8 + 9)",
+        "Eq(5*8 - 7, 33)"
+      ]
+    },
+    {
+      "id": "geo6-ty-5",
+      "statement": "An isosceles trapezoid has a base angle of $68°$. Find the other three angles.",
+      "solution": "Base angles are equal in pairs: the other base angle is $68°$; each top angle is $180 - 68 = 112°$ (co-interior with a base angle along a leg). Check: $68 + 68 + 112 + 112 = 360$. ✓",
+      "check": [
+        "Eq(180 - 68, 112)",
+        "Eq(68 + 68 + 112 + 112, 360)"
+      ]
+    },
+    {
+      "id": "geo6-ty-6",
+      "statement": "Find the exact diagonal of a square with side $5$.",
+      "solution": "The diagonal of a square is side $\\times \\sqrt{2}$: $5\\sqrt{2}$. (Pythagoras: $\\sqrt{25 + 25} = \\sqrt{50} = 5\\sqrt{2}$.)",
+      "check": [
+        "Eq(sqrt(5**2 + 5**2), 5*sqrt(2))"
+      ]
+    }
+  ]
 }

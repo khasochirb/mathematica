@@ -110,6 +110,25 @@ export default function GeometryUnitPage() {
             </li>
           ))}
         </ol>
+
+        {/* Practice + Test yourself */}
+        {(unit.practice.length > 0 || unit.testYourself.length > 0) && (
+          <>
+            <div className="eyebrow mt-10 mb-3">Ready to check yourself?</div>
+            <div className="flex flex-wrap gap-3">
+              {unit.practice.length > 0 && (
+                <Link href={`/math/geometry/${unitSlug}/practice`} className="btn btn-primary">
+                  Practice
+                </Link>
+              )}
+              {unit.testYourself.length > 0 && (
+                <Link href={`/math/geometry/${unitSlug}/test`} className="btn btn-line">
+                  Test yourself
+                </Link>
+              )}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

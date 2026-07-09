@@ -2471,6 +2471,131 @@
       }
     }
   ],
-  "practice": [],
-  "testYourself": []
+  "practice": [
+    {
+      "id": "geo8-pr-1",
+      "statement": "A right triangle has legs $9$ and $12$. Find the hypotenuse.",
+      "solution": "$c = \\sqrt{9^2 + 12^2} = \\sqrt{81 + 144} = \\sqrt{225} = 15$.",
+      "check": [
+        "Eq(sqrt(9**2 + 12**2), 15)"
+      ]
+    },
+    {
+      "id": "geo8-pr-2",
+      "statement": "A right triangle has hypotenuse $17$ and one leg $8$. Find the other leg.",
+      "solution": "$b = \\sqrt{17^2 - 8^2} = \\sqrt{289 - 64} = \\sqrt{225} = 15$.",
+      "check": [
+        "Eq(sqrt(17**2 - 8**2), 15)"
+      ]
+    },
+    {
+      "id": "geo8-pr-3",
+      "statement": "Classify the triangles with sides $7, 24, 25$ and $5, 6, 8$ as acute, right, or obtuse.",
+      "solution": "Compare $c^2$ with $a^2 + b^2$. First: $49 + 576 = 625 = 25^2$ — right. Second: $25 + 36 = 61 < 64 = 8^2$ — obtuse (the square of the longest side is too big).",
+      "check": [
+        "Eq(7**2 + 24**2, 25**2)",
+        "5**2 + 6**2 < 8**2"
+      ]
+    },
+    {
+      "id": "geo8-pr-4",
+      "statement": "A $45°$-$45°$-$90°$ triangle has legs of $6$. Find the exact hypotenuse.",
+      "solution": "Hypotenuse $=$ leg $\\times \\sqrt{2} = 6\\sqrt{2}$.",
+      "check": [
+        "Eq(sqrt(6**2 + 6**2), 6*sqrt(2))"
+      ]
+    },
+    {
+      "id": "geo8-pr-5",
+      "statement": "A $30°$-$60°$-$90°$ triangle has short leg $5$. Find the hypotenuse and the long leg (exact).",
+      "solution": "Hypotenuse $= 2 \\times 5 = 10$; long leg $= 5\\sqrt{3}$. (Check: $5^2 + (5\\sqrt3)^2 = 25 + 75 = 100 = 10^2$.)",
+      "check": [
+        "Eq(2*5, 10)",
+        "Eq(5**2 + (5*sqrt(3))**2, 10**2)"
+      ]
+    },
+    {
+      "id": "geo8-pr-6",
+      "statement": "A right triangle has legs $7$ (opposite $\\theta$) and $24$ (adjacent). Write $\\sin\\theta$, $\\cos\\theta$, and $\\tan\\theta$ exactly.",
+      "solution": "Hypotenuse $= \\sqrt{49 + 576} = 25$. So $\\sin\\theta = \\dfrac{7}{25}$, $\\cos\\theta = \\dfrac{24}{25}$, $\\tan\\theta = \\dfrac{7}{24}$.",
+      "check": [
+        "Eq(sqrt(7**2 + 24**2), 25)",
+        "Eq(Rational(7,25)**2 + Rational(24,25)**2, 1)",
+        "Eq(Rational(7,25)/Rational(24,25), Rational(7,24))"
+      ]
+    },
+    {
+      "id": "geo8-pr-7",
+      "statement": "In a right triangle the hypotenuse is $14$ and one acute angle is $30°$. Find the side opposite the $30°$ angle.",
+      "solution": "$\\sin 30° = \\dfrac{1}{2}$, so the opposite side is $14 \\cdot \\dfrac{1}{2} = 7$.",
+      "check": [
+        "Eq(sin(pi/6), Rational(1, 2))",
+        "Eq(14*Rational(1, 2), 7)"
+      ]
+    },
+    {
+      "id": "geo8-pr-8",
+      "statement": "From a point $20$ m from the base of a tower, the angle of elevation to the top is $60°$. Find the tower's exact height.",
+      "solution": "$\\tan 60° = \\sqrt{3} = \\dfrac{h}{20} \\Rightarrow h = 20\\sqrt{3}$ m (about $34.6$ m).",
+      "check": [
+        "Eq(tan(pi/3), sqrt(3))",
+        "Eq(20*tan(pi/3), 20*sqrt(3))"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "geo8-ty-1",
+      "statement": "Find the hypotenuse of a right triangle with legs $6$ and $8$.",
+      "solution": "$\\sqrt{36 + 64} = \\sqrt{100} = 10$.",
+      "check": [
+        "Eq(sqrt(6**2 + 8**2), 10)"
+      ]
+    },
+    {
+      "id": "geo8-ty-2",
+      "statement": "A $45°$-$45°$-$90°$ triangle has hypotenuse $10$. Find each leg (exact).",
+      "solution": "Leg $= \\dfrac{10}{\\sqrt{2}} = 5\\sqrt{2}$. (Check: $(5\\sqrt2)^2 + (5\\sqrt2)^2 = 50 + 50 = 100$.)",
+      "check": [
+        "Eq(Rational(10, 1)/sqrt(2), 5*sqrt(2))",
+        "Eq((5*sqrt(2))**2 + (5*sqrt(2))**2, 10**2)"
+      ]
+    },
+    {
+      "id": "geo8-ty-3",
+      "statement": "Classify the triangle with sides $9$, $12$, $16$.",
+      "solution": "$9^2 + 12^2 = 81 + 144 = 225$ and $16^2 = 256$. Since $225 < 256$, the longest side is “too long”: obtuse.",
+      "check": [
+        "Eq(9**2 + 12**2, 225)",
+        "225 < 16**2"
+      ]
+    },
+    {
+      "id": "geo8-ty-4",
+      "statement": "A $30°$-$60°$-$90°$ triangle has long leg $9$. Find the short leg and hypotenuse (exact).",
+      "solution": "Short leg $= \\dfrac{9}{\\sqrt{3}} = 3\\sqrt{3}$; hypotenuse $= 2 \\cdot 3\\sqrt{3} = 6\\sqrt{3}$.",
+      "check": [
+        "Eq(9/sqrt(3), 3*sqrt(3))",
+        "Eq((3*sqrt(3))**2 + 9**2, (6*sqrt(3))**2)"
+      ]
+    },
+    {
+      "id": "geo8-ty-5",
+      "statement": "A right triangle has hypotenuse $13$ and the side adjacent to $\\theta$ is $5$. Find $\\cos\\theta$ and $\\sin\\theta$.",
+      "solution": "$\\cos\\theta = \\dfrac{5}{13}$. Opposite $= \\sqrt{169 - 25} = 12$, so $\\sin\\theta = \\dfrac{12}{13}$.",
+      "check": [
+        "Eq(sqrt(13**2 - 5**2), 12)",
+        "Eq(Rational(5,13)**2 + Rational(12,13)**2, 1)"
+      ]
+    },
+    {
+      "id": "geo8-ty-6",
+      "statement": "From the top of a $30$ m cliff, the angle of depression to a boat is $45°$. How far is the boat from the base of the cliff?",
+      "solution": "Depression angle $=$ elevation angle from the boat; $\\tan 45° = 1 = \\dfrac{30}{d} \\Rightarrow d = 30$ m.",
+      "check": [
+        "Eq(tan(pi/4), 1)",
+        "Eq(Rational(30, 1), 30)"
+      ]
+    }
+  ]
 }

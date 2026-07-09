@@ -2522,6 +2522,132 @@
       }
     }
   ],
-  "practice": [],
-  "testYourself": []
+  "practice": [
+    {
+      "id": "geo3-pr-1",
+      "statement": "Lines $\\ell \\parallel m$ are cut by a transversal. Corresponding angles measure $(3x + 20)°$ and $74°$. Find $x$.",
+      "solution": "Corresponding angles on parallel lines are equal: $3x + 20 = 74 \\Rightarrow 3x = 54 \\Rightarrow x = 18$.",
+      "check": [
+        "Eq(3*18 + 20, 74)"
+      ]
+    },
+    {
+      "id": "geo3-pr-2",
+      "statement": "Alternate interior angles measure $(5x - 10)°$ and $(3x + 22)°$ with the lines parallel. Find $x$ and the angle.",
+      "solution": "Alternate interior angles are equal: $5x - 10 = 3x + 22 \\Rightarrow 2x = 32 \\Rightarrow x = 16$. The angle is $5(16) - 10 = 70°$.",
+      "check": [
+        "Eq(5*16 - 10, 3*16 + 22)",
+        "Eq(5*16 - 10, 70)"
+      ]
+    },
+    {
+      "id": "geo3-pr-3",
+      "statement": "Same-side interior angles measure $(2x + 30)°$ and $(3x + 10)°$ with the lines parallel. Find both angles.",
+      "solution": "Same-side interior angles are supplementary: $(2x+30) + (3x+10) = 180 \\Rightarrow 5x + 40 = 180 \\Rightarrow x = 28$. The angles are $86°$ and $94°$.",
+      "check": [
+        "Eq(5*28 + 40, 180)",
+        "Eq(2*28 + 30, 86)",
+        "Eq(3*28 + 10, 94)",
+        "Eq(86 + 94, 180)"
+      ]
+    },
+    {
+      "id": "geo3-pr-4",
+      "statement": "A transversal crosses parallel lines and one angle measures $118°$. Find the measures of its vertical angle, its corresponding angle, and its same-side interior partner.",
+      "solution": "Vertical: $118°$ (equal). Corresponding: $118°$ (equal, parallel lines). Same-side interior partner: $180 - 118 = 62°$ (supplementary). Every one of the eight angles is $118°$ or $62°$.",
+      "check": [
+        "Eq(180 - 118, 62)",
+        "Eq(118 + 62, 180)"
+      ]
+    },
+    {
+      "id": "geo3-pr-5",
+      "statement": "A transversal makes alternate interior angles of $63°$ and $63°$ with lines $a$ and $b$. What can you conclude, and by which theorem?",
+      "solution": "Equal alternate interior angles force $a \\parallel b$ — the Converse of the Alternate Interior Angles Theorem. ($63 = 63$ is exactly the hypothesis it needs.)",
+      "check": [
+        "Eq(63, 63)"
+      ]
+    },
+    {
+      "id": "geo3-pr-6",
+      "statement": "Lines $m \\perp n$ meet where one of the four angles is marked $(4x + 10)°$. Find $x$.",
+      "solution": "Perpendicular lines meet at $90°$: $4x + 10 = 90 \\Rightarrow 4x = 80 \\Rightarrow x = 20$.",
+      "check": [
+        "Eq(4*20 + 10, 90)"
+      ]
+    },
+    {
+      "id": "geo3-pr-7",
+      "statement": "With parallel lines, alternate exterior angles measure $(7x - 5)°$ and $(5x + 31)°$. Find the angle measure.",
+      "solution": "Alternate exterior angles are equal: $7x - 5 = 5x + 31 \\Rightarrow 2x = 36 \\Rightarrow x = 18$. The angle is $7(18) - 5 = 121°$.",
+      "check": [
+        "Eq(7*18 - 5, 5*18 + 31)",
+        "Eq(7*18 - 5, 121)"
+      ]
+    },
+    {
+      "id": "geo3-pr-8",
+      "statement": "A transversal crosses parallel lines; one interior angle is $57°$. Find its alternate interior partner and its same-side interior partner.",
+      "solution": "Alternate interior partner: $57°$ (equal). Same-side interior partner: $180 - 57 = 123°$ (supplementary).",
+      "check": [
+        "Eq(180 - 57, 123)",
+        "Eq(57 + 123, 180)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "geo3-ty-1",
+      "statement": "Corresponding angles measure $(2x + 15)°$ and $(4x - 45)°$ on parallel lines. Find the angle.",
+      "solution": "$2x + 15 = 4x - 45 \\Rightarrow 60 = 2x \\Rightarrow x = 30$. The angle is $2(30) + 15 = 75°$.",
+      "check": [
+        "Eq(2*30 + 15, 4*30 - 45)",
+        "Eq(2*30 + 15, 75)"
+      ]
+    },
+    {
+      "id": "geo3-ty-2",
+      "statement": "Same-side exterior angles measure $(x + 40)°$ and $(3x)°$ on parallel lines. Find both.",
+      "solution": "Same-side exterior angles are supplementary: $x + 40 + 3x = 180 \\Rightarrow 4x = 140 \\Rightarrow x = 35$. The angles are $75°$ and $105°$.",
+      "check": [
+        "Eq(4*35 + 40, 180)",
+        "Eq(35 + 40, 75)",
+        "Eq(3*35, 105)",
+        "Eq(75 + 105, 180)"
+      ]
+    },
+    {
+      "id": "geo3-ty-3",
+      "statement": "For what value of $x$ do angles of $(6x - 14)°$ and $(4x + 20)°$ in alternate exterior position force the lines to be parallel?",
+      "solution": "They must be equal: $6x - 14 = 4x + 20 \\Rightarrow 2x = 34 \\Rightarrow x = 17$; each is $88°$.",
+      "check": [
+        "Eq(6*17 - 14, 4*17 + 20)",
+        "Eq(6*17 - 14, 88)"
+      ]
+    },
+    {
+      "id": "geo3-ty-4",
+      "statement": "If $t \\perp \\ell$ and $\\ell \\parallel m$, what angle does $t$ make with $m$? Why?",
+      "solution": "$90°$. A line perpendicular to one of two parallel lines is perpendicular to the other — corresponding angles carry the right angle across: the $90°$ at $\\ell$ corresponds to the angle at $m$.",
+      "check": [
+        "Eq(90, 90)"
+      ]
+    },
+    {
+      "id": "geo3-ty-5",
+      "statement": "Three parallel lines are cut by one transversal. The angle at the top line is $71°$. What are the corresponding angles at the middle and bottom lines?",
+      "solution": "Corresponding angles are equal at every parallel line the transversal crosses: both are $71°$.",
+      "check": [
+        "Eq(71, 71)"
+      ]
+    },
+    {
+      "id": "geo3-ty-6",
+      "statement": "Two straight rails are crossed by a straight footpath. One crossing angle measures $104°$ and the alternate interior angle at the other rail measures $104°$. Are the rails parallel?",
+      "solution": "Yes. Equal alternate interior angles ($104° = 104°$) are exactly the converse condition for parallel lines.",
+      "check": [
+        "Eq(104, 104)"
+      ]
+    }
+  ]
 }

@@ -2621,6 +2621,122 @@
       }
     }
   ],
-  "practice": [],
-  "testYourself": []
+  "practice": [
+    {
+      "id": "geo9-pr-1",
+      "statement": "A central angle measures $78°$. What is the measure of its intercepted arc?",
+      "solution": "A central angle equals its arc: $78°$.",
+      "check": [
+        "Eq(78, 78)"
+      ]
+    },
+    {
+      "id": "geo9-pr-2",
+      "statement": "An inscribed angle intercepts an arc of $106°$. Find the angle.",
+      "solution": "Inscribed Angle Theorem: the angle is HALF the arc: $106 \\div 2 = 53°$.",
+      "check": [
+        "Eq(Rational(106, 2), 53)"
+      ]
+    },
+    {
+      "id": "geo9-pr-3",
+      "statement": "An angle is inscribed in a semicircle. What does it measure, and why?",
+      "solution": "$90°$ — it intercepts a semicircular arc of $180°$, and an inscribed angle is half its arc: $180 \\div 2 = 90$ (Thales' theorem).",
+      "check": [
+        "Eq(Rational(180, 2), 90)"
+      ]
+    },
+    {
+      "id": "geo9-pr-4",
+      "statement": "Two tangent segments from the same external point measure $3x + 2$ and $5x - 12$. Find their length.",
+      "solution": "Tangent segments from one external point are equal: $3x + 2 = 5x - 12 \\Rightarrow x = 7$. Each measures $3(7) + 2 = 23$.",
+      "check": [
+        "Eq(3*7 + 2, 5*7 - 12)",
+        "Eq(3*7 + 2, 23)"
+      ]
+    },
+    {
+      "id": "geo9-pr-5",
+      "statement": "In one circle, chords $\\overline{AB}$ and $\\overline{CD}$ are congruent. What follows about arcs $AB$ and $CD$?",
+      "solution": "Congruent chords cut congruent arcs (and sit at equal distances from the center) — the chord–arc theorem.",
+      "check": [
+        "Eq(1, 1)"
+      ]
+    },
+    {
+      "id": "geo9-pr-6",
+      "statement": "Find the exact length of a $60°$ arc in a circle of radius $6$.",
+      "solution": "Arc length $= 2\\pi r \\cdot \\dfrac{60}{360} = 12\\pi \\cdot \\dfrac{1}{6} = 2\\pi$.",
+      "check": [
+        "Eq(2*pi*6*Rational(60, 360), 2*pi)"
+      ]
+    },
+    {
+      "id": "geo9-pr-7",
+      "statement": "Find the exact area of a $40°$ sector in a circle of radius $9$.",
+      "solution": "Sector area $= \\pi r^2 \\cdot \\dfrac{40}{360} = 81\\pi \\cdot \\dfrac{1}{9} = 9\\pi$.",
+      "check": [
+        "Eq(pi*9**2*Rational(40, 360), 9*pi)"
+      ]
+    },
+    {
+      "id": "geo9-pr-8",
+      "statement": "Two chords intersect inside a circle, intercepting arcs of $80°$ and $40°$ (the two arcs facing the angle). Find the angle between the chords.",
+      "solution": "An angle formed by two chords is half the SUM of the two facing arcs: $\\dfrac{80 + 40}{2} = 60°$.",
+      "check": [
+        "Eq(Rational(80 + 40, 2), 60)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "geo9-ty-1",
+      "statement": "Find the exact circumference of a circle with radius $7$.",
+      "solution": "$C = 2\\pi r = 14\\pi$.",
+      "check": [
+        "Eq(2*pi*7, 14*pi)"
+      ]
+    },
+    {
+      "id": "geo9-ty-2",
+      "statement": "An inscribed angle measures $34°$. Find its intercepted arc.",
+      "solution": "The arc is twice the inscribed angle: $2 \\times 34 = 68°$.",
+      "check": [
+        "Eq(2*34, 68)"
+      ]
+    },
+    {
+      "id": "geo9-ty-3",
+      "statement": "A circle has radius $9$. From an external point $15$ from the center, find the length of a tangent segment.",
+      "solution": "The tangent meets the radius at $90°$, giving a right triangle: tangent $= \\sqrt{15^2 - 9^2} = \\sqrt{144} = 12$.",
+      "check": [
+        "Eq(sqrt(15**2 - 9**2), 12)"
+      ]
+    },
+    {
+      "id": "geo9-ty-4",
+      "statement": "A central angle of $(5x)°$ intercepts an arc of $(3x + 40)°$. Find the arc.",
+      "solution": "Central angle $=$ arc: $5x = 3x + 40 \\Rightarrow x = 20$. The arc is $100°$.",
+      "check": [
+        "Eq(5*20, 3*20 + 40)",
+        "Eq(5*20, 100)"
+      ]
+    },
+    {
+      "id": "geo9-ty-5",
+      "statement": "Find the exact length of a $144°$ arc in a circle of radius $10$.",
+      "solution": "$2\\pi \\cdot 10 \\cdot \\dfrac{144}{360} = 20\\pi \\cdot \\dfrac{2}{5} = 8\\pi$.",
+      "check": [
+        "Eq(2*pi*10*Rational(144, 360), 8*pi)"
+      ]
+    },
+    {
+      "id": "geo9-ty-6",
+      "statement": "Two secants from an external point intercept arcs of $130°$ and $40°$. Find the angle at the external point.",
+      "solution": "An exterior angle is half the DIFFERENCE of the intercepted arcs: $\\dfrac{130 - 40}{2} = 45°$.",
+      "check": [
+        "Eq(Rational(130 - 40, 2), 45)"
+      ]
+    }
+  ]
 }

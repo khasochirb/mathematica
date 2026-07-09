@@ -3800,6 +3800,143 @@
       }
     }
   ],
-  "practice": [],
-  "testYourself": []
+  "practice": [
+    {
+      "id": "geo1-pr-1",
+      "statement": "$S$ lies between $R$ and $T$ with $RS = 3x + 4$, $ST = 2x + 1$, and $RT = 25$. Find $x$ and $RS$.",
+      "solution": "Segment Addition: $RS + ST = RT$, so $(3x+4) + (2x+1) = 25 \\Rightarrow 5x + 5 = 25 \\Rightarrow x = 4$. Then $RS = 3(4) + 4 = 16$.",
+      "check": [
+        "Eq(5*4 + 5, 25)",
+        "Eq(3*4 + 4, 16)",
+        "Eq(3*4 + 4 + 2*4 + 1, 25)"
+      ]
+    },
+    {
+      "id": "geo1-pr-2",
+      "statement": "$M$ is the midpoint of $\\overline{AB}$ with $AM = 5x - 3$ and $MB = 3x + 7$. Find $x$ and $AB$.",
+      "solution": "A midpoint makes equal halves: $5x - 3 = 3x + 7 \\Rightarrow 2x = 10 \\Rightarrow x = 5$. Each half is $22$, so $AB = 44$.",
+      "check": [
+        "Eq(5*5 - 3, 3*5 + 7)",
+        "Eq(5*5 - 3, 22)",
+        "Eq(2*22, 44)"
+      ]
+    },
+    {
+      "id": "geo1-pr-3",
+      "statement": "Classify each angle as acute, right, obtuse, or straight: $37°$, $90°$, $142°$, $180°$.",
+      "solution": "$37° < 90°$: acute. $90°$: right. $90° < 142° < 180°$: obtuse. $180°$: straight.",
+      "check": [
+        "37 < 90",
+        "142 > 90",
+        "142 < 180"
+      ]
+    },
+    {
+      "id": "geo1-pr-4",
+      "statement": "$\\overrightarrow{OB}$ lies inside $\\angle AOC$. If $m\\angle AOB = (2x+5)°$, $m\\angle BOC = (3x-10)°$, and $m\\angle AOC = 70°$, find $x$ and $m\\angle AOB$.",
+      "solution": "Angle Addition: $(2x+5) + (3x-10) = 70 \\Rightarrow 5x - 5 = 70 \\Rightarrow x = 15$. So $m\\angle AOB = 2(15)+5 = 35°$.",
+      "check": [
+        "Eq(5*15 - 5, 70)",
+        "Eq(2*15 + 5, 35)",
+        "Eq(35 + 3*15 - 10, 70)"
+      ]
+    },
+    {
+      "id": "geo1-pr-5",
+      "statement": "Two vertical angles measure $(4x - 15)°$ and $(2x + 25)°$. Find $x$ and the angle measure.",
+      "solution": "Vertical angles are equal: $4x - 15 = 2x + 25 \\Rightarrow 2x = 40 \\Rightarrow x = 20$. Each angle is $4(20) - 15 = 65°$.",
+      "check": [
+        "Eq(4*20 - 15, 2*20 + 25)",
+        "Eq(4*20 - 15, 65)"
+      ]
+    },
+    {
+      "id": "geo1-pr-6",
+      "statement": "Angles of $(3x)°$ and $(x + 20)°$ form a linear pair. Find $x$ and both angles.",
+      "solution": "A linear pair sums to $180°$: $3x + x + 20 = 180 \\Rightarrow 4x = 160 \\Rightarrow x = 40$. The angles are $120°$ and $60°$.",
+      "check": [
+        "Eq(4*40 + 20, 180)",
+        "Eq(3*40, 120)",
+        "Eq(40 + 20, 60)",
+        "Eq(120 + 60, 180)"
+      ]
+    },
+    {
+      "id": "geo1-pr-7",
+      "statement": "$\\overrightarrow{OB}$ bisects $\\angle AOC$. If $m\\angle AOB = (5x - 8)°$ and $m\\angle BOC = (3x + 12)°$, find $m\\angle AOC$.",
+      "solution": "A bisector makes equal halves: $5x - 8 = 3x + 12 \\Rightarrow x = 10$. Each half is $42°$, so $m\\angle AOC = 84°$.",
+      "check": [
+        "Eq(5*10 - 8, 3*10 + 12)",
+        "Eq(5*10 - 8, 42)",
+        "Eq(2*42, 84)"
+      ]
+    },
+    {
+      "id": "geo1-pr-8",
+      "statement": "An angle measures $28°$. Find its complement and its supplement.",
+      "solution": "Complement: $90° - 28° = 62°$. Supplement: $180° - 28° = 152°$.",
+      "check": [
+        "Eq(90 - 28, 62)",
+        "Eq(180 - 28, 152)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "geo1-ty-1",
+      "statement": "$Q$ lies between $P$ and $R$ with $PQ = 2x$, $QR = x + 9$, and $PR = 45$. Find $PQ$.",
+      "solution": "$2x + x + 9 = 45 \\Rightarrow 3x = 36 \\Rightarrow x = 12$, so $PQ = 24$.",
+      "check": [
+        "Eq(3*12 + 9, 45)",
+        "Eq(2*12, 24)"
+      ]
+    },
+    {
+      "id": "geo1-ty-2",
+      "statement": "On a number line, $A$ sits at $-3$ and $B$ at $11$. Find $AB$ and the coordinate of the midpoint $M$.",
+      "solution": "$AB = 11 - (-3) = 14$. The midpoint sits at $\\dfrac{-3 + 11}{2} = 4$.",
+      "check": [
+        "Eq(11 - (-3), 14)",
+        "Eq(Rational(-3 + 11, 2), 4)"
+      ]
+    },
+    {
+      "id": "geo1-ty-3",
+      "statement": "Two supplementary angles are in the situation where one is $4$ times the other. Find both angles.",
+      "solution": "Let the smaller be $x$: $x + 4x = 180 \\Rightarrow 5x = 180 \\Rightarrow x = 36$. The angles are $36°$ and $144°$.",
+      "check": [
+        "Eq(5*36, 180)",
+        "Eq(4*36, 144)",
+        "Eq(36 + 144, 180)"
+      ]
+    },
+    {
+      "id": "geo1-ty-4",
+      "statement": "$(7x - 12)°$ and $(5x + 18)°$ are vertical angles. Find the angle, and the measure of an angle forming a linear pair with it.",
+      "solution": "$7x - 12 = 5x + 18 \\Rightarrow x = 15$, so the angle is $7(15) - 12 = 93°$. Its linear-pair neighbor: $180 - 93 = 87°$.",
+      "check": [
+        "Eq(7*15 - 12, 5*15 + 18)",
+        "Eq(7*15 - 12, 93)",
+        "Eq(180 - 93, 87)"
+      ]
+    },
+    {
+      "id": "geo1-ty-5",
+      "statement": "$m\\angle PQR = 96°$ and $\\overrightarrow{QS}$ bisects it. If $m\\angle PQS = (4y)°$, find $y$.",
+      "solution": "Each half is $96 \\div 2 = 48°$, so $4y = 48 \\Rightarrow y = 12$.",
+      "check": [
+        "Eq(Rational(96, 2), 48)",
+        "Eq(4*12, 48)"
+      ]
+    },
+    {
+      "id": "geo1-ty-6",
+      "statement": "An angle is twice its own complement. Find the angle.",
+      "solution": "Let the angle be $x$: $x = 2(90 - x) \\Rightarrow x = 180 - 2x \\Rightarrow 3x = 180 \\Rightarrow x = 60°$. Check: its complement is $30°$, and $60 = 2 \\times 30$. ✓",
+      "check": [
+        "Eq(60, 2*(90 - 60))",
+        "Eq(90 - 60, 30)"
+      ]
+    }
+  ]
 }

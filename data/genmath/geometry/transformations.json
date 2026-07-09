@@ -2805,6 +2805,133 @@
       }
     }
   ],
-  "practice": [],
-  "testYourself": []
+  "practice": [
+    {
+      "id": "geo12-pr-1",
+      "statement": "The translation $(x, y) \\to (x + 3, y - 5)$ is applied to $(2, 4)$. Find the image.",
+      "solution": "$(2 + 3,\\ 4 - 5) = (5, -1)$.",
+      "check": [
+        "Eq(2 + 3, 5)",
+        "Eq(4 - 5, -1)"
+      ]
+    },
+    {
+      "id": "geo12-pr-2",
+      "statement": "Reflect $(3, -7)$ across the $x$-axis, and then reflect the original point across the $y$-axis.",
+      "solution": "Across the $x$-axis, $y$ flips: $(3, 7)$. Across the $y$-axis, $x$ flips: $(-3, -7)$.",
+      "check": [
+        "Eq(-(-7), 7)",
+        "Eq(-(3), -3)"
+      ]
+    },
+    {
+      "id": "geo12-pr-3",
+      "statement": "Reflect $(5, -2)$ across the line $y = x$.",
+      "solution": "Reflection across $y = x$ swaps the coordinates: $(-2, 5)$.",
+      "check": [
+        "Eq(5, 5)",
+        "Eq(-2, -2)"
+      ]
+    },
+    {
+      "id": "geo12-pr-4",
+      "statement": "Rotate $(4, 1)$ by $90°$ counterclockwise about the origin.",
+      "solution": "The $90°$ CCW rule is $(x, y) \\to (-y, x)$: image $(-1, 4)$.",
+      "check": [
+        "Eq(-(1), -1)",
+        "Eq(4, 4)",
+        "Eq((-1)*4 + 4*1, 0)"
+      ]
+    },
+    {
+      "id": "geo12-pr-5",
+      "statement": "Rotate $(-3, 8)$ by $180°$ about the origin.",
+      "solution": "The $180°$ rule negates both coordinates: $(3, -8)$.",
+      "check": [
+        "Eq(-(-3), 3)",
+        "Eq(-(8), -8)"
+      ]
+    },
+    {
+      "id": "geo12-pr-6",
+      "statement": "How many lines of symmetry does a regular pentagon have, and what is its smallest angle of rotational symmetry?",
+      "solution": "Five lines (one through each vertex), and rotational symmetry of order $5$: smallest turn $360 \\div 5 = 72°$.",
+      "check": [
+        "Eq(Rational(360, 5), 72)"
+      ]
+    },
+    {
+      "id": "geo12-pr-7",
+      "statement": "A dilation centered at the origin with $k = 2$ maps a triangle with vertices $(1, 2)$ and $(3, 0)$ (among others). Find those image vertices, and state what happens to the triangle's perimeter and area.",
+      "solution": "Images: $(2, 4)$ and $(6, 0)$. Perimeter doubles ($\\times k$); area quadruples ($\\times k^2 = 4$).",
+      "check": [
+        "Eq(2*1, 2)",
+        "Eq(2*2, 4)",
+        "Eq(2*3, 6)",
+        "Eq(2**2, 4)"
+      ]
+    },
+    {
+      "id": "geo12-pr-8",
+      "statement": "Apply the composition to $(2, 3)$: first translate by $(x + 4, y)$, then reflect across the $x$-axis. Name the composition.",
+      "solution": "Translate: $(6, 3)$. Reflect: $(6, -3)$. A translation followed by a reflection over a parallel-to-translation line is a glide reflection.",
+      "check": [
+        "Eq(2 + 4, 6)",
+        "Eq(-(3), -3)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "geo12-ty-1",
+      "statement": "A translation maps $(-1, 4)$ to $(3, 2)$. Find the translation vector.",
+      "solution": "$\\langle 3 - (-1),\\ 2 - 4 \\rangle = \\langle 4, -2 \\rangle$: right $4$, down $2$.",
+      "check": [
+        "Eq(3 - (-1), 4)",
+        "Eq(2 - 4, -2)"
+      ]
+    },
+    {
+      "id": "geo12-ty-2",
+      "statement": "Reflect $(-6, 2)$ across the $y$-axis.",
+      "solution": "Flip the $x$-coordinate: $(6, 2)$.",
+      "check": [
+        "Eq(-(-6), 6)"
+      ]
+    },
+    {
+      "id": "geo12-ty-3",
+      "statement": "Rotate $(5, 0)$ by $90°$ counterclockwise about the origin.",
+      "solution": "$(x, y) \\to (-y, x)$: image $(0, 5)$.",
+      "check": [
+        "Eq(-(0), 0)",
+        "Eq(5, 5)"
+      ]
+    },
+    {
+      "id": "geo12-ty-4",
+      "statement": "How many lines of symmetry does a non-square rectangle have, and what is its rotational symmetry?",
+      "solution": "Two lines (through the midpoints of opposite sides — the diagonals do NOT work), and rotational symmetry of order $2$ ($180°$).",
+      "check": [
+        "Eq(Rational(360, 2), 180)"
+      ]
+    },
+    {
+      "id": "geo12-ty-5",
+      "statement": "A dilation with $k = \\tfrac{1}{3}$ maps $(9, -6)$ to what point? Is the image figure congruent or similar to the original?",
+      "solution": "$(3, -2)$. Similar but not congruent — dilations preserve shape (angles) but scale lengths by $k \\ne 1$.",
+      "check": [
+        "Eq(9*Rational(1, 3), 3)",
+        "Eq(-6*Rational(1, 3), -2)"
+      ]
+    },
+    {
+      "id": "geo12-ty-6",
+      "statement": "Which of these transformations always produce a figure CONGRUENT to the original: translation, reflection, rotation, dilation with $k = \\tfrac{3}{4}$?",
+      "solution": "Translations, reflections, and rotations — the rigid motions — preserve all lengths. A dilation with $k = \\tfrac{3}{4}$ shrinks lengths, so its image is similar, not congruent.",
+      "check": [
+        "Ne(Rational(3, 4), 1)"
+      ]
+    }
+  ]
 }

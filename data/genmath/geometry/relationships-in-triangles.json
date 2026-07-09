@@ -2577,6 +2577,139 @@
       }
     }
   ],
-  "practice": [],
-  "testYourself": []
+  "practice": [
+    {
+      "id": "geo5-pr-1",
+      "statement": "$\\overline{MN}$ is a midsegment parallel to side $BC$. If $MN = 2x + 1$ and $BC = 5x - 4$, find $MN$ and $BC$.",
+      "solution": "Midsegment Theorem: $BC = 2 \\cdot MN$, so $5x - 4 = 2(2x + 1) \\Rightarrow 5x - 4 = 4x + 2 \\Rightarrow x = 6$. Then $MN = 13$ and $BC = 26$.",
+      "check": [
+        "Eq(5*6 - 4, 2*(2*6 + 1))",
+        "Eq(2*6 + 1, 13)",
+        "Eq(5*6 - 4, 26)",
+        "Eq(2*13, 26)"
+      ]
+    },
+    {
+      "id": "geo5-pr-2",
+      "statement": "In a triangle, median $\\overline{AM}$ has length $18$ and $G$ is the centroid. Find $AG$ and $GM$.",
+      "solution": "The centroid cuts each median $2\\!:\\!1$ from the vertex: $AG = \\tfrac{2}{3}(18) = 12$ and $GM = \\tfrac{1}{3}(18) = 6$.",
+      "check": [
+        "Eq(Rational(2,3)*18, 12)",
+        "Eq(Rational(1,3)*18, 6)",
+        "Eq(12 + 6, 18)"
+      ]
+    },
+    {
+      "id": "geo5-pr-3",
+      "statement": "$P$ lies on the perpendicular bisector of $\\overline{AB}$ with $PA = 3x + 5$ and $PB = 5x - 9$. Find $PA$.",
+      "solution": "Points on a perpendicular bisector are equidistant from the endpoints: $3x + 5 = 5x - 9 \\Rightarrow 14 = 2x \\Rightarrow x = 7$. So $PA = 3(7) + 5 = 26$.",
+      "check": [
+        "Eq(3*7 + 5, 5*7 - 9)",
+        "Eq(3*7 + 5, 26)"
+      ]
+    },
+    {
+      "id": "geo5-pr-4",
+      "statement": "$Q$ lies on the bisector of an angle. Its distances to the two sides are $4y - 6$ and $2y + 8$. Find the distance.",
+      "solution": "Points on an angle bisector are equidistant from the sides: $4y - 6 = 2y + 8 \\Rightarrow y = 7$. The distance is $4(7) - 6 = 22$.",
+      "check": [
+        "Eq(4*7 - 6, 2*7 + 8)",
+        "Eq(4*7 - 6, 22)"
+      ]
+    },
+    {
+      "id": "geo5-pr-5",
+      "statement": "A triangle has angles $50°$, $60°$, and $70°$. List its sides from shortest to longest by naming the opposite angles.",
+      "solution": "Bigger angle ⟺ longer opposite side. Shortest side faces $50°$, middle faces $60°$, longest faces $70°$. (Check: $50 + 60 + 70 = 180$.)",
+      "check": [
+        "Eq(50 + 60 + 70, 180)",
+        "50 < 60",
+        "60 < 70"
+      ]
+    },
+    {
+      "id": "geo5-pr-6",
+      "statement": "Two sides of a triangle measure $8$ and $15$. Write the range of possible lengths for the third side.",
+      "solution": "$15 - 8 < s < 15 + 8$, so $7 < s < 23$.",
+      "check": [
+        "Eq(15 - 8, 7)",
+        "Eq(15 + 8, 23)"
+      ]
+    },
+    {
+      "id": "geo5-pr-7",
+      "statement": "A triangle has vertices $(0, 0)$, $(6, 0)$, and $(0, 9)$. Find its centroid.",
+      "solution": "The centroid averages the vertices: $\\left(\\dfrac{0+6+0}{3}, \\dfrac{0+0+9}{3}\\right) = (2, 3)$.",
+      "check": [
+        "Eq(Rational(0 + 6 + 0, 3), 2)",
+        "Eq(Rational(0 + 0 + 9, 3), 3)"
+      ]
+    },
+    {
+      "id": "geo5-pr-8",
+      "statement": "The midsegment triangle is formed by joining the midpoints of all three sides. If the original triangle has perimeter $42$, find the midsegment triangle's perimeter.",
+      "solution": "Each midsegment is half its parallel side, so the perimeter halves: $42 \\div 2 = 21$.",
+      "check": [
+        "Eq(Rational(42, 2), 21)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "geo5-ty-1",
+      "statement": "$G$ is the centroid and $GM = 5$ on median $\\overline{AM}$. Find $AM$ and $AG$.",
+      "solution": "$GM$ is the short third: $AM = 3 \\cdot 5 = 15$ and $AG = 2 \\cdot 5 = 10$.",
+      "check": [
+        "Eq(3*5, 15)",
+        "Eq(2*5, 10)",
+        "Eq(10 + 5, 15)"
+      ]
+    },
+    {
+      "id": "geo5-ty-2",
+      "statement": "A midsegment measures $x + 7$ and its parallel side measures $4x - 10$. Find both lengths.",
+      "solution": "$4x - 10 = 2(x + 7) \\Rightarrow 4x - 10 = 2x + 14 \\Rightarrow x = 12$. Midsegment: $19$; side: $38$.",
+      "check": [
+        "Eq(4*12 - 10, 2*(12 + 7))",
+        "Eq(12 + 7, 19)",
+        "Eq(4*12 - 10, 38)"
+      ]
+    },
+    {
+      "id": "geo5-ty-3",
+      "statement": "A triangle has sides $7$, $10$, and $12$. Which angle is largest?",
+      "solution": "The angle opposite the longest side ($12$). Side order $7 < 10 < 12$ forces the same order on opposite angles.",
+      "check": [
+        "7 < 10",
+        "10 < 12"
+      ]
+    },
+    {
+      "id": "geo5-ty-4",
+      "statement": "$P$ is the circumcenter, so $PA = PB = PC$. If $PA = 6t - 2$ and $PB = 4t + 10$, find $PA$.",
+      "solution": "$6t - 2 = 4t + 10 \\Rightarrow 2t = 12 \\Rightarrow t = 6$. So $PA = 6(6) - 2 = 34$.",
+      "check": [
+        "Eq(6*6 - 2, 4*6 + 10)",
+        "Eq(6*6 - 2, 34)"
+      ]
+    },
+    {
+      "id": "geo5-ty-5",
+      "statement": "Two sides of a triangle are $5$ and $9$. How many INTEGER lengths are possible for the third side?",
+      "solution": "$9 - 5 < s < 9 + 5$ gives $4 < s < 14$: integers $5$ through $13$, which is $13 - 5 + 1 = 9$ possibilities.",
+      "check": [
+        "Eq(9 - 5, 4)",
+        "Eq(9 + 5, 14)",
+        "Eq(13 - 5 + 1, 9)"
+      ]
+    },
+    {
+      "id": "geo5-ty-6",
+      "statement": "In a right triangle, where does the orthocenter (intersection of the altitudes) sit?",
+      "solution": "At the right-angle vertex. The two legs ARE altitudes (each is perpendicular to the other), so they already intersect there; the third altitude passes through the same point.",
+      "check": [
+        "Eq(90, 90)"
+      ]
+    }
+  ]
 }

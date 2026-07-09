@@ -2621,6 +2621,132 @@
       }
     }
   ],
-  "practice": [],
-  "testYourself": []
+  "practice": [
+    {
+      "id": "geo4-pr-1",
+      "statement": "A triangle's angles measure $x°$, $(2x)°$, and $(3x)°$. Find all three.",
+      "solution": "Angle sum: $x + 2x + 3x = 180 \\Rightarrow 6x = 180 \\Rightarrow x = 30$. The angles are $30°$, $60°$, $90°$ — a right triangle.",
+      "check": [
+        "Eq(6*30, 180)",
+        "Eq(30 + 60 + 90, 180)"
+      ]
+    },
+    {
+      "id": "geo4-pr-2",
+      "statement": "An exterior angle of a triangle measures $112°$ and one remote interior angle is $47°$. Find the other remote interior angle.",
+      "solution": "Exterior Angle Theorem: exterior $=$ sum of the two remote interiors. $112 - 47 = 65°$.",
+      "check": [
+        "Eq(112 - 47, 65)",
+        "Eq(47 + 65, 112)"
+      ]
+    },
+    {
+      "id": "geo4-pr-3",
+      "statement": "Two sides of a triangle measure $4$ and $9$. What lengths are possible for the third side?",
+      "solution": "Triangle Inequality: the third side $s$ must satisfy $9 - 4 < s < 9 + 4$, i.e. $5 < s < 13$.",
+      "check": [
+        "Eq(9 - 4, 5)",
+        "Eq(9 + 4, 13)",
+        "5 < 13"
+      ]
+    },
+    {
+      "id": "geo4-pr-4",
+      "statement": "$\\triangle ABC$ and $\\triangle DEF$ have $AB = DE$, $BC = EF$, and $\\angle B \\cong \\angle E$. Which congruence criterion applies, and why not SSA?",
+      "solution": "SAS — two sides and the INCLUDED angle ($\\angle B$ sits between $AB$ and $BC$). SSA is not a valid criterion: a non-included angle can produce two different triangles.",
+      "check": [
+        "1 == 1"
+      ]
+    },
+    {
+      "id": "geo4-pr-5",
+      "statement": "An isosceles triangle has vertex angle $38°$. Find each base angle.",
+      "solution": "Base angles are equal: $\\dfrac{180 - 38}{2} = \\dfrac{142}{2} = 71°$ each.",
+      "check": [
+        "Eq(Rational(180 - 38, 2), 71)",
+        "Eq(38 + 71 + 71, 180)"
+      ]
+    },
+    {
+      "id": "geo4-pr-6",
+      "statement": "Given $\\triangle ABC \\cong \\triangle DEF$ with $AB = 3x - 7$ and $DE = 2x + 4$, find $AB$.",
+      "solution": "Corresponding parts are equal (CPCTC): $3x - 7 = 2x + 4 \\Rightarrow x = 11$, so $AB = 3(11) - 7 = 26$.",
+      "check": [
+        "Eq(3*11 - 7, 2*11 + 4)",
+        "Eq(3*11 - 7, 26)"
+      ]
+    },
+    {
+      "id": "geo4-pr-7",
+      "statement": "A triangle's angles are $(2x + 10)°$, $(3x - 5)°$, and $(x + 25)°$. Find all three.",
+      "solution": "$(2x+10) + (3x-5) + (x+25) = 180 \\Rightarrow 6x + 30 = 180 \\Rightarrow x = 25$. Angles: $60°$, $70°$, $50°$.",
+      "check": [
+        "Eq(6*25 + 30, 180)",
+        "Eq(2*25 + 10, 60)",
+        "Eq(3*25 - 5, 70)",
+        "Eq(25 + 25, 50)",
+        "Eq(60 + 70 + 50, 180)"
+      ]
+    },
+    {
+      "id": "geo4-pr-8",
+      "statement": "Two right triangles have equal hypotenuses of $13$ and one pair of equal legs of $5$. Are they congruent? Which criterion?",
+      "solution": "Yes — HL (Hypotenuse–Leg), the right-triangle special: hypotenuse and one leg pin the triangle down completely (the other leg is forced: $\\sqrt{13^2 - 5^2} = 12$).",
+      "check": [
+        "Eq(sqrt(13**2 - 5**2), 12)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "geo4-ty-1",
+      "statement": "Two angles of a triangle measure $34°$ and $71°$. Find the third.",
+      "solution": "$180 - 34 - 71 = 75°$.",
+      "check": [
+        "Eq(180 - 34 - 71, 75)"
+      ]
+    },
+    {
+      "id": "geo4-ty-2",
+      "statement": "An exterior angle measures $(7x - 4)°$ with remote interior angles $52°$ and $(3x + 12)°$. Find the exterior angle.",
+      "solution": "$7x - 4 = 52 + 3x + 12 \\Rightarrow 4x = 68 \\Rightarrow x = 17$. The exterior angle is $7(17) - 4 = 115°$.",
+      "check": [
+        "Eq(7*17 - 4, 52 + 3*17 + 12)",
+        "Eq(7*17 - 4, 115)"
+      ]
+    },
+    {
+      "id": "geo4-ty-3",
+      "statement": "Can $6$, $6$, and $12$ be the sides of a triangle?",
+      "solution": "No. The two shorter sides must sum to MORE than the longest: $6 + 6 = 12$, which only ties it — the “triangle” collapses flat.",
+      "check": [
+        "Eq(6 + 6, 12)"
+      ]
+    },
+    {
+      "id": "geo4-ty-4",
+      "statement": "An isosceles triangle has legs $5x - 3$ and $3x + 11$. Find the leg length.",
+      "solution": "Legs are equal: $5x - 3 = 3x + 11 \\Rightarrow 2x = 14 \\Rightarrow x = 7$. Each leg is $5(7) - 3 = 32$.",
+      "check": [
+        "Eq(5*7 - 3, 3*7 + 11)",
+        "Eq(5*7 - 3, 32)"
+      ]
+    },
+    {
+      "id": "geo4-ty-5",
+      "statement": "You know two angles and the side BETWEEN them are equal in two triangles. Which congruence criterion is this?",
+      "solution": "ASA — Angle-Side-Angle, with the side included between the two angles. (Two angles and a NON-included side would be AAS, also valid.)",
+      "check": [
+        "1 == 1"
+      ]
+    },
+    {
+      "id": "geo4-ty-6",
+      "statement": "$\\triangle ABC \\cong \\triangle XYZ$ and $\\triangle ABC$ has sides $7$, $9$, $12$. What is the perimeter of $\\triangle XYZ$?",
+      "solution": "Congruent triangles have identical side lengths, so the perimeter is $7 + 9 + 12 = 28$.",
+      "check": [
+        "Eq(7 + 9 + 12, 28)"
+      ]
+    }
+  ]
 }

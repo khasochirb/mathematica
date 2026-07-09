@@ -2647,6 +2647,131 @@
       }
     }
   ],
-  "practice": [],
-  "testYourself": []
+  "practice": [
+    {
+      "id": "geo7-pr-1",
+      "statement": "Two similar figures have corresponding sides $6$ and $9$. Find the scale factor, then the side of the larger figure that corresponds to a side of $12$ in the smaller.",
+      "solution": "Scale factor $= \\dfrac{9}{6} = \\dfrac{3}{2}$. The corresponding side is $12 \\cdot \\dfrac{3}{2} = 18$.",
+      "check": [
+        "Eq(Rational(9, 6), Rational(3, 2))",
+        "Eq(12*Rational(3, 2), 18)"
+      ]
+    },
+    {
+      "id": "geo7-pr-2",
+      "statement": "$\\triangle ABC \\sim \\triangle DEF$ with $AB = 4$, $DE = 6$, and $BC = 10$. Find $EF$.",
+      "solution": "Corresponding sides share one ratio: $\\dfrac{AB}{DE} = \\dfrac{BC}{EF} \\Rightarrow \\dfrac{4}{6} = \\dfrac{10}{EF} \\Rightarrow EF = \\dfrac{6 \\cdot 10}{4} = 15$.",
+      "check": [
+        "Eq(Rational(4, 6), Rational(10, 15))",
+        "Eq(Rational(6*10, 4), 15)"
+      ]
+    },
+    {
+      "id": "geo7-pr-3",
+      "statement": "One triangle has angles $40°$ and $60°$; another also has angles $40°$ and $60°$. Are the triangles similar? Which criterion?",
+      "solution": "Yes — AA. Two matching angles force the third to match too ($180 - 40 - 60 = 80°$ in both), and equal angles are exactly what similarity means.",
+      "check": [
+        "Eq(180 - 40 - 60, 80)"
+      ]
+    },
+    {
+      "id": "geo7-pr-4",
+      "statement": "$\\overline{DE} \\parallel \\overline{BC}$ cuts sides $AB$ and $AC$ of $\\triangle ABC$. If $AD = 6$, $DB = 9$, and $AE = 8$, find $EC$.",
+      "solution": "Triangle Proportionality: $\\dfrac{AD}{DB} = \\dfrac{AE}{EC} \\Rightarrow \\dfrac{6}{9} = \\dfrac{8}{EC} \\Rightarrow EC = \\dfrac{9 \\cdot 8}{6} = 12$.",
+      "check": [
+        "Eq(Rational(6, 9), Rational(8, 12))",
+        "Eq(Rational(9*8, 6), 12)"
+      ]
+    },
+    {
+      "id": "geo7-pr-5",
+      "statement": "Two similar triangles have scale factor $\\dfrac{3}{5}$. The smaller has perimeter $24$. Find the larger's perimeter.",
+      "solution": "Perimeters scale by the same factor as sides: $24 \\div \\dfrac{3}{5} = 24 \\cdot \\dfrac{5}{3} = 40$.",
+      "check": [
+        "Eq(24*Rational(5, 3), 40)",
+        "Eq(Rational(24, 40), Rational(3, 5))"
+      ]
+    },
+    {
+      "id": "geo7-pr-6",
+      "statement": "Two similar figures have scale factor $\\dfrac{2}{3}$. The smaller has area $36$. Find the larger's area.",
+      "solution": "Areas scale by the SQUARE of the scale factor: ratio $= \\left(\\tfrac{2}{3}\\right)^2 = \\tfrac{4}{9}$, so the larger area is $36 \\cdot \\dfrac{9}{4} = 81$.",
+      "check": [
+        "Eq(Rational(2, 3)**2, Rational(4, 9))",
+        "Eq(36*Rational(9, 4), 81)"
+      ]
+    },
+    {
+      "id": "geo7-pr-7",
+      "statement": "A $18$-dm-tall student casts a $24$-dm shadow while a tree casts a $144$-dm shadow. Find the tree's height (in dm).",
+      "solution": "Same sun angle ⟹ similar triangles: $\\dfrac{18}{24} = \\dfrac{h}{144} \\Rightarrow h = \\dfrac{18 \\cdot 144}{24} = 108$ dm.",
+      "check": [
+        "Eq(Rational(18*144, 24), 108)",
+        "Eq(Rational(18, 24), Rational(108, 144))"
+      ]
+    },
+    {
+      "id": "geo7-pr-8",
+      "statement": "A dilation centered at the origin with scale factor $\\dfrac{3}{2}$ sends $(4, -6)$ to which point?",
+      "solution": "Multiply both coordinates: $\\left(4 \\cdot \\tfrac{3}{2},\\ -6 \\cdot \\tfrac{3}{2}\\right) = (6, -9)$.",
+      "check": [
+        "Eq(4*Rational(3, 2), 6)",
+        "Eq(-6*Rational(3, 2), -9)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "geo7-ty-1",
+      "statement": "Similar polygons have corresponding sides $8$ and $12$. A side of $18$ in the larger corresponds to what side in the smaller?",
+      "solution": "Scale (large→small) $= \\dfrac{8}{12} = \\dfrac{2}{3}$: the side is $18 \\cdot \\dfrac{2}{3} = 12$.",
+      "check": [
+        "Eq(Rational(8, 12), Rational(2, 3))",
+        "Eq(18*Rational(2, 3), 12)"
+      ]
+    },
+    {
+      "id": "geo7-ty-2",
+      "statement": "Two triangles have an equal included angle between sides of $4, 6$ and $6, 9$ respectively. Are they similar?",
+      "solution": "Yes — SAS similarity: $\\dfrac{4}{6} = \\dfrac{6}{9} = \\dfrac{2}{3}$ and the included angles match.",
+      "check": [
+        "Eq(Rational(4, 6), Rational(6, 9))"
+      ]
+    },
+    {
+      "id": "geo7-ty-3",
+      "statement": "A line parallel to one side splits the other two sides in the ratio $\\dfrac{5}{7}$. If the upper piece of the second side is $x$ and the lower is $21$, find $x$.",
+      "solution": "$\\dfrac{x}{21} = \\dfrac{5}{7} \\Rightarrow x = \\dfrac{5 \\cdot 21}{7} = 15$.",
+      "check": [
+        "Eq(Rational(5*21, 7), 15)",
+        "Eq(Rational(15, 21), Rational(5, 7))"
+      ]
+    },
+    {
+      "id": "geo7-ty-4",
+      "statement": "A dilation centered at the origin sends $(3, 5)$ to $(12, 20)$. Find the scale factor.",
+      "solution": "$k = \\dfrac{12}{3} = 4$ (and $\\dfrac{20}{5} = 4$ agrees).",
+      "check": [
+        "Eq(Rational(12, 3), 4)",
+        "Eq(Rational(20, 5), 4)"
+      ]
+    },
+    {
+      "id": "geo7-ty-5",
+      "statement": "Two similar figures have areas $25$ and $49$. Find the ratio of their corresponding sides.",
+      "solution": "Side ratio is the square root of the area ratio: $\\sqrt{\\dfrac{25}{49}} = \\dfrac{5}{7}$.",
+      "check": [
+        "Eq(sqrt(Rational(25, 49)), Rational(5, 7))"
+      ]
+    },
+    {
+      "id": "geo7-ty-6",
+      "statement": "A $\\tfrac{3}{2}$-m stick casts a $2$-m shadow at the same moment a building casts a $12$-m shadow. Find the building's height.",
+      "solution": "$\\dfrac{3/2}{2} = \\dfrac{h}{12} \\Rightarrow h = \\dfrac{12 \\cdot 3}{2 \\cdot 2} = 9$ m.",
+      "check": [
+        "Eq(Rational(3, 2)*Rational(12, 2), 9)",
+        "Eq(Rational(Rational(3,2), 2), Rational(9, 12))"
+      ]
+    }
+  ]
 }

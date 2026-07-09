@@ -2553,6 +2553,126 @@
       }
     }
   ],
-  "practice": [],
-  "testYourself": []
+  "practice": [
+    {
+      "id": "geo10-pr-1",
+      "statement": "Find the area of a parallelogram with base $14$ and height $9$.",
+      "solution": "$A = bh = 14 \\times 9 = 126$ square units.",
+      "check": [
+        "Eq(14*9, 126)"
+      ]
+    },
+    {
+      "id": "geo10-pr-2",
+      "statement": "Find the area of a triangle with base $16$ and height $7$.",
+      "solution": "$A = \\tfrac{1}{2}bh = \\tfrac{1}{2}(16)(7) = 56$ square units.",
+      "check": [
+        "Eq(Rational(16*7, 2), 56)"
+      ]
+    },
+    {
+      "id": "geo10-pr-3",
+      "statement": "Find the area of a trapezoid with bases $10$ and $18$ and height $7$.",
+      "solution": "$A = \\dfrac{b_1 + b_2}{2} \\cdot h = \\dfrac{28}{2} \\cdot 7 = 98$ square units.",
+      "check": [
+        "Eq(Rational(10 + 18, 2)*7, 98)"
+      ]
+    },
+    {
+      "id": "geo10-pr-4",
+      "statement": "A rhombus has diagonals $10$ and $24$. Find its area.",
+      "solution": "$A = \\tfrac{1}{2} d_1 d_2 = \\tfrac{1}{2}(10)(24) = 120$ square units.",
+      "check": [
+        "Eq(Rational(10*24, 2), 120)"
+      ]
+    },
+    {
+      "id": "geo10-pr-5",
+      "statement": "A kite has diagonals $8$ and $15$. Find its area.",
+      "solution": "Same diagonal formula as the rhombus: $A = \\tfrac{1}{2}(8)(15) = 60$ square units.",
+      "check": [
+        "Eq(Rational(8*15, 2), 60)"
+      ]
+    },
+    {
+      "id": "geo10-pr-6",
+      "statement": "Find the exact area of a regular hexagon with side $6$ (its apothem is $3\\sqrt{3}$).",
+      "solution": "$A = \\tfrac{1}{2} \\cdot a \\cdot P = \\tfrac{1}{2} \\cdot 3\\sqrt{3} \\cdot 36 = 54\\sqrt{3}$ square units.",
+      "check": [
+        "Eq(Rational(1, 2)*3*sqrt(3)*36, 54*sqrt(3))"
+      ]
+    },
+    {
+      "id": "geo10-pr-7",
+      "statement": "A circle has radius $5$. Find its exact area, and the area of a $72°$ sector.",
+      "solution": "Circle: $\\pi r^2 = 25\\pi$. Sector: $25\\pi \\cdot \\dfrac{72}{360} = 5\\pi$.",
+      "check": [
+        "Eq(pi*5**2, 25*pi)",
+        "Eq(25*pi*Rational(72, 360), 5*pi)"
+      ]
+    },
+    {
+      "id": "geo10-pr-8",
+      "statement": "A figure is a $12 \\times 8$ rectangle with a semicircle of diameter $8$ attached to one short side. Find the exact total area.",
+      "solution": "Rectangle: $96$. Semicircle radius $4$: $\\tfrac{1}{2}\\pi(4^2) = 8\\pi$. Total: $96 + 8\\pi$.",
+      "check": [
+        "Eq(12*8, 96)",
+        "Eq(Rational(1, 2)*pi*4**2, 8*pi)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "geo10-ty-1",
+      "statement": "A parallelogram has area $84$ and base $12$. Find its height.",
+      "solution": "$h = \\dfrac{A}{b} = \\dfrac{84}{12} = 7$.",
+      "check": [
+        "Eq(Rational(84, 12), 7)"
+      ]
+    },
+    {
+      "id": "geo10-ty-2",
+      "statement": "A rhombus has area $96$ and one diagonal $12$. Find the other diagonal.",
+      "solution": "$\\tfrac{1}{2}(12)d = 96 \\Rightarrow 6d = 96 \\Rightarrow d = 16$.",
+      "check": [
+        "Eq(Rational(2*96, 12), 16)",
+        "Eq(Rational(12*16, 2), 96)"
+      ]
+    },
+    {
+      "id": "geo10-ty-3",
+      "statement": "A trapezoid has bases $9$ and $12$ and area $105$. Find its height.",
+      "solution": "$\\dfrac{9 + 12}{2} \\cdot h = 105 \\Rightarrow \\dfrac{21}{2} h = 105 \\Rightarrow h = 10$.",
+      "check": [
+        "Eq(Rational(9 + 12, 2)*10, 105)"
+      ]
+    },
+    {
+      "id": "geo10-ty-4",
+      "statement": "An equilateral triangle has side $6$ and apothem $\\sqrt{3}$. Use the regular-polygon formula to find its exact area.",
+      "solution": "$A = \\tfrac{1}{2} a P = \\tfrac{1}{2} \\cdot \\sqrt{3} \\cdot 18 = 9\\sqrt{3}$ square units. (Matches $\\tfrac{\\sqrt3}{4} \\cdot 6^2 = 9\\sqrt3$.)",
+      "check": [
+        "Eq(Rational(1, 2)*sqrt(3)*18, 9*sqrt(3))",
+        "Eq(sqrt(3)/4*6**2, 9*sqrt(3))"
+      ]
+    },
+    {
+      "id": "geo10-ty-5",
+      "statement": "A circle of radius $5$ is inscribed in a square of side $10$. Find the exact area of the region inside the square but outside the circle.",
+      "solution": "Square minus circle: $10^2 - \\pi(5^2) = 100 - 25\\pi$ square units.",
+      "check": [
+        "Eq(10**2, 100)",
+        "Eq(pi*5**2, 25*pi)",
+        "100 - 25*pi > 0"
+      ]
+    },
+    {
+      "id": "geo10-ty-6",
+      "statement": "A ring (annulus) has outer radius $7$ and inner radius $4$. Find its exact area.",
+      "solution": "$\\pi(7^2) - \\pi(4^2) = 49\\pi - 16\\pi = 33\\pi$.",
+      "check": [
+        "Eq(pi*7**2 - pi*4**2, 33*pi)"
+      ]
+    }
+  ]
 }
