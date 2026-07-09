@@ -155,6 +155,7 @@ import psProbabilityModels from "@/data/genmath/prob-stats/probability-models.js
 import psConditional from "@/data/genmath/prob-stats/conditional-probability.json";
 import psRandomVariables from "@/data/genmath/prob-stats/random-variables.json";
 import psBinomialDist from "@/data/genmath/prob-stats/binomial-distribution.json";
+import psDescribingData from "@/data/genmath/prob-stats/describing-data.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -878,7 +879,7 @@ export const PROBSTAT_SPINE: GeometrySpineEntry[] = [
     title: "Describing Data",
     blurb: "Center and spread done right: mean, median, IQR, standard deviation, boxplots, and the 1.5×IQR outlier fence.",
     buildsOn: "Expected value (Unit 7) — the mean of data is expectation seen from below.",
-    live: false,
+    live: true,
   },
   {
     unit: 10,
@@ -915,6 +916,7 @@ const probStatUnits: CourseUnit[] = [
   psConditional as unknown as CourseUnit,
   psRandomVariables as unknown as CourseUnit,
   psBinomialDist as unknown as CourseUnit,
+  psDescribingData as unknown as CourseUnit,
 ];
 
 export function getProbStatSpine(): GeometrySpineEntry[] {
