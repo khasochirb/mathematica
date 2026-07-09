@@ -150,6 +150,7 @@ import geometryCoordinate from "@/data/genmath/geometry/coordinate-geometry.json
 import psCountingPrinciples from "@/data/genmath/prob-stats/counting-principles.json";
 import psPermutations from "@/data/genmath/prob-stats/permutations.json";
 import psCombinations from "@/data/genmath/prob-stats/combinations.json";
+import psBinomialTheorem from "@/data/genmath/prob-stats/binomial-theorem.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -833,7 +834,7 @@ export const PROBSTAT_SPINE: GeometrySpineEntry[] = [
     title: "Pascal's Triangle & the Binomial Theorem",
     blurb: "The triangle that counts everything: binomial coefficients, expanding powers, and finding specific terms.",
     buildsOn: "Combinations (Unit 3) — Pascal's triangle IS nCr in disguise.",
-    live: false,
+    live: true,
   },
   {
     unit: 5,
@@ -905,6 +906,7 @@ const probStatUnits: CourseUnit[] = [
   psCountingPrinciples as unknown as CourseUnit,
   psPermutations as unknown as CourseUnit,
   psCombinations as unknown as CourseUnit,
+  psBinomialTheorem as unknown as CourseUnit,
 ];
 
 export function getProbStatSpine(): GeometrySpineEntry[] {
