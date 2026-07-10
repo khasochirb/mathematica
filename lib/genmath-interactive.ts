@@ -954,6 +954,148 @@ export interface CongruentTrianglesConfig {
   caption?: string;
 }
 
+// ---------------------------------------------------------------------------
+// Probability & statistics widgets
+// ---------------------------------------------------------------------------
+
+// A branching tree drawn left-to-right. "count" mode counts leaves (the
+// multiplication principle made visible); "prob" mode labels each branch with
+// its probability and multiplies along a tapped path. Stage options can vary
+// by the path so far (byPath, keyed by the labels walked, joined with ""),
+// which draws conditional trees: shrinking choices, without-replacement draws.
+export interface TreeOption {
+  label: string;
+  p?: number; // branch probability as a decimal (prob mode)
+  pLabel?: string; // branch probability as displayed, e.g. "1/2"
+}
+export interface TreeStage {
+  name?: string; // stage caption, e.g. "shirt"
+  options?: TreeOption[]; // same options whatever came before
+  byPath?: Record<string, TreeOption[]>; // options keyed by joined path labels
+}
+export interface TreeDiagramConfig {
+  mode: "count" | "prob";
+  stages: TreeStage[];
+  caption?: string;
+}
+
+// Pascal's triangle explorer. build: a stepper reveals rows, each entry the
+// sum of the two above; sums: row totals appear at the right (powers of 2);
+// combinations: tap any cell for its C(n, k) reading; expansion: a row
+// stepper writes out (a+b)^n with the row as its coefficients.
+export interface PascalTriangleConfig {
+  mode: "build" | "sums" | "combinations" | "expansion";
+  rows?: number; // deepest row shown (default 6)
+}
+
+// A street grid where the number at each corner counts the paths from Start
+// (top-left) walking only right/down — Pascal's triangle tilted 45°. A
+// stepper fills the corners diagonal by diagonal; the finish shows C(m+n, m).
+export interface PathGridConfig {
+  cols: number; // blocks across (right-moves needed)
+  rows: number; // blocks down (down-moves needed)
+}
+
+// Two overlapping circles with live region counts. regions: tap a region to
+// read it (only A, both, only B, neither); addition: plays the double-count
+// story — |A| + |B| counts the overlap twice, so subtract it once.
+export interface VennCountsConfig {
+  mode: "regions" | "addition";
+  labelA: string;
+  labelB: string;
+  onlyA: number;
+  onlyB: number;
+  both: number;
+  neither?: number;
+  countNoun?: string; // e.g. "students" (default "outcomes")
+}
+
+// The long-run frequency machine: run an event with true probability p in
+// batches and watch the running relative frequency wobble, then settle onto
+// the dashed true-p line. The Law of Large Numbers as a toy.
+export interface LongRunFrequencyConfig {
+  p: number; // true probability as a decimal
+  pLabel: string; // as displayed, e.g. "1/6"
+  eventLabel: string; // e.g. "roll a 6"
+  actionLabel?: string; // verb on the buttons, e.g. "roll" (default "run")
+}
+
+// A discrete random variable's distribution as bars on a number line (values
+// may be negative — winnings work). Tap a bar for its x · P(x) contribution;
+// the mean marker sits at the balance point; whiskers show mu ± sigma.
+export interface DistributionBarsConfig {
+  values: number[];
+  probs: number[]; // decimals, summing to 1
+  pLabels?: string[]; // displayed probabilities, e.g. ["1/4", ...]
+  xLabel?: string;
+  showMean?: boolean;
+  showSd?: boolean;
+}
+
+// The binomial distribution workbench: steppers on n and p redraw the pmf
+// bars live. Tap a bar for its C(n,k) p^k q^(n-k) reading; optional mu = np
+// marker with sigma whiskers shows the mean-and-shape story.
+export interface BinomialBarsConfig {
+  n0?: number; // starting n (default 6)
+  p0?: number; // starting p (default 0.5)
+  nMax?: number; // stepper ceiling (default 14)
+  showMuSigma?: boolean;
+  highlightK?: number; // pre-highlighted bar
+}
+
+// A dot plot on a number line. meanMedian: steppers drag the largest value
+// away and the mean chases it while the median stays put; deviations: sticks
+// from the mean to each dot make the standard deviation visible.
+export interface DotPlotConfig {
+  mode: "meanMedian" | "deviations";
+  data: number[];
+  min: number;
+  max: number;
+  xLabel?: string;
+}
+
+// One dataset, several bin widths: chips regroup the same values into a new
+// histogram, so shape emerges (or drowns) with the choice of bins.
+export interface HistogramBinsConfig {
+  data: number[];
+  min: number;
+  max: number;
+  widths: number[]; // bin-width choices
+  start?: number; // index into widths (default 0)
+  xLabel?: string;
+}
+
+// A boxplot computed live from its data: five-number summary, IQR, and the
+// 1.5 × IQR fences on toggle — points beyond the fences flagged as outliers.
+export interface BoxPlotConfig {
+  data: number[];
+  xLabel?: string;
+  showFences?: boolean; // fences drawn from the start
+}
+
+// The normal curve. empirical: tap 1σ / 2σ / 3σ to shade the 68–95–99.7
+// bands with real axis values; zscore: a stepper walks x along the axis with
+// the live z = (x − mu) / sigma reading — distance measured in sigmas.
+export interface NormalCurveConfig {
+  mode: "empirical" | "zscore";
+  mu: number;
+  sigma: number;
+  x0?: number; // zscore: starting x
+  step?: number; // zscore: stepper increment (default sigma / 2)
+  xLabel?: string;
+}
+
+// The sampling-wobble machine: draw samples of size n from a population with
+// true proportion p and stack each sample's p-hat as a dot. Bigger n, tighter
+// pile — with the 1/sqrt(n) margin-of-error band on request.
+export interface SamplingWobbleConfig {
+  p: number; // true population proportion
+  pLabel?: string; // as displayed
+  statLabel?: string; // e.g. "sample % who say yes"
+  nChoices?: number[]; // sample sizes (default [25, 100, 400])
+  showMoe?: boolean; // shade p ± 1/sqrt(n)
+}
+
 // One worked example on a multi-example page (figure + reasoning steps).
 export interface WorkedItem {
   prompt: string;
@@ -1062,6 +1204,18 @@ export type InteractiveStep =
   | { kind: "vectorGraph"; eyebrow?: string; title: string; teach: string; config: VectorGraphConfig }
   | { kind: "conicGraph"; eyebrow?: string; title: string; teach: string; config: ConicGraphConfig }
   | { kind: "scatterPlot"; eyebrow?: string; title: string; teach: string; config: ScatterPlotConfig }
+  | { kind: "treeDiagram"; eyebrow?: string; title: string; teach: string; config: TreeDiagramConfig }
+  | { kind: "pascalTriangle"; eyebrow?: string; title: string; teach: string; config: PascalTriangleConfig }
+  | { kind: "pathGrid"; eyebrow?: string; title: string; teach: string; config: PathGridConfig }
+  | { kind: "vennCounts"; eyebrow?: string; title: string; teach: string; config: VennCountsConfig }
+  | { kind: "longRunFrequency"; eyebrow?: string; title: string; teach: string; config: LongRunFrequencyConfig }
+  | { kind: "distributionBars"; eyebrow?: string; title: string; teach: string; config: DistributionBarsConfig }
+  | { kind: "binomialBars"; eyebrow?: string; title: string; teach: string; config: BinomialBarsConfig }
+  | { kind: "dotPlot"; eyebrow?: string; title: string; teach: string; config: DotPlotConfig }
+  | { kind: "histogramBins"; eyebrow?: string; title: string; teach: string; config: HistogramBinsConfig }
+  | { kind: "boxPlot"; eyebrow?: string; title: string; teach: string; config: BoxPlotConfig }
+  | { kind: "normalCurve"; eyebrow?: string; title: string; teach: string; config: NormalCurveConfig }
+  | { kind: "samplingWobble"; eyebrow?: string; title: string; teach: string; config: SamplingWobbleConfig }
   | { kind: "areaShape"; eyebrow?: string; title: string; teach: string; config: AreaShapeConfig }
   | { kind: "apothemPolygon"; eyebrow?: string; title: string; teach: string; config: ApothemPolygonConfig }
   | { kind: "compositeArea"; eyebrow?: string; title: string; teach: string; config: CompositeAreaConfig }
@@ -1197,4 +1351,122 @@ export function getLessonProblem(lesson: GenMathLesson, id: string): LessonProbl
     lesson.tryIt.find((p) => p.id === id) ??
     null
   );
+}
+
+// ---------------------------------------------------------------------------
+// Probability & statistics logic — unit-tested
+// ---------------------------------------------------------------------------
+
+export function factorialInt(n: number): number {
+  let r = 1;
+  for (let i = 2; i <= n; i++) r *= i;
+  return r;
+}
+
+// C(n, k) via the Pascal recurrence product form — exact for the sizes we draw.
+export function nCr(n: number, k: number): number {
+  if (k < 0 || k > n) return 0;
+  k = Math.min(k, n - k);
+  let r = 1;
+  for (let i = 1; i <= k; i++) r = (r * (n - k + i)) / i;
+  return Math.round(r);
+}
+
+// Row n of Pascal's triangle: [C(n,0), ..., C(n,n)].
+export function pascalRow(n: number): number[] {
+  const row = [1];
+  for (let k = 1; k <= n; k++) row.push((row[k - 1] * (n - k + 1)) / k);
+  return row.map(Math.round);
+}
+
+// Lattice paths moving only right/down across an r-by-u block grid.
+export function latticePaths(right: number, up: number): number {
+  return nCr(right + up, right);
+}
+
+// Binomial pmf P(X = k) for X ~ B(n, p).
+export function binomPmf(n: number, p: number, k: number): number {
+  return nCr(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k);
+}
+
+export function binomMean(n: number, p: number): number {
+  return n * p;
+}
+
+export function binomSd(n: number, p: number): number {
+  return Math.sqrt(n * p * (1 - p));
+}
+
+// E[X] for a discrete random variable given as parallel value/probability lists.
+export function expectedValue(values: number[], probs: number[]): number {
+  return values.reduce((s, x, i) => s + x * (probs[i] ?? 0), 0);
+}
+
+// Var(X) = E[(X - mu)^2] for the same parallel lists.
+export function rvVariance(values: number[], probs: number[]): number {
+  const mu = expectedValue(values, probs);
+  return values.reduce((s, x, i) => s + (x - mu) * (x - mu) * (probs[i] ?? 0), 0);
+}
+
+export function meanOf(xs: number[]): number {
+  return xs.length === 0 ? 0 : xs.reduce((s, x) => s + x, 0) / xs.length;
+}
+
+export function medianOf(xs: number[]): number {
+  const s = [...xs].sort((a, b) => a - b);
+  const n = s.length;
+  if (n === 0) return 0;
+  return n % 2 === 1 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2;
+}
+
+// Quartiles by the median-of-halves convention the lessons teach: when n is
+// odd the overall median is left OUT of both halves.
+export function quartilesOf(xs: number[]): { q1: number; q2: number; q3: number } {
+  const s = [...xs].sort((a, b) => a - b);
+  const n = s.length;
+  const half = Math.floor(n / 2);
+  const lower = s.slice(0, half);
+  const upper = s.slice(n % 2 === 1 ? half + 1 : half);
+  return { q1: medianOf(lower), q2: medianOf(s), q3: medianOf(upper) };
+}
+
+export function iqrOf(xs: number[]): number {
+  const { q1, q3 } = quartilesOf(xs);
+  return q3 - q1;
+}
+
+// The 1.5 x IQR outlier fences.
+export function fencesOf(xs: number[]): { lower: number; upper: number } {
+  const { q1, q3 } = quartilesOf(xs);
+  const iqr = q3 - q1;
+  return { lower: q1 - 1.5 * iqr, upper: q3 + 1.5 * iqr };
+}
+
+export function outliersOf(xs: number[]): number[] {
+  const { lower, upper } = fencesOf(xs);
+  return xs.filter((x) => x < lower || x > upper);
+}
+
+// Population standard deviation (divide by n) — the lessons' convention.
+export function stdevPop(xs: number[]): number {
+  if (xs.length === 0) return 0;
+  const mu = meanOf(xs);
+  return Math.sqrt(xs.reduce((s, x) => s + (x - mu) * (x - mu), 0) / xs.length);
+}
+
+export function normalPdf(x: number, mu = 0, sigma = 1): number {
+  const z = (x - mu) / sigma;
+  return Math.exp(-0.5 * z * z) / (sigma * Math.sqrt(2 * Math.PI));
+}
+
+// Histogram counts for [min, min+w), [min+w, min+2w), ...; a value equal to
+// the top edge lands in the last bin so nothing falls off the plot.
+export function binCounts(data: number[], min: number, width: number, max: number): number[] {
+  const bins = Math.max(1, Math.round((max - min) / width));
+  const counts = new Array(bins).fill(0);
+  for (const x of data) {
+    if (x < min || x > max) continue;
+    counts[Math.min(bins - 1, Math.floor((x - min) / width))]++;
+  }
+  return counts;
 }
