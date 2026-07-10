@@ -1,0 +1,955 @@
+{
+  "slug": "matrices-and-operations",
+  "title": "Matrices & Operations",
+  "unit": 5,
+  "status": "published",
+  "blurb": "Number grids and their arithmetic: entries and dimensions, adding and scaling, and the row-times-column multiplication that runs everything.",
+  "buildsOn": "Componentwise thinking from the vector units — a matrix is columns of vectors.",
+  "lessons": [
+    {
+      "slug": "what-is-a-matrix",
+      "title": "What Is a Matrix?",
+      "concreteComparison": "A shop's weekly sales sheet: rows are products, columns are days, each cell one number. That grid IS a matrix. Mathematics adds an address system — entry $a_{23}$ lives in row 2, column 3 — and, crucially, an arithmetic for whole grids at once.",
+      "objective": "Read matrix dimensions and entries, use row-column addressing, and decide when two matrices are equal.",
+      "concept": [
+        "A **matrix** is a rectangular grid of numbers. Its **dimension** is rows × columns — a $2 \\times 3$ matrix has 2 rows and 3 columns. Rows first, always: the address $a_{ij}$ means row $i$, column $j$.",
+        "Two matrices are **equal** only when they have the same dimensions AND every corresponding entry matches. Equality is entrywise — one mismatch anywhere breaks it, which turns matrix equations into systems of ordinary equations.",
+        "Special citizens worth naming now: the **square** matrix (rows = columns), the **zero** matrix $O$ (all zeros — the additive nothing), and the **identity** $I = \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$ — ones down the main diagonal, the multiplicative nothing you'll meet properly two lessons on."
+      ],
+      "keyIdea": "A matrix is a rows × columns grid; a_ij = row i, column j; equal means same shape and every entry matching.",
+      "facts": [
+        {
+          "title": "Dimensions",
+          "latex": "m \\times n = \\text{rows} \\times \\text{columns}",
+          "explanation": "Rows first — the universal convention."
+        },
+        {
+          "title": "Addressing",
+          "latex": "a_{ij}: \\text{row } i, \\text{column } j",
+          "explanation": "First index picks the row, second the column."
+        },
+        {
+          "title": "Equality",
+          "latex": "A = B \\iff \\text{same shape and } a_{ij} = b_{ij} \\; \\forall i,j",
+          "explanation": "Entrywise — a matrix equation is many number equations."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm51-we1",
+          "statement": "For $A = \\begin{pmatrix} 5 & -1 & 3 \\\\ 0 & 7 & 2 \\end{pmatrix}$, give the dimension of $A$ and the entries $a_{12}$ and $a_{23}$.",
+          "solution": "$A$ is $2 \\times 3$ (2 rows, 3 columns). $a_{12}$ = row 1, column 2 $= -1$; $a_{23}$ = row 2, column 3 $= 2$.",
+          "check": [
+            "2*3 == 6",
+            "-1 + 2 == 1"
+          ]
+        },
+        {
+          "id": "vm51-we2",
+          "statement": "Find $x$ and $y$ so that $\\begin{pmatrix} x + 1 & 4 \\\\ 3 & 2y \\end{pmatrix} = \\begin{pmatrix} 6 & 4 \\\\ 3 & 10 \\end{pmatrix}$.",
+          "solution": "Match entries: $x + 1 = 6$ gives $x = 5$; $2y = 10$ gives $y = 5$.",
+          "check": [
+            "5 + 1 == 6",
+            "2*5 == 10"
+          ]
+        },
+        {
+          "id": "vm51-we3",
+          "statement": "A shop sells items A and B on Sat/Sun: $S = \\begin{pmatrix} 12 & 9 \\\\ 5 & 8 \\end{pmatrix}$ (rows = items, columns = days). Read how many of item B sold on Sunday, and the weekend total of item A.",
+          "solution": "Item B, Sunday = $s_{22} = 8$. Item A total = $12 + 9 = 21$ — row sums tally an item across days.",
+          "check": [
+            "12 + 9 == 21",
+            "5 + 8 == 13"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Swapping rows and columns in the dimension.",
+          "correction": "2 × 3 means 2 ROWS and 3 columns. 'RC' — rows then columns — is the convention everywhere, including a_ij.",
+          "authored": true
+        },
+        {
+          "text": "Declaring matrices equal from a few matching entries.",
+          "correction": "Equality is total: same shape and EVERY entry matching. One cell off = not equal.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm51-t1",
+          "statement": "For $B = \\begin{pmatrix} 4 & 0 \\\\ -2 & 6 \\\\ 1 & 9 \\end{pmatrix}$, state the dimension and $b_{31}$.",
+          "solution": "$3 \\times 2$; $b_{31} = 1$ (row 3, column 1).",
+          "check": [
+            "3*2 == 6",
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "vm51-t2",
+          "statement": "Find $t$ so that $\\begin{pmatrix} 3t & 1 \\\\ 0 & 5 \\end{pmatrix} = \\begin{pmatrix} 12 & 1 \\\\ 0 & 5 \\end{pmatrix}$.",
+          "solution": "$3t = 12$, so $t = 4$.",
+          "check": [
+            "3*4 == 12"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The object",
+            "title": "A grid with an address system",
+            "body": "Sales sheets, timetables, pixel blocks — number grids are everywhere. A **matrix** is the mathematical grid: dimension counted rows × columns, and every entry addressed as $a_{ij}$ — row $i$, column $j$, rows always first."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The rules of the club",
+            "title": "Equality is entrywise",
+            "body": "$A = B$ demands the same shape AND all entries matching — so one matrix equation silently packs many number equations, which is exactly how exams use it: hide an $x$ in one entry, a $y$ in another, and let equality do the interrogation. Meet also the zero matrix $O$ and the identity $I$ (ones on the diagonal) — the grid world's 0 and 1.",
+            "beats": [
+              "dimension: rows × columns, rows first",
+              "a_ij: row i, column j",
+              "equal ⇔ same shape + every entry matches"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the address",
+            "title": "Find the entry",
+            "prompt": "In $\\begin{pmatrix} 7 & 2 & -3 \\\\ 4 & 0 & 9 \\end{pmatrix}$, what is $a_{21}$?",
+            "options": [
+              "$4$",
+              "$2$",
+              "$7$",
+              "$0$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Row 2, column 1: the entry $4$. ($a_{12} = 2$ is its transpose-twin — the classic mix-up.)",
+            "check": [
+              "4 == 4"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Dimensions and addresses",
+            "problemId": "vm51-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Equality as interrogation",
+            "problemId": "vm51-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Same or not?",
+            "prompt": "Can a $2 \\times 3$ matrix ever equal a $3 \\times 2$ matrix?",
+            "options": [
+              "Never — shapes differ",
+              "Yes, if all entries match",
+              "Only if both are zero matrices",
+              "Only if they're transposes"
+            ],
+            "correctIndex": 0,
+            "explanation": "Equality requires the same shape before entries are even compared. Different dimensions end the conversation.",
+            "check": [
+              "2*3 == 6"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Reading a data matrix",
+            "problemId": "vm51-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Say the shape out loud",
+            "body": "Before any matrix operation, name each matrix's shape (\"2 by 3\"). Almost every matrix error — especially in multiplication, coming soon — is a shape error caught too late."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "A tall one",
+            "problemId": "vm51-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Solve by equality",
+            "problemId": "vm51-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The name predates the tool",
+            "body": "James Sylvester coined 'matrix' in 1850 — Latin for 'womb' — because he saw the grid as something determinants are born FROM. His friend Cayley then built the algebra you're about to learn."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Dimension = rows × columns, rows first; $a_{ij}$ = row $i$, column $j$.",
+              "Equality: same shape, every entry matching — a system in disguise.",
+              "$O$ and $I$ are the grid world's 0 and 1."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "adding-and-scaling-matrices",
+      "title": "Adding & Scaling Matrices",
+      "concreteComparison": "Two weeks of sales sheets? Add them cell by cell for the fortnight totals. Prices rising 10%? Multiply the whole price grid by 1.1. Matrix addition and scalar multiplication are exactly the spreadsheet moves you'd invent yourself — entrywise, no surprises.",
+      "objective": "Add, subtract, and scale matrices entrywise, and solve simple matrix equations.",
+      "concept": [
+        "**Addition** is entrywise, and only between matrices of the SAME shape: $(A + B)_{ij} = a_{ij} + b_{ij}$. Subtraction likewise. Different shapes simply don't add — there's no cell to pair.",
+        "**Scalar multiplication** hits every entry: $(kA)_{ij} = k \\, a_{ij}$. Together with addition it builds combinations like $2A - 3B$, computed entry by entry.",
+        "The comfortable laws hold — $A + B = B + A$, $k(A + B) = kA + kB$ — so matrix equations at this level solve exactly like vector ones: peel operations, finish entrywise. (The one law that will NOT survive next lesson is commutativity of multiplication. Enjoy order-independence while it lasts.)"
+      ],
+      "keyIdea": "Add and scale entrywise, same-shape only; 2A − 3B and matrix equations work exactly like the vector versions.",
+      "facts": [
+        {
+          "title": "Addition",
+          "latex": "(A + B)_{ij} = a_{ij} + b_{ij}",
+          "explanation": "Cell by cell — shapes must match."
+        },
+        {
+          "title": "Scaling",
+          "latex": "(kA)_{ij} = k\\,a_{ij}",
+          "explanation": "Every entry takes the factor."
+        },
+        {
+          "title": "Familiar laws",
+          "latex": "A + B = B + A,\\quad k(A + B) = kA + kB",
+          "explanation": "Addition-level algebra behaves; multiplication won't."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm52-we1",
+          "statement": "Compute $\\begin{pmatrix} 2 & -1 \\\\ 0 & 3 \\end{pmatrix} + \\begin{pmatrix} 4 & 5 \\\\ -2 & 1 \\end{pmatrix}$.",
+          "solution": "Entrywise: $\\begin{pmatrix} 6 & 4 \\\\ -2 & 4 \\end{pmatrix}$.",
+          "check": [
+            "2 + 4 == 6",
+            "-1 + 5 == 4",
+            "0 + (-2) == -2",
+            "3 + 1 == 4"
+          ]
+        },
+        {
+          "id": "vm52-we2",
+          "statement": "Compute $2A - 3B$ for $A = \\begin{pmatrix} 1 & 2 \\\\ 3 & 0 \\end{pmatrix}$, $B = \\begin{pmatrix} 0 & 1 \\\\ -1 & 2 \\end{pmatrix}$.",
+          "solution": "$2A = \\begin{pmatrix} 2 & 4 \\\\ 6 & 0 \\end{pmatrix}$, $3B = \\begin{pmatrix} 0 & 3 \\\\ -3 & 6 \\end{pmatrix}$. Difference: $\\begin{pmatrix} 2 & 1 \\\\ 9 & -6 \\end{pmatrix}$.",
+          "check": [
+            "2*1 - 3*0 == 2",
+            "2*2 - 3*1 == 1",
+            "2*3 - 3*(-1) == 9",
+            "2*0 - 3*2 == -6"
+          ]
+        },
+        {
+          "id": "vm52-we3",
+          "statement": "Solve for the matrix $X$: $\\;2X + \\begin{pmatrix} 1 & 0 \\\\ 4 & -2 \\end{pmatrix} = \\begin{pmatrix} 7 & 6 \\\\ 0 & 4 \\end{pmatrix}$.",
+          "solution": "$2X = \\begin{pmatrix} 6 & 6 \\\\ -4 & 6 \\end{pmatrix}$, so $X = \\begin{pmatrix} 3 & 3 \\\\ -2 & 3 \\end{pmatrix}$.",
+          "check": [
+            "(7 - 1)/2 == 3",
+            "(6 - 0)/2 == 3",
+            "(0 - 4)/2 == -2",
+            "(4 + 2)/2 == 3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding matrices of different shapes.",
+          "correction": "A 2×2 plus a 2×3 is undefined — some cells have no partner. Check shapes before touching entries.",
+          "authored": true
+        },
+        {
+          "text": "Scaling only the first row.",
+          "correction": "kA multiplies EVERY entry. Half-scaled matrices are the grid version of the half-scaled vector error — and just as fatal.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm52-t1",
+          "statement": "Compute $3\\begin{pmatrix} 2 & -1 \\\\ 4 & 0 \\end{pmatrix}$.",
+          "solution": "$\\begin{pmatrix} 6 & -3 \\\\ 12 & 0 \\end{pmatrix}$.",
+          "check": [
+            "3*2 == 6",
+            "3*(-1) == -3",
+            "3*4 == 12",
+            "3*0 == 0"
+          ]
+        },
+        {
+          "id": "vm52-t2",
+          "statement": "Compute $\\begin{pmatrix} 5 & 2 \\\\ 1 & -3 \\end{pmatrix} - \\begin{pmatrix} 2 & 4 \\\\ -1 & 1 \\end{pmatrix}$.",
+          "solution": "$\\begin{pmatrix} 3 & -2 \\\\ 2 & -4 \\end{pmatrix}$.",
+          "check": [
+            "5 - 2 == 3",
+            "2 - 4 == -2",
+            "1 - (-1) == 2",
+            "-3 - 1 == -4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The moves",
+            "title": "Spreadsheet arithmetic",
+            "body": "Two sales sheets add cell by cell; a 10% price rise scales every cell. Matrix addition and scalar multiplication are those moves, formalized: $(A+B)_{ij} = a_{ij} + b_{ij}$ and $(kA)_{ij} = k\\,a_{ij}$ — same-shape matrices only, every entry included."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The algebra",
+            "title": "Everything familiar still works (for now)",
+            "body": "$A + B = B + A$, $k(A+B) = kA + kB$, and matrix equations peel like vector ones: $2X + B = C$ gives $X = \\tfrac{1}{2}(C - B)$. Savor the comfort — next lesson, multiplication arrives and ORDER starts to matter.",
+            "beats": [
+              "entrywise add/subtract; shapes must match",
+              "kA scales every entry",
+              "solve matrix equations by peeling, then finish entrywise"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the move",
+            "title": "One entry",
+            "prompt": "In $2\\begin{pmatrix} 3 & -2 \\\\ 1 & 5 \\end{pmatrix} + \\begin{pmatrix} 0 & 4 \\\\ -1 & 1 \\end{pmatrix}$, the entry in row 1, column 2 is…",
+            "options": [
+              "$0$",
+              "$2$",
+              "$-4$",
+              "$4$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$2 \\cdot (-2) + 4 = 0$. Each cell computes independently — you never need the whole matrix to answer about one entry.",
+            "check": [
+              "2*(-2) + 4 == 0"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Plain addition",
+            "problemId": "vm52-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A combination",
+            "problemId": "vm52-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Shapes first",
+            "prompt": "$A$ is $2 \\times 3$ and $B$ is $3 \\times 2$. What is $A + B$?",
+            "options": [
+              "Undefined — shapes differ",
+              "A $2 \\times 2$ matrix",
+              "A $3 \\times 3$ matrix",
+              "A $2 \\times 3$ matrix"
+            ],
+            "correctIndex": 0,
+            "explanation": "Addition pairs cells; different shapes leave cells partnerless. (Multiplication is another story — next lesson.)",
+            "check": [
+              "2*3 == 6"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Solve for X",
+            "problemId": "vm52-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "One target entry? Compute one entry",
+            "body": "When a question asks for a single entry of 3A − 2B, don't build both scaled matrices — run the combination on that one cell. Faster, and fewer places to slip."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Scale one",
+            "problemId": "vm52-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Subtract one",
+            "problemId": "vm52-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Image filters are matrix sums",
+            "body": "Blending two photos is literally αA + (1−α)B on their pixel matrices — the fade sliders in every photo app are running this lesson at 60 frames a second."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Add/subtract entrywise — same shapes only.",
+              "$kA$ scales every entry; combinations compute cell by cell.",
+              "Matrix equations peel like vector equations."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "matrix-multiplication",
+      "title": "Matrix Multiplication",
+      "concreteComparison": "You already own the engine: matrix × point from the transformations world was row-times-column, twice. Full matrix multiplication is the same handshake repeated for EVERY row-column pair — the entry $(AB)_{ij}$ is row $i$ of $A$ dotted with column $j$ of $B$. It's dot products all the way down.",
+      "objective": "Multiply matrices via row·column dot products, check dimension compatibility, and verify that order matters (AB ≠ BA).",
+      "concept": [
+        "The recipe: $$(AB)_{ij} = \\text{(row } i \\text{ of } A) \\cdot \\text{(column } j \\text{ of } B)$$ — a dot product for every cell of the answer. For $2\\times 2$'s that's four dot products.",
+        "Shapes must SHAKE HANDS: $(m \\times n)(n \\times p) = m \\times p$ — inner dimensions must match and then they cancel, leaving the outer pair. A $2\\times 3$ times a $3\\times 2$ is $2 \\times 2$; reversed, it's $3 \\times 3$: different animals entirely.",
+        "And the headline warning: **matrix multiplication is not commutative**. $AB \\ne BA$ in general — even when both products exist and have the same shape. Order encodes which transformation happens first, and geometry cares about order (rotate-then-reflect ≠ reflect-then-rotate)."
+      ],
+      "keyIdea": "(AB)_ij = row i · column j; shapes (m×n)(n×p) = m×p; and AB ≠ BA — order is information.",
+      "facts": [
+        {
+          "title": "The recipe",
+          "latex": "(AB)_{ij} = \\sum_k a_{ik} b_{kj}",
+          "explanation": "Row i of A dotted with column j of B — one dot product per answer cell."
+        },
+        {
+          "title": "Handshake rule",
+          "latex": "(m \\times n)(n \\times p) = m \\times p",
+          "explanation": "Inner dimensions match and cancel; outer pair survives."
+        },
+        {
+          "title": "No commuting",
+          "latex": "AB \\ne BA \\text{ (in general)}",
+          "explanation": "Order encodes which operation acts first."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm53-we1",
+          "statement": "Compute $AB$ for $A = \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}$, $B = \\begin{pmatrix} 5 & 6 \\\\ 7 & 8 \\end{pmatrix}$.",
+          "solution": "Four dot products: top-left $1\\cdot5 + 2\\cdot7 = 19$, top-right $1\\cdot6 + 2\\cdot8 = 22$, bottom-left $3\\cdot5 + 4\\cdot7 = 43$, bottom-right $3\\cdot6 + 4\\cdot8 = 50$. $AB = \\begin{pmatrix} 19 & 22 \\\\ 43 & 50 \\end{pmatrix}$.",
+          "check": [
+            "1*5 + 2*7 == 19",
+            "1*6 + 2*8 == 22",
+            "3*5 + 4*7 == 43",
+            "3*6 + 4*8 == 50"
+          ]
+        },
+        {
+          "id": "vm53-we2",
+          "statement": "Same $A, B$: compute $BA$ and compare with $AB$.",
+          "solution": "$BA = \\begin{pmatrix} 5\\cdot1 + 6\\cdot3 & 5\\cdot2 + 6\\cdot4 \\\\ 7\\cdot1 + 8\\cdot3 & 7\\cdot2 + 8\\cdot4 \\end{pmatrix} = \\begin{pmatrix} 23 & 34 \\\\ 31 & 46 \\end{pmatrix} \\ne AB$. Order matters — permanently.",
+          "check": [
+            "5*1 + 6*3 == 23",
+            "5*2 + 6*4 == 34",
+            "7*1 + 8*3 == 31",
+            "7*2 + 8*4 == 46"
+          ]
+        },
+        {
+          "id": "vm53-we3",
+          "statement": "Compute $\\begin{pmatrix} 2 & -1 \\\\ 0 & 3 \\end{pmatrix}\\begin{pmatrix} 4 \\\\ 5 \\end{pmatrix}$ — matrix times column.",
+          "solution": "Two dot products: $\\binom{2\\cdot4 + (-1)\\cdot5}{0\\cdot4 + 3\\cdot5} = \\binom{3}{15}$. Matrix-times-point from the transformations chapter is exactly this, with a $2\\times1$ partner.",
+          "check": [
+            "2*4 + (-1)*5 == 3",
+            "0*4 + 3*5 == 15"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Multiplying entrywise, like addition.",
+          "correction": "(AB)₁₁ is NOT a₁₁b₁₁. It's the whole first row of A dotted with the whole first column of B. Multiplication is dot products, not cell-pairing.",
+          "authored": true
+        },
+        {
+          "text": "Assuming AB = BA.",
+          "correction": "Almost never true. If you silently swapped an order to 'simplify', you changed the answer — and in geometry, the transformation.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm53-t1",
+          "statement": "Compute $\\begin{pmatrix} 1 & 0 \\\\ 2 & 3 \\end{pmatrix}\\begin{pmatrix} 4 & 1 \\\\ 0 & 5 \\end{pmatrix}$.",
+          "solution": "$\\begin{pmatrix} 4 & 1 \\\\ 8 & 17 \\end{pmatrix}$.",
+          "check": [
+            "1*4 + 0*0 == 4",
+            "1*1 + 0*5 == 1",
+            "2*4 + 3*0 == 8",
+            "2*1 + 3*5 == 17"
+          ]
+        },
+        {
+          "id": "vm53-t2",
+          "statement": "$A$ is $2 \\times 3$, $B$ is $3 \\times 4$. What is the shape of $AB$? Does $BA$ exist?",
+          "solution": "$AB$ is $2 \\times 4$ (inner 3's shake hands). $BA$ would need $4 = 2$ — it doesn't exist.",
+          "check": [
+            "2*4 == 8",
+            "3*3 == 9"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The engine",
+            "title": "Dot products all the way down",
+            "body": "You've multiplied a matrix into a point: row·column, twice. The full product just repeats that handshake for every pair: $(AB)_{ij}$ = (row $i$ of $A$) · (column $j$ of $B$). A $2\\times2$ product is four little dot products — organized, not hard."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Two warnings",
+            "title": "Shapes shake hands; order is sacred",
+            "body": "$(m \\times n)(n \\times p) = m \\times p$: inner dimensions must MATCH, then they cancel. And the big one: $AB \\ne BA$ in general. Order encodes which operation acts first — rotate-then-reflect is a different journey than reflect-then-rotate, and the algebra remembers.",
+            "beats": [
+              "(AB)_ij = row i · column j",
+              "(m×n)(n×p) = m×p — inner match, outer survive",
+              "AB ≠ BA: order is information"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the engine",
+            "title": "One cell only",
+            "prompt": "For $A = \\begin{pmatrix} 2 & 3 \\\\ 1 & 0 \\end{pmatrix}$, $B = \\begin{pmatrix} 1 & 4 \\\\ 5 & 2 \\end{pmatrix}$, the entry $(AB)_{12}$ is…",
+            "options": [
+              "$14$",
+              "$12$",
+              "$17$",
+              "$8$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Row 1 of $A$ · column 2 of $B$: $2 \\cdot 4 + 3 \\cdot 2 = 14$.",
+            "check": [
+              "2*4 + 3*2 == 14"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Four dot products",
+            "problemId": "vm53-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Swap and see",
+            "problemId": "vm53-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Handshake",
+            "prompt": "$P$ is $3 \\times 2$ and $Q$ is $2 \\times 5$. The product $PQ$ is…",
+            "options": [
+              "$3 \\times 5$",
+              "$2 \\times 2$",
+              "$5 \\times 3$",
+              "undefined"
+            ],
+            "correctIndex": 0,
+            "explanation": "Inner 2's shake hands and cancel; the outer $3$ and $5$ survive: $3 \\times 5$.",
+            "check": [
+              "3*5 == 15"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Matrix times column",
+            "problemId": "vm53-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Finger the row, finger the column",
+            "body": "Physically track: left finger sweeps A's row, right finger sweeps B's column, multiply as they walk. Mechanical — and it makes skipping a term nearly impossible."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "A friendly product",
+            "problemId": "vm53-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Shapes only",
+            "problemId": "vm53-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The trillion-dollar operation",
+            "body": "Neural networks are, computationally, towers of matrix multiplications. The world's AI chips are judged by one number: how many of THIS LESSON's operations they do per second."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "$(AB)_{ij}$ = row $i$ of $A$ · column $j$ of $B$.",
+              "Shapes: inner dimensions match and cancel.",
+              "$AB \\ne BA$ — never swap silently."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "identity-and-powers",
+      "title": "The Identity & Matrix Powers",
+      "concreteComparison": "Multiplying a number by 1 changes nothing. The grid world's 1 is the identity matrix $I$ — ones down the diagonal, zeros elsewhere: $AI = IA = A$, always. And once multiplying-by-itself makes sense, so do powers: $A^2 = AA$, with patterns exams love to hide inside.",
+      "objective": "Use the identity matrix, compute A² and A³, and exploit patterns in matrix powers.",
+      "concept": [
+        "The **identity** $I = \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$ is multiplication's do-nothing: $AI = IA = A$ for every compatible $A$. Its columns are the unit points $(1,0)$ and $(0,1)$ — the transformation that moves nothing.",
+        "**Powers** stack copies: $A^2 = AA$, $A^3 = A^2A$. Since a matrix always commutes with ITSELF, powers behave: $A^m A^n = A^{m+n}$. (It's mixing different matrices that breaks order.)",
+        "Exam patterns: diagonal matrices power entrywise — $\\begin{pmatrix} a & 0 \\\\ 0 & b \\end{pmatrix}^n = \\begin{pmatrix} a^n & 0 \\\\ 0 & b^n \\end{pmatrix}$; some matrices CYCLE (a 90° rotation returns to $I$ in four steps: $R^4 = I$); and some die — nonzero matrices with $A^2 = O$ exist, a purely matrix phenomenon numbers never allowed."
+      ],
+      "keyIdea": "I is the multiplicative 1 (AI = IA = A); powers stack copies and commute with themselves; diagonals power entrywise, rotations cycle.",
+      "facts": [
+        {
+          "title": "Identity",
+          "latex": "I = \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix},\\quad AI = IA = A",
+          "explanation": "The do-nothing transformation; the grid world's 1."
+        },
+        {
+          "title": "Diagonal powers",
+          "latex": "\\begin{pmatrix} a & 0 \\\\ 0 & b \\end{pmatrix}^n = \\begin{pmatrix} a^n & 0 \\\\ 0 & b^n \\end{pmatrix}",
+          "explanation": "Diagonals are the easy lane — entries power independently."
+        },
+        {
+          "title": "Cycles",
+          "latex": "R_{90°}^4 = I",
+          "explanation": "Four quarter-turns come home; powers of rotations repeat with period 4."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm54-we1",
+          "statement": "Compute $A^2$ for $A = \\begin{pmatrix} 1 & 1 \\\\ 0 & 1 \\end{pmatrix}$, then guess and verify $A^3$.",
+          "solution": "$A^2 = \\begin{pmatrix} 1 & 2 \\\\ 0 & 1 \\end{pmatrix}$; the corner counts the copies. Indeed $A^3 = \\begin{pmatrix} 1 & 3 \\\\ 0 & 1 \\end{pmatrix}$ — in general $A^n$ has $n$ in the corner.",
+          "check": [
+            "1*1 + 1*0 == 1",
+            "1*1 + 1*1 == 2",
+            "1*1 + 2*1 == 3"
+          ]
+        },
+        {
+          "id": "vm54-we2",
+          "statement": "Compute $D^5$ for $D = \\begin{pmatrix} 2 & 0 \\\\ 0 & -1 \\end{pmatrix}$.",
+          "solution": "Diagonal → entrywise powers: $D^5 = \\begin{pmatrix} 32 & 0 \\\\ 0 & -1 \\end{pmatrix}$.",
+          "check": [
+            "2**5 == 32",
+            "(-1)**5 == -1"
+          ]
+        },
+        {
+          "id": "vm54-we3",
+          "statement": "$R = \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$ (the 90° rotation). Compute $R^2$ and deduce $R^{2026}$.",
+          "solution": "$R^2 = \\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix} = -I$ (the 180° turn). So $R^4 = I$, and $2026 = 4 \\cdot 506 + 2$: $R^{2026} = R^2 = -I$.",
+          "check": [
+            "0*0 + (-1)*1 == -1",
+            "0*(-1) + (-1)*0 == 0",
+            "2026 - 4*506 == 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Squaring entrywise.",
+          "correction": "A² means A TIMES A — full row-column products. Only diagonal matrices get the entrywise shortcut.",
+          "authored": true
+        },
+        {
+          "text": "Expanding (A + B)² = A² + 2AB + B².",
+          "correction": "The middle term is AB + BA, and they differ in general. The binomial formula needs commuting — matrices usually refuse.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm54-t1",
+          "statement": "Compute $\\begin{pmatrix} 3 & 0 \\\\ 0 & 2 \\end{pmatrix}^3$.",
+          "solution": "$\\begin{pmatrix} 27 & 0 \\\\ 0 & 8 \\end{pmatrix}$.",
+          "check": [
+            "3**3 == 27",
+            "2**3 == 8"
+          ]
+        },
+        {
+          "id": "vm54-t2",
+          "statement": "Verify that $A = \\begin{pmatrix} 0 & 1 \\\\ 0 & 0 \\end{pmatrix}$ satisfies $A^2 = O$.",
+          "solution": "Row·column: every entry of $A^2$ is $0$ — a nonzero matrix whose square is zero. Numbers never do this.",
+          "check": [
+            "0*0 + 1*0 == 0",
+            "0*1 + 1*0 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The 1",
+            "title": "The matrix that does nothing",
+            "body": "$I = \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$ fixes every point — its columns are just $(1,0)$ and $(0,1)$ staying home. Algebraically it's the multiplicative 1: $AI = IA = A$, the rare product where order doesn't matter."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Powers",
+            "title": "Stack copies, hunt patterns",
+            "body": "$A^2 = AA$, $A^3 = A^2A$ — and a matrix commutes with itself, so $A^mA^n = A^{m+n}$ safely. The exam game is pattern-hunting: diagonals power entrywise, the 90° rotation cycles with $R^4 = I$, and huge exponents collapse via remainders.",
+            "beats": [
+              "AI = IA = A",
+              "diagonal matrices: power each entry",
+              "rotations cycle: R⁴ = I — use remainders mod 4"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the 1",
+            "title": "Multiply by I",
+            "prompt": "$\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}\\begin{pmatrix} 7 & -2 \\\\ 3 & 5 \\end{pmatrix} = $ ?",
+            "options": [
+              "$\\begin{pmatrix} 7 & -2 \\\\ 3 & 5 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 7 & 0 \\\\ 0 & 5 \\end{pmatrix}$",
+              "$I$",
+              "$\\begin{pmatrix} 7 & 3 \\\\ -2 & 5 \\end{pmatrix}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The identity changes nothing — check any cell: row 1 of $I$ · column 1 gives $1 \\cdot 7 + 0 \\cdot 3 = 7$.",
+            "check": [
+              "1*7 + 0*3 == 7",
+              "0*(-2) + 1*5 == 5"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A counting corner",
+            "problemId": "vm54-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Diagonal luxury",
+            "problemId": "vm54-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Ride the cycle",
+            "prompt": "$R$ is the 90° rotation matrix, $R^4 = I$. Then $R^{101} = $ ?",
+            "options": [
+              "$R$",
+              "$I$",
+              "$R^2$",
+              "$R^3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$101 = 4 \\cdot 25 + 1$, so $R^{101} = (R^4)^{25}R = R$. Big exponents die by remainder.",
+            "check": [
+              "101 - 4*25 == 1"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "R squared is −I",
+            "problemId": "vm54-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Compute A² before dreaming",
+            "body": "Every 'find A^big' question starts the same way: compute A² honestly and LOOK at it. Is it diagonal? A multiple of I? A? The pattern announces itself in one multiplication."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Cubed diagonal",
+            "problemId": "vm54-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "A square that vanishes",
+            "problemId": "vm54-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Fibonacci lives in a matrix",
+            "body": "Power up $\\begin{pmatrix} 1 & 1 \\\\ 1 & 0 \\end{pmatrix}$ and the Fibonacci numbers appear in the entries — $A^n$ holds $F_{n+1}, F_n, F_{n-1}$. Fast matrix powering is how computers get the trillionth Fibonacci number in microseconds."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "$AI = IA = A$ — the do-nothing transformation.",
+              "Diagonals power entrywise; rotations cycle ($R^4 = I$).",
+              "$(A+B)^2 \\ne A^2 + 2AB + B^2$ — commuting is not free."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "vm5-pr-1",
+      "statement": "For $A = \\begin{pmatrix} 3 & -2 & 0 \\\\ 1 & 4 & 7 \\end{pmatrix}$: dimension, $a_{13}$, and $a_{22}$.",
+      "solution": "$2 \\times 3$; $a_{13} = 0$, $a_{22} = 4$.",
+      "check": [
+        "2*3 == 6",
+        "0 + 4 == 4"
+      ]
+    },
+    {
+      "id": "vm5-pr-2",
+      "statement": "Find $x, y$: $\\begin{pmatrix} 2x & 3 \\\\ 1 & y - 2 \\end{pmatrix} = \\begin{pmatrix} 8 & 3 \\\\ 1 & 5 \\end{pmatrix}$.",
+      "solution": "$x = 4$, $y = 7$.",
+      "check": [
+        "2*4 == 8",
+        "7 - 2 == 5"
+      ]
+    },
+    {
+      "id": "vm5-pr-3",
+      "statement": "Compute $3\\begin{pmatrix} 1 & -1 \\\\ 2 & 0 \\end{pmatrix} - 2\\begin{pmatrix} 2 & 1 \\\\ -1 & 3 \\end{pmatrix}$.",
+      "solution": "$\\begin{pmatrix} -1 & -5 \\\\ 8 & -6 \\end{pmatrix}$.",
+      "check": [
+        "3*1 - 2*2 == -1",
+        "3*(-1) - 2*1 == -5",
+        "3*2 - 2*(-1) == 8",
+        "3*0 - 2*3 == -6"
+      ]
+    },
+    {
+      "id": "vm5-pr-4",
+      "statement": "Compute $\\begin{pmatrix} 2 & 1 \\\\ 3 & 0 \\end{pmatrix}\\begin{pmatrix} 1 & -2 \\\\ 4 & 5 \\end{pmatrix}$.",
+      "solution": "$\\begin{pmatrix} 6 & 1 \\\\ 3 & -6 \\end{pmatrix}$.",
+      "check": [
+        "2*1 + 1*4 == 6",
+        "2*(-2) + 1*5 == 1",
+        "3*1 + 0*4 == 3",
+        "3*(-2) + 0*5 == -6"
+      ]
+    },
+    {
+      "id": "vm5-pr-5",
+      "statement": "Compute $\\begin{pmatrix} 1 & 2 \\\\ -1 & 3 \\end{pmatrix}\\begin{pmatrix} 5 \\\\ -2 \\end{pmatrix}$.",
+      "solution": "$\\binom{1}{-11}$.",
+      "check": [
+        "1*5 + 2*(-2) == 1",
+        "-1*5 + 3*(-2) == -11"
+      ]
+    },
+    {
+      "id": "vm5-pr-6",
+      "statement": "$A$ is $4 \\times 2$, $B$ is $2 \\times 3$. Shapes of $AB$ and $BA$?",
+      "solution": "$AB$ is $4 \\times 3$; $BA$ doesn't exist ($3 \\ne 4$).",
+      "check": [
+        "4*3 == 12"
+      ]
+    },
+    {
+      "id": "vm5-pr-7",
+      "statement": "Compute $A^2$ for $A = \\begin{pmatrix} 2 & 1 \\\\ 0 & 2 \\end{pmatrix}$.",
+      "solution": "$\\begin{pmatrix} 4 & 4 \\\\ 0 & 4 \\end{pmatrix}$.",
+      "check": [
+        "2*2 + 1*0 == 4",
+        "2*1 + 1*2 == 4",
+        "0*2 + 2*0 == 0",
+        "0*1 + 2*2 == 4"
+      ]
+    },
+    {
+      "id": "vm5-pr-8",
+      "statement": "Compute $\\begin{pmatrix} -1 & 0 \\\\ 0 & 3 \\end{pmatrix}^4$.",
+      "solution": "Diagonal: $\\begin{pmatrix} 1 & 0 \\\\ 0 & 81 \\end{pmatrix}$.",
+      "check": [
+        "(-1)**4 == 1",
+        "3**4 == 81"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "vm5-ty-1",
+      "statement": "Solve for $X$: $\\;3X - \\begin{pmatrix} 2 & 1 \\\\ 0 & 4 \\end{pmatrix} = \\begin{pmatrix} 7 & -4 \\\\ 6 & 2 \\end{pmatrix}$.",
+      "solution": "$3X = \\begin{pmatrix} 9 & -3 \\\\ 6 & 6 \\end{pmatrix}$: $X = \\begin{pmatrix} 3 & -1 \\\\ 2 & 2 \\end{pmatrix}$.",
+      "check": [
+        "(7 + 2)/3 == 3",
+        "(-4 + 1)/3 == -1",
+        "(6 + 0)/3 == 2",
+        "(2 + 4)/3 == 2"
+      ]
+    },
+    {
+      "id": "vm5-ty-2",
+      "statement": "Compute both $AB$ and $BA$ for $A = \\begin{pmatrix} 1 & 0 \\\\ 2 & 1 \\end{pmatrix}$, $B = \\begin{pmatrix} 1 & 3 \\\\ 0 & 1 \\end{pmatrix}$ — equal?",
+      "solution": "$AB = \\begin{pmatrix} 1 & 3 \\\\ 2 & 7 \\end{pmatrix}$, $BA = \\begin{pmatrix} 7 & 3 \\\\ 2 & 1 \\end{pmatrix}$ — not equal.",
+      "check": [
+        "1*1 + 0*0 == 1",
+        "1*3 + 0*1 == 3",
+        "2*3 + 1*1 == 7",
+        "1*1 + 3*2 == 7",
+        "2*1 + 1*0 == 2"
+      ]
+    },
+    {
+      "id": "vm5-ty-3",
+      "statement": "Find $k$ so that $\\begin{pmatrix} 2 & k \\\\ 1 & 3 \\end{pmatrix}\\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix} = \\begin{pmatrix} 10 \\\\ 7 \\end{pmatrix}$.",
+      "solution": "Top: $2 + 2k = 10$, $k = 4$ (bottom checks: $1 + 6 = 7$ ✓).",
+      "check": [
+        "2 + 2*4 == 10",
+        "1*1 + 3*2 == 7"
+      ]
+    },
+    {
+      "id": "vm5-ty-4",
+      "statement": "$R = \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$. Compute $R^{50}$.",
+      "solution": "$R^4 = I$ and $50 = 4 \\cdot 12 + 2$: $R^{50} = R^2 = -I = \\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix}$.",
+      "check": [
+        "50 - 4*12 == 2",
+        "0*0 + (-1)*1 == -1"
+      ]
+    },
+    {
+      "id": "vm5-ty-5",
+      "statement": "For $A = \\begin{pmatrix} 1 & 1 \\\\ 0 & 1 \\end{pmatrix}$, find $A^{10}$ (use the pattern).",
+      "solution": "$A^n = \\begin{pmatrix} 1 & n \\\\ 0 & 1 \\end{pmatrix}$: $A^{10} = \\begin{pmatrix} 1 & 10 \\\\ 0 & 1 \\end{pmatrix}$.",
+      "check": [
+        "1*1 + 9*0 == 1",
+        "1*1 + 1*9 == 10"
+      ]
+    },
+    {
+      "id": "vm5-ty-6",
+      "statement": "One entry only: for $M = \\begin{pmatrix} 3 & -1 \\\\ 2 & 5 \\end{pmatrix}$, $N = \\begin{pmatrix} 0 & 2 \\\\ 4 & 1 \\end{pmatrix}$, find $(MN)_{21}$.",
+      "solution": "Row 2 of $M$ · column 1 of $N$: $2 \\cdot 0 + 5 \\cdot 4 = 20$.",
+      "check": [
+        "2*0 + 5*4 == 20"
+      ]
+    }
+  ]
+}

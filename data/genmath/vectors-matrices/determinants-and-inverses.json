@@ -1,0 +1,965 @@
+{
+  "slug": "determinants-and-inverses",
+  "title": "Determinants, Inverses & Systems",
+  "unit": 6,
+  "status": "published",
+  "blurb": "The determinant ad − bc, the 2×2 inverse, solving systems with matrices and Cramer's rule, and matrices as transformations — the capstone.",
+  "buildsOn": "Matrix multiplication (Unit 5) and the transformation matrices from the Geometry course.",
+  "lessons": [
+    {
+      "slug": "the-determinant",
+      "title": "The Determinant",
+      "concreteComparison": "Every 2×2 matrix hides one number that answers three questions at once: does the matrix have an inverse, by how much does it scale areas, and do its columns point along one line? That number is the determinant, $ad - bc$ — criss-cross multiply, subtract.",
+      "objective": "Compute 2×2 determinants, interpret det as the area scale factor, and use det = 0 as the singularity/parallel-columns test.",
+      "concept": [
+        "For $A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$: $$\\det A = ad - bc$$ — main diagonal product minus anti-diagonal product. One criss-cross, one number.",
+        "**Geometric meaning**: any shape transformed by $A$ has its area multiplied by $|\\det A|$. Determinant $6$ → areas grow sixfold; determinant $\\pm 1$ → rigid (rotations, reflections); a NEGATIVE sign means the plane got mirrored.",
+        "$\\det A = 0$ is the death certificate: the columns are parallel (one line's worth of directions), all areas collapse to zero, and — next lesson's headline — no inverse exists. Notice the connection to Unit 1: $ad - bc = 0$ is exactly the cross-test for the columns $(a, c)$ and $(b, d)$ being parallel."
+      ],
+      "keyIdea": "det = ad − bc: the area scale factor (sign = orientation flip); det = 0 ⇔ parallel columns ⇔ no inverse.",
+      "facts": [
+        {
+          "title": "The formula",
+          "latex": "\\det\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} = ad - bc",
+          "explanation": "Main diagonal minus anti-diagonal."
+        },
+        {
+          "title": "Area factor",
+          "latex": "\\text{area scale} = |\\det A|",
+          "explanation": "Negative determinant = mirrored orientation, same area scale."
+        },
+        {
+          "title": "Singular",
+          "latex": "\\det A = 0 \\iff \\text{columns parallel} \\iff \\text{no inverse}",
+          "explanation": "The zero that changes everything."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm61-we1",
+          "statement": "Compute $\\det\\begin{pmatrix} 3 & 5 \\\\ 1 & 4 \\end{pmatrix}$.",
+          "solution": "$3 \\cdot 4 - 5 \\cdot 1 = 7$.",
+          "check": [
+            "3*4 - 5*1 == 7"
+          ]
+        },
+        {
+          "id": "vm61-we2",
+          "statement": "A triangle of area $9$ is transformed by $M = \\begin{pmatrix} 2 & 1 \\\\ 3 & 4 \\end{pmatrix}$. Find the image's area.",
+          "solution": "$\\det M = 8 - 3 = 5$; the image's area is $|5| \\cdot 9 = 45$.",
+          "check": [
+            "2*4 - 1*3 == 5",
+            "5*9 == 45"
+          ]
+        },
+        {
+          "id": "vm61-we3",
+          "statement": "For which $k$ is $\\begin{pmatrix} 2 & k \\\\ 3 & 6 \\end{pmatrix}$ singular (determinant zero)?",
+          "solution": "$12 - 3k = 0$, so $k = 4$. Check the columns at $k = 4$: $(2, 3)$ and $(4, 6)$ — parallel, as singularity demands.",
+          "check": [
+            "2*6 - 4*3 == 0",
+            "2*6 == 4*3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding instead of subtracting: ad + bc.",
+          "correction": "The anti-diagonal SUBTRACTS: ad − bc. With the plus sign, determinant-zero tests and inverses all silently break.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the absolute value for areas.",
+          "correction": "det = −3 scales areas by 3, not by −3 — the sign reports orientation (a mirror happened), never negative area.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm61-t1",
+          "statement": "Compute $\\det\\begin{pmatrix} 7 & 2 \\\\ 3 & 1 \\end{pmatrix}$.",
+          "solution": "$7 - 6 = 1$ — this matrix preserves areas.",
+          "check": [
+            "7*1 - 2*3 == 1"
+          ]
+        },
+        {
+          "id": "vm61-t2",
+          "statement": "For which $m$ does $\\begin{pmatrix} m & 3 \\\\ 4 & m \\end{pmatrix}$ have determinant zero?",
+          "solution": "$m^2 - 12 = 0$: $m = \\pm 2\\sqrt{3}$.",
+          "check": [
+            "(2*sqrt(3))**2 - 12 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "One number",
+            "title": "The criss-cross",
+            "body": "$$\\det\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} = ad - bc$$ Main diagonal times, anti-diagonal times, subtract. Ten seconds of arithmetic — and it answers whether the matrix is invertible, how areas scale, and whether the columns collapsed onto one line."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Three readings",
+            "title": "Area, orientation, life-or-death",
+            "body": "Reading 1: areas scale by $|\\det|$ — the geometry course's transformation-matrices lesson planted this. Reading 2: a negative determinant means the plane got MIRRORED. Reading 3: $\\det = 0$ means the columns are parallel — the plane squashes onto a line, areas die, and no inverse can ever undo it.",
+            "beats": [
+              "det = ad − bc",
+              "|det| = area factor; sign = orientation",
+              "det = 0: columns parallel, no inverse"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the criss-cross",
+            "title": "Compute one",
+            "prompt": "$\\det\\begin{pmatrix} 5 & 2 \\\\ 7 & 3 \\end{pmatrix} = $ ?",
+            "options": [
+              "$1$",
+              "$29$",
+              "$-1$",
+              "$11$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$15 - 14 = 1$. (The $29$ is the plus-sign trap: $15 + 14$.)",
+            "check": [
+              "5*3 - 2*7 == 1"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Ten seconds",
+            "problemId": "vm61-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Areas, priced",
+            "problemId": "vm61-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the sign",
+            "prompt": "A transformation has determinant $-2$. It…",
+            "options": [
+              "doubles areas and mirrors the plane",
+              "shrinks areas and mirrors",
+              "doubles areas, no mirror",
+              "is singular"
+            ],
+            "correctIndex": 0,
+            "explanation": "Area factor $|-2| = 2$; the negative sign reports an orientation flip — somewhere inside lives a reflection.",
+            "check": [
+              "Abs(-2) == 2"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Tuning k to zero",
+            "problemId": "vm61-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "det = 0 questions are parallel questions",
+            "body": "\"For which k is the matrix singular?\" is Unit 1's parallel test in a trench coat: set ad − bc = 0 and you're cross-multiplying the columns. Same reflex, new vocabulary."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "An area-keeper",
+            "problemId": "vm61-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Quadratic singularity",
+            "problemId": "vm61-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Determinants came first",
+            "body": "Determinants were studied by Seki in Japan and Leibniz in Europe in the 1680s — 170 years BEFORE matrices got their name. The number was so useful that the grid was invented to hold it."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "$\\det = ad - bc$ — criss-cross, subtract.",
+              "$|\\det|$ scales areas; negative = mirrored.",
+              "$\\det = 0$: parallel columns, no inverse."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-inverse-matrix",
+      "title": "The Inverse Matrix",
+      "concreteComparison": "Every do has an undo — if you're lucky. The matrix that undoes $A$ is its inverse $A^{-1}$: apply both and you've done nothing, $AA^{-1} = I$. For 2×2's there's a closed recipe — swap, negate, divide by the determinant — and the determinant decides your luck: $\\det = 0$ means no undo exists.",
+      "objective": "Compute 2×2 inverses via the swap-negate-divide recipe, verify with AA⁻¹ = I, and use det ≠ 0 as the existence test.",
+      "concept": [
+        "The recipe: $$A^{-1} = \\frac{1}{ad - bc}\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$$ — SWAP the main diagonal, NEGATE the anti-diagonal, DIVIDE by the determinant.",
+        "It exists exactly when $\\det A \\ne 0$. A singular matrix squashes the plane onto a line — information is destroyed, and no matrix can un-destroy it.",
+        "Verification is one multiplication: $AA^{-1}$ must equal $I$ (and $A^{-1}A = I$ too — inverses are the exception to order-anxiety). On exams, always run the check: it converts an inverse from 'hopefully right' to 'proven right' in fifteen seconds."
+      ],
+      "keyIdea": "A⁻¹ = (1/det)·(swap diagonal, negate anti-diagonal); exists ⇔ det ≠ 0; verify with AA⁻¹ = I.",
+      "facts": [
+        {
+          "title": "The recipe",
+          "latex": "A^{-1} = \\frac{1}{ad-bc}\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}",
+          "explanation": "Swap, negate, divide by det."
+        },
+        {
+          "title": "Existence",
+          "latex": "A^{-1} \\text{ exists} \\iff \\det A \\ne 0",
+          "explanation": "Squashed planes can't be unsquashed."
+        },
+        {
+          "title": "Verification",
+          "latex": "AA^{-1} = A^{-1}A = I",
+          "explanation": "The definition — and your fifteen-second proof."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm62-we1",
+          "statement": "Find the inverse of $A = \\begin{pmatrix} 3 & 5 \\\\ 1 & 2 \\end{pmatrix}$.",
+          "solution": "$\\det A = 6 - 5 = 1$. Swap-negate-divide: $A^{-1} = \\begin{pmatrix} 2 & -5 \\\\ -1 & 3 \\end{pmatrix}$. Verify one cell of $AA^{-1}$: $3 \\cdot 2 + 5 \\cdot (-1) = 1$ ✓.",
+          "check": [
+            "3*2 - 5*1 == 1",
+            "3*2 + 5*(-1) == 1",
+            "3*(-5) + 5*3 == 0",
+            "1*2 + 2*(-1) == 0",
+            "1*(-5) + 2*3 == 1"
+          ]
+        },
+        {
+          "id": "vm62-we2",
+          "statement": "Find the inverse of $B = \\begin{pmatrix} 4 & 7 \\\\ 1 & 2 \\end{pmatrix}$.",
+          "solution": "$\\det B = 8 - 7 = 1$: $B^{-1} = \\begin{pmatrix} 2 & -7 \\\\ -1 & 4 \\end{pmatrix}$.",
+          "check": [
+            "4*2 - 7*1 == 1",
+            "4*2 + 7*(-1) == 1",
+            "1*(-7) + 2*4 == 1"
+          ]
+        },
+        {
+          "id": "vm62-we3",
+          "statement": "Does $C = \\begin{pmatrix} 2 & 6 \\\\ 3 & 9 \\end{pmatrix}$ have an inverse? Solve, then explain geometrically.",
+          "solution": "$\\det C = 18 - 18 = 0$ — no inverse. Geometrically: the columns $(2,3)$ and $(6,9)$ are parallel, so $C$ flattens the whole plane onto that line; the flattening can't be undone.",
+          "check": [
+            "2*9 - 6*3 == 0",
+            "2*9 == 6*3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Swapping the anti-diagonal and negating the main one.",
+          "correction": "SWAP a and d (main diagonal); NEGATE b and c (anti-diagonal). Run AA⁻¹ = I once and any mix-up confesses immediately.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting to divide by the determinant.",
+          "correction": "Without the 1/det factor, AA⁻¹ = det·I, not I. If det = 1 you got lucky; any other det and the answer is scaled garbage.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm62-t1",
+          "statement": "Find the inverse of $\\begin{pmatrix} 2 & 1 \\\\ 5 & 3 \\end{pmatrix}$.",
+          "solution": "$\\det = 1$: inverse $\\begin{pmatrix} 3 & -1 \\\\ -5 & 2 \\end{pmatrix}$.",
+          "check": [
+            "2*3 - 1*5 == 1",
+            "2*3 + 1*(-5) == 1",
+            "5*(-1) + 3*2 == 1"
+          ]
+        },
+        {
+          "id": "vm62-t2",
+          "statement": "Find the inverse of $\\begin{pmatrix} 4 & 2 \\\\ 3 & 2 \\end{pmatrix}$.",
+          "solution": "$\\det = 2$: inverse $= \\frac{1}{2}\\begin{pmatrix} 2 & -2 \\\\ -3 & 4 \\end{pmatrix} = \\begin{pmatrix} 1 & -1 \\\\ -3/2 & 2 \\end{pmatrix}$.",
+          "check": [
+            "4*2 - 2*3 == 2",
+            "4*1 + 2*Rational(-3,2) == 1",
+            "3*(-1) + 2*2 == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The undo",
+            "title": "AA⁻¹ = I",
+            "body": "The inverse of $A$ is the matrix that undoes it: apply $A$, then $A^{-1}$, and every point is back home — $AA^{-1} = I$. Solving matrix equations, decoding transformations, cracking systems: all of it runs through the inverse."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The recipe",
+            "title": "Swap, negate, divide",
+            "body": "$$A^{-1} = \\frac{1}{ad - bc}\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$$ Swap the main diagonal, negate the anti-diagonal, divide everything by the determinant. And the determinant is the gatekeeper: $\\det = 0$ → the plane was squashed onto a line → nothing can unsquash it → no inverse.",
+            "beats": [
+              "swap a↔d, negate b and c",
+              "divide by det",
+              "det = 0 → no inverse, full stop"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the recipe",
+            "title": "Before dividing",
+            "prompt": "For $A = \\begin{pmatrix} 5 & 3 \\\\ 3 & 2 \\end{pmatrix}$ (det $= 1$), $A^{-1} = $ ?",
+            "options": [
+              "$\\begin{pmatrix} 2 & -3 \\\\ -3 & 5 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 5 & -3 \\\\ -3 & 2 \\end{pmatrix}$",
+              "$\\begin{pmatrix} -2 & 3 \\\\ 3 & -5 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 2 & 3 \\\\ 3 & 5 \\end{pmatrix}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Swap $5$ and $2$, negate the $3$'s, divide by $1$. Quick verify: $5 \\cdot 2 + 3 \\cdot (-3) = 1$ ✓.",
+            "check": [
+              "5*2 - 3*3 == 1",
+              "5*2 + 3*(-3) == 1"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Det = 1 luxury",
+            "problemId": "vm62-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Another clean one",
+            "problemId": "vm62-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The gatekeeper",
+            "prompt": "Which matrix has NO inverse?",
+            "options": [
+              "$\\begin{pmatrix} 3 & 6 \\\\ 2 & 4 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 3 & 6 \\\\ 2 & 5 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$3 \\cdot 4 - 6 \\cdot 2 = 0$ — singular. (Its columns $(3,2)$ and $(6,4)$ are parallel.) The others have det $3, -1$… alive.",
+            "check": [
+              "3*4 - 6*2 == 0",
+              "3*5 - 6*2 == 3"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "When the undo dies",
+            "problemId": "vm62-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Spend 15 seconds on AA⁻¹",
+            "body": "After computing an inverse, multiply back — just the top-left cell if you're rushed: it must be 1. Every swap/negate/divide slip gets caught by that single number."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Det-1 case",
+            "problemId": "vm62-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Divide by 2",
+            "problemId": "vm62-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Bigger matrices, same story",
+            "body": "3×3 and beyond have inverses too — computed by Gaussian elimination rather than a neat recipe. But the gatekeeper never changes: det ≠ 0, in every dimension, forever."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Swap main diagonal, negate anti-diagonal, divide by det.",
+              "Exists ⇔ $\\det \\ne 0$.",
+              "Verify: $AA^{-1} = I$ — fifteen seconds, total certainty."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "solving-systems-with-matrices",
+      "title": "Solving Systems with Matrices",
+      "concreteComparison": "The system $\\begin{cases} 3x + 5y = 1 \\\\ x + 2y = 0 \\end{cases}$ is secretly one matrix equation: $A\\binom{x}{y} = \\binom{1}{0}$. And matrix equations have a one-move solution: multiply both sides by $A^{-1}$. Two equations, two unknowns — one inverse.",
+      "objective": "Rewrite 2×2 systems as AX = B, solve via X = A⁻¹B, and use Cramer's rule as the determinant shortcut.",
+      "concept": [
+        "Any 2×2 linear system packs into $AX = B$: coefficients in $A$, unknowns in the column $X$, constants in $B$. Multiply both sides by $A^{-1}$ (on the LEFT — order is sacred): $$X = A^{-1}B.$$",
+        "**Cramer's rule** is the same solution with the inverse pre-chewed into determinants: $$x = \\frac{\\det A_x}{\\det A}, \\qquad y = \\frac{\\det A_y}{\\det A},$$ where $A_x$ is $A$ with its FIRST column replaced by $B$, and $A_y$ replaces the second. Three criss-crosses and you're done.",
+        "$\\det A = 0$ is the degenerate flag: the system has no unique solution — either none (parallel lines) or infinitely many (the same line twice). The determinant you learned two lessons ago is exactly the 'does this system behave?' test."
+      ],
+      "keyIdea": "System = AX = B; solve X = A⁻¹B, or Cramer: x = det Aₓ/det A, y = det A_y/det A; det = 0 flags no-unique-solution.",
+      "facts": [
+        {
+          "title": "Matrix form",
+          "latex": "AX = B \\;\\Rightarrow\\; X = A^{-1}B",
+          "explanation": "Multiply by the inverse on the left."
+        },
+        {
+          "title": "Cramer's rule",
+          "latex": "x = \\frac{\\det A_x}{\\det A},\\; y = \\frac{\\det A_y}{\\det A}",
+          "explanation": "Replace a column with B, criss-cross, divide."
+        },
+        {
+          "title": "Degenerate",
+          "latex": "\\det A = 0 \\Rightarrow \\text{no unique solution}",
+          "explanation": "Parallel or identical lines — the determinant warns first."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm63-we1",
+          "statement": "Solve with an inverse: $\\begin{cases} 3x + 5y = 1 \\\\ x + 2y = 0 \\end{cases}$",
+          "solution": "$A = \\begin{pmatrix} 3 & 5 \\\\ 1 & 2 \\end{pmatrix}$, $\\det = 1$, $A^{-1} = \\begin{pmatrix} 2 & -5 \\\\ -1 & 3 \\end{pmatrix}$. $X = A^{-1}\\binom{1}{0} = \\binom{2}{-1}$: $x = 2$, $y = -1$. Check: $3(2) + 5(-1) = 1$ ✓.",
+          "check": [
+            "3*2 + 5*(-1) == 1",
+            "2 + 2*(-1) == 0"
+          ]
+        },
+        {
+          "id": "vm63-we2",
+          "statement": "Solve by Cramer's rule: $\\begin{cases} 2x + y = 7 \\\\ x - 3y = -7 \\end{cases}$",
+          "solution": "$\\det A = -6 - 1 = -7$. $\\det A_x = \\det\\begin{pmatrix} 7 & 1 \\\\ -7 & -3 \\end{pmatrix} = -21 + 7 = -14$: $x = 2$. $\\det A_y = \\det\\begin{pmatrix} 2 & 7 \\\\ 1 & -7 \\end{pmatrix} = -14 - 7 = -21$: $y = 3$.",
+          "check": [
+            "2*(-3) - 1*1 == -7",
+            "7*(-3) - 1*(-7) == -14",
+            "2*(-7) - 7*1 == -21",
+            "Rational(-14, -7) == 2",
+            "Rational(-21, -7) == 3",
+            "2*2 + 3 == 7"
+          ]
+        },
+        {
+          "id": "vm63-we3",
+          "statement": "For which $k$ does $\\begin{cases} 2x + 3y = 5 \\\\ 4x + ky = 7 \\end{cases}$ FAIL to have a unique solution?",
+          "solution": "$\\det A = 2k - 12 = 0$ at $k = 6$. There the left sides are proportional ($4x + 6y = 2(2x + 3y)$) but the right sides aren't ($7 \\ne 10$): parallel lines, no solution at all.",
+          "check": [
+            "2*6 - 3*4 == 0",
+            "2*5 == 10"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Multiplying by A⁻¹ on the wrong side.",
+          "correction": "AX = B needs A⁻¹ on the LEFT of both sides: X = A⁻¹B. Writing BA⁻¹ is a different product (when it even exists) — order never stopped mattering.",
+          "authored": true
+        },
+        {
+          "text": "Replacing the wrong column in Cramer's rule.",
+          "correction": "For x, replace the x-COLUMN (first) with B; for y, the second. Swapping gives the two answers exchanged — plausible-looking and wrong.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm63-t1",
+          "statement": "Solve by Cramer: $\\begin{cases} x + y = 5 \\\\ 2x - y = 1 \\end{cases}$",
+          "solution": "$\\det A = -1 - 2 = -3$; $\\det A_x = -5 - 1 = -6$: $x = 2$; $\\det A_y = 1 - 10 = -9$: $y = 3$.",
+          "check": [
+            "1*(-1) - 1*2 == -3",
+            "5*(-1) - 1*1 == -6",
+            "1*1 - 5*2 == -9",
+            "2 + 3 == 5",
+            "2*2 - 3 == 1"
+          ]
+        },
+        {
+          "id": "vm63-t2",
+          "statement": "For which $m$ does $\\begin{cases} 3x + my = 1 \\\\ 6x + 8y = 5 \\end{cases}$ lose its unique solution?",
+          "solution": "$24 - 6m = 0$: $m = 4$.",
+          "check": [
+            "3*8 - 4*6 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The repack",
+            "title": "Two equations, one equation",
+            "body": "$\\begin{cases} 3x + 5y = 1 \\\\ x + 2y = 0 \\end{cases}$ is $\\begin{pmatrix} 3 & 5 \\\\ 1 & 2 \\end{pmatrix}\\binom{x}{y} = \\binom{1}{0}$ — coefficients, unknowns, constants: $AX = B$. One matrix equation instead of two number equations, and matrix tools now apply."
+          },
+          {
+            "kind": "systemGraph",
+            "eyebrow": "See the system",
+            "title": "Two lines, one crossing",
+            "teach": "Each equation is a line; the solution is where they cross. Steer the second line: when the slopes match, the crossing escapes to infinity — that's exactly when the coefficient matrix's determinant hits zero. Algebra's det = 0 and geometry's parallel lines are the same event.",
+            "config": {
+              "m1": -0.6,
+              "b1": 0.2,
+              "m2": 2,
+              "b2": -3.5,
+              "interactive": true
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Two solvers",
+            "title": "Inverse, or Cramer",
+            "body": "Solver 1: $X = A^{-1}B$ — one inverse, one multiplication. Solver 2, **Cramer's rule**: $x = \\frac{\\det A_x}{\\det A}$, $y = \\frac{\\det A_y}{\\det A}$, where $A_x$ swaps $B$ into the first column, $A_y$ into the second. Three criss-crosses total — the exam speedrun.",
+            "beats": [
+              "X = A⁻¹B — inverse on the LEFT",
+              "Cramer: replace a column with B, divide dets",
+              "det A = 0 → no unique solution"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the setup",
+            "title": "Pack it",
+            "prompt": "The system $\\begin{cases} 4x - y = 6 \\\\ 2x + 3y = 8 \\end{cases}$ has coefficient matrix…",
+            "options": [
+              "$\\begin{pmatrix} 4 & -1 \\\\ 2 & 3 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 4 & 2 \\\\ -1 & 3 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 6 \\\\ 8 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 4 & 1 \\\\ 2 & 3 \\end{pmatrix}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Rows mirror the equations, signs included: $(4, -1)$ then $(2, 3)$. (The second option is its transpose — the classic repack error.)",
+            "check": [
+              "4*3 - (-1)*2 == 14"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "By inverse",
+            "problemId": "vm63-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "By Cramer",
+            "problemId": "vm63-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Cramer, one variable",
+            "prompt": "For $\\begin{cases} x + 2y = 4 \\\\ 3x + 4y = 10 \\end{cases}$, Cramer gives $x = $ ?",
+            "options": [
+              "$2$",
+              "$1$",
+              "$4$",
+              "$-2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\det A = 4 - 6 = -2$; $\\det A_x = 16 - 20 = -4$; $x = \\frac{-4}{-2} = 2$.",
+            "check": [
+              "1*4 - 2*3 == -2",
+              "4*4 - 2*10 == -4",
+              "Rational(-4, -2) == 2"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "When uniqueness dies",
+            "problemId": "vm63-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Substitute the answer back",
+            "body": "Whatever solver you used, plug (x, y) into the ORIGINAL equations. Ten seconds converts 'probably right' into 'checked' — and exams punish unchecked Cramer sign slips mercilessly."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Speedrun one",
+            "problemId": "vm63-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Break uniqueness",
+            "problemId": "vm63-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Cramer's rule doesn't scale",
+            "body": "Cramer published his rule in 1750, and it's lovely for 2×2 — but for a 20-variable system it needs more arithmetic than there are grains of sand on Earth. Real solvers use elimination; Cramer survives as the exam's pocket knife."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Pack: $AX = B$; solve: $X = A^{-1}B$ (inverse on the left).",
+              "Cramer: replace a column with $B$, divide determinants.",
+              "$\\det A = 0$: parallel/identical lines — no unique solution."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "matrices-as-transformations",
+      "title": "Matrices as Transformations — the Capstone",
+      "concreteComparison": "Everything converges here: a matrix IS a transformation of the plane (its columns say where the unit points go), multiplication IS composition (do one, then the other), the determinant IS the area report, and the inverse IS the undo. One object, four readings — and every exam question about matrices lives in one of them.",
+      "objective": "Move fluently between the four readings: matrix as transformation, product as composition, determinant as area factor, inverse as undo.",
+      "concept": [
+        "**Columns = destinations.** The matrix's first column is where $(1, 0)$ lands, the second is where $(0, 1)$ lands. Build any transformation's matrix by asking the two unit points where they go — the geometry course's transformation-matrices lesson, now with full machinery behind it.",
+        "**Product = composition, right-to-left.** $BA$ means 'apply $A$ first, then $B$' — the matrix nearest the point acts first. Non-commutativity is just the fact that order of operations matters in geometry.",
+        "**Determinant = area factor; inverse = undo.** $|\\det|$ prices areas, its sign reports mirroring; $A^{-1}$ reverses the map (and exists only when nothing was flattened). Compositions multiply determinants: $\\det(BA) = \\det B \\cdot \\det A$ — undo-ability is inherited or lost at each stage."
+      ],
+      "keyIdea": "Columns = where (1,0),(0,1) go; BA = A then B; det multiplies under composition; inverse = the undo when det ≠ 0.",
+      "facts": [
+        {
+          "title": "Columns",
+          "latex": "\\text{col}_1 = T(1,0),\\; \\text{col}_2 = T(0,1)",
+          "explanation": "Build and decode every matrix through two points."
+        },
+        {
+          "title": "Composition",
+          "latex": "BA = \\text{apply } A, \\text{ then } B",
+          "explanation": "Nearest the point acts first — read right to left."
+        },
+        {
+          "title": "Determinant multiplies",
+          "latex": "\\det(BA) = \\det B \\cdot \\det A",
+          "explanation": "Area factors compose by multiplying."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm64-we1",
+          "statement": "Build the matrix that rotates $90°$ counter-clockwise and then doubles every length.",
+          "solution": "Track the unit points: $(1,0) \\to (0,1) \\to (0,2)$; $(0,1) \\to (-1,0) \\to (-2,0)$. Columns up: $\\begin{pmatrix} 0 & -2 \\\\ 2 & 0 \\end{pmatrix}$ — equivalently $2I \\cdot R = \\begin{pmatrix} 2 & 0 \\\\ 0 & 2 \\end{pmatrix}\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$.",
+          "check": [
+            "2*0 == 0",
+            "2*1 == 2",
+            "2*(-1) == -2",
+            "0*(-2) - (-2)*2 == 4"
+          ]
+        },
+        {
+          "id": "vm64-we2",
+          "statement": "$A$ reflects over the $x$-axis, $B$ rotates $90°$ CCW. Compute $BA$ and $AB$ applied to $(1, 0)$ — same?",
+          "solution": "$BA$: reflect first — $(1,0) \\to (1,0)$ — then rotate: $(0, 1)$. $AB$: rotate first — $(1,0) \\to (0,1)$ — then reflect: $(0, -1)$. Different! Order changed the destination, which is exactly $AB \\ne BA$ in pictures.",
+          "check": [
+            "0*1 + (-1)*0 == 0",
+            "1*1 + 0*0 == 1",
+            "(-1)*1 == -1"
+          ]
+        },
+        {
+          "id": "vm64-we3",
+          "statement": "$T = \\begin{pmatrix} 3 & 1 \\\\ 2 & 4 \\end{pmatrix}$ maps a square of area $2$; then $S$ with $\\det S = \\tfrac{1}{2}$ is applied. Find the final area, and decide whether the combined map is invertible.",
+          "solution": "$\\det T = 12 - 2 = 10$: area $2 \\to 20$. Then $\\times \\tfrac{1}{2}$: final area $10$. Combined determinant $= \\tfrac{1}{2} \\cdot 10 = 5 \\ne 0$ — invertible; the undo exists.",
+          "check": [
+            "3*4 - 1*2 == 10",
+            "10*2 == 20",
+            "Rational(1,2)*20 == 10",
+            "Rational(1,2)*10 == 5"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading BA as 'B first, then A'.",
+          "correction": "The matrix NEAREST the point acts first: BA(x) = B(A(x)) — A first. Right-to-left, like function composition, because that's what it is.",
+          "authored": true
+        },
+        {
+          "text": "Adding determinants under composition.",
+          "correction": "Area factors MULTIPLY: det(BA) = det B · det A. A doubling followed by a tripling scales by 6, not 5.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm64-t1",
+          "statement": "What single matrix scales by $3$ and then rotates $180°$?",
+          "solution": "$(1,0) \\to (3,0) \\to (-3,0)$; $(0,1) \\to (0,3) \\to (0,-3)$: the matrix is $\\begin{pmatrix} -3 & 0 \\\\ 0 & -3 \\end{pmatrix} = -3I$.",
+          "check": [
+            "(-1)*3 == -3",
+            "(-3)*(-3) - 0 == 9"
+          ]
+        },
+        {
+          "id": "vm64-t2",
+          "statement": "$\\det A = 4$ and $\\det B = -2$. Find $\\det(BA)$, the combined area factor, and whether orientation flips.",
+          "solution": "$\\det(BA) = -8$: areas scale by $8$, and the negative sign means one mirror happened — orientation flips.",
+          "check": [
+            "4*(-2) == -8",
+            "Abs(-8) == 8"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Convergence",
+            "title": "One object, four readings",
+            "body": "A matrix is simultaneously: a TRANSFORMATION (columns = where the unit points land), a COMPOSER (multiplication chains maps, right-to-left), an AREA ACCOUNTANT (determinant), and — when $\\det \\ne 0$ — an UNDOABLE act (inverse). Every exam question picks one reading; fluency means switching between them mid-problem."
+          },
+          {
+            "kind": "transformPlane",
+            "eyebrow": "Watch one",
+            "title": "A turn you can decode",
+            "teach": "This $90°$ rotation sends $(1,0) \\to (0,1)$ and $(0,1) \\to (-1,0)$ — stand those up as columns and you've rebuilt $\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$, with $\\det = 1$: rigid, orientation kept, undo = rotate back ($R^{-1} = R^3$).",
+            "config": {
+              "transform": "rotate",
+              "deg": 90
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the reading",
+            "title": "Right to left",
+            "prompt": "$BA$ applied to a point means…",
+            "options": [
+              "$A$ acts first, then $B$",
+              "$B$ acts first, then $A$",
+              "order doesn't matter",
+              "$A$ and $B$ act simultaneously"
+            ],
+            "correctIndex": 0,
+            "explanation": "$BA(x) = B(A(x))$ — the matrix touching the point goes first. Function composition notation, inherited.",
+            "check": [
+              "1*1 == 1"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Build a two-step map",
+            "problemId": "vm64-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Order, photographed",
+            "problemId": "vm64-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Compose the areas",
+            "prompt": "Map 1 has $\\det = 3$, map 2 has $\\det = -1$. After both, a shape of area $4$ has area…",
+            "options": [
+              "$12$",
+              "$-12$",
+              "$8$",
+              "$4$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Determinants multiply: $3 \\cdot (-1) = -3$; areas take the absolute value: $4 \\cdot 3 = 12$ (mirrored once).",
+            "check": [
+              "3*(-1) == -3",
+              "Abs(-3)*4 == 12"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Area through a pipeline",
+            "problemId": "vm64-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Name the reading first",
+            "body": "Before computing, say which reading the question wants: destination of a point (columns), combined map (product), area (det), or undo (inverse). Half of matrix-exam errors are answering in the wrong reading."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Scale then turn",
+            "problemId": "vm64-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Compose determinants",
+            "problemId": "vm64-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "You've built linear algebra",
+            "body": "Vectors, dot products, matrices, determinants, inverses, transformations — assembled together, these are the first chapter of linear algebra, the mathematics running graphics, machine learning, quantum mechanics, and Google's original search ranking. This course was the front door."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Columns say where $(1,0)$ and $(0,1)$ land — build and decode.",
+              "$BA$ = $A$ then $B$; $\\det(BA) = \\det B \\cdot \\det A$.",
+              "$\\det \\ne 0$ ⇔ the undo exists — the course's through-line."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "vm6-pr-1",
+      "statement": "Compute $\\det\\begin{pmatrix} 6 & 2 \\\\ 7 & 3 \\end{pmatrix}$.",
+      "solution": "$18 - 14 = 4$.",
+      "check": [
+        "6*3 - 2*7 == 4"
+      ]
+    },
+    {
+      "id": "vm6-pr-2",
+      "statement": "For which $k$ is $\\begin{pmatrix} k & 8 \\\\ 2 & k \\end{pmatrix}$ singular?",
+      "solution": "$k^2 - 16 = 0$: $k = \\pm 4$.",
+      "check": [
+        "4*4 - 8*2 == 0",
+        "(-4)*(-4) - 8*2 == 0"
+      ]
+    },
+    {
+      "id": "vm6-pr-3",
+      "statement": "A shape of area $7$ is transformed by a matrix with determinant $-3$. Find the image's area.",
+      "solution": "$|-3| \\cdot 7 = 21$ (and the shape is mirrored).",
+      "check": [
+        "Abs(-3)*7 == 21"
+      ]
+    },
+    {
+      "id": "vm6-pr-4",
+      "statement": "Find the inverse of $\\begin{pmatrix} 5 & 2 \\\\ 7 & 3 \\end{pmatrix}$.",
+      "solution": "$\\det = 1$: $\\begin{pmatrix} 3 & -2 \\\\ -7 & 5 \\end{pmatrix}$.",
+      "check": [
+        "5*3 - 2*7 == 1",
+        "5*3 + 2*(-7) == 1",
+        "7*(-2) + 3*5 == 1"
+      ]
+    },
+    {
+      "id": "vm6-pr-5",
+      "statement": "Find the inverse of $\\begin{pmatrix} 6 & 4 \\\\ 2 & 2 \\end{pmatrix}$.",
+      "solution": "$\\det = 4$: $\\frac{1}{4}\\begin{pmatrix} 2 & -4 \\\\ -2 & 6 \\end{pmatrix} = \\begin{pmatrix} 1/2 & -1 \\\\ -1/2 & 3/2 \\end{pmatrix}$.",
+      "check": [
+        "6*2 - 4*2 == 4",
+        "6*Rational(1,2) + 4*Rational(-1,2) == 1",
+        "2*(-1) + 2*Rational(3,2) == 1"
+      ]
+    },
+    {
+      "id": "vm6-pr-6",
+      "statement": "Solve by Cramer: $\\begin{cases} 3x + 2y = 8 \\\\ x - y = 1 \\end{cases}$",
+      "solution": "$\\det A = -3 - 2 = -5$. $\\det A_x = 8 \\cdot (-1) - 2 \\cdot 1 = -10$: $x = \\frac{-10}{-5} = 2$. $\\det A_y = 3 \\cdot 1 - 8 \\cdot 1 = -5$: $y = 1$. Check: $3(2) + 2(1) = 8$ ✓.",
+      "check": [
+        "3*(-1) - 2*1 == -5",
+        "8*(-1) - 2*1 == -10",
+        "Rational(-10,-5) == 2",
+        "3*2 + 2*1 == 8",
+        "2 - 1 == 1"
+      ]
+    },
+    {
+      "id": "vm6-pr-7",
+      "statement": "For which $m$ does $\\begin{cases} 2x + 5y = 3 \\\\ 4x + my = 1 \\end{cases}$ have NO unique solution?",
+      "solution": "$2m - 20 = 0$: $m = 10$ (and there the right sides break proportionality: no solution).",
+      "check": [
+        "2*10 - 5*4 == 0"
+      ]
+    },
+    {
+      "id": "vm6-pr-8",
+      "statement": "$\\det A = 5$, $\\det B = 2$. Find $\\det(AB)$ and $\\det(A^{-1})$.",
+      "solution": "$\\det(AB) = 10$; $\\det(A^{-1}) = \\frac{1}{5}$ (undoing divides the area back).",
+      "check": [
+        "5*2 == 10",
+        "Rational(1,5)*5 == 1"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "vm6-ty-1",
+      "statement": "Compute $\\det\\begin{pmatrix} 9 & 6 \\\\ 6 & 4 \\end{pmatrix}$ and interpret.",
+      "solution": "$36 - 36 = 0$ — singular: columns parallel, the plane flattens, no inverse.",
+      "check": [
+        "9*4 - 6*6 == 0",
+        "9*4 == 6*6"
+      ]
+    },
+    {
+      "id": "vm6-ty-2",
+      "statement": "Find the inverse of $\\begin{pmatrix} 7 & 4 \\\\ 5 & 3 \\end{pmatrix}$ and verify the top-left entry of $AA^{-1}$.",
+      "solution": "$\\det = 21 - 20 = 1$: inverse $\\begin{pmatrix} 3 & -4 \\\\ -5 & 7 \\end{pmatrix}$. Verify: $7 \\cdot 3 + 4 \\cdot (-5) = 1$ ✓.",
+      "check": [
+        "7*3 - 4*5 == 1",
+        "7*3 + 4*(-5) == 1",
+        "5*(-4) + 3*7 == 1"
+      ]
+    },
+    {
+      "id": "vm6-ty-3",
+      "statement": "Solve with the inverse: $\\begin{cases} 2x + y = 4 \\\\ 7x + 4y = 15 \\end{cases}$",
+      "solution": "$\\det = 8 - 7 = 1$; $A^{-1} = \\begin{pmatrix} 4 & -1 \\\\ -7 & 2 \\end{pmatrix}$; $X = A^{-1}\\binom{4}{15} = \\binom{1}{2}$: $x = 1, y = 2$.",
+      "check": [
+        "2*4 - 1*7 == 1",
+        "4*4 + (-1)*15 == 1",
+        "-7*4 + 2*15 == 2",
+        "2*1 + 2 == 4",
+        "7*1 + 4*2 == 15"
+      ]
+    },
+    {
+      "id": "vm6-ty-4",
+      "statement": "A map first scales areas by $3$, then a second map leaves the total area factor at $12$. What is the second map's $|\\det|$? If the first mirrored and the second didn't, does the composite mirror?",
+      "solution": "$|\\det_2| = 12/3 = 4$. One mirror total → the composite IS mirrored (composite det negative).",
+      "check": [
+        "12/3 == 4",
+        "(-1)*1 == -1"
+      ]
+    },
+    {
+      "id": "vm6-ty-5",
+      "statement": "Build the single matrix for: reflect over the $x$-axis, then rotate $90°$ CCW.",
+      "solution": "$(1,0) \\to (1,0) \\to (0,1)$; $(0,1) \\to (0,-1) \\to (1,0)$. Matrix: $\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$ — reflection over $y = x$! Two maps composed into one familiar face, $\\det = -1$.",
+      "check": [
+        "0*0 - 1*1 == -1"
+      ]
+    },
+    {
+      "id": "vm6-ty-6",
+      "statement": "For which $k$ does $\\begin{pmatrix} 1 & 2 \\\\ 3 & k \\end{pmatrix}$ have an inverse, and what is it (in terms of $k$) at $k = 8$?",
+      "solution": "Inverse exists for $k \\ne 6$. At $k = 8$: $\\det = 2$, inverse $\\frac{1}{2}\\begin{pmatrix} 8 & -2 \\\\ -3 & 1 \\end{pmatrix} = \\begin{pmatrix} 4 & -1 \\\\ -3/2 & 1/2 \\end{pmatrix}$.",
+      "check": [
+        "1*8 - 2*3 == 2",
+        "1*4 + 2*Rational(-3,2) == 1",
+        "3*(-1) + 8*Rational(1,2) == 1"
+      ]
+    }
+  ]
+}

@@ -104,9 +104,11 @@ export const EXAM_STUDY_MAP: Record<string, StudyTarget> = {
     links: [],
   },
   linear_algebra: {
-    primary: { label: "Хувиргалтууд — матрицаар", href: "/math/geometry/transformations" },
+    primary: { label: "Вектор ба Матриц курс", href: "/math/vectors-matrices" },
     links: [
-      { label: "Вектор (12-р анги)", href: "/math/12/vectors" },
+      { label: "Скаляр үржвэр", href: "/math/vectors-matrices/the-dot-product" },
+      { label: "Тодорхойлогч ба урвуу матриц", href: "/math/vectors-matrices/determinants-and-inverses" },
+      { label: "Огторгуй дахь вектор", href: "/math/vectors-matrices/vectors-in-space" },
     ],
   },
   set_theory: {

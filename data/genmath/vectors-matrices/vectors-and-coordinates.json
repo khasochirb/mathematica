@@ -1,0 +1,939 @@
+{
+  "slug": "vectors-and-coordinates",
+  "title": "Vectors & Coordinates",
+  "unit": 1,
+  "status": "published",
+  "blurb": "What a vector is, components and magnitude, equal/opposite/parallel vectors, and unit vectors — arrows made of numbers.",
+  "buildsOn": "The coordinate plane and the Pythagorean theorem.",
+  "lessons": [
+    {
+      "slug": "what-is-a-vector",
+      "title": "What Is a Vector?",
+      "concreteComparison": "\"Walk 5 km\" is not enough instruction to find the treasure — 5 km WHICH WAY? \"Walk 5 km north-east\" is. Quantities that need both a size and a direction — displacements, velocities, forces — are vectors. A temperature is just a number; a wind is a vector.",
+      "objective": "Distinguish vectors from scalars, read a displacement vector between two points, and recognize that vectors with the same components are the same vector.",
+      "concept": [
+        "A **vector** is a quantity with a magnitude AND a direction — drawn as an arrow whose length is the size. A **scalar** is a bare number: mass, temperature, price. The test: does the quantity change if you turn around? Distance doesn't (scalar); displacement does (vector).",
+        "The displacement from point $A$ to point $B$ is written $\\overrightarrow{AB}$, and its components are found by SUBTRACTION, tip minus tail: $\\overrightarrow{AB} = (x_B - x_A,\\; y_B - y_A)$.",
+        "A vector does NOT live at a fixed place — only its size and direction matter. Two arrows in different corners of the plane with the same components are the SAME vector. That freedom to slide arrows around is what makes vector arithmetic work.",
+        "The magnitude (length) comes straight from Pythagoras: $|\\vec{v}| = \\sqrt{x^2 + y^2}$ for $\\vec{v} = (x, y)$."
+      ],
+      "keyIdea": "A vector = magnitude + direction, encoded as components (tip − tail); same components = same vector, wherever it's drawn.",
+      "facts": [
+        {
+          "title": "From A to B",
+          "latex": "\\overrightarrow{AB} = (x_B - x_A,\\; y_B - y_A)",
+          "explanation": "Tip minus tail — always in that order."
+        },
+        {
+          "title": "Magnitude",
+          "latex": "|\\vec{v}| = \\sqrt{x^2 + y^2}",
+          "explanation": "The arrow's length, by Pythagoras."
+        },
+        {
+          "title": "Equality",
+          "latex": "\\vec{u} = \\vec{v} \\iff \\text{same components}",
+          "explanation": "Position is irrelevant; a vector is free to slide."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm11-we1",
+          "statement": "A ship sails from $A(1, 2)$ to $B(4, 6)$. Find the displacement vector $\\overrightarrow{AB}$ and the distance sailed.",
+          "solution": "Tip minus tail: $\\overrightarrow{AB} = (4 - 1,\\; 6 - 2) = (3, 4)$. Distance $= |\\overrightarrow{AB}| = \\sqrt{9 + 16} = 5$.",
+          "check": [
+            "4 - 1 == 3",
+            "6 - 2 == 4",
+            "sqrt(3**2 + 4**2) == 5"
+          ]
+        },
+        {
+          "id": "vm11-we2",
+          "statement": "$\\overrightarrow{AB}$ runs from $A(0,0)$ to $B(2,3)$; $\\overrightarrow{CD}$ runs from $C(5,1)$ to $D(7,4)$. Show they are the same vector.",
+          "solution": "$\\overrightarrow{AB} = (2, 3)$ and $\\overrightarrow{CD} = (7-5,\\; 4-1) = (2, 3)$. Same components — same vector, even though the arrows sit in different places.",
+          "check": [
+            "7 - 5 == 2",
+            "4 - 1 == 3"
+          ]
+        },
+        {
+          "id": "vm11-we3",
+          "statement": "For $\\vec{v} = (6, -2)$, write $-\\vec{v}$ and compare the two magnitudes.",
+          "solution": "$-\\vec{v} = (-6, 2)$ — same length, opposite direction. $|\\vec{v}| = |-\\vec{v}| = \\sqrt{36 + 4} = \\sqrt{40} = 2\\sqrt{10}$.",
+          "check": [
+            "sqrt(36 + 4) == 2*sqrt(10)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Computing tail minus tip.",
+          "correction": "The vector from A to B is B − A, not A − B. Getting it backwards flips the arrow — right answer's evil twin.",
+          "authored": true
+        },
+        {
+          "text": "Treating vectors at different positions as different.",
+          "correction": "Only components matter. An arrow from (0,0) to (2,3) IS the arrow from (5,1) to (7,4).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm11-t1",
+          "statement": "Find $\\overrightarrow{AB}$ and its magnitude for $A(2, 5)$ and $B(7, 17)$.",
+          "solution": "$\\overrightarrow{AB} = (5, 12)$, $|\\overrightarrow{AB}| = \\sqrt{25 + 144} = 13$.",
+          "check": [
+            "7 - 2 == 5",
+            "17 - 5 == 12",
+            "sqrt(5**2 + 12**2) == 13"
+          ]
+        },
+        {
+          "id": "vm11-t2",
+          "statement": "Which of these equals the vector from $(3, 1)$ to $(6, 5)$: the vector from $(0, 0)$ to $(3, 4)$, or the vector from $(1, 1)$ to $(5, 4)$?",
+          "solution": "The target is $(3, 4)$. First candidate: $(3, 4)$ ✓. Second: $(4, 3)$ ✗. Same components decide it.",
+          "check": [
+            "6 - 3 == 3",
+            "5 - 1 == 4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The problem",
+            "title": "\"5 km\" is not directions",
+            "body": "Tell a lost hiker \"walk 5 km\" and they're still lost — WHICH WAY? Size-plus-direction quantities are everywhere: displacement, velocity, force, wind. Mathematics packages them as **vectors**: arrows you can compute with. Plain numbers — mass, temperature, price — are **scalars**."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The encoding",
+            "title": "An arrow, as two numbers",
+            "body": "Put the arrow on a grid and record how far it runs right and up: $\\vec{v} = (3, 4)$ means 3 across, 4 up. From point $A$ to point $B$ the components are tip minus tail: $\\overrightarrow{AB} = (x_B - x_A, y_B - y_A)$. Length, by Pythagoras: $|\\vec{v}| = \\sqrt{x^2 + y^2}$.",
+            "beats": [
+              "vector = (run, rise) on the grid",
+              "from A to B: subtract, tip − tail",
+              "length: |v| = √(x² + y²)"
+            ]
+          },
+          {
+            "kind": "vectorGraph",
+            "eyebrow": "See it",
+            "title": "Components, live",
+            "teach": "One arrow, its dashed legs, and its live magnitude — the run and rise ARE the vector, and the length follows by Pythagoras. Every vector question in this course starts by reading these two numbers.",
+            "config": {
+              "mode": "components"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the idea",
+            "title": "Read the arrow",
+            "prompt": "What is the magnitude of $\\vec{v} = (8, 6)$?",
+            "options": [
+              "$10$",
+              "$14$",
+              "$\\sqrt{14}$",
+              "$48$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$|\\vec{v}| = \\sqrt{64 + 36} = \\sqrt{100} = 10$. Adding components ($14$) is the classic slip.",
+            "check": [
+              "sqrt(8**2 + 6**2) == 10"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The ship's displacement",
+            "problemId": "vm11-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Same vector, different homes",
+            "problemId": "vm11-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Tip minus tail",
+            "prompt": "The vector from $A(3, 4)$ to $B(1, 1)$ is…",
+            "options": [
+              "$(-2, -3)$",
+              "$(2, 3)$",
+              "$(4, 5)$",
+              "$(-3, -2)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$B - A = (1 - 3,\\; 1 - 4) = (-2, -3)$. Backwards subtraction gives the imposter $(2, 3)$.",
+            "check": [
+              "1 - 3 == -2",
+              "1 - 4 == -3"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The opposite arrow",
+            "problemId": "vm11-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Draw before you compute",
+            "body": "A two-second sketch catches sign errors that algebra hides. If your computed vector points down-left but the picture clearly runs up-right, you subtracted backwards."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "A 5–12–13 trip",
+            "problemId": "vm11-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Spot the equal vector",
+            "problemId": "vm11-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Born in physics",
+            "body": "Vectors were distilled in the 1880s by Gibbs and Heaviside from Hamilton's quaternions — because physicists needed clean bookkeeping for forces and fields. The arrow notation you're learning IS the modern language of physics."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Vector = magnitude + direction; scalar = bare number.",
+              "$\\overrightarrow{AB} = B - A$ (tip minus tail); $|\\vec{v}| = \\sqrt{x^2 + y^2}$.",
+              "Same components = same vector, wherever it's drawn."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "components-and-magnitude",
+      "title": "Components & Magnitude",
+      "concreteComparison": "A drone pilot never says \"fly kind of that way\" — the controller sends exactly two numbers: how far east, how far north. Components turn geometry into arithmetic: every question about arrows becomes a question about coordinate pairs, and length is always one Pythagoras away.",
+      "objective": "Fluently compute components from points, magnitudes from components, and solve for unknown components given a magnitude.",
+      "concept": [
+        "Components are the vector's DNA: $\\vec{v} = (x, y)$ says everything. From two points, subtract tip minus tail; from components, the magnitude is $|\\vec{v}| = \\sqrt{x^2 + y^2}$ — no picture required (though pictures prevent sign accidents).",
+        "The magnitude equation runs backwards too. If $|(x, 6)| = 10$, then $x^2 + 36 = 100$, so $x = \\pm 8$ — and BOTH answers are honest: two different arrows share that length. Exams love this reversal.",
+        "Watch for the classic right-triangle families: $3$–$4$–$5$, $5$–$12$–$13$, $7$–$24$–$25$, $8$–$15$–$17$ and their multiples. Spotting one saves thirty seconds of arithmetic, every time."
+      ],
+      "keyIdea": "Components are everything: subtract points to get them, Pythagoras to measure them, and solve x² + y² = |v|² when a component hides.",
+      "facts": [
+        {
+          "title": "Magnitude",
+          "latex": "|\\vec{v}| = \\sqrt{x^2 + y^2}",
+          "explanation": "Forwards: components to length."
+        },
+        {
+          "title": "Reversed",
+          "latex": "x^2 + y^2 = |\\vec{v}|^2",
+          "explanation": "Backwards: a known length pins an unknown component up to sign."
+        },
+        {
+          "title": "Pythagorean families",
+          "latex": "3\\!-\\!4\\!-\\!5,\\; 5\\!-\\!12\\!-\\!13,\\; 7\\!-\\!24\\!-\\!25,\\; 8\\!-\\!15\\!-\\!17",
+          "explanation": "The exam's favorite integer triangles — recognize, don't recompute."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm12-we1",
+          "statement": "Find the magnitude of $\\vec{v} = (-5, 12)$.",
+          "solution": "$|\\vec{v}| = \\sqrt{25 + 144} = \\sqrt{169} = 13$. The minus sign dies in the squaring — magnitudes never see direction.",
+          "check": [
+            "sqrt((-5)**2 + 12**2) == 13"
+          ]
+        },
+        {
+          "id": "vm12-we2",
+          "statement": "$A(-2, 3)$ and $B(4, -5)$. Find $\\overrightarrow{AB}$ and $|\\overrightarrow{AB}|$.",
+          "solution": "$\\overrightarrow{AB} = (4 - (-2),\\; -5 - 3) = (6, -8)$. $|\\overrightarrow{AB}| = \\sqrt{36 + 64} = 10$ — a scaled $3$–$4$–$5$.",
+          "check": [
+            "4 - (-2) == 6",
+            "-5 - 3 == -8",
+            "sqrt(6**2 + 8**2) == 10"
+          ]
+        },
+        {
+          "id": "vm12-we3",
+          "statement": "The vector $(x, 6)$ has magnitude $10$. Find every possible $x$.",
+          "solution": "$x^2 + 36 = 100$ gives $x^2 = 64$, so $x = 8$ or $x = -8$. Two arrows — one leaning right, one left — share the length.",
+          "check": [
+            "sqrt(8**2 + 6**2) == 10",
+            "sqrt((-8)**2 + 6**2) == 10"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reporting only the positive root when a component is unknown.",
+          "correction": "x² = 64 has two solutions. Unless the problem pins the direction (e.g. 'points right'), both ±8 are answers.",
+          "authored": true
+        },
+        {
+          "text": "Letting a negative component survive the squaring.",
+          "correction": "(−5)² = 25, always. If your magnitude came out imaginary or smaller than a component, a sign leaked through.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm12-t1",
+          "statement": "Find $|(7, 24)|$.",
+          "solution": "$\\sqrt{49 + 576} = \\sqrt{625} = 25$ — the $7$–$24$–$25$ family.",
+          "check": [
+            "sqrt(7**2 + 24**2) == 25"
+          ]
+        },
+        {
+          "id": "vm12-t2",
+          "statement": "Find the vector from $(1, -2)$ to $(-3, 1)$ and its magnitude.",
+          "solution": "$(-4, 3)$; magnitude $\\sqrt{16 + 9} = 5$.",
+          "check": [
+            "-3 - 1 == -4",
+            "1 - (-2) == 3",
+            "sqrt(4**2 + 3**2) == 5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The point",
+            "title": "Arithmetic beats geometry",
+            "body": "Once a vector is two numbers, every geometric question has an arithmetic answer. Length? Pythagoras. Between two points? Subtract. This lesson is pure fluency — the exam assumes these moves are automatic."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Both directions",
+            "title": "The magnitude equation runs backwards",
+            "body": "Forwards: $(x,y) \\to \\sqrt{x^2 + y^2}$. Backwards: a known magnitude pins an unknown component — $|(x, 6)| = 10$ forces $x^2 = 64$, so $x = \\pm 8$. Keep BOTH signs unless the problem chooses a side.",
+            "beats": [
+              "forwards: components → length",
+              "backwards: length → component, up to ±",
+              "know your 3-4-5 / 5-12-13 / 7-24-25 families"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the idea",
+            "title": "Signs die in squares",
+            "prompt": "What is $|(-9, 12)|$?",
+            "options": [
+              "$15$",
+              "$3$",
+              "$21$",
+              "$\\sqrt{63}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\sqrt{81 + 144} = \\sqrt{225} = 15$ — a $3$–$4$–$5$ scaled by $3$. The minus sign never survives squaring.",
+            "check": [
+              "sqrt((-9)**2 + 12**2) == 15"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A 5–12–13 in disguise",
+            "problemId": "vm12-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Points to vector to length",
+            "problemId": "vm12-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The hidden component",
+            "prompt": "$(x, 8)$ has magnitude $17$. Then $x$ equals…",
+            "options": [
+              "$\\pm 15$",
+              "$15$ only",
+              "$9$",
+              "$\\pm 9$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$x^2 = 289 - 64 = 225$, so $x = \\pm 15$ — the $8$–$15$–$17$ family, both leanings allowed.",
+            "check": [
+              "sqrt(15**2 + 8**2) == 17"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Solve for the component",
+            "problemId": "vm12-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Scan for the triple first",
+            "body": "Before squaring anything, glance for a Pythagorean family: components $(6, -8)$ scream $3$–$4$–$5$ doubled. Recognition is faster than arithmetic and immune to slips."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "A big family member",
+            "problemId": "vm12-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Backwards points",
+            "problemId": "vm12-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "GPS is component subtraction",
+            "body": "Your phone computes displacement vectors between satellite-fixed coordinates dozens of times a second — the same tip-minus-tail subtraction, in three dimensions, at the speed of light."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "$|\\vec{v}| = \\sqrt{x^2 + y^2}$; signs never survive the squares.",
+              "Unknown component: solve $x^2 + y^2 = |\\vec{v}|^2$, keep both signs.",
+              "Memorize the integer families — they're most of the exam's arithmetic."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "equal-opposite-and-parallel",
+      "title": "Equal, Opposite & Parallel Vectors",
+      "concreteComparison": "Two trains on parallel tracks: same direction, maybe different speeds. Their velocity vectors aren't equal — but one is a NUMBER times the other. That's parallelism for vectors: same line of action, any scale. Flip the number negative and the trains run opposite ways on the same tracks.",
+      "objective": "Test vectors for equality, oppositeness, and parallelism via scalar multiples and the cross-multiplication test, and use parallelism to prove collinearity.",
+      "concept": [
+        "$\\vec{u}$ and $\\vec{v}$ are **parallel** exactly when one is a scalar multiple of the other: $\\vec{u} = k\\vec{v}$. Positive $k$ keeps the direction, negative $k$ reverses it, and $|k|$ is the stretch factor. **Opposite** vectors are the special case $k = -1$.",
+        "The practical test avoids finding $k$: $(x_1, y_1) \\parallel (x_2, y_2)$ exactly when the cross-products match, $$x_1 y_2 = x_2 y_1.$$ It's the same criss-cross that tests equivalent fractions — parallel vectors have proportional components.",
+        "Parallelism is how vectors prove **collinearity**: points $A, B, C$ sit on one line exactly when $\\overrightarrow{AB} \\parallel \\overrightarrow{AC}$ — and since both vectors share the point $A$, parallel forces them onto the same line."
+      ],
+      "keyIdea": "Parallel ⇔ scalar multiple ⇔ x₁y₂ = x₂y₁; opposite is k = −1; collinear points come from parallel shared-tail vectors.",
+      "facts": [
+        {
+          "title": "Parallel",
+          "latex": "\\vec{u} \\parallel \\vec{v} \\iff \\vec{u} = k\\vec{v}",
+          "explanation": "One is a scaled copy of the other; sign of k sets the direction."
+        },
+        {
+          "title": "Cross test",
+          "latex": "x_1 y_2 = x_2 y_1",
+          "explanation": "Proportional components without computing k — the fast exam check."
+        },
+        {
+          "title": "Collinearity",
+          "latex": "A, B, C \\text{ collinear} \\iff \\overrightarrow{AB} \\parallel \\overrightarrow{AC}",
+          "explanation": "Shared tail + parallel = same line."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm13-we1",
+          "statement": "Are $(2, -3)$ and $(-6, 9)$ parallel? If so, find the scalar.",
+          "solution": "$(-6, 9) = -3 \\cdot (2, -3)$ — parallel with $k = -3$: three times as long, opposite direction. Cross check: $2 \\cdot 9 = 18 = (-6)(-3)$. ✓",
+          "check": [
+            "2*9 == (-6)*(-3)",
+            "-3*2 == -6",
+            "-3*(-3) == 9"
+          ]
+        },
+        {
+          "id": "vm13-we2",
+          "statement": "Find $k$ so that $(4, k)$ is parallel to $(6, 9)$.",
+          "solution": "Cross test: $4 \\cdot 9 = 6k$, so $k = 6$. (Indeed $(4, 6) = \\tfrac{2}{3}(6, 9)$.)",
+          "check": [
+            "4*9/6 == 6",
+            "Rational(2,3)*6 == 4",
+            "Rational(2,3)*9 == 6"
+          ]
+        },
+        {
+          "id": "vm13-we3",
+          "statement": "Show that $A(1, 1)$, $B(3, 5)$, $C(6, 11)$ are collinear.",
+          "solution": "$\\overrightarrow{AB} = (2, 4)$, $\\overrightarrow{AC} = (5, 10)$. Cross test: $2 \\cdot 10 = 20 = 5 \\cdot 4$ — parallel. Sharing the tail $A$, all three points ride one line.",
+          "check": [
+            "3 - 1 == 2",
+            "11 - 1 == 10",
+            "2*10 == 5*4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Concluding 'not parallel' because the vectors have different lengths.",
+          "correction": "Parallel is about DIRECTION only. (1,2) and (10,20) are perfectly parallel — length is k's job.",
+          "authored": true
+        },
+        {
+          "text": "Testing collinearity with vectors that share no point.",
+          "correction": "AB ∥ CD only says the lines are parallel. For collinear points, both vectors must share a tail: compare AB with AC.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm13-t1",
+          "statement": "Is $(10, -15)$ parallel to $(2, -3)$?",
+          "solution": "Cross test: $10 \\cdot (-3) = -30 = 2 \\cdot (-15)$. Yes — it's $5 \\cdot (2, -3)$, same direction.",
+          "check": [
+            "10*(-3) == 2*(-15)",
+            "5*2 == 10",
+            "5*(-3) == -15"
+          ]
+        },
+        {
+          "id": "vm13-t2",
+          "statement": "Write the opposite of $\\vec{v} = (-7, 2)$ and its magnitude.",
+          "solution": "$-\\vec{v} = (7, -2)$; $|-\\vec{v}| = \\sqrt{49 + 4} = \\sqrt{53}$, same as $|\\vec{v}|$.",
+          "check": [
+            "sqrt(49 + 4) == sqrt(53)",
+            "sqrt((-7)**2 + 2**2) == sqrt(53)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Parallel = scaled copy",
+            "body": "Two vectors point along the same line exactly when one is a NUMBER times the other: $\\vec{u} = k\\vec{v}$. The number carries everything — $|k|$ is the stretch, its sign says same way or opposite. $k = -1$ is the perfect U-turn: the opposite vector."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The test",
+            "title": "Criss-cross, like fractions",
+            "body": "Hunting for $k$ wastes time. Components of parallel vectors are PROPORTIONAL, so cross-multiply: $(x_1, y_1) \\parallel (x_2, y_2) \\iff x_1 y_2 = x_2 y_1$. It's the equivalent-fractions test wearing a vector costume — and it powers the exam's favorite: proving three points sit on one line.",
+            "beats": [
+              "u ∥ v ⇔ u = k·v",
+              "fast test: x₁y₂ = x₂y₁",
+              "collinear points: AB ∥ AC with the shared tail A"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the idea",
+            "title": "Spot the multiple",
+            "prompt": "Which vector is parallel to $(3, -4)$?",
+            "options": [
+              "$(-9, 12)$",
+              "$(4, -3)$",
+              "$(3, 4)$",
+              "$(6, 8)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(-9, 12) = -3(3, -4)$ ✓ (cross: $3 \\cdot 12 = 36 = (-9)(-4)$). The others swap or re-sign components — different directions.",
+            "check": [
+              "3*12 == (-9)*(-4)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Find the scalar",
+            "problemId": "vm13-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Solve for k",
+            "problemId": "vm13-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Make them parallel",
+            "prompt": "For which $m$ is $(m, 10)$ parallel to $(3, 6)$?",
+            "options": [
+              "$5$",
+              "$2$",
+              "$20$",
+              "$\\frac{9}{5}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Cross test: $6m = 3 \\cdot 10 = 30$, so $m = 5$.",
+            "check": [
+              "3*10/6 == 5"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Three points, one line",
+            "problemId": "vm13-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Zero components: think, don't divide",
+            "body": "The cross test survives zeros where ratios crash: is $(0, 5) \\parallel (0, -2)$? Cross: $0 \\cdot (-2) = 0 \\cdot 5$ ✓ — both vertical. Dividing components would have thrown a division-by-zero tantrum."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Times five?",
+            "problemId": "vm13-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "The U-turn",
+            "problemId": "vm13-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "One word, two meanings",
+            "body": "For LINES, parallel means 'never meeting'. For VECTORS, parallel includes lying on the very same line — even pointing opposite ways. Watch the context; exams exploit the difference."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Parallel ⇔ $\\vec{u} = k\\vec{v}$ ⇔ $x_1y_2 = x_2y_1$.",
+              "Opposite = $k = -1$: same length, reversed arrow.",
+              "Collinear $A, B, C$: show $\\overrightarrow{AB} \\parallel \\overrightarrow{AC}$."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "unit-vectors-and-direction",
+      "title": "Unit Vectors & Direction",
+      "concreteComparison": "A compass needle doesn't tell you how FAR — only which WAY. That's a unit vector: pure direction, length exactly 1. Divide any vector by its own length and you get its compass needle; multiply the needle by any distance and you've built a vector of that exact length, aimed exactly there.",
+      "objective": "Normalize a vector to unit length, use the i–j basis notation, and construct a vector of prescribed length in a prescribed direction.",
+      "concept": [
+        "The **unit vector** in the direction of $\\vec{v}$ is $\\hat{v} = \\dfrac{\\vec{v}}{|\\vec{v}|}$ — same direction, length exactly $1$. It's direction, distilled.",
+        "Two celebrity unit vectors get names: $\\vec{i} = (1, 0)$ and $\\vec{j} = (0, 1)$. Every vector is a recipe of the two: $(2, -5) = 2\\vec{i} - 5\\vec{j}$. It's pure notation — the components ARE the coefficients — but exams write both dialects, so read both.",
+        "Direction and length combine like flat-pack furniture: a vector of length $L$ in the direction of $\\vec{v}$ is $L \\cdot \\hat{v}$. Want length $20$ along $(3, -4)$? The needle is $(\\tfrac{3}{5}, -\\tfrac{4}{5})$, so the answer is $(12, -16)$."
+      ],
+      "keyIdea": "v̂ = v/|v| is pure direction; every vector = its length × its unit vector; i, j are just (1,0) and (0,1).",
+      "facts": [
+        {
+          "title": "Normalize",
+          "latex": "\\hat{v} = \\frac{\\vec{v}}{|\\vec{v}|}",
+          "explanation": "Divide a vector by its own length: direction kept, length 1."
+        },
+        {
+          "title": "The basis",
+          "latex": "\\vec{i} = (1,0),\\; \\vec{j} = (0,1)",
+          "explanation": "Component form and i–j form are the same numbers in different clothes."
+        },
+        {
+          "title": "Build to order",
+          "latex": "L \\cdot \\hat{v}",
+          "explanation": "A vector of length L pointing along v."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm14-we1",
+          "statement": "Find the unit vector in the direction of $(3, 4)$.",
+          "solution": "$|(3,4)| = 5$, so $\\hat{v} = \\left(\\tfrac{3}{5}, \\tfrac{4}{5}\\right)$. Check the length: $\\sqrt{\\tfrac{9}{25} + \\tfrac{16}{25}} = 1$. ✓",
+          "check": [
+            "sqrt(Rational(3,5)**2 + Rational(4,5)**2) == 1"
+          ]
+        },
+        {
+          "id": "vm14-we2",
+          "statement": "Write $\\vec{v} = 2\\vec{i} - 5\\vec{j}$ in component form and find its magnitude.",
+          "solution": "$\\vec{v} = (2, -5)$; $|\\vec{v}| = \\sqrt{4 + 25} = \\sqrt{29}$.",
+          "check": [
+            "sqrt(2**2 + (-5)**2) == sqrt(29)"
+          ]
+        },
+        {
+          "id": "vm14-we3",
+          "statement": "Construct the vector of length $20$ in the direction of $(3, -4)$.",
+          "solution": "The unit needle: $\\left(\\tfrac{3}{5}, -\\tfrac{4}{5}\\right)$. Scale it: $20 \\cdot \\left(\\tfrac{3}{5}, -\\tfrac{4}{5}\\right) = (12, -16)$. Length check: $\\sqrt{144 + 256} = 20$. ✓",
+          "check": [
+            "20*Rational(3,5) == 12",
+            "20*Rational(-4,5) == -16",
+            "sqrt(12**2 + 16**2) == 20"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dividing by a component instead of the magnitude.",
+          "correction": "Normalizing (6, 8) means dividing by 10 (the length), not by 6 or 8. The result must survive the length-equals-1 check.",
+          "authored": true
+        },
+        {
+          "text": "Writing 2i − 5j as (2, 5).",
+          "correction": "The j-coefficient carries its sign: 2i − 5j = (2, −5). Dropping the minus flips the arrow into the wrong quadrant.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm14-t1",
+          "statement": "Find the unit vector in the direction of $(-5, 12)$.",
+          "solution": "Length $13$, so $\\left(-\\tfrac{5}{13}, \\tfrac{12}{13}\\right)$.",
+          "check": [
+            "sqrt(Rational(-5,13)**2 + Rational(12,13)**2) == 1"
+          ]
+        },
+        {
+          "id": "vm14-t2",
+          "statement": "Build the vector of length $30$ in the direction of $(4, 3)$.",
+          "solution": "Needle $\\left(\\tfrac{4}{5}, \\tfrac{3}{5}\\right)$; scaled: $(24, 18)$. Check: $\\sqrt{576 + 324} = 30$.",
+          "check": [
+            "30*Rational(4,5) == 24",
+            "30*Rational(3,5) == 18",
+            "sqrt(24**2 + 18**2) == 30"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Direction, distilled",
+            "body": "Sometimes you only care which WAY — the compass needle, not the trip length. Divide any vector by its own magnitude and you get its **unit vector**: $\\hat{v} = \\vec{v}/|\\vec{v}|$, length exactly $1$, direction untouched."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Two dialects",
+            "title": "(x, y) and xi + yj",
+            "body": "The plane's standard needles have names: $\\vec{i} = (1,0)$ east, $\\vec{j} = (0,1)$ north. Any vector is a mix: $(2, -5) = 2\\vec{i} - 5\\vec{j}$. Nothing new is happening — the coefficients ARE the components — but both notations appear on exams, so switch hats freely.",
+            "beats": [
+              "v̂ = v/|v|: length 1, direction kept",
+              "i = (1,0), j = (0,1) — components as coefficients",
+              "length L along v: answer = L·v̂"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the idea",
+            "title": "Normalize it",
+            "prompt": "The unit vector in the direction of $(6, 8)$ is…",
+            "options": [
+              "$(0.6,\\ 0.8)$",
+              "$(1, 1)$",
+              "$(3, 4)$",
+              "$\\left(\\frac{1}{6}, \\frac{1}{8}\\right)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$|(6,8)| = 10$, so divide both components by $10$: $(0.6, 0.8)$ — and $0.36 + 0.64 = 1$ confirms unit length.",
+            "check": [
+              "sqrt(Rational(6,10)**2 + Rational(8,10)**2) == 1"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The 3–4–5 needle",
+            "problemId": "vm14-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Reading i–j form",
+            "problemId": "vm14-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Coefficients with signs",
+            "prompt": "$-3\\vec{i} + 7\\vec{j}$ in component form is…",
+            "options": [
+              "$(-3, 7)$",
+              "$(3, 7)$",
+              "$(7, -3)$",
+              "$(-3, -7)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The $\\vec{i}$-coefficient is the $x$-component, sign included: $(-3, 7)$.",
+            "check": [
+              "sqrt((-3)**2 + 7**2) == sqrt(58)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Length 20, aimed exactly",
+            "problemId": "vm14-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Always run the length-1 check",
+            "body": "After normalizing, square-and-add in your head: $\\left(\\tfrac{3}{5}\\right)^2 + \\left(\\tfrac{4}{5}\\right)^2 = \\tfrac{25}{25}$. Two seconds, and it catches every divide-by-the-wrong-thing error."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Thirteenths",
+            "problemId": "vm14-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Build to order",
+            "problemId": "vm14-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The hat convention",
+            "body": "The circumflex in $\\hat{v}$ — physicists say 'v-hat' — marks unit vectors across all of science: $\\hat{x}, \\hat{r}, \\hat{n}$. One small hat, one universal promise: length exactly 1."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "$\\hat{v} = \\vec{v}/|\\vec{v}|$ — direction kept, length 1.",
+              "$x\\vec{i} + y\\vec{j} = (x, y)$: same numbers, two dialects.",
+              "A vector of length $L$ along $\\vec{v}$: $L\\hat{v}$."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "vm1-pr-1",
+      "statement": "Find the magnitude of $(9, 12)$.",
+      "solution": "$\\sqrt{81 + 144} = 15$.",
+      "check": [
+        "sqrt(9**2 + 12**2) == 15"
+      ]
+    },
+    {
+      "id": "vm1-pr-2",
+      "statement": "Find $\\overrightarrow{AB}$ for $A(-1, 4)$ and $B(3, 1)$, and its magnitude.",
+      "solution": "$(4, -3)$; $\\sqrt{16 + 9} = 5$.",
+      "check": [
+        "3 - (-1) == 4",
+        "1 - 4 == -3",
+        "sqrt(4**2 + 3**2) == 5"
+      ]
+    },
+    {
+      "id": "vm1-pr-3",
+      "statement": "For which $k$ is $(k, 12)$ parallel to $(2, 3)$?",
+      "solution": "Cross test: $3k = 24$, $k = 8$.",
+      "check": [
+        "2*12/3 == 8"
+      ]
+    },
+    {
+      "id": "vm1-pr-4",
+      "statement": "Write the opposite of $(5, -9)$ and its magnitude.",
+      "solution": "$(-5, 9)$; $\\sqrt{25 + 81} = \\sqrt{106}$.",
+      "check": [
+        "sqrt(25 + 81) == sqrt(106)"
+      ]
+    },
+    {
+      "id": "vm1-pr-5",
+      "statement": "The vector $(x, 9)$ has magnitude $15$. Find all $x$.",
+      "solution": "$x^2 = 225 - 81 = 144$, $x = \\pm 12$.",
+      "check": [
+        "sqrt(12**2 + 9**2) == 15"
+      ]
+    },
+    {
+      "id": "vm1-pr-6",
+      "statement": "Are $A(0, 2)$, $B(2, 5)$, $C(6, 11)$ collinear?",
+      "solution": "$\\overrightarrow{AB} = (2, 3)$, $\\overrightarrow{AC} = (6, 9) = 3(2,3)$ — parallel with shared tail: collinear.",
+      "check": [
+        "2*9 == 6*3"
+      ]
+    },
+    {
+      "id": "vm1-pr-7",
+      "statement": "Find the unit vector in the direction of $(8, -15)$.",
+      "solution": "Length $17$: $\\left(\\tfrac{8}{17}, -\\tfrac{15}{17}\\right)$.",
+      "check": [
+        "sqrt(8**2 + 15**2) == 17",
+        "sqrt(Rational(8,17)**2 + Rational(15,17)**2) == 1"
+      ]
+    },
+    {
+      "id": "vm1-pr-8",
+      "statement": "Build the vector of length $26$ in the direction of $(5, 12)$.",
+      "solution": "Needle $\\left(\\tfrac{5}{13}, \\tfrac{12}{13}\\right)$; scaled: $(10, 24)$.",
+      "check": [
+        "26*Rational(5,13) == 10",
+        "26*Rational(12,13) == 24",
+        "sqrt(10**2 + 24**2) == 26"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "vm1-ty-1",
+      "statement": "$A(2, -3)$, $B(-4, 5)$. Find $|\\overrightarrow{AB}|$.",
+      "solution": "$\\overrightarrow{AB} = (-6, 8)$; magnitude $10$.",
+      "check": [
+        "-4 - 2 == -6",
+        "5 - (-3) == 8",
+        "sqrt(6**2 + 8**2) == 10"
+      ]
+    },
+    {
+      "id": "vm1-ty-2",
+      "statement": "Vectors $(6, m)$ and $(9, 12)$ are parallel. Find $m$.",
+      "solution": "$6 \\cdot 12 = 9m$, so $m = 8$.",
+      "check": [
+        "6*12/9 == 8"
+      ]
+    },
+    {
+      "id": "vm1-ty-3",
+      "statement": "$(x, -7)$ has magnitude $25$. Find all $x$.",
+      "solution": "$x^2 = 625 - 49 = 576$, $x = \\pm 24$.",
+      "check": [
+        "sqrt(24**2 + 7**2) == 25"
+      ]
+    },
+    {
+      "id": "vm1-ty-4",
+      "statement": "Is the vector from $(1, 2)$ to $(4, 8)$ parallel to the vector from $(-2, 0)$ to $(-1, 2)$?",
+      "solution": "$(3, 6)$ vs $(1, 2)$: cross $3 \\cdot 2 = 6 = 1 \\cdot 6$ — parallel, factor $3$.",
+      "check": [
+        "3*2 == 1*6"
+      ]
+    },
+    {
+      "id": "vm1-ty-5",
+      "statement": "Write $\\vec{v} = -4\\vec{i} + 3\\vec{j}$ in components, then find the unit vector in its direction.",
+      "solution": "$(-4, 3)$, length $5$: $\\hat{v} = \\left(-\\tfrac{4}{5}, \\tfrac{3}{5}\\right)$.",
+      "check": [
+        "sqrt((-4)**2 + 3**2) == 5",
+        "sqrt(Rational(4,5)**2 + Rational(3,5)**2) == 1"
+      ]
+    },
+    {
+      "id": "vm1-ty-6",
+      "statement": "Find the vector of length $10$ pointing opposite to $(3, 4)$.",
+      "solution": "Opposite needle: $\\left(-\\tfrac{3}{5}, -\\tfrac{4}{5}\\right)$; scaled: $(-6, -8)$.",
+      "check": [
+        "10*Rational(-3,5) == -6",
+        "10*Rational(-4,5) == -8",
+        "sqrt(6**2 + 8**2) == 10"
+      ]
+    }
+  ]
+}

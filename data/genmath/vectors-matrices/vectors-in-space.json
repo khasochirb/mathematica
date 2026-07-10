@@ -1,0 +1,916 @@
+{
+  "slug": "vectors-in-space",
+  "title": "Vectors in Space",
+  "unit": 4,
+  "status": "published",
+  "blurb": "The third coordinate: 3D magnitude, arithmetic and dot products in space, the box diagonal, and normal vectors of planes.",
+  "buildsOn": "Everything from Units 1–3 — each formula grows one more term.",
+  "lessons": [
+    {
+      "slug": "coordinates-in-3d",
+      "title": "Coordinates in 3D",
+      "concreteComparison": "A drone needs three numbers: how far east, how far north — and how HIGH. Space vectors are plane vectors with one more lane, $(x, y, z)$, and every formula you know grows exactly one more term: magnitude becomes $\\sqrt{x^2 + y^2 + z^2}$, and nothing else changes.",
+      "objective": "Work with 3D components: read vectors between points, compute magnitudes, and solve for unknown components.",
+      "concept": [
+        "A vector in space is a triple $(x, y, z)$. Between points, the rule is unchanged: $\\overrightarrow{AB} = B - A$, now in three lanes.",
+        "Magnitude grows one term: $$|\\vec{v}| = \\sqrt{x^2 + y^2 + z^2}.$$ It's Pythagoras twice — first across the floor, then up the height — collapsed into one formula.",
+        "Everything you practiced in the plane transfers verbatim: unknown components come from $x^2 + y^2 + z^2 = |\\vec{v}|^2$ (keep both signs!), parallel still means scalar multiple, and there are 3D integer families too — $(1, 2, 2)$ has length $3$, $(2, 3, 6)$ has length $7$, $(3, 4, 12)$ has length $13$."
+      ],
+      "keyIdea": "Space = one more lane: AB = B − A and |v| = √(x² + y² + z²); everything else transfers verbatim.",
+      "facts": [
+        {
+          "title": "3D magnitude",
+          "latex": "|\\vec{v}| = \\sqrt{x^2 + y^2 + z^2}",
+          "explanation": "Pythagoras run twice — floor first, then height."
+        },
+        {
+          "title": "Between points",
+          "latex": "\\overrightarrow{AB} = (x_B - x_A,\\, y_B - y_A,\\, z_B - z_A)",
+          "explanation": "Tip minus tail, three lanes now."
+        },
+        {
+          "title": "3D families",
+          "latex": "(1,2,2)\\to 3,\\;(2,3,6)\\to 7,\\;(3,4,12)\\to 13",
+          "explanation": "The space analogues of 3–4–5 — exams reuse them constantly."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm41-we1",
+          "statement": "Find $|(2, 3, 6)|$.",
+          "solution": "$\\sqrt{4 + 9 + 36} = \\sqrt{49} = 7$.",
+          "check": [
+            "sqrt(2**2 + 3**2 + 6**2) == 7"
+          ]
+        },
+        {
+          "id": "vm41-we2",
+          "statement": "$A(1, 2, 3)$ and $B(3, 0, -1)$. Find $\\overrightarrow{AB}$ and its magnitude.",
+          "solution": "$\\overrightarrow{AB} = (2, -2, -4)$; $|\\overrightarrow{AB}| = \\sqrt{4 + 4 + 16} = \\sqrt{24} = 2\\sqrt{6}$.",
+          "check": [
+            "3 - 1 == 2",
+            "0 - 2 == -2",
+            "-1 - 3 == -4",
+            "sqrt(4 + 4 + 16) == 2*sqrt(6)"
+          ]
+        },
+        {
+          "id": "vm41-we3",
+          "statement": "The vector $(x, 4, 12)$ has magnitude $14$. Find every possible $x$.",
+          "solution": "$x^2 + 16 + 144 = 196$, so $x^2 = 36$: $x = \\pm 6$.",
+          "check": [
+            "sqrt(6**2 + 4**2 + 12**2) == 14",
+            "sqrt((-6)**2 + 4**2 + 12**2) == 14"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Leaving the z-term out of the magnitude.",
+          "correction": "All three lanes square and add. Forgetting z reduces a space vector to its shadow on the floor — a different, shorter vector.",
+          "authored": true
+        },
+        {
+          "text": "Sign chaos in three subtractions.",
+          "correction": "B − A componentwise means three separate subtractions, each with its own signs. Write them in a column; don't juggle them in your head.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm41-t1",
+          "statement": "Find $|(1, 2, 2)|$.",
+          "solution": "$\\sqrt{1 + 4 + 4} = 3$.",
+          "check": [
+            "sqrt(1 + 4 + 4) == 3"
+          ]
+        },
+        {
+          "id": "vm41-t2",
+          "statement": "Find the vector from $(0, 1, 5)$ to $(4, 3, 1)$ and its magnitude.",
+          "solution": "$(4, 2, -4)$; $\\sqrt{16 + 4 + 16} = 6$.",
+          "check": [
+            "sqrt(16 + 4 + 16) == 6"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The upgrade",
+            "title": "One more lane",
+            "body": "Planes needed two numbers; space needs three: $(x, y, z)$ — east, north, up. The good news is total: every rule from Units 1–3 survives unchanged, each formula just grows one more term."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The formula",
+            "title": "Pythagoras, twice",
+            "body": "Walk the floor diagonal first: $\\sqrt{x^2 + y^2}$. Then climb $z$ and run Pythagoras again: $$|\\vec{v}| = \\sqrt{x^2 + y^2 + z^2}$$ Two right triangles, one clean formula — and 3D has its own integer families: $(1,2,2) \\to 3$, $(2,3,6) \\to 7$, $(3,4,12) \\to 13$.",
+            "beats": [
+              "floor diagonal, then height — Pythagoras twice",
+              "|v| = √(x² + y² + z²)",
+              "3D families: (1,2,2)→3, (2,3,6)→7, (3,4,12)→13"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the idea",
+            "title": "Three lanes",
+            "prompt": "$|(4, 4, 7)| = $ ?",
+            "options": [
+              "$9$",
+              "$15$",
+              "$\\sqrt{63}$",
+              "$11$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$16 + 16 + 49 = 81$, and $\\sqrt{81} = 9$.",
+            "check": [
+              "sqrt(4**2 + 4**2 + 7**2) == 9"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A length-7 family member",
+            "problemId": "vm41-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Between two space points",
+            "problemId": "vm41-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which family?",
+            "prompt": "$|(3, 4, 12)| = $ ?",
+            "options": [
+              "$13$",
+              "$19$",
+              "$\\sqrt{31}$",
+              "$12$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$9 + 16 + 144 = 169 = 13^2$. Note the nesting: $(3,4) \\to 5$, then $(5, 12) \\to 13$ — families feed families.",
+            "check": [
+              "sqrt(3**2 + 4**2 + 12**2) == 13"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The hidden component, in 3D",
+            "problemId": "vm41-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Column the subtractions",
+            "body": "Three coordinate subtractions juggled mentally is how signs die. Stack the points, subtract lane by lane on paper — five seconds that saves the problem."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "The smallest family",
+            "problemId": "vm41-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Point to point",
+            "problemId": "vm41-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why stop at three?",
+            "body": "The formula √(x² + y² + …) doesn't care how many lanes there are. Physics uses 4 (spacetime), data science uses thousands — and the 'length' of a vector of movie ratings is computed with exactly this lesson's arithmetic."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "$(x, y, z)$: one more lane, same rules.",
+              "$|\\vec{v}| = \\sqrt{x^2 + y^2 + z^2}$ — never drop the z-term.",
+              "3D families: $(1,2,2) \\to 3$, $(2,3,6) \\to 7$, $(3,4,12) \\to 13$."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "arithmetic-and-dot-in-3d",
+      "title": "Arithmetic & Dot Products in 3D",
+      "concreteComparison": "Same machines, one more input slot. Addition adds three lanes, scaling scales three lanes, and the dot product picks up a third term: $x_1x_2 + y_1y_2 + z_1z_2$. The angle formula, the perpendicularity test, the sign classifier — every Unit 3 tool works in space unmodified.",
+      "objective": "Add, scale, and dot vectors in 3D; test perpendicularity; and find exact angles in space.",
+      "concept": [
+        "Addition, subtraction, scaling: all componentwise, all three lanes. Parallel still means scalar multiple — check all three ratios.",
+        "The dot product gains a term: $$\\vec{u} \\cdot \\vec{v} = x_1x_2 + y_1y_2 + z_1z_2,$$ and everything built on it transfers wholesale: $\\cos\\theta = \\frac{\\vec{u}\\cdot\\vec{v}}{|\\vec{u}||\\vec{v}|}$, perpendicular ⇔ dot $= 0$, sign classifies the angle.",
+        "Space is where these tools earn their keep: you can't eyeball a protractor between two arrows floating in 3D, but the arithmetic doesn't even notice the extra dimension."
+      ],
+      "keyIdea": "All Unit-3 machinery + one more term: u·v = x₁x₂ + y₁y₂ + z₁z₂; angles and perpendicularity work verbatim in space.",
+      "facts": [
+        {
+          "title": "3D dot",
+          "latex": "\\vec{u} \\cdot \\vec{v} = x_1x_2 + y_1y_2 + z_1z_2",
+          "explanation": "Three lanes multiply and add."
+        },
+        {
+          "title": "Angle in space",
+          "latex": "\\cos\\theta = \\frac{\\vec{u} \\cdot \\vec{v}}{|\\vec{u}||\\vec{v}|}",
+          "explanation": "Unchanged — the formula never asks the dimension."
+        },
+        {
+          "title": "Perpendicular",
+          "latex": "\\vec{u} \\cdot \\vec{v} = 0",
+          "explanation": "Still the whole test."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm42-we1",
+          "statement": "Compute $(1, 2, 3) \\cdot (4, -5, 6)$.",
+          "solution": "$4 - 10 + 18 = 12$.",
+          "check": [
+            "1*4 + 2*(-5) + 3*6 == 12"
+          ]
+        },
+        {
+          "id": "vm42-we2",
+          "statement": "Find $k$ so that $(2, 1, k) \\perp (3, -2, 2)$.",
+          "solution": "$6 - 2 + 2k = 0$, so $k = -2$.",
+          "check": [
+            "2*3 + 1*(-2) + (-2)*2 == 0"
+          ]
+        },
+        {
+          "id": "vm42-we3",
+          "statement": "Find the exact angle between $\\vec{u} = (1, 1, 0)$ and $\\vec{v} = (0, 1, 1)$.",
+          "solution": "$\\vec{u} \\cdot \\vec{v} = 0 + 1 + 0 = 1$; both lengths are $\\sqrt{2}$. $\\cos\\theta = \\frac{1}{2}$: $\\theta = 60°$.",
+          "check": [
+            "1/(sqrt(2)*sqrt(2)) == Rational(1,2)",
+            "acos(Rational(1,2)) == pi/3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dropping the z-term from the dot product.",
+          "correction": "All three lanes contribute. A missing z-term changes both the number and — worse — the perpendicularity verdict.",
+          "authored": true
+        },
+        {
+          "text": "Testing parallel with only two of the three ratios.",
+          "correction": "(2, 4, 6) ∥ (1, 2, 5)? The first two ratios agree (2:1) but the third doesn't — not parallel. All three lanes must scale together.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm42-t1",
+          "statement": "Compute $(3, -1, 2) + (0, 4, -5)$.",
+          "solution": "$(3, 3, -3)$.",
+          "check": [
+            "3 + 0 == 3",
+            "-1 + 4 == 3",
+            "2 + (-5) == -3"
+          ]
+        },
+        {
+          "id": "vm42-t2",
+          "statement": "Is $(2, 2, 1) \\perp (1, -2, 2)$?",
+          "solution": "Dot $= 2 - 4 + 2 = 0$: yes.",
+          "check": [
+            "2*1 + 2*(-2) + 1*2 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The transfer",
+            "title": "Same machines, third slot",
+            "body": "Every operation is still componentwise — there's just one more component. The dot product reads $x_1x_2 + y_1y_2 + z_1z_2$, and everything you built on it in Unit 3 — angle formula, sign classifier, perpendicularity — runs in space without modification."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why it matters",
+            "title": "You can't eyeball space",
+            "body": "In the plane, a sketch settles most angle questions. Between two arrows floating in 3D, intuition fails — but the arithmetic never notices the extra dimension. This is where trusting the formula over the picture becomes the skill.",
+            "beats": [
+              "dot gains a z-term; formulas unchanged",
+              "perpendicular: still dot = 0",
+              "3D is where arithmetic beats eyeballs"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the idea",
+            "title": "Three-term dot",
+            "prompt": "$(2, -1, 3) \\cdot (1, 4, -2) = $ ?",
+            "options": [
+              "$-8$",
+              "$4$",
+              "$0$",
+              "$-4$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$2 - 4 - 6 = -8$ — negative, so these space arrows lean apart.",
+            "check": [
+              "2*1 + (-1)*4 + 3*(-2) == -8"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "One computation",
+            "problemId": "vm42-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Solve for k in space",
+            "problemId": "vm42-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Perpendicular in space",
+            "prompt": "For which $k$ is $(1, k, 2) \\perp (4, 2, -3)$?",
+            "options": [
+              "$1$",
+              "$-1$",
+              "$5$",
+              "$\\frac{1}{2}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$4 + 2k - 6 = 0$ gives $k = 1$.",
+            "check": [
+              "1*4 + 1*2 + 2*(-3) == 0"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A clean 60°",
+            "problemId": "vm42-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Trust the arithmetic over the sketch",
+            "body": "3D sketches mislead — foreshortening makes right angles look wrong and wrong angles look right. In space, the dot product is the ONLY protractor you should believe."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Componentwise, thrice",
+            "problemId": "vm42-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Verify perpendicular",
+            "problemId": "vm42-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Space has a second product",
+            "body": "3D vectors also support a CROSS product u × v — a vector perpendicular to both inputs. It powers torque, magnetic force, and 3D graphics, and it only exists in dimensions 3 and 7. University bait."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "All operations componentwise, three lanes.",
+              "$\\vec{u}\\cdot\\vec{v} = x_1x_2 + y_1y_2 + z_1z_2$; angle and ⊥ tests unchanged.",
+              "In space, arithmetic outranks eyeballs."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-box-diagonal",
+      "title": "The Box Diagonal",
+      "concreteComparison": "Will a 1.2-metre sword fit in a 1 m × 0.6 m × 0.5 m shipping box? The longest thing a box holds is its space diagonal — corner to opposite corner, through the middle of the air. Its length is the 3D magnitude of the box's edge vector: $d = \\sqrt{a^2 + b^2 + c^2}$.",
+      "objective": "Compute the space diagonal of a rectangular box and a cube, and solve for an unknown edge from a known diagonal.",
+      "concept": [
+        "Put a corner of an $a \\times b \\times c$ box at the origin and the opposite corner sits at $(a, b, c)$. The space diagonal IS the vector between them: $$d = \\sqrt{a^2 + b^2 + c^2}.$$",
+        "The cube is the special case $a = b = c$: $d = a\\sqrt{3}$. (Compare the face diagonal $a\\sqrt{2}$ — the $\\sqrt{2}$–$\\sqrt{3}$ pair is worth memorizing.)",
+        "Exams run it backwards: given the diagonal and two edges, the third edge falls out of $c^2 = d^2 - a^2 - b^2$. And the sword question: an object fits (in principle) iff its length is at most $d$."
+      ],
+      "keyIdea": "Space diagonal d = √(a² + b² + c²); cube: a√3 (face: a√2); run it backwards for a missing edge.",
+      "facts": [
+        {
+          "title": "Box diagonal",
+          "latex": "d = \\sqrt{a^2 + b^2 + c^2}",
+          "explanation": "The 3D magnitude of the edge vector (a, b, c)."
+        },
+        {
+          "title": "Cube",
+          "latex": "d = a\\sqrt{3}",
+          "explanation": "All edges equal; the face diagonal is a√2."
+        },
+        {
+          "title": "Backwards",
+          "latex": "c^2 = d^2 - a^2 - b^2",
+          "explanation": "Known diagonal + two edges → the third edge."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm43-we1",
+          "statement": "Find the space diagonal of a $3 \\times 4 \\times 12$ box.",
+          "solution": "$d = \\sqrt{9 + 16 + 144} = \\sqrt{169} = 13$.",
+          "check": [
+            "sqrt(3**2 + 4**2 + 12**2) == 13"
+          ]
+        },
+        {
+          "id": "vm43-we2",
+          "statement": "Find the space diagonal of a cube with edge $5$.",
+          "solution": "$d = 5\\sqrt{3}$ (from $\\sqrt{25 + 25 + 25} = \\sqrt{75}$).",
+          "check": [
+            "sqrt(75) == 5*sqrt(3)"
+          ]
+        },
+        {
+          "id": "vm43-we3",
+          "statement": "A box has space diagonal $25$ and two edges $9$ and $12$. Find the third edge.",
+          "solution": "$c^2 = 625 - 81 - 144 = 400$, so $c = 20$.",
+          "check": [
+            "sqrt(625 - 81 - 144) == 20",
+            "sqrt(9**2 + 12**2 + 20**2) == 25"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the face diagonal when the problem wants the space diagonal.",
+          "correction": "√(a² + b²) crosses one FACE; the corner-to-opposite-corner trip needs all three squares. Read which diagonal the figure draws.",
+          "authored": true
+        },
+        {
+          "text": "Cube confusion: a√2 vs a√3.",
+          "correction": "Face diagonal a√2 (two edges involved), space diagonal a√3 (three). Count the dimensions the diagonal crosses.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm43-t1",
+          "statement": "Find the space diagonal of a $2 \\times 3 \\times 6$ box.",
+          "solution": "$\\sqrt{4 + 9 + 36} = 7$.",
+          "check": [
+            "sqrt(2**2 + 3**2 + 6**2) == 7"
+          ]
+        },
+        {
+          "id": "vm43-t2",
+          "statement": "A cube's space diagonal is $6\\sqrt{3}$. Find its edge and volume.",
+          "solution": "$a = 6$; volume $216$.",
+          "check": [
+            "6*sqrt(3)/sqrt(3) == 6",
+            "6**3 == 216"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The question",
+            "title": "The longest thing a box holds",
+            "body": "Corner to opposite corner, through the air — the space diagonal is the box's longest interior segment, and the answer to every \"will it fit?\" question. It's nothing but the 3D magnitude from two lessons ago, wearing packaging."
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "See the box",
+            "title": "Edges in three directions",
+            "teach": "The box's far corner sits at $(a, b, c)$ from the near corner — so the space diagonal is the magnitude of that edge vector: $d = \\sqrt{a^2 + b^2 + c^2}$. Steer the dimensions and watch all three feed the diagonal.",
+            "config": {
+              "solid": "rectPrism",
+              "l": 4,
+              "w": 3,
+              "h": 12
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the idea",
+            "title": "One box",
+            "prompt": "The space diagonal of a $1 \\times 2 \\times 2$ box is…",
+            "options": [
+              "$3$",
+              "$\\sqrt{5}$",
+              "$5$",
+              "$2\\sqrt{2}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\sqrt{1 + 4 + 4} = 3$ — the smallest 3D family again.",
+            "check": [
+              "sqrt(1 + 4 + 4) == 3"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A 13 in the making",
+            "problemId": "vm43-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The cube's √3",
+            "problemId": "vm43-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Face or space?",
+            "prompt": "A cube has edge $4$. Its FACE diagonal and SPACE diagonal are…",
+            "options": [
+              "$4\\sqrt{2}$ and $4\\sqrt{3}$",
+              "$4\\sqrt{3}$ and $4\\sqrt{2}$",
+              "both $4\\sqrt{2}$",
+              "$8$ and $12$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Two edges make the face diagonal ($\\sqrt{2}$), three make the space diagonal ($\\sqrt{3}$). Count dimensions crossed.",
+            "check": [
+              "sqrt(16 + 16) == 4*sqrt(2)",
+              "sqrt(16 + 16 + 16) == 4*sqrt(3)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Backwards to the edge",
+            "problemId": "vm43-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Diagonal² is linear territory",
+            "body": "Work with $d^2 = a^2 + b^2 + c^2$ as long as possible — squared, everything is addition and subtraction. Root only at the finish line."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "A 7 in hiding",
+            "problemId": "vm43-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Backwards on a cube",
+            "problemId": "vm43-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Euler's brick is still missing",
+            "body": "A box whose edges, face diagonals AND space diagonal are all whole numbers is called a perfect Euler brick — and nobody has ever found one, or proven it impossible. The hunt has run for 300 years."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "$d = \\sqrt{a^2 + b^2 + c^2}$ — corner to opposite corner.",
+              "Cube: face $a\\sqrt{2}$, space $a\\sqrt{3}$.",
+              "Missing edge: $c^2 = d^2 - a^2 - b^2$."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "normals-and-planes",
+      "title": "Normal Vectors & Planes",
+      "concreteComparison": "A tabletop is a plane; a flagpole bolted straight into it is a NORMAL — perpendicular to every direction lying in the surface. Algebra hands you the flagpole for free: the plane $ax + by + cz = d$ has normal $(a, b, c)$ — the coefficients ARE the perpendicular direction.",
+      "objective": "Read the normal vector off a plane's equation, and test planes (and lines) for parallelism and perpendicularity via their normals.",
+      "concept": [
+        "The plane $ax + by + cz = d$ has **normal vector** $\\vec{n} = (a, b, c)$: perpendicular to every segment inside the plane. No computation — just read the coefficients. (The $d$ only slides the plane along its normal; it never tilts it.)",
+        "Normals turn plane geometry into vector tests: two planes are **parallel** ⇔ their normals are parallel (scalar multiples); **perpendicular** ⇔ their normals dot to zero.",
+        "A line is perpendicular to a plane exactly when its direction vector is parallel to the plane's normal — the flagpole condition. These three tests answer nearly every ЭЕШ plane question without a single picture."
+      ],
+      "keyIdea": "ax + by + cz = d has normal (a, b, c); planes compare by their normals — parallel normals ⇒ parallel planes, zero dot ⇒ perpendicular planes.",
+      "facts": [
+        {
+          "title": "Read the normal",
+          "latex": "ax + by + cz = d \\;\\to\\; \\vec{n} = (a, b, c)",
+          "explanation": "Coefficients are the perpendicular direction; d only slides."
+        },
+        {
+          "title": "Plane vs plane",
+          "latex": "\\parallel \\iff \\vec{n}_1 \\parallel \\vec{n}_2; \\quad \\perp \\iff \\vec{n}_1 \\cdot \\vec{n}_2 = 0",
+          "explanation": "Planes inherit their normals' relationship."
+        },
+        {
+          "title": "Line ⊥ plane",
+          "latex": "\\vec{d}_{\\text{line}} \\parallel \\vec{n}_{\\text{plane}}",
+          "explanation": "The flagpole condition."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm44-we1",
+          "statement": "Write the normal vector of the plane $2x - 3y + 6z = 12$ and find its magnitude.",
+          "solution": "$\\vec{n} = (2, -3, 6)$; $|\\vec{n}| = \\sqrt{4 + 9 + 36} = 7$.",
+          "check": [
+            "sqrt(2**2 + 3**2 + 6**2) == 7"
+          ]
+        },
+        {
+          "id": "vm44-we2",
+          "statement": "Are the planes $2x - y + z = 3$ and $4x - 2y + 2z = 9$ parallel?",
+          "solution": "Normals $(2, -1, 1)$ and $(4, -2, 2) = 2(2, -1, 1)$ — scalar multiples, so the planes are parallel (and distinct, since the equations aren't multiples: $9 \\ne 2 \\cdot 3$).",
+          "check": [
+            "2*2 == 4",
+            "2*(-1) == -2",
+            "2*1 == 2"
+          ]
+        },
+        {
+          "id": "vm44-we3",
+          "statement": "Show the planes $x + 2y - z = 4$ and $3x - y + z = 7$ are perpendicular.",
+          "solution": "Dot the normals: $(1, 2, -1) \\cdot (3, -1, 1) = 3 - 2 - 1 = 0$ ✓ — perpendicular planes.",
+          "check": [
+            "1*3 + 2*(-1) + (-1)*1 == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking d changes the plane's direction.",
+          "correction": "2x − 3y + 6z = 12 and 2x − 3y + 6z = 40 are parallel copies — d slides the plane along its normal without tilting it. Only (a, b, c) sets the tilt.",
+          "authored": true
+        },
+        {
+          "text": "Testing plane-parallelism with a dot product.",
+          "correction": "Parallel planes need PARALLEL normals (scalar multiples / cross-ratios), not a zero dot. Zero dot means perpendicular planes — the opposite verdict.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm44-t1",
+          "statement": "Write the normal of $x + 4y - 8z = 2$ and its magnitude.",
+          "solution": "$(1, 4, -8)$; $\\sqrt{1 + 16 + 64} = 9$.",
+          "check": [
+            "sqrt(1 + 16 + 64) == 9"
+          ]
+        },
+        {
+          "id": "vm44-t2",
+          "statement": "Find $k$ so that the planes $kx + 6y - 4z = 1$ and $3x + 9y - 6z = 5$ are parallel.",
+          "solution": "Normals must be proportional: $\\frac{k}{3} = \\frac{6}{9} = \\frac{2}{3}$, so $k = 2$.",
+          "check": [
+            "3*Rational(6,9) == 2",
+            "Rational(-4,-6) == Rational(2,3)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The gift",
+            "title": "The equation hands you the flagpole",
+            "body": "A plane in space is $ax + by + cz = d$ — and its **normal vector**, the direction bolted perpendicular to the surface, is just the coefficients: $\\vec{n} = (a, b, c)$. No computation. The constant $d$ only slides the plane along the flagpole."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The tests",
+            "title": "Planes compare by normals",
+            "body": "Everything about how two planes sit reduces to their normals: parallel planes ⇔ parallel normals (scalar multiples); perpendicular planes ⇔ normals dotting to zero. And a LINE stands perpendicular to a plane when its direction runs parallel to the normal. Three tests, all Unit-3 machinery.",
+            "beats": [
+              "read n = (a, b, c) off the equation",
+              "planes ∥ ⇔ normals ∥ · planes ⊥ ⇔ n₁·n₂ = 0",
+              "line ⊥ plane ⇔ direction ∥ normal"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the read",
+            "title": "Name the normal",
+            "prompt": "The normal vector of $3x - y + 5z = 8$ is…",
+            "options": [
+              "$(3, -1, 5)$",
+              "$(3, 1, 5)$",
+              "$(8, 8, 8)$",
+              "$\\left(\\frac{8}{3}, -8, \\frac{8}{5}\\right)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Coefficients, signs included: $(3, -1, 5)$. The 8 has no vote on direction.",
+            "check": [
+              "sqrt(9 + 1 + 25) == sqrt(35)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Read and measure",
+            "problemId": "vm44-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Parallel planes",
+            "problemId": "vm44-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Perpendicular planes",
+            "prompt": "Planes with normals $(2, 1, -2)$ and $(1, 2, 2)$ are…",
+            "options": [
+              "perpendicular",
+              "parallel",
+              "the same plane",
+              "at $60°$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Dot: $2 + 2 - 4 = 0$ — the normals are perpendicular, so the planes are too.",
+            "check": [
+              "2*1 + 1*2 + (-2)*2 == 0"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A zero dot between planes",
+            "problemId": "vm44-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Translate the question into normals first",
+            "body": "Every plane-relationship question should start with one reflex: write both normals. The geometry vocabulary (parallel, perpendicular, angle between planes) is all answered by those two vectors."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Read one off",
+            "problemId": "vm44-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Tune k for parallel",
+            "problemId": "vm44-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Your graphics card worships normals",
+            "body": "Every lit pixel in a 3D game is shaded by dotting a surface normal with the light direction — this lesson's two ideas, run trillions of times a day."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "$ax + by + cz = d$: normal $= (a, b, c)$; $d$ only slides.",
+              "Planes ∥ ⇔ normals ∥; planes ⊥ ⇔ normals dot to zero.",
+              "Line ⊥ plane ⇔ its direction ∥ the normal."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "vm4-pr-1",
+      "statement": "Find $|(6, -2, 3)|$.",
+      "solution": "$\\sqrt{36 + 4 + 9} = 7$.",
+      "check": [
+        "sqrt(36 + 4 + 9) == 7"
+      ]
+    },
+    {
+      "id": "vm4-pr-2",
+      "statement": "$A(2, -1, 4)$, $B(0, 3, 1)$. Find $\\overrightarrow{AB}$ and its magnitude.",
+      "solution": "$(-2, 4, -3)$; $\\sqrt{4 + 16 + 9} = \\sqrt{29}$.",
+      "check": [
+        "0 - 2 == -2",
+        "3 - (-1) == 4",
+        "1 - 4 == -3",
+        "sqrt(4 + 16 + 9) == sqrt(29)"
+      ]
+    },
+    {
+      "id": "vm4-pr-3",
+      "statement": "Compute $(2, 0, -1) \\cdot (3, 5, 4)$ and classify the angle.",
+      "solution": "$6 + 0 - 4 = 2 > 0$: acute.",
+      "check": [
+        "2*3 + 0*5 + (-1)*4 == 2"
+      ]
+    },
+    {
+      "id": "vm4-pr-4",
+      "statement": "Find $k$ so that $(1, k, 3) \\perp (2, 4, -2)$.",
+      "solution": "$2 + 4k - 6 = 0$: $k = 1$.",
+      "check": [
+        "1*2 + 1*4 + 3*(-2) == 0"
+      ]
+    },
+    {
+      "id": "vm4-pr-5",
+      "statement": "Find the space diagonal of a $4 \\times 4 \\times 7$ box.",
+      "solution": "$\\sqrt{16 + 16 + 49} = 9$.",
+      "check": [
+        "sqrt(16 + 16 + 49) == 9"
+      ]
+    },
+    {
+      "id": "vm4-pr-6",
+      "statement": "A cube has space diagonal $10\\sqrt{3}$. Find its edge and surface area.",
+      "solution": "Edge $10$; surface area $6 \\cdot 100 = 600$.",
+      "check": [
+        "10*sqrt(3)/sqrt(3) == 10",
+        "6*10**2 == 600"
+      ]
+    },
+    {
+      "id": "vm4-pr-7",
+      "statement": "Write the normal of the plane $6x - 2y + 3z = 5$ and its magnitude.",
+      "solution": "$(6, -2, 3)$; magnitude $7$.",
+      "check": [
+        "sqrt(36 + 4 + 9) == 7"
+      ]
+    },
+    {
+      "id": "vm4-pr-8",
+      "statement": "Are the planes $x - 2y + 2z = 1$ and $2x + 3y + 2z = 4$ perpendicular?",
+      "solution": "Dot of normals: $2 - 6 + 4 = 0$: yes.",
+      "check": [
+        "1*2 + (-2)*3 + 2*2 == 0"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "vm4-ty-1",
+      "statement": "The vector $(x, 6, 8)$ has magnitude $12\\ldots$ does an integer $x$ exist? Find all real $x$.",
+      "solution": "$x^2 = 144 - 36 - 64 = 44$: $x = \\pm 2\\sqrt{11}$ — real but not integer.",
+      "check": [
+        "sqrt(44) == 2*sqrt(11)",
+        "(2*sqrt(11))**2 + 36 + 64 == 144"
+      ]
+    },
+    {
+      "id": "vm4-ty-2",
+      "statement": "Find the exact angle between $(1, 0, 1)$ and $(1, 1, 0)$.",
+      "solution": "Dot $= 1$; lengths $\\sqrt{2}$ each: $\\cos\\theta = \\frac{1}{2}$, $\\theta = 60°$.",
+      "check": [
+        "1/(sqrt(2)*sqrt(2)) == Rational(1,2)",
+        "acos(Rational(1,2)) == pi/3"
+      ]
+    },
+    {
+      "id": "vm4-ty-3",
+      "statement": "A box has edges $2, 6, c$ and space diagonal $7$. Find $c$.",
+      "solution": "$c^2 = 49 - 4 - 36 = 9$: $c = 3$.",
+      "check": [
+        "sqrt(49 - 4 - 36) == 3",
+        "sqrt(4 + 36 + 9) == 7"
+      ]
+    },
+    {
+      "id": "vm4-ty-4",
+      "statement": "For which $m$ are the planes $2x + my - z = 3$ and $6x + 9y - 3z = 1$ parallel?",
+      "solution": "Proportion: $\\frac{2}{6} = \\frac{m}{9} = \\frac{-1}{-3} = \\frac{1}{3}$, so $m = 3$.",
+      "check": [
+        "9*Rational(2,6) == 3",
+        "Rational(-1,-3) == Rational(1,3)"
+      ]
+    },
+    {
+      "id": "vm4-ty-5",
+      "statement": "Vertices $A(0,0,0)$, $B(2, 1, 2)$, $C(-2, 2, 1)$. Show the angle at $A$ is right.",
+      "solution": "$\\overrightarrow{AB} \\cdot \\overrightarrow{AC} = -4 + 2 + 2 = 0$ ✓.",
+      "check": [
+        "2*(-2) + 1*2 + 2*1 == 0"
+      ]
+    },
+    {
+      "id": "vm4-ty-6",
+      "statement": "$|\\vec{u}| = 2$, $|\\vec{v}| = 5$, and $\\vec{u} \\cdot \\vec{v} = -7$. Find $|\\vec{u} + \\vec{v}|$.",
+      "solution": "$4 - 14 + 25 = 15$: $\\sqrt{15}$. (Works in any dimension — the expansion never asks.)",
+      "check": [
+        "4 + 2*(-7) + 25 == 15"
+      ]
+    }
+  ]
+}

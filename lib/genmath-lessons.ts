@@ -159,6 +159,12 @@ import psDescribingData from "@/data/genmath/prob-stats/describing-data.json";
 import psDistPosition from "@/data/genmath/prob-stats/distributions-and-position.json";
 import psTwoVariable from "@/data/genmath/prob-stats/two-variable-data.json";
 import psInference from "@/data/genmath/prob-stats/inference-and-studies.json";
+import vmVectorsCoords from "@/data/genmath/vectors-matrices/vectors-and-coordinates.json";
+import vmArithmetic from "@/data/genmath/vectors-matrices/vector-arithmetic.json";
+import vmDotProduct from "@/data/genmath/vectors-matrices/the-dot-product.json";
+import vmSpace from "@/data/genmath/vectors-matrices/vectors-in-space.json";
+import vmMatrices from "@/data/genmath/vectors-matrices/matrices-and-operations.json";
+import vmDeterminants from "@/data/genmath/vectors-matrices/determinants-and-inverses.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -938,6 +944,89 @@ export function getProbStatLesson(
   lessonSlug: string
 ): GenMathLesson | null {
   const unit = getProbStatUnit(unitSlug);
+  if (!unit) return null;
+  return unit.lessons.find((l) => l.slug === lessonSlug) ?? null;
+}
+
+// ---------------------------------------------------------------------------
+// Vectors & Matrices course — /math/vectors-matrices
+// Built to close the ЭЕШ linear_algebra gap: ~90 exam questions (vector
+// arithmetic, dot products, space geometry, matrix operations, determinants,
+// inverses) previously had no course to remediate into.
+// ---------------------------------------------------------------------------
+
+export const VECMAT_SPINE: GeometrySpineEntry[] = [
+  {
+    unit: 1,
+    slug: "vectors-and-coordinates",
+    title: "Vectors & Coordinates",
+    blurb: "What a vector is, components and magnitude, equal/opposite/parallel vectors, and unit vectors.",
+    live: true,
+  },
+  {
+    unit: 2,
+    slug: "vector-arithmetic",
+    title: "Vector Arithmetic",
+    blurb: "Tip-to-tail addition, scaling, subtraction, vectors inside figures, and the section formula.",
+    buildsOn: "Components and magnitude from Unit 1.",
+    live: true,
+  },
+  {
+    unit: 3,
+    slug: "the-dot-product",
+    title: "The Dot Product",
+    blurb: "u\u00b7v two ways, angles from the sign, perpendicularity tests, and the |u+v|\u00b2 toolbox.",
+    buildsOn: "Vector arithmetic from Units 1\u20132.",
+    live: true,
+  },
+  {
+    unit: 4,
+    slug: "vectors-in-space",
+    title: "Vectors in Space",
+    blurb: "The third coordinate: 3D magnitudes and dot products, the box diagonal, and normal vectors of planes.",
+    buildsOn: "Every 2D formula grows one more term.",
+    live: true,
+  },
+  {
+    unit: 5,
+    slug: "matrices-and-operations",
+    title: "Matrices & Operations",
+    blurb: "Grids with an address system: entrywise arithmetic, row-times-column multiplication, identity and powers.",
+    buildsOn: "Componentwise thinking from the vector units.",
+    live: true,
+  },
+  {
+    unit: 6,
+    slug: "determinants-and-inverses",
+    title: "Determinants, Inverses & Systems",
+    blurb: "ad \u2212 bc, the 2\u00d72 inverse, Cramer's rule, and matrices as transformations \u2014 the capstone.",
+    buildsOn: "Matrix multiplication (Unit 5) and the Geometry course's transformation matrices.",
+    live: true,
+  },
+];
+
+const vecMatUnits: CourseUnit[] = [
+  vmVectorsCoords as unknown as CourseUnit,
+  vmArithmetic as unknown as CourseUnit,
+  vmDotProduct as unknown as CourseUnit,
+  vmSpace as unknown as CourseUnit,
+  vmMatrices as unknown as CourseUnit,
+  vmDeterminants as unknown as CourseUnit,
+];
+
+export function getVecMatSpine(): GeometrySpineEntry[] {
+  return VECMAT_SPINE;
+}
+
+export function getVecMatUnit(unitSlug: string): CourseUnit | null {
+  return vecMatUnits.find((u) => u.slug === unitSlug) ?? null;
+}
+
+export function getVecMatLesson(
+  unitSlug: string,
+  lessonSlug: string
+): GenMathLesson | null {
+  const unit = getVecMatUnit(unitSlug);
   if (!unit) return null;
   return unit.lessons.find((l) => l.slug === lessonSlug) ?? null;
 }

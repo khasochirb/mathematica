@@ -1,0 +1,918 @@
+{
+  "slug": "the-dot-product",
+  "title": "The Dot Product",
+  "unit": 3,
+  "status": "published",
+  "blurb": "Multiply vectors into a number: computing u·v, reading angles from its sign, perpendicularity tests, and the |u+v|² expansion toolbox.",
+  "buildsOn": "Components, magnitude, and arithmetic from Units 1–2.",
+  "lessons": [
+    {
+      "slug": "multiplying-vectors",
+      "title": "Multiplying Vectors: u · v",
+      "concreteComparison": "Adding vectors gave a vector. Multiplying them — the dot product — gives a NUMBER, and that number is a compatibility score: big and positive when the arrows pull together, zero when they ignore each other at right angles, negative when they fight. Two formulas compute the same score, and switching between them is the whole game.",
+      "objective": "Compute u·v from components, connect it to |u||v|cos θ, and use v·v = |v|².",
+      "concept": [
+        "Component recipe: $$\\vec{u} \\cdot \\vec{v} = x_1 x_2 + y_1 y_2$$ — multiply matching lanes, add. The output is a **scalar**, not a vector.",
+        "Geometry recipe, same number: $$\\vec{u} \\cdot \\vec{v} = |\\vec{u}||\\vec{v}|\\cos\\theta,$$ where $\\theta$ is the angle between the arrows. Two formulas for one quantity is a bridge: components on one side, angles on the other — cross whichever way the problem demands.",
+        "Dot a vector with itself and the angle is $0$: $\\vec{v} \\cdot \\vec{v} = |\\vec{v}|^2$. This tiny identity powers the whole toolbox lesson later — lengths become dot products, and dot products expand like algebra."
+      ],
+      "keyIdea": "u·v = x₁x₂ + y₁y₂ = |u||v|cos θ — one number, two recipes; and v·v = |v|².",
+      "facts": [
+        {
+          "title": "Components",
+          "latex": "\\vec{u} \\cdot \\vec{v} = x_1x_2 + y_1y_2",
+          "explanation": "Match lanes, multiply, add — the output is a number."
+        },
+        {
+          "title": "Geometry",
+          "latex": "\\vec{u} \\cdot \\vec{v} = |\\vec{u}||\\vec{v}|\\cos\\theta",
+          "explanation": "The same number, priced by lengths and the angle."
+        },
+        {
+          "title": "Self-dot",
+          "latex": "\\vec{v} \\cdot \\vec{v} = |\\vec{v}|^2",
+          "explanation": "Angle zero, cos = 1 — length squared."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm31-we1",
+          "statement": "Compute $(2, 3) \\cdot (4, -1)$.",
+          "solution": "$2 \\cdot 4 + 3 \\cdot (-1) = 8 - 3 = 5$.",
+          "check": [
+            "2*4 + 3*(-1) == 5"
+          ]
+        },
+        {
+          "id": "vm31-we2",
+          "statement": "Verify $\\vec{v} \\cdot \\vec{v} = |\\vec{v}|^2$ for $\\vec{v} = (3, 4)$.",
+          "solution": "$\\vec{v} \\cdot \\vec{v} = 9 + 16 = 25$ and $|\\vec{v}|^2 = 5^2 = 25$. ✓",
+          "check": [
+            "3*3 + 4*4 == 25",
+            "sqrt(3**2 + 4**2)**2 == 25"
+          ]
+        },
+        {
+          "id": "vm31-we3",
+          "statement": "Find the angle between $\\vec{u} = (1, 0)$ and $\\vec{v} = (1, 1)$.",
+          "solution": "$\\vec{u} \\cdot \\vec{v} = 1$; $|\\vec{u}| = 1$, $|\\vec{v}| = \\sqrt{2}$. So $\\cos\\theta = \\frac{1}{\\sqrt{2}} = \\frac{\\sqrt{2}}{2}$ and $\\theta = 45°$.",
+          "check": [
+            "1/(1*sqrt(2)) == sqrt(2)/2",
+            "acos(sqrt(2)/2) == pi/4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reporting the dot product as a vector like (8, −3).",
+          "correction": "The lanes multiply AND THEN ADD: u·v is one number. If your answer has components, you stopped halfway.",
+          "authored": true
+        },
+        {
+          "text": "Using the angle formula with the wrong angle.",
+          "correction": "θ is the angle between the arrows when drawn tail-to-tail. Tip-to-tail drawings show the supplement — cos flips sign.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm31-t1",
+          "statement": "Compute $(5, -2) \\cdot (3, 4)$.",
+          "solution": "$15 - 8 = 7$.",
+          "check": [
+            "5*3 + (-2)*4 == 7"
+          ]
+        },
+        {
+          "id": "vm31-t2",
+          "statement": "Compute $(-2, 6) \\cdot (3, 1)$ and say what the answer means geometrically.",
+          "solution": "$-6 + 6 = 0$ — the vectors are perpendicular.",
+          "check": [
+            "-2*3 + 6*1 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The problem",
+            "title": "What should multiplying arrows mean?",
+            "body": "Addition chained trips. Multiplication answers a different question: how much do two directions AGREE? The dot product is that agreement, scored as a single number — positive together, zero at right angles, negative opposed."
+          },
+          {
+            "kind": "vectorGraph",
+            "eyebrow": "Play with it",
+            "title": "The sign calls the angle",
+            "teach": "Term by term, the dot product totals up — and its SIGN reads the geometry: positive means an acute angle, zero means perpendicular, negative means obtuse. Watch the score and the angle move together.",
+            "config": {
+              "mode": "dot"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Two recipes",
+            "title": "Components or angles — same number",
+            "body": "$$\\vec{u} \\cdot \\vec{v} = x_1x_2 + y_1y_2 = |\\vec{u}||\\vec{v}|\\cos\\theta$$ The left recipe needs no picture; the right needs no coordinates. Problems hand you one side and ask about the other — the dot product is the bridge. And self-dotting gives the gem $\\vec{v} \\cdot \\vec{v} = |\\vec{v}|^2$.",
+            "beats": [
+              "u·v = x₁x₂ + y₁y₂ — a NUMBER",
+              "u·v = |u||v|cos θ — the same number",
+              "v·v = |v|²"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the idea",
+            "title": "Compute one",
+            "prompt": "$(3, -4) \\cdot (2, 5) = $ ?",
+            "options": [
+              "$-14$",
+              "$26$",
+              "$(6, -20)$",
+              "$14$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$6 - 20 = -14$ — a number, and negative: these arrows lean apart (obtuse).",
+            "check": [
+              "3*2 + (-4)*5 == -14"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Lanes multiply, then add",
+            "problemId": "vm31-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Length squared, for free",
+            "problemId": "vm31-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the sign",
+            "prompt": "$\\vec{u} \\cdot \\vec{v} = 0$ with $\\vec{u}, \\vec{v}$ both nonzero. The angle between them is…",
+            "options": [
+              "$90°$",
+              "$0°$",
+              "$180°$",
+              "Impossible to say"
+            ],
+            "correctIndex": 0,
+            "explanation": "$|\\vec{u}||\\vec{v}|\\cos\\theta = 0$ with nonzero lengths forces $\\cos\\theta = 0$: a right angle. Zero dot product IS perpendicularity.",
+            "check": [
+              "cos(pi/2) == 0"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "First angle from the bridge",
+            "problemId": "vm31-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Predict the sign before computing",
+            "body": "Sketch the arrows: leaning together → expect positive; near-perpendicular → near zero; opposed → negative. A wrong-sign result then flags itself instantly."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "One computation",
+            "problemId": "vm31-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "A meaningful zero",
+            "problemId": "vm31-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Work is a dot product",
+            "body": "In physics, the work done by a force along a displacement is exactly $W = \\vec{F} \\cdot \\vec{d}$ — push along the motion and work is positive; push against it and the dot product bills you negative."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "$\\vec{u} \\cdot \\vec{v} = x_1x_2 + y_1y_2$ — a scalar.",
+              "Same number as $|\\vec{u}||\\vec{v}|\\cos\\theta$: the component–angle bridge.",
+              "$\\vec{v} \\cdot \\vec{v} = |\\vec{v}|^2$."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "angles-between-vectors",
+      "title": "Angles Between Vectors",
+      "concreteComparison": "Two roads leave the same junction. How sharp is the turn between them? You could get out a protractor — or dot their direction vectors and read the angle from $\\cos\\theta = \\frac{\\vec{u} \\cdot \\vec{v}}{|\\vec{u}||\\vec{v}|}$. Arithmetic replaces the protractor, and the SIGN alone already calls acute, right, or obtuse.",
+      "objective": "Compute cos θ from components, classify angles by the dot product's sign, and recover exact angles for the standard cosine values.",
+      "concept": [
+        "Rearrange the bridge: $$\\cos\\theta = \\frac{\\vec{u} \\cdot \\vec{v}}{|\\vec{u}|\\,|\\vec{v}|}.$$ Numerator: the dot product. Denominator: both lengths. The output always lands in $[-1, 1]$ — if yours doesn't, an arithmetic slip is hiding.",
+        "The sign is a free classifier, no division required: $\\vec{u} \\cdot \\vec{v} > 0$ → acute, $= 0$ → right angle, $< 0$ → obtuse. Many exam questions only want this call.",
+        "For exact angles, know the cosine celebrities: $\\cos 30° = \\tfrac{\\sqrt{3}}{2}$, $\\cos 45° = \\tfrac{\\sqrt{2}}{2}$, $\\cos 60° = \\tfrac{1}{2}$, $\\cos 90° = 0$, $\\cos 120° = -\\tfrac{1}{2}$, $\\cos 135° = -\\tfrac{\\sqrt{2}}{2}$."
+      ],
+      "keyIdea": "cos θ = u·v / (|u||v|); the sign of u·v alone calls acute / right / obtuse.",
+      "facts": [
+        {
+          "title": "The angle formula",
+          "latex": "\\cos\\theta = \\frac{\\vec{u} \\cdot \\vec{v}}{|\\vec{u}||\\vec{v}|}",
+          "explanation": "Dot over the product of lengths; always lands in [−1, 1]."
+        },
+        {
+          "title": "Sign classifier",
+          "latex": "u \\cdot v > 0: \\text{acute};\\; = 0: \\text{right};\\; < 0: \\text{obtuse}",
+          "explanation": "The denominator is positive — the numerator's sign decides."
+        },
+        {
+          "title": "Celebrity cosines",
+          "latex": "\\tfrac{\\sqrt{3}}{2}, \\tfrac{\\sqrt{2}}{2}, \\tfrac{1}{2}, 0, -\\tfrac{1}{2}, \\ldots",
+          "explanation": "30°, 45°, 60°, 90°, 120° — the exact angles exams use."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm32-we1",
+          "statement": "Find $\\cos\\theta$ for $\\vec{u} = (3, 4)$ and $\\vec{v} = (4, 3)$.",
+          "solution": "$\\vec{u} \\cdot \\vec{v} = 12 + 12 = 24$; $|\\vec{u}| = |\\vec{v}| = 5$. $\\cos\\theta = \\frac{24}{25}$ — nearly parallel, as the mirror-image components suggest.",
+          "check": [
+            "(3*4 + 4*3)/(5*5) == 24/25",
+            "sqrt(3**2+4**2) == 5"
+          ]
+        },
+        {
+          "id": "vm32-we2",
+          "statement": "Find the exact angle between $\\vec{u} = (1, 2)$ and $\\vec{v} = (3, 1)$.",
+          "solution": "$\\vec{u} \\cdot \\vec{v} = 3 + 2 = 5$; $|\\vec{u}| = \\sqrt{5}$, $|\\vec{v}| = \\sqrt{10}$. $\\cos\\theta = \\frac{5}{\\sqrt{50}} = \\frac{\\sqrt{2}}{2}$, so $\\theta = 45°$.",
+          "check": [
+            "5/(sqrt(5)*sqrt(10)) == sqrt(2)/2",
+            "acos(sqrt(2)/2) == pi/4"
+          ]
+        },
+        {
+          "id": "vm32-we3",
+          "statement": "Classify the angle between $\\vec{u} = (1, 1)$ and $\\vec{v} = (-2, 1)$, then compute $\\cos\\theta$.",
+          "solution": "$\\vec{u} \\cdot \\vec{v} = -2 + 1 = -1 < 0$: obtuse, before any division. Exactly: $\\cos\\theta = \\frac{-1}{\\sqrt{2}\\sqrt{5}} = -\\frac{1}{\\sqrt{10}} = -\\frac{\\sqrt{10}}{10}$.",
+          "check": [
+            "1*(-2) + 1*1 == -1",
+            "-1/(sqrt(2)*sqrt(5)) == -sqrt(10)/10"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Forgetting the lengths in the denominator.",
+          "correction": "u·v alone is NOT cos θ — it must be divided by |u||v|. A 'cosine' of 24 is the formula telling you it was robbed.",
+          "authored": true
+        },
+        {
+          "text": "Rationalizing errors with the surds.",
+          "correction": "5/√50 = 5/(5√2) = 1/√2 = √2/2. Slow down on the surd arithmetic — it's where the angle turns into nonsense.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm32-t1",
+          "statement": "Find $\\cos\\theta$ for $(6, 8)$ and $(0, 5)$.",
+          "solution": "Dot $= 40$; lengths $10$ and $5$. $\\cos\\theta = \\frac{40}{50} = \\frac{4}{5}$.",
+          "check": [
+            "(6*0 + 8*5)/(10*5) == 4/5",
+            "sqrt(6**2 + 8**2) == 10"
+          ]
+        },
+        {
+          "id": "vm32-t2",
+          "statement": "Without computing the angle, classify the angle between $(2, -1)$ and $(1, 2)$.",
+          "solution": "Dot $= 2 - 2 = 0$: a right angle, exactly.",
+          "check": [
+            "2*1 + (-1)*2 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The move",
+            "title": "Protractor, retired",
+            "body": "Solve the bridge formula for the cosine: $$\\cos\\theta = \\frac{\\vec{u} \\cdot \\vec{v}}{|\\vec{u}||\\vec{v}|}$$ Dot product on top, both lengths below. Every angle between vectors — in the plane, in space, in any dimension — comes out of this one fraction."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The shortcut",
+            "title": "The sign already answers",
+            "body": "The denominator is always positive, so the NUMERATOR's sign classifies alone: $\\vec{u} \\cdot \\vec{v} > 0$ acute, $= 0$ right, $< 0$ obtuse. Exams often stop there — learn to answer before dividing.",
+            "beats": [
+              "cos θ = u·v / (|u||v|), always in [−1, 1]",
+              "sign of u·v: acute / right / obtuse — free",
+              "exact angles come from celebrity cosines"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the shortcut",
+            "title": "Classify at a glance",
+            "prompt": "The angle between $(4, 1)$ and $(-1, 3)$ is…",
+            "options": [
+              "obtuse",
+              "acute",
+              "right",
+              "$0°$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Dot $= -4 + 3 = -1 < 0$: obtuse. No lengths, no division — the sign already spoke.",
+            "check": [
+              "4*(-1) + 1*3 == -1"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Almost parallel",
+            "problemId": "vm32-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "An exact 45°",
+            "problemId": "vm32-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Name the angle",
+            "prompt": "Two unit vectors have $\\vec{u} \\cdot \\vec{v} = -\\frac{1}{2}$. The angle between them is…",
+            "options": [
+              "$120°$",
+              "$60°$",
+              "$150°$",
+              "$30°$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Unit lengths make $\\cos\\theta = \\vec{u} \\cdot \\vec{v} = -\\frac{1}{2}$, and $\\cos 120° = -\\frac{1}{2}$.",
+            "check": [
+              "cos(2*pi/3) == -Rational(1,2)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Obtuse, then exact",
+            "problemId": "vm32-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Sanity-check the range",
+            "body": "cos θ must land in [−1, 1]. Anything outside means a length was dropped or a component slipped — catch it before choosing an answer, not after."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "A clean 4/5",
+            "problemId": "vm32-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Classify only",
+            "problemId": "vm32-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Search engines measure angles",
+            "body": "Text search and recommendation systems score similarity by the 'cosine similarity' of high-dimensional vectors — literally this lesson's formula, run in thousands of dimensions instead of two."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "$\\cos\\theta = \\dfrac{\\vec{u} \\cdot \\vec{v}}{|\\vec{u}||\\vec{v}|}$, always in $[-1, 1]$.",
+              "Sign of the dot: acute / right / obtuse, no division needed.",
+              "Exact angles come from the standard cosine values."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "perpendicularity",
+      "title": "Perpendicularity & Finding k",
+      "concreteComparison": "\"For which $k$ are these perpendicular?\" is the exam's favorite dot-product question, and it's a one-liner: perpendicular means the dot product is ZERO, so set $\\vec{u} \\cdot \\vec{v} = 0$ and solve for $k$. One equation, one unknown, done.",
+      "objective": "Use u·v = 0 as the perpendicularity test, solve for unknown components, and verify right angles in figures with vectors.",
+      "concept": [
+        "**Perpendicular ⇔ zero dot product.** No lengths, no cosines: $\\vec{u} \\perp \\vec{v} \\iff \\vec{u} \\cdot \\vec{v} = 0$. It's the cleanest test in the course.",
+        "With an unknown component, the test becomes a linear equation: $(2, k) \\perp (3, 4)$ means $6 + 4k = 0$, so $k = -\\tfrac{3}{2}$. When $k$ appears in both vectors the equation may be quadratic — still just algebra.",
+        "In figures, right angles hide in vectors: the triangle with vertices $A, B, C$ has a right angle at $A$ exactly when $\\overrightarrow{AB} \\cdot \\overrightarrow{AC} = 0$. Compute two tip-minus-tail vectors, dot them, read the verdict. Contrast with Unit 1's parallel test: parallel is cross-products EQUAL, perpendicular is dot product ZERO — keep the two tests in separate pockets."
+      ],
+      "keyIdea": "u ⊥ v ⇔ u·v = 0; unknown components fall out of one linear equation; right angles in figures are zero dots of tip-minus-tail vectors.",
+      "facts": [
+        {
+          "title": "The test",
+          "latex": "\\vec{u} \\perp \\vec{v} \\iff \\vec{u} \\cdot \\vec{v} = 0",
+          "explanation": "Zero agreement = right angle. Both directions of the arrow."
+        },
+        {
+          "title": "Solve for k",
+          "latex": "\\vec{u} \\cdot \\vec{v} = 0 \\to \\text{equation in } k",
+          "explanation": "Usually linear; occasionally quadratic when k sits in both vectors."
+        },
+        {
+          "title": "Two tests, two pockets",
+          "latex": "\\parallel: x_1y_2 = x_2y_1; \\quad \\perp: x_1x_2 + y_1y_2 = 0",
+          "explanation": "Cross-equal for parallel, dot-zero for perpendicular — don't swap them."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm33-we1",
+          "statement": "Find $k$ so that $(2, k) \\perp (3, 4)$.",
+          "solution": "Set the dot to zero: $6 + 4k = 0$, so $k = -\\tfrac{3}{2}$.",
+          "check": [
+            "2*3 + 4*Rational(-3,2) == 0"
+          ]
+        },
+        {
+          "id": "vm33-we2",
+          "statement": "Find $k$ so that $(k, 3)$ is perpendicular to $(2, k - 5)$.",
+          "solution": "$k \\cdot 2 + 3(k - 5) = 0$ gives $5k - 15 = 0$, so $k = 3$. Check: $(3,3) \\cdot (2,-2) = 6 - 6 = 0$. ✓",
+          "check": [
+            "2*3 + 3*(3 - 5) == 0",
+            "3*2 + 3*(-2) == 0"
+          ]
+        },
+        {
+          "id": "vm33-we3",
+          "statement": "Triangle $ABC$ has $A(0, 0)$, $B(4, 2)$, $C(-1, 2)$. Show the right angle sits at $A$.",
+          "solution": "$\\overrightarrow{AB} = (4, 2)$, $\\overrightarrow{AC} = (-1, 2)$. Dot: $-4 + 4 = 0$ — perpendicular, so the right angle is at $A$.",
+          "check": [
+            "4*(-1) + 2*2 == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the parallel test for perpendicularity.",
+          "correction": "Parallel: x₁y₂ = x₂y₁ (cross products EQUAL). Perpendicular: x₁x₂ + y₁y₂ = 0 (dot product ZERO). Swapping them is the classic exam self-sabotage.",
+          "authored": true
+        },
+        {
+          "text": "Checking the right angle at the wrong vertex.",
+          "correction": "A right angle at A needs vectors FROM A: AB · AC. Dotting AB with BC tests the angle at B (and needs BA, not AB, anyway).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm33-t1",
+          "statement": "Find $k$ so that $(5, k) \\perp (2, 10)$.",
+          "solution": "$10 + 10k = 0$, so $k = -1$.",
+          "check": [
+            "5*2 + (-1)*10 == 0"
+          ]
+        },
+        {
+          "id": "vm33-t2",
+          "statement": "Is $(6, -4) \\perp (2, 3)$?",
+          "solution": "Dot $= 12 - 12 = 0$: yes, perpendicular.",
+          "check": [
+            "6*2 + (-4)*3 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The test",
+            "title": "Zero means 90°",
+            "body": "Of everything the dot product does, this is the workhorse: $\\vec{u} \\perp \\vec{v}$ exactly when $\\vec{u} \\cdot \\vec{v} = 0$. No lengths, no arccos — multiply lanes, add, compare to zero."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The genre",
+            "title": "Solve for the unknown component",
+            "body": "Exams hide a $k$ in one vector and demand perpendicularity: $(2, k) \\perp (3, 4)$ becomes $6 + 4k = 0$. One linear equation. With $k$ in BOTH vectors it may go quadratic — same recipe, more roots. And keep the tests straight: parallel is cross-EQUAL ($x_1y_2 = x_2y_1$), perpendicular is dot-ZERO.",
+            "beats": [
+              "set u·v = 0, solve",
+              "k in both vectors → maybe quadratic",
+              "∥: cross products equal · ⊥: dot product zero"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the test",
+            "title": "Which is perpendicular?",
+            "prompt": "Which vector is perpendicular to $(3, -2)$?",
+            "options": [
+              "$(2, 3)$",
+              "$(3, 2)$",
+              "$(-3, 2)$",
+              "$(2, -3)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(3)(2) + (-2)(3) = 0$ ✓. The general trick: swap components, flip one sign — $(a, b) \\perp (-b, a)$.",
+            "check": [
+              "3*2 + (-2)*3 == 0"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "One linear equation",
+            "problemId": "vm33-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "k on both sides",
+            "problemId": "vm33-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Solve for m",
+            "prompt": "$(m, 4) \\perp (3, -6)$. Then $m = $ ?",
+            "options": [
+              "$8$",
+              "$-8$",
+              "$2$",
+              "$\\frac{9}{2}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$3m - 24 = 0$, so $m = 8$.",
+            "check": [
+              "8*3 + 4*(-6) == 0"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A right angle, proven",
+            "problemId": "vm33-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "The instant perpendicular",
+            "body": "Need SOME vector perpendicular to $(a, b)$? Swap and flip a sign: $(-b, a)$. It works every time — $a(-b) + ba = 0$ — and it's the fastest move in the whole chapter."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Find k",
+            "problemId": "vm33-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Verify one",
+            "problemId": "vm33-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Normal is the professional word",
+            "body": "Mathematicians say a vector is 'normal' to a line or plane when it's perpendicular to it. The word comes from the Latin norma — a carpenter's square. Unit 4 puts normals to work on planes in space."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "$\\vec{u} \\perp \\vec{v} \\iff \\vec{u} \\cdot \\vec{v} = 0$.",
+              "Unknown $k$: set the dot to zero, solve the equation.",
+              "Instant perpendicular to $(a, b)$: $(-b, a)$."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "dot-product-toolbox",
+      "title": "The Dot-Product Toolbox",
+      "concreteComparison": "$(a+b)^2 = a^2 + 2ab + b^2$ has a vector twin: $|\\vec{u}+\\vec{v}|^2 = |\\vec{u}|^2 + 2\\,\\vec{u}\\cdot\\vec{v} + |\\vec{v}|^2$. Same expansion, with the dot product playing the cross-term. Problems that give you lengths and an angle — never components — all crack open with this one identity.",
+      "objective": "Expand |u ± v|² via the dot product, and solve length-and-angle problems where components are never given.",
+      "concept": [
+        "Because $\\vec{v} \\cdot \\vec{v} = |\\vec{v}|^2$ and the dot product distributes, squared lengths expand like binomials: $$|\\vec{u} + \\vec{v}|^2 = |\\vec{u}|^2 + 2\\,\\vec{u} \\cdot \\vec{v} + |\\vec{v}|^2, \\qquad |\\vec{u} - \\vec{v}|^2 = |\\vec{u}|^2 - 2\\,\\vec{u} \\cdot \\vec{v} + |\\vec{v}|^2.$$",
+        "This is THE tool for component-free problems: given $|\\vec{u}|$, $|\\vec{v}|$ and either $\\vec{u} \\cdot \\vec{v}$ or the angle (convert via $\\vec{u} \\cdot \\vec{v} = |\\vec{u}||\\vec{v}|\\cos\\theta$), the length of any combination follows by expansion.",
+        "Subtracting the two expansions gives a bonus identity — $|\\vec{u}+\\vec{v}|^2 - |\\vec{u}-\\vec{v}|^2 = 4\\,\\vec{u}\\cdot\\vec{v}$ — and setting $\\vec{u}\\cdot\\vec{v} = 0$ recovers Pythagoras: for perpendicular vectors, $|\\vec{u}+\\vec{v}|^2 = |\\vec{u}|^2 + |\\vec{v}|^2$. The old theorem is a special case of the new algebra."
+      ],
+      "keyIdea": "|u ± v|² = |u|² ± 2u·v + |v|² — lengths of combinations without ever seeing a component.",
+      "facts": [
+        {
+          "title": "The expansion",
+          "latex": "|\\vec{u} + \\vec{v}|^2 = |\\vec{u}|^2 + 2\\vec{u}\\cdot\\vec{v} + |\\vec{v}|^2",
+          "explanation": "The binomial square, dot-product edition; minus flips only the middle term."
+        },
+        {
+          "title": "Angle to dot",
+          "latex": "\\vec{u} \\cdot \\vec{v} = |\\vec{u}||\\vec{v}|\\cos\\theta",
+          "explanation": "Convert given angles into the cross-term."
+        },
+        {
+          "title": "Pythagoras, recovered",
+          "latex": "\\vec{u} \\perp \\vec{v} \\Rightarrow |\\vec{u}+\\vec{v}|^2 = |\\vec{u}|^2 + |\\vec{v}|^2",
+          "explanation": "Zero cross-term = the oldest theorem in the book."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm34-we1",
+          "statement": "Given $|\\vec{u}| = 3$, $|\\vec{v}| = 5$, and $\\vec{u} \\cdot \\vec{v} = -2$, find $|\\vec{u} + \\vec{v}|$.",
+          "solution": "$|\\vec{u}+\\vec{v}|^2 = 9 + 2(-2) + 25 = 30$, so $|\\vec{u}+\\vec{v}| = \\sqrt{30}$.",
+          "check": [
+            "9 + 2*(-2) + 25 == 30",
+            "sqrt(30)**2 == 30"
+          ]
+        },
+        {
+          "id": "vm34-we2",
+          "statement": "$|\\vec{u}| = 2$, $|\\vec{v}| = 3$, and the angle between them is $60°$. Find $|\\vec{u} - \\vec{v}|$.",
+          "solution": "First the cross-term: $\\vec{u} \\cdot \\vec{v} = 2 \\cdot 3 \\cdot \\cos 60° = 3$. Then $|\\vec{u}-\\vec{v}|^2 = 4 - 2 \\cdot 3 + 9 = 7$: $|\\vec{u}-\\vec{v}| = \\sqrt{7}$.",
+          "check": [
+            "2*3*cos(pi/3) == 3",
+            "4 - 2*3 + 9 == 7"
+          ]
+        },
+        {
+          "id": "vm34-we3",
+          "statement": "A force $\\vec{F} = (8, 6)$ moves an object along the displacement $\\vec{d} = (3, 0)$. Compute the work $W = \\vec{F} \\cdot \\vec{d}$.",
+          "solution": "$W = 8 \\cdot 3 + 6 \\cdot 0 = 24$. Only the force's component along the motion does work — the dot product bills exactly that part.",
+          "check": [
+            "8*3 + 6*0 == 24"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Writing |u + v| = |u| + |v|.",
+          "correction": "Lengths don't add unless the vectors are parallel-same-direction. Expand the SQUARE and keep the 2u·v cross-term — that term is the whole geometry.",
+          "authored": true
+        },
+        {
+          "text": "Sign slip on the minus expansion.",
+          "correction": "|u − v|² flips ONLY the middle term: |u|² − 2u·v + |v|². The squared lengths stay positive.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm34-t1",
+          "statement": "$|\\vec{u}| = 1$, $|\\vec{v}| = 4$, $\\vec{u} \\cdot \\vec{v} = 2$. Find $|\\vec{u} + \\vec{v}|$.",
+          "solution": "$1 + 4 + 16 = 21$, so $|\\vec{u}+\\vec{v}| = \\sqrt{21}$.",
+          "check": [
+            "1 + 2*2 + 16 == 21"
+          ]
+        },
+        {
+          "id": "vm34-t2",
+          "statement": "Compute $\\vec{v} \\cdot \\vec{v}$ for $\\vec{v} = (-3, 7)$.",
+          "solution": "$9 + 49 = 58 = |\\vec{v}|^2$.",
+          "check": [
+            "(-3)*(-3) + 7*7 == 58"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The twin",
+            "title": "A binomial square you already know",
+            "body": "Dot products distribute, and $\\vec{v} \\cdot \\vec{v} = |\\vec{v}|^2$ — so squared lengths expand exactly like $(a+b)^2$: $$|\\vec{u}+\\vec{v}|^2 = |\\vec{u}|^2 + 2\\,\\vec{u}\\cdot\\vec{v} + |\\vec{v}|^2$$ The cross-term $2\\vec{u}\\cdot\\vec{v}$ carries all the geometry; the minus version flips only it."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The genre",
+            "title": "No components? No problem",
+            "body": "Exam problems love to give lengths and an angle, never components: \"$|\\vec{u}| = 2$, $|\\vec{v}| = 3$, angle $60°$ — find $|\\vec{u} - \\vec{v}|$.\" Convert the angle to a dot ($\\vec{u}\\cdot\\vec{v} = |\\vec{u}||\\vec{v}|\\cos\\theta$), expand the square, done. Set the cross-term to zero and Pythagoras drops out as a souvenir.",
+            "beats": [
+              "expand |u ± v|² with the ±2u·v cross-term",
+              "angle given → convert to u·v first",
+              "u ⊥ v: Pythagoras is the zero-cross-term case"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the expansion",
+            "title": "Fill the cross-term",
+            "prompt": "$|\\vec{u}| = 4$, $|\\vec{v}| = 1$, $\\vec{u}\\cdot\\vec{v} = 3$. Then $|\\vec{u}+\\vec{v}|^2 = $ ?",
+            "options": [
+              "$23$",
+              "$17$",
+              "$25$",
+              "$\\sqrt{23}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$16 + 2 \\cdot 3 + 1 = 23$. (The last option forgot we asked for the SQUARE.)",
+            "check": [
+              "16 + 2*3 + 1 == 23"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Straight expansion",
+            "problemId": "vm34-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Angle in, length out",
+            "problemId": "vm34-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Perpendicular special case",
+            "prompt": "$\\vec{u} \\perp \\vec{v}$, $|\\vec{u}| = 6$, $|\\vec{v}| = 8$. Then $|\\vec{u} + \\vec{v}| = $ ?",
+            "options": [
+              "$10$",
+              "$14$",
+              "$\\sqrt{14}$",
+              "$48$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Zero cross-term: $36 + 64 = 100$, length $10$ — Pythagoras wearing vector clothes.",
+            "check": [
+              "sqrt(36 + 64) == 10"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Work, billed by the dot",
+            "problemId": "vm34-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Square first, root last",
+            "body": "Never chase $|\\vec{u}+\\vec{v}|$ directly — always compute its SQUARE by expansion, and take the root at the very end. The square is where the algebra is linear and safe."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Expand one",
+            "problemId": "vm34-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Self-dot",
+            "problemId": "vm34-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The law of cosines, again",
+            "body": "Expand $|\\vec{u} - \\vec{v}|^2$ and you've re-proven the law of cosines — the triangle with sides u, v, and u−v IS the theorem. Two chapters of this platform, one identity."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "$|\\vec{u} \\pm \\vec{v}|^2 = |\\vec{u}|^2 \\pm 2\\vec{u}\\cdot\\vec{v} + |\\vec{v}|^2$.",
+              "Angle given → convert to $\\vec{u}\\cdot\\vec{v}$ first, then expand.",
+              "Perpendicular ⇒ cross-term dies ⇒ Pythagoras."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "vm3-pr-1",
+      "statement": "Compute $(4, -3) \\cdot (2, 6)$.",
+      "solution": "$8 - 18 = -10$.",
+      "check": [
+        "4*2 + (-3)*6 == -10"
+      ]
+    },
+    {
+      "id": "vm3-pr-2",
+      "statement": "Find $\\cos\\theta$ between $(1, 2)$ and $(2, 4)$ — and interpret.",
+      "solution": "Dot $= 10$; lengths $\\sqrt{5}, 2\\sqrt{5}$. $\\cos\\theta = \\frac{10}{10} = 1$: the vectors are parallel, same direction.",
+      "check": [
+        "(1*2 + 2*4)/(sqrt(5)*2*sqrt(5)) == 1"
+      ]
+    },
+    {
+      "id": "vm3-pr-3",
+      "statement": "Find $k$ so that $(k, 6) \\perp (2, -3)$.",
+      "solution": "$2k - 18 = 0$, $k = 9$.",
+      "check": [
+        "9*2 + 6*(-3) == 0"
+      ]
+    },
+    {
+      "id": "vm3-pr-4",
+      "statement": "Classify the angle between $(5, 2)$ and $(-1, 3)$.",
+      "solution": "Dot $= -5 + 6 = 1 > 0$: acute.",
+      "check": [
+        "5*(-1) + 2*3 == 1"
+      ]
+    },
+    {
+      "id": "vm3-pr-5",
+      "statement": "Find the exact angle between $(2, 2)$ and $(0, 3)$.",
+      "solution": "$\\cos\\theta = \\frac{6}{2\\sqrt{2} \\cdot 3} = \\frac{\\sqrt{2}}{2}$: $\\theta = 45°$.",
+      "check": [
+        "6/(2*sqrt(2)*3) == sqrt(2)/2",
+        "acos(sqrt(2)/2) == pi/4"
+      ]
+    },
+    {
+      "id": "vm3-pr-6",
+      "statement": "$|\\vec{u}| = 5$, $|\\vec{v}| = 2$, $\\vec{u}\\cdot\\vec{v} = 4$. Find $|\\vec{u} - \\vec{v}|$.",
+      "solution": "$25 - 8 + 4 = 21$: $\\sqrt{21}$.",
+      "check": [
+        "25 - 2*4 + 4 == 21"
+      ]
+    },
+    {
+      "id": "vm3-pr-7",
+      "statement": "$|\\vec{u}| = |\\vec{v}| = 1$ and the angle between them is $120°$. Find $|\\vec{u} + \\vec{v}|$.",
+      "solution": "$\\vec{u}\\cdot\\vec{v} = \\cos 120° = -\\tfrac{1}{2}$; $|\\vec{u}+\\vec{v}|^2 = 1 - 1 + 1 = 1$: length $1$.",
+      "check": [
+        "cos(2*pi/3) == -Rational(1,2)",
+        "1 + 2*(-Rational(1,2)) + 1 == 1"
+      ]
+    },
+    {
+      "id": "vm3-pr-8",
+      "statement": "Triangle $ABC$: $A(1, 1)$, $B(4, 5)$, $C(5, -2)$. Is the angle at $A$ right?",
+      "solution": "$\\overrightarrow{AB} = (3, 4)$, $\\overrightarrow{AC} = (4, -3)$; dot $= 12 - 12 = 0$: yes.",
+      "check": [
+        "3*4 + 4*(-3) == 0"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "vm3-ty-1",
+      "statement": "Compute $(7, -4) \\cdot (-2, -5)$ and classify the angle.",
+      "solution": "$-14 + 20 = 6 > 0$: acute.",
+      "check": [
+        "7*(-2) + (-4)*(-5) == 6"
+      ]
+    },
+    {
+      "id": "vm3-ty-2",
+      "statement": "Find all $k$ so that $(k, 2) \\perp (k, -8)$.",
+      "solution": "$k^2 - 16 = 0$: $k = \\pm 4$.",
+      "check": [
+        "4*4 + 2*(-8) == 0",
+        "(-4)*(-4) + 2*(-8) == 0"
+      ]
+    },
+    {
+      "id": "vm3-ty-3",
+      "statement": "Find the exact angle between $(3, \\sqrt{3})$ and $(\\sqrt{3}, 1)$.",
+      "solution": "Dot $= 3\\sqrt{3} + \\sqrt{3} = 4\\sqrt{3}$; lengths $2\\sqrt{3}$ and $2$. $\\cos\\theta = \\frac{4\\sqrt{3}}{4\\sqrt{3}} = 1$: $\\theta = 0°$ — they're parallel.",
+      "check": [
+        "(3*sqrt(3) + sqrt(3)*1)/(sqrt(12)*2) == 1",
+        "3*1 == sqrt(3)*sqrt(3)"
+      ]
+    },
+    {
+      "id": "vm3-ty-4",
+      "statement": "$|\\vec{u}| = 3$, $|\\vec{v}| = 4$, angle $60°$. Find $|\\vec{u} + \\vec{v}|$ and $|\\vec{u} - \\vec{v}|$.",
+      "solution": "$\\vec{u}\\cdot\\vec{v} = 6$. Sum: $9 + 12 + 16 = 37 \\to \\sqrt{37}$. Difference: $9 - 12 + 16 = 13 \\to \\sqrt{13}$.",
+      "check": [
+        "3*4*cos(pi/3) == 6",
+        "9 + 2*6 + 16 == 37",
+        "9 - 2*6 + 16 == 13"
+      ]
+    },
+    {
+      "id": "vm3-ty-5",
+      "statement": "For which $m$ do $(m, 3)$ and $(m, -3)$ make a right angle?",
+      "solution": "$m^2 - 9 = 0$: $m = \\pm 3$.",
+      "check": [
+        "3*3 + 3*(-3) == 0"
+      ]
+    },
+    {
+      "id": "vm3-ty-6",
+      "statement": "A force of magnitude $10$ acts at $60°$ to a displacement of magnitude $6$. Find the work $W = \\vec{F} \\cdot \\vec{d}$.",
+      "solution": "$W = 10 \\cdot 6 \\cdot \\cos 60° = 30$.",
+      "check": [
+        "10*6*cos(pi/3) == 30"
+      ]
+    }
+  ]
+}

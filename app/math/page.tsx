@@ -104,6 +104,36 @@ export default function MathLandingPage() {
               track in three acts. 12 units.
             </span>
           </Link>
+          <Link
+            href="/math/vectors-matrices"
+            className="card-edit p-6 flex flex-col gap-2 transition-colors"
+            style={{ textDecoration: "none" }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--accent-line)";
+              (e.currentTarget as HTMLAnchorElement).style.background = "var(--accent-wash)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.borderColor = "";
+              (e.currentTarget as HTMLAnchorElement).style.background = "";
+            }}
+          >
+            <span
+              className="mono text-[10px] uppercase"
+              style={{ color: "var(--accent)", letterSpacing: "0.08em" }}
+            >
+              New · Full course
+            </span>
+            <span
+              className="serif"
+              style={{ fontSize: 32, fontWeight: 400, letterSpacing: "-0.02em", color: "var(--fg)" }}
+            >
+              Vectors &amp; Matrices
+            </span>
+            <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>
+              Arrows made of numbers, then the grids that move them — components,
+              dot products, space, determinants, inverses. 6 units.
+            </span>
+          </Link>
         </div>
 
         {/* Grade cards */}

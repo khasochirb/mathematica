@@ -1,0 +1,946 @@
+{
+  "slug": "vector-arithmetic",
+  "title": "Vector Arithmetic",
+  "unit": 2,
+  "status": "published",
+  "blurb": "Adding tip-to-tail, scaling, subtracting, vectors inside triangles and parallelograms, and the section formula.",
+  "buildsOn": "Components and magnitude from Unit 1.",
+  "lessons": [
+    {
+      "slug": "adding-vectors",
+      "title": "Adding Vectors",
+      "concreteComparison": "Walk 3 km east, then 4 km north. Where are you? One 5-km displacement from where you started — the two legs ADD into a single trip. Vector addition is trip-chaining: tip-to-tail in the picture, component-by-component in the arithmetic.",
+      "objective": "Add vectors componentwise, chain displacements tip-to-tail, and read the triangle and parallelogram pictures of a sum.",
+      "concept": [
+        "Componentwise, addition couldn't be flatter: $(x_1, y_1) + (x_2, y_2) = (x_1 + x_2,\\; y_1 + y_2)$. Easts add with easts, norths with norths.",
+        "Geometrically it's **tip-to-tail**: draw $\\vec{u}$, start $\\vec{v}$ where $\\vec{u}$ ends; the sum runs from the first tail to the last tip. Chain as many as you like — the sum closes the whole trip.",
+        "Slide $\\vec{v}$'s tail back to $\\vec{u}$'s tail instead and the two arrows span a **parallelogram**; the sum is its diagonal. Triangle picture and parallelogram picture are the same addition — physics prefers the parallelogram (forces pull from one point), navigation the triangle (legs happen in sequence).",
+        "The path-closing identity $\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}$ is vector addition's most-used consequence: middle letters cancel. It turns geometry proofs into letter bookkeeping."
+      ],
+      "keyIdea": "Add components; picture it tip-to-tail (triangle) or tail-to-tail (parallelogram); AB + BC = AC — middle letters cancel.",
+      "facts": [
+        {
+          "title": "Componentwise",
+          "latex": "(x_1, y_1) + (x_2, y_2) = (x_1 + x_2, y_1 + y_2)",
+          "explanation": "Easts with easts, norths with norths."
+        },
+        {
+          "title": "Chaining",
+          "latex": "\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}",
+          "explanation": "Middle letters cancel — trips concatenate."
+        },
+        {
+          "title": "Two pictures",
+          "latex": "\\text{tip-to-tail} \\;=\\; \\text{parallelogram diagonal}",
+          "explanation": "Same sum, drawn two ways."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm21-we1",
+          "statement": "Compute $(2, 3) + (4, -1)$ and the magnitude of the sum.",
+          "solution": "$(2 + 4,\\; 3 + (-1)) = (6, 2)$; $|(6,2)| = \\sqrt{40} = 2\\sqrt{10}$.",
+          "check": [
+            "2 + 4 == 6",
+            "3 + (-1) == 2",
+            "sqrt(6**2 + 2**2) == 2*sqrt(10)"
+          ]
+        },
+        {
+          "id": "vm21-we2",
+          "statement": "A hiker walks $3$ km east, then $4$ km north. Find the resultant displacement and its magnitude.",
+          "solution": "$(3, 0) + (0, 4) = (3, 4)$ — a single $5$-km displacement. The two legs and the resultant form the $3$–$4$–$5$ triangle.",
+          "check": [
+            "sqrt(3**2 + 4**2) == 5"
+          ]
+        },
+        {
+          "id": "vm21-we3",
+          "statement": "Forces $(5, 0)$ and $(-2, 6)$ act on one object. Find the net force and its magnitude.",
+          "solution": "Net $= (3, 6)$; $|(3,6)| = \\sqrt{45} = 3\\sqrt{5}$. In the parallelogram picture, the net force is the diagonal from the shared tail.",
+          "check": [
+            "5 + (-2) == 3",
+            "0 + 6 == 6",
+            "sqrt(3**2 + 6**2) == 3*sqrt(5)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding magnitudes instead of vectors.",
+          "correction": "|u + v| is NOT |u| + |v| unless the vectors point the same way. 3 east + 4 north is 5, not 7 — direction always has a say.",
+          "authored": true
+        },
+        {
+          "text": "Breaking the tip-to-tail chain.",
+          "correction": "The second vector starts where the first ENDS. Starting both at the origin draws the parallelogram picture — fine, but then the sum is the diagonal, not the second arrow.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm21-t1",
+          "statement": "Compute $(-1, 4) + (5, -2)$.",
+          "solution": "$(4, 2)$.",
+          "check": [
+            "-1 + 5 == 4",
+            "4 + (-2) == 2"
+          ]
+        },
+        {
+          "id": "vm21-t2",
+          "statement": "Simplify $\\overrightarrow{PQ} + \\overrightarrow{QR} + \\overrightarrow{RS}$.",
+          "solution": "Middle letters cancel in sequence: $\\overrightarrow{PS}$.",
+          "check": [
+            "(3 - 1) + (7 - 3) + (12 - 7) == 12 - 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Trips chain",
+            "body": "Walk one displacement, then another — the net effect is a single displacement. Vector addition just formalizes trip-chaining, and the arithmetic is as flat as it gets: add the easts, add the norths."
+          },
+          {
+            "kind": "vectorGraph",
+            "eyebrow": "Watch it",
+            "title": "Tip-to-tail, live",
+            "teach": "The second arrow starts where the first ends, and the resultant springs from first tail to last tip. Slide them tail-to-tail instead and the same sum appears as the parallelogram's diagonal — two pictures, one addition.",
+            "config": {
+              "mode": "add"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the idea",
+            "title": "Componentwise",
+            "prompt": "$(7, -3) + (-2, 8) = $ ?",
+            "options": [
+              "$(5, 5)$",
+              "$(9, 5)$",
+              "$(5, -11)$",
+              "$(9, -11)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(7 - 2,\\; -3 + 8) = (5, 5)$ — coordinates never mix lanes.",
+            "check": [
+              "7 + (-2) == 5",
+              "-3 + 8 == 5"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Sum and its length",
+            "problemId": "vm21-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The hiker's triangle",
+            "problemId": "vm21-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Middle letters cancel",
+            "prompt": "$\\overrightarrow{AB} + \\overrightarrow{BC} = $ ?",
+            "options": [
+              "$\\overrightarrow{AC}$",
+              "$\\overrightarrow{CA}$",
+              "$\\overrightarrow{BB}$",
+              "$\\vec{0}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Go A→B, then B→C: net trip A→C. The shared middle letter B cancels — the workhorse identity of vector geometry.",
+            "check": [
+              "(5 - 2) + (9 - 5) == 9 - 2"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Net force",
+            "problemId": "vm21-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Estimate the diagonal first",
+            "body": "Before computing, eyeball the parallelogram: the sum must land BETWEEN the two directions, closer to the longer arrow. If your arithmetic says otherwise, a sign slipped."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Plain addition",
+            "problemId": "vm21-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Chain of three",
+            "problemId": "vm21-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The oldest vector law",
+            "body": "The parallelogram of forces was stated by Simon Stevin in the 1580s — three centuries before anyone wrote the word 'vector'. Sailors and engineers were adding arrows long before mathematicians named them."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Add componentwise; never add bare magnitudes.",
+              "Tip-to-tail (sequence) and parallelogram (shared tail) draw the same sum.",
+              "$\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}$ — cancel middle letters."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "scalars-and-subtraction",
+      "title": "Scalar Multiples & Subtraction",
+      "concreteComparison": "Double the recipe: every ingredient doubles. Scaling a vector scales BOTH components — the arrow stretches, direction untouched (or U-turned, if the number is negative). And subtraction is nothing new: $\\vec{u} - \\vec{v}$ is just $\\vec{u} + (-\\vec{v})$, adding the U-turn.",
+      "objective": "Scale vectors, combine scaling with addition, subtract vectors, and solve simple vector equations.",
+      "concept": [
+        "Scalar multiplication stretches: $k(x, y) = (kx, ky)$. The length scales by $|k|$; a negative $k$ additionally reverses the arrow. This is exactly the parallel test from Unit 1 read forwards.",
+        "Subtraction is addition in disguise: $\\vec{u} - \\vec{v} = \\vec{u} + (-\\vec{v})$, i.e. subtract componentwise. Geometrically $\\vec{u} - \\vec{v}$ runs **from $\\vec{v}$'s tip to $\\vec{u}$'s tip** when both start at one point — remember it as \"target minus start\".",
+        "Linear combinations like $3\\vec{u} - 2\\vec{v}$ are the everyday currency: scale first, then add. And vector equations solve like ordinary algebra — $2\\vec{x} + (3, -1) = (7, 5)$ peels apart one operation at a time, because every rule you'd hope for (commutativity, distributivity) actually holds."
+      ],
+      "keyIdea": "k(x, y) = (kx, ky); u − v = u + (−v), drawn tip-of-v to tip-of-u; vector equations solve like ordinary algebra.",
+      "facts": [
+        {
+          "title": "Scaling",
+          "latex": "k(x, y) = (kx, ky)",
+          "explanation": "Length times |k|; negative k reverses."
+        },
+        {
+          "title": "Subtraction",
+          "latex": "\\vec{u} - \\vec{v} = (x_1 - x_2,\\; y_1 - y_2)",
+          "explanation": "Componentwise; geometrically, from v's tip to u's tip."
+        },
+        {
+          "title": "Algebra holds",
+          "latex": "k(\\vec{u} + \\vec{v}) = k\\vec{u} + k\\vec{v}",
+          "explanation": "Distribute, collect, solve — like numbers, coordinate by coordinate."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm22-we1",
+          "statement": "Compute $3(2, -1) - 2(1, 4)$.",
+          "solution": "Scale: $(6, -3)$ and $(2, 8)$. Subtract: $(6 - 2,\\; -3 - 8) = (4, -11)$.",
+          "check": [
+            "3*2 - 2*1 == 4",
+            "3*(-1) - 2*4 == -11"
+          ]
+        },
+        {
+          "id": "vm22-we2",
+          "statement": "With $\\vec{u} = (5, 2)$ and $\\vec{v} = (1, 3)$ drawn from one point, find the vector from $\\vec{v}$'s tip to $\\vec{u}$'s tip.",
+          "solution": "That's exactly $\\vec{u} - \\vec{v} = (4, -1)$ — target minus start.",
+          "check": [
+            "5 - 1 == 4",
+            "2 - 3 == -1"
+          ]
+        },
+        {
+          "id": "vm22-we3",
+          "statement": "Solve for $\\vec{x}$: $\\;2\\vec{x} + (3, -1) = (7, 5)$.",
+          "solution": "$2\\vec{x} = (4, 6)$, so $\\vec{x} = (2, 3)$ — vector algebra peels exactly like number algebra.",
+          "check": [
+            "(7 - 3)/2 == 2",
+            "(5 - (-1))/2 == 3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Scaling only one component.",
+          "correction": "3·(2, −1) = (6, −3), both lanes. Scaling one component doesn't stretch the arrow — it bends it into a different direction.",
+          "authored": true
+        },
+        {
+          "text": "Drawing u − v from u's tip to v's tip.",
+          "correction": "u − v points AT u: from v's tip to u's tip. 'Target minus start' — the answer aims at the first-named vector.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm22-t1",
+          "statement": "Compute $-2(3, -4)$ and its magnitude.",
+          "solution": "$(-6, 8)$; magnitude $2 \\cdot 5 = 10$.",
+          "check": [
+            "-2*3 == -6",
+            "-2*(-4) == 8",
+            "sqrt(6**2 + 8**2) == 10"
+          ]
+        },
+        {
+          "id": "vm22-t2",
+          "statement": "Compute $(8, 1) - (3, 5)$.",
+          "solution": "$(5, -4)$.",
+          "check": [
+            "8 - 3 == 5",
+            "1 - 5 == -4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Stretch, flip, combine",
+            "body": "Multiply a vector by $k$ and both components scale: the arrow stretches by $|k|$, and flips if $k < 0$. Combine with addition and you get **linear combinations** like $3\\vec{u} - 2\\vec{v}$ — the everyday currency of vector work."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Subtraction decoded",
+            "title": "Target minus start",
+            "body": "$\\vec{u} - \\vec{v}$ is just $\\vec{u} + (-\\vec{v})$ — subtract componentwise. The picture: draw both from one point, and $\\vec{u} - \\vec{v}$ runs from $\\vec{v}$'s tip to $\\vec{u}$'s tip, pointing AT the vector named first. It's the same tip-minus-tail from Unit 1: $\\overrightarrow{AB} = B - A$.",
+            "beats": [
+              "k(x,y) = (kx, ky); negative k = U-turn",
+              "u − v: componentwise, arrow points at u",
+              "vector equations solve like number algebra"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the idea",
+            "title": "Scale it",
+            "prompt": "$-3(2, -5) = $ ?",
+            "options": [
+              "$(-6, 15)$",
+              "$(-6, -15)$",
+              "$(6, 15)$",
+              "$(-1, -8)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Both components take the $-3$: $(-6, 15)$. The arrow is three times longer and reversed.",
+            "check": [
+              "-3*2 == -6",
+              "-3*(-5) == 15"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A linear combination",
+            "problemId": "vm22-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Tip to tip",
+            "problemId": "vm22-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Subtract",
+            "prompt": "$(4, -2) - (-1, 3) = $ ?",
+            "options": [
+              "$(5, -5)$",
+              "$(3, 1)$",
+              "$(-5, 5)$",
+              "$(5, 1)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(4 - (-1),\\; -2 - 3) = (5, -5)$. The double negative in the first lane is where fingers slip.",
+            "check": [
+              "4 - (-1) == 5",
+              "-2 - 3 == -5"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Solve for the vector",
+            "problemId": "vm22-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Scale before you add",
+            "body": "In $3\\vec{u} - 2\\vec{v}$, finish both scalings BEFORE combining — writing the two scaled vectors down explicitly costs five seconds and prevents the half-scaled hybrid errors that cost the whole problem."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Stretch and flip",
+            "problemId": "vm22-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Plain difference",
+            "problemId": "vm22-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why 'scalar'?",
+            "body": "The word comes from the Latin scala — ladder, scale. Scalars SCALE vectors: that's their whole job description, and the name never lets you forget it."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "$k(x, y) = (kx, ky)$: stretch by $|k|$, flip if negative.",
+              "$\\vec{u} - \\vec{v}$: componentwise; the arrow points at $\\vec{u}$.",
+              "Vector equations peel like ordinary algebra."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "vectors-in-figures",
+      "title": "Vectors in Triangles & Parallelograms",
+      "concreteComparison": "A parallelogram is a vector machine: pick corner $A$, call the sides $\\vec{u} = \\overrightarrow{AB}$ and $\\vec{v} = \\overrightarrow{AD}$, and EVERYTHING in the figure — both diagonals, every midpoint, every median — is some combination of $\\vec{u}$ and $\\vec{v}$. Exams hand you a figure and ask you to speak its vector language.",
+      "objective": "Express diagonals, midpoints, and medians of triangles and parallelograms in terms of two side vectors, and compute their lengths from components.",
+      "concept": [
+        "In parallelogram $ABCD$ with $\\vec{u} = \\overrightarrow{AB}$ and $\\vec{v} = \\overrightarrow{AD}$: the diagonal from $A$ is $\\overrightarrow{AC} = \\vec{u} + \\vec{v}$ (walk one side, then the other), and the other diagonal is $\\overrightarrow{BD} = \\vec{v} - \\vec{u}$ (from $B$, undo $\\vec{u}$, do $\\vec{v}$). Sum and difference — the two diagonals.",
+        "Midpoints average: the midpoint $M$ of segment $BC$ satisfies $\\overrightarrow{AM} = \\tfrac{1}{2}(\\overrightarrow{AB} + \\overrightarrow{AC})$. That's also the **median** vector of triangle $ABC$ from $A$ — one formula, two names.",
+        "The method behind every figure problem: (1) choose a base point, (2) name two independent side vectors, (3) walk to the target along the figure's edges, writing each step as $\\pm$ a named vector or a fraction of one. The walk IS the answer."
+      ],
+      "keyIdea": "Name two side vectors, then walk the figure: diagonals are u + v and v − u; midpoints and medians average: AM = ½(AB + AC).",
+      "facts": [
+        {
+          "title": "Parallelogram diagonals",
+          "latex": "\\overrightarrow{AC} = \\vec{u} + \\vec{v},\\quad \\overrightarrow{BD} = \\vec{v} - \\vec{u}",
+          "explanation": "Sum and difference of the two side vectors from A."
+        },
+        {
+          "title": "Median / midpoint",
+          "latex": "\\overrightarrow{AM} = \\tfrac{1}{2}(\\overrightarrow{AB} + \\overrightarrow{AC})",
+          "explanation": "To the midpoint of BC: average the two side trips."
+        },
+        {
+          "title": "The method",
+          "latex": "\\text{name } \\vec{u}, \\vec{v} \\to \\text{walk the edges}",
+          "explanation": "Every segment in the figure is a ± combination of the named sides."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm23-we1",
+          "statement": "In parallelogram $ABCD$, $\\overrightarrow{AB} = (4, 1)$ and $\\overrightarrow{AD} = (1, 3)$. Find the diagonal $\\overrightarrow{AC}$ and its length.",
+          "solution": "$\\overrightarrow{AC} = \\overrightarrow{AB} + \\overrightarrow{AD} = (5, 4)$; $|\\overrightarrow{AC}| = \\sqrt{25 + 16} = \\sqrt{41}$.",
+          "check": [
+            "4 + 1 == 5",
+            "1 + 3 == 4",
+            "sqrt(5**2 + 4**2) == sqrt(41)"
+          ]
+        },
+        {
+          "id": "vm23-we2",
+          "statement": "Same parallelogram: find the other diagonal $\\overrightarrow{BD}$ and its length.",
+          "solution": "$\\overrightarrow{BD} = \\overrightarrow{AD} - \\overrightarrow{AB} = (1 - 4,\\; 3 - 1) = (-3, 2)$; $|\\overrightarrow{BD}| = \\sqrt{9 + 4} = \\sqrt{13}$.",
+          "check": [
+            "1 - 4 == -3",
+            "3 - 1 == 2",
+            "sqrt(3**2 + 2**2) == sqrt(13)"
+          ]
+        },
+        {
+          "id": "vm23-we3",
+          "statement": "In triangle $ABC$, $\\overrightarrow{AB} = (6, 2)$ and $\\overrightarrow{AC} = (2, 4)$. Find the median vector $\\overrightarrow{AM}$ to side $BC$ and its length.",
+          "solution": "$\\overrightarrow{AM} = \\tfrac{1}{2}\\big((6,2) + (2,4)\\big) = (4, 3)$; $|\\overrightarrow{AM}| = 5$.",
+          "check": [
+            "(6 + 2)/2 == 4",
+            "(2 + 4)/2 == 3",
+            "sqrt(4**2 + 3**2) == 5"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Writing BD = u − v instead of v − u.",
+          "correction": "BD goes from B to D: undo AB (−u), then do AD (+v) — so BD = v − u. Track the walk, not a memorized formula.",
+          "authored": true
+        },
+        {
+          "text": "Averaging endpoints instead of vectors from the base point.",
+          "correction": "The median from A uses vectors FROM A: AM = ½(AB + AC). Mixing in vectors from other corners breaks the bookkeeping.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm23-t1",
+          "statement": "Parallelogram $ABCD$: $\\overrightarrow{AB} = (3, 3)$, $\\overrightarrow{AD} = (2, -1)$. Find $\\overrightarrow{AC}$.",
+          "solution": "$(3 + 2,\\; 3 - 1) = (5, 2)$.",
+          "check": [
+            "3 + 2 == 5",
+            "3 + (-1) == 2"
+          ]
+        },
+        {
+          "id": "vm23-t2",
+          "statement": "Triangle $ABC$: $\\overrightarrow{AB} = (8, 0)$, $\\overrightarrow{AC} = (2, 6)$. Find the median vector $\\overrightarrow{AM}$.",
+          "solution": "$\\tfrac{1}{2}(10, 6) = (5, 3)$.",
+          "check": [
+            "(8 + 2)/2 == 5",
+            "(0 + 6)/2 == 3"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The setup",
+            "title": "Two vectors run the whole figure",
+            "body": "Pick a corner of the figure, name the two side vectors leaving it — $\\vec{u}$ and $\\vec{v}$ — and every other segment becomes a $\\pm$ combination of the two. This is the exam's favorite vector genre: speak the figure's language."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The catalog",
+            "title": "Diagonals and medians",
+            "body": "Parallelogram from $A$: diagonal $\\overrightarrow{AC} = \\vec{u} + \\vec{v}$, diagonal $\\overrightarrow{BD} = \\vec{v} - \\vec{u}$ — sum and difference. Triangle median to $BC$'s midpoint: $\\overrightarrow{AM} = \\tfrac{1}{2}(\\overrightarrow{AB} + \\overrightarrow{AC})$ — average the trips. Derive each by WALKING: from B, undo $\\vec{u}$, do $\\vec{v}$: that's $BD$.",
+            "beats": [
+              "AC = u + v — one side then the other",
+              "BD = v − u — undo u, do v",
+              "median: AM = ½(AB + AC)"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the walk",
+            "title": "From B to D",
+            "prompt": "In parallelogram $ABCD$ with $\\vec{u} = \\overrightarrow{AB}$, $\\vec{v} = \\overrightarrow{AD}$, the diagonal $\\overrightarrow{BD}$ equals…",
+            "options": [
+              "$\\vec{v} - \\vec{u}$",
+              "$\\vec{u} + \\vec{v}$",
+              "$\\vec{u} - \\vec{v}$",
+              "$\\tfrac{1}{2}(\\vec{u} + \\vec{v})$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Walk it: B back to A is $-\\vec{u}$, then A up to D is $+\\vec{v}$. Total: $\\vec{v} - \\vec{u}$.",
+            "check": [
+              "(1 - 4) == -3",
+              "(3 - 1) == 2"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The long diagonal",
+            "problemId": "vm23-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The short diagonal",
+            "problemId": "vm23-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Average the trips",
+            "prompt": "Triangle $ABC$ has $\\overrightarrow{AB} = (4, 2)$, $\\overrightarrow{AC} = (0, 6)$. The median vector $\\overrightarrow{AM}$ is…",
+            "options": [
+              "$(2, 4)$",
+              "$(4, 8)$",
+              "$(2, 2)$",
+              "$(4, 4)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\overrightarrow{AM} = \\tfrac{1}{2}\\big((4,2) + (0,6)\\big) = (2, 4)$.",
+            "check": [
+              "(4 + 0)/2 == 2",
+              "(2 + 6)/2 == 4"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A 3–4–5 median",
+            "problemId": "vm23-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Never memorize — walk",
+            "body": "Formulas like $BD = \\vec{v} - \\vec{u}$ are re-derivable in three seconds by walking the figure's edges. Under pressure, the walk is safer than the memory."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Sum diagonal",
+            "problemId": "vm23-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "One median",
+            "problemId": "vm23-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The centroid, in one line",
+            "body": "With vectors, the fact that a triangle's three medians meet at one point — two-thirds along each — collapses to a single computation: the centroid is $\\tfrac{1}{3}(\\vec{a} + \\vec{b} + \\vec{c})$, perfectly symmetric in the three corners. Classical geometry needs a page; vectors need a line."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Name $\\vec{u}, \\vec{v}$ at a corner; everything else is a walk.",
+              "Diagonals: $\\vec{u} + \\vec{v}$ and $\\vec{v} - \\vec{u}$.",
+              "Median/midpoint: $\\overrightarrow{AM} = \\tfrac{1}{2}(\\overrightarrow{AB} + \\overrightarrow{AC})$."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-section-formula",
+      "title": "The Section Formula",
+      "concreteComparison": "A midpoint is a 50–50 split. But suppose $P$ sits on $AB$ so that $AP : PB = 2 : 1$ — a 2-to-1 split, two-thirds of the way along. The section formula prices any split: a weighted average of the endpoints, where each endpoint's weight is the ratio part on the FAR side.",
+      "objective": "Find the point dividing a segment in a given ratio, recognize the midpoint as the 1:1 case, and recover the ratio from a known dividing point.",
+      "concept": [
+        "If $P$ divides $AB$ with $AP : PB = m : n$, then $$P = \\frac{n \\cdot A + m \\cdot B}{m + n}.$$ Note the cross-over: $B$'s weight is $m$ (the part NEAR $A$'s side of the ratio)… the mnemonic that never fails: the endpoint you're CLOSER to gets the BIGGER weight, and closeness is decided by the ratio.",
+        "The midpoint is the formula in its Sunday best: $m : n = 1 : 1$ gives $P = \\tfrac{1}{2}(A + B)$ — average the coordinates.",
+        "Run it backwards to FIND a ratio: if $P$ is known to sit on $AB$, compare $\\overrightarrow{AP}$ with $\\overrightarrow{PB}$ componentwise; their scalar ratio is $m : n$. (And if the two vectors aren't parallel, $P$ was never on the line — a built-in lie detector.)",
+        "Everything here is the parallel test plus addition — no new machinery, just the most exam-frequent packaging of it."
+      ],
+      "keyIdea": "AP : PB = m : n ⇒ P = (n·A + m·B)/(m + n); midpoint is the 1:1 case; ratios recover by comparing AP with PB.",
+      "facts": [
+        {
+          "title": "Section formula",
+          "latex": "P = \\frac{n \\cdot A + m \\cdot B}{m + n}",
+          "explanation": "For AP : PB = m : n — the far part weights each endpoint."
+        },
+        {
+          "title": "Midpoint",
+          "latex": "M = \\tfrac{1}{2}(A + B)",
+          "explanation": "The 1 : 1 special case — plain averaging."
+        },
+        {
+          "title": "Ratio recovery",
+          "latex": "\\overrightarrow{AP} = \\tfrac{m}{n}\\,\\overrightarrow{PB}",
+          "explanation": "Compare the two pieces componentwise to read off m : n."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm24-we1",
+          "statement": "$P$ divides $AB$ with $AP : PB = 2 : 1$, where $A(1, 2)$ and $B(7, 8)$. Find $P$.",
+          "solution": "$P = \\dfrac{1 \\cdot A + 2 \\cdot B}{3} = \\left(\\dfrac{1 + 14}{3}, \\dfrac{2 + 16}{3}\\right) = (5, 6)$ — two-thirds of the way to $B$, as a 2:1 split demands.",
+          "check": [
+            "(1*1 + 2*7)/3 == 5",
+            "(1*2 + 2*8)/3 == 6"
+          ]
+        },
+        {
+          "id": "vm24-we2",
+          "statement": "Find the midpoint of $A(-4, 3)$ and $B(6, -1)$.",
+          "solution": "$M = \\tfrac{1}{2}(A + B) = \\left(\\tfrac{2}{2}, \\tfrac{2}{2}\\right) = (1, 1)$.",
+          "check": [
+            "(-4 + 6)/2 == 1",
+            "(3 + (-1))/2 == 1"
+          ]
+        },
+        {
+          "id": "vm24-we3",
+          "statement": "$P(3, 4)$ lies on segment $AB$ with $A(1, 2)$, $B(6, 7)$... wait — check it, then find $AP : PB$.",
+          "solution": "$\\overrightarrow{AP} = (2, 2)$ and $\\overrightarrow{PB} = (3, 3)$ — parallel ✓ (so $P$ really is on the line), and $\\overrightarrow{AP} = \\tfrac{2}{3}\\overrightarrow{PB}$. Ratio: $AP : PB = 2 : 3$.",
+          "check": [
+            "2*3 == 3*2",
+            "Rational(3-1, 6-3) == Rational(2, 3)",
+            "Rational(4-2, 7-4) == Rational(2, 3)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Weighting each endpoint by its own ratio part.",
+          "correction": "The weights CROSS: for AP:PB = m:n, A carries n and B carries m. Sanity-check with an extreme: AP:PB = 100:1 must land P almost at B.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting to divide by m + n.",
+          "correction": "The weights must average, not just add — the denominator m + n is what keeps P between A and B.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm24-t1",
+          "statement": "$P$ divides $AB$ with $AP : PB = 1 : 3$, where $A(0, 0)$, $B(8, 4)$. Find $P$.",
+          "solution": "$P = \\dfrac{3A + 1B}{4} = (2, 1)$ — a quarter of the way to $B$.",
+          "check": [
+            "(3*0 + 1*8)/4 == 2",
+            "(3*0 + 1*4)/4 == 1"
+          ]
+        },
+        {
+          "id": "vm24-t2",
+          "statement": "Find the midpoint of $(5, -3)$ and $(-1, 7)$.",
+          "solution": "$(2, 2)$.",
+          "check": [
+            "(5 + (-1))/2 == 2",
+            "(-3 + 7)/2 == 2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The problem",
+            "title": "Splits that aren't 50–50",
+            "body": "Midpoints you know. But geometry constantly needs the point two-thirds along, or splitting $1 : 3$ — centroids, similar-triangle sections, exam questions. One formula prices every split."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The formula",
+            "title": "A weighted average, weights crossed",
+            "body": "For $AP : PB = m : n$: $$P = \\frac{n \\cdot A + m \\cdot B}{m + n}$$ The weights CROSS — the endpoint you're closer to carries the bigger weight. Check the extremes: $m : n = 1 : 1$ gives the plain average (midpoint); a huge $m$ drags $P$ onto $B$.",
+            "beats": [
+              "P = (n·A + m·B)/(m + n)",
+              "weights cross: near endpoint, big weight",
+              "midpoint = the 1:1 case"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the idea",
+            "title": "Which way do weights go?",
+            "prompt": "$AP : PB = 3 : 1$. Which endpoint gets weight $3$ in the section formula?",
+            "options": [
+              "$B$",
+              "$A$",
+              "Both",
+              "Neither — 3 goes in the denominator only"
+            ],
+            "correctIndex": 0,
+            "explanation": "$P = \\frac{1 \\cdot A + 3 \\cdot B}{4}$. A $3:1$ split puts $P$ three-quarters of the way along — close to $B$, so $B$ carries the big weight.",
+            "check": [
+              "(1*0 + 3*4)/4 == 3"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Two-thirds along",
+            "problemId": "vm24-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The 1:1 case",
+            "problemId": "vm24-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Quarter point",
+            "prompt": "$A(0,0)$, $B(12, 8)$, and $AP : PB = 1 : 3$. Then $P = $ ?",
+            "options": [
+              "$(3, 2)$",
+              "$(9, 6)$",
+              "$(4, 8/3)$",
+              "$(6, 4)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$P = \\frac{3A + B}{4} = (3, 2)$ — one quarter of the way, nearest $A$.",
+            "check": [
+              "(3*0 + 12)/4 == 3",
+              "(3*0 + 8)/4 == 2"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Recover the ratio",
+            "problemId": "vm24-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Test an extreme before trusting",
+            "body": "Plug $m : n = 1 : 0$ into your formula arrangement — it must return $P = A$... it returns B?! Then your weights are crossed the wrong way. The extreme test settles the crossing in five seconds, every time."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "One quarter along",
+            "problemId": "vm24-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Plain midpoint",
+            "problemId": "vm24-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Levers knew it first",
+            "body": "The section formula is Archimedes' law of the lever in coordinates: a mass n at A and a mass m at B balance exactly at P. Physics and geometry agree on where the fulcrum goes."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "$AP : PB = m : n \\Rightarrow P = \\frac{nA + mB}{m + n}$ — weights crossed.",
+              "Midpoint = the $1 : 1$ case: average the coordinates.",
+              "Recover ratios by comparing $\\overrightarrow{AP}$ with $\\overrightarrow{PB}$."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "vm2-pr-1",
+      "statement": "Compute $(3, -2) + (-7, 6)$.",
+      "solution": "$(-4, 4)$.",
+      "check": [
+        "3 + (-7) == -4",
+        "-2 + 6 == 4"
+      ]
+    },
+    {
+      "id": "vm2-pr-2",
+      "statement": "Compute $4(1, -2) - 3(2, 1)$.",
+      "solution": "$(4 - 6,\\; -8 - 3) = (-2, -11)$.",
+      "check": [
+        "4*1 - 3*2 == -2",
+        "4*(-2) - 3*1 == -11"
+      ]
+    },
+    {
+      "id": "vm2-pr-3",
+      "statement": "Solve for $\\vec{x}$: $3\\vec{x} - (2, 5) = (7, -2)$.",
+      "solution": "$3\\vec{x} = (9, 3)$, $\\vec{x} = (3, 1)$.",
+      "check": [
+        "(7 + 2)/3 == 3",
+        "(-2 + 5)/3 == 1"
+      ]
+    },
+    {
+      "id": "vm2-pr-4",
+      "statement": "Parallelogram $ABCD$: $\\overrightarrow{AB} = (5, 2)$, $\\overrightarrow{AD} = (-1, 4)$. Find both diagonals' vectors.",
+      "solution": "$\\overrightarrow{AC} = (4, 6)$, $\\overrightarrow{BD} = (-6, 2)$.",
+      "check": [
+        "5 + (-1) == 4",
+        "2 + 4 == 6",
+        "-1 - 5 == -6",
+        "4 - 2 == 2"
+      ]
+    },
+    {
+      "id": "vm2-pr-5",
+      "statement": "Triangle $ABC$: $\\overrightarrow{AB} = (10, 2)$, $\\overrightarrow{AC} = (2, 8)$. Find the median vector $\\overrightarrow{AM}$ and its length.",
+      "solution": "$\\overrightarrow{AM} = (6, 5)$; $|\\overrightarrow{AM}| = \\sqrt{61}$.",
+      "check": [
+        "(10 + 2)/2 == 6",
+        "(2 + 8)/2 == 5",
+        "sqrt(6**2 + 5**2) == sqrt(61)"
+      ]
+    },
+    {
+      "id": "vm2-pr-6",
+      "statement": "$P$ divides $AB$ with $AP : PB = 3 : 2$, $A(0, 5)$, $B(10, 0)$. Find $P$.",
+      "solution": "$P = \\frac{2A + 3B}{5} = (6, 2)$.",
+      "check": [
+        "(2*0 + 3*10)/5 == 6",
+        "(2*5 + 3*0)/5 == 2"
+      ]
+    },
+    {
+      "id": "vm2-pr-7",
+      "statement": "Two forces $(7, -1)$ and $(-3, 5)$ act at a point. Find the magnitude of the resultant.",
+      "solution": "Sum $(4, 4)$; magnitude $4\\sqrt{2}$.",
+      "check": [
+        "7 + (-3) == 4",
+        "-1 + 5 == 4",
+        "sqrt(4**2 + 4**2) == 4*sqrt(2)"
+      ]
+    },
+    {
+      "id": "vm2-pr-8",
+      "statement": "$P(4, 3)$ lies on $AB$ with $A(2, 1)$, $B(8, 7)$. Find $AP : PB$.",
+      "solution": "$\\overrightarrow{AP} = (2, 2)$, $\\overrightarrow{PB} = (4, 4)$: ratio $1 : 2$.",
+      "check": [
+        "2*4 == 4*2",
+        "Rational(2, 4) == Rational(1, 2)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "vm2-ty-1",
+      "statement": "Compute $2(3, -1) + 3(-2, 4)$ and its magnitude.",
+      "solution": "$(6 - 6,\\; -2 + 12) = (0, 10)$; magnitude $10$.",
+      "check": [
+        "2*3 + 3*(-2) == 0",
+        "2*(-1) + 3*4 == 10",
+        "sqrt(0**2 + 10**2) == 10"
+      ]
+    },
+    {
+      "id": "vm2-ty-2",
+      "statement": "Simplify $\\overrightarrow{AB} + \\overrightarrow{BC} - \\overrightarrow{DC}$ into a single vector between named points.",
+      "solution": "$\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}$, and $-\\overrightarrow{DC} = \\overrightarrow{CD}$: total $\\overrightarrow{AC} + \\overrightarrow{CD} = \\overrightarrow{AD}$.",
+      "check": [
+        "(4-1) + (9-4) + (11-9) == 11 - 1"
+      ]
+    },
+    {
+      "id": "vm2-ty-3",
+      "statement": "Parallelogram $ABCD$ has $\\overrightarrow{AC} = (8, 2)$ and $\\overrightarrow{BD} = (-2, 6)$. Recover $\\overrightarrow{AB}$ and $\\overrightarrow{AD}$.",
+      "solution": "$\\vec{u} + \\vec{v} = (8,2)$, $\\vec{v} - \\vec{u} = (-2,6)$. Adding: $2\\vec{v} = (6, 8)$, $\\vec{v} = \\overrightarrow{AD} = (3, 4)$; then $\\vec{u} = \\overrightarrow{AB} = (5, -2)$.",
+      "check": [
+        "(8 + (-2))/2 == 3",
+        "(2 + 6)/2 == 4",
+        "8 - 3 == 5",
+        "2 - 4 == -2"
+      ]
+    },
+    {
+      "id": "vm2-ty-4",
+      "statement": "$P$ divides $AB$ with $AP : PB = 2 : 3$, $A(-1, 4)$, $B(9, -6)$. Find $P$.",
+      "solution": "$P = \\frac{3A + 2B}{5} = \\left(\\frac{-3 + 18}{5}, \\frac{12 - 12}{5}\\right) = (3, 0)$.",
+      "check": [
+        "(3*(-1) + 2*9)/5 == 3",
+        "(3*4 + 2*(-6))/5 == 0"
+      ]
+    },
+    {
+      "id": "vm2-ty-5",
+      "statement": "In triangle $ABC$ with vertices $A(0,0)$, $B(6, 0)$, $C(0, 6)$, find the centroid using $G = \\tfrac{1}{3}(A + B + C)$.",
+      "solution": "$G = (2, 2)$.",
+      "check": [
+        "(0 + 6 + 0)/3 == 2",
+        "(0 + 0 + 6)/3 == 2"
+      ]
+    },
+    {
+      "id": "vm2-ty-6",
+      "statement": "Solve for $\\vec{x}$ and give $|\\vec{x}|$: $\\;2\\vec{x} + (1, -3) = 5(1, 1)$.",
+      "solution": "$2\\vec{x} = (4, 8)$, $\\vec{x} = (2, 4)$; $|\\vec{x}| = 2\\sqrt{5}$.",
+      "check": [
+        "(5 - 1)/2 == 2",
+        "(5 + 3)/2 == 4",
+        "sqrt(2**2 + 4**2) == 2*sqrt(5)"
+      ]
+    }
+  ]
+}
