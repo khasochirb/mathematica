@@ -1263,6 +1263,201 @@
           }
         ]
       }
+    },
+    {
+      "slug": "the-distribution-function",
+      "title": "The Distribution Function",
+      "concreteComparison": "A distribution table answers \"what's the chance X **equals** 2?\" The distribution function answers the accumulating question: \"what's the chance X is **at most** 2?\" It's the running total of the table — like a savings balance versus individual deposits. And once you hold running totals, any interval is one subtraction: $P(2 < X \\le 5) = F(5) - F(2)$.",
+      "objective": "Read and build F(x) = P(X ≤ x), convert between a distribution table and its running totals, and extract interval probabilities via F(b) − F(a).",
+      "concept": [
+        "The **distribution function** (also called the CDF) of a random variable is $F(x) = P(X \\le x)$ — the probability accumulated up to and including $x$. It starts at $0$ far to the left, never decreases, and ends at $1$: all the probability, banked.",
+        "For a discrete $X$, $F$ is a **staircase**: flat between the values, jumping at each value $x$ by exactly $P(X = x)$. Table → $F$ is running totals; $F$ → table is reading the jump sizes. The two carry identical information.",
+        "The payoff formula: $$P(a < X \\le b) = F(b) - F(a).$$ Everything at most $b$, minus everything at most $a$, leaves exactly the interval $(a, b]$. Mind the endpoints: the left end is excluded, the right end included — that's what the $\\le$ inside $F$ dictates.",
+        "Exams also hand you $F$ as a formula — e.g. $F(x) = \\frac{x}{4}$ on $0 < x \\le 4$ (a uniform ramp from $0$ to $1$). Nothing changes: interval probability is still $F(b) - F(a)$, now computed by plugging into the formula."
+      ],
+      "keyIdea": "F(x) = P(X ≤ x) is the running total of probability; any interval costs one subtraction: P(a < X ≤ b) = F(b) − F(a).",
+      "facts": [
+        {
+          "title": "Definition",
+          "latex": "F(x) = P(X \\le x)",
+          "explanation": "The probability accumulated up to and including x — from 0 on the far left to 1 on the far right."
+        },
+        {
+          "title": "Interval rule",
+          "latex": "P(a < X \\le b) = F(b) - F(a)",
+          "explanation": "Running total at b minus running total at a — endpoints follow the ≤ inside F."
+        },
+        {
+          "title": "Jump = point probability",
+          "latex": "P(X = x) = F(x) - F(x^-)",
+          "explanation": "For discrete X the staircase jumps at each value by exactly that value's probability."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "rv-l7-w1",
+          "statement": "$X$ takes the values $1, 2, 3$ with probabilities $\\frac{1}{4}, \\frac{1}{2}, \\frac{1}{4}$. Build the distribution function and read off $P(X \\le 2)$.",
+          "solution": "Running totals: $F(1) = \\frac{1}{4}$, $F(2) = \\frac{1}{4} + \\frac{1}{2} = \\frac{3}{4}$, $F(3) = 1$. So $P(X \\le 2) = F(2) = \\frac{3}{4}$.",
+          "check": [
+            "1/4 + 1/2 == 3/4",
+            "1/4 + 1/2 + 1/4 == 1"
+          ]
+        },
+        {
+          "id": "rv-l7-w2",
+          "statement": "A random variable has distribution function $F(x) = 0$ for $x \\le 0$, $F(x) = \\frac{x}{4}$ for $0 < x \\le 4$, and $F(x) = 1$ for $x > 4$. Find $P(3 < X \\le 4)$.",
+          "solution": "$P(3 < X \\le 4) = F(4) - F(3) = \\frac{4}{4} - \\frac{3}{4} = \\frac{1}{4}$.",
+          "check": [
+            "4/4 - 3/4 == 1/4"
+          ]
+        },
+        {
+          "id": "rv-l7-w3",
+          "statement": "With $F(x) = \\frac{x}{3}$ on $0 < x \\le 3$ (and $0$ before, $1$ after), find $P(1 < X \\le 3)$.",
+          "solution": "$P(1 < X \\le 3) = F(3) - F(1) = 1 - \\frac{1}{3} = \\frac{2}{3}$.",
+          "check": [
+            "1 - 1/3 == 2/3",
+            "Rational(3,3) - Rational(1,3) == 2/3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Treating F(x) as P(X = x).",
+          "correction": "F accumulates: F(2) is the chance of AT MOST 2, not exactly 2. Exactly-2 is the JUMP of the staircase at 2 (discrete) — read it as F(2) minus the level just before.",
+          "authored": true
+        },
+        {
+          "text": "Wrong endpoint bookkeeping in F(b) − F(a).",
+          "correction": "F(b) − F(a) covers a < X ≤ b — left end OUT, right end IN. For discrete X, P(a ≤ X ≤ b) needs the jump at a added back.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "rv-l7-t1",
+          "statement": "A distribution function satisfies $F(2) = 0.7$ and $F(5) = 0.9$. Find $P(2 < X \\le 5)$.",
+          "solution": "$P(2 < X \\le 5) = F(5) - F(2) = 0.9 - 0.7 = 0.2$.",
+          "check": [
+            "Rational(9,10) - Rational(7,10) == 1/5"
+          ]
+        },
+        {
+          "id": "rv-l7-t2",
+          "statement": "$X$ is uniform on $[0, 8]$, so $F(x) = \\frac{x}{8}$ there. Find $P(X > 6)$.",
+          "solution": "$P(X > 6) = 1 - F(6) = 1 - \\frac{6}{8} = \\frac{1}{4}$.",
+          "check": [
+            "1 - 6/8 == 1/4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The problem",
+            "title": "Tables answer one question at a time",
+            "body": "A distribution table hands you $P(X = x)$ value by value. But most real questions are about RANGES: at most $2$, more than $6$, between $3$ and $5$. Adding table entries every time gets old. There's a smarter object: bank the probability as you go."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The tool",
+            "title": "F(x) — probability, accumulated",
+            "body": "Define $F(x) = P(X \\le x)$: the running total up to $x$. It climbs from $0$ to $1$ and never dips. For a table $\\{1{:}\\,\\frac14,\\; 2{:}\\,\\frac12,\\; 3{:}\\,\\frac14\\}$ the totals are $\\frac14, \\frac34, 1$ — a staircase whose JUMPS are the original probabilities. Table and staircase are the same information, worn two ways.",
+            "beats": [
+              "F(x) = P(X ≤ x), the running total",
+              "climbs 0 → 1, never decreases",
+              "discrete: staircase, jump at x equals P(X = x)"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the idea",
+            "title": "Read the staircase",
+            "prompt": "For the table $\\{1{:}\\,\\frac{1}{4},\\; 2{:}\\,\\frac{1}{2},\\; 3{:}\\,\\frac{1}{4}\\}$, how big is the jump of $F$ at $x = 2$?",
+            "options": [
+              "$\\frac{1}{2}$",
+              "$\\frac{3}{4}$",
+              "$\\frac{1}{4}$",
+              "$1$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The staircase jumps at each value by that value's probability: $P(X = 2) = \\frac{1}{2}$. ($F(2) = \\frac{3}{4}$ is the LEVEL after the jump, not the jump.)",
+            "check": [
+              "3/4 - 1/4 == 1/2"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Table to running totals",
+            "problemId": "rv-l7-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The exam's ramp",
+            "problemId": "rv-l7-w2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "One subtraction",
+            "prompt": "A distribution function has $F(1) = 0.3$ and $F(4) = 0.8$. What is $P(1 < X \\le 4)$?",
+            "options": [
+              "$0.5$",
+              "$0.8$",
+              "$0.3$",
+              "$1.1$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$P(1 < X \\le 4) = F(4) - F(1) = 0.8 - 0.3 = 0.5$. Never add the two — $F$ values are totals, not pieces.",
+            "check": [
+              "Rational(8,10) - Rational(3,10) == 1/2"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Up to the top",
+            "problemId": "rv-l7-w3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Endpoints follow the ≤",
+            "body": "$F(b) - F(a)$ delivers $a < X \\le b$: left end excluded, right end included. On continuous ramps single points carry zero probability so it rarely matters — but on discrete staircases the jump at $a$ is real. Check which world the problem lives in before shrugging at endpoints."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Two values of F",
+            "problemId": "rv-l7-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "The right tail",
+            "problemId": "rv-l7-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why statisticians love F",
+            "body": "Tables only exist for discrete variables, but EVERY random variable — discrete, continuous, or mixed — has a distribution function. It's the universal passport of probability theory: one object that describes them all."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "$F(x) = P(X \\le x)$: the running total, climbing $0 \\to 1$.",
+              "Discrete → staircase; the jump at $x$ is $P(X = x)$.",
+              "$P(a < X \\le b) = F(b) - F(a)$ — one subtraction, endpoints per the $\\le$."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [
@@ -1334,6 +1529,25 @@
         "250000*6/100 == 15000",
         "18000 - 15000 == 3000"
       ]
+    },
+    {
+      "id": "rv-p-9",
+      "statement": "A bag holds $2$ red and $3$ white balls. Two balls are drawn without replacement; let $X$ be the number of white balls drawn. Build the distribution of $X$ and find $E[X]$.",
+      "solution": "$P(0) = \\frac{C(2,2)}{C(5,2)} = \\frac{1}{10}$, $P(1) = \\frac{C(2,1)C(3,1)}{C(5,2)} = \\frac{6}{10}$, $P(2) = \\frac{C(3,2)}{C(5,2)} = \\frac{3}{10}$. $E[X] = \\frac{6}{10} + 2 \\cdot \\frac{3}{10} = \\frac{6}{5}$.",
+      "check": [
+        "binomial(2,2)/binomial(5,2) == 1/10",
+        "binomial(2,1)*binomial(3,1)/binomial(5,2) == 6/10",
+        "6/10 + 2*3/10 == 6/5"
+      ]
+    },
+    {
+      "id": "rv-p-10",
+      "statement": "For the same draw ($2$ red, $3$ white, draw $2$; $X$ = white count), find $\\mathrm{Var}(X)$.",
+      "solution": "$E[X^2] = 1 \\cdot \\frac{6}{10} + 4 \\cdot \\frac{3}{10} = \\frac{18}{10} = \\frac{9}{5}$. $\\mathrm{Var}(X) = \\frac{9}{5} - \\left(\\frac{6}{5}\\right)^2 = \\frac{45 - 36}{25} = \\frac{9}{25}$.",
+      "check": [
+        "6/10 + 4*3/10 == 9/5",
+        "9/5 - (6/5)**2 == 9/25"
+      ]
     }
   ],
   "testYourself": [
@@ -1391,6 +1605,14 @@
       "check": [
         "5000000*8/100 == 400000",
         "500000 - 400000 == 100000"
+      ]
+    },
+    {
+      "id": "rv-ty-7",
+      "statement": "A distribution function satisfies $F(x) = 0$ for $x \\le 0$, $F(x) = \\frac{x}{5}$ for $0 < x \\le 5$, $F(x) = 1$ after. Find $P(2 < X \\le 4)$.",
+      "solution": "$F(4) - F(2) = \\frac{4}{5} - \\frac{2}{5} = \\frac{2}{5}$.",
+      "check": [
+        "4/5 - 2/5 == 2/5"
       ]
     }
   ]

@@ -1275,6 +1275,214 @@
           }
         ]
       }
+    },
+    {
+      "slug": "geometric-probability",
+      "title": "Geometric Probability",
+      "concreteComparison": "A dart lands somewhere on a square board with a circle painted on it. \"How likely is it in the circle?\" has no outcomes to LIST — there are infinitely many landing points. But the dart is equally likely to land anywhere, so likelihood is proportional to SPACE: $P = \\frac{\\text{circle's area}}{\\text{board's area}}$. Same rule, new currency: instead of counting outcomes, you measure them.",
+      "objective": "Compute probabilities for uniformly random positions as ratios of lengths or areas, including composite shaded regions.",
+      "concept": [
+        "When an outcome is a POSITION chosen uniformly at random — a dart, an arrival time, a random point — the outcomes can't be counted, but they can be **measured**. The classic ratio survives with measure in place of count: $P(\\text{event}) = \\dfrac{\\text{favorable length or area}}{\\text{total length or area}}$.",
+        "On a line, favorable is a length. Arrive at a random moment in a $12$-minute bus cycle: the event \"wait at most $3$ minutes\" happens exactly when you land in the last $3$ minutes of the cycle, so $P = \\frac{3}{12} = \\frac{1}{4}$.",
+        "In the plane, favorable is an area. And composite regions are just area bookkeeping from the geometry course: rings are $\\pi R^2 - \\pi r^2$, quarters divide by $4$, and shaded unions add piece by piece.",
+        "The one requirement is UNIFORMITY — every point equally likely. If the dart player aims, the ratio lies. Exam problems always say \"random\" or \"санамсаргүй\"; that word is what licenses the area ratio."
+      ],
+      "keyIdea": "For a uniformly random position, probability = favorable measure ÷ total measure — length on a line, area in the plane.",
+      "facts": [
+        {
+          "title": "Length ratio",
+          "latex": "P = \\frac{\\text{favorable length}}{\\text{total length}}",
+          "explanation": "Random point on a segment or random time in a cycle."
+        },
+        {
+          "title": "Area ratio",
+          "latex": "P = \\frac{\\text{favorable area}}{\\text{total area}}",
+          "explanation": "Random point in a region — the two-dimensional version of equally likely."
+        },
+        {
+          "title": "Ring area",
+          "latex": "\\pi R^2 - \\pi r^2",
+          "explanation": "The band between concentric circles — the favorite shape of exam writers."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pm-l7-w1",
+          "statement": "A bus passes every $12$ minutes and you arrive at a random moment. What is the probability you wait at most $3$ minutes?",
+          "solution": "Your arrival is a uniform point in a $12$-minute window; you wait at most $3$ minutes exactly when you land in the final $3$ minutes. $P = \\frac{3}{12} = \\frac{1}{4}$.",
+          "check": [
+            "3/12 == 1/4"
+          ]
+        },
+        {
+          "id": "pm-l7-w2",
+          "statement": "Two circles share a centre, with radii $4$ and $6$. A point is chosen at random inside the big circle. Find the probability it lies inside the small circle.",
+          "solution": "Areas: small $16\\pi$, big $36\\pi$. $P = \\frac{16\\pi}{36\\pi} = \\frac{4}{9}$. The $\\pi$'s always cancel — only the squared radii matter.",
+          "check": [
+            "16/36 == 4/9",
+            "4**2 == 16",
+            "6**2 == 36"
+          ]
+        },
+        {
+          "id": "pm-l7-w3",
+          "statement": "Concentric circles of radii $4$ and $6$ are cut into quarters by two perpendicular diameters. One quarter of the inner disk and the opposite quarter of the ring are shaded. A random point is chosen in the big circle — find the probability it is in a shaded part.",
+          "solution": "Quarter of the inner disk: $\\frac{16\\pi}{4} = 4\\pi$. Ring area: $36\\pi - 16\\pi = 20\\pi$, so a quarter of the ring is $5\\pi$. Shaded total $9\\pi$ out of $36\\pi$: $P = \\frac{9\\pi}{36\\pi} = \\frac{1}{4}$.",
+          "check": [
+            "16/4 == 4",
+            "(36 - 16)/4 == 5",
+            "(4 + 5)/36 == 1/4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Comparing radii instead of areas.",
+          "correction": "Radii 4 and 6 do NOT give probability 4/6. Area grows with the square: the ratio is 4²/6² = 4/9. Always square first.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting what the total region is.",
+          "correction": "\"A random point in the BIG circle\" divides by 36π; \"in the ring\" divides by 20π. Read where the point lives before writing the denominator.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pm-l7-t1",
+          "statement": "A $20$-metre rope is cut at a uniformly random point. What is the probability the shorter piece is less than $4$ metres?",
+          "solution": "The shorter piece is under $4$ m when the cut lands within $4$ m of either end: favorable length $4 + 4 = 8$ of $20$. $P = \\frac{8}{20} = \\frac{2}{5}$.",
+          "check": [
+            "(4 + 4)/20 == 2/5"
+          ]
+        },
+        {
+          "id": "pm-l7-t2",
+          "statement": "A circle of radius $5$ is inscribed in a square of side $10$. A point is chosen at random in the square. Find the probability it lands inside the circle.",
+          "solution": "$P = \\frac{25\\pi}{100} = \\frac{\\pi}{4} \\approx 0.785$.",
+          "check": [
+            "25/100 == 1/4",
+            "Rational(1,4)*pi == pi/4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The problem",
+            "title": "You can't list where a dart lands",
+            "body": "Every probability so far came from counting outcomes. But a dart on a board, a random arrival time, a cut at a random point — these have infinitely many outcomes. Counting is dead. Measuring isn't: if every point is equally likely, likelihood is proportional to **space**."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The rule",
+            "title": "Measure over measure",
+            "body": "$$P(\\text{event}) = \\frac{\\text{favorable length or area}}{\\text{total length or area}}$$ On a line, favorable is a length; in the plane, an area. It's the same equally-likely ratio from Unit 5 with measure standing in for count — and it only works when the word *random* really means uniform.",
+            "beats": [
+              "outcomes are positions → measure, don't count",
+              "line problems: length ÷ length",
+              "plane problems: area ÷ area"
+            ]
+          },
+          {
+            "kind": "arcSector",
+            "eyebrow": "Play with it",
+            "title": "A sector is a fraction of the disk",
+            "teach": "Steer the central angle and watch the sector claim $\\frac{\\theta}{360}$ of the circle's area. That fraction IS a geometric probability: a uniformly random point in the disk lands in the sector with exactly that chance. Exam figures — quarters, rings, shaded slices — are all built from this one fraction.",
+            "config": {
+              "start": 90,
+              "radius": 6
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the idea",
+            "title": "A point on a segment",
+            "prompt": "A point is chosen at random on a segment of length $10$. What is the probability it lies within the first $2.5$ units?",
+            "options": [
+              "$\\frac{1}{4}$",
+              "$\\frac{1}{5}$",
+              "$\\frac{2.5}{7.5}$",
+              "It can't be computed"
+            ],
+            "correctIndex": 0,
+            "explanation": "Favorable length $2.5$ over total $10$: $P = \\frac{2.5}{10} = \\frac{1}{4}$.",
+            "check": [
+              "Rational(25,10)/10 == 1/4"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The waiting time",
+            "problemId": "pm-l7-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Inside the inner circle",
+            "problemId": "pm-l7-w2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The ring's share",
+            "prompt": "Concentric circles have radii $3$ and $6$. A random point is chosen in the big circle. What is the probability it lands in the ring between the circles?",
+            "options": [
+              "$\\frac{3}{4}$",
+              "$\\frac{1}{2}$",
+              "$\\frac{1}{4}$",
+              "$\\frac{2}{3}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Ring area $36\\pi - 9\\pi = 27\\pi$ out of $36\\pi$: $P = \\frac{27}{36} = \\frac{3}{4}$. Radii $3$ and $6$ but the ring takes three quarters — areas square the game.",
+            "check": [
+              "(36 - 9)/36 == 3/4"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The exam's shaded quarters",
+            "problemId": "pm-l7-w3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "π cancels — leave it symbolic",
+            "body": "In every area ratio the $\\pi$'s cancel. Write $16\\pi/36\\pi$, strike the $\\pi$, and work with $16/36$. Decimalizing $\\pi$ early is how clean fractions turn into rounding errors."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "The random cut",
+            "problemId": "pm-l7-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Circle in a square",
+            "problemId": "pm-l7-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Buffon's needle",
+            "body": "In 1777 Georges-Louis Leclerc, Comte de Buffon, computed the probability that a dropped needle crosses a floorboard line — a length-ratio argument that gives an answer containing $\\pi$. Drop enough needles and you can estimate $\\pi$ by keeping score: geometric probability as an experiment."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Uniform position → probability is favorable measure over total measure.",
+              "Line problems use lengths; plane problems use areas; $\\pi$ cancels in circle ratios.",
+              "Composite shaded regions are area bookkeeping: quarters divide by 4, rings subtract."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [
@@ -1347,6 +1555,22 @@
         "1/(1+4) == 1/5",
         "40/5 == 8"
       ]
+    },
+    {
+      "id": "pm-p-9",
+      "statement": "Concentric circles have radii $4$ and $8$. A point is chosen at random in the big circle. Find the probability it lies in the ring between the circles.",
+      "solution": "Ring $64\\pi - 16\\pi = 48\\pi$ out of $64\\pi$: $P = \\frac{48}{64} = \\frac{3}{4}$.",
+      "check": [
+        "(64 - 16)/64 == 3/4"
+      ]
+    },
+    {
+      "id": "pm-p-10",
+      "statement": "A point is chosen at random on a segment of length $15$. What is the probability it lies more than $6$ units from the left end?",
+      "solution": "Favorable length $15 - 6 = 9$: $P = \\frac{9}{15} = \\frac{3}{5}$.",
+      "check": [
+        "(15 - 6)/15 == 3/5"
+      ]
     }
   ],
   "testYourself": [
@@ -1404,6 +1628,15 @@
       "check": [
         "7/(7+3) == 7/10",
         "30*7/10 == 21"
+      ]
+    },
+    {
+      "id": "pm-ty-7",
+      "statement": "Two circles share a centre with radii $4$ and $6$; two perpendicular diameters cut everything into quarters. Two opposite quarters of the ring are shaded. A random point is chosen in the big circle — find the probability it is in a shaded part.",
+      "solution": "Ring $36\\pi - 16\\pi = 20\\pi$; two quarters of it are $10\\pi$. $P = \\frac{10\\pi}{36\\pi} = \\frac{5}{18}$.",
+      "check": [
+        "(36 - 16)/2 == 10",
+        "10/36 == 5/18"
       ]
     }
   ]

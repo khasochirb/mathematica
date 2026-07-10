@@ -22,6 +22,7 @@ import useTestSession from "@/lib/use-test-session";
 import { getTestQuestions, getTestInfo, TOPIC_LABELS } from "@/lib/esh-questions";
 import type { Question } from "@/lib/esh-questions";
 import { hasSection2, getTestSection2, gradeSection2 } from "@/lib/esh-section2";
+import { getStudyTarget } from "@/lib/exam-study-map";
 import { pickAutoTriggerSkill, type GradedResult } from "@/lib/refinement-loop";
 import useRefinementLoop from "@/lib/use-refinement-loop";
 import { useAuth } from "@/lib/auth-context";
@@ -356,6 +357,31 @@ export default function TestResultsPage() {
                 <p className="text-[13px]" style={{ color: "var(--fg-1)" }}>
                   {weakTopics.map((s) => `${TOPIC_LABELS[s.topic] || s.topic} (${s.accuracy}%)`).join(" · ")}
                 </p>
+                {/* Weak topic → the course units that repair it. The result
+                    screen is where this matters most: labeled miss → exact
+                    material to study, one tap away. */}
+                <div className="mt-3 space-y-2">
+                  {weakTopics.slice(0, 3).map((s) => {
+                    const target = getStudyTarget(s.topic);
+                    if (!target) return null;
+                    return (
+                      <div key={s.topic} className="text-[12px]" style={{ color: "var(--fg-2)" }}>
+                        <span style={{ color: "var(--fg-1)" }}>{TOPIC_LABELS[s.topic] || s.topic}:</span>{" "}
+                        <Link href={target.primary.href} className="underline underline-offset-2" style={{ color: "var(--accent)" }}>
+                          {target.primary.label}
+                        </Link>
+                        {target.links.slice(0, 2).map((l) => (
+                          <span key={l.href}>
+                            {" · "}
+                            <Link href={l.href} className="underline underline-offset-2" style={{ color: "var(--accent)" }}>
+                              {l.label}
+                            </Link>
+                          </span>
+                        ))}
+                      </div>
+                    );
+                  })}
+                </div>
                 <Link
                   href="/practice/esh/practice"
                   className="mono text-[11px] uppercase mt-3 inline-flex items-center gap-1.5"

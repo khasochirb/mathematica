@@ -2803,6 +2803,216 @@
           }
         ]
       }
+    },
+    {
+      "slug": "transformation-matrices",
+      "title": "Transformation Matrices",
+      "concreteComparison": "You've been writing transformations as coordinate rules: \"$(x, y) \\to (-y, x)$\". A matrix packs that rule into a $2\\times 2$ grid of numbers, $\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$, that MULTIPLIES points. Same rotation, new notation — but now transformations compose by multiplication, and one number inside (the determinant) reports exactly how areas scale.",
+      "objective": "Apply a 2×2 matrix to a point, recognize the standard rotation/reflection/scaling matrices, and use the determinant as the area scale factor.",
+      "concept": [
+        "A point becomes a column $\\binom{x}{y}$, and a matrix acts by row-times-column: $$\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}\\binom{x}{y} = \\binom{ax + by}{cx + dy}.$$ Every rotation about the origin, reflection through an axis, and scaling from Unit 12 is one of these.",
+        "The standard cast, worth recognizing on sight: rotation $90°$ counter-clockwise $\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$; rotation $180°$ $\\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix}$; reflection over the $x$-axis $\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$, over the $y$-axis $\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$, over $y = x$ $\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$; scaling by $k$ $\\begin{pmatrix} k & 0 \\\\ 0 & k \\end{pmatrix}$.",
+        "A fast identification trick: the matrix's COLUMNS are the images of $(1, 0)$ and $(0, 1)$. Ask where the transformation sends those two points, stand the answers up as columns — done. That's also how you decode an unfamiliar matrix: read its columns.",
+        "The **determinant** $ad - bc$ is the transformation's area report: any shape's area gets multiplied by $|ad - bc|$. Rotations and reflections have determinant $\\pm 1$ (rigid — areas untouched); a scaling by $k$ has determinant $k^2$. A negative sign means orientation flipped — the plane got mirrored."
+      ],
+      "keyIdea": "Matrix × column point = image; columns are the images of (1,0) and (0,1); |det| = the area scale factor.",
+      "facts": [
+        {
+          "title": "Matrix acts on a point",
+          "latex": "\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}\\binom{x}{y} = \\binom{ax+by}{cx+dy}",
+          "explanation": "Row times column, twice — the whole mechanism."
+        },
+        {
+          "title": "Columns tell all",
+          "latex": "\\text{col}_1 = T(1,0),\\quad \\text{col}_2 = T(0,1)",
+          "explanation": "To build or decode a matrix, track just the two unit points."
+        },
+        {
+          "title": "Determinant = area factor",
+          "latex": "|ad - bc| = \\text{area scale}",
+          "explanation": "±1 for rigid motions; k² for scaling by k; negative sign = orientation flip."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "tmx-we1",
+          "statement": "Apply $\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$ to the point $(3, 1)$ and name the transformation.",
+          "solution": "$\\binom{0 \\cdot 3 + (-1) \\cdot 1}{1 \\cdot 3 + 0 \\cdot 1} = \\binom{-1}{3}$. The columns are the images of $(1,0) \\to (0,1)$ and $(0,1) \\to (-1,0)$: a $90°$ counter-clockwise rotation.",
+          "check": [
+            "0*3 + (-1)*1 == -1",
+            "1*3 + 0*1 == 3"
+          ]
+        },
+        {
+          "id": "tmx-we2",
+          "statement": "Which matrix reflects the plane over the line $y = x$? Apply it to $(5, -2)$.",
+          "solution": "Reflection over $y = x$ swaps coordinates, sending $(1,0) \\to (0,1)$ and $(0,1) \\to (1,0)$; stand those up as columns: $\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$. On $(5, -2)$: $\\binom{0 \\cdot 5 + 1 \\cdot (-2)}{1 \\cdot 5 + 0 \\cdot (-2)} = \\binom{-2}{5}$.",
+          "check": [
+            "0*5 + 1*(-2) == -2",
+            "1*5 + 0*(-2) == 5"
+          ]
+        },
+        {
+          "id": "tmx-we3",
+          "statement": "The matrix $\\begin{pmatrix} 3 & 0 \\\\ 0 & 2 \\end{pmatrix}$ is applied to a figure of area $5$. Find the image's area.",
+          "solution": "Determinant: $3 \\cdot 2 - 0 \\cdot 0 = 6$. Areas scale by $|6|$: the image has area $6 \\cdot 5 = 30$.",
+          "check": [
+            "3*2 - 0*0 == 6",
+            "6*5 == 30"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Multiplying rows by rows.",
+          "correction": "The point is a COLUMN on the right: top entry = first ROW · point, bottom entry = second ROW · point. Writing the point as a row silently transposes the transformation.",
+          "authored": true
+        },
+        {
+          "text": "Reading det = −1 as 'area shrinks'.",
+          "correction": "Area scales by |det|. A determinant of −1 keeps area exactly — the sign only says orientation flipped (a reflection happened).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "tmx-t1",
+          "statement": "Apply $\\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix}$ to $(4, -7)$ and name the transformation.",
+          "solution": "$(-4, 7)$ — every point flips through the origin: a $180°$ rotation.",
+          "check": [
+            "(-1)*4 + 0*(-7) == -4",
+            "0*4 + (-1)*(-7) == 7"
+          ]
+        },
+        {
+          "id": "tmx-t2",
+          "statement": "A dilation uses $\\begin{pmatrix} 2 & 0 \\\\ 0 & 2 \\end{pmatrix}$. Where does $(3, 5)$ land, and by what factor do areas grow?",
+          "solution": "$(6, 10)$; the determinant is $4$, so areas quadruple — scale factor $2$ squares on the way to area.",
+          "check": [
+            "2*3 == 6",
+            "2*5 == 10",
+            "2*2 - 0*0 == 4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The problem",
+            "title": "Rules are wordy; matrices are compact",
+            "body": "Unit 12 wrote every transformation as a coordinate rule: $(x,y) \\to (-y, x)$ and friends. The exam's favorite upgrade packs the rule into a $2 \\times 2$ **matrix** that multiplies points. Nothing new happens to the plane — but the notation composes, computes, and carries an area report inside."
+          },
+          {
+            "kind": "transformPlane",
+            "eyebrow": "Watch it again",
+            "title": "The turn you already know",
+            "teach": "A $90°$ counter-clockwise rotation sends $(1, 0) \\to (0, 1)$ and $(0, 1) \\to (-1, 0)$. Stand those two images up as columns and you've BUILT the rotation's matrix: $\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$. Every matrix in this lesson is decoded the same way — columns are the images of the two unit points.",
+            "config": {
+              "transform": "rotate",
+              "deg": 90
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The mechanism",
+            "title": "Row times column, twice",
+            "body": "$$\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}\\binom{x}{y} = \\binom{ax + by}{cx + dy}$$ The standard cast: rotations $90°$ $\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$ and $180°$ $\\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix}$; reflections over the axes $\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$, $\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$ and over $y=x$ $\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$; scaling $\\begin{pmatrix} k & 0 \\\\ 0 & k \\end{pmatrix}$.",
+            "beats": [
+              "point = column; matrix multiplies from the left",
+              "columns = images of (1,0) and (0,1)",
+              "det = ad − bc reports the area factor"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the mechanism",
+            "title": "One multiplication",
+            "prompt": "What is $\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$ applied to $(2, 3)$?",
+            "options": [
+              "$(2, -3)$",
+              "$(-2, 3)$",
+              "$(3, 2)$",
+              "$(-2, -3)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Top: $1 \\cdot 2 + 0 \\cdot 3 = 2$. Bottom: $0 \\cdot 2 + (-1) \\cdot 3 = -3$. The $y$-coordinate flips: reflection over the $x$-axis.",
+            "check": [
+              "1*2 + 0*3 == 2",
+              "0*2 + (-1)*3 == -3"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Rotate by multiplying",
+            "problemId": "tmx-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Build the mirror",
+            "problemId": "tmx-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The area report",
+            "prompt": "A rotation matrix $\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$ has determinant…",
+            "options": [
+              "$1$ — areas unchanged",
+              "$0$",
+              "$-1$",
+              "$2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\det = 0 \\cdot 0 - (-1) \\cdot 1 = 1$. Rotations are rigid: every area survives untouched, and orientation is preserved.",
+            "check": [
+              "0*0 - (-1)*1 == 1"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Determinant prices the area",
+            "problemId": "tmx-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Decode by columns, always",
+            "body": "Handed an unfamiliar matrix? Its first column is where $(1,0)$ goes, its second is where $(0,1)$ goes. Sketch those two arrows and the transformation names itself — faster and safer than memorizing every matrix in the zoo."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Through the origin",
+            "problemId": "tmx-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Doubling everything",
+            "problemId": "tmx-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Your screen does this constantly",
+            "body": "Every frame of a 3-D game multiplies millions of points by transformation matrices — rotations, scalings, and projections chained by matrix multiplication. GPUs are, at heart, machines for doing this lesson billions of times per second."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Matrix × column point: top = row 1 · point, bottom = row 2 · point.",
+              "Columns are the images of $(1,0)$ and $(0,1)$ — build and decode with them.",
+              "$|\\det| = ad - bc$ (absolute value) scales every area; rigid motions have $\\det = \\pm 1$."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [

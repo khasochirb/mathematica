@@ -14,6 +14,7 @@ import usePerformance from "@/lib/use-performance";
 import useTestSession from "@/lib/use-test-session";
 import useFlaggedQuestions from "@/lib/use-flagged-questions";
 import { TOPIC_LABELS } from "@/lib/esh-questions";
+import { getStudyTarget } from "@/lib/exam-study-map";
 
 export default function ProgressPage() {
   const [mounted, setMounted] = useState(false);
@@ -193,6 +194,31 @@ export default function ProgressPage() {
                     <p className="text-[13px]" style={{ color: "var(--fg-1)" }}>
                       {progress.weakTopics.map((t) => TOPIC_LABELS[t] || t).join(" · ")}
                     </p>
+                    {/* Weak topic → the course material that repairs it.
+                        This link-out is the whole point of the topic courses:
+                        test result → labeled topic → exact units to study. */}
+                    <div className="mt-3 space-y-2">
+                      {progress.weakTopics.slice(0, 3).map((t) => {
+                        const target = getStudyTarget(t);
+                        if (!target) return null;
+                        return (
+                          <div key={t} className="text-[12px]" style={{ color: "var(--fg-2)" }}>
+                            <span style={{ color: "var(--fg-1)" }}>{TOPIC_LABELS[t] || t}:</span>{" "}
+                            <Link href={target.primary.href} className="underline underline-offset-2" style={{ color: "var(--accent)" }}>
+                              {target.primary.label}
+                            </Link>
+                            {target.links.slice(0, 2).map((l) => (
+                              <span key={l.href}>
+                                {" · "}
+                                <Link href={l.href} className="underline underline-offset-2" style={{ color: "var(--accent)" }}>
+                                  {l.label}
+                                </Link>
+                              </span>
+                            ))}
+                          </div>
+                        );
+                      })}
+                    </div>
                     <Link
                       href="/practice/esh/practice"
                       className="mono text-[11px] uppercase mt-3 inline-flex items-center gap-1"

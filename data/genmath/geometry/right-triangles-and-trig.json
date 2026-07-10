@@ -2469,6 +2469,200 @@
           }
         ]
       }
+    },
+    {
+      "slug": "law-of-sines-and-cosines",
+      "title": "The Law of Sines & the Law of Cosines",
+      "concreteComparison": "SOH-CAH-TOA needs a right angle the way a ladder needs a wall. But surveyors measure triangles with NO right angle in sight: two angles and a riverbank, or two fences and the angle between them. The laws of sines and cosines are trig with the wall removed — they solve every triangle, right angle or not.",
+      "objective": "Solve any triangle: use the law of sines with an angle-side pair, the law of cosines with two sides and the included angle (or three sides), and the sine area formula.",
+      "concept": [
+        "The **law of sines** says every side-to-opposite-angle ratio in a triangle is the same number: $$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R,$$ and that shared number is the diameter of the circumscribed circle. Know one full pair (a side AND its opposite angle) and every other side or angle is one proportion away.",
+        "The **law of cosines** is the Pythagorean theorem with a correction term for the bent angle: $$c^2 = a^2 + b^2 - 2ab\\cos C.$$ At $C = 90°$ the cosine dies and Pythagoras returns. Use it when you hold two sides and the INCLUDED angle (find the third side), or all three sides (find any angle).",
+        "Choosing the tool is the whole exam skill. Angle–side pair in hand → sines. Two sides hugging a known angle, or three sides → cosines. And when the question asks for area with two sides and the included angle, skip the height entirely: $$S = \\tfrac{1}{2}ab\\sin C.$$",
+        "One caution: from the law of cosines an angle comes back unambiguous (cosine is negative exactly for obtuse angles), but the law of sines can be coy — $\\sin\\theta$ is the same for $\\theta$ and $180° - \\theta$. When the picture allows an obtuse answer, check both."
+      ],
+      "keyIdea": "Angle–side pair → law of sines (= 2R); two sides + included angle, or three sides → law of cosines; area = ½ab·sin C.",
+      "facts": [
+        {
+          "title": "Law of sines",
+          "latex": "\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R",
+          "explanation": "Side over opposite sine is constant — and equals the circumcircle's diameter."
+        },
+        {
+          "title": "Law of cosines",
+          "latex": "c^2 = a^2 + b^2 - 2ab\\cos C",
+          "explanation": "Pythagoras plus a correction for the non-right angle; at 90° it IS Pythagoras."
+        },
+        {
+          "title": "Sine area formula",
+          "latex": "S = \\tfrac{1}{2}ab\\sin C",
+          "explanation": "Two sides and the included angle give the area without ever finding a height."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "lsc-we1",
+          "statement": "In a triangle, $A = 30°$, $B = 45°$, and the side opposite $A$ is $a = 10$. Find $b$.",
+          "solution": "Law of sines: $\\frac{b}{\\sin 45°} = \\frac{10}{\\sin 30°}$, so $b = \\frac{10 \\sin 45°}{\\sin 30°} = \\frac{10 \\cdot \\frac{\\sqrt{2}}{2}}{\\frac{1}{2}} = 10\\sqrt{2}$.",
+          "check": [
+            "10*sin(pi/4)/sin(pi/6) == 10*sqrt(2)"
+          ]
+        },
+        {
+          "id": "lsc-we2",
+          "statement": "Two sides measure $5$ and $8$ with a $60°$ angle between them. Find the third side.",
+          "solution": "Law of cosines: $c^2 = 25 + 64 - 2 \\cdot 5 \\cdot 8 \\cdot \\cos 60° = 89 - 80 \\cdot \\tfrac{1}{2} = 49$, so $c = 7$.",
+          "check": [
+            "sqrt(25 + 64 - 2*5*8*cos(pi/3)) == 7"
+          ]
+        },
+        {
+          "id": "lsc-we3",
+          "statement": "A triangle has sides $7$, $8$, and $13$. Find the angle opposite the side of length $13$.",
+          "solution": "Law of cosines solved for the cosine: $\\cos C = \\frac{7^2 + 8^2 - 13^2}{2 \\cdot 7 \\cdot 8} = \\frac{49 + 64 - 169}{112} = -\\frac{1}{2}$. Negative cosine → obtuse: $C = 120°$.",
+          "check": [
+            "(49 + 64 - 169)/(2*7*8) == -1/2",
+            "acos(Rational(-1, 2)) == 2*pi/3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the law of sines with two sides and the included angle.",
+          "correction": "Sines needs a COMPLETE pair — a side with its opposite angle. Two sides hugging the known angle is the cosine rule's job.",
+          "authored": true
+        },
+        {
+          "text": "Dropping the −2ab·cos C term's sign with obtuse angles.",
+          "correction": "For C > 90°, cos C is negative, so −2ab·cos C ADDS length: the side across from a wide angle is longer than Pythagoras would say. Keep the sign; don't 'fix' it.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "lsc-t1",
+          "statement": "In a triangle, $A = 30°$, $B = 90°$, and $a = 6$. Find $b$.",
+          "solution": "$b = \\frac{6 \\sin 90°}{\\sin 30°} = \\frac{6}{1/2} = 12$.",
+          "check": [
+            "6*sin(pi/2)/sin(pi/6) == 12"
+          ]
+        },
+        {
+          "id": "lsc-t2",
+          "statement": "Sides $3$ and $5$ meet at a $120°$ angle. Find the third side.",
+          "solution": "$c^2 = 9 + 25 - 2 \\cdot 3 \\cdot 5 \\cos 120° = 34 + 15 = 49$, so $c = 7$.",
+          "check": [
+            "sqrt(9 + 25 - 2*3*5*cos(2*pi/3)) == 7"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The problem",
+            "title": "Trig without the right angle",
+            "body": "Every tool in this unit so far leaned on a right angle. But most triangles in the wild don't have one — a surveyor's sightlines, two roads meeting at $70°$, a triangle given by three fences. You need trig that works on ANY triangle."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Two laws",
+            "title": "Sines for pairs, cosines for hugs",
+            "body": "**Law of sines:** $\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R$ — every side-to-opposite-sine ratio is the circumcircle's diameter. Use it when you hold a complete angle–side pair. **Law of cosines:** $c^2 = a^2 + b^2 - 2ab\\cos C$ — Pythagoras with a correction for the bent angle. Use it when two sides hug a known angle, or all three sides are known.",
+            "beats": [
+              "angle–side pair known → law of sines",
+              "two sides + included angle, or three sides → law of cosines",
+              "the sine ratio equals 2R — the circumcircle hides inside"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Choose the tool",
+            "title": "Which law?",
+            "prompt": "You know sides $4$ and $9$ and the $50°$ angle **between** them, and you want the third side. Which tool?",
+            "options": [
+              "Law of cosines",
+              "Law of sines",
+              "SOH-CAH-TOA",
+              "The midsegment theorem"
+            ],
+            "correctIndex": 0,
+            "explanation": "Two sides and the INCLUDED angle is exactly the cosine rule's setup: $c^2 = 16 + 81 - 2 \\cdot 4 \\cdot 9\\cos 50°$. The law of sines can't start without a full angle–side pair.",
+            "check": [
+              "16 + 81 == 97"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A proportion away",
+            "problemId": "lsc-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The corrected Pythagoras",
+            "problemId": "lsc-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Area without a height",
+            "prompt": "Two sides of $4$ and $6$ meet at $30°$. The triangle's area is…",
+            "options": [
+              "$6$",
+              "$12$",
+              "$24$",
+              "$6\\sqrt{3}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$S = \\tfrac{1}{2} \\cdot 4 \\cdot 6 \\cdot \\sin 30° = 12 \\cdot \\tfrac{1}{2} = 6$. No height needed — the sine builds it for you.",
+            "check": [
+              "Rational(1,2)*4*6*sin(pi/6) == 6"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "An angle from three sides",
+            "problemId": "lsc-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Read the cosine's sign",
+            "body": "When the cosine rule returns $\\cos C < 0$, the angle is obtuse — no second-guessing. That sign is a free sanity check: the biggest side must face the biggest angle, and a negative cosine should sit opposite the longest side."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Sine rule, clean pair",
+            "problemId": "lsc-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "An obtuse hug",
+            "problemId": "lsc-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Triangulation built the maps",
+            "body": "Before satellites, entire countries were mapped by triangulation: measure ONE baseline extremely carefully, then chain thousands of triangles using only angle measurements and the law of sines. The Great Trigonometrical Survey of India ran for 70 years on exactly this mathematics — and measured Mount Everest without climbing it."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Law of sines: $\\frac{a}{\\sin A} = 2R$ — needs a full angle–side pair.",
+              "Law of cosines: $c^2 = a^2 + b^2 - 2ab\\cos C$ — two sides + included angle, or three sides.",
+              "Area $= \\tfrac{1}{2}ab\\sin C$; a negative cosine means an obtuse angle."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [

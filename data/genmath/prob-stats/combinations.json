@@ -1197,6 +1197,204 @@
           }
         ]
       }
+    },
+    {
+      "slug": "stars-and-bars",
+      "title": "Stars & Bars",
+      "concreteComparison": "Hand out $10$ identical candies to $3$ kids. Candies are identical — only the COUNTS matter: $(7,2,1)$ is an outcome, not which candy went where. Line up $10$ stars and drop in $2$ bars: $\\star\\star\\star\\star\\star\\star\\star|\\star\\star|\\star$ says kid one gets $7$, kid two gets $2$, kid three gets $1$. Every hand-out is a bar placement — so count the bar placements.",
+      "objective": "Count the ways to split n identical objects among k distinct groups by placing bars among stars, in both the empty-allowed and nobody-empty versions.",
+      "concept": [
+        "Everything in Units 1–3 counted DISTINCT things. Stars and bars is the move for **identical** things going into **distinct** boxes: identical candies to named kids, identical points among exam questions, solutions of $x + y + z = 10$ where only the sizes matter.",
+        "The encoding is the whole idea. Write the $n$ identical objects as stars in a row. Splitting them among $k$ groups means inserting $k-1$ bars: everything before the first bar is group one, between the bars is group two, and so on. Every split IS a star-bar arrangement, and every arrangement IS a split — a perfect matching, so the counts are equal.",
+        "Empty groups allowed: you're arranging $n$ stars and $k-1$ bars in $n + k - 1$ positions, and the arrangement is decided by choosing which positions hold the bars: $\\binom{n+k-1}{k-1}$.",
+        "Nobody empty: give each group one object first ($n - k$ stars remain, empties now impossible), then run the empty-allowed count on what's left: $\\binom{n-1}{k-1}$. The same trick handles \"each gets at least $2$\" — pre-pay two each, then count freely."
+      ],
+      "keyIdea": "Identical objects into k distinct groups = arrangements of stars and bars: C(n+k−1, k−1) free, C(n−1, k−1) with nobody empty.",
+      "facts": [
+        {
+          "title": "Empty allowed",
+          "latex": "\\binom{n+k-1}{k-1}",
+          "explanation": "n identical objects into k distinct groups when a group may get zero — choose the bar positions."
+        },
+        {
+          "title": "Nobody empty",
+          "latex": "\\binom{n-1}{k-1}",
+          "explanation": "Positive solutions of x_1 + \\cdots + x_k = n: pre-pay one each, then place bars in the n−1 gaps."
+        },
+        {
+          "title": "At least m each",
+          "latex": "x_i \\ge m \\;\\to\\; y_i = x_i - m",
+          "explanation": "Substitute away the floor first, then the free formula applies to what remains."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cb-l7-w1",
+          "statement": "How many solutions does $x + y + z = 10$ have in **positive** whole numbers?",
+          "solution": "Ten stars in a row have $9$ gaps between them; positive solutions mean each variable takes at least one star, so drop the $2$ bars into distinct gaps: $\\binom{9}{2} = 36$.",
+          "check": [
+            "binomial(9, 2) == 36",
+            "binomial(10 - 1, 3 - 1) == 36"
+          ]
+        },
+        {
+          "id": "cb-l7-w2",
+          "statement": "$12$ identical candies are shared among $4$ kids; a kid may get none. How many ways?",
+          "solution": "Arrange $12$ stars and $3$ bars: $\\binom{12 + 3}{3} = \\binom{15}{3} = 455$.",
+          "check": [
+            "binomial(15, 3) == 455",
+            "binomial(12 + 4 - 1, 4 - 1) == 455"
+          ]
+        },
+        {
+          "id": "cb-l7-w3",
+          "statement": "How many whole-number solutions does $x + y + z + w = 15$ have if every variable is at least $2$?",
+          "solution": "Pre-pay the floor: set $y_i = x_i - 2$, spending $8$. Now $y_1 + y_2 + y_3 + y_4 = 7$ with zeros allowed: $\\binom{7 + 3}{3} = \\binom{10}{3} = 120$.",
+          "check": [
+            "binomial(10, 3) == 120",
+            "15 - 4*2 == 7"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using k bars instead of k − 1.",
+          "correction": "Three groups need TWO dividers, not three — the bars sit between groups. Count groups on your fingers, then use one fewer bar.",
+          "authored": true
+        },
+        {
+          "text": "Mixing up the positive and free formulas.",
+          "correction": "\"Each kid gets at least one\" → C(n−1, k−1). \"A kid may get none\" → C(n+k−1, k−1). When unsure, pre-pay the minimum and reduce to the free case.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cb-l7-t1",
+          "statement": "$8$ identical balls go into $3$ distinct boxes; a box may stay empty. How many ways?",
+          "solution": "$\\binom{8 + 2}{2} = \\binom{10}{2} = 45$.",
+          "check": [
+            "binomial(10, 2) == 45"
+          ]
+        },
+        {
+          "id": "cb-l7-t2",
+          "statement": "How many positive whole-number solutions does $x + y = 9$ have?",
+          "solution": "One bar in the $8$ gaps between $9$ stars: $\\binom{8}{1} = 8$. (Check by listing: $1+8$ through $8+1$.)",
+          "check": [
+            "binomial(8, 1) == 8"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The problem",
+            "title": "Identical things break the old tools",
+            "body": "Units 1–3 counted distinct things — people, letters, cards. But share $10$ identical candies among $3$ kids and suddenly the candies have no names: only the three COUNTS matter. Permutations and plain combinations don't fit. You need one more encoding trick, and it's a beautiful one."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The encoding",
+            "title": "Stars for objects, bars for walls",
+            "body": "Write the candies as $10$ stars. Splitting them among $3$ kids means dropping in $2$ bars: $\\star\\star\\star|\\star\\star\\star\\star\\star|\\star\\star$ reads \"$3$, then $5$, then $2$\". Every split is exactly one arrangement of $10$ stars and $2$ bars — so the number of splits is the number of ways to choose which $2$ of the $12$ symbols are bars: $\\binom{12}{2} = 66$.",
+            "beats": [
+              "10 identical candies, 3 distinct kids",
+              "encode: 10 stars + 2 bars in a row",
+              "choose bar positions: C(12, 2) = 66 splits"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the encoding",
+            "title": "Read the picture",
+            "prompt": "In the stars-and-bars picture for $x + y + z = 10$ with zeros allowed, how many symbols are in the row, and how many are bars?",
+            "options": [
+              "12 symbols, 2 bars",
+              "13 symbols, 3 bars",
+              "10 symbols, 2 bars",
+              "12 symbols, 3 bars"
+            ],
+            "correctIndex": 0,
+            "explanation": "Ten stars plus $3 - 1 = 2$ bars makes $12$ symbols; the split is decided by choosing the $2$ bar positions: $\\binom{12}{2} = 66$.",
+            "check": [
+              "10 + 2 == 12",
+              "binomial(12, 2) == 66"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Positive solutions",
+            "problemId": "cb-l7-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Zeros allowed",
+            "problemId": "cb-l7-w2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which formula?",
+            "prompt": "How many **positive** whole-number solutions does $x + y + z = 6$ have?",
+            "options": [
+              "$\\binom{5}{2} = 10$",
+              "$\\binom{8}{2} = 28$",
+              "$\\binom{6}{3} = 20$",
+              "$\\binom{5}{3} = 10$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Positive means nobody empty: $\\binom{n-1}{k-1} = \\binom{5}{2} = 10$. The $28$ counts solutions where zeros are allowed.",
+            "check": [
+              "binomial(5, 2) == 10",
+              "binomial(8, 2) == 28"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A floor above one",
+            "problemId": "cb-l7-w3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Pre-pay the floor",
+            "body": "Any \"at least $m$ each\" condition dies to the same substitution: hand every group its $m$ first, then count the leftover freely. One line of algebra turns every floored problem into the basic formula."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Boxes may stay empty",
+            "problemId": "cb-l7-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Two variables, by hand",
+            "problemId": "cb-l7-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "A 1920s bookkeeping trick",
+            "body": "The stars-and-bars argument appears in William Feller's classic probability book, where it counts how indistinguishable particles occupy energy states — the same combinatorics that shares candies also runs Bose–Einstein statistics in physics."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Identical objects into distinct groups → encode as stars and bars.",
+              "Zeros allowed: $\\binom{n+k-1}{k-1}$. Nobody empty: $\\binom{n-1}{k-1}$.",
+              "\"At least $m$ each\" → substitute the floor away first."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [
@@ -1265,6 +1463,22 @@
         "binomial(10, 4)*4 == 840",
         "10*binomial(9, 3) == 840"
       ]
+    },
+    {
+      "id": "cb-p-9",
+      "statement": "How many whole-number solutions (zeros allowed) does $x + y + z = 12$ have?",
+      "solution": "Stars and bars, empty allowed: $\\binom{12 + 2}{2} = \\binom{14}{2} = 91$.",
+      "check": [
+        "binomial(14, 2) == 91"
+      ]
+    },
+    {
+      "id": "cb-p-10",
+      "statement": "$15$ identical pencils are distributed among $4$ students so that every student gets at least one. How many ways?",
+      "solution": "Nobody empty: $\\binom{15 - 1}{4 - 1} = \\binom{14}{3} = 364$.",
+      "check": [
+        "binomial(14, 3) == 364"
+      ]
     }
   ],
   "testYourself": [
@@ -1317,6 +1531,15 @@
         "10*9 == 90",
         "binomial(10, 2) == 45",
         "90 == 45*2"
+      ]
+    },
+    {
+      "id": "cb-ty-7",
+      "statement": "How many whole-number solutions does $x + y + z = 20$ have if every variable is at least $3$?",
+      "solution": "Pre-pay $3$ each: $y_1 + y_2 + y_3 = 11$ with zeros allowed, $\\binom{11 + 2}{2} = \\binom{13}{2} = 78$.",
+      "check": [
+        "20 - 3*3 == 11",
+        "binomial(13, 2) == 78"
       ]
     }
   ]

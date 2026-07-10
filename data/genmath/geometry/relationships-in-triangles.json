@@ -2575,6 +2575,207 @@
           }
         ]
       }
+    },
+    {
+      "slug": "incircles-circumcircles-and-area",
+      "title": "Incircles, Circumcircles & Area Formulas",
+      "concreteComparison": "You met the incenter and circumcenter as INTERSECTION POINTS — where bisectors cross. Exams care about them as CIRCLES with radii you can compute: a $3$–$4$–$5$ triangle hides a circle of radius exactly $1$ inside it and sits on a circle of radius $\\frac{5}{2}$ around it. Both radii fall out of the triangle's area — one formula each.",
+      "objective": "Compute the inradius via A = rs and the circumradius via R = abc/4A, use the right-triangle shortcut r = (a + b − c)/2, and extend A = rs to any polygon with an inscribed circle.",
+      "concept": [
+        "Connect the incenter to the three vertices and the triangle splits into three small triangles, each with base a side and height $r$. Add them: $$A = \\tfrac{1}{2}ar + \\tfrac{1}{2}br + \\tfrac{1}{2}cr = rs,$$ where $s$ is the SEMI-perimeter. So $r = A/s$: the inradius is area per unit of half-boundary.",
+        "The circumradius comes from the law of sines ($\\frac{a}{\\sin A} = 2R$) combined with the sine area formula, and lands at $$R = \\frac{abc}{4A}.$$ For a RIGHT triangle you barely need it: the hypotenuse subtends a $90°$ inscribed angle, so the hypotenuse IS a diameter and $R = \\frac{c}{2}$.",
+        "Right triangles also carry an incircle shortcut worth memorizing: $$r = \\frac{a + b - c}{2}$$ — legs in, hypotenuse out, halve. (It's $A/s$ in disguise: try it on $3$–$4$–$5$.)",
+        "The argument behind $A = rs$ never used 'three': ANY polygon with an inscribed circle splits into triangles of height $r$, so $A = rs$ holds for all of them. That's the key to exam trapezoids with inscribed circles — plus the tangent-segment fact that in such quadrilaterals the two opposite-side sums are equal ($a + c = b + d$)."
+      ],
+      "keyIdea": "r = A/s and R = abc/4A; right triangles shortcut to r = (a+b−c)/2 and R = c/2; A = rs works for every polygon that owns an incircle.",
+      "facts": [
+        {
+          "title": "Inradius",
+          "latex": "A = rs \\;\\Rightarrow\\; r = \\frac{A}{s}",
+          "explanation": "Split the shape into triangles from the incenter — each has height r; s is the semi-perimeter."
+        },
+        {
+          "title": "Circumradius",
+          "latex": "R = \\frac{abc}{4A}",
+          "explanation": "From the law of sines; for right triangles the hypotenuse is a diameter, so R = c/2."
+        },
+        {
+          "title": "Right-triangle inradius",
+          "latex": "r = \\frac{a + b - c}{2}",
+          "explanation": "Legs minus hypotenuse, halved — the fastest incircle on the exam."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "icc-we1",
+          "statement": "Find the inradius and circumradius of the $3$–$4$–$5$ right triangle.",
+          "solution": "Area $A = \\tfrac{1}{2} \\cdot 3 \\cdot 4 = 6$, semi-perimeter $s = 6$. Inradius: $r = A/s = 1$ (shortcut agrees: $\\frac{3+4-5}{2} = 1$). Circumradius: hypotenuse is a diameter, $R = \\frac{5}{2}$ (formula agrees: $\\frac{3 \\cdot 4 \\cdot 5}{4 \\cdot 6} = \\frac{5}{2}$).",
+          "check": [
+            "6/6 == 1",
+            "(3 + 4 - 5)/2 == 1",
+            "3*4*5/(4*6) == 5/2"
+          ]
+        },
+        {
+          "id": "icc-we2",
+          "statement": "A triangle has sides $13$, $14$, $15$. Find $r$ and $R$.",
+          "solution": "Heron: $s = 21$, $A = \\sqrt{21 \\cdot 8 \\cdot 7 \\cdot 6} = \\sqrt{7056} = 84$. Then $r = \\frac{84}{21} = 4$ and $R = \\frac{13 \\cdot 14 \\cdot 15}{4 \\cdot 84} = \\frac{2730}{336} = \\frac{65}{8}$.",
+          "check": [
+            "sqrt(21*8*7*6) == 84",
+            "84/21 == 4",
+            "13*14*15/(4*84) == 65/8"
+          ]
+        },
+        {
+          "id": "icc-we3",
+          "statement": "A trapezoid has an inscribed circle of radius $4$ and area $72$. Find its perimeter and the sum of its two parallel sides.",
+          "solution": "$A = rs$ holds for any polygon with an incircle: $s = \\frac{72}{4} = 18$, so the perimeter is $36$. In a tangential quadrilateral opposite sides balance ($a + c = b + d$), so the parallel sides sum to half the perimeter: $18$.",
+          "check": [
+            "72/4 == 18",
+            "2*18 == 36",
+            "36/2 == 18"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the full perimeter in A = rs.",
+          "correction": "s is the SEMI-perimeter. A 3–4–5 triangle has s = 6, not 12 — using 12 halves your r and ruins the answer.",
+          "authored": true
+        },
+        {
+          "text": "Applying R = c/2 to a triangle that isn't right-angled.",
+          "correction": "Hypotenuse-as-diameter is a right-triangle privilege (Thales). Any other triangle needs the full R = abc/4A.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "icc-t1",
+          "statement": "A right triangle has legs $6$ and $8$. Find the radius of its inscribed circle.",
+          "solution": "Hypotenuse $10$; shortcut: $r = \\frac{6 + 8 - 10}{2} = 2$.",
+          "check": [
+            "sqrt(36 + 64) == 10",
+            "(6 + 8 - 10)/2 == 2"
+          ]
+        },
+        {
+          "id": "icc-t2",
+          "statement": "An equilateral triangle has side $6$. Find $r$ and $R$.",
+          "solution": "$A = \\frac{\\sqrt{3}}{4} \\cdot 36 = 9\\sqrt{3}$, $s = 9$: $r = \\sqrt{3}$. $R = \\frac{6^3}{4 \\cdot 9\\sqrt{3}} = \\frac{216}{36\\sqrt{3}} = 2\\sqrt{3}$ — twice $r$, as equilateral symmetry demands.",
+          "check": [
+            "9*sqrt(3)/9 == sqrt(3)",
+            "216/(36*sqrt(3)) == 2*sqrt(3)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The problem",
+            "title": "From centers to circles",
+            "body": "Earlier lessons found WHERE the incenter and circumcenter sit. Exams ask a harder question: how BIG are the circles they carry? A triangle's sides pin both radii exactly — and the bridge between sides and radii is the triangle's area."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The two formulas",
+            "title": "One split, one law",
+            "body": "Fan the triangle out from the incenter: three slivers, each with height $r$ over a side. Their areas add to $A = rs$ (s = semi-perimeter), so $r = A/s$. For the circumcircle, the law of sines already whispered the answer — $\\frac{a}{\\sin A} = 2R$ rearranges to $R = \\frac{abc}{4A}$. Two radii, both priced in area.",
+            "beats": [
+              "fan from the incenter → A = rs → r = A/s",
+              "law of sines → R = abc/4A",
+              "right triangle: R = c/2 (Thales), r = (a+b−c)/2"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the idea",
+            "title": "Read r from the area",
+            "prompt": "A triangle has area $24$ and semi-perimeter $12$. Its inradius is…",
+            "options": [
+              "$2$",
+              "$4$",
+              "$1$",
+              "$\\frac{1}{2}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$r = A/s = 24/12 = 2$. One division — that's the whole formula.",
+            "check": [
+              "24/12 == 2"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The 3–4–5, both radii",
+            "problemId": "icc-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Heron feeds both formulas",
+            "problemId": "icc-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Thales' shortcut",
+            "prompt": "A right triangle has hypotenuse $13$. The radius of its circumscribed circle is…",
+            "options": [
+              "$\\frac{13}{2}$",
+              "$13$",
+              "$\\frac{13}{4}$",
+              "Cannot be found without the legs"
+            ],
+            "correctIndex": 0,
+            "explanation": "The hypotenuse subtends a right angle, so it must be a DIAMETER of the circumcircle: $R = \\frac{13}{2}$. The legs are irrelevant.",
+            "check": [
+              "Rational(13, 2) == 13/2"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A trapezoid wearing an incircle",
+            "problemId": "icc-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "A = rs is a polygon formula",
+            "body": "Any polygon that owns an inscribed circle fans into triangles of height $r$, so $A = rs$ survives beyond triangles. Exam trapezoids-with-incircles are testing exactly this — plus the tangential-quadrilateral balance $a + c = b + d$."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Legs six and eight",
+            "problemId": "icc-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Equilateral, both radii",
+            "problemId": "icc-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Euler's impossible distance",
+            "body": "Euler proved the distance between the incenter and circumcenter satisfies $d^2 = R(R - 2r)$ — which forces $R \\ge 2r$ in every triangle, with equality only for the equilateral. Your two new radii aren't independent: one always dominates the other by at least double."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "$r = A/s$ (semi-perimeter!) — and for right triangles, $r = \\frac{a+b-c}{2}$.",
+              "$R = \\frac{abc}{4A}$ — and for right triangles, $R = \\frac{c}{2}$ by Thales.",
+              "$A = rs$ extends to every polygon with an incircle; tangential quadrilaterals balance $a + c = b + d$."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [

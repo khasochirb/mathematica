@@ -1309,6 +1309,203 @@
           }
         ]
       }
+    },
+    {
+      "slug": "frequency-tables-and-grouped-data",
+      "title": "Frequency Tables & Grouped Data",
+      "concreteComparison": "A coach lists every player's age: $11, 12, 12, 11, 13, 12, \\ldots$ — twenty numbers. The frequency table says the same thing in three rows: age $11$ appears $6$ times, $12$ appears $9$ times, $13$ appears $5$ times. Same data, compressed. Every summary you know — mean, median, mode, standard deviation — still works; you just have to remember each value now speaks WITH ITS FREQUENCY's voice.",
+      "objective": "Compute mean, median, and mode from frequency tables; estimate the mean of grouped data with midpoints; solve for unknown frequencies; and use the sum-of-squares shortcut for the standard deviation.",
+      "concept": [
+        "A **frequency table** is a dataset with repetition made explicit: value $x_i$ occurs $f_i$ times. The mean weights each value by its count: $$\\bar{x} = \\frac{\\sum f_i x_i}{\\sum f_i}.$$ The **mode** is simply the value with the largest frequency, and the median sits at the middle POSITION of the accumulated counts — running totals again.",
+        "**Grouped** data buries the exact values in intervals like $[10; 12[$. The honest move is an estimate: let each interval speak through its **midpoint**, then run the same weighted mean. Exams push this further: they give the mean and HIDE a frequency — then $\\sum f_i = n$ and $\\sum f_i x_i = n\\bar{x}$ are two equations, and the unknown counts fall out.",
+        "For spread there's a shortcut that saves the exam every year. Expand the definition of variance and it collapses to $$\\sigma^2 = \\frac{\\sum x^2}{n} - \\left(\\frac{\\sum x}{n}\\right)^2$$ — *mean of the squares minus square of the mean*. No deviations needed: two sums suffice.",
+        "The shortcut is also the ONLY sane way to pool groups. Given team A's $\\sum x, \\sum x^2$ and team B's $\\sum y, \\sum y^2$, just add: the combined group's sums are the totals, and the combined $\\sigma$ comes straight from the formula. Averaging the two teams' $\\sigma$'s is wrong — spread doesn't average."
+      ],
+      "keyIdea": "Frequencies weight everything: mean = Σfx/Σf, mode = biggest f, and σ² = Σx²/n − (Σx/n)² — the two-sums shortcut that also pools groups.",
+      "facts": [
+        {
+          "title": "Weighted mean",
+          "latex": "\\bar{x} = \\frac{\\sum f_i x_i}{\\sum f_i}",
+          "explanation": "Each value counts as many times as its frequency says."
+        },
+        {
+          "title": "Sum-of-squares shortcut",
+          "latex": "\\sigma^2 = \\frac{\\sum x^2}{n} - \\bar{x}^2",
+          "explanation": "Mean of the squares minus square of the mean — variance from two sums."
+        },
+        {
+          "title": "Grouped estimate",
+          "latex": "x_i \\approx \\text{interval midpoint}",
+          "explanation": "When values hide in intervals, midpoints stand in for them."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "dd-l7-w1",
+          "statement": "Scores and frequencies: $2$ appears $4$ times, $3$ appears $7$ times, $4$ appears $6$ times, $5$ appears $3$ times. Find the mean and the mode.",
+          "solution": "$n = 4+7+6+3 = 20$. $\\sum fx = 8 + 21 + 24 + 15 = 68$, so $\\bar{x} = \\frac{68}{20} = 3.4$. The largest frequency is $7$, at the value $3$ — the mode is $3$.",
+          "check": [
+            "(2*4 + 3*7 + 4*6 + 5*3)/(4 + 7 + 6 + 3) == 17/5",
+            "Max(4, 7, 6, 3) == 7"
+          ]
+        },
+        {
+          "id": "dd-l7-w2",
+          "statement": "$19$ students' ages fall in groups $[8;10[, [10;12[, [12;14[, [14;16[$ with frequencies $8, a, b, 1$. The mean age is $11$. How many students are in $[12;14[$?",
+          "solution": "Midpoints $9, 11, 13, 15$. Counts: $a + b = 19 - 9 = 10$. Mean: $\\frac{72 + 11a + 13b + 15}{19} = 11$, so $11a + 13b = 209 - 87 = 122$. Substitute $a = 10 - b$: $110 + 2b = 122$, giving $b = 6$ (and $a = 4$).",
+          "check": [
+            "8 + 4 + 6 + 1 == 19",
+            "(8*9 + 4*11 + 6*13 + 1*15)/19 == 11",
+            "11*4 + 13*6 == 122"
+          ]
+        },
+        {
+          "id": "dd-l7-w3",
+          "statement": "Five players on team A scored with $\\sum x = 20$, $\\sum x^2 = 90$; five on team B with $\\sum y = 30$, $\\sum y^2 = 190$. Find the standard deviation of all ten players' scores.",
+          "solution": "Pool the sums: $\\sum = 50$, $\\sum^2$-total $= 280$, $n = 10$. Shortcut: $\\sigma^2 = \\frac{280}{10} - \\left(\\frac{50}{10}\\right)^2 = 28 - 25 = 3$, so $\\sigma = \\sqrt{3}$.",
+          "check": [
+            "280/10 - (50/10)**2 == 3",
+            "sqrt(280/10 - (50/10)**2) == sqrt(3)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dividing Σx by the number of ROWS instead of Σf.",
+          "correction": "The table's four rows might hold twenty values. The denominator is the total frequency Σf = n, never the row count.",
+          "authored": true
+        },
+        {
+          "text": "Averaging two groups' standard deviations to pool them.",
+          "correction": "σ doesn't average. Pool the raw sums (Σx and Σx² add across groups), then run σ² = Σx²/n − mean² on the totals.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "dd-l7-t1",
+          "statement": "Values and frequencies: $1$ (twice), $2$ (five times), $3$ (three times). Find the mean.",
+          "solution": "$\\bar{x} = \\frac{2 + 10 + 9}{10} = \\frac{21}{10} = 2.1$.",
+          "check": [
+            "(1*2 + 2*5 + 3*3)/(2 + 5 + 3) == 21/10"
+          ]
+        },
+        {
+          "id": "dd-l7-t2",
+          "statement": "Five values satisfy $\\sum x = 30$ and $\\sum x^2 = 250$. Find the variance.",
+          "solution": "$\\sigma^2 = \\frac{250}{5} - \\left(\\frac{30}{5}\\right)^2 = 50 - 36 = 14$.",
+          "check": [
+            "250/5 - (30/5)**2 == 14"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The problem",
+            "title": "Data rarely arrives as a list",
+            "body": "Unit 9 so far worked on raw lists. Real reports — and exam problems — hand you a **frequency table**: each value with a count, or worse, intervals with counts and the values hidden. Every summary you know survives the compression; you just have to let the frequencies do the talking."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The tools",
+            "title": "Weight by frequency, estimate by midpoint",
+            "body": "Mean from a table: $\\bar{x} = \\frac{\\sum f_i x_i}{\\sum f_i}$ — each value repeated $f_i$ times without writing the repeats. Mode: the value with the biggest $f$. Grouped intervals like $[10;12[$: let the **midpoint** $11$ stand in for everyone inside, then run the same formula. It's an estimate, and it's the standard one.",
+            "beats": [
+              "mean = Σfx / Σf — denominators are total counts",
+              "mode = the value with the largest frequency",
+              "grouped data: midpoints stand in, same formula"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the idea",
+            "title": "The right denominator",
+            "prompt": "A table has $3$ rows: value $2$ with frequency $5$, value $4$ with frequency $3$, value $6$ with frequency $2$. The mean is…",
+            "options": [
+              "$\\frac{34}{10} = 3.4$",
+              "$\\frac{12}{3} = 4$",
+              "$\\frac{34}{3}$",
+              "$\\frac{12}{10} = 1.2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\sum fx = 10 + 12 + 12 = 34$ over $\\sum f = 10$ values: $\\bar{x} = 3.4$. Dividing by $3$ (the row count) is the classic trap.",
+            "check": [
+              "(2*5 + 4*3 + 6*2)/(5 + 3 + 2) == 17/5"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Mean and mode from a table",
+            "problemId": "dd-l7-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The exam's hidden frequencies",
+            "problemId": "dd-l7-w2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Two sums, one variance",
+            "prompt": "Ten values have $\\sum x = 40$ and $\\sum x^2 = 250$. The variance is…",
+            "options": [
+              "$9$",
+              "$25$",
+              "$21$",
+              "$5$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\sigma^2 = \\frac{250}{10} - \\left(\\frac{40}{10}\\right)^2 = 25 - 16 = 9$. Mean of squares minus square of mean.",
+            "check": [
+              "250/10 - (40/10)**2 == 9"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Pooling two teams",
+            "problemId": "dd-l7-w3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Σ and Σx² are all you carry",
+            "body": "The shortcut $\\sigma^2 = \\frac{\\sum x^2}{n} - \\bar{x}^2$ means a whole dataset compresses to three numbers: $n$, $\\sum x$, $\\sum x^2$. They ADD across groups, which is why every pooled-standard-deviation exam problem hands you exactly those sums. See them, and you know the play."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "A small table",
+            "problemId": "dd-l7-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Straight from the sums",
+            "problemId": "dd-l7-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The oldest data compression",
+            "body": "Frequency tables predate computers by millennia — Babylonian scribes tallied grain deliveries in grouped counts on clay. Summarize-then-store is the original big-data trick; the midpoint estimate just makes the loss explicit."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Table mean: $\\sum fx / \\sum f$ — divide by total frequency, never row count.",
+              "Grouped data: midpoints stand in; a given mean turns hidden frequencies into two equations.",
+              "$\\sigma^2 = \\sum x^2/n - \\bar{x}^2$: variance from two sums — and the sums pool across groups."
+            ]
+          }
+        ]
+      }
     }
   ],
   "practice": [
@@ -1382,6 +1579,25 @@
         "18/10 < 2",
         "15/10 > 2/10"
       ]
+    },
+    {
+      "id": "dd-p-9",
+      "statement": "$18$ students' ages fall in groups $[8;10[, [10;12[, [12;14[, [14;16[$ with frequencies $5, a, b, 4$. The mean age is $12$. Find $b$ (the count in $[12;14[$).",
+      "solution": "Midpoints $9, 11, 13, 15$; $a + b = 9$. Mean: $45 + 11a + 13b + 60 = 216$, so $11a + 13b = 111$. Substitute $a = 9 - b$: $99 + 2b = 111$, $b = 6$.",
+      "check": [
+        "5 + 3 + 6 + 4 == 18",
+        "(5*9 + 3*11 + 6*13 + 4*15)/18 == 12",
+        "11*3 + 13*6 == 111"
+      ]
+    },
+    {
+      "id": "dd-p-10",
+      "statement": "Eight values satisfy $\\sum x = 40$ and $\\sum x^2 = 232$. Find the standard deviation.",
+      "solution": "$\\sigma^2 = \\frac{232}{8} - \\left(\\frac{40}{8}\\right)^2 = 29 - 25 = 4$, so $\\sigma = 2$.",
+      "check": [
+        "232/8 - (40/8)**2 == 4",
+        "sqrt(232/8 - (40/8)**2) == 2"
+      ]
     }
   ],
   "testYourself": [
@@ -1441,6 +1657,15 @@
         "84/10 - 82/10 == 1/5",
         "18/10 == 6*3/10",
         "82/10 - 2*3/10 == 76/10"
+      ]
+    },
+    {
+      "id": "dd-ty-7",
+      "statement": "Five values have $\\sum x = 10,\\ \\sum x^2 = 30$; five more have $\\sum y = 20,\\ \\sum y^2 = 90$. Find the standard deviation of all ten values together.",
+      "solution": "Pooled: $n = 10$, $\\sum = 30$, sum of squares $= 120$. $\\sigma^2 = \\frac{120}{10} - \\left(\\frac{30}{10}\\right)^2 = 12 - 9 = 3$, so $\\sigma = \\sqrt{3}$.",
+      "check": [
+        "120/10 - (30/10)**2 == 3",
+        "sqrt(120/10 - (30/10)**2) == sqrt(3)"
       ]
     }
   ]
