@@ -1335,7 +1335,16 @@ function StepBody({
       return (
         <>
           <StepHeader eyebrow={step.eyebrow} title={step.title} />
-          {p ? <RevealProblemCard problem={p} index={0} labels={REVEAL} /> : null}
+          {p ? (
+            <RevealProblemCard
+              problem={p}
+              index={0}
+              labels={REVEAL}
+              onSelfGrade={(correct) =>
+                onTapAnswer?.("r", correct, correct ? "self:correct" : "self:incorrect", "self")
+              }
+            />
+          ) : null}
         </>
       );
     }

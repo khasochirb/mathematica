@@ -5,6 +5,7 @@ import { useAuth } from "./auth-context";
 import { getSupabaseClient } from "./supabase";
 import { getMpToken } from "./api";
 import { canonicalizeTopic, canonicalizeSubtopic, getQuestionBySource, TOPIC_LABELS } from "./esh-questions";
+import { getSection2ItemBySource } from "./esh-section2";
 import { skillLabel } from "./skill-study-map";
 import { clearAllAnonPracticeCounts } from "./anon-practice-gate";
 
@@ -605,7 +606,9 @@ export default function usePerformance() {
     const map: Record<string, { correct: number; total: number }> = {};
     for (const a of attempts) {
       if (contextOf(a) !== DEFAULT_CONTEXT) continue; // skill tags are ЭЕШ vocabulary
-      const tag = getQuestionBySource(a.questionSource)?.skill_tag;
+      const tag =
+        getQuestionBySource(a.questionSource)?.skill_tag ??
+        getSection2ItemBySource(a.questionSource)?.skill_tag;
       if (!tag) continue;
       if (!map[tag]) map[tag] = { correct: 0, total: 0 };
       map[tag].total++;

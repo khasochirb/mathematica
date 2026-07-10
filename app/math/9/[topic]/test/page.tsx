@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import RevealProblemCard from "@/components/lesson/RevealProblemCard";
+import GradedProblemList from "@/components/lesson/GradedProblemList";
 import { getGenMathTopicLocalized } from "@/lib/genmath-lessons";
 import { useLang } from "@/lib/lang-context";
 import ContentGate from "@/components/genmath/ContentGate";
@@ -86,14 +86,7 @@ function GenMathTestPageInner() {
         </div>
 
         <div className="space-y-4">
-          {topic.testYourself.map((problem, i) => (
-            <RevealProblemCard
-              key={problem.id}
-              problem={problem}
-              index={i}
-              labels={REVEAL_LABELS}
-            />
-          ))}
+          <GradedProblemList problems={topic.testYourself} labels={REVEAL_LABELS} kind="test" />
         </div>
       </div>
     </div>

@@ -24,6 +24,7 @@ import type { Question } from "@/lib/esh-questions";
 import {
   composeSlotAnswer,
   getTestSection2,
+  gradeSection2Subproblem,
   hasSection2,
   parseSlotLabel,
 } from "@/lib/esh-section2";
@@ -209,6 +210,27 @@ export default function TestRunnerPage() {
             source: "test",
           });
         }
+      }
+    }
+
+    // Section 2 fans into the main attempt stream too (client-graded, one
+    // row per touched subproblem) so fill-in work feeds topic/skill
+    // analytics and cross-device progress — not just its own table.
+    if (testHasS2) {
+      const s2Items = getTestSection2(testKey) ?? [];
+      for (const item of s2Items) {
+        const letters = section2Answers[item.source];
+        if (!letters || Object.values(letters).every((v) => !v)) continue;
+        const grade = gradeSection2Subproblem(item, letters);
+        perf.recordAttempt({
+          questionSource: item.source,
+          topic: item.topic ?? "other",
+          subtopic: item.subtopic ?? "",
+          selectedAnswer: item.slots.map((s) => composeSlotAnswer(s, letters)).join(","),
+          correctAnswer: item.slots.map((s) => s.answer).join(","),
+          isCorrect: grade.correct,
+          source: "test",
+        });
       }
     }
 

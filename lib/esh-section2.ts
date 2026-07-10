@@ -67,6 +67,10 @@ export interface Section2Item {
   // problems are single-context across their subparts.
   topic?: string;
   subtopic?: string;
+  // Added by the 2026-07 tagging backfill — every Section 2 subproblem now
+  // carries a skill tag, so fanned-out attempts feed skill analytics.
+  skill_tag?: string;
+  difficulty_tier?: string;
 }
 
 const SECTION2_BY_KEY: Record<string, Section2Item[]> = {
@@ -98,6 +102,20 @@ export const SECTION2_AUTHORED_KEYS: readonly string[] = Object.freeze(
 
 export function getTestSection2(testKey: string): Section2Item[] | undefined {
   return SECTION2_BY_KEY[testKey.toUpperCase()];
+}
+
+// Source → item lookup across every authored Section 2 paper. Built lazily
+// on first use; serves the attempt stream's skill_tag resolution the same
+// way getQuestionBySource serves Section 1.
+let SECTION2_SOURCE_INDEX: Map<string, Section2Item> | null = null;
+export function getSection2ItemBySource(source: string): Section2Item | undefined {
+  if (!SECTION2_SOURCE_INDEX) {
+    SECTION2_SOURCE_INDEX = new Map();
+    for (const items of Object.values(SECTION2_BY_KEY)) {
+      for (const item of items) SECTION2_SOURCE_INDEX.set(item.source, item);
+    }
+  }
+  return SECTION2_SOURCE_INDEX.get(source);
 }
 
 export function hasSection2(testKey: string): boolean {

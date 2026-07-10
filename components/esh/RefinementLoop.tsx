@@ -22,6 +22,7 @@ import MathText from "./MathText";
 import QuestionCard from "./QuestionCard";
 import { useLang } from "@/lib/lang-context";
 import { getAllQuestions, getQuestionBySource } from "@/lib/esh-questions";
+import usePerformance from "@/lib/use-performance";
 import type { Question } from "@/lib/esh-questions";
 import useRefinementLoop from "@/lib/use-refinement-loop";
 import {
@@ -80,7 +81,31 @@ export default function RefinementLoop() {
   const { lang } = useLang();
   const L = (b: Bi) => (lang === "mn" ? b.mn : b.en);
   const { session, loading, dispatch } = useRefinementLoop();
+  const perf = usePerformance();
   const pool = useMemo(() => getAllQuestions(), []);
+
+  // Every answered question inside the loop also lands in the main attempt
+  // stream as a drill (never "test" — loop mini-tests must not masquerade as
+  // full practice-test sessions in projections). The loop session row keeps
+  // its own copy for the state machine; this fan-out is what makes loop work
+  // visible to topic/skill analytics and the dashboard.
+  const recordLoopAttempt = (
+    src: string,
+    topic: string,
+    subtopic: string,
+    selected: string,
+    correct: string,
+    isCorrect: boolean,
+  ) =>
+    perf.recordAttempt({
+      questionSource: src,
+      topic,
+      subtopic,
+      selectedAnswer: selected,
+      correctAnswer: correct,
+      isCorrect,
+      source: "drill",
+    });
   const [answers, setAnswers] = useState<Record<string, string>>({});
 
   const trigger = session ? getQuestionBySource(session.triggeredQuestion) : undefined;
@@ -154,7 +179,10 @@ export default function RefinementLoop() {
             <QuestionCard
               mode="instant"
               question={q}
-              onAnswer={(src, _t, _st, _sel, _cor, isCorrect) => dispatch({ type: "answerSimilar", source: src, correct: isCorrect })}
+              onAnswer={(src, t, st, sel, cor, isCorrect) => {
+                recordLoopAttempt(src, t, st, sel, cor, isCorrect);
+                dispatch({ type: "answerSimilar", source: src, correct: isCorrect });
+              }}
             />
           </div>
         ))}
@@ -171,6 +199,11 @@ export default function RefinementLoop() {
     const allAnswered = qs.length > 0 && qs.every((q) => answers[q.source]);
     const submit = () => {
       const score = qs.filter((q) => answers[q.source] === q.answer).length;
+      for (const q of qs) {
+        const picked = answers[q.source];
+        if (!picked) continue;
+        recordLoopAttempt(q.source, q.topic, q.subtopic, picked, q.answer, picked === q.answer);
+      }
       setAnswers({});
       if (s === "mini_test") dispatch({ type: "submitMiniTest", score });
       else dispatch({ type: "submitRetest", score });
@@ -226,7 +259,10 @@ export default function RefinementLoop() {
             <QuestionCard
               mode="instant"
               question={q}
-              onAnswer={(src, _t, _st, _sel, _cor, isCorrect) => dispatch({ type: "answerDrill", source: src, correct: isCorrect })}
+              onAnswer={(src, t, st, sel, cor, isCorrect) => {
+                recordLoopAttempt(src, t, st, sel, cor, isCorrect);
+                dispatch({ type: "answerDrill", source: src, correct: isCorrect });
+              }}
             />
           </div>
         ))}
