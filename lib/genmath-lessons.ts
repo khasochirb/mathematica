@@ -157,6 +157,7 @@ import psRandomVariables from "@/data/genmath/prob-stats/random-variables.json";
 import psBinomialDist from "@/data/genmath/prob-stats/binomial-distribution.json";
 import psDescribingData from "@/data/genmath/prob-stats/describing-data.json";
 import psDistPosition from "@/data/genmath/prob-stats/distributions-and-position.json";
+import psTwoVariable from "@/data/genmath/prob-stats/two-variable-data.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -896,7 +897,7 @@ export const PROBSTAT_SPINE: GeometrySpineEntry[] = [
     title: "Two-Variable Data",
     blurb: "Scatterplots, the correlation coefficient, the least-squares line, and why correlation is not causation.",
     buildsOn: "One-variable tools from Units 9–10.",
-    live: false,
+    live: true,
   },
   {
     unit: 12,
@@ -919,6 +920,7 @@ const probStatUnits: CourseUnit[] = [
   psBinomialDist as unknown as CourseUnit,
   psDescribingData as unknown as CourseUnit,
   psDistPosition as unknown as CourseUnit,
+  psTwoVariable as unknown as CourseUnit,
 ];
 
 export function getProbStatSpine(): GeometrySpineEntry[] {

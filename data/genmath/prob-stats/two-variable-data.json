@@ -1,0 +1,1101 @@
+{
+  "slug": "two-variable-data",
+  "title": "Two-Variable Data",
+  "unit": 11,
+  "status": "published",
+  "blurb": "Scatterplots, the correlation coefficient, the least-squares line, and why correlation is not causation.",
+  "buildsOn": "One-variable tools from Units 9–10.",
+  "lessons": [
+    {
+      "slug": "scatterplots",
+      "title": "Scatterplots: Data Grows a Second Dimension",
+      "concreteComparison": "Does studying more actually raise scores? Ask $20$ students for two numbers each — hours studied, exam score — and plot each student as a POINT: hours across, score up. The cloud of $20$ points answers at a glance what $40$ separate numbers never could: the cloud drifts upward. More hours, higher scores, visible.",
+      "objective": "Plot paired data as scatterplots, and describe associations by direction, form, and strength.",
+      "concept": [
+        "A **scatterplot** puts one variable on each axis and one POINT per individual. The **explanatory** variable (the one you think does the influencing — hours) takes the x-axis; the **response** (scores) takes y.",
+        "Describe the cloud with three words: **direction** (positive drift up-right, negative drift down-right, or none), **form** (linear cloud vs curved vs clustered), **strength** (tight cloud vs loose scatter).",
+        "Plus the ever-present fourth: **unusual points** — outliers standing off the cloud, which in two dimensions can be extreme in x, in y, or off the PATTERN while ordinary in both coordinates.",
+        "The direction-form-strength description is Unit 9's SCSO ritual, rebuilt for pairs: say all three (plus outliers), in context, before any number gets computed."
+      ],
+      "keyIdea": "One point per individual, explanatory on x; describe direction, form, strength — and flag points off the pattern.",
+      "facts": [
+        {
+          "title": "The axes",
+          "latex": "x = \\text{explanatory}, \\quad y = \\text{response}",
+          "explanation": "The suspected influencer goes across; the outcome goes up."
+        },
+        {
+          "title": "The description",
+          "latex": "\\text{direction} + \\text{form} + \\text{strength} \\; (+ \\text{outliers})",
+          "explanation": "Three words and a flag — the two-variable SCSO."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "tv-l1-w1",
+          "statement": "Hours studied vs exam score for $20$ students: the cloud drifts up-right, roughly straight, moderately tight. Describe the association — and who goes on which axis?",
+          "solution": "Hours (suspected influencer) on x, score on y. Description: \"a moderately strong, positive, linear association — students who studied more tended to score higher.\" Tendency, not law: the cloud has thickness.",
+          "check": ["1 == 1"]
+        },
+        {
+          "id": "tv-l1-w2",
+          "statement": "Outdoor temperature vs hot-chocolate sales at a kiosk: describe the expected cloud.",
+          "solution": "Negative direction (colder days, more sales — the cloud drifts DOWN-right), roughly linear over normal temperatures, fairly strong. Note the explanatory choice: temperature influences sales, never the reverse.",
+          "check": ["1 == 1"]
+        },
+        {
+          "id": "tv-l1-w3",
+          "statement": "Height vs age for people aged $2$ to $40$: why does 'linear' fail as a description?",
+          "solution": "The cloud rises steeply through childhood then FLATTENS after ~$18$ — a curved (two-regime) form. A single line would misdescribe both phases; form is the word that catches it. (Curved clouds get curved tools — or split ranges.)",
+          "check": ["1 == 1"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Plotting the response on x.",
+          "correction": "Convention carries meaning: x is the suspected influencer, y the outcome. Swapping axes muddles every downstream slope interpretation.",
+          "authored": true
+        },
+        {
+          "text": "Describing only the direction.",
+          "correction": "\"Positive\" alone hides whether the cloud is a tight line or a vague mist, straight or bent. Direction AND form AND strength — three words minimum.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "tv-l1-t1",
+          "statement": "Number of practice free throws per week vs game free-throw percentage: predict the cloud's three-word description.",
+          "solution": "Positive, roughly linear, moderate strength (talent and luck add scatter). Practice on x.",
+          "check": ["1 == 1"]
+        },
+        {
+          "id": "tv-l1-t2",
+          "statement": "Shoe size vs score on a spelling test for adults: predict the cloud.",
+          "solution": "No direction — a shapeless blob. Two unrelated variables produce exactly that, and the plot proves it faster than any argument.",
+          "check": ["1 == 1"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The upgrade",
+            "title": "Pairs, plotted",
+            "beats": [
+              "Twenty students, two numbers each: hours studied, exam score.",
+              "One POINT per student: hours across, score up.",
+              "The cloud drifts up-right — the answer, visible.",
+              "Two-variable data asks: how do they move TOGETHER?"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The grammar",
+            "title": "Direction, form, strength",
+            "beats": [
+              "DIRECTION: up-right (+), down-right (−), or none.",
+              "FORM: linear cloud, curve, clusters.",
+              "STRENGTH: tight (points hug the trend) vs loose mist.",
+              "Plus outliers: points off the PATTERN, even if ordinary in x and y alone."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Axis drill",
+            "title": "Who goes on x?",
+            "prompt": "Plotting fertilizer amount vs tomato yield: which goes on the x-axis?",
+            "options": ["Fertilizer — the suspected influencer", "Yield — it's the important one", "Either; axes are symmetric"],
+            "correctIndex": 0,
+            "explanation": "The explanatory variable (what you control or suspect drives the outcome) takes x; the response takes y. The choice sets up every later slope sentence: 'per extra kilogram of fertilizer...'.",
+            "check": ["1 == 1"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Hours and scores",
+            "problemId": "tv-l1-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Cold days, hot chocolate",
+            "problemId": "tv-l1-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "When 'linear' fails",
+            "problemId": "tv-l1-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Cloud reading",
+            "title": "Name that association",
+            "prompt": "Car weight vs fuel efficiency: the cloud drifts down-right, fairly tight, straight. Description?",
+            "options": ["Strong negative linear association", "Strong positive linear association", "Weak curved association"],
+            "correctIndex": 0,
+            "explanation": "Heavier cars, fewer km per liter: negative direction; tight and straight: strong and linear. Three words, and an engineer's design constraint appears in the data.",
+            "check": ["1 == 1"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Outlier upgrade",
+            "title": "Off-pattern beats off-scale",
+            "body": "In two dimensions a point can be unremarkable in x AND in y yet scream from the plot — a student with average hours and an average score doesn't exist in a cloud where those two never co-occur. Scan for off-PATTERN points, not just extreme coordinates; they're where the best stories (and data errors) hide."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Practice pays?",
+            "problemId": "tv-l1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Shoes and spelling",
+            "problemId": "tv-l1-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The first scatterplot mapped stars",
+            "body": "John Herschel drew what historians call the first true scatterplot in 1833 — plotting double stars' orbital positions. Fifty years later Francis Galton scattered parents' heights against children's and noticed the cloud's tilt was less than 1:1 — children of tall parents were tall, but less so. He named the effect 'regression', and the next lessons carry his word."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "One point per pair; explanatory on x, response on y.",
+              "Describe with direction + form + strength, in context.",
+              "Flag off-pattern points — 2D outliers can hide in ordinary coordinates."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "correlation",
+      "title": "The Correlation Coefficient",
+      "concreteComparison": "\"Moderately tight\" is your word against mine. The **correlation coefficient** $r$ ends the argument with one number between $-1$ and $+1$: sign gives the direction, magnitude gives the tightness. Hours-vs-scores at $r = 0.8$ and temperature-vs-sales at $r = -0.9$ are now comparable claims — the second cloud is tighter, whatever the units.",
+      "objective": "Interpret r: sign, magnitude, unitlessness, and its blind spots (nonlinearity, outlier sensitivity).",
+      "concept": [
+        "**What $r$ measures:** the direction and tightness of a LINEAR association, on a fixed scale: $r = +1$ (perfect uphill line), $0$ (no linear pattern), $-1$ (perfect downhill line). Working bands: $|r| > 0.8$ strong, $0.5$–$0.8$ moderate, below $0.3$ weak.",
+        "$r$ is built from paired z-scores — roughly the average of $z_x \\cdot z_y$ across points — which makes it UNIT-FREE and symmetric: correlation of height with weight equals weight with height, in inches or centimeters, points or percents.",
+        "**Blind spot 1 — nonlinearity:** $r$ only sees lines. A perfect U-shaped curve can score $r \\approx 0$: strong association, invisible to $r$. Plot FIRST; $r$ second.",
+        "**Blind spot 2 — outliers:** built from means and SDs (Unit 9's sensitive tools), $r$ can be dragged wildly by one off-pattern point — a single distant point can fake a strong correlation or destroy a real one. The plot, again, is the audit."
+      ],
+      "keyIdea": "r ∈ [−1, 1]: sign = direction, magnitude = linear tightness; unit-free — but blind to curves and fragile to outliers, so plot first.",
+      "facts": [
+        {
+          "title": "The scale",
+          "latex": "-1 \\le r \\le 1, \\quad r \\approx \\text{avg}(z_x z_y)",
+          "explanation": "Paired z-scores make it unit-free; ±1 are perfect lines, 0 is no linear pattern."
+        },
+        {
+          "title": "The blind spots",
+          "latex": "\\text{curves} \\to r \\approx 0; \\quad \\text{one outlier} \\to r \\text{ hijacked}",
+          "explanation": "r sees only lines and uses sensitive ingredients — the scatterplot audits it."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "tv-l2-w1",
+          "statement": "Match the descriptions to $r$ values $\\{-0.9, -0.3, 0.05, 0.6\\}$: (a) tight downhill cloud; (b) loose downhill mist; (c) shapeless blob; (d) clear but scattered uphill drift.",
+          "solution": "(a) $-0.9$ — strong negative. (b) $-0.3$ — weak negative. (c) $0.05$ — essentially no linear pattern. (d) $0.6$ — moderate positive. Sign reads direction; magnitude reads tightness.",
+          "check": ["-9/10 < -3/10", "6/10 > 5/100"]
+        },
+        {
+          "id": "tv-l2-w2",
+          "statement": "Height-vs-weight gives $r = 0.65$ measured in cm and kg. The researchers convert to inches and pounds. What happens to $r$ — and to the claim it makes?",
+          "solution": "Nothing: $r$ is built from z-scores, and units cancel in standardization (Unit 10's whole point). $r = 0.65$ in any units — a moderate positive linear association either way.",
+          "check": ["65/100 == 65/100"]
+        },
+        {
+          "id": "tv-l2-w3",
+          "statement": "Speed vs fuel efficiency: efficiency RISES up to $\\sim 80$ km/h then FALLS beyond — a clean inverted U. A student computes $r \\approx 0.02$ and reports \"no association.\" Diagnose.",
+          "solution": "The association is strong — but curved, and $r$ only detects LINES. The uphill half and downhill half cancel to near-zero. The plot shows what the number can't; \"no LINEAR association\" is the only claim $r \\approx 0$ ever supports.",
+          "check": ["2/100 < 1/10"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading r = 0 as 'no relationship'.",
+          "correction": "r = 0 means no LINEAR relationship. U-shapes, cycles, and clusters can all hide behind it. The scatterplot has veto power.",
+          "authored": true
+        },
+        {
+          "text": "Treating r as a slope or a percentage.",
+          "correction": "r = 0.8 doesn't mean 'y rises 0.8 per x' (that's slope, next lesson) or '80% of anything'. It means: tight uphill cloud. Tightness, not steepness.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "tv-l2-t1",
+          "statement": "Rank by strength of linear association: $r = -0.85$, $r = 0.4$, $r = 0.7$.",
+          "solution": "By $|r|$: $0.85 > 0.7 > 0.4$ — the negative one is the STRONGEST. Sign is direction, never strength.",
+          "check": ["85/100 > 7/10", "7/10 > 4/10"]
+        },
+        {
+          "id": "tv-l2-t2",
+          "statement": "A dataset of $12$ points has $r = 0.2$; removing one weird point yields $r = 0.75$. What's the story?",
+          "solution": "One off-pattern outlier was strangling a real moderate-to-strong association. Investigate that point (typo? different population?) and report both r's with the finding — never silently pick the prettier one.",
+          "check": ["75/100 > 2/10"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The number",
+            "title": "Tightness, standardized",
+            "beats": [
+              "\"Moderately tight\" — says who? Enter $r$.",
+              "$+1$: perfect uphill line. $-1$: perfect downhill. $0$: no linear pattern.",
+              "Sign $=$ direction. Magnitude $=$ tightness.",
+              "Bands: $|r| > 0.8$ strong · $0.5$–$0.8$ moderate · $< 0.3$ weak."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The construction",
+            "title": "Paired z-scores",
+            "beats": [
+              "$r \\approx$ the average of $z_x \\cdot z_y$ across the points.",
+              "Above-average x WITH above-average y → positive products → positive $r$.",
+              "Units cancel in the z's: $r$ is unit-free and symmetric.",
+              "cm/kg or inches/pounds: same $r$, same claim."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Scale drill",
+            "title": "Which is strongest?",
+            "prompt": "Which correlation indicates the STRONGEST linear association: $r = -0.92$, $r = 0.85$, or $r = 0.15$?",
+            "options": ["$r = -0.92$", "$r = 0.85$", "$r = 0.15$"],
+            "correctIndex": 0,
+            "explanation": "Strength is $|r|$: $0.92 > 0.85 > 0.15$. The minus sign describes the downhill direction, not weakness — the most common misread on this entire topic.",
+            "check": ["92/100 > 85/100"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Match the clouds",
+            "problemId": "tv-l2-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Units don't matter",
+            "problemId": "tv-l2-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The invisible U",
+            "problemId": "tv-l2-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Blind-spot drill",
+            "title": "What does r = 0 permit?",
+            "prompt": "Given only \"$r = 0.01$\", which conclusion is safe?",
+            "options": ["No LINEAR association — but curves, clusters remain possible", "The variables are unrelated", "The data is random noise"],
+            "correctIndex": 0,
+            "explanation": "r speaks only of lines. A perfect parabola, two clusters, a cycle — all can produce r ≈ 0 while being strongly related. Only the plot can grant 'unrelated'.",
+            "check": ["1/100 < 1/10"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "The ritual",
+            "title": "Plot, then r, then together",
+            "body": "Professionals always report the scatterplot AND r as a pair: the plot audits the number (curves? outliers?), the number calibrates the plot (is 'tight' 0.7 or 0.95?). Either alone can mislead; together they're honest."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Rank the r's",
+            "problemId": "tv-l2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The strangled correlation",
+            "problemId": "tv-l2-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The datasaurus",
+            "body": "Statisticians built a dataset shaped like a DINOSAUR with the same means, SDs, and r as a boring cloud — then morphed it into a star, circles, and parallel lines, all sharing identical summary statistics. 'The Datasaurus Dozen' (2017) is Anscombe's quartet for the meme age, and its moral is this lesson's: plot first, always."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "r ∈ [−1,1]: sign = direction, |r| = linear tightness, units irrelevant.",
+              "r = 0 rules out lines only; one outlier can hijack everything.",
+              "Report plot + r as a pair — each audits the other."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-regression-line",
+      "title": "The Least-Squares Line",
+      "concreteComparison": "The study-hours cloud clearly drifts upward — so WHICH line through it should make predictions? Tilt any candidate line and measure each point's vertical miss; square the misses, add them up. The **least-squares line** is the tilt-and-height that makes that sum smallest — the provably best straight summary, and now a prediction machine: $\\hat{y} = 42 + 5.2x$ turns \"I'll study 6 hours\" into \"expect about 73.\"",
+      "objective": "Interpret and use the least-squares line ŷ = a + bx: slope and intercept in context, and predictions within range.",
+      "concept": [
+        "The **least-squares line** minimizes the sum of SQUARED vertical misses (residuals) — squaring for the same reason variance did (Unit 9): no cancellation, big misses punished. The hat in $\\hat{y}$ means PREDICTED, distinguishing forecasts from observed values.",
+        "**Slope $b$** is the workhorse sentence: \"per one-unit increase in $x$, predicted $y$ changes by $b$\" — per extra study hour, about $5.2$ more points, ON AVERAGE. It's a claim about the cloud's drift, not about any single student.",
+        "**Intercept $a$** is the prediction at $x = 0$ — sometimes meaningful (a zero-study baseline of $42$), often just the line's anchor (predicted weight at height zero is geometry, not biology).",
+        "Two anchors worth knowing: the line always passes through $(\\bar{x}, \\bar{y}$) — the cloud's center of mass — and its slope carries $r$'s sign (uphill clouds get uphill lines). The line and the correlation tell one story in two dialects."
+      ],
+      "keyIdea": "ŷ = a + bx minimizes squared vertical misses; slope = predicted change per unit of x (in context), intercept = the x = 0 anchor, and the line passes through the cloud's center.",
+      "facts": [
+        {
+          "title": "The line",
+          "latex": "\\hat{y} = a + bx, \\quad \\text{minimizing } \\sum (y_i - \\hat{y}_i)^2",
+          "explanation": "The tilt-and-height with the smallest total squared miss — the best straight summary."
+        },
+        {
+          "title": "Through the center",
+          "latex": "(\\bar{x}, \\bar{y}) \\text{ is on the line}",
+          "explanation": "The least-squares line pivots on the cloud's center of mass."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "tv-l3-w1",
+          "statement": "The study line: $\\hat{y} = 42 + 5.2x$ (score from hours). Interpret both coefficients and predict the score for $6$ hours.",
+          "solution": "Slope: each extra study hour predicts about $5.2$ more points, on average. Intercept: a non-studier is predicted $42$ — here meaningful (the no-prep baseline). At $x = 6$: $\\hat{y} = 42 + 5.2 \\times 6 = 73.2$ — expect around $73$.",
+          "check": ["42 + 52/10*6 == 732/10"]
+        },
+        {
+          "id": "tv-l3-w2",
+          "statement": "Ana studied $5$ hours and scored $75$. The line predicts $\\hat{y} = 42 + 26 = 68$. Compute and interpret her residual.",
+          "solution": "Residual $= y - \\hat{y} = 75 - 68 = +7$: Ana beat her prediction by $7$ points — she sits $7$ above the line. Positive residuals overperform the trend; negative underperform.",
+          "check": ["42 + 52/10*5 == 68", "75 - 68 == 7"]
+        },
+        {
+          "id": "tv-l3-w3",
+          "statement": "The hours in the data run from $0$ to $8$. A classmate plugs in $x = 25$ hours and announces $\\hat{y} = 172$ points on a $100$-point exam. Name the crime.",
+          "solution": "**Extrapolation**: the line summarizes the cloud where the cloud EXISTS ($0$–$8$ hours). Beyond it, the linear pattern is pure assumption — and here it predicts an impossible score, exposing itself. Predictions live within the data's range; outside is fiction with decimal places.",
+          "check": ["42 + 52/10*25 == 172"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading the slope as a guarantee per student.",
+          "correction": "b = 5.2 describes the cloud's average drift, not a personal contract — individual residuals scatter around it. 'Predicts, on average' is the honest verb.",
+          "authored": true
+        },
+        {
+          "text": "Predicting outside the data's x-range.",
+          "correction": "The line knows the cloud, not the universe. Extrapolation (25 hours → 172 points) manufactures nonsense confidently. Check the range before plugging in.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "tv-l3-t1",
+          "statement": "Ice-cream stand: $\\hat{y} = -30 + 6x$ (sales in cones from temperature °C, data range $15$–$35$°). Predict sales at $25$° and interpret the slope.",
+          "solution": "$\\hat{y} = -30 + 150 = 120$ cones. Slope: each extra degree predicts $6$ more cones on average. (The intercept at $0°$ is an anchor, not a claim — no one sells $-30$ cones.)",
+          "check": ["-30 + 6*25 == 120"]
+        },
+        {
+          "id": "tv-l3-t2",
+          "statement": "A point has $y = 50$ and $\\hat{y} = 58$. Find the residual and place the point relative to the line.",
+          "solution": "$50 - 58 = -8$: eight units BELOW the line — an underperformer relative to trend.",
+          "check": ["50 - 58 == -8"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The contest",
+            "title": "Which line through the cloud?",
+            "beats": [
+              "Any tilted line makes vertical MISSES at each point.",
+              "Square the misses (no cancellation, big ones punished), sum.",
+              "The least-squares line: the tilt-and-height minimizing that sum.",
+              "Provably best straight summary — and a prediction machine."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Reading the study line",
+            "problemId": "tv-l3-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Slope sentence",
+            "title": "Say it in context",
+            "prompt": "$\\hat{y} = 12 + 0.4x$ predicts plant height (cm) from sunlight (hours/day). The slope sentence is…",
+            "options": ["\"Each extra daily sunlight hour predicts 0.4 cm more height, on average\"", "\"Plants grow 12 cm per hour of sunlight\"", "\"40% of height is sunlight\""],
+            "correctIndex": 0,
+            "explanation": "Slope = predicted change in y per unit of x, spoken in units, with 'on average'. The 12 is the intercept (zero-sun anchor); percentages belong to neither coefficient.",
+            "check": ["12 + 4/10*5 == 14"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Ana's residual",
+            "problemId": "tv-l3-w2"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The vocabulary",
+            "title": "Residuals: signed misses",
+            "beats": [
+              "Residual $= y - \\hat{y}$: observed minus predicted.",
+              "Positive: above the line (overperformed the trend).",
+              "Negative: below (underperformed).",
+              "The line is BUILT to make the squared residuals as small as possible."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The 172-point exam score",
+            "problemId": "tv-l3-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Range discipline",
+            "title": "Legal predictions",
+            "prompt": "The cone line ($\\hat{y} = -30 + 6x$) was fit on temperatures $15$–$35$°C. Which prediction is LEGAL?",
+            "options": ["Sales at $30$° — inside the data's range", "Sales at $-5$° (predicts $-60$ cones)", "Sales at $50$° — just extend the line"],
+            "correctIndex": 0,
+            "explanation": "The line summarizes the cloud where data exists. At $-5°$ it predicts negative cones (self-refuting); at $50°$ the linearity is pure faith (and the stand may have melted). Interpolate freely; extrapolate never — or loudly.",
+            "check": ["-30 + 6*30 == 150", "-30 + 6*(-5) == -60"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Anchor facts",
+            "title": "The line pivots on the mean point",
+            "body": "The least-squares line always passes through (x̄, ȳ) — the cloud's center of mass — and its slope shares r's sign. Quick audit for any reported line: plug in x̄; if ȳ doesn't come out, the fit (or the report) is wrong."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Cones at 25 degrees",
+            "problemId": "tv-l3-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Signed miss",
+            "problemId": "tv-l3-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Least squares found a planet",
+            "body": "When the asteroid Ceres vanished behind the sun in 1801, 24-year-old Gauss used least-squares fitting on its few observed positions to predict where it would reappear — and it did, within half a degree. The method that grades your scatterplot homework re-found a world."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "ŷ = a + bx minimizes squared misses; hat means predicted.",
+              "Slope: change per unit of x, on average, in context; intercept: the x=0 anchor.",
+              "Residual = y − ŷ; predict inside the data's range only."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "how-good-is-the-line",
+      "title": "How Good Is the Line?",
+      "concreteComparison": "Two stands both fit sales lines. Stand A's points hug its line; Stand B's spray around it. Same slopes, same intercepts — completely different trust. The line's quality lives in what it LEAVES BEHIND: the residuals. Small, patternless leftovers mean the line earned its predictions; big or curved leftovers mean the line is hiding something.",
+      "objective": "Judge fit quality with residuals: typical miss size, leftover patterns, r² as explained variation, and influential points.",
+      "concept": [
+        "**Typical miss:** the spread of residuals (their SD, informally \"the typical prediction error\") is the line's honesty label: \"predictions typically miss by $\\pm 6$ points\" tells a user everything a slope doesn't.",
+        "**Leftover patterns:** residuals should look like patternless noise around zero. A CURVE in the residuals means the straight line missed a bend (fit something curved); a FAN (spread growing with $x$) means predictions get less reliable at one end. Structure in the leftovers is unfinished business.",
+        "**$r^2$** (the square of the correlation) is the standard fit score: the fraction of $y$'s variation the line accounts for. $r = 0.8 \\to r^2 = 0.64$: the line explains $64\\%$ of score variation; the rest lives in the residuals. It's a share of variation explained — not a probability, not a grade.",
+        "**Influential points:** an extreme-$x$ point acts as a lever on the line — one such point can seize the slope. Fit-with and fit-without, compare, and report the difference honestly (Unit 9's flag-investigate-decide, now for lines)."
+      ],
+      "keyIdea": "Judge the line by its leftovers: typical miss size, no leftover pattern, r² as the share of variation explained, and lever points checked with/without.",
+      "facts": [
+        {
+          "title": "r-squared",
+          "latex": "r^2 = \\text{share of } y\\text{'s variation the line explains}",
+          "explanation": "r = 0.8 → 64% explained; the residuals own the rest."
+        },
+        {
+          "title": "Residual health",
+          "latex": "\\text{patternless around } 0 \\; \\to \\; \\text{line is done}",
+          "explanation": "Curves or fans in the leftovers mean the model missed structure."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "tv-l4-w1",
+          "statement": "The study line has $r = 0.8$. Compute and interpret $r^2$.",
+          "solution": "$r^2 = 0.64$: hours studied account for $64\\%$ of the variation in scores; the remaining $36\\%$ — sleep, talent, luck, question choice — lives in the residuals. A solid but humble line.",
+          "check": ["(8/10)**2 == 64/100"]
+        },
+        {
+          "id": "tv-l4-w2",
+          "statement": "Two models predict delivery time. Model 1: typical residual $\\pm 3$ min. Model 2: typical residual $\\pm 15$ min. Same slope sentences. Which do you ship, and what does the number mean to a customer?",
+          "solution": "Model 1 — its promises land within $\\pm 3$ minutes, typically. To a customer, THE RESIDUAL SPREAD is the product: \"your food arrives 30–36 min from now\" versus \"15–45 min\". Slopes describe trends; residual spread describes trust.",
+          "check": ["15 > 3"]
+        },
+        {
+          "id": "tv-l4-w3",
+          "statement": "A growth line fits age-vs-height for children $2$–$16$, but its residuals curve: positive at both ends, negative in the middle. Diagnose and prescribe.",
+          "solution": "The residual U-shape says the true relationship BENDS (growth isn't constant-rate) — the straight line underpredicts young and old, overpredicts the middle. Prescription: fit a curve, or split the age range. The r may still look decent — residual PLOTS catch what r misses.",
+          "check": ["1 == 1"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading r² = 0.64 as '64% accurate' or 'correct 64% of the time'.",
+          "correction": "r² is a share of VARIATION explained — a variance-accounting number, not an accuracy rate or probability. 'Explains 64% of the variation in y' is the only faithful sentence.",
+          "authored": true
+        },
+        {
+          "text": "Judging fit by r alone, skipping the residual plot.",
+          "correction": "A bent relationship can post a healthy r while systematically mispredicting entire ranges. Leftovers, plotted, are the true report card.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "tv-l4-t1",
+          "statement": "A line has $r = -0.9$. What share of variation does it explain — and does the minus sign reduce it?",
+          "solution": "$r^2 = 0.81$: $81\\%$ explained. Squaring kills the sign — downhill lines explain just as well.",
+          "check": ["(-9/10)**2 == 81/100"]
+        },
+        {
+          "id": "tv-l4-t2",
+          "statement": "A fit's residuals fan out — tiny for small $x$, huge for large $x$. What should the report say?",
+          "solution": "\"Predictions are reliable at low $x$ (typical miss small) and increasingly unreliable at high $x$\" — one line, two trust levels, disclosed. A single overall miss-number would hide the fan.",
+          "check": ["1 == 1"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The report card",
+            "title": "Judge the leftovers",
+            "beats": [
+              "Two identical-looking lines, different clouds: one hugs, one sprays.",
+              "The line's quality is in what it LEAVES BEHIND.",
+              "Small, patternless residuals: the line earned its keep.",
+              "Big or structured residuals: unfinished business."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "64 percent explained",
+            "problemId": "tv-l4-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "r² drill",
+            "title": "Square it",
+            "prompt": "A line has $r = 0.5$. The share of variation it explains is…",
+            "options": ["$25\\%$", "$50\\%$", "$75\\%$"],
+            "correctIndex": 0,
+            "explanation": "$r^2 = 0.25$: a moderate-LOOKING correlation explains only a quarter of the variation. Squaring is humbling — which is exactly its job.",
+            "check": ["(5/10)**2 == 25/100"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The trust number",
+            "problemId": "tv-l4-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The bending residuals",
+            "problemId": "tv-l4-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Leftover reading",
+            "title": "Healthy or hiding?",
+            "prompt": "A residual plot shows points scattered evenly above and below zero, no shape, similar spread everywhere. Verdict?",
+            "options": ["Healthy — the line captured the pattern; leftovers are noise", "Unhealthy — residuals should all be zero", "Unhealthy — they should trend upward"],
+            "correctIndex": 0,
+            "explanation": "Patternless, even scatter around zero is EXACTLY what finished models leave behind. Zero residuals would mean suspicious perfection; trending residuals would mean missed structure.",
+            "check": ["1 == 1"]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The lever",
+            "title": "Influential points",
+            "beats": [
+              "A point far out in $x$ is a LEVER on the line.",
+              "One lever can seize the slope — with the other points as passengers.",
+              "Audit: fit WITH and WITHOUT, compare the slopes.",
+              "Big change → report both fits and investigate the point. (Flag → investigate → decide.)"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Deliverable",
+            "title": "A complete line report",
+            "body": "Ship four things with every fit: the equation (with slope sentence), r², the typical miss size, and one sentence on the residual plot's health. Thirty seconds more than the equation alone — and the difference between a homework answer and an analysis."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Downhill but strong",
+            "problemId": "tv-l4-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The fan disclosure",
+            "problemId": "tv-l4-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Moneyball was an r² argument",
+            "body": "The Oakland A's famous analytics revolution boiled down to fit quality: on-base percentage explained more variance in runs scored (higher r²) than the batting average scouts revered. Choosing the predictor with better leftovers, the poorest team in baseball made the playoffs — and every sport now employs residual-readers."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Fit = leftovers: typical miss size is the trust number.",
+              "r² = share of variation explained (not accuracy, not probability).",
+              "Patterned residuals mean missed structure; lever points get with/without audits."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "correlation-is-not-causation",
+      "title": "Correlation Is Not Causation",
+      "concreteComparison": "Cities' ice-cream sales correlate beautifully with their drowning deaths — $r$ near $0.9$ across summer weeks. Ban ice cream, save swimmers? The real driver stands behind both: HOT WEATHER sends people to buy cones AND to swim. A **lurking variable** manufactured the correlation, and no r-value, however large, can rule such a puppeteer out.",
+      "objective": "Explain why correlation alone can't establish causation, identify lurking variables and other explanations, and know what evidence CAN support causal claims.",
+      "concept": [
+        "A correlation between $A$ and $B$ has (at least) four live explanations: $A$ causes $B$; $B$ causes $A$ (reverse causation); a lurking variable $C$ drives both; or coincidence (small samples and many-variable fishing produce phantom r's). The data pattern alone cannot pick the winner.",
+        "**Lurking variables** are the classic: heat drives cones and drownings; family wealth drives both tutoring and test scores; sicker patients get both more medication and worse outcomes (making medicine look harmful).",
+        "**Reverse causation** hides in plausible-sounding claims: confidence correlates with success — which causes which? The scatterplot has no arrow.",
+        "What CAN support causation: a **randomized experiment** — randomly assigning who gets the treatment breaks every lurking variable's grip (random groups match on wealth, health, weather, everything). That's Unit 12's centerpiece. Until then, the honest sentence is: \"$A$ and $B$ are associated\" — and the honest instinct is to hunt for $C$."
+      ],
+      "keyIdea": "Four explanations for every correlation: A→B, B→A, lurking C, or chance. Only randomized assignment can cut through — until then, say 'associated'.",
+      "facts": [
+        {
+          "title": "The four suspects",
+          "latex": "A \\to B, \\quad B \\to A, \\quad C \\to A \\text{ and } B, \\quad \\text{chance}",
+          "explanation": "Every correlation carries all four until design (not data volume) eliminates them."
+        },
+        {
+          "title": "The cure",
+          "latex": "\\text{random assignment} \\Rightarrow \\text{lurking variables balanced}",
+          "explanation": "Randomized experiments break the puppeteer's strings — Unit 12's story."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "tv-l5-w1",
+          "statement": "Ice-cream sales and drownings: $r \\approx 0.9$ across weeks. Name the lurking variable and the test that would expose it.",
+          "solution": "Hot weather drives both. Exposure test: hold temperature fixed (compare only equally-hot weeks) — within a temperature band, the cone-drowning correlation collapses. A lurking variable's signature: the correlation dies when you control for it.",
+          "check": ["9/10 > 1/2"]
+        },
+        {
+          "id": "tv-l5-w2",
+          "statement": "\"Students with tutors score higher — tutoring works!\" Give the lurking-variable and reverse-causation counter-stories.",
+          "solution": "Lurking: family wealth buys tutors AND quieter study rooms, better schools, less part-time work — wealth may drive both. Reverse: struggling students HIRE tutors (which would produce a NEGATIVE correlation, so observing positive r already mixes selection stories). Only random assignment of tutoring can isolate its effect.",
+          "check": ["1 == 1"]
+        },
+        {
+          "id": "tv-l5-w3",
+          "statement": "A hospital's data: patients given the strongest medication die more often. Should the medication be banned?",
+          "solution": "The lurking variable is SEVERITY: the sickest patients receive the strongest drugs and also die more — sickness drives both. (This exact pattern, called confounding by indication, is why observational medical data can make effective treatments look lethal, and why drug approval requires randomized trials.)",
+          "check": ["1 == 1"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Letting a big r settle a causal argument.",
+          "correction": "Strength of association ≠ evidence of mechanism: the cone-drowning r is huge and means nothing causal. Size impresses; design convinces.",
+          "authored": true
+        },
+        {
+          "text": "Overcorrecting into 'correlation means nothing'.",
+          "correction": "Association is real information — it predicts (cones DO forecast drowning risk), flags hypotheses, and guides where to run experiments. It just can't assign blame by itself.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "tv-l5-t1",
+          "statement": "Countries' chocolate consumption correlates with their Nobel prize counts. Offer the lurking variable.",
+          "solution": "National wealth: rich countries buy more chocolate AND fund more research. (A real published correlation, r ≈ 0.79 — and a real teaching classic.)",
+          "check": ["79/100 > 1/2"]
+        },
+        {
+          "id": "tv-l5-t2",
+          "statement": "\"Kids who sleep with the light on become nearsighted more often\" made headlines. Later research found nearsighted PARENTS both pass on myopia and prefer lit rooms. Classify the original error.",
+          "solution": "Lurking variable (parental myopia) driving both the light and the eyesight — the light was innocent. A famous real case of association mistaken for cause.",
+          "check": ["1 == 1"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The trap",
+            "title": "Ban ice cream, save swimmers?",
+            "beats": [
+              "Cones and drownings: $r \\approx 0.9$ across summer weeks.",
+              "The puppeteer: HOT WEATHER, driving both.",
+              "No r-value, however large, can rule out a lurking variable.",
+              "The correlation is real. The causation is manufactured."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The lineup",
+            "title": "Four suspects, every time",
+            "beats": [
+              "$A \\to B$: maybe.",
+              "$B \\to A$: reverse — the scatterplot has no arrow.",
+              "$C \\to$ both: the lurking variable.",
+              "Chance: small samples fishing many variables catch phantom r's."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Exposing the weather",
+            "problemId": "tv-l5-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Suspect drill",
+            "title": "Firefighters and damage",
+            "prompt": "Fires attended by MORE firefighters do more damage ($r > 0$). The best explanation is…",
+            "options": ["Lurking variable: fire SIZE drives both the crew count and the damage", "Firefighters cause damage", "Coincidence"],
+            "correctIndex": 0,
+            "explanation": "Big fires summon big crews AND destroy more — severity is the puppeteer. (The same skeleton as strong-medication-kills: dose follows severity.) Blaming the responders reads the arrow backward through a lurker.",
+            "check": ["1 == 1"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The tutoring claim",
+            "problemId": "tv-l5-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The lethal-looking medicine",
+            "problemId": "tv-l5-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "The cure",
+            "title": "What CAN prove it?",
+            "prompt": "Which evidence would genuinely support \"tutoring raises scores\"?",
+            "options": ["Randomly ASSIGN tutoring to half of the volunteers, compare groups", "A bigger observational study — 100,000 students", "A stronger correlation, r > 0.95"],
+            "correctIndex": 0,
+            "explanation": "Random assignment balances wealth, motivation, prior grades — every lurker, known and unknown — between groups. Scaling up an observational study scales up the SAME bias; a bigger r measures the bias more precisely. Design beats data volume.",
+            "check": ["1 == 1"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "The honest sentence",
+            "title": "Say 'associated', hunt for C",
+            "body": "Until design justifies more: \"A and B are associated.\" Then earn your keep by proposing the C's — weather, wealth, severity, age — and checking whether controlling for them kills the correlation. The proposal-and-check habit is most of practical data literacy."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Chocolate Nobels",
+            "problemId": "tv-l5-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The night-light scare",
+            "problemId": "tv-l5-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Spurious correlations, the website",
+            "body": "Tyler Vigen's 'Spurious Correlations' catalogs phantom r's mined from public data: US cheese consumption tracks deaths by bedsheet entanglement (r = 0.95); Nicolas Cage films track pool drownings (r = 0.67). Ten thousand variables, cross-correlated, GUARANTEE absurd matches — the 'chance' suspect, industrialized into comedy."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Every correlation: A→B, B→A, lurking C, or chance — data alone can't pick.",
+              "Lurkers die under control; causation needs random assignment (Unit 12).",
+              "Say 'associated'; propose the C's; respect prediction even without causation."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "two-variable-capstone",
+      "title": "Capstone: The Full Two-Variable Analysis",
+      "concreteComparison": "A café owner hands you a year of data: daily temperature and daily iced-drink sales. \"Should I staff by the forecast?\" One question, every tool: plot the cloud, describe it, quote $r$, fit the line, interpret the slope in drinks-per-degree, check the residuals, refuse to extrapolate past the observed temperatures, and keep the causal language honest. That deliverable — start to finish — is this capstone.",
+      "objective": "Run complete two-variable analyses: plot → describe → r → line → residuals → prediction with range limits → honest causal framing.",
+      "concept": [
+        "The full pipeline: (1) PLOT the scatterplot; (2) DESCRIBE direction-form-strength + outliers; (3) QUOTE $r$ (with the plot as audit); (4) FIT the least-squares line if form is linear; (5) INTERPRET slope (and intercept if meaningful) in context; (6) CHECK residuals (typical miss, patterns, levers); (7) PREDICT within range; (8) FRAME causally with honesty.",
+        "Each step gates the next: curved form (step 2) halts the linear fit; a lever point (step 6) demands a with/without audit; residual fans qualify the predictions; and step 8's language never exceeds the design's warrant.",
+        "The deliverable is a PARAGRAPH, not a number: equation, slope sentence, $r^2$, typical miss, range limits, and the associated-not-caused disclaimer where due — the exact report a café owner, coach, or clinic can act on.",
+        "This closes the descriptive arc: Units 9–11 describe one variable, locate values, and relate pairs. What remains is the biggest question: when do patterns in a SAMPLE license claims about the WORLD? Unit 12 — the capstone of the course."
+      ],
+      "keyIdea": "Plot → describe → r → fit → interpret → residuals → bounded predictions → honest causal language: eight gated steps, one actionable paragraph.",
+      "facts": [
+        {
+          "title": "The pipeline",
+          "latex": "\\text{plot} \\to \\text{describe} \\to r \\to \\text{fit} \\to \\text{residuals} \\to \\text{predict} \\to \\text{frame}",
+          "explanation": "Each step gates the next; the paragraph at the end is the deliverable."
+        },
+        {
+          "title": "The two disciplines",
+          "latex": "\\text{predict within range}; \\quad \\text{'associated', not 'caused'}",
+          "explanation": "Range limits and causal honesty — the marks of a professional analysis."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "tv-l6-w1",
+          "statement": "Café data ($60$ days, temps $18$–$36$°C): cloud positive-linear-strong, $r = 0.88$, line $\\hat{y} = -50 + 9x$ (drinks from °C), residuals patternless, typical miss $\\pm 15$ drinks. Write the owner's paragraph.",
+          "solution": "\"Iced-drink sales track temperature strongly ($r = 0.88$; the line explains $r^2 \\approx 77\\%$ of day-to-day variation). Expect about $9$ extra drinks per degree: a $30°$ forecast predicts $-50 + 270 = 220$ drinks, typically within $\\pm 15$. Valid for forecasts between $18$ and $36°$ — beyond that we have no data. Temperature needn't CAUSE every sale, but as a staffing forecast the association is exactly what you need.\"",
+          "check": ["(88/100)**2 == 7744/10000", "-50 + 9*30 == 220"]
+        },
+        {
+          "id": "tv-l6-w2",
+          "statement": "Midway through the analysis, one day shows $35°$ and only $12$ drinks (a pipe burst; the café closed early). It sits far below the line. Apply the pipeline's discipline.",
+          "solution": "Step 6 catches it: a large negative residual — investigate → cause identified (closure, not weather). Disposition: exclude it from the FIT with a documented note (it doesn't represent temperature-driven demand), and report the fit's stability: slope with/without. Never silently delete; never blindly keep a known non-representative point.",
+          "check": ["-50 + 9*35 == 265", "265 - 12 == 253"]
+        },
+        {
+          "id": "tv-l6-w3",
+          "statement": "The owner asks: \"So heat CAUSES my sales — should I install heaters outside in winter?\" Answer with the unit's full honesty.",
+          "solution": "Two disciplines at once. Causal: the association is consistent with heat driving thirst, but the data can't isolate it (season, tourists, holidays all move with temperature — lurking C's). Range: winter temps sit far OUTSIDE $18$–$36°$ — the line knows nothing there, and heaters wouldn't recreate summer anyway. Verdict: staff by the forecast (prediction is licensed); don't re-engineer the climate (causation and extrapolation are not).",
+          "check": ["18 < 36"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Skipping steps because the data 'looks fine'.",
+          "correction": "The pipeline's gates exist because each catches a different failure: the plot catches curves, residuals catch levers and fans, range-checks catch fiction. Fine-looking data is how all of them sneak through.",
+          "authored": true
+        },
+        {
+          "text": "Delivering the equation instead of the paragraph.",
+          "correction": "ŷ = −50 + 9x is homework. The paragraph — slope sentence, trust interval, range limits, causal framing — is what someone can ACT on. Analyses end in sentences.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "tv-l6-t1",
+          "statement": "Fit: $\\hat{y} = 20 + 0.5x$ (game score from practice minutes, data range $30$–$120$ min, $r = 0.6$). Predict for $80$ minutes, give $r^2$, and state one caveat.",
+          "solution": "$\\hat{y} = 20 + 40 = 60$. $r^2 = 0.36$ — practice explains about a third of score variation. Caveat menu: typical miss unknown without residuals; prediction valid only in $30$–$120$; association ≠ causation (better players may simply practice more).",
+          "check": ["20 + 5/10*80 == 60", "(6/10)**2 == 36/100"]
+        },
+        {
+          "id": "tv-l6-t2",
+          "statement": "Your line predicts a student with $0$ absences scores $85$, and each absence predicts $-3$ points (data: $0$–$15$ absences). A colleague wants the predicted score for $40$ absences. Respond.",
+          "solution": "$85 - 120 = -35$: an impossible score, because $40$ absences is far outside the observed $0$–$15$ — extrapolation self-destructs again. Report: \"no data beyond 15 absences; the linear pattern is unverified there and the prediction is meaningless.\"",
+          "check": ["85 - 3*40 == -35"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The finale",
+            "title": "One year of café data",
+            "beats": [
+              "\"Should I staff by the forecast?\"",
+              "Plot. Describe. Quote $r$. Fit. Interpret. Check leftovers.",
+              "Predict — inside the range. Frame — without causal overreach.",
+              "Eight steps, one actionable paragraph. That's the job."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The owner's paragraph",
+            "problemId": "tv-l6-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Gate check",
+            "title": "Which gate fires?",
+            "prompt": "Mid-pipeline, the scatterplot shows a clear arch (rises then falls). What happens next?",
+            "options": ["Halt the LINEAR fit — the form gate failed; fit a curve or split the range", "Proceed — r will handle it", "Delete the falling half"],
+            "correctIndex": 0,
+            "explanation": "Step 2's form check gates step 4's fit: a straight line through an arch mispredicts everywhere while possibly posting a bland r. The gates aren't bureaucracy — each one catches a specific disaster.",
+            "check": ["1 == 1"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The burst-pipe day",
+            "problemId": "tv-l6-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The heater question",
+            "problemId": "tv-l6-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Language audit",
+            "title": "Licensed claims",
+            "prompt": "From observational café data with $r = 0.88$, which claim is fully licensed?",
+            "options": ["\"Hot days are associated with higher sales; forecast-based staffing is justified\"", "\"Heat causes sales — guaranteed 9 drinks per degree\"", "\"Sales will hit 490 at 60°C\""],
+            "correctIndex": 0,
+            "explanation": "Association + prediction-in-range: licensed. 'Causes' + 'guaranteed': exceeds the design (observational) and the noise (±15). 60°C: exceeds the range (and the planet's café weather). One claim survives all the gates.",
+            "check": ["-50 + 9*60 == 490"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Course horizon",
+            "title": "The last question",
+            "body": "You can describe, locate, relate, and predict. One question remains — the biggest: when does a SAMPLE's pattern license a claim about the WORLD? Sampling, experiments, and the logic of inference. Unit 12 closes the course where working statisticians spend their days."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Practice minutes",
+            "problemId": "tv-l6-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Forty absences",
+            "problemId": "tv-l6-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Weather-elastic everything",
+            "body": "Retail chains run temperature-regression exactly like the café: one grocery giant found barbecue sales jump nonlinearly above 24°C while soup collapses; a UK chain stocks stores daily off weather-regression forecasts. Somewhere, a supply chain just ordered 9 extra drinks per degree — your capstone paragraph, at industrial scale."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned — Unit 11 complete",
+            "points": [
+              "Eight gated steps from cloud to actionable paragraph.",
+              "Residual discipline: investigate, document, report with/without.",
+              "Predict in range; say 'associated'; Unit 12 asks when samples speak for the world."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "tv-p-1",
+      "statement": "For \"daily screen hours vs sleep hours\" in teens, which variable goes on x, and what direction do you expect?",
+      "solution": "Screen hours on x (suspected influencer), sleep on y; expected negative direction.",
+      "check": ["1 == 1"]
+    },
+    {
+      "id": "tv-p-2",
+      "statement": "Rank by linear strength: $r = 0.55$, $r = -0.78$, $r = 0.05$, $r = -0.31$.",
+      "solution": "$|{-0.78}| > |0.55| > |{-0.31}| > |0.05|$ — the negative $-0.78$ is strongest.",
+      "check": ["78/100 > 55/100", "55/100 > 31/100", "31/100 > 5/100"]
+    },
+    {
+      "id": "tv-p-3",
+      "statement": "$\\hat{y} = 15 + 2.5x$ predicts quiz score from homework problems done ($x$ range $0$–$20$). Predict for $x = 12$ and interpret the slope.",
+      "solution": "$\\hat{y} = 15 + 30 = 45$. Each extra homework problem predicts $2.5$ more quiz points, on average.",
+      "check": ["15 + 25/10*12 == 45"]
+    },
+    {
+      "id": "tv-p-4",
+      "statement": "A point has $y = 82$ and $\\hat{y} = 74$. Compute the residual and locate the point.",
+      "solution": "$82 - 74 = +8$: eight above the line — overperformed the trend.",
+      "check": ["82 - 74 == 8"]
+    },
+    {
+      "id": "tv-p-5",
+      "statement": "A regression has $r = 0.7$. What fraction of the response's variation does it explain, and where does the rest live?",
+      "solution": "$r^2 = 0.49$ — about half; the rest is in the residuals (other factors + noise).",
+      "check": ["(7/10)**2 == 49/100"]
+    },
+    {
+      "id": "tv-p-6",
+      "statement": "The line $\\hat{y} = 100 - 4x$ was fit on $x \\in [5, 20]$. A colleague requests predictions at $x = 10$ and $x = 50$. Deliver appropriately.",
+      "solution": "$x = 10$: $\\hat{y} = 60$ — legal (in range). $x = 50$: $\\hat{y} = -100$ — refuse: far outside the data, and the negative value advertises the nonsense.",
+      "check": ["100 - 4*10 == 60", "100 - 4*50 == -100"]
+    },
+    {
+      "id": "tv-p-7",
+      "statement": "Cities' coffee-shop counts correlate with their bookstore counts ($r = 0.85$). Name the most plausible lurking variable.",
+      "solution": "City SIZE (population): bigger cities have more of everything. Control for population and the correlation should largely dissolve.",
+      "check": ["85/100 > 1/2"]
+    },
+    {
+      "id": "tv-p-8",
+      "statement": "A fit's residual plot shows a clear U-shape. What does it mean and what's the fix?",
+      "solution": "The relationship bends — the line under-predicts at the ends, over-predicts in the middle. Fix: fit a curved model or split the range; the straight line is unfinished.",
+      "check": ["1 == 1"]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "tv-ty-1",
+      "statement": "Sketch-describe the expected scatterplot for \"car age vs resale price\", and predict the sign of $r$.",
+      "solution": "Age on x, price on y: negative direction, roughly linear over normal ages (steepest early), fairly strong — $r$ solidly negative, around $-0.7$ to $-0.9$ in real markets.",
+      "check": ["1 == 1"]
+    },
+    {
+      "id": "tv-ty-2",
+      "statement": "A line predicting exam scores from sleep hours: $\\hat{y} = 40 + 5x$ ($x$ range $4$–$9$, $r = 0.6$). Give: the prediction for $7$ hours, the slope sentence, $r^2$, and the residual for a student who slept $7$ and scored $80$.",
+      "solution": "Prediction: $40 + 35 = 75$. Slope: each extra hour of sleep predicts $5$ more points, on average. $r^2 = 0.36$. Residual: $80 - 75 = +5$ (above the line).",
+      "check": ["40 + 5*7 == 75", "(6/10)**2 == 36/100", "80 - 75 == 5"]
+    },
+    {
+      "id": "tv-ty-3",
+      "statement": "Removing one point changes a fit's slope from $2.1$ to $0.4$. What kind of point was it, and what must the report contain?",
+      "solution": "An influential (lever) point — extreme in $x$, seizing the slope. The report shows BOTH fits, the point's investigation (error? different population? real?), and the disposition — never just the prettier slope.",
+      "check": ["21/10 > 4/10"]
+    },
+    {
+      "id": "tv-ty-4",
+      "statement": "Countries' per-capita TV ownership correlates strongly with life expectancy. Does buying TVs extend life? Run the four-suspect lineup.",
+      "solution": "A→B (TVs extend life): implausible mechanism. B→A (long life buys TVs): weak. Lurking C — WEALTH: rich countries afford TVs AND hospitals, sanitation, food security: compelling. Chance: r is stable across years — unlikely. Verdict: wealth-driven association; prescribing televisions treats the correlation, not the cause.",
+      "check": ["1 == 1"]
+    },
+    {
+      "id": "tv-ty-5",
+      "statement": "Model A predicts delivery times with $r^2 = 0.81$, typical miss $\\pm 4$ min, patternless residuals. Model B: $r^2 = 0.88$ but residuals fan wide at long distances. Which ships, and why isn't $r^2$ the whole answer?",
+      "solution": "A ships. B's higher $r^2$ hides heteroscedastic misses — its long-distance predictions (where the business risk lives) are unreliable. $r^2$ is one global number; the residual PLOT shows where a model fails. Fit quality is a portfolio, not a single score.",
+      "check": ["88/100 > 81/100"]
+    },
+    {
+      "id": "tv-ty-6",
+      "statement": "Write the four-sentence 'owner's paragraph' for: plant growth (cm) vs weekly water (L), $\\hat{y} = 2 + 3x$, $x \\in [1, 6]$, $r = 0.9$, typical miss $\\pm 1.5$ cm, residuals healthy, observational data.",
+      "solution": "\"Growth tracks watering strongly ($r = 0.9$; the line explains $81\\%$ of variation). Each extra weekly liter predicts about $3$ cm more growth, typically within $\\pm 1.5$ cm — at $4$ L, expect about $14$ cm. Valid for $1$–$6$ L; beyond that we have no data (and drowning roots won't follow a line). Watering and growth are associated; to prove watering CAUSES growth, randomly assign watering levels next season.\"",
+      "check": ["(9/10)**2 == 81/100", "2 + 3*4 == 14"]
+    }
+  ]
+}
