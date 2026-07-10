@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowLeft, ArrowRight, Check, Sparkles, Lightbulb } from "lucide-react";
 import MathText from "@/components/esh/MathText";
 import WorkedExampleCard from "@/components/lesson/WorkedExampleCard";
@@ -112,6 +113,8 @@ import RatioFigure from "@/components/genmath/interactive/RatioFigure";
 import NotationToggle from "@/components/genmath/interactive/NotationToggle";
 import { type GenMathLesson } from "@/lib/genmath-lessons";
 import { useLang } from "@/lib/lang-context";
+import usePerformance from "@/lib/use-performance";
+import { contextFromPathname, lessonSlugsFromPathname } from "@/lib/perf-context";
 import { type InteractiveStep, type WorkedItem, getLessonProblem } from "@/lib/genmath-interactive";
 
 // Player chrome in both site languages; lesson CONTENT arrives already
@@ -184,7 +187,17 @@ function WorkedItemCard({ item, index }: { item: WorkedItem; index: number }) {
   );
 }
 
-function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveStep }) {
+type TapAnswerHandler = (subId: string, correct: boolean, selected: string, correctOption: string) => void;
+
+function StepBody({
+  lesson,
+  step,
+  onTapAnswer,
+}: {
+  lesson: GenMathLesson;
+  step: InteractiveStep;
+  onTapAnswer?: TapAnswerHandler;
+}) {
   const { lang } = useLang();
   const REVEAL = lang === "mn"
     ? { reveal: "Бодолтыг харах", hide: "Нуух", revealAria: "Бодолтыг харах", hideAria: "Бодолтыг нуух" }
@@ -282,6 +295,9 @@ function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveSt
                 explanation={p.explanation}
                 figure={p.figure}
                 grid={p.grid}
+                onAnswer={(correct, selected, correctOption) =>
+                  onTapAnswer?.(`t${i}`, correct, selected, correctOption)
+                }
               />
             ))}
           </div>
@@ -1299,6 +1315,9 @@ function StepBody({ lesson, step }: { lesson: GenMathLesson; step: InteractiveSt
             correctIndex={step.correctIndex}
             explanation={step.explanation}
             grid={step.grid}
+            onAnswer={(correct, selected, correctOption) =>
+              onTapAnswer?.("q", correct, selected, correctOption)
+            }
           />
         </>
       );
@@ -1400,6 +1419,33 @@ export default function LessonPlayer({
   const topicHref = baseHref ?? `/math/6/${topicSlug}`;
   const { lang } = useLang();
   const C = CHROME[lang];
+  const pathname = usePathname();
+  const perf = usePerformance();
+
+  // Every first-attempt tapQuestion answer becomes a performance event in
+  // this course's context ("course:prob-stats", "course:grade-6", ...),
+  // with the unit slug as topic and lesson slug as subtopic — the raw
+  // material for the per-course dashboard sections. Off the course tree
+  // (context null) nothing is recorded.
+  const handleTapAnswer = useCallback(
+    (stepIndex: number): TapAnswerHandler =>
+      (subId, correct, selected, correctOption) => {
+        const context = contextFromPathname(pathname ?? "");
+        if (!context) return;
+        const slugs = lessonSlugsFromPathname(pathname ?? "");
+        perf.recordAttempt({
+          questionSource: `lesson:${slugs?.unit ?? topicSlug}/${slugs?.lesson ?? lesson.slug}#s${stepIndex}${subId}`,
+          topic: slugs?.unit ?? topicSlug,
+          subtopic: slugs?.lesson ?? lesson.slug,
+          selectedAnswer: selected,
+          correctAnswer: correctOption,
+          isCorrect: correct,
+          source: "lesson",
+          context,
+        });
+      },
+    [pathname, perf, topicSlug, lesson.slug],
+  );
 
   // On every step change, bring the page back to the top so the learner starts
   // the next step at its heading instead of wherever they'd scrolled to answer.
@@ -1445,7 +1491,7 @@ export default function LessonPlayer({
       {/* Step content (re-keyed so it animates in on every step change) */}
       <main className="flex-1">
         <div key={i} className="gm-step mx-auto max-w-2xl px-4 py-8 sm:px-6">
-          <StepBody lesson={lesson} step={steps[i]} />
+          <StepBody lesson={lesson} step={steps[i]} onTapAnswer={handleTapAnswer(i)} />
         </div>
       </main>
 

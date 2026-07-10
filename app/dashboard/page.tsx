@@ -3,7 +3,10 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowRight, BarChart3, Calculator, Sparkles, Target } from "lucide-react";
+import { useEffect, useState } from "react";
 import usePerformance from "@/lib/use-performance";
+import { contextHref, contextLabel } from "@/lib/perf-context";
+import { loadPlacement, type StoredPlacement } from "@/lib/placement-result";
 import { useAuth } from "@/lib/auth-context";
 import { useLang } from "@/lib/lang-context";
 import useRefinementLoop, { useRecentlyMastered } from "@/lib/use-refinement-loop";
@@ -82,7 +85,34 @@ const i18n = {
   qa_learn_s: { en: "Formulas, tips", mn: "Томьёо, зөвлөгөө" },
   qa_analytics_t: { en: "Full report", mn: "Бүрэн тайлан" },
   qa_analytics_s: { en: "Detailed analytics", mn: "Дэлгэрэнгүй харах" },
+
+  esh_section: { en: "ЭЕШ preparation", mn: "ЭЕШ бэлтгэл" },
+  courses_section: { en: "Courses", mn: "Хичээлүүд" },
+  courses_checks: { en: "lesson checks", mn: "хичээлийн даалгавар" },
+  courses_weakest: { en: "Weakest unit", mn: "Хамгийн сул нэгж" },
+  courses_open: { en: "Open course", mn: "Курс нээх" },
+  placement_section: { en: "Placement tests", mn: "Түвшин тогтоох тестүүд" },
+  placement_level: { en: "Level", mn: "Түвшин" },
+  placement_open: { en: "View plan", mn: "Төлөвлөгөө харах" },
 };
+
+// Placement namespaces the platform currently offers, with their course homes.
+const PLACEMENT_NAMESPACES: { namespace: string; href: string; en: string; mn: string }[] = [
+  { namespace: "grade6", href: "/math/6", en: "Grade 6", mn: "6-р анги" },
+  { namespace: "grade7", href: "/math/7", en: "Grade 7", mn: "7-р анги" },
+  { namespace: "grade8", href: "/math/8", en: "Grade 8", mn: "8-р анги" },
+  { namespace: "grade9", href: "/math/9", en: "Grade 9", mn: "9-р анги" },
+  { namespace: "grade10", href: "/math/10", en: "Grade 10", mn: "10-р анги" },
+  { namespace: "grade11", href: "/math/11", en: "Grade 11", mn: "11-р анги" },
+  { namespace: "grade12", href: "/math/12", en: "Grade 12", mn: "12-р анги" },
+  { namespace: "geometry", href: "/math/geometry", en: "Geometry", mn: "Геометр" },
+];
+
+// Unit slugs read as titles: "probability-models" → "Probability models".
+function humanizeSlug(slug: string): string {
+  const s = slug.replace(/-/g, " ");
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
 
 export default function DashboardPage() {
   const perf = usePerformance();
@@ -113,12 +143,29 @@ export default function DashboardPage() {
 
   const overall = perf.getOverallStats();
   const topicStats = perf.getTopicStats();
+  // Per-section summaries: each course the student has touched, with stats
+  // computed ONLY from that course's attempts. Accuracy never blends across
+  // sections — that's the whole point of the context column.
+  const courseSummaries = perf.getContextSummaries().filter((s) => s.context.startsWith("course:"));
+  // Placement results are device-local (localStorage) — load after mount to
+  // keep server and client renders identical.
+  const [placements, setPlacements] = useState<
+    { namespace: string; href: string; en: string; mn: string; data: StoredPlacement }[]
+  >([]);
+  useEffect(() => {
+    setPlacements(
+      PLACEMENT_NAMESPACES.flatMap((ns) => {
+        const data = loadPlacement(user?.id, ns.namespace);
+        return data ? [{ ...ns, data }] : [];
+      }),
+    );
+  }, [user?.id]);
   // Server-derived test sessions (cross-device-safe). Replaces the previous
   // local-only ts.getCompletedSessions() for stats display so a fresh-device
   // login still shows the correct "Tests completed" count and latest test.
   const testSessions = perf.getTestOnlySessions();
 
-  const hasData = overall.total > 0 || testSessions.length > 0;
+  const hasData = overall.total > 0 || testSessions.length > 0 || courseSummaries.length > 0;
   const userName = user?.displayName ?? "";
 
   const latestSession = testSessions[0];
@@ -296,9 +343,11 @@ export default function DashboardPage() {
           </section>
         ) : (
           <>
+            {/* ЭЕШ section — every stat below this header is exam-context only */}
+            <div className="eyebrow mt-8">{t("esh_section")}</div>
             {/* Stats grid */}
             <section
-              className="grid gap-4 mt-8"
+              className="grid gap-4 mt-3"
               style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}
             >
               <div className="card-edit p-5">
@@ -598,6 +647,102 @@ export default function DashboardPage() {
               </Link>
             </section>
           </>
+        )}
+
+        {/* Courses — one card per course the student has actually worked in.
+            Stats are per-course only; the weakest unit routes straight back
+            into the material. */}
+        {courseSummaries.length > 0 && (
+          <section className="mt-8">
+            <div className="eyebrow mb-3">{t("courses_section")}</div>
+            <div
+              className="grid gap-4"
+              style={{ gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}
+            >
+              {courseSummaries.map((s) => {
+                const unitStats = perf.getTopicStats(s.context);
+                const weakestUnit = unitStats.find((u) => u.total >= 2) ?? unitStats[0];
+                const href = contextHref(s.context) ?? "/math";
+                return (
+                  <div key={s.context} className="card-edit p-5 flex flex-col gap-2">
+                    <h3 className="serif" style={{ fontWeight: 400, fontSize: 20, letterSpacing: "-0.02em", color: "var(--fg)" }}>
+                      {contextLabel(s.context)}
+                    </h3>
+                    <p className="mono tabular text-[12px]" style={{ color: "var(--fg-3)" }}>
+                      {s.correct}/{s.total} {t("courses_checks")} · {s.accuracy}%
+                    </p>
+                    <div className="h-[3px] rounded-full overflow-hidden" style={{ background: "var(--bg-2)" }}>
+                      <div
+                        className="h-full rounded-full"
+                        style={{
+                          width: `${s.accuracy}%`,
+                          background: s.accuracy >= 80 ? "var(--accent)" : s.accuracy >= 50 ? "var(--warn)" : "var(--danger)",
+                        }}
+                      />
+                    </div>
+                    {weakestUnit && weakestUnit.accuracy < 70 && (
+                      <p className="text-[12px]" style={{ color: "var(--fg-2)" }}>
+                        {t("courses_weakest")}:{" "}
+                        <Link
+                          href={`${href}/${weakestUnit.topic}`}
+                          className="underline underline-offset-2"
+                          style={{ color: "var(--accent)" }}
+                        >
+                          {humanizeSlug(weakestUnit.topic)}
+                        </Link>{" "}
+                        <span className="mono tabular" style={{ color: "var(--fg-3)" }}>
+                          ({weakestUnit.accuracy}%)
+                        </span>
+                      </p>
+                    )}
+                    <Link
+                      href={href}
+                      className="mono text-[11px] uppercase mt-auto inline-flex items-center gap-1"
+                      style={{ color: "var(--accent)", letterSpacing: "0.06em" }}
+                    >
+                      {t("courses_open")}
+                      <ArrowRight className="h-3 w-3" />
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
+        {/* Placement results — level per course, straight from the local
+            placement store. A different instrument than accuracy, so it gets
+            its own section rather than a merged number. */}
+        {placements.length > 0 && (
+          <section className="mt-8">
+            <div className="eyebrow mb-3">{t("placement_section")}</div>
+            <div
+              className="grid gap-4"
+              style={{ gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}
+            >
+              {placements.map((p) => (
+                <div key={p.namespace} className="card-edit p-5 flex flex-col gap-1.5">
+                  <h3 className="serif" style={{ fontWeight: 400, fontSize: 18, letterSpacing: "-0.02em", color: "var(--fg)" }}>
+                    {lang === "mn" ? p.mn : p.en}
+                  </h3>
+                  <p className="text-[13px]" style={{ color: "var(--fg-1)" }}>
+                    {t("placement_level")}: <span style={{ color: "var(--accent)" }}>{p.data.level}</span>
+                    <span className="mono tabular ml-2 text-[12px]" style={{ color: "var(--fg-3)" }}>
+                      {p.data.overallAccuracy}%
+                    </span>
+                  </p>
+                  <Link
+                    href={p.href}
+                    className="mono text-[11px] uppercase mt-1 inline-flex items-center gap-1"
+                    style={{ color: "var(--accent)", letterSpacing: "0.06em" }}
+                  >
+                    {t("placement_open")}
+                    <ArrowRight className="h-3 w-3" />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </section>
         )}
       </div>
     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Check, X } from "lucide-react";
 import MathText from "@/components/esh/MathText";
 import RatioFigure from "@/components/genmath/interactive/RatioFigure";
@@ -14,6 +14,7 @@ export default function TapQuestion({
   explanation,
   figure,
   grid,
+  onAnswer,
 }: {
   prompt: string;
   options: string[];
@@ -21,13 +22,21 @@ export default function TapQuestion({
   explanation: string;
   figure?: FigureSpec;
   grid?: CoordinateGridConfig;
+  // Fires once, on the FIRST tap only — first-attempt correctness is the
+  // honest mastery signal; retries after the shake don't count.
+  onAnswer?: (correct: boolean, selected: string, correctOption: string) => void;
 }) {
   const [solved, setSolved] = useState(false);
   const [wrong, setWrong] = useState<number[]>([]);
   const [lastWrong, setLastWrong] = useState<number | null>(null);
+  const answeredRef = useRef(false);
 
   const pick = (i: number) => {
     if (solved) return;
+    if (!answeredRef.current) {
+      answeredRef.current = true;
+      onAnswer?.(i === correctIndex, options[i], options[correctIndex]);
+    }
     if (i === correctIndex) {
       setSolved(true);
     } else if (!wrong.includes(i)) {

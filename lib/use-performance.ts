@@ -17,11 +17,23 @@ export interface AttemptRecord {
   isCorrect: boolean;
   timestamp: number;
   // Origin of the attempt: "test" for full practice-test sessions, "drill"
-  // for topic-drill / practice mode. Optional for back-compat with rows that
-  // existed before the source column was added — those load as undefined and
-  // are excluded from test-only stats (weak-topic recommendation, tests-completed
-  // count). New writes always populate this.
-  source?: "test" | "drill";
+  // for topic-drill / practice mode, "lesson" for in-lesson checks. Optional
+  // for back-compat with rows that existed before the source column was
+  // added — those load as undefined and are excluded from test-only stats
+  // (weak-topic recommendation, tests-completed count). New writes always
+  // populate this.
+  source?: "test" | "drill" | "lesson";
+  // Which section of the platform produced this attempt: "esh" (default),
+  // "course:geometry", "course:grade-6", later "sat"/"ib". Absent means
+  // "esh" — every row written before contexts existed was ЭЕШ. Stats NEVER
+  // blend across contexts (see lib/perf-context.ts).
+  context?: string;
+}
+
+export const DEFAULT_CONTEXT = "esh";
+
+export function contextOf(a: AttemptRecord): string {
+  return a.context ?? DEFAULT_CONTEXT;
 }
 
 export interface TopicStats {
@@ -74,6 +86,10 @@ function parseTestId(source: string): string | null {
 }
 
 function toServerRow(attempt: AttemptRecord, userId: string) {
+  // Topic canonicalization is an ЭЕШ vocabulary; course attempts carry unit/
+  // lesson slugs that must pass through untouched (canonicalizing would
+  // collapse them all to "other").
+  const isEsh = contextOf(attempt) === DEFAULT_CONTEXT;
   return {
     user_id: userId,
     question_id: attempt.questionSource,
@@ -81,11 +97,12 @@ function toServerRow(attempt: AttemptRecord, userId: string) {
     user_answer: attempt.selectedAnswer,
     correct_answer: attempt.correctAnswer,
     is_correct: attempt.isCorrect,
-    topic: canonicalizeTopic(attempt.topic),
-    subtopic: canonicalizeSubtopic(attempt.subtopic),
+    topic: isEsh ? canonicalizeTopic(attempt.topic) : attempt.topic,
+    subtopic: isEsh ? canonicalizeSubtopic(attempt.subtopic) : attempt.subtopic || null,
     answered_at: new Date(attempt.timestamp).toISOString(),
     time_spent_seconds: null,
     source: attempt.source ?? null,
+    context: contextOf(attempt),
   };
 }
 
@@ -98,10 +115,12 @@ type ServerRow = {
   subtopic: string | null;
   answered_at: string;
   source: string | null;
+  context?: string | null;
 };
 
 function fromServerRow(r: ServerRow): AttemptRecord {
-  const src = r.source === "test" || r.source === "drill" ? r.source : undefined;
+  const src =
+    r.source === "test" || r.source === "drill" || r.source === "lesson" ? r.source : undefined;
   return {
     questionSource: r.question_id,
     topic: r.topic,
@@ -111,7 +130,41 @@ function fromServerRow(r: ServerRow): AttemptRecord {
     isCorrect: r.is_correct,
     timestamp: new Date(r.answered_at).getTime(),
     source: src,
+    context: r.context && r.context !== DEFAULT_CONTEXT ? r.context : undefined,
   };
+}
+
+// ---------------------------------------------------------------------------
+// context-column degradation. Until migration 009 is applied, the live
+// attempts table has no `context` column: selects and inserts naming it
+// fail. Every fetch probes the column and records the verdict here; writes
+// consult it. Missing column: esh rows are written WITHOUT context (the
+// column's default makes that equivalent), while course rows stay in the
+// offline queue — a course row stored context-less would masquerade as ЭЕШ
+// and corrupt exam stats, so holding it back is the only safe move.
+// ---------------------------------------------------------------------------
+
+const CONTEXT_SUPPORT_KEY = `${"mongol-potential-performance"}:context-column`;
+
+function contextColumnSupported(): boolean {
+  if (typeof window === "undefined") return true;
+  return localStorage.getItem(CONTEXT_SUPPORT_KEY) !== "0";
+}
+
+function setContextColumnSupported(ok: boolean) {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(CONTEXT_SUPPORT_KEY, ok ? "1" : "0");
+}
+
+function isMissingContextColumnError(message: string): boolean {
+  return /context/i.test(message) && /(column|schema cache)/i.test(message);
+}
+
+type OutgoingRow = ReturnType<typeof toServerRow>;
+
+function stripContext(row: OutgoingRow): Omit<OutgoingRow, "context"> {
+  const { context: _context, ...rest } = row;
+  return rest;
 }
 
 function loadAttemptsFrom(key: string): AttemptRecord[] {
@@ -268,10 +321,22 @@ async function flushQueue(userId: string): Promise<void> {
   flushing = true;
   try {
     const supabase = getSupabaseClient();
-    const { error } = await supabase.from("attempts").insert(snapshot);
+    // Without the context column, only esh rows can be flushed safely;
+    // course rows wait in the queue until migration 009 lands.
+    const supported = contextColumnSupported();
+    const flushable = supported
+      ? snapshot
+      : snapshot.filter((r) => (r.context ?? DEFAULT_CONTEXT) === DEFAULT_CONTEXT);
+    if (flushable.length === 0) return;
+    const payload = supported ? flushable : flushable.map(stripContext);
+
+    const { error } = await supabase.from("attempts").insert(payload);
     if (error) {
-      if (IS_DEV) {
-        const msg = error.message || "";
+      const msg = error.message || "";
+      if (isMissingContextColumnError(msg)) {
+        setContextColumnSupported(false);
+        if (IS_DEV) console.warn("[attempts sync] context column missing; will retry degraded");
+      } else if (IS_DEV) {
         if (/jwt|expired|invalid/i.test(msg)) {
           console.warn("[attempts sync] flush auth error (token may be expired):", msg);
         } else {
@@ -280,8 +345,20 @@ async function flushQueue(userId: string): Promise<void> {
       }
       return;
     }
+    // Remove exactly the rows we flushed (by identity within the snapshot),
+    // keeping anything enqueued meanwhile and any held-back course rows.
+    const flushed = new Set(flushable.map((r) => JSON.stringify(r)));
     const after = loadQueue(userId);
-    saveQueue(userId, after.slice(snapshot.length));
+    const remaining: QueueRow[] = [];
+    for (const r of after) {
+      const k = JSON.stringify(r);
+      if (flushed.has(k)) {
+        flushed.delete(k);
+        continue;
+      }
+      remaining.push(r);
+    }
+    saveQueue(userId, remaining);
   } catch (err) {
     if (IS_DEV) console.warn("[attempts sync] flush network error:", err);
   } finally {
@@ -304,15 +381,31 @@ export default function usePerformance() {
     async (uid: string, token: string) => {
       try {
         const supabase = getSupabaseClient();
-        const { data, error } = await supabase
-          .from("attempts")
-          .select("question_id,user_answer,correct_answer,is_correct,topic,subtopic,answered_at,source")
-          .eq("user_id", uid)
-          .order("answered_at", { ascending: false })
-          .limit(FETCH_LIMIT);
+        // Every fetch doubles as the context-column probe: try the full
+        // select, degrade (and remember) when the column doesn't exist yet.
+        const runSelect = (withContext: boolean) =>
+          supabase
+            .from("attempts")
+            .select(
+              "question_id,user_answer,correct_answer,is_correct,topic,subtopic,answered_at,source" +
+                (withContext ? ",context" : ""),
+            )
+            .eq("user_id", uid)
+            .order("answered_at", { ascending: false })
+            .limit(FETCH_LIMIT);
+
+        let { data, error } = await runSelect(true);
+        if (error && isMissingContextColumnError(error.message || "")) {
+          setContextColumnSupported(false);
+          ({ data, error } = await runSelect(false));
+        } else if (!error) {
+          setContextColumnSupported(true);
+        }
         if (error) throw error;
 
-        const remote = (data ?? []).map(fromServerRow);
+        // The dynamic column list defeats supabase-js's string-literal type
+        // inference — the row shape is ours to assert.
+        const remote = ((data ?? []) as unknown as ServerRow[]).map(fromServerRow);
         setAttempts((prev) => {
           const merged = mergeUnique(remote, prev);
           saveAttemptsTo(`${BASE}:${uid}`, merged);
@@ -423,23 +516,40 @@ export default function usePerformance() {
       }
 
       (async () => {
+        const row = toServerRow(full, userId);
+        const isEsh = (row.context ?? DEFAULT_CONTEXT) === DEFAULT_CONTEXT;
+        // Column not there yet (pre-migration-009 DB): esh rows write without
+        // it (the column default is 'esh'); course rows wait in the queue.
+        if (!contextColumnSupported() && !isEsh) {
+          enqueue(userId, row);
+          return;
+        }
         try {
           const supabase = getSupabaseClient();
-          const { error } = await supabase.from("attempts").insert(toServerRow(full, userId));
+          const payload = contextColumnSupported() ? row : stripContext(row);
+          const { error } = await supabase.from("attempts").insert(payload);
           if (error) {
-            if (IS_DEV) {
-              const msg = error.message || "";
+            const msg = error.message || "";
+            if (isMissingContextColumnError(msg)) {
+              setContextColumnSupported(false);
+              if (isEsh) {
+                const { error: retryError } = await supabase
+                  .from("attempts")
+                  .insert(stripContext(row));
+                if (!retryError) return;
+              }
+            } else if (IS_DEV) {
               if (/jwt|expired|invalid/i.test(msg)) {
                 console.warn("[attempts sync] insert auth error (token may be expired):", msg);
               } else {
                 console.warn("[attempts sync] insert failed:", msg);
               }
             }
-            enqueue(userId, toServerRow(full, userId));
+            enqueue(userId, row);
           }
         } catch (err) {
           if (IS_DEV) console.warn("[attempts sync] insert network error:", err);
-          enqueue(userId, toServerRow(full, userId));
+          enqueue(userId, row);
         }
       })();
     },
@@ -459,10 +569,15 @@ export default function usePerformance() {
     return canonicalizeTopic(a.topic);
   };
 
-  const getTopicStats = useCallback((): TopicStats[] => {
+  // Every stat getter aggregates ONE context (default esh) — accuracy is
+  // never blended across sections. For course contexts the topic key is the
+  // raw unit slug (no ЭЕШ canonicalization).
+  const getTopicStats = useCallback((context: string = DEFAULT_CONTEXT): TopicStats[] => {
+    const isEsh = context === DEFAULT_CONTEXT;
     const map: Record<string, { correct: number; total: number }> = {};
     for (const a of attempts) {
-      const topic = resolveCurrentTopic(a);
+      if (contextOf(a) !== context) continue;
+      const topic = isEsh ? resolveCurrentTopic(a) : a.topic;
       if (!map[topic]) map[topic] = { correct: 0, total: 0 };
       map[topic].total++;
       if (a.isCorrect) map[topic].correct++;
@@ -489,6 +604,7 @@ export default function usePerformance() {
   const getSkillStats = useCallback((): SkillStats[] => {
     const map: Record<string, { correct: number; total: number }> = {};
     for (const a of attempts) {
+      if (contextOf(a) !== DEFAULT_CONTEXT) continue; // skill tags are ЭЕШ vocabulary
       const tag = getQuestionBySource(a.questionSource)?.skill_tag;
       if (!tag) continue;
       if (!map[tag]) map[tag] = { correct: 0, total: 0 };
@@ -514,15 +630,40 @@ export default function usePerformance() {
       .slice(0, limit);
   }, [getSkillStats]);
 
-  const getOverallStats = useCallback(() => {
-    const total = attempts.length;
-    const correct = attempts.filter((a) => a.isCorrect).length;
+  const getOverallStats = useCallback((context: string = DEFAULT_CONTEXT) => {
+    const pool = attempts.filter((a) => contextOf(a) === context);
+    const total = pool.length;
+    const correct = pool.filter((a) => a.isCorrect).length;
     return {
       total,
       correct,
       incorrect: total - correct,
       accuracy: total > 0 ? Math.round((correct / total) * 100) : 0,
     };
+  }, [attempts]);
+
+  // One summary card per context the student has touched, newest activity
+  // first. This is the dashboard's section index — counts are per-section
+  // and deliberately never combined into a blended accuracy.
+  const getContextSummaries = useCallback(() => {
+    const map: Record<string, { total: number; correct: number; lastActive: number }> = {};
+    for (const a of attempts) {
+      const ctx = contextOf(a);
+      const entry = map[ctx] ?? { total: 0, correct: 0, lastActive: 0 };
+      entry.total++;
+      if (a.isCorrect) entry.correct++;
+      entry.lastActive = Math.max(entry.lastActive, a.timestamp);
+      map[ctx] = entry;
+    }
+    return Object.entries(map)
+      .map(([context, s]) => ({
+        context,
+        total: s.total,
+        correct: s.correct,
+        accuracy: s.total > 0 ? Math.round((s.correct / s.total) * 100) : 0,
+        lastActive: s.lastActive,
+      }))
+      .sort((a, b) => b.lastActive - a.lastActive);
   }, [attempts]);
 
   // Per-topic stats limited to attempts written from full practice-test
@@ -534,7 +675,7 @@ export default function usePerformance() {
   const getTestOnlyTopicStats = useCallback((): TopicStats[] => {
     const map: Record<string, { correct: number; total: number }> = {};
     for (const a of attempts) {
-      if (a.source !== "test") continue;
+      if (a.source !== "test" || contextOf(a) !== DEFAULT_CONTEXT) continue;
       const topic = resolveCurrentTopic(a);
       if (!map[topic]) map[topic] = { correct: 0, total: 0 };
       map[topic].total++;
@@ -567,7 +708,7 @@ export default function usePerformance() {
       { startedAt: number; completedAt: number; correct: number; total: number }
     > = {};
     for (const a of attempts) {
-      if (a.source !== "test") continue;
+      if (a.source !== "test" || contextOf(a) !== DEFAULT_CONTEXT) continue;
       const testId = parseTestId(a.questionSource);
       if (!testId) continue;
       const entry = byTest[testId] ?? {
@@ -643,6 +784,7 @@ export default function usePerformance() {
     hasTestOnlyData,
     getWeakTopics,
     getOverallStats,
+    getContextSummaries,
     getLastAttempt,
     clearAll,
   };
