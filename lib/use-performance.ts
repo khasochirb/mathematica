@@ -5,6 +5,7 @@ import { useAuth } from "./auth-context";
 import { getSupabaseClient } from "./supabase";
 import { getMpToken } from "./api";
 import { canonicalizeTopic, canonicalizeSubtopic, getQuestionBySource, TOPIC_LABELS } from "./esh-questions";
+import { skillLabel } from "./skill-study-map";
 import { clearAllAnonPracticeCounts } from "./anon-practice-gate";
 
 export interface AttemptRecord {
@@ -29,6 +30,17 @@ export interface TopicStats {
   total: number;
   correct: number;
   incorrect: number;
+  accuracy: number;
+}
+
+// Per-skill_tag accuracy — one level finer than TopicStats. Attempts resolve
+// to their question's skill_tag via the bank; untagged/unresolvable attempts
+// are skipped rather than guessed.
+export interface SkillStats {
+  tag: string;
+  label: string;
+  total: number;
+  correct: number;
   accuracy: number;
 }
 
@@ -474,6 +486,34 @@ export default function usePerformance() {
     return stats.slice(0, 2).map((s) => s.topic);
   }, [getTopicStats]);
 
+  const getSkillStats = useCallback((): SkillStats[] => {
+    const map: Record<string, { correct: number; total: number }> = {};
+    for (const a of attempts) {
+      const tag = getQuestionBySource(a.questionSource)?.skill_tag;
+      if (!tag) continue;
+      if (!map[tag]) map[tag] = { correct: 0, total: 0 };
+      map[tag].total++;
+      if (a.isCorrect) map[tag].correct++;
+    }
+    return Object.entries(map)
+      .map(([tag, { correct, total }]) => ({
+        tag,
+        label: skillLabel(tag),
+        total,
+        correct,
+        accuracy: total > 0 ? Math.round((correct / total) * 100) : 0,
+      }))
+      .sort((a, b) => a.accuracy - b.accuracy);
+  }, [attempts]);
+
+  // Weakest skills worth showing: at least 2 attempts (one wrong answer is
+  // noise, not a diagnosis) and accuracy under 60%.
+  const getWeakSkills = useCallback((limit: number = 4): SkillStats[] => {
+    return getSkillStats()
+      .filter((s) => s.total >= 2 && s.accuracy < 60)
+      .slice(0, limit);
+  }, [getSkillStats]);
+
   const getOverallStats = useCallback(() => {
     const total = attempts.length;
     const correct = attempts.filter((a) => a.isCorrect).length;
@@ -596,6 +636,8 @@ export default function usePerformance() {
     isOffline,
     recordAttempt,
     getTopicStats,
+    getSkillStats,
+    getWeakSkills,
     getTestOnlyTopicStats,
     getTestOnlySessions,
     hasTestOnlyData,

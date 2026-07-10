@@ -23,6 +23,7 @@ import { getTestQuestions, getTestInfo, TOPIC_LABELS } from "@/lib/esh-questions
 import type { Question } from "@/lib/esh-questions";
 import { hasSection2, getTestSection2, gradeSection2 } from "@/lib/esh-section2";
 import { getStudyTarget } from "@/lib/exam-study-map";
+import { getSkillStudyTarget, skillLabel } from "@/lib/skill-study-map";
 import { pickAutoTriggerSkill, type GradedResult } from "@/lib/refinement-loop";
 import useRefinementLoop from "@/lib/use-refinement-loop";
 import { useAuth } from "@/lib/auth-context";
@@ -109,6 +110,32 @@ export default function TestResultsPage() {
   const weakTopics = topicStats
     .filter((s) => s.accuracy < 50)
     .sort((a, b) => a.accuracy - b.accuracy);
+
+  // One level finer than topics: per-skill accuracy on THIS test, routed to
+  // the exact lessons that repair each skill. ≥2 attempts before diagnosing.
+  const weakSkills = useMemo(() => {
+    if (!session) return [];
+    const map: Record<string, { correct: number; total: number }> = {};
+    for (const q of questions) {
+      if (!q.skill_tag) continue;
+      if (!map[q.skill_tag]) map[q.skill_tag] = { correct: 0, total: 0 };
+      map[q.skill_tag].total++;
+      const answer = session.answers[q.questionNumber];
+      if (answer === q.answer) map[q.skill_tag].correct++;
+    }
+    return Object.entries(map)
+      .map(([tag, { correct, total }]) => ({
+        tag,
+        label: skillLabel(tag),
+        target: getSkillStudyTarget(tag),
+        correct,
+        total,
+        accuracy: total > 0 ? Math.round((correct / total) * 100) : 0,
+      }))
+      .filter((s) => s.total >= 2 && s.accuracy < 60)
+      .sort((a, b) => a.accuracy - b.accuracy)
+      .slice(0, 4);
+  }, [session, questions]);
 
   const filteredQuestions = useMemo(() => {
     if (!session) return [];
@@ -391,6 +418,39 @@ export default function TestResultsPage() {
                   Дадлага хийх
                 </Link>
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* Weak skills → the exact lessons that repair them. This is the
+            fine-grained layer under the topic card: every question carries a
+            skill_tag, so the diagnosis lands on lessons, not just units. */}
+        {weakSkills.length > 0 && (
+          <div className="card-edit p-5 mb-4">
+            <div className="eyebrow mb-3">Сул чадварууд — юуг үзэх вэ</div>
+            <div className="space-y-3">
+              {weakSkills.map((s) => (
+                <div key={s.tag}>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-[13px]" style={{ color: "var(--fg)" }}>{s.label}</span>
+                    <span className="mono text-[11px] tabular" style={{ color: "var(--warn)" }}>
+                      {s.correct}/{s.total}
+                    </span>
+                  </div>
+                  {s.target && (
+                    <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
+                      {[s.target.primary, ...s.target.links.slice(0, 1)].map((l, i) => (
+                        <span key={l.href}>
+                          {i > 0 && " · "}
+                          <Link href={l.href} className="underline underline-offset-2" style={{ color: "var(--accent)" }}>
+                            {l.label}
+                          </Link>
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         )}

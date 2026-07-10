@@ -15,6 +15,7 @@ import useTestSession from "@/lib/use-test-session";
 import useFlaggedQuestions from "@/lib/use-flagged-questions";
 import { TOPIC_LABELS } from "@/lib/esh-questions";
 import { getStudyTarget } from "@/lib/exam-study-map";
+import { getSkillStudyTarget } from "@/lib/skill-study-map";
 
 export default function ProgressPage() {
   const [mounted, setMounted] = useState(false);
@@ -228,6 +229,41 @@ export default function ProgressPage() {
                       Дадлага хийх
                     </Link>
                   </div>
+                </div>
+              </div>
+            )}
+
+            {/* Weak skills — per-skill_tag accuracy across all attempts,
+                each routed to the exact lessons that repair it. */}
+            {perf.getWeakSkills().length > 0 && (
+              <div className="card-edit p-5">
+                <div className="eyebrow mb-3">Сул чадварууд — юуг үзэх вэ</div>
+                <div className="space-y-3">
+                  {perf.getWeakSkills().map((s) => {
+                    const target = getSkillStudyTarget(s.tag);
+                    return (
+                      <div key={s.tag}>
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-[13px]" style={{ color: "var(--fg)" }}>{s.label}</span>
+                          <span className="mono text-[11px] tabular" style={{ color: "var(--warn)" }}>
+                            {s.correct}/{s.total}
+                          </span>
+                        </div>
+                        {target && (
+                          <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
+                            {[target.primary, ...target.links.slice(0, 1)].map((l, i) => (
+                              <span key={l.href}>
+                                {i > 0 && " · "}
+                                <Link href={l.href} className="underline underline-offset-2" style={{ color: "var(--accent)" }}>
+                                  {l.label}
+                                </Link>
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             )}
