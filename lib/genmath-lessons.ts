@@ -158,6 +158,7 @@ import psBinomialDist from "@/data/genmath/prob-stats/binomial-distribution.json
 import psDescribingData from "@/data/genmath/prob-stats/describing-data.json";
 import psDistPosition from "@/data/genmath/prob-stats/distributions-and-position.json";
 import psTwoVariable from "@/data/genmath/prob-stats/two-variable-data.json";
+import psInference from "@/data/genmath/prob-stats/inference-and-studies.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -905,7 +906,7 @@ export const PROBSTAT_SPINE: GeometrySpineEntry[] = [
     title: "Sampling, Studies & Inference",
     blurb: "Random sampling, bias, experiments vs observation, simulation-based inference, and margin of error — the capstone.",
     buildsOn: "Everything — probability (Units 5–8) judges what data (Units 9–11) shows.",
-    live: false,
+    live: true,
   },
 ];
 
@@ -921,6 +922,7 @@ const probStatUnits: CourseUnit[] = [
   psDescribingData as unknown as CourseUnit,
   psDistPosition as unknown as CourseUnit,
   psTwoVariable as unknown as CourseUnit,
+  psInference as unknown as CourseUnit,
 ];
 
 export function getProbStatSpine(): GeometrySpineEntry[] {

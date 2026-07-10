@@ -1,0 +1,1112 @@
+{
+  "slug": "inference-and-studies",
+  "title": "Sampling, Studies & Inference",
+  "unit": 12,
+  "status": "published",
+  "blurb": "Random sampling, bias, experiments vs observation, simulation-based inference, and margin of error — the capstone.",
+  "buildsOn": "Everything — probability (Units 5–8) judges what data (Units 9–11) shows.",
+  "lessons": [
+    {
+      "slug": "populations-and-samples",
+      "title": "Populations, Samples & Random Selection",
+      "concreteComparison": "A soup chef doesn't drink the pot to check the salt — one spoonful speaks for all of it, IF the pot was stirred. Polling asks the same trick of people: let $1{,}000$ well-chosen voters speak for a nation. The whole pot is the **population**; the spoonful is the **sample**; and random selection is the stirring that makes the spoonful trustworthy.",
+      "objective": "Distinguish populations from samples, and use random selection methods (SRS, stratified, systematic) that earn a sample the right to speak.",
+      "concept": [
+        "The **population** is everyone you want conclusions about; the **sample** is who you actually measured. The leap from sample to population — **inference** — is the whole game, and it's only licensed by HOW the sample was chosen.",
+        "A **simple random sample (SRS)** gives every member (indeed every possible group) an equal chance: names in a hat, random number generators against a complete roster. Randomness needs a MECHANISM — human 'haphazard' picking reliably favors the reachable and the friendly.",
+        "Refinements keep the guarantee while adding structure: **stratified** sampling randomizes within groups (grades, regions) to mirror known structure exactly; **systematic** sampling takes every $k$-th name from a list (sound IF the list order is unrelated to the question).",
+        "Sample SIZE is secondary to sample METHOD: a stirred spoonful of $1{,}000$ beats an unstirred bucket of a million. (History proved this spectacularly — the capstone's fun fact.)"
+      ],
+      "keyIdea": "Population = who you want to know about; sample = who you measured; only a random MECHANISM licenses the leap between them — method beats size.",
+      "facts": [
+        {
+          "title": "The cast",
+          "latex": "\\text{population} \\supset \\text{sample} \\to \\text{inference}",
+          "explanation": "Conclusions flow sample→population only when selection was random."
+        },
+        {
+          "title": "The methods",
+          "latex": "\\text{SRS} \\cdot \\text{stratified} \\cdot \\text{systematic}",
+          "explanation": "Equal-chance mechanisms, with structure added deliberately — never by convenience."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "in-l1-w1",
+          "statement": "A principal wants the average daily screen time of the school's $1{,}200$ students and surveys $80$. Name the population, sample, and a legitimate selection method.",
+          "solution": "Population: all $1{,}200$ students; sample: the $80$ surveyed. Legitimate method: number the full roster $1$–$1200$, draw $80$ distinct random numbers (SRS) — every student, and every possible group of $80$, equally likely.",
+          "check": ["80 < 1200"]
+        },
+        {
+          "id": "in-l1-w2",
+          "statement": "The school is $60\\%$ middle-schoolers and $40\\%$ high-schoolers, and screen habits likely differ by level. Improve the SRS with stratification — what does the $80$-student sample look like?",
+          "solution": "Stratify: randomly select $48$ middle-schoolers ($60\\%$ of $80$) and $32$ high-schoolers ($40\\%$) from each roster separately. The sample now mirrors the known structure EXACTLY, instead of approximately — same randomness, less luck needed.",
+          "check": ["60*80/100 == 48", "40*80/100 == 32", "48 + 32 == 80"]
+        },
+        {
+          "id": "in-l1-w3",
+          "statement": "A factory samples every $25$th phone from the day's production line of $5{,}000$. How many get tested, and when is this systematic method sound?",
+          "solution": "$5000 / 25 = 200$ tested. Sound IF the line's order is unrelated to defects. Danger case: a machine cycle that misbehaves every $25$th unit would hide perfectly (or dominate absurdly) — periodic processes and matching sampling intervals are the method's one enemy.",
+          "check": ["5000/25 == 200"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Calling any casual selection 'random'.",
+          "correction": "Wandering the cafeteria asking 'random' students favors the present, the friendly, the not-busy. Random means a MECHANISM — numbered roster plus random numbers — not an adjective for 'unplanned'.",
+          "authored": true
+        },
+        {
+          "text": "Chasing sample size over sample method.",
+          "correction": "A million-response unstirred sample measures its own bias with great precision. A proper 1,000-person SRS beats it. Fix the method first; size buys precision only after.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "in-l1-t1",
+          "statement": "A biologist nets $150$ fish from a lake to estimate average length. Name population and sample, and one worry about the net as a selection mechanism.",
+          "solution": "Population: all fish in the lake; sample: the $150$ netted. Worry: nets select by SIZE (small fish escape the mesh) — a non-random mechanism biasing lengths upward.",
+          "check": ["1 == 1"]
+        },
+        {
+          "id": "in-l1-t2",
+          "statement": "Design a stratified sample of $50$ from a company of $500$: $300$ engineers, $150$ sales, $50$ managers.",
+          "solution": "Proportions $60/30/10\\%$: randomly select $30$ engineers, $15$ sales, $5$ managers from each group's roster.",
+          "check": ["300/500*50 == 30", "150/500*50 == 15", "50/500*50 == 5"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The capstone opens",
+            "title": "The spoonful and the pot",
+            "beats": [
+              "The chef tastes ONE spoonful — for the whole pot.",
+              "Legitimate because the pot was STIRRED.",
+              "Population = the pot. Sample = the spoonful. Stirring = random selection.",
+              "Unit 12 asks: when may the spoonful speak for the pot?"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The mechanisms",
+            "title": "Random needs machinery",
+            "beats": [
+              "SRS: full roster + random numbers — every member equal.",
+              "Stratified: randomize WITHIN known groups; mirror the structure exactly.",
+              "Systematic: every $k$-th from a list — sound if order is innocent.",
+              "'Haphazard' is not a mechanism. Humans can't do random by feel."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Mechanism drill",
+            "title": "Which one is an SRS?",
+            "prompt": "To sample $30$ of $600$ students, which method is a true SRS?",
+            "options": ["Random numbers drawn against the full alphabetical roster", "The first 30 into the cafeteria", "One volunteer from each homeroom"],
+            "correctIndex": 0,
+            "explanation": "Only the roster + random numbers gives every student (and every possible group of 30) equal chance. Early-to-lunch students and volunteers are self-selected sub-populations — the door and the enthusiasm did the choosing.",
+            "check": ["30 < 600"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The screen-time survey",
+            "problemId": "in-l1-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Stratifying the school",
+            "problemId": "in-l1-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Every 25th phone",
+            "problemId": "in-l1-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Priorities",
+            "title": "Method vs size",
+            "prompt": "Which sample better estimates a city's average commute: (A) $100{,}000$ responses to a drive-time-app poll, or (B) a $1{,}000$-person SRS from the resident register?",
+            "options": ["B — the app poll only reaches drivers who use the app", "A — a hundred times more data", "Equal — both are big"],
+            "correctIndex": 0,
+            "explanation": "The app's sample is chosen by app-ownership (excluding transit riders, cyclists, non-users) — 100,000 responses measure the app's user base, precisely. Method licenses inference; size just narrows the wobble around whatever the method points at.",
+            "check": ["100000 > 1000"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Design habit",
+            "title": "Write the roster sentence",
+            "body": "Every sampling plan should be able to complete: \"the full list of the population is ___, and selection used ___ as the random mechanism.\" If the roster doesn't exist (all fish, all future customers), name the compromise and its direction — that honesty is the difference between statistics and marketing."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The biologist's net",
+            "problemId": "in-l1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Stratify the company",
+            "problemId": "in-l1-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The two-million-ballot disaster",
+            "body": "In 1936, Literary Digest magazine polled 10 MILLION Americans (2.4M responded) and confidently predicted the wrong president — its mailing lists (car owners, telephone subscribers) skewed wealthy during the Depression. George Gallup called the election with a sample 50 times smaller, properly mixed. Method beat size, publicly and forever."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Inference = the sample→population leap; only random mechanisms license it.",
+              "SRS, stratified, systematic — machinery, not vibes.",
+              "Method first, size second: a stirred spoonful beats an unstirred bucket."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "bias-in-sampling",
+      "title": "Bias: How Samples Lie",
+      "concreteComparison": "A radio host asks listeners to call in about a proposed tax: $84\\%$ of callers oppose it. The next week, a proper survey finds the city split $50$–$50$. Nobody lied — the METHOD did: angry people call, content people don't. **Bias** is a tilt built into how the data was gathered, invisible in the data itself, and no amount of data fixes it.",
+      "objective": "Recognize the major bias species — convenience, voluntary response, undercoverage, nonresponse, response bias — and predict each one's direction.",
+      "concept": [
+        "**Bias** is a SYSTEMATIC tilt from the selection or measurement method — unlike random error, it doesn't average out; more data just repeats the tilt more precisely.",
+        "The selection species: **convenience** (whoever's easy to reach), **voluntary response** (whoever cares enough — the loudest opinions), **undercoverage** (the method can't even see part of the population: landline polls miss mobile-only homes).",
+        "The data-collection species: **nonresponse** (chosen people who refuse or can't be reached may differ from those who answer), and **response bias** (the ANSWERS are tilted: leading question wording, interviewers people want to please, embarrassing topics under-reported).",
+        "The professional's move isn't just NAMING the bias — it's predicting its DIRECTION: call-in tax polls overstate opposition; exercise surveys at gyms overstate fitness; self-reported screen time understates it. Direction turns criticism into correction."
+      ],
+      "keyIdea": "Bias is a method-tilt that data volume can't fix; name the species AND predict the direction.",
+      "facts": [
+        {
+          "title": "The species",
+          "latex": "\\text{convenience} \\cdot \\text{voluntary} \\cdot \\text{undercoverage} \\cdot \\text{nonresponse} \\cdot \\text{response}",
+          "explanation": "Three ways to pick wrong, two ways to measure wrong."
+        },
+        {
+          "title": "The signature",
+          "latex": "\\text{more data} \\to \\text{same tilt, more precisely}",
+          "explanation": "Random error shrinks with n; bias doesn't — it's aimed, not noisy."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "in-l2-w1",
+          "statement": "The call-in tax poll ($84\\%$ opposed) vs the proper survey ($50$–$50$). Name the bias and explain the gap's direction.",
+          "solution": "Voluntary response: calling costs effort, and anger funds effort — opponents self-select. Direction: opposition OVERSTATED, by $34$ points here. The $84\\%$ described the callers perfectly; it described the city not at all.",
+          "check": ["84 - 50 == 34"]
+        },
+        {
+          "id": "in-l2-w2",
+          "statement": "A city studies commute satisfaction by polling at downtown parking garages, 8–9 AM. Diagnose ALL the biases you can, with directions.",
+          "solution": "Undercoverage: transit riders, cyclists, walkers, and off-hours workers can't appear — car-commuter opinions dominate. Convenience: only downtown workers. Direction: satisfaction with ROADS overweighted, transit problems invisible. Fix: sample from the resident register, not the garage.",
+          "check": ["1 == 1"]
+        },
+        {
+          "id": "in-l2-w3",
+          "statement": "Two phrasings: \"Do you support protecting children from dangerous online content?\" vs \"Do you support government censorship of the internet?\" — same policy. What bias is this, and what's the honest phrasing?",
+          "solution": "Response bias via loaded wording — each version smuggles its verdict into the question ('protecting children' vs 'censorship'). Honest phrasing states the policy neutrally: \"Do you support or oppose requiring platforms to remove content of type X?\" — and serious polls publish the exact wording so readers can audit it.",
+          "check": ["1 == 1"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Believing a big biased sample over a small clean one.",
+          "correction": "2.4 million tilted ballots lost to Gallup's 50-times-smaller mixed sample. Bias is direction, not noise — n shrinks noise only.",
+          "authored": true
+        },
+        {
+          "text": "Stopping at 'that's biased'.",
+          "correction": "Every method has imperfections; the useful analysis names the species, predicts the DIRECTION, and estimates whether the tilt could change the conclusion. 'Biased how, and which way?' is the professional question.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "in-l2-t1",
+          "statement": "An online poll on a gaming site asks whether video games improve intelligence; $91\\%$ say yes. Name the biases and the direction.",
+          "solution": "Voluntary response + undercoverage (only gamers on a gaming site): yes-votes overstated, massively. The 91% describes gamers who vote in polls about themselves.",
+          "check": ["91 > 50"]
+        },
+        {
+          "id": "in-l2-t2",
+          "statement": "A survey asks teenagers, face to face, how many hours they study daily. Predict the response bias and its direction.",
+          "solution": "Social desirability: study hours OVER-reported to the adult asking. Anonymous questionnaires (or measured data) shrink it.",
+          "check": ["1 == 1"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The villain",
+            "title": "Nobody lied; the method did",
+            "beats": [
+              "Call-in poll: $84\\%$ oppose the tax. Real survey: $50$–$50$.",
+              "Angry people call. Content people cook dinner.",
+              "Bias: a tilt built into the METHOD, invisible in the data.",
+              "And more data makes it WORSE — precisely wrong."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The lineup",
+            "title": "Five species",
+            "beats": [
+              "Selection: convenience (the reachable), voluntary (the loud), undercoverage (the invisible).",
+              "Collection: nonresponse (the refusers differ), response (the answers tilt).",
+              "Each has a predictable DIRECTION — that's the skill.",
+              "Gym surveys overstate fitness. Call-ins overstate anger. Say which way."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Species drill",
+            "title": "Classify it",
+            "prompt": "A pollster's landline calls at 2 PM on weekdays systematically miss working adults and mobile-only homes. The species is…",
+            "options": ["Undercoverage — parts of the population can't enter the sample", "Voluntary response", "Response bias"],
+            "correctIndex": 0,
+            "explanation": "The method's reach EXCLUDES groups regardless of their willingness — that's undercoverage. (Voluntary response is about who opts in; response bias is about tilted answers.) Direction: retiree-heavy opinions.",
+            "check": ["1 == 1"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The call-in autopsy",
+            "problemId": "in-l2-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The parking-garage poll",
+            "problemId": "in-l2-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The loaded question",
+            "problemId": "in-l2-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Direction drill",
+            "title": "Which way does it tilt?",
+            "prompt": "A school emails a homework-load survey; $35\\%$ respond. Who plausibly responds more, and which way does measured 'stress' tilt?",
+            "options": ["Stressed families respond more — stress OVERSTATED", "Random 35% — no tilt", "Happy families respond more — stress understated"],
+            "correctIndex": 0,
+            "explanation": "Nonresponse bias: surveys about a grievance recruit the aggrieved. (The reverse can happen — swamped families too busy to respond — which is why direction is argued, not assumed. But 'no tilt from a 35% response' is the one indefensible option.)",
+            "check": ["35 < 100"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Reading the news",
+            "title": "The three questions for any poll",
+            "body": "(1) WHO was asked — and who couldn't be? (2) Who CHOSE to answer? (3) What were the exact words? Any report that won't tell you all three has something in its basement. Serious pollsters publish methodology pages precisely so these questions have answers."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The gaming-site poll",
+            "problemId": "in-l2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Study-hours inflation",
+            "problemId": "in-l2-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The bomber armor story",
+            "body": "WWII analysts mapped bullet holes on RETURNING bombers to decide where to add armor. Statistician Abraham Wald reversed the logic: armor where returning planes are CLEAN — planes hit there never came back. 'Survivorship bias' is undercoverage's deadliest form: the missing data was the answer."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Bias tilts systematically; volume sharpens the wrong answer.",
+              "Five species: convenience, voluntary, undercoverage, nonresponse, response.",
+              "Name the species, argue the direction, judge if it flips the conclusion."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "experiments-vs-observation",
+      "title": "Experiments vs Observation",
+      "concreteComparison": "Unit 11 left a debt: tutored students score higher, but wealth lurks behind both. Here's the payoff. Take $100$ volunteers, flip a coin for each: heads gets tutoring, tails doesn't. Now the two groups match on wealth, motivation, prior grades — everything, known and unknown — because the COIN chose. If the tutored group still scores higher, tutoring did it. That's an experiment, and it's the only tool that buys causation.",
+      "objective": "Distinguish observational studies from experiments, and use the design pillars: random assignment, control groups, placebo, and blinding.",
+      "concept": [
+        "An **observational study** measures what happens on its own (who chose tutoring, who smokes) — associations only, lurkers at large. An **experiment** IMPOSES the treatment by **random assignment** — the coin balances every lurking variable, known and unknown, between groups.",
+        "The pillars: a **control group** (no treatment, or standard treatment) provides the comparison baseline; **placebo** controls handle the improvement people show from merely BEING treated (sugar pills genuinely reduce reported pain); **blinding** keeps subjects — and, in double-blind studies, the measurers too — ignorant of group assignments, so expectations can't tilt outcomes.",
+        "Random ASSIGNMENT (who gets the treatment) buys causation; random SELECTION (who enters the study) buys generalization. A drug trial on randomized volunteers proves the drug works — on people like the volunteers. The two randomnesses answer different questions; the gold standard uses both.",
+        "When experiments are impossible (you can't assign smoking, poverty, earthquakes), observational evidence accumulates carefully — consistency across studies, dose-response, mechanism — but the causal claim stays humbler, and honest reports say so."
+      ],
+      "keyIdea": "Random assignment balances ALL lurkers and buys causation; control + placebo + blinding guard the comparison; random selection separately buys generalization.",
+      "facts": [
+        {
+          "title": "The great divide",
+          "latex": "\\text{observe} \\to \\text{association}; \\quad \\text{randomly assign} \\to \\text{causation}",
+          "explanation": "The coin balances every lurking variable — that's the entire magic."
+        },
+        {
+          "title": "Two randomnesses",
+          "latex": "\\text{assignment} \\to \\text{causation}; \\quad \\text{selection} \\to \\text{generalization}",
+          "explanation": "Different questions, different coins; the gold standard uses both."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "in-l3-w1",
+          "statement": "Design the tutoring experiment properly for $100$ volunteer students.",
+          "solution": "Randomly assign (coin/random numbers): $50$ to tutoring, $50$ to control (study hall, so time-spent matches). Pre-register the outcome (exam score). Blind the graders (they don't know groups). Compare group means at the end. The random assignment balances wealth, motivation, prior grades — the Unit 11 lurkers all die at once.",
+          "check": ["100/2 == 50"]
+        },
+        {
+          "id": "in-l3-w2",
+          "statement": "Why does a serious drug trial need a placebo group AND blinding — isn't a no-treatment control enough?",
+          "solution": "People given ANY pill improve somewhat (placebo effect) — expectation is itself a treatment. Placebo pills separate the drug's chemistry from the ritual of being treated. Blinding the patients prevents expectation-tilted symptom reports; blinding the doctors (double-blind) prevents hopeful measurement. Without both, the comparison measures belief plus chemistry, entangled.",
+          "check": ["1 == 1"]
+        },
+        {
+          "id": "in-l3-w3",
+          "statement": "\"Smokers get lung cancer at many times the non-smoker rate\" comes from observational data — no one randomly assigns smoking. Why is the causal conclusion still accepted?",
+          "solution": "Accumulated observational rigor: the association is enormous, consistent across hundreds of studies and populations, shows dose-response (more smoking, more cancer), has a lab-demonstrated mechanism (carcinogens), and survives every proposed lurker (the 'smoker gene' hypothesis was tested and failed). Causation without experiments is possible — it just takes decades of converging evidence instead of one coin.",
+          "check": ["1 == 1"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Calling any study with two groups an 'experiment'.",
+          "correction": "Comparing existing tutored vs untutored students is OBSERVATIONAL — the groups chose themselves, lurkers intact. Experiment means the researcher's coin assigned the groups.",
+          "authored": true
+        },
+        {
+          "text": "Confusing the two randomnesses.",
+          "correction": "Randomly SELECTING who's studied ≠ randomly ASSIGNING who's treated. Selection generalizes; assignment de-lurks. A volunteer-based randomized trial proves causation for people like the volunteers.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "in-l3-t1",
+          "statement": "A farm tests fertilizer on $40$ plots. Design the experiment in two sentences.",
+          "solution": "Randomly assign $20$ plots to fertilizer and $20$ to none (or standard), by random numbers — soil, drainage, and sunlight lurkers balance. Measure yields; compare group means (blind the weighers if feasible).",
+          "check": ["40/2 == 20"]
+        },
+        {
+          "id": "in-l3-t2",
+          "statement": "\"People who take vitamins live longer\" (observational). Offer two lurkers and the design that would settle it.",
+          "solution": "Lurkers: health-consciousness (vitamin-takers also exercise, eat well) and wealth (afford both vitamins and healthcare). Settling design: randomly assign vitamin vs placebo, double-blind, follow for years. (Such trials exist — and mostly show much weaker effects than the observational data suggested.)",
+          "check": ["1 == 1"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The payoff",
+            "title": "The coin kills every lurker",
+            "beats": [
+              "Unit 11's debt: tutoring correlates with scores; wealth lurks.",
+              "Flip a coin per volunteer: heads tutored, tails not.",
+              "The groups now match on wealth, motivation, EVERYTHING — known and unknown.",
+              "Remaining difference → the tutoring did it. Causation, purchased."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The pillars",
+            "title": "Control, placebo, blind",
+            "beats": [
+              "Control group: the baseline the treatment must beat.",
+              "Placebo: being-treated is itself a treatment — separate the ritual from the chemistry.",
+              "Blinding: subjects (and ideally measurers) ignorant of groups.",
+              "Each pillar closes one door that expectation sneaks through."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "The divide",
+            "title": "Experiment or observation?",
+            "prompt": "A researcher compares injury rates of runners who chose minimalist shoes vs cushioned shoes. This is…",
+            "options": ["Observational — runners self-selected their shoes; lurkers intact", "An experiment — there are two groups", "An experiment if the sample is large"],
+            "correctIndex": 0,
+            "explanation": "The runners' own choices formed the groups — running style, weight, experience all lurk. Two groups ≠ experiment; the researcher's RANDOM assignment is the defining act, and size doesn't substitute.",
+            "check": ["1 == 1"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Tutoring, done right",
+            "problemId": "in-l3-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Why placebo and blinding",
+            "problemId": "in-l3-w2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Two randomnesses",
+            "title": "What does each buy?",
+            "prompt": "A sleep-app trial randomly ASSIGNS the app among $500$ tech-conference volunteers. What's licensed?",
+            "options": ["Causation for people like the volunteers; generalizing to everyone needs random SELECTION too", "Nothing — volunteers ruin everything", "Causation for all humans"],
+            "correctIndex": 0,
+            "explanation": "Assignment de-lurks within the studied group: the app's effect is real FOR tech-conference-goers. Whether it works for retirees or farmers is a selection question the design didn't buy. Two coins, two purchases.",
+            "check": ["500/2 == 250"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Smoking: causation without a coin",
+            "problemId": "in-l3-w3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Ethics gate",
+            "title": "Some coins may never be flipped",
+            "body": "You can't randomly assign smoking, abusive childhoods, or poverty — ethics forbids imposing harm. That's WHY observational epidemiology exists and why its standards (consistency, dose-response, mechanism) are so demanding. 'Just run an experiment' is sometimes the one answer science isn't allowed."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The fertilizer trial",
+            "problemId": "in-l3-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The vitamin claim",
+            "problemId": "in-l3-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The first controlled trial was citrus",
+            "body": "In 1747, ship's surgeon James Lind divided twelve scurvied sailors into six pairs and gave each pair a different remedy — cider, acid, seawater, oranges and lemons... The citrus pair recovered in days. One tiny controlled comparison outweighed centuries of theory, and naval lemon juice eventually followed. Randomization came later; the control-group idea started at sea."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Random assignment balances all lurkers — the only purchase of causation.",
+              "Pillars: control, placebo, blinding — each closes an expectation door.",
+              "Assignment ≠ selection: causation vs generalization; ethics limits the coins."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "sampling-variability",
+      "title": "Sampling Variability",
+      "concreteComparison": "The school is EXACTLY $50\\%$ girls. Draw a random sample of $20$ students — you get $11$ girls ($55\\%$). Another sample: $9$ ($45\\%$). Another: $12$. The truth never moved; the SAMPLES wobble around it. That wobble — sampling variability — is not a flaw. It's a predictable, quantifiable feature, and its predictability is what makes inference possible at all.",
+      "objective": "Understand that sample statistics wobble around the population truth, and that the wobble shrinks predictably as 1/√n.",
+      "concept": [
+        "A sample statistic (like the sample proportion $\\hat{p}$) is a RANDOM VARIABLE — Unit 7 vocabulary: each fresh sample yields a fresh value, wobbling around the population truth $p$.",
+        "The wobble is UNBIASED under random sampling (centered on the truth — no tilt) and its size is governed by Unit 8's binomial math: counts spread as $\\sqrt{np(1-p)}$, so proportions spread as $\\sqrt{\\frac{p(1-p)}{n}}$.",
+        "The headline: wobble shrinks like $\\frac{1}{\\sqrt{n}}$. Four times the sample → HALF the wobble; $100\\times$ the sample → one-tenth. Precision is bought at a quadratic price — the economics of every poll.",
+        "Simulation makes it visible (Unit 8's tool): draw hundreds of size-$20$ samples from a known $50/50$ population and histogram the $\\hat{p}$'s — a bell centered at $0.5$. Repeat with $n = 100$: same center, much narrower bell. The truth stands still; samples buzz around it, tighter as $n$ grows."
+      ],
+      "keyIdea": "Sample statistics wobble around the truth — unbiased under random sampling, with spread shrinking as 1/√n: quadruple the sample, halve the wobble.",
+      "facts": [
+        {
+          "title": "Proportion wobble",
+          "latex": "\\text{SD}(\\hat{p}) = \\sqrt{\\frac{p(1-p)}{n}}",
+          "explanation": "Unit 8's binomial spread, divided through by n — shrinking as 1/√n."
+        },
+        {
+          "title": "The quadratic price",
+          "latex": "4 \\times n \\;\\to\\; \\tfrac{1}{2} \\times \\text{wobble}",
+          "explanation": "Halving uncertainty costs quadrupling the sample."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "in-l4-w1",
+          "statement": "A population is truly $p = 0.5$. For samples of $n = 25$ and $n = 100$, compute the SD of the sample proportion.",
+          "solution": "$n = 25$: $\\sqrt{\\frac{0.25}{25}} = \\sqrt{0.01} = 0.1$ — samples typically land within $\\pm 10$ points of $50\\%$. $n = 100$: $\\sqrt{\\frac{0.25}{100}} = 0.05$ — quadruple the sample, half the wobble, on schedule.",
+          "check": ["sqrt((1/2)*(1/2)/25) == 1/10", "sqrt((1/2)*(1/2)/100) == 1/20"]
+        },
+        {
+          "id": "in-l4-w2",
+          "statement": "Two class samples from the $50\\%$-girl school: $11$ of $20$ ($55\\%$) and $58$ of $100$ ($58\\%$). Which deviation from $50\\%$ is more surprising?",
+          "solution": "Standardize (Unit 10!): $n = 20$ has SD $\\approx 0.112$: $z = \\frac{0.05}{0.112} \\approx 0.45$ — utterly ordinary. $n = 100$ has SD $= 0.05$: $z = \\frac{0.08}{0.05} = 1.6$ — noticeable, still unremarkable. The SAME-sized percentage gap grows more meaningful as $n$ grows: sample size sharpens judgment.",
+          "check": ["sqrt((1/2)*(1/2)/100) == 1/20", "(8/100)/(1/20) == 8/5"]
+        },
+        {
+          "id": "in-l4-w3",
+          "statement": "A pollster with $n = 400$ wants half the current wobble. What sample size — and what does it cost?",
+          "solution": "Halving wobble needs $4\\times$ the sample: $n = 1600$. The cost quadruples for one halving — and halving AGAIN would need $6400$. Diminishing returns are built into the square root; this is why national polls settle near $n \\approx 1000$ (wobble $\\sim 1.6$ points) rather than chasing zeros.",
+          "check": ["4*400 == 1600", "4*1600 == 6400"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Treating one sample's number as the truth.",
+          "correction": "55% in a sample of 20 is one draw from a wobble-band ±10 points wide. The statistic estimates; it doesn't declare. Always ask: how wide is the wobble at this n?",
+          "authored": true
+        },
+        {
+          "text": "Expecting wobble to shrink linearly with n.",
+          "correction": "Doubling n does NOT halve the wobble — quadrupling does. The √n law is the single most budget-relevant fact in statistics.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "in-l4-t1",
+          "statement": "True $p = 0.5$, sample $n = 2500$. Compute SD$(\\hat{p})$.",
+          "solution": "$\\sqrt{\\frac{0.25}{2500}} = \\frac{0.5}{50} = 0.01$ — one percentage point.",
+          "check": ["sqrt((1/2)*(1/2)/2500) == 1/100"]
+        },
+        {
+          "id": "in-l4-t2",
+          "statement": "A simulation draws $500$ samples of size $n$ from a known population and histograms the sample means. What TWO features should the histogram show if sampling is honest?",
+          "solution": "Centered on the population truth (unbiased), and bell-shaped with spread matching the $\\frac{1}{\\sqrt{n}}$ law — tighter for larger $n$.",
+          "check": ["1 == 1"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The revelation",
+            "title": "The truth stands still; samples buzz",
+            "beats": [
+              "School: exactly $50\\%$ girls. Sample of $20$: $55\\%$. Again: $45\\%$. Again: $60\\%$.",
+              "Nothing is wrong. Samples WOBBLE around the truth.",
+              "The statistic is a RANDOM VARIABLE (Unit 7, wearing a poll).",
+              "And its wobble is predictable — which is why inference works."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The law",
+            "title": "Wobble shrinks as 1/√n",
+            "beats": [
+              "SD$(\\hat{p}) = \\sqrt{\\frac{p(1-p)}{n}}$ — Unit 8's binomial, per capita.",
+              "$n = 25$: $\\pm 10$ points. $n = 100$: $\\pm 5$. $n = 2500$: $\\pm 1$.",
+              "Quadruple the sample → HALVE the wobble. Every time.",
+              "Precision has a quadratic price tag."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Law drill",
+            "title": "Buying precision",
+            "prompt": "A poll of $n = 900$ has wobble $\\pm 3$ points. For $\\pm 1$ point, the pollster needs about…",
+            "options": ["$n = 8100$ — nine times the sample for a third of the wobble", "$n = 2700$ — three times", "$n = 1800$ — double"],
+            "correctIndex": 0,
+            "explanation": "Wobble scales as $1/\\sqrt{n}$: shrinking it by $3\\times$ costs $3^2 = 9\\times$ the sample. The square in the price is why 'just poll more people' meets budget meetings.",
+            "check": ["9*900 == 8100"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Twenty-five vs one hundred",
+            "problemId": "in-l4-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Which gap is surprising?",
+            "problemId": "in-l4-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The pollster's budget",
+            "problemId": "in-l4-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Judgment",
+            "title": "Same percent, different meaning",
+            "prompt": "$60\\%$ heads: in $10$ flips vs in $1000$ flips of a fair coin. Verdicts?",
+            "options": ["10 flips: shrug (within a σ). 1000 flips: alarm (over 6σ from fair)", "Both suspicious — 60% is 60%", "Both fine — coins wobble"],
+            "correctIndex": 0,
+            "explanation": "$n{=}10$: SD $\\approx 16$ points — $60\\%$ is ordinary. $n{=}1000$: SD $\\approx 1.6$ points — $60\\%$ sits $6+$ SDs out: essentially impossible for a fair coin. Percentages mean nothing without their wobble-band; n IS the context.",
+            "check": ["sqrt((1/2)*(1/2)/1000) < 2/100"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "The bridge",
+            "title": "Predictable wobble IS inference",
+            "body": "Here's the course's keystone: because we can compute how much samples SHOULD wobble around any hypothesized truth, we can judge whether an observed sample is consistent with that truth (Unit 8's surprise recipe) — and how far the truth plausibly sits from our estimate (next lesson's margin of error). Randomness, tamed, becomes measurement."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The big sample",
+            "problemId": "in-l4-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The honest histogram",
+            "problemId": "in-l4-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The √n law fed the world",
+            "body": "Agricultural yield trials at Rothamsted (where R.A. Fisher worked in the 1920s) had a problem: fields vary wildly plot to plot. Fisher's designs used the 1/√n law to compute exactly how many plots were needed to detect a fertilizer effect through the noise — statistics' first power calculations. Every crop variety you've ever eaten passed through that arithmetic."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Statistics wobble around the truth — unbiased under random sampling.",
+              "SD(p̂) = √(p(1−p)/n): wobble halves when n quadruples.",
+              "Percentages are judged by their wobble-band; predictable wobble is the door to inference."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "margin-of-error",
+      "title": "Margin of Error",
+      "concreteComparison": "\"Candidate A leads $52\\%$ to $48\\%$, margin of error $\\pm 3$ points.\" Is A actually ahead? The margin says: the poll's $52\\%$ could plausibly be anything from $49$ to $55$ — and B's $48\\%$ anything from $45$ to $51$. The ranges OVERLAP: the race is a statistical tie the headline forgot to mention. The margin of error is the wobble-band, published — and reading it is a civic skill.",
+      "objective": "Compute the quick margin of error 1/√n, interpret poll intervals, and judge claims of difference against the margin.",
+      "concept": [
+        "The **margin of error** turns last lesson's wobble into a published interval: estimate $\\pm$ margin. The quick rule for proportions at $95\\%$ confidence: $$\\text{MOE} \\approx \\frac{1}{\\sqrt{n}}$$ ($n = 1000 \\to \\pm 3.2\\%$; $n = 400 \\to \\pm 5\\%$) — the $2\\sigma$ band of Unit 10, applied to $\\hat{p}$'s worst-case spread.",
+        "**Interpretation:** the procedure catches the truth about $95\\%$ of the time — meaning roughly $1$ poll in $20$ misses even with perfect method. An interval is a plausible RANGE for the population value, not a guarantee.",
+        "**Judging differences:** two candidates whose intervals overlap are in statistical-tie territory; a 'lead' smaller than the margin is headline decoration. (Precisely: the margin on the DIFFERENCE is larger than on either share.)",
+        "The fine print that outranks the math: the margin quantifies RANDOM wobble only. Bias — undercoverage, nonresponse, loaded wording — lives entirely OUTSIDE the $\\pm$: a biased poll's margin is precision around the wrong number. Lesson 2 always applies first."
+      ],
+      "keyIdea": "MOE ≈ 1/√n at 95%: estimate ± margin is the plausible range; leads inside the margin are ties; and bias lives outside the ± entirely.",
+      "facts": [
+        {
+          "title": "The quick rule",
+          "latex": "\\text{MOE}_{95\\%} \\approx \\frac{1}{\\sqrt{n}}",
+          "explanation": "n = 1000 → ±3.2%; n = 400 → ±5% — the 2σ band for proportions."
+        },
+        {
+          "title": "The fine print",
+          "latex": "\\text{MOE covers random wobble only — bias is extra}",
+          "explanation": "A biased poll's margin is precision around the wrong number."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "in-l5-w1",
+          "statement": "Compute the quick margin of error for polls of $n = 400$, $1000$, and $2500$.",
+          "solution": "$\\frac{1}{\\sqrt{400}} = \\frac{1}{20} = 5\\%$; $\\frac{1}{\\sqrt{1000}} \\approx 3.2\\%$; $\\frac{1}{\\sqrt{2500}} = \\frac{1}{50} = 2\\%$. Diminishing returns on display: $6\\times$ the interviews from $400 \\to 2500$ buys $3$ points of margin.",
+          "check": ["1/sqrt(400) == 1/20", "1/sqrt(2500) == 1/50"]
+        },
+        {
+          "id": "in-l5-w2",
+          "statement": "Poll: A $52\\%$, B $48\\%$, $n = 1000$ (MOE $\\pm 3.2$). Is A's lead real?",
+          "solution": "A's plausible range: $48.8$–$55.2$; B's: $44.8$–$51.2$. They overlap ($48.8$–$51.2$) — B ahead is entirely plausible. Verdict: statistical tie; the $4$-point 'lead' is close to what the margin can manufacture from a dead heat. (Aggregating several independent polls is the legitimate way to sharpen the call.)",
+          "check": ["52 - 32/10 == 488/10", "48 + 32/10 == 512/10"]
+        },
+        {
+          "id": "in-l5-w3",
+          "statement": "A shampoo ad: \"$90\\%$ of users recommend!\" — based on $n = 30$ mailed-in warranty cards. Attack with both tools.",
+          "solution": "Wobble: MOE $\\approx \\frac{1}{\\sqrt{30}} \\approx 18$ points — the claim is $90 \\pm 18$. Bias (the bigger problem): warranty-card responders are voluntary-response enthusiasts; the $90\\%$ describes fans, not users. Precision math can't rescue a tilted sample — and here it isn't even precise.",
+          "check": ["1/sqrt(30) > 15/100"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Declaring a leader inside the margin.",
+          "correction": "52–48 with ±3 is overlap — a statistical tie. Networks 'call' such races for drama; readers with this unit don't.",
+          "authored": true
+        },
+        {
+          "text": "Reading ±3 as a guarantee.",
+          "correction": "95% confidence means the METHOD misses about 1 time in 20 even when unbiased. And bias isn't covered at all. The ± is a wobble-band, not a warranty.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "in-l5-t1",
+          "statement": "A university surveys $625$ random students: $44\\%$ favor longer library hours. Give the interval.",
+          "solution": "MOE $= \\frac{1}{\\sqrt{625}} = 4\\%$: plausible range $40$–$48\\%$.",
+          "check": ["1/sqrt(625) == 1/25"]
+        },
+        {
+          "id": "in-l5-t2",
+          "statement": "Two ice-cream flavors poll at $54\\%$ and $46\\%$ preference with $n = 100$. Statistical tie or real lead?",
+          "solution": "MOE $= 10$ points: ranges $44$–$64$ and $36$–$56$ overlap hugely — deep statistical tie despite the 8-point 'lead'.",
+          "check": ["1/sqrt(100) == 1/10"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The headline",
+            "title": "52–48, ±3: who's winning?",
+            "beats": [
+              "A's plausible range: $49$–$55$. B's: $45$–$51$.",
+              "The ranges OVERLAP.",
+              "\"A leads\" is drama; \"statistical tie\" is arithmetic.",
+              "The margin of error is the wobble-band, published."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The rule",
+            "title": "One over root n",
+            "beats": [
+              "MOE$_{95\\%} \\approx \\frac{1}{\\sqrt{n}}$ — the quick rule every citizen should own.",
+              "$n = 400$: $\\pm 5$. $n = 1000$: $\\pm 3.2$. $n = 2500$: $\\pm 2$.",
+              "It's Unit 10's $2\\sigma$ wrapped around Unit 8's worst-case spread.",
+              "And $95\\%$ means: the method misses one poll in twenty."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Rule drill",
+            "title": "Quick margins",
+            "prompt": "A survey of $n = 1600$ has a quick margin of error of…",
+            "options": ["$\\pm 2.5\\%$", "$\\pm 4\\%$", "$\\pm 1.6\\%$"],
+            "correctIndex": 0,
+            "explanation": "$\\frac{1}{\\sqrt{1600}} = \\frac{1}{40} = 2.5\\%$. The others mistake $\\sqrt{1600} = 40$ for other roots — the rule is one line, but the root wants care.",
+            "check": ["1/sqrt(1600) == 1/40"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Three sample sizes",
+            "problemId": "in-l5-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The statistical tie",
+            "problemId": "in-l5-w2"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The warranty-card 90%",
+            "problemId": "in-l5-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Order of operations",
+            "title": "Which critique comes first?",
+            "prompt": "An online opt-in poll of $n = 50{,}000$ reports MOE $\\pm 0.4\\%$. The FIRST problem with its conclusion is…",
+            "options": ["Bias: opt-in selection — the ±0.4 is precision around a tilted number", "The margin is computed wrong", "n is too small"],
+            "correctIndex": 0,
+            "explanation": "The arithmetic may be flawless: 1/√50000 ≈ 0.45%. But MOE quantifies RANDOM wobble only — the opt-in tilt (Lesson 2) sits entirely outside the ±, unmeasured and unmoved by n. Bias critique always precedes precision critique.",
+            "check": ["1/sqrt(50000) < 1/200"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Civic skill",
+            "title": "The three-second poll audit",
+            "body": "Every poll headline: (1) find n, take 1/√n — is the 'lead' bigger than that? (2) Ask who was sampled and how (bias first!). (3) Remember one in twenty honest polls misses anyway. Three seconds, and you read election coverage like a statistician."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Library hours",
+            "problemId": "in-l5-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Flavor race",
+            "problemId": "in-l5-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why every poll is ~1000 people",
+            "body": "National polls in a country of millions and polls in a city of 50,000 both use n ≈ 1000 — because the margin depends on SAMPLE size, not population size (the soup-pot's size doesn't change the spoonful's job, once stirred). This deeply unintuitive fact is why polling is affordable at all."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "MOE ≈ 1/√n at 95%; estimate ± margin = plausible range.",
+              "Overlapping intervals = statistical tie; leads inside the margin are noise.",
+              "Bias critique precedes precision critique — the ± can't see tilt."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "inference-capstone",
+      "title": "Capstone: Judging Claims with Data",
+      "concreteComparison": "A juice company claims \"$80\\%$ of kids prefer our flavor.\" Your class samples $50$ random kids: only $32$ prefer it ($64\\%$). Company lie, or sampling wobble? Run the course: under the claim, the sample proportion wobbles with SD $\\approx 5.7$ points — your $64\\%$ sits nearly $3$ SDs below $80\\%$. Wobble that size happens almost never. The claim strains. Twelve units, one verdict — delivered with its assumptions showing.",
+      "objective": "Judge real claims end to end: check the sampling method, compute the expected wobble under the claim, locate the evidence, and deliver calibrated verdicts.",
+      "concept": [
+        "The complete inference recipe: (1) AUDIT the data's origin — random? biased how? (2) ASSUME the claim ('the boring model'); (3) COMPUTE the wobble the claim predicts: SD$(\\hat{p}) = \\sqrt{p(1-p)/n}$; (4) LOCATE the evidence in SDs (a z-score for samples); (5) VERDICT by the surprise recipe — consistent, strained, or incompatible; (6) STATE the assumptions the verdict rides on.",
+        "The verdict scale is calibrated, not binary: within $2$ SDs → consistent with the claim (wobble suffices); $2$–$3$ SDs → strained (demand more data or a second sample); beyond $3$ → incompatible (the claim, the sampling, or the model is wrong — say which you suspect).",
+        "Every earlier unit is load-bearing: counting built probability; probability built distributions; distributions built the binomial; the binomial predicts sampling wobble; data tools describe the evidence; design tools certify it. Inference is the course, assembled.",
+        "And the eternal caveats travel with every verdict: bias beats precision (a tilted sample defeats the arithmetic), one-in-twenty honest misses (Unit 5's long run), association isn't causation (Unit 11), and n frames everything (Unit 12). Statistical maturity is the verdict PLUS its fine print."
+      ],
+      "keyIdea": "Audit → assume → compute wobble → locate in SDs → calibrated verdict → assumptions stated: the whole course in one recipe.",
+      "facts": [
+        {
+          "title": "The recipe",
+          "latex": "\\text{audit} \\to \\text{assume} \\to \\sigma_{\\hat{p}} \\to z \\to \\text{verdict} \\to \\text{caveats}",
+          "explanation": "Six steps from claim to calibrated judgment."
+        },
+        {
+          "title": "The verdict scale",
+          "latex": "|z| < 2: \\text{consistent}; \\;\\; 2\\text{–}3: \\text{strained}; \\;\\; > 3: \\text{incompatible}",
+          "explanation": "Calibrated, not binary — with the assumptions always attached."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "in-l6-w1",
+          "statement": "The juice claim: $p = 0.8$; your SRS of $50$ finds $\\hat{p} = 0.64$. Run the recipe.",
+          "solution": "Audit: SRS ✓. Assume $p = 0.8$. Wobble: $\\sqrt{\\frac{0.8 \\times 0.2}{50}} = \\sqrt{0.0032} \\approx 0.057$. Locate: $z = \\frac{0.64 - 0.80}{0.057} \\approx -2.8$ — nearly $3$ SDs below. Verdict: strained-to-incompatible; honest wobble produces this less than one time in a hundred. State: assuming our sample was truly random and 'prefer' was asked neutrally, the $80\\%$ claim doesn't survive; recommend an independent replication before the press release.",
+          "check": ["(8/10)*(2/10)/50 == 16/5000", "(64/100 - 80/100) < 0"]
+        },
+        {
+          "id": "in-l6-w2",
+          "statement": "A coin used for stadium kickoffs shows $60$ heads in $100$ flips. The groundskeeper wants it destroyed. Verdict?",
+          "solution": "Assume fair: SD$(\\hat{p}) = \\sqrt{\\frac{0.25}{100}} = 0.05$; $z = \\frac{0.60 - 0.50}{0.05} = 2.0$ — the edge of ordinary. Verdict: consistent-but-watchable; a fair coin does this a few times per hundred sequences. Prescription: flip $400$ more before the execution — at $n = 500$, a real tilt would stand out clearly ($1/\\sqrt{500} \\approx 4.5$-point margin).",
+          "check": ["sqrt((1/2)*(1/2)/100) == 1/20", "(60/100 - 50/100)/(1/20) == 2"]
+        },
+        {
+          "id": "in-l6-w3",
+          "statement": "A wellness influencer: \"In my poll ($n = 2000$), $78\\%$ of followers who bought the supplement report more energy!\" Deliver the complete professional demolition — and what evidence WOULD convince you.",
+          "solution": "Audit first (and last): voluntary-response poll of FOLLOWERS who BOUGHT — selection bias squared; no control group (placebo effect unmeasured — Unit 12); self-reported energy (response bias); association at best (Unit 11). The $n = 2000$ buys precision around a tilted number ($\\pm 2.2\\%$ of the wrong quantity). Convincing evidence: a randomized, placebo-controlled, double-blind trial with a pre-registered outcome — the pillars, by name. Until then: 'we cannot distinguish this from enthusiasm.'",
+          "check": ["1/sqrt(2000) < 1/40"]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Computing the z before auditing the sampling.",
+          "correction": "A beautiful z-score on a biased sample is theater. Step 1 is the data's origin; arithmetic only ever comes second.",
+          "authored": true
+        },
+        {
+          "text": "Binary verdicts.",
+          "correction": "'Proven false' and 'confirmed' both overclaim. The calibrated scale — consistent / strained / incompatible, with assumptions stated — is what the evidence actually supports.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "in-l6-t1",
+          "statement": "A game studio claims a $25\\%$ drop rate. A streamer's $80$ random boxes yield $12$ drops ($15\\%$). Run the recipe's steps 2–5.",
+          "solution": "Assume $p = 0.25$: SD $= \\sqrt{\\frac{0.25 \\times 0.75}{80}} \\approx 0.048$; $z = \\frac{0.15 - 0.25}{0.048} \\approx -2.1$. Verdict: strained — unlucky-but-possible ($\\sim 2\\%$ tail); one more streamer's data would settle it. (Same skeleton as Unit 8's loot boxes — now with the full recipe around it.)",
+          "check": ["12/80 == 15/100", "(25/100)*(75/100)/80 == 1875/800000"]
+        },
+        {
+          "id": "in-l6-t2",
+          "statement": "Name the SINGLE most important question to ask about any statistic you meet — the one this course keeps returning to.",
+          "solution": "\"How was this data OBTAINED?\" — random or self-selected, experiment or observation, what wording, what n. Every verdict downstream rides on the answer.",
+          "check": ["1 == 1"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The finale",
+            "title": "The juice claim",
+            "beats": [
+              "Claim: $80\\%$ of kids prefer it. Your SRS of $50$: $64\\%$.",
+              "Lie or wobble? The course answers:",
+              "under the claim, wobble is $\\pm 5.7$ points — you sit $2.8$ SDs out.",
+              "That happens almost never. The claim strains. Verdict, calibrated."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The recipe",
+            "title": "Six steps, twelve units",
+            "beats": [
+              "1 AUDIT the origin (Units 12: sampling, bias, design).",
+              "2 ASSUME the claim. 3 COMPUTE its wobble (Units 5–8).",
+              "4 LOCATE the evidence in SDs (Unit 10's ruler).",
+              "5 VERDICT: consistent / strained / incompatible. 6 STATE the assumptions."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Juice, judged",
+            "problemId": "in-l6-w1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The kickoff coin",
+            "problemId": "in-l6-w2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Calibration drill",
+            "title": "Pick the verdict",
+            "prompt": "A claim predicts wobble SD $= 4$ points; the sample lands $5$ points from the claim. Verdict?",
+            "options": ["Consistent — $z = 1.25$, well within ordinary wobble", "Incompatible — 5 > 4", "Strained — borderline"],
+            "correctIndex": 0,
+            "explanation": "$z = \\frac{5}{4} = 1.25$: comfortably inside the $\\pm 2$ SD band. Comparing the gap to the SD (not to zero) is the entire discipline — a 5-point miss means nothing until the wobble prices it.",
+            "check": ["5/4 == 125/100"]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The influencer demolition",
+            "problemId": "in-l6-w3"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "The course, assembled",
+            "title": "Which unit answers it?",
+            "prompt": "Mid-recipe, you need $P(\\hat{p} \\le 0.64)$ under the claim — which earlier machinery computes the wobble SD you're using?",
+            "options": ["Unit 8's binomial: counts spread as √(np(1−p)), proportions per capita", "Unit 4's binomial theorem for expansion", "Unit 9's boxplots"],
+            "correctIndex": 0,
+            "explanation": "The sampling wobble IS binomial spread divided by n — Act Two's centerpiece powering Act Three's verdicts. (Unit 4's theorem proved the distribution sums to 1; Unit 9 described data. Everything is load-bearing, but the SD is Unit 8's.)",
+            "check": ["sqrt((8/10)*(2/10)/50) > 5/100"]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Graduation",
+            "title": "What you can now do",
+            "body": "Count anything (Act One). Price any chance and judge any streak (Act Two). Describe any dataset, locate any value, relate any pair, and audit any claim (Act Three). The recipe on this page is what statisticians, scientists, and honest journalists do for a living — and it's yours. Stay calibrated; state your assumptions; and always, always ask how the data was obtained."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The drop rate, revisited",
+            "problemId": "in-l6-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The one question",
+            "problemId": "in-l6-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The lady, the tea, and you",
+            "body": "The course ends where modern statistics began: Fisher's lady tasting tea — a claim, a randomized design, a computed wobble, a calibrated verdict. She identified all eight cups (P = 1/70 under chance); Fisher's recipe became the scientific method's arithmetic. Every clinical trial, every A/B test, every honest poll since runs the loop you just learned. Course complete."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "The course, complete",
+            "points": [
+              "Audit → assume → wobble → locate → calibrated verdict → assumptions.",
+              "Bias beats precision; design buys causation; n frames everything.",
+              "Count → chance → data: three acts, one toolkit, yours."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "in-p-1",
+      "statement": "A librarian surveys $45$ of the library's $900$ members about hours. Name the population, sample, and sampled fraction.",
+      "solution": "Population: all $900$ members; sample: the $45$; fraction $\\frac{45}{900} = \\frac{1}{20}$.",
+      "check": ["45/900 == 1/20"]
+    },
+    {
+      "id": "in-p-2",
+      "statement": "Design a stratified sample of $60$ from a school with $400$ juniors and $200$ seniors.",
+      "solution": "Proportions $2:1$ — randomly select $40$ juniors and $20$ seniors from separate rosters.",
+      "check": ["400/600*60 == 40", "200/600*60 == 20"]
+    },
+    {
+      "id": "in-p-3",
+      "statement": "Name the bias: a TV show's text-in poll finds $88\\%$ want the villain to win. Direction?",
+      "solution": "Voluntary response — invested fans text; casual viewers don't. Villain-enthusiasm overstated.",
+      "check": ["88 > 50"]
+    },
+    {
+      "id": "in-p-4",
+      "statement": "Classify: researchers compare heart health of people who already do yoga vs those who don't. What's licensed?",
+      "solution": "Observational — self-selected groups (health-conscious lurkers intact). Licensed claim: association only.",
+      "check": ["1 == 1"]
+    },
+    {
+      "id": "in-p-5",
+      "statement": "Design the yoga EXPERIMENT in two sentences for $120$ volunteers.",
+      "solution": "Randomly assign $60$ to a yoga program and $60$ to a matched-time stretching control; blind the outcome measurers. Compare heart-health metrics after the trial period.",
+      "check": ["120/2 == 60"]
+    },
+    {
+      "id": "in-p-6",
+      "statement": "True $p = 0.5$: compute SD$(\\hat{p})$ for $n = 100$ and $n = 400$, and state the pattern.",
+      "solution": "$0.05$ and $0.025$ — quadruple the sample, halve the wobble.",
+      "check": ["sqrt((1/2)*(1/2)/100) == 1/20", "sqrt((1/2)*(1/2)/400) == 1/40"]
+    },
+    {
+      "id": "in-p-7",
+      "statement": "A city poll ($n = 1111$... use $1100$) — actually: compute the quick MOE for $n = 1100$ and interpret a $51\\%$–$49\\%$ result.",
+      "solution": "MOE $\\approx \\frac{1}{\\sqrt{1100}} \\approx 3\\%$: ranges $48$–$54$ vs $46$–$52$ overlap — statistical tie.",
+      "check": ["1/sqrt(1100) < 31/1000"]
+    },
+    {
+      "id": "in-p-8",
+      "statement": "A die is claimed fair; $180$ rolls give $42$ sixes. Locate the evidence in SDs and give the calibrated verdict.",
+      "solution": "Expected $30$, SD $= \\sqrt{180 \\cdot \\frac{1}{6} \\cdot \\frac{5}{6}} = 5$: $z = \\frac{42-30}{5} = 2.4$ — strained: suspicious, not damning. Roll more before accusing.",
+      "check": ["180/6 == 30", "sqrt(180*(1/6)*(5/6)) == 5", "(42 - 30)/5 == 12/5"]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "in-ty-1",
+      "statement": "A mall marketer interviews shoppers near the food court at noon about 'satisfaction with mall dining'. Identify every bias and its direction, then design the honest version.",
+      "solution": "Convenience + undercoverage (only mall-goers, only noon diners, only food-court-adjacent — people who avoid mall food never appear); satisfaction overstated. Honest: sample the town's resident register at random, ask a neutrally-worded question, report response rate and wording.",
+      "check": ["1 == 1"]
+    },
+    {
+      "id": "in-ty-2",
+      "statement": "Explain — using the two randomnesses — why a randomized drug trial on 2,000 volunteers can prove the drug works yet still not tell you it works for 80-year-olds.",
+      "solution": "Random ASSIGNMENT (drug vs placebo among the 2,000) kills lurkers and buys causation within the studied group. But volunteers were not randomly SELECTED from all patients — if few were elderly, generalization to 80-year-olds is unlicensed. Causation and generalization are separate purchases.",
+      "check": ["2000/2 == 1000"]
+    },
+    {
+      "id": "in-ty-3",
+      "statement": "A population is $30\\%$ left-footed. For samples of $n = 84$, give the expected count, the SD of the count, and the usual range.",
+      "solution": "Expected: $84 \\times 0.3 = 25.2$. SD: $\\sqrt{84 \\times 0.3 \\times 0.7} = \\sqrt{17.64} = 4.2$. Usual: $25.2 \\pm 8.4$, about $17$–$34$ lefties.",
+      "check": ["84*3/10 == 126/5", "84*(3/10)*(7/10) == 4410/250", "sqrt(4410/250) == 21/5"]
+    },
+    {
+      "id": "in-ty-4",
+      "statement": "Poll A ($n = 400$): candidate at $54\\%$. Poll B ($n = 1600$): same candidate at $51\\%$. Are the polls consistent with each other?",
+      "solution": "Margins: A $\\pm 5$, B $\\pm 2.5$: ranges $49$–$59$ and $48.5$–$53.5$ overlap substantially — consistent; both fit a true value near $52$. Two polls disagreeing by less than their margins is expectation, not scandal.",
+      "check": ["1/sqrt(400) == 1/20", "1/sqrt(1600) == 1/40"]
+    },
+    {
+      "id": "in-ty-5",
+      "statement": "A cereal company claims $10\\%$ of boxes hold a golden ticket. A class opens $150$ random boxes: $6$ tickets ($4\\%$). Run the full six-step recipe.",
+      "solution": "Audit: random boxes from multiple stores ✓. Assume $p = 0.1$: SD$(\\hat{p}) = \\sqrt{\\frac{0.1 \\times 0.9}{150}} \\approx 0.0245$. Locate: $z = \\frac{0.04 - 0.10}{0.0245} \\approx -2.45$ — strained hard, sub-1% tail. Verdict: the claim strains badly; either the rate is lower, tickets were regionally uneven (assumption!), or the class hit a $\\sim 1\\%$ unlucky streak. State assumptions; open another crate before the lawsuit.",
+      "check": ["6/150 == 4/100", "(1/10)*(9/10)/150 == 9/15000"]
+    },
+    {
+      "id": "in-ty-6",
+      "statement": "Write the course's final synthesis: a friend shows you a viral chart claiming a city's new bike lanes CAUSED a $20\\%$ business boost, based on shops that chose to answer an association's survey. Deliver the three-layer critique with the constructive fix.",
+      "solution": "Layer 1 — sampling (Unit 12): voluntary response from association members; boosted shops brag, closed shops can't answer (survivorship). Layer 2 — design (Units 11–12): observational; lanes weren't randomly assigned — thriving districts GET lanes (reverse causation) and city investment lurks behind both. Layer 3 — wobble: is $20\\%$ big relative to normal year-to-year revenue variation? Unstated. Fix: compare revenue TRENDS in lane vs matched no-lane streets chosen by the city's rollout schedule (a natural experiment), with all shops from tax records, not surveys. Verdict until then: \"plausible, unproven — associated at best.\"",
+      "check": ["20/100 > 0"]
+    }
+  ]
+}
