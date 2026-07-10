@@ -35,19 +35,27 @@
           "id": "in-l1-w1",
           "statement": "A principal wants the average daily screen time of the school's $1{,}200$ students and surveys $80$. Name the population, sample, and a legitimate selection method.",
           "solution": "Population: all $1{,}200$ students; sample: the $80$ surveyed. Legitimate method: number the full roster $1$–$1200$, draw $80$ distinct random numbers (SRS) — every student, and every possible group of $80$, equally likely.",
-          "check": ["80 < 1200"]
+          "check": [
+            "80 < 1200"
+          ]
         },
         {
           "id": "in-l1-w2",
           "statement": "The school is $60\\%$ middle-schoolers and $40\\%$ high-schoolers, and screen habits likely differ by level. Improve the SRS with stratification — what does the $80$-student sample look like?",
           "solution": "Stratify: randomly select $48$ middle-schoolers ($60\\%$ of $80$) and $32$ high-schoolers ($40\\%$) from each roster separately. The sample now mirrors the known structure EXACTLY, instead of approximately — same randomness, less luck needed.",
-          "check": ["60*80/100 == 48", "40*80/100 == 32", "48 + 32 == 80"]
+          "check": [
+            "60*80/100 == 48",
+            "40*80/100 == 32",
+            "48 + 32 == 80"
+          ]
         },
         {
           "id": "in-l1-w3",
           "statement": "A factory samples every $25$th phone from the day's production line of $5{,}000$. How many get tested, and when is this systematic method sound?",
           "solution": "$5000 / 25 = 200$ tested. Sound IF the line's order is unrelated to defects. Danger case: a machine cycle that misbehaves every $25$th unit would hide perfectly (or dominate absurdly) — periodic processes and matching sampling intervals are the method's one enemy.",
-          "check": ["5000/25 == 200"]
+          "check": [
+            "5000/25 == 200"
+          ]
         }
       ],
       "commonMistakes": [
@@ -67,13 +75,19 @@
           "id": "in-l1-t1",
           "statement": "A biologist nets $150$ fish from a lake to estimate average length. Name population and sample, and one worry about the net as a selection mechanism.",
           "solution": "Population: all fish in the lake; sample: the $150$ netted. Worry: nets select by SIZE (small fish escape the mesh) — a non-random mechanism biasing lengths upward.",
-          "check": ["1 == 1"]
+          "check": [
+            "1 == 1"
+          ]
         },
         {
           "id": "in-l1-t2",
           "statement": "Design a stratified sample of $50$ from a company of $500$: $300$ engineers, $150$ sales, $50$ managers.",
           "solution": "Proportions $60/30/10\\%$: randomly select $30$ engineers, $15$ sales, $5$ managers from each group's roster.",
-          "check": ["300/500*50 == 30", "150/500*50 == 15", "50/500*50 == 5"]
+          "check": [
+            "300/500*50 == 30",
+            "150/500*50 == 15",
+            "50/500*50 == 5"
+          ]
         }
       ],
       "interactive": {
@@ -101,14 +115,36 @@
             ]
           },
           {
+            "kind": "samplingWobble",
+            "eyebrow": "Draw samples",
+            "title": "Every survey is one dot",
+            "teach": "The population truth is fixed: $p = 0.6$ say yes. Each button press runs one entire survey of $n$ people and drops its result $\\hat{p}$ on the pile. No sample hits 0.6 exactly — but the pile **centres** there. A sample statistic is a random thing; this plot is its distribution being born.",
+            "config": {
+              "p": 0.6,
+              "pLabel": "0.60",
+              "statLabel": "sample proportion p̂",
+              "nChoices": [
+                25,
+                100,
+                400
+              ]
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Mechanism drill",
             "title": "Which one is an SRS?",
             "prompt": "To sample $30$ of $600$ students, which method is a true SRS?",
-            "options": ["Random numbers drawn against the full alphabetical roster", "The first 30 into the cafeteria", "One volunteer from each homeroom"],
+            "options": [
+              "Random numbers drawn against the full alphabetical roster",
+              "The first 30 into the cafeteria",
+              "One volunteer from each homeroom"
+            ],
             "correctIndex": 0,
             "explanation": "Only the roster + random numbers gives every student (and every possible group of 30) equal chance. Early-to-lunch students and volunteers are self-selected sub-populations — the door and the enthusiasm did the choosing.",
-            "check": ["30 < 600"]
+            "check": [
+              "30 < 600"
+            ]
           },
           {
             "kind": "worked",
@@ -133,10 +169,16 @@
             "eyebrow": "Priorities",
             "title": "Method vs size",
             "prompt": "Which sample better estimates a city's average commute: (A) $100{,}000$ responses to a drive-time-app poll, or (B) a $1{,}000$-person SRS from the resident register?",
-            "options": ["B — the app poll only reaches drivers who use the app", "A — a hundred times more data", "Equal — both are big"],
+            "options": [
+              "B — the app poll only reaches drivers who use the app",
+              "A — a hundred times more data",
+              "Equal — both are big"
+            ],
             "correctIndex": 0,
             "explanation": "The app's sample is chosen by app-ownership (excluding transit riders, cyclists, non-users) — 100,000 responses measure the app's user base, precisely. Method licenses inference; size just narrows the wobble around whatever the method points at.",
-            "check": ["100000 > 1000"]
+            "check": [
+              "100000 > 1000"
+            ]
           },
           {
             "kind": "tip",
@@ -204,19 +246,25 @@
           "id": "in-l2-w1",
           "statement": "The call-in tax poll ($84\\%$ opposed) vs the proper survey ($50$–$50$). Name the bias and explain the gap's direction.",
           "solution": "Voluntary response: calling costs effort, and anger funds effort — opponents self-select. Direction: opposition OVERSTATED, by $34$ points here. The $84\\%$ described the callers perfectly; it described the city not at all.",
-          "check": ["84 - 50 == 34"]
+          "check": [
+            "84 - 50 == 34"
+          ]
         },
         {
           "id": "in-l2-w2",
           "statement": "A city studies commute satisfaction by polling at downtown parking garages, 8–9 AM. Diagnose ALL the biases you can, with directions.",
           "solution": "Undercoverage: transit riders, cyclists, walkers, and off-hours workers can't appear — car-commuter opinions dominate. Convenience: only downtown workers. Direction: satisfaction with ROADS overweighted, transit problems invisible. Fix: sample from the resident register, not the garage.",
-          "check": ["1 == 1"]
+          "check": [
+            "1 == 1"
+          ]
         },
         {
           "id": "in-l2-w3",
           "statement": "Two phrasings: \"Do you support protecting children from dangerous online content?\" vs \"Do you support government censorship of the internet?\" — same policy. What bias is this, and what's the honest phrasing?",
           "solution": "Response bias via loaded wording — each version smuggles its verdict into the question ('protecting children' vs 'censorship'). Honest phrasing states the policy neutrally: \"Do you support or oppose requiring platforms to remove content of type X?\" — and serious polls publish the exact wording so readers can audit it.",
-          "check": ["1 == 1"]
+          "check": [
+            "1 == 1"
+          ]
         }
       ],
       "commonMistakes": [
@@ -236,13 +284,17 @@
           "id": "in-l2-t1",
           "statement": "An online poll on a gaming site asks whether video games improve intelligence; $91\\%$ say yes. Name the biases and the direction.",
           "solution": "Voluntary response + undercoverage (only gamers on a gaming site): yes-votes overstated, massively. The 91% describes gamers who vote in polls about themselves.",
-          "check": ["91 > 50"]
+          "check": [
+            "91 > 50"
+          ]
         },
         {
           "id": "in-l2-t2",
           "statement": "A survey asks teenagers, face to face, how many hours they study daily. Predict the response bias and its direction.",
           "solution": "Social desirability: study hours OVER-reported to the adult asking. Anonymous questionnaires (or measured data) shrink it.",
-          "check": ["1 == 1"]
+          "check": [
+            "1 == 1"
+          ]
         }
       ],
       "interactive": {
@@ -274,10 +326,16 @@
             "eyebrow": "Species drill",
             "title": "Classify it",
             "prompt": "A pollster's landline calls at 2 PM on weekdays systematically miss working adults and mobile-only homes. The species is…",
-            "options": ["Undercoverage — parts of the population can't enter the sample", "Voluntary response", "Response bias"],
+            "options": [
+              "Undercoverage — parts of the population can't enter the sample",
+              "Voluntary response",
+              "Response bias"
+            ],
             "correctIndex": 0,
             "explanation": "The method's reach EXCLUDES groups regardless of their willingness — that's undercoverage. (Voluntary response is about who opts in; response bias is about tilted answers.) Direction: retiree-heavy opinions.",
-            "check": ["1 == 1"]
+            "check": [
+              "1 == 1"
+            ]
           },
           {
             "kind": "worked",
@@ -302,10 +360,16 @@
             "eyebrow": "Direction drill",
             "title": "Which way does it tilt?",
             "prompt": "A school emails a homework-load survey; $35\\%$ respond. Who plausibly responds more, and which way does measured 'stress' tilt?",
-            "options": ["Stressed families respond more — stress OVERSTATED", "Random 35% — no tilt", "Happy families respond more — stress understated"],
+            "options": [
+              "Stressed families respond more — stress OVERSTATED",
+              "Random 35% — no tilt",
+              "Happy families respond more — stress understated"
+            ],
             "correctIndex": 0,
             "explanation": "Nonresponse bias: surveys about a grievance recruit the aggrieved. (The reverse can happen — swamped families too busy to respond — which is why direction is argued, not assumed. But 'no tilt from a 35% response' is the one indefensible option.)",
-            "check": ["35 < 100"]
+            "check": [
+              "35 < 100"
+            ]
           },
           {
             "kind": "tip",
@@ -373,19 +437,25 @@
           "id": "in-l3-w1",
           "statement": "Design the tutoring experiment properly for $100$ volunteer students.",
           "solution": "Randomly assign (coin/random numbers): $50$ to tutoring, $50$ to control (study hall, so time-spent matches). Pre-register the outcome (exam score). Blind the graders (they don't know groups). Compare group means at the end. The random assignment balances wealth, motivation, prior grades — the Unit 11 lurkers all die at once.",
-          "check": ["100/2 == 50"]
+          "check": [
+            "100/2 == 50"
+          ]
         },
         {
           "id": "in-l3-w2",
           "statement": "Why does a serious drug trial need a placebo group AND blinding — isn't a no-treatment control enough?",
           "solution": "People given ANY pill improve somewhat (placebo effect) — expectation is itself a treatment. Placebo pills separate the drug's chemistry from the ritual of being treated. Blinding the patients prevents expectation-tilted symptom reports; blinding the doctors (double-blind) prevents hopeful measurement. Without both, the comparison measures belief plus chemistry, entangled.",
-          "check": ["1 == 1"]
+          "check": [
+            "1 == 1"
+          ]
         },
         {
           "id": "in-l3-w3",
           "statement": "\"Smokers get lung cancer at many times the non-smoker rate\" comes from observational data — no one randomly assigns smoking. Why is the causal conclusion still accepted?",
           "solution": "Accumulated observational rigor: the association is enormous, consistent across hundreds of studies and populations, shows dose-response (more smoking, more cancer), has a lab-demonstrated mechanism (carcinogens), and survives every proposed lurker (the 'smoker gene' hypothesis was tested and failed). Causation without experiments is possible — it just takes decades of converging evidence instead of one coin.",
-          "check": ["1 == 1"]
+          "check": [
+            "1 == 1"
+          ]
         }
       ],
       "commonMistakes": [
@@ -405,13 +475,17 @@
           "id": "in-l3-t1",
           "statement": "A farm tests fertilizer on $40$ plots. Design the experiment in two sentences.",
           "solution": "Randomly assign $20$ plots to fertilizer and $20$ to none (or standard), by random numbers — soil, drainage, and sunlight lurkers balance. Measure yields; compare group means (blind the weighers if feasible).",
-          "check": ["40/2 == 20"]
+          "check": [
+            "40/2 == 20"
+          ]
         },
         {
           "id": "in-l3-t2",
           "statement": "\"People who take vitamins live longer\" (observational). Offer two lurkers and the design that would settle it.",
           "solution": "Lurkers: health-consciousness (vitamin-takers also exercise, eat well) and wealth (afford both vitamins and healthcare). Settling design: randomly assign vitamin vs placebo, double-blind, follow for years. (Such trials exist — and mostly show much weaker effects than the observational data suggested.)",
-          "check": ["1 == 1"]
+          "check": [
+            "1 == 1"
+          ]
         }
       ],
       "interactive": {
@@ -443,10 +517,16 @@
             "eyebrow": "The divide",
             "title": "Experiment or observation?",
             "prompt": "A researcher compares injury rates of runners who chose minimalist shoes vs cushioned shoes. This is…",
-            "options": ["Observational — runners self-selected their shoes; lurkers intact", "An experiment — there are two groups", "An experiment if the sample is large"],
+            "options": [
+              "Observational — runners self-selected their shoes; lurkers intact",
+              "An experiment — there are two groups",
+              "An experiment if the sample is large"
+            ],
             "correctIndex": 0,
             "explanation": "The runners' own choices formed the groups — running style, weight, experience all lurk. Two groups ≠ experiment; the researcher's RANDOM assignment is the defining act, and size doesn't substitute.",
-            "check": ["1 == 1"]
+            "check": [
+              "1 == 1"
+            ]
           },
           {
             "kind": "worked",
@@ -465,10 +545,16 @@
             "eyebrow": "Two randomnesses",
             "title": "What does each buy?",
             "prompt": "A sleep-app trial randomly ASSIGNS the app among $500$ tech-conference volunteers. What's licensed?",
-            "options": ["Causation for people like the volunteers; generalizing to everyone needs random SELECTION too", "Nothing — volunteers ruin everything", "Causation for all humans"],
+            "options": [
+              "Causation for people like the volunteers; generalizing to everyone needs random SELECTION too",
+              "Nothing — volunteers ruin everything",
+              "Causation for all humans"
+            ],
             "correctIndex": 0,
             "explanation": "Assignment de-lurks within the studied group: the app's effect is real FOR tech-conference-goers. Whether it works for retirees or farmers is a selection question the design didn't buy. Two coins, two purchases.",
-            "check": ["500/2 == 250"]
+            "check": [
+              "500/2 == 250"
+            ]
           },
           {
             "kind": "worked",
@@ -542,19 +628,28 @@
           "id": "in-l4-w1",
           "statement": "A population is truly $p = 0.5$. For samples of $n = 25$ and $n = 100$, compute the SD of the sample proportion.",
           "solution": "$n = 25$: $\\sqrt{\\frac{0.25}{25}} = \\sqrt{0.01} = 0.1$ — samples typically land within $\\pm 10$ points of $50\\%$. $n = 100$: $\\sqrt{\\frac{0.25}{100}} = 0.05$ — quadruple the sample, half the wobble, on schedule.",
-          "check": ["sqrt((1/2)*(1/2)/25) == 1/10", "sqrt((1/2)*(1/2)/100) == 1/20"]
+          "check": [
+            "sqrt((1/2)*(1/2)/25) == 1/10",
+            "sqrt((1/2)*(1/2)/100) == 1/20"
+          ]
         },
         {
           "id": "in-l4-w2",
           "statement": "Two class samples from the $50\\%$-girl school: $11$ of $20$ ($55\\%$) and $58$ of $100$ ($58\\%$). Which deviation from $50\\%$ is more surprising?",
           "solution": "Standardize (Unit 10!): $n = 20$ has SD $\\approx 0.112$: $z = \\frac{0.05}{0.112} \\approx 0.45$ — utterly ordinary. $n = 100$ has SD $= 0.05$: $z = \\frac{0.08}{0.05} = 1.6$ — noticeable, still unremarkable. The SAME-sized percentage gap grows more meaningful as $n$ grows: sample size sharpens judgment.",
-          "check": ["sqrt((1/2)*(1/2)/100) == 1/20", "(8/100)/(1/20) == 8/5"]
+          "check": [
+            "sqrt((1/2)*(1/2)/100) == 1/20",
+            "(8/100)/(1/20) == 8/5"
+          ]
         },
         {
           "id": "in-l4-w3",
           "statement": "A pollster with $n = 400$ wants half the current wobble. What sample size — and what does it cost?",
           "solution": "Halving wobble needs $4\\times$ the sample: $n = 1600$. The cost quadruples for one halving — and halving AGAIN would need $6400$. Diminishing returns are built into the square root; this is why national polls settle near $n \\approx 1000$ (wobble $\\sim 1.6$ points) rather than chasing zeros.",
-          "check": ["4*400 == 1600", "4*1600 == 6400"]
+          "check": [
+            "4*400 == 1600",
+            "4*1600 == 6400"
+          ]
         }
       ],
       "commonMistakes": [
@@ -574,13 +669,17 @@
           "id": "in-l4-t1",
           "statement": "True $p = 0.5$, sample $n = 2500$. Compute SD$(\\hat{p})$.",
           "solution": "$\\sqrt{\\frac{0.25}{2500}} = \\frac{0.5}{50} = 0.01$ — one percentage point.",
-          "check": ["sqrt((1/2)*(1/2)/2500) == 1/100"]
+          "check": [
+            "sqrt((1/2)*(1/2)/2500) == 1/100"
+          ]
         },
         {
           "id": "in-l4-t2",
           "statement": "A simulation draws $500$ samples of size $n$ from a known population and histograms the sample means. What TWO features should the histogram show if sampling is honest?",
           "solution": "Centered on the population truth (unbiased), and bell-shaped with spread matching the $\\frac{1}{\\sqrt{n}}$ law — tighter for larger $n$.",
-          "check": ["1 == 1"]
+          "check": [
+            "1 == 1"
+          ]
         }
       ],
       "interactive": {
@@ -608,14 +707,36 @@
             ]
           },
           {
+            "kind": "samplingWobble",
+            "eyebrow": "Compare piles",
+            "title": "Bigger n, tighter pile",
+            "teach": "Draw twenty samples at $n = 25$, note the spread, then switch to $n = 400$ and draw twenty more. The pile doesn't move — it **narrows**. Quadrupling the sample size halves the wobble (that's the $\\frac{1}{\\sqrt{n}}$ law), which is why precision gets expensive fast.",
+            "config": {
+              "p": 0.5,
+              "pLabel": "0.50",
+              "statLabel": "sample proportion p̂",
+              "nChoices": [
+                25,
+                100,
+                400
+              ]
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Law drill",
             "title": "Buying precision",
             "prompt": "A poll of $n = 900$ has wobble $\\pm 3$ points. For $\\pm 1$ point, the pollster needs about…",
-            "options": ["$n = 8100$ — nine times the sample for a third of the wobble", "$n = 2700$ — three times", "$n = 1800$ — double"],
+            "options": [
+              "$n = 8100$ — nine times the sample for a third of the wobble",
+              "$n = 2700$ — three times",
+              "$n = 1800$ — double"
+            ],
             "correctIndex": 0,
             "explanation": "Wobble scales as $1/\\sqrt{n}$: shrinking it by $3\\times$ costs $3^2 = 9\\times$ the sample. The square in the price is why 'just poll more people' meets budget meetings.",
-            "check": ["9*900 == 8100"]
+            "check": [
+              "9*900 == 8100"
+            ]
           },
           {
             "kind": "worked",
@@ -640,10 +761,16 @@
             "eyebrow": "Judgment",
             "title": "Same percent, different meaning",
             "prompt": "$60\\%$ heads: in $10$ flips vs in $1000$ flips of a fair coin. Verdicts?",
-            "options": ["10 flips: shrug (within a σ). 1000 flips: alarm (over 6σ from fair)", "Both suspicious — 60% is 60%", "Both fine — coins wobble"],
+            "options": [
+              "10 flips: shrug (within a σ). 1000 flips: alarm (over 6σ from fair)",
+              "Both suspicious — 60% is 60%",
+              "Both fine — coins wobble"
+            ],
             "correctIndex": 0,
             "explanation": "$n{=}10$: SD $\\approx 16$ points — $60\\%$ is ordinary. $n{=}1000$: SD $\\approx 1.6$ points — $60\\%$ sits $6+$ SDs out: essentially impossible for a fair coin. Percentages mean nothing without their wobble-band; n IS the context.",
-            "check": ["sqrt((1/2)*(1/2)/1000) < 2/100"]
+            "check": [
+              "sqrt((1/2)*(1/2)/1000) < 2/100"
+            ]
           },
           {
             "kind": "tip",
@@ -711,19 +838,27 @@
           "id": "in-l5-w1",
           "statement": "Compute the quick margin of error for polls of $n = 400$, $1000$, and $2500$.",
           "solution": "$\\frac{1}{\\sqrt{400}} = \\frac{1}{20} = 5\\%$; $\\frac{1}{\\sqrt{1000}} \\approx 3.2\\%$; $\\frac{1}{\\sqrt{2500}} = \\frac{1}{50} = 2\\%$. Diminishing returns on display: $6\\times$ the interviews from $400 \\to 2500$ buys $3$ points of margin.",
-          "check": ["1/sqrt(400) == 1/20", "1/sqrt(2500) == 1/50"]
+          "check": [
+            "1/sqrt(400) == 1/20",
+            "1/sqrt(2500) == 1/50"
+          ]
         },
         {
           "id": "in-l5-w2",
           "statement": "Poll: A $52\\%$, B $48\\%$, $n = 1000$ (MOE $\\pm 3.2$). Is A's lead real?",
           "solution": "A's plausible range: $48.8$–$55.2$; B's: $44.8$–$51.2$. They overlap ($48.8$–$51.2$) — B ahead is entirely plausible. Verdict: statistical tie; the $4$-point 'lead' is close to what the margin can manufacture from a dead heat. (Aggregating several independent polls is the legitimate way to sharpen the call.)",
-          "check": ["52 - 32/10 == 488/10", "48 + 32/10 == 512/10"]
+          "check": [
+            "52 - 32/10 == 488/10",
+            "48 + 32/10 == 512/10"
+          ]
         },
         {
           "id": "in-l5-w3",
           "statement": "A shampoo ad: \"$90\\%$ of users recommend!\" — based on $n = 30$ mailed-in warranty cards. Attack with both tools.",
           "solution": "Wobble: MOE $\\approx \\frac{1}{\\sqrt{30}} \\approx 18$ points — the claim is $90 \\pm 18$. Bias (the bigger problem): warranty-card responders are voluntary-response enthusiasts; the $90\\%$ describes fans, not users. Precision math can't rescue a tilted sample — and here it isn't even precise.",
-          "check": ["1/sqrt(30) > 15/100"]
+          "check": [
+            "1/sqrt(30) > 15/100"
+          ]
         }
       ],
       "commonMistakes": [
@@ -743,13 +878,17 @@
           "id": "in-l5-t1",
           "statement": "A university surveys $625$ random students: $44\\%$ favor longer library hours. Give the interval.",
           "solution": "MOE $= \\frac{1}{\\sqrt{625}} = 4\\%$: plausible range $40$–$48\\%$.",
-          "check": ["1/sqrt(625) == 1/25"]
+          "check": [
+            "1/sqrt(625) == 1/25"
+          ]
         },
         {
           "id": "in-l5-t2",
           "statement": "Two ice-cream flavors poll at $54\\%$ and $46\\%$ preference with $n = 100$. Statistical tie or real lead?",
           "solution": "MOE $= 10$ points: ranges $44$–$64$ and $36$–$56$ overlap hugely — deep statistical tie despite the 8-point 'lead'.",
-          "check": ["1/sqrt(100) == 1/10"]
+          "check": [
+            "1/sqrt(100) == 1/10"
+          ]
         }
       ],
       "interactive": {
@@ -777,14 +916,37 @@
             ]
           },
           {
+            "kind": "samplingWobble",
+            "eyebrow": "Watch the band",
+            "title": "The ±1/√n promise",
+            "teach": "The shaded band is $p \\pm \\frac{1}{\\sqrt{n}}$ — the margin-of-error rule of thumb. Draw a pile of samples at each $n$: almost every dot lands inside its band. At $n = 100$ the band is ±0.10; at $n = 1600$ it's ±0.025. When a poll says \"±3 points\", this band is what they're quoting.",
+            "config": {
+              "p": 0.5,
+              "pLabel": "0.50",
+              "statLabel": "sample proportion p̂",
+              "nChoices": [
+                100,
+                400,
+                1600
+              ],
+              "showMoe": true
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Rule drill",
             "title": "Quick margins",
             "prompt": "A survey of $n = 1600$ has a quick margin of error of…",
-            "options": ["$\\pm 2.5\\%$", "$\\pm 4\\%$", "$\\pm 1.6\\%$"],
+            "options": [
+              "$\\pm 2.5\\%$",
+              "$\\pm 4\\%$",
+              "$\\pm 1.6\\%$"
+            ],
             "correctIndex": 0,
             "explanation": "$\\frac{1}{\\sqrt{1600}} = \\frac{1}{40} = 2.5\\%$. The others mistake $\\sqrt{1600} = 40$ for other roots — the rule is one line, but the root wants care.",
-            "check": ["1/sqrt(1600) == 1/40"]
+            "check": [
+              "1/sqrt(1600) == 1/40"
+            ]
           },
           {
             "kind": "worked",
@@ -809,10 +971,16 @@
             "eyebrow": "Order of operations",
             "title": "Which critique comes first?",
             "prompt": "An online opt-in poll of $n = 50{,}000$ reports MOE $\\pm 0.4\\%$. The FIRST problem with its conclusion is…",
-            "options": ["Bias: opt-in selection — the ±0.4 is precision around a tilted number", "The margin is computed wrong", "n is too small"],
+            "options": [
+              "Bias: opt-in selection — the ±0.4 is precision around a tilted number",
+              "The margin is computed wrong",
+              "n is too small"
+            ],
             "correctIndex": 0,
             "explanation": "The arithmetic may be flawless: 1/√50000 ≈ 0.45%. But MOE quantifies RANDOM wobble only — the opt-in tilt (Lesson 2) sits entirely outside the ±, unmeasured and unmoved by n. Bias critique always precedes precision critique.",
-            "check": ["1/sqrt(50000) < 1/200"]
+            "check": [
+              "1/sqrt(50000) < 1/200"
+            ]
           },
           {
             "kind": "tip",
@@ -880,19 +1048,27 @@
           "id": "in-l6-w1",
           "statement": "The juice claim: $p = 0.8$; your SRS of $50$ finds $\\hat{p} = 0.64$. Run the recipe.",
           "solution": "Audit: SRS ✓. Assume $p = 0.8$. Wobble: $\\sqrt{\\frac{0.8 \\times 0.2}{50}} = \\sqrt{0.0032} \\approx 0.057$. Locate: $z = \\frac{0.64 - 0.80}{0.057} \\approx -2.8$ — nearly $3$ SDs below. Verdict: strained-to-incompatible; honest wobble produces this less than one time in a hundred. State: assuming our sample was truly random and 'prefer' was asked neutrally, the $80\\%$ claim doesn't survive; recommend an independent replication before the press release.",
-          "check": ["(8/10)*(2/10)/50 == 16/5000", "(64/100 - 80/100) < 0"]
+          "check": [
+            "(8/10)*(2/10)/50 == 16/5000",
+            "(64/100 - 80/100) < 0"
+          ]
         },
         {
           "id": "in-l6-w2",
           "statement": "A coin used for stadium kickoffs shows $60$ heads in $100$ flips. The groundskeeper wants it destroyed. Verdict?",
           "solution": "Assume fair: SD$(\\hat{p}) = \\sqrt{\\frac{0.25}{100}} = 0.05$; $z = \\frac{0.60 - 0.50}{0.05} = 2.0$ — the edge of ordinary. Verdict: consistent-but-watchable; a fair coin does this a few times per hundred sequences. Prescription: flip $400$ more before the execution — at $n = 500$, a real tilt would stand out clearly ($1/\\sqrt{500} \\approx 4.5$-point margin).",
-          "check": ["sqrt((1/2)*(1/2)/100) == 1/20", "(60/100 - 50/100)/(1/20) == 2"]
+          "check": [
+            "sqrt((1/2)*(1/2)/100) == 1/20",
+            "(60/100 - 50/100)/(1/20) == 2"
+          ]
         },
         {
           "id": "in-l6-w3",
           "statement": "A wellness influencer: \"In my poll ($n = 2000$), $78\\%$ of followers who bought the supplement report more energy!\" Deliver the complete professional demolition — and what evidence WOULD convince you.",
           "solution": "Audit first (and last): voluntary-response poll of FOLLOWERS who BOUGHT — selection bias squared; no control group (placebo effect unmeasured — Unit 12); self-reported energy (response bias); association at best (Unit 11). The $n = 2000$ buys precision around a tilted number ($\\pm 2.2\\%$ of the wrong quantity). Convincing evidence: a randomized, placebo-controlled, double-blind trial with a pre-registered outcome — the pillars, by name. Until then: 'we cannot distinguish this from enthusiasm.'",
-          "check": ["1/sqrt(2000) < 1/40"]
+          "check": [
+            "1/sqrt(2000) < 1/40"
+          ]
         }
       ],
       "commonMistakes": [
@@ -912,13 +1088,18 @@
           "id": "in-l6-t1",
           "statement": "A game studio claims a $25\\%$ drop rate. A streamer's $80$ random boxes yield $12$ drops ($15\\%$). Run the recipe's steps 2–5.",
           "solution": "Assume $p = 0.25$: SD $= \\sqrt{\\frac{0.25 \\times 0.75}{80}} \\approx 0.048$; $z = \\frac{0.15 - 0.25}{0.048} \\approx -2.1$. Verdict: strained — unlucky-but-possible ($\\sim 2\\%$ tail); one more streamer's data would settle it. (Same skeleton as Unit 8's loot boxes — now with the full recipe around it.)",
-          "check": ["12/80 == 15/100", "(25/100)*(75/100)/80 == 1875/800000"]
+          "check": [
+            "12/80 == 15/100",
+            "(25/100)*(75/100)/80 == 1875/800000"
+          ]
         },
         {
           "id": "in-l6-t2",
           "statement": "Name the SINGLE most important question to ask about any statistic you meet — the one this course keeps returning to.",
           "solution": "\"How was this data OBTAINED?\" — random or self-selected, experiment or observation, what wording, what n. Every verdict downstream rides on the answer.",
-          "check": ["1 == 1"]
+          "check": [
+            "1 == 1"
+          ]
         }
       ],
       "interactive": {
@@ -962,10 +1143,16 @@
             "eyebrow": "Calibration drill",
             "title": "Pick the verdict",
             "prompt": "A claim predicts wobble SD $= 4$ points; the sample lands $5$ points from the claim. Verdict?",
-            "options": ["Consistent — $z = 1.25$, well within ordinary wobble", "Incompatible — 5 > 4", "Strained — borderline"],
+            "options": [
+              "Consistent — $z = 1.25$, well within ordinary wobble",
+              "Incompatible — 5 > 4",
+              "Strained — borderline"
+            ],
             "correctIndex": 0,
             "explanation": "$z = \\frac{5}{4} = 1.25$: comfortably inside the $\\pm 2$ SD band. Comparing the gap to the SD (not to zero) is the entire discipline — a 5-point miss means nothing until the wobble prices it.",
-            "check": ["5/4 == 125/100"]
+            "check": [
+              "5/4 == 125/100"
+            ]
           },
           {
             "kind": "worked",
@@ -978,10 +1165,16 @@
             "eyebrow": "The course, assembled",
             "title": "Which unit answers it?",
             "prompt": "Mid-recipe, you need $P(\\hat{p} \\le 0.64)$ under the claim — which earlier machinery computes the wobble SD you're using?",
-            "options": ["Unit 8's binomial: counts spread as √(np(1−p)), proportions per capita", "Unit 4's binomial theorem for expansion", "Unit 9's boxplots"],
+            "options": [
+              "Unit 8's binomial: counts spread as √(np(1−p)), proportions per capita",
+              "Unit 4's binomial theorem for expansion",
+              "Unit 9's boxplots"
+            ],
             "correctIndex": 0,
             "explanation": "The sampling wobble IS binomial spread divided by n — Act Two's centerpiece powering Act Three's verdicts. (Unit 4's theorem proved the distribution sums to 1; Unit 9 described data. Everything is load-bearing, but the SD is Unit 8's.)",
-            "check": ["sqrt((8/10)*(2/10)/50) > 5/100"]
+            "check": [
+              "sqrt((8/10)*(2/10)/50) > 5/100"
+            ]
           },
           {
             "kind": "tip",
@@ -1026,49 +1219,69 @@
       "id": "in-p-1",
       "statement": "A librarian surveys $45$ of the library's $900$ members about hours. Name the population, sample, and sampled fraction.",
       "solution": "Population: all $900$ members; sample: the $45$; fraction $\\frac{45}{900} = \\frac{1}{20}$.",
-      "check": ["45/900 == 1/20"]
+      "check": [
+        "45/900 == 1/20"
+      ]
     },
     {
       "id": "in-p-2",
       "statement": "Design a stratified sample of $60$ from a school with $400$ juniors and $200$ seniors.",
       "solution": "Proportions $2:1$ — randomly select $40$ juniors and $20$ seniors from separate rosters.",
-      "check": ["400/600*60 == 40", "200/600*60 == 20"]
+      "check": [
+        "400/600*60 == 40",
+        "200/600*60 == 20"
+      ]
     },
     {
       "id": "in-p-3",
       "statement": "Name the bias: a TV show's text-in poll finds $88\\%$ want the villain to win. Direction?",
       "solution": "Voluntary response — invested fans text; casual viewers don't. Villain-enthusiasm overstated.",
-      "check": ["88 > 50"]
+      "check": [
+        "88 > 50"
+      ]
     },
     {
       "id": "in-p-4",
       "statement": "Classify: researchers compare heart health of people who already do yoga vs those who don't. What's licensed?",
       "solution": "Observational — self-selected groups (health-conscious lurkers intact). Licensed claim: association only.",
-      "check": ["1 == 1"]
+      "check": [
+        "1 == 1"
+      ]
     },
     {
       "id": "in-p-5",
       "statement": "Design the yoga EXPERIMENT in two sentences for $120$ volunteers.",
       "solution": "Randomly assign $60$ to a yoga program and $60$ to a matched-time stretching control; blind the outcome measurers. Compare heart-health metrics after the trial period.",
-      "check": ["120/2 == 60"]
+      "check": [
+        "120/2 == 60"
+      ]
     },
     {
       "id": "in-p-6",
       "statement": "True $p = 0.5$: compute SD$(\\hat{p})$ for $n = 100$ and $n = 400$, and state the pattern.",
       "solution": "$0.05$ and $0.025$ — quadruple the sample, halve the wobble.",
-      "check": ["sqrt((1/2)*(1/2)/100) == 1/20", "sqrt((1/2)*(1/2)/400) == 1/40"]
+      "check": [
+        "sqrt((1/2)*(1/2)/100) == 1/20",
+        "sqrt((1/2)*(1/2)/400) == 1/40"
+      ]
     },
     {
       "id": "in-p-7",
       "statement": "A city poll ($n = 1111$... use $1100$) — actually: compute the quick MOE for $n = 1100$ and interpret a $51\\%$–$49\\%$ result.",
       "solution": "MOE $\\approx \\frac{1}{\\sqrt{1100}} \\approx 3\\%$: ranges $48$–$54$ vs $46$–$52$ overlap — statistical tie.",
-      "check": ["1/sqrt(1100) < 31/1000"]
+      "check": [
+        "1/sqrt(1100) < 31/1000"
+      ]
     },
     {
       "id": "in-p-8",
       "statement": "A die is claimed fair; $180$ rolls give $42$ sixes. Locate the evidence in SDs and give the calibrated verdict.",
       "solution": "Expected $30$, SD $= \\sqrt{180 \\cdot \\frac{1}{6} \\cdot \\frac{5}{6}} = 5$: $z = \\frac{42-30}{5} = 2.4$ — strained: suspicious, not damning. Roll more before accusing.",
-      "check": ["180/6 == 30", "sqrt(180*(1/6)*(5/6)) == 5", "(42 - 30)/5 == 12/5"]
+      "check": [
+        "180/6 == 30",
+        "sqrt(180*(1/6)*(5/6)) == 5",
+        "(42 - 30)/5 == 12/5"
+      ]
     }
   ],
   "testYourself": [
@@ -1076,37 +1289,53 @@
       "id": "in-ty-1",
       "statement": "A mall marketer interviews shoppers near the food court at noon about 'satisfaction with mall dining'. Identify every bias and its direction, then design the honest version.",
       "solution": "Convenience + undercoverage (only mall-goers, only noon diners, only food-court-adjacent — people who avoid mall food never appear); satisfaction overstated. Honest: sample the town's resident register at random, ask a neutrally-worded question, report response rate and wording.",
-      "check": ["1 == 1"]
+      "check": [
+        "1 == 1"
+      ]
     },
     {
       "id": "in-ty-2",
       "statement": "Explain — using the two randomnesses — why a randomized drug trial on 2,000 volunteers can prove the drug works yet still not tell you it works for 80-year-olds.",
       "solution": "Random ASSIGNMENT (drug vs placebo among the 2,000) kills lurkers and buys causation within the studied group. But volunteers were not randomly SELECTED from all patients — if few were elderly, generalization to 80-year-olds is unlicensed. Causation and generalization are separate purchases.",
-      "check": ["2000/2 == 1000"]
+      "check": [
+        "2000/2 == 1000"
+      ]
     },
     {
       "id": "in-ty-3",
       "statement": "A population is $30\\%$ left-footed. For samples of $n = 84$, give the expected count, the SD of the count, and the usual range.",
       "solution": "Expected: $84 \\times 0.3 = 25.2$. SD: $\\sqrt{84 \\times 0.3 \\times 0.7} = \\sqrt{17.64} = 4.2$. Usual: $25.2 \\pm 8.4$, about $17$–$34$ lefties.",
-      "check": ["84*3/10 == 126/5", "84*(3/10)*(7/10) == 4410/250", "sqrt(4410/250) == 21/5"]
+      "check": [
+        "84*3/10 == 126/5",
+        "84*(3/10)*(7/10) == 4410/250",
+        "sqrt(4410/250) == 21/5"
+      ]
     },
     {
       "id": "in-ty-4",
       "statement": "Poll A ($n = 400$): candidate at $54\\%$. Poll B ($n = 1600$): same candidate at $51\\%$. Are the polls consistent with each other?",
       "solution": "Margins: A $\\pm 5$, B $\\pm 2.5$: ranges $49$–$59$ and $48.5$–$53.5$ overlap substantially — consistent; both fit a true value near $52$. Two polls disagreeing by less than their margins is expectation, not scandal.",
-      "check": ["1/sqrt(400) == 1/20", "1/sqrt(1600) == 1/40"]
+      "check": [
+        "1/sqrt(400) == 1/20",
+        "1/sqrt(1600) == 1/40"
+      ]
     },
     {
       "id": "in-ty-5",
       "statement": "A cereal company claims $10\\%$ of boxes hold a golden ticket. A class opens $150$ random boxes: $6$ tickets ($4\\%$). Run the full six-step recipe.",
       "solution": "Audit: random boxes from multiple stores ✓. Assume $p = 0.1$: SD$(\\hat{p}) = \\sqrt{\\frac{0.1 \\times 0.9}{150}} \\approx 0.0245$. Locate: $z = \\frac{0.04 - 0.10}{0.0245} \\approx -2.45$ — strained hard, sub-1% tail. Verdict: the claim strains badly; either the rate is lower, tickets were regionally uneven (assumption!), or the class hit a $\\sim 1\\%$ unlucky streak. State assumptions; open another crate before the lawsuit.",
-      "check": ["6/150 == 4/100", "(1/10)*(9/10)/150 == 9/15000"]
+      "check": [
+        "6/150 == 4/100",
+        "(1/10)*(9/10)/150 == 9/15000"
+      ]
     },
     {
       "id": "in-ty-6",
       "statement": "Write the course's final synthesis: a friend shows you a viral chart claiming a city's new bike lanes CAUSED a $20\\%$ business boost, based on shops that chose to answer an association's survey. Deliver the three-layer critique with the constructive fix.",
       "solution": "Layer 1 — sampling (Unit 12): voluntary response from association members; boosted shops brag, closed shops can't answer (survivorship). Layer 2 — design (Units 11–12): observational; lanes weren't randomly assigned — thriving districts GET lanes (reverse causation) and city investment lurks behind both. Layer 3 — wobble: is $20\\%$ big relative to normal year-to-year revenue variation? Unstated. Fix: compare revenue TRENDS in lane vs matched no-lane streets chosen by the city's rollout schedule (a natural experiment), with all shops from tax records, not surveys. Verdict until then: \"plausible, unproven — associated at best.\"",
-      "check": ["20/100 > 0"]
+      "check": [
+        "20/100 > 0"
+      ]
     }
   ]
 }

@@ -35,19 +35,26 @@
           "id": "pm-l1-w1",
           "statement": "Five friends line up for a photo. How many different orders are possible?",
           "solution": "Shrinking slots for ALL of them: $5 \\times 4 \\times 3 \\times 2 \\times 1 = 5! = 120$ orders.",
-          "check": ["factorial(5) == 120"]
+          "check": [
+            "factorial(5) == 120"
+          ]
         },
         {
           "id": "pm-l1-w2",
           "statement": "Compute $\\frac{9!}{7!}$ without a calculator.",
           "solution": "Expand $9!$ just far enough: $9! = 9 \\times 8 \\times 7!$. So $\\frac{9!}{7!} = \\frac{9 \\times 8 \\times 7!}{7!} = 9 \\times 8 = 72$.",
-          "check": ["factorial(9)/factorial(7) == 72"]
+          "check": [
+            "factorial(9)/factorial(7) == 72"
+          ]
         },
         {
           "id": "pm-l1-w3",
           "statement": "A bookshelf holds $4$ novels and you also have $1$ atlas that must stay in your bag. How many ways can the shelf be arranged — and what does $0!$ have to do with the empty bag pocket?",
           "solution": "The shelf arranges $4$ books: $4! = 24$ ways. The bag's empty pocket can be \"arranged\" in exactly one way — do nothing — which is why mathematicians define $0! = 1$: it makes \"arrangements of nothing\" count as one, keeping later formulas seamless.",
-          "check": ["factorial(4) == 24", "factorial(0) == 1"]
+          "check": [
+            "factorial(4) == 24",
+            "factorial(0) == 1"
+          ]
         }
       ],
       "commonMistakes": [
@@ -67,13 +74,17 @@
           "id": "pm-l1-t1",
           "statement": "How many ways can $6$ different trophies be arranged on one shelf?",
           "solution": "$6! = 720$ arrangements.",
-          "check": ["factorial(6) == 720"]
+          "check": [
+            "factorial(6) == 720"
+          ]
         },
         {
           "id": "pm-l1-t2",
           "statement": "Simplify $\\frac{12!}{10!}$.",
           "solution": "$\\frac{12 \\times 11 \\times 10!}{10!} = 132$.",
-          "check": ["factorial(12)/factorial(10) == 132"]
+          "check": [
+            "factorial(12)/factorial(10) == 132"
+          ]
         }
       ],
       "interactive": {
@@ -105,10 +116,16 @@
             "eyebrow": "First factorial",
             "title": "Race finishers",
             "prompt": "Four runners finish a race with no ties. How many finish orders are possible?",
-            "options": ["$24$", "$16$", "$10$"],
+            "options": [
+              "$24$",
+              "$16$",
+              "$10$"
+            ],
             "correctIndex": 0,
             "explanation": "All four get arranged: $4! = 4 \\times 3 \\times 2 \\times 1 = 24$. The distractor $16$ is $4^2$ (repeats don't happen in a finish order); $10$ is $4 + 3 + 2 + 1$, adding when slots multiply.",
-            "check": ["factorial(4) == 24"]
+            "check": [
+              "factorial(4) == 24"
+            ]
           },
           {
             "kind": "teach",
@@ -120,6 +137,95 @@
               "Cancel the $6!$: answer $8 \\times 7 = 56$.",
               "Factorials live in fractions — cancellation is the whole game."
             ]
+          },
+          {
+            "kind": "treeDiagram",
+            "eyebrow": "Watch it shrink",
+            "title": "Why 3! is a tree",
+            "teach": "Arrange A, B, C in a row. First slot: 3 choices. Second: only 2 remain. Third: forced. The tree shrinks by one branch per level, and that shrinking-product $3 \\times 2 \\times 1$ is exactly what the factorial notation compresses. Every leaf is one arrangement — count them: $3! = 6$.",
+            "config": {
+              "mode": "count",
+              "stages": [
+                {
+                  "name": "1st",
+                  "options": [
+                    {
+                      "label": "A"
+                    },
+                    {
+                      "label": "B"
+                    },
+                    {
+                      "label": "C"
+                    }
+                  ]
+                },
+                {
+                  "name": "2nd",
+                  "byPath": {
+                    "A": [
+                      {
+                        "label": "B"
+                      },
+                      {
+                        "label": "C"
+                      }
+                    ],
+                    "B": [
+                      {
+                        "label": "A"
+                      },
+                      {
+                        "label": "C"
+                      }
+                    ],
+                    "C": [
+                      {
+                        "label": "A"
+                      },
+                      {
+                        "label": "B"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "3rd",
+                  "byPath": {
+                    "AB": [
+                      {
+                        "label": "C"
+                      }
+                    ],
+                    "AC": [
+                      {
+                        "label": "B"
+                      }
+                    ],
+                    "BA": [
+                      {
+                        "label": "C"
+                      }
+                    ],
+                    "BC": [
+                      {
+                        "label": "A"
+                      }
+                    ],
+                    "CA": [
+                      {
+                        "label": "B"
+                      }
+                    ],
+                    "CB": [
+                      {
+                        "label": "A"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
           },
           {
             "kind": "worked",
@@ -144,10 +250,16 @@
             "eyebrow": "Cancellation drill",
             "title": "No calculators needed",
             "prompt": "$\\frac{20!}{18!} = $ ?",
-            "options": ["$380$", "$2$", "$400$"],
+            "options": [
+              "$380$",
+              "$2$",
+              "$400$"
+            ],
             "correctIndex": 0,
             "explanation": "$20! = 20 \\times 19 \\times 18!$, so the quotient is $20 \\times 19 = 380$. The $2$ subtracts factorials' arguments; $400$ is $20^2$.",
-            "check": ["factorial(20)/factorial(18) == 380"]
+            "check": [
+              "factorial(20)/factorial(18) == 380"
+            ]
           },
           {
             "kind": "tip",
@@ -215,19 +327,28 @@
           "id": "pm-l2-w1",
           "statement": "Eight sprinters race for gold, silver, and bronze. How many different podiums are possible?",
           "solution": "Three shrinking slots from eight: $P(8,3) = 8 \\times 7 \\times 6 = 336$. Formula check: $\\frac{8!}{5!} = 336$. ✓",
-          "check": ["8*7*6 == 336", "factorial(8)/factorial(5) == 336"]
+          "check": [
+            "8*7*6 == 336",
+            "factorial(8)/factorial(5) == 336"
+          ]
         },
         {
           "id": "pm-l2-w2",
           "statement": "A club of $10$ people elects a president, a secretary, and a treasurer (no one holds two jobs). How many outcomes are possible?",
           "solution": "The jobs are DIFFERENT, so order matters: president $10$ ways, secretary $9$, treasurer $8$ — $P(10,3) = 10 \\times 9 \\times 8 = 720$ outcomes.",
-          "check": ["10*9*8 == 720", "factorial(10)/factorial(7) == 720"]
+          "check": [
+            "10*9*8 == 720",
+            "factorial(10)/factorial(7) == 720"
+          ]
         },
         {
           "id": "pm-l2-w3",
           "statement": "How many $4$-letter codes (no repeated letters) can be formed from the $7$ letters A–G?",
           "solution": "Four shrinking slots from seven: $P(7,4) = 7 \\times 6 \\times 5 \\times 4 = 840$ codes. Codes are ordered — ABCD and DCBA differ — so permutations are the right tool.",
-          "check": ["7*6*5*4 == 840", "factorial(7)/factorial(3) == 840"]
+          "check": [
+            "7*6*5*4 == 840",
+            "factorial(7)/factorial(3) == 840"
+          ]
         }
       ],
       "commonMistakes": [
@@ -247,13 +368,17 @@
           "id": "pm-l2-t1",
           "statement": "From $12$ paintings, a gallery hangs $2$ — one in the lobby, one in the hall. How many ways?",
           "solution": "Different rooms → order matters: $P(12,2) = 12 \\times 11 = 132$.",
-          "check": ["12*11 == 132"]
+          "check": [
+            "12*11 == 132"
+          ]
         },
         {
           "id": "pm-l2-t2",
           "statement": "Compute $P(6, 6)$ and say what it counts.",
           "solution": "$P(6,6) = \\frac{6!}{0!} = 720$ — arranging ALL six objects, which is just $6!$.",
-          "check": ["factorial(6)/factorial(0) == 720"]
+          "check": [
+            "factorial(6)/factorial(0) == 720"
+          ]
         }
       ],
       "interactive": {
@@ -285,10 +410,16 @@
             "eyebrow": "Slots or formula",
             "title": "Student council",
             "prompt": "From $9$ candidates, a class picks a president and a vice-president. How many outcomes?",
-            "options": ["$72$", "$81$", "$36$"],
+            "options": [
+              "$72$",
+              "$81$",
+              "$36$"
+            ],
             "correctIndex": 0,
             "explanation": "$P(9,2) = 9 \\times 8 = 72$ — the jobs differ, so order matters. $81$ is $9^2$ (lets one person hold both jobs); $36$ divides by $2$, treating the jobs as identical (that's a combination — Unit 3).",
-            "check": ["9*8 == 72"]
+            "check": [
+              "9*8 == 72"
+            ]
           },
           {
             "kind": "teach",
@@ -300,6 +431,83 @@
               "Gold↔silver swap: different podium. Permutation. ✓",
               "Two identical concert tickets to hand out? Swapping changes nothing — NOT a permutation. Hold that thought for Unit 3."
             ]
+          },
+          {
+            "kind": "treeDiagram",
+            "eyebrow": "Play with it",
+            "title": "President, then vice-president",
+            "teach": "Four candidates, two jobs, order matters. The tree stops after two levels — you don't arrange everyone, just fill the slots you have: $4 \\times 3 = 12$ outcomes. That's $P(4,2)$: a factorial that **stops early**.",
+            "config": {
+              "mode": "count",
+              "stages": [
+                {
+                  "name": "president",
+                  "options": [
+                    {
+                      "label": "A"
+                    },
+                    {
+                      "label": "B"
+                    },
+                    {
+                      "label": "C"
+                    },
+                    {
+                      "label": "D"
+                    }
+                  ]
+                },
+                {
+                  "name": "vice-pres",
+                  "byPath": {
+                    "A": [
+                      {
+                        "label": "B"
+                      },
+                      {
+                        "label": "C"
+                      },
+                      {
+                        "label": "D"
+                      }
+                    ],
+                    "B": [
+                      {
+                        "label": "A"
+                      },
+                      {
+                        "label": "C"
+                      },
+                      {
+                        "label": "D"
+                      }
+                    ],
+                    "C": [
+                      {
+                        "label": "A"
+                      },
+                      {
+                        "label": "B"
+                      },
+                      {
+                        "label": "D"
+                      }
+                    ],
+                    "D": [
+                      {
+                        "label": "A"
+                      },
+                      {
+                        "label": "B"
+                      },
+                      {
+                        "label": "C"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
           },
           {
             "kind": "worked",
@@ -324,10 +532,16 @@
             "eyebrow": "Signature check",
             "title": "Permutation or not?",
             "prompt": "Which situation is a PERMUTATION?",
-            "options": ["Choosing 1st, 2nd, 3rd prize winners from 20 entries", "Choosing 3 equal winners from 20 entries", "Rolling a die 3 times"],
+            "options": [
+              "Choosing 1st, 2nd, 3rd prize winners from 20 entries",
+              "Choosing 3 equal winners from 20 entries",
+              "Rolling a die 3 times"
+            ],
             "correctIndex": 0,
             "explanation": "Ranked prizes: swapping two winners changes who gets 1st — order matters, $P(20,3)$. Equal winners: swaps change nothing (combination). Die rolls: repeats allowed, that's plain multiplication $6^3$.",
-            "check": ["20*19*18 == 6840"]
+            "check": [
+              "20*19*18 == 6840"
+            ]
           },
           {
             "kind": "tip",
@@ -395,19 +609,25 @@
           "id": "pm-l3-w1",
           "statement": "How many distinct arrangements does the word MOON have?",
           "solution": "Four letters with O repeated twice: $\\frac{4!}{2!} = \\frac{24}{2} = 12$. The division undoes the double-count from the two O's swapping places invisibly.",
-          "check": ["factorial(4)/factorial(2) == 12"]
+          "check": [
+            "factorial(4)/factorial(2) == 12"
+          ]
         },
         {
           "id": "pm-l3-w2",
           "statement": "How many distinct arrangements does MISSISSIPPI have?",
           "solution": "Eleven letters: I appears $4$ times, S appears $4$ times, P appears $2$ times (M once). Count: $\\frac{11!}{4! \\, 4! \\, 2!} = \\frac{39{,}916{,}800}{24 \\times 24 \\times 2} = 34{,}650$.",
-          "check": ["factorial(11)/(factorial(4)*factorial(4)*factorial(2)) == 34650"]
+          "check": [
+            "factorial(11)/(factorial(4)*factorial(4)*factorial(2)) == 34650"
+          ]
         },
         {
           "id": "pm-l3-w3",
           "statement": "A city walk goes $3$ blocks east and $2$ blocks north. How many different shortest routes are there?",
           "solution": "Each shortest route is a word with three E's and two N's, like EENEN. Arrangements of EEENN: $\\frac{5!}{3! \\, 2!} = \\frac{120}{12} = 10$ routes.",
-          "check": ["factorial(5)/(factorial(3)*factorial(2)) == 10"]
+          "check": [
+            "factorial(5)/(factorial(3)*factorial(2)) == 10"
+          ]
         }
       ],
       "commonMistakes": [
@@ -427,13 +647,17 @@
           "id": "pm-l3-t1",
           "statement": "How many distinct arrangements does the word LEVEL have?",
           "solution": "Five letters, L×2 and E×2: $\\frac{5!}{2! \\, 2!} = \\frac{120}{4} = 30$.",
-          "check": ["factorial(5)/(factorial(2)*factorial(2)) == 30"]
+          "check": [
+            "factorial(5)/(factorial(2)*factorial(2)) == 30"
+          ]
         },
         {
           "id": "pm-l3-t2",
           "statement": "A walk goes $4$ blocks east and $1$ block north. How many shortest routes?",
           "solution": "Words with EEEEN: $\\frac{5!}{4! \\, 1!} = 5$ routes — the N can sit in any of the $5$ positions.",
-          "check": ["factorial(5)/factorial(4) == 5"]
+          "check": [
+            "factorial(5)/factorial(4) == 5"
+          ]
         }
       ],
       "interactive": {
@@ -465,10 +689,16 @@
             "eyebrow": "Inventory first",
             "title": "Word check",
             "prompt": "How many distinct arrangements does BANANA have? (B×1, A×3, N×2)",
-            "options": ["$60$", "$120$", "$720$"],
+            "options": [
+              "$60$",
+              "$120$",
+              "$720$"
+            ],
             "correctIndex": 0,
             "explanation": "$\\frac{6!}{3! \\, 2!} = \\frac{720}{12} = 60$. The $120$ divides by $3 \\times 2$ instead of $3! \\times 2!$; the $720$ forgets the repeats entirely.",
-            "check": ["factorial(6)/(factorial(3)*factorial(2)) == 60"]
+            "check": [
+              "factorial(6)/(factorial(3)*factorial(2)) == 60"
+            ]
           },
           {
             "kind": "worked",
@@ -504,10 +734,16 @@
             "eyebrow": "Path drill",
             "title": "Bigger grid",
             "prompt": "How many shortest routes go $2$ blocks east and $2$ blocks north?",
-            "options": ["$6$", "$4$", "$24$"],
+            "options": [
+              "$6$",
+              "$4$",
+              "$24$"
+            ],
             "correctIndex": 0,
             "explanation": "Words in EENN: $\\frac{4!}{2! \\, 2!} = 6$. The $4$ counts letters, not arrangements; $24$ is $4!$, ignoring that the E's (and N's) are identical.",
-            "check": ["factorial(4)/(factorial(2)*factorial(2)) == 6"]
+            "check": [
+              "factorial(4)/(factorial(2)*factorial(2)) == 6"
+            ]
           },
           {
             "kind": "tip",
@@ -575,19 +811,27 @@
           "id": "pm-l4-w1",
           "statement": "Five friends sit around a round table. How many genuinely different seatings are there?",
           "solution": "Anchor one friend anywhere (rotations spent). The other four arrange around them: $4! = 24$ seatings. Equivalent view: $\\frac{5!}{5} = \\frac{120}{5} = 24$. ✓",
-          "check": ["factorial(4) == 24", "factorial(5)/5 == 24"]
+          "check": [
+            "factorial(4) == 24",
+            "factorial(5)/5 == 24"
+          ]
         },
         {
           "id": "pm-l4-w2",
           "statement": "Six knights sit at a round table, but Sir Ana and Sir Bat must sit together. How many seatings?",
           "solution": "Glue the pair into a block (Unit 1's trick): now $5$ units around a circle $= (5-1)! = 24$ arrangements, times $2$ orders inside the block: $24 \\times 2 = 48$ seatings.",
-          "check": ["factorial(4)*2 == 48"]
+          "check": [
+            "factorial(4)*2 == 48"
+          ]
         },
         {
           "id": "pm-l4-w3",
           "statement": "Eight charms go on a bracelet that can be rotated AND flipped over. How many distinct bracelets?",
           "solution": "Rotations: $\\frac{8!}{8} = 7! = 5040$. Flipping the bracelet over makes each arrangement coincide with its mirror twin, halving again: $\\frac{5040}{2} = 2520$ distinct bracelets.",
-          "check": ["factorial(7) == 5040", "factorial(7)/2 == 2520"]
+          "check": [
+            "factorial(7) == 5040",
+            "factorial(7)/2 == 2520"
+          ]
         }
       ],
       "commonMistakes": [
@@ -607,13 +851,17 @@
           "id": "pm-l4-t1",
           "statement": "How many ways can $7$ people sit around a round table?",
           "solution": "$(7-1)! = 6! = 720$ seatings.",
-          "check": ["factorial(6) == 720"]
+          "check": [
+            "factorial(6) == 720"
+          ]
         },
         {
           "id": "pm-l4-t2",
           "statement": "Four different keys go on a key ring (rotations and flips both don't matter). How many distinct rings?",
           "solution": "Rotations: $(4-1)! = 6$; flips halve: $\\frac{6}{2} = 3$ distinct rings.",
-          "check": ["factorial(3)/2 == 3"]
+          "check": [
+            "factorial(3)/2 == 3"
+          ]
         }
       ],
       "interactive": {
@@ -645,10 +893,16 @@
             "eyebrow": "First circle",
             "title": "Card players",
             "prompt": "Four players sit around a square card table (only neighbors matter, seats unlabeled). How many seatings?",
-            "options": ["$6$", "$24$", "$12$"],
+            "options": [
+              "$6$",
+              "$24$",
+              "$12$"
+            ],
             "correctIndex": 0,
             "explanation": "$(4-1)! = 3! = 6$. The $24$ is the row-count $4!$ — it counts each circle four times. $12$ halves for a flip nobody mentioned.",
-            "check": ["factorial(3) == 6"]
+            "check": [
+              "factorial(3) == 6"
+            ]
           },
           {
             "kind": "worked",
@@ -684,10 +938,16 @@
             "eyebrow": "Fine-print check",
             "title": "The Ferris wheel",
             "prompt": "Six numbered cabins on a Ferris wheel get six painted designs, one each. Do rotations reduce the count?",
-            "options": ["No — cabins are numbered, so it's $6!$", "Yes — circles always give $(n-1)!$", "Yes, and flips halve it too"],
+            "options": [
+              "No — cabins are numbered, so it's $6!$",
+              "Yes — circles always give $(n-1)!$",
+              "Yes, and flips halve it too"
+            ],
             "correctIndex": 0,
             "explanation": "The cabins are LABELED — rotating the designs puts design A in a different numbered cabin, a genuinely different outcome. $6! = 720$. \"Circle\" is not a magic word; unlabeled positions are what kill rotations.",
-            "check": ["factorial(6) == 720"]
+            "check": [
+              "factorial(6) == 720"
+            ]
           },
           {
             "kind": "tip",
@@ -755,19 +1015,25 @@
           "id": "pm-l5-w1",
           "statement": "Six students line up, and the two class captains must take the two END positions. How many lineups?",
           "solution": "Fussy first: the captains take the ends — $2$ ways (who's left, who's right). The other four fill the middle: $4! = 24$. Total: $2 \\times 24 = 48$.",
-          "check": ["2*factorial(4) == 48"]
+          "check": [
+            "2*factorial(4) == 48"
+          ]
         },
         {
           "id": "pm-l5-w2",
           "statement": "Five friends line up for a photo. Two of them just argued and refuse to stand next to each other. How many lineups?",
           "solution": "All lineups: $5! = 120$. Together (glue): $4! \\times 2! = 48$. Apart: $120 - 48 = 72$ lineups. Subtracting the enemy beats chasing the separated cases directly.",
-          "check": ["factorial(5) - factorial(4)*factorial(2) == 72"]
+          "check": [
+            "factorial(5) - factorial(4)*factorial(2) == 72"
+          ]
         },
         {
           "id": "pm-l5-w3",
           "statement": "Three boys and three girls line up so that boys and girls alternate. How many lineups?",
           "solution": "Skeleton first: BGBGBG or GBGBGB — $2$ patterns. Fill the boy slots: $3! = 6$; fill the girl slots: $3! = 6$. Total: $2 \\times 6 \\times 6 = 72$.",
-          "check": ["2*factorial(3)*factorial(3) == 72"]
+          "check": [
+            "2*factorial(3)*factorial(3) == 72"
+          ]
         }
       ],
       "commonMistakes": [
@@ -787,13 +1053,17 @@
           "id": "pm-l5-t1",
           "statement": "Seven books go on a shelf; the two largest must occupy the two ends. How many arrangements?",
           "solution": "Ends: $2$ ways. Middle five: $5! = 120$. Total: $240$.",
-          "check": ["2*factorial(5) == 240"]
+          "check": [
+            "2*factorial(5) == 240"
+          ]
         },
         {
           "id": "pm-l5-t2",
           "statement": "Six singers perform in a row, but the two sopranos must NOT be adjacent. How many orders?",
           "solution": "All: $6! = 720$. Together: $5! \\times 2 = 240$. Apart: $720 - 240 = 480$.",
-          "check": ["factorial(6) - factorial(5)*2 == 480"]
+          "check": [
+            "factorial(6) - factorial(5)*2 == 480"
+          ]
         }
       ],
       "interactive": {
@@ -820,10 +1090,16 @@
             "eyebrow": "Ends drill",
             "title": "One VIP, one end",
             "prompt": "Five performers line up; the headliner insists on an END spot. How many lineups?",
-            "options": ["$48$", "$24$", "$120$"],
+            "options": [
+              "$48$",
+              "$24$",
+              "$120$"
+            ],
             "correctIndex": 0,
             "explanation": "Headliner picks an end: $2$ ways. The other four: $4! = 24$. Total $2 \\times 24 = 48$. The $24$ forgets there are two ends; $120$ ignores the restriction.",
-            "check": ["2*factorial(4) == 48"]
+            "check": [
+              "2*factorial(4) == 48"
+            ]
           },
           {
             "kind": "worked",
@@ -853,10 +1129,16 @@
             "eyebrow": "Skeleton check",
             "title": "Four and three",
             "prompt": "Four adults and $3$ kids line up alternating (no two of the same type adjacent). How many lineups?",
-            "options": ["$4! \\times 3! = 144$", "$2 \\times 4! \\times 3! = 288$", "$7! = 5040$"],
+            "options": [
+              "$4! \\times 3! = 144$",
+              "$2 \\times 4! \\times 3! = 288$",
+              "$7! = 5040$"
+            ],
             "correctIndex": 0,
             "explanation": "With $4$ adults and $3$ kids the only skeleton is A K A K A K A — the adults must take the $4$ outer slots. One skeleton: $4! \\times 3! = 144$. The $288$ doubles for a second skeleton that can't exist.",
-            "check": ["factorial(4)*factorial(3) == 144"]
+            "check": [
+              "factorial(4)*factorial(3) == 144"
+            ]
           },
           {
             "kind": "tip",
@@ -924,19 +1206,25 @@
           "id": "pm-l6-w1",
           "statement": "Diagnose and count: how many $4$-digit ATM codes are possible (digits $0$–$9$, repeats allowed)?",
           "solution": "Diagnosis: repeats ALLOWED, order matters — plain multiplication: $10^4 = 10{,}000$ codes. No shrinking slots because nothing is used up.",
-          "check": ["10**4 == 10000"]
+          "check": [
+            "10**4 == 10000"
+          ]
         },
         {
           "id": "pm-l6-w2",
           "statement": "Diagnose and count: a relay team of $4$ runners must choose their running ORDER. How many orders?",
           "solution": "Diagnosis: all four arranged, no repeats (a runner runs once), order matters, straight line — $4! = 24$ orders.",
-          "check": ["factorial(4) == 24"]
+          "check": [
+            "factorial(4) == 24"
+          ]
         },
         {
           "id": "pm-l6-w3",
           "statement": "Diagnose and count: how many distinct arrangements does the word TATTOO have?",
           "solution": "Diagnosis: arranging all letters, but with IDENTICAL copies — T×3, O×2, A×1. Count: $\\frac{6!}{3! \\, 2!} = \\frac{720}{12} = 60$ arrangements.",
-          "check": ["factorial(6)/(factorial(3)*factorial(2)) == 60"]
+          "check": [
+            "factorial(6)/(factorial(3)*factorial(2)) == 60"
+          ]
         }
       ],
       "commonMistakes": [
@@ -956,13 +1244,17 @@
           "id": "pm-l6-t1",
           "statement": "A quiz has $5$ true/false questions. How many answer sheets are possible? (Diagnose first!)",
           "solution": "Repeats allowed (T can appear many times), order matters: $2^5 = 32$ sheets.",
-          "check": ["2**5 == 32"]
+          "check": [
+            "2**5 == 32"
+          ]
         },
         {
           "id": "pm-l6-t2",
           "statement": "From $9$ dancers, a choreographer places $3$ in a front line (left, center, right). How many placements?",
           "solution": "No repeats, order matters, arranging SOME: $P(9,3) = 9 \\times 8 \\times 7 = 504$.",
-          "check": ["9*8*7 == 504"]
+          "check": [
+            "9*8*7 == 504"
+          ]
         }
       ],
       "interactive": {
@@ -994,10 +1286,16 @@
             "eyebrow": "Diagnose",
             "title": "Case 1",
             "prompt": "How many $5$-character passwords use lowercase letters, repeats allowed?",
-            "options": ["$26^5$", "$P(26,5)$", "$26!/5!$"],
+            "options": [
+              "$26^5$",
+              "$P(26,5)$",
+              "$26!/5!$"
+            ],
             "correctIndex": 0,
             "explanation": "\"Repeats allowed\" is the giveaway: nothing shrinks, every slot has $26$ options — $26^5$. $P(26,5)$ would ban repeated letters the problem explicitly allows.",
-            "check": ["26**5 == 11881376"]
+            "check": [
+              "26**5 == 11881376"
+            ]
           },
           {
             "kind": "worked",
@@ -1022,10 +1320,16 @@
             "eyebrow": "Diagnose",
             "title": "Case 2",
             "prompt": "Five children ride a merry-go-round with $5$ identical unlabeled horses in a circle. How many ways can they sit?",
-            "options": ["$4! = 24$", "$5! = 120$", "$5^5$"],
+            "options": [
+              "$4! = 24$",
+              "$5! = 120$",
+              "$5^5$"
+            ],
             "correctIndex": 0,
             "explanation": "Circle, unlabeled positions → rotations are the same ride: $(5-1)! = 24$. $120$ treats it as a row; $5^5$ would let children repeat like digits — kids can't.",
-            "check": ["factorial(4) == 24"]
+            "check": [
+              "factorial(4) == 24"
+            ]
           },
           {
             "kind": "tip",
@@ -1070,49 +1374,65 @@
       "id": "pm-p-1",
       "statement": "How many ways can $7$ different flags be raised on one vertical pole (all seven, top to bottom order matters)?",
       "solution": "Arranging all seven: $7! = 5040$ ways.",
-      "check": ["factorial(7) == 5040"]
+      "check": [
+        "factorial(7) == 5040"
+      ]
     },
     {
       "id": "pm-p-2",
       "statement": "Simplify $\\frac{15!}{13!}$ without computing either factorial.",
       "solution": "$15! = 15 \\times 14 \\times 13!$, so the quotient is $15 \\times 14 = 210$.",
-      "check": ["factorial(15)/factorial(13) == 210"]
+      "check": [
+        "factorial(15)/factorial(13) == 210"
+      ]
     },
     {
       "id": "pm-p-3",
       "statement": "A theater gives a first-, second-, and third-prize ticket to $3$ of the $11$ audience members. How many ways can the prizes land?",
       "solution": "Ranked prizes → order matters: $P(11,3) = 11 \\times 10 \\times 9 = 990$.",
-      "check": ["11*10*9 == 990"]
+      "check": [
+        "11*10*9 == 990"
+      ]
     },
     {
       "id": "pm-p-4",
       "statement": "How many distinct arrangements does the word SEEDED have?",
       "solution": "Six letters: E×3, D×2, S×1. $\\frac{6!}{3! \\, 2!} = \\frac{720}{12} = 60$.",
-      "check": ["factorial(6)/(factorial(3)*factorial(2)) == 60"]
+      "check": [
+        "factorial(6)/(factorial(3)*factorial(2)) == 60"
+      ]
     },
     {
       "id": "pm-p-5",
       "statement": "How many ways can $6$ friends sit around a circular campfire?",
       "solution": "Circle: $(6-1)! = 5! = 120$ seatings.",
-      "check": ["factorial(5) == 120"]
+      "check": [
+        "factorial(5) == 120"
+      ]
     },
     {
       "id": "pm-p-6",
       "statement": "Five trophies go on a shelf, and the gold trophy must be in the exact center. How many arrangements?",
       "solution": "The center is forced ($1$ way); the other four arrange freely: $4! = 24$.",
-      "check": ["factorial(4) == 24"]
+      "check": [
+        "factorial(4) == 24"
+      ]
     },
     {
       "id": "pm-p-7",
       "statement": "Seven students line up, but two specific students must stand together. How many lineups?",
       "solution": "Glue the pair: $6$ units arrange in $6! = 720$ ways, times $2$ internal orders $= 1440$.",
-      "check": ["factorial(6)*2 == 1440"]
+      "check": [
+        "factorial(6)*2 == 1440"
+      ]
     },
     {
       "id": "pm-p-8",
       "statement": "A walk goes $4$ blocks east and $3$ blocks north. How many shortest routes are there?",
       "solution": "Words with E×4, N×3: $\\frac{7!}{4! \\, 3!} = \\frac{5040}{144} = 35$ routes.",
-      "check": ["factorial(7)/(factorial(4)*factorial(3)) == 35"]
+      "check": [
+        "factorial(7)/(factorial(4)*factorial(3)) == 35"
+      ]
     }
   ],
   "testYourself": [
@@ -1120,37 +1440,54 @@
       "id": "pm-ty-1",
       "statement": "A playlist has $8$ songs. How many ways can it play all $8$ with no repeats — and how many ways can it play just an opening block of $3$?",
       "solution": "All eight: $8! = 40320$. Opening three (ordered): $P(8,3) = 8 \\times 7 \\times 6 = 336$.",
-      "check": ["factorial(8) == 40320", "8*7*6 == 336"]
+      "check": [
+        "factorial(8) == 40320",
+        "8*7*6 == 336"
+      ]
     },
     {
       "id": "pm-ty-2",
       "statement": "How many distinct arrangements does the word BALLOON have?",
       "solution": "Seven letters: L×2, O×2, and B, A, N once each. $\\frac{7!}{2! \\, 2!} = \\frac{5040}{4} = 1260$.",
-      "check": ["factorial(7)/(factorial(2)*factorial(2)) == 1260"]
+      "check": [
+        "factorial(7)/(factorial(2)*factorial(2)) == 1260"
+      ]
     },
     {
       "id": "pm-ty-3",
       "statement": "Eight diplomats sit at a round table. The two rival ambassadors must NOT sit next to each other. How many seatings?",
       "solution": "All circular seatings: $7! = 5040$. Together: glue the rivals — $7$ units in a circle $= 6! = 720$, times $2$ internal orders $= 1440$. Apart: $5040 - 1440 = 3600$.",
-      "check": ["factorial(7) == 5040", "factorial(6)*2 == 1440", "5040 - 1440 == 3600"]
+      "check": [
+        "factorial(7) == 5040",
+        "factorial(6)*2 == 1440",
+        "5040 - 1440 == 3600"
+      ]
     },
     {
       "id": "pm-ty-4",
       "statement": "Four math books and $3$ novels line a shelf so that the $4$ math books stay together as a block. How many arrangements?",
       "solution": "Glue the math block: $4$ units ($3$ novels + block) arrange in $4! = 24$ ways; inside the block the math books arrange in $4! = 24$ ways. Total: $24 \\times 24 = 576$.",
-      "check": ["factorial(4)*factorial(4) == 576"]
+      "check": [
+        "factorial(4)*factorial(4) == 576"
+      ]
     },
     {
       "id": "pm-ty-5",
       "statement": "Three girls and $3$ boys sit in a row of $6$ so that no two girls are adjacent AND no two boys are adjacent. How many seatings?",
       "solution": "Full alternation is forced: skeletons GBGBGB or BGBGBG — $2$ choices. Girls fill their slots $3!$ ways, boys $3!$: $2 \\times 6 \\times 6 = 72$.",
-      "check": ["2*factorial(3)*factorial(3) == 72"]
+      "check": [
+        "2*factorial(3)*factorial(3) == 72"
+      ]
     },
     {
       "id": "pm-ty-6",
       "statement": "Which is bigger, and by how much: the number of $4$-letter codes from A–J with repeats allowed, or without?",
       "solution": "With repeats: $10^4 = 10000$. Without: $10 \\times 9 \\times 8 \\times 7 = 5040$. Repeats-allowed is bigger by $10000 - 5040 = 4960$ codes — exactly the codes containing at least one repeat (Unit 1's complement!).",
-      "check": ["10**4 == 10000", "10*9*8*7 == 5040", "10000 - 5040 == 4960"]
+      "check": [
+        "10**4 == 10000",
+        "10*9*8*7 == 5040",
+        "10000 - 5040 == 4960"
+      ]
     }
   ]
 }

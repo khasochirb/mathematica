@@ -35,19 +35,28 @@
           "id": "dd-l1-w1",
           "statement": "Village incomes (millions ₮): nine values of $1$ and one of $91$. Compute both centers.",
           "solution": "Mean: $\\frac{9 \\times 1 + 91}{10} = \\frac{100}{10} = 10$ million. Median: sorted, the $5$th and $6$th values are both $1$ → median $= 1$ million. The mean answers \"total ÷ heads\"; the median answers \"the typical villager\".",
-          "check": ["(9*1 + 91)/10 == 10", "(1 + 1)/2 == 1"]
+          "check": [
+            "(9*1 + 91)/10 == 10",
+            "(1 + 1)/2 == 1"
+          ]
         },
         {
           "id": "dd-l1-w2",
           "statement": "Quiz scores: $6, 9, 4, 7, 9$. Find the mean and the median.",
           "solution": "Mean: $\\frac{6+9+4+7+9}{5} = \\frac{35}{5} = 7$. Sorted: $4, 6, 7, 9, 9$ — median $= 7$ (the third value). Centers agree here: no extreme values, roughly symmetric data.",
-          "check": ["(6 + 9 + 4 + 7 + 9)/5 == 7"]
+          "check": [
+            "(6 + 9 + 4 + 7 + 9)/5 == 7"
+          ]
         },
         {
           "id": "dd-l1-w3",
           "statement": "Delivery times (min): $22, 25, 27, 30$. Find the median, then recompute both centers after one disaster delivery of $110$ minutes joins the data.",
           "solution": "Median of four: $\\frac{25 + 27}{2} = 26$. With $110$: mean jumps from $26$ to $\\frac{104 + 110}{5} = 42.8$; sorted $22, 25, 27, 30, 110$ → median moves only to $27$. One bad day rewrote the mean and barely nudged the median.",
-          "check": ["(25 + 27)/2 == 26", "(22 + 25 + 27 + 30)/4 == 26", "(22 + 25 + 27 + 30 + 110)/5 == 214/5"]
+          "check": [
+            "(25 + 27)/2 == 26",
+            "(22 + 25 + 27 + 30)/4 == 26",
+            "(22 + 25 + 27 + 30 + 110)/5 == 214/5"
+          ]
         }
       ],
       "commonMistakes": [
@@ -67,13 +76,18 @@
           "id": "dd-l1-t1",
           "statement": "Data: $3, 8, 5, 12, 7$. Find both centers.",
           "solution": "Mean: $\\frac{35}{5} = 7$. Sorted $3, 5, 7, 8, 12$: median $= 7$.",
-          "check": ["(3 + 8 + 5 + 12 + 7)/5 == 7"]
+          "check": [
+            "(3 + 8 + 5 + 12 + 7)/5 == 7"
+          ]
         },
         {
           "id": "dd-l1-t2",
           "statement": "Data: $10, 12, 11, 95$. Which center better describes a typical value, and what are both?",
           "solution": "Mean $= \\frac{128}{4} = 32$ (dragged by $95$); median $= \\frac{11 + 12}{2} = 11.5$. The median — three of four values sit within $1$ of it.",
-          "check": ["(10 + 12 + 11 + 95)/4 == 32", "(11 + 12)/2 == 23/2"]
+          "check": [
+            "(10 + 12 + 11 + 95)/4 == 32",
+            "(11 + 12)/2 == 23/2"
+          ]
         }
       ],
       "interactive": {
@@ -101,14 +115,40 @@
             ]
           },
           {
+            "kind": "dotPlot",
+            "eyebrow": "Drag it",
+            "title": "Pull one value, watch who follows",
+            "teach": "Six quiz scores. Push the movable dot to the right with the stepper — the **mean** chases it, because every point pulls on the balance triangle. The **median** barely moves: it only cares about the middle of the ordered list. That's robustness, and it's why one weird value can wreck an average.",
+            "config": {
+              "mode": "meanMedian",
+              "data": [
+                3,
+                4,
+                4,
+                5,
+                6,
+                7
+              ],
+              "min": 0,
+              "max": 20,
+              "xLabel": "score"
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Sort first",
             "title": "Median drill",
             "prompt": "The median of $9, 2, 7, 4, 6$ is…",
-            "options": ["$6$", "$7$", "$5.6$"],
+            "options": [
+              "$6$",
+              "$7$",
+              "$5.6$"
+            ],
             "correctIndex": 0,
             "explanation": "Sorted: $2, 4, 6, 7, 9$ — middle is $6$. The $7$ reads the unsorted middle; $5.6$ is the MEAN sneaking into a median question.",
-            "check": ["(9 + 2 + 7 + 4 + 6)/5 == 28/5"]
+            "check": [
+              "(9 + 2 + 7 + 4 + 6)/5 == 28/5"
+            ]
           },
           {
             "kind": "worked",
@@ -133,10 +173,16 @@
             "eyebrow": "Question matching",
             "title": "Which center answers it?",
             "prompt": "A charity wants to predict TOTAL donations from $500$ donors like last year's. Which center of last year's donations should it use?",
-            "options": ["The mean — totals come from means: total = mean × n", "The median — it's resistant", "Either; they're interchangeable"],
+            "options": [
+              "The mean — totals come from means: total = mean × n",
+              "The median — it's resistant",
+              "Either; they're interchangeable"
+            ],
             "correctIndex": 0,
             "explanation": "Total = mean × count, by definition — the mean's sensitivity to big donors is exactly what a TOTAL needs to include. The median would ignore the whales who fund half the budget. Resistant isn't always right; match the center to the question.",
-            "check": ["1 == 1"]
+            "check": [
+              "1 == 1"
+            ]
           },
           {
             "kind": "tip",
@@ -204,19 +250,29 @@
           "id": "dd-l2-w1",
           "statement": "Scores: $4, 7, 8, 10, 12, 15, 21$ (already sorted, $n = 7$). Find the five-number summary and IQR.",
           "solution": "Median: $4$th value $= 10$. Lower half $\\{4, 7, 8\\}$: $Q_1 = 7$. Upper half $\\{12, 15, 21\\}$: $Q_3 = 15$. Summary: $4, 7, 10, 15, 21$. IQR $= 15 - 7 = 8$.",
-          "check": ["15 - 7 == 8"]
+          "check": [
+            "15 - 7 == 8"
+          ]
         },
         {
           "id": "dd-l2-w2",
           "statement": "Class A: $65, 67, 69, 71, 73, 75$. Class B: $30, 50, 65, 75, 90, 100$. Both medians are $70$. Compare IQRs.",
           "solution": "A: $Q_1 = 67, Q_3 = 73$ (medians of $\\{65,67,69\\}$ and $\\{71,73,75\\}$), IQR $= 6$. B: $Q_1 = 50, Q_3 = 90$, IQR $= 40$. Same center, spreads differing by a factor of nearly $7$ — the middle half tells the story the median hid.",
-          "check": ["(67 + 69)/2 - (65+67)/2 == 2", "73 - 67 == 6", "90 - 50 == 40"]
+          "check": [
+            "(67 + 69)/2 - (65+67)/2 == 2",
+            "73 - 67 == 6",
+            "90 - 50 == 40"
+          ]
         },
         {
           "id": "dd-l2-w3",
           "statement": "Delivery times: $22, 25, 27, 30, 110$. Compare the range and the IQR as spread reports.",
           "solution": "Range: $110 - 22 = 88$ — dominated by one disaster. Quartiles ($n = 5$, median $27$ excluded): lower $\\{22, 25\\} \\to Q_1 = 23.5$; upper $\\{30, 110\\} \\to Q_3 = 70$... note even $Q_3$ feels the outlier with tiny data. With realistic $n$, the IQR ignores the disaster entirely; the range NEVER does — it's built from the two worst-behaved values.",
-          "check": ["110 - 22 == 88", "(22 + 25)/2 == 47/2", "(30 + 110)/2 == 70"]
+          "check": [
+            "110 - 22 == 88",
+            "(22 + 25)/2 == 47/2",
+            "(30 + 110)/2 == 70"
+          ]
         }
       ],
       "commonMistakes": [
@@ -236,13 +292,21 @@
           "id": "dd-l2-t1",
           "statement": "Sorted data: $2, 5, 6, 8, 9, 12, 14, 18$ ($n = 8$). Find $Q_1$, the median, $Q_3$, and IQR.",
           "solution": "Median $= \\frac{8 + 9}{2} = 8.5$. Lower half $\\{2,5,6,8\\}$: $Q_1 = 5.5$; upper $\\{9,12,14,18\\}$: $Q_3 = 13$. IQR $= 7.5$.",
-          "check": ["(8 + 9)/2 == 17/2", "(5 + 6)/2 == 11/2", "(12 + 14)/2 == 13", "13 - 11/2 == 15/2"]
+          "check": [
+            "(8 + 9)/2 == 17/2",
+            "(5 + 6)/2 == 11/2",
+            "(12 + 14)/2 == 13",
+            "13 - 11/2 == 15/2"
+          ]
         },
         {
           "id": "dd-l2-t2",
           "statement": "In dd-l2-t1's data, the $18$ becomes $180$. Which of range and IQR change?",
           "solution": "Range: $18 - 2 = 16$ becomes $178$ — exploded. IQR: quartiles unmoved (the $180$ is still just 'the largest value') — IQR stays $7.5$. Resistance, demonstrated.",
-          "check": ["180 - 2 == 178", "18 - 2 == 16"]
+          "check": [
+            "180 - 2 == 178",
+            "18 - 2 == 16"
+          ]
         }
       ],
       "interactive": {
@@ -270,14 +334,39 @@
             ]
           },
           {
+            "kind": "boxPlot",
+            "eyebrow": "Tap the parts",
+            "title": "Five numbers, one picture",
+            "teach": "Eight values, summarized by five numbers. Tap each chip: min and max are the whisker tips, the box runs from $Q_1$ to $Q_3$, and the heavy line inside is the median. The box's width is the IQR — the span of the middle half of the data, immune to whatever the extremes are doing.",
+            "config": {
+              "data": [
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                12
+              ],
+              "xLabel": "value"
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Cut drill",
             "title": "Find Q1",
             "prompt": "Sorted: $3, 6, 7, 9, 11, 14, 20$ ($n = 7$). $Q_1 = $ ?",
-            "options": ["$6$", "$7$", "$4.5$"],
+            "options": [
+              "$6$",
+              "$7$",
+              "$4.5$"
+            ],
             "correctIndex": 0,
             "explanation": "Median is $9$ (4th); lower half is $\\{3, 6, 7\\}$ (median excluded) — its middle is $6$. Including the median in the half (getting $\\{3,6,7,9\\} \\to 6.5$) is the classic convention slip.",
-            "check": ["(3 + 6 + 7)/3 == 16/3"]
+            "check": [
+              "(3 + 6 + 7)/3 == 16/3"
+            ]
           },
           {
             "kind": "worked",
@@ -302,10 +391,16 @@
             "eyebrow": "Resistance test",
             "title": "What moves?",
             "prompt": "In a dataset of $40$ house prices, the top price doubles. Which statistics change?",
-            "options": ["Mean, range, max — but not median, Q1, Q3, IQR", "All of them", "Only the max"],
+            "options": [
+              "Mean, range, max — but not median, Q1, Q3, IQR",
+              "All of them",
+              "Only the max"
+            ],
             "correctIndex": 0,
             "explanation": "The doubled top is still just 'the largest value': every positional statistic (median, quartiles, IQR) is untouched. The mean absorbs the increase ÷ 40, and the range/max take it in full.",
-            "check": ["1 == 1"]
+            "check": [
+              "1 == 1"
+            ]
           },
           {
             "kind": "tip",
@@ -373,19 +468,32 @@
           "id": "dd-l3-w1",
           "statement": "Deliveries: five-number summary $22, 24, 27, 32, 110$ (with $Q_1 = 24$, $Q_3 = 32$). Fence the outliers.",
           "solution": "IQR $= 8$; $1.5 \\times 8 = 12$. Fences: $24 - 12 = 12$ and $32 + 12 = 44$. The $110$ lies far beyond $44$: flagged. Everything else is inside. The boxplot shows the box $24$–$32$, whisker down to $22$, whisker up to the last inlier ($\\le 44$), and a lone dot at $110$.",
-          "check": ["32 - 24 == 8", "24 - 12 == 12", "32 + 12 == 44", "110 > 44"]
+          "check": [
+            "32 - 24 == 8",
+            "24 - 12 == 12",
+            "32 + 12 == 44",
+            "110 > 44"
+          ]
         },
         {
           "id": "dd-l3-w2",
           "statement": "Test scores: $Q_1 = 60$, median $= 75$, $Q_3 = 82$. What does the median's position inside the box say about shape?",
           "solution": "The median sits $15$ above $Q_1$ but only $7$ below $Q_3$ — the LOWER half of the box is stretched: the data reach further down than up. Left (low-score) skew: a tail of struggling scores below a bunched top.",
-          "check": ["75 - 60 == 15", "82 - 75 == 7"]
+          "check": [
+            "75 - 60 == 15",
+            "82 - 75 == 7"
+          ]
         },
         {
           "id": "dd-l3-w3",
           "statement": "Plants under two fertilizers, heights (cm) as five-number summaries — A: $12, 15, 18, 21, 24$; B: $10, 18, 22, 24, 26$. Compare the groups from the (mental) side-by-side boxplots.",
           "solution": "Centers: B's median $22 > $ A's $18$. Spreads: IQR$_A = 6$, IQR$_B = 6$ — equal middles. Shape: A symmetric (median centered); B left-skewed (median nearer $Q_3$; long lower whisker to $10$). Verdict: B grows taller on the whole, with a straggler tail A doesn't have.",
-          "check": ["21 - 15 == 6", "24 - 18 == 6", "22 - 18 == 4", "24 - 22 == 2"]
+          "check": [
+            "21 - 15 == 6",
+            "24 - 18 == 6",
+            "22 - 18 == 4",
+            "24 - 22 == 2"
+          ]
         }
       ],
       "commonMistakes": [
@@ -405,13 +513,21 @@
           "id": "dd-l3-t1",
           "statement": "Data with $Q_1 = 50$, $Q_3 = 70$: compute the fences, and judge the values $15$ and $95$.",
           "solution": "IQR $= 20$; fences at $50 - 30 = 20$ and $70 + 30 = 100$. The $15$ is below $20$: flagged. The $95$ is inside: extreme-ish but legal.",
-          "check": ["70 - 50 == 20", "50 - 30 == 20", "70 + 30 == 100", "15 < 20", "95 < 100"]
+          "check": [
+            "70 - 50 == 20",
+            "50 - 30 == 20",
+            "70 + 30 == 100",
+            "15 < 20",
+            "95 < 100"
+          ]
         },
         {
           "id": "dd-l3-t2",
           "statement": "A boxplot's upper whisker is three times the lower one, median hugging $Q_1$. Describe the shape.",
           "solution": "Right (high-side) skew: the data stretch far upward; the bottom half is compressed. Typical for incomes, waiting times, house prices.",
-          "check": ["1 == 1"]
+          "check": [
+            "1 == 1"
+          ]
         }
       ],
       "interactive": {
@@ -445,14 +561,40 @@
             ]
           },
           {
+            "kind": "boxPlot",
+            "eyebrow": "Flag it",
+            "title": "The fence catches the 30",
+            "teach": "This is the lesson's own dataset: $5, 6, 6, 7, 8, 9, 30$. Toggle the fences: $Q_1 - 1.5 \\cdot IQR = 1.5$ and $Q_3 + 1.5 \\cdot IQR = 13.5$. Everything must live between them — the 30 doesn't, so it's flagged in red and the whisker retreats to the last value inside. The rule is mechanical on purpose: no arguing about what \"looks\" extreme.",
+            "config": {
+              "data": [
+                5,
+                6,
+                6,
+                7,
+                8,
+                9,
+                30
+              ],
+              "xLabel": "value",
+              "showFences": true
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Fence drill",
             "title": "Flag or shrug?",
             "prompt": "$Q_1 = 30$, $Q_3 = 42$. Is the value $60$ an outlier?",
-            "options": ["Yes — the upper fence is $42 + 18 = 60$... just AT the fence: not beyond, so no flag", "Yes — it's bigger than $Q_3$", "No — outliers must exceed twice the max"],
+            "options": [
+              "Yes — the upper fence is $42 + 18 = 60$... just AT the fence: not beyond, so no flag",
+              "Yes — it's bigger than $Q_3$",
+              "No — outliers must exceed twice the max"
+            ],
             "correctIndex": 0,
             "explanation": "IQR $= 12$, upper fence $= 42 + 1.5 \\times 12 = 60$: the rule flags values BEYOND the fence, and $60$ sits exactly on it — inside, technically. (Being above $Q_3$ describes a quarter of all data — never a flag by itself.)",
-            "check": ["42 + 18 == 60", "42 - 30 == 12"]
+            "check": [
+              "42 + 18 == 60",
+              "42 - 30 == 12"
+            ]
           },
           {
             "kind": "worked",
@@ -471,10 +613,16 @@
             "eyebrow": "Investigation ethics",
             "title": "The flagged point",
             "prompt": "A fenced outlier turns out to be a data-entry typo ($1100$ for $110$). The right move is…",
-            "options": ["Fix it to the verified true value and document the change", "Delete it silently — it's flagged anyway", "Keep it as-is — data is data"],
+            "options": [
+              "Fix it to the verified true value and document the change",
+              "Delete it silently — it's flagged anyway",
+              "Keep it as-is — data is data"
+            ],
             "correctIndex": 0,
             "explanation": "Flags start investigations, not deletions. Verified errors get corrected WITH a note; unverifiable extremes get reported both ways (with/without). Silent deletion is how fraudulent-looking research is made.",
-            "check": ["1 == 1"]
+            "check": [
+              "1 == 1"
+            ]
           },
           {
             "kind": "tip",
@@ -542,19 +690,29 @@
           "id": "dd-l4-w1",
           "statement": "Ana's arrows: $7, 8, 8, 9$. Compute $\\bar{x}$ and $s$.",
           "solution": "$\\bar{x} = 8$. Deviations: $-1, 0, 0, 1$; squares sum to $2$. $s = \\sqrt{\\frac{2}{3}} \\approx 0.82$. Her arrows typically land less than a point from her average.",
-          "check": ["(7 + 8 + 8 + 9)/4 == 8", "(7-8)**2 + 0 + 0 + (9-8)**2 == 2"]
+          "check": [
+            "(7 + 8 + 8 + 9)/4 == 8",
+            "(7-8)**2 + 0 + 0 + (9-8)**2 == 2"
+          ]
         },
         {
           "id": "dd-l4-w2",
           "statement": "Bat's arrows: $4, 6, 10, 12$. Compute $\\bar{x}$ and $s$, and compare with Ana.",
           "solution": "$\\bar{x} = 8$ — same as Ana. Deviations: $-4, -2, 2, 4$; squares sum to $40$. $s = \\sqrt{\\frac{40}{3}} \\approx 3.65$. Same mean, four-and-a-half times Ana's scatter — the SD is the entire difference between these archers.",
-          "check": ["(4 + 6 + 10 + 12)/4 == 8", "16 + 4 + 4 + 16 == 40"]
+          "check": [
+            "(4 + 6 + 10 + 12)/4 == 8",
+            "16 + 4 + 4 + 16 == 40"
+          ]
         },
         {
           "id": "dd-l4-w3",
           "statement": "A dataset has $\\bar{x} = 50$, $s = 4$. Every value gets $10$ added (a scoring correction), then everything is doubled. Track $\\bar{x}$ and $s$.",
           "solution": "Add $10$: mean $60$, SD unchanged at $4$ (shifting moves everyone together). Double: mean $120$, SD $8$ (scaling stretches gaps). Final: $\\bar{x} = 120$, $s = 8$ — Unit 7's transformation rules, acting on data.",
-          "check": ["50 + 10 == 60", "2*60 == 120", "2*4 == 8"]
+          "check": [
+            "50 + 10 == 60",
+            "2*60 == 120",
+            "2*4 == 8"
+          ]
         }
       ],
       "commonMistakes": [
@@ -574,13 +732,19 @@
           "id": "dd-l4-t1",
           "statement": "Data: $2, 4, 6, 8$. Compute $\\bar{x}$ and the squared-deviation sum, then $s$.",
           "solution": "$\\bar{x} = 5$; deviations $-3, -1, 1, 3$; squares sum $20$; $s = \\sqrt{\\frac{20}{3}} \\approx 2.58$.",
-          "check": ["(2 + 4 + 6 + 8)/4 == 5", "9 + 1 + 1 + 9 == 20"]
+          "check": [
+            "(2 + 4 + 6 + 8)/4 == 5",
+            "9 + 1 + 1 + 9 == 20"
+          ]
         },
         {
           "id": "dd-l4-t2",
           "statement": "Which dataset has the larger SD (no computing): $A = 10, 10, 10, 10$ or $B = 9, 10, 10, 11$?",
           "solution": "$A$ has $s = 0$ (identical values); $B$ has any spread at all — $B$ wins. Zero SD means literally no variation.",
-          "check": ["(10+10+10+10)/4 == 10", "(9+10+10+11)/4 == 10"]
+          "check": [
+            "(10+10+10+10)/4 == 10",
+            "(9+10+10+11)/4 == 10"
+          ]
         }
       ],
       "interactive": {
@@ -608,14 +772,42 @@
             ]
           },
           {
+            "kind": "dotPlot",
+            "eyebrow": "See the sticks",
+            "title": "Deviations you can point at",
+            "teach": "Every stick runs from the mean to a data point — green above, red below. The standard deviation is the **typical stick length**: square them, average, take the root. Tap any dot to read its deviation. For this set the answer is exactly $\\sigma = 2$.",
+            "config": {
+              "mode": "deviations",
+              "data": [
+                2,
+                4,
+                4,
+                4,
+                5,
+                5,
+                7,
+                9
+              ],
+              "min": 0,
+              "max": 10,
+              "xLabel": "value"
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Recipe drill",
             "title": "The squared sum",
             "prompt": "Data $1, 3, 5$ ($\\bar{x} = 3$): the sum of squared deviations is…",
-            "options": ["$8$", "$0$", "$4$"],
+            "options": [
+              "$8$",
+              "$0$",
+              "$4$"
+            ],
             "correctIndex": 0,
             "explanation": "Deviations $-2, 0, 2$: squares $4, 0, 4$ sum to $8$. The $0$ is what UNsquared deviations give (always); $4$ takes only one arm.",
-            "check": ["(1-3)**2 + (3-3)**2 + (5-3)**2 == 8"]
+            "check": [
+              "(1-3)**2 + (3-3)**2 + (5-3)**2 == 8"
+            ]
           },
           {
             "kind": "worked",
@@ -640,10 +832,16 @@
             "eyebrow": "Pairing",
             "title": "Report card",
             "prompt": "House prices in a district are heavily right-skewed with a few mansions. The honest summary pair is…",
-            "options": ["median + IQR", "mean ± SD", "mean + IQR"],
+            "options": [
+              "median + IQR",
+              "mean ± SD",
+              "mean + IQR"
+            ],
             "correctIndex": 0,
             "explanation": "Skew + outliers → resistant pair: median and IQR. Mean ± SD would be dragged AND inflated by the mansions; the mixed pair (option 3) mismatches sensitivities and confuses everyone.",
-            "check": ["1 == 1"]
+            "check": [
+              "1 == 1"
+            ]
           },
           {
             "kind": "tip",
@@ -711,19 +909,25 @@
           "id": "dd-l5-w1",
           "statement": "Reaction times: median $0.32$s, mean $0.51$s. Infer the shape and choose the summary pair.",
           "solution": "Mean well above median → a long HIGH tail: right-skewed (slow stragglers). Choice: median + IQR — \"typical reaction $0.32$s\" honestly describes the crowd; the mean's $0.51$ describes nobody in particular.",
-          "check": ["51/100 > 32/100"]
+          "check": [
+            "51/100 > 32/100"
+          ]
         },
         {
           "id": "dd-l5-w2",
           "statement": "Exam scores where most students did well but a few bombed: predict the shape and the mean-median order.",
           "solution": "Cluster high, tail stretching LOW: left-skewed. The mean chases the low tail: mean < median. (A class with median $85$ and mean $78$ is telling you exactly this story.)",
-          "check": ["78 < 85"]
+          "check": [
+            "78 < 85"
+          ]
         },
         {
           "id": "dd-l5-w3",
           "statement": "Heights of a mixed group of adults and their young children form two humps. What goes wrong if you report one mean, and what's the right move?",
           "solution": "The mean lands BETWEEN the humps — a height describing neither adults nor kids (nobody is $1.35$m in a room of $1.7$m adults and $1.0$m children). Bimodality means two populations: split by group, describe each with its own shape-center-spread.",
-          "check": ["(170 + 100)/2 == 135"]
+          "check": [
+            "(170 + 100)/2 == 135"
+          ]
         }
       ],
       "commonMistakes": [
@@ -743,13 +947,17 @@
           "id": "dd-l5-t1",
           "statement": "A dataset has mean $42$ and median $42.1$. What shape do you infer, and which summary pair fits?",
           "solution": "Centers essentially equal → roughly symmetric (and likely outlier-free): mean ± SD.",
-          "check": ["42 < 421/10"]
+          "check": [
+            "42 < 421/10"
+          ]
         },
         {
           "id": "dd-l5-t2",
           "statement": "Household incomes: mean $4.8$M₮, median $3.1$M₮. Shape? Headline number?",
           "solution": "Mean far above median: right skew (the usual income shape). Headline: the median — \"typical household: $3.1$M₮\".",
-          "check": ["48/10 > 31/10"]
+          "check": [
+            "48/10 > 31/10"
+          ]
         }
       ],
       "interactive": {
@@ -777,14 +985,59 @@
             ]
           },
           {
+            "kind": "histogramBins",
+            "eyebrow": "Regroup it",
+            "title": "Shape lives in the bins",
+            "teach": "Twenty values, three bin widths. At width 1 the picture is noise; at width 4 it's a blur; at width 2 the story appears — a pile on the left with a long right tail. Skewed-right data like this is exactly where you reach for the median and IQR, because the tail drags the mean.",
+            "config": {
+              "data": [
+                1,
+                2,
+                2,
+                3,
+                3,
+                3,
+                4,
+                4,
+                4,
+                4,
+                5,
+                5,
+                5,
+                6,
+                6,
+                7,
+                8,
+                10,
+                12,
+                15
+              ],
+              "min": 0,
+              "max": 16,
+              "widths": [
+                1,
+                2,
+                4
+              ],
+              "start": 1,
+              "xLabel": "value"
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Inference drill",
             "title": "Read the gap",
             "prompt": "City apartment rents: mean $2.4$M₮, median $1.8$M₮. The distribution is…",
-            "options": ["Right-skewed — luxury units stretch the high tail", "Left-skewed", "Symmetric with outliers on both sides"],
+            "options": [
+              "Right-skewed — luxury units stretch the high tail",
+              "Left-skewed",
+              "Symmetric with outliers on both sides"
+            ],
             "correctIndex": 0,
             "explanation": "Mean $33\\%$ above median: dragged by a long HIGH tail of luxury rents. (Symmetric two-sided outliers would cancel in the mean.) Rents, incomes, wait times — right skew is the default shape of bounded-below data.",
-            "check": ["24/10 > 18/10"]
+            "check": [
+              "24/10 > 18/10"
+            ]
           },
           {
             "kind": "worked",
@@ -809,10 +1062,16 @@
             "eyebrow": "Choice drill",
             "title": "Pick the pair",
             "prompt": "Dataset: 200 marathon finish times, right-skewed with a few walkers past 6 hours. Summarize with…",
-            "options": ["median + IQR", "mean ± SD", "mode + range"],
+            "options": [
+              "median + IQR",
+              "mean ± SD",
+              "mode + range"
+            ],
             "correctIndex": 0,
             "explanation": "Skew + high outliers → resistant pair. Mean ± SD would let a handful of walkers claim the headline; mode + range pairs the least informative center with the most fragile spread.",
-            "check": ["1 == 1"]
+            "check": [
+              "1 == 1"
+            ]
           },
           {
             "kind": "tip",
@@ -880,19 +1139,31 @@
           "id": "dd-l6-w1",
           "statement": "Commute times (min): $18, 22, 24, 25, 26, 28, 30, 31, 34, 62$. Produce a complete description.",
           "solution": "$n = 10$, sorted. Median $= \\frac{26+28}{2} = 27$; $Q_1 = 24, Q_3 = 31$, IQR $= 7$; fences $13.5$ and $41.5$ → the $62$ is flagged. Shape: apart from the flag, roughly symmetric. Description: \"Commutes center near $27$ min (median), middle half spanning $24$–$31$ ($\\text{IQR } 7$); one flagged outlier at $62$ min — investigated: a snowstorm day. Typical planning number: $27 \\pm$ a few minutes; keep the storm day in the record, noted.\"",
-          "check": ["(26 + 28)/2 == 27", "31 - 24 == 7", "24 - 21/2 == 27/2", "31 + 21/2 == 83/2", "62 > 83/2"]
+          "check": [
+            "(26 + 28)/2 == 27",
+            "31 - 24 == 7",
+            "24 - 21/2 == 27/2",
+            "31 + 21/2 == 83/2",
+            "62 > 83/2"
+          ]
         },
         {
           "id": "dd-l6-w2",
           "statement": "Two suppliers' delivery delays (days): S1 mean $3.1$, SD $0.4$, symmetric. S2 mean $2.8$, SD $1.9$, right-skewed with flagged $9$- and $11$-day delays. Which supplier, and why — in full-comparison form?",
           "solution": "Centers: S2 typically faster ($2.8 < 3.1$). Spreads: S1 five times more consistent ($0.4$ vs $1.9$). Shapes: S2's right skew means its bad days are VERY bad; S1 has no tail. Outliers: S2 owns the $9$ and $11$-day disasters. Decision: production lines that stop when parts are late should pay S1's extra $0.3$ days for the consistency; a warehouse with buffer stock can bank S2's speed.",
-          "check": ["31/10 - 28/10 == 3/10", "19/10 > 4/10"]
+          "check": [
+            "31/10 - 28/10 == 3/10",
+            "19/10 > 4/10"
+          ]
         },
         {
           "id": "dd-l6-w3",
           "statement": "The two exam sections (both median $74$; S2 left-skewed with three scores below $30$). Write the two sentences the principal actually needs.",
           "solution": "\"Both sections perform identically at the typical-student level (median $74$, similar IQRs). Section 2 additionally has three students scoring below $30$ — flagged outliers needing intervention now, whom the identical medians completely hide.\" The summary statistic answered 'how are classes doing'; the outlier list answered 'who needs help' — different questions, both in the data.",
-          "check": ["74 == 74", "30 < 74"]
+          "check": [
+            "74 == 74",
+            "30 < 74"
+          ]
         }
       ],
       "commonMistakes": [
@@ -912,13 +1183,20 @@
           "id": "dd-l6-t1",
           "statement": "Data: $5, 6, 6, 7, 8, 9, 30$. Run the mechanics: median, quartiles, IQR, fences, flags.",
           "solution": "Median $= 7$; $Q_1 = 6$, $Q_3 = 9$ (halves exclude the median), IQR $= 3$; fences $1.5$ and $13.5$; the $30$ is flagged. Shape apart from the flag: mildly right-leaning, roughly symmetric core.",
-          "check": ["9 - 6 == 3", "6 - 9/2 == 3/2", "9 + 9/2 == 27/2", "30 > 27/2"]
+          "check": [
+            "9 - 6 == 3",
+            "6 - 9/2 == 3/2",
+            "9 + 9/2 == 27/2",
+            "30 > 27/2"
+          ]
         },
         {
           "id": "dd-l6-t2",
           "statement": "Team A quiz scores: mean $7.5$, SD $0.5$. Team B: mean $7.5$, SD $2.5$. Write the one-sentence comparison a coach needs.",
           "solution": "\"Both teams average the same, but B swings five times more — A is the reliable performer; B owns both the stars and the liabilities.\"",
-          "check": ["25/10 == 5*5/10"]
+          "check": [
+            "25/10 == 5*5/10"
+          ]
         }
       ],
       "interactive": {
@@ -962,10 +1240,16 @@
             "eyebrow": "Decision sense",
             "title": "Whose spread matters?",
             "prompt": "An ambulance service picks between two routes with equal MEAN times. Route X: SD $1$ min. Route Y: SD $6$ min. The service should…",
-            "options": ["Take X — for emergencies, the worst case rules, and Y's tail is deadly", "Take Y — same mean, so flip a coin", "Take Y — bigger spread means more fast days too"],
+            "options": [
+              "Take X — for emergencies, the worst case rules, and Y's tail is deadly",
+              "Take Y — same mean, so flip a coin",
+              "Take Y — bigger spread means more fast days too"
+            ],
             "correctIndex": 0,
             "explanation": "Y's spread does include faster days — and 12-minutes-late days, which in this context cost lives. When downside tails carry the cost, consistency IS the metric. Spread comparisons are decisions wearing arithmetic.",
-            "check": ["6 > 1"]
+            "check": [
+              "6 > 1"
+            ]
           },
           {
             "kind": "worked",
@@ -978,10 +1262,16 @@
             "eyebrow": "Full ritual",
             "title": "What's missing?",
             "prompt": "A report reads: \"Group 1 median 50, IQR 10; Group 2 median 58, IQR 11.\" Which contrast is MISSING that could reverse the conclusion?",
-            "options": ["Shapes and outliers — a flagged cluster or heavy skew could change everything", "Nothing — centers and spreads suffice", "The means — medians are unofficial"],
+            "options": [
+              "Shapes and outliers — a flagged cluster or heavy skew could change everything",
+              "Nothing — centers and spreads suffice",
+              "The means — medians are unofficial"
+            ],
             "correctIndex": 0,
             "explanation": "Two of four contrasts reported. If Group 2's extra 8 points come with a left tail of failing members (like Section 2), 'Group 2 is better' collapses for exactly the people who need attention. Four contrasts, always.",
-            "check": ["58 - 50 == 8"]
+            "check": [
+              "58 - 50 == 8"
+            ]
           },
           {
             "kind": "tip",
@@ -1026,49 +1316,72 @@
       "id": "dd-p-1",
       "statement": "Find the mean and median of $12, 15, 11, 18, 14$.",
       "solution": "Mean: $\\frac{70}{5} = 14$. Sorted $11, 12, 14, 15, 18$: median $14$.",
-      "check": ["(12 + 15 + 11 + 18 + 14)/5 == 14"]
+      "check": [
+        "(12 + 15 + 11 + 18 + 14)/5 == 14"
+      ]
     },
     {
       "id": "dd-p-2",
       "statement": "Data: $8, 9, 10, 11, 62$. Compute both centers and say which describes a typical value.",
       "solution": "Mean $= \\frac{100}{5} = 20$ (dragged); median $= 10$. The median — four of five values sit within $2$ of it.",
-      "check": ["(8 + 9 + 10 + 11 + 62)/5 == 20"]
+      "check": [
+        "(8 + 9 + 10 + 11 + 62)/5 == 20"
+      ]
     },
     {
       "id": "dd-p-3",
       "statement": "Sorted data: $10, 14, 15, 17, 20, 22, 28$. Find the five-number summary and IQR.",
       "solution": "Median $17$; lower half $\\{10,14,15\\}$: $Q_1 = 14$; upper $\\{20,22,28\\}$: $Q_3 = 22$. Summary: $10, 14, 17, 22, 28$; IQR $= 8$.",
-      "check": ["22 - 14 == 8"]
+      "check": [
+        "22 - 14 == 8"
+      ]
     },
     {
       "id": "dd-p-4",
       "statement": "With $Q_1 = 40$ and $Q_3 = 60$, which of these values are outliers by the fence rule: $5, 12, 88, 95$?",
       "solution": "IQR $= 20$; fences at $10$ and $90$. Flagged: $5$ (below $10$) and $95$ (above $90$). The $12$ and $88$ are inside.",
-      "check": ["40 - 30 == 10", "60 + 30 == 90", "5 < 10", "95 > 90"]
+      "check": [
+        "40 - 30 == 10",
+        "60 + 30 == 90",
+        "5 < 10",
+        "95 > 90"
+      ]
     },
     {
       "id": "dd-p-5",
       "statement": "Compute the SD of $3, 5, 7$ (sample convention).",
       "solution": "$\\bar{x} = 5$; squared deviations $4, 0, 4$ sum to $8$; $s = \\sqrt{\\frac{8}{2}} = 2$.",
-      "check": ["(3 + 5 + 7)/3 == 5", "4 + 0 + 4 == 8", "sqrt(8/2) == 2"]
+      "check": [
+        "(3 + 5 + 7)/3 == 5",
+        "4 + 0 + 4 == 8",
+        "sqrt(8/2) == 2"
+      ]
     },
     {
       "id": "dd-p-6",
       "statement": "Every value in a dataset with mean $30$ and SD $5$ is multiplied by $3$. New mean and SD?",
       "solution": "Mean $90$; SD $15$ — scaling stretches both.",
-      "check": ["3*30 == 90", "3*5 == 15"]
+      "check": [
+        "3*30 == 90",
+        "3*5 == 15"
+      ]
     },
     {
       "id": "dd-p-7",
       "statement": "A dataset has mean $58$ and median $45$. Infer the shape and pick the summary pair.",
       "solution": "Mean well above median: right-skewed. Report median + IQR.",
-      "check": ["58 > 45"]
+      "check": [
+        "58 > 45"
+      ]
     },
     {
       "id": "dd-p-8",
       "statement": "Two cashiers' service times: X mean $2.0$ min SD $0.2$; Y mean $1.8$ min SD $1.5$. Who serves a line of $30$ customers more predictably, and who is faster on average?",
       "solution": "Y is faster on average ($1.8 < 2.0$); X is vastly more predictable (SD $0.2$ vs $1.5$). Queue management usually pays the $0.2$ min for X's consistency.",
-      "check": ["18/10 < 2", "15/10 > 2/10"]
+      "check": [
+        "18/10 < 2",
+        "15/10 > 2/10"
+      ]
     }
   ],
   "testYourself": [
@@ -1076,37 +1389,59 @@
       "id": "dd-ty-1",
       "statement": "Data: $6, 8, 5, 9, 6, 40$. Compute mean and median, name the better center, and give the shape implied.",
       "solution": "Mean $= \\frac{74}{6} = 12.33$; sorted $5,6,6,8,9,40$: median $= 7$. Median wins (the $40$ drags the mean above every other value); mean ≫ median implies right skew — here driven by a single outlier.",
-      "check": ["(6 + 8 + 5 + 9 + 6 + 40)/6 == 37/3", "(6 + 8)/2 == 7"]
+      "check": [
+        "(6 + 8 + 5 + 9 + 6 + 40)/6 == 37/3",
+        "(6 + 8)/2 == 7"
+      ]
     },
     {
       "id": "dd-ty-2",
       "statement": "Sorted commute data ($n = 9$): $15, 18, 20, 22, 24, 27, 30, 33, 51$. Five-number summary, IQR, fences, flags.",
       "solution": "Median $= 24$ (5th). Lower $\\{15,18,20,22\\}$: $Q_1 = 19$; upper $\\{27,30,33,51\\}$: $Q_3 = 31.5$. Summary: $15, 19, 24, 31.5, 51$; IQR $= 12.5$; fences $0.25$ and $50.25$; the $51$ is flagged (barely).",
-      "check": ["(18 + 20)/2 == 19", "(30 + 33)/2 == 63/2", "63/2 - 19 == 25/2", "63/2 + 3/2*25/2 == 201/4", "51 > 201/4"]
+      "check": [
+        "(18 + 20)/2 == 19",
+        "(30 + 33)/2 == 63/2",
+        "63/2 - 19 == 25/2",
+        "63/2 + 3/2*25/2 == 201/4",
+        "51 > 201/4"
+      ]
     },
     {
       "id": "dd-ty-3",
       "statement": "Compute the sample SD of $10, 12, 14, 16, 18$, and interpret it in a sentence.",
       "solution": "$\\bar{x} = 14$; squared deviations $16, 4, 0, 4, 16$ sum to $40$; $s = \\sqrt{10} \\approx 3.16$. \"Values typically sit about $3$ units from the mean of $14$.\"",
-      "check": ["(10 + 12 + 14 + 16 + 18)/5 == 14", "16 + 4 + 0 + 4 + 16 == 40", "40/4 == 10"]
+      "check": [
+        "(10 + 12 + 14 + 16 + 18)/5 == 14",
+        "16 + 4 + 0 + 4 + 16 == 40",
+        "40/4 == 10"
+      ]
     },
     {
       "id": "dd-ty-4",
       "statement": "A teacher adds $5$ bonus points to every student's score (mean was $71$, SD $8$, median $73$, IQR $10$). Report all four updated statistics.",
       "solution": "Everything shifts, nothing spreads: mean $76$, median $78$, SD still $8$, IQR still $10$.",
-      "check": ["71 + 5 == 76", "73 + 5 == 78"]
+      "check": [
+        "71 + 5 == 76",
+        "73 + 5 == 78"
+      ]
     },
     {
       "id": "dd-ty-5",
       "statement": "Which is larger for hospital emergency-room waiting times (a right-skewed distribution): the mean or the median? Whose planning question does each answer?",
       "solution": "The mean exceeds the median (dragged by long-wait tail). The median answers the PATIENT's question (\"how long will I probably wait?\"); the mean answers the ADMINISTRATOR's (\"total patient-hours per shift = mean × count\" — staffing and cost live on the mean).",
-      "check": ["1 == 1"]
+      "check": [
+        "1 == 1"
+      ]
     },
     {
       "id": "dd-ty-6",
       "statement": "Two archery teams at trials — P: mean $8.2$, SD $0.3$, symmetric, no flags. Q: mean $8.4$, SD $1.8$, left-skewed, two flagged scores of $3$. One team advances to a knockout final where every arrow must score $7+$. Write the complete comparison and the pick.",
       "solution": "Centers: Q higher by $0.2$. Spreads: P six times tighter. Shapes: Q's left skew means its failures are severe; P has none. Outliers: Q's two $3$s are exactly the knockout-losing arrows. Pick P: in an every-arrow-counts format, Q's tail is fatal and P's floor (~$7.6$ at $2\\sigma$) clears the bar. The 'better average' team loses this format.",
-      "check": ["84/10 - 82/10 == 1/5", "18/10 == 6*3/10", "82/10 - 2*3/10 == 76/10"]
+      "check": [
+        "84/10 - 82/10 == 1/5",
+        "18/10 == 6*3/10",
+        "82/10 - 2*3/10 == 76/10"
+      ]
     }
   ]
 }

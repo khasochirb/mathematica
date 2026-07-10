@@ -35,19 +35,28 @@
           "id": "pb-l1-w1",
           "statement": "A random $2$-topping pizza is built from $8$ toppings. What is the probability it includes mushrooms?",
           "solution": "Universe: $C(8,2) = 28$ pizzas. Favorable: mushroom + one of the other $7$ toppings $= 7$. $P = \\frac{7}{28} = \\frac{1}{4}$.",
-          "check": ["binomial(8, 2) == 28", "7/28 == 1/4"]
+          "check": [
+            "binomial(8, 2) == 28",
+            "7/28 == 1/4"
+          ]
         },
         {
           "id": "pb-l1-w2",
           "statement": "Two dice are rolled. What is the probability the sum is $8$?",
           "solution": "Universe: $6 \\times 6 = 36$ ordered rolls. Favorable: $(2,6), (3,5), (4,4), (5,3), (6,2)$ — five. $P = \\frac{5}{36}$.",
-          "check": ["6*6 == 36", "5/36 == 5/36"]
+          "check": [
+            "6*6 == 36",
+            "5/36 == 5/36"
+          ]
         },
         {
           "id": "pb-l1-w3",
           "statement": "A $4$-digit PIN is chosen at random (digits $0$–$9$, repeats allowed). What is the probability all four digits are different?",
           "solution": "Universe: $10^4 = 10000$. Favorable: $10 \\times 9 \\times 8 \\times 7 = 5040$ (Unit 2's shrinking slots). $P = \\frac{5040}{10000} = 0.504$ — a hair better than half.",
-          "check": ["10*9*8*7 == 5040", "5040/10000 == 504/1000"]
+          "check": [
+            "10*9*8*7 == 5040",
+            "5040/10000 == 504/1000"
+          ]
         }
       ],
       "commonMistakes": [
@@ -67,13 +76,19 @@
           "id": "pb-l1-t1",
           "statement": "A letter is drawn at random from БАЯРЛАЛАА ($9$ letters). What is the probability it is А?",
           "solution": "А appears $4$ times among $9$: $P = \\frac{4}{9}$.",
-          "check": ["4/9 == 4/9"]
+          "check": [
+            "4/9 == 4/9"
+          ]
         },
         {
           "id": "pb-l1-t2",
           "statement": "A committee of $2$ is drawn at random from $4$ girls and $3$ boys. Probability both are girls?",
           "solution": "Universe: $C(7,2) = 21$; favorable: $C(4,2) = 6$. $P = \\frac{6}{21} = \\frac{2}{7}$.",
-          "check": ["binomial(4, 2) == 6", "binomial(7, 2) == 21", "6/21 == 2/7"]
+          "check": [
+            "binomial(4, 2) == 6",
+            "binomial(7, 2) == 21",
+            "6/21 == 2/7"
+          ]
         }
       ],
       "interactive": {
@@ -101,14 +116,61 @@
             ]
           },
           {
+            "kind": "treeDiagram",
+            "eyebrow": "Play with it",
+            "title": "Two coins, four leaves",
+            "teach": "Flip a coin twice. Each branch carries probability $1/2$, and tapping a leaf multiplies along its path: every complete outcome lands at $\\frac{1}{2} \\times \\frac{1}{2} = \\frac{1}{4}$. Four equally likely leaves — which is exactly why counting outcomes works as probability here.",
+            "config": {
+              "mode": "prob",
+              "stages": [
+                {
+                  "name": "flip 1",
+                  "options": [
+                    {
+                      "label": "H",
+                      "p": 0.5,
+                      "pLabel": "1/2"
+                    },
+                    {
+                      "label": "T",
+                      "p": 0.5,
+                      "pLabel": "1/2"
+                    }
+                  ]
+                },
+                {
+                  "name": "flip 2",
+                  "options": [
+                    {
+                      "label": "H",
+                      "p": 0.5,
+                      "pLabel": "1/2"
+                    },
+                    {
+                      "label": "T",
+                      "p": 0.5,
+                      "pLabel": "1/2"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "First fraction",
             "title": "One die",
             "prompt": "A fair die is rolled. $P(\\text{multiple of } 3)$?",
-            "options": ["$\\frac{1}{3}$", "$\\frac{1}{2}$", "$\\frac{1}{6}$"],
+            "options": [
+              "$\\frac{1}{3}$",
+              "$\\frac{1}{2}$",
+              "$\\frac{1}{6}$"
+            ],
             "correctIndex": 0,
             "explanation": "Favorable: $\\{3, 6\\}$ — two of six: $\\frac{2}{6} = \\frac{1}{3}$. The $\\frac{1}{6}$ counts only the $3$; $\\frac{1}{2}$ overcounts.",
-            "check": ["2/6 == 1/3"]
+            "check": [
+              "2/6 == 1/3"
+            ]
           },
           {
             "kind": "worked",
@@ -133,10 +195,16 @@
             "eyebrow": "Universe discipline",
             "title": "Ordered or not — just match",
             "prompt": "Two coins flip. Bilguun says $P(\\text{one head, one tail}) = \\frac{1}{3}$ (\"HH, one-of-each, TT — three outcomes\"). What went wrong?",
-            "options": ["His three outcomes aren't equally likely", "Nothing — it's $\\frac{1}{3}$", "He should divide by 4 anyway"],
+            "options": [
+              "His three outcomes aren't equally likely",
+              "Nothing — it's $\\frac{1}{3}$",
+              "He should divide by 4 anyway"
+            ],
             "correctIndex": 0,
             "explanation": "\"One of each\" bundles TWO equally-likely outcomes (HT and TH), so his list isn't uniform. In the fair universe $\\{HH, HT, TH, TT\\}$: $P = \\frac{2}{4} = \\frac{1}{2}$. Equal likelihood is a property you must CHECK, not assume.",
-            "check": ["2/4 == 1/2"]
+            "check": [
+              "2/4 == 1/2"
+            ]
           },
           {
             "kind": "tip",
@@ -204,19 +272,27 @@
           "id": "pb-l2-w1",
           "statement": "Two dice are rolled. Find $P(\\text{at least one six})$.",
           "solution": "Complement — no sixes: each die has $5$ safe faces, $5 \\times 5 = 25$ of $36$. $P(\\text{none}) = \\frac{25}{36}$, so $P(\\text{at least one}) = 1 - \\frac{25}{36} = \\frac{11}{36}$.",
-          "check": ["1 - 25/36 == 11/36"]
+          "check": [
+            "1 - 25/36 == 11/36"
+          ]
         },
         {
           "id": "pb-l2-w2",
           "statement": "A family plans $4$ children. Assuming boy/girl equally likely, find $P(\\text{at least one girl})$.",
           "solution": "Universe: $2^4 = 16$ birth orders. Complement — all boys: $1$ outcome. $P = 1 - \\frac{1}{16} = \\frac{15}{16}$.",
-          "check": ["1 - 1/16 == 15/16", "2**4 == 16"]
+          "check": [
+            "1 - 1/16 == 15/16",
+            "2**4 == 16"
+          ]
         },
         {
           "id": "pb-l2-w3",
           "statement": "A $5$-card hand is dealt. Find $P(\\text{at least one ace})$ as a formula and evaluate it as a fraction of hands.",
           "solution": "Complement — ace-free hands: $C(48,5) = 1{,}712{,}304$ of $C(52,5) = 2{,}598{,}960$. $P(\\text{at least one ace}) = 1 - \\frac{C(48,5)}{C(52,5)} = 1 - \\frac{1712304}{2598960} \\approx 0.341$. About one hand in three carries an ace.",
-          "check": ["binomial(48, 5) == 1712304", "binomial(52, 5) == 2598960"]
+          "check": [
+            "binomial(48, 5) == 1712304",
+            "binomial(52, 5) == 2598960"
+          ]
         }
       ],
       "commonMistakes": [
@@ -236,13 +312,17 @@
           "id": "pb-l2-t1",
           "statement": "Three coins are flipped. Find $P(\\text{at least one tail})$.",
           "solution": "Complement — all heads: $\\frac{1}{8}$. $P = 1 - \\frac{1}{8} = \\frac{7}{8}$.",
-          "check": ["1 - 1/8 == 7/8"]
+          "check": [
+            "1 - 1/8 == 7/8"
+          ]
         },
         {
           "id": "pb-l2-t2",
           "statement": "One die is rolled. Events: $A = $ \"roll is even\", so what is $P(\\text{not } A)$ — and which outcomes form it?",
           "solution": "$P(A) = \\frac{3}{6} = \\frac{1}{2}$; not-$A$ is the odd club $\\{1, 3, 5\\}$: $P = \\frac{1}{2}$.",
-          "check": ["1 - 3/6 == 1/2"]
+          "check": [
+            "1 - 3/6 == 1/2"
+          ]
         }
       ],
       "interactive": {
@@ -270,14 +350,36 @@
             ]
           },
           {
+            "kind": "vennCounts",
+            "eyebrow": "Tap the regions",
+            "title": "One die, four regions",
+            "teach": "Roll a die. Let $A$ = even $\\{2,4,6\\}$ and $B$ = at least five $\\{5,6\\}$. The four regions carve up all six outcomes with no overlaps and no leftovers — tap each one. The **neither** region $\\{1, 3\\}$ is the complement of $A \\cup B$: everything the two events miss.",
+            "config": {
+              "mode": "regions",
+              "labelA": "even",
+              "labelB": "≥ 5",
+              "onlyA": 2,
+              "onlyB": 1,
+              "both": 1,
+              "neither": 2,
+              "countNoun": "outcomes"
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Name the complement",
             "title": "Words first",
             "prompt": "The complement of \"at least one head in five flips\" is…",
-            "options": ["all five flips are tails", "at least one tail", "exactly one head"],
+            "options": [
+              "all five flips are tails",
+              "at least one tail",
+              "exactly one head"
+            ],
             "correctIndex": 0,
             "explanation": "\"At least one head\" fails only when NO head appears — all tails, probability $\\frac{1}{32}$. \"At least one tail\" overlaps the original event; \"exactly one head\" is inside it.",
-            "check": ["1 - 1/32 == 31/32"]
+            "check": [
+              "1 - 1/32 == 31/32"
+            ]
           },
           {
             "kind": "worked",
@@ -302,10 +404,16 @@
             "eyebrow": "Scale audit",
             "title": "Sum to one",
             "prompt": "$P(\\text{rain}) = 0.3$, and a forecaster claims $P(\\text{no rain}) = 0.6$. Verdict?",
-            "options": ["Impossible — complements must sum to 1", "Fine — forecasts are approximate", "Fine if it might snow"],
+            "options": [
+              "Impossible — complements must sum to 1",
+              "Fine — forecasts are approximate",
+              "Fine if it might snow"
+            ],
             "correctIndex": 0,
             "explanation": "Rain and no-rain split the universe: $0.3 + 0.6 = 0.9 \\ne 1$. The missing $0.1$ isn't weather, it's a bookkeeping hole. (Snow IS \"no rain\" — the complement absorbs everything else.)",
-            "check": ["1 - 3/10 == 7/10"]
+            "check": [
+              "1 - 3/10 == 7/10"
+            ]
           },
           {
             "kind": "tip",
@@ -373,19 +481,28 @@
           "id": "pb-l3-w1",
           "statement": "One card is drawn. Find $P(\\text{king or heart})$.",
           "solution": "$P(K) = \\frac{4}{52}$, $P(H) = \\frac{13}{52}$, overlap (king of hearts) $= \\frac{1}{52}$. $P(K \\cup H) = \\frac{4 + 13 - 1}{52} = \\frac{16}{52} = \\frac{4}{13}$.",
-          "check": ["4/52 + 13/52 - 1/52 == 16/52", "16/52 == 4/13"]
+          "check": [
+            "4/52 + 13/52 - 1/52 == 16/52",
+            "16/52 == 4/13"
+          ]
         },
         {
           "id": "pb-l3-w2",
           "statement": "One die is rolled. Find $P(\\text{even or greater than } 4)$.",
           "solution": "Even: $\\{2,4,6\\}$, $\\frac{3}{6}$. Greater than 4: $\\{5,6\\}$, $\\frac{2}{6}$. Overlap: $\\{6\\}$, $\\frac{1}{6}$. Union: $\\frac{3 + 2 - 1}{6} = \\frac{4}{6} = \\frac{2}{3}$ — the club $\\{2, 4, 5, 6\\}$, counted directly, agrees.",
-          "check": ["3/6 + 2/6 - 1/6 == 4/6", "4/6 == 2/3"]
+          "check": [
+            "3/6 + 2/6 - 1/6 == 4/6",
+            "4/6 == 2/3"
+          ]
         },
         {
           "id": "pb-l3-w3",
           "statement": "In a class, $P(\\text{plays music}) = 0.45$, $P(\\text{plays sport}) = 0.60$, and $P(\\text{plays both}) = 0.25$. Find the probability a random student plays NEITHER.",
           "solution": "Union first: $0.45 + 0.60 - 0.25 = 0.80$. Neither is the outside: $1 - 0.80 = 0.20$.",
-          "check": ["45/100 + 60/100 - 25/100 == 80/100", "1 - 80/100 == 20/100"]
+          "check": [
+            "45/100 + 60/100 - 25/100 == 80/100",
+            "1 - 80/100 == 20/100"
+          ]
         }
       ],
       "commonMistakes": [
@@ -405,13 +522,17 @@
           "id": "pb-l3-t1",
           "statement": "One die: find $P(\\text{odd or a } 6)$.",
           "solution": "Odd $\\frac{3}{6}$, six $\\frac{1}{6}$, no overlap (6 is even): $\\frac{4}{6} = \\frac{2}{3}$.",
-          "check": ["3/6 + 1/6 == 4/6"]
+          "check": [
+            "3/6 + 1/6 == 4/6"
+          ]
         },
         {
           "id": "pb-l3-t2",
           "statement": "$P(A) = 0.5$, $P(B) = 0.4$, $P(A \\cup B) = 0.7$. Find $P(A \\cap B)$.",
           "solution": "Rearrange: $P(A \\cap B) = 0.5 + 0.4 - 0.7 = 0.2$.",
-          "check": ["5/10 + 4/10 - 7/10 == 2/10"]
+          "check": [
+            "5/10 + 4/10 - 7/10 == 2/10"
+          ]
         }
       ],
       "interactive": {
@@ -439,14 +560,36 @@
             ]
           },
           {
+            "kind": "vennCounts",
+            "eyebrow": "Watch the fix",
+            "title": "Why P(A) + P(B) overshoots",
+            "teach": "Same die: $A$ = even (3 outcomes), $B$ = at least five (2 outcomes). Press **next**: adding $3 + 2$ counts the outcome 6 twice, because it lives in both events. Subtract the overlap once and the union comes out right: $3 + 2 - 1 = 4$ outcomes, so $P(A \\cup B) = \\frac{4}{6} = \\frac{2}{3}$.",
+            "config": {
+              "mode": "addition",
+              "labelA": "even",
+              "labelB": "≥ 5",
+              "onlyA": 2,
+              "onlyB": 1,
+              "both": 1,
+              "neither": 2,
+              "countNoun": "outcomes"
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Overlap radar",
             "title": "Can both happen?",
             "prompt": "Which pair of one-die events is mutually exclusive?",
-            "options": ["\"roll ≤ 2\" and \"roll ≥ 5\"", "\"even\" and \"multiple of 3\"", "\"odd\" and \"prime\""],
+            "options": [
+              "\"roll ≤ 2\" and \"roll ≥ 5\"",
+              "\"even\" and \"multiple of 3\"",
+              "\"odd\" and \"prime\""
+            ],
             "correctIndex": 0,
             "explanation": "No roll is both ≤2 and ≥5. But 6 is even AND a multiple of 3; and 3, 5, 7... — 3 and 5 are odd primes. Overlap radar beats intuition: check for a shared member.",
-            "check": ["2/6 + 2/6 == 4/6"]
+            "check": [
+              "2/6 + 2/6 == 4/6"
+            ]
           },
           {
             "kind": "worked",
@@ -471,10 +614,16 @@
             "eyebrow": "Solve for the fourth",
             "title": "The rule as an equation",
             "prompt": "$P(A) = 0.6$, $P(B) = 0.5$, $P(A \\cap B) = 0.3$. Then $P(A \\cup B) = $ ?",
-            "options": ["$0.8$", "$1.1$", "$0.4$"],
+            "options": [
+              "$0.8$",
+              "$1.1$",
+              "$0.4$"
+            ],
             "correctIndex": 0,
             "explanation": "$0.6 + 0.5 - 0.3 = 0.8$. The $1.1$ forgot the overlap (and broke the scale — a free red flag); $0.4$ subtracted twice.",
-            "check": ["6/10 + 5/10 - 3/10 == 8/10"]
+            "check": [
+              "6/10 + 5/10 - 3/10 == 8/10"
+            ]
           },
           {
             "kind": "tip",
@@ -542,19 +691,30 @@
           "id": "pb-l4-w1",
           "statement": "Of $100$ students: $60$ have a bike, $45$ a skateboard, $25$ both. Build the Venn regions and find $P(\\text{neither})$.",
           "solution": "Overlap: $25$. Bike-only: $60 - 25 = 35$. Skateboard-only: $45 - 25 = 20$. Sum so far: $80$; neither: $100 - 80 = 20$. $P(\\text{neither}) = \\frac{20}{100} = \\frac{1}{5}$.",
-          "check": ["60 - 25 == 35", "45 - 25 == 20", "100 - (35 + 25 + 20) == 20", "20/100 == 1/5"]
+          "check": [
+            "60 - 25 == 35",
+            "45 - 25 == 20",
+            "100 - (35 + 25 + 20) == 20",
+            "20/100 == 1/5"
+          ]
         },
         {
           "id": "pb-l4-w2",
           "statement": "From the same survey, find $P(\\text{exactly one of the two})$.",
           "solution": "\"Exactly one\" is the two 'only' regions: $35 + 20 = 55$. $P = \\frac{55}{100} = \\frac{11}{20}$. (Note it's NOT the union $80$ — the union includes the both-region.)",
-          "check": ["35 + 20 == 55", "55/100 == 11/20"]
+          "check": [
+            "35 + 20 == 55",
+            "55/100 == 11/20"
+          ]
         },
         {
           "id": "pb-l4-w3",
           "statement": "A school of $200$: $110$ study English, $80$ study Japanese, $150$ study at least one. Fill the table and find how many study BOTH.",
           "solution": "Addition rule backwards: $|E \\cap J| = 110 + 80 - 150 = 40$. Regions: English-only $70$, both $40$, Japanese-only $40$, neither $200 - 150 = 50$. Cross-check: $70+40+40+50 = 200$ ✓.",
-          "check": ["110 + 80 - 150 == 40", "70 + 40 + 40 + 50 == 200"]
+          "check": [
+            "110 + 80 - 150 == 40",
+            "70 + 40 + 40 + 50 == 200"
+          ]
         }
       ],
       "commonMistakes": [
@@ -574,13 +734,17 @@
           "id": "pb-l4-t1",
           "statement": "Of $50$ diners: $30$ ordered soup, $22$ ordered salad, $12$ ordered both. How many ordered neither?",
           "solution": "Soup-only $18$, both $12$, salad-only $10$ — total $40$; neither: $10$.",
-          "check": ["50 - (18 + 12 + 10) == 10"]
+          "check": [
+            "50 - (18 + 12 + 10) == 10"
+          ]
         },
         {
           "id": "pb-l4-t2",
           "statement": "From that table, find $P(\\text{salad but no soup})$.",
           "solution": "Salad-only region: $10$ of $50$: $P = \\frac{10}{50} = \\frac{1}{5}$.",
-          "check": ["10/50 == 1/5"]
+          "check": [
+            "10/50 == 1/5"
+          ]
         }
       ],
       "interactive": {
@@ -597,6 +761,22 @@
             ]
           },
           {
+            "kind": "vennCounts",
+            "eyebrow": "Tap the regions",
+            "title": "A survey, sorted into four boxes",
+            "teach": "Thirty-five students: 12 play only soccer, 10 only basketball, 8 play both, 5 play neither. Tap each region — together they cover every student exactly once, which is what makes region counts safe to add. Any probability question about this class is a region question in disguise.",
+            "config": {
+              "mode": "regions",
+              "labelA": "soccer",
+              "labelB": "basketball",
+              "onlyA": 12,
+              "onlyB": 10,
+              "both": 8,
+              "neither": 5,
+              "countNoun": "students"
+            }
+          },
+          {
             "kind": "worked",
             "eyebrow": "Worked example",
             "title": "Bikes and skateboards",
@@ -607,10 +787,16 @@
             "eyebrow": "Region drill",
             "title": "Read the regions",
             "prompt": "With bike-only $35$, both $25$, skateboard-only $20$, neither $20$: $P(\\text{has a skateboard})$?",
-            "options": ["$\\frac{45}{100}$", "$\\frac{20}{100}$", "$\\frac{70}{100}$"],
+            "options": [
+              "$\\frac{45}{100}$",
+              "$\\frac{20}{100}$",
+              "$\\frac{70}{100}$"
+            ],
             "correctIndex": 0,
             "explanation": "The skateboard circle is both + skateboard-only $= 25 + 20 = 45$. The $20$ is only-skateboard (forgot the overlap); $70$ grabbed a margin from the wrong event.",
-            "check": ["25 + 20 == 45"]
+            "check": [
+              "25 + 20 == 45"
+            ]
           },
           {
             "kind": "worked",
@@ -640,10 +826,16 @@
             "eyebrow": "Table drill",
             "title": "Fill the missing cell",
             "prompt": "A table shows: total $80$, likes-cats $50$, likes-dogs $46$, likes-neither $4$. How many like BOTH?",
-            "options": ["$20$", "$16$", "$26$"],
+            "options": [
+              "$20$",
+              "$16$",
+              "$26$"
+            ],
             "correctIndex": 0,
             "explanation": "At least one: $80 - 4 = 76$. Both: $50 + 46 - 76 = 20$. The addition rule runs backwards through a table as easily as forward.",
-            "check": ["50 + 46 - (80 - 4) == 20"]
+            "check": [
+              "50 + 46 - (80 - 4) == 20"
+            ]
           },
           {
             "kind": "tip",
@@ -711,19 +903,30 @@
           "id": "pb-l5-w1",
           "statement": "A box holds $8$ good and $4$ defective phones. Three are drawn at random. Find $P(\\text{all good})$.",
           "solution": "Universe: $C(12,3) = 220$. Favorable: $C(8,3) = 56$. $P = \\frac{56}{220} = \\frac{14}{55}$.",
-          "check": ["binomial(8, 3) == 56", "binomial(12, 3) == 220", "56/220 == 14/55"]
+          "check": [
+            "binomial(8, 3) == 56",
+            "binomial(12, 3) == 220",
+            "56/220 == 14/55"
+          ]
         },
         {
           "id": "pb-l5-w2",
           "statement": "Same box, same draw. Find $P(\\text{exactly one defective})$.",
           "solution": "Quota: $1$ defective from $4$, $2$ good from $8$: $C(4,1) \\, C(8,2) = 4 \\times 28 = 112$. $P = \\frac{112}{220} = \\frac{28}{55}$.",
-          "check": ["binomial(4, 1)*binomial(8, 2) == 112", "112/220 == 28/55"]
+          "check": [
+            "binomial(4, 1)*binomial(8, 2) == 112",
+            "112/220 == 28/55"
+          ]
         },
         {
           "id": "pb-l5-w3",
           "statement": "A $5$-card hand is dealt. Find $P(\\text{all five are the same suit — a flush, counting straight flushes too})$.",
           "solution": "Choose the suit ($4$ ways), then $5$ of its $13$ cards: $4 \\times C(13,5) = 4 \\times 1287 = 5148$ hands. $P = \\frac{5148}{2598960} = \\frac{33}{16660} \\approx 0.00198$ — about one hand in $505$.",
-          "check": ["4*binomial(13, 5) == 5148", "binomial(52, 5) == 2598960", "5148/2598960 == 33/16660"]
+          "check": [
+            "4*binomial(13, 5) == 5148",
+            "binomial(52, 5) == 2598960",
+            "5148/2598960 == 33/16660"
+          ]
         }
       ],
       "commonMistakes": [
@@ -743,13 +946,19 @@
           "id": "pb-l5-t1",
           "statement": "From $6$ red and $4$ blue marbles, $2$ are drawn together. Find $P(\\text{both red})$.",
           "solution": "$\\frac{C(6,2)}{C(10,2)} = \\frac{15}{45} = \\frac{1}{3}$.",
-          "check": ["binomial(6, 2) == 15", "binomial(10, 2) == 45", "15/45 == 1/3"]
+          "check": [
+            "binomial(6, 2) == 15",
+            "binomial(10, 2) == 45",
+            "15/45 == 1/3"
+          ]
         },
         {
           "id": "pb-l5-t2",
           "statement": "Same bag: find $P(\\text{at least one blue})$.",
           "solution": "Complement of both-red: $1 - \\frac{1}{3} = \\frac{2}{3}$.",
-          "check": ["1 - 1/3 == 2/3"]
+          "check": [
+            "1 - 1/3 == 2/3"
+          ]
         }
       ],
       "interactive": {
@@ -782,10 +991,16 @@
             "eyebrow": "Quota drill",
             "title": "Two defective",
             "prompt": "Same box ($8$ good, $4$ bad, draw $3$): $P(\\text{exactly two defective})$?",
-            "options": ["$\\frac{C(4,2)C(8,1)}{C(12,3)} = \\frac{48}{220}$", "$\\frac{C(4,2)}{C(12,3)} = \\frac{6}{220}$", "$\\frac{C(4,2)C(10,1)}{C(12,3)}$"],
+            "options": [
+              "$\\frac{C(4,2)C(8,1)}{C(12,3)} = \\frac{48}{220}$",
+              "$\\frac{C(4,2)}{C(12,3)} = \\frac{6}{220}$",
+              "$\\frac{C(4,2)C(10,1)}{C(12,3)}$"
+            ],
             "correctIndex": 0,
             "explanation": "Two bad from $4$, one good from $8$: $6 \\times 8 = 48$ over $220$. Forgetting the good phone's choose ($6/220$) or drawing it from a mislabeled pool of $10$ both break the quota.",
-            "check": ["binomial(4, 2)*binomial(8, 1) == 48"]
+            "check": [
+              "binomial(4, 2)*binomial(8, 1) == 48"
+            ]
           },
           {
             "kind": "teach",
@@ -809,10 +1024,16 @@
             "eyebrow": "Reflex check",
             "title": "At least one, again",
             "prompt": "Box of $8$ good, $4$ bad, draw $3$: best route to $P(\\text{at least one defective})$?",
-            "options": ["$1 - \\frac{C(8,3)}{C(12,3)} = \\frac{164}{220}$", "$\\frac{C(4,1)C(11,2)}{C(12,3)}$", "Sum $P(1) + P(2)$"],
+            "options": [
+              "$1 - \\frac{C(8,3)}{C(12,3)} = \\frac{164}{220}$",
+              "$\\frac{C(4,1)C(11,2)}{C(12,3)}$",
+              "Sum $P(1) + P(2)$"
+            ],
             "correctIndex": 0,
             "explanation": "Complement of all-good: $1 - \\frac{56}{220} = \\frac{164}{220}$. Locking one defective in overcounts (the reserve-one trap); summing $P(1) + P(2)$ forgets $P(3)$.",
-            "check": ["1 - 56/220 == 164/220"]
+            "check": [
+              "1 - 56/220 == 164/220"
+            ]
           },
           {
             "kind": "tip",
@@ -880,19 +1101,26 @@
           "id": "pb-l6-w1",
           "statement": "A horse's odds are $3$:$1$ against. Find the implied probability of winning — and of losing.",
           "solution": "Against means $3$ unfavorable per $1$ favorable. $P(\\text{win}) = \\frac{1}{1+3} = \\frac{1}{4}$; $P(\\text{lose}) = \\frac{3}{4}$. (Check: they sum to $1$ ✓.)",
-          "check": ["1/(1+3) == 1/4", "3/4 + 1/4 == 1"]
+          "check": [
+            "1/(1+3) == 1/4",
+            "3/4 + 1/4 == 1"
+          ]
         },
         {
           "id": "pb-l6-w2",
           "statement": "One die: express $P(\\text{roll a } 6)$ as odds in favor.",
           "solution": "Favorable: $1$ face; unfavorable: $5$ faces. Odds in favor: $1$:$5$. (Probability $\\frac{1}{6}$ — note the different denominators: odds use $5$, probability uses $6$.)",
-          "check": ["1/(1+5) == 1/6"]
+          "check": [
+            "1/(1+5) == 1/6"
+          ]
         },
         {
           "id": "pb-l6-w3",
           "statement": "A basketball player makes $70\\%$ of her free throws. In a season of $250$ attempts, how many makes should the team expect — and should anyone panic if she hits $165$?",
           "solution": "Expected: $250 \\times 0.7 = 175$ makes. An observed $165$ is $10$ under — a wobble of $4\\%$ of the attempts, well within normal variation for a season. Expected counts are centers, not contracts.",
-          "check": ["250*7/10 == 175"]
+          "check": [
+            "250*7/10 == 175"
+          ]
         }
       ],
       "commonMistakes": [
@@ -912,13 +1140,17 @@
           "id": "pb-l6-t1",
           "statement": "Odds are $2$:$3$ in favor of rain. Find $P(\\text{rain})$.",
           "solution": "$P = \\frac{2}{2+3} = \\frac{2}{5}$.",
-          "check": ["2/(2+3) == 2/5"]
+          "check": [
+            "2/(2+3) == 2/5"
+          ]
         },
         {
           "id": "pb-l6-t2",
           "statement": "A spinner lands on gold with $P = \\frac{3}{20}$. About how many golds in $400$ spins?",
           "solution": "Expected: $400 \\times \\frac{3}{20} = 60$ golds.",
-          "check": ["400*3/20 == 60"]
+          "check": [
+            "400*3/20 == 60"
+          ]
         }
       ],
       "interactive": {
@@ -933,6 +1165,18 @@
               "Odds compare favorable to UNfavorable.",
               "Probability compares favorable to TOTAL. Add before dividing."
             ]
+          },
+          {
+            "kind": "longRunFrequency",
+            "eyebrow": "Experiment",
+            "title": "What 1/6 actually promises",
+            "teach": "The probability of rolling a 6 is $\\frac{1}{6}$ — but roll ten times and the frequency can be anywhere. Run the machine: watch the line lurch early, then calm down and hug the dashed $1/6$ line as the rolls pile up. Probability is a **long-run** promise, and this is the promise being kept.",
+            "config": {
+              "p": 0.16666666666666666,
+              "pLabel": "1/6",
+              "eventLabel": "roll a 6",
+              "actionLabel": "roll"
+            }
           },
           {
             "kind": "worked",
@@ -951,10 +1195,16 @@
             "eyebrow": "Conversion drill",
             "title": "Both directions",
             "prompt": "$P(\\text{event}) = \\frac{2}{7}$. The odds IN FAVOR are…",
-            "options": ["$2$:$5$", "$2$:$7$", "$5$:$2$"],
+            "options": [
+              "$2$:$5$",
+              "$2$:$7$",
+              "$5$:$2$"
+            ],
             "correctIndex": 0,
             "explanation": "Favorable $2$, total $7$ → unfavorable $5$: odds $2$:$5$ in favor. Writing $2$:$7$ mixes the two systems; $5$:$2$ states the odds AGAINST.",
-            "check": ["2/(2+5) == 2/7"]
+            "check": [
+              "2/(2+5) == 2/7"
+            ]
           },
           {
             "kind": "teach",
@@ -978,10 +1228,16 @@
             "eyebrow": "The fallacy",
             "title": "No memory",
             "prompt": "A fair coin lands heads $5$ times running. $P(\\text{heads on flip } 6)$?",
-            "options": ["$\\frac{1}{2}$", "less than $\\frac{1}{2}$ — tails is due", "more than $\\frac{1}{2}$ — heads is hot"],
+            "options": [
+              "$\\frac{1}{2}$",
+              "less than $\\frac{1}{2}$ — tails is due",
+              "more than $\\frac{1}{2}$ — heads is hot"
+            ],
             "correctIndex": 0,
             "explanation": "The coin stores nothing. Both \"due\" and \"hot\" project memory onto metal. The long run balances streaks by dilution — millions of future flips — not by compensation on the next one.",
-            "check": ["1/2 == 1/2"]
+            "check": [
+              "1/2 == 1/2"
+            ]
           },
           {
             "kind": "tip",
@@ -1026,49 +1282,71 @@
       "id": "pb-p-1",
       "statement": "A fair die is rolled once. Find $P(\\text{prime number})$.",
       "solution": "Primes on a die: $\\{2, 3, 5\\}$ — three of six: $P = \\frac{3}{6} = \\frac{1}{2}$.",
-      "check": ["3/6 == 1/2"]
+      "check": [
+        "3/6 == 1/2"
+      ]
     },
     {
       "id": "pb-p-2",
       "statement": "Two dice are rolled. Find $P(\\text{sum} = 7 \\text{ or sum} = 11)$.",
       "solution": "Sum 7: $6$ ways; sum 11: $2$ ways; mutually exclusive (one sum per roll): $\\frac{6 + 2}{36} = \\frac{8}{36} = \\frac{2}{9}$.",
-      "check": ["(6 + 2)/36 == 2/9"]
+      "check": [
+        "(6 + 2)/36 == 2/9"
+      ]
     },
     {
       "id": "pb-p-3",
       "statement": "Four coins are flipped. Find $P(\\text{at least one head})$.",
       "solution": "Complement — all tails: $\\frac{1}{16}$. $P = 1 - \\frac{1}{16} = \\frac{15}{16}$.",
-      "check": ["1 - 1/16 == 15/16"]
+      "check": [
+        "1 - 1/16 == 15/16"
+      ]
     },
     {
       "id": "pb-p-4",
       "statement": "One card is drawn. Find $P(\\text{queen or spade})$.",
       "solution": "$\\frac{4}{52} + \\frac{13}{52} - \\frac{1}{52} = \\frac{16}{52} = \\frac{4}{13}$.",
-      "check": ["4/52 + 13/52 - 1/52 == 4/13"]
+      "check": [
+        "4/52 + 13/52 - 1/52 == 4/13"
+      ]
     },
     {
       "id": "pb-p-5",
       "statement": "Of $60$ gym members, $35$ lift weights, $28$ swim, $15$ do both. Find $P(\\text{a random member does neither})$.",
       "solution": "Union: $35 + 28 - 15 = 48$; neither: $60 - 48 = 12$. $P = \\frac{12}{60} = \\frac{1}{5}$.",
-      "check": ["35 + 28 - 15 == 48", "12/60 == 1/5"]
+      "check": [
+        "35 + 28 - 15 == 48",
+        "12/60 == 1/5"
+      ]
     },
     {
       "id": "pb-p-6",
       "statement": "A drawer holds $5$ black and $3$ white socks. Two are drawn together. Find $P(\\text{both black})$.",
       "solution": "$\\frac{C(5,2)}{C(8,2)} = \\frac{10}{28} = \\frac{5}{14}$.",
-      "check": ["binomial(5, 2) == 10", "binomial(8, 2) == 28", "10/28 == 5/14"]
+      "check": [
+        "binomial(5, 2) == 10",
+        "binomial(8, 2) == 28",
+        "10/28 == 5/14"
+      ]
     },
     {
       "id": "pb-p-7",
       "statement": "From a shelf of $7$ novels and $3$ comics, $3$ books are grabbed at random. Find $P(\\text{exactly one comic})$.",
       "solution": "$\\frac{C(3,1) C(7,2)}{C(10,3)} = \\frac{3 \\times 21}{120} = \\frac{63}{120} = \\frac{21}{40}$.",
-      "check": ["binomial(3,1)*binomial(7,2) == 63", "binomial(10, 3) == 120", "63/120 == 21/40"]
+      "check": [
+        "binomial(3,1)*binomial(7,2) == 63",
+        "binomial(10, 3) == 120",
+        "63/120 == 21/40"
+      ]
     },
     {
       "id": "pb-p-8",
       "statement": "Odds are $4$:$1$ against a team winning. Find $P(\\text{win})$, and the expected wins in a $40$-game season at that rate.",
       "solution": "$P = \\frac{1}{5}$; expected wins: $40 \\times \\frac{1}{5} = 8$.",
-      "check": ["1/(1+4) == 1/5", "40/5 == 8"]
+      "check": [
+        "1/(1+4) == 1/5",
+        "40/5 == 8"
+      ]
     }
   ],
   "testYourself": [
@@ -1076,37 +1354,57 @@
       "id": "pb-ty-1",
       "statement": "A $3$-digit code is chosen at random ($000$–$999$). Find $P(\\text{all three digits are different})$.",
       "solution": "Universe: $10^3 = 1000$. All different: $10 \\times 9 \\times 8 = 720$. $P = \\frac{720}{1000} = \\frac{18}{25}$.",
-      "check": ["10*9*8 == 720", "720/1000 == 18/25"]
+      "check": [
+        "10*9*8 == 720",
+        "720/1000 == 18/25"
+      ]
     },
     {
       "id": "pb-ty-2",
       "statement": "Two dice: find $P(\\text{sum is even or sum} > 9)$.",
       "solution": "Even sums: $18$ of $36$. Sums $> 9$ ($10, 11, 12$): $3 + 2 + 1 = 6$. Overlap (even AND $>9$: sums $10, 12$): $3 + 1 = 4$. Union: $\\frac{18 + 6 - 4}{36} = \\frac{20}{36} = \\frac{5}{9}$.",
-      "check": ["(18 + 6 - 4)/36 == 5/9"]
+      "check": [
+        "(18 + 6 - 4)/36 == 5/9"
+      ]
     },
     {
       "id": "pb-ty-3",
       "statement": "In a survey of $120$ students, $70$ use the library, $50$ use the gym, and $30$ use both. Find $P(\\text{exactly one of the two})$ for a random student.",
       "solution": "Library-only: $40$; gym-only: $20$. Exactly one: $60$ of $120$: $P = \\frac{1}{2}$.",
-      "check": ["70 - 30 == 40", "50 - 30 == 20", "(40 + 20)/120 == 1/2"]
+      "check": [
+        "70 - 30 == 40",
+        "50 - 30 == 20",
+        "(40 + 20)/120 == 1/2"
+      ]
     },
     {
       "id": "pb-ty-4",
       "statement": "A jar holds $6$ mint, $5$ toffee, and $4$ chocolate candies. Three are drawn together. Find $P(\\text{one of each type})$.",
       "solution": "Favorable: $C(6,1)C(5,1)C(4,1) = 120$. Universe: $C(15,3) = 455$. $P = \\frac{120}{455} = \\frac{24}{91}$.",
-      "check": ["6*5*4 == 120", "binomial(15, 3) == 455", "120/455 == 24/91"]
+      "check": [
+        "6*5*4 == 120",
+        "binomial(15, 3) == 455",
+        "120/455 == 24/91"
+      ]
     },
     {
       "id": "pb-ty-5",
       "statement": "A $4$-person team is drawn at random from $5$ girls and $4$ boys. Find $P(\\text{at least one boy})$.",
       "solution": "Complement — all girls: $\\frac{C(5,4)}{C(9,4)} = \\frac{5}{126}$. $P = 1 - \\frac{5}{126} = \\frac{121}{126}$.",
-      "check": ["binomial(5, 4) == 5", "binomial(9, 4) == 126", "1 - 5/126 == 121/126"]
+      "check": [
+        "binomial(5, 4) == 5",
+        "binomial(9, 4) == 126",
+        "1 - 5/126 == 121/126"
+      ]
     },
     {
       "id": "pb-ty-6",
       "statement": "A weather service says odds are $7$:$3$ in favor of snow. Convert to a probability, state the expected snowy days over the next $30$ days at that rate, and explain what the expectation does NOT promise.",
       "solution": "$P = \\frac{7}{10}$. Expected: $30 \\times 0.7 = 21$ snowy days. It does NOT promise exactly $21$ — the observed count wobbles around the expectation; only the long-run FRACTION is pinned down.",
-      "check": ["7/(7+3) == 7/10", "30*7/10 == 21"]
+      "check": [
+        "7/(7+3) == 7/10",
+        "30*7/10 == 21"
+      ]
     }
   ]
 }

@@ -35,19 +35,25 @@
           "id": "bd-l1-w1",
           "statement": "A basketball player hits free throws with $p = 0.8$, and attempts exactly $10$ in practice. Check BINS for $X = $ number of makes.",
           "solution": "Binary: make/miss ✓. Independent: reasonable for practice throws ✓ (a modeling assumption — note it). N: fixed at $10$ ✓. Same $p$: $0.8$ throughout ✓ (assumes no fatigue). Binomial setting holds; $X$ takes values $0$–$10$.",
-          "check": ["8/10 + 2/10 == 1"]
+          "check": [
+            "8/10 + 2/10 == 1"
+          ]
         },
         {
           "id": "bd-l1-w2",
           "statement": "Five cards are dealt WITHOUT replacement; $X = $ number of hearts. Is this binomial?",
           "solution": "Binary ✓ (heart or not), N fixed ✓ — but each card CHANGES the deck: trials are dependent and $p$ drifts ($\\frac{13}{52}$, then $\\frac{12}{51}$ or $\\frac{13}{51}$...). I and S both fail. Not binomial — it's the without-replacement world of Units 5–6 (chooses and trees handle it).",
-          "check": ["13/52 == 1/4"]
+          "check": [
+            "13/52 == 1/4"
+          ]
         },
         {
           "id": "bd-l1-w3",
           "statement": "A factory line produces parts with a $3\\%$ defect rate; an inspector samples $20$ parts from a huge batch. Model $X = $ defect count.",
           "solution": "\"Success\" $=$ defective, $p = 0.03$. Binary ✓; N $= 20$ ✓; same $p$ ✓; independence — technically sampling without replacement, but from a HUGE batch the deck barely changes: independence holds approximately (the standard modeling call when the sample is under $\\sim 10\\%$ of the population). Binomial with $n = 20$, $p = 0.03$.",
-          "check": ["3/100 + 97/100 == 1"]
+          "check": [
+            "3/100 + 97/100 == 1"
+          ]
         }
       ],
       "commonMistakes": [
@@ -67,13 +73,17 @@
           "id": "bd-l1-t1",
           "statement": "A die is rolled $12$ times; $X = $ number of sixes. Verify BINS and state $n$ and $p$.",
           "solution": "Binary (six/not) ✓, independent rolls ✓, $n = 12$ fixed ✓, $p = \\frac{1}{6}$ constant ✓. Binomial: $n = 12$, $p = \\frac{1}{6}$.",
-          "check": ["1/6 + 5/6 == 1"]
+          "check": [
+            "1/6 + 5/6 == 1"
+          ]
         },
         {
           "id": "bd-l1-t2",
           "statement": "\"Shoot free throws until you miss\" — which BINS letter fails?",
           "solution": "N: the number of trials isn't fixed in advance (it depends on the results). Not binomial.",
-          "check": ["1 == 1"]
+          "check": [
+            "1 == 1"
+          ]
         }
       ],
       "interactive": {
@@ -101,14 +111,32 @@
             ]
           },
           {
+            "kind": "longRunFrequency",
+            "eyebrow": "Experiment",
+            "title": "One trial, repeated forever",
+            "teach": "A Bernoulli trial is a single yes/no with a fixed $p$ — here, a free throw that goes in with probability $\\frac{3}{10}$. One shot tells you almost nothing. But shoot a few hundred and the make-rate settles onto the dashed line: the fixed $p$ is real, and repetition is how it shows itself. The binomial distribution is built out of exactly these repeats.",
+            "config": {
+              "p": 0.3,
+              "pLabel": "3/10",
+              "eventLabel": "make the shot",
+              "actionLabel": "shoot"
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "BINS drill",
             "title": "Spot the break",
             "prompt": "\"Draw 4 marbles one at a time from a bag of 10, no replacement; count the reds.\" Which condition(s) fail?",
-            "options": ["Independence and same-p — the bag changes", "Binary — marbles have colors", "None — it's binomial"],
+            "options": [
+              "Independence and same-p — the bag changes",
+              "Binary — marbles have colors",
+              "None — it's binomial"
+            ],
             "correctIndex": 0,
             "explanation": "Each draw reshapes the bag: the next red-probability depends on what left. From a bag of 10, the drift is huge — chooses and trees are the right tools. (From 10,000 marbles, the drift would be negligible and binomial would approximate well.)",
-            "check": ["4/10 == 2/5"]
+            "check": [
+              "4/10 == 2/5"
+            ]
           },
           {
             "kind": "worked",
@@ -133,10 +161,16 @@
             "eyebrow": "Success semantics",
             "title": "What's p here?",
             "prompt": "An airline's no-show rate is $6\\%$; $X = $ no-shows among $200$ booked passengers. The trial's \"success\" and $p$ are…",
-            "options": ["success = no-show, $p = 0.06$", "success = shows up, $p = 0.06$", "success = no-show, $p = 0.94$"],
+            "options": [
+              "success = no-show, $p = 0.06$",
+              "success = shows up, $p = 0.06$",
+              "success = no-show, $p = 0.94$"
+            ],
             "correctIndex": 0,
             "explanation": "You're COUNTING no-shows, so that's the success, with its own probability $0.06$. Mislabeling p as 0.94 flips every formula downstream — fix the semantics first.",
-            "check": ["6/100 + 94/100 == 1"]
+            "check": [
+              "6/100 + 94/100 == 1"
+            ]
           },
           {
             "kind": "tip",
@@ -204,19 +238,25 @@
           "id": "bd-l2-w1",
           "statement": "Five free throws at $p = 0.8$: find $P(\\text{exactly } 2 \\text{ makes})$.",
           "solution": "Scripts: $\\binom{5}{2} = 10$. Each script: $0.8^2 \\times 0.2^3 = 0.64 \\times 0.008 = 0.00512$. Total: $10 \\times 0.00512 = 0.0512$ — about a $5\\%$ chance; two makes is a bad day for an $80\\%$ shooter.",
-          "check": ["binomial(5, 2)*(8/10)**2*(2/10)**3 == 64/1250"]
+          "check": [
+            "binomial(5, 2)*(8/10)**2*(2/10)**3 == 64/1250"
+          ]
         },
         {
           "id": "bd-l2-w2",
           "statement": "A fair coin is flipped $6$ times. Find $P(\\text{exactly } 3 \\text{ heads})$.",
           "solution": "$\\binom{6}{3} \\left(\\frac{1}{2}\\right)^3 \\left(\\frac{1}{2}\\right)^3 = 20 \\times \\frac{1}{64} = \\frac{20}{64} = \\frac{5}{16} \\approx 0.31$. Even the MOST likely count happens under a third of the time — exact counts are rarer than intuition says.",
-          "check": ["binomial(6, 3)*(1/2)**6 == 5/16"]
+          "check": [
+            "binomial(6, 3)*(1/2)**6 == 5/16"
+          ]
         },
         {
           "id": "bd-l2-w3",
           "statement": "A die is rolled $4$ times. Find $P(\\text{exactly one six})$.",
           "solution": "$n = 4$, $p = \\frac{1}{6}$, $k = 1$: $\\binom{4}{1} \\left(\\frac{1}{6}\\right)^1 \\left(\\frac{5}{6}\\right)^3 = 4 \\times \\frac{1}{6} \\times \\frac{125}{216} = \\frac{500}{1296} = \\frac{125}{324} \\approx 0.386$.",
-          "check": ["binomial(4, 1)*(1/6)*(5/6)**3 == 125/324"]
+          "check": [
+            "binomial(4, 1)*(1/6)*(5/6)**3 == 125/324"
+          ]
         }
       ],
       "commonMistakes": [
@@ -236,13 +276,17 @@
           "id": "bd-l2-t1",
           "statement": "Three flips of a fair coin: use the formula for $P(\\text{exactly } 2 \\text{ heads})$ and check against the listed universe.",
           "solution": "$\\binom{3}{2}\\left(\\frac{1}{2}\\right)^3 = \\frac{3}{8}$. Universe check: HHT, HTH, THH — three of eight ✓.",
-          "check": ["binomial(3, 2)*(1/2)**3 == 3/8"]
+          "check": [
+            "binomial(3, 2)*(1/2)**3 == 3/8"
+          ]
         },
         {
           "id": "bd-l2-t2",
           "statement": "A quiz has $5$ questions with $4$ options each; a student guesses all. Find $P(\\text{exactly } 0 \\text{ correct})$.",
           "solution": "$\\left(\\frac{3}{4}\\right)^5 = \\frac{243}{1024} \\approx 0.237$.",
-          "check": ["(3/4)**5 == 243/1024"]
+          "check": [
+            "(3/4)**5 == 243/1024"
+          ]
         }
       ],
       "interactive": {
@@ -270,14 +314,31 @@
             ]
           },
           {
+            "kind": "binomialBars",
+            "eyebrow": "Tap a bar",
+            "title": "The formula, one bar at a time",
+            "teach": "Six fair coin flips. Each bar is one value of the formula $P(X=k) = \\binom{6}{k} p^k (1-p)^{6-k}$ — tap $k = 3$ and read it: 20 orderings, each with probability $(1/2)^6$, giving $\\frac{20}{64}$. The $\\binom{n}{k}$ out front is the counting of Act One doing its job inside a probability.",
+            "config": {
+              "n0": 6,
+              "p0": 0.5,
+              "highlightK": 3
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Factor check",
             "title": "Why times ten?",
             "prompt": "In $P(2 \\text{ makes in } 5) = 10 \\times 0.8^2 \\times 0.2^3$, the $10$ is…",
-            "options": ["$\\binom{5}{2}$ — the number of make-patterns", "a rounding constant", "$5 \\times 2$"],
+            "options": [
+              "$\\binom{5}{2}$ — the number of make-patterns",
+              "a rounding constant",
+              "$5 \\times 2$"
+            ],
             "correctIndex": 0,
             "explanation": "Ten distinct scripts (MMXXX, MXMXX, ...) each carry probability $0.8^2 0.2^3$; the event collects them all. The choose factor IS Unit 3 cashing in.",
-            "check": ["binomial(5, 2) == 10"]
+            "check": [
+              "binomial(5, 2) == 10"
+            ]
           },
           {
             "kind": "worked",
@@ -302,10 +363,16 @@
             "eyebrow": "Formula drill",
             "title": "Assemble it",
             "prompt": "$n = 8$, $p = 0.3$: which is $P(X = 3)$?",
-            "options": ["$\\binom{8}{3}(0.3)^3(0.7)^5$", "$\\binom{8}{3}(0.3)^5(0.7)^3$", "$(0.3)^3(0.7)^5$"],
+            "options": [
+              "$\\binom{8}{3}(0.3)^3(0.7)^5$",
+              "$\\binom{8}{3}(0.3)^5(0.7)^3$",
+              "$(0.3)^3(0.7)^5$"
+            ],
             "correctIndex": 0,
             "explanation": "Three successes at $0.3$ each, five failures at $0.7$, times the $\\binom{8}{3} = 56$ patterns. Swapped exponents price the wrong script; the bare powers price only ONE script.",
-            "check": ["binomial(8, 3) == 56"]
+            "check": [
+              "binomial(8, 3) == 56"
+            ]
           },
           {
             "kind": "tip",
@@ -373,19 +440,26 @@
           "id": "bd-l3-w1",
           "statement": "A die is rolled $5$ times. Find $P(\\text{at least one six})$.",
           "solution": "Complement: $P(X \\ge 1) = 1 - \\left(\\frac{5}{6}\\right)^5 = 1 - \\frac{3125}{7776} = \\frac{4651}{7776} \\approx 0.598$. One term. (Direct would need five.)",
-          "check": ["1 - (5/6)**5 == 4651/7776"]
+          "check": [
+            "1 - (5/6)**5 == 4651/7776"
+          ]
         },
         {
           "id": "bd-l3-w2",
           "statement": "A batch passes inspection if a $10$-part sample contains AT MOST $1$ defective. With true defect rate $p = 0.1$, find $P(\\text{pass})$.",
           "solution": "Two terms: $P(0) = 0.9^{10} \\approx 0.349$; $P(1) = \\binom{10}{1}(0.1)(0.9)^9 \\approx 0.387$. $P(\\text{pass}) \\approx 0.736$ — a $10\\%$-defective process still passes this gate nearly three times in four. (Inspection design is a real trade-off.)",
-          "check": ["(9/10)**10 + binomial(10,1)*(1/10)*(9/10)**9 == 7360989291/10000000000"]
+          "check": [
+            "(9/10)**10 + binomial(10,1)*(1/10)*(9/10)**9 == 7360989291/10000000000"
+          ]
         },
         {
           "id": "bd-l3-w3",
           "statement": "The airline: $52$ tickets, $50$ seats, show-up $p = 0.95$. Which terms give $P(\\text{overbooked})$, and what's the expected number of shows?",
           "solution": "Overbooked $= P(X = 51) + P(X = 52) = \\binom{52}{51}(0.95)^{51}(0.05) + (0.95)^{52}$ — two terms from the top. Expected shows (Unit 7 linearity): $52 \\times 0.95 = 49.4$ — under capacity on average, which is exactly why airlines dare.",
-          "check": ["52*95/100 == 494/10", "binomial(52, 51) == 52"]
+          "check": [
+            "52*95/100 == 494/10",
+            "binomial(52, 51) == 52"
+          ]
         }
       ],
       "commonMistakes": [
@@ -405,13 +479,18 @@
           "id": "bd-l3-t1",
           "statement": "Four flips of a fair coin: find $P(\\text{at least one head})$ and $P(\\text{at most one head})$.",
           "solution": "At least one: $1 - \\frac{1}{16} = \\frac{15}{16}$. At most one: $P(0) + P(1) = \\frac{1}{16} + \\frac{4}{16} = \\frac{5}{16}$.",
-          "check": ["1 - (1/2)**4 == 15/16", "(1/2)**4 + binomial(4,1)*(1/2)**4 == 5/16"]
+          "check": [
+            "1 - (1/2)**4 == 15/16",
+            "(1/2)**4 + binomial(4,1)*(1/2)**4 == 5/16"
+          ]
         },
         {
           "id": "bd-l3-t2",
           "statement": "$n = 6$, $p = \\frac{1}{3}$: find $P(2 \\le X \\le 3)$.",
           "solution": "$P(2) + P(3) = \\binom{6}{2}\\frac{1}{9}\\cdot\\frac{16}{81} + \\binom{6}{3}\\frac{1}{27}\\cdot\\frac{8}{27} = \\frac{240}{729} + \\frac{160}{729} = \\frac{400}{729} \\approx 0.549$.",
-          "check": ["binomial(6,2)*(1/3)**2*(2/3)**4 + binomial(6,3)*(1/3)**3*(2/3)**3 == 400/729"]
+          "check": [
+            "binomial(6,2)*(1/3)**2*(2/3)**4 + binomial(6,3)*(1/3)**3*(2/3)**3 == 400/729"
+          ]
         }
       ],
       "interactive": {
@@ -428,6 +507,16 @@
             ]
           },
           {
+            "kind": "binomialBars",
+            "eyebrow": "Play with it",
+            "title": "Steer n and p",
+            "teach": "This is $X \\sim B(5, 0.3)$ — five tries at a 30% skill. Step $p$ up and watch the pile slide right; step $n$ up and watch it stretch. Every real binomial problem starts exactly here: identify $n$, identify $p$, and the whole distribution follows.",
+            "config": {
+              "n0": 5,
+              "p0": 0.3
+            }
+          },
+          {
             "kind": "worked",
             "eyebrow": "Worked example",
             "title": "At least one six",
@@ -438,10 +527,16 @@
             "eyebrow": "Route choice",
             "title": "Count the terms",
             "prompt": "$n = 15$, want $P(X \\ge 2)$. Fastest route?",
-            "options": ["$1 - P(0) - P(1)$ — two terms", "$P(2) + P(3) + \\cdots + P(15)$ — fourteen terms", "$1 - P(15)$"],
+            "options": [
+              "$1 - P(0) - P(1)$ — two terms",
+              "$P(2) + P(3) + \\cdots + P(15)$ — fourteen terms",
+              "$1 - P(15)$"
+            ],
             "correctIndex": 0,
             "explanation": "The complement of $X \\ge 2$ is $X \\le 1$: two cheap terms. Fourteen direct terms compute the same number the long way; $1 - P(15)$ answers 'not all', a different question.",
-            "check": ["1 == 1"]
+            "check": [
+              "1 == 1"
+            ]
           },
           {
             "kind": "worked",
@@ -460,10 +555,16 @@
             "eyebrow": "Language precision",
             "title": "Inclusive or not?",
             "prompt": "For $X$ successes, \"fewer than 3\" means…",
-            "options": ["$P(0) + P(1) + P(2)$", "$P(0) + P(1) + P(2) + P(3)$", "$P(3)$"],
+            "options": [
+              "$P(0) + P(1) + P(2)$",
+              "$P(0) + P(1) + P(2) + P(3)$",
+              "$P(3)$"
+            ],
             "correctIndex": 0,
             "explanation": "\"Fewer than 3\" excludes 3: $X \\le 2$. \"At most 3\" would include it. One word, one term — read the inequality twice before summing.",
-            "check": ["1 == 1"]
+            "check": [
+              "1 == 1"
+            ]
           },
           {
             "kind": "tip",
@@ -531,19 +632,30 @@
           "id": "bd-l4-w1",
           "statement": "Ten free throws at $p = 0.8$: find the mean, SD, and usual range of makes.",
           "solution": "$\\mu = 10 \\times 0.8 = 8$. Var $= 10 \\times 0.8 \\times 0.2 = 1.6$; $\\sigma = \\sqrt{1.6} \\approx 1.26$. Usual range: $8 \\pm 2.5$, roughly $5.5$–$10$: nine makes is a shrug, four makes is news.",
-          "check": ["10*8/10 == 8", "10*(8/10)*(2/10) == 8/5"]
+          "check": [
+            "10*8/10 == 8",
+            "10*(8/10)*(2/10) == 8/5"
+          ]
         },
         {
           "id": "bd-l4-w2",
           "statement": "A fair coin flipped $100$ times: mean, SD, and the usual range of heads.",
           "solution": "$\\mu = 50$; Var $= 100 \\times \\frac{1}{4} = 25$; $\\sigma = 5$. Usual: $50 \\pm 10$, i.e., $40$–$60$ heads. Note $60$ heads in $100$ is ordinary while $6$ in $10$ (same 60%) is nothing at all — sample size sharpens judgment.",
-          "check": ["100/2 == 50", "100*(1/2)*(1/2) == 25", "sqrt(25) == 5"]
+          "check": [
+            "100/2 == 50",
+            "100*(1/2)*(1/2) == 25",
+            "sqrt(25) == 5"
+          ]
         },
         {
           "id": "bd-l4-w3",
           "statement": "Compare shapes: $n = 10$ with $p = 0.1$, $p = 0.5$, $p = 0.9$. Where does each pile its probability?",
           "solution": "$p = 0.1$: $\\mu = 1$ — probability piles at low counts, long tail rightward (right-skew). $p = 0.5$: symmetric hill centered at $5$ (row 10 of Pascal's triangle, normalized). $p = 0.9$: mirror of the first, piled high with a left tail. Skew always points AWAY from the pile, toward the rare side.",
-          "check": ["10*1/10 == 1", "10*5/10 == 5", "10*9/10 == 9"]
+          "check": [
+            "10*1/10 == 1",
+            "10*5/10 == 5",
+            "10*9/10 == 9"
+          ]
         }
       ],
       "commonMistakes": [
@@ -563,13 +675,18 @@
           "id": "bd-l4-t1",
           "statement": "$n = 36$, $p = \\frac{1}{6}$ (counting sixes in $36$ rolls): find $\\mu$ and $\\sigma$.",
           "solution": "$\\mu = 6$; Var $= 36 \\cdot \\frac{1}{6} \\cdot \\frac{5}{6} = 5$; $\\sigma = \\sqrt{5} \\approx 2.24$.",
-          "check": ["36/6 == 6", "36*(1/6)*(5/6) == 5"]
+          "check": [
+            "36/6 == 6",
+            "36*(1/6)*(5/6) == 5"
+          ]
         },
         {
           "id": "bd-l4-t2",
           "statement": "For which $p$ does a binomial with fixed $n$ have the LARGEST spread — and why does that make sense?",
           "solution": "$p = \\frac{1}{2}$: Var $= np(1-p)$ maximizes at $p(1-p) = \\frac{1}{4}$. Makes sense — a 50/50 trial is maximally unpredictable; near-certain trials ($p \\to 0$ or $1$) barely vary.",
-          "check": ["(1/2)*(1/2) == 1/4"]
+          "check": [
+            "(1/2)*(1/2) == 1/4"
+          ]
         }
       ],
       "interactive": {
@@ -584,6 +701,17 @@
               "Independence adds variances too: Var $= np(1-p)$.",
               "$\\sigma = \\sqrt{np(1-p)}$ — spread from anatomy, not tables."
             ]
+          },
+          {
+            "kind": "binomialBars",
+            "eyebrow": "Watch the centre",
+            "title": "The pile knows its own centre",
+            "teach": "The marker sits at $\\mu = np$ and the whiskers reach $\\sigma = \\sqrt{np(1-p)}$ each way. Step $n$ and $p$ around: the peak tracks $np$ perfectly, the pile is symmetric at $p = \\frac{1}{2}$, and it leans (skews) whenever $p$ moves off centre. You can **see** the formulas before you ever compute them.",
+            "config": {
+              "n0": 10,
+              "p0": 0.5,
+              "showMuSigma": true
+            }
           },
           {
             "kind": "worked",
@@ -602,10 +730,17 @@
             "eyebrow": "Moments drill",
             "title": "Mean and σ",
             "prompt": "$n = 400$, $p = \\frac{1}{4}$: mean and SD of the success count?",
-            "options": ["$\\mu = 100$, $\\sigma = \\sqrt{75} \\approx 8.7$", "$\\mu = 100$, $\\sigma = 75$", "$\\mu = 200$, $\\sigma = 10$"],
+            "options": [
+              "$\\mu = 100$, $\\sigma = \\sqrt{75} \\approx 8.7$",
+              "$\\mu = 100$, $\\sigma = 75$",
+              "$\\mu = 200$, $\\sigma = 10$"
+            ],
             "correctIndex": 0,
             "explanation": "$\\mu = 400 \\times \\frac{1}{4} = 100$; Var $= 400 \\cdot \\frac{1}{4} \\cdot \\frac{3}{4} = 75$, $\\sigma = \\sqrt{75}$. Forgetting the root (option 2) makes every outcome look 'usual'.",
-            "check": ["400/4 == 100", "400*(1/4)*(3/4) == 75"]
+            "check": [
+              "400/4 == 100",
+              "400*(1/4)*(3/4) == 75"
+            ]
           },
           {
             "kind": "teach",
@@ -629,10 +764,16 @@
             "eyebrow": "Judgment call",
             "title": "Usual or newsworthy?",
             "prompt": "A fair coin gives $62$ heads in $100$ flips. Verdict via $\\mu \\pm 2\\sigma$?",
-            "options": ["Outside $50 \\pm 10$ — mildly surprising, worth a second look", "Within usual — ignore", "Proof the coin is rigged"],
+            "options": [
+              "Outside $50 \\pm 10$ — mildly surprising, worth a second look",
+              "Within usual — ignore",
+              "Proof the coin is rigged"
+            ],
             "correctIndex": 0,
             "explanation": "$62$ sits just past $\\mu + 2\\sigma = 60$: eyebrow territory — rare-ish under fairness (a few percent), far from proof. The honest verdicts live on a scale, not a switch; next lesson sharpens the tool.",
-            "check": ["50 + 2*5 == 60"]
+            "check": [
+              "50 + 2*5 == 60"
+            ]
           },
           {
             "kind": "tip",
@@ -700,19 +841,25 @@
           "id": "bd-l5-w1",
           "statement": "Compute the psychic's tail exactly: $P(X \\ge 8)$ for $n = 10$ fair-coin calls.",
           "solution": "$P(8) + P(9) + P(10) = \\frac{\\binom{10}{8} + \\binom{10}{9} + \\binom{10}{10}}{1024} = \\frac{45 + 10 + 1}{1024} = \\frac{56}{1024} \\approx 0.055$. Luck alone does this about once in $18$ tries — suggestive, nowhere near proof. Demand a rerun.",
-          "check": ["(binomial(10,8) + binomial(10,9) + binomial(10,10))/2**10 == 56/1024"]
+          "check": [
+            "(binomial(10,8) + binomial(10,9) + binomial(10,10))/2**10 == 56/1024"
+          ]
         },
         {
           "id": "bd-l5-w2",
           "statement": "Design a simulation (random digits $0$–$9$) for: a $30\\%$ free-throw shooter attempts $5$ shots; estimate $P(\\text{at least } 3 \\text{ makes})$. Then compute exactly.",
           "solution": "Model: one digit per shot, digits $\\{0,1,2\\}$ = make ($p = 0.3$). One trial = $5$ digits; count trials with $3+$ makes over many repetitions. Exact check: $P(3) + P(4) + P(5) = \\binom{5}{3}(0.3)^3(0.7)^2 + \\binom{5}{4}(0.3)^4(0.7) + (0.3)^5 = 0.1323 + 0.02835 + 0.00243 = 0.16308$.",
-          "check": ["binomial(5,3)*(3/10)**3*(7/10)**2 + binomial(5,4)*(3/10)**4*(7/10) + (3/10)**5 == 16308/100000"]
+          "check": [
+            "binomial(5,3)*(3/10)**3*(7/10)**2 + binomial(5,4)*(3/10)**4*(7/10) + (3/10)**5 == 16308/100000"
+          ]
         },
         {
           "id": "bd-l5-w3",
           "statement": "A factory's defect rate is supposedly $2\\%$. Today's sample of $50$ contains $4$ defects. Frame the surprise computation — is the line drifting?",
           "solution": "Boring model: $p = 0.02$, $n = 50$, $\\mu = 1$. Evidence: $4$ OR MORE defects. $P(X \\ge 4) = 1 - [P(0) + P(1) + P(2) + P(3)]$ — with $\\mu = 1$, four defects is far in the tail (about $1.8\\%$). Verdict: unlikely under the boring model; stop the line and check. (One more sample before panic is also sound practice.)",
-          "check": ["50*2/100 == 1"]
+          "check": [
+            "50*2/100 == 1"
+          ]
         }
       ],
       "commonMistakes": [
@@ -732,13 +879,17 @@
           "id": "bd-l5-t1",
           "statement": "A friend calls $5$ of $5$ coin flips. Compute the tail $P(X \\ge 5)$ — impressed?",
           "solution": "$P(X = 5) = \\frac{1}{32} \\approx 3.1\\%$. Rarer than the psychic's $5.5\\%$ — one more clean run would be genuinely hard to dismiss.",
-          "check": ["(1/2)**5 == 1/32"]
+          "check": [
+            "(1/2)**5 == 1/32"
+          ]
         },
         {
           "id": "bd-l5-t2",
           "statement": "Design the digit-model for simulating a $70\\%$ on-time bus over $7$ mornings.",
           "solution": "One digit per morning; $\\{0,\\ldots,6\\}$ = on time ($p = 0.7$), $\\{7, 8, 9\\}$ = late. One trial = $7$ digits; repeat many, read frequencies.",
-          "check": ["7/10 + 3/10 == 1"]
+          "check": [
+            "7/10 + 3/10 == 1"
+          ]
         }
       ],
       "interactive": {
@@ -766,14 +917,36 @@
             ]
           },
           {
+            "kind": "samplingWobble",
+            "eyebrow": "Simulate",
+            "title": "Run the experiment many times",
+            "teach": "Each dot is one whole run — $n$ fair trials, plotted by its fraction of successes. Draw twenty runs at $n = 10$ and the pile is wide: getting 7 or 8 successes out of 10 is unremarkable. Switch to $n = 160$ and the same fraction would be shocking. Simulation gives you calibrated surprise: what's normal wobble, and what isn't.",
+            "config": {
+              "p": 0.5,
+              "pLabel": "1/2",
+              "statLabel": "fraction of successes",
+              "nChoices": [
+                10,
+                40,
+                160
+              ]
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Tail discipline",
             "title": "Why X ≥ 8?",
             "prompt": "Why judge the psychic by $P(X \\ge 8)$ instead of $P(X = 8)$?",
-            "options": ["9 or 10 hits would've impressed us MORE — the evidence class is 'at least 8'", "It's easier to compute", "Because 8 is even"],
+            "options": [
+              "9 or 10 hits would've impressed us MORE — the evidence class is 'at least 8'",
+              "It's easier to compute",
+              "Because 8 is even"
+            ],
             "correctIndex": 0,
             "explanation": "\"Surprising\" means \"this extreme or worse\". Judging by exact outcomes makes everything look rare — P(exactly 5 of 10) is only 24.6% for the most ORDINARY result possible.",
-            "check": ["binomial(10,5)/2**10 == 252/1024"]
+            "check": [
+              "binomial(10,5)/2**10 == 252/1024"
+            ]
           },
           {
             "kind": "worked",
@@ -798,10 +971,16 @@
             "eyebrow": "Model check",
             "title": "Faithful digits",
             "prompt": "To simulate a $p = 0.4$ event with random digits $0$–$9$, success should be…",
-            "options": ["digits $0$–$3$ (four of ten)", "digits $0$–$4$ (five of ten)", "any even digit"],
+            "options": [
+              "digits $0$–$3$ (four of ten)",
+              "digits $0$–$4$ (five of ten)",
+              "any even digit"
+            ],
             "correctIndex": 0,
             "explanation": "$p = 0.4$ needs exactly $4$ success-digits of $10$: $\\{0,1,2,3\\}$. Five digits simulates $0.5$; even digits also give $0.5$. The model IS the assignment — get it right before repeating.",
-            "check": ["4/10 == 2/5"]
+            "check": [
+              "4/10 == 2/5"
+            ]
           },
           {
             "kind": "tip",
@@ -869,19 +1048,27 @@
           "id": "bd-l6-w1",
           "statement": "A test has $20$ questions, $4$ options each, pass mark $12$. Show why guessing can't pass: compute $\\mu$, $\\sigma$, and locate $12$.",
           "solution": "$p = 0.25$: $\\mu = 5$, Var $= 20 \\times 0.25 \\times 0.75 = 3.75$, $\\sigma \\approx 1.94$. The pass mark sits at $\\frac{12 - 5}{1.94} \\approx 3.6$ standard deviations above the mean — luck lives within $\\pm 2$. Guessers fail by design, not by malice.",
-          "check": ["20/4 == 5", "20*(1/4)*(3/4) == 15/4"]
+          "check": [
+            "20/4 == 5",
+            "20*(1/4)*(3/4) == 15/4"
+          ]
         },
         {
           "id": "bd-l6-w2",
           "statement": "A call center takes $200$ calls; $5\\%$ escalate. How many escalations should staffing plan for?",
           "solution": "$\\mu = 10$; $\\sigma = \\sqrt{200 \\times 0.05 \\times 0.95} = \\sqrt{9.5} \\approx 3.1$. Usual range: $10 \\pm 6.2$ → plan for $\\sim 16$ escalations to cover ordinary days; a $17+$ day is a genuine anomaly worth investigating, not a staffing failure.",
-          "check": ["200*5/100 == 10", "200*(5/100)*(95/100) == 19/2"]
+          "check": [
+            "200*5/100 == 10",
+            "200*(5/100)*(95/100) == 19/2"
+          ]
         },
         {
           "id": "bd-l6-w3",
           "statement": "A loot box drops a rare item $10\\%$ of the time. A player opens $20$ boxes. Find $P(\\text{no rare item at all})$ — and the expected count.",
           "solution": "$P(X = 0) = 0.9^{20} \\approx 0.122$ — one player in eight gets NOTHING despite $\\mu = 2$ expected drops. Game designers publish the $10\\%$; the $12\\%$ empty-handed rate is what support tickets are made of. Both numbers are the same distribution.",
-          "check": ["20*1/10 == 2"]
+          "check": [
+            "20*1/10 == 2"
+          ]
         }
       ],
       "commonMistakes": [
@@ -901,13 +1088,18 @@
           "id": "bd-l6-t1",
           "statement": "A true/false test ($p = 0.5$) has $10$ questions, pass at $8$. Compute the guessing tail $P(X \\ge 8)$.",
           "solution": "$\\frac{45 + 10 + 1}{1024} = \\frac{56}{1024} \\approx 5.5\\%$ — too lax for a real exam; hence more questions or higher marks.",
-          "check": ["(binomial(10,8) + binomial(10,9) + binomial(10,10))/2**10 == 56/1024"]
+          "check": [
+            "(binomial(10,8) + binomial(10,9) + binomial(10,10))/2**10 == 56/1024"
+          ]
         },
         {
           "id": "bd-l6-t2",
           "statement": "An orchard's saplings survive transplanting with $p = 0.85$. Of $60$ planted, give the expected survivors and the usual range.",
           "solution": "$\\mu = 51$; $\\sigma = \\sqrt{60 \\times 0.85 \\times 0.15} = \\sqrt{7.65} \\approx 2.77$. Usual: about $45$–$57$ survivors.",
-          "check": ["60*85/100 == 51", "60*(85/100)*(15/100) == 153/20"]
+          "check": [
+            "60*85/100 == 51",
+            "60*(85/100)*(15/100) == 153/20"
+          ]
         }
       ],
       "interactive": {
@@ -940,10 +1132,16 @@
             "eyebrow": "Operations sense",
             "title": "Plan for what?",
             "prompt": "Escalations: $\\mu = 10$, $\\sigma \\approx 3.1$. A manager staffs for exactly $10$. What happens?",
-            "options": ["Roughly half of days overflow — plan for $\\mu + 2\\sigma$ instead", "Nothing — 10 is the expected value", "Days can't exceed the mean"],
+            "options": [
+              "Roughly half of days overflow — plan for $\\mu + 2\\sigma$ instead",
+              "Nothing — 10 is the expected value",
+              "Days can't exceed the mean"
+            ],
             "correctIndex": 0,
             "explanation": "The mean is the CENTER: outcomes land above it about half the time. Planning for μ guarantees routine overload; μ + 2σ ≈ 16 covers the usual range and makes true anomalies visible.",
-            "check": ["200*5/100 == 10"]
+            "check": [
+              "200*5/100 == 10"
+            ]
           },
           {
             "kind": "worked",
@@ -956,10 +1154,16 @@
             "eyebrow": "Full workflow",
             "title": "Run the six steps",
             "prompt": "A vaccine trial: $12$ patients, drug helps each independently with claimed $p = 0.6$. NINE improved. The right surprise computation under the claim is…",
-            "options": ["$P(X \\ge 9)$ with $n = 12, p = 0.6$ — the tail above the evidence", "$P(X = 9)$ exactly", "$9/12$ vs $0.6$ — just compare percents"],
+            "options": [
+              "$P(X \\ge 9)$ with $n = 12, p = 0.6$ — the tail above the evidence",
+              "$P(X = 9)$ exactly",
+              "$9/12$ vs $0.6$ — just compare percents"
+            ],
             "correctIndex": 0,
             "explanation": "Tail discipline (last lesson) inside the workflow: μ = 7.2, and 9+ is the evidence class. (The tail here is sizable — 9 of 12 is consistent with the claim, not proof beyond it.) Comparing raw percents skips the σ that makes 12 patients different from 1200.",
-            "check": ["12*6/10 == 36/5"]
+            "check": [
+              "12*6/10 == 36/5"
+            ]
           },
           {
             "kind": "tip",
@@ -1004,49 +1208,69 @@
       "id": "bd-p-1",
       "statement": "Is it binomial? A basketball player shoots until she makes $5$ baskets; $X = $ shots taken.",
       "solution": "No — N fails: the trial count isn't fixed in advance (it depends on results).",
-      "check": ["1 == 1"]
+      "check": [
+        "1 == 1"
+      ]
     },
     {
       "id": "bd-p-2",
       "statement": "A fair coin is flipped $5$ times. Find $P(\\text{exactly } 4 \\text{ heads})$.",
       "solution": "$\\binom{5}{4}\\left(\\frac{1}{2}\\right)^5 = \\frac{5}{32}$.",
-      "check": ["binomial(5, 4)*(1/2)**5 == 5/32"]
+      "check": [
+        "binomial(5, 4)*(1/2)**5 == 5/32"
+      ]
     },
     {
       "id": "bd-p-3",
       "statement": "A die is rolled $3$ times. Find $P(\\text{exactly } 2 \\text{ sixes})$.",
       "solution": "$\\binom{3}{2}\\left(\\frac{1}{6}\\right)^2\\left(\\frac{5}{6}\\right) = \\frac{15}{216} = \\frac{5}{72}$.",
-      "check": ["binomial(3, 2)*(1/6)**2*(5/6) == 5/72"]
+      "check": [
+        "binomial(3, 2)*(1/6)**2*(5/6) == 5/72"
+      ]
     },
     {
       "id": "bd-p-4",
       "statement": "$n = 8$, $p = 0.4$: find $\\mu$ and Var$(X)$.",
       "solution": "$\\mu = 3.2$; Var $= 8 \\times 0.4 \\times 0.6 = 1.92$.",
-      "check": ["8*4/10 == 16/5", "8*(4/10)*(6/10) == 48/25"]
+      "check": [
+        "8*4/10 == 16/5",
+        "8*(4/10)*(6/10) == 48/25"
+      ]
     },
     {
       "id": "bd-p-5",
       "statement": "A machine's parts are defective with $p = 0.05$. In a sample of $6$, find $P(\\text{no defects})$ and $P(\\text{at least one})$.",
       "solution": "$P(0) = 0.95^6 \\approx 0.735$; at least one $= 1 - 0.95^6 \\approx 0.265$.",
-      "check": ["(95/100)**6 + (1 - (95/100)**6) == 1"]
+      "check": [
+        "(95/100)**6 + (1 - (95/100)**6) == 1"
+      ]
     },
     {
       "id": "bd-p-6",
       "statement": "A $10$-question multiple-choice quiz has $5$ options each. A guesser needs at most... find $P(\\text{exactly } 2 \\text{ correct})$ with $p = 0.2$.",
       "solution": "$\\binom{10}{2}(0.2)^2(0.8)^8 = 45 \\times 0.04 \\times 0.16777 \\approx 0.302$.",
-      "check": ["binomial(10, 2) == 45"]
+      "check": [
+        "binomial(10, 2) == 45"
+      ]
     },
     {
       "id": "bd-p-7",
       "statement": "A fair coin flipped $64$ times: find $\\mu$, $\\sigma$, and the usual range of heads.",
       "solution": "$\\mu = 32$; Var $= 16$, $\\sigma = 4$; usual: $24$–$40$ heads.",
-      "check": ["64/2 == 32", "64*(1/2)*(1/2) == 16", "sqrt(16) == 4"]
+      "check": [
+        "64/2 == 32",
+        "64*(1/2)*(1/2) == 16",
+        "sqrt(16) == 4"
+      ]
     },
     {
       "id": "bd-p-8",
       "statement": "Design a digit-simulation ($0$–$9$) for a $p = 0.6$ free-throw shooter taking $8$ shots, and state the expected makes.",
       "solution": "Digits $\\{0,\\ldots,5\\}$ = make ($6$ of $10$); one trial $= 8$ digits. Expected: $8 \\times 0.6 = 4.8$ makes.",
-      "check": ["6/10 == 3/5", "8*6/10 == 24/5"]
+      "check": [
+        "6/10 == 3/5",
+        "8*6/10 == 24/5"
+      ]
     }
   ],
   "testYourself": [
@@ -1054,37 +1278,57 @@
       "id": "bd-ty-1",
       "statement": "Which are binomial settings? (a) counting sixes in $30$ die rolls; (b) counting hearts in $5$ cards dealt from one deck; (c) counting lefties in a random sample of $40$ students from a city of thousands.",
       "solution": "(a) Yes — all BINS hold. (b) No — without replacement from $52$: dependent trials, drifting $p$. (c) Approximately — technically without replacement, but the sample is a tiny fraction of the population, so independence holds to excellent approximation.",
-      "check": ["1 == 1"]
+      "check": [
+        "1 == 1"
+      ]
     },
     {
       "id": "bd-ty-2",
       "statement": "A penalty-taker scores with $p = 0.7$. In $6$ kicks, find $P(\\text{exactly } 4)$ and $P(\\text{at least } 5)$.",
       "solution": "$P(4) = \\binom{6}{4}(0.7)^4(0.3)^2 = 15 \\times 0.2401 \\times 0.09 \\approx 0.324$. $P(\\ge 5) = P(5) + P(6) = 6(0.7)^5(0.3) + (0.7)^6 \\approx 0.302 + 0.118 = 0.420$.",
-      "check": ["binomial(6,4)*(7/10)**4*(3/10)**2 == 64827/200000", "binomial(6,5)*(7/10)**5*(3/10) + (7/10)**6 == 420175/1000000"]
+      "check": [
+        "binomial(6,4)*(7/10)**4*(3/10)**2 == 64827/200000",
+        "binomial(6,5)*(7/10)**5*(3/10) + (7/10)**6 == 420175/1000000"
+      ]
     },
     {
       "id": "bd-ty-3",
       "statement": "A shipment passes if a $12$-item sample has at most $1$ defective. True defect rate: $8\\%$. Find $P(\\text{pass})$.",
       "solution": "$P(0) + P(1) = 0.92^{12} + 12 \\times 0.08 \\times 0.92^{11} \\approx 0.368 + 0.384 = 0.752$.",
-      "check": ["binomial(12, 1) == 12", "(92/100)**12 + 12*(8/100)*(92/100)**11 > 3/4 - 1/100"]
+      "check": [
+        "binomial(12, 1) == 12",
+        "(92/100)**12 + 12*(8/100)*(92/100)**11 > 3/4 - 1/100"
+      ]
     },
     {
       "id": "bd-ty-4",
       "statement": "A fair die is rolled $180$ times. Frame the count of sixes with $\\mu$ and $\\sigma$, and judge: is $45$ sixes surprising?",
       "solution": "$\\mu = 30$; Var $= 180 \\cdot \\frac{1}{6} \\cdot \\frac{5}{6} = 25$, $\\sigma = 5$. $45$ sits $3\\sigma$ above the mean — outside the usual range; genuinely surprising under fairness. Inspect the die (or the roller).",
-      "check": ["180/6 == 30", "180*(1/6)*(5/6) == 25", "(45 - 30)/5 == 3"]
+      "check": [
+        "180/6 == 30",
+        "180*(1/6)*(5/6) == 25",
+        "(45 - 30)/5 == 3"
+      ]
     },
     {
       "id": "bd-ty-5",
       "statement": "A game's claimed drop rate is $25\\%$. A streamer opens $16$ boxes and gets ONE drop. Compute the tail $P(X \\le 1)$ under the claim and give a verdict.",
       "solution": "$\\mu = 4$. $P(0) + P(1) = 0.75^{16} + 16 \\times 0.25 \\times 0.75^{15} \\approx 0.010 + 0.053 = 0.063$ — about $6\\%$: unlucky-but-plausible. One streamer's bad run doesn't convict the studio; a hundred streamers averaging low would.",
-      "check": ["16/4 == 4", "binomial(16, 1) == 16"]
+      "check": [
+        "16/4 == 4",
+        "binomial(16, 1) == 16"
+      ]
     },
     {
       "id": "bd-ty-6",
       "statement": "An exam has $25$ questions, $5$ options each, pass mark $10$. Show with $\\mu$, $\\sigma$, and a $z$-style count that blind guessing is hopeless, then state the expected score of a student who truly knows $60\\%$ of the material and guesses the rest.",
       "solution": "Guesser: $\\mu = 5$, Var $= 25 \\times 0.2 \\times 0.8 = 4$, $\\sigma = 2$ — the pass mark is $\\frac{10 - 5}{2} = 2.5\\sigma$ up: rare. Mixed student: knows $15$ (all correct), guesses $10$ with $p = 0.2$ → expected $15 + 2 = 17$ — comfortably passing. Knowledge moves $\\mu$; luck only rents $\\sigma$.",
-      "check": ["25/5 == 5", "25*(2/10)*(8/10) == 4", "(10 - 5)/2 == 5/2", "15 + 10/5 == 17"]
+      "check": [
+        "25/5 == 5",
+        "25*(2/10)*(8/10) == 4",
+        "(10 - 5)/2 == 5/2",
+        "15 + 10/5 == 17"
+      ]
     }
   ]
 }

@@ -35,19 +35,28 @@
           "id": "cb-l1-w1",
           "statement": "A teacher picks $3$ of $8$ students to represent the class (equal representatives, no roles). How many different trios are possible?",
           "solution": "Ordered picks: $P(8,3) = 8 \\times 7 \\times 6 = 336$. Each trio appears once per internal ordering — $3! = 6$ times. Trios: $\\frac{336}{6} = 56$.",
-          "check": ["8*7*6/factorial(3) == 56", "binomial(8, 3) == 56"]
+          "check": [
+            "8*7*6/factorial(3) == 56",
+            "binomial(8, 3) == 56"
+          ]
         },
         {
           "id": "cb-l1-w2",
           "statement": "How many different pairs of toppings can you pick from $6$ pizza toppings?",
           "solution": "Ordered: $6 \\times 5 = 30$; each pair counted twice (mushroom-olive $=$ olive-mushroom). Pairs: $\\frac{30}{2} = 15$. This is the handshake count from Unit 1, now with its official name: $C(6,2) = 15$.",
-          "check": ["6*5/2 == 15", "binomial(6, 2) == 15"]
+          "check": [
+            "6*5/2 == 15",
+            "binomial(6, 2) == 15"
+          ]
         },
         {
           "id": "cb-l1-w3",
           "statement": "Decide — permutation or combination — then count: a librarian picks $4$ of $10$ new books to display side by side in the front window, arranged left to right.",
           "solution": "Swap test: swapping two displayed books changes the window (positions differ) — PERMUTATION. Count: $P(10,4) = 10 \\times 9 \\times 8 \\times 7 = 5040$. If the four books had gone into an unordered display box instead, it would be $C(10,4) = \\frac{5040}{4!} = 210$.",
-          "check": ["10*9*8*7 == 5040", "binomial(10, 4) == 210"]
+          "check": [
+            "10*9*8*7 == 5040",
+            "binomial(10, 4) == 210"
+          ]
         }
       ],
       "commonMistakes": [
@@ -67,13 +76,17 @@
           "id": "cb-l1-t1",
           "statement": "How many ways can $2$ students be chosen from $9$ to share the classroom-cleaning duty (equal partners)?",
           "solution": "$C(9,2) = \\frac{9 \\times 8}{2} = 36$.",
-          "check": ["binomial(9, 2) == 36"]
+          "check": [
+            "binomial(9, 2) == 36"
+          ]
         },
         {
           "id": "cb-l1-t2",
           "statement": "Permutation or combination: choosing $5$ starting players (no positions) from a squad of $12$? Count it.",
           "solution": "Equal starters — combination: $C(12,5) = 792$.",
-          "check": ["binomial(12, 5) == 792"]
+          "check": [
+            "binomial(12, 5) == 792"
+          ]
         }
       ],
       "interactive": {
@@ -105,10 +118,16 @@
             "eyebrow": "First choose",
             "title": "Ice cream pairs",
             "prompt": "How many $2$-flavor combos can you pick from $7$ flavors (a combo bowl — order irrelevant)?",
-            "options": ["$21$", "$42$", "$14$"],
+            "options": [
+              "$21$",
+              "$42$",
+              "$14$"
+            ],
             "correctIndex": 0,
             "explanation": "$C(7,2) = \\frac{7 \\times 6}{2} = 21$. The $42$ is the ordered count $P(7,2)$ — vanilla-then-mango and mango-then-vanilla taste the same in one bowl. $14$ is $7 \\times 2$, a slot error.",
-            "check": ["binomial(7, 2) == 21"]
+            "check": [
+              "binomial(7, 2) == 21"
+            ]
           },
           {
             "kind": "teach",
@@ -144,10 +163,16 @@
             "eyebrow": "Swap test drill",
             "title": "Which one divides?",
             "prompt": "Which situation is a COMBINATION?",
-            "options": ["Dealing yourself 5 cards from a deck", "Assigning 5 people to 5 different chores", "Typing a 5-digit passcode"],
+            "options": [
+              "Dealing yourself 5 cards from a deck",
+              "Assigning 5 people to 5 different chores",
+              "Typing a 5-digit passcode"
+            ],
             "correctIndex": 0,
             "explanation": "A card HAND is unordered — rearranging your cards doesn't change the hand: $C(52,5)$. Different chores are roles (permutation); a passcode is an ordered sequence with repeats (powers).",
-            "check": ["binomial(52, 5) == 2598960"]
+            "check": [
+              "binomial(52, 5) == 2598960"
+            ]
           },
           {
             "kind": "tip",
@@ -215,19 +240,26 @@
           "id": "cb-l2-w1",
           "statement": "Compute $C(9,3)$ by cancellation.",
           "solution": "Three factors over $3!$: $C(9,3) = \\frac{9 \\times 8 \\times 7}{3 \\times 2 \\times 1}$. Cancel BEFORE multiplying: $\\frac{9}{3} = 3$, $\\frac{8}{2} = 4$, so $3 \\times 4 \\times 7 = 84$.",
-          "check": ["binomial(9, 3) == 84"]
+          "check": [
+            "binomial(9, 3) == 84"
+          ]
         },
         {
           "id": "cb-l2-w2",
           "statement": "Compute $C(20, 18)$.",
           "solution": "Flip to the small side: $C(20,18) = C(20, 20-18) = C(20,2) = \\frac{20 \\times 19}{2} = 190$. Choosing the $18$ who go IS choosing the $2$ who stay.",
-          "check": ["binomial(20, 18) == 190", "binomial(20, 2) == 190"]
+          "check": [
+            "binomial(20, 18) == 190",
+            "binomial(20, 2) == 190"
+          ]
         },
         {
           "id": "cb-l2-w3",
           "statement": "A pizzeria brags: \"choose any $0$ to $3$ toppings from our $8$!\" How many topping selections is that in total?",
           "solution": "Add the sizes (exclusive cases — Unit 1): $C(8,0) + C(8,1) + C(8,2) + C(8,3) = 1 + 8 + 28 + 56 = 93$ selections. Note $C(8,0) = 1$: the plain pizza is one legitimate choice.",
-          "check": ["binomial(8,0) + binomial(8,1) + binomial(8,2) + binomial(8,3) == 93"]
+          "check": [
+            "binomial(8,0) + binomial(8,1) + binomial(8,2) + binomial(8,3) == 93"
+          ]
         }
       ],
       "commonMistakes": [
@@ -247,13 +279,17 @@
           "id": "cb-l2-t1",
           "statement": "Compute $C(10,4)$ by cancellation.",
           "solution": "$\\frac{10 \\times 9 \\times 8 \\times 7}{4!} = \\frac{5040}{24} = 210$.",
-          "check": ["binomial(10, 4) == 210"]
+          "check": [
+            "binomial(10, 4) == 210"
+          ]
         },
         {
           "id": "cb-l2-t2",
           "statement": "Compute $C(50, 48)$ the smart way.",
           "solution": "Flip: $C(50,48) = C(50,2) = \\frac{50 \\times 49}{2} = 1225$.",
-          "check": ["binomial(50, 48) == 1225"]
+          "check": [
+            "binomial(50, 48) == 1225"
+          ]
         }
       ],
       "interactive": {
@@ -281,14 +317,30 @@
             ]
           },
           {
+            "kind": "pascalTriangle",
+            "eyebrow": "Tap around",
+            "title": "Every C(n, k), pre-computed",
+            "teach": "Pascal's triangle is a lookup table for combinations: row $n$, position $k$ **is** $\\binom{n}{k}$. Tap any cell and read it as a choice count. The symmetry you see — row 5 reading 1, 5, 10, 10, 5, 1 — is the identity $\\binom{n}{k} = \\binom{n}{n-k}$: choosing who's IN is the same as choosing who's OUT.",
+            "config": {
+              "mode": "combinations",
+              "rows": 6
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Cancel drill",
             "title": "Clean arithmetic",
             "prompt": "$C(12, 2) = $ ?",
-            "options": ["$66$", "$132$", "$24$"],
+            "options": [
+              "$66$",
+              "$132$",
+              "$24$"
+            ],
             "correctIndex": 0,
             "explanation": "$\\frac{12 \\times 11}{2} = 66$. The $132$ forgot to divide by $2!$ (that's $P(12,2)$); $24$ is $12 \\times 2$.",
-            "check": ["binomial(12, 2) == 66"]
+            "check": [
+              "binomial(12, 2) == 66"
+            ]
           },
           {
             "kind": "worked",
@@ -324,10 +376,17 @@
             "eyebrow": "Symmetry check",
             "title": "Twins",
             "prompt": "Which equals $C(15, 13)$?",
-            "options": ["$C(15, 2) = 105$", "$C(13, 15)$", "$C(15, 13) - C(15, 2)$"],
+            "options": [
+              "$C(15, 2) = 105$",
+              "$C(13, 15)$",
+              "$C(15, 13) - C(15, 2)$"
+            ],
             "correctIndex": 0,
             "explanation": "$C(15,13) = C(15, 15-13) = C(15,2) = \\frac{15 \\times 14}{2} = 105$. $C(13,15)$ asks to choose more than exist (that's $0$); the third option is $0$ by symmetry, not a twin.",
-            "check": ["binomial(15, 13) == 105", "binomial(15, 2) == 105"]
+            "check": [
+              "binomial(15, 13) == 105",
+              "binomial(15, 2) == 105"
+            ]
           },
           {
             "kind": "tip",
@@ -395,19 +454,27 @@
           "id": "cb-l3-w1",
           "statement": "A club of $11$ members forms a $4$-person events committee. How many committees are possible?",
           "solution": "Equal members, no roles: $C(11,4) = \\frac{11 \\times 10 \\times 9 \\times 8}{4!} = \\frac{7920}{24} = 330$.",
-          "check": ["binomial(11, 4) == 330"]
+          "check": [
+            "binomial(11, 4) == 330"
+          ]
         },
         {
           "id": "cb-l3-w2",
           "statement": "From $7$ boys and $6$ girls, how many ways can a coach pick a mixed doubles squad of exactly $2$ boys and $2$ girls?",
           "solution": "Quota from each pool, then multiply: boys $C(7,2) = 21$; girls $C(6,2) = 15$. Squads: $21 \\times 15 = 315$.",
-          "check": ["binomial(7, 2)*binomial(6, 2) == 315"]
+          "check": [
+            "binomial(7, 2)*binomial(6, 2) == 315"
+          ]
         },
         {
           "id": "cb-l3-w3",
           "statement": "How many $5$-card hands from a standard deck contain EXACTLY two hearts?",
           "solution": "Quota logic: choose the $2$ hearts from $13$: $C(13,2) = 78$; choose the other $3$ cards from the $39$ non-hearts: $C(39,3) = 9139$. Hands: $78 \\times 9139 = 712{,}842$.",
-          "check": ["binomial(13, 2) == 78", "binomial(39, 3) == 9139", "binomial(13,2)*binomial(39,3) == 712842"]
+          "check": [
+            "binomial(13, 2) == 78",
+            "binomial(39, 3) == 9139",
+            "binomial(13,2)*binomial(39,3) == 712842"
+          ]
         }
       ],
       "commonMistakes": [
@@ -427,13 +494,17 @@
           "id": "cb-l3-t1",
           "statement": "How many ways can a $3$-person cleanup crew be chosen from $10$ campers?",
           "solution": "$C(10,3) = 120$ crews.",
-          "check": ["binomial(10, 3) == 120"]
+          "check": [
+            "binomial(10, 3) == 120"
+          ]
         },
         {
           "id": "cb-l3-t2",
           "statement": "A quiz team needs $2$ mathematicians from $8$ and $1$ historian from $5$. How many teams?",
           "solution": "$C(8,2) \\times C(5,1) = 28 \\times 5 = 140$ teams.",
-          "check": ["binomial(8, 2)*binomial(5, 1) == 140"]
+          "check": [
+            "binomial(8, 2)*binomial(5, 1) == 140"
+          ]
         }
       ],
       "interactive": {
@@ -471,10 +542,16 @@
             "eyebrow": "Quota drill",
             "title": "Balanced band",
             "prompt": "From $5$ guitarists and $4$ drummers, how many ways to pick $2$ guitarists and $1$ drummer?",
-            "options": ["$40$", "$14$", "$60$"],
+            "options": [
+              "$40$",
+              "$14$",
+              "$60$"
+            ],
             "correctIndex": 0,
             "explanation": "$C(5,2) \\times C(4,1) = 10 \\times 4 = 40$. The $14$ ADDS the chooses; $60$ uses $P(5,2) \\times 3$ — ordered guitarists and a miscount.",
-            "check": ["binomial(5, 2)*binomial(4, 1) == 40"]
+            "check": [
+              "binomial(5, 2)*binomial(4, 1) == 40"
+            ]
           },
           {
             "kind": "worked",
@@ -493,10 +570,16 @@
             "eyebrow": "Precision check",
             "title": "Exactly vs at least",
             "prompt": "For \"exactly $2$ hearts in a $5$-card hand\", the non-heart cards come from…",
-            "options": ["the $39$ non-hearts", "the remaining $50$ cards", "the $13$ hearts"],
+            "options": [
+              "the $39$ non-hearts",
+              "the remaining $50$ cards",
+              "the $13$ hearts"
+            ],
             "correctIndex": 0,
             "explanation": "\"Exactly\" locks the other three cards OUT of hearts: $C(39,3)$. Drawing from all $50$ remaining cards would allow a 3rd heart — silently changing the problem to \"at least 2\".",
-            "check": ["binomial(39, 3) == 9139"]
+            "check": [
+              "binomial(39, 3) == 9139"
+            ]
           },
           {
             "kind": "tip",
@@ -564,19 +647,27 @@
           "id": "cb-l4-w1",
           "statement": "A $4$-person committee from $6$ women and $5$ men must include at least one woman. How many committees?",
           "solution": "Complement: all committees $C(11,4) = 330$; all-men committees $C(5,4) = 5$. At least one woman: $330 - 5 = 325$.",
-          "check": ["binomial(11, 4) - binomial(5, 4) == 325"]
+          "check": [
+            "binomial(11, 4) - binomial(5, 4) == 325"
+          ]
         },
         {
           "id": "cb-l4-w2",
           "statement": "Same club: how many $4$-person committees have at least THREE women?",
           "solution": "Only two allowed counts — direct cases win. Exactly $3$: $C(6,3) \\times C(5,1) = 20 \\times 5 = 100$. Exactly $4$: $C(6,4) \\times C(5,0) = 15 \\times 1 = 15$. Total: $100 + 15 = 115$.",
-          "check": ["binomial(6,3)*binomial(5,1) + binomial(6,4)*binomial(5,0) == 115"]
+          "check": [
+            "binomial(6,3)*binomial(5,1) + binomial(6,4)*binomial(5,0) == 115"
+          ]
         },
         {
           "id": "cb-l4-w3",
           "statement": "A $5$-question quiz bank has $9$ easy and $4$ hard questions. A teacher builds a $5$-question quiz with at most one hard question. How many quizzes?",
           "solution": "\"At most $1$ hard\" $=$ exactly $0$ + exactly $1$. Zero hard: $C(9,5) = 126$. One hard: $C(4,1) \\times C(9,4) = 4 \\times 126 = 504$. Total: $126 + 504 = 630$ quizzes.",
-          "check": ["binomial(9, 5) == 126", "binomial(4,1)*binomial(9,4) == 504", "126 + 504 == 630"]
+          "check": [
+            "binomial(9, 5) == 126",
+            "binomial(4,1)*binomial(9,4) == 504",
+            "126 + 504 == 630"
+          ]
         }
       ],
       "commonMistakes": [
@@ -596,13 +687,17 @@
           "id": "cb-l4-t1",
           "statement": "From $7$ novels and $3$ biographies, how many $4$-book stacks contain at least one biography?",
           "solution": "All: $C(10,4) = 210$; none (all novels): $C(7,4) = 35$. At least one: $210 - 35 = 175$.",
-          "check": ["binomial(10, 4) - binomial(7, 4) == 175"]
+          "check": [
+            "binomial(10, 4) - binomial(7, 4) == 175"
+          ]
         },
         {
           "id": "cb-l4-t2",
           "statement": "A $3$-person team from $5$ seniors and $4$ juniors needs at most one senior. How many teams?",
           "solution": "Zero seniors: $C(4,3) = 4$. One senior: $C(5,1) \\times C(4,2) = 5 \\times 6 = 30$. Total: $34$.",
-          "check": ["binomial(4,3) + binomial(5,1)*binomial(4,2) == 34"]
+          "check": [
+            "binomial(4,3) + binomial(5,1)*binomial(4,2) == 34"
+          ]
         }
       ],
       "interactive": {
@@ -634,10 +729,16 @@
             "eyebrow": "Route choice",
             "title": "Which way is shorter?",
             "prompt": "\"At least one hard question\" on a $6$-question quiz from $10$ easy and $5$ hard. Best route?",
-            "options": ["All minus zero-hard: $C(15,6) - C(10,6)$", "Cases for 1, 2, 3, 4, 5 hard", "Reserve one hard, choose 5 freely"],
+            "options": [
+              "All minus zero-hard: $C(15,6) - C(10,6)$",
+              "Cases for 1, 2, 3, 4, 5 hard",
+              "Reserve one hard, choose 5 freely"
+            ],
             "correctIndex": 0,
             "explanation": "\"At least 1\" forbids only ONE count (zero hard): complement is a single subtraction. Five direct cases work but waste effort; reserve-then-free double-counts multi-hard quizzes — it's never legal.",
-            "check": ["binomial(15, 6) - binomial(10, 6) == 4795"]
+            "check": [
+              "binomial(15, 6) - binomial(10, 6) == 4795"
+            ]
           },
           {
             "kind": "worked",
@@ -662,10 +763,16 @@
             "eyebrow": "The classic trap",
             "title": "Why reserve-one fails",
             "prompt": "Ana counts \"at least 1 girl in a 3-person team from 4 girls, 3 boys\" as $C(4,1) \\times C(6,2) = 60$. The correct count is $C(7,3) - C(3,3) = 34$. Why is Ana high?",
-            "options": ["Teams with 2+ girls got counted once per girl", "She used the wrong totals", "She should have multiplied by 3!"],
+            "options": [
+              "Teams with 2+ girls got counted once per girl",
+              "She used the wrong totals",
+              "She should have multiplied by 3!"
+            ],
             "correctIndex": 0,
             "explanation": "A team with girls G₁G₂ + boy B is counted twice: once with G₁ 'reserved', once with G₂. Reserve-then-free inflates every multi-girl team. Exact cases or complement — those are the only honest routes.",
-            "check": ["binomial(7, 3) - binomial(3, 3) == 34"]
+            "check": [
+              "binomial(7, 3) - binomial(3, 3) == 34"
+            ]
           },
           {
             "kind": "tip",
@@ -733,19 +840,25 @@
           "id": "cb-l5-w1",
           "statement": "A $5$-person committee from $12$ students must include the class president. How many committees?",
           "solution": "The president's seat is settled. Choose the remaining $4$ from the other $11$: $C(11,4) = 330$.",
-          "check": ["binomial(11, 4) == 330"]
+          "check": [
+            "binomial(11, 4) == 330"
+          ]
         },
         {
           "id": "cb-l5-w2",
           "statement": "A $6$-song setlist is chosen from $14$ songs, but the band refuses to play \"Wonderwall\". How many setlists (as unordered song sets)?",
           "solution": "Exclude it from the pool: choose all $6$ from the other $13$: $C(13,6) = 1716$ setlists.",
-          "check": ["binomial(13, 6) == 1716"]
+          "check": [
+            "binomial(13, 6) == 1716"
+          ]
         },
         {
           "id": "cb-l5-w3",
           "statement": "A $4$-person team from $10$ players cannot contain BOTH rivals R1 and R2. How many teams?",
           "solution": "All teams: $C(10,4) = 210$. Teams with both rivals: lock both in, choose $2$ more from the remaining $8$: $C(8,2) = 28$. Allowed teams: $210 - 28 = 182$.",
-          "check": ["binomial(10, 4) - binomial(8, 2) == 182"]
+          "check": [
+            "binomial(10, 4) - binomial(8, 2) == 182"
+          ]
         }
       ],
       "commonMistakes": [
@@ -765,13 +878,17 @@
           "id": "cb-l5-t1",
           "statement": "An $8$-person jury pool must supply a $3$-person panel that includes Judge Enkh. How many panels?",
           "solution": "Enkh is locked in: choose $2$ from the other $7$: $C(7,2) = 21$.",
-          "check": ["binomial(7, 2) == 21"]
+          "check": [
+            "binomial(7, 2) == 21"
+          ]
         },
         {
           "id": "cb-l5-t2",
           "statement": "From $9$ dishes, a tasting menu of $4$ cannot include both the oyster dish and the crab dish. How many menus?",
           "solution": "All: $C(9,4) = 126$; both shellfish: $C(7,2) = 21$. Menus: $126 - 21 = 105$.",
-          "check": ["binomial(9, 4) - binomial(7, 2) == 105"]
+          "check": [
+            "binomial(9, 4) - binomial(7, 2) == 105"
+          ]
         }
       ],
       "interactive": {
@@ -798,10 +915,16 @@
             "eyebrow": "Lock-in drill",
             "title": "Captain included",
             "prompt": "A $6$-player squad from $15$ must include the captain. How many squads?",
-            "options": ["$C(14,5) = 2002$", "$C(14,6) = 3003$", "$C(15,5) = 3003$"],
+            "options": [
+              "$C(14,5) = 2002$",
+              "$C(14,6) = 3003$",
+              "$C(15,5) = 3003$"
+            ],
             "correctIndex": 0,
             "explanation": "Captain locked in: pool drops to $14$ AND seats drop to $5$: $C(14,5) = 2002$. The other options each forget one of the two shrinks.",
-            "check": ["binomial(14, 5) == 2002"]
+            "check": [
+              "binomial(14, 5) == 2002"
+            ]
           },
           {
             "kind": "worked",
@@ -831,10 +954,16 @@
             "eyebrow": "Condition parsing",
             "title": "Exactly one of the twins",
             "prompt": "A $4$-person committee from $10$ (including twins T1, T2) must contain EXACTLY one twin. How many?",
-            "options": ["$2 \\times C(8,3) = 112$", "$C(8,3) = 56$", "$C(10,4) - C(8,2) = 182$"],
+            "options": [
+              "$2 \\times C(8,3) = 112$",
+              "$C(8,3) = 56$",
+              "$C(10,4) - C(8,2) = 182$"
+            ],
             "correctIndex": 0,
             "explanation": "Two symmetric cases: T1-without-T2 ($C(8,3) = 56$) plus T2-without-T1 ($56$): $112$. The $56$ forgets the second twin's case; $182$ counts \"not both\", which also allows zero twins.",
-            "check": ["2*binomial(8, 3) == 112"]
+            "check": [
+              "2*binomial(8, 3) == 112"
+            ]
           },
           {
             "kind": "tip",
@@ -902,19 +1031,29 @@
           "id": "cb-l6-w1",
           "statement": "From $9$ runners: (a) how many gold-silver-bronze outcomes? (b) how many ways can $3$ qualify for nationals (equal qualifiers)?",
           "solution": "(a) Ranks — swap changes outcome: $P(9,3) = 9 \\times 8 \\times 7 = 504$. (b) Equal qualifiers — swap changes nothing: $C(9,3) = \\frac{504}{6} = 84$. Same picks, different question: the $3!$ is the whole difference.",
-          "check": ["9*8*7 == 504", "binomial(9, 3) == 84"]
+          "check": [
+            "9*8*7 == 504",
+            "binomial(9, 3) == 84"
+          ]
         },
         {
           "id": "cb-l6-w2",
           "statement": "A crew of $4$ is chosen from $10$ sailors, and one of the four is then named captain. How many outcomes?",
           "solution": "Route 1 — choose then promote: $C(10,4) \\times 4 = 210 \\times 4 = 840$. Route 2 — captain first, crew after: $10 \\times C(9,3) = 10 \\times 84 = 840$. Agreement ✓.",
-          "check": ["binomial(10, 4)*4 == 840", "10*binomial(9, 3) == 840"]
+          "check": [
+            "binomial(10, 4)*4 == 840",
+            "10*binomial(9, 3) == 840"
+          ]
         },
         {
           "id": "cb-l6-w3",
           "statement": "From $12$ paintings a gallery selects $5$ for a show, and hangs $2$ of those $5$ in the window, left and right. How many outcomes?",
           "solution": "Stage 1 — unordered selection: $C(12,5) = 792$. Stage 2 — ordered window pair from the chosen five: $P(5,2) = 20$. Multiply: $792 \\times 20 = 15{,}840$ outcomes.",
-          "check": ["binomial(12, 5) == 792", "5*4 == 20", "binomial(12,5)*5*4 == 15840"]
+          "check": [
+            "binomial(12, 5) == 792",
+            "5*4 == 20",
+            "binomial(12,5)*5*4 == 15840"
+          ]
         }
       ],
       "commonMistakes": [
@@ -934,13 +1073,17 @@
           "id": "cb-l6-t1",
           "statement": "Classify and count: a $4$-digit code uses four DIFFERENT digits from $1$–$7$.",
           "solution": "A code is a sequence — order matters: $P(7,4) = 7 \\times 6 \\times 5 \\times 4 = 840$.",
-          "check": ["7*6*5*4 == 840"]
+          "check": [
+            "7*6*5*4 == 840"
+          ]
         },
         {
           "id": "cb-l6-t2",
           "statement": "Classify and count: a book club of $11$ picks $3$ titles to read this season (no order).",
           "solution": "Equal titles, unordered: $C(11,3) = 165$.",
-          "check": ["binomial(11, 3) == 165"]
+          "check": [
+            "binomial(11, 3) == 165"
+          ]
         }
       ],
       "interactive": {
@@ -967,10 +1110,16 @@
             "eyebrow": "Classify",
             "title": "Round one",
             "prompt": "\"How many ways can a librarian choose $6$ of $20$ books to donate?\" Tool?",
-            "options": ["$C(20,6)$ — the donation box is unordered", "$P(20,6)$ — books differ", "$20^6$ — six independent picks"],
+            "options": [
+              "$C(20,6)$ — the donation box is unordered",
+              "$P(20,6)$ — books differ",
+              "$20^6$ — six independent picks"
+            ],
             "correctIndex": 0,
             "explanation": "The answer records only WHICH books leave — swapping two donated books changes nothing. $C(20,6) = 38{,}760$. \"Books differ\" makes them distinct objects, not an ordered outcome; and picks aren't independent (no book donates twice).",
-            "check": ["binomial(20, 6) == 38760"]
+            "check": [
+              "binomial(20, 6) == 38760"
+            ]
           },
           {
             "kind": "teach",
@@ -1000,10 +1149,17 @@
             "eyebrow": "Classify",
             "title": "Round two — hybrid",
             "prompt": "From $8$ students, choose a $3$-person delegation AND name one of the three its spokesperson. Count?",
-            "options": ["$C(8,3) \\times 3 = 168$", "$C(8,3) = 56$", "$P(8,3) = 336$"],
+            "options": [
+              "$C(8,3) \\times 3 = 168$",
+              "$C(8,3) = 56$",
+              "$P(8,3) = 336$"
+            ],
             "correctIndex": 0,
             "explanation": "Choose the trio ($56$), promote one of three ($\\times 3$): $168$. Plain $C$ forgets the spokesperson; full $P$ would rank ALL three members when only one role exists. (Check by the other route: $8 \\times C(7,2) = 8 \\times 21 = 168$ ✓.)",
-            "check": ["binomial(8, 3)*3 == 168", "8*binomial(7, 2) == 168"]
+            "check": [
+              "binomial(8, 3)*3 == 168",
+              "8*binomial(7, 2) == 168"
+            ]
           },
           {
             "kind": "tip",
@@ -1048,49 +1204,67 @@
       "id": "cb-p-1",
       "statement": "How many ways can $4$ books be chosen from a shelf of $9$ for a beach bag?",
       "solution": "Unordered selection: $C(9,4) = 126$.",
-      "check": ["binomial(9, 4) == 126"]
+      "check": [
+        "binomial(9, 4) == 126"
+      ]
     },
     {
       "id": "cb-p-2",
       "statement": "Compute $C(14, 12)$ using symmetry.",
       "solution": "$C(14,12) = C(14,2) = \\frac{14 \\times 13}{2} = 91$.",
-      "check": ["binomial(14, 12) == 91"]
+      "check": [
+        "binomial(14, 12) == 91"
+      ]
     },
     {
       "id": "cb-p-3",
       "statement": "A café lets you pick $3$ fillings from $10$ for an omelet. How many different omelets — and how many if you may also pick NO filling at all?",
       "solution": "Exactly three: $C(10,3) = 120$. Allowing zero fillings adds the one empty choice via $C(10,0) = 1$: $121$ total.",
-      "check": ["binomial(10, 3) == 120", "binomial(10,3) + binomial(10,0) == 121"]
+      "check": [
+        "binomial(10, 3) == 120",
+        "binomial(10,3) + binomial(10,0) == 121"
+      ]
     },
     {
       "id": "cb-p-4",
       "statement": "From $8$ sopranos and $6$ altos, how many ways can a director pick $3$ sopranos and $2$ altos?",
       "solution": "Quota products: $C(8,3) \\times C(6,2) = 56 \\times 15 = 840$.",
-      "check": ["binomial(8, 3)*binomial(6, 2) == 840"]
+      "check": [
+        "binomial(8, 3)*binomial(6, 2) == 840"
+      ]
     },
     {
       "id": "cb-p-5",
       "statement": "A $5$-person committee is drawn from $9$ teachers and $4$ parents. How many committees contain at least one parent?",
       "solution": "All: $C(13,5) = 1287$; parent-free: $C(9,5) = 126$. At least one parent: $1287 - 126 = 1161$.",
-      "check": ["binomial(13, 5) - binomial(9, 5) == 1161"]
+      "check": [
+        "binomial(13, 5) - binomial(9, 5) == 1161"
+      ]
     },
     {
       "id": "cb-p-6",
       "statement": "A $4$-person relay squad from $11$ swimmers must include the team captain. How many squads?",
       "solution": "Captain locked in: $C(10,3) = 120$.",
-      "check": ["binomial(10, 3) == 120"]
+      "check": [
+        "binomial(10, 3) == 120"
+      ]
     },
     {
       "id": "cb-p-7",
       "statement": "From $9$ club members (including rivals R and S), how many $4$-person delegations avoid having R and S together?",
       "solution": "All: $C(9,4) = 126$; both rivals in: $C(7,2) = 21$. Allowed: $126 - 21 = 105$.",
-      "check": ["binomial(9, 4) - binomial(7, 2) == 105"]
+      "check": [
+        "binomial(9, 4) - binomial(7, 2) == 105"
+      ]
     },
     {
       "id": "cb-p-8",
       "statement": "From $10$ actors, a director casts a $4$-person ensemble and then picks one of the four as understudy coordinator. How many outcomes?",
       "solution": "Choose then promote: $C(10,4) \\times 4 = 210 \\times 4 = 840$. (Check: coordinator first, $10 \\times C(9,3) = 840$ ✓.)",
-      "check": ["binomial(10, 4)*4 == 840", "10*binomial(9, 3) == 840"]
+      "check": [
+        "binomial(10, 4)*4 == 840",
+        "10*binomial(9, 3) == 840"
+      ]
     }
   ],
   "testYourself": [
@@ -1098,37 +1272,52 @@
       "id": "cb-ty-1",
       "statement": "A $5$-card hand is dealt from a standard $52$-card deck. How many hands are possible, and how many contain exactly three spades?",
       "solution": "All hands: $C(52,5) = 2{,}598{,}960$. Exactly three spades: $C(13,3) \\times C(39,2) = 286 \\times 741 = 211{,}926$.",
-      "check": ["binomial(52, 5) == 2598960", "binomial(13, 3)*binomial(39, 2) == 211926"]
+      "check": [
+        "binomial(52, 5) == 2598960",
+        "binomial(13, 3)*binomial(39, 2) == 211926"
+      ]
     },
     {
       "id": "cb-ty-2",
       "statement": "From $7$ juniors and $5$ seniors, a $6$-person academic team needs at least $4$ juniors. How many teams?",
       "solution": "Cases by junior count: exactly $4$: $C(7,4)C(5,2) = 35 \\times 10 = 350$; exactly $5$: $C(7,5)C(5,1) = 21 \\times 5 = 105$; exactly $6$: $C(7,6)C(5,0) = 7$. Total: $350 + 105 + 7 = 462$.",
-      "check": ["binomial(7,4)*binomial(5,2) + binomial(7,5)*binomial(5,1) + binomial(7,6)*binomial(5,0) == 462"]
+      "check": [
+        "binomial(7,4)*binomial(5,2) + binomial(7,5)*binomial(5,1) + binomial(7,6)*binomial(5,0) == 462"
+      ]
     },
     {
       "id": "cb-ty-3",
       "statement": "How many diagonals does a convex $12$-gon have? (A diagonal joins two vertices that aren't adjacent.)",
       "solution": "All vertex pairs: $C(12,2) = 66$. Subtract the $12$ SIDES (adjacent pairs): $66 - 12 = 54$ diagonals.",
-      "check": ["binomial(12, 2) - 12 == 54"]
+      "check": [
+        "binomial(12, 2) - 12 == 54"
+      ]
     },
     {
       "id": "cb-ty-4",
       "statement": "A $6$-person jury is drawn from $10$ women and $8$ men, and must include lawyer L (a woman) but not her neighbor N (a man). How many juries?",
       "solution": "L locked in (pool $-1$, seats $-1$), N excluded (pool $-1$): choose $5$ from the remaining $16$: $C(16,5) = 4368$.",
-      "check": ["binomial(16, 5) == 4368"]
+      "check": [
+        "binomial(16, 5) == 4368"
+      ]
     },
     {
       "id": "cb-ty-5",
       "statement": "From $9$ entries, a fair awards $3$ EQUAL honorable mentions and, separately, a single grand prize to one of the remaining entries. How many outcomes?",
       "solution": "Mentions (unordered): $C(9,3) = 84$. Grand prize from the remaining $6$ entries: $6$ ways. Total: $84 \\times 6 = 504$.",
-      "check": ["binomial(9, 3)*6 == 504"]
+      "check": [
+        "binomial(9, 3)*6 == 504"
+      ]
     },
     {
       "id": "cb-ty-6",
       "statement": "Explain with numbers: from $10$ people, why is the count of ordered president-VP pairs exactly twice the count of unordered friendship pairs?",
       "solution": "Ordered: $P(10,2) = 90$. Unordered: $C(10,2) = 45$. Each friendship pair {A, B} spawns exactly $2! = 2$ ordered pairs (A-pres/B-VP and B-pres/A-VP), so $P = C \\times 2! $ — $90 = 45 \\times 2$ ✓.",
-      "check": ["10*9 == 90", "binomial(10, 2) == 45", "90 == 45*2"]
+      "check": [
+        "10*9 == 90",
+        "binomial(10, 2) == 45",
+        "90 == 45*2"
+      ]
     }
   ]
 }

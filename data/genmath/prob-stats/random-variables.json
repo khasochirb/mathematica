@@ -35,19 +35,26 @@
           "id": "rv-l1-w1",
           "statement": "Two coins are flipped; $X = $ number of heads. Build the distribution of $X$.",
           "solution": "Outcomes: HH, HT, TH, TT (equally likely). $X = 0$: TT → $\\frac{1}{4}$. $X = 1$: HT, TH → $\\frac{2}{4}$. $X = 2$: HH → $\\frac{1}{4}$. Audit: $\\frac{1}{4} + \\frac{2}{4} + \\frac{1}{4} = 1$ ✓.",
-          "check": ["1/4 + 2/4 + 1/4 == 1"]
+          "check": [
+            "1/4 + 2/4 + 1/4 == 1"
+          ]
         },
         {
           "id": "rv-l1-w2",
           "statement": "Two dice are rolled; $X = $ the sum. Find $P(X = 7)$, $P(X = 2)$, and $P(X \\ge 10)$.",
           "solution": "Of $36$ rolls: sum $7$ has $6$ ways → $\\frac{6}{36} = \\frac{1}{6}$; sum $2$ has $1$ way → $\\frac{1}{36}$; sums $10, 11, 12$ have $3 + 2 + 1 = 6$ ways → $P(X \\ge 10) = \\frac{6}{36} = \\frac{1}{6}$.",
-          "check": ["6/36 == 1/6", "(3 + 2 + 1)/36 == 1/6"]
+          "check": [
+            "6/36 == 1/6",
+            "(3 + 2 + 1)/36 == 1/6"
+          ]
         },
         {
           "id": "rv-l1-w3",
           "statement": "A distribution is proposed: $P(X{=}1) = 0.2$, $P(X{=}2) = 0.5$, $P(X{=}3) = 0.4$. Diagnose it.",
           "solution": "Sum: $0.2 + 0.5 + 0.4 = 1.1 > 1$ — not a distribution. Something is double-counted (or a probability is wrong). The sum-to-one audit rejects it before any further work.",
-          "check": ["2/10 + 5/10 + 4/10 == 11/10"]
+          "check": [
+            "2/10 + 5/10 + 4/10 == 11/10"
+          ]
         }
       ],
       "commonMistakes": [
@@ -67,13 +74,17 @@
           "id": "rv-l1-t1",
           "statement": "One die is rolled; $X = 1$ if the roll is a six, else $X = 0$. Build the distribution.",
           "solution": "$P(X{=}1) = \\frac{1}{6}$, $P(X{=}0) = \\frac{5}{6}$. Sum $= 1$ ✓. (This tiny two-value variable is called a Bernoulli trial — Unit 8's atom.)",
-          "check": ["1/6 + 5/6 == 1"]
+          "check": [
+            "1/6 + 5/6 == 1"
+          ]
         },
         {
           "id": "rv-l1-t2",
           "statement": "Three coins; $X = $ number of heads. Find $P(X \\ge 2)$.",
           "solution": "$P(2) = \\frac{3}{8}$, $P(3) = \\frac{1}{8}$: $P(X \\ge 2) = \\frac{4}{8} = \\frac{1}{2}$.",
-          "check": ["3/8 + 1/8 == 1/2"]
+          "check": [
+            "3/8 + 1/8 == 1/2"
+          ]
         }
       ],
       "interactive": {
@@ -101,14 +112,44 @@
             ]
           },
           {
+            "kind": "distributionBars",
+            "eyebrow": "See the shape",
+            "title": "X = heads in two flips",
+            "teach": "Flip twice and count heads: $X$ lands on 0, 1, or 2. The bars show the whole distribution at a glance — the middle bar is twice as tall because two outcomes (HT and TH) both give one head. Tap a bar to read its probability. Heights always add to 1: the distribution accounts for everything that can happen.",
+            "config": {
+              "values": [
+                0,
+                1,
+                2
+              ],
+              "probs": [
+                0.25,
+                0.5,
+                0.25
+              ],
+              "pLabels": [
+                "1/4",
+                "1/2",
+                "1/4"
+              ],
+              "xLabel": "heads"
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Collect drill",
             "title": "Why is 1 the favorite?",
             "prompt": "For two coins, why is $P(X{=}1) = \\frac{1}{2}$ while $P(X{=}0) = \\frac{1}{4}$?",
-            "options": ["Two outcomes (HT, TH) map to 1; only TT maps to 0", "Middle values are always likelier", "It isn't — all three values are $\\frac{1}{3}$"],
+            "options": [
+              "Two outcomes (HT, TH) map to 1; only TT maps to 0",
+              "Middle values are always likelier",
+              "It isn't — all three values are $\\frac{1}{3}$"
+            ],
             "correctIndex": 0,
             "explanation": "Probabilities count the OUTCOMES behind each value: 1 collects two of the four; 0 collects one. \"Middle values likelier\" happens often (more ways to balance) but the reason is always the outcome count — never a law you can skip checking.",
-            "check": ["2/4 == 1/2"]
+            "check": [
+              "2/4 == 1/2"
+            ]
           },
           {
             "kind": "worked",
@@ -133,10 +174,16 @@
             "eyebrow": "Cumulative drill",
             "title": "At least, again",
             "prompt": "Three coins, $X = $ heads. $P(X \\ge 1) = $ ?",
-            "options": ["$\\frac{7}{8}$", "$\\frac{3}{8}$", "$\\frac{1}{2}$"],
+            "options": [
+              "$\\frac{7}{8}$",
+              "$\\frac{3}{8}$",
+              "$\\frac{1}{2}$"
+            ],
             "correctIndex": 0,
             "explanation": "Complement reflex: $1 - P(X{=}0) = 1 - \\frac{1}{8} = \\frac{7}{8}$. Unit 5's move, now in random-variable clothes.",
-            "check": ["1 - 1/8 == 7/8"]
+            "check": [
+              "1 - 1/8 == 7/8"
+            ]
           },
           {
             "kind": "tip",
@@ -204,19 +251,26 @@
           "id": "rv-l2-w1",
           "statement": "Compute the expected value of one fair die roll.",
           "solution": "$E(X) = \\frac{1}{6}(1 + 2 + 3 + 4 + 5 + 6) = \\frac{21}{6} = 3.5$. No face shows $3.5$ — it's the long-run average of many rolls, not a forecast of one.",
-          "check": ["(1 + 2 + 3 + 4 + 5 + 6)/6 == 7/2"]
+          "check": [
+            "(1 + 2 + 3 + 4 + 5 + 6)/6 == 7/2"
+          ]
         },
         {
           "id": "rv-l2-w2",
           "statement": "The raffle: $100$ tickets, one $50{,}000₮$ prize. Find the expected winnings per $1000₮$ ticket, and the expected NET.",
           "solution": "$E(\\text{winnings}) = 50000 \\times \\frac{1}{100} + 0 \\times \\frac{99}{100} = 500₮$. Net of the ticket price: $500 - 1000 = -500₮$ per play. Buyers donate, on average, half the ticket price.",
-          "check": ["50000/100 == 500", "500 - 1000 == -500"]
+          "check": [
+            "50000/100 == 500",
+            "500 - 1000 == -500"
+          ]
         },
         {
           "id": "rv-l2-w3",
           "statement": "$X = $ number of heads in two coin flips. Find $E(X)$ from the distribution.",
           "solution": "$E(X) = 0 \\cdot \\frac{1}{4} + 1 \\cdot \\frac{1}{2} + 2 \\cdot \\frac{1}{4} = 1$. Balance check: the distribution is symmetric around $1$ — the balance point confirms it.",
-          "check": ["0*(1/4) + 1*(1/2) + 2*(1/4) == 1"]
+          "check": [
+            "0*(1/4) + 1*(1/2) + 2*(1/4) == 1"
+          ]
         }
       ],
       "commonMistakes": [
@@ -236,13 +290,17 @@
           "id": "rv-l2-t1",
           "statement": "A spinner pays $0₮$ with probability $\\frac{1}{2}$, $200₮$ with probability $\\frac{1}{3}$, and $600₮$ with probability $\\frac{1}{6}$. Find $E(\\text{payout})$.",
           "solution": "$0 \\cdot \\frac{1}{2} + 200 \\cdot \\frac{1}{3} + 600 \\cdot \\frac{1}{6} = 0 + \\frac{200}{3} + 100 = \\frac{500}{3} \\approx 166.7₮$.",
-          "check": ["0*(1/2) + 200*(1/3) + 600*(1/6) == 500/3"]
+          "check": [
+            "0*(1/2) + 200*(1/3) + 600*(1/6) == 500/3"
+          ]
         },
         {
           "id": "rv-l2-t2",
           "statement": "$X$ takes values $-2, 0, 4$ with probabilities $0.5, 0.3, 0.2$. Find $E(X)$.",
           "solution": "$-2(0.5) + 0(0.3) + 4(0.2) = -1 + 0 + 0.8 = -0.2$.",
-          "check": ["-2*(5/10) + 0*(3/10) + 4*(2/10) == -2/10"]
+          "check": [
+            "-2*(5/10) + 0*(3/10) + 4*(2/10) == -2/10"
+          ]
         }
       ],
       "interactive": {
@@ -270,14 +328,40 @@
             ]
           },
           {
+            "kind": "distributionBars",
+            "eyebrow": "Find the balance",
+            "title": "The mean is where it balances",
+            "teach": "A spinner pays 1, 2, or 5 points with probabilities 0.5, 0.3, 0.2. Tap each bar to see its contribution $x \\cdot P(x)$; the triangle marks their sum, $E[X] = 0.5 + 0.6 + 1.0 = 2.1$. Notice the balance point isn't any value the spinner can actually land on — the expected value is a **long-run average**, not a prediction of one spin.",
+            "config": {
+              "values": [
+                1,
+                2,
+                5
+              ],
+              "probs": [
+                0.5,
+                0.3,
+                0.2
+              ],
+              "xLabel": "points",
+              "showMean": true
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "First expectation",
             "title": "Weighted, not naive",
             "prompt": "$X$ pays $10$ with probability $0.9$ and $100$ with probability $0.1$. $E(X) = $ ?",
-            "options": ["$19$", "$55$", "$10$"],
+            "options": [
+              "$19$",
+              "$55$",
+              "$10$"
+            ],
             "correctIndex": 0,
             "explanation": "$10(0.9) + 100(0.1) = 9 + 10 = 19$. The $55$ is the unweighted midpoint — ignoring that $100$ is rare; $10$ ignores the jackpot entirely.",
-            "check": ["10*(9/10) + 100*(1/10) == 19"]
+            "check": [
+              "10*(9/10) + 100*(1/10) == 19"
+            ]
           },
           {
             "kind": "worked",
@@ -302,10 +386,16 @@
             "eyebrow": "Interpretation",
             "title": "What −500₮ means",
             "prompt": "The raffle's expected NET is $-500₮$ per ticket. Which reading is right?",
-            "options": ["Over many tickets, losses average about 500₮ each", "Every ticket loses exactly 500₮", "Half the tickets lose 1000₮"],
+            "options": [
+              "Over many tickets, losses average about 500₮ each",
+              "Every ticket loses exactly 500₮",
+              "Half the tickets lose 1000₮"
+            ],
             "correctIndex": 0,
             "explanation": "Expectation speaks about the long-run average. Individual tickets lose $1000₮$ (the 99%) or gain $49{,}000₮$ (the lucky 1%); NO ticket loses 500₮. The average is a center, not an experience.",
-            "check": ["(99*(-1000) + 49000)/100 == -500"]
+            "check": [
+              "(99*(-1000) + 49000)/100 == -500"
+            ]
           },
           {
             "kind": "tip",
@@ -373,19 +463,26 @@
           "id": "rv-l3-w1",
           "statement": "Carnival game: pay $500₮$, roll a die, win $100₮ \\times$ roll. Find the player's expected net and the fair fee.",
           "solution": "$E(\\text{winnings}) = 100 \\times E(\\text{roll}) = 100 \\times 3.5 = 350₮$. Net: $350 - 500 = -150₮$ per play. Fair fee: $350₮$.",
-          "check": ["100*7/2 == 350", "350 - 500 == -150"]
+          "check": [
+            "100*7/2 == 350",
+            "350 - 500 == -150"
+          ]
         },
         {
           "id": "rv-l3-w2",
           "statement": "A wheel has $10$ equal sectors: one pays $2000₮$, two pay $500₮$, the rest pay nothing. What entry fee makes the game fair?",
           "solution": "$E(\\text{winnings}) = 2000 \\cdot \\frac{1}{10} + 500 \\cdot \\frac{2}{10} + 0 \\cdot \\frac{7}{10} = 200 + 100 = 300₮$. Fair fee: $300₮$.",
-          "check": ["2000/10 + 500*2/10 == 300"]
+          "check": [
+            "2000/10 + 500*2/10 == 300"
+          ]
         },
         {
           "id": "rv-l3-w3",
           "statement": "A bet pays even money ($+x$ or $-x$) on \"at least one six in two dice\". Using $P = \\frac{11}{36}$, find the player's expected net per $360₮$ staked.",
           "solution": "$E(\\text{net}) = 360 \\cdot \\frac{11}{36} - 360 \\cdot \\frac{25}{36} = 110 - 250 = -140₮$. Even-money odds on an $11$-in-$36$ event is a terrible trade — fair odds would pay $\\frac{25}{11}$ times the stake.",
-          "check": ["360*11/36 - 360*25/36 == -140"]
+          "check": [
+            "360*11/36 - 360*25/36 == -140"
+          ]
         }
       ],
       "commonMistakes": [
@@ -405,13 +502,17 @@
           "id": "rv-l3-t1",
           "statement": "Pay $200₮$; flip a coin; heads pays $500₮$, tails nothing. Fair, favorable, or unfavorable?",
           "solution": "$E(\\text{winnings}) = 250₮ > 200₮$ fee: FAVORABLE by $50₮$ per play. (Grab it — they're rare.)",
-          "check": ["500/2 - 200 == 50"]
+          "check": [
+            "500/2 - 200 == 50"
+          ]
         },
         {
           "id": "rv-l3-t2",
           "statement": "A $1$-in-$20$ scratch card pays a single $3000₮$ prize. What's the fair price per card?",
           "solution": "$E = \\frac{3000}{20} = 150₮$.",
-          "check": ["3000/20 == 150"]
+          "check": [
+            "3000/20 == 150"
+          ]
         }
       ],
       "interactive": {
@@ -439,14 +540,42 @@
             ]
           },
           {
+            "kind": "distributionBars",
+            "eyebrow": "Check the balance",
+            "title": "A game that balances at zero",
+            "teach": "Pay 1 to play; win 3 (net $+3$) with probability $\\frac{1}{4}$, lose your stake (net $-1$) otherwise. Tap the bars: $(-1) \\cdot \\frac{3}{4} = -0.75$ and $3 \\cdot \\frac{1}{4} = +0.75$. They cancel — the triangle sits exactly at 0. That's what **fair** means: the long-run average gain is nothing, for either side.",
+            "config": {
+              "values": [
+                -1,
+                3
+              ],
+              "probs": [
+                0.75,
+                0.25
+              ],
+              "pLabels": [
+                "3/4",
+                "1/4"
+              ],
+              "xLabel": "net winnings",
+              "showMean": true
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Price it",
             "title": "The fair fee",
             "prompt": "A game pays $600₮$ with probability $\\frac{1}{4}$ (else nothing). The fair entry fee is…",
-            "options": ["$150₮$", "$600₮$", "$300₮$"],
+            "options": [
+              "$150₮$",
+              "$600₮$",
+              "$300₮$"
+            ],
             "correctIndex": 0,
             "explanation": "$E(\\text{winnings}) = 600 \\times \\frac{1}{4} = 150₮$ — that's the fair price. $600₮$ prices the jackpot; $300₮$ halves it for no reason the distribution knows.",
-            "check": ["600/4 == 150"]
+            "check": [
+              "600/4 == 150"
+            ]
           },
           {
             "kind": "worked",
@@ -471,10 +600,18 @@
             "eyebrow": "Edge detection",
             "title": "Rank the games",
             "prompt": "Which game treats the player best? A: fee $100₮$, $E(\\text{win}) = 95₮$. B: fee $1000₮$, $E(\\text{win}) = 900₮$. C: fee $50₮$, $E(\\text{win}) = 51₮$.",
-            "options": ["C — the only positive net", "B — biggest expected winnings", "A — smallest loss"],
+            "options": [
+              "C — the only positive net",
+              "B — biggest expected winnings",
+              "A — smallest loss"
+            ],
             "correctIndex": 0,
             "explanation": "Nets: A $-5₮$, B $-100₮$, C $+1₮$. Only C is favorable. Big expected winnings mean nothing next to a bigger fee — always compute the NET.",
-            "check": ["51 - 50 == 1", "95 - 100 == -5", "900 - 1000 == -100"]
+            "check": [
+              "51 - 50 == 1",
+              "95 - 100 == -5",
+              "900 - 1000 == -100"
+            ]
           },
           {
             "kind": "tip",
@@ -542,19 +679,29 @@
           "id": "rv-l4-w1",
           "statement": "Plan A pays $+100$ always; Plan B pays $+1100$ or $-900$, each with probability $\\frac{1}{2}$. Verify equal means, then compute each SD.",
           "solution": "Means: A is $100$; B: $\\frac{1100 - 900}{2} = 100$ ✓. Var(A) $= 0$, so $\\sigma_A = 0$. Var(B): deviations $\\pm 1000$, squared $10^6$ each: $\\text{Var} = 10^6$, $\\sigma_B = 1000$. Same mean; B carries $1000$-unit typical swings.",
-          "check": ["(1100 - 900)/2 == 100", "((1100-100)**2 + (-900-100)**2)/2 == 1000000", "sqrt(1000000) == 1000"]
+          "check": [
+            "(1100 - 900)/2 == 100",
+            "((1100-100)**2 + (-900-100)**2)/2 == 1000000",
+            "sqrt(1000000) == 1000"
+          ]
         },
         {
           "id": "rv-l4-w2",
           "statement": "$X = $ heads in two coin flips. Compute Var$(X)$ and $\\sigma$ via the shortcut.",
           "solution": "$\\mu = 1$ (earlier). $E(X^2) = 0^2 \\cdot \\frac{1}{4} + 1^2 \\cdot \\frac{1}{2} + 2^2 \\cdot \\frac{1}{4} = \\frac{1}{2} + 1 = \\frac{3}{2}$. Var $= \\frac{3}{2} - 1^2 = \\frac{1}{2}$; $\\sigma = \\frac{1}{\\sqrt{2}} \\approx 0.71$ heads.",
-          "check": ["0*(1/4) + 1*(1/2) + 4*(1/4) == 3/2", "3/2 - 1 == 1/2"]
+          "check": [
+            "0*(1/4) + 1*(1/2) + 4*(1/4) == 3/2",
+            "3/2 - 1 == 1/2"
+          ]
         },
         {
           "id": "rv-l4-w3",
           "statement": "One fair die: compute Var$(X)$ with the shortcut, given $E(X) = \\frac{7}{2}$.",
           "solution": "$E(X^2) = \\frac{1 + 4 + 9 + 16 + 25 + 36}{6} = \\frac{91}{6}$. Var $= \\frac{91}{6} - \\left(\\frac{7}{2}\\right)^2 = \\frac{91}{6} - \\frac{49}{4} = \\frac{182 - 147}{12} = \\frac{35}{12} \\approx 2.92$; $\\sigma \\approx 1.71$.",
-          "check": ["(1 + 4 + 9 + 16 + 25 + 36)/6 == 91/6", "91/6 - 49/4 == 35/12"]
+          "check": [
+            "(1 + 4 + 9 + 16 + 25 + 36)/6 == 91/6",
+            "91/6 - 49/4 == 35/12"
+          ]
         }
       ],
       "commonMistakes": [
@@ -574,13 +721,20 @@
           "id": "rv-l4-t1",
           "statement": "$X$ takes values $0$ and $10$, each with probability $\\frac{1}{2}$. Find $\\mu$, Var, and $\\sigma$.",
           "solution": "$\\mu = 5$; deviations $\\pm 5$, squared $25$: Var $= 25$, $\\sigma = 5$.",
-          "check": ["(0 + 10)/2 == 5", "((0-5)**2 + (10-5)**2)/2 == 25", "sqrt(25) == 5"]
+          "check": [
+            "(0 + 10)/2 == 5",
+            "((0-5)**2 + (10-5)**2)/2 == 25",
+            "sqrt(25) == 5"
+          ]
         },
         {
           "id": "rv-l4-t2",
           "statement": "Which is riskier: $Y$ paying $4$ or $6$ ($50$/$50$), or $Z$ paying $0$ or $10$ ($50$/$50$)? Compare $\\sigma$'s.",
           "solution": "Both means are $5$. $\\sigma_Y = 1$; $\\sigma_Z = 5$. $Z$ is five times spreadier — same price, five times the drama.",
-          "check": ["((4-5)**2 + (6-5)**2)/2 == 1", "((0-5)**2 + (10-5)**2)/2 == 25"]
+          "check": [
+            "((4-5)**2 + (6-5)**2)/2 == 1",
+            "((0-5)**2 + (10-5)**2)/2 == 25"
+          ]
         }
       ],
       "interactive": {
@@ -608,14 +762,49 @@
             ]
           },
           {
+            "kind": "distributionBars",
+            "eyebrow": "Watch the whiskers",
+            "title": "Same mean, measured spread",
+            "teach": "A uniform spinner on 2, 4, 6, 8 balances at $\\mu = 5$ — and the whiskers reach one standard deviation each way, $\\sigma = \\sqrt{5} \\approx 2.24$. The mean tells you where the distribution **sits**; $\\sigma$ tells you how far a typical outcome strays from it.",
+            "config": {
+              "values": [
+                2,
+                4,
+                6,
+                8
+              ],
+              "probs": [
+                0.25,
+                0.25,
+                0.25,
+                0.25
+              ],
+              "pLabels": [
+                "1/4",
+                "1/4",
+                "1/4",
+                "1/4"
+              ],
+              "xLabel": "outcome",
+              "showMean": true,
+              "showSd": true
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Why square?",
             "title": "The cancellation trap",
             "prompt": "For any distribution, $\\sum (x - \\mu) P(x)$ equals…",
-            "options": ["$0$ — always", "Var$(X)$", "$\\sigma$"],
+            "options": [
+              "$0$ — always",
+              "Var$(X)$",
+              "$\\sigma$"
+            ],
             "correctIndex": 0,
             "explanation": "The mean IS the balance point: weighted deviations cancel exactly, every time. That universal zero is why variance squares before averaging — otherwise every distribution would look riskless.",
-            "check": ["(1100-100)*(1/2) + (-900-100)*(1/2) == 0"]
+            "check": [
+              "(1100-100)*(1/2) + (-900-100)*(1/2) == 0"
+            ]
           },
           {
             "kind": "worked",
@@ -640,10 +829,17 @@
             "eyebrow": "Spread sense",
             "title": "Rank by risk",
             "prompt": "Three $50/50$ games, all with mean $0$: A pays $\\pm 1$; B pays $\\pm 10$; C pays $\\pm 100$. Their $\\sigma$'s are…",
-            "options": ["$1, 10, 100$", "$1, 100, 10000$", "all equal — same mean"],
+            "options": [
+              "$1, 10, 100$",
+              "$1, 100, 10000$",
+              "all equal — same mean"
+            ],
             "correctIndex": 0,
             "explanation": "For symmetric $\\pm a$ games, deviations are $\\pm a$: Var $= a^2$, $\\sigma = a$. (Option 2 lists the VARIANCES.) Same expectation, three risk levels — σ is the number that knows.",
-            "check": ["sqrt(((1)**2 + (-1)**2)/2) == 1", "sqrt(((10)**2 + (-10)**2)/2) == 10"]
+            "check": [
+              "sqrt(((1)**2 + (-1)**2)/2) == 1",
+              "sqrt(((10)**2 + (-10)**2)/2) == 10"
+            ]
           },
           {
             "kind": "tip",
@@ -711,19 +907,26 @@
           "id": "rv-l5-w1",
           "statement": "Taxi fare: $2000₮$ flag plus $1500₮$/km; ride length $X$ has $E(X) = 6$ km. Find the expected fare.",
           "solution": "Fare $= 1500X + 2000$: $E = 1500 \\times 6 + 2000 = 11{,}000₮$. No distribution needed — linearity carries the expectation through.",
-          "check": ["1500*6 + 2000 == 11000"]
+          "check": [
+            "1500*6 + 2000 == 11000"
+          ]
         },
         {
           "id": "rv-l5-w2",
           "statement": "Find the expected sum of two dice — then of ten dice.",
           "solution": "Each die: $E = 3.5$. Sum rule: two dice $\\to 3.5 + 3.5 = 7$; ten dice $\\to 10 \\times 3.5 = 35$. (Compare: the ten-dice distribution has $6^{10} \\approx 60$ million outcomes. Linearity skipped all of them.)",
-          "check": ["7/2 + 7/2 == 7", "10*7/2 == 35"]
+          "check": [
+            "7/2 + 7/2 == 7",
+            "10*7/2 == 35"
+          ]
         },
         {
           "id": "rv-l5-w3",
           "statement": "A quiz has $8$ questions; a guesser is right on each with probability $\\frac{1}{4}$. Find the expected number correct — via indicators.",
           "solution": "Write the count as $X = I_1 + \\cdots + I_8$, where $I_k = 1$ if question $k$ is right. Each $E(I_k) = \\frac{1}{4}$. Sum: $E(X) = 8 \\times \\frac{1}{4} = 2$. No binomial table, no cases — eight tiny expectations, added.",
-          "check": ["8/4 == 2"]
+          "check": [
+            "8/4 == 2"
+          ]
         }
       ],
       "commonMistakes": [
@@ -743,13 +946,17 @@
           "id": "rv-l5-t1",
           "statement": "$E(X) = 12$. Find $E(3X - 5)$.",
           "solution": "$3 \\times 12 - 5 = 31$.",
-          "check": ["3*12 - 5 == 31"]
+          "check": [
+            "3*12 - 5 == 31"
+          ]
         },
         {
           "id": "rv-l5-t2",
           "statement": "A shop's morning revenue averages $80{,}000₮$ and afternoon revenue averages $120{,}000₮$ (they're strongly dependent — busy days are busy all day). Expected daily total?",
           "solution": "Linearity doesn't care about the dependence: $E = 80{,}000 + 120{,}000 = 200{,}000₮$.",
-          "check": ["80000 + 120000 == 200000"]
+          "check": [
+            "80000 + 120000 == 200000"
+          ]
         }
       ],
       "interactive": {
@@ -781,10 +988,16 @@
             "eyebrow": "Linearity drill",
             "title": "Through the formula",
             "prompt": "$E(X) = 20$, and $Y = 5X + 30$. $E(Y) = $ ?",
-            "options": ["$130$", "$250$", "$100$"],
+            "options": [
+              "$130$",
+              "$250$",
+              "$100$"
+            ],
             "correctIndex": 0,
             "explanation": "$5 \\times 20 + 30 = 130$. The $250$ multiplied the shift too; $100$ dropped it. Constants scale, shifts add — separately.",
-            "check": ["5*20 + 30 == 130"]
+            "check": [
+              "5*20 + 30 == 130"
+            ]
           },
           {
             "kind": "worked",
@@ -809,10 +1022,16 @@
             "eyebrow": "The boundary",
             "title": "Where linearity stops",
             "prompt": "$E(X) = 3$. Which is guaranteed?",
-            "options": ["$E(2X + 1) = 7$", "$E(X^2) = 9$", "$E(1/X) = 1/3$"],
+            "options": [
+              "$E(2X + 1) = 7$",
+              "$E(X^2) = 9$",
+              "$E(1/X) = 1/3$"
+            ],
             "correctIndex": 0,
             "explanation": "Only the LINEAR one: $2(3) + 1 = 7$. $E(X^2) = 9 + \\text{Var}(X) \\ge 9$ — the gap is literally the variance; and $E(1/X)$ obeys no such shortcut. Curves bend expectations.",
-            "check": ["2*3 + 1 == 7"]
+            "check": [
+              "2*3 + 1 == 7"
+            ]
           },
           {
             "kind": "tip",
@@ -880,19 +1099,27 @@
           "id": "rv-l6-w1",
           "statement": "Insurance: premium $120{,}000₮$/year against a $1\\%$-chance $8{,}000{,}000₮$ loss. Compute both sides' expected values, and say why a rational person might still buy.",
           "solution": "Company: collects $120{,}000$, expects to pay $0.01 \\times 8{,}000{,}000 = 80{,}000$ — nets $+40{,}000₮$ per policy. Buyer: EV $= -40{,}000₮$. Rational anyway IF an $8$M₮ hit is unsurvivable: the premium converts a ruinous $1\\%$ branch into a certain, affordable cost. EV prices the average; the buyer is pricing the worst case.",
-          "check": ["8000000/100 == 80000", "120000 - 80000 == 40000"]
+          "check": [
+            "8000000/100 == 80000",
+            "120000 - 80000 == 40000"
+          ]
         },
         {
           "id": "rv-l6-w2",
           "statement": "A $25{,}000₮$ extended warranty covers a $2\\%$-chance $300{,}000₮$ repair. Analyze it.",
           "solution": "Expected repair cost: $0.02 \\times 300{,}000 = 6{,}000₮$ — the warranty charges $25{,}000₮$ for it: EV $= -19{,}000₮$, more than four times the fair price. And the deleted branch ($300$K) is unpleasant, not ruinous. Skip it; self-insure small stuff.",
-          "check": ["300000*2/100 == 6000", "25000 - 6000 == 19000"]
+          "check": [
+            "300000*2/100 == 6000",
+            "25000 - 6000 == 19000"
+          ]
         },
         {
           "id": "rv-l6-w3",
           "statement": "A food stall chooses: location A nets $200{,}000₮$/day rain or shine; location B nets $500{,}000₮$ on dry days but $-100{,}000₮$ on rainy ones. With $P(\\text{rain}) = 0.4$, compare for a season.",
           "solution": "$E_B = 0.6 \\times 500{,}000 + 0.4 \\times (-100{,}000) = 300{,}000 - 40{,}000 = 260{,}000₮ > E_A = 200{,}000₮$. Over a SEASON (repeated daily), B's edge compounds and rainy losses average out — take B if the stall can absorb losing days; take A if a bad week would sink the business. EV picks B; solvency has a vote.",
-          "check": ["(6/10)*500000 + (4/10)*(-100000) == 260000"]
+          "check": [
+            "(6/10)*500000 + (4/10)*(-100000) == 260000"
+          ]
         }
       ],
       "commonMistakes": [
@@ -912,13 +1139,18 @@
           "id": "rv-l6-t1",
           "statement": "Bike insurance costs $30{,}000₮$/year; theft probability $5\\%$; bike worth $400{,}000₮$. Fair price? Your call?",
           "solution": "Fair: $0.05 \\times 400{,}000 = 20{,}000₮$ — the premium runs $10{,}000₮$ over. If losing $400$K is absorbable, skip; if it's your only transport to work, the tail may be worth deleting.",
-          "check": ["400000*5/100 == 20000", "30000 - 20000 == 10000"]
+          "check": [
+            "400000*5/100 == 20000",
+            "30000 - 20000 == 10000"
+          ]
         },
         {
           "id": "rv-l6-t2",
           "statement": "Choose: certain $90{,}000₮$, or a $50\\%$ shot at $200{,}000₮$. Compare EVs; when would you take the certain money anyway?",
           "solution": "Gamble's EV: $100{,}000₮ > 90{,}000₮$. Repeated many times: gamble. One-shot with the money needed for rent: the certain $90$K's zero variance is worth the $10$K of EV.",
-          "check": ["200000/2 == 100000"]
+          "check": [
+            "200000/2 == 100000"
+          ]
         }
       ],
       "interactive": {
@@ -962,10 +1194,16 @@
             "eyebrow": "Same math, two verdicts",
             "title": "Why insure the house but not the blender?",
             "prompt": "Both contracts have negative EV. What separates them?",
-            "options": ["Only the house's loss branch is unaffordable — deleting IT is worth paying for", "The blender warranty has better EV", "Nothing — buy both or neither"],
+            "options": [
+              "Only the house's loss branch is unaffordable — deleting IT is worth paying for",
+              "The blender warranty has better EV",
+              "Nothing — buy both or neither"
+            ],
             "correctIndex": 0,
             "explanation": "Insurance logic prices the TAIL, not the average: an 8M₮ house loss can end your finances; a 300K₮ repair stings and passes. Pay to delete ruin; self-insure inconvenience.",
-            "check": ["25000 - 6000 == 19000"]
+            "check": [
+              "25000 - 6000 == 19000"
+            ]
           },
           {
             "kind": "worked",
@@ -978,10 +1216,16 @@
             "eyebrow": "One-shot judgment",
             "title": "Rent is due",
             "prompt": "Certain $90$K₮ vs a $50\\%$ shot at $200$K₮ (EV $100$K), exactly once, and you need $85$K₮ for rent tonight. Take…",
-            "options": ["The certain $90$K — the gamble's losing branch misses rent", "The gamble — higher EV always wins", "Flip a coin to decide"],
+            "options": [
+              "The certain $90$K — the gamble's losing branch misses rent",
+              "The gamble — higher EV always wins",
+              "Flip a coin to decide"
+            ],
             "correctIndex": 0,
             "explanation": "The gamble's worst branch ($0$) is unsurvivable tonight; there's no long run in a one-shot. EV picks the gamble ONLY when you can afford to lose and repeat. Constraints outrank averages.",
-            "check": ["200000/2 == 100000"]
+            "check": [
+              "200000/2 == 100000"
+            ]
           },
           {
             "kind": "tip",
@@ -1026,49 +1270,70 @@
       "id": "rv-p-1",
       "statement": "One die is rolled; $X = 1$ if the roll is even, else $0$. Build the distribution and find $E(X)$.",
       "solution": "$P(X{=}1) = \\frac{1}{2}$, $P(X{=}0) = \\frac{1}{2}$; $E(X) = \\frac{1}{2}$.",
-      "check": ["1/2 + 1/2 == 1", "1*(1/2) + 0*(1/2) == 1/2"]
+      "check": [
+        "1/2 + 1/2 == 1",
+        "1*(1/2) + 0*(1/2) == 1/2"
+      ]
     },
     {
       "id": "rv-p-2",
       "statement": "$X$ takes values $2, 5, 10$ with probabilities $0.5, 0.3, 0.2$. Find $E(X)$.",
       "solution": "$2(0.5) + 5(0.3) + 10(0.2) = 1 + 1.5 + 2 = 4.5$.",
-      "check": ["2*(5/10) + 5*(3/10) + 10*(2/10) == 45/10"]
+      "check": [
+        "2*(5/10) + 5*(3/10) + 10*(2/10) == 45/10"
+      ]
     },
     {
       "id": "rv-p-3",
       "statement": "A raffle sells $250$ tickets at $400₮$; prizes are one $40{,}000₮$ and two $10{,}000₮$. Find the expected net per ticket.",
       "solution": "$E(\\text{win}) = \\frac{40000 + 2 \\times 10000}{250} = \\frac{60000}{250} = 240₮$; net $= 240 - 400 = -160₮$.",
-      "check": ["(40000 + 2*10000)/250 == 240", "240 - 400 == -160"]
+      "check": [
+        "(40000 + 2*10000)/250 == 240",
+        "240 - 400 == -160"
+      ]
     },
     {
       "id": "rv-p-4",
       "statement": "What entry fee makes this game fair: draw one card, win $2600₮$ if it's a heart?",
       "solution": "$E = 2600 \\times \\frac{13}{52} = 650₮$.",
-      "check": ["2600*13/52 == 650"]
+      "check": [
+        "2600*13/52 == 650"
+      ]
     },
     {
       "id": "rv-p-5",
       "statement": "$X$ pays $\\pm 4$ with equal probability. Find Var$(X)$ and $\\sigma$.",
       "solution": "$\\mu = 0$; squared deviations $16$ each: Var $= 16$, $\\sigma = 4$.",
-      "check": ["((4)**2 + (-4)**2)/2 == 16", "sqrt(16) == 4"]
+      "check": [
+        "((4)**2 + (-4)**2)/2 == 16",
+        "sqrt(16) == 4"
+      ]
     },
     {
       "id": "rv-p-6",
       "statement": "$E(X) = 8$ and $Y = 4X + 12$. Find $E(Y)$.",
       "solution": "$4 \\times 8 + 12 = 44$.",
-      "check": ["4*8 + 12 == 44"]
+      "check": [
+        "4*8 + 12 == 44"
+      ]
     },
     {
       "id": "rv-p-7",
       "statement": "Five dice are rolled. Find the expected total, and the expected number of sixes.",
       "solution": "Total: $5 \\times 3.5 = 17.5$. Sixes (indicators): $5 \\times \\frac{1}{6} = \\frac{5}{6}$.",
-      "check": ["5*7/2 == 35/2", "5/6 == 5/6"]
+      "check": [
+        "5*7/2 == 35/2",
+        "5/6 == 5/6"
+      ]
     },
     {
       "id": "rv-p-8",
       "statement": "Phone insurance: $18{,}000₮$/year, covers a $6\\%$-chance $250{,}000₮$ replacement. Find the fair premium and the company's expected margin.",
       "solution": "Fair: $0.06 \\times 250{,}000 = 15{,}000₮$; margin $= 18{,}000 - 15{,}000 = 3{,}000₮$ per policy.",
-      "check": ["250000*6/100 == 15000", "18000 - 15000 == 3000"]
+      "check": [
+        "250000*6/100 == 15000",
+        "18000 - 15000 == 3000"
+      ]
     }
   ],
   "testYourself": [
@@ -1076,37 +1341,57 @@
       "id": "rv-ty-1",
       "statement": "Three coins are flipped; $X = $ number of heads. Build the full distribution, then find $E(X)$ and Var$(X)$.",
       "solution": "$P(0) = \\frac{1}{8}, P(1) = \\frac{3}{8}, P(2) = \\frac{3}{8}, P(3) = \\frac{1}{8}$ (sums to 1 ✓). $E = \\frac{0 + 3 + 6 + 3}{8} = \\frac{3}{2}$. $E(X^2) = \\frac{0 + 3 + 12 + 9}{8} = 3$; Var $= 3 - \\frac{9}{4} = \\frac{3}{4}$.",
-      "check": ["1/8 + 3/8 + 3/8 + 1/8 == 1", "(0 + 3 + 6 + 3)/8 == 3/2", "3 - 9/4 == 3/4"]
+      "check": [
+        "1/8 + 3/8 + 3/8 + 1/8 == 1",
+        "(0 + 3 + 6 + 3)/8 == 3/2",
+        "3 - 9/4 == 3/4"
+      ]
     },
     {
       "id": "rv-ty-2",
       "statement": "A game: pay $300₮$, draw one card. Aces pay $2000₮$, other face cards (J, Q, K) pay $500₮$, anything else pays nothing. Fair, favorable, or edged — by how much?",
       "solution": "$E(\\text{win}) = 2000 \\cdot \\frac{4}{52} + 500 \\cdot \\frac{12}{52} = \\frac{8000 + 6000}{52} = \\frac{14000}{52} \\approx 269₮$. Net $\\approx -31₮$: house-edged by about $10\\%$ of the fee.",
-      "check": ["2000*4/52 + 500*12/52 == 14000/52"]
+      "check": [
+        "2000*4/52 + 500*12/52 == 14000/52"
+      ]
     },
     {
       "id": "rv-ty-3",
       "statement": "Games $Y$ ($\\pm 2$, 50/50) and $Z$ ($\\pm 20$, 50/50) both cost nothing. Compute both $\\sigma$'s, and say which a rent-constrained player prefers and why.",
       "solution": "Both means $0$; $\\sigma_Y = 2$, $\\sigma_Z = 20$. Equal EV — the constrained player takes $Y$: identical average, one-tenth the swing; the worst branch is survivable.",
-      "check": ["((2)**2 + (-2)**2)/2 == 4", "sqrt(4) == 2", "((20)**2 + (-20)**2)/2 == 400", "sqrt(400) == 20"]
+      "check": [
+        "((2)**2 + (-2)**2)/2 == 4",
+        "sqrt(4) == 2",
+        "((20)**2 + (-20)**2)/2 == 400",
+        "sqrt(400) == 20"
+      ]
     },
     {
       "id": "rv-ty-4",
       "statement": "A delivery service charges $3000₮$ base plus $800₮$/km. Distances average $7$ km. Find the expected charge, and what happens to it if every distance grows by exactly $2$ km.",
       "solution": "$E = 800 \\times 7 + 3000 = 8600₮$. Distances $+2$ km: $E(\\text{new}) = 800 \\times 9 + 3000 = 10{,}200₮$ — linearity shifts the mean by $800 \\times 2 = 1600₮$, no distribution rebuilt.",
-      "check": ["800*7 + 3000 == 8600", "800*9 + 3000 == 10200"]
+      "check": [
+        "800*7 + 3000 == 8600",
+        "800*9 + 3000 == 10200"
+      ]
     },
     {
       "id": "rv-ty-5",
       "statement": "A $20$-question multiple-choice test has $4$ options per question. Using indicators, find the expected score of a pure guesser, and the expected score under \"$+1$ right, $-\\frac{1}{3}$ wrong\" scoring.",
       "solution": "Right-count: $E = 20 \\times \\frac{1}{4} = 5$. Penalty scoring per question: $\\frac{1}{4}(1) + \\frac{3}{4}(-\\frac{1}{3}) = \\frac{1}{4} - \\frac{1}{4} = 0$ — total expected score $0$: the classic penalty exactly cancels blind guessing.",
-      "check": ["20/4 == 5", "(1/4)*1 + (3/4)*(-1/3) == 0"]
+      "check": [
+        "20/4 == 5",
+        "(1/4)*1 + (3/4)*(-1/3) == 0"
+      ]
     },
     {
       "id": "rv-ty-6",
       "statement": "Crop insurance costs $500{,}000₮$; drought probability $8\\%$ would cost the farm $5{,}000{,}000₮$. Compute the fair premium, the EV of buying, and give the two-sentence recommendation a good advisor would.",
       "solution": "Fair: $0.08 \\times 5M = 400{,}000₮$; buying has EV $-100{,}000₮$. Recommendation: the premium runs $25\\%$ over fair — but if a $5$M₮ loss would end the farm, buy anyway: you're deleting an unsurvivable branch, and that's what insurance is FOR. If the farm holds reserves that could absorb it, self-insure and bank the edge.",
-      "check": ["5000000*8/100 == 400000", "500000 - 400000 == 100000"]
+      "check": [
+        "5000000*8/100 == 400000",
+        "500000 - 400000 == 100000"
+      ]
     }
   ]
 }

@@ -35,19 +35,27 @@
           "id": "bt-l1-w1",
           "statement": "Build rows $0$ through $5$ of Pascal's triangle, and read off $C(5,2)$.",
           "solution": "Row 0: $1$. Row 1: $1,1$. Row 2: $1,2,1$. Row 3: $1,3,3,1$. Row 4: $1,4,6,4,1$. Row 5: $1,5,10,10,5,1$. Position $2$ of row $5$ (counting from $0$): $10 = C(5,2)$. ✓",
-          "check": ["binomial(5, 2) == 10", "binomial(4,1) + binomial(4,2) == 10"]
+          "check": [
+            "binomial(5, 2) == 10",
+            "binomial(4,1) + binomial(4,2) == 10"
+          ]
         },
         {
           "id": "bt-l1-w2",
           "statement": "Verify Pascal's identity for $\\binom{6}{3}$, then explain it with committees.",
           "solution": "$\\binom{5}{2} + \\binom{5}{3} = 10 + 10 = 20 = \\binom{6}{3}$. ✓ Committees: choosing $3$ of $6$ people splits by Ana — WITH her: $\\binom{5}{2} = 10$ ways to pick her two colleagues; WITHOUT her: $\\binom{5}{3} = 10$ committees from the others. Every committee lands in exactly one pile.",
-          "check": ["binomial(5,2) + binomial(5,3) == binomial(6,3)", "binomial(6, 3) == 20"]
+          "check": [
+            "binomial(5,2) + binomial(5,3) == binomial(6,3)",
+            "binomial(6, 3) == 20"
+          ]
         },
         {
           "id": "bt-l1-w3",
           "statement": "Without building all earlier rows, compute the entry of row $10$, position $3$.",
           "solution": "Row/position ARE the choose numbers: $\\binom{10}{3} = \\frac{10 \\times 9 \\times 8}{3!} = 120$. The triangle is a lookup table for Unit 3's formula — either direction works.",
-          "check": ["binomial(10, 3) == 120"]
+          "check": [
+            "binomial(10, 3) == 120"
+          ]
         }
       ],
       "commonMistakes": [
@@ -67,13 +75,19 @@
           "id": "bt-l1-t1",
           "statement": "Write row $6$ of Pascal's triangle.",
           "solution": "Sum pairs of row 5 ($1,5,10,10,5,1$): row 6 is $1, 6, 15, 20, 15, 6, 1$.",
-          "check": ["binomial(6, 2) == 15", "binomial(6, 3) == 20"]
+          "check": [
+            "binomial(6, 2) == 15",
+            "binomial(6, 3) == 20"
+          ]
         },
         {
           "id": "bt-l1-t2",
           "statement": "Use Pascal's identity to compute $\\binom{7}{3}$ from row $6$.",
           "solution": "$\\binom{6}{2} + \\binom{6}{3} = 15 + 20 = 35$.",
-          "check": ["binomial(6,2) + binomial(6,3) == 35", "binomial(7, 3) == 35"]
+          "check": [
+            "binomial(6,2) + binomial(6,3) == 35",
+            "binomial(7, 3) == 35"
+          ]
         }
       ],
       "interactive": {
@@ -101,14 +115,30 @@
             ]
           },
           {
+            "kind": "pascalTriangle",
+            "eyebrow": "Build it",
+            "title": "Grow the triangle yourself",
+            "teach": "One rule builds the whole thing: every inner number is the sum of the two above it. Reveal the rows one at a time, and tap any cell to see its two parents light up. The edges are always 1 — there's only one way to choose nothing, and one way to choose everything.",
+            "config": {
+              "mode": "build",
+              "rows": 6
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Build drill",
             "title": "Next entry",
             "prompt": "Row $5$ starts $1, 5, 10, \\ldots$ — what entry comes next?",
-            "options": ["$10$", "$15$", "$20$"],
+            "options": [
+              "$10$",
+              "$15$",
+              "$20$"
+            ],
             "correctIndex": 0,
             "explanation": "Row 5 is symmetric: $1, 5, 10, 10, 5, 1$. Or by the rule: the two parents in row 4 are $6$ and $4$: $6 + 4 = 10$. ($15$ and $20$ live in row 6.)",
-            "check": ["binomial(5, 3) == 10"]
+            "check": [
+              "binomial(5, 3) == 10"
+            ]
           },
           {
             "kind": "worked",
@@ -133,10 +163,16 @@
             "eyebrow": "Read the triangle",
             "title": "Coordinates",
             "prompt": "Which choose number sits at row $8$, position $2$?",
-            "options": ["$\\binom{8}{2} = 28$", "$\\binom{8}{3} = 56$", "$\\binom{7}{2} = 21$"],
+            "options": [
+              "$\\binom{8}{2} = 28$",
+              "$\\binom{8}{3} = 56$",
+              "$\\binom{7}{2} = 21$"
+            ],
             "correctIndex": 0,
             "explanation": "Row $n$, position $r$ (from 0) is $\\binom{n}{r}$: $\\binom{8}{2} = \\frac{8 \\times 7}{2} = 28$. Off-by-one in either coordinate lands on the wrong option.",
-            "check": ["binomial(8, 2) == 28"]
+            "check": [
+              "binomial(8, 2) == 28"
+            ]
           },
           {
             "kind": "tip",
@@ -204,19 +240,27 @@
           "id": "bt-l2-w1",
           "statement": "A pizzeria offers $4$ toppings; any subset is allowed. Count the possible topping sets two ways.",
           "solution": "By size: $1 + 4 + 6 + 4 + 1 = 16$ (row 4). By decisions: each topping yes/no, $2^4 = 16$. The agreement IS the identity $\\sum \\binom{4}{r} = 2^4$.",
-          "check": ["binomial(4,0)+binomial(4,1)+binomial(4,2)+binomial(4,3)+binomial(4,4) == 16", "2**4 == 16"]
+          "check": [
+            "binomial(4,0)+binomial(4,1)+binomial(4,2)+binomial(4,3)+binomial(4,4) == 16",
+            "2**4 == 16"
+          ]
         },
         {
           "id": "bt-l2-w2",
           "statement": "A study group of $7$ students will send SOME of its members (at least one) to a conference. How many delegations are possible?",
           "solution": "All subsets: $2^7 = 128$. Ban the empty delegation: $128 - 1 = 127$.",
-          "check": ["2**7 - 1 == 127"]
+          "check": [
+            "2**7 - 1 == 127"
+          ]
         },
         {
           "id": "bt-l2-w3",
           "statement": "Compute $\\binom{6}{0} + \\binom{6}{1} + \\cdots + \\binom{6}{6}$ without computing a single choose.",
           "solution": "It's row $6$'s sum: $2^6 = 64$. (Check against the row $1+6+15+20+15+6+1 = 64$ ✓.)",
-          "check": ["2**6 == 64", "binomial(6,0)+binomial(6,1)+binomial(6,2)+binomial(6,3)+binomial(6,4)+binomial(6,5)+binomial(6,6) == 64"]
+          "check": [
+            "2**6 == 64",
+            "binomial(6,0)+binomial(6,1)+binomial(6,2)+binomial(6,3)+binomial(6,4)+binomial(6,5)+binomial(6,6) == 64"
+          ]
         }
       ],
       "commonMistakes": [
@@ -236,13 +280,18 @@
           "id": "bt-l2-t1",
           "statement": "How many subsets does a $5$-element set have — and how many are non-empty?",
           "solution": "$2^5 = 32$ subsets; non-empty: $31$.",
-          "check": ["2**5 == 32", "2**5 - 1 == 31"]
+          "check": [
+            "2**5 == 32",
+            "2**5 - 1 == 31"
+          ]
         },
         {
           "id": "bt-l2-t2",
           "statement": "A menu's \"build-a-salad\" lets you pick any toppings from $6$, but at least TWO. How many salads?",
           "solution": "All subsets $2^6 = 64$; ban size $0$ ($1$ way) and size $1$ ($6$ ways): $64 - 1 - 6 = 57$.",
-          "check": ["2**6 - 1 - 6 == 57"]
+          "check": [
+            "2**6 - 1 - 6 == 57"
+          ]
         }
       ],
       "interactive": {
@@ -270,14 +319,30 @@
             ]
           },
           {
+            "kind": "pascalTriangle",
+            "eyebrow": "Watch the totals",
+            "title": "Rows that double",
+            "teach": "Add up any row and you get a power of 2. That's no accident: row $n$ counts the subsets of an $n$-element set, sorted by size — and a set with $n$ elements has $2^n$ subsets in all, because each element independently says in-or-out.",
+            "config": {
+              "mode": "sums",
+              "rows": 6
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Row sum drill",
             "title": "Instant sum",
             "prompt": "$\\binom{8}{0} + \\binom{8}{1} + \\cdots + \\binom{8}{8} = $ ?",
-            "options": ["$256$", "$128$", "$255$"],
+            "options": [
+              "$256$",
+              "$128$",
+              "$255$"
+            ],
             "correctIndex": 0,
             "explanation": "Row $8$ sums to $2^8 = 256$. $128$ is $2^7$ (off-by-one row); $255$ subtracts an empty set nobody banned.",
-            "check": ["2**8 == 256"]
+            "check": [
+              "2**8 == 256"
+            ]
           },
           {
             "kind": "worked",
@@ -302,10 +367,16 @@
             "eyebrow": "Subset fluency",
             "title": "Banning small sizes",
             "prompt": "From $5$ optional exam questions, a student must attempt at least ONE. How many attempt-sets?",
-            "options": ["$31$", "$32$", "$30$"],
+            "options": [
+              "$31$",
+              "$32$",
+              "$30$"
+            ],
             "correctIndex": 0,
             "explanation": "$2^5 = 32$ subsets minus the empty attempt: $31$. The $30$ also bans the attempt-everything set, which is perfectly legal.",
-            "check": ["2**5 - 1 == 31"]
+            "check": [
+              "2**5 - 1 == 31"
+            ]
           },
           {
             "kind": "tip",
@@ -373,19 +444,25 @@
           "id": "bt-l3-w1",
           "statement": "Expand $(a+b)^4$.",
           "solution": "Skeleton: $a^4, a^3b, a^2b^2, ab^3, b^4$. Row 4 coefficients: $1, 4, 6, 4, 1$. Result: $a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4$. Check: $5$ terms ✓, powers sum to $4$ ✓, coefficients symmetric ✓.",
-          "check": ["expand((a + b)**4) == a**4 + 4*a**3*b + 6*a**2*b**2 + 4*a*b**3 + b**4"]
+          "check": [
+            "expand((a + b)**4) == a**4 + 4*a**3*b + 6*a**2*b**2 + 4*a*b**3 + b**4"
+          ]
         },
         {
           "id": "bt-l3-w2",
           "statement": "Expand $(x+2)^3$.",
           "solution": "Here $a = x$, $b = 2$, row 3 is $1, 3, 3, 1$: $x^3 + 3x^2(2) + 3x(2^2) + 2^3 = x^3 + 6x^2 + 12x + 8$. The $b$'s powers carry the $2$: $2, 4, 8$ woven into the coefficients.",
-          "check": ["expand((x + 2)**3) == x**3 + 6*x**2 + 12*x + 8"]
+          "check": [
+            "expand((x + 2)**3) == x**3 + 6*x**2 + 12*x + 8"
+          ]
         },
         {
           "id": "bt-l3-w3",
           "statement": "Expand $(y-1)^5$ — mind the signs.",
           "solution": "Treat it as $(y + (-1))^5$: the $b = -1$ powers alternate sign. Row 5: $1,5,10,10,5,1$: $y^5 - 5y^4 + 10y^3 - 10y^2 + 5y - 1$. Signs alternate starting positive; the structure checks still pass ($6$ terms, powers sum to $5$).",
-          "check": ["expand((y - 1)**5) == y**5 - 5*y**4 + 10*y**3 - 10*y**2 + 5*y - 1"]
+          "check": [
+            "expand((y - 1)**5) == y**5 - 5*y**4 + 10*y**3 - 10*y**2 + 5*y - 1"
+          ]
         }
       ],
       "commonMistakes": [
@@ -405,13 +482,18 @@
           "id": "bt-l3-t1",
           "statement": "Expand $(a+b)^3$.",
           "solution": "Row 3: $a^3 + 3a^2b + 3ab^2 + b^3$.",
-          "check": ["expand((a + b)**3) == a**3 + 3*a**2*b + 3*a*b**2 + b**3"]
+          "check": [
+            "expand((a + b)**3) == a**3 + 3*a**2*b + 3*a*b**2 + b**3"
+          ]
         },
         {
           "id": "bt-l3-t2",
           "statement": "Expand $(x+3)^2$ and $(x-3)^2$; compare.",
           "solution": "$(x+3)^2 = x^2 + 6x + 9$; $(x-3)^2 = x^2 - 6x + 9$. Only the odd-power-of-$b$ term flips sign.",
-          "check": ["expand((x + 3)**2) == x**2 + 6*x + 9", "expand((x - 3)**2) == x**2 - 6*x + 9"]
+          "check": [
+            "expand((x + 3)**2) == x**2 + 6*x + 9",
+            "expand((x - 3)**2) == x**2 - 6*x + 9"
+          ]
         }
       ],
       "interactive": {
@@ -439,14 +521,30 @@
             ]
           },
           {
+            "kind": "pascalTriangle",
+            "eyebrow": "Step the power",
+            "title": "The triangle writes the expansion",
+            "teach": "Step $n$ up and watch $(a+b)^n$ write itself: the highlighted row supplies the coefficients, the powers of $a$ count down while the powers of $b$ count up. Multiplying out $(a+b)^4$ by hand takes a page; reading row 4 takes a second.",
+            "config": {
+              "mode": "expansion",
+              "rows": 6
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Skeleton drill",
             "title": "The middle of row 4",
             "prompt": "In $(a+b)^4$, the coefficient of $a^2b^2$ is…",
-            "options": ["$6$", "$4$", "$12$"],
+            "options": [
+              "$6$",
+              "$4$",
+              "$12$"
+            ],
             "correctIndex": 0,
             "explanation": "$\\binom{4}{2} = 6$ — the number of ways to pick which two factors donate the $b$'s. $4$ is the neighboring coefficient $\\binom{4}{1}$; $12$ doubles the right answer for no reason the algebra knows.",
-            "check": ["binomial(4, 2) == 6"]
+            "check": [
+              "binomial(4, 2) == 6"
+            ]
           },
           {
             "kind": "worked",
@@ -471,10 +569,16 @@
             "eyebrow": "Sign sense",
             "title": "Which term is negative?",
             "prompt": "In the expansion of $(x-2)^4$, the sign pattern of the terms is…",
-            "options": ["$+,-,+,-,+$", "$-,+,-,+,-$", "all positive"],
+            "options": [
+              "$+,-,+,-,+$",
+              "$-,+,-,+,-$",
+              "all positive"
+            ],
             "correctIndex": 0,
             "explanation": "$b = -2$: terms with ODD powers of $b$ go negative. Starting from $x^4$ ($b^0$, positive): $+, -, +, -, +$. First term positive always — $a^n$ carries no $b$.",
-            "check": ["expand((x - 2)**4) == x**4 - 8*x**3 + 24*x**2 - 32*x + 16"]
+            "check": [
+              "expand((x - 2)**4) == x**4 - 8*x**3 + 24*x**2 - 32*x + 16"
+            ]
           },
           {
             "kind": "tip",
@@ -542,19 +646,25 @@
           "id": "bt-l4-w1",
           "statement": "Find the coefficient of $x^7$ in $(x+2)^{10}$.",
           "solution": "General term: $\\binom{10}{k} x^{10-k} 2^k$. Want $10 - k = 7$, so $k = 3$. Term: $\\binom{10}{3} \\cdot 2^3 \\cdot x^7 = 120 \\times 8 \\, x^7 = 960x^7$. Coefficient: $960$.",
-          "check": ["binomial(10, 3)*2**3 == 960"]
+          "check": [
+            "binomial(10, 3)*2**3 == 960"
+          ]
         },
         {
           "id": "bt-l4-w2",
           "statement": "Find the coefficient of $x^4$ in $(2x-3)^6$.",
           "solution": "Here $a = 2x$, $b = -3$: general term $\\binom{6}{k}(2x)^{6-k}(-3)^k$. Want $x^4$: $6 - k = 4$, $k = 2$. Term: $\\binom{6}{2} \\cdot (2x)^4 \\cdot 9 = 15 \\times 16x^4 \\times 9 = 2160x^4$. Coefficient $2160$ (positive — $(-3)^2$ killed the sign).",
-          "check": ["binomial(6, 2)*2**4*(-3)**2 == 2160"]
+          "check": [
+            "binomial(6, 2)*2**4*(-3)**2 == 2160"
+          ]
         },
         {
           "id": "bt-l4-w3",
           "statement": "Find the middle term of $(a+b)^8$.",
           "solution": "Nine terms; the middle is the fifth, $k = 4$: $\\binom{8}{4} a^4 b^4 = 70a^4b^4$. The bulge of row 8 — $70$ is its largest entry.",
-          "check": ["binomial(8, 4) == 70"]
+          "check": [
+            "binomial(8, 4) == 70"
+          ]
         }
       ],
       "commonMistakes": [
@@ -574,13 +684,17 @@
           "id": "bt-l4-t1",
           "statement": "Find the coefficient of $x^2$ in $(x+5)^4$.",
           "solution": "$10 - $ wait — $n = 4$: want $4 - k = 2$, $k = 2$: $\\binom{4}{2} \\cdot 5^2 = 6 \\times 25 = 150$.",
-          "check": ["binomial(4, 2)*5**2 == 150"]
+          "check": [
+            "binomial(4, 2)*5**2 == 150"
+          ]
         },
         {
           "id": "bt-l4-t2",
           "statement": "Find the coefficient of $x^3$ in $(x-2)^5$.",
           "solution": "$5 - k = 3$, $k = 2$: $\\binom{5}{2}(-2)^2 = 10 \\times 4 = 40$.",
-          "check": ["binomial(5, 2)*(-2)**2 == 40"]
+          "check": [
+            "binomial(5, 2)*(-2)**2 == 40"
+          ]
         }
       ],
       "interactive": {
@@ -612,10 +726,16 @@
             "eyebrow": "Solve for k",
             "title": "Which k?",
             "prompt": "In $(x+3)^9$, which $k$ gives the $x^5$ term?",
-            "options": ["$k = 4$", "$k = 5$", "$k = 9$"],
+            "options": [
+              "$k = 4$",
+              "$k = 5$",
+              "$k = 9$"
+            ],
             "correctIndex": 0,
             "explanation": "Exponent of $x$ is $9 - k$: set $9 - k = 5 \\Rightarrow k = 4$. Choosing $k = 5$ confuses \"power of b\" with \"power of x\" — the classic swap.",
-            "check": ["binomial(9, 4)*3**4 == 10206"]
+            "check": [
+              "binomial(9, 4)*3**4 == 10206"
+            ]
           },
           {
             "kind": "worked",
@@ -640,10 +760,16 @@
             "eyebrow": "Full coefficient",
             "title": "Everything multiplied",
             "prompt": "The coefficient of $x^2$ in $(3x-1)^4$ is…",
-            "options": ["$54$", "$6$", "$-54$"],
+            "options": [
+              "$54$",
+              "$6$",
+              "$-54$"
+            ],
             "correctIndex": 0,
             "explanation": "$4 - k = 2 \\Rightarrow k = 2$: $\\binom{4}{2}(3)^2(-1)^2 = 6 \\times 9 \\times 1 = 54$. The $6$ forgets the $3^2$; $-54$ mis-signs an even power of $(-1)$.",
-            "check": ["binomial(4, 2)*3**2*(-1)**2 == 54"]
+            "check": [
+              "binomial(4, 2)*3**2*(-1)**2 == 54"
+            ]
           },
           {
             "kind": "tip",
@@ -711,19 +837,26 @@
           "id": "bt-l5-w1",
           "statement": "How many shortest paths run from corner $A$ to corner $B$ of a $4 \\times 3$ block grid ($4$ east, $3$ north)?",
           "solution": "Seven steps, choose which $3$ go north: $\\binom{7}{3} = 35$ paths. (Same as arranging EEEENNN — Unit 2's word count $\\frac{7!}{4!3!} = 35$ ✓.)",
-          "check": ["binomial(7, 3) == 35", "factorial(7)/(factorial(4)*factorial(3)) == 35"]
+          "check": [
+            "binomial(7, 3) == 35",
+            "factorial(7)/(factorial(4)*factorial(3)) == 35"
+          ]
         },
         {
           "id": "bt-l5-w2",
           "statement": "On the same grid, the coffee shop $C$ sits $2$ east, $1$ north of $A$. How many shortest $A$-to-$B$ paths pass through $C$?",
           "solution": "To $C$: $\\binom{3}{1} = 3$. From $C$ to $B$ (remaining $2$ east, $2$ north): $\\binom{4}{2} = 6$. Through $C$: $3 \\times 6 = 18$ paths.",
-          "check": ["binomial(3, 1)*binomial(4, 2) == 18"]
+          "check": [
+            "binomial(3, 1)*binomial(4, 2) == 18"
+          ]
         },
         {
           "id": "bt-l5-w3",
           "statement": "A ball falls through $6$ rows of pegs, bouncing left or right at each. How many routes end exactly $2$ rights from the far-left cup — and which triangle entry is that?",
           "solution": "Six bounces, exactly $2$ rights: $\\binom{6}{2} = 15$ routes — entry (row $6$, position $2$) of Pascal's triangle. The triangle is the peg board's route-count map, which is why balls pile up under the middle: the bulge has the most routes.",
-          "check": ["binomial(6, 2) == 15"]
+          "check": [
+            "binomial(6, 2) == 15"
+          ]
         }
       ],
       "commonMistakes": [
@@ -743,13 +876,18 @@
           "id": "bt-l5-t1",
           "statement": "How many shortest paths cross a $5 \\times 5$ block grid ($5$ east, $5$ north)?",
           "solution": "$\\binom{10}{5} = 252$ paths.",
-          "check": ["binomial(10, 5) == 252"]
+          "check": [
+            "binomial(10, 5) == 252"
+          ]
         },
         {
           "id": "bt-l5-t2",
           "statement": "Of the $35$ paths on the $4 \\times 3$ grid, how many AVOID the coffee shop at $(2,1)$?",
           "solution": "All $35$ minus the $18$ through it: $17$ paths.",
-          "check": ["35 - 18 == 17", "binomial(7,3) - binomial(3,1)*binomial(4,2) == 17"]
+          "check": [
+            "35 - 18 == 17",
+            "binomial(7,3) - binomial(3,1)*binomial(4,2) == 17"
+          ]
         }
       ],
       "interactive": {
@@ -777,14 +915,30 @@
             ]
           },
           {
+            "kind": "pathGrid",
+            "eyebrow": "Fill the grid",
+            "title": "Streets, corners, and C(7, 4)",
+            "teach": "Walk from Start to Finish moving only right or down. Every corner's number counts the paths that reach it — and each corner is the sum of the one to its left and the one above, because those are the only ways in. Fill the diagonals and you'll find Pascal's triangle tilted 45°, with the finish corner reading $\\binom{7}{4} = 35$.",
+            "config": {
+              "cols": 4,
+              "rows": 3
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Path drill",
             "title": "Count the steps first",
             "prompt": "How many shortest paths go $3$ east and $2$ north?",
-            "options": ["$\\binom{5}{2} = 10$", "$\\binom{3}{2} = 3$", "$3 \\times 2 = 6$"],
+            "options": [
+              "$\\binom{5}{2} = 10$",
+              "$\\binom{3}{2} = 3$",
+              "$3 \\times 2 = 6$"
+            ],
             "correctIndex": 0,
             "explanation": "FIVE total steps; choose which $2$ go north: $\\binom{5}{2} = 10$. Choosing from $3$ forgets the east steps are part of the sequence; $3 \\times 2$ multiplies dimensions, which counts a rectangle's area, not its paths.",
-            "check": ["binomial(5, 2) == 10"]
+            "check": [
+              "binomial(5, 2) == 10"
+            ]
           },
           {
             "kind": "worked",
@@ -809,10 +963,16 @@
             "eyebrow": "Checkpoint logic",
             "title": "Multiply or subtract?",
             "prompt": "Paths from $A$ to $B$ that AVOID a construction site at $P$: which computation?",
-            "options": ["all paths − (to P) × (from P)", "(to P) × (from P)", "all paths − (to P) − (from P)"],
+            "options": [
+              "all paths − (to P) × (from P)",
+              "(to P) × (from P)",
+              "all paths − (to P) − (from P)"
+            ],
             "correctIndex": 0,
             "explanation": "Through-P paths multiply segments; avoiding is the complement: all minus through. Subtracting the segments separately (option 3) subtracts things that aren't even full paths.",
-            "check": ["binomial(7,3) - binomial(3,1)*binomial(4,2) == 17"]
+            "check": [
+              "binomial(7,3) - binomial(3,1)*binomial(4,2) == 17"
+            ]
           },
           {
             "kind": "tip",
@@ -880,19 +1040,31 @@
           "id": "bt-l6-w1",
           "statement": "The café setup: pick $3$ featured drinks from $9$ (no order), arrange $4$ pastries left-to-right, and choose a $7$-day sequence of the two-sided sign. How many setups?",
           "solution": "Three THEN-clauses: drinks $\\binom{9}{3} = 84$; pastries $4! = 24$; sign week $2^7 = 128$. Multiply: $84 \\times 24 \\times 128 = 258{,}048$ setups.",
-          "check": ["binomial(9, 3) == 84", "factorial(4) == 24", "2**7 == 128", "binomial(9,3)*factorial(4)*2**7 == 258048"]
+          "check": [
+            "binomial(9, 3) == 84",
+            "factorial(4) == 24",
+            "2**7 == 128",
+            "binomial(9,3)*factorial(4)*2**7 == 258048"
+          ]
         },
         {
           "id": "bt-l6-w2",
           "statement": "A $5$-person study group forms from $6$ girls and $5$ boys, needing at least $3$ girls — and then elects one member as note-taker. How many outcomes?",
           "solution": "Stage 1 by cases: exactly $3$ girls $\\binom{6}{3}\\binom{5}{2} = 20 \\times 10 = 200$; exactly $4$: $\\binom{6}{4}\\binom{5}{1} = 15 \\times 5 = 75$; exactly $5$: $\\binom{6}{5} = 6$. Groups: $200 + 75 + 6 = 281$. Stage 2: any of the $5$ members takes notes: $\\times 5$. Total: $281 \\times 5 = 1405$.",
-          "check": ["binomial(6,3)*binomial(5,2) + binomial(6,4)*binomial(5,1) + binomial(6,5) == 281", "281*5 == 1405"]
+          "check": [
+            "binomial(6,3)*binomial(5,2) + binomial(6,4)*binomial(5,1) + binomial(6,5) == 281",
+            "281*5 == 1405"
+          ]
         },
         {
           "id": "bt-l6-w3",
           "statement": "How many $6$-character codes use $3$ A's and $3$ B's, OR consist of $6$ different letters chosen from C–J ($8$ letters) in some order?",
           "solution": "Two OR-cases. Case 1 — arrangements of AAABBB: $\\frac{6!}{3!3!} = 20$. Case 2 — ordered no-repeat from $8$: $P(8,6) = \\frac{8!}{2!} = 20160$. Codes: $20 + 20160 = 20180$.",
-          "check": ["factorial(6)/(factorial(3)*factorial(3)) == 20", "factorial(8)/factorial(2) == 20160", "20 + 20160 == 20180"]
+          "check": [
+            "factorial(6)/(factorial(3)*factorial(3)) == 20",
+            "factorial(8)/factorial(2) == 20160",
+            "20 + 20160 == 20180"
+          ]
         }
       ],
       "commonMistakes": [
@@ -912,13 +1084,17 @@
           "id": "bt-l6-t1",
           "statement": "A quiz asks you to choose $2$ of $5$ essay prompts (no order) and then answer $4$ true/false questions. How many response patterns?",
           "solution": "$\\binom{5}{2} \\times 2^4 = 10 \\times 16 = 160$.",
-          "check": ["binomial(5, 2)*2**4 == 160"]
+          "check": [
+            "binomial(5, 2)*2**4 == 160"
+          ]
         },
         {
           "id": "bt-l6-t2",
           "statement": "Seven friends need a photo: they either stand in a row, or sit around a circular table. How many arrangements in total?",
           "solution": "OR-cases add: row $7! = 5040$; circle $(7-1)! = 720$. Total: $5760$.",
-          "check": ["factorial(7) + factorial(6) == 5760"]
+          "check": [
+            "factorial(7) + factorial(6) == 5760"
+          ]
         }
       ],
       "interactive": {
@@ -968,20 +1144,33 @@
             "eyebrow": "Decompose",
             "title": "Name the clauses",
             "prompt": "\"Pick $4$ of $10$ photos for an album page, then order them left to right.\" This equals…",
-            "options": ["$\\binom{10}{4} \\times 4! = P(10,4)$", "$\\binom{10}{4} + 4!$", "$10^4$"],
+            "options": [
+              "$\\binom{10}{4} \\times 4! = P(10,4)$",
+              "$\\binom{10}{4} + 4!$",
+              "$10^4$"
+            ],
             "correctIndex": 0,
             "explanation": "Choose-THEN-arrange: $210 \\times 24 = 5040$ — which is exactly $P(10,4)$, as it must be: choosing then ordering IS ordered selection. Route agreement, the capstone's favorite proof.",
-            "check": ["binomial(10, 4)*factorial(4) == 5040", "10*9*8*7 == 5040"]
+            "check": [
+              "binomial(10, 4)*factorial(4) == 5040",
+              "10*9*8*7 == 5040"
+            ]
           },
           {
             "kind": "tapQuestion",
             "eyebrow": "Decompose",
             "title": "Spot the OR",
             "prompt": "A charm bracelet holds either $5$ distinct charms in a flippable circle, or $3$ distinct charms in a row on a bar. From $5$ charms available for the circle and $6$ for the bar, total designs?",
-            "options": ["$\\frac{4!}{2} + P(6,3) = 132$", "$\\frac{4!}{2} \\times P(6,3)$", "$5! + 6^3$"],
+            "options": [
+              "$\\frac{4!}{2} + P(6,3) = 132$",
+              "$\\frac{4!}{2} \\times P(6,3)$",
+              "$5! + 6^3$"
+            ],
             "correctIndex": 0,
             "explanation": "Two exclusive designs — OR adds. Circle with flips: $\\frac{(5-1)!}{2} = 12$; bar: $P(6,3) = 120$. Total $132$. Multiplying would make one bracelet be both at once.",
-            "check": ["factorial(4)/2 + 6*5*4 == 132"]
+            "check": [
+              "factorial(4)/2 + 6*5*4 == 132"
+            ]
           },
           {
             "kind": "tip",
@@ -1026,49 +1215,68 @@
       "id": "bt-p-1",
       "statement": "Write row $7$ of Pascal's triangle and identify $\\binom{7}{2}$.",
       "solution": "Row 7: $1, 7, 21, 35, 35, 21, 7, 1$. Position $2$: $\\binom{7}{2} = 21$.",
-      "check": ["binomial(7, 2) == 21", "binomial(7, 3) == 35"]
+      "check": [
+        "binomial(7, 2) == 21",
+        "binomial(7, 3) == 35"
+      ]
     },
     {
       "id": "bt-p-2",
       "statement": "Verify Pascal's identity at $\\binom{9}{4}$.",
       "solution": "$\\binom{8}{3} + \\binom{8}{4} = 56 + 70 = 126 = \\binom{9}{4}$. ✓",
-      "check": ["binomial(8,3) + binomial(8,4) == binomial(9,4)", "binomial(9, 4) == 126"]
+      "check": [
+        "binomial(8,3) + binomial(8,4) == binomial(9,4)",
+        "binomial(9, 4) == 126"
+      ]
     },
     {
       "id": "bt-p-3",
       "statement": "A sundae bar has $7$ optional toppings. How many different sundaes are possible — and how many use at least one topping?",
       "solution": "All subsets: $2^7 = 128$; at least one: $127$.",
-      "check": ["2**7 == 128", "2**7 - 1 == 127"]
+      "check": [
+        "2**7 == 128",
+        "2**7 - 1 == 127"
+      ]
     },
     {
       "id": "bt-p-4",
       "statement": "Expand $(x+1)^5$.",
       "solution": "Row 5 on the skeleton: $x^5 + 5x^4 + 10x^3 + 10x^2 + 5x + 1$.",
-      "check": ["expand((x + 1)**5) == x**5 + 5*x**4 + 10*x**3 + 10*x**2 + 5*x + 1"]
+      "check": [
+        "expand((x + 1)**5) == x**5 + 5*x**4 + 10*x**3 + 10*x**2 + 5*x + 1"
+      ]
     },
     {
       "id": "bt-p-5",
       "statement": "Find the coefficient of $x^3$ in $(x+4)^5$.",
       "solution": "$5 - k = 3 \\Rightarrow k = 2$: $\\binom{5}{2} \\cdot 4^2 = 10 \\times 16 = 160$.",
-      "check": ["binomial(5, 2)*4**2 == 160"]
+      "check": [
+        "binomial(5, 2)*4**2 == 160"
+      ]
     },
     {
       "id": "bt-p-6",
       "statement": "Find the middle term of $(a+b)^6$.",
       "solution": "Seven terms; middle is $k = 3$: $\\binom{6}{3}a^3b^3 = 20a^3b^3$.",
-      "check": ["binomial(6, 3) == 20"]
+      "check": [
+        "binomial(6, 3) == 20"
+      ]
     },
     {
       "id": "bt-p-7",
       "statement": "How many shortest paths cross a $6$-east, $2$-north grid?",
       "solution": "$\\binom{8}{2} = 28$ paths.",
-      "check": ["binomial(8, 2) == 28"]
+      "check": [
+        "binomial(8, 2) == 28"
+      ]
     },
     {
       "id": "bt-p-8",
       "statement": "A committee of any size (at least $1$) forms from $8$ people, and then paints its banner one of $3$ colors. How many outcomes?",
       "solution": "Committees: $2^8 - 1 = 255$; THEN a color: $\\times 3 = 765$ outcomes.",
-      "check": ["(2**8 - 1)*3 == 765"]
+      "check": [
+        "(2**8 - 1)*3 == 765"
+      ]
     }
   ],
   "testYourself": [
@@ -1076,37 +1284,51 @@
       "id": "bt-ty-1",
       "statement": "Expand $(2x - 1)^4$.",
       "solution": "$a = 2x$, $b = -1$, row 4: $(2x)^4 - 4(2x)^3 + 6(2x)^2 - 4(2x) + 1 = 16x^4 - 32x^3 + 24x^2 - 8x + 1$. Audit: powers fall $4 \\to 0$ ✓, signs alternate ✓, $x = 1$ gives $16-32+24-8+1 = 1 = (2-1)^4$ ✓.",
-      "check": ["expand((2*x - 1)**4) == 16*x**4 - 32*x**3 + 24*x**2 - 8*x + 1"]
+      "check": [
+        "expand((2*x - 1)**4) == 16*x**4 - 32*x**3 + 24*x**2 - 8*x + 1"
+      ]
     },
     {
       "id": "bt-ty-2",
       "statement": "Find the coefficient of $x^6$ in $(x^2 + 3)^5$.",
       "solution": "General term: $\\binom{5}{k}(x^2)^{5-k}3^k$ — exponent $2(5-k) = 6 \\Rightarrow k = 2$. Coefficient: $\\binom{5}{2} \\cdot 3^2 = 10 \\times 9 = 90$.",
-      "check": ["binomial(5, 2)*3**2 == 90"]
+      "check": [
+        "binomial(5, 2)*3**2 == 90"
+      ]
     },
     {
       "id": "bt-ty-3",
       "statement": "In a $12$-person club, how many ways can ANY non-empty group attend the fair, and then one attendee carry the banner?",
       "solution": "Sum over sizes with a flag-bearer: choose size $r$, then a bearer — $\\sum_r \\binom{12}{r} \\cdot r$. Slicker route: pick the bearer FIRST ($12$ ways), then any subset of the other $11$ joins: $12 \\times 2^{11} = 24{,}576$ outcomes.",
-      "check": ["12*2**11 == 24576"]
+      "check": [
+        "12*2**11 == 24576"
+      ]
     },
     {
       "id": "bt-ty-4",
       "statement": "How many shortest paths from $A$ ($0,0$) to $B$ ($5,4$) pass through the fountain at $(2,2)$?",
       "solution": "To the fountain: $\\binom{4}{2} = 6$. Onward ($3$ east, $2$ north): $\\binom{5}{2} = 10$. Through: $6 \\times 10 = 60$ paths.",
-      "check": ["binomial(4, 2)*binomial(5, 2) == 60"]
+      "check": [
+        "binomial(4, 2)*binomial(5, 2) == 60"
+      ]
     },
     {
       "id": "bt-ty-5",
       "statement": "Use $a = b = 1$ to find the sum of ALL coefficients of $(3x + 1)^4$ — then verify against the expansion's constant and leading terms.",
       "solution": "Substituting $x = 1$: $(3 + 1)^4 = 256$ — the coefficient sum. Expansion: $81x^4 + 108x^3 + 54x^2 + 12x + 1$; sum $81+108+54+12+1 = 256$ ✓.",
-      "check": ["4**4 == 256", "81 + 108 + 54 + 12 + 1 == 256", "expand((3*x + 1)**4) == 81*x**4 + 108*x**3 + 54*x**2 + 12*x + 1"]
+      "check": [
+        "4**4 == 256",
+        "81 + 108 + 54 + 12 + 1 == 256",
+        "expand((3*x + 1)**4) == 81*x**4 + 108*x**3 + 54*x**2 + 12*x + 1"
+      ]
     },
     {
       "id": "bt-ty-6",
       "statement": "A bakery bundles gift boxes: choose $2$ of $6$ cake flavors (no order), then $3$ of $5$ cookie types (no order), then tie one of $4$ ribbons. How many boxes — and which single tool would have failed here?",
       "solution": "$\\binom{6}{2} \\times \\binom{5}{3} \\times 4 = 15 \\times 10 \\times 4 = 600$ boxes. No single tool covers it: it's three clauses glued by THEN — decomposition is the tool.",
-      "check": ["binomial(6,2)*binomial(5,3)*4 == 600"]
+      "check": [
+        "binomial(6,2)*binomial(5,3)*4 == 600"
+      ]
     }
   ]
 }

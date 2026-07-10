@@ -160,7 +160,7 @@ export default function DotPlot({ config }: { config: DotPlotConfig }) {
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
               {pulled
                 ? "one wild value dragged the mean — the median never moved"
-                : "drag the orange dot to the right and watch which summary follows"}
+                : "push the movable dot right and watch which summary follows"}
             </div>
           </>
         ) : pick !== null ? (
@@ -191,7 +191,7 @@ export default function DotPlot({ config }: { config: DotPlotConfig }) {
             <Minus className="h-4 w-4" />
           </button>
           <div className="text-[12px]" style={{ color: "var(--fg-2)", minWidth: 110, textAlign: "center" }}>
-            orange dot at <b className="tabular" style={{ color: "var(--accent)" }}>{moved}</b>
+            movable dot at <b className="tabular" style={{ color: "var(--accent)" }}>{moved}</b>
           </div>
           <button
             type="button"

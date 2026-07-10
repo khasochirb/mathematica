@@ -35,19 +35,26 @@
           "id": "dp-l1-w1",
           "statement": "Quiz scores: $4, 7, 8, 8, 9, 11, 12, 13, 13, 14, 16, 21$. Bin by $[0,5), [5,10), [10,15), [15,20), [20,25)$ and give the frequencies.",
           "solution": "$[0,5)$: $\\{4\\}$ — $1$. $[5,10)$: $\\{7,8,8,9\\}$ — $4$. $[10,15)$: $\\{11,12,13,13,14\\}$ — $5$. $[15,20)$: $\\{16\\}$ — $1$. $[20,25)$: $\\{21\\}$ — $1$. Check: $1+4+5+1+1 = 12$ ✓. Shape: single hump around $10$–$15$, slight right tail.",
-          "check": ["1 + 4 + 5 + 1 + 1 == 12"]
+          "check": [
+            "1 + 4 + 5 + 1 + 1 == 12"
+          ]
         },
         {
           "id": "dp-l1-w2",
           "statement": "A histogram of $50$ house prices shows bars (counts): $3, 12, 18, 10, 4$, then a lone bar of $3$ far to the right. Describe the distribution.",
           "solution": "Main body: single hump (center in the third bin), roughly symmetric core of $47$ homes. The detached right bar: $3$ luxury properties — a separated cluster, likely flag-worthy. Report: \"unimodal core with $3$ high outliers\"; median + IQR for the headline (Unit 9's pairing).",
-          "check": ["3 + 12 + 18 + 10 + 4 + 3 == 50"]
+          "check": [
+            "3 + 12 + 18 + 10 + 4 + 3 == 50"
+          ]
         },
         {
           "id": "dp-l1-w3",
           "statement": "The same $200$ commutes are binned two ways: $4$ bins (shape: one smooth hump) and $40$ bins (shape: jagged spikes). Which do you trust, and what's the fix?",
           "solution": "Neither extreme: $4$ bins smears (could hide bimodality), $40$ shatters ($5$ per bin — noise). Fix: middle widths ($8$–$12$ bins), and CHECK ROBUSTNESS — a real feature (second hump, gap) survives several widths; an artifact appears in one and vanishes in the next.",
-          "check": ["200/40 == 5", "200/4 == 50"]
+          "check": [
+            "200/40 == 5",
+            "200/4 == 50"
+          ]
         }
       ],
       "commonMistakes": [
@@ -67,13 +74,17 @@
           "id": "dp-l1-t1",
           "statement": "Data: $2, 3, 5, 6, 6, 7, 9, 12, 14, 19$. Bin by $[0,5), [5,10), [10,15), [15,20)$: give frequencies and the shape.",
           "solution": "Counts: $2, 5, 2, 1$ (sum $10$ ✓). Single hump in $[5,10)$, tail stretching right: right-skewed.",
-          "check": ["2 + 5 + 2 + 1 == 10"]
+          "check": [
+            "2 + 5 + 2 + 1 == 10"
+          ]
         },
         {
           "id": "dp-l1-t2",
           "statement": "A histogram shows two clearly separated humps of adult heights at a family reunion. What's the statistical story?",
           "solution": "Bimodal — two mixed populations (likely adults vs children, or two age groups). Split before summarizing; one mean would land between the humps and describe nobody.",
-          "check": ["1 == 1"]
+          "check": [
+            "1 == 1"
+          ]
         }
       ],
       "interactive": {
@@ -101,14 +112,66 @@
             ]
           },
           {
+            "kind": "histogramBins",
+            "eyebrow": "Regroup it",
+            "title": "Same scores, three histograms",
+            "teach": "Twenty-seven test scores. Width 25 hides everything; width 5 shows texture; width 10 shows the shape cleanly. A histogram is a **choice**, not a fact — the data never changes, only the grouping. Always ask what bin width you're looking at before you trust the shape.",
+            "config": {
+              "data": [
+                52,
+                55,
+                58,
+                61,
+                63,
+                64,
+                66,
+                67,
+                68,
+                68,
+                70,
+                71,
+                72,
+                73,
+                74,
+                75,
+                75,
+                76,
+                78,
+                79,
+                81,
+                82,
+                84,
+                85,
+                88,
+                91,
+                94
+              ],
+              "min": 50,
+              "max": 100,
+              "widths": [
+                5,
+                10,
+                25
+              ],
+              "start": 1,
+              "xLabel": "score"
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Bin drill",
             "title": "Where does 30 go?",
             "prompt": "With bins $[20, 30)$ and $[30, 40)$, the value $30$ is counted in…",
-            "options": ["$[30, 40)$ — left-inclusive convention", "$[20, 30)$ — it touches it", "both bins"],
+            "options": [
+              "$[30, 40)$ — left-inclusive convention",
+              "$[20, 30)$ — it touches it",
+              "both bins"
+            ],
             "correctIndex": 0,
             "explanation": "$[20, 30)$ excludes its right edge; $[30, 40)$ includes its left. One rule, one count — double-counting edges is how bin totals stop matching $n$.",
-            "check": ["1 == 1"]
+            "check": [
+              "1 == 1"
+            ]
           },
           {
             "kind": "worked",
@@ -133,10 +196,16 @@
             "eyebrow": "Read the shape",
             "title": "Diagnose from bars",
             "prompt": "A histogram's bars climb slowly from the left and drop sharply at the right end (exam scores with a max of 100). The shape is…",
-            "options": ["Left-skewed — long low tail, pile-up near the top", "Right-skewed", "Uniform"],
+            "options": [
+              "Left-skewed — long low tail, pile-up near the top",
+              "Right-skewed",
+              "Uniform"
+            ],
             "correctIndex": 0,
             "explanation": "The TAIL stretches left (weak scores), the crowd piles near 100 — left/negative skew, the signature of an easy exam or a ceiling effect. Skew names the tail (Unit 9).",
-            "check": ["1 == 1"]
+            "check": [
+              "1 == 1"
+            ]
           },
           {
             "kind": "tip",
@@ -204,19 +273,26 @@
           "id": "dp-l2-w1",
           "statement": "Class scores (sorted): $45, 52, 58, 61, 64, 68, 71, 75, 82, 90$. Find the percentile rank of the student who scored $75$.",
           "solution": "Values at or below $75$: eight of ten. Rank $= \\frac{8}{10} \\times 100 = 80$th percentile — ahead of (or level with) $80\\%$ of the class.",
-          "check": ["8/10*100 == 80"]
+          "check": [
+            "8/10*100 == 80"
+          ]
         },
         {
           "id": "dp-l2-w2",
           "statement": "In the same class, what score sits at the 25th percentile, and what's its Unit 9 name?",
           "solution": "$25\\%$ of $10$ values $= 2.5 \\to$ the boundary falls after the lower quarter; by our convention the lower half $\\{45,52,58,61,64\\}$ has median $58$: $Q_1 = 58$, the first quartile — the 25th percentile's older name.",
-          "check": ["25*10/100 == 5/2"]
+          "check": [
+            "25*10/100 == 5/2"
+          ]
         },
         {
           "id": "dp-l2-w3",
           "statement": "Ana moved from the 50th to the 60th percentile on a national exam; Bat moved from the 89th to the 99th. Same 10-point percentile gain — same improvement?",
           "solution": "No. Around the median the crowd is DENSE — a small score bump leapfrogs many people. At the top the crowd thins — gaining the last $10$ percentile points means overtaking the strongest tenth, usually a far larger skill jump. Percentiles measure position; the score-to-percentile exchange rate varies along the scale.",
-          "check": ["60 - 50 == 10", "99 - 89 == 10"]
+          "check": [
+            "60 - 50 == 10",
+            "99 - 89 == 10"
+          ]
         }
       ],
       "commonMistakes": [
@@ -236,13 +312,17 @@
           "id": "dp-l2-t1",
           "statement": "Sorted times of $8$ swimmers: your friend is $6$th fastest — i.e., $6$th from the top, $3$rd from the bottom... compute her percentile among times where LOWER is better, counting at-or-below her time as $3$ of $8$.",
           "solution": "Rank $= \\frac{3}{8} \\times 100 = 37.5$th percentile of slowness — better stated: she's faster than $62.5\\%$... careful with direction! With times, decide first whether the scale ranks speed or slowness, then count.",
-          "check": ["3/8*100 == 75/2"]
+          "check": [
+            "3/8*100 == 75/2"
+          ]
         },
         {
           "id": "dp-l2-t2",
           "statement": "A standardized test reports your 90th percentile among $2400$ test-takers. About how many scored at or below you?",
           "solution": "$0.90 \\times 2400 = 2160$ test-takers.",
-          "check": ["90*2400/100 == 2160"]
+          "check": [
+            "90*2400/100 == 2160"
+          ]
         }
       ],
       "interactive": {
@@ -269,10 +349,16 @@
             "eyebrow": "Rank drill",
             "title": "Count the crowd",
             "prompt": "Sorted data of $20$ values; Tulga's value is $14$th from the bottom. His percentile rank (at-or-below)?",
-            "options": ["$70$th", "$14$th", "$30$th"],
+            "options": [
+              "$70$th",
+              "$14$th",
+              "$30$th"
+            ],
             "correctIndex": 0,
             "explanation": "$\\frac{14}{20} \\times 100 = 70$. The raw position ($14$th) isn't a percentile until divided by the crowd; $30$th counts from the wrong end.",
-            "check": ["14/20*100 == 70"]
+            "check": [
+              "14/20*100 == 70"
+            ]
           },
           {
             "kind": "teach",
@@ -302,10 +388,16 @@
             "eyebrow": "Interpretation",
             "title": "The doctor's sentence",
             "prompt": "\"Your baby is 85th percentile for height, 40th for weight.\" This means…",
-            "options": ["Taller than 85% and lighter than 60% of peers — a tall, lean baby", "The baby scored 85 and 40 on two tests", "The baby is unhealthy"],
+            "options": [
+              "Taller than 85% and lighter than 60% of peers — a tall, lean baby",
+              "The baby scored 85 and 40 on two tests",
+              "The baby is unhealthy"
+            ],
             "correctIndex": 0,
             "explanation": "Two positions in two crowds: height near the top, weight just below the middle — a description, not a diagnosis. Percentiles LOCATE; doctors (and context) interpret.",
-            "check": ["100 - 40 == 60"]
+            "check": [
+              "100 - 40 == 60"
+            ]
           },
           {
             "kind": "tip",
@@ -373,19 +465,27 @@
           "id": "dp-l3-w1",
           "statement": "Ana: $85$ on a test with mean $70$, SD $10$. Bat: $700$ on a test with mean $500$, SD $100$. Standardize both and compare.",
           "solution": "$z_{Ana} = \\frac{85 - 70}{10} = 1.5$; $z_{Bat} = \\frac{700 - 500}{100} = 2.0$. Bat stands further above his crowd — the better relative performance, even though the raw numbers can't be compared at all.",
-          "check": ["(85 - 70)/10 == 3/2", "(700 - 500)/100 == 2"]
+          "check": [
+            "(85 - 70)/10 == 3/2",
+            "(700 - 500)/100 == 2"
+          ]
         },
         {
           "id": "dp-l3-w2",
           "statement": "Heights: mean $170$ cm, SD $8$. Find the z-scores of a $154$ cm and a $190$ cm person, and interpret.",
           "solution": "$z = \\frac{154 - 170}{8} = -2$: two SDs BELOW — edge of usual, notably short in this crowd. $z = \\frac{190 - 170}{8} = 2.5$: unusually tall, investigation-of-the-basketball-team territory.",
-          "check": ["(154 - 170)/8 == -2", "(190 - 170)/8 == 5/2"]
+          "check": [
+            "(154 - 170)/8 == -2",
+            "(190 - 170)/8 == 5/2"
+          ]
         },
         {
           "id": "dp-l3-w3",
           "statement": "A scholarship requires $z \\ge 1.8$ on an exam with mean $62$ and SD $9$. Find the raw cutoff score.",
           "solution": "Backward: $x = 62 + 1.8 \\times 9 = 62 + 16.2 = 78.2$ — students need about $79$ (next attainable score at or above the cutoff).",
-          "check": ["62 + 18/10*9 == 782/10"]
+          "check": [
+            "62 + 18/10*9 == 782/10"
+          ]
         }
       ],
       "commonMistakes": [
@@ -405,13 +505,18 @@
           "id": "dp-l3-t1",
           "statement": "Mean $50$, SD $4$: find the z-scores of $58$ and $44$.",
           "solution": "$z = \\frac{58-50}{4} = 2$; $z = \\frac{44-50}{4} = -1.5$.",
-          "check": ["(58 - 50)/4 == 2", "(44 - 50)/4 == -3/2"]
+          "check": [
+            "(58 - 50)/4 == 2",
+            "(44 - 50)/4 == -3/2"
+          ]
         },
         {
           "id": "dp-l3-t2",
           "statement": "A dataset has mean $200$ and SD $25$. What raw value sits at $z = -1.2$?",
           "solution": "$x = 200 + (-1.2)(25) = 200 - 30 = 170$.",
-          "check": ["200 - 12/10*25 == 170"]
+          "check": [
+            "200 - 12/10*25 == 170"
+          ]
         }
       ],
       "interactive": {
@@ -439,14 +544,34 @@
             ]
           },
           {
+            "kind": "normalCurve",
+            "eyebrow": "Walk the axis",
+            "title": "Distance, measured in sigmas",
+            "teach": "Class scores: $\\mu = 70$, $\\sigma = 8$. Step the marker to 82 and the readout does the conversion: $z = \\frac{82 - 70}{8} = 1.5$ — a score one-and-a-half standard deviations above the mean. The z-score is a change of units: from points to **sigmas**, which is what makes scores from different scales comparable.",
+            "config": {
+              "mode": "zscore",
+              "mu": 70,
+              "sigma": 8,
+              "x0": 82,
+              "step": 4,
+              "xLabel": "score"
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "First z",
             "title": "Standardize",
             "prompt": "Mean $80$, SD $5$: the z-score of $72$ is…",
-            "options": ["$-1.6$", "$1.6$", "$-8$"],
+            "options": [
+              "$-1.6$",
+              "$1.6$",
+              "$-8$"
+            ],
             "correctIndex": 0,
             "explanation": "$\\frac{72 - 80}{5} = -1.6$ — below the mean, so NEGATIVE. Dropping the sign (option 2) loses the direction; $-8$ forgot to divide by the SD.",
-            "check": ["(72 - 80)/5 == -8/5"]
+            "check": [
+              "(72 - 80)/5 == -8/5"
+            ]
           },
           {
             "kind": "worked",
@@ -471,10 +596,16 @@
             "eyebrow": "Cross-scale",
             "title": "Which feat is rarer?",
             "prompt": "A runner's $100$m time is $z = -2.5$ (lower = faster) in her league; a chess player's rating is $z = +1.8$ in his club. Whose performance stands further from typical?",
-            "options": ["The runner — $|{-}2.5| > |1.8|$", "The chess player — positive beats negative", "Can't compare running and chess"],
+            "options": [
+              "The runner — $|{-}2.5| > |1.8|$",
+              "The chess player — positive beats negative",
+              "Can't compare running and chess"
+            ],
             "correctIndex": 0,
             "explanation": "Distance from typical is $|z|$: $2.5$ SDs beats $1.8$, whatever the sport. (The runner's NEGATIVE z is the good direction for times.) Unit-free is the whole point — z-scores compare anything to anything.",
-            "check": ["25/10 > 18/10"]
+            "check": [
+              "25/10 > 18/10"
+            ]
           },
           {
             "kind": "tip",
@@ -542,19 +673,28 @@
           "id": "dp-l4-w1",
           "statement": "Adult heights: normal with mean $170$ cm, SD $8$. What share of adults stands between $162$ and $178$ cm? Between $154$ and $186$?",
           "solution": "$162$–$178$ is $\\mu \\pm 1\\sigma$: $68\\%$. $154$–$186$ is $\\mu \\pm 2\\sigma$: $95\\%$.",
-          "check": ["170 - 8 == 162", "170 + 8 == 178", "170 - 16 == 154", "170 + 16 == 186"]
+          "check": [
+            "170 - 8 == 162",
+            "170 + 8 == 178",
+            "170 - 16 == 154",
+            "170 + 16 == 186"
+          ]
         },
         {
           "id": "dp-l4-w2",
           "statement": "Same heights: what share is TALLER than $186$ cm?",
           "solution": "$186 = \\mu + 2\\sigma$. Outside $\\pm 2\\sigma$: $5\\%$, split by symmetry: $2.5\\%$ in the upper tail. One adult in forty.",
-          "check": ["(100 - 95)/2 == 5/2"]
+          "check": [
+            "(100 - 95)/2 == 5/2"
+          ]
         },
         {
           "id": "dp-l4-w3",
           "statement": "Exam scores: normal, mean $72$, SD $6$. What share scored between $78$ and $84$?",
           "solution": "$78 = \\mu + 1\\sigma$, $84 = \\mu + 2\\sigma$: the band from $1$ to $2$ SDs above. Within $2$: $95\\%$; within $1$: $68\\%$; the difference $27\\%$ splits between the two sides: $13.5\\%$ on the upper side.",
-          "check": ["(95 - 68)/2 == 27/2"]
+          "check": [
+            "(95 - 68)/2 == 27/2"
+          ]
         }
       ],
       "commonMistakes": [
@@ -574,13 +714,20 @@
           "id": "dp-l4-t1",
           "statement": "Normal: mean $100$, SD $15$. What share lies between $85$ and $115$? Above $130$?",
           "solution": "$\\pm 1\\sigma$: $68\\%$. Above $+2\\sigma$: $2.5\\%$.",
-          "check": ["100 - 15 == 85", "100 + 2*15 == 130", "(100 - 95)/2 == 5/2"]
+          "check": [
+            "100 - 15 == 85",
+            "100 + 2*15 == 130",
+            "(100 - 95)/2 == 5/2"
+          ]
         },
         {
           "id": "dp-l4-t2",
           "statement": "Battery life: normal, mean $40$ h, SD $3$. Between what two lifetimes do the middle $99.7\\%$ of batteries fall?",
           "solution": "$\\mu \\pm 3\\sigma$: $31$ to $49$ hours.",
-          "check": ["40 - 9 == 31", "40 + 9 == 49"]
+          "check": [
+            "40 - 9 == 31",
+            "40 + 9 == 49"
+          ]
         }
       ],
       "interactive": {
@@ -608,14 +755,33 @@
             ]
           },
           {
+            "kind": "normalCurve",
+            "eyebrow": "Shade the bands",
+            "title": "68 — 95 — 99.7, on the axis",
+            "teach": "A normal distribution with $\\mu = 100$, $\\sigma = 15$. Tap the bands: about 68% of values land within one sigma (85 to 115), 95% within two (70 to 130), 99.7% within three. Those three numbers are the empirical rule — the whole reason knowing $\\mu$ and $\\sigma$ is knowing almost everything about a normal.",
+            "config": {
+              "mode": "empirical",
+              "mu": 100,
+              "sigma": 15,
+              "xLabel": "score"
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Band drill",
             "title": "One band",
             "prompt": "Normal, mean $60$, SD $5$: what share lies between $55$ and $65$?",
-            "options": ["$68\\%$", "$95\\%$", "$50\\%$"],
+            "options": [
+              "$68\\%$",
+              "$95\\%$",
+              "$50\\%$"
+            ],
             "correctIndex": 0,
             "explanation": "$55$–$65$ is $\\mu \\pm 1\\sigma$: the $68\\%$ band. The bell concentrates two-thirds of everything within one SD — the single most useful fact about it.",
-            "check": ["60 - 5 == 55", "60 + 5 == 65"]
+            "check": [
+              "60 - 5 == 55",
+              "60 + 5 == 65"
+            ]
           },
           {
             "kind": "worked",
@@ -640,10 +806,16 @@
             "eyebrow": "Slice drill",
             "title": "Tails and bands",
             "prompt": "For a normal distribution, the share BELOW $\\mu - 1\\sigma$ is…",
-            "options": ["$16\\%$", "$32\\%$", "$68\\%$"],
+            "options": [
+              "$16\\%$",
+              "$32\\%$",
+              "$68\\%$"
+            ],
             "correctIndex": 0,
             "explanation": "Outside $\\pm 1\\sigma$: $32\\%$; the lower tail takes half: $16\\%$. Forgetting to halve is the classic slip — sketch the bell and the halving draws itself.",
-            "check": ["(100 - 68)/2 == 16"]
+            "check": [
+              "(100 - 68)/2 == 16"
+            ]
           },
           {
             "kind": "tip",
@@ -711,19 +883,29 @@
           "id": "dp-l5-w1",
           "statement": "Bottles: normal, mean $503$ ml, SD $2$; label promises $500$ ml. Bracket the fraction of under-filled bottles.",
           "solution": "$z = \\frac{500 - 503}{2} = -1.5$: between the landmarks. Below $-1$: $16\\%$; below $-2$: $2.5\\%$. The under-fill rate is between $2.5\\%$ and $16\\%$ — roughly $7\\%$ by the midpoint of the bracket. (Exact tables give $6.7\\%$; the bracket already told the story.)",
-          "check": ["(500 - 503)/2 == -3/2", "(100 - 68)/2 == 16", "(100 - 95)/2 == 5/2"]
+          "check": [
+            "(500 - 503)/2 == -3/2",
+            "(100 - 68)/2 == 16",
+            "(100 - 95)/2 == 5/2"
+          ]
         },
         {
           "id": "dp-l5-w2",
           "statement": "Test scores: normal, mean $250$, SD $40$. A program admits the top $16\\%$. Find the cutoff score.",
           "solution": "Top $16\\%$ begins at $z = +1$ (the upper-tail landmark). Cutoff: $250 + 1 \\times 40 = 290$.",
-          "check": ["250 + 40 == 290", "(100 - 68)/2 == 16"]
+          "check": [
+            "250 + 40 == 290",
+            "(100 - 68)/2 == 16"
+          ]
         },
         {
           "id": "dp-l5-w3",
           "statement": "Reaction times: normal, mean $300$ ms, SD $20$. A gamer clocks $260$ ms (lower = better). What percentile is that, and how rare?",
           "solution": "$z = \\frac{260 - 300}{20} = -2$: two SDs on the GOOD side. Share faster: the below-$-2\\sigma$ tail, $2.5\\%$ — she's at the $2.5$th percentile of times, i.e., faster than $97.5\\%$ of players. One in forty.",
-          "check": ["(260 - 300)/20 == -2", "100 - 5/2 == 195/2"]
+          "check": [
+            "(260 - 300)/20 == -2",
+            "100 - 5/2 == 195/2"
+          ]
         }
       ],
       "commonMistakes": [
@@ -743,13 +925,18 @@
           "id": "dp-l5-t1",
           "statement": "Normal: mean $75$, SD $5$. What share scores above $85$, and what percentile is a score of $70$?",
           "solution": "$85$ is $z = +2$: above it, $2.5\\%$. $70$ is $z = -1$: the $16$th percentile.",
-          "check": ["(85 - 75)/5 == 2", "(70 - 75)/5 == -1"]
+          "check": [
+            "(85 - 75)/5 == 2",
+            "(70 - 75)/5 == -1"
+          ]
         },
         {
           "id": "dp-l5-t2",
           "statement": "Lightbulb lifetimes: normal, mean $1200$ h, SD $50$. The maker wants to guarantee a lifetime that $97.5\\%$ of bulbs exceed. What guarantee?",
           "solution": "$97.5\\%$ exceed the value at $z = -2$: $1200 - 100 = 1100$ hours.",
-          "check": ["1200 - 2*50 == 1100"]
+          "check": [
+            "1200 - 2*50 == 1100"
+          ]
         }
       ],
       "interactive": {
@@ -766,6 +953,18 @@
             ]
           },
           {
+            "kind": "normalCurve",
+            "eyebrow": "Read the bands",
+            "title": "Heights under the bell",
+            "teach": "Adult heights: $\\mu = 170$ cm, $\\sigma = 7$ cm. The ±1σ band says 68% of people stand between 163 and 177 cm; ±2σ says 95% between 156 and 184. Every applied normal problem is this move: translate the question onto the axis, then read the band.",
+            "config": {
+              "mode": "empirical",
+              "mu": 170,
+              "sigma": 7,
+              "xLabel": "height (cm)"
+            }
+          },
+          {
             "kind": "worked",
             "eyebrow": "Worked example",
             "title": "The under-filled bottles",
@@ -776,10 +975,16 @@
             "eyebrow": "Bracket drill",
             "title": "Between the posts",
             "prompt": "Normal data, and a value at $z = 2.4$. The share above it is…",
-            "options": ["between $0.15\\%$ and $2.5\\%$", "exactly $1.7\\%$ — by the rule", "$5\\%$"],
+            "options": [
+              "between $0.15\\%$ and $2.5\\%$",
+              "exactly $1.7\\%$ — by the rule",
+              "$5\\%$"
+            ],
             "correctIndex": 0,
             "explanation": "$2.4$ sits between the $z=2$ ($2.5\\%$ above) and $z=3$ ($0.15\\%$ above) landmarks: bracket it. The rule alone can't produce $1.7\\%$ — that needs a table; claiming it from 68-95-99.7 is invented precision.",
-            "check": ["(100 - 95)/2 == 5/2"]
+            "check": [
+              "(100 - 95)/2 == 5/2"
+            ]
           },
           {
             "kind": "worked",
@@ -798,10 +1003,16 @@
             "eyebrow": "Backward drill",
             "title": "Share to cutoff",
             "prompt": "Normal: mean $500$, SD $100$. The bottom $2.5\\%$ ends at…",
-            "options": ["$300$", "$700$", "$450$"],
+            "options": [
+              "$300$",
+              "$700$",
+              "$450$"
+            ],
             "correctIndex": 0,
             "explanation": "Bottom $2.5\\%$ = below $z = -2$: $500 - 200 = 300$. The $700$ mirrors the tail to the wrong side — the sketch-and-shade step exists precisely to catch that.",
-            "check": ["500 - 2*100 == 300"]
+            "check": [
+              "500 - 2*100 == 300"
+            ]
           },
           {
             "kind": "tip",
@@ -869,19 +1080,28 @@
           "id": "dp-l6-w1",
           "statement": "Ana: $86$ on Exam A ($\\mu = 70$, $\\sigma = 8$). Bat: $640$ on Exam B ($\\mu = 520$, $\\sigma = 80$). Both roughly normal. Run the full pipeline.",
           "solution": "Shapes: both normal (stated) — machinery legal. Standardize: $z_{Ana} = \\frac{86-70}{8} = 2.0$; $z_{Bat} = \\frac{640-520}{80} = 1.5$. Slices: Ana at $P_{97.5}$ (top $2.5\\%$); Bat at $\\approx P_{93}$ (between $P_{84}$ and $P_{97.5}$). Memo: \"Both excellent; Ana stands in her exam's top fortieth, Bat in roughly his top fifteenth — Ana by position.\"",
-          "check": ["(86 - 70)/8 == 2", "(640 - 520)/80 == 3/2"]
+          "check": [
+            "(86 - 70)/8 == 2",
+            "(640 - 520)/80 == 3/2"
+          ]
         },
         {
           "id": "dp-l6-w2",
           "statement": "A clinic flags patients outside $\\mu \\pm 2\\sigma$ on a blood measure (normal, $\\mu = 120$, $\\sigma = 10$). What share gets flagged, and what are the flag thresholds?",
           "solution": "Thresholds: $100$ and $140$. Outside $\\pm 2\\sigma$: $5\\%$ of healthy patients flagged ($2.5\\%$ each side) — the false-alarm rate BUILT INTO the cutoff choice. (Unit 6's base-rate lesson: most flags in a healthy population are false alarms. The units keep joining hands.)",
-          "check": ["120 - 20 == 100", "120 + 20 == 140", "100 - 95 == 5"]
+          "check": [
+            "120 - 20 == 100",
+            "120 + 20 == 140",
+            "100 - 95 == 5"
+          ]
         },
         {
           "id": "dp-l6-w3",
           "statement": "Bat's coach protests: \"Exam B's cohort was national-level; Ana's was one school. The percentiles aren't comparable!\" Is the protest statistically sound?",
           "solution": "Yes — and it's the unit's built-in caveat: percentiles measure standing WITHIN a crowd, and unequal crowds break cross-crowd comparisons. The fix is a common yardstick (both take the same exam, or link the exams statistically). Position tools are exact about relative standing and silent about absolute skill; knowing which question you've answered is the mark of statistical maturity.",
-          "check": ["1 == 1"]
+          "check": [
+            "1 == 1"
+          ]
         }
       ],
       "commonMistakes": [
@@ -901,13 +1121,17 @@
           "id": "dp-l6-t1",
           "statement": "Chess ratings in a club: normal, mean $1500$, SD $120$. Translate a rating of $1740$ into a z-score and a percentile.",
           "solution": "$z = \\frac{1740 - 1500}{120} = 2$: the $97.5$th percentile — top $2.5\\%$ of the club.",
-          "check": ["(1740 - 1500)/120 == 2"]
+          "check": [
+            "(1740 - 1500)/120 == 2"
+          ]
         },
         {
           "id": "dp-l6-t2",
           "statement": "Two friends compare gym numbers: Dulguun benches at $z = +1.2$ among men his age; Saraa deadlifts at $z = +1.9$ among women hers. Who's more exceptional, and what's the honest caveat?",
           "solution": "Saraa — further above her crowd's mean ($1.9 > 1.2$ SDs). Caveat: each is located within their OWN reference population; the comparison is of relative standing, not of kilograms.",
-          "check": ["19/10 > 12/10"]
+          "check": [
+            "19/10 > 12/10"
+          ]
         }
       ],
       "interactive": {
@@ -934,10 +1158,16 @@
             "eyebrow": "Translation drill",
             "title": "Twin languages",
             "prompt": "A normal-data value at $z = +1$ sits at which percentile?",
-            "options": ["$P_{84}$", "$P_{68}$", "$P_{50}$"],
+            "options": [
+              "$P_{84}$",
+              "$P_{68}$",
+              "$P_{50}$"
+            ],
             "correctIndex": 0,
             "explanation": "Below $+1\\sigma$: the $50\\%$ lower half plus the $34\\%$ half-band $= 84\\%$. ($P_{68}$ misreads the whole band as one-sided.) z and percentile are dialects of one fact.",
-            "check": ["50 + 68/2 == 84"]
+            "check": [
+              "50 + 68/2 == 84"
+            ]
           },
           {
             "kind": "worked",
@@ -956,10 +1186,16 @@
             "eyebrow": "Caveat radar",
             "title": "When z lies",
             "prompt": "Which comparison is statistically UNSAFE without extra work?",
-            "options": ["z-comparing percentiles from a strong cohort vs a weak cohort", "z-comparing two students in the SAME class", "translating z = 2 to P97.5 on bell-shaped data"],
+            "options": [
+              "z-comparing percentiles from a strong cohort vs a weak cohort",
+              "z-comparing two students in the SAME class",
+              "translating z = 2 to P97.5 on bell-shaped data"
+            ],
             "correctIndex": 0,
             "explanation": "Cross-cohort z's compare relative standings in DIFFERENT crowds — fine to state, unsafe to treat as absolute skill. Same-crowd comparisons and bell-legal translations are exactly what the tools promise.",
-            "check": ["1 == 1"]
+            "check": [
+              "1 == 1"
+            ]
           },
           {
             "kind": "tip",
@@ -1004,49 +1240,68 @@
       "id": "dp-p-1",
       "statement": "Data: $3, 4, 6, 7, 7, 9, 11, 13, 14, 18$. Bin by $[0,5), [5,10), [10,15), [15,20)$ and give frequencies.",
       "solution": "Counts: $2, 4, 3, 1$ — sum $10$ ✓. Single hump, mild right tail.",
-      "check": ["2 + 4 + 3 + 1 == 10"]
+      "check": [
+        "2 + 4 + 3 + 1 == 10"
+      ]
     },
     {
       "id": "dp-p-2",
       "statement": "In a sorted list of $40$ values, Nomin's value is $30$th from the bottom. Find her percentile rank.",
       "solution": "$\\frac{30}{40} \\times 100 = 75$th percentile — which is also $Q_3$.",
-      "check": ["30/40*100 == 75"]
+      "check": [
+        "30/40*100 == 75"
+      ]
     },
     {
       "id": "dp-p-3",
       "statement": "Mean $64$, SD $6$: compute z-scores for $76$ and $55$.",
       "solution": "$z = \\frac{76-64}{6} = 2$; $z = \\frac{55-64}{6} = -1.5$.",
-      "check": ["(76 - 64)/6 == 2", "(55 - 64)/6 == -3/2"]
+      "check": [
+        "(76 - 64)/6 == 2",
+        "(55 - 64)/6 == -3/2"
+      ]
     },
     {
       "id": "dp-p-4",
       "statement": "A distribution has mean $90$ and SD $12$. What raw value has $z = 2.5$?",
       "solution": "$x = 90 + 2.5 \\times 12 = 120$.",
-      "check": ["90 + 25/10*12 == 120"]
+      "check": [
+        "90 + 25/10*12 == 120"
+      ]
     },
     {
       "id": "dp-p-5",
       "statement": "Normal: mean $40$, SD $4$. What share lies between $36$ and $44$? Between $32$ and $48$?",
       "solution": "$\\pm 1\\sigma$: $68\\%$; $\\pm 2\\sigma$: $95\\%$.",
-      "check": ["40 - 4 == 36", "40 + 8 == 48"]
+      "check": [
+        "40 - 4 == 36",
+        "40 + 8 == 48"
+      ]
     },
     {
       "id": "dp-p-6",
       "statement": "Normal: mean $500$, SD $90$. What share exceeds $680$?",
       "solution": "$680$ is $z = +2$: above it, $\\frac{100 - 95}{2} = 2.5\\%$.",
-      "check": ["(680 - 500)/90 == 2", "(100 - 95)/2 == 5/2"]
+      "check": [
+        "(680 - 500)/90 == 2",
+        "(100 - 95)/2 == 5/2"
+      ]
     },
     {
       "id": "dp-p-7",
       "statement": "Normal exam: mean $71$, SD $7$. Scholarships go to the top $16\\%$. Find the cutoff.",
       "solution": "Top $16\\%$ starts at $z = +1$: cutoff $71 + 7 = 78$.",
-      "check": ["71 + 7 == 78"]
+      "check": [
+        "71 + 7 == 78"
+      ]
     },
     {
       "id": "dp-p-8",
       "statement": "Ana runs $z = -1.8$ on 5K times (lower better); Bat lifts $z = +1.5$ on bench press. Who is further from typical in their sport?",
       "solution": "$|{-1.8}| > |1.5|$: Ana. Direction differs by sport; distance from typical is $|z|$.",
-      "check": ["18/10 > 15/10"]
+      "check": [
+        "18/10 > 15/10"
+      ]
     }
   ],
   "testYourself": [
@@ -1054,37 +1309,53 @@
       "id": "dp-ty-1",
       "statement": "A histogram of $60$ delivery times shows bars $5, 18, 22, 10, 3$, plus a detached bar of $2$ far right. Describe shape, and name the summary pair you'd report.",
       "solution": "Unimodal core (hump in the third bin), roughly symmetric, with $2$ detached high outliers. Sum check: $5+18+22+10+3+2 = 60$ ✓. With flagged outliers: median + IQR.",
-      "check": ["5 + 18 + 22 + 10 + 3 + 2 == 60"]
+      "check": [
+        "5 + 18 + 22 + 10 + 3 + 2 == 60"
+      ]
     },
     {
       "id": "dp-ty-2",
       "statement": "On a $25$-student exam, Tulga beat or tied $20$ students. His percentile — and is 'he scored $80\\%$' the same claim?",
       "solution": "$\\frac{20}{25} \\times 100 = 80$th percentile. NOT the same as scoring $80\\%$: percentile is crowd position; the raw score could be anything.",
-      "check": ["20/25*100 == 80"]
+      "check": [
+        "20/25*100 == 80"
+      ]
     },
     {
       "id": "dp-ty-3",
       "statement": "Two normal exams: X (mean $60$, SD $10$) and Y (mean $75$, SD $5$). Saraa scored $78$ on X, Dulguun $83$ on Y. Standardize, compare, and translate both to percentiles.",
       "solution": "$z_S = \\frac{78-60}{10} = 1.8$; $z_D = \\frac{83-75}{5} = 1.6$. Saraa stands (slightly) further up: between $P_{84}$ and $P_{97.5}$ for both, Saraa nearer the top. Same-direction bracket, decided by z.",
-      "check": ["(78 - 60)/10 == 9/5", "(83 - 75)/5 == 8/5", "9/5 > 8/5"]
+      "check": [
+        "(78 - 60)/10 == 9/5",
+        "(83 - 75)/5 == 8/5",
+        "9/5 > 8/5"
+      ]
     },
     {
       "id": "dp-ty-4",
       "statement": "Machine parts: normal, mean $50.0$ mm, SD $0.2$. Specs demand $49.6$–$50.4$ mm. What share of parts is out of spec — and per box of $200$, how many rejects do you expect?",
       "solution": "Specs sit at $\\mu \\pm 2\\sigma$: $5\\%$ out of spec. Per $200$: expected $200 \\times 0.05 = 10$ rejects (binomial mean — Unit 8 consuming Unit 10).",
-      "check": ["(504 - 500)/2 == 2", "200*5/100 == 10"]
+      "check": [
+        "(504 - 500)/2 == 2",
+        "200*5/100 == 10"
+      ]
     },
     {
       "id": "dp-ty-5",
       "statement": "Normal blood-pressure data: mean $120$, SD $10$. A clinic wants to flag only the top $0.15\\%$. Set the threshold, and explain the trade-off vs a $\\mu + 2\\sigma$ threshold.",
       "solution": "Top $0.15\\%$ begins at $z = +3$: threshold $150$. Trade-off: at $140$ ($z=2$) the clinic catches more true cases but falsely flags $2.5\\%$ of healthy patients; at $150$ false alarms nearly vanish but real borderline cases slip through. Threshold-setting IS choosing which error to prefer.",
-      "check": ["120 + 30 == 150", "120 + 20 == 140"]
+      "check": [
+        "120 + 30 == 150",
+        "120 + 20 == 140"
+      ]
     },
     {
       "id": "dp-ty-6",
       "statement": "A right-skewed income dataset has mean $4.2$M₮, SD $3$M₮. A colleague computes z = 2 for a $10.2$M₮ earner and announces \"top 2.5% by the empirical rule.\" Name the error and the correct approach.",
       "solution": "The z-arithmetic is right ($\\frac{10.2-4.2}{3} = 2$) but the PERCENTILE claim needs the bell — incomes are right-skewed, so the z-to-percentile bridge is out. Correct: compute the percentile directly from the sorted data (the earner's at-or-below share). Shape check comes before rule use, every time.",
-      "check": ["(102/10 - 42/10)/3 == 2"]
+      "check": [
+        "(102/10 - 42/10)/3 == 2"
+      ]
     }
   ]
 }

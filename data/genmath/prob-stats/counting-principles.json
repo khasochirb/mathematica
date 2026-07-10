@@ -35,19 +35,26 @@
           "id": "cp-l1-w1",
           "statement": "A sandwich shop offers $2$ breads (white, rye) and $3$ fillings (turkey, cheese, veggie). List every possible sandwich and count them.",
           "solution": "Fix the bread, cycle the filling. White: WT, WC, WV. Rye: RT, RC, RV. That is $3 + 3 = 6$ sandwiches — and the tree view says the same thing faster: $2 \\times 3 = 6$.",
-          "check": ["2*3 == 6", "3 + 3 == 6"]
+          "check": [
+            "2*3 == 6",
+            "3 + 3 == 6"
+          ]
         },
         {
           "id": "cp-l1-w2",
           "statement": "You flip a coin and then roll a standard die. Draw the tree in your head: how many outcomes are there in total?",
           "solution": "Level 1: $2$ branches (H, T). Level 2: each branch sprouts $6$ more (1 through 6). Leaves: $2 \\times 6 = 12$ outcomes — H1 through H6, then T1 through T6.",
-          "check": ["2*6 == 12"]
+          "check": [
+            "2*6 == 12"
+          ]
         },
         {
           "id": "cp-l1-w3",
           "statement": "How many two-digit numbers can you build from the digits $1, 2, 3$ if no digit repeats? List them all.",
           "solution": "Fix the tens digit, cycle the units digit: 12, 13, then 21, 23, then 31, 32. Six numbers. Structure check: $3$ choices for the tens digit, then $2$ remaining for the units — $3 \\times 2 = 6$. ✓",
-          "check": ["3*2 == 6"]
+          "check": [
+            "3*2 == 6"
+          ]
         }
       ],
       "commonMistakes": [
@@ -67,13 +74,17 @@
           "id": "cp-l1-t1",
           "statement": "Two coins are flipped. List the outcomes in an organized way and count them.",
           "solution": "Fix the first coin: HH, HT, then TH, TT. Four outcomes — $2 \\times 2 = 4$.",
-          "check": ["2*2 == 4"]
+          "check": [
+            "2*2 == 4"
+          ]
         },
         {
           "id": "cp-l1-t2",
           "statement": "A pizza order is one size ($3$ options) and one crust ($2$ options). How many different pizzas are possible?",
           "solution": "Tree: $3$ size branches, each with $2$ crust branches — $3 \\times 2 = 6$ pizzas.",
-          "check": ["3*2 == 6"]
+          "check": [
+            "3*2 == 6"
+          ]
         }
       ],
       "interactive": {
@@ -105,10 +116,16 @@
             "eyebrow": "Check the discipline",
             "title": "Spot the safe list",
             "prompt": "Which list of two-coin outcomes is ORGANIZED (fix first coin, cycle second)?",
-            "options": ["HH, HT, TH, TT", "HT, TT, HH, TH", "HH, TT, HT"],
+            "options": [
+              "HH, HT, TH, TT",
+              "HT, TT, HH, TH",
+              "HH, TT, HT"
+            ],
             "correctIndex": 0,
             "explanation": "HH, HT, TH, TT fixes the first coin (H, then T) and cycles the second. The second option is scrambled — easy to lose your place. The third MISSED an outcome (TH) — exactly the failure organized lists prevent.",
-            "check": ["2*2 == 4"]
+            "check": [
+              "2*2 == 4"
+            ]
           },
           {
             "kind": "teach",
@@ -120,6 +137,42 @@
               "Counting outcomes $=$ counting leaves.",
               "$2$ branches $\\times$ $3$ sprouts each $= 6$ leaves — the tree counts itself."
             ]
+          },
+          {
+            "kind": "treeDiagram",
+            "eyebrow": "Play with it",
+            "title": "The outfit tree, live",
+            "teach": "Three shirts, two pairs of pants. Every complete path from the trunk to a leaf is one outfit — tap any leaf and watch its path light up. The tree doesn't just count the outcomes, it **lists** them, which is why it's the tool you reach for when the count is small enough to see.",
+            "config": {
+              "mode": "count",
+              "stages": [
+                {
+                  "name": "shirt",
+                  "options": [
+                    {
+                      "label": "red"
+                    },
+                    {
+                      "label": "blue"
+                    },
+                    {
+                      "label": "green"
+                    }
+                  ]
+                },
+                {
+                  "name": "pants",
+                  "options": [
+                    {
+                      "label": "jeans"
+                    },
+                    {
+                      "label": "khakis"
+                    }
+                  ]
+                }
+              ]
+            }
           },
           {
             "kind": "worked",
@@ -138,10 +191,16 @@
             "eyebrow": "Read the tree",
             "title": "Leaves, not branches",
             "prompt": "A spinner (A, B, C) is spun, then a coin is flipped. How many outcomes does the tree end in?",
-            "options": ["$6$", "$5$", "$9$"],
+            "options": [
+              "$6$",
+              "$5$",
+              "$9$"
+            ],
             "correctIndex": 0,
             "explanation": "$3$ branches, each sprouting $2$: $3 \\times 2 = 6$ leaves. $5$ comes from ADDING $3 + 2$ — but the choices happen in sequence, not instead of each other. $9$ doubles up the spinner.",
-            "check": ["3*2 == 6"]
+            "check": [
+              "3*2 == 6"
+            ]
           },
           {
             "kind": "worked",
@@ -215,19 +274,25 @@
           "id": "cp-l2-w1",
           "statement": "You own $4$ shirts, $3$ pants, and $2$ pairs of shoes. How many different outfits (one of each) can you wear?",
           "solution": "Three slots, one per decision: $\\underline{4} \\times \\underline{3} \\times \\underline{2}$. Shirt first ($4$ ways), then pants ($3$ ways regardless of shirt), then shoes ($2$ ways). Total: $4 \\times 3 \\times 2 = 24$ outfits.",
-          "check": ["4*3*2 == 24"]
+          "check": [
+            "4*3*2 == 24"
+          ]
         },
         {
           "id": "cp-l2-w2",
           "statement": "A license plate has $2$ letters followed by $3$ digits, repeats allowed. How many plates are possible?",
           "solution": "Five slots: $\\underline{26} \\times \\underline{26} \\times \\underline{10} \\times \\underline{10} \\times \\underline{10}$. Letters repeat, so both letter slots hold $26$; digits repeat, so each digit slot holds $10$. Total: $26^2 \\times 10^3 = 676 \\times 1000 = 676{,}000$.",
-          "check": ["26**2 * 10**3 == 676000"]
+          "check": [
+            "26**2 * 10**3 == 676000"
+          ]
         },
         {
           "id": "cp-l2-w3",
           "statement": "How many $4$-digit PIN codes use four DIFFERENT digits (0–9)?",
           "solution": "No-repeat slots shrink: first digit $10$ options, second $9$ (one is used up), third $8$, fourth $7$. Total: $10 \\times 9 \\times 8 \\times 7 = 5040$. Note which digits remain depends on your picks — but the COUNT at each slot is always the same, which is all the principle needs.",
-          "check": ["10*9*8*7 == 5040"]
+          "check": [
+            "10*9*8*7 == 5040"
+          ]
         }
       ],
       "commonMistakes": [
@@ -247,13 +312,17 @@
           "id": "cp-l2-t1",
           "statement": "A cafe menu has $3$ mains, $4$ sides, and $2$ drinks. How many different meals (one of each)?",
           "solution": "$3 \\times 4 \\times 2 = 24$ meals.",
-          "check": ["3*4*2 == 24"]
+          "check": [
+            "3*4*2 == 24"
+          ]
         },
         {
           "id": "cp-l2-t2",
           "statement": "How many $3$-letter codes can be made from A–Z if letters may NOT repeat?",
           "solution": "Shrinking slots: $26 \\times 25 \\times 24 = 15{,}600$.",
-          "check": ["26*25*24 == 15600"]
+          "check": [
+            "26*25*24 == 15600"
+          ]
         }
       ],
       "interactive": {
@@ -285,10 +354,16 @@
             "eyebrow": "First slots",
             "title": "Menu math",
             "prompt": "A menu has $3$ mains and $4$ drinks. How many main-plus-drink combos?",
-            "options": ["$12$", "$7$", "$34$"],
+            "options": [
+              "$12$",
+              "$7$",
+              "$34$"
+            ],
             "correctIndex": 0,
             "explanation": "Two slots: $3 \\times 4 = 12$. The distractor $7$ is $3 + 4$ — adding counts the ITEMS, not the combos. \"Then\" multiplies.",
-            "check": ["3*4 == 12"]
+            "check": [
+              "3*4 == 12"
+            ]
           },
           {
             "kind": "teach",
@@ -300,6 +375,53 @@
               "The options DIFFER by path; the count doesn't. That's enough.",
               "If a choice changes how MANY options come next — split into cases (next lesson)."
             ]
+          },
+          {
+            "kind": "treeDiagram",
+            "eyebrow": "Watch it multiply",
+            "title": "Three stages, one product",
+            "teach": "A drink, a main, a dessert. Each stage multiplies the branch count: $2 \\times 3 \\times 2 = 12$ complete meals. Notice you never had to list all twelve to know there are twelve — the tree's shape does the arithmetic. That's the multiplication principle: **stages multiply**.",
+            "config": {
+              "mode": "count",
+              "stages": [
+                {
+                  "name": "drink",
+                  "options": [
+                    {
+                      "label": "tea"
+                    },
+                    {
+                      "label": "juice"
+                    }
+                  ]
+                },
+                {
+                  "name": "main",
+                  "options": [
+                    {
+                      "label": "rice"
+                    },
+                    {
+                      "label": "noodles"
+                    },
+                    {
+                      "label": "soup"
+                    }
+                  ]
+                },
+                {
+                  "name": "dessert",
+                  "options": [
+                    {
+                      "label": "fruit"
+                    },
+                    {
+                      "label": "cake"
+                    }
+                  ]
+                }
+              ]
+            }
           },
           {
             "kind": "worked",
@@ -324,10 +446,16 @@
             "eyebrow": "Slot check",
             "title": "Repeats or not?",
             "prompt": "How many $2$-letter codes from A–Z if the two letters must be DIFFERENT?",
-            "options": ["$26 \\times 25 = 650$", "$26 \\times 26 = 676$", "$26 + 25 = 51$"],
+            "options": [
+              "$26 \\times 25 = 650$",
+              "$26 \\times 26 = 676$",
+              "$26 + 25 = 51$"
+            ],
             "correctIndex": 0,
             "explanation": "The second slot lost one option: $26 \\times 25 = 650$. $676$ allows repeats like AA; $51$ adds when it should multiply.",
-            "check": ["26*25 == 650"]
+            "check": [
+              "26*25 == 650"
+            ]
           },
           {
             "kind": "tip",
@@ -395,19 +523,25 @@
           "id": "cp-l3-w1",
           "statement": "A town offers $3$ bus routes and $2$ train lines to the city. You take exactly one. How many ways can you travel?",
           "solution": "The trip is a bus OR a train — never both. Exclusive alternatives add: $3 + 2 = 5$ ways.",
-          "check": ["3 + 2 == 5"]
+          "check": [
+            "3 + 2 == 5"
+          ]
         },
         {
           "id": "cp-l3-w2",
           "statement": "Friday options: the cinema shows $3$ movies at $4$ times each; the theater shows $2$ plays at $3$ times each. How many different evenings out are possible?",
           "solution": "Case 1 (cinema): movie THEN time $= 3 \\times 4 = 12$. Case 2 (theater): play THEN time $= 2 \\times 3 = 6$. The cases can't overlap (you're in one building), so add: $12 + 6 = 18$ evenings.",
-          "check": ["3*4 + 2*3 == 18"]
+          "check": [
+            "3*4 + 2*3 == 18"
+          ]
         },
         {
           "id": "cp-l3-w3",
           "statement": "How many two-digit numbers have BOTH digits odd or BOTH digits even? (A two-digit number can't start with $0$.)",
           "solution": "Case 1 — both odd: tens from $\\{1,3,5,7,9\\}$ ($5$ ways), units from the same set ($5$ ways): $5 \\times 5 = 25$. Case 2 — both even: tens from $\\{2,4,6,8\\}$ ($4$ ways — no leading zero), units from $\\{0,2,4,6,8\\}$ ($5$ ways): $4 \\times 5 = 20$. No number is in both cases (digits can't be odd AND even), so add: $25 + 20 = 45$.",
-          "check": ["5*5 + 4*5 == 45"]
+          "check": [
+            "5*5 + 4*5 == 45"
+          ]
         }
       ],
       "commonMistakes": [
@@ -427,13 +561,17 @@
           "id": "cp-l3-t1",
           "statement": "Lunch is one starter: $3$ soups or $4$ salads. How many starter choices do you have?",
           "solution": "Exactly one starter, soup OR salad: $3 + 4 = 7$.",
-          "check": ["3 + 4 == 7"]
+          "check": [
+            "3 + 4 == 7"
+          ]
         },
         {
           "id": "cp-l3-t2",
           "statement": "A shop sells bikes in $4$ colors with $2$ frame sizes, and scooters in $3$ colors (one size). How many different vehicles could you buy?",
           "solution": "Bikes: $4 \\times 2 = 8$. Scooters: $3$. One vehicle, so add: $8 + 3 = 11$.",
-          "check": ["4*2 + 3 == 11"]
+          "check": [
+            "4*2 + 3 == 11"
+          ]
         }
       ],
       "interactive": {
@@ -450,14 +588,66 @@
             ]
           },
           {
+            "kind": "treeDiagram",
+            "eyebrow": "Spot the difference",
+            "title": "When branches don't match, you add",
+            "teach": "Order pizza and you pick one of 3 sizes; order pasta and you pick one of 2 shapes. The tree is **ragged** — the cases have different follow-ups — so there's no clean product. Count each case and add: $3 + 2 = 5$ possible orders. Multiplication is for stages; addition is for cases.",
+            "config": {
+              "mode": "count",
+              "stages": [
+                {
+                  "name": "order",
+                  "options": [
+                    {
+                      "label": "pizza"
+                    },
+                    {
+                      "label": "pasta"
+                    }
+                  ]
+                },
+                {
+                  "name": "then pick",
+                  "byPath": {
+                    "pizza": [
+                      {
+                        "label": "small"
+                      },
+                      {
+                        "label": "medium"
+                      },
+                      {
+                        "label": "large"
+                      }
+                    ],
+                    "pasta": [
+                      {
+                        "label": "spaghetti"
+                      },
+                      {
+                        "label": "penne"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Hear the word",
             "title": "Or vs then",
             "prompt": "A vending machine has $5$ chip flavors and $4$ candy bars. You buy ONE snack. How many choices?",
-            "options": ["$9$", "$20$", "$5$"],
+            "options": [
+              "$9$",
+              "$20$",
+              "$5$"
+            ],
             "correctIndex": 0,
             "explanation": "One snack — chips OR candy: $5 + 4 = 9$. The distractor $20$ multiplies, which would mean buying chips AND THEN candy.",
-            "check": ["5 + 4 == 9"]
+            "check": [
+              "5 + 4 == 9"
+            ]
           },
           {
             "kind": "teach",
@@ -493,10 +683,16 @@
             "eyebrow": "Partition patrol",
             "title": "Is this split safe?",
             "prompt": "To count two-digit numbers, Bilguun splits into cases \"contains a 7\" and \"is even\". What's wrong?",
-            "options": ["The cases overlap — 70 is in both", "Nothing — add the cases", "Two-digit numbers can't contain 7"],
+            "options": [
+              "The cases overlap — 70 is in both",
+              "Nothing — add the cases",
+              "Two-digit numbers can't contain 7"
+            ],
             "correctIndex": 0,
             "explanation": "$70$ contains a $7$ AND is even — it would be counted twice. Cases must be mutually exclusive before you add. (Lesson 6 shows how to FIX overlapping counts by subtracting the overlap.)",
-            "check": ["70 % 2 == 0"]
+            "check": [
+              "70 % 2 == 0"
+            ]
           },
           {
             "kind": "tip",
@@ -564,19 +760,26 @@
           "id": "cp-l4-w1",
           "statement": "Five books go on a shelf. The dictionary must be on the far left. How many arrangements are there?",
           "solution": "Fussy first: the dictionary's slot is forced ($1$ way). The remaining $4$ books fill $4$ slots freely: $4 \\times 3 \\times 2 \\times 1 = 24$. Total: $1 \\times 24 = 24$ arrangements.",
-          "check": ["factorial(4) == 24", "1*4*3*2*1 == 24"]
+          "check": [
+            "factorial(4) == 24",
+            "1*4*3*2*1 == 24"
+          ]
         },
         {
           "id": "cp-l4-w2",
           "statement": "Four friends sit in a row, and Ana and Bat insist on sitting next to each other. How many seatings are possible?",
           "solution": "Glue Ana+Bat into one block. Now $3$ units (block, C, D) arrange in $3 \\times 2 \\times 1 = 6$ ways. Inside the block, Ana and Bat can order themselves $2$ ways (AB or BA). Total: $6 \\times 2 = 12$ seatings.",
-          "check": ["factorial(3)*factorial(2) == 12"]
+          "check": [
+            "factorial(3)*factorial(2) == 12"
+          ]
         },
         {
           "id": "cp-l4-w3",
           "statement": "How many $3$-digit EVEN numbers use the digits $1$–$5$ with no digit repeated?",
           "solution": "The restriction lives in the units digit: it must be even, so it comes from $\\{2, 4\\}$ — $2$ ways. Fussy first! Then the hundreds digit: $4$ digits remain, all legal — $4$ ways. Then the tens digit: $3$ remain. Total: $2 \\times 4 \\times 3 = 24$ numbers.",
-          "check": ["2*4*3 == 24"]
+          "check": [
+            "2*4*3 == 24"
+          ]
         }
       ],
       "commonMistakes": [
@@ -596,13 +799,17 @@
           "id": "cp-l4-t1",
           "statement": "Four runners finish a race with no ties. Dulguun definitely finishes first. How many finish orders are possible?",
           "solution": "Dulguun's slot is forced; the other three arrange freely: $3 \\times 2 \\times 1 = 6$.",
-          "check": ["factorial(3) == 6"]
+          "check": [
+            "factorial(3) == 6"
+          ]
         },
         {
           "id": "cp-l4-t2",
           "statement": "Five friends line up for a photo; the twins insist on standing together. How many lineups?",
           "solution": "Glue the twins: $4$ units arrange in $4! = 24$ ways, times $2$ inside orders $= 48$ lineups.",
-          "check": ["factorial(4)*2 == 48"]
+          "check": [
+            "factorial(4)*2 == 48"
+          ]
         }
       ],
       "interactive": {
@@ -634,16 +841,111 @@
             "eyebrow": "Try the order",
             "title": "Which slot first?",
             "prompt": "Counting $4$-letter codes from A–F, no repeats, that END in a vowel (A or E). Which slot do you fill first?",
-            "options": ["The last (vowel) slot — $2$ ways", "The first slot — $6$ ways", "Any order works the same"],
+            "options": [
+              "The last (vowel) slot — $2$ ways",
+              "The first slot — $6$ ways",
+              "Any order works the same"
+            ],
             "correctIndex": 0,
             "explanation": "The restriction lives in the LAST slot, so it goes first: $2$ ways, then $5 \\times 4 \\times 3$ for the free slots. Filling free slots first can consume both vowels, and the slot counts stop being reliable.",
-            "check": ["2*5*4*3 == 120"]
+            "check": [
+              "2*5*4*3 == 120"
+            ]
           },
           {
             "kind": "worked",
             "eyebrow": "Worked example",
             "title": "The dictionary",
             "problemId": "cp-l4-w1"
+          },
+          {
+            "kind": "treeDiagram",
+            "eyebrow": "Play with it",
+            "title": "The no-repeats tree",
+            "teach": "Build a 3-digit code from the digits 1, 2, 3 with no digit repeated. Watch the branches **shrink**: 3 choices, then 2, then 1 — the restriction eats one option at every stage. $3 \\times 2 \\times 1 = 6$ codes. Tap a leaf to walk one.",
+            "config": {
+              "mode": "count",
+              "stages": [
+                {
+                  "name": "1st digit",
+                  "options": [
+                    {
+                      "label": "1"
+                    },
+                    {
+                      "label": "2"
+                    },
+                    {
+                      "label": "3"
+                    }
+                  ]
+                },
+                {
+                  "name": "2nd digit",
+                  "byPath": {
+                    "1": [
+                      {
+                        "label": "2"
+                      },
+                      {
+                        "label": "3"
+                      }
+                    ],
+                    "2": [
+                      {
+                        "label": "1"
+                      },
+                      {
+                        "label": "3"
+                      }
+                    ],
+                    "3": [
+                      {
+                        "label": "1"
+                      },
+                      {
+                        "label": "2"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "3rd digit",
+                  "byPath": {
+                    "12": [
+                      {
+                        "label": "3"
+                      }
+                    ],
+                    "13": [
+                      {
+                        "label": "2"
+                      }
+                    ],
+                    "21": [
+                      {
+                        "label": "3"
+                      }
+                    ],
+                    "23": [
+                      {
+                        "label": "1"
+                      }
+                    ],
+                    "31": [
+                      {
+                        "label": "2"
+                      }
+                    ],
+                    "32": [
+                      {
+                        "label": "1"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
           },
           {
             "kind": "teach",
@@ -673,10 +975,16 @@
             "eyebrow": "Block check",
             "title": "Don't forget the inside",
             "prompt": "Six students line up; two best friends must be adjacent. How many lineups?",
-            "options": ["$5! \\times 2 = 240$", "$5! = 120$", "$6! = 720$"],
+            "options": [
+              "$5! \\times 2 = 240$",
+              "$5! = 120$",
+              "$6! = 720$"
+            ],
             "correctIndex": 0,
             "explanation": "Glue the friends: $5$ units arrange in $5! = 120$ ways, times $2$ orders inside the block $= 240$. Forgetting the inside gives $120$; $720$ ignores the restriction entirely.",
-            "check": ["factorial(5)*2 == 240"]
+            "check": [
+              "factorial(5)*2 == 240"
+            ]
           },
           {
             "kind": "tip",
@@ -744,19 +1052,26 @@
           "id": "cp-l5-w1",
           "statement": "Three coins are flipped. How many outcomes contain at least one head?",
           "solution": "Total outcomes: $2 \\times 2 \\times 2 = 8$. The complement of \"at least one head\" is \"NO heads\" — only TTT, which is $1$ outcome. Want: $8 - 1 = 7$.",
-          "check": ["2**3 - 1 == 7"]
+          "check": [
+            "2**3 - 1 == 7"
+          ]
         },
         {
           "id": "cp-l5-w2",
           "statement": "How many $4$-digit PIN codes (digits 0–9, repeats allowed) have at least one repeated digit?",
           "solution": "Total PINs: $10^4 = 10{,}000$. Complement — ALL digits different: $10 \\times 9 \\times 8 \\times 7 = 5040$. At least one repeat: $10000 - 5040 = 4960$. Counting repeats directly would need cases for doubles, triples, two-pairs, quads — the complement does it in one subtraction.",
-          "check": ["10**4 - 10*9*8*7 == 4960"]
+          "check": [
+            "10**4 - 10*9*8*7 == 4960"
+          ]
         },
         {
           "id": "cp-l5-w3",
           "statement": "Two dice are rolled. How many outcomes show at least one $6$?",
           "solution": "Total: $6 \\times 6 = 36$. Complement — NO sixes: each die has $5$ legal faces, $5 \\times 5 = 25$. At least one six: $36 - 25 = 11$. (Direct check: six pairs $(6, x)$, six pairs $(x, 6)$, minus the double-counted $(6,6)$: $6 + 6 - 1 = 11$ ✓.)",
-          "check": ["36 - 25 == 11", "6 + 6 - 1 == 11"]
+          "check": [
+            "36 - 25 == 11",
+            "6 + 6 - 1 == 11"
+          ]
         }
       ],
       "commonMistakes": [
@@ -776,13 +1091,17 @@
           "id": "cp-l5-t1",
           "statement": "Five coins are flipped. How many outcomes have at least one tail?",
           "solution": "Total $2^5 = 32$; complement (no tails — all heads) is $1$. Answer: $32 - 1 = 31$.",
-          "check": ["2**5 - 1 == 31"]
+          "check": [
+            "2**5 - 1 == 31"
+          ]
         },
         {
           "id": "cp-l5-t2",
           "statement": "How many $3$-letter codes from A–Z (repeats allowed) contain at least one letter A?",
           "solution": "Total $26^3 = 17576$; complement — no A anywhere: $25^3 = 15625$. Answer: $17576 - 15625 = 1951$.",
-          "check": ["26**3 - 25**3 == 1951"]
+          "check": [
+            "26**3 - 25**3 == 1951"
+          ]
         }
       ],
       "interactive": {
@@ -814,10 +1133,16 @@
             "eyebrow": "Name the enemy",
             "title": "What's the complement?",
             "prompt": "You want to count $5$-flip sequences with at least one head. What exactly is the complement?",
-            "options": ["All five flips are tails", "At least one tail", "Exactly zero tails"],
+            "options": [
+              "All five flips are tails",
+              "At least one tail",
+              "Exactly zero tails"
+            ],
             "correctIndex": 0,
             "explanation": "The opposite of \"at least one head\" is \"NO heads\" — all tails, a single outcome. \"At least one tail\" overlaps with the want-pile (HTTTT has both); \"exactly zero tails\" means all heads, which is IN the want pile.",
-            "check": ["2**5 - 1 == 31"]
+            "check": [
+              "2**5 - 1 == 31"
+            ]
           },
           {
             "kind": "worked",
@@ -842,10 +1167,16 @@
             "eyebrow": "Universe check",
             "title": "Subtract from WHAT?",
             "prompt": "Counting $4$-digit PINs (0000–9999) with at least one repeated digit — what total do you subtract from?",
-            "options": ["$10^4 = 10{,}000$", "$9 \\times 10^3 = 9000$", "$10 \\times 9 \\times 8 \\times 7 = 5040$"],
+            "options": [
+              "$10^4 = 10{,}000$",
+              "$9 \\times 10^3 = 9000$",
+              "$10 \\times 9 \\times 8 \\times 7 = 5040$"
+            ],
             "correctIndex": 0,
             "explanation": "PINs may start with 0, so the universe is $10^4$. The $9000$ counts 4-digit NUMBERS (1000–9999) — a different universe. And $5040$ is the complement itself, not the total.",
-            "check": ["10**4 == 10000"]
+            "check": [
+              "10**4 == 10000"
+            ]
           },
           {
             "kind": "tip",
@@ -913,19 +1244,28 @@
           "id": "cp-l6-w1",
           "statement": "In a class, $18$ students play soccer, $12$ play basketball, and $7$ play both. How many students play at least one of the two sports?",
           "solution": "$|S \\cup B| = |S| + |B| - |S \\cap B| = 18 + 12 - 7 = 23$. The $7$ two-sport players were on both lists; subtracting them once leaves everyone counted exactly once.",
-          "check": ["18 + 12 - 7 == 23"]
+          "check": [
+            "18 + 12 - 7 == 23"
+          ]
         },
         {
           "id": "cp-l6-w2",
           "statement": "How many integers from $1$ to $100$ are divisible by $2$ or by $5$?",
           "solution": "Multiples of $2$: $50$. Multiples of $5$: $20$. Both lists share the multiples of $10$: there are $10$ of them. Inclusion-exclusion: $50 + 20 - 10 = 60$.",
-          "check": ["50 + 20 - 10 == 60", "floor(100/2) == 50", "floor(100/5) == 20", "floor(100/10) == 10"]
+          "check": [
+            "50 + 20 - 10 == 60",
+            "floor(100/2) == 50",
+            "floor(100/5) == 20",
+            "floor(100/10) == 10"
+          ]
         },
         {
           "id": "cp-l6-w3",
           "statement": "Six people at a meeting each shake hands with everyone else exactly once. How many handshakes happen?",
           "solution": "Count with order first: each of $6$ people shakes $5$ hands — $6 \\times 5 = 30$ ordered shakes. But the count sees every handshake TWICE (Ana-with-Bat and Bat-with-Ana are the same shake). Divide by $2$: $\\frac{30}{2} = 15$ handshakes.",
-          "check": ["6*5/2 == 15"]
+          "check": [
+            "6*5/2 == 15"
+          ]
         }
       ],
       "commonMistakes": [
@@ -945,13 +1285,18 @@
           "id": "cp-l6-t1",
           "statement": "Of $40$ students, $22$ like math, $17$ like physics, and $9$ like both. How many like at least one subject?",
           "solution": "$22 + 17 - 9 = 30$ students like at least one. (And $40 - 30 = 10$ like neither — complement!)",
-          "check": ["22 + 17 - 9 == 30", "40 - 30 == 10"]
+          "check": [
+            "22 + 17 - 9 == 30",
+            "40 - 30 == 10"
+          ]
         },
         {
           "id": "cp-l6-t2",
           "statement": "Eight chess players all play each other once. How many games is that?",
           "solution": "Ordered count: $8 \\times 7 = 56$; each game counted twice, so $\\frac{56}{2} = 28$ games.",
-          "check": ["8*7/2 == 28"]
+          "check": [
+            "8*7/2 == 28"
+          ]
         }
       ],
       "interactive": {
@@ -979,14 +1324,36 @@
             ]
           },
           {
+            "kind": "vennCounts",
+            "eyebrow": "Watch the fix",
+            "title": "The double-count, caught in the act",
+            "teach": "A class where 20 play sports, 15 play music, and 6 do both. Press **next** and watch the naive sum $20 + 15$ count those 6 students twice — then watch the subtraction put it right. That correction IS inclusion–exclusion: $|A \\cup B| = |A| + |B| - |A \\cap B|$.",
+            "config": {
+              "mode": "addition",
+              "labelA": "sports",
+              "labelB": "music",
+              "onlyA": 14,
+              "onlyB": 9,
+              "both": 6,
+              "neither": 3,
+              "countNoun": "students"
+            }
+          },
+          {
             "kind": "tapQuestion",
             "eyebrow": "Read the Venn",
             "title": "Music survey",
             "prompt": "$25$ students like pop, $15$ like rock, $8$ like both. How many like at least one?",
-            "options": ["$32$", "$40$", "$17$"],
+            "options": [
+              "$32$",
+              "$40$",
+              "$17$"
+            ],
             "correctIndex": 0,
             "explanation": "$25 + 15 - 8 = 32$. The distractor $40$ forgets the overlap; $17$ subtracts $8$ from just one list instead of from the sum.",
-            "check": ["25 + 15 - 8 == 32"]
+            "check": [
+              "25 + 15 - 8 == 32"
+            ]
           },
           {
             "kind": "worked",
@@ -1022,10 +1389,16 @@
             "eyebrow": "Divide it out",
             "title": "Tournament games",
             "prompt": "Ten teams each play every other team once. How many games?",
-            "options": ["$45$", "$90$", "$100$"],
+            "options": [
+              "$45$",
+              "$90$",
+              "$100$"
+            ],
             "correctIndex": 0,
             "explanation": "Ordered: $10 \\times 9 = 90$, but each game was counted from both teams' sides — divide by $2$: $45$. The $100$ is $10^2$, which would even let teams play themselves.",
-            "check": ["10*9/2 == 45"]
+            "check": [
+              "10*9/2 == 45"
+            ]
           },
           {
             "kind": "tip",
@@ -1070,49 +1443,68 @@
       "id": "cp-p-1",
       "statement": "A T-shirt comes in $5$ colors and $3$ sizes. How many different T-shirts can the shop stock?",
       "solution": "Two slots: color THEN size — $5 \\times 3 = 15$ different shirts.",
-      "check": ["5*3 == 15"]
+      "check": [
+        "5*3 == 15"
+      ]
     },
     {
       "id": "cp-p-2",
       "statement": "There are $4$ roads from town A to town B, and $3$ roads from B to C. How many routes go from A to C through B?",
       "solution": "Choose a first leg, THEN a second leg: $4 \\times 3 = 12$ routes.",
-      "check": ["4*3 == 12"]
+      "check": [
+        "4*3 == 12"
+      ]
     },
     {
       "id": "cp-p-3",
       "statement": "A lunch special is one starter ($3$ soups OR $4$ salads) followed by one of $2$ mains. How many different lunches are possible?",
       "solution": "Starter choices add (it's one starter): $3 + 4 = 7$. Then a main: $7 \\times 2 = 14$ lunches.",
-      "check": ["(3 + 4)*2 == 14"]
+      "check": [
+        "(3 + 4)*2 == 14"
+      ]
     },
     {
       "id": "cp-p-4",
       "statement": "How many $3$-digit codes use digits $0$–$9$ with no repeated digit, if the first digit may not be $0$?",
       "solution": "Fussy first: the first slot avoids $0$ — $9$ ways. Second slot: any unused digit, including $0$ — $9$ ways. Third slot: $8$ remain. Total: $9 \\times 9 \\times 8 = 648$.",
-      "check": ["9*9*8 == 648"]
+      "check": [
+        "9*9*8 == 648"
+      ]
     },
     {
       "id": "cp-p-5",
       "statement": "Four friends sit in a row and Bilguun insists on an END seat. How many seatings are possible?",
       "solution": "Seat Bilguun first: $2$ end seats. The other three fill the rest: $3! = 6$. Total: $2 \\times 6 = 12$.",
-      "check": ["2*factorial(3) == 12"]
+      "check": [
+        "2*factorial(3) == 12"
+      ]
     },
     {
       "id": "cp-p-6",
       "statement": "Five coins are flipped. How many outcomes contain at least one head?",
       "solution": "Total $2^5 = 32$; complement (no heads — all tails) is $1$ outcome. At least one head: $32 - 1 = 31$.",
-      "check": ["2**5 - 1 == 31"]
+      "check": [
+        "2**5 - 1 == 31"
+      ]
     },
     {
       "id": "cp-p-7",
       "statement": "How many integers from $1$ to $50$ are divisible by $3$ or by $7$?",
       "solution": "Multiples of $3$: $16$ (up to $48$). Multiples of $7$: $7$ (up to $49$). Both — multiples of $21$: $2$ ($21, 42$). Inclusion-exclusion: $16 + 7 - 2 = 21$.",
-      "check": ["floor(50/3) == 16", "floor(50/7) == 7", "floor(50/21) == 2", "16 + 7 - 2 == 21"]
+      "check": [
+        "floor(50/3) == 16",
+        "floor(50/7) == 7",
+        "floor(50/21) == 2",
+        "16 + 7 - 2 == 21"
+      ]
     },
     {
       "id": "cp-p-8",
       "statement": "Two dice are rolled. How many outcomes show at least one $5$?",
       "solution": "Total $36$; complement — no fives: $5 \\times 5 = 25$. At least one five: $36 - 25 = 11$.",
-      "check": ["36 - 5*5 == 11"]
+      "check": [
+        "36 - 5*5 == 11"
+      ]
     }
   ],
   "testYourself": [
@@ -1120,37 +1512,52 @@
       "id": "cp-ty-1",
       "statement": "A license plate is $3$ different letters followed by $2$ digits (digits may repeat). How many plates are possible?",
       "solution": "Letters shrink: $26 \\times 25 \\times 24 = 15{,}600$. Digits repeat: $10 \\times 10 = 100$. Total: $15600 \\times 100 = 1{,}560{,}000$ plates.",
-      "check": ["26*25*24*10*10 == 1560000"]
+      "check": [
+        "26*25*24*10*10 == 1560000"
+      ]
     },
     {
       "id": "cp-ty-2",
       "statement": "How many $4$-digit numbers use the digits $1$–$9$, all different, and are EVEN?",
       "solution": "Fussy first — the units digit must be even, from $\\{2,4,6,8\\}$: $4$ ways. Then the thousands digit: $8$ digits remain — $8$ ways; hundreds: $7$; tens: $6$. Total: $4 \\times 8 \\times 7 \\times 6 = 1344$.",
-      "check": ["4*8*7*6 == 1344"]
+      "check": [
+        "4*8*7*6 == 1344"
+      ]
     },
     {
       "id": "cp-ty-3",
       "statement": "Five people sit in a row, but two of them refuse to sit next to each other. How many seatings are possible?",
       "solution": "All seatings: $5! = 120$. Together (block trick): glue the pair — $4$ units arrange in $4! = 24$ ways, times $2$ inside orders $= 48$. Not together: $120 - 48 = 72$.",
-      "check": ["factorial(5) == 120", "factorial(4)*2 == 48", "120 - 48 == 72"]
+      "check": [
+        "factorial(5) == 120",
+        "factorial(4)*2 == 48",
+        "120 - 48 == 72"
+      ]
     },
     {
       "id": "cp-ty-4",
       "statement": "How many $3$-digit numbers ($100$–$999$) have at least one repeated digit?",
       "solution": "Total $3$-digit numbers: $900$. Complement — all digits different: first digit $9$ (no zero), second $9$ (zero now allowed, one digit used), third $8$: $9 \\times 9 \\times 8 = 648$. At least one repeat: $900 - 648 = 252$.",
-      "check": ["900 - 9*9*8 == 252"]
+      "check": [
+        "900 - 9*9*8 == 252"
+      ]
     },
     {
       "id": "cp-ty-5",
       "statement": "Of $40$ students, $22$ like math, $17$ like physics, and $9$ like both. How many like NEITHER subject?",
       "solution": "At least one: $22 + 17 - 9 = 30$ (inclusion-exclusion). Neither — complement: $40 - 30 = 10$ students.",
-      "check": ["22 + 17 - 9 == 30", "40 - 30 == 10"]
+      "check": [
+        "22 + 17 - 9 == 30",
+        "40 - 30 == 10"
+      ]
     },
     {
       "id": "cp-ty-6",
       "statement": "Friday plans: the cinema has $3$ movies at $4$ times each, the theater has $2$ plays at $3$ times each, and the arcade is a single option. How many different plans are possible?",
       "solution": "Three exclusive cases: cinema $3 \\times 4 = 12$; theater $2 \\times 3 = 6$; arcade $1$. One plan, so add: $12 + 6 + 1 = 19$ plans.",
-      "check": ["3*4 + 2*3 + 1 == 19"]
+      "check": [
+        "3*4 + 2*3 + 1 == 19"
+      ]
     }
   ]
 }
