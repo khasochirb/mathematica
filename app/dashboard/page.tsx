@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { ArrowRight, BarChart3, Calculator, Sparkles, Target } from "lucide-react";
 import { useEffect, useState } from "react";
 import usePerformance from "@/lib/use-performance";
-import { contextHref, contextLabel } from "@/lib/perf-context";
+import { contextHref, contextLabel, contextProgressHref } from "@/lib/perf-context";
 import { loadPlacement, type StoredPlacement } from "@/lib/placement-result";
 import { useAuth } from "@/lib/auth-context";
 import { useLang } from "@/lib/lang-context";
@@ -87,6 +87,9 @@ const i18n = {
   qa_analytics_s: { en: "Detailed analytics", mn: "Дэлгэрэнгүй харах" },
 
   esh_section: { en: "ЭЕШ preparation", mn: "ЭЕШ бэлтгэл" },
+  hubs_section: { en: "Exam prep", mn: "Шалгалтын бэлтгэл" },
+  hubs_questions: { en: "questions", mn: "бодлого" },
+  hubs_open: { en: "View progress", mn: "Прогресс харах" },
   courses_section: { en: "Courses", mn: "Хичээлүүд" },
   courses_checks: { en: "lesson checks", mn: "хичээлийн даалгавар" },
   courses_weakest: { en: "Weakest unit", mn: "Хамгийн сул нэгж" },
@@ -146,7 +149,12 @@ export default function DashboardPage() {
   // Per-section summaries: each course the student has touched, with stats
   // computed ONLY from that course's attempts. Accuracy never blends across
   // sections — that's the whole point of the context column.
-  const courseSummaries = perf.getContextSummaries().filter((s) => s.context.startsWith("course:"));
+  const contextSummaries = perf.getContextSummaries();
+  const courseSummaries = contextSummaries.filter((s) => s.context.startsWith("course:"));
+  // SAT/IB hub cards light up on the first recorded attempt in those
+  // contexts — pre-wired now so shipping the first mock test needs no
+  // dashboard work. Each card links out; depth lives in the hub.
+  const examHubSummaries = contextSummaries.filter((s) => s.context === "sat" || s.context === "ib");
   // Placement results are device-local (localStorage) — load after mount to
   // keep server and client renders identical.
   const [placements, setPlacements] = useState<
@@ -647,6 +655,46 @@ export default function DashboardPage() {
               </Link>
             </section>
           </>
+        )}
+
+        {/* Exam hubs beyond ЭЕШ — SAT and IB, each in its own score
+            language. Rendered only when the hub has activity. */}
+        {examHubSummaries.length > 0 && (
+          <section className="mt-8">
+            <div className="eyebrow mb-3">{t("hubs_section")}</div>
+            <div
+              className="grid gap-4"
+              style={{ gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}
+            >
+              {examHubSummaries.map((s) => (
+                <div key={s.context} className="card-edit p-5 flex flex-col gap-2">
+                  <h3 className="serif" style={{ fontWeight: 400, fontSize: 20, letterSpacing: "-0.02em", color: "var(--fg)" }}>
+                    {contextLabel(s.context)}
+                  </h3>
+                  <p className="mono tabular text-[12px]" style={{ color: "var(--fg-3)" }}>
+                    {s.correct}/{s.total} {t("hubs_questions")} · {s.accuracy}%
+                  </p>
+                  <div className="h-[3px] rounded-full overflow-hidden" style={{ background: "var(--bg-2)" }}>
+                    <div
+                      className="h-full rounded-full"
+                      style={{
+                        width: `${s.accuracy}%`,
+                        background: s.accuracy >= 80 ? "var(--accent)" : s.accuracy >= 50 ? "var(--warn)" : "var(--danger)",
+                      }}
+                    />
+                  </div>
+                  <Link
+                    href={contextProgressHref(s.context) ?? "/practice"}
+                    className="mono text-[11px] uppercase mt-auto inline-flex items-center gap-1"
+                    style={{ color: "var(--accent)", letterSpacing: "0.06em" }}
+                  >
+                    {t("hubs_open")}
+                    <ArrowRight className="h-3 w-3" />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </section>
         )}
 
         {/* Courses — one card per course the student has actually worked in.

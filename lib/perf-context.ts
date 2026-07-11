@@ -56,5 +56,16 @@ export function contextHref(context: string): string | null {
   const grade = /^course:grade-(\d+)$/.exec(context);
   if (grade) return `/math/${grade[1]}`;
   if (context === ESH_CONTEXT) return "/practice/esh";
+  if (context === "sat") return "/practice/sat";
+  if (context === "ib") return "/practice/ib";
   return null;
+}
+
+// Where a context's detailed progress view lives. Exam hubs own their own
+// deep-dive pages; the dashboard only ever links, never inlines.
+export function contextProgressHref(context: string): string | null {
+  if (context === ESH_CONTEXT) return "/practice/esh/progress";
+  if (context === "sat") return "/practice/sat/progress";
+  if (context === "ib") return "/practice/ib/progress";
+  return contextHref(context);
 }

@@ -675,11 +675,12 @@ export default function usePerformance() {
   // (source IS NULL) are excluded by design — they would bias the signal
   // toward whatever topic the student happened to practice instead of the
   // one they actually struggle with on tests.
-  const getTestOnlyTopicStats = useCallback((): TopicStats[] => {
+  const getTestOnlyTopicStats = useCallback((context: string = DEFAULT_CONTEXT): TopicStats[] => {
+    const isEsh = context === DEFAULT_CONTEXT;
     const map: Record<string, { correct: number; total: number }> = {};
     for (const a of attempts) {
-      if (a.source !== "test" || contextOf(a) !== DEFAULT_CONTEXT) continue;
-      const topic = resolveCurrentTopic(a);
+      if (a.source !== "test" || contextOf(a) !== context) continue;
+      const topic = isEsh ? resolveCurrentTopic(a) : a.topic;
       if (!map[topic]) map[topic] = { correct: 0, total: 0 };
       map[topic].total++;
       if (a.isCorrect) map[topic].correct++;
@@ -705,13 +706,13 @@ export default function usePerformance() {
   // logs into because it reads from the synced attempts table.
   const ACCIDENTAL_DURATION_MS = 5 * 60 * 1000;
   const ACCIDENTAL_MIN_ANSWERS = 5;
-  const getTestOnlySessions = useCallback(() => {
+  const getTestOnlySessions = useCallback((context: string = DEFAULT_CONTEXT) => {
     const byTest: Record<
       string,
       { startedAt: number; completedAt: number; correct: number; total: number }
     > = {};
     for (const a of attempts) {
-      if (a.source !== "test" || contextOf(a) !== DEFAULT_CONTEXT) continue;
+      if (a.source !== "test" || contextOf(a) !== context) continue;
       const testId = parseTestId(a.questionSource);
       if (!testId) continue;
       const entry = byTest[testId] ?? {
