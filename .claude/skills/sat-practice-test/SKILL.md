@@ -200,3 +200,32 @@ Everything in core §11, plus:
 [ ] No reference-sheet-recall questions; Desmos does not trivialize hard items
 [ ] Adversarial re-solve run per module (blind), 100% agreement
 ```
+
+## 9. Reusable authoring tools (extend, don't fork)
+
+Two shared modules carry everything mechanical, so a new test's scripts
+contain ONLY stems, parameters, error models, verify[] strings, and tool
+calls. **Use them for every new SAT test; add capability to the shared
+module rather than writing per-test drawing or validation code.**
+
+- `scripts/test-builders/satbuild.py` — question constructors
+  (`mcq_numeric` with ascending-option ordering + derived answer letter
+  checked against the blueprint, `mcq_listed`, `spr`), `verify[]`
+  assertion, figure-dims readback, `check_module` blueprint conformance
+  (domain counts, difficulty mix, SPR slots, letter runs), `write_test`.
+- `scripts/test-figures/satfigs.py` — parametric exact-geometry figure
+  tools (see its module docstring for the inventory): scatter,
+  lines-on-grid, generic curves, value tables, two-way tables, bar
+  charts, histograms, box plots, number lines, angle pairs,
+  transversals, inscribed circles, composite areas, cylinders, right
+  triangles with trig marks. All monochrome per core manual §8.
+
+Worked examples of the intended shape:
+`scripts/test-builders/sat-practice-2.py` +
+`scripts/test-figures/sat-practice-2.py` (Practice Test 1 predates the
+shared modules and keeps its self-contained scripts for audit).
+
+Vary archetypes ACROSS tests: consecutive tests should not reuse the
+same problem dress for the same skill (Test 1 vs Test 2 is the model —
+e.g. `systems_two_linear` appears as substitution, elimination,
+graph-reading, no-solution parameter, setup-only word problems).

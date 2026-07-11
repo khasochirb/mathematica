@@ -8,6 +8,7 @@
 // student input against the stored key, and estimates a scaled score.
 
 import satPractice1 from "@/data/sat/sat-practice-1.json";
+import satPractice2 from "@/data/sat/sat-practice-2.json";
 
 export type SatDomain = "algebra" | "advanced_math" | "psda" | "geometry_trig";
 export type SatModuleKey = "module1" | "module2Easy" | "module2Hard";
@@ -50,7 +51,10 @@ export interface SatTest {
   module2Hard: SatQuestion[];
 }
 
-const TESTS: SatTest[] = [satPractice1 as unknown as SatTest];
+const TESTS: SatTest[] = [
+  satPractice1 as unknown as SatTest,
+  satPractice2 as unknown as SatTest,
+];
 
 export function listSatTests(): SatTestMeta[] {
   return TESTS.map((t) => t.meta);

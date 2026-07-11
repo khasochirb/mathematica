@@ -14,52 +14,58 @@ import {
 import { SAT_DOMAIN_LABELS } from "@/lib/hub-analytics";
 
 const MODULES: SatModuleKey[] = ["module1", "module2Easy", "module2Hard"];
+const ALL_TESTS = listSatTests().map((m) => getSatTest(m.testId)!);
 
 describe("SAT test registry", () => {
-  it("lists sat-practice-1 with Bluebook-format meta", () => {
+  it("lists both practice tests with Bluebook-format meta", () => {
     const metas = listSatTests();
-    expect(metas.length).toBeGreaterThanOrEqual(1);
-    const m = metas.find((t) => t.testId === "sat-practice-1")!;
-    expect(m.minutesPerModule).toBe(35);
-    expect(m.module2Threshold).toBe(15);
+    expect(metas.map((m) => m.testId)).toEqual(["sat-practice-1", "sat-practice-2"]);
+    for (const m of metas) {
+      expect(m.minutesPerModule).toBe(35);
+      expect(m.module2Threshold).toBe(15);
+    }
   });
 
-  it("has 3 modules × 22 questions with unique sources", () => {
-    const test = getSatTest("sat-practice-1")!;
+  it("every test has 3 modules × 22 questions with globally unique sources", () => {
     const sources = new Set<string>();
-    for (const key of MODULES) {
-      expect(test[key]).toHaveLength(22);
-      for (const q of test[key]) sources.add(q.source);
+    for (const test of ALL_TESTS) {
+      for (const key of MODULES) {
+        expect(test[key], `${test.meta.testId}.${key}`).toHaveLength(22);
+        for (const q of test[key]) sources.add(q.source);
+      }
     }
-    expect(sources.size).toBe(66);
+    expect(sources.size).toBe(66 * ALL_TESTS.length);
   });
 
   it("every question is well-formed and figures exist on disk", () => {
-    const test = getSatTest("sat-practice-1")!;
-    for (const key of MODULES) {
-      for (const q of test[key]) {
-        if (q.format === "mcq") {
-          expect(Object.keys(q.options ?? {}).sort()).toEqual(["A", "B", "C", "D"]);
-          expect(Object.keys(q.options ?? {})).toContain(q.answer);
-        } else {
-          expect(q.acceptedAnswers!.length).toBeGreaterThan(0);
-          for (const a of q.acceptedAnswers!) {
-            expect(a.length).toBeLessThanOrEqual(a.startsWith("-") ? 6 : 5);
+    for (const test of ALL_TESTS) {
+      for (const key of MODULES) {
+        for (const q of test[key]) {
+          if (q.format === "mcq") {
+            expect(Object.keys(q.options ?? {}).sort()).toEqual(["A", "B", "C", "D"]);
+            expect(Object.keys(q.options ?? {})).toContain(q.answer);
+          } else {
+            expect(q.acceptedAnswers!.length).toBeGreaterThan(0);
+            for (const a of q.acceptedAnswers!) {
+              expect(a.length).toBeLessThanOrEqual(a.startsWith("-") ? 6 : 5);
+            }
           }
-        }
-        if (q.figure) {
-          expect(existsSync(join(process.cwd(), "public", q.figure.src))).toBe(true);
+          if (q.figure) {
+            expect(existsSync(join(process.cwd(), "public", q.figure.src)),
+              `${q.source} figure ${q.figure.src}`).toBe(true);
+          }
         }
       }
     }
   });
 
   it("every domain maps onto the hub-analytics tagging contract", () => {
-    const test = getSatTest("sat-practice-1")!;
-    for (const key of MODULES) {
-      for (const q of test[key]) {
-        const topic = satAnalyticsTopic(q.domain);
-        expect(SAT_DOMAIN_LABELS[topic], `${q.source} domain ${q.domain}`).toBeTruthy();
+    for (const test of ALL_TESTS) {
+      for (const key of MODULES) {
+        for (const q of test[key]) {
+          const topic = satAnalyticsTopic(q.domain);
+          expect(SAT_DOMAIN_LABELS[topic], `${q.source} domain ${q.domain}`).toBeTruthy();
+        }
       }
     }
   });

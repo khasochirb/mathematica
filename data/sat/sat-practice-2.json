@@ -1,0 +1,1558 @@
+{
+  "meta": {
+    "testId": "sat-practice-2",
+    "label": "SAT Math Practice Test 2",
+    "minutesPerModule": 35,
+    "module2Threshold": 15
+  },
+  "module1": [
+    {
+      "source": "SAT-P2-M1-Q01",
+      "module": "1",
+      "questionNumber": 1,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_equations_one_var",
+      "difficulty": "easy",
+      "body": "If $\\dfrac{x - 9}{2} = 8$, what is the value of $x$?",
+      "options": {
+        "A": "$-1$",
+        "B": "$7$",
+        "C": "$17$",
+        "D": "$25$"
+      },
+      "answer": "D",
+      "solution": "Multiply both sides by 2, then add 9: $$x - 9 = 16 \\;\\Rightarrow\\; x = 25.$$ Choice B stops at $16 - 9 = 7$, subtracting instead of adding after the multiplication; choice C computes $8 + 9$ without ever multiplying by 2. The correct answer is **D**.",
+      "verify": [
+        "Eq((25 - 9)/2, 8)",
+        "Eq(8*2 + 9, 25)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M1-Q02",
+      "module": "1",
+      "questionNumber": 2,
+      "format": "mcq",
+      "domain": "psda",
+      "skill_tag": "one_var_data",
+      "difficulty": "easy",
+      "body": "The bar chart shows the number of books a store sold on each of five days. How many more books were sold on Thursday than on Wednesday?",
+      "options": {
+        "A": "$15$",
+        "B": "$30$",
+        "C": "$55$",
+        "D": "$95$"
+      },
+      "answer": "A",
+      "solution": "Read the two bars: Thursday is 55 and Wednesday is 40, so the difference is $$55 - 40 = 15.$$ Choice B compares Thursday with Tuesday (25) instead of Wednesday, and choice C is Thursday's own bar. The correct answer is **A**.",
+      "verify": [
+        "Eq(55 - 40, 15)",
+        "Eq(55 - 25, 30)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m1-q02.png",
+        "alt_en": "Bar chart of books sold: Monday 30, Tuesday 25, Wednesday 40, Thursday 55, Friday 45.",
+        "width": 814,
+        "height": 563
+      }
+    },
+    {
+      "source": "SAT-P2-M1-Q03",
+      "module": "1",
+      "questionNumber": 3,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_functions",
+      "difficulty": "easy",
+      "body": "The table shows four values of the linear function $f$. Which equation defines $f$?",
+      "options": {
+        "A": "$f(x) = x + 5$",
+        "B": "$f(x) = 3x + 5$",
+        "C": "$f(x) = 5x + 3$",
+        "D": "$f(x) = 8x$"
+      },
+      "answer": "B",
+      "solution": "The outputs rise by 3 each time $x$ rises by 1, so the slope is 3, and $f(0) = 5$ gives the starting value: $$f(x) = 3x + 5.$$ Check a second row: $f(2) = 11$. ✓ Choice C swaps the slope and the constant — it fails at $x = 1$ ($5 + 3 = 8$ works, but $f(2) = 13 \\ne 11$). The correct answer is **B**.",
+      "verify": [
+        "Eq(3*0 + 5, 5)",
+        "Eq(3*1 + 5, 8)",
+        "Eq(3*2 + 5, 11)",
+        "Eq(3*3 + 5, 14)",
+        "Ne(5*2 + 3, 11)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m1-q03.png",
+        "alt_en": "Table with x values 0, 1, 2, 3 and f(x) values 5, 8, 11, 14.",
+        "width": 770,
+        "height": 188
+      }
+    },
+    {
+      "source": "SAT-P2-M1-Q04",
+      "module": "1",
+      "questionNumber": 4,
+      "format": "spr",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "easy",
+      "body": "The function $g$ is defined by $g(x) = x^3 - 20$. What is the value of $g(3)$?",
+      "acceptedAnswers": [
+        "7"
+      ],
+      "solution": "Substitute $x = 3$: $$g(3) = 3^3 - 20 = 27 - 20 = 7.$$ The correct answer is **7**.",
+      "verify": [
+        "Eq(3**3 - 20, 7)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M1-Q05",
+      "module": "1",
+      "questionNumber": 5,
+      "format": "mcq",
+      "domain": "geometry_trig",
+      "skill_tag": "lines_angles_triangles",
+      "difficulty": "easy",
+      "body": "In the figure, two angles measuring $(2x)°$ and $34°$ together form a straight line. What is the value of $x$?",
+      "options": {
+        "A": "$28$",
+        "B": "$34$",
+        "C": "$73$",
+        "D": "$146$"
+      },
+      "answer": "C",
+      "solution": "Angles on a straight line sum to $180°$: $$2x + 34 = 180 \\;\\Rightarrow\\; 2x = 146 \\;\\Rightarrow\\; x = 73.$$ Choice D stops at $2x = 146$; choice A uses $90°$ instead of $180°$ for the straight line. The correct answer is **C**.",
+      "verify": [
+        "Eq((180 - 34)/2, 73)",
+        "Eq(2*73 + 34, 180)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m1-q05.png",
+        "alt_en": "A straight line with a ray from a point on it, forming two angles labeled (2x) degrees and 34 degrees.",
+        "width": 784,
+        "height": 400
+      }
+    },
+    {
+      "source": "SAT-P2-M1-Q06",
+      "module": "1",
+      "questionNumber": 6,
+      "format": "mcq",
+      "domain": "psda",
+      "skill_tag": "ratios_rates_units",
+      "difficulty": "easy",
+      "body": "A printer prints 45 pages every 3 minutes at a constant rate. How many pages does it print in 8 minutes?",
+      "options": {
+        "A": "$15$",
+        "B": "$105$",
+        "C": "$120$",
+        "D": "$360$"
+      },
+      "answer": "C",
+      "solution": "The unit rate is $45 \\div 3 = 15$ pages per minute, so in 8 minutes: $$15 \\times 8 = 120.$$ Choice A is the per-minute rate itself; choice D multiplies $45 \\times 8$ without dividing by the 3 minutes. The correct answer is **C**.",
+      "verify": [
+        "Eq(Rational(45, 3), 15)",
+        "Eq(15*8, 120)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M1-Q07",
+      "module": "1",
+      "questionNumber": 7,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "equivalent_expressions",
+      "difficulty": "easy",
+      "body": "Which of the following is equivalent to $\\dfrac{x^5 \\cdot x^3}{x^2}$ for $x \\ne 0$?",
+      "options": {
+        "A": "$x^6$",
+        "B": "$x^8$",
+        "C": "$x^{10}$",
+        "D": "$x^{13}$"
+      },
+      "answer": "A",
+      "solution": "Multiply by adding exponents, divide by subtracting: $$\\frac{x^5 \\cdot x^3}{x^2} = \\frac{x^8}{x^2} = x^6.$$ Choice B forgets the division; choice D multiplies $5 \\cdot 3$ instead of adding. The correct answer is **A**.",
+      "verify": [
+        "Eq((2**5 * 2**3)/2**2, 2**6)",
+        "Eq(5 + 3 - 2, 6)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M1-Q08",
+      "module": "1",
+      "questionNumber": 8,
+      "format": "mcq",
+      "domain": "geometry_trig",
+      "skill_tag": "area_volume",
+      "difficulty": "easy",
+      "body": "The figure shows a rectangle with a width of 10 and a height of 6, with a right triangle of height 4 on top whose base is the top side of the rectangle. What is the total area of the figure?",
+      "options": {
+        "A": "$40$",
+        "B": "$60$",
+        "C": "$80$",
+        "D": "$100$"
+      },
+      "answer": "C",
+      "solution": "Add the two areas: $$A = 10 \\cdot 6 + \\frac{1}{2} \\cdot 10 \\cdot 4 = 60 + 20 = 80.$$ Choice B is the rectangle alone; choice D forgets the $\\frac{1}{2}$ in the triangle's area. The correct answer is **C**.",
+      "verify": [
+        "Eq(10*6, 60)",
+        "Eq(Rational(1,2)*10*4, 20)",
+        "Eq(60 + 20, 80)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m1-q08.png",
+        "alt_en": "A rectangle 10 wide and 6 tall with a right triangle of height 4 on its top side; the right angle of the triangle is at the top-right corner.",
+        "width": 718,
+        "height": 656
+      }
+    },
+    {
+      "source": "SAT-P2-M1-Q09",
+      "module": "1",
+      "questionNumber": 9,
+      "format": "spr",
+      "domain": "algebra",
+      "skill_tag": "systems_two_linear",
+      "difficulty": "medium",
+      "body": "$$2x + 5y = 17$$ $$2x + 3y = 11$$ If $(x, y)$ is the solution to the system of equations above, what is the value of $y$?",
+      "acceptedAnswers": [
+        "3"
+      ],
+      "solution": "The $x$-terms match, so subtract the second equation from the first: $$(2x + 5y) - (2x + 3y) = 17 - 11 \\;\\Rightarrow\\; 2y = 6 \\;\\Rightarrow\\; y = 3.$$ (Then $x = 1$, and $2(1) + 5(3) = 17$ checks.) The correct answer is **3**.",
+      "verify": [
+        "Eq(2*1 + 5*3, 17)",
+        "Eq(2*1 + 3*3, 11)",
+        "Eq((17 - 11)/2, 3)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M1-Q10",
+      "module": "1",
+      "questionNumber": 10,
+      "format": "mcq",
+      "domain": "psda",
+      "skill_tag": "two_var_data_models",
+      "difficulty": "medium",
+      "body": "The scatterplot shows 10 measurements of two variables $x$ and $y$. Which statement best describes the association between $x$ and $y$?",
+      "options": {
+        "A": "A strong positive linear association",
+        "B": "A strong negative linear association",
+        "C": "A nonlinear association",
+        "D": "No association"
+      },
+      "answer": "B",
+      "solution": "As $x$ increases, $y$ decreases at a roughly constant rate, and the points cluster tightly around a straight line — a strong NEGATIVE linear association. Positive (choice A) would rise to the right; \\\"no association\\\" (choice D) would show no pattern at all. The correct answer is **B**.",
+      "verify": [
+        "Eq((38 - 10)/(1 - 8) + 4, 0)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m1-q10.png",
+        "alt_en": "Scatterplot of 10 points falling steadily from upper left, near (1, 38), to lower right, near (10, 5), close to a straight line.",
+        "width": 774,
+        "height": 656
+      }
+    },
+    {
+      "source": "SAT-P2-M1-Q11",
+      "module": "1",
+      "questionNumber": 11,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_functions",
+      "difficulty": "medium",
+      "body": "A pump drains a water tank. The function $W(t) = 280 - 8t$ gives the number of liters of water in the tank $t$ minutes after the pump starts. What is the best interpretation of the number 8 in this context?",
+      "options": {
+        "A": "The number of liters in the tank when the pump starts.",
+        "B": "The number of minutes the pump runs until the tank is empty.",
+        "C": "The number of liters drained from the tank each minute.",
+        "D": "The total number of liters the pump drains."
+      },
+      "answer": "C",
+      "solution": "In $W(t) = 280 - 8t$ the coefficient of $t$ is the rate of change: each minute, the water decreases by $$W(t) - W(t+1) = 8 \\text{ liters}.$$ Choice A describes 280; choice B is $280 \\div 8 = 35$ minutes, a number that is in neither slot of the formula. The correct answer is **C**.",
+      "verify": [
+        "Eq((280 - 8*0) - (280 - 8*1), 8)",
+        "Eq(Rational(280, 8), 35)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M1-Q12",
+      "module": "1",
+      "questionNumber": 12,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "medium",
+      "body": "The graph shows the mass $y$, in grams, of a radioactive sample $x$ days after it was measured; the mass halves every 10 days from an initial 320 grams. What is the mass of the sample at $x = 30$?",
+      "options": {
+        "A": "$40$",
+        "B": "$80$",
+        "C": "$160$",
+        "D": "$320$"
+      },
+      "answer": "A",
+      "solution": "Thirty days is three halving periods: $$320 \\to 160 \\to 80 \\to 40.$$ Equivalently, $320 \\cdot \\left(\\frac{1}{2}\\right)^{30/10} = 320 \\cdot \\frac{1}{8} = 40$. Choice B stops after two halvings (day 20). The correct answer is **A**.",
+      "verify": [
+        "Eq(320*Rational(1,2)**3, 40)",
+        "Eq(320*Rational(1,2)**2, 80)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m1-q12.png",
+        "alt_en": "Decreasing exponential curve from (0, 320) through (10, 160), (20, 80), and (30, 40), flattening toward the x-axis.",
+        "width": 799,
+        "height": 688
+      }
+    },
+    {
+      "source": "SAT-P2-M1-Q13",
+      "module": "1",
+      "questionNumber": 13,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "equivalent_expressions",
+      "difficulty": "medium",
+      "body": "For $x > 0$, which of the following is equivalent to $x^{2/3}$?",
+      "options": {
+        "A": "$\\dfrac{1}{\\sqrt[3]{x^2}}$",
+        "B": "$\\sqrt[3]{x^2}$",
+        "C": "$\\sqrt{x^3}$",
+        "D": "$\\dfrac{x^2}{3}$"
+      },
+      "answer": "B",
+      "solution": "A fractional exponent's DENOMINATOR is the root and its numerator is the power: $$x^{2/3} = \\sqrt[3]{x^2}.$$ Choice C swaps them ($x^{3/2}$), and choice A is $x^{-2/3}$. Check with $x = 8$: $8^{2/3} = 4$ and $\\sqrt[3]{64} = 4$. ✓ The correct answer is **B**.",
+      "verify": [
+        "Eq(8**Rational(2, 3), 4)",
+        "Eq((8**2)**Rational(1, 3), 4)",
+        "Ne(8**Rational(3, 2), 4)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M1-Q14",
+      "module": "1",
+      "questionNumber": 14,
+      "format": "spr",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_equations_systems",
+      "difficulty": "medium",
+      "body": "$$\\frac{24}{x + 2} = 4$$ What is the solution to the equation above?",
+      "acceptedAnswers": [
+        "4"
+      ],
+      "solution": "Multiply both sides by $x + 2$: $$24 = 4(x + 2) \\;\\Rightarrow\\; 6 = x + 2 \\;\\Rightarrow\\; x = 4.$$ Check: $\\frac{24}{6} = 4$. ✓ The correct answer is **4**.",
+      "verify": [
+        "Eq(Rational(24, 4 + 2), 4)",
+        "Eq(Rational(24, 4), 6)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M1-Q15",
+      "module": "1",
+      "questionNumber": 15,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_inequalities",
+      "difficulty": "medium",
+      "body": "Admission to a fair costs \\$20, and each ride costs \\$15. Deshawn can spend at most \\$110 at the fair. What is the greatest number of rides he can go on?",
+      "options": {
+        "A": "$4$",
+        "B": "$6$",
+        "C": "$7$",
+        "D": "$8$"
+      },
+      "answer": "B",
+      "solution": "With $r$ rides, the total cost is $15r + 20$, so $$15r + 20 \\le 110 \\;\\Rightarrow\\; 15r \\le 90 \\;\\Rightarrow\\; r \\le 6.$$ The greatest whole number of rides is 6. Choice C ignores the \\$20 admission ($110 / 15 = 7.33$, then rounds down to 7). The correct answer is **B**.",
+      "verify": [
+        "Eq((110 - 20)/15, 6)",
+        "15*6 + 20 <= 110",
+        "15*7 + 20 > 110"
+      ]
+    },
+    {
+      "source": "SAT-P2-M1-Q16",
+      "module": "1",
+      "questionNumber": 16,
+      "format": "mcq",
+      "domain": "geometry_trig",
+      "skill_tag": "circles",
+      "difficulty": "medium",
+      "body": "In the circle shown with center $O$, points $A$, $B$, and $C$ lie on the circle. The central angle $AOB$ measures $80°$, and the inscribed angle $ACB$ intercepts the same arc $AB$. What is the value of $x$, the measure in degrees of angle $ACB$?",
+      "options": {
+        "A": "$40$",
+        "B": "$80$",
+        "C": "$100$",
+        "D": "$160$"
+      },
+      "answer": "A",
+      "solution": "An inscribed angle measures HALF the central angle that intercepts the same arc: $$x = \\frac{80}{2} = 40.$$ Choice B treats the two angles as equal; choice D doubles instead of halving. The correct answer is **A**.",
+      "verify": [
+        "Eq(Rational(80, 2), 40)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m1-q16.png",
+        "alt_en": "Circle with center O; radii OA and OB form a central angle of 80 degrees, and chords from A and B meet at point C on the far side of the circle, forming an inscribed angle labeled x degrees.",
+        "width": 677,
+        "height": 717
+      }
+    },
+    {
+      "source": "SAT-P2-M1-Q17",
+      "module": "1",
+      "questionNumber": 17,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "systems_two_linear",
+      "difficulty": "medium",
+      "body": "The graph shows the two lines of a system of linear equations. What is the solution $(x, y)$ to the system?",
+      "options": {
+        "A": "$(-3, 2)$",
+        "B": "$(2, 3)$",
+        "C": "$(3, -2)$",
+        "D": "$(3, 2)$"
+      },
+      "answer": "D",
+      "solution": "The solution of a system is the intersection point of its graphs. The lines cross 3 units right of the origin and 2 units up: $(3, 2)$. Choice B swaps the coordinates — always read $x$ (horizontal) first. The correct answer is **D**.",
+      "verify": [
+        "Eq(3 - 1, 2)",
+        "Eq(-3 + 5, 2)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m1-q17.png",
+        "alt_en": "Coordinate grid with two lines: one rising through (0, -1) with slope 1, one falling through (0, 5) with slope -1; they intersect at the marked point (3, 2).",
+        "width": 665,
+        "height": 717
+      }
+    },
+    {
+      "source": "SAT-P2-M1-Q18",
+      "module": "1",
+      "questionNumber": 18,
+      "format": "spr",
+      "domain": "algebra",
+      "skill_tag": "linear_equations_one_var",
+      "difficulty": "hard",
+      "body": "$$6x - 5 = 2x + 9$$ What is the solution to the equation above?",
+      "acceptedAnswers": [
+        "7/2",
+        "3.5"
+      ],
+      "solution": "Collect the $x$-terms on one side and constants on the other: $$6x - 2x = 9 + 5 \\;\\Rightarrow\\; 4x = 14 \\;\\Rightarrow\\; x = \\frac{14}{4} = \\frac{7}{2}.$$ Check: $6(3.5) - 5 = 16$ and $2(3.5) + 9 = 16$. ✓ The correct answer is **7/2** (or 3.5).",
+      "verify": [
+        "Eq(6*Rational(7,2) - 5, 2*Rational(7,2) + 9)",
+        "Eq(Rational(14, 4), Rational(7, 2))"
+      ]
+    },
+    {
+      "source": "SAT-P2-M1-Q19",
+      "module": "1",
+      "questionNumber": 19,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "hard",
+      "body": "The graph of the quadratic function $f$ has its vertex at $(1, -4)$. The function $g$ is defined by $g(x) = f(x - 3) + 2$. What are the coordinates of the vertex of the graph of $g$?",
+      "options": {
+        "A": "$(-2, -6)$",
+        "B": "$(-2, -2)$",
+        "C": "$(4, -6)$",
+        "D": "$(4, -2)$"
+      },
+      "answer": "D",
+      "solution": "Replacing $x$ with $x - 3$ shifts the graph 3 units to the RIGHT (the inside change works opposite to its sign), and the $+2$ outside shifts it 2 units UP: $$(1, -4) \\to (1 + 3, -4 + 2) = (4, -2).$$ Choice A shifts left and down — both directions reversed. The correct answer is **D**.",
+      "verify": [
+        "Eq(1 + 3, 4)",
+        "Eq(-4 + 2, -2)",
+        "Eq(expand((x - 4)**2 - 2), expand(((x - 3) - 1)**2 - 4 + 2))"
+      ]
+    },
+    {
+      "source": "SAT-P2-M1-Q20",
+      "module": "1",
+      "questionNumber": 20,
+      "format": "mcq",
+      "domain": "psda",
+      "skill_tag": "probability_conditional",
+      "difficulty": "hard",
+      "body": "A bag contains 5 red, 7 blue, and 8 green marbles. A marble is selected at random, and it is NOT green. What is the probability that the selected marble is red?",
+      "options": {
+        "A": "$\\dfrac{1}{4}$",
+        "B": "$\\dfrac{1}{3}$",
+        "C": "$\\dfrac{5}{12}$",
+        "D": "$\\dfrac{3}{5}$"
+      },
+      "answer": "C",
+      "solution": "Knowing the marble is not green shrinks the sample space to the $5 + 7 = 12$ non-green marbles: $$P(\\text{red} \\mid \\text{not green}) = \\frac{5}{12}.$$ Choice A divides by all 20 marbles, ignoring the condition; choice D is the probability of the CONDITION itself ($\\frac{12}{20}$). The correct answer is **C**.",
+      "verify": [
+        "Eq(5 + 7, 12)",
+        "Eq(5 + 7 + 8, 20)",
+        "Rational(5, 20) < Rational(5, 15)",
+        "Rational(5, 15) < Rational(5, 12)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M1-Q21",
+      "module": "1",
+      "questionNumber": 21,
+      "format": "spr",
+      "domain": "geometry_trig",
+      "skill_tag": "right_triangles_trig",
+      "difficulty": "hard",
+      "body": "In right triangle $ABC$, the measure of angle $C$ is $90°$ and $\\cos B = \\dfrac{12}{13}$. If the length of hypotenuse $AB$ is 52, what is the length of side $BC$?",
+      "acceptedAnswers": [
+        "48"
+      ],
+      "solution": "$\\cos B$ is the ratio of the leg ADJACENT to angle $B$ to the hypotenuse. Side $BC$ is adjacent to $B$, so $$\\frac{BC}{52} = \\frac{12}{13} \\;\\Rightarrow\\; BC = 52 \\cdot \\frac{12}{13} = 48.$$ The correct answer is **48**.",
+      "verify": [
+        "Eq(52*Rational(12, 13), 48)",
+        "Eq(Rational(48, 52), Rational(12, 13))"
+      ]
+    },
+    {
+      "source": "SAT-P2-M1-Q22",
+      "module": "1",
+      "questionNumber": 22,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_equations_systems",
+      "difficulty": "hard",
+      "body": "$$y = x^2 + 3$$ $$y = 2x + k$$ In the system of equations above, $k$ is a constant. For which values of $k$ does the system have exactly two solutions?",
+      "options": {
+        "A": "$k > -2$",
+        "B": "$k > 2$",
+        "C": "$k < 2$",
+        "D": "$k = 2$"
+      },
+      "answer": "B",
+      "solution": "Setting the right-hand sides equal gives $x^2 - 2x + (3 - k) = 0$. Two solutions require a positive discriminant: $$(-2)^2 - 4(3 - k) > 0 \\;\\Rightarrow\\; 4k - 8 > 0 \\;\\Rightarrow\\; k > 2.$$ At $k = 2$ (choice D) the line is tangent — exactly ONE solution. Desmos check: graph with $k = 3$ (two crossings) and $k = 1$ (no crossing). The correct answer is **B**.",
+      "verify": [
+        "Eq(2**2 - 4*(3 - 2), 0)",
+        "2**2 - 4*(3 - 3) > 0",
+        "2**2 - 4*(3 - 1) < 0"
+      ]
+    }
+  ],
+  "module2Easy": [
+    {
+      "source": "SAT-P2-M2E-Q01",
+      "module": "2E",
+      "questionNumber": 1,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_equations_one_var",
+      "difficulty": "easy",
+      "body": "If $4x + 9 = 2x + 15$, what is the value of $x$?",
+      "options": {
+        "A": "$3$",
+        "B": "$4$",
+        "C": "$6$",
+        "D": "$12$"
+      },
+      "answer": "A",
+      "solution": "Subtract $2x$ and 9 from both sides: $$2x = 6 \\;\\Rightarrow\\; x = 3.$$ Check: $4(3) + 9 = 21$ and $2(3) + 15 = 21$. ✓ Choice B comes from ADDING the $x$-terms ($6x = 24$); choice C is $15 - 9$ without dividing by 2. The correct answer is **A**.",
+      "verify": [
+        "Eq(4*3 + 9, 2*3 + 15)",
+        "Eq((15 - 9)/2, 3)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2E-Q02",
+      "module": "2E",
+      "questionNumber": 2,
+      "format": "mcq",
+      "domain": "geometry_trig",
+      "skill_tag": "lines_angles_triangles",
+      "difficulty": "easy",
+      "body": "In the figure, lines $\\ell$ and $m$ are parallel and are cut by a transversal. One same-side interior angle measures $110°$ and the other measures $x°$. What is the value of $x$?",
+      "options": {
+        "A": "$20$",
+        "B": "$55$",
+        "C": "$70$",
+        "D": "$110$"
+      },
+      "answer": "C",
+      "solution": "Same-side interior angles between parallel lines are SUPPLEMENTARY: $$x + 110 = 180 \\;\\Rightarrow\\; x = 70.$$ Choice D treats them as equal (that is the rule for alternate interior or corresponding angles, not same-side). The correct answer is **C**.",
+      "verify": [
+        "Eq(180 - 110, 70)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m2e-q02.png",
+        "alt_en": "Two parallel horizontal lines l and m cut by a transversal; the same-side interior angle at line l is labeled 110 degrees and the one at line m is labeled x degrees.",
+        "width": 814,
+        "height": 362
+      }
+    },
+    {
+      "source": "SAT-P2-M2E-Q03",
+      "module": "2E",
+      "questionNumber": 3,
+      "format": "spr",
+      "domain": "algebra",
+      "skill_tag": "linear_functions",
+      "difficulty": "easy",
+      "body": "The function $f$ is defined by $f(x) = 4x - 7$. What is the value of $f(6)$?",
+      "acceptedAnswers": [
+        "17"
+      ],
+      "solution": "Substitute $x = 6$: $$f(6) = 4(6) - 7 = 24 - 7 = 17.$$ The correct answer is **17**.",
+      "verify": [
+        "Eq(4*6 - 7, 17)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2E-Q04",
+      "module": "2E",
+      "questionNumber": 4,
+      "format": "mcq",
+      "domain": "psda",
+      "skill_tag": "one_var_data",
+      "difficulty": "easy",
+      "body": "The histogram shows the ages of the 20 members of a club, in ten-year groups. How many members are at least 40 years old?",
+      "options": {
+        "A": "$5$",
+        "B": "$8$",
+        "C": "$12$",
+        "D": "$20$"
+      },
+      "answer": "B",
+      "solution": "\\\"At least 40\\\" covers the last two bars: $$5 + 3 = 8.$$ Choice A is only the 40-to-50 bar; choice C adds the bars BELOW 40 instead. The correct answer is **B**.",
+      "verify": [
+        "Eq(5 + 3, 8)",
+        "Eq(2 + 4 + 6, 12)",
+        "Eq(2 + 4 + 6 + 5 + 3, 20)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m2e-q04.png",
+        "alt_en": "Histogram of member ages: 2 members aged 10 to 20, 4 aged 20 to 30, 6 aged 30 to 40, 5 aged 40 to 50, and 3 aged 50 to 60.",
+        "width": 814,
+        "height": 563
+      }
+    },
+    {
+      "source": "SAT-P2-M2E-Q05",
+      "module": "2E",
+      "questionNumber": 5,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "easy",
+      "body": "The graph of $y = |x - 3| - 2$ is shown. For what value of $x$ does $y$ reach its minimum?",
+      "options": {
+        "A": "$-3$",
+        "B": "$-2$",
+        "C": "$2$",
+        "D": "$3$"
+      },
+      "answer": "D",
+      "solution": "An absolute value is smallest when the expression inside is zero: $x - 3 = 0$ at $x = 3$, where $y = -2$. The question asks for the $x$-VALUE of the minimum, not the minimum $y$ (choice B). The correct answer is **D**.",
+      "verify": [
+        "Eq(Abs(3 - 3) - 2, -2)",
+        "Eq(Abs(1 - 3) - 2, 0)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m2e-q05.png",
+        "alt_en": "V-shaped graph of an absolute value function with vertex at (3, -2), rising with slope 1 on each side and crossing the x-axis at 1 and 5.",
+        "width": 774,
+        "height": 686
+      }
+    },
+    {
+      "source": "SAT-P2-M2E-Q06",
+      "module": "2E",
+      "questionNumber": 6,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_equations_two_var",
+      "difficulty": "easy",
+      "body": "Which of the following points lies on the graph of $y = 5x - 8$ in the $xy$-plane?",
+      "options": {
+        "A": "$(0, 8)$",
+        "B": "$(1, 3)$",
+        "C": "$(2, -2)$",
+        "D": "$(2, 2)$"
+      },
+      "answer": "D",
+      "solution": "Test each point in the equation. At $x = 2$: $$y = 5(2) - 8 = 2,$$ so $(2, 2)$ lies on the line. Choice A flips the sign of the intercept ($y(0) = -8$, not 8), and choice B forgets the sign of $-8$ at $x = 1$ ($y = -3$, not 3). The correct answer is **D**.",
+      "verify": [
+        "Eq(5*2 - 8, 2)",
+        "Ne(5*0 - 8, 8)",
+        "Ne(5*1 - 8, 3)",
+        "Ne(5*2 - 8, -2)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2E-Q07",
+      "module": "2E",
+      "questionNumber": 7,
+      "format": "spr",
+      "domain": "advanced_math",
+      "skill_tag": "equivalent_expressions",
+      "difficulty": "easy",
+      "body": "$$(5x^2 - 2x + 1) - (3x^2 - 2x + 7) = ax^2 + b$$ The equation above is true for all values of $x$, where $a$ and $b$ are constants. What is the value of $a$?",
+      "acceptedAnswers": [
+        "2"
+      ],
+      "solution": "Subtract like terms: the $x^2$-terms give $5 - 3 = 2$, the $x$-terms cancel ($-2x + 2x = 0$), and the constants give $1 - 7 = -6$: $$2x^2 - 6.$$ So $a = 2$ (and $b = -6$). The correct answer is **2**.",
+      "verify": [
+        "Eq(expand((5*x**2 - 2*x + 1) - (3*x**2 - 2*x + 7)), 2*x**2 - 6)",
+        "Eq(5 - 3, 2)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2E-Q08",
+      "module": "2E",
+      "questionNumber": 8,
+      "format": "mcq",
+      "domain": "geometry_trig",
+      "skill_tag": "area_volume",
+      "difficulty": "easy",
+      "body": "The right circular cylinder shown has a base radius of 4 and a height of 5. What is the volume of the cylinder?",
+      "options": {
+        "A": "$20\\pi$",
+        "B": "$40\\pi$",
+        "C": "$80\\pi$",
+        "D": "$320\\pi$"
+      },
+      "answer": "C",
+      "solution": "The volume of a cylinder is the base area times the height: $$V = \\pi r^2 h = \\pi (4^2)(5) = 80\\pi.$$ Choice A forgets to square the radius ($\\pi \\cdot 4 \\cdot 5$); choice B is the lateral surface area $2\\pi r h$. The correct answer is **C**.",
+      "verify": [
+        "Eq(pi*4**2*5, 80*pi)",
+        "Eq(2*pi*4*5, 40*pi)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m2e-q08.png",
+        "alt_en": "Right circular cylinder with base radius labeled 4 and height labeled 5.",
+        "width": 567,
+        "height": 410
+      }
+    },
+    {
+      "source": "SAT-P2-M2E-Q09",
+      "module": "2E",
+      "questionNumber": 9,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "systems_two_linear",
+      "difficulty": "medium",
+      "body": "A theater sold 12 tickets for a total of \\$80. Adult tickets cost \\$9 each and child tickets cost \\$5 each. How many adult tickets were sold?",
+      "options": {
+        "A": "$4$",
+        "B": "$5$",
+        "C": "$7$",
+        "D": "$12$"
+      },
+      "answer": "B",
+      "solution": "With $a$ adult and $c$ child tickets: $a + c = 12$ and $9a + 5c = 80$. Substitute $c = 12 - a$: $$9a + 5(12 - a) = 80 \\;\\Rightarrow\\; 4a + 60 = 80 \\;\\Rightarrow\\; a = 5.$$ Check: $9(5) + 5(7) = 80$. ✓ Choice C is the number of CHILD tickets. The correct answer is **B**.",
+      "verify": [
+        "Eq((80 - 5*12)/4, 5)",
+        "Eq(9*5 + 5*7, 80)",
+        "Eq(5 + 7, 12)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2E-Q10",
+      "module": "2E",
+      "questionNumber": 10,
+      "format": "mcq",
+      "domain": "psda",
+      "skill_tag": "percentages",
+      "difficulty": "easy",
+      "body": "A server received a 15\\% tip on a \\$40 bill. How many dollars was the tip?",
+      "options": {
+        "A": "$6$",
+        "B": "$25$",
+        "C": "$55$",
+        "D": "$60$"
+      },
+      "answer": "A",
+      "solution": "Convert the percent and multiply: $$0.15 \\times 40 = 6.$$ Choice D misplaces the decimal point ($1.5 \\times 40$); choice B subtracts $40 - 15$. The correct answer is **A**.",
+      "verify": [
+        "Eq(Rational(15, 100)*40, 6)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2E-Q11",
+      "module": "2E",
+      "questionNumber": 11,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "medium",
+      "body": "The table shows five values of the quadratic function $g$. What is the minimum value of $g$?",
+      "options": {
+        "A": "$-1$",
+        "B": "$0$",
+        "C": "$2$",
+        "D": "$3$"
+      },
+      "answer": "A",
+      "solution": "The outputs fall and then rise again — the turn happens at $x = 2$, where $g(2) = -1$; the equal outputs at $x = 1$ and $x = 3$ confirm the symmetry around $x = 2$. The minimum VALUE is the output $-1$, not the input 2 (choice C). The correct answer is **A**.",
+      "verify": [
+        "Eq((2 - 2)**2 - 1, -1)",
+        "Eq((1 - 2)**2 - 1, (3 - 2)**2 - 1)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m2e-q11.png",
+        "alt_en": "Table with x values -1, 0, 1, 2, 3 and g(x) values 8, 3, 0, -1, 0.",
+        "width": 895,
+        "height": 189
+      }
+    },
+    {
+      "source": "SAT-P2-M2E-Q12",
+      "module": "2E",
+      "questionNumber": 12,
+      "format": "spr",
+      "domain": "psda",
+      "skill_tag": "one_var_data",
+      "difficulty": "medium",
+      "body": "In a school, 10 students in Class A have a mean test score of 82, and 15 students in Class B have a mean test score of 90. What is the mean score of all 25 students?",
+      "acceptedAnswers": [
+        "86.8",
+        "434/5"
+      ],
+      "solution": "Work with totals: Class A contributes $10 \\times 82 = 820$ points and Class B contributes $15 \\times 90 = 1350$, so $$\\text{mean} = \\frac{820 + 1350}{25} = \\frac{2170}{25} = 86.8.$$ (Averaging 82 and 90 to get 86 is wrong because the classes have different sizes.) The correct answer is **86.8**.",
+      "verify": [
+        "Eq(10*82, 820)",
+        "Eq(15*90, 1350)",
+        "Eq(Rational(820 + 1350, 25), Rational(434, 5))",
+        "Ne(Rational(82 + 90, 2), Rational(434, 5))"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2E-Q13",
+      "module": "2E",
+      "questionNumber": 13,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_inequalities",
+      "difficulty": "medium",
+      "body": "The number line shows the solution set of an inequality: a filled circle at $-1$ with shading to the right. Which inequality has this solution set?",
+      "options": {
+        "A": "$x \\ge -1$",
+        "B": "$x > -1$",
+        "C": "$x \\le -1$",
+        "D": "$x \\ge 1$"
+      },
+      "answer": "A",
+      "solution": "The ray points right, so the solutions are numbers GREATER than the endpoint, and the FILLED circle means $-1$ itself is included: $x \\ge -1$. Choice B would need an open circle; choice C shades the wrong direction. The correct answer is **A**.",
+      "verify": [
+        "0 >= -1",
+        "Eq(-1, -1)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m2e-q13.png",
+        "alt_en": "Number line from -5 to 5 with a filled circle at -1 and an arrow shading all numbers to the right.",
+        "width": 845,
+        "height": 255
+      }
+    },
+    {
+      "source": "SAT-P2-M2E-Q14",
+      "module": "2E",
+      "questionNumber": 14,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "equivalent_expressions",
+      "difficulty": "medium",
+      "body": "The graph of $y = x^2 - 6x + 8$ is a parabola in the $xy$-plane. Which equivalent form of the equation displays the coordinates of the vertex of the parabola as constants or coefficients?",
+      "options": {
+        "A": "$y = (x - 2)(x - 4)$",
+        "B": "$y = (x - 3)^2 - 1$",
+        "C": "$y = x(x - 6) + 8$",
+        "D": "$y = x^2 - 6x + 8$"
+      },
+      "answer": "B",
+      "solution": "Vertex form $y = (x - h)^2 + k$ shows the vertex $(h, k)$ directly: $$y = (x - 3)^2 - 1$$ displays the vertex $(3, -1)$. Both forms expand to $x^2 - 6x + 8$, but choice A displays the $x$-INTERCEPTS (2 and 4), not the vertex. The correct answer is **B**.",
+      "verify": [
+        "Eq(expand((x - 3)**2 - 1), x**2 - 6*x + 8)",
+        "Eq(expand((x - 2)*(x - 4)), x**2 - 6*x + 8)",
+        "Eq((2 + 4)/2, 3)",
+        "Eq((3 - 3)**2 - 1, -1)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2E-Q15",
+      "module": "2E",
+      "questionNumber": 15,
+      "format": "spr",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_equations_systems",
+      "difficulty": "medium",
+      "body": "What is the positive solution to the equation $x^2 + 5x - 24 = 0$?",
+      "acceptedAnswers": [
+        "3"
+      ],
+      "solution": "Look for two numbers with product $-24$ and sum $5$: they are $8$ and $-3$: $$x^2 + 5x - 24 = (x + 8)(x - 3) = 0,$$ so $x = -8$ or $x = 3$; the positive solution is 3. The correct answer is **3**.",
+      "verify": [
+        "Eq(expand((x + 8)*(x - 3)), x**2 + 5*x - 24)",
+        "Eq(3**2 + 5*3 - 24, 0)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2E-Q16",
+      "module": "2E",
+      "questionNumber": 16,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_functions",
+      "difficulty": "easy",
+      "body": "The line $y = kx$, where $k$ is a constant, passes through the point $(4, 10)$ in the $xy$-plane. What is the value of $k$?",
+      "options": {
+        "A": "$0.4$",
+        "B": "$2.5$",
+        "C": "$6$",
+        "D": "$40$"
+      },
+      "answer": "B",
+      "solution": "Substitute the point: $$10 = 4k \\;\\Rightarrow\\; k = \\frac{10}{4} = 2.5.$$ Choice A inverts the ratio ($4/10$); choice C subtracts the coordinates. The correct answer is **B**.",
+      "verify": [
+        "Eq(Rational(10, 4), Rational(5, 2))",
+        "Eq(Rational(5, 2)*4, 10)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2E-Q17",
+      "module": "2E",
+      "questionNumber": 17,
+      "format": "mcq",
+      "domain": "geometry_trig",
+      "skill_tag": "right_triangles_trig",
+      "difficulty": "medium",
+      "body": "In the right triangle shown, the angle $\\theta$ is between the side of length 12 and the hypotenuse of length 13; the side opposite $\\theta$ has length 5. What is the value of $\\cos \\theta$?",
+      "options": {
+        "A": "$\\dfrac{5}{13}$",
+        "B": "$\\dfrac{5}{12}$",
+        "C": "$\\dfrac{12}{13}$",
+        "D": "$\\dfrac{13}{12}$"
+      },
+      "answer": "C",
+      "solution": "Cosine is adjacent over hypotenuse. The side of length 12 is adjacent to $\\theta$: $$\\cos \\theta = \\frac{12}{13}.$$ Choice A is $\\sin \\theta$ (opposite over hypotenuse), and choice B is $\\tan \\theta$. The correct answer is **C**.",
+      "verify": [
+        "Eq(5**2 + 12**2, 13**2)",
+        "Rational(5, 13) < Rational(5, 12)",
+        "Rational(5, 12) < Rational(12, 13)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m2e-q17.png",
+        "alt_en": "Right triangle with horizontal leg 12, vertical leg 5, hypotenuse 13, right angle where the legs meet, and angle theta marked between the leg of length 12 and the hypotenuse.",
+        "width": 752,
+        "height": 348
+      }
+    },
+    {
+      "source": "SAT-P2-M2E-Q18",
+      "module": "2E",
+      "questionNumber": 18,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "medium",
+      "body": "The value of a car $t$ years after purchase is modeled by $V(t) = 12{,}000(0.82)^t$ dollars. By what percent does the value of the car decrease each year?",
+      "options": {
+        "A": "$8.2\\%$",
+        "B": "$18\\%$",
+        "C": "$82\\%$",
+        "D": "$118\\%$"
+      },
+      "answer": "B",
+      "solution": "Each year the value is MULTIPLIED by 0.82, which means it keeps 82\\% of its value and loses the rest: $$1 - 0.82 = 0.18 = 18\\%.$$ Choice C reads 0.82 itself as the loss; choice A misplaces the decimal. The correct answer is **B**.",
+      "verify": [
+        "Eq(1 - Rational(82, 100), Rational(18, 100))"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2E-Q19",
+      "module": "2E",
+      "questionNumber": 19,
+      "format": "spr",
+      "domain": "algebra",
+      "skill_tag": "linear_equations_two_var",
+      "difficulty": "easy",
+      "body": "The graph of $3x + 4y = 21$ in the $xy$-plane crosses the $x$-axis at the point $(a, 0)$. What is the value of $a$?",
+      "acceptedAnswers": [
+        "7"
+      ],
+      "solution": "On the $x$-axis, $y = 0$: $$3a + 4(0) = 21 \\;\\Rightarrow\\; a = 7.$$ The correct answer is **7**.",
+      "verify": [
+        "Eq(3*7 + 4*0, 21)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2E-Q20",
+      "module": "2E",
+      "questionNumber": 20,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "medium",
+      "body": "The functions $f$ and $g$ are defined by $f(x) = 2x + 1$ and $g(x) = x^2$. What is the value of $f(g(3))$?",
+      "options": {
+        "A": "$7$",
+        "B": "$9$",
+        "C": "$19$",
+        "D": "$49$"
+      },
+      "answer": "C",
+      "solution": "Work inside out: $g(3) = 9$ first, then $$f(9) = 2(9) + 1 = 19.$$ Choice D composes in the wrong order — $g(f(3)) = g(7) = 49$; choice B stops at $g(3)$. The correct answer is **C**.",
+      "verify": [
+        "Eq(3**2, 9)",
+        "Eq(2*9 + 1, 19)",
+        "Eq((2*3 + 1)**2, 49)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2E-Q21",
+      "module": "2E",
+      "questionNumber": 21,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "systems_two_linear",
+      "difficulty": "hard",
+      "body": "A cinema sold 260 tickets one evening for a total of \\$2{,}200. Adult tickets cost \\$11 each and student tickets cost \\$7 each. If $a$ is the number of adult tickets and $s$ is the number of student tickets, which system of equations models this situation?",
+      "options": {
+        "A": "$a + s = 260$ and $11a + 7s = 2200$",
+        "B": "$a + s = 2200$ and $11a + 7s = 260$",
+        "C": "$a + s = 260$ and $7a + 11s = 2200$",
+        "D": "$11a + 7s = 260$ and $18(a + s) = 2200$"
+      },
+      "answer": "A",
+      "solution": "Counts add to the ticket total: $a + s = 260$. Money adds to the revenue, each ticket weighted by ITS price: $$11a + 7s = 2200.$$ Choice B swaps the two totals; choice C attaches each price to the wrong ticket type. The correct answer is **A**.",
+      "verify": [
+        "Eq(95 + 165, 260)",
+        "Eq(11*95 + 7*165, 2200)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2E-Q22",
+      "module": "2E",
+      "questionNumber": 22,
+      "format": "spr",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_equations_systems",
+      "difficulty": "hard",
+      "body": "$$p(x) = x^3 - 4x^2 + x + c$$ In the polynomial above, $c$ is a constant. If $x - 2$ is a factor of $p(x)$, what is the value of $c$?",
+      "acceptedAnswers": [
+        "6"
+      ],
+      "solution": "By the factor theorem, $x - 2$ is a factor exactly when $p(2) = 0$: $$2^3 - 4(2^2) + 2 + c = 8 - 16 + 2 + c = c - 6 = 0,$$ so $c = 6$. The correct answer is **6**.",
+      "verify": [
+        "Eq(2**3 - 4*2**2 + 2 + 6, 0)",
+        "Eq(8 - 16 + 2, -6)"
+      ]
+    }
+  ],
+  "module2Hard": [
+    {
+      "source": "SAT-P2-M2H-Q01",
+      "module": "2H",
+      "questionNumber": 1,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_equations_one_var",
+      "difficulty": "easy",
+      "body": "If $7x - 4 = 24$, what is the value of $7x + 3$?",
+      "options": {
+        "A": "$4$",
+        "B": "$21$",
+        "C": "$28$",
+        "D": "$31$"
+      },
+      "answer": "D",
+      "solution": "No need to solve for $x$: the left side just grows by 7, since $(7x + 3) - (7x - 4) = 7$: $$7x + 3 = 24 + 7 = 31.$$ (Directly: $7x = 28$, so $7x + 3 = 31$.) Choice A solves for $x = 4$ and stops; choice C stops at $7x = 28$. The correct answer is **D**.",
+      "verify": [
+        "Eq((24 + 4)/7, 4)",
+        "Eq(7*4 + 3, 31)",
+        "Eq(24 + 7, 31)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2H-Q02",
+      "module": "2H",
+      "questionNumber": 2,
+      "format": "mcq",
+      "domain": "geometry_trig",
+      "skill_tag": "lines_angles_triangles",
+      "difficulty": "medium",
+      "body": "In the figure, lines $\\ell$ and $m$ are parallel and are cut by a transversal. The two same-side interior angles measure $(4x)°$ and $(2x + 30)°$. What is the value of $x$?",
+      "options": {
+        "A": "$10$",
+        "B": "$15$",
+        "C": "$25$",
+        "D": "$35$"
+      },
+      "answer": "C",
+      "solution": "Same-side interior angles are supplementary: $$4x + (2x + 30) = 180 \\;\\Rightarrow\\; 6x = 150 \\;\\Rightarrow\\; x = 25.$$ Check: the angles are $100°$ and $80°$, which do sum to $180°$. Choice B (15) comes from setting the angles EQUAL — the rule for alternate interior angles, not same-side. The correct answer is **C**.",
+      "verify": [
+        "Eq((180 - 30)/6, 25)",
+        "Eq(4*25 + 2*25 + 30, 180)",
+        "Eq((30 - 0)/2, 15)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m2h-q02.png",
+        "alt_en": "Two parallel horizontal lines l and m cut by a transversal; the same-side interior angle at line l is labeled (4x) degrees and the one at line m is labeled (2x + 30) degrees.",
+        "width": 814,
+        "height": 362
+      }
+    },
+    {
+      "source": "SAT-P2-M2H-Q03",
+      "module": "2H",
+      "questionNumber": 3,
+      "format": "spr",
+      "domain": "algebra",
+      "skill_tag": "linear_functions",
+      "difficulty": "easy",
+      "body": "The function $f$ is defined by $f(x) = -3x + 5$. What is the value of $f(-2)$?",
+      "acceptedAnswers": [
+        "11"
+      ],
+      "solution": "Substitute carefully — a negative times a negative: $$f(-2) = -3(-2) + 5 = 6 + 5 = 11.$$ The correct answer is **11**.",
+      "verify": [
+        "Eq(-3*(-2) + 5, 11)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2H-Q04",
+      "module": "2H",
+      "questionNumber": 4,
+      "format": "mcq",
+      "domain": "psda",
+      "skill_tag": "one_var_data",
+      "difficulty": "hard",
+      "body": "The box plot summarizes the distribution of the number of minutes 40 students spent on homework. What is the interquartile range (IQR) of the distribution?",
+      "options": {
+        "A": "$12$",
+        "B": "$18$",
+        "C": "$28$",
+        "D": "$38$"
+      },
+      "answer": "B",
+      "solution": "The IQR is the width of the BOX — the third quartile minus the first quartile: $$\\text{IQR} = 38 - 20 = 18.$$ Choice D is the full range ($50 - 12$), whisker to whisker; choice C is the median, the line inside the box. The correct answer is **B**.",
+      "verify": [
+        "Eq(38 - 20, 18)",
+        "Eq(50 - 12, 38)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m2h-q04.png",
+        "alt_en": "Box plot over a number line from 10 to 50: whiskers at 12 and 50, box from 20 to 38, median line at 28. Axis labeled minutes.",
+        "width": 845,
+        "height": 378
+      }
+    },
+    {
+      "source": "SAT-P2-M2H-Q05",
+      "module": "2H",
+      "questionNumber": 5,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "medium",
+      "body": "The graph of $y = 2|x - 1| - 6$ is shown. What are the $x$-intercepts of the graph?",
+      "options": {
+        "A": "$x = -5$ and $x = 7$",
+        "B": "$x = -4$ and $x = 2$",
+        "C": "$x = -2$ and $x = 4$",
+        "D": "$x = 1$ and $x = -6$"
+      },
+      "answer": "C",
+      "solution": "Set $y = 0$ and isolate the absolute value: $$2|x - 1| = 6 \\;\\Rightarrow\\; |x - 1| = 3 \\;\\Rightarrow\\; x - 1 = \\pm 3,$$ so $x = 4$ or $x = -2$. Choice A forgets to divide by 2 ($|x-1| = 6$); choice D just reads the vertex $(1, -6)$. The correct answer is **C**.",
+      "verify": [
+        "Eq(2*Abs(4 - 1) - 6, 0)",
+        "Eq(2*Abs(-2 - 1) - 6, 0)",
+        "Ne(2*Abs(7 - 1) - 6, 0)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m2h-q05.png",
+        "alt_en": "V-shaped absolute value graph with vertex at (1, -6), rising with slope 2 on each side and crossing the x-axis at -2 and 4.",
+        "width": 774,
+        "height": 686
+      }
+    },
+    {
+      "source": "SAT-P2-M2H-Q06",
+      "module": "2H",
+      "questionNumber": 6,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_equations_two_var",
+      "difficulty": "medium",
+      "body": "A line in the $xy$-plane passes through the points $(-2, 7)$ and $(4, -5)$. What is the $y$-coordinate of the line's $y$-intercept?",
+      "options": {
+        "A": "$-2$",
+        "B": "$3$",
+        "C": "$7$",
+        "D": "$11$"
+      },
+      "answer": "B",
+      "solution": "The slope is $$\\frac{-5 - 7}{4 - (-2)} = \\frac{-12}{6} = -2.$$ Then from $(-2, 7)$: $y = -2x + b$ gives $7 = -2(-2) + b = 4 + b$, so $b = 3$. Choice A is the slope itself; choice D reuses the given $y$-value 7; choice C uses slope $+2$ ($7 = 2(-2) + b \\Rightarrow b = 11$). The correct answer is **B**.",
+      "verify": [
+        "Eq(Rational(-5 - 7, 4 + 2), -2)",
+        "Eq(-2*(-2) + 3, 7)",
+        "Eq(-2*4 + 3, -5)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2H-Q07",
+      "module": "2H",
+      "questionNumber": 7,
+      "format": "spr",
+      "domain": "advanced_math",
+      "skill_tag": "equivalent_expressions",
+      "difficulty": "hard",
+      "body": "$$(x + a)^2 = x^2 + bx + 64$$ In the equation above, $a$ and $b$ are positive constants. If the equation is true for all values of $x$, what is the value of $b$?",
+      "acceptedAnswers": [
+        "16"
+      ],
+      "solution": "Expanding, $(x + a)^2 = x^2 + 2ax + a^2$. Matching constants: $a^2 = 64$, and $a$ is positive, so $a = 8$. Matching the $x$-coefficients: $$b = 2a = 16.$$ The correct answer is **16**.",
+      "verify": [
+        "Eq(expand((x + 8)**2), x**2 + 16*x + 64)",
+        "Eq(8**2, 64)",
+        "Eq(2*8, 16)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2H-Q08",
+      "module": "2H",
+      "questionNumber": 8,
+      "format": "mcq",
+      "domain": "geometry_trig",
+      "skill_tag": "area_volume",
+      "difficulty": "hard",
+      "body": "The circumference of the base of the right circular cylinder shown is $12\\pi$, and the height of the cylinder is 10. What is the volume of the cylinder?",
+      "options": {
+        "A": "$60\\pi$",
+        "B": "$120\\pi$",
+        "C": "$360\\pi$",
+        "D": "$1440\\pi$"
+      },
+      "answer": "C",
+      "solution": "Recover the radius from the circumference first: $$2\\pi r = 12\\pi \\;\\Rightarrow\\; r = 6,$$ then $V = \\pi r^2 h = \\pi(36)(10) = 360\\pi$. Choice B multiplies the circumference by the height (that is the LATERAL AREA, $12\\pi \\cdot 10$); choice D squares the 12 as if it were the radius. The correct answer is **C**.",
+      "verify": [
+        "Eq(Rational(12, 2), 6)",
+        "Eq(6**2*10, 360)",
+        "Eq(12*10, 120)",
+        "Eq(12**2*10, 1440)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m2h-q08.png",
+        "alt_en": "Right circular cylinder with height labeled 10; the caption under the base reads circumference 12 pi.",
+        "width": 535,
+        "height": 656
+      }
+    },
+    {
+      "source": "SAT-P2-M2H-Q09",
+      "module": "2H",
+      "questionNumber": 9,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "systems_two_linear",
+      "difficulty": "hard",
+      "body": "$$0.5x + 0.25y = 7$$ $$x + y = 20$$ If $(x, y)$ is the solution to the system of equations above, what is the value of $y$?",
+      "options": {
+        "A": "$4$",
+        "B": "$8$",
+        "C": "$12$",
+        "D": "$20$"
+      },
+      "answer": "C",
+      "solution": "Substitute $y = 20 - x$ into the first equation: $$0.5x + 0.25(20 - x) = 7 \\;\\Rightarrow\\; 0.25x + 5 = 7 \\;\\Rightarrow\\; x = 8,$$ so $y = 20 - 8 = 12$. Check: $0.5(8) + 0.25(12) = 4 + 3 = 7$. ✓ Choice B is the value of $x$. (Desmos: graph both and read the intersection.) The correct answer is **C**.",
+      "verify": [
+        "Eq(Rational(1,2)*8 + Rational(1,4)*12, 7)",
+        "Eq(8 + 12, 20)",
+        "Eq(Rational(2, Rational(1,4)), 8)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2H-Q10",
+      "module": "2H",
+      "questionNumber": 10,
+      "format": "mcq",
+      "domain": "psda",
+      "skill_tag": "percentages",
+      "difficulty": "medium",
+      "body": "The price of a stock increased by 20\\% in one month and then decreased by 20\\% the next month. Compared with the original price, the final price is",
+      "options": {
+        "A": "40\\% lower",
+        "B": "4\\% lower",
+        "C": "exactly the same",
+        "D": "4\\% higher"
+      },
+      "answer": "B",
+      "solution": "Percent changes MULTIPLY, they don't cancel: $$1.20 \\times 0.80 = 0.96,$$ which is 96\\% of the original — a 4\\% decrease. The second change is 20\\% of a LARGER number, so it removes more than the first change added. Choice C is the classic trap. The correct answer is **B**.",
+      "verify": [
+        "Eq(Rational(120, 100)*Rational(80, 100), Rational(96, 100))",
+        "Eq(1 - Rational(96, 100), Rational(4, 100))"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2H-Q11",
+      "module": "2H",
+      "questionNumber": 11,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "hard",
+      "body": "The table shows five values of the quadratic function $h$. What is the value of $h(10)$?",
+      "options": {
+        "A": "$7$",
+        "B": "$13$",
+        "C": "$17$",
+        "D": "$35$"
+      },
+      "answer": "C",
+      "solution": "The equal outputs at $x = 2, 6$ and at $x = 0, 8$ show the axis of symmetry is $x = 4$, so $h(x) = a(x - 4)^2 - 1$. From $h(0) = 7$: $$16a - 1 = 7 \\;\\Rightarrow\\; a = \\tfrac{1}{2}.$$ Then $$h(10) = \\tfrac{1}{2}(36) - 1 = 17.$$ Choice B continues the last visible step linearly ($1 \\to 7$ suggests $+6$ per 2 units → 13) — but a quadratic accelerates; choice D uses $a = 1$. The correct answer is **C**.",
+      "verify": [
+        "Eq(Rational(1,2)*(0 - 4)**2 - 1, 7)",
+        "Eq(Rational(1,2)*(2 - 4)**2 - 1, 1)",
+        "Eq(Rational(1,2)*(10 - 4)**2 - 1, 17)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m2h-q11.png",
+        "alt_en": "Table with x values 0, 2, 4, 6, 8 and h(x) values 7, 1, -1, 1, 7.",
+        "width": 893,
+        "height": 189
+      }
+    },
+    {
+      "source": "SAT-P2-M2H-Q12",
+      "module": "2H",
+      "questionNumber": 12,
+      "format": "spr",
+      "domain": "psda",
+      "skill_tag": "one_var_data",
+      "difficulty": "hard",
+      "body": "The mean of a list of 5 numbers is 16. When two more numbers, $x$ and $x + 7$, are added to the list, the mean of the resulting 7 numbers is 18. What is the value of $x$?",
+      "acceptedAnswers": [
+        "19.5",
+        "39/2"
+      ],
+      "solution": "Totals again: the 5 numbers sum to $5 \\cdot 16 = 80$, and the 7 numbers must sum to $7 \\cdot 18 = 126$. So $$x + (x + 7) = 126 - 80 = 46 \\;\\Rightarrow\\; 2x = 39 \\;\\Rightarrow\\; x = 19.5.$$ The correct answer is **19.5** (or 39/2).",
+      "verify": [
+        "Eq(5*16, 80)",
+        "Eq(7*18, 126)",
+        "Eq(Rational(126 - 80 - 7, 2), Rational(39, 2))"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2H-Q13",
+      "module": "2H",
+      "questionNumber": 13,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_inequalities",
+      "difficulty": "medium",
+      "body": "The number line shows the solution set of an inequality: an open circle at $2$ with shading to the left. Which inequality has this solution set?",
+      "options": {
+        "A": "$-3x + 4 > -2$",
+        "B": "$-3x + 4 < -2$",
+        "C": "$-3x + 4 \\ge -2$",
+        "D": "$3x + 4 > -2$"
+      },
+      "answer": "A",
+      "solution": "The graph says $x < 2$, strictly (open circle). Solve choice A: $-3x > -6$, and dividing by $-3$ flips the sign: $$x < 2. ✓$$ Choice C gives $x \\le 2$ — a CLOSED circle; choice D gives $x > -2$. The correct answer is **A**.",
+      "verify": [
+        "Eq(Rational(-6, -3), 2)",
+        "-3*1 + 4 > -2",
+        "-3*3 + 4 < -2"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m2h-q13.png",
+        "alt_en": "Number line from -3 to 6 with an open circle at 2 and an arrow shading all numbers to the left.",
+        "width": 845,
+        "height": 255
+      }
+    },
+    {
+      "source": "SAT-P2-M2H-Q14",
+      "module": "2H",
+      "questionNumber": 14,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "equivalent_expressions",
+      "difficulty": "hard",
+      "body": "$$y = 2x^2 + 16x + 26$$ The equation above can be rewritten in the form $y = a(x + h)^2 + k$. What is the minimum value of $y$?",
+      "options": {
+        "A": "$-6$",
+        "B": "$-4$",
+        "C": "$6$",
+        "D": "$26$"
+      },
+      "answer": "A",
+      "solution": "Complete the square, factoring the 2 out of the $x$-terms first: $$y = 2(x^2 + 8x) + 26 = 2\\big[(x + 4)^2 - 16\\big] + 26 = 2(x + 4)^2 - 6.$$ The square is at least 0, so the minimum is $-6$ (at $x = -4$). Choice B is the $x$-coordinate of the vertex; choice D is the $y$-intercept. The correct answer is **A**.",
+      "verify": [
+        "Eq(expand(2*(x + 4)**2 - 6), 2*x**2 + 16*x + 26)",
+        "Eq(2*(-4)**2 + 16*(-4) + 26, -6)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2H-Q15",
+      "module": "2H",
+      "questionNumber": 15,
+      "format": "spr",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_equations_systems",
+      "difficulty": "hard",
+      "body": "$$x^2 - 9x + c = 0$$ In the equation above, $c$ is a constant. The equation has two solutions, and one solution is twice the other. What is the value of $c$?",
+      "acceptedAnswers": [
+        "18"
+      ],
+      "solution": "Call the solutions $s$ and $2s$. Their SUM is the negative of the $x$-coefficient: $s + 2s = 9$, so $s = 3$ and the solutions are 3 and 6. Their PRODUCT is the constant: $$c = 3 \\cdot 6 = 18.$$ Check: $x^2 - 9x + 18 = (x - 3)(x - 6)$. ✓ The correct answer is **18**.",
+      "verify": [
+        "Eq(Rational(9, 3), 3)",
+        "Eq(3*6, 18)",
+        "Eq(expand((x - 3)*(x - 6)), x**2 - 9*x + 18)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2H-Q16",
+      "module": "2H",
+      "questionNumber": 16,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_functions",
+      "difficulty": "medium",
+      "body": "For the linear function $f$, $f(4) - f(1) = 9$. What is the slope of the graph of $f$ in the $xy$-plane?",
+      "options": {
+        "A": "$3$",
+        "B": "$9$",
+        "C": "$27$",
+        "D": "$36$"
+      },
+      "answer": "A",
+      "solution": "The slope is the change in output over the change in input: $$m = \\frac{f(4) - f(1)}{4 - 1} = \\frac{9}{3} = 3.$$ Choice B is the raw difference 9 without dividing by the run; the function's intercept cannot be determined, but the slope can. The correct answer is **A**.",
+      "verify": [
+        "Eq(Rational(9, 4 - 1), 3)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2H-Q17",
+      "module": "2H",
+      "questionNumber": 17,
+      "format": "mcq",
+      "domain": "geometry_trig",
+      "skill_tag": "right_triangles_trig",
+      "difficulty": "hard",
+      "body": "In the right triangle shown, the hypotenuse has length 25 and the side opposite angle $\\theta$ has length 15. What is the value of $\\tan \\theta$?",
+      "options": {
+        "A": "$\\dfrac{3}{5}$",
+        "B": "$\\dfrac{3}{4}$",
+        "C": "$\\dfrac{4}{5}$",
+        "D": "$\\dfrac{4}{3}$"
+      },
+      "answer": "B",
+      "solution": "First find the missing adjacent side with the Pythagorean theorem: $$\\sqrt{25^2 - 15^2} = \\sqrt{625 - 225} = \\sqrt{400} = 20.$$ Then $$\\tan \\theta = \\frac{\\text{opposite}}{\\text{adjacent}} = \\frac{15}{20} = \\frac{3}{4}.$$ Choice A is $\\sin \\theta = \\frac{15}{25}$; choice C is $\\cos \\theta = \\frac{20}{25}$. The correct answer is **B**.",
+      "verify": [
+        "Eq(sqrt(25**2 - 15**2), 20)",
+        "Eq(Rational(15, 20), Rational(3, 4))",
+        "Rational(3, 5) < Rational(3, 4)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p2-m2h-q17.png",
+        "alt_en": "Right triangle with hypotenuse labeled 25 and vertical leg labeled 15 opposite the marked angle theta; the horizontal leg is unlabeled.",
+        "width": 738,
+        "height": 563
+      }
+    },
+    {
+      "source": "SAT-P2-M2H-Q18",
+      "module": "2H",
+      "questionNumber": 18,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "hard",
+      "body": "A savings account balance is modeled by $B(t) = 8{,}000(1.05)^{4t}$ dollars, where $t$ is the time in YEARS. Which statement best describes the growth of the balance?",
+      "options": {
+        "A": "It increases by 5\\% once each year.",
+        "B": "It increases by 5\\% every 3 months.",
+        "C": "It increases by 5\\% every 4 years.",
+        "D": "It increases by 20\\% once each year."
+      },
+      "answer": "B",
+      "solution": "Write the exponent as a count of periods: $4t$ reaches 1 when $t = \\frac{1}{4}$ year — every 3 months the balance is multiplied by 1.05, a 5\\% increase. Choice D adds the four quarterly increases as if percents were additive; the true yearly factor is $(1.05)^4 \\approx 1.216$, about 21.6\\%. The correct answer is **B**.",
+      "verify": [
+        "Eq(Rational(105, 100)**(4*Rational(1, 4)), Rational(105, 100))",
+        "Rational(105, 100)**4 > Rational(120, 100)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2H-Q19",
+      "module": "2H",
+      "questionNumber": 19,
+      "format": "spr",
+      "domain": "algebra",
+      "skill_tag": "linear_equations_two_var",
+      "difficulty": "medium",
+      "body": "The graph of $2x - 5y = 10$ in the $xy$-plane crosses the $y$-axis at the point $(0, b)$. What is the value of $b$?",
+      "acceptedAnswers": [
+        "-2"
+      ],
+      "solution": "On the $y$-axis, $x = 0$: $$2(0) - 5b = 10 \\;\\Rightarrow\\; b = \\frac{10}{-5} = -2.$$ (Watch the sign — the $-5y$ makes the intercept negative.) The correct answer is **-2**.",
+      "verify": [
+        "Eq(2*0 - 5*(-2), 10)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2H-Q20",
+      "module": "2H",
+      "questionNumber": 20,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "hard",
+      "body": "The function $f$ is defined by $f(x) = 3x - b$, where $b$ is a constant. If $f(f(2)) = 10$, what is the value of $b$?",
+      "options": {
+        "A": "$-2$",
+        "B": "$2$",
+        "C": "$6$",
+        "D": "$8$"
+      },
+      "answer": "B",
+      "solution": "Build the composition from the inside: $f(2) = 6 - b$, so $$f(f(2)) = 3(6 - b) - b = 18 - 4b = 10 \\;\\Rightarrow\\; 4b = 8 \\;\\Rightarrow\\; b = 2.$$ Check: $f(2) = 4$ and $f(4) = 10$. ✓ Choice D stops at $4b = 8$ and reports 8. The correct answer is **B**.",
+      "verify": [
+        "Eq(3*(3*2 - 2) - 2, 10)",
+        "Eq(3*2 - 2, 4)",
+        "Eq(3*4 - 2, 10)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2H-Q21",
+      "module": "2H",
+      "questionNumber": 21,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "systems_two_linear",
+      "difficulty": "hard",
+      "body": "A chemist mixes $x$ liters of a 30\\% acid solution with $y$ liters of a 55\\% acid solution to produce 20 liters of a 40\\% acid solution. Which system of equations models this situation?",
+      "options": {
+        "A": "$x + y = 20$ and $0.30x + 0.55y = 0.40(20)$",
+        "B": "$x + y = 20$ and $0.30x + 0.55y = 0.40$",
+        "C": "$x + y = 0.40(20)$ and $0.30x + 0.55y = 20$",
+        "D": "$x + y = 20$ and $0.55x + 0.30y = 0.40(20)$"
+      },
+      "answer": "A",
+      "solution": "Volumes add: $x + y = 20$. Pure acid also adds: the first solution contributes $0.30x$ liters of acid, the second $0.55y$, and the mixture contains $0.40 \\times 20 = 8$ liters: $$0.30x + 0.55y = 8.$$ Choice B equates liters of acid with a unitless 0.40; choice D attaches each concentration to the wrong solution. The correct answer is **A**.",
+      "verify": [
+        "Eq(Rational(40, 100)*20, 8)",
+        "Eq(Rational(30,100)*12 + Rational(55,100)*8, 8)",
+        "Eq(12 + 8, 20)"
+      ]
+    },
+    {
+      "source": "SAT-P2-M2H-Q22",
+      "module": "2H",
+      "questionNumber": 22,
+      "format": "spr",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_equations_systems",
+      "difficulty": "hard",
+      "body": "$$p(x) = 2x^3 + cx^2 - 5x + 2$$ In the polynomial above, $c$ is a constant. If $x + 2$ is a factor of $p(x)$, what is the value of $c$?",
+      "acceptedAnswers": [
+        "1"
+      ],
+      "solution": "$x + 2$ is a factor exactly when $p(-2) = 0$ — note the opposite sign: $$2(-8) + 4c + 10 + 2 = 4c - 4 = 0 \\;\\Rightarrow\\; c = 1.$$ The correct answer is **1**.",
+      "verify": [
+        "Eq(2*(-2)**3 + 1*(-2)**2 - 5*(-2) + 2, 0)",
+        "Eq(-16 + 4 + 10 + 2, 0)"
+      ]
+    }
+  ]
+}
