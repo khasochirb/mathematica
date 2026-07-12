@@ -1,0 +1,283 @@
+{
+  "slug": "functions",
+  "title": "Introduction to Functions",
+  "unit": 4,
+  "status": "published",
+  "blurb": "What makes a relation a function, the f(x) notation, domain and range, and reading real-world graphs — the input–output machines the rest of algebra studies.",
+  "buildsOn": "Evaluating expressions (Unit 1) and the coordinate plane.",
+  "lessons": [
+    {
+      "slug": "relations-and-functions",
+      "title": "Relations & Functions",
+      "concreteComparison": "A vending machine is a function: press B4, get one specific snack. A machine that sometimes drops chips and sometimes a soda for the SAME button is broken — and a relation that sends one input to two outputs is not a function.",
+      "objective": "Decide whether a relation (as a set of pairs, a table, a mapping, or a graph) is a function, using the one-output rule and the vertical line test.",
+      "concept": [
+        "A **relation** is any set of input–output pairs. A **function** is a relation with a promise: **every input has exactly ONE output.** Inputs may share an output; an input may never split between two.",
+        "Test a set of pairs by scanning the inputs: $\\{(1, 4), (2, 4), (3, 5)\\}$ is a function (repeated OUTPUT 4 is fine); $\\{(1, 4), (1, 5), (2, 6)\\}$ is not — input 1 goes two places.",
+        "On a graph, the promise becomes geometry: the **vertical line test**. If some vertical line crosses the graph twice, one $x$ has two $y$'s — not a function. Every non-vertical line passes; a circle fails."
+      ],
+      "keyIdea": "Function = every input gets exactly one output; on a graph, no vertical line may hit the curve twice.",
+      "facts": [
+        { "title": "The one-output rule", "latex": "x \\to \\text{exactly one } y", "explanation": "Repeated outputs are legal; a split input is not." },
+        { "title": "Vertical line test", "latex": "\\text{any vertical line hits} \\le 1 \\text{ point}", "explanation": "A vertical line marks one input; two hits = two outputs for it." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al41-we1",
+          "statement": "Is $\\{(2, 3), (5, 7), (2, 9), (8, 3)\\}$ a function?",
+          "solution": "Scan inputs: 2 appears twice, paired with 3 AND with 9 — one input, two outputs. Not a function. (The repeated output 3 at inputs 2 and 8 would have been fine.)",
+          "check": ["3 != 9", "2 == 2"]
+        },
+        {
+          "id": "al41-we2",
+          "statement": "A table pairs each student ID with that student's height. Is height a function of ID? Is ID a function of height?",
+          "solution": "Each ID belongs to one student with one height — a function. The reverse can fail: two students (two IDs) can share the height 165 cm, so one input (165) would have two outputs. Not a function in reverse.",
+          "check": ["1 == 1"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Rejecting $\\{(1, 4), (2, 4)\\}$ because the output 4 repeats.", "correction": "Outputs may repeat freely — a constant function sends EVERY input to the same output. Only split inputs break the rule.", "authored": true },
+        { "text": "Applying a horizontal line test to check for a function.", "correction": "The function test is VERTICAL lines (one input, one output). Horizontal lines test a different property (one-to-one).", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al41-t1",
+          "statement": "Which is a function: $A = \\{(0, 1), (1, 2), (2, 2)\\}$ or $B = \\{(3, 0), (3, 1), (4, 2)\\}$?",
+          "solution": "$A$: inputs 0, 1, 2 all distinct — function. $B$: input 3 splits to 0 and 1 — not a function.",
+          "check": ["0 != 1", "1 != 2"]
+        },
+        {
+          "id": "al41-t2",
+          "statement": "The graph of $x = y^2$ contains $(4, 2)$ and $(4, -2)$. Is it the graph of a function of $x$?",
+          "solution": "The vertical line $x = 4$ hits both points — input 4 has outputs 2 and $-2$. Not a function of $x$.",
+          "check": ["2**2 == 4", "(-2)**2 == 4", "2 != -2"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Machines you can trust", "body": "Press B4 on a vending machine and you expect ONE specific snack — every time. A button that randomly gives chips or soda is broken. Algebra's most important objects are exactly the trustworthy machines: **relations where each input produces one guaranteed output.** We call them functions." },
+          { "kind": "teach", "eyebrow": "The rule", "title": "One input, one output", "body": "A function may reuse outputs — buttons B4 and C1 can both drop chips. What it may NEVER do is split an input: B4 dropping chips today and soda tomorrow. Check pairs by scanning the INPUTS only: any repeat input with different outputs kills it." },
+          { "kind": "tapQuestion", "eyebrow": "Check the rule", "title": "Spot the broken machine", "prompt": "Which set is NOT a function?", "options": ["$\\{(1,2), (1,3), (2,4)\\}$", "$\\{(1,2), (2,2), (3,2)\\}$", "$\\{(5,1), (6,2), (7,3)\\}$", "$\\{(0,0)\\}$"], "correctIndex": 0, "explanation": "Input 1 goes to both 2 and 3 — a split input. The all-outputs-equal set is a perfectly good (constant) function.", "check": ["2 != 3"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Scan the inputs", "problemId": "al41-we1" },
+          { "kind": "teach", "eyebrow": "On a graph", "title": "The vertical line test", "body": "A vertical line collects all points with ONE particular $x$. If it crosses the graph twice, that input has two outputs — promise broken. Slide an imaginary vertical line across the whole graph: parabolas opening up pass; circles and sideways parabolas fail." },
+          { "kind": "coordinateGrid", "eyebrow": "Play", "title": "Two points, one column", "teach": "These two points share $x = 4$: they sit in the same vertical column. Any graph through BOTH cannot be a function — the input 4 would have two outputs, 2 and $-2$.", "config": { "mode": "plot", "min": -6, "max": 6, "points": [ { "x": 4, "y": 2, "label": "(4, 2)" }, { "x": 4, "y": -2, "label": "(4, −2)" } ], "color": "#e8913c" } },
+          { "kind": "tapQuestion", "eyebrow": "Check the test", "title": "Pass or fail?", "prompt": "Which graph FAILS the vertical line test?", "options": ["a circle", "a straight line with slope 3", "a parabola opening upward", "a horizontal line"], "correctIndex": 0, "explanation": "A vertical line through a circle's middle hits it twice — two outputs for one input. The others are hit at most once by any vertical line.", "check": ["1 + 1 == 2"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Functions in real data", "problemId": "al41-we2" },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Say it as a sentence", "body": "For real-world relations, phrase it: 'is ___ a function of ___?' Height is a function of student ID (each ID → one height); ID is NOT a function of height (two students can share 165 cm). The direction matters — always name which is the input." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Two sets, one verdict each", "problemId": "al41-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "A sideways parabola", "problemId": "al41-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Function: every input → exactly one output; repeated outputs are fine.", "Test pairs by scanning inputs; test graphs with vertical lines.", "Direction matters: 'y is a function of x' names x as the input."] }
+        ]
+      }
+    },
+    {
+      "slug": "function-notation",
+      "title": "Function Notation",
+      "concreteComparison": "$f(x)$ is a machine with a name badge. $f(3) = 11$ reads 'feed the $f$-machine a 3 and it returns 11.' The parentheses are a feeding slot, not multiplication.",
+      "objective": "Evaluate functions written in f(x) notation (at numbers and at expressions) and solve f(x) = k for the input.",
+      "concept": [
+        "$f(x) = 2x + 5$ names a machine $f$ whose recipe is 'double, add 5.' **$f(3)$ means: run the machine on 3** — replace every $x$ with 3: $f(3) = 11$. The notation is NOT '$f$ times $x$'.",
+        "Two directions of question: **evaluate** $f(3)$ (input known → find output) and **solve** $f(x) = 25$ (output known → find input: $2x + 5 = 25$, so $x = 10$). Reading which direction a problem asks is half the skill.",
+        "Inputs can be expressions: $f(a + 1) = 2(a + 1) + 5 = 2a + 7$. Substitute the WHOLE input, in parentheses, everywhere $x$ appears."
+      ],
+      "keyIdea": "f(3) means 'run machine f on input 3'; f(x) = k asks which input produces output k — evaluating and solving are the two directions of one notation.",
+      "facts": [
+        { "title": "Evaluate = substitute", "latex": "f(x) = 2x + 5 \\;\\Rightarrow\\; f(3) = 2(3) + 5 = 11", "explanation": "Replace every $x$ by the input, in parentheses." },
+        { "title": "Solve = find the input", "latex": "f(x) = 25 \\;\\Rightarrow\\; 2x + 5 = 25 \\;\\Rightarrow\\; x = 10", "explanation": "The output is given; the equation recovers the input." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al42-we1",
+          "statement": "For $g(x) = x^2 - 3x + 1$, find $g(-2)$ and $g(0)$.",
+          "solution": "$g(-2) = (-2)^2 - 3(-2) + 1 = 4 + 6 + 1 = 11$. $g(0) = 0 - 0 + 1 = 1$ — the $y$-intercept of the graph.",
+          "check": ["(-2)**2 - 3*(-2) + 1 == 11", "0**2 - 3*0 + 1 == 1"]
+        },
+        {
+          "id": "al42-we2",
+          "statement": "For $f(x) = 4x - 7$, solve $f(x) = 29$.",
+          "solution": "$4x - 7 = 29 \\to 4x = 36 \\to x = 9$. Check: $f(9) = 36 - 7 = 29$. ✓",
+          "check": ["29 + 7 == 36", "4*9 - 7 == 29"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Reading $f(3)$ as '$f$ times 3.'", "correction": "$f$ is a machine, not a number — $f(3)$ is the machine's OUTPUT at input 3. The parentheses are a feeding slot.", "authored": true },
+        { "text": "Answering $f(x) = 29$ with the output ('29') instead of the input.", "correction": "The 29 is given; the question asks WHICH $x$ produced it. Solve the equation: $x = 9$.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al42-t1",
+          "statement": "For $h(x) = -2x + 9$, find $h(5)$ and solve $h(x) = 1$.",
+          "solution": "$h(5) = -10 + 9 = -1$. Solve: $-2x + 9 = 1 \\to -2x = -8 \\to x = 4$.",
+          "check": ["-2*5 + 9 == -1", "-2*4 + 9 == 1"]
+        },
+        {
+          "id": "al42-t2",
+          "statement": "For $f(x) = 3x + 2$, write and simplify $f(a + 4)$.",
+          "solution": "$f(a + 4) = 3(a + 4) + 2 = 3a + 14$. Check at $a = 1$: $f(5) = 17$ and $3(1) + 14 = 17$. ✓",
+          "check": ["3*5 + 2 == 17", "3*1 + 14 == 17"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Machines need names", "body": "With several recipes in play — one for cost, one for profit, one for tax — 'the expression' stops being a usable name. Function notation gives each machine a badge: $C(x)$ for cost, $P(x)$ for profit. $C(40)$ instantly means 'the cost when $x = 40$.' Compact, precise, universal." },
+          { "kind": "teach", "eyebrow": "Reading it", "title": "The feeding slot", "body": "$f(x) = 2x + 5$, then $f(3)$: put 3 into the slot — replace every $x$: $f(3) = 2(3) + 5 = 11$. **The parentheses mean 'input goes here', never multiplication.** Output of $f$ at 3, written $f(3)$, equals 11." },
+          { "kind": "evaluator", "eyebrow": "Play", "title": "Feed the machine", "teach": "This is $f(x) = 2x + 5$ as a live machine: slide the input and watch the output. $f(0) = 5$, $f(4) = 13$ — the notation just names these input–output snapshots.", "config": { "a": 2, "b": 5, "varName": "x", "min": 0, "max": 10, "start": 3, "color": "#e8913c" } },
+          { "kind": "tapQuestion", "eyebrow": "Check the reading", "title": "Evaluate", "prompt": "If $f(x) = x^2 + 1$, then $f(-3) = $ ?", "options": ["$10$", "$-8$", "$-10$", "$7$"], "correctIndex": 0, "explanation": "$(-3)^2 + 1 = 9 + 1 = 10$. Getting $-8$ means the substitution lost its parentheses ($-3^2 + 1$).", "check": ["(-3)**2 + 1 == 10"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Two evaluations", "problemId": "al42-we1" },
+          { "kind": "teach", "eyebrow": "The reverse", "title": "Given the output, find the input", "body": "$f(x) = 29$ flips the question: the machine RETURNED 29 — what went in? Set the recipe equal to 29 and solve: $4x - 7 = 29$, so $x = 9$. Evaluate = run forward; solve = run backward. Exams love asking one and receiving the other — read carefully." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Backward through the machine", "problemId": "al42-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the direction", "title": "Which question is it?", "prompt": "For $g(x) = 5x - 3$: 'find $x$ so that $g(x) = 17$.' The answer is:", "options": ["$x = 4$", "$g(17) = 82$", "$x = 17$", "$x = 82$"], "correctIndex": 0, "explanation": "Output 17 is given: $5x - 3 = 17 \\to x = 4$. Computing $g(17)$ answers the OTHER direction.", "check": ["5*4 - 3 == 17"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Whole input, in parentheses", "body": "For $f(a + 4)$, the entire package $a + 4$ enters the slot: $3(a + 4) + 2$, parentheses intact, THEN simplify. Dropping the parentheses ($3a + 4 + 2$) feeds the machine only part of its meal." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Both directions", "problemId": "al42-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "An expression as input", "problemId": "al42-t2" },
+          { "kind": "funFact", "eyebrow": "Fun fact", "title": "Euler's notation", "body": "The $f(x)$ notation was introduced by Leonhard Euler in 1734. It's arguably the most successful piece of notation in mathematics — the same symbols appear today in every language, every textbook, and every programming language's functions." },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["$f(3)$ = output of machine $f$ at input 3 — never multiplication.", "Evaluate runs forward; $f(x) = k$ runs backward (solve for $x$).", "Expression inputs enter whole, wrapped in parentheses."] }
+        ]
+      }
+    },
+    {
+      "slug": "domain-and-range",
+      "title": "Domain & Range",
+      "concreteComparison": "A ticket machine takes coins from 10¢ to \\$2 — that's its domain, what it ACCEPTS. It prints tickets worth \\$1 to \\$20 — that's its range, what it PRODUCES. Every function has an accepts-list and a produces-list.",
+      "objective": "Find the domain and range of a function from a set of pairs, a graph, or a real-world context, and spot inputs a formula must exclude.",
+      "concept": [
+        "The **domain** is the set of allowed INPUTS; the **range** is the set of outputs actually PRODUCED. For pairs $\\{(1, 4), (2, 4), (3, 5)\\}$: domain $\\{1, 2, 3\\}$, range $\\{4, 5\\}$ — the repeated 4 is listed once.",
+        "From a graph, the domain is the graph's SHADOW on the $x$-axis and the range its shadow on the $y$-axis. For $y = x^2$: domain all real numbers; range $y \\ge 0$ (a square is never negative).",
+        "Formulas exclude two things in Algebra 1: division by zero — $f(x) = \\dfrac{1}{x - 3}$ bans $x = 3$ — and square roots of negatives — $g(x) = \\sqrt{x - 2}$ demands $x \\ge 2$. Context restricts further: 'tickets sold' can't be $-5$ or $2.7$."
+      ],
+      "keyIdea": "Domain = allowed inputs (watch zero denominators, negative radicands, and context); range = outputs actually produced — the graph's shadows on the two axes.",
+      "facts": [
+        { "title": "Two shadows", "latex": "\\text{domain} = \\text{shadow on } x\\text{-axis}, \\quad \\text{range} = \\text{shadow on } y\\text{-axis}", "explanation": "Project the graph down and sideways." },
+        { "title": "The two banned inputs", "latex": "\\frac{1}{x - 3}: x \\ne 3, \\qquad \\sqrt{x - 2}: x \\ge 2", "explanation": "No dividing by zero; no square roots of negatives (in Algebra 1)." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al43-we1",
+          "statement": "Find the domain of $f(x) = \\dfrac{5}{2x - 8}$.",
+          "solution": "The denominator dies at $2x - 8 = 0$, i.e. $x = 4$. Domain: all real numbers except 4.",
+          "check": ["2*4 - 8 == 0", "2*5 - 8 != 0"]
+        },
+        {
+          "id": "al43-we2",
+          "statement": "A drone flies for at most 25 minutes on a full battery, and its height is modeled by $h(t)$ for $0 \\le t \\le 25$, with heights from 0 up to a peak of 120 m. State the domain and range with units.",
+          "solution": "Domain: $0 \\le t \\le 25$ minutes (the inputs that make sense). Range: $0 \\le h \\le 120$ meters (the heights actually reached).",
+          "check": ["0 <= 25", "0 <= 120"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Swapping the two: reporting outputs as the 'domain.'", "correction": "D comes before R alphabetically, x comes before y: Domain ↔ $x$ (inputs), Range ↔ $y$ (outputs).", "authored": true },
+        { "text": "Giving the range of $y = x^2$ as 'all real numbers.'", "correction": "Squares are never negative — the outputs are only $y \\ge 0$. The range is what the machine actually PRODUCES, not what $y$ could name.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al43-t1",
+          "statement": "State the domain and range of $\\{(-1, 2), (0, 5), (3, 2), (4, 8)\\}$.",
+          "solution": "Domain $\\{-1, 0, 3, 4\\}$; range $\\{2, 5, 8\\}$ (the 2 listed once).",
+          "check": ["4 - (-1) == 5", "8 - 2 == 6"]
+        },
+        {
+          "id": "al43-t2",
+          "statement": "Find the domain of $g(x) = \\sqrt{3x - 12}$.",
+          "solution": "Need $3x - 12 \\ge 0$, so $x \\ge 4$. Check: $g(4) = 0$ works; $x = 3$ would need $\\sqrt{-3}$.",
+          "check": ["3*4 - 12 == 0", "3*4 - 12 >= 0", "not (3*3 - 12 >= 0)"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "What goes in, what comes out", "body": "Every machine has limits. A ticket machine accepts certain coins and prints certain tickets; a drone flies between 0 and 25 minutes and reaches heights between 0 and 120 m. The **domain** is the accepts-list, the **range** the produces-list — and describing a function honestly means stating both." },
+          { "kind": "teach", "eyebrow": "From pairs and graphs", "title": "Collect, then project", "body": "From pairs: domain = all first coordinates, range = all second coordinates (repeats listed once). From a graph: squash the curve DOWN onto the $x$-axis — that shadow is the domain; squash it SIDEWAYS onto the $y$-axis — that's the range." },
+          { "kind": "tapQuestion", "eyebrow": "Check the reading", "title": "Shadow on the y-axis", "prompt": "The graph of $y = x^2$ has range:", "options": ["$y \\ge 0$", "all real numbers", "$x \\ge 0$", "$y > 0$"], "correctIndex": 0, "explanation": "Squares are $\\ge 0$, and 0 itself is produced (at $x = 0$) — so $y \\ge 0$, inclusive.", "check": ["0**2 == 0", "(-3)**2 >= 0"] },
+          { "kind": "teach", "eyebrow": "From formulas", "title": "The two forbidden inputs", "body": "A formula's domain is 'everything that doesn't break it.' Two things break: **dividing by zero** ($\\frac{5}{2x-8}$ bans $x = 4$) and **square-rooting a negative** ($\\sqrt{3x-12}$ demands $x \\ge 4$). Find the crime scene by setting the denominator $= 0$ or the radicand $\\ge 0$." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Ban the zero denominator", "problemId": "al43-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check formulas", "title": "Who's excluded?", "prompt": "The domain of $f(x) = \\dfrac{x + 1}{x + 6}$ excludes:", "options": ["$x = -6$", "$x = -1$", "$x = 6$", "$x = 0$"], "correctIndex": 0, "explanation": "The DENOMINATOR must not vanish: $x + 6 = 0$ at $x = -6$. ($x = -1$ just makes the output 0 — perfectly legal.)", "check": ["-6 + 6 == 0", "-1 + 6 != 0"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Context sets the fences", "problemId": "al43-we2" },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Units make it real", "body": "For applied functions, state domain and range WITH units and a reason: 'domain $0 \\le t \\le 25$ minutes — the battery's life; range $0 \\le h \\le 120$ m — the heights reached.' If you can't say why the fence is there, you haven't found the real domain yet." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Pairs to sets", "problemId": "al43-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "A root's demand", "problemId": "al43-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Domain = inputs (x-shadow); range = outputs (y-shadow).", "Formulas ban zero denominators and negative radicands.", "Context restricts further — counts are whole, times are non-negative."] }
+        ]
+      }
+    },
+    {
+      "slug": "interpreting-graphs",
+      "title": "Interpreting Graphs",
+      "concreteComparison": "A graph of a bike ride tells a story without words: climbing means speeding up the hill... no — rising means the QUANTITY grows. Reading graphs is learning to narrate: where it rises, falls, flattens, and what the intercepts say in real units.",
+      "objective": "Read function graphs qualitatively: intercepts, increasing/decreasing intervals, maxima/minima, and translate features into real-world sentences.",
+      "concept": [
+        "Graph features carry meaning: the **$y$-intercept** $f(0)$ is the starting value; an **$x$-intercept** is where the quantity hits zero; **rising** sections mean increasing; **falling** mean decreasing; **flat** means constant; the **highest/lowest points** are maxima/minima.",
+        "Units turn features into sentences. If $h(t)$ is a drone's height in meters after $t$ minutes: $h(0) = 30$ → 'launched from 30 m'; $h$ increasing on $0 < t < 4$ → 'climbing for the first 4 minutes'; $h(25) = 0$ → 'landed at minute 25.'",
+        "Careful: a graph shows VALUE, not motion. A rising height-graph doesn't say the drone moves right — it says height grows over time. Read the axes first, every time: what is measured, in what units."
+      ],
+      "keyIdea": "Intercepts, rising/falling stretches, and peaks are the vocabulary; the axes' units turn them into true sentences about the situation.",
+      "facts": [
+        { "title": "Feature dictionary", "latex": "f(0) = \\text{start}, \\quad f(a) = 0 \\text{ at } x\\text{-intercepts}, \\quad \\text{rise/fall} = \\text{inc/dec}", "explanation": "Peaks are maxima, valleys are minima — all read left to right." },
+        { "title": "Axes first", "latex": "\\text{read: what vs. what, in which units}", "explanation": "Every interpretation error starts with unread axis labels." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al44-we1",
+          "statement": "A water tank's volume $V(t)$ (liters, $t$ in minutes) starts at $V(0) = 200$, falls to 80 at $t = 6$, stays flat until $t = 10$, then falls to 0 at $t = 14$. Narrate the story.",
+          "solution": "Start with 200 L. Drain for 6 minutes down to 80 L (losing $\\frac{200-80}{6} = 20$ L/min on average). Pause 4 minutes (flat = no change). Drain again, reaching empty at minute 14. The $t$-intercept 14 is 'the tank empties.'",
+          "check": ["Rational(200 - 80, 6) == 20", "14 - 10 == 4"]
+        },
+        {
+          "id": "al44-we2",
+          "statement": "For $f(x) = x^2 - 4x + 3$: find $f(0)$, the $x$-intercepts, and the minimum point.",
+          "solution": "$f(0) = 3$ ($y$-intercept). Zeros: $x^2 - 4x + 3 = (x-1)(x-3) = 0$ at $x = 1, 3$. Minimum midway at $x = 2$: $f(2) = 4 - 8 + 3 = -1$, so the low point is $(2, -1)$.",
+          "check": ["0**2 - 4*0 + 3 == 3", "1**2 - 4*1 + 3 == 0", "3**2 - 4*3 + 3 == 0", "2**2 - 4*2 + 3 == -1"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Reading a rising distance–time graph as 'going uphill.'", "correction": "The graph plots a VALUE against time, not a landscape. Rising = the value grows — nothing about hills.", "authored": true },
+        { "text": "Confusing where the maximum IS with what it EQUALS.", "correction": "'The max occurs at $x = 2$' names the input; 'the max is $-1$' names the output. Say both: maximum value $-1$ at $x = 2$.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al44-t1",
+          "statement": "For $g(x) = -x^2 + 6x - 5$, find the zeros and the maximum point.",
+          "solution": "Zeros: $-(x^2 - 6x + 5) = -(x-1)(x-5)$, so $x = 1, 5$. Peak midway at $x = 3$: $g(3) = -9 + 18 - 5 = 4$. Maximum value 4 at $x = 3$.",
+          "check": ["-(1**2) + 6*1 - 5 == 0", "-(5**2) + 6*5 - 5 == 0", "-(3**2) + 6*3 - 5 == 4"]
+        },
+        {
+          "id": "al44-t2",
+          "statement": "A phone battery $B(t)$ (%) falls from $B(0) = 80$ to $B(3) = 20$ over 3 hours of gaming, then charges back to 100 by $t = 5$. When was the battery lowest, and what was the average drain rate while gaming?",
+          "solution": "Lowest at $t = 3$ (20%). Average drain: $\\dfrac{80 - 20}{3} = 20$ percentage points per hour.",
+          "check": ["Rational(80 - 20, 3) == 20", "100 - 20 == 80"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Graphs are stories", "body": "One picture of $V(t)$ — a tank's volume over time — tells you when it drained, how fast, when someone paused it, and when it ran dry. No sentences needed. Exams test whether you can translate BOTH ways: graph → story and story → graph." },
+          { "kind": "teach", "eyebrow": "Vocabulary", "title": "Five features", "body": "**$y$-intercept** $f(0)$: the starting value. **$x$-intercepts**: where the value is zero. **Rising / falling / flat**: increasing, decreasing, constant. **Peaks and valleys**: maxima and minima. Every graph question is some combination of these five, dressed in units." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Narrate the tank", "problemId": "al44-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the story", "title": "Flat means…", "prompt": "On a distance–time graph of a cyclist, a FLAT (horizontal) stretch means:", "options": ["the cyclist is stopped", "the road is flat", "the cyclist moves at constant speed", "the cyclist is going downhill"], "correctIndex": 0, "explanation": "Flat = distance not changing = not moving. (Constant SPEED would be a rising straight line.) The graph plots distance, not terrain.", "check": ["0 == 0"] },
+          { "kind": "coordinateGrid", "eyebrow": "Play", "title": "A parabola's features", "teach": "These points lie on $f(x) = x^2 - 4x + 3$. Find the story in the dots: it crosses zero at $x = 1$ and $x = 3$, starts at $(0, 3)$, and bottoms out at $(2, -1)$ — falling before $x = 2$, rising after.", "config": { "mode": "plot", "min": -2, "max": 6, "points": [ { "x": 0, "y": 3 }, { "x": 1, "y": 0 }, { "x": 2, "y": -1 }, { "x": 3, "y": 0 }, { "x": 4, "y": 3 } ], "color": "#e8913c" } },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Features from a formula", "problemId": "al44-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the features", "title": "Where vs. what", "prompt": "A profit graph peaks at the point $(40, 2600)$ — price on the x-axis in dollars, profit on the y-axis. The maximum PROFIT is:", "options": ["\\$2600, at a price of \\$40", "\\$40", "\\$2640", "\\$40 at a profit of \\$2600"], "correctIndex": 0, "explanation": "The output (height) is the profit: \\$2600. The input 40 is WHERE it happens — the price that achieves it.", "check": ["2600 > 40"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Axes before answers", "body": "Before answering anything about a graph, say the axes out loud: 'height in meters versus time in minutes.' Ten seconds of axis-reading prevents the classic disasters — treating value graphs as maps, or mixing up where a maximum occurs with what it equals." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "A downward parabola's story", "problemId": "al44-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "The battery graph", "problemId": "al44-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["$f(0)$ starts the story; $x$-intercepts are the zeros; rise/fall = inc/dec.", "Maximum VALUE is the output; it OCCURS at the input.", "Read the axes first — the units write your sentences."] }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    { "id": "al4-pr-1", "statement": "Is $\\{(1, 5), (2, 5), (3, 7), (4, 5)\\}$ a function? State its domain and range.", "solution": "Yes — all inputs distinct. Domain $\\{1,2,3,4\\}$, range $\\{5, 7\\}$.", "check": ["5 == 5", "7 != 5"] },
+    { "id": "al4-pr-2", "statement": "For $f(x) = 3x - 8$, find $f(-2)$.", "solution": "$3(-2) - 8 = -14$.", "check": ["3*(-2) - 8 == -14"] },
+    { "id": "al4-pr-3", "statement": "For $g(x) = x^2 + 2x$, find $g(-3)$.", "solution": "$9 - 6 = 3$.", "check": ["(-3)**2 + 2*(-3) == 3"] },
+    { "id": "al4-pr-4", "statement": "For $f(x) = 5x + 4$, solve $f(x) = -21$.", "solution": "$5x = -25$, so $x = -5$.", "check": ["5*(-5) + 4 == -21"] },
+    { "id": "al4-pr-5", "statement": "Find the domain of $f(x) = \\dfrac{7}{x + 9}$.", "solution": "All reals except $x = -9$ (zero denominator).", "check": ["-9 + 9 == 0"] },
+    { "id": "al4-pr-6", "statement": "Find the domain of $g(x) = \\sqrt{10 - 2x}$.", "solution": "$10 - 2x \\ge 0 \\to x \\le 5$.", "check": ["10 - 2*5 == 0", "10 - 2*4 >= 0", "not (10 - 2*6 >= 0)"] },
+    { "id": "al4-pr-7", "statement": "For $f(x) = 2x - 1$, write and simplify $f(3a)$.", "solution": "$f(3a) = 2(3a) - 1 = 6a - 1$. Check $a = 2$: $f(6) = 11 = 6(2) - 1$. ✓", "check": ["2*6 - 1 == 11", "6*2 - 1 == 11"] },
+    { "id": "al4-pr-8", "statement": "For $f(x) = x^2 - 6x + 8$, find the zeros and the minimum point.", "solution": "$(x-2)(x-4) = 0$: zeros 2 and 4. Vertex midway at $x = 3$: $f(3) = 9 - 18 + 8 = -1$; minimum $(3, -1)$.", "check": ["2**2 - 6*2 + 8 == 0", "4**2 - 6*4 + 8 == 0", "3**2 - 6*3 + 8 == -1"] }
+  ],
+  "testYourself": [
+    { "id": "al4-ty-1", "statement": "Which input breaks $\\{(0,1), (2,3), (2,5), (6,7)\\}$ as a function?", "solution": "Input 2 maps to both 3 and 5 — the split input.", "check": ["3 != 5"] },
+    { "id": "al4-ty-2", "statement": "For $h(x) = -x^2 + 4x$, find $h(5)$.", "solution": "$-25 + 20 = -5$.", "check": ["-(5**2) + 4*5 == -5"] },
+    { "id": "al4-ty-3", "statement": "For $f(x) = \\dfrac{x - 3}{2}$, solve $f(x) = 7$.", "solution": "$x - 3 = 14$, so $x = 17$.", "check": ["Rational(17 - 3, 2) == 7"] },
+    { "id": "al4-ty-4", "statement": "Find the domain of $f(x) = \\dfrac{x}{x^2 - 25}$.", "solution": "Denominator zero at $x = \\pm 5$: all reals except $5$ and $-5$.", "check": ["5**2 - 25 == 0", "(-5)**2 - 25 == 0", "4**2 - 25 != 0"] },
+    { "id": "al4-ty-5", "statement": "For $f(x) = 4x + 1$, write and simplify $f(x + 2) - f(x)$.", "solution": "$[4(x+2) + 1] - [4x + 1] = 8$ — the outputs rise by 8 for every 2-step in $x$. Check at $x = 3$: $f(5) - f(3) = 21 - 13 = 8$. ✓", "check": ["4*5 + 1 - (4*3 + 1) == 8"] },
+    { "id": "al4-ty-6", "statement": "A bakery's daily profit $P(x)$ (in dollars, $x$ = price per bun) peaks at $(3, 450)$ and has zeros at $x = 1$ and $x = 5$. Interpret all three features.", "solution": "Charging \\$3 per bun maximizes profit at \\$450/day. At \\$1 or \\$5 per bun the bakery breaks even ($P = 0$) — too cheap earns nothing per bun, too dear scares buyers away.", "check": ["1 < 3", "3 < 5", "450 > 0"] }
+  ]
+}

@@ -165,6 +165,14 @@ import vmDotProduct from "@/data/genmath/vectors-matrices/the-dot-product.json";
 import vmSpace from "@/data/genmath/vectors-matrices/vectors-in-space.json";
 import vmMatrices from "@/data/genmath/vectors-matrices/matrices-and-operations.json";
 import vmDeterminants from "@/data/genmath/vectors-matrices/determinants-and-inverses.json";
+import a1Expressions from "@/data/genmath/algebra-1/expressions-and-operations.json";
+import a1LinearEq from "@/data/genmath/algebra-1/linear-equations.json";
+import a1Inequalities from "@/data/genmath/algebra-1/inequalities.json";
+import a1Functions from "@/data/genmath/algebra-1/functions.json";
+import a1LinearFn from "@/data/genmath/algebra-1/linear-functions.json";
+import a1Systems from "@/data/genmath/algebra-1/systems-of-equations.json";
+import a1Polynomials from "@/data/genmath/algebra-1/polynomials-and-factoring.json";
+import a1Quadratics from "@/data/genmath/algebra-1/quadratic-equations.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -1027,6 +1035,109 @@ export function getVecMatLesson(
   lessonSlug: string
 ): GenMathLesson | null {
   const unit = getVecMatUnit(unitSlug);
+  if (!unit) return null;
+  return unit.lessons.find((l) => l.slug === lessonSlug) ?? null;
+}
+
+// ---------------------------------------------------------------------------
+// Algebra 1 course — /math/algebra-1
+// The full first-algebra sequence taught as a topic course: expressions,
+// linear equations, inequalities, functions, lines, systems, polynomials &
+// factoring, quadratics. Reuses the interactive primitive library
+// (balanceScale, algebraTiles, evaluator, coordinateGrid, orderOfOps,
+// exponentBuilder, integerLine, absoluteValue).
+// ---------------------------------------------------------------------------
+
+export const ALG1_SPINE: GeometrySpineEntry[] = [
+  {
+    unit: 1,
+    slug: "expressions-and-operations",
+    title: "Expressions & Operations",
+    blurb: "Variables, evaluating and simplifying, exponents, order of operations, and words-to-algebra.",
+    live: true,
+  },
+  {
+    unit: 2,
+    slug: "linear-equations",
+    title: "Solving Linear Equations",
+    blurb: "One-step to both-sides equations, fractions and special cases, and rearranging formulas.",
+    buildsOn: "Simplifying and the distributive property from Unit 1.",
+    live: true,
+  },
+  {
+    unit: 3,
+    slug: "inequalities",
+    title: "Linear Inequalities",
+    blurb: "Solving and graphing, the negative-flip rule, compound and/or, and absolute-value equations.",
+    buildsOn: "Equation solving from Unit 2.",
+    live: true,
+  },
+  {
+    unit: 4,
+    slug: "functions",
+    title: "Introduction to Functions",
+    blurb: "The one-output rule, f(x) notation, domain and range, and reading real-world graphs.",
+    buildsOn: "Evaluating expressions and the coordinate plane.",
+    live: true,
+  },
+  {
+    unit: 5,
+    slug: "linear-functions",
+    title: "Linear Functions & Slope",
+    blurb: "Slope as a rate, y = mx + b, point-slope and standard forms, parallel and perpendicular lines.",
+    buildsOn: "Functions and their graphs from Unit 4.",
+    live: true,
+  },
+  {
+    unit: 6,
+    slug: "systems-of-equations",
+    title: "Systems of Equations",
+    blurb: "Graphing, substitution, elimination, applications, and the no-solution/infinite cases.",
+    buildsOn: "Equations (Unit 2) and lines (Unit 5).",
+    live: true,
+  },
+  {
+    unit: 7,
+    slug: "polynomials-and-factoring",
+    title: "Polynomials & Factoring",
+    blurb: "Polynomial arithmetic, the special products, and factoring — GCF, trinomials, difference of squares.",
+    buildsOn: "Like terms, distribution, and exponent laws from Unit 1.",
+    live: true,
+  },
+  {
+    unit: 8,
+    slug: "quadratic-equations",
+    title: "Quadratic Equations & Functions",
+    blurb: "Parabola anatomy, factoring and square roots, completing the square, the formula, the discriminant.",
+    buildsOn: "Factoring (Unit 7) and function graphs (Unit 4) — the capstone.",
+    live: true,
+  },
+];
+
+const alg1Units: CourseUnit[] = [
+  a1Expressions as unknown as CourseUnit,
+  a1LinearEq as unknown as CourseUnit,
+  a1Inequalities as unknown as CourseUnit,
+  a1Functions as unknown as CourseUnit,
+  a1LinearFn as unknown as CourseUnit,
+  a1Systems as unknown as CourseUnit,
+  a1Polynomials as unknown as CourseUnit,
+  a1Quadratics as unknown as CourseUnit,
+];
+
+export function getAlg1Spine(): GeometrySpineEntry[] {
+  return ALG1_SPINE;
+}
+
+export function getAlg1Unit(unitSlug: string): CourseUnit | null {
+  return alg1Units.find((u) => u.slug === unitSlug) ?? null;
+}
+
+export function getAlg1Lesson(
+  unitSlug: string,
+  lessonSlug: string
+): GenMathLesson | null {
+  const unit = getAlg1Unit(unitSlug);
   if (!unit) return null;
   return unit.lessons.find((l) => l.slug === lessonSlug) ?? null;
 }

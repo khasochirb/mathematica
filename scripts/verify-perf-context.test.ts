@@ -11,6 +11,7 @@ describe("performance contexts", () => {
     expect(contextFromPathname("/math/prob-stats/probability-models/geometric-probability")).toBe("course:prob-stats");
     expect(contextFromPathname("/math/geometry/circles/inscribed-angles")).toBe("course:geometry");
     expect(contextFromPathname("/math/vectors-matrices/the-dot-product/perpendicularity")).toBe("course:vectors-matrices");
+    expect(contextFromPathname("/math/algebra-1/quadratic-equations/completing-the-square-and-the-quadratic-formula")).toBe("course:algebra-1");
     expect(contextFromPathname("/math/6/fractions/adding-fractions")).toBe("course:grade-6");
     expect(contextFromPathname("/math/12/derivatives/the-power-rule")).toBe("course:grade-12");
   });

@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import GradedProblemList from "@/components/lesson/GradedProblemList";
-import { getGenMathTopic } from "@/lib/genmath-lessons";
+import { getAlg1Unit } from "@/lib/genmath-lessons";
 import ContentGate from "@/components/genmath/ContentGate";
 
 const REVEAL_LABELS = {
@@ -14,20 +14,20 @@ const REVEAL_LABELS = {
   hideAria: "Hide solution",
 };
 
-function GenMathTestPageInner() {
+function Alg1PracticePageInner() {
   const params = useParams();
-  const topicSlug = params.topic as string;
-  const topic = getGenMathTopic(topicSlug);
+  const unitSlug = params.unit as string;
+  const unit = getAlg1Unit(unitSlug);
 
-  if (!topic) {
+  if (!unit) {
     return (
       <div className="min-h-screen pt-20 flex items-center justify-center" style={{ background: "var(--bg)" }}>
         <div className="text-center">
           <p className="serif" style={{ fontWeight: 400, fontSize: 22, color: "var(--fg)" }}>
-            Topic <em className="serif-italic" style={{ color: "var(--accent)" }}>not found</em>.
+            Unit <em className="serif-italic" style={{ color: "var(--accent)" }}>not found</em>.
           </p>
-          <Link href="/math/10" className="btn btn-line mt-5 inline-flex items-center gap-1.5">
-            <ArrowLeft className="h-3.5 w-3.5" /> Back to Grade 10
+          <Link href="/math/algebra-1" className="btn btn-line mt-5 inline-flex items-center gap-1.5">
+            <ArrowLeft className="h-3.5 w-3.5" /> Back to the course
           </Link>
         </div>
       </div>
@@ -40,13 +40,13 @@ function GenMathTestPageInner() {
         {/* Back + eyebrow */}
         <div className="flex items-center gap-3 mb-6">
           <Link
-            href={`/math/10/${topicSlug}`}
+            href={`/math/algebra-1/${unitSlug}`}
             className="p-2 rounded-md transition-colors"
             style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">General Math · Grade 10 · {topic.title}</div>
+          <div className="eyebrow">Algebra 1 · Unit {unit.unit} · {unit.title}</div>
         </div>
 
         <h1
@@ -59,37 +59,27 @@ function GenMathTestPageInner() {
             color: "var(--fg)",
           }}
         >
-          Test Yourself — {topic.title}
+          Practice — {unit.title}
         </h1>
-
-        {/* Note about grading mode */}
-        <div
-          className="card-edit p-4 mt-4 mb-8"
-          style={{ background: "var(--bg-1)" }}
-        >
-          <p className="mono text-[11px] uppercase mb-1" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-            Self-graded
-          </p>
-          <p className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-            Attempt each problem on paper, reveal the solution, and grade yourself honestly — your self-checks feed your progress stats.
-          </p>
-        </div>
+        <p className="mt-3 mb-8" style={{ color: "var(--fg-2)", fontSize: 14 }}>
+          Work through each problem, then reveal the solution to check your answer.
+        </p>
 
         <div className="space-y-4">
-          <GradedProblemList problems={topic.testYourself} labels={REVEAL_LABELS} kind="test" />
+          <GradedProblemList problems={unit.practice} labels={REVEAL_LABELS} kind="practice" />
         </div>
       </div>
     </div>
   );
 }
 
-// Content requires an account; the hub and topic pages above stay public.
-export default function GenMathTestPage() {
+// Content requires an account; the hub and unit pages above stay public.
+export default function Alg1PracticePage() {
   const params = useParams();
-  const topicSlug = params.topic as string;
+  const unitSlug = params.unit as string;
   return (
-    <ContentGate backHref={`/math/10/${topicSlug}`} backLabel="Back to topic">
-      <GenMathTestPageInner />
+    <ContentGate backHref={`/math/algebra-1/${unitSlug}`} backLabel="Back to unit">
+      <Alg1PracticePageInner />
     </ContentGate>
   );
 }

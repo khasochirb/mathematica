@@ -1,0 +1,282 @@
+{
+  "slug": "quadratic-equations",
+  "title": "Quadratic Equations & Functions",
+  "unit": 8,
+  "status": "published",
+  "blurb": "Parabolas and their anatomy, solving by factoring and square roots, completing the square, the quadratic formula, and the discriminant — the algebra of curved change.",
+  "buildsOn": "Factoring (Unit 7) and function graphs (Unit 4).",
+  "lessons": [
+    {
+      "slug": "graphs-of-quadratic-functions",
+      "title": "Graphs of Quadratic Functions",
+      "concreteComparison": "Throw a ball and its height traces a parabola: up, a single highest instant, down — perfectly symmetric. Every quadratic function draws this same arch (or its upside-down valley twin), and its anatomy has just three landmarks.",
+      "objective": "Identify the vertex, axis of symmetry, direction, and intercepts of a parabola, and find the vertex from the formula x = −b/(2a).",
+      "concept": [
+        "$f(x) = ax^2 + bx + c$ graphs as a **parabola**: opening UP if $a > 0$ (valley, has a minimum) and DOWN if $a < 0$ (arch, has a maximum). Larger $|a|$ means a narrower curve.",
+        "The **vertex** is the turning point, sitting on the **axis of symmetry** $x = -\\dfrac{b}{2a}$. Compute the $x$ first, then evaluate $f$ there for the $y$. For $f(x) = x^2 - 6x + 5$: $x = 3$, $f(3) = -4$ — vertex $(3, -4)$.",
+        "Intercepts anchor the sketch: $f(0) = c$ is the $y$-intercept; the $x$-intercepts (if any) are the solutions of $f(x) = 0$, sitting symmetrically around the axis. Symmetry is the parabola's superpower: known points reflect across the axis for free."
+      ],
+      "keyIdea": "A parabola is pinned by three landmarks: direction (sign of a), vertex at x = −b/(2a), and intercepts — with mirror symmetry filling in the rest.",
+      "facts": [
+        { "title": "Vertex formula", "latex": "x_v = -\\frac{b}{2a}, \\quad y_v = f(x_v)", "explanation": "Axis of symmetry first, then evaluate for the height." },
+        { "title": "Direction and width", "latex": "a > 0: \\cup \\quad a < 0: \\cap", "explanation": "Sign of $a$ picks valley or arch; bigger $|a|$ squeezes it narrower." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al81-we1",
+          "statement": "For $f(x) = x^2 - 4x - 5$, find the vertex, axis, intercepts, and direction.",
+          "solution": "Up ($a = 1 > 0$). Axis: $x = \\frac{4}{2} = 2$; vertex $(2, f(2)) = (2, -9)$. $y$-intercept $(0, -5)$. Zeros: $(x-5)(x+1) = 0$ → $x = 5, -1$ — symmetric about 2 ✓.",
+          "check": ["Rational(4, 2) == 2", "2**2 - 4*2 - 5 == -9", "(5 - 5)*(5 + 1) == 0", "5**2 - 4*5 - 5 == 0", "(-1)**2 - 4*(-1) - 5 == 0", "Rational(5 + (-1), 2) == 2"]
+        },
+        {
+          "id": "al81-we2",
+          "statement": "A ball's height is $h(t) = -5t^2 + 20t + 1$ meters after $t$ seconds. When is it highest, and how high?",
+          "solution": "Vertex: $t = -\\frac{20}{2(-5)} = 2$ seconds; $h(2) = -20 + 40 + 1 = 21$ meters. The arch opens down ($a = -5$), so this is the maximum.",
+          "check": ["Rational(-20, 2*(-5)) == 2", "-5*2**2 + 20*2 + 1 == 21"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Dropping the minus in the vertex formula: $x_v = \\frac{b}{2a}$.", "correction": "It's $x_v = -\\frac{b}{2a}$. For $x^2 - 6x + 5$ ($b = -6$): $x_v = -\\frac{-6}{2} = +3$ — two minuses meet.", "authored": true },
+        { "text": "Reporting the vertex as just its x-value.", "correction": "A vertex is a POINT: compute $f(x_v)$ too and report $(x_v, y_v)$.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al81-t1",
+          "statement": "Find the vertex and direction of $f(x) = 2x^2 + 8x + 3$.",
+          "solution": "Up ($a = 2$). $x_v = -\\frac{8}{4} = -2$; $f(-2) = 8 - 16 + 3 = -5$. Vertex $(-2, -5)$ — a minimum.",
+          "check": ["Rational(-8, 2*2) == -2", "2*(-2)**2 + 8*(-2) + 3 == -5"]
+        },
+        {
+          "id": "al81-t2",
+          "statement": "A parabola has zeros at $x = 1$ and $x = 9$ and passes through $(0, 18)$. Find its axis of symmetry and vertex $y$-value if $f(x) = 2(x-1)(x-9)$.",
+          "solution": "Axis midway between zeros: $x = 5$. $f(5) = 2(4)(-4) = -32$ — vertex $(5, -32)$. Check the third point: $f(0) = 2(-1)(-9) = 18$ ✓.",
+          "check": ["Rational(1 + 9, 2) == 5", "2*(5 - 1)*(5 - 9) == -32", "2*(0 - 1)*(0 - 9) == 18"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Change that turns around", "body": "Lines model steady change — but thrown balls rise THEN fall, profits grow THEN shrink past the right price, areas swell then... quadratics own every story with a turning point. Their graph, the parabola, is the next shape after the line, and it has exactly three landmarks to learn." },
+          { "kind": "coordinateGrid", "eyebrow": "Play", "title": "Anatomy on the grid", "teach": "Points of $f(x) = x^2 - 4x - 5$: the vertex $(2, -9)$ sits lowest; zeros at $-1$ and $5$ flank it SYMMETRICALLY (each 3 steps from the axis $x = 2$); the $y$-intercept $(0, -5)$ has a mirror twin at $(4, -5)$. Symmetry does half your plotting for free.", "config": { "mode": "plot", "min": -10, "max": 10, "points": [ { "x": -1, "y": 0 }, { "x": 0, "y": -5 }, { "x": 2, "y": -9, "label": "vertex" }, { "x": 4, "y": -5 }, { "x": 5, "y": 0 } ], "color": "#e8913c" } },
+          { "kind": "teach", "eyebrow": "Landmark 1", "title": "Direction from a", "body": "$a > 0$: valley (opens up, has a MINIMUM). $a < 0$: arch (opens down, has a MAXIMUM). Physical stories choose their sign for you — thrown-ball height must come down, so its $a$ is negative. A sign mismatch between story and formula means a setup error." },
+          { "kind": "teach", "eyebrow": "Landmark 2", "title": "The vertex formula", "body": "The axis of symmetry is $x = -\\dfrac{b}{2a}$, and the vertex sits on it. Two-step ritual: compute $x_v$, then EVALUATE $f(x_v)$ for the height. For $f(x) = x^2 - 6x + 5$: $x_v = 3$, $f(3) = -4$, vertex $(3, -4)$." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Full anatomy", "problemId": "al81-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the vertex", "title": "Two minuses meet", "prompt": "The vertex of $f(x) = x^2 - 10x + 7$ has $x_v = $ ?", "options": ["$5$", "$-5$", "$10$", "$\\dfrac{7}{10}$"], "correctIndex": 0, "explanation": "$x_v = -\\frac{b}{2a} = -\\frac{-10}{2} = 5$. Answering $-5$ means the formula's minus got dropped.", "check": ["Rational(10, 2) == 5"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "The ball's peak", "problemId": "al81-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check symmetry", "title": "Free points", "prompt": "A parabola has axis $x = 4$ and passes through $(1, 6)$. Which point is on it for free?", "options": ["$(7, 6)$", "$(4, 6)$", "$(-1, 6)$", "$(1, -6)$"], "correctIndex": 0, "explanation": "$(1, 6)$ sits 3 left of the axis; its mirror is 3 right: $(7, 6)$. Same height, reflected across $x = 4$.", "check": ["4 - 1 == 3", "4 + 3 == 7"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Three landmarks, then sketch", "body": "Direction (sign of $a$), vertex ($-\\frac{b}{2a}$, then evaluate), intercepts ($c$ and any zeros). Plot those, mirror across the axis, and the sketch draws itself. Never plot point-by-point from a table — the anatomy is faster and shows understanding." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Vertex with a = 2", "problemId": "al81-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "From zeros to vertex", "problemId": "al81-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Sign of $a$: valley or arch; $|a|$: width.", "Vertex: $x_v = -\\frac{b}{2a}$, THEN evaluate for $y_v$ — report the point.", "Zeros sit symmetrically about the axis; mirror known points for free."] }
+        ]
+      }
+    },
+    {
+      "slug": "solving-by-factoring-and-square-roots",
+      "title": "Solving by Factoring & Square Roots",
+      "concreteComparison": "If two numbers multiply to zero, one of them IS zero — there's no other way. That single fact (the zero-product property) turns every factorable quadratic into two baby equations.",
+      "objective": "Solve quadratics with the zero-product property (after moving everything to one side) and by square roots, keeping both ± answers.",
+      "concept": [
+        "**Zero-product property**: if $A \\cdot B = 0$ then $A = 0$ or $B = 0$. So to solve $x^2 - 4x - 5 = 0$: factor $(x-5)(x+1) = 0$, split: $x = 5$ or $x = -1$. It ONLY works against zero — get everything on one side first.",
+        "$x^2 + 6x = 16$ must become $x^2 + 6x - 16 = 0$ before factoring; splitting from '$= 16$' is meaningless (many pairs multiply to 16).",
+        "**Square-root method** for the no-middle-term shape: $x^2 = 49$ has TWO answers, $x = \\pm 7$. Same for wrapped squares: $(x - 3)^2 = 25$ gives $x - 3 = \\pm 5$, so $x = 8$ or $x = -2$. Forgetting the minus branch loses half the answer."
+      ],
+      "keyIdea": "Against zero, factored quadratics split via the zero-product property; pure squares unwrap with ±√ — two answers, almost always.",
+      "facts": [
+        { "title": "Zero-product property", "latex": "AB = 0 \\;\\Rightarrow\\; A = 0 \\text{ or } B = 0", "explanation": "Works ONLY against zero — never against 16." },
+        { "title": "The ± unwrap", "latex": "(x - 3)^2 = 25 \\;\\Rightarrow\\; x - 3 = \\pm 5", "explanation": "Every positive number has two square roots; keep them both." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al82-we1",
+          "statement": "Solve $x^2 + 6x = 16$.",
+          "solution": "Move: $x^2 + 6x - 16 = 0$. Puzzle (product $-16$, sum 6): 8, $-2$ → $(x + 8)(x - 2) = 0$ → $x = -8$ or $x = 2$. Both check: $64 - 48 = 16$ ✓, $4 + 12 = 16$ ✓.",
+          "check": ["8*(-2) == -16", "8 + (-2) == 6", "(-8)**2 + 6*(-8) == 16", "2**2 + 6*2 == 16"]
+        },
+        {
+          "id": "al82-we2",
+          "statement": "Solve $3(x - 4)^2 = 48$.",
+          "solution": "Divide by 3: $(x - 4)^2 = 16$. Unwrap: $x - 4 = \\pm 4$, so $x = 8$ or $x = 0$. Check: $3(16) = 48$ ✓ both ways.",
+          "check": ["Rational(48, 3) == 16", "3*(8 - 4)**2 == 48", "3*(0 - 4)**2 == 48"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Splitting against a non-zero: from $(x-5)(x+1) = 7$ concluding $x - 5 = 7$ or $x + 1 = 7$.", "correction": "Many pairs multiply to 7 — the property is zero-only. Expand, move the 7 over, refactor.", "authored": true },
+        { "text": "$x^2 = 49 \\Rightarrow x = 7$, full stop.", "correction": "$(-7)^2 = 49$ too. Square-root solving yields $\\pm$: two answers unless the right side is 0.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al82-t1",
+          "statement": "Solve $x^2 = 5x + 24$.",
+          "solution": "$x^2 - 5x - 24 = 0 \\to (x - 8)(x + 3) = 0 \\to x = 8$ or $x = -3$.",
+          "check": ["-8*3 == -24", "8**2 == 5*8 + 24", "(-3)**2 == 5*(-3) + 24"]
+        },
+        {
+          "id": "al82-t2",
+          "statement": "Solve $(2x + 1)^2 = 81$.",
+          "solution": "$2x + 1 = \\pm 9$: $2x = 8 \\to x = 4$, or $2x = -10 \\to x = -5$.",
+          "check": ["(2*4 + 1)**2 == 81", "(2*(-5) + 1)**2 == 81"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Two unknowns hiding in one", "body": "Linear equations have one answer. $x^2 - 4x - 5 = 0$ has TWO — the parabola crosses zero twice. Solving quadratics means finding both, and the master tool is embarrassingly simple: a product is zero only when a factor is." },
+          { "kind": "teach", "eyebrow": "The property", "title": "Zero is special", "body": "$A \\cdot B = 0$ forces $A = 0$ or $B = 0$ — no third option, because nonzero times nonzero is never zero. Contrast $A \\cdot B = 16$: could be $2 \\times 8$, $4 \\times 4$, $\\frac{1}{2} \\times 32\\ldots$ no conclusion at all. **The property is a zero-only weapon** — which is why step one is always 'move everything to one side.'" },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Move, factor, split", "problemId": "al82-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the property", "title": "Split it", "prompt": "$(x - 6)(x + 2) = 0$ has solutions:", "options": ["$x = 6$ or $x = -2$", "$x = -6$ or $x = 2$", "$x = 6$ only", "$x = 12$ or $x = 0$"], "correctIndex": 0, "explanation": "Each factor gets its turn at zero: $x - 6 = 0 \\to 6$; $x + 2 = 0 \\to -2$. The signs FLIP from what's written in the bracket.", "check": ["(6 - 6)*(6 + 2) == 0", "(-2 - 6)*(-2 + 2) == 0"] },
+          { "kind": "tapQuestion", "eyebrow": "Check the zero rule", "title": "A trap with 7", "prompt": "To solve $(x - 5)(x + 1) = 7$, the correct FIRST move is:", "options": ["expand, subtract 7, and refactor", "set $x - 5 = 7$ and $x + 1 = 7$", "set $x - 5 = 7$ and $x + 1 = 1$", "divide both sides by $(x + 1)$"], "correctIndex": 0, "explanation": "The zero-product property doesn't apply to 7. Expand: $x^2 - 4x - 5 = 7 \\to x^2 - 4x - 12 = 0 \\to (x-6)(x+2) = 0$: $x = 6, -2$.", "check": ["(6 - 5)*(6 + 1) == 7", "(-2 - 5)*(-2 + 1) == 7"] },
+          { "kind": "teach", "eyebrow": "Square roots", "title": "Unwrap with ±", "body": "No middle term? Don't factor — unwrap. $x^2 = 49$: both $7$ and $-7$ square to 49, so $x = \\pm 7$. Wrapped versions unwrap the same way: $(x-3)^2 = 25 \\to x - 3 = \\pm 5 \\to x = 8$ or $-2$. The ± is not decoration; it's half your solution set." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Divide, then unwrap", "problemId": "al82-we2" },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Count your answers", "body": "A quadratic usually has two solutions. Ended with one? Either the vertex kisses the axis (a repeated root — legitimate) or you dropped a ± or a factor. Make 'why don't I have two?' a reflex question before moving on." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Everything to one side", "problemId": "al82-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Unwrap a package", "problemId": "al82-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Zero-product: $AB = 0 \\Rightarrow A = 0$ or $B = 0$ — zero only.", "Move everything to one side BEFORE factoring.", "$X^2 = k \\Rightarrow X = \\pm\\sqrt{k}$: keep both branches."] }
+        ]
+      }
+    },
+    {
+      "slug": "completing-the-square-and-the-quadratic-formula",
+      "title": "Completing the Square & the Quadratic Formula",
+      "concreteComparison": "Some quadratics refuse to factor nicely — their roots are irrational. Completing the square rebuilds any quadratic into an unwrappable package, and doing that rebuild once, in letters, yields the quadratic formula: a master key cut for every lock.",
+      "objective": "Complete the square to solve quadratics and reveal vertex form, and apply the quadratic formula fluently.",
+      "concept": [
+        "**Completing the square**: $x^2 + bx$ becomes a perfect square by adding $\\left(\\frac{b}{2}\\right)^2$. To solve $x^2 + 6x - 7 = 0$: move the 7, add $9$ to both sides: $(x + 3)^2 = 16$, unwrap: $x = 1$ or $x = -7$. The same rebuild puts any quadratic in vertex form.",
+        "Run the rebuild on $ax^2 + bx + c = 0$ in pure letters and out falls the **quadratic formula**: $$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}.$$ It solves EVERY quadratic — factorable or not.",
+        "Formula discipline: write $a$, $b$, $c$ WITH their signs first; compute $b^2 - 4ac$ separately; the fraction bar covers the ENTIRE numerator, $-b$ included. For $2x^2 - 3x - 5 = 0$: $x = \\frac{3 \\pm \\sqrt{9 + 40}}{4} = \\frac{3 \\pm 7}{4}$ → $x = \\frac{5}{2}$ or $-1$."
+      ],
+      "keyIdea": "Add (b/2)² to manufacture a perfect square — done in letters once, that's the quadratic formula: x = (−b ± √(b²−4ac))/(2a), which opens every quadratic.",
+      "facts": [
+        { "title": "The completing move", "latex": "x^2 + bx + \\left(\\tfrac{b}{2}\\right)^2 = \\left(x + \\tfrac{b}{2}\\right)^2", "explanation": "Half the middle coefficient, squared — added to BOTH sides." },
+        { "title": "Quadratic formula", "latex": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}", "explanation": "Signs ride along with $a, b, c$; the bar covers the whole top." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al83-we1",
+          "statement": "Solve $x^2 + 6x - 7 = 0$ by completing the square.",
+          "solution": "Move: $x^2 + 6x = 7$. Half of 6 is 3; add $3^2 = 9$ to both sides: $(x + 3)^2 = 16$. Unwrap: $x + 3 = \\pm 4$ → $x = 1$ or $x = -7$. Both check.",
+          "check": ["Rational(6,2)**2 == 9", "7 + 9 == 16", "1**2 + 6*1 - 7 == 0", "(-7)**2 + 6*(-7) - 7 == 0"]
+        },
+        {
+          "id": "al83-we2",
+          "statement": "Solve $2x^2 - 3x - 5 = 0$ with the quadratic formula.",
+          "solution": "$a = 2, b = -3, c = -5$. Discriminant: $b^2 - 4ac = 9 + 40 = 49$. $x = \\dfrac{3 \\pm 7}{4}$: $x = \\dfrac{10}{4} = \\dfrac{5}{2}$ or $x = -1$. Check $-1$: $2 + 3 - 5 = 0$ ✓.",
+          "check": ["(-3)**2 - 4*2*(-5) == 49", "Rational(3 + 7, 4) == Rational(5, 2)", "2*Rational(5,2)**2 - 3*Rational(5,2) - 5 == 0", "2*(-1)**2 - 3*(-1) - 5 == 0"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Adding $(b/2)^2$ to one side only.", "correction": "It's a balance move like any other: $x^2 + 6x = 7$ becomes $x^2 + 6x + 9 = 7 + 9$. Both sides grow.", "authored": true },
+        { "text": "Formula sign chaos: using $b = 3$ for $2x^2 - 3x - 5$.", "correction": "$b$ is $-3$, sign included — so $-b = +3$ and $b^2 = 9$. Write the three values down BEFORE touching the formula.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al83-t1",
+          "statement": "Solve $x^2 - 8x + 3 = 0$ by completing the square (exact answers).",
+          "solution": "$x^2 - 8x = -3$; add 16: $(x - 4)^2 = 13$; $x = 4 \\pm \\sqrt{13}$.",
+          "check": ["Rational(-8,2)**2 == 16", "16 - 3 == 13", "expand((4 + sqrt(13))**2 - 8*(4 + sqrt(13)) + 3) == 0"]
+        },
+        {
+          "id": "al83-t2",
+          "statement": "Solve $3x^2 + 5x - 2 = 0$ with the formula.",
+          "solution": "$b^2 - 4ac = 25 + 24 = 49$; $x = \\dfrac{-5 \\pm 7}{6}$: $x = \\dfrac{1}{3}$ or $x = -2$.",
+          "check": ["5**2 - 4*3*(-2) == 49", "3*Rational(1,3)**2 + 5*Rational(1,3) - 2 == 0", "3*(-2)**2 + 5*(-2) - 2 == 0"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "When factoring strikes out", "body": "$x^2 - 8x + 3$: hunt for a product-3, sum-$-8$ integer pair all day — none exists, because the roots are $4 \\pm \\sqrt{13}$. Irrational. Factoring is a fair-weather friend; this lesson forges the all-weather tools." },
+          { "kind": "teach", "eyebrow": "Tool 1", "title": "Manufacture the square", "body": "$x^2 + 6x$ is ALMOST $(x+3)^2 = x^2 + 6x + 9$ — it's just missing the 9. So add it (to both sides!): the recipe is **half the middle coefficient, squared**. Once the left side is a perfect square, Lesson 2's ± unwrap finishes the job." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Complete and unwrap", "problemId": "al83-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the move", "title": "What completes it?", "prompt": "To make $x^2 - 10x$ a perfect square, add:", "options": ["$25$", "$100$", "$-25$", "$5$"], "correctIndex": 0, "explanation": "Half of $-10$ is $-5$; squared: 25. Then $x^2 - 10x + 25 = (x - 5)^2$.", "check": ["Rational(-10, 2)**2 == 25", "(1 - 5)**2 == 1 - 10 + 25"] },
+          { "kind": "teach", "eyebrow": "Tool 2", "title": "The master key", "body": "Complete the square on $ax^2 + bx + c = 0$ symbolically — every quadratic at once — and the result is the **quadratic formula**: $x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$. It never fails, never needs cleverness, and asks only that you feed it the right signed values of $a$, $b$, $c$." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Formula with full discipline", "problemId": "al83-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the discipline", "title": "Feed it signs", "prompt": "For $x^2 - 5x + 6 = 0$, the formula's $\\sqrt{b^2 - 4ac}$ equals:", "options": ["$1$", "$7$", "$\\sqrt{49}$... with $b = 5$: also 1?", "$-1$"], "correctIndex": 0, "explanation": "$b = -5$: $b^2 - 4ac = 25 - 24 = 1$, $\\sqrt{1} = 1$. Then $x = \\frac{5 \\pm 1}{2} = 3$ or $2$ — matching the factoring $(x-2)(x-3)$.", "check": ["(-5)**2 - 4*1*6 == 1", "Rational(5 + 1, 2) == 3", "Rational(5 - 1, 2) == 2"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Choose the cheapest tool", "body": "Factors jump out? Factor. No middle term or a wrapped square? Unwrap with ±. Otherwise: formula, no shame. And when the formula gives ugly roots, spot-check by summing them — the sum must equal $-\\frac{b}{a}$." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Irrational, by squares", "problemId": "al83-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Formula practice", "problemId": "al83-t2" },
+          { "kind": "funFact", "eyebrow": "Fun fact", "title": "A 4000-year-old algorithm", "body": "Babylonian scribes solved quadratic problems by completing the square — geometrically, with actual squares — around 1800 BCE, three millennia before symbolic algebra existed. The formula you memorized is their clay-tablet recipe, compressed." },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Complete: add $(\\frac{b}{2})^2$ to BOTH sides, then ± unwrap.", "Formula: $x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$ — signs ride with $a, b, c$.", "Tool order: factor if easy, unwrap if square, formula always works."] }
+        ]
+      }
+    },
+    {
+      "slug": "the-discriminant-and-applications",
+      "title": "The Discriminant & Applications",
+      "concreteComparison": "Under the formula's square root sits a weather report: b² − 4ac. Positive — two crossings; zero — the parabola kisses the axis once; negative — it never touches. You can forecast the solutions without computing them.",
+      "objective": "Use the discriminant to count solutions, and solve real problems — projectile motion and area — with the full quadratic toolkit.",
+      "concept": [
+        "The **discriminant** $D = b^2 - 4ac$ decides everything under the root: $D > 0$ → two real solutions; $D = 0$ → exactly one (a repeated root — vertex ON the axis); $D < 0$ → no real solutions (the parabola floats clear).",
+        "**Projectiles**: height $h(t) = -5t^2 + v t + h_0$ (meters, seconds). 'When does it land?' → solve $h(t) = 0$, keep the positive root. 'Highest point?' → the vertex. 'When is it at 20 m?' → $h(t) = 20$, often two times: once up, once down.",
+        "**Geometry setups**: a rectangle with length 3 more than width and area 40 gives $w(w + 3) = 40$ → $w^2 + 3w - 40 = 0$ → $w = 5$ (the root $-8$ is discarded — context again trims the algebra)."
+      ],
+      "keyIdea": "D = b² − 4ac counts the solutions before you find them; in applications, solve the right equation (zero, a target value, or the vertex) and discard roots the story forbids.",
+      "facts": [
+        { "title": "The three forecasts", "latex": "D > 0: \\text{two}, \\quad D = 0: \\text{one}, \\quad D < 0: \\text{none (real)}", "explanation": "$D = b^2 - 4ac$, the expression under the formula's root." },
+        { "title": "Projectile dictionary", "latex": "\\text{lands: } h = 0; \\quad \\text{peak: vertex}; \\quad \\text{at 20 m: } h = 20", "explanation": "Choose the equation the question actually asks; negative times get discarded." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al84-we1",
+          "statement": "Without solving, count the real solutions of $2x^2 + 5x + 4 = 0$, $x^2 - 6x + 9 = 0$, and $x^2 - x - 6 = 0$.",
+          "solution": "$D_1 = 25 - 32 = -7 < 0$: none. $D_2 = 36 - 36 = 0$: one (the repeated root 3). $D_3 = 1 + 24 = 25 > 0$: two ($3$ and $-2$).",
+          "check": ["5**2 - 4*2*4 == -7", "(-6)**2 - 4*1*9 == 0", "(-1)**2 - 4*1*(-6) == 25", "3**2 - 6*3 + 9 == 0"]
+        },
+        {
+          "id": "al84-we2",
+          "statement": "A ball is thrown up: $h(t) = -5t^2 + 15t + 20$. When does it hit the ground?",
+          "solution": "Solve $-5t^2 + 15t + 20 = 0$; divide by $-5$: $t^2 - 3t - 4 = 0 \\to (t - 4)(t + 1) = 0 \\to t = 4$ or $t = -1$. Time can't be negative: it lands at $t = 4$ seconds.",
+          "check": ["(4 - 4)*(4 + 1) == 0", "-5*16 + 15*4 + 20 == 0", "-4*-1 == 4"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Reporting both roots of an applied quadratic, including the impossible one.", "correction": "A width of $-8$ or a landing time of $-1$ s fails the story. Solve fully, then let context discard.", "authored": true },
+        { "text": "Calling $D < 0$ 'no solutions of the equation ever.'", "correction": "No REAL solutions — the parabola misses the axis. (Later mathematics finds them in the complex numbers; for Algebra 1, 'no real solutions' is the answer.)", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al84-t1",
+          "statement": "For which value of $c$ does $x^2 + 8x + c = 0$ have exactly one solution?",
+          "solution": "$D = 64 - 4c = 0 \\to c = 16$. (Then $x^2 + 8x + 16 = (x+4)^2$ — the kiss at $x = -4$.)",
+          "check": ["64 - 4*16 == 0", "(-4)**2 + 8*(-4) + 16 == 0"]
+        },
+        {
+          "id": "al84-t2",
+          "statement": "A rectangular garden's length is 4 m more than its width, and its area is 60 m². Find the dimensions.",
+          "solution": "$w(w + 4) = 60 \\to w^2 + 4w - 60 = 0 \\to (w + 10)(w - 6) = 0$. Discard $-10$: width 6 m, length 10 m. Check: $6 \\cdot 10 = 60$ ✓.",
+          "check": ["10*(-6) == -60", "10 + -6 == 4", "6*(6 + 4) == 60"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Forecast before you solve", "body": "'How many solutions does it have?' shouldn't require finding them — and doesn't. The expression under the formula's square root, $b^2 - 4ac$, already knows: it's called the **discriminant** because it discriminates between the three possible fates." },
+          { "kind": "teach", "eyebrow": "The forecast", "title": "Three skies", "body": "$D > 0$: the root is a real number, and $\\pm$ makes TWO solutions — the parabola crosses the axis twice. $D = 0$: $\\pm 0$ collapses to ONE repeated root — the vertex kisses the axis. $D < 0$: square root of a negative — NO real solutions; the parabola floats above (or below) untouched." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Three quadratics, three skies", "problemId": "al84-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the forecast", "title": "Count without solving", "prompt": "How many real solutions does $3x^2 - 2x + 1 = 0$ have?", "options": ["none", "one", "two", "three"], "correctIndex": 0, "explanation": "$D = 4 - 12 = -8 < 0$: the root of a negative doesn't exist in the reals. Parabola opens up with vertex above the axis.", "check": ["(-2)**2 - 4*3*1 == -8"] },
+          { "kind": "teach", "eyebrow": "Applications", "title": "Pick the right equation", "body": "A projectile's flight is one function, $h(t)$, but different questions attack it differently: 'when does it LAND' → $h = 0$; 'when is it at 20 m' → $h = 20$ (expect two times — up and down); 'how HIGH does it get' → vertex, not an equation at all. Read the question, choose the equation, and discard roots the story forbids." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "The landing time", "problemId": "al84-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check applications", "title": "Two times at 20 m", "prompt": "$h(t) = -5t^2 + 15t + 20$ equals 30 when $t^2 - 3t + 2 = 0$. The ball is at 30 m at:", "options": ["$t = 1$ and $t = 2$ — once rising, once falling", "$t = 1$ only", "$t = 2$ only", "never"], "correctIndex": 0, "explanation": "$(t-1)(t-2) = 0$: both times are positive and both are real moments — the ball passes 30 m going up at 1 s and coming down at 2 s.", "check": ["-5*1 + 15*1 + 20 == 30", "-5*4 + 15*2 + 20 == 30"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Answer the story, not the equation", "body": "Applied quadratics end with a sentence, not a solution set: 'the ball lands after 4 seconds', 'the garden is 6 by 10 meters.' Writing the sentence forces the discard step — the moment where $t = -1$ and $w = -10$ get shown the door." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Tune c for one solution", "problemId": "al84-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "The garden", "problemId": "al84-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["$D = b^2 - 4ac$: two, one, or no real solutions before any solving.", "Projectiles: land → $h = 0$; height query → $h = k$; peak → vertex.", "Context discards impossible roots — finish with a sentence."] }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    { "id": "al8-pr-1", "statement": "Find the vertex of $f(x) = x^2 + 10x + 21$.", "solution": "$x_v = -5$; $f(-5) = 25 - 50 + 21 = -4$. Vertex $(-5, -4)$.", "check": ["Rational(-10, 2) == -5", "(-5)**2 + 10*(-5) + 21 == -4"] },
+    { "id": "al8-pr-2", "statement": "Solve $x^2 - 9x + 18 = 0$.", "solution": "$(x - 3)(x - 6) = 0$: $x = 3$ or $6$.", "check": ["-3*-6 == 18", "-3 + -6 == -9", "3**2 - 9*3 + 18 == 0", "6**2 - 9*6 + 18 == 0"] },
+    { "id": "al8-pr-3", "statement": "Solve $(x + 5)^2 = 36$.", "solution": "$x + 5 = \\pm 6$: $x = 1$ or $x = -11$.", "check": ["(1 + 5)**2 == 36", "(-11 + 5)**2 == 36"] },
+    { "id": "al8-pr-4", "statement": "Solve $x^2 + 4x = 21$.", "solution": "$x^2 + 4x - 21 = 0 \\to (x + 7)(x - 3) = 0$: $x = -7$ or $3$.", "check": ["7*(-3) == -21", "(-7)**2 + 4*(-7) == 21", "3**2 + 4*3 == 21"] },
+    { "id": "al8-pr-5", "statement": "Complete the square: solve $x^2 + 2x - 5 = 0$ exactly.", "solution": "$(x + 1)^2 = 6$: $x = -1 \\pm \\sqrt{6}$.", "check": ["Rational(2,2)**2 == 1", "5 + 1 == 6", "expand((-1 + sqrt(6))**2 + 2*(-1 + sqrt(6)) - 5) == 0"] },
+    { "id": "al8-pr-6", "statement": "Solve $2x^2 + x - 6 = 0$ with the quadratic formula.", "solution": "$D = 1 + 48 = 49$; $x = \\frac{-1 \\pm 7}{4}$: $x = \\frac{3}{2}$ or $-2$.", "check": ["1**2 - 4*2*(-6) == 49", "2*Rational(3,2)**2 + Rational(3,2) - 6 == 0", "2*4 - 2 - 6 == 0"] },
+    { "id": "al8-pr-7", "statement": "How many real solutions does $x^2 + 3x + 5 = 0$ have?", "solution": "$D = 9 - 20 = -11 < 0$: none.", "check": ["3**2 - 4*1*5 == -11"] },
+    { "id": "al8-pr-8", "statement": "A rectangle's length is 5 more than its width; the area is 84. Find the width.", "solution": "$w^2 + 5w - 84 = 0 \\to (w + 12)(w - 7) = 0$: width 7 (discard $-12$); length 12.", "check": ["12*(-7) == -84", "12 + -7 == 5", "7*12 == 84"] }
+  ],
+  "testYourself": [
+    { "id": "al8-ty-1", "statement": "Find the vertex and axis of $f(x) = -2x^2 + 12x - 7$, and say whether it's a max or min.", "solution": "$x_v = -\\frac{12}{-4} = 3$; $f(3) = -18 + 36 - 7 = 11$. Vertex $(3, 11)$, axis $x = 3$ — a MAXIMUM ($a < 0$).", "check": ["Rational(-12, 2*(-2)) == 3", "-2*9 + 12*3 - 7 == 11"] },
+    { "id": "al8-ty-2", "statement": "Solve $3x^2 = 12x$.", "solution": "$3x^2 - 12x = 0 \\to 3x(x - 4) = 0$: $x = 0$ or $x = 4$. (Dividing by $x$ first would LOSE the zero root.)", "check": ["3*0*(0 - 4) == 0", "3*16 == 12*4"] },
+    { "id": "al8-ty-3", "statement": "Solve $x^2 - 4x - 3 = 0$ exactly (complete the square or formula).", "solution": "$(x - 2)^2 = 7$: $x = 2 \\pm \\sqrt{7}$.", "check": ["Rational(-4,2)**2 == 4", "3 + 4 == 7", "expand((2 + sqrt(7))**2 - 4*(2 + sqrt(7)) - 3) == 0"] },
+    { "id": "al8-ty-4", "statement": "For which values of $k$ does $x^2 + kx + 25 = 0$ have exactly one solution?", "solution": "$D = k^2 - 100 = 0$: $k = 10$ or $k = -10$.", "check": ["10**2 - 100 == 0", "(-10)**2 - 100 == 0"] },
+    { "id": "al8-ty-5", "statement": "A rocket's height is $h(t) = -5t^2 + 30t$ meters. Find its maximum height and its landing time.", "solution": "Vertex: $t = 3$, $h(3) = -45 + 90 = 45$ m. Landing: $-5t(t - 6) = 0 \\to t = 6$ s.", "check": ["Rational(-30, 2*(-5)) == 3", "-5*9 + 30*3 == 45", "-5*36 + 30*6 == 0"] },
+    { "id": "al8-ty-6", "statement": "The product of two consecutive positive integers is 132. Find them.", "solution": "$n(n + 1) = 132 \\to n^2 + n - 132 = 0 \\to (n + 12)(n - 11) = 0$: $n = 11$ (discard $-12$). The integers are 11 and 12.", "check": ["12*(-11) == -132", "11*12 == 132"] }
+  ]
+}

@@ -1,0 +1,283 @@
+{
+  "slug": "linear-equations",
+  "title": "Solving Linear Equations",
+  "unit": 2,
+  "status": "published",
+  "blurb": "From one-step equations to variables on both sides, fractions, special cases, and rearranging formulas — the balance-scale logic that runs all of algebra.",
+  "buildsOn": "Simplifying expressions and the distributive property (Unit 1).",
+  "lessons": [
+    {
+      "slug": "one-and-two-step-equations",
+      "title": "One- & Two-Step Equations",
+      "concreteComparison": "An equation is a balanced scale: $x + 3 = 7$ says the two pans weigh the same. Take 3 off BOTH pans and the scale still balances — leaving the mystery box $x$ alone opposite 4.",
+      "objective": "Solve one- and two-step linear equations by inverse operations, and check solutions by substitution.",
+      "concept": [
+        "An **equation** is a statement that two expressions are equal. A **solution** is a value that makes it true. Solving works by the balance principle: **whatever you do to one side, do to the other** — the equality survives adding, subtracting, multiplying, or dividing both sides by the same (nonzero) number.",
+        "To isolate $x$, apply **inverse operations in reverse order of operations**. $3x + 5 = 20$ was built by 'multiply by 3, then add 5' — so unwrap it backwards: subtract 5 first ($3x = 15$), then divide by 3 ($x = 5$).",
+        "Every solution can be **checked** in seconds: substitute it back. $3(5) + 5 = 20$. ✓ On a test, this turns 'I hope so' into 'I know so.'"
+      ],
+      "keyIdea": "Equations are balanced scales: undo operations on both sides, in reverse order, until the variable stands alone — then substitute to check.",
+      "facts": [
+        { "title": "Balance principle", "latex": "a = b \\;\\Rightarrow\\; a + c = b + c,\\;\\; ac = bc", "explanation": "Same operation, both sides, equality survives (no dividing by 0)." },
+        { "title": "Unwrap in reverse", "latex": "3x + 5 = 20 \\;\\to\\; 3x = 15 \\;\\to\\; x = 5", "explanation": "Undo the + 5 first, the × 3 second — reverse of how the expression was built." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al21-we1",
+          "statement": "Solve $4x - 9 = 19$.",
+          "solution": "Add 9 to both sides: $4x = 28$. Divide by 4: $x = 7$. Check: $4(7) - 9 = 19$. ✓",
+          "check": ["19 + 9 == 28", "28/4 == 7", "4*7 - 9 == 19"]
+        },
+        {
+          "id": "al21-we2",
+          "statement": "Solve $\\dfrac{x}{5} + 3 = -1$.",
+          "solution": "Subtract 3: $\\dfrac{x}{5} = -4$. Multiply by 5: $x = -20$. Check: $\\dfrac{-20}{5} + 3 = -4 + 3 = -1$. ✓",
+          "check": ["-1 - 3 == -4", "-4*5 == -20", "-20/5 + 3 == -1"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Doing the operation to one side only: $4x - 9 = 19 \\to 4x = 19$.", "correction": "The scale tips. Add 9 to BOTH sides: $4x = 28$.", "authored": true },
+        { "text": "Dividing before subtracting: $3x + 5 = 20 \\to x + 5 = \\frac{20}{3}$.", "correction": "That divided only PART of the left side. Unwrap in reverse order: subtract 5 first, then divide everything.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al21-t1",
+          "statement": "Solve $6x + 7 = -11$.",
+          "solution": "$6x = -18$, so $x = -3$. Check: $6(-3) + 7 = -11$. ✓",
+          "check": ["-11 - 7 == -18", "-18/6 == -3", "6*(-3) + 7 == -11"]
+        },
+        {
+          "id": "al21-t2",
+          "statement": "Solve $\\dfrac{y}{4} - 6 = -2$.",
+          "solution": "$\\dfrac{y}{4} = 4$, so $y = 16$. Check: $\\frac{16}{4} - 6 = -2$. ✓",
+          "check": ["-2 + 6 == 4", "4*4 == 16", "16/4 - 6 == -2"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Find the box's weight", "body": "A scale balances: on the left, a mystery box plus 3 kilogram weights; on the right, 7 kilogram weights. What's in the box? You already know: take 3 weights off each side. THAT move — same change, both sides — is the entire theory of equation solving." },
+          { "kind": "balanceScale", "eyebrow": "Play", "title": "Solve on the scale", "teach": "The scale shows $x + 3 = 7$. Remove 3 from both pans and watch the balance hold — the box alone weighs 4.", "config": { "mode": "add", "b": 3, "rhs": 7, "color": "#e8913c" } },
+          { "kind": "balanceScale", "eyebrow": "Play", "title": "Splitting into groups", "teach": "Now the scale holds $3x = 12$: three identical boxes balance 12. Split BOTH sides into 3 equal groups — each box is 4. Division is just fair sharing on both pans.", "config": { "mode": "mul", "coef": 3, "rhs": 12, "color": "#e8913c" } },
+          { "kind": "tapQuestion", "eyebrow": "Check the idea", "title": "One step", "prompt": "Solve $x - 8 = 3$.", "options": ["$x = 11$", "$x = -5$", "$x = 5$", "$x = -11$"], "correctIndex": 0, "explanation": "Add 8 to both sides: $x = 11$. Getting $-5$ means you subtracted 8 instead of undoing the subtraction.", "check": ["11 - 8 == 3"] },
+          { "kind": "teach", "eyebrow": "Two steps", "title": "Unwrap in reverse", "body": "$3x + 5 = 20$ was built in two moves: multiply by 3, then add 5. To free $x$, undo in REVERSE order — like taking off shoes before socks is wrong, but socks-then-shoes backwards is right. Subtract 5 (→ $3x = 15$), then divide by 3 (→ $x = 5$)." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Two clean steps", "problemId": "al21-we1" },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "A fraction and a negative", "problemId": "al21-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check two steps", "title": "Solve it fully", "prompt": "Solve $5x - 4 = 21$.", "options": ["$x = 5$", "$x = 3.4$", "$x = 17$", "$x = -5$"], "correctIndex": 0, "explanation": "$5x = 25$, so $x = 5$. Choice $3.4$ divides before adding 4 — reverse order matters.", "check": ["5*5 - 4 == 21", "21 + 4 == 25"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Always collect the check", "body": "Substituting your answer back takes five seconds and catches sign slips, division errors, and copying mistakes all at once. Solved $x = 7$? Read the ORIGINAL equation with 7 in place of $x$ and confirm both sides match. Make it a reflex, not a chore." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Negative territory", "problemId": "al21-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Divide, then undo", "problemId": "al21-t2" },
+          { "kind": "funFact", "eyebrow": "Fun fact", "title": "Al-jabr means 'restoring the balance'", "body": "The word 'algebra' comes from al-Khwarizmi's 9th-century book on al-jabr — literally 'restoration', the move of adding the same amount to both sides. The subject is named after the balance-scale move you just learned." },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Same operation, both sides — the balance survives.", "Undo operations in REVERSE order: add/subtract first, multiply/divide second.", "Check every solution by substituting into the original equation."] }
+        ]
+      }
+    },
+    {
+      "slug": "variables-on-both-sides",
+      "title": "Variables on Both Sides",
+      "concreteComparison": "Two phone plans: \\$30 plus \\$2/GB versus \\$18 plus \\$5/GB. When do they cost the same? That's $2g + 30 = 5g + 18$ — an equation with the variable on both sides, solved by herding all the $x$'s to one pen.",
+      "objective": "Solve equations with variables on both sides, including ones that need distributing first.",
+      "concept": [
+        "When $x$ lives on both sides, **collect the variable terms on one side and the constants on the other** using the same balance moves. $2g + 30 = 5g + 18$: subtract $2g$ from both sides ($30 = 3g + 18$), subtract 18 ($12 = 3g$), divide ($g = 4$).",
+        "A useful habit: move the variable to the side with the LARGER coefficient — that keeps its coefficient positive and the signs friendly.",
+        "If the equation has parentheses, **distribute first, simplify each side, THEN collect.** The full pipeline: distribute → combine like terms on each side → variables to one side → constants to the other → divide."
+      ],
+      "keyIdea": "Distribute and tidy each side, then herd the variable terms to one side and constants to the other — two balance moves and a division finish it.",
+      "facts": [
+        { "title": "The pipeline", "latex": "\\text{distribute} \\to \\text{combine} \\to \\text{collect } x \\to \\text{collect numbers} \\to \\text{divide}", "explanation": "Every linear equation, no matter how messy, walks this exact road." },
+        { "title": "Collect toward the bigger coefficient", "latex": "2g + 30 = 5g + 18 \\;\\to\\; 30 = 3g + 18", "explanation": "Subtracting $2g$ (not $5g$) keeps the $x$-coefficient positive." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al22-we1",
+          "statement": "Solve $7x - 6 = 3x + 14$.",
+          "solution": "Subtract $3x$: $4x - 6 = 14$. Add 6: $4x = 20$. Divide: $x = 5$. Check: $7(5) - 6 = 29$ and $3(5) + 14 = 29$. ✓",
+          "check": ["7 - 3 == 4", "14 + 6 == 20", "7*5 - 6 == 3*5 + 14"]
+        },
+        {
+          "id": "al22-we2",
+          "statement": "Solve $3(2x - 4) = 5x + 1$.",
+          "solution": "Distribute: $6x - 12 = 5x + 1$. Subtract $5x$: $x - 12 = 1$. Add 12: $x = 13$. Check: $3(26 - 4) = 66$ and $5(13) + 1 = 66$. ✓",
+          "check": ["3*(2*13 - 4) == 66", "5*13 + 1 == 66"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Subtracting a variable term from one side only.", "correction": "$7x - 6 = 3x + 14 \\to 4x - 6 = 14$: the $3x$ must leave BOTH sides.", "authored": true },
+        { "text": "Distributing after moving terms, and losing a term in the shuffle.", "correction": "Parentheses first, always. Tidy each side completely before anything crosses the equals sign.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al22-t1",
+          "statement": "Solve $9x + 4 = 5x - 16$.",
+          "solution": "$4x + 4 = -16$, so $4x = -20$, $x = -5$. Check: $9(-5) + 4 = -41$ and $5(-5) - 16 = -41$. ✓",
+          "check": ["9 - 5 == 4", "-16 - 4 == -20", "9*(-5) + 4 == 5*(-5) - 16"]
+        },
+        {
+          "id": "al22-t2",
+          "statement": "Two phone plans cost $2g + 30$ and $5g + 18$ dollars for $g$ gigabytes. For what $g$ are they equal?",
+          "solution": "$2g + 30 = 5g + 18 \\to 12 = 3g \\to g = 4$ GB (both cost \\$38).",
+          "check": ["30 - 18 == 12", "12/3 == 4", "2*4 + 30 == 5*4 + 18"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "When do two plans cost the same?", "body": "Plan A: \\$30 plus \\$2 per GB. Plan B: \\$18 plus \\$5 per GB. For which usage $g$ do they match? Set the two recipes equal — $2g + 30 = 5g + 18$ — and suddenly $g$ appears on BOTH sides of the scale. New situation, same balance rules." },
+          { "kind": "teach", "eyebrow": "The move", "title": "Herd the x's to one side", "body": "Subtract $2g$ from both sides: $30 = 3g + 18$. Now it's a two-step equation you already know: $12 = 3g$, so $g = 4$. **Collecting the variable terms is just another both-sides move** — nothing new, only applied to a term with $x$ in it." },
+          { "kind": "tapQuestion", "eyebrow": "Check the move", "title": "First move only", "prompt": "In $8x + 3 = 5x + 18$, after subtracting $5x$ from both sides you get:", "options": ["$3x + 3 = 18$", "$13x + 3 = 18$", "$3x = 15$", "$8x = 5x + 15$"], "correctIndex": 0, "explanation": "$8x - 5x = 3x$ on the left, and the right side keeps its 18: $3x + 3 = 18$. (Then $x = 5$.)", "check": ["8 - 5 == 3", "3*5 + 3 == 18"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Collect and finish", "problemId": "al22-we1" },
+          { "kind": "teach", "eyebrow": "With parentheses", "title": "Tidy before you herd", "body": "$3(2x - 4) = 5x + 1$: distribute FIRST ($6x - 12 = 5x + 1$), then collect. Trying to move terms across the equals sign while parentheses are still closed is how terms get lost. Full pipeline: **distribute → combine → collect $x$ → collect numbers → divide.**" },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Distribute, then solve", "problemId": "al22-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the pipeline", "title": "Full run", "prompt": "Solve $4(x + 2) = 2x + 18$.", "options": ["$x = 5$", "$x = 8$", "$x = 2$", "$x = 13$"], "correctIndex": 0, "explanation": "$4x + 8 = 2x + 18 \\to 2x = 10 \\to x = 5$. Check: $4(7) = 28 = 10 + 18$. ✓", "check": ["4*(5 + 2) == 2*5 + 18"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Move toward the bigger pile", "body": "Collect $x$'s onto the side that already has MORE of them: in $2g + 30 = 5g + 18$, subtract $2g$ (not $5g$) so the coefficient stays positive. Fewer negative signs, fewer chances to slip." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Negative answer, same moves", "problemId": "al22-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "The phone-plan break-even", "problemId": "al22-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Variables on both sides: subtract the smaller $x$-term from both sides.", "Parentheses first — tidy each side before terms cross the equals sign.", "Pipeline: distribute → combine → collect $x$ → collect numbers → divide."] }
+        ]
+      }
+    },
+    {
+      "slug": "fractions-decimals-and-special-cases",
+      "title": "Fractions, Decimals & Special Cases",
+      "concreteComparison": "Clearing fractions from an equation is like clearing rocks off a road before driving: multiply through by the least common denominator once, and the rest of the trip is smooth integer arithmetic.",
+      "objective": "Clear fractions and decimals before solving, and recognize equations with no solution or infinitely many solutions.",
+      "concept": [
+        "Fractions in an equation vanish if you **multiply BOTH sides by the least common denominator (LCD)**. $\\dfrac{x}{2} + \\dfrac{x}{3} = 5$: multiply by 6 → $3x + 2x = 30$ → $x = 6$. One multiplication, then integers all the way.",
+        "Decimals clear the same way with a power of 10: $0.3x + 1.2 = 3$ times 10 becomes $3x + 12 = 30$, so $x = 6$.",
+        "Sometimes the variable disappears entirely. If what remains is FALSE — $0 = 7$ — the equation has **no solution**. If it's TRUE — $5 = 5$ — EVERY number works: an **identity** with infinitely many solutions. The variable vanishing is not an error; it's the answer."
+      ],
+      "keyIdea": "Multiply through by the LCD (or a power of 10) to clear fractions and decimals; if the variable cancels, a false leftover means no solution and a true one means all numbers.",
+      "facts": [
+        { "title": "Clear fractions with the LCD", "latex": "\\tfrac{x}{2} + \\tfrac{x}{3} = 5 \\;\\xrightarrow{\\times 6}\\; 3x + 2x = 30", "explanation": "Multiply EVERY term — including the constants — by the LCD." },
+        { "title": "The vanishing variable", "latex": "0 = 7 \\Rightarrow \\text{no solution}, \\qquad 5 = 5 \\Rightarrow \\text{all numbers}", "explanation": "False leftover → parallel demands, impossible. True leftover → identity." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al23-we1",
+          "statement": "Solve $\\dfrac{x}{2} + \\dfrac{x}{3} = 5$.",
+          "solution": "The LCD of 2 and 3 is 6. Multiply everything by 6: $3x + 2x = 30$, so $5x = 30$ and $x = 6$. Check: $3 + 2 = 5$. ✓",
+          "check": ["3 + 2 == 5", "30/5 == 6", "Rational(6,2) + Rational(6,3) == 5"]
+        },
+        {
+          "id": "al23-we2",
+          "statement": "Solve $2(3x + 4) = 6x + 8$ and $2(3x + 4) = 6x + 5$.",
+          "solution": "First: $6x + 8 = 6x + 8$ — subtracting $6x$ leaves $8 = 8$, TRUE, so every real number is a solution (identity). Second: $6x + 8 = 6x + 5$ leaves $8 = 5$, FALSE — no solution.",
+          "check": ["2*(3*1 + 4) == 6*1 + 8", "2*(3*9 + 4) == 6*9 + 8", "8 != 5"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Multiplying only the fraction terms by the LCD: $\\frac{x}{2} + \\frac{x}{3} = 5 \\to 3x + 2x = 5$.", "correction": "EVERY term gets multiplied — the 5 becomes 30. Balance means both sides, all terms.", "authored": true },
+        { "text": "Treating '$8 = 8$' as a mistake and forcing $x = 0$.", "correction": "A true statement with no $x$ means the equation holds for ALL $x$ — infinitely many solutions, not zero.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al23-t1",
+          "statement": "Solve $\\dfrac{2x}{5} - \\dfrac{x}{2} = -1$.",
+          "solution": "LCD 10: $4x - 5x = -10$, so $-x = -10$, $x = 10$. Check: $4 - 5 = -1$. ✓",
+          "check": ["4 - 5 == -1", "Rational(2*10, 5) - Rational(10, 2) == -1"]
+        },
+        {
+          "id": "al23-t2",
+          "statement": "Solve $0.4x - 1.5 = 0.1x + 0.6$.",
+          "solution": "Times 10: $4x - 15 = x + 6$, so $3x = 21$, $x = 7$. Check: $0.4(7) - 1.5 = 1.3 = 0.1(7) + 0.6$. ✓",
+          "check": ["4 - 1 == 3", "21/3 == 7", "4*7 - 15 == 7 + 6"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Fractions slow everything down", "body": "$\\dfrac{x}{2} + \\dfrac{x}{3} = 5$ can be solved with fraction arithmetic — common denominators at every step, errors lurking everywhere. Or you can clear ALL the fractions in one legal move and never see them again. The balance principle allows it: multiply both sides by the same number." },
+          { "kind": "teach", "eyebrow": "The move", "title": "Multiply through by the LCD", "body": "The denominators are 2 and 3; their least common multiple is 6. Multiply EVERY term by 6: $6 \\cdot \\frac{x}{2} = 3x$, $\\;6 \\cdot \\frac{x}{3} = 2x$, $\\;6 \\cdot 5 = 30$. The equation becomes $5x = 30$ — pure integers. **One multiplication buys a fraction-free problem.**" },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Clear and solve", "problemId": "al23-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the move", "title": "Don't skip the constant", "prompt": "Multiplying $\\dfrac{x}{4} + 2 = \\dfrac{x}{3}$ through by 12 gives:", "options": ["$3x + 24 = 4x$", "$3x + 2 = 4x$", "$4x + 24 = 3x$", "$3x + 24 = 4x + 12$"], "correctIndex": 0, "explanation": "All three terms get the 12: $3x + 24 = 4x$, so $x = 24$. Forgetting the constant (option B) is the classic slip.", "check": ["Rational(24,4) + 2 == Rational(24,3)"] },
+          { "kind": "teach", "eyebrow": "Decimals too", "title": "Same trick, power of ten", "body": "$0.3x + 1.2 = 3$: multiply by 10 → $3x + 12 = 30$ → $x = 6$. Two decimal places? Multiply by 100. Decimals are just fractions wearing disguises, and the same clearing move works." },
+          { "kind": "teach", "eyebrow": "The plot twist", "title": "When x vanishes", "body": "Solve $6x + 8 = 6x + 5$: subtract $6x$ and the variable is GONE, leaving $8 = 5$ — false. No value of $x$ can rescue a false statement: **no solution**. But $6x + 8 = 6x + 8$ leaves $8 = 8$ — true no matter what $x$ is: **every number solves it**. The leftover statement IS the verdict." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Identity vs. impossible", "problemId": "al23-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the twist", "title": "Read the verdict", "prompt": "Solving $5(x + 2) = 5x + 7$ leads to $10 = 7$. The equation has:", "options": ["no solution", "the solution $x = 3$", "the solution $x = 0$", "infinitely many solutions"], "correctIndex": 0, "explanation": "The $x$'s cancelled and left a FALSE statement — the two sides can never be equal. No solution. (True leftover would mean infinitely many.)", "check": ["10 != 7"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Clear ugliness first, think second", "body": "Whenever an equation arrives with fractions or decimals, your FIRST move is one multiplication that removes them all. Clean numbers make every later step — and every later check — twice as fast and half as error-prone." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Different denominators", "problemId": "al23-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Clear the decimals", "problemId": "al23-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Multiply EVERY term by the LCD (or a power of 10) to clear fractions and decimals.", "Variable vanishes + false leftover → no solution.", "Variable vanishes + true leftover → identity: all real numbers."] }
+        ]
+      }
+    },
+    {
+      "slug": "literal-equations-and-formulas",
+      "title": "Literal Equations & Formulas",
+      "concreteComparison": "The formula $C = \\dfrac{5}{9}(F - 32)$ converts Fahrenheit to Celsius. Solving it FOR $F$ builds the reverse converter, once — instead of re-solving the equation every single time you need to go the other way.",
+      "objective": "Rearrange formulas and literal equations to isolate a chosen variable, treating all other letters as constants.",
+      "concept": [
+        "A **literal equation** has several letters: $P = 2l + 2w$, $\\;d = rt$, $\\;y = mx + b$. 'Solve for $w$' means: isolate $w$, treating every OTHER letter exactly like a number. The balance moves are identical to numeric equations.",
+        "$P = 2l + 2w$, solve for $w$: subtract $2l$ (→ $P - 2l = 2w$), divide by 2 (→ $w = \\dfrac{P - 2l}{2}$). The answer is an expression, not a number — a formula you can reuse forever.",
+        "Rearranged formulas power real work: solve $d = rt$ for $t$ and every 'how long will it take' question becomes a plug-in: $t = \\dfrac{d}{r}$."
+      ],
+      "keyIdea": "Solve for a letter by treating the other letters as numbers — the same inverse-operation moves produce a reusable formula instead of a single answer.",
+      "facts": [
+        { "title": "Letters behave like numbers", "latex": "P = 2l + 2w \\;\\Rightarrow\\; w = \\frac{P - 2l}{2}", "explanation": "Subtract $2l$ from both sides, divide both sides by 2 — same balance moves." },
+        { "title": "Divide by a coefficient letter", "latex": "d = rt \\;\\Rightarrow\\; t = \\frac{d}{r}", "explanation": "Dividing both sides by $r$ is legal whenever $r \\ne 0$." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al24-we1",
+          "statement": "Solve $P = 2l + 2w$ for $w$, then find $w$ when $P = 36$ and $l = 10$.",
+          "solution": "$P - 2l = 2w$, so $w = \\dfrac{P - 2l}{2}$. With $P = 36$, $l = 10$: $w = \\dfrac{36 - 20}{2} = 8$.",
+          "check": ["(36 - 2*10)/2 == 8", "2*10 + 2*8 == 36"]
+        },
+        {
+          "id": "al24-we2",
+          "statement": "Solve $C = \\dfrac{5}{9}(F - 32)$ for $F$, then convert $C = 25°$.",
+          "solution": "Multiply by $\\dfrac{9}{5}$: $\\dfrac{9}{5}C = F - 32$. Add 32: $F = \\dfrac{9}{5}C + 32$. At $C = 25$: $F = 45 + 32 = 77°$.",
+          "check": ["Rational(9,5)*25 + 32 == 77", "Rational(5,9)*(77 - 32) == 25"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Subtracting a term that's multiplied: solving $d = rt$ for $t$ by computing $t = d - r$.", "correction": "$r$ MULTIPLIES $t$, so undo with division: $t = \\frac{d}{r}$. Match the inverse to the operation.", "authored": true },
+        { "text": "Dividing only one term: $P - 2l = 2w \\to w = P - \\frac{2l}{2}$.", "correction": "The whole side gets divided: $w = \\frac{P - 2l}{2}$. Keep the numerator grouped.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al24-t1",
+          "statement": "Solve $y = mx + b$ for $x$.",
+          "solution": "$y - b = mx$, so $x = \\dfrac{y - b}{m}$ (for $m \\ne 0$). Sanity check with $m = 2$, $b = 3$, $y = 11$: $x = \\frac{8}{2} = 4$, and $2(4) + 3 = 11$. ✓",
+          "check": ["(11 - 3)/2 == 4", "2*4 + 3 == 11"]
+        },
+        {
+          "id": "al24-t2",
+          "statement": "The area of a triangle is $A = \\dfrac{1}{2}bh$. Solve for $h$, then find $h$ when $A = 24$ and $b = 8$.",
+          "solution": "$2A = bh$, so $h = \\dfrac{2A}{b}$. With $A = 24$, $b = 8$: $h = \\dfrac{48}{8} = 6$.",
+          "check": ["2*24/8 == 6", "Rational(1,2)*8*6 == 24"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Formulas point one way", "body": "$C = \\frac{5}{9}(F - 32)$ turns Fahrenheit into Celsius. But the weather app shows 25°C and you want Fahrenheit — now you'd have to solve an equation. Do it once IN LETTERS, and you own the reverse formula forever: $F = \\frac{9}{5}C + 32$. That's what 'solve for $F$' buys." },
+          { "kind": "teach", "eyebrow": "The idea", "title": "Other letters are just numbers", "body": "To solve $P = 2l + 2w$ for $w$, squint: pretend $P$ and $l$ are numbers like 36 and 10. You'd subtract $2l$, then divide by 2 — so do exactly that: $w = \\dfrac{P - 2l}{2}$. **Nothing about the balance moves changes; only the wardrobe does.**" },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Perimeter, solved for width", "problemId": "al24-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the idea", "title": "Match the inverse", "prompt": "Solving $d = rt$ for $r$ gives:", "options": ["$r = \\dfrac{d}{t}$", "$r = d - t$", "$r = dt$", "$r = \\dfrac{t}{d}$"], "correctIndex": 0, "explanation": "$t$ multiplies $r$, so divide both sides by $t$: $r = \\frac{d}{t}$. Check: $d = 100$, $t = 4$ gives $r = 25$, and $25 \\cdot 4 = 100$. ✓", "check": ["100/4 == 25", "25*4 == 100"] },
+          { "kind": "teach", "eyebrow": "Grouping", "title": "Keep the whole side together", "body": "From $P - 2l = 2w$, dividing by 2 must hit the ENTIRE left side: $w = \\dfrac{P - 2l}{2}$, one fraction bar over everything. Writing $P - \\frac{2l}{2}$ divides only part of the side — the top offender in formula rearranging." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "The temperature converter", "problemId": "al24-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check grouping", "title": "One bar over everything", "prompt": "Solving $v = u + at$ for $t$ gives:", "options": ["$t = \\dfrac{v - u}{a}$", "$t = \\dfrac{v}{a} - u$", "$t = v - \\dfrac{u}{a}$", "$t = \\dfrac{u - v}{a}$"], "correctIndex": 0, "explanation": "Subtract $u$ from both sides FIRST, then divide the whole thing by $a$: $t = \\frac{v-u}{a}$. Test: $u = 3, a = 2, t = 5 \\Rightarrow v = 13$, and $\\frac{13-3}{2} = 5$. ✓", "check": ["(13 - 3)/2 == 5", "3 + 2*5 == 13"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Test the rearrangement with easy numbers", "body": "After rearranging, invent friendly values, compute both directions, and confirm they agree. It takes fifteen seconds and instantly exposes a flipped fraction or a mis-grouped term — BEFORE the formula gets reused twenty times." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "The line formula, reversed", "problemId": "al24-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Free the height", "problemId": "al24-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["'Solve for $w$' = isolate $w$; treat other letters as constants.", "Match each inverse to the actual operation ($rt$ needs division, not subtraction).", "Divide the WHOLE side — one fraction bar over everything."] }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    { "id": "al2-pr-1", "statement": "Solve $5x + 8 = 43$.", "solution": "$5x = 35$, $x = 7$.", "check": ["5*7 + 8 == 43"] },
+    { "id": "al2-pr-2", "statement": "Solve $\\dfrac{x}{3} - 7 = -2$.", "solution": "$\\frac{x}{3} = 5$, so $x = 15$.", "check": ["15/3 - 7 == -2"] },
+    { "id": "al2-pr-3", "statement": "Solve $6x - 5 = 2x + 19$.", "solution": "$4x = 24$, $x = 6$.", "check": ["6*6 - 5 == 2*6 + 19"] },
+    { "id": "al2-pr-4", "statement": "Solve $5(x - 3) = 2x + 9$.", "solution": "$5x - 15 = 2x + 9$, $3x = 24$, $x = 8$.", "check": ["5*(8 - 3) == 2*8 + 9"] },
+    { "id": "al2-pr-5", "statement": "Solve $\\dfrac{x}{4} + \\dfrac{x}{6} = 5$.", "solution": "LCD 12: $3x + 2x = 60$, $x = 12$.", "check": ["Rational(12,4) + Rational(12,6) == 5"] },
+    { "id": "al2-pr-6", "statement": "How many solutions does $4(2x + 3) = 8x + 12$ have?", "solution": "$8x + 12 = 8x + 12$ → $12 = 12$, true: infinitely many (identity).", "check": ["4*(2*5 + 3) == 8*5 + 12", "4*(2*0 + 3) == 8*0 + 12"] },
+    { "id": "al2-pr-7", "statement": "Solve $0.2x + 3.4 = 0.5x + 1$.", "solution": "Times 10: $2x + 34 = 5x + 10$, so $24 = 3x$, $x = 8$.", "check": ["2*8 + 34 == 5*8 + 10"] },
+    { "id": "al2-pr-8", "statement": "Solve $A = \\dfrac{a + b}{2}$ for $b$, then find $b$ when $A = 10$, $a = 7$.", "solution": "$2A = a + b$, so $b = 2A - a = 20 - 7 = 13$.", "check": ["2*10 - 7 == 13", "Rational(7 + 13, 2) == 10"] }
+  ],
+  "testYourself": [
+    { "id": "al2-ty-1", "statement": "Solve $7 - 3x = 22$.", "solution": "$-3x = 15$, so $x = -5$.", "check": ["7 - 3*(-5) == 22"] },
+    { "id": "al2-ty-2", "statement": "Solve $4(2x - 1) = 3(x + 7)$.", "solution": "$8x - 4 = 3x + 21$, $5x = 25$, $x = 5$.", "check": ["4*(2*5 - 1) == 3*(5 + 7)"] },
+    { "id": "al2-ty-3", "statement": "Solve $\\dfrac{2x - 1}{3} = 5$.", "solution": "$2x - 1 = 15$, $x = 8$.", "check": ["Rational(2*8 - 1, 3) == 5"] },
+    { "id": "al2-ty-4", "statement": "How many solutions does $3(2x - 5) = 6x + 1$ have?", "solution": "$6x - 15 = 6x + 1$ → $-15 = 1$, false: no solution.", "check": ["-15 != 1"] },
+    { "id": "al2-ty-5", "statement": "A car rental costs \\$45 per day plus \\$0.20 per km. A one-day rental cost \\$81. How many km were driven?", "solution": "$45 + 0.2k = 81 \\to 0.2k = 36 \\to k = 180$ km.", "check": ["45 + Rational(2,10)*180 == 81"] },
+    { "id": "al2-ty-6", "statement": "Solve $S = \\dfrac{n}{2}(a + L)$ for $L$, then find $L$ when $S = 55$, $n = 10$, $a = 1$.", "solution": "$\\dfrac{2S}{n} = a + L$, so $L = \\dfrac{2S}{n} - a = 11 - 1 = 10$.", "check": ["2*55/10 - 1 == 10", "Rational(10,2)*(1 + 10) == 55"] }
+  ]
+}

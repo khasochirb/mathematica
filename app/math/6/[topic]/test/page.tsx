@@ -78,12 +78,12 @@ function GenMathTestPageInner() {
           style={{ background: "var(--bg-1)" }}
         >
           <p className="mono text-[11px] uppercase mb-1" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-            {mn ? "Тун удахгүй" : "Coming soon"}
+            {mn ? "Өөрийгөө дүгнэ" : "Self-graded"}
           </p>
           <p className="text-[13px]" style={{ color: "var(--fg-2)" }}>
             {mn
-              ? "Дүгнэдэг горим дараагийн шатанд нэмэгдэнэ. Одоохондоо бодлого бүрийг өөрөө бодоод, бодолтыг нээж шалгаарай."
-              : "Graded mode coming in a later step. For now, attempt each problem and reveal the solution to self-check."}
+              ? "Бодлого бүрийг цаасан дээр бодоод, бодолтыг нээж өөрийгөө шударгаар дүгнээрэй — таны дүгнэлт ахицын статистикт тоологдоно."
+              : "Attempt each problem on paper, reveal the solution, and grade yourself honestly — your self-checks feed your progress stats."}
           </p>
         </div>
 

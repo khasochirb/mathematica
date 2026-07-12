@@ -1,0 +1,289 @@
+{
+  "slug": "expressions-and-operations",
+  "title": "Expressions & Operations",
+  "unit": 1,
+  "status": "published",
+  "blurb": "Variables, evaluating and simplifying expressions, exponents, order of operations, and turning words into algebra — the vocabulary everything else is written in.",
+  "buildsOn": "Arithmetic with integers, fractions, and decimals.",
+  "lessons": [
+    {
+      "slug": "variables-and-expressions",
+      "title": "Variables & Expressions",
+      "concreteComparison": "A variable is a labeled box: the box '$x$' can hold 3 today and 10 tomorrow. An expression like $2x + 5$ is a recipe — 'double what's in the box, then add 5' — and evaluating it just means running the recipe on a particular number.",
+      "objective": "Read algebraic expressions as recipes, evaluate them by substituting values (including negatives), and identify terms and coefficients.",
+      "concept": [
+        "A **variable** is a letter standing for a number that can vary or that we don't know yet. An **expression** is a combination of numbers, variables, and operations — $2x + 5$, $\\dfrac{a - b}{3}$, $x^2 - 4x$. Expressions have no equals sign; they are quantities, not statements.",
+        "**Evaluating** an expression means replacing each variable with a given value and computing. The one rule that saves you from most errors: substitute in PARENTHESES. Evaluating $-x^2$ at $x = -3$ as $-(-3)^2 = -9$ is correct; sloppy substitution gives $+9$.",
+        "An expression is built from **terms** — the pieces separated by $+$ and $-$ signs. In $3x^2 - 5x + 7$ the terms are $3x^2$, $-5x$, and $7$; the numbers $3$ and $-5$ are **coefficients** and $7$ is the **constant term**."
+      ],
+      "keyIdea": "An expression is a recipe for a number; evaluate it by substituting in parentheses, and read its structure through terms and coefficients.",
+      "facts": [
+        { "title": "Substitute in parentheses", "latex": "x = -3:\\quad 2x^2 = 2(-3)^2 = 18", "explanation": "Wrap every substituted value in parentheses before computing — signs survive." },
+        { "title": "Terms and coefficients", "latex": "3x^2 - 5x + 7", "explanation": "Terms: $3x^2$, $-5x$, $7$. The sign in front travels WITH the term." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al11-we1",
+          "statement": "Evaluate $3x^2 - 2x + 1$ at $x = 4$.",
+          "solution": "Substitute in parentheses: $3(4)^2 - 2(4) + 1 = 3 \\cdot 16 - 8 + 1 = 48 - 8 + 1 = 41$.",
+          "check": ["3*4**2 - 2*4 + 1 == 41", "3*16 == 48"]
+        },
+        {
+          "id": "al11-we2",
+          "statement": "Evaluate $-a^2 + 5a$ at $a = -2$.",
+          "solution": "$-(-2)^2 + 5(-2) = -(4) + (-10) = -14$. Note $-a^2$ means 'square first, then negate' — the exponent grabs $a$ before the minus sign does.",
+          "check": ["-(-2)**2 + 5*(-2) == -14", "(-2)**2 == 4"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Evaluating $-x^2$ at $x = -3$ as $9$.", "correction": "$-x^2 = -(x^2)$: square first, THEN negate. At $x = -3$ that's $-9$. Only $(-x)^2$ gives $9$.", "authored": true },
+        { "text": "Dropping the sign of a coefficient: reading the coefficient of $-5x$ in $3x^2 - 5x + 7$ as $5$.", "correction": "The sign in front belongs to the term. The coefficient is $-5$.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al11-t1",
+          "statement": "Evaluate $x^2 - 3x$ at $x = -1$.",
+          "solution": "$(-1)^2 - 3(-1) = 1 + 3 = 4$.",
+          "check": ["(-1)**2 - 3*(-1) == 4"]
+        },
+        {
+          "id": "al11-t2",
+          "statement": "Evaluate $\\dfrac{2a + b}{a - b}$ at $a = 5$, $b = 1$.",
+          "solution": "$\\dfrac{2(5) + 1}{5 - 1} = \\dfrac{11}{4}$.",
+          "check": ["Rational(2*5 + 1, 5 - 1) == Rational(11, 4)"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "A number with a name tag", "body": "A phone plan costs \\$20 plus \\$3 per gigabyte. Your bill depends on how much data you use — a quantity that VARIES. Algebra handles this with a letter: if $g$ is the gigabytes, the bill is $20 + 3g$. One expression covers every possible month." },
+          { "kind": "teach", "eyebrow": "The idea", "title": "Expressions are recipes", "body": "$20 + 3g$ is not a number — it's a **recipe** for one: 'triple the data, add 20.' Feed it $g = 4$ and it returns $32$. Feed it $g = 10$ and it returns $50$. **Evaluating = substitute, then compute.**" },
+          { "kind": "evaluator", "eyebrow": "Play", "title": "Run the recipe", "teach": "Drag the slider to choose $x$ and watch $3x + 2$ substitute and compute. The expression is a machine: number in, number out.", "config": { "a": 3, "b": 2, "varName": "x", "min": 0, "max": 10, "start": 4, "color": "#e8913c" } },
+          { "kind": "tapQuestion", "eyebrow": "Check the idea", "title": "Evaluate it", "prompt": "What is the value of $5x - 7$ at $x = 6$?", "options": ["$23$", "$4$", "$37$", "$-2$"], "correctIndex": 0, "explanation": "$5(6) - 7 = 30 - 7 = 23$. Answering $4$ comes from computing $5 \\cdot 6 - 7$ as $5(6 - 7) + \\ldots$ — substitute first, then follow the order of operations.", "check": ["5*6 - 7 == 23"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "A quadratic recipe", "problemId": "al11-we1" },
+          { "kind": "teach", "eyebrow": "The trap", "title": "Negatives need parentheses", "body": "Substituting $x = -2$ into $x^2$ SHOULD give $4$. Write it without parentheses — $-2^2$ — and the exponent grabs only the $2$: you get $-4$. **Always wrap substituted values in parentheses**: $(-2)^2 = 4$." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Squares vs. minus signs", "problemId": "al11-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the trap", "title": "The classic sign slip", "prompt": "At $x = -4$, the value of $-x^2$ is:", "options": ["$-16$", "$16$", "$8$", "$-8$"], "correctIndex": 0, "explanation": "Square first ($16$), then negate: $-16$. Choosing $16$ is the $(-x)^2$ misreading.", "check": ["-(-4)**2 == -16"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Name the terms before touching them", "body": "Before simplifying or evaluating anything, mentally split the expression at its $+$ and $-$ signs and read each term WITH its sign. $3x^2 - 5x + 7$ is three terms: $3x^2$, $-5x$, $+7$. Most algebra errors are really sign-bookkeeping errors." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Watch the signs", "problemId": "al11-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "A fraction recipe", "problemId": "al11-t2" },
+          { "kind": "funFact", "eyebrow": "Fun fact", "title": "Why 'x'?", "body": "Descartes' 1637 book La Géométrie used letters from the end of the alphabet for unknowns — and legend says the printer kept running out of the letters y and z, so x won by default. Four centuries later, x still marks the unknown." },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["An expression is a recipe: substitute, then compute.", "Substitute in parentheses — $(-3)^2 = 9$ but $-3^2 = -9$.", "Terms carry their signs; coefficients include the minus."] }
+        ]
+      }
+    },
+    {
+      "slug": "like-terms-and-the-distributive-property",
+      "title": "Like Terms & the Distributive Property",
+      "concreteComparison": "You can add 3 apples to 5 apples (8 apples), but not 3 apples to 5 oranges. Terms work the same way: $3x + 5x = 8x$, but $3x + 5x^2$ won't combine — different fruit.",
+      "objective": "Combine like terms, expand with the distributive property (including a leading minus), and simplify multi-step expressions.",
+      "concept": [
+        "**Like terms** have exactly the same variable part: $3x$ and $-7x$ are like; $3x$ and $3x^2$ are not. Combining like terms adds their coefficients: $3x - 7x = -4x$. This is really the distributive property read backwards: $3x - 7x = (3 - 7)x$.",
+        "The **distributive property** $a(b + c) = ab + ac$ is the bridge between multiplication and addition. Expanding $4(2x - 3) = 8x - 12$ multiplies EVERY term inside by 4. The most dangerous version is a minus in front: $-(2x - 5) = -2x + 5$ — the minus flips every sign inside.",
+        "Simplifying a longer expression is a two-beat rhythm: **distribute first, then combine like terms.** $5x + 2(3x - 4) - 7 = 5x + 6x - 8 - 7 = 11x - 15$."
+      ],
+      "keyIdea": "Distribute to every term (a leading minus flips every sign), then combine terms with identical variable parts by adding coefficients.",
+      "facts": [
+        { "title": "Distributive property", "latex": "a(b + c) = ab + ac", "explanation": "Multiply EVERY term inside the parentheses — no term escapes." },
+        { "title": "Minus flips everything", "latex": "-(2x - 5) = -2x + 5", "explanation": "A leading minus is a $(-1)$ multiplying in: every sign inside flips." },
+        { "title": "Combine like terms", "latex": "3x - 7x = (3 - 7)x = -4x", "explanation": "Same variable part → add the coefficients. $x$ and $x^2$ never merge." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al12-we1",
+          "statement": "Simplify $5x + 2(3x - 4) - 7$.",
+          "solution": "Distribute: $5x + 6x - 8 - 7$. Combine: $(5 + 6)x + (-8 - 7) = 11x - 15$.",
+          "check": ["5 + 6 == 11", "-8 - 7 == -15", "5*3 + 2*(3*3 - 4) - 7 == 11*3 - 15"]
+        },
+        {
+          "id": "al12-we2",
+          "statement": "Simplify $7a - (2a - 9) + 3$.",
+          "solution": "The minus distributes: $7a - 2a + 9 + 3 = 5a + 12$. Check at $a = 1$: left side $7 - (2 - 9) + 3 = 7 + 7 + 3 = 17$; right side $5 + 12 = 17$. ✓",
+          "check": ["7 - 2 == 5", "9 + 3 == 12", "7*1 - (2*1 - 9) + 3 == 5*1 + 12"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Distributing to the first term only: $4(2x - 3) = 8x - 3$.", "correction": "Every term inside gets multiplied: $4(2x - 3) = 8x - 12$.", "authored": true },
+        { "text": "Combining unlike terms: $3x + 5x^2 = 8x^3$ or $8x^2$.", "correction": "$x$ and $x^2$ are different variable parts — the sum stays $5x^2 + 3x$, two terms, done.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al12-t1",
+          "statement": "Simplify $9y - 4(2y - 5)$.",
+          "solution": "$9y - 8y + 20 = y + 20$.",
+          "check": ["9 - 8 == 1", "9*2 - 4*(2*2 - 5) == 2 + 20"]
+        },
+        {
+          "id": "al12-t2",
+          "statement": "Simplify $2(3m + 1) - (m - 6)$.",
+          "solution": "$6m + 2 - m + 6 = 5m + 8$.",
+          "check": ["6 - 1 == 5", "2 + 6 == 8", "2*(3*4 + 1) - (4 - 6) == 5*4 + 8"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Too many pieces", "body": "$5x + 2(3x - 4) - 7$ is a mouthful — but it's secretly just $11x - 15$. Simplifying means rewriting an expression in its shortest equivalent form. Two moves do all the work: **distribute** and **combine like terms**." },
+          { "kind": "algebraTiles", "eyebrow": "Play", "title": "See the like terms", "teach": "Each long tile is an $x$; each small square is a $1$. Build a pile of $x$-tiles and a pile of unit tiles — notice you can count each KIND, but an $x$-tile never merges with a unit tile. That's why $2x + 3$ stays two terms.", "config": { "x": 2, "units": 3, "mode": "build", "maxX": 5, "maxUnits": 8, "color": "#e8913c" } },
+          { "kind": "teach", "eyebrow": "Move 1", "title": "Distribute to everyone", "body": "$4(2x - 3)$ means four copies of $(2x - 3)$: that's $8x - 12$. The 4 multiplies EVERY term inside. Forgetting the second term — writing $8x - 3$ — is the single most common algebra slip. Check with $x = 1$: $4(2 - 3) = -4$, and $8 - 12 = -4$. ✓" },
+          { "kind": "tapQuestion", "eyebrow": "Check move 1", "title": "Expand it", "prompt": "Which is $3(4x - 5)$?", "options": ["$12x - 15$", "$12x - 5$", "$7x - 8$", "$12x + 15$"], "correctIndex": 0, "explanation": "The 3 hits both terms: $12x - 15$. '$12x - 5$' forgot the second term; '$7x - 8$' added instead of multiplying.", "check": ["3*4 == 12", "3*5 == 15"] },
+          { "kind": "teach", "eyebrow": "The dangerous case", "title": "A minus in front", "body": "$-(2x - 5)$ is $(-1)(2x - 5) = -2x + 5$: the minus **flips every sign inside**. Read $7a - (2a - 9)$ as $7a + (-1)(2a - 9) = 7a - 2a + 9$. The flipped $+9$ is where the points hide." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Distribute, then combine", "problemId": "al12-we1" },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "The minus-sign flip", "problemId": "al12-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the flip", "title": "Handle the minus", "prompt": "$10x - (3x - 8) = $ ?", "options": ["$7x + 8$", "$7x - 8$", "$13x - 8$", "$7x - 24$"], "correctIndex": 0, "explanation": "The minus flips both terms of $(3x - 8)$: $10x - 3x + 8 = 7x + 8$. '$7x - 8$' flipped only the first sign.", "check": ["10 - 3 == 7", "10*2 - (3*2 - 8) == 7*2 + 8"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Check with x = 1 (or 2)", "body": "After simplifying, plug an easy number into BOTH the original and your answer. $9y - 4(2y - 5)$ at $y = 1$: original $9 - 4(-3) = 21$; answer $y + 20 = 21$. ✓ Ten seconds, and it catches almost every distribute-and-sign error." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Distribute a negative coefficient", "problemId": "al12-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Both moves at once", "problemId": "al12-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Distribute to EVERY term: $a(b + c) = ab + ac$.", "A leading minus flips every sign inside the parentheses.", "Like terms = same variable part; add coefficients. Check with $x = 1$."] }
+        ]
+      }
+    },
+    {
+      "slug": "exponents-and-order-of-operations",
+      "title": "Exponents & Order of Operations",
+      "concreteComparison": "A recipe says 'bake, then frost.' Swap the order and you get frosting soup. Arithmetic has a fixed order too — exponents before multiplication before addition — and $3 + 4 \\times 2$ is $11$, never $14$.",
+      "objective": "Evaluate powers, apply the product/quotient/power rules for exponents with numeric bases, and evaluate multi-step expressions in the correct order.",
+      "concept": [
+        "A **power** $a^n$ is repeated multiplication: $2^4 = 2 \\cdot 2 \\cdot 2 \\cdot 2 = 16$. The **base** is what repeats; the **exponent** counts the copies. Watch parentheses with negatives: $(-3)^2 = 9$ but $-3^2 = -9$.",
+        "Three laws move exponents around: **product** $a^m \\cdot a^n = a^{m+n}$ (copies pile up), **quotient** $\\dfrac{a^m}{a^n} = a^{m-n}$ (copies cancel), **power of a power** $(a^m)^n = a^{mn}$ (copies of copies). And $a^0 = 1$ for any $a \\ne 0$ — dividing $a^n$ by itself leaves one.",
+        "**Order of operations**: Parentheses → Exponents → Multiplication/Division (left to right) → Addition/Subtraction (left to right). Multiplication and division are the SAME rank — $12 \\div 3 \\times 2 = 8$, working left to right, not $2$."
+      ],
+      "keyIdea": "Exponents count copies of the base (laws: add, subtract, multiply exponents), and every expression is evaluated in the fixed order P–E–MD–AS, left to right within a rank.",
+      "facts": [
+        { "title": "Exponent laws", "latex": "a^m a^n = a^{m+n}, \\quad \\frac{a^m}{a^n} = a^{m-n}, \\quad (a^m)^n = a^{mn}", "explanation": "Multiply → add exponents; divide → subtract; power of power → multiply." },
+        { "title": "Zero exponent", "latex": "a^0 = 1 \\;\\; (a \\ne 0)", "explanation": "$\\frac{2^3}{2^3} = 2^{3-3} = 2^0$ and also $= 1$." },
+        { "title": "Same-rank ties go left to right", "latex": "12 \\div 3 \\times 2 = 8", "explanation": "Division does NOT outrank multiplication — leftmost first." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al13-we1",
+          "statement": "Evaluate $5 + 3(8 - 6)^2$.",
+          "solution": "Parentheses: $8 - 6 = 2$. Exponent: $2^2 = 4$. Multiply: $3 \\cdot 4 = 12$. Add: $5 + 12 = 17$.",
+          "check": ["8 - 6 == 2", "2**2 == 4", "5 + 3*(8 - 6)**2 == 17"]
+        },
+        {
+          "id": "al13-we2",
+          "statement": "Simplify $\\dfrac{2^5 \\cdot 2^3}{2^6}$ as a single power, then evaluate.",
+          "solution": "Add on top: $2^{5+3} = 2^8$. Subtract for the division: $2^{8-6} = 2^2 = 4$.",
+          "check": ["5 + 3 == 8", "8 - 6 == 2", "2**5 * 2**3 / 2**6 == 4"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "$3 + 4 \\times 2 = 14$.", "correction": "Multiplication first: $3 + 8 = 11$. Addition waits its turn.", "authored": true },
+        { "text": "$2^3 \\cdot 2^4 = 4^7$ — multiplying the bases too.", "correction": "The base stays put; only exponents add: $2^3 \\cdot 2^4 = 2^7 = 128$.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al13-t1",
+          "statement": "Evaluate $40 - 2 \\cdot 3^2$.",
+          "solution": "Exponent first: $3^2 = 9$; then $2 \\cdot 9 = 18$; then $40 - 18 = 22$.",
+          "check": ["3**2 == 9", "40 - 2*3**2 == 22"]
+        },
+        {
+          "id": "al13-t2",
+          "statement": "Write $\\dfrac{(3^2)^4}{3^5}$ as a single power of 3.",
+          "solution": "$(3^2)^4 = 3^8$, and $3^{8-5} = 3^3 = 27$.",
+          "check": ["2*4 == 8", "8 - 5 == 3", "(3**2)**4 / 3**5 == 27"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "One expression, two answers?", "body": "Two students evaluate $3 + 4 \\times 2$. One gets $11$, the other $14$. Calculators, banks, and computers can't tolerate ambiguity — so mathematics fixed a single evaluation order. The multiply wins: the answer is $11$, everywhere on Earth." },
+          { "kind": "exponentBuilder", "eyebrow": "Play", "title": "Powers are repeated multiplication", "teach": "Change the **base** and **exponent** and watch the expansion grow. $2^4$ is four copies of 2 multiplied — that's why exponents come before multiplication in the order: they're denser.", "config": { "base": 2, "exp": 4, "minBase": 2, "maxBase": 6, "minExp": 1, "maxExp": 5, "color": "#e8913c" } },
+          { "kind": "orderOfOps", "eyebrow": "Play", "title": "Watch the order work", "teach": "Step through $3 + 4\\times2$ one operation at a time. Multiplication outranks addition, so it fires first.", "config": { "stages": [ { "expr": "3 + 4 × 2" }, { "expr": "3 + 8", "did": "Multiply first: 4 × 2 = 8" }, { "expr": "11", "did": "Then add: 3 + 8 = 11" } ], "color": "#e8913c" } },
+          { "kind": "teach", "eyebrow": "The order", "title": "P – E – MD – AS", "body": "**P**arentheses, **E**xponents, **M**ultiplication/**D**ivision (one rank, left to right), **A**ddition/**S**ubtraction (one rank, left to right). The 'one rank' part matters: $12 \\div 3 \\times 2$ goes left to right → $4 \\times 2 = 8$, NOT $12 \\div 6 = 2$." },
+          { "kind": "tapQuestion", "eyebrow": "Check the order", "title": "Same-rank showdown", "prompt": "$18 \\div 2 \\cdot 3 = $ ?", "options": ["$27$", "$3$", "$12$", "$1$"], "correctIndex": 0, "explanation": "Left to right: $18 \\div 2 = 9$, then $9 \\cdot 3 = 27$. Getting $3$ means you multiplied first — division and multiplication are the same rank.", "check": ["18/2*3 == 27"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Full order in action", "problemId": "al13-we1" },
+          { "kind": "teach", "eyebrow": "Exponent laws", "title": "Count the copies", "body": "$2^5 \\cdot 2^3$ is five copies of 2 next to three copies: eight copies total, $2^8$. Division cancels copies: $\\dfrac{2^8}{2^6} = 2^2$. And $(2^3)^4$ is four copies of three copies: $2^{12}$. **Multiply → add. Divide → subtract. Power of power → multiply.**" },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Two laws at once", "problemId": "al13-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the laws", "title": "Keep the base", "prompt": "$5^6 \\cdot 5^2 = $ ?", "options": ["$5^8$", "$25^8$", "$5^{12}$", "$25^{12}$"], "correctIndex": 0, "explanation": "Copies pile up: $5^{6+2} = 5^8$. The base never changes — $25^8$ multiplied the bases too.", "check": ["5**6 * 5**2 == 5**8"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Underline before you compute", "body": "In a long expression, underline the operation you're about to do, do ONLY that one, and rewrite the whole line. One operation per line feels slow and is actually faster — it makes order errors visible before they cascade." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Exponent before product", "problemId": "al13-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Chain the laws", "problemId": "al13-t2" },
+          { "kind": "funFact", "eyebrow": "Fun fact", "title": "PEMDAS is younger than you think", "body": "The order of operations wasn't handed down by the ancients — it solidified only around 1900, when textbook publishers needed algebra books to agree with each other. The math didn't change; the CONVENTION was standardized, like driving on one side of the road." },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["P → E → MD → AS; ties within a rank go left to right.", "$a^m a^n = a^{m+n}$, $\\frac{a^m}{a^n} = a^{m-n}$, $(a^m)^n = a^{mn}$, $a^0 = 1$.", "The base never changes when you apply an exponent law."] }
+        ]
+      }
+    },
+    {
+      "slug": "from-words-to-algebra",
+      "title": "From Words to Algebra",
+      "concreteComparison": "Translating a sentence into algebra is like translating into any language: '5 less than $x$' becomes $x - 5$ — and just like in a real language, word order doesn't always survive the translation.",
+      "objective": "Translate verbal phrases into expressions, define a variable precisely, and build expressions for real quantities (costs, ages, perimeters).",
+      "concept": [
+        "Keywords carry operations: *sum, more than, increased by* → $+$; *difference, less than, decreased by* → $-$; *product, times, of* → $\\times$; *quotient, per, ratio* → $\\div$. But translation is not word-by-word: **'5 less than $x$' is $x - 5$**, not $5 - x$. The phrase reverses the order.",
+        "A good translation starts by **defining the variable with units**: 'let $t$ = the number of hours worked.' Then every phrase becomes arithmetic on $t$: 'pay is \\$12 per hour plus a \\$30 bonus' → $12t + 30$.",
+        "Related quantities ride on one variable. If Nara is $x$ years old and her brother is 4 years older, he is $x + 4$ — one variable, two expressions. Consecutive integers are $n$, $n + 1$, $n + 2$."
+      ],
+      "keyIdea": "Define the variable with units, translate phrase by phrase — and watch reversing phrases like 'less than', which flip the order.",
+      "facts": [
+        { "title": "The reversal phrases", "latex": "\\text{\"5 less than } x\\text{\"} = x - 5", "explanation": "'Less than' and 'subtracted from' put the named quantity SECOND." },
+        { "title": "Rate builds a term", "latex": "\\$12 \\text{ per hour for } t \\text{ hours} = 12t", "explanation": "A rate multiplies the count; a fixed fee adds on: $12t + 30$." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al14-we1",
+          "statement": "A taxi charges a \\$4 flat fee plus \\$2 per km. Write the cost of a $k$-km ride, and evaluate it for a 7-km ride.",
+          "solution": "Cost $= 2k + 4$. At $k = 7$: $2(7) + 4 = 18$ dollars.",
+          "check": ["2*7 + 4 == 18"]
+        },
+        {
+          "id": "al14-we2",
+          "statement": "The width of a rectangle is $w$; the length is 3 more than twice the width. Write the perimeter in terms of $w$ and simplify.",
+          "solution": "Length $= 2w + 3$. Perimeter $= 2(w) + 2(2w + 3) = 2w + 4w + 6 = 6w + 6$. Check at $w = 5$: sides 5 and 13, perimeter $2(5) + 2(13) = 36$, and $6(5) + 6 = 36$. ✓",
+          "check": ["2*5 + 3 == 13", "2*5 + 2*13 == 36", "6*5 + 6 == 36"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Translating '5 less than $x$' as $5 - x$.", "correction": "'Less than' reverses: start from $x$ and remove 5, so $x - 5$.", "authored": true },
+        { "text": "Leaving the variable undefined ('let $x$ = Nara').", "correction": "A variable stands for a NUMBER with units: 'let $x$ = Nara's age in years.' Fuzzy definitions produce fuzzy equations.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al14-t1",
+          "statement": "Write an expression: 'the quotient of a number $n$ and 4, decreased by 9.' Then evaluate at $n = 24$.",
+          "solution": "$\\dfrac{n}{4} - 9$; at $n = 24$: $6 - 9 = -3$.",
+          "check": ["24/4 - 9 == -3"]
+        },
+        {
+          "id": "al14-t2",
+          "statement": "Tickets cost \\$8 for adults and \\$5 for children. Write the total cost for $a$ adults and $c$ children, and evaluate for 3 adults and 4 children.",
+          "solution": "Total $= 8a + 5c$; $8(3) + 5(4) = 24 + 20 = 44$ dollars.",
+          "check": ["8*3 + 5*4 == 44"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Word problems ARE the exam", "body": "Nobody hands you '$2k + 4$' in real life — they say 'four dollars plus two per kilometer.' Every applied problem starts with translation, and translation is a skill with rules, not a talent. Learn the keyword table and the two traps, and word problems become mechanical." },
+          { "kind": "teach", "eyebrow": "The dictionary", "title": "Operation keywords", "body": "**Sum, total, more than, increased by** → add. **Difference, less than, fewer, decreased by** → subtract. **Product, times, twice, of** → multiply. **Quotient, per, split equally** → divide. 'Twice a number increased by 7' → $2n + 7$." },
+          { "kind": "tapQuestion", "eyebrow": "Check the dictionary", "title": "Straight translation", "prompt": "'Three times a number, increased by 8' is:", "options": ["$3n + 8$", "$3(n + 8)$", "$8n + 3$", "$3n - 8$"], "correctIndex": 0, "explanation": "'Three times a number' is $3n$; 'increased by 8' adds on: $3n + 8$. Option B would need 'three times the SUM of a number and 8.'", "check": ["3*5 + 8 == 23"] },
+          { "kind": "teach", "eyebrow": "Trap 1", "title": "The reversal phrases", "body": "'5 less than $x$' means: take $x$, go DOWN by 5 → $x - 5$. Same for 'subtracted from': '3 subtracted from $y$' is $y - 3$. The number named FIRST in the phrase lands SECOND in the algebra. Test with real numbers: 5 less than 20 is 15 — and $20 - 5 = 15$, not $5 - 20$." },
+          { "kind": "tapQuestion", "eyebrow": "Check trap 1", "title": "Reverse it", "prompt": "'7 less than twice a number' is:", "options": ["$2n - 7$", "$7 - 2n$", "$2(n - 7)$", "$7n - 2$"], "correctIndex": 0, "explanation": "Twice the number first ($2n$), then 7 below it: $2n - 7$. Test: for $n = 10$, '7 less than 20' should be 13 = $2(10) - 7$. ✓", "check": ["2*10 - 7 == 13"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Rate + fee", "problemId": "al14-we1" },
+          { "kind": "teach", "eyebrow": "Trap 2", "title": "Define the variable — with units", "body": "Before translating, write one sentence: 'Let $t$ = the number of hours worked.' Not 'let $t$ = time', not 'let $t$ = the worker.' A variable stands for a NUMBER; naming its units keeps every later expression honest and makes your final answer interpretable." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Two quantities, one variable", "problemId": "al14-we2" },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Test the translation with easy numbers", "body": "Unsure whether it's $x - 5$ or $5 - x$? Replace $x$ with a friendly number and ask if the sentence comes out true. '5 less than 12' is obviously 7, so the expression must be $12 - 5$ — pattern: $x - 5$. Numbers settle arguments that grammar starts." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Quotient then decrease", "problemId": "al14-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Two variables, one bill", "problemId": "al14-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Keywords map to operations — but 'less than' and 'subtracted from' reverse the order.", "Define the variable with units before translating anything.", "Rates multiply the count; fixed fees add: cost $= (\\text{rate})(\\text{count}) + \\text{fee}$."] }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    { "id": "al1-pr-1", "statement": "Evaluate $2x^2 - 5x + 3$ at $x = 3$.", "solution": "$2(9) - 15 + 3 = 6$.", "check": ["2*3**2 - 5*3 + 3 == 6"] },
+    { "id": "al1-pr-2", "statement": "Evaluate $-x^2 + 4x$ at $x = -3$.", "solution": "$-9 + (-12) = -21$.", "check": ["-(-3)**2 + 4*(-3) == -21"] },
+    { "id": "al1-pr-3", "statement": "Simplify $4(2x - 3) + 5x$.", "solution": "$8x - 12 + 5x = 13x - 12$.", "check": ["8 + 5 == 13", "4*(2*2 - 3) + 5*2 == 13*2 - 12"] },
+    { "id": "al1-pr-4", "statement": "Simplify $6a - (4a - 11)$.", "solution": "$6a - 4a + 11 = 2a + 11$.", "check": ["6 - 4 == 2", "6*3 - (4*3 - 11) == 2*3 + 11"] },
+    { "id": "al1-pr-5", "statement": "Evaluate $50 - 3(2 + 4)^2 \\div 4$.", "solution": "Parentheses: $6$; exponent: $36$; then $3 \\cdot 36 \\div 4 = 27$; finally $50 - 27 = 23$.", "check": ["(2 + 4)**2 == 36", "50 - 3*36/4 == 23"] },
+    { "id": "al1-pr-6", "statement": "Write $\\dfrac{7^4 \\cdot 7^3}{7^5}$ as a single power and evaluate.", "solution": "$7^{4+3-5} = 7^2 = 49$.", "check": ["4 + 3 - 5 == 2", "7**4 * 7**3 / 7**5 == 49"] },
+    { "id": "al1-pr-7", "statement": "Translate and simplify: '8 less than the product of 5 and a number $n$, plus $2n$.'", "solution": "$5n - 8 + 2n = 7n - 8$.", "check": ["5 + 2 == 7", "5*4 - 8 + 2*4 == 7*4 - 8"] },
+    { "id": "al1-pr-8", "statement": "A gym charges a \\$25 joining fee plus \\$40 per month. Write the total cost for $m$ months and evaluate for 6 months.", "solution": "$40m + 25$; at $m = 6$: $240 + 25 = 265$ dollars.", "check": ["40*6 + 25 == 265"] }
+  ],
+  "testYourself": [
+    { "id": "al1-ty-1", "statement": "Evaluate $\\dfrac{a^2 - b}{2b}$ at $a = -4$, $b = 2$.", "solution": "$\\dfrac{16 - 2}{4} = \\dfrac{14}{4} = \\dfrac{7}{2}$.", "check": ["Rational((-4)**2 - 2, 2*2) == Rational(7, 2)"] },
+    { "id": "al1-ty-2", "statement": "Simplify $3(2x - 5) - 2(x - 7)$.", "solution": "$6x - 15 - 2x + 14 = 4x - 1$.", "check": ["6 - 2 == 4", "-15 + 14 == -1", "3*(2*3 - 5) - 2*(3 - 7) == 4*3 - 1"] },
+    { "id": "al1-ty-3", "statement": "Evaluate $100 - 4 \\cdot 5^2 \\div 2$.", "solution": "$5^2 = 25$; $4 \\cdot 25 \\div 2 = 50$; $100 - 50 = 50$.", "check": ["100 - 4*5**2/2 == 50"] },
+    { "id": "al1-ty-4", "statement": "Write $\\dfrac{(2^3)^4}{2^{10}}$ as a single power and evaluate.", "solution": "$2^{12-10} = 2^2 = 4$.", "check": ["3*4 - 10 == 2", "(2**3)**4 / 2**10 == 4"] },
+    { "id": "al1-ty-5", "statement": "The length of a rectangle is 5 less than three times its width $w$. Write and simplify the perimeter.", "solution": "Length $= 3w - 5$; perimeter $= 2w + 2(3w - 5) = 8w - 10$.", "check": ["2 + 6 == 8", "2*4 + 2*(3*4 - 5) == 8*4 - 10"] },
+    { "id": "al1-ty-6", "statement": "A print shop charges \\$0.15 per page plus a \\$2 service fee. Write the cost of printing $p$ pages and evaluate for 200 pages.", "solution": "Cost $= 0.15p + 2$; at $p = 200$: $30 + 2 = 32$ dollars.", "check": ["Rational(15, 100)*200 + 2 == 32"] }
+  ]
+}

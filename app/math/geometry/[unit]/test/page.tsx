@@ -68,10 +68,10 @@ function GeometryTestPageInner() {
           style={{ background: "var(--bg-1)" }}
         >
           <p className="mono text-[11px] uppercase mb-1" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-            Coming soon
+            Self-graded
           </p>
           <p className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-            Graded mode coming in a later step. For now, attempt each problem and reveal the solution to self-check.
+            Attempt each problem on paper, reveal the solution, and grade yourself honestly — your self-checks feed your progress stats.
           </p>
         </div>
 

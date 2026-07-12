@@ -1,0 +1,282 @@
+{
+  "slug": "polynomials-and-factoring",
+  "title": "Polynomials & Factoring",
+  "unit": 7,
+  "status": "published",
+  "blurb": "Adding, subtracting and multiplying polynomials, the special products, and factoring — GCF, trinomials, and the difference of squares — multiplication run forwards and backwards.",
+  "buildsOn": "Like terms, the distributive property, and exponent laws (Unit 1).",
+  "lessons": [
+    {
+      "slug": "polynomial-arithmetic",
+      "title": "Adding, Subtracting & Multiplying Polynomials",
+      "concreteComparison": "Polynomials add like sorted coin jars: hundreds with hundreds, tens with tens — $x^2$'s with $x^2$'s, $x$'s with $x$'s. Multiplying is a handshake problem: every term of the first must greet every term of the second.",
+      "objective": "Add, subtract, and multiply polynomials, tracking signs through subtraction and pairing every term in products.",
+      "concept": [
+        "A **polynomial** is a sum of terms $ax^n$ with whole-number exponents; its **degree** is the largest exponent. $3x^2 - 5x + 7$: degree 2, three terms (a trinomial). Standard form lists exponents descending.",
+        "**Add** by combining like terms. **Subtract** by distributing the minus through EVERY term of the second polynomial first: $(3x^2 + 2x) - (x^2 - 5x + 4) = 3x^2 + 2x - x^2 + 5x - 4 = 2x^2 + 7x - 4$.",
+        "**Multiply** with the everyone-meets-everyone rule: each term of the first polynomial multiplies each term of the second. $(x + 3)(2x - 5)$: four handshakes — $2x^2 - 5x + 6x - 15 = 2x^2 + x - 15$. For binomials this is nicknamed FOIL, but the rule is just double distribution."
+      ],
+      "keyIdea": "Add by sorting like terms, subtract by flipping every sign of the second polynomial, multiply by pairing every term with every term.",
+      "facts": [
+        { "title": "Subtraction flips everything", "latex": "-(x^2 - 5x + 4) = -x^2 + 5x - 4", "explanation": "The minus is a $(-1)$ distributed to all three terms." },
+        { "title": "Everyone meets everyone", "latex": "(a + b)(c + d) = ac + ad + bc + bd", "explanation": "2 terms × 2 terms = 4 products; 2 × 3 = 6 products. Count them before combining." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al71-we1",
+          "statement": "Subtract: $(4x^2 - 3x + 6) - (x^2 + 5x - 2)$.",
+          "solution": "Flip all three signs of the second: $4x^2 - 3x + 6 - x^2 - 5x + 2 = 3x^2 - 8x + 8$. Check at $x = 1$: $(7) - (4) = 3$ and $3 - 8 + 8 = 3$. ✓",
+          "check": ["4 - 1 == 3", "-3 - 5 == -8", "6 + 2 == 8", "(4*1 - 3 + 6) - (1 + 5 - 2) == 3 - 8 + 8"]
+        },
+        {
+          "id": "al71-we2",
+          "statement": "Multiply: $(x + 3)(2x^2 - x + 4)$.",
+          "solution": "Six handshakes: $x(2x^2 - x + 4) = 2x^3 - x^2 + 4x$; $\\;3(2x^2 - x + 4) = 6x^2 - 3x + 12$. Sum: $2x^3 + 5x^2 + x + 12$. Check at $x = 1$: $(4)(5) = 20$ and $2 + 5 + 1 + 12 = 20$. ✓",
+          "check": ["(1 + 3)*(2 - 1 + 4) == 20", "2 + 5 + 1 + 12 == 20", "-1 + 6 == 5", "4 - 3 == 1"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Subtracting only the first term: $(4x^2 \\ldots) - (x^2 + 5x - 2) = 3x^2 + 5x - 2 \\ldots$", "correction": "The minus hits ALL of the second polynomial: $-x^2 - 5x + 2$. Flip every sign before combining.", "authored": true },
+        { "text": "Multiplying binomials as first×first + last×last: $(x+3)(x+5) = x^2 + 15$.", "correction": "That skips the two cross terms: $x^2 + 5x + 3x + 15 = x^2 + 8x + 15$. Four terms shake hands, not two.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al71-t1",
+          "statement": "Simplify: $(2x^2 + x - 7) + (x^2 - 4x + 3) - (x^2 - 5)$.",
+          "solution": "Add first two: $3x^2 - 3x - 4$; subtract the third (flip signs): $3x^2 - 3x - 4 - x^2 + 5 = 2x^2 - 3x + 1$. Check at $x = 2$: $(3) + (-3)... $ compute: $(8+2-7)+(4-8+3)-(4-5) = 3 + (-1) - (-1) = 3$; and $8 - 6 + 1 = 3$ ✓.",
+          "check": ["(2*4 + 2 - 7) + (4 - 8 + 3) - (4 - 5) == 3", "2*4 - 3*2 + 1 == 3"]
+        },
+        {
+          "id": "al71-t2",
+          "statement": "Multiply: $(3x - 2)(x + 5)$.",
+          "solution": "$3x^2 + 15x - 2x - 10 = 3x^2 + 13x - 10$. Check at $x = 1$: $(1)(6) = 6$ and $3 + 13 - 10 = 6$ ✓.",
+          "check": ["(3 - 2)*(1 + 5) == 6", "3 + 13 - 10 == 6", "15 - 2 == 13"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Bigger expressions, same two moves", "body": "Everything in this unit is built from moves you own: combining like terms and distributing. Polynomials just have MORE terms — so the game becomes bookkeeping: track every sign, pair every term, drop nothing." },
+          { "kind": "algebraTiles", "eyebrow": "Play", "title": "Terms are tile types", "teach": "The long tiles are $x$'s, the small squares units — and an $x^2$ would be a big square: a third tile TYPE. Adding polynomials is sorting tiles by type and counting each pile. No pile ever converts into another.", "config": { "x": 3, "units": 4, "mode": "build", "maxX": 6, "maxUnits": 9, "color": "#e8913c" } },
+          { "kind": "teach", "eyebrow": "Add & subtract", "title": "The sign flip, again", "body": "Adding is pure sorting. Subtracting has ONE danger: the minus belongs to the whole parcel. $-(x^2 + 5x - 2)$ unpacks to $-x^2 - 5x + 2$ — all three flipped. Write the flipped version out explicitly before combining; skipping that line is where the marks leak." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "A full subtraction", "problemId": "al71-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the flip", "title": "Subtract safely", "prompt": "$(5x^2 + 2x) - (3x^2 - 4x) = $ ?", "options": ["$2x^2 + 6x$", "$2x^2 - 2x$", "$8x^2 - 2x$", "$2x^2 - 6x$"], "correctIndex": 0, "explanation": "Flip both terms of the second: $5x^2 + 2x - 3x^2 + 4x = 2x^2 + 6x$. Option B forgot to flip the $-4x$.", "check": ["5 - 3 == 2", "2 + 4 == 6", "(5*4 + 2*2) - (3*4 - 4*2) == 2*4 + 6*2"] },
+          { "kind": "teach", "eyebrow": "Multiply", "title": "The handshake count", "body": "$(x + 3)(2x - 5)$: the $x$ shakes hands with $2x$ and with $-5$; the 3 does the same. Four products, then combine: $2x^2 - 5x + 6x - 15 = 2x^2 + x - 15$. Before combining, COUNT: 2×2 terms = 4 products, 2×3 = 6. If you wrote fewer, someone got snubbed." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Binomial times trinomial", "problemId": "al71-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the handshakes", "title": "Count first", "prompt": "Multiplying $(2x + 1)(x^2 - 3x + 4)$ produces how many products before combining?", "options": ["$6$", "$4$", "$5$", "$9$"], "correctIndex": 0, "explanation": "2 terms × 3 terms = 6 handshakes. (After combining like terms the answer has 4 terms: $2x^3 - 5x^2 + 5x + 4$.)", "check": ["2*3 == 6", "(2 + 1)*(1 - 3 + 4) == 2 - 5 + 5 + 4"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "The x = 1 audit", "body": "Every polynomial identity can be spot-checked in seconds: evaluate both sides at $x = 1$ (or 2 if 1 feels too easy). $(x+3)(2x-5)$ at 1: $4 \\cdot (-3) = -12$; your answer $2x^2 + x - 15$ at 1: $-12$. ✓ Cheap insurance on every multiply." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Three-polynomial traffic", "problemId": "al71-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "A standard product", "problemId": "al71-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Subtracting distributes the minus to EVERY term.", "Products: every term meets every term — count the handshakes first.", "Audit any identity by evaluating both sides at $x = 1$."] }
+        ]
+      }
+    },
+    {
+      "slug": "special-products",
+      "title": "Special Products",
+      "concreteComparison": "Three multiplications appear so often they deserve reflexes, not FOIL: the two perfect squares $(a \\pm b)^2$ and the conjugate pair $(a+b)(a-b)$ — square, double, square; and square minus square.",
+      "objective": "Expand (a+b)², (a−b)², and (a+b)(a−b) by formula, and use them for mental arithmetic and later factoring.",
+      "concept": [
+        "**Square of a sum**: $(a + b)^2 = a^2 + 2ab + b^2$ — square, plus DOUBLE the product, plus square. The classic crime is writing $a^2 + b^2$: that drops the rectangle strip $2ab$.",
+        "**Square of a difference**: $(a - b)^2 = a^2 - 2ab + b^2$ — same skeleton, middle sign negative. Note $(a-b)^2 = (b-a)^2$: squaring erases the order.",
+        "**Conjugates**: $(a + b)(a - b) = a^2 - b^2$ — the cross terms $+ab$ and $-ab$ annihilate, leaving a difference of squares. This powers mental tricks like $102 \\times 98 = 100^2 - 2^2 = 9996$ and, read backwards, the most useful factoring pattern in algebra."
+      ],
+      "keyIdea": "(a ± b)² = a² ± 2ab + b², and (a + b)(a − b) = a² − b² — three products fast enough to be reflexes.",
+      "facts": [
+        { "title": "Perfect squares", "latex": "(a \\pm b)^2 = a^2 \\pm 2ab + b^2", "explanation": "Square, double-product, square — the middle term is the one everyone forgets." },
+        { "title": "Conjugate pair", "latex": "(a + b)(a - b) = a^2 - b^2", "explanation": "Cross terms cancel; only the squares survive." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al72-we1",
+          "statement": "Expand $(3x + 4)^2$ and $(2x - 5)^2$.",
+          "solution": "$(3x + 4)^2 = 9x^2 + 2(3x)(4) + 16 = 9x^2 + 24x + 16$. $(2x - 5)^2 = 4x^2 - 20x + 25$. Check the first at $x = 1$: $7^2 = 49 = 9 + 24 + 16$. ✓",
+          "check": ["(3 + 4)**2 == 9 + 24 + 16", "2*3*4 == 24", "(2 - 5)**2 == 4 - 20 + 25", "2*2*5 == 20"]
+        },
+        {
+          "id": "al72-we2",
+          "statement": "Compute $102 \\times 98$ without a calculator.",
+          "solution": "$102 \\times 98 = (100 + 2)(100 - 2) = 100^2 - 2^2 = 10000 - 4 = 9996$.",
+          "check": ["102*98 == 9996", "100**2 - 2**2 == 9996"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "$(a + b)^2 = a^2 + b^2$.", "correction": "Test it: $(3 + 4)^2 = 49$ but $9 + 16 = 25$. The missing $2ab = 24$ is exactly the gap. Squares of sums have THREE terms.", "authored": true },
+        { "text": "$(a - b)^2 = a^2 - b^2$.", "correction": "A square can't be a difference of squares: $(5-2)^2 = 9$ but $25 - 4 = 21$. The pattern is $a^2 - 2ab + b^2$.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al72-t1",
+          "statement": "Expand $(x + 6)^2$, $(4x - 3)^2$, and $(5x + 2)(5x - 2)$.",
+          "solution": "$x^2 + 12x + 36$; $\\;16x^2 - 24x + 9$; $\\;25x^2 - 4$.",
+          "check": ["(1 + 6)**2 == 1 + 12 + 36", "(4 - 3)**2 == 16 - 24 + 9", "(5 + 2)*(5 - 2) == 25 - 4"]
+        },
+        {
+          "id": "al72-t2",
+          "statement": "Compute $97^2$ mentally using a special product.",
+          "solution": "$97^2 = (100 - 3)^2 = 10000 - 600 + 9 = 9409$.",
+          "check": ["97**2 == 9409", "100**2 - 2*100*3 + 3**2 == 9409"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Three products worth memorizing", "body": "You could FOIL $(3x + 4)^2$ every time — or recognize it and write the answer in one breath. Three patterns cover a huge fraction of all polynomial multiplication in algebra, and next lesson they run BACKWARDS as factoring. Learn them as shapes, not procedures." },
+          { "kind": "teach", "eyebrow": "Pattern 1 & 2", "title": "Square, double, square", "body": "$(a + b)^2 = a^2 + 2ab + b^2$. Geometrically: a square of side $a + b$ contains an $a$-square, a $b$-square, and TWO $a \\times b$ rectangles — that's where the 2 comes from. The minus version only flips the middle: $(a - b)^2 = a^2 - 2ab + b^2$." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Both squares", "problemId": "al72-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the squares", "title": "Don't drop the middle", "prompt": "$(x + 7)^2 = $ ?", "options": ["$x^2 + 14x + 49$", "$x^2 + 49$", "$x^2 + 7x + 49$", "$x^2 + 14x + 14$"], "correctIndex": 0, "explanation": "Square ($x^2$), double product ($2 \\cdot 7x = 14x$), square ($49$). Option B is the famous freshman's dream — test at $x = 1$: $64 \\ne 50$.", "check": ["(1 + 7)**2 == 1 + 14 + 49"] },
+          { "kind": "teach", "eyebrow": "Pattern 3", "title": "Conjugates annihilate", "body": "$(a + b)(a - b)$: the outer and inner handshakes are $-ab$ and $+ab$ — they cancel on contact. What's left: $a^2 - b^2$. No middle term AT ALL. This 'difference of squares' is algebra's favorite disappearing act, and you'll factor with it constantly." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Mental arithmetic with conjugates", "problemId": "al72-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check conjugates", "title": "Spot the pair", "prompt": "$(3x + 8)(3x - 8) = $ ?", "options": ["$9x^2 - 64$", "$9x^2 + 64$", "$9x^2 - 48x - 64$", "$6x^2 - 64$"], "correctIndex": 0, "explanation": "Conjugates: square minus square, $9x^2 - 64$, no middle term. Check at $x = 3$: $17 \\cdot 1 = 17$ and $81 - 64 = 17$. ✓", "check": ["(3*3 + 8)*(3*3 - 8) == 81 - 64"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Name the pattern before touching the pencil", "body": "Seeing $(\\text{something} \\pm \\text{something})^2$ or a conjugate pair? Say which pattern it is FIRST, then fill the template. Pattern-recognition is the skill being built here — FOILing everything works but trains nothing." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "All three patterns", "problemId": "al72-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "A square in your head", "problemId": "al72-t2" },
+          { "kind": "funFact", "eyebrow": "Fun fact", "title": "The freshman's dream", "body": "The error $(a+b)^2 = a^2 + b^2$ is so widespread it has an official name: the freshman's dream. Amusingly, it IS true in certain exotic number systems used in cryptography — just never in the real numbers your exams live in." },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["$(a \\pm b)^2 = a^2 \\pm 2ab + b^2$ — three terms, always.", "$(a+b)(a-b) = a^2 - b^2$ — the middle cancels.", "Name the pattern first; these run backwards as factoring next."] }
+        ]
+      }
+    },
+    {
+      "slug": "gcf-and-factoring-trinomials",
+      "title": "GCF & Factoring x² + bx + c",
+      "concreteComparison": "Factoring is un-multiplying: given the product 391, find 17 × 23. For trinomials it's a small puzzle — find two numbers whose product is c and whose sum is b — and multiplication run backwards becomes a game of twenty questions.",
+      "objective": "Factor out the greatest common factor, and factor trinomials x² + bx + c by the product-sum puzzle, using signs to narrow the search.",
+      "concept": [
+        "**Always look for a GCF first**: $6x^2 + 15x = 3x(2x + 5)$ — pull out the biggest shared number and the smallest shared power. Un-distribute before any other tool, and CHECK by redistributing.",
+        "**Trinomials** $x^2 + bx + c$ come from $(x + p)(x + q)$ where $pq = c$ and $p + q = b$. Factoring is the reverse puzzle: two numbers with product $c$, sum $b$. For $x^2 + 7x + 12$: product 12, sum 7 → 3 and 4 → $(x + 3)(x + 4)$.",
+        "**Signs narrow the hunt**: $c > 0$ → $p, q$ share a sign (both the sign of $b$); $c < 0$ → opposite signs, the LARGER absolute value carrying $b$'s sign. $x^2 - 2x - 15$: product $-15$, sum $-2$ → $-5$ and $3$ → $(x - 5)(x + 3)$."
+      ],
+      "keyIdea": "GCF first, always; then x² + bx + c = (x + p)(x + q) where pq = c and p + q = b — let the signs of b and c tell you where to look.",
+      "facts": [
+        { "title": "GCF first", "latex": "6x^2 + 15x = 3x(2x + 5)", "explanation": "Largest shared coefficient, lowest shared power — un-distribute, then re-check." },
+        { "title": "The product-sum puzzle", "latex": "x^2 + bx + c = (x + p)(x + q), \\;\\; pq = c, \\; p + q = b", "explanation": "$c > 0$: same signs. $c < 0$: opposite signs, big one takes $b$'s sign." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al73-we1",
+          "statement": "Factor $x^2 + 7x + 12$ and $x^2 - 9x + 20$.",
+          "solution": "First: product 12, sum 7 → 3, 4: $(x+3)(x+4)$. Second: product $+20$, sum $-9$ → both negative: $-4, -5$: $(x-4)(x-5)$. Expand-check the second at $x = 1$: $(-3)(-4) = 12$ and $1 - 9 + 20 = 12$. ✓",
+          "check": ["3*4 == 12", "3 + 4 == 7", "(-4)*(-5) == 20", "-4 + -5 == -9", "(1 - 4)*(1 - 5) == 1 - 9 + 20"]
+        },
+        {
+          "id": "al73-we2",
+          "statement": "Factor completely: $3x^3 - 3x^2 - 36x$.",
+          "solution": "GCF first: $3x(x^2 - x - 12)$. Puzzle: product $-12$, sum $-1$ → $-4, 3$: $3x(x - 4)(x + 3)$. Check at $x = 5$: $3(125) - 75 - 180 = 120$ and $15 \\cdot 1 \\cdot 8 = 120$. ✓",
+          "check": ["(-4)*3 == -12", "-4 + 3 == -1", "3*5**3 - 3*5**2 - 36*5 == 120", "3*5*(5 - 4)*(5 + 3) == 120"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Skipping the GCF: factoring $2x^2 + 10x + 12$ straight into $(2x + 4)(x + 3)$ or getting stuck.", "correction": "Pull the 2 first: $2(x^2 + 5x + 6) = 2(x + 2)(x + 3)$. GCF-first turns hard puzzles easy.", "authored": true },
+        { "text": "Ignoring signs in the puzzle: factoring $x^2 - 2x - 15$ with $+5, -3$.", "correction": "$5 + (-3) = +2$, wrong sum. Product negative → opposite signs, and the BIGGER number ($5$) takes $b$'s sign (negative): $-5, +3$.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al73-t1",
+          "statement": "Factor $x^2 + 3x - 28$.",
+          "solution": "Product $-28$, sum $3$ → $7, -4$: $(x + 7)(x - 4)$. Check at $x = 1$: $8 \\cdot (-3) = -24$ and $1 + 3 - 28 = -24$ ✓.",
+          "check": ["7*(-4) == -28", "7 + (-4) == 3", "(1 + 7)*(1 - 4) == 1 + 3 - 28"]
+        },
+        {
+          "id": "al73-t2",
+          "statement": "Factor completely: $2x^3 + 2x^2 - 40x$.",
+          "solution": "GCF $2x$: $2x(x^2 + x - 20) = 2x(x + 5)(x - 4)$.",
+          "check": ["5*(-4) == -20", "5 + (-4) == 1", "2*3*(3 + 5)*(3 - 4) == 2*3**3 + 2*3**2 - 40*3"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Multiplication, run backwards", "body": "Expanding $(x+3)(x+4)$ is mechanical. The REVERSE — given $x^2 + 7x + 12$, recover the factors — is where equations get solved, fractions get simplified, and quadratics crack open. Factoring is the skill the rest of algebra quietly depends on." },
+          { "kind": "teach", "eyebrow": "Step zero", "title": "GCF first, always", "body": "Before any cleverness, un-distribute what every term shares: $6x^2 + 15x$ → both divide by 3 and by $x$ → $3x(2x + 5)$. Check by redistributing. Skipping this step doesn't just lose marks — it makes the next puzzle artificially hard." },
+          { "kind": "tapQuestion", "eyebrow": "Check step zero", "title": "Pull the GCF", "prompt": "The GCF factorization of $8x^3 + 12x^2$ is:", "options": ["$4x^2(2x + 3)$", "$4x(2x^2 + 3x)$", "$8x^2(x + 12)$", "$2x^2(4x + 6)$"], "correctIndex": 0, "explanation": "Biggest shared number: 4; smallest shared power: $x^2$. Options B and D under-pull — their parentheses still share factors.", "check": ["4*2 == 8", "4*3 == 12", "4*2**2*(2*2 + 3) == 8*2**3 + 12*2**2"] },
+          { "kind": "teach", "eyebrow": "The puzzle", "title": "Product c, sum b", "body": "$(x + p)(x + q) = x^2 + (p+q)x + pq$. So factoring $x^2 + bx + c$ asks: **which two numbers multiply to $c$ and add to $b$?** For $x^2 + 7x + 12$: factor pairs of 12 are 1·12, 2·6, 3·4 — sums 13, 8, 7. Winner: 3 and 4." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Two sign patterns", "problemId": "al73-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the puzzle", "title": "Signs narrow it", "prompt": "$x^2 - 5x - 24$ factors as:", "options": ["$(x - 8)(x + 3)$", "$(x + 8)(x - 3)$", "$(x - 6)(x + 4)$", "$(x - 12)(x + 2)$"], "correctIndex": 0, "explanation": "Product $-24$ → opposite signs; sum $-5$ → the larger (8) is negative: $-8, +3$. Check: $-8 + 3 = -5$ ✓, $(-8)(3) = -24$ ✓.", "check": ["-8 + 3 == -5", "-8*3 == -24"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "GCF, then puzzle", "problemId": "al73-we2" },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Expand back — every time", "body": "Factoring carries its own answer key: multiply your factors back out. Ten seconds. $(x+7)(x-4) \\to x^2 + 3x - 28$ — matches, done. Any factoring you didn't expand-check is a factoring you're merely hoping about." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "A negative c", "problemId": "al73-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Full pipeline", "problemId": "al73-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["GCF first — biggest number, lowest power, then re-check.", "Puzzle: product $c$, sum $b$; signs of $b, c$ narrow the candidates.", "Expand back to verify — factoring grades itself."] }
+        ]
+      }
+    },
+    {
+      "slug": "factoring-ax2-and-special-patterns",
+      "title": "Factoring ax² + bx + c & Special Patterns",
+      "concreteComparison": "With a leading coefficient, the puzzle gets a twist: for 2x² + 7x + 3, hunt two numbers with product a·c = 6 and sum 7 — then split the middle and group. Plus: the special products of Lesson 2, now running in reverse.",
+      "objective": "Factor ax² + bx + c by splitting the middle term (ac-method), factor differences of squares and perfect-square trinomials, and combine tools to factor completely.",
+      "concept": [
+        "**The ac-method** for $ax^2 + bx + c$: find two numbers with product $ac$ and sum $b$; SPLIT the middle term with them; factor by GROUPING. $2x^2 + 7x + 3$: $ac = 6$, sum 7 → 1, 6 → $2x^2 + x + 6x + 3 = x(2x + 1) + 3(2x + 1) = (2x + 1)(x + 3)$.",
+        "**Special patterns in reverse**: $a^2 - b^2 = (a+b)(a-b)$ — any difference of two squares splits instantly: $9x^2 - 25 = (3x+5)(3x-5)$. Perfect-square trinomials fold back: $x^2 + 10x + 25 = (x+5)^2$ (middle $=$ twice the product of the square roots — check it!).",
+        "**Factor completely** means keep going until nothing factors: $2x^4 - 32 = 2(x^4 - 16) = 2(x^2+4)(x^2-4) = 2(x^2+4)(x+2)(x-2)$. A SUM of squares like $x^2 + 4$ stays put — it has no real factoring."
+      ],
+      "keyIdea": "For a ≠ 1: split bx using two numbers with product ac and sum b, then group; keep the reversed special products loaded, and factor until nothing budges.",
+      "facts": [
+        { "title": "The ac-method", "latex": "2x^2 + 7x + 3: \\; ac = 6, \\; 7 = 1 + 6 \\;\\to\\; \\text{split & group}", "explanation": "Product $ac$, sum $b$ — then the grouping factors itself." },
+        { "title": "Patterns in reverse", "latex": "a^2 - b^2 = (a+b)(a-b), \\quad a^2 \\pm 2ab + b^2 = (a \\pm b)^2", "explanation": "Difference of squares splits; perfect-square trinomials fold. Sums of squares don't factor." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al74-we1",
+          "statement": "Factor $3x^2 - 10x + 8$.",
+          "solution": "$ac = 24$, sum $-10$ → $-4, -6$. Split: $3x^2 - 4x - 6x + 8 = x(3x - 4) - 2(3x - 4) = (3x - 4)(x - 2)$. Check at $x = 1$: $3 - 10 + 8 = 1$ and $(-1)(-1) = 1$. ✓",
+          "check": ["(-4)*(-6) == 24", "-4 + -6 == -10", "(3 - 4)*(1 - 2) == 3 - 10 + 8"]
+        },
+        {
+          "id": "al74-we2",
+          "statement": "Factor completely: $50x^2 - 8$ and $4x^2 + 12x + 9$.",
+          "solution": "$50x^2 - 8 = 2(25x^2 - 4) = 2(5x + 2)(5x - 2)$ — GCF then difference of squares. $4x^2 + 12x + 9$: ends are squares ($2x$, 3), middle $= 2(2x)(3) = 12x$ ✓ — a perfect square: $(2x + 3)^2$.",
+          "check": ["2*(5*1 + 2)*(5*1 - 2) == 50 - 8", "2*2*3 == 12", "(2*2 + 3)**2 == 4*4 + 12*2 + 9"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "'Factoring' a sum of squares: $x^2 + 16 = (x + 4)(x - 4)$ or $(x+4)^2$.", "correction": "Expand-check kills both: $(x+4)(x-4) = x^2 - 16$; $(x+4)^2 = x^2 + 8x + 16$. A sum of squares does not factor over the reals.", "authored": true },
+        { "text": "Declaring a perfect square from the ends alone: $x^2 + 7x + 25 = (x+5)^2$.", "correction": "The middle must be exactly $2ab = 10x$, not $7x$. Ends being squares is necessary, not sufficient — always audit the middle.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al74-t1",
+          "statement": "Factor $2x^2 + 11x + 12$.",
+          "solution": "$ac = 24$, sum 11 → 3, 8. Split & group: $2x^2 + 3x + 8x + 12 = x(2x + 3) + 4(2x + 3) = (2x + 3)(x + 4)$.",
+          "check": ["3*8 == 24", "3 + 8 == 11", "(2*1 + 3)*(1 + 4) == 2 + 11 + 12"]
+        },
+        {
+          "id": "al74-t2",
+          "statement": "Factor completely: $3x^3 - 27x$.",
+          "solution": "GCF $3x$: $3x(x^2 - 9) = 3x(x + 3)(x - 3)$.",
+          "check": ["3*2*(2 + 3)*(2 - 3) == 3*2**3 - 27*2"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "A leading coefficient crashes the puzzle", "body": "$2x^2 + 7x + 3$: try the old puzzle (product 3, sum 7) and nothing works — the leading 2 changed the rules. The fix costs one extra multiplication: hunt with the product $a \\cdot c$ instead of $c$, then split the middle term and let grouping do the rest." },
+          { "kind": "teach", "eyebrow": "The ac-method", "title": "Split and group", "body": "$2x^2 + 7x + 3$: $ac = 6$, sum 7 → the pair 1 and 6. **Split** $7x = x + 6x$: $\\;2x^2 + x + 6x + 3$. **Group**: $x(2x+1) + 3(2x+1)$. The shared bracket $(2x+1)$ pops out: $(2x+1)(x+3)$. If the two groups DON'T share a bracket, a sign slipped — redo the split." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Negative middle, same machine", "problemId": "al74-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the method", "title": "Find the split pair", "prompt": "To factor $4x^2 + 8x + 3$, split $8x$ using which pair?", "options": ["$2$ and $6$", "$4$ and $4$", "$1$ and $7$", "$3$ and $5$"], "correctIndex": 0, "explanation": "$ac = 12$ with sum 8: the pair 2 and 6 ($2 \\cdot 6 = 12$ ✓). Grouping then gives $(2x + 1)(2x + 3)$. The pair $4, 4$ sums right but multiplies to 16.", "check": ["2*6 == 12", "2 + 6 == 8", "(2*1 + 1)*(2*1 + 3) == 4 + 8 + 3"] },
+          { "kind": "teach", "eyebrow": "Reverse gear", "title": "The special patterns, factored", "body": "Lesson 2's products now read right-to-left. See TWO squares and a minus? $9x^2 - 25 = (3x+5)(3x-5)$, instantly. See squares at both ends of a trinomial? Audit the middle: if it equals twice the product of the roots ($2 \\cdot 3x \\cdot 5$), it folds to $(3x + 5)^2$. And a SUM of squares — $x^2 + 16$ — refuses to factor. Leave it." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "GCF meets both patterns", "problemId": "al74-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the patterns", "title": "Instant split", "prompt": "$49x^2 - 36 = $ ?", "options": ["$(7x + 6)(7x - 6)$", "$(7x - 6)^2$", "$(49x + 1)(x - 36)$", "it does not factor"], "correctIndex": 0, "explanation": "Difference of squares: $49x^2 = (7x)^2$, $36 = 6^2$ → conjugate pair. The square option would need a $-84x$ middle term.", "check": ["(7*1 + 6)*(7*1 - 6) == 49 - 36"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "The factoring checklist", "body": "Run every expression through the same gauntlet: **(1)** GCF? **(2)** Two terms — difference of squares? **(3)** Three terms — puzzle or ac-method (audit for a perfect square first)? **(4)** Anything inside still factorable? Stop only when every factor is stubborn." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Split and group yourself", "problemId": "al74-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "GCF then squares", "problemId": "al74-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["ac-method: product $ac$, sum $b$ → split the middle → group.", "$a^2 - b^2$ splits; perfect-square trinomials fold; sums of squares don't factor.", "Checklist: GCF → pattern → puzzle → repeat inside."] }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    { "id": "al7-pr-1", "statement": "Simplify: $(5x^2 - 2x + 1) - (3x^2 + 4x - 6)$.", "solution": "$2x^2 - 6x + 7$.", "check": ["5 - 3 == 2", "-2 - 4 == -6", "1 + 6 == 7", "(5*4 - 4 + 1) - (3*4 + 8 - 6) == 2*4 - 12 + 7"] },
+    { "id": "al7-pr-2", "statement": "Multiply: $(x - 4)(x + 9)$.", "solution": "$x^2 + 5x - 36$.", "check": ["(2 - 4)*(2 + 9) == 4 + 10 - 36"] },
+    { "id": "al7-pr-3", "statement": "Expand $(2x + 7)^2$.", "solution": "$4x^2 + 28x + 49$.", "check": ["(2*3 + 7)**2 == 4*9 + 28*3 + 49", "2*2*7 == 28"] },
+    { "id": "al7-pr-4", "statement": "Multiply: $(6x + 1)(6x - 1)$.", "solution": "$36x^2 - 1$ (conjugates).", "check": ["(6*2 + 1)*(6*2 - 1) == 36*4 - 1"] },
+    { "id": "al7-pr-5", "statement": "Factor $x^2 + 11x + 24$.", "solution": "$(x + 3)(x + 8)$.", "check": ["3*8 == 24", "3 + 8 == 11", "(1 + 3)*(1 + 8) == 1 + 11 + 24"] },
+    { "id": "al7-pr-6", "statement": "Factor $x^2 - 4x - 21$.", "solution": "Product $-21$, sum $-4$: $-7, 3$ → $(x - 7)(x + 3)$.", "check": ["-7*3 == -21", "-7 + 3 == -4", "(1 - 7)*(1 + 3) == 1 - 4 - 21"] },
+    { "id": "al7-pr-7", "statement": "Factor $2x^2 + 9x + 10$.", "solution": "$ac = 20$, sum 9 → 4, 5: $(2x + 5)(x + 2)$.", "check": ["4*5 == 20", "4 + 5 == 9", "(2*1 + 5)*(1 + 2) == 2 + 9 + 10"] },
+    { "id": "al7-pr-8", "statement": "Factor completely: $4x^3 - 36x$.", "solution": "$4x(x^2 - 9) = 4x(x + 3)(x - 3)$.", "check": ["4*2*(2 + 3)*(2 - 3) == 4*2**3 - 36*2"] }
+  ],
+  "testYourself": [
+    { "id": "al7-ty-1", "statement": "Multiply: $(2x - 3)(x^2 + 4x - 1)$.", "solution": "$2x^3 + 8x^2 - 2x - 3x^2 - 12x + 3 = 2x^3 + 5x^2 - 14x + 3$. Check at $x = 1$: $(-1)(4) = -4$ and $2 + 5 - 14 + 3 = -4$ ✓.", "check": ["(2 - 3)*(1 + 4 - 1) == 2 + 5 - 14 + 3", "8 - 3 == 5", "-2 - 12 == -14"] },
+    { "id": "al7-ty-2", "statement": "Expand $(3x - 5)^2$ and compute $103^2$ mentally.", "solution": "$9x^2 - 30x + 25$; $103^2 = (100 + 3)^2 = 10000 + 600 + 9 = 10609$.", "check": ["(3*2 - 5)**2 == 9*4 - 30*2 + 25", "103**2 == 10609"] },
+    { "id": "al7-ty-3", "statement": "Factor $x^2 - 13x + 40$.", "solution": "Product $+40$, sum $-13$: $-5, -8$ → $(x - 5)(x - 8)$.", "check": ["-5*-8 == 40", "-5 + -8 == -13", "(1 - 5)*(1 - 8) == 1 - 13 + 40"] },
+    { "id": "al7-ty-4", "statement": "Factor $6x^2 - 7x - 3$.", "solution": "$ac = -18$, sum $-7$: $-9, 2$. Split: $6x^2 - 9x + 2x - 3 = 3x(2x - 3) + (2x - 3) = (2x - 3)(3x + 1)$.", "check": ["-9*2 == -18", "-9 + 2 == -7", "(2*2 - 3)*(3*2 + 1) == 6*4 - 7*2 - 3"] },
+    { "id": "al7-ty-5", "statement": "Factor completely: $x^4 - 81$.", "solution": "$(x^2 + 9)(x^2 - 9) = (x^2 + 9)(x + 3)(x - 3)$; the sum of squares stays.", "check": ["(2**2 + 9)*(2 + 3)*(2 - 3) == 2**4 - 81"] },
+    { "id": "al7-ty-6", "statement": "Is $9x^2 + 30x + 25$ a perfect square? Factor it if so.", "solution": "Ends: $(3x)^2$ and $5^2$; middle: $2(3x)(5) = 30x$ ✓. Yes: $(3x + 5)^2$.", "check": ["2*3*5 == 30", "(3*1 + 5)**2 == 9 + 30 + 25"] }
+  ]
+}

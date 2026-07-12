@@ -1,0 +1,283 @@
+{
+  "slug": "linear-functions",
+  "title": "Linear Functions & Slope",
+  "unit": 5,
+  "status": "published",
+  "blurb": "Slope as a rate, the y = mx + b form, point-slope and standard forms, and parallel & perpendicular lines — straight lines as the algebra of steady change.",
+  "buildsOn": "Functions and their graphs (Unit 4).",
+  "lessons": [
+    {
+      "slug": "slope",
+      "title": "Slope",
+      "concreteComparison": "A wheelchair ramp that rises 1 m over 12 m of run has slope 1/12 — that number IS the steepness, independent of where you measure it. Slope turns 'how steep' into arithmetic: rise over run.",
+      "objective": "Compute slope from two points, classify positive/negative/zero/undefined slopes, and read slope as a real-world rate.",
+      "concept": [
+        "**Slope** measures steepness and direction: $m = \\dfrac{\\text{rise}}{\\text{run}} = \\dfrac{y_2 - y_1}{x_2 - x_1}$. Uphill left-to-right → positive; downhill → negative; flat → zero. Between $(1, 2)$ and $(4, 11)$: $m = \\dfrac{9}{3} = 3$.",
+        "The four species: positive (rising), negative (falling), **zero** (horizontal — rise 0), and **undefined** (vertical — run 0, division by zero). Horizontal ≠ 'no slope in some vague sense': horizontal is slope 0, vertical is undefined.",
+        "Slope is a RATE with units: on a distance–time graph, meters per second; on a cost graph, dollars per item. 'Per' is the sound slope makes in a sentence."
+      ],
+      "keyIdea": "m = (y₂ − y₁)/(x₂ − x₁): rise over run, subtracted in the same order — a rate that's the same between any two points of a line.",
+      "facts": [
+        { "title": "Slope formula", "latex": "m = \\frac{y_2 - y_1}{x_2 - x_1}", "explanation": "Same order top and bottom: point 2 minus point 1 in BOTH subtractions." },
+        { "title": "The four species", "latex": "m > 0 \\nearrow, \\quad m < 0 \\searrow, \\quad m = 0 \\to, \\quad m \\text{ undefined} \\uparrow", "explanation": "Horizontal lines have slope ZERO; vertical lines have NO slope (run = 0)." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al51-we1",
+          "statement": "Find the slope of the line through $(-2, 5)$ and $(4, -7)$.",
+          "solution": "$m = \\dfrac{-7 - 5}{4 - (-2)} = \\dfrac{-12}{6} = -2$. The line falls 2 units for every 1 unit right.",
+          "check": ["Rational(-7 - 5, 4 - (-2)) == -2"]
+        },
+        {
+          "id": "al51-we2",
+          "statement": "A climber is at 1200 m at 9:00 and at 1650 m at 12:00. What is the average climbing rate?",
+          "solution": "Slope $= \\dfrac{1650 - 1200}{12 - 9} = \\dfrac{450}{3} = 150$ meters per hour — a rate, read straight off the rise-over-run.",
+          "check": ["Rational(1650 - 1200, 12 - 9) == 150"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Mixing subtraction orders: $\\frac{y_2 - y_1}{x_1 - x_2}$.", "correction": "Top and bottom must subtract in the SAME order — mixing them flips the sign of the slope.", "authored": true },
+        { "text": "Calling a horizontal line's slope 'undefined.'", "correction": "Horizontal: rise $= 0$, slope $= 0$. Vertical: run $= 0$, slope undefined. Zero and undefined are opposite ends.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al51-t1",
+          "statement": "Find the slope through $(3, -1)$ and $(7, 7)$.",
+          "solution": "$m = \\dfrac{7 - (-1)}{7 - 3} = \\dfrac{8}{4} = 2$.",
+          "check": ["Rational(7 - (-1), 7 - 3) == 2"]
+        },
+        {
+          "id": "al51-t2",
+          "statement": "Classify the slopes: line A through $(2, 5)$ and $(9, 5)$; line B through $(4, 1)$ and $(4, 8)$.",
+          "solution": "A: rise $= 0$ → slope 0, horizontal. B: run $= 0$ → undefined, vertical.",
+          "check": ["5 - 5 == 0", "4 - 4 == 0"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "'Steep' needs a number", "body": "Building codes cap wheelchair-ramp steepness. 'Pretty steep' won't pass inspection — engineers need a NUMBER that any two people compute the same way. That number is slope: how much the line rises for each unit it runs." },
+          { "kind": "coordinateGrid", "eyebrow": "Play", "title": "Rise over run, visibly", "teach": "These points lie on one line: from $(0, 1)$ to $(1, 3)$ the rise is 2 and the run is 1 — slope 2. From $(1, 3)$ to $(3, 7)$: rise 4, run 2 — still 2. **Any two points of a line give the same slope**; that constancy is what makes a line a line.", "config": { "mode": "plot", "min": -1, "max": 8, "points": [ { "x": 0, "y": 1 }, { "x": 1, "y": 3 }, { "x": 2, "y": 5 }, { "x": 3, "y": 7 } ], "color": "#e8913c" } },
+          { "kind": "teach", "eyebrow": "The formula", "title": "Same order, top and bottom", "body": "$m = \\dfrac{y_2 - y_1}{x_2 - x_1}$. Which point is 'point 2' doesn't matter — but having chosen, subtract in the SAME order upstairs and down. Mixing orders silently flips the sign, turning an uphill line downhill." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Negatives in the formula", "problemId": "al51-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the formula", "title": "Compute one", "prompt": "The slope through $(1, 8)$ and $(5, 2)$ is:", "options": ["$-\\dfrac{3}{2}$", "$\\dfrac{3}{2}$", "$-\\dfrac{2}{3}$", "$6$"], "correctIndex": 0, "explanation": "$m = \\frac{2 - 8}{5 - 1} = \\frac{-6}{4} = -\\frac{3}{2}$. A positive answer means the orders got mixed.", "check": ["Rational(2 - 8, 5 - 1) == Rational(-3, 2)"] },
+          { "kind": "teach", "eyebrow": "Special lines", "title": "Zero vs. undefined", "body": "Horizontal line: every point has the same $y$, rise $= 0$, slope $= \\frac{0}{\\text{run}} = 0$. Vertical line: same $x$ everywhere, run $= 0$, and $\\frac{\\text{rise}}{0}$ is UNDEFINED. Flat floors have slope zero; walls have no slope at all." },
+          { "kind": "tapQuestion", "eyebrow": "Check special lines", "title": "The wall", "prompt": "The slope of the line through $(6, 1)$ and $(6, 9)$ is:", "options": ["undefined", "$0$", "$8$", "$1$"], "correctIndex": 0, "explanation": "Run $= 6 - 6 = 0$: division by zero — a vertical line with undefined slope. (Slope 0 would be the HORIZONTAL twin.)", "check": ["6 - 6 == 0", "9 - 1 == 8"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Slope as a rate", "problemId": "al51-we2" },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Say the units", "body": "Whenever a graph has units, read the slope WITH them: '150 meters per hour', '\\$3 per gigabyte', '−2 liters per minute.' If you can't attach 'per', you haven't understood what the slope measures yet." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Clean computation", "problemId": "al51-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Floor and wall", "problemId": "al51-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["$m = \\frac{y_2 - y_1}{x_2 - x_1}$ — same subtraction order, top and bottom.", "Horizontal → slope 0; vertical → undefined.", "Slope is a rate: attach 'per' and the units."] }
+        ]
+      }
+    },
+    {
+      "slug": "slope-intercept-form",
+      "title": "Slope-Intercept Form",
+      "concreteComparison": "$y = mx + b$ is a taxi fare: $b$ is the flag-drop fee you pay at 0 km, and $m$ is the per-kilometer meter rate. Every straight-line situation is some fee plus some rate.",
+      "objective": "Read m and b from an equation or a context, graph a line from slope-intercept form, and write the form from a graph.",
+      "concept": [
+        "$y = mx + b$: the **$b$** is the $y$-intercept — the output at $x = 0$, where the line crosses the $y$-axis. The **$m$** is the slope — the change in $y$ per unit step in $x$. $y = 2x - 3$: starts at $(0, -3)$, climbs 2 per step.",
+        "**Graphing from the form**: plot $(0, b)$, then use the slope as marching orders — for $m = \\frac{2}{3}$, go right 3, up 2, plot, repeat. For negative slope, go DOWN for the rise.",
+        "**Reading a graph back**: the crossing of the $y$-axis gives $b$; picking two lattice points and computing rise-over-run gives $m$. Contexts translate directly: 'a plumber charges \\$40 to show up plus \\$60 per hour' → $C = 60h + 40$."
+      ],
+      "keyIdea": "y = mx + b: start at (0, b), march by the slope; in applications b is the fixed start and m the per-unit rate.",
+      "facts": [
+        { "title": "The two dials", "latex": "y = mx + b", "explanation": "$b$ = starting value ($y$-intercept); $m$ = rate of change (slope)." },
+        { "title": "Graphing recipe", "latex": "\\text{plot } (0, b), \\text{ then run/rise by } m", "explanation": "$m = \\frac{2}{3}$: right 3, up 2. $m = -2 = \\frac{-2}{1}$: right 1, down 2." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al52-we1",
+          "statement": "For $y = -\\dfrac{3}{2}x + 4$: state the slope and intercept, and find two more points for the graph.",
+          "solution": "Slope $-\\frac{3}{2}$, intercept $(0, 4)$. March right 2, down 3: $(2, 1)$; again: $(4, -2)$. Both satisfy the equation: $-\\frac{3}{2}(2) + 4 = 1$ ✓, $-\\frac{3}{2}(4) + 4 = -2$ ✓.",
+          "check": ["Rational(-3,2)*2 + 4 == 1", "Rational(-3,2)*4 + 4 == -2"]
+        },
+        {
+          "id": "al52-we2",
+          "statement": "A gym charges a \\$50 joining fee and \\$30 per month. Write the total cost $C(m)$ after $m$ months, and find when the total reaches \\$290.",
+          "solution": "$C(m) = 30m + 50$ — rate 30, start 50. Solve $30m + 50 = 290$: $30m = 240$, $m = 8$ months.",
+          "check": ["30*8 + 50 == 290"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Reading $y = 4 - 3x$ as slope 4, intercept $-3$.", "correction": "Match against $mx + b$: the slope is the coefficient OF $x$ ($-3$); the constant 4 is the intercept. Order on the page doesn't decide.", "authored": true },
+        { "text": "Marching the slope backwards: for $m = -\\frac{3}{2}$ going right 3, down 2.", "correction": "Rise is the TOP of the fraction: right 2 (run), down 3 (rise $-3$).", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al52-t1",
+          "statement": "State the slope and $y$-intercept of $y = 7 - \\dfrac{x}{4}$, and give the point one 'march' right of the intercept.",
+          "solution": "Slope $-\\frac{1}{4}$, intercept $(0, 7)$. Right 4, down 1: $(4, 6)$. Check: $7 - \\frac{4}{4} = 6$ ✓.",
+          "check": ["7 - Rational(4, 4) == 6"]
+        },
+        {
+          "id": "al52-t2",
+          "statement": "A phone plan costs $y = 0.5x + 12$ dollars for $x$ minutes of calls. Interpret both constants, and find the bill for 40 minutes.",
+          "solution": "\\$12 base fee (even at 0 minutes) plus \\$0.50 per minute. At $x = 40$: $20 + 12 = 32$ dollars.",
+          "check": ["Rational(1,2)*40 + 12 == 32"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Two dials describe any line", "body": "Every non-vertical line is pinned down by just two numbers: where it starts on the $y$-axis, and how fast it climbs. $y = mx + b$ IS that pair of dials — $b$ the start, $m$ the rate. Taxi fares, phone plans, draining tanks: all the same shape." },
+          { "kind": "coordinateGrid", "eyebrow": "Play", "title": "March the slope", "teach": "The line $y = 2x - 3$: start at the intercept $(0, -3)$, then march 'right 1, up 2' — the slope — again and again. The plotted points ARE the marching trail.", "config": { "mode": "plot", "min": -5, "max": 5, "points": [ { "x": 0, "y": -3, "label": "(0, −3)" }, { "x": 1, "y": -1 }, { "x": 2, "y": 1 }, { "x": 3, "y": 3 } ], "color": "#e8913c" } },
+          { "kind": "tapQuestion", "eyebrow": "Check the dials", "title": "Read them off", "prompt": "In $y = 4 - 3x$, the slope is:", "options": ["$-3$", "$4$", "$3$", "$-\\dfrac{3}{4}$"], "correctIndex": 0, "explanation": "Rearranged to $mx + b$ shape: $y = -3x + 4$. The coefficient of $x$ is the slope — position on the page is a costume.", "check": ["4 - 3*1 == 1", "-3*1 + 4 == 1"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Graph a fraction slope", "problemId": "al52-we1" },
+          { "kind": "teach", "eyebrow": "Applications", "title": "Fee plus rate", "body": "'\\$50 to join, \\$30 a month' → $C = 30m + 50$. The FIXED number (paid once, at zero) is $b$; the PER-something number is $m$. Translating word problems into $mx + b$ is just deciding which given number is the start and which is the rate." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "The gym bill", "problemId": "al52-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check applications", "title": "Which is which?", "prompt": "A candle is 20 cm tall and burns 2.5 cm per hour. Its height after $t$ hours is:", "options": ["$h = 20 - 2.5t$", "$h = 2.5t + 20$", "$h = 2.5t - 20$", "$h = 20t - 2.5$"], "correctIndex": 0, "explanation": "Start 20 (the $b$), rate $-2.5$ per hour (burning SHRINKS height): $h = 20 - 2.5t$. Option B grows the candle.", "check": ["20 - Rational(5,2)*4 == 10"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Sanity-check the sign of m", "body": "Before writing the equation, ask: as $x$ grows, does $y$ go up or down? Burning candles, draining tanks, cooling coffee → negative slope. Savings, distance traveled, growing plants → positive. If your equation's sign disagrees with the story, the equation loses." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "A sneaky arrangement", "problemId": "al52-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Interpret the plan", "problemId": "al52-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["$b$ = value at $x = 0$; $m$ = change per unit step.", "Graph: plot $(0, b)$, march right-run up-rise, repeat.", "In stories: fixed fee → $b$, per-unit rate → $m$; check the sign against the story."] }
+        ]
+      }
+    },
+    {
+      "slug": "point-slope-and-standard-form",
+      "title": "Point-Slope & Standard Form",
+      "concreteComparison": "Slope-intercept form needs the y-intercept — but real data rarely hands it to you. Point-slope form builds a line from what you actually have: any single point and the rate. It's the form for starting mid-journey.",
+      "objective": "Write equations with point-slope form from a point and slope or from two points, convert between forms, and use intercepts to graph standard form.",
+      "concept": [
+        "**Point-slope form**: a line through $(x_1, y_1)$ with slope $m$ is $y - y_1 = m(x - x_1)$. It's the slope formula rearranged — every other point $(x, y)$ must give slope $m$ against $(x_1, y_1)$.",
+        "**From two points**: compute $m$ first, then feed either point to point-slope. Through $(1, 5)$ and $(3, 11)$: $m = 3$, so $y - 5 = 3(x - 1)$, which unpacks to $y = 3x + 2$.",
+        "**Standard form** $Ax + By = C$ hides slope but exposes INTERCEPTS: set $y = 0$ for the $x$-intercept, $x = 0$ for the $y$-intercept. $2x + 3y = 12$ crosses at $(6, 0)$ and $(0, 4)$ — two points, instant graph."
+      ],
+      "keyIdea": "Point-slope y − y₁ = m(x − x₁) builds a line from any point plus the rate; standard form Ax + By = C graphs fastest through its two intercepts.",
+      "facts": [
+        { "title": "Point-slope form", "latex": "y - y_1 = m(x - x_1)", "explanation": "Any known point works as $(x_1, y_1)$ — both choices unpack to the same line." },
+        { "title": "Intercepts from standard form", "latex": "Ax + By = C: \\;\\; x\\text{-int} = \\tfrac{C}{A}, \\;\\; y\\text{-int} = \\tfrac{C}{B}", "explanation": "Set the other variable to zero and divide." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al53-we1",
+          "statement": "Write the equation of the line through $(-2, 7)$ with slope $-3$, in slope-intercept form.",
+          "solution": "Point-slope: $y - 7 = -3(x + 2)$. Unpack: $y = -3x - 6 + 7 = -3x + 1$. Check the point: $-3(-2) + 1 = 7$ ✓.",
+          "check": ["-3*(-2) + 1 == 7"]
+        },
+        {
+          "id": "al53-we2",
+          "statement": "Find the equation of the line through $(2, -1)$ and $(6, 7)$.",
+          "solution": "$m = \\dfrac{7 - (-1)}{6 - 2} = 2$. Using $(2, -1)$: $y + 1 = 2(x - 2)$, so $y = 2x - 5$. Both points check: $2(6) - 5 = 7$ ✓.",
+          "check": ["Rational(7 - (-1), 6 - 2) == 2", "2*2 - 5 == -1", "2*6 - 5 == 7"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Sign slips inside point-slope: through $(-2, 7)$ writing $y - 7 = m(x - 2)$.", "correction": "The form SUBTRACTS the coordinates: $x - (-2) = x + 2$. A negative point flips the visible sign.", "authored": true },
+        { "text": "Reading the slope of $2x + 3y = 12$ as 2.", "correction": "Standard form hides slope. Solve for $y$: $y = -\\frac{2}{3}x + 4$ — slope $-\\frac{2}{3}$, not 2.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al53-t1",
+          "statement": "Write the line through $(4, -3)$ with slope $\\dfrac{1}{2}$ in slope-intercept form.",
+          "solution": "$y + 3 = \\frac{1}{2}(x - 4) \\to y = \\frac{1}{2}x - 5$. Check: $\\frac{1}{2}(4) - 5 = -3$ ✓.",
+          "check": ["Rational(1,2)*4 - 5 == -3"]
+        },
+        {
+          "id": "al53-t2",
+          "statement": "Find both intercepts of $4x - 5y = 20$ and use them to describe the graph.",
+          "solution": "$y = 0$: $x = 5$ → $(5, 0)$. $x = 0$: $-5y = 20$, $y = -4$ → $(0, -4)$. The line joins those two points.",
+          "check": ["4*5 - 5*0 == 20", "4*0 - 5*(-4) == 20"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "You rarely start at zero", "body": "A hiker passes the 3-km marker at 10:00 walking 4 km/h. Where are they at any time? You know a POINT of the journey and the RATE — but not the start. Slope-intercept form wants $b$; point-slope form wants exactly what you have." },
+          { "kind": "teach", "eyebrow": "The form", "title": "Slope formula, rearranged", "body": "Demand that every point $(x, y)$ of the line makes slope $m$ with your known point $(x_1, y_1)$: $\\dfrac{y - y_1}{x - x_1} = m$. Multiply up: $$y - y_1 = m(x - x_1).$$ That's the whole derivation — point-slope IS the slope formula wearing an equation costume." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Point + slope → equation", "problemId": "al53-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the form", "title": "Watch the built-in minus", "prompt": "The line through $(-5, 2)$ with slope 4, in point-slope form, is:", "options": ["$y - 2 = 4(x + 5)$", "$y - 2 = 4(x - 5)$", "$y + 2 = 4(x - 5)$", "$y + 5 = 4(x - 2)$"], "correctIndex": 0, "explanation": "$x - x_1 = x - (-5) = x + 5$. The form's minus meets the point's minus and makes a plus.", "check": ["4*(-5) + 22 == 2"] },
+          { "kind": "teach", "eyebrow": "Two points", "title": "Slope first, then either point", "body": "Given two points: (1) compute $m$; (2) plug EITHER point into point-slope; (3) unpack if a different form is requested. Both point choices give the same line — if they don't, the slope was wrong. That's a free self-check." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Two points → equation", "problemId": "al53-we2" },
+          { "kind": "teach", "eyebrow": "Standard form", "title": "The intercept express", "body": "$Ax + By = C$ graphs fastest through its intercepts: set $y = 0$ → $x = \\frac{C}{A}$; set $x = 0$ → $y = \\frac{C}{B}$. For $2x + 3y = 12$: $(6, 0)$ and $(0, 4)$, connect, done. Two substitutions beat any rearranging." },
+          { "kind": "tapQuestion", "eyebrow": "Check standard form", "title": "Intercepts in seconds", "prompt": "The $x$-intercept of $3x + 4y = 24$ is:", "options": ["$(8, 0)$", "$(0, 6)$", "$(24, 0)$", "$(0, 8)$"], "correctIndex": 0, "explanation": "Set $y = 0$: $3x = 24$, $x = 8$. (The $y$-intercept is $(0, 6)$ — that's the OTHER axis.)", "check": ["3*8 + 4*0 == 24", "3*0 + 4*6 == 24"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Always re-substitute the given point", "body": "After unpacking to $y = mx + b$, plug the ORIGINAL point back in. Through $(-2, 7)$, got $y = -3x + 1$? Check $-3(-2) + 1 = 7$. ✓ Sign slips inside point-slope are the unit's most common error, and this catches every one." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Fraction slope, negative point", "problemId": "al53-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Graph by intercepts", "problemId": "al53-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["$y - y_1 = m(x - x_1)$: any point + slope builds the line.", "Two points: slope first, then either point — both give the same line.", "Standard form: intercepts at $\\frac{C}{A}$ and $\\frac{C}{B}$ — two dots and a ruler."] }
+        ]
+      }
+    },
+    {
+      "slug": "parallel-and-perpendicular-lines",
+      "title": "Parallel & Perpendicular Lines",
+      "concreteComparison": "Train tracks never meet because they climb at exactly the same rate — equal slopes. A ladder leaning on a wall meets the floor at right angles when the slopes multiply to −1: one line's rise becomes the other's run, flipped.",
+      "objective": "Use slope criteria for parallel and perpendicular lines, and write the equation of a line through a point parallel or perpendicular to a given line.",
+      "concept": [
+        "**Parallel lines** have EQUAL slopes (and different intercepts): $y = 2x + 1$ and $y = 2x - 7$ never meet. **Perpendicular lines** have slopes that are negative reciprocals: $m_1 m_2 = -1$, like $2$ and $-\\frac{1}{2}$ — flip the fraction, flip the sign.",
+        "Special pair: horizontal ($m = 0$) is perpendicular to vertical (undefined) — the one case the product rule can't verbalize, since vertical lines have no slope to multiply.",
+        "The workhorse problem: 'through $(4, 1)$, perpendicular to $y = 2x - 3$.' Extract the slope (2), take the negative reciprocal ($-\\frac{1}{2}$), then point-slope: $y - 1 = -\\frac{1}{2}(x - 4)$, i.e. $y = -\\frac{1}{2}x + 3$."
+      ],
+      "keyIdea": "Parallel ⟺ same slope; perpendicular ⟺ slopes multiply to −1 (flip and negate) — then point-slope finishes the job.",
+      "facts": [
+        { "title": "Parallel test", "latex": "m_1 = m_2", "explanation": "Same climb rate → never meet. (Same slope AND same intercept = same line.)" },
+        { "title": "Perpendicular test", "latex": "m_1 \\cdot m_2 = -1", "explanation": "Negative reciprocals: $\\frac{3}{4} \\leftrightarrow -\\frac{4}{3}$. Flip the fraction, flip the sign." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al54-we1",
+          "statement": "Write the line through $(6, -2)$ parallel to $y = \\dfrac{2}{3}x + 5$.",
+          "solution": "Parallel keeps the slope $\\frac{2}{3}$: $y + 2 = \\frac{2}{3}(x - 6)$, so $y = \\frac{2}{3}x - 6$. Check: $\\frac{2}{3}(6) - 6 = -2$ ✓.",
+          "check": ["Rational(2,3)*6 - 6 == -2"]
+        },
+        {
+          "id": "al54-we2",
+          "statement": "Write the line through $(4, 1)$ perpendicular to $y = 2x - 3$.",
+          "solution": "Perpendicular slope: $-\\frac{1}{2}$ (flip 2, negate). Point-slope: $y - 1 = -\\frac{1}{2}(x - 4)$, so $y = -\\frac{1}{2}x + 3$. Slope check: $2 \\cdot (-\\frac{1}{2}) = -1$ ✓.",
+          "check": ["2*Rational(-1,2) == -1", "Rational(-1,2)*4 + 3 == 1"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Perpendicular = just the opposite sign: taking $-2$ as perpendicular to 2.", "correction": "Negate AND reciprocate: perpendicular to 2 is $-\\frac{1}{2}$. Check: $2 \\times (-2) = -4 \\ne -1$, but $2 \\times (-\\frac{1}{2}) = -1$ ✓.", "authored": true },
+        { "text": "Perpendicular = just the reciprocal: taking $\\frac{1}{2}$ for 2.", "correction": "$2 \\cdot \\frac{1}{2} = 1$, not $-1$ — that pair isn't perpendicular. Both moves are needed: flip and negate.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al54-t1",
+          "statement": "Are $y = 3x - 4$ and $6x - 2y = 5$ parallel, perpendicular, or neither?",
+          "solution": "Second line: $-2y = 5 - 6x \\to y = 3x - \\frac{5}{2}$ — slope 3, same as the first, different intercepts. Parallel.",
+          "check": ["Rational(6, 2) == 3", "3 == 3"]
+        },
+        {
+          "id": "al54-t2",
+          "statement": "Write the line through $(-3, 5)$ perpendicular to $y = -\\dfrac{3}{4}x + 1$.",
+          "solution": "Perpendicular slope: $\\frac{4}{3}$. $y - 5 = \\frac{4}{3}(x + 3) \\to y = \\frac{4}{3}x + 9$. Check: $-\\frac{3}{4} \\cdot \\frac{4}{3} = -1$ ✓ and $\\frac{4}{3}(-3) + 9 = 5$ ✓.",
+          "check": ["Rational(-3,4)*Rational(4,3) == -1", "Rational(4,3)*(-3) + 9 == 5"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Geometry, spoken in slopes", "body": "'These streets never cross.' 'This brace meets the beam at a right angle.' Both are geometric claims — and both become one-line slope checks. Parallel and perpendicular are where the algebra of lines earns its keep in the physical world." },
+          { "kind": "teach", "eyebrow": "Parallel", "title": "Same rate, never meet", "body": "Two lines with slope 2 climb in lockstep — the vertical gap between them never changes, so they never intersect. **Parallel ⟺ equal slopes.** Watch for disguises: $6x - 2y = 5$ doesn't LOOK like slope 3 until you solve for $y$." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "A parallel line on demand", "problemId": "al54-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check parallel", "title": "Spot the twin", "prompt": "Which line is parallel to $y = -4x + 7$?", "options": ["$y = -4x - 9$", "$y = 4x + 7$", "$y = \\dfrac{1}{4}x + 7$", "$y = -\\dfrac{1}{4}x - 9$"], "correctIndex": 0, "explanation": "Parallel = SAME slope $-4$; only the intercept may differ. Option B mirrors the line; C and D are perpendicular-flavored distractors.", "check": ["-4 == -4"] },
+          { "kind": "teach", "eyebrow": "Perpendicular", "title": "Flip and negate", "body": "Turn a line 90°: its rise becomes run and the direction reverses — slope $\\frac{3}{4}$ becomes $-\\frac{4}{3}$. Test: $\\frac{3}{4} \\cdot (-\\frac{4}{3}) = -1$. **Perpendicular ⟺ slopes multiply to $-1$.** Half-measures fail: negating alone or flipping alone gives products of $-4$ or $+1$." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "A perpendicular through a point", "problemId": "al54-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check perpendicular", "title": "Both moves", "prompt": "A line perpendicular to $y = \\dfrac{5}{2}x - 1$ has slope:", "options": ["$-\\dfrac{2}{5}$", "$\\dfrac{2}{5}$", "$-\\dfrac{5}{2}$", "$\\dfrac{5}{2}$"], "correctIndex": 0, "explanation": "Flip $\\frac{5}{2} \\to \\frac{2}{5}$ AND negate: $-\\frac{2}{5}$. Verify: $\\frac{5}{2} \\cdot (-\\frac{2}{5}) = -1$ ✓.", "check": ["Rational(5,2)*Rational(-2,5) == -1"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Multiply to check", "body": "Whenever you claim two lines are perpendicular, multiply the slopes and LOOK for $-1$. It's a two-second computation that instantly convicts the two classic half-answers (sign-only and flip-only)." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Unmask a standard form", "problemId": "al54-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Perpendicular, fraction edition", "problemId": "al54-t2" },
+          { "kind": "funFact", "eyebrow": "Fun fact", "title": "Why −1, geometrically", "body": "Take a slope triangle (run $a$, rise $b$) and rotate it a quarter turn: the run becomes $-b$ and the rise becomes $a$. New slope: $-\\frac{a}{b}$. Multiply: $\\frac{b}{a} \\cdot (-\\frac{a}{b}) = -1$. The famous rule is just a rotated triangle." },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Parallel ⟺ equal slopes (different intercepts).", "Perpendicular ⟺ flip AND negate: $m_1 m_2 = -1$.", "Then point-slope finishes: extract slope → transform it → plug in the point."] }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    { "id": "al5-pr-1", "statement": "Find the slope through $(-1, 4)$ and $(3, -4)$.", "solution": "$m = \\frac{-8}{4} = -2$.", "check": ["Rational(-4 - 4, 3 - (-1)) == -2"] },
+    { "id": "al5-pr-2", "statement": "State the slope and $y$-intercept of $y = \\dfrac{3}{5}x - 2$, and the point one march right of the intercept.", "solution": "Slope $\\frac{3}{5}$, intercept $(0, -2)$; right 5, up 3 → $(5, 1)$.", "check": ["Rational(3,5)*5 - 2 == 1"] },
+    { "id": "al5-pr-3", "statement": "Write the equation of the line through $(2, 9)$ with slope $-4$.", "solution": "$y - 9 = -4(x - 2) \\to y = -4x + 17$.", "check": ["-4*2 + 17 == 9"] },
+    { "id": "al5-pr-4", "statement": "Find the equation of the line through $(-1, 2)$ and $(3, 10)$.", "solution": "$m = \\frac{8}{4} = 2$; $y = 2x + 4$.", "check": ["Rational(10 - 2, 3 - (-1)) == 2", "2*(-1) + 4 == 2", "2*3 + 4 == 10"] },
+    { "id": "al5-pr-5", "statement": "Find both intercepts of $3x - 2y = 18$.", "solution": "$x$-int $(6, 0)$; $y$-int $(0, -9)$.", "check": ["3*6 - 2*0 == 18", "3*0 - 2*(-9) == 18"] },
+    { "id": "al5-pr-6", "statement": "Are $y = \\dfrac{2}{5}x + 3$ and $2x - 5y = 40$ parallel?", "solution": "Second: $y = \\frac{2}{5}x - 8$ — same slope $\\frac{2}{5}$, different intercepts: parallel.", "check": ["Rational(2, 5) == Rational(2, 5)", "3 != -8"] },
+    { "id": "al5-pr-7", "statement": "Write the line through $(10, -1)$ perpendicular to $y = 5x + 2$.", "solution": "Slope $-\\frac{1}{5}$: $y + 1 = -\\frac{1}{5}(x - 10) \\to y = -\\frac{1}{5}x + 1$.", "check": ["5*Rational(-1,5) == -1", "Rational(-1,5)*10 + 1 == -1"] },
+    { "id": "al5-pr-8", "statement": "A pool drains from 8000 L at 250 L/min. Write $V(t)$ and find when the pool is empty.", "solution": "$V(t) = 8000 - 250t$; empty when $250t = 8000$, $t = 32$ minutes.", "check": ["8000 - 250*32 == 0"] }
+  ],
+  "testYourself": [
+    { "id": "al5-ty-1", "statement": "Find the slope through $(4, -2)$ and $(4, 6)$, and classify the line.", "solution": "Run $= 0$: slope undefined — a vertical line $x = 4$.", "check": ["4 - 4 == 0"] },
+    { "id": "al5-ty-2", "statement": "A ski lift ticket system charges $y = 12x + 35$ dollars for $x$ ride days. Interpret 12 and 35, and find the cost of 5 days.", "solution": "\\$35 season registration plus \\$12 per ride day; $12(5) + 35 = 95$ dollars.", "check": ["12*5 + 35 == 95"] },
+    { "id": "al5-ty-3", "statement": "Write the equation of the line through $(-6, 1)$ with slope $\\dfrac{1}{3}$, in slope-intercept form.", "solution": "$y - 1 = \\frac{1}{3}(x + 6) \\to y = \\frac{1}{3}x + 3$.", "check": ["Rational(1,3)*(-6) + 3 == 1"] },
+    { "id": "al5-ty-4", "statement": "Find the equation of the line with $x$-intercept 4 and $y$-intercept $-8$.", "solution": "Through $(4, 0)$ and $(0, -8)$: $m = \\frac{-8 - 0}{0 - 4} = 2$, so $y = 2x - 8$.", "check": ["Rational(-8 - 0, 0 - 4) == 2", "2*4 - 8 == 0"] },
+    { "id": "al5-ty-5", "statement": "Is the triangle with vertices $A(0,0)$, $B(4, 2)$, $C(2, 6)$ right-angled at $B$?", "solution": "Slope $AB = \\frac{2}{4} = \\frac{1}{2}$; slope $BC = \\frac{6-2}{2-4} = -2$. Product: $\\frac{1}{2} \\cdot (-2) = -1$ — yes, right angle at $B$.", "check": ["Rational(2 - 0, 4 - 0)*Rational(6 - 2, 2 - 4) == -1"] },
+    { "id": "al5-ty-6", "statement": "Write the line through $(8, 3)$ parallel to $x + 2y = 10$.", "solution": "Given line: $y = -\\frac{1}{2}x + 5$, slope $-\\frac{1}{2}$. Through $(8,3)$: $y - 3 = -\\frac{1}{2}(x - 8) \\to y = -\\frac{1}{2}x + 7$.", "check": ["Rational(-1,2)*8 + 7 == 3"] }
+  ]
+}

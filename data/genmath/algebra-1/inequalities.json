@@ -1,0 +1,284 @@
+{
+  "slug": "inequalities",
+  "title": "Linear Inequalities",
+  "unit": 3,
+  "status": "published",
+  "blurb": "Solving and graphing inequalities, the negative-flip rule, compound 'and/or' conditions, and absolute-value equations — algebra for ranges instead of single answers.",
+  "buildsOn": "Solving linear equations (Unit 2) and the number line.",
+  "lessons": [
+    {
+      "slug": "solving-and-graphing-inequalities",
+      "title": "Solving & Graphing Inequalities",
+      "concreteComparison": "An equation pins down one number; an inequality fences off a whole region. 'You must be at least 140 cm to ride' doesn't name YOUR height — it describes every height that gets on the ride: $h \\ge 140$.",
+      "objective": "Solve one- and two-step inequalities, apply the flip rule when multiplying or dividing by a negative, and graph solutions on a number line.",
+      "concept": [
+        "An **inequality** compares with $<, \\le, >, \\ge$ and its solution is a SET of numbers, drawn on a number line: an **open circle** for $<$ or $>$ (endpoint excluded), a **closed circle** for $\\le$ or $\\ge$ (endpoint included), and a ray showing the direction.",
+        "Adding or subtracting on both sides works exactly as for equations. So does multiplying or dividing by a POSITIVE number. But **multiplying or dividing both sides by a NEGATIVE number reverses the inequality**: from $3 < 5$, multiplying by $-1$ gives $-3 > -5$. The order of the number line flips with the signs.",
+        "Because solutions are infinite sets, the check works by sampling: pick one number from your answer region and one from outside, and test both in the original inequality."
+      ],
+      "keyIdea": "Solve inequalities like equations, but FLIP the symbol whenever you multiply or divide both sides by a negative — then graph with open/closed circle and a ray.",
+      "facts": [
+        { "title": "The flip rule", "latex": "-2x < 8 \\;\\Rightarrow\\; x > -4", "explanation": "Dividing by $-2$ reverses the symbol. Only ×/÷ by a negative flips — never adding or subtracting." },
+        { "title": "Circles on the graph", "latex": "x \\ge 3: \\; \\bullet\\!\\!\\longrightarrow \\qquad x > 3: \\; \\circ\\!\\!\\longrightarrow", "explanation": "Closed circle = endpoint counts ($\\le, \\ge$); open circle = it doesn't ($<, >$)." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al31-we1",
+          "statement": "Solve $4x - 7 \\le 9$ and describe the graph.",
+          "solution": "Add 7: $4x \\le 16$. Divide by 4 (positive — no flip): $x \\le 4$. Graph: closed circle at 4, ray to the left. Sample check: $x = 0$ gives $-7 \\le 9$ ✓; $x = 5$ gives $13 \\le 9$ ✗.",
+          "check": ["9 + 7 == 16", "16/4 == 4", "4*0 - 7 <= 9", "4*5 - 7 > 9"]
+        },
+        {
+          "id": "al31-we2",
+          "statement": "Solve $5 - 2x > 11$.",
+          "solution": "Subtract 5: $-2x > 6$. Divide by $-2$ and FLIP: $x < -3$. Sample check: $x = -4$ gives $5 + 8 = 13 > 11$ ✓; $x = 0$ gives $5 > 11$ ✗.",
+          "check": ["11 - 5 == 6", "5 - 2*(-4) > 11", "not (5 - 2*0 > 11)"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Forgetting the flip: $-2x > 6 \\to x > -3$.", "correction": "Dividing by $-2$ reverses the symbol: $x < -3$. Test a number — $x = 0$ fails the original, so the region must lie left of $-3$.", "authored": true },
+        { "text": "Flipping when merely subtracting a negative-looking term.", "correction": "Only MULTIPLYING or DIVIDING by a negative flips. Moving terms with $+$ or $-$ never does.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al31-t1",
+          "statement": "Solve $3x + 5 > -1$.",
+          "solution": "$3x > -6$, so $x > -2$. Open circle at $-2$, ray right. Check $x = 0$: $5 > -1$ ✓.",
+          "check": ["-1 - 5 == -6", "3*0 + 5 > -1", "not (3*(-3) + 5 > -1)"]
+        },
+        {
+          "id": "al31-t2",
+          "statement": "Solve $-\\dfrac{x}{3} \\ge 2$.",
+          "solution": "Multiply by $-3$ and flip: $x \\le -6$. Check $x = -9$: $3 \\ge 2$ ✓; $x = 0$: $0 \\ge 2$ ✗.",
+          "check": ["-Rational(-9,3) >= 2", "not (-Rational(0,3) >= 2)"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Rules are ranges", "body": "'At least 140 cm to ride.' 'Under \\$50.' 'No more than 8 attempts.' Real-world rules rarely name one number — they fence off a RANGE. Inequalities are the algebra of ranges: same solving moves as equations, one extra twist, and answers you draw instead of circle." },
+          { "kind": "integerLine", "eyebrow": "Play", "title": "Feel the flip", "teach": "Slide the marker and watch its opposite. $3 < 5$, but their opposites satisfy $-3 > -5$: negating REFLECTS the number line through zero, so 'greater' and 'less' trade places. That reflection is why multiplying an inequality by a negative must flip the symbol.", "config": { "min": -6, "max": 6, "start": 3, "color": "#e8913c" } },
+          { "kind": "teach", "eyebrow": "The rule", "title": "One twist only", "body": "Add or subtract on both sides: nothing changes. Multiply or divide by a POSITIVE: nothing changes. Multiply or divide by a NEGATIVE: **the symbol reverses.** From $-2x > 6$, dividing by $-2$ gives $x < -3$. That's the entire difference between inequalities and equations." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "No flip needed", "problemId": "al31-we1" },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Flip in action", "problemId": "al31-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the flip", "title": "Divide by a negative", "prompt": "Solve $-3x \\le 12$.", "options": ["$x \\ge -4$", "$x \\le -4$", "$x \\ge 4$", "$x \\le 4$"], "correctIndex": 0, "explanation": "Divide by $-3$, flip: $x \\ge -4$. Test $x = 0$: $0 \\le 12$ ✓, and 0 is in the region $x \\ge -4$. ✓", "check": ["-3*0 <= 12", "-3*(-4) <= 12"] },
+          { "kind": "teach", "eyebrow": "Graphing", "title": "Circle, then ray", "body": "Draw the endpoint first: **closed circle** if the symbol includes equality ($\\le, \\ge$), **open circle** if not ($<, >$). Then shade the ray in the direction of the solutions. $x \\le 4$: closed at 4, shade left. $x > -2$: open at $-2$, shade right." },
+          { "kind": "tapQuestion", "eyebrow": "Check the graph", "title": "Read a graph back", "prompt": "A graph shows an OPEN circle at $5$ with shading to the right. Which inequality is it?", "options": ["$x > 5$", "$x \\ge 5$", "$x < 5$", "$x \\le 5$"], "correctIndex": 0, "explanation": "Open circle → 5 itself excluded → strict. Shading right → greater. $x > 5$.", "check": ["6 > 5"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Sample one in, one out", "body": "After solving, test TWO numbers in the original inequality: one from inside your answer region (should work) and one from outside (should fail). This catches a missed flip instantly — a flipped-wrong answer fails both tests." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Two steps, no flip", "problemId": "al31-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "A fraction that flips", "problemId": "al31-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Inequalities solve like equations — except ×/÷ by a negative FLIPS the symbol.", "Closed circle for $\\le, \\ge$; open for $<, >$; ray shows the region.", "Check by sampling one number inside the region and one outside."] }
+        ]
+      }
+    },
+    {
+      "slug": "multi-step-inequalities",
+      "title": "Multi-Step Inequalities & Applications",
+      "concreteComparison": "Budgeting is inequality solving: with \\$110 at the fair, a \\$20 entry fee, and \\$15 rides, 'how many rides CAN I afford' is not an equation — it's $15r + 20 \\le 110$, and the answer is every $r$ up to 6.",
+      "objective": "Solve inequalities with variables on both sides and parentheses, and translate 'at least / at most' situations into inequalities.",
+      "concept": [
+        "Multi-step inequalities follow the equation pipeline — distribute, combine, collect variables, collect constants — with the flip rule on duty whenever a negative multiplies or divides both sides.",
+        "Phrase dictionary: **at least** → $\\ge$; **at most / no more than** → $\\le$; **more than / exceeds** → $>$; **less than / under** → $<$; **minimum** pairs with $\\ge$, **maximum** with $\\le$.",
+        "Real answers respect context: if rides cost \\$15 with a \\$20 fee and you have \\$110, then $15r + 20 \\le 110$ gives $r \\le 6$ — and since $r$ counts rides, the realistic answers are $0, 1, \\ldots, 6$. Algebra gives the fence; context picks which numbers inside it make sense."
+      ],
+      "keyIdea": "Run the equation pipeline with the flip rule armed, translate 'at least/at most' to ≥/≤, and let the context trim the solution set.",
+      "facts": [
+        { "title": "Phrase dictionary", "latex": "\\text{at least} \\to \\ge, \\quad \\text{at most} \\to \\le", "explanation": "'At least 6' includes 6; 'more than 6' does not." },
+        { "title": "Same pipeline", "latex": "\\text{distribute} \\to \\text{combine} \\to \\text{collect} \\to \\text{divide (flip?)}", "explanation": "Identical to equations — plus one guard: dividing by a negative flips." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al32-we1",
+          "statement": "Solve $2(3x - 5) < 4x + 8$.",
+          "solution": "Distribute: $6x - 10 < 4x + 8$. Collect: $2x < 18$, so $x < 9$. Check $x = 0$: $-10 < 8$ ✓; $x = 10$: $50 < 48$ ✗.",
+          "check": ["6 - 4 == 2", "8 + 10 == 18", "2*(3*0 - 5) < 4*0 + 8", "not (2*(3*10 - 5) < 4*10 + 8)"]
+        },
+        {
+          "id": "al32-we2",
+          "statement": "A tutoring service charges a \\$30 registration fee plus \\$25 per session. Bilguun's budget is at most \\$180. How many sessions can he take?",
+          "solution": "$25s + 30 \\le 180 \\to 25s \\le 150 \\to s \\le 6$. He can take at most 6 sessions (6 costs exactly $150 + 30 = 180$).",
+          "check": ["180 - 30 == 150", "150/25 == 6", "25*6 + 30 <= 180", "not (25*7 + 30 <= 180)"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Translating 'at least 8' as $x > 8$.", "correction": "'At least 8' includes 8: $x \\ge 8$. Strict vs. inclusive is exactly the difference between $>$ and $\\ge$.", "authored": true },
+        { "text": "Reporting $s \\le 6.4$ sessions as the final answer.", "correction": "Sessions are whole: the practical answer is 'at most 6 sessions.' Round DOWN when the variable counts things and the fence is an upper bound.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al32-t1",
+          "statement": "Solve $5x - 2 \\ge 8x + 13$.",
+          "solution": "Subtract $8x$: $-3x - 2 \\ge 13$. Add 2: $-3x \\ge 15$. Divide by $-3$ and FLIP: $x \\le -5$. Check $x = -6$: $-32 \\ge -35$ ✓.",
+          "check": ["5*(-6) - 2 >= 8*(-6) + 13", "not (5*0 - 2 >= 8*0 + 13)"]
+        },
+        {
+          "id": "al32-t2",
+          "statement": "A lift holds at most 600 kg. A worker (80 kg) rides with boxes of 32 kg each. How many boxes can ride along?",
+          "solution": "$32b + 80 \\le 600 \\to 32b \\le 520 \\to b \\le 16.25$, so at most 16 boxes.",
+          "check": ["600 - 80 == 520", "32*16 + 80 <= 600", "not (32*17 + 80 <= 600)"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "'Can I afford it?' is an inequality", "body": "Almost every budget question — money, weight limits, time limits, passing scores — asks for a RANGE of workable values, not a single one. The algebra is Unit 2's pipeline; the new skills are translating the phrases and reading the answer sensibly." },
+          { "kind": "teach", "eyebrow": "Translation", "title": "At least vs. more than", "body": "**At least 140** means 140 is allowed: $h \\ge 140$. **More than 140** means it isn't: $h > 140$. Same on the other side: **at most** → $\\le$, **less than** → $<$. One word — 'at' — decides whether the boundary itself belongs." },
+          { "kind": "tapQuestion", "eyebrow": "Check translation", "title": "Boundary in or out?", "prompt": "'You need at least 75 points to pass.' Which inequality describes passing scores $p$?", "options": ["$p \\ge 75$", "$p > 75$", "$p \\le 75$", "$p < 75$"], "correctIndex": 0, "explanation": "'At least 75' includes 75 itself — a 75 passes. $p \\ge 75$.", "check": ["75 >= 75"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Pipeline plus symbol", "problemId": "al32-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the pipeline", "title": "Both sides, one flip", "prompt": "Solve $3 - 4x > 15$.", "options": ["$x < -3$", "$x > -3$", "$x < 3$", "$x > 3$"], "correctIndex": 0, "explanation": "$-4x > 12$, divide by $-4$ and flip: $x < -3$. Test $x = -4$: $3 + 16 = 19 > 15$ ✓.", "check": ["3 - 4*(-4) > 15", "not (3 - 4*0 > 15)"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "The budget fence", "problemId": "al32-we2" },
+          { "kind": "teach", "eyebrow": "Reading answers", "title": "Context trims the set", "body": "$b \\le 16.25$ boxes — but a quarter-box doesn't ride the lift. When the variable counts whole things, the algebraic fence gets trimmed by reality: at most 16 boxes. For MINIMUM questions the trim goes the other way: 'at least 6.2 buses' becomes 7 buses. **Round toward safety.**" },
+          { "kind": "tapQuestion", "eyebrow": "Check the trim", "title": "Round the right way", "prompt": "A club needs at least \\$500 from a bake sale at \\$3 per item. Solving gives $n \\ge 166.7$. How many items must they sell?", "options": ["$167$", "$166$", "$170$", "$500/3$"], "correctIndex": 0, "explanation": "166 items brings only \\$498 — short. The first WHOLE number satisfying the fence is 167. Minimum requirements round UP.", "check": ["3*167 >= 500", "not (3*166 >= 500)"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Answer the question, not the algebra", "body": "Finish word problems with a sentence: 'He can take at most 6 sessions.' The sentence forces you to reconcile the algebraic fence with the real-world units — the step where rounding direction and boundary inclusion get checked for free." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Variables on both sides", "problemId": "al32-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "The freight lift", "problemId": "al32-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["'At least' → $\\ge$; 'at most' → $\\le$; 'more than' → $>$ strictly.", "Same solving pipeline as equations, flip rule armed.", "When variables count things: round DOWN for maxima, UP for minima."] }
+        ]
+      }
+    },
+    {
+      "slug": "compound-inequalities",
+      "title": "Compound Inequalities",
+      "concreteComparison": "A thermostat set 'between 19° and 23°' enforces TWO conditions at once — above 19 AND below 23. A storm warning 'below −20° or above 35°' is satisfied by EITHER extreme. 'And' intersects; 'or' unions.",
+      "objective": "Solve 'and' (between) and 'or' compound inequalities and graph their solution sets.",
+      "concept": [
+        "An **'and' compound** demands both conditions: $-3 < x \\le 4$ means $x > -3$ AND $x \\le 4$ — the OVERLAP, a segment. Solve the three-part form by doing each move to ALL THREE parts: from $-1 \\le 2x + 3 < 9$, subtract 3 everywhere ($-4 \\le 2x < 6$), divide by 2 ($-2 \\le x < 3$).",
+        "An **'or' compound** accepts either condition: $x < -2$ or $x > 5$ — two rays pointing away from each other, a union. Solve each piece separately and keep both.",
+        "Direction check: 'and' regions are usually BOUNDED (between two fences); 'or' regions usually point OUTWARD. If your 'and' answer comes out empty or your 'or' covers everything, re-read — it can happen, but it should make sense."
+      ],
+      "keyIdea": "'And' = intersection (a segment; operate on all three parts at once); 'or' = union (two outward rays; solve each piece separately).",
+      "facts": [
+        { "title": "Three-part moves", "latex": "-1 \\le 2x + 3 < 9 \\;\\to\\; -2 \\le x < 3", "explanation": "Whatever you do, do to LEFT, MIDDLE, and RIGHT." },
+        { "title": "And vs. or", "latex": "\\text{and} = \\cap \\text{ (overlap)}, \\quad \\text{or} = \\cup \\text{ (either)}", "explanation": "'And' keeps only numbers passing BOTH tests; 'or' keeps numbers passing at least one." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al33-we1",
+          "statement": "Solve $-5 \\le 3x + 1 < 10$.",
+          "solution": "Subtract 1 from all parts: $-6 \\le 3x < 9$. Divide all by 3: $-2 \\le x < 3$. Graph: closed at $-2$, open at 3, segment between. Check $x = 0$: $1$ is between $-5$ and $10$ ✓.",
+          "check": ["-5 - 1 == -6", "9/3 == 3", "-5 <= 3*0 + 1", "3*0 + 1 < 10", "not (3*3 + 1 < 10)"]
+        },
+        {
+          "id": "al33-we2",
+          "statement": "Solve: $2x + 1 < -5$ or $3x - 4 \\ge 8$.",
+          "solution": "Left: $2x < -6$, $x < -3$. Right: $3x \\ge 12$, $x \\ge 4$. Solution: $x < -3$ or $x \\ge 4$ — two rays. Check $x = 0$: fails both ✓ (0 is in the gap).",
+          "check": ["-6/2 == -3", "12/3 == 4", "2*(-4) + 1 < -5", "3*5 - 4 >= 8", "not (2*0 + 1 < -5)", "not (3*0 - 4 >= 8)"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Operating on only two of the three parts of $-1 \\le 2x + 3 < 9$.", "correction": "The compound is one statement with three columns — every move hits all three.", "authored": true },
+        { "text": "Writing an 'or' answer as a single between-statement: '$x < -3$ or $x \\ge 4$' as $4 \\le x < -3$.", "correction": "Outward rays can't be written as one 'between'. Keep the word 'or' — it IS the answer's shape.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al33-t1",
+          "statement": "Solve $1 < \\dfrac{x - 3}{2} \\le 4$.",
+          "solution": "Multiply all parts by 2: $2 < x - 3 \\le 8$. Add 3: $5 < x \\le 11$. Check $x = 7$: $\\frac{4}{2} = 2$, and $1 < 2 \\le 4$ ✓.",
+          "check": ["2 + 3 == 5", "8 + 3 == 11", "1 < Rational(7 - 3, 2)", "Rational(11 - 3, 2) <= 4"]
+        },
+        {
+          "id": "al33-t2",
+          "statement": "Solve: $4x + 3 \\le -9$ or $2x - 5 > 1$.",
+          "solution": "Left: $4x \\le -12$, $x \\le -3$. Right: $2x > 6$, $x > 3$. Answer: $x \\le -3$ or $x > 3$.",
+          "check": ["-12/4 == -3", "6/2 == 3", "4*(-3) + 3 <= -9", "2*4 - 5 > 1", "not (4*0 + 3 <= -9 or 2*0 - 5 > 1)"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Two fences at once", "body": "A greenhouse must stay between 19° and 23°. One inequality can't say that — it takes two conditions joined by AND: $t > 19$ and $t < 23$, compressed into $19 < t < 23$. Other rules trigger on EITHER extreme — 'alert if below −20° OR above 35°.' Two joiners, two very different pictures." },
+          { "kind": "teach", "eyebrow": "'And'", "title": "The between sandwich", "body": "$-1 \\le 2x + 3 < 9$ is three columns sharing one $x$. Operate on ALL THREE at once: subtract 3 everywhere → $-4 \\le 2x < 6$; divide by 2 → $-2 \\le x < 3$. The answer is the overlap: a SEGMENT with one closed end and one open end." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Sandwich solve", "problemId": "al33-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check 'and'", "title": "All three columns", "prompt": "Solve $3 \\le x + 5 < 8$.", "options": ["$-2 \\le x < 3$", "$3 \\le x < 8$", "$-2 < x \\le 3$", "$8 \\le x < 13$"], "correctIndex": 0, "explanation": "Subtract 5 from all three parts: $-2 \\le x < 3$. The symbols keep their styles — closed left, open right.", "check": ["3 <= 0 + 5", "0 + 5 < 8"] },
+          { "kind": "teach", "eyebrow": "'Or'", "title": "Either fence works", "body": "$2x + 1 < -5$ **or** $3x - 4 \\ge 8$: solve each piece on its own ($x < -3$; $x \\ge 4$) and keep BOTH — the union. The graph is two rays pointing away from each other with a gap between. A number qualifies by passing EITHER test; only the gap fails both." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Union of two rays", "problemId": "al33-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check 'or'", "title": "Who's in the set?", "prompt": "The solution set is $x < -1$ or $x \\ge 6$. Which number is IN it?", "options": ["$-2$", "$0$", "$3$", "$5$"], "correctIndex": 0, "explanation": "$-2 < -1$ passes the first test. The others sit in the gap $[-1, 6)$ and fail both.", "check": ["-2 < -1", "not (0 < -1)", "not (5 >= 6)"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Draw before deciding", "body": "Sketch both conditions on one number line BEFORE writing the answer. 'And' answers are where the shadings overlap; 'or' answers are everything shaded at all. The picture makes union-vs-intersection mistakes impossible." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "A sandwich with a fraction", "problemId": "al33-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Two rays", "problemId": "al33-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["'And' = overlap = segment; operate on all three parts together.", "'Or' = union = outward rays; solve each piece separately.", "Sketch both conditions on one line — the picture decides."] }
+        ]
+      }
+    },
+    {
+      "slug": "absolute-value-equations-and-inequalities",
+      "title": "Absolute-Value Equations & Inequalities",
+      "concreteComparison": "A bottling machine targets 500 ml with a tolerance of 5 ml. 'Within 5 of 500' is a DISTANCE statement: $|v - 500| \\le 5$. Absolute value is how algebra talks about distance from a target.",
+      "objective": "Solve absolute-value equations and inequalities by translating them into distance statements, and recognize the no-solution cases.",
+      "concept": [
+        "$|x|$ is the **distance from $x$ to 0** — never negative. $|x| = 5$ has TWO solutions, $x = 5$ and $x = -5$: two points at distance 5. More generally $|X| = k$ (with $k > 0$) splits into $X = k$ or $X = -k$.",
+        "Inequalities read as distances too. $|X| < k$ means 'within $k$ of zero': the SEGMENT $-k < X < k$ (an 'and'). $|X| > k$ means 'farther than $k$': the two rays $X < -k$ or $X > k$ (an 'or'). Memory hook: less-th**an** → 'and'; great-**or** → 'or'.",
+        "**Isolate the absolute value first**, and watch for impossible demands: $|X| = -3$ or $|X| < -1$ have NO solution (distance can't be negative), while $|X| \\ge -2$ is true for ALL numbers."
+      ],
+      "keyIdea": "Read |X| as distance: |X| = k splits into ±k; |X| < k is the segment between; |X| > k is the rays beyond — and a negative right side means no solutions (or all).",
+      "facts": [
+        { "title": "Equation splits in two", "latex": "|X| = k \\;\\Rightarrow\\; X = k \\;\\text{or}\\; X = -k \\quad (k > 0)", "explanation": "Two points sit at distance $k$ from zero." },
+        { "title": "Less-than is between", "latex": "|X| < k \\;\\Rightarrow\\; -k < X < k", "explanation": "'Within $k$' is a segment — an AND." },
+        { "title": "Greater-than is beyond", "latex": "|X| > k \\;\\Rightarrow\\; X < -k \\;\\text{or}\\; X > k", "explanation": "'Farther than $k$' is two rays — an OR." }
+      ],
+      "workedExamples": [
+        {
+          "id": "al34-we1",
+          "statement": "Solve $|2x - 3| = 7$.",
+          "solution": "Split: $2x - 3 = 7$ gives $x = 5$; $\\;2x - 3 = -7$ gives $x = -2$. Both check: $|10 - 3| = 7$ and $|-4 - 3| = 7$. ✓",
+          "check": ["Abs(2*5 - 3) == 7", "Abs(2*(-2) - 3) == 7"]
+        },
+        {
+          "id": "al34-we2",
+          "statement": "A machine fills bottles to $v$ ml with target 500 and tolerance 5: $|v - 500| \\le 5$. What volumes pass?",
+          "solution": "Between form: $-5 \\le v - 500 \\le 5$, so $495 \\le v \\le 505$. Any fill from 495 to 505 ml passes.",
+          "check": ["500 - 5 == 495", "500 + 5 == 505", "Abs(495 - 500) <= 5", "not (Abs(506 - 500) <= 5)"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Solving $|2x - 3| = 7$ with only the positive branch.", "correction": "Distance 7 happens on BOTH sides: split into $2x - 3 = 7$ AND $2x - 3 = -7$. Two answers.", "authored": true },
+        { "text": "Turning $|X| > k$ into $-k < X < k$.", "correction": "That's the LESS-than picture. Greater-than means farther away: $X < -k$ or $X > k$.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "al34-t1",
+          "statement": "Solve $|x + 4| = 9$.",
+          "solution": "$x + 4 = 9 \\to x = 5$; or $x + 4 = -9 \\to x = -13$.",
+          "check": ["Abs(5 + 4) == 9", "Abs(-13 + 4) == 9"]
+        },
+        {
+          "id": "al34-t2",
+          "statement": "Solve $|3x - 1| > 8$.",
+          "solution": "$3x - 1 > 8 \\to x > 3$; or $3x - 1 < -8 \\to x < -\\dfrac{7}{3}$. Two rays.",
+          "check": ["Abs(3*4 - 1) > 8", "Abs(3*(-3) - 1) > 8", "not (Abs(3*0 - 1) > 8)"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Within 5 of the target", "body": "Quality control never demands EXACTLY 500 ml — it demands 'within 5 ml of 500.' That's a statement about DISTANCE, and $|v - 500| \\le 5$ is its algebra. Master the distance reading and every absolute-value problem becomes a picture." },
+          { "kind": "absoluteValue", "eyebrow": "Play", "title": "Distance from zero", "teach": "Slide the marker: $|x|$ is how FAR it sits from zero, ignoring direction. Notice $|4| = |-4| = 4$ — two different positions, one distance. That's why $|x| = 4$ has two solutions.", "config": { "min": -6, "max": 6, "start": -4, "color": "#e8913c" } },
+          { "kind": "teach", "eyebrow": "Equations", "title": "Split into two", "body": "$|2x - 3| = 7$ says: the quantity $2x - 3$ sits at distance 7 from zero — so it's either $7$ or $-7$. Solve both little equations, get both answers: $x = 5$ or $x = -2$. **One absolute value, two branches, always.**" },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Both branches", "problemId": "al34-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check equations", "title": "How many solutions?", "prompt": "How many solutions does $|x - 6| = 0$ have?", "options": ["exactly one", "two", "none", "infinitely many"], "correctIndex": 0, "explanation": "Distance ZERO from 6 means standing exactly ON 6: the single solution $x = 6$. (And $|X| = -2$ would have none — distance can't be negative.)", "check": ["Abs(6 - 6) == 0"] },
+          { "kind": "teach", "eyebrow": "Inequalities", "title": "Between vs. beyond", "body": "$|X| < 5$: within 5 of zero → the segment $-5 < X < 5$ (an AND). $|X| > 5$: farther than 5 → the rays $X < -5$ or $X > 5$ (an OR). Hook: less-th**AN**d, great-**OR**. Draw the two pictures once and you'll never mix them." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Tolerance as a segment", "problemId": "al34-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check inequalities", "title": "Pick the picture", "prompt": "$|x - 2| > 3$ describes:", "options": ["$x < -1$ or $x > 5$", "$-1 < x < 5$", "$x > 5$ only", "$-3 < x - 2 < 3$"], "correctIndex": 0, "explanation": "Farther than 3 from the number 2: beyond $2 - 3 = -1$ on the left OR beyond $2 + 3 = 5$ on the right.", "check": ["Abs(-2 - 2) > 3", "Abs(6 - 2) > 3", "not (Abs(3 - 2) > 3)"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Isolate the bars first", "body": "In $2|x - 1| + 3 = 11$, get the absolute value ALONE before splitting: $|x - 1| = 4$, then $x = 5$ or $x = -3$. Splitting while other terms still cling to the bars produces two wrong equations." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "A clean split", "problemId": "al34-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Beyond the fence", "problemId": "al34-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["$|X| = k$ → two branches: $X = \\pm k$.", "$|X| < k$ → between ($-k < X < k$); $|X| > k$ → beyond (two rays).", "Isolate the absolute value first; negative right side → no solutions."] }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    { "id": "al3-pr-1", "statement": "Solve $2x + 9 < 3$.", "solution": "$2x < -6$, so $x < -3$.", "check": ["2*(-4) + 9 < 3", "not (2*0 + 9 < 3)"] },
+    { "id": "al3-pr-2", "statement": "Solve $-5x \\ge 20$.", "solution": "Divide by $-5$, flip: $x \\le -4$.", "check": ["-5*(-4) >= 20", "not (-5*0 >= 20)"] },
+    { "id": "al3-pr-3", "statement": "Solve $4 - 3x < 2x - 6$.", "solution": "$10 < 5x$, so $x > 2$.", "check": ["4 - 3*3 < 2*3 - 6", "not (4 - 3*0 < 2*0 - 6)"] },
+    { "id": "al3-pr-4", "statement": "Solve $-7 < 2x + 1 \\le 5$.", "solution": "Subtract 1: $-8 < 2x \\le 4$; divide: $-4 < x \\le 2$.", "check": ["-7 < 2*0 + 1", "2*2 + 1 <= 5", "not (2*3 + 1 <= 5)"] },
+    { "id": "al3-pr-5", "statement": "Solve: $3x + 2 \\le -7$ or $x - 4 > 1$.", "solution": "$x \\le -3$ or $x > 5$.", "check": ["3*(-3) + 2 <= -7", "6 - 4 > 1", "not (3*0 + 2 <= -7 or 0 - 4 > 1)"] },
+    { "id": "al3-pr-6", "statement": "Solve $|x - 5| = 3$.", "solution": "$x = 8$ or $x = 2$.", "check": ["Abs(8 - 5) == 3", "Abs(2 - 5) == 3"] },
+    { "id": "al3-pr-7", "statement": "Solve $|2x + 1| \\le 7$.", "solution": "$-7 \\le 2x + 1 \\le 7 \\to -4 \\le x \\le 3$.", "check": ["Abs(2*(-4) + 1) <= 7", "Abs(2*3 + 1) <= 7", "not (Abs(2*4 + 1) <= 7)"] },
+    { "id": "al3-pr-8", "statement": "Concert tickets cost \\$18 each plus a \\$6 booking fee per order. With at most \\$100, how many tickets can one order contain?", "solution": "$18t + 6 \\le 100 \\to t \\le 5.2$, so at most 5 tickets.", "check": ["18*5 + 6 <= 100", "not (18*6 + 6 <= 100)"] }
+  ],
+  "testYourself": [
+    { "id": "al3-ty-1", "statement": "Solve $7 - 2x \\le 15$.", "solution": "$-2x \\le 8$, flip: $x \\ge -4$.", "check": ["7 - 2*(-4) <= 15", "not (7 - 2*(-5) <= 15)"] },
+    { "id": "al3-ty-2", "statement": "Solve $3(x - 2) > 5x + 4$.", "solution": "$3x - 6 > 5x + 4 \\to -10 > 2x \\to x < -5$.", "check": ["3*(-6 - 2) > 5*(-6) + 4", "not (3*(0 - 2) > 5*0 + 4)"] },
+    { "id": "al3-ty-3", "statement": "Solve $-3 \\le \\dfrac{x + 1}{2} < 2$.", "solution": "Multiply by 2: $-6 \\le x + 1 < 4$; subtract 1: $-7 \\le x < 3$.", "check": ["-3 <= Rational(-7 + 1, 2)", "Rational(0 + 1, 2) < 2", "not (Rational(3 + 1, 2) < 2)"] },
+    { "id": "al3-ty-4", "statement": "Solve $|3x - 6| = 12$.", "solution": "$3x - 6 = \\pm 12$: $x = 6$ or $x = -2$.", "check": ["Abs(3*6 - 6) == 12", "Abs(3*(-2) - 6) == 12"] },
+    { "id": "al3-ty-5", "statement": "Solve $|x + 3| > 4$.", "solution": "$x + 3 > 4$ or $x + 3 < -4$: $x > 1$ or $x < -7$.", "check": ["Abs(2 + 3) > 4", "Abs(-8 + 3) > 4", "not (Abs(0 + 3) > 4)"] },
+    { "id": "al3-ty-6", "statement": "A parcel service accepts boxes whose weight $w$ satisfies $|w - 12| \\le 2.5$ kg. What weights are accepted?", "solution": "$-2.5 \\le w - 12 \\le 2.5$, so $9.5 \\le w \\le 14.5$ kg.", "check": ["Abs(Rational(19,2) - 12) <= Rational(5,2)", "Abs(Rational(29,2) - 12) <= Rational(5,2)", "not (Abs(15 - 12) <= Rational(5,2))"] }
+  ]
+}
