@@ -68,7 +68,7 @@ export const api = {
         method: "POST",
         body: JSON.stringify(body),
       }),
-    login: (body: { email: string; password: string }) =>
+    login: (body: { identifier: string; password: string }) =>
       apiCall<{ user: User; accessToken: string }>("/api/auth/login", {
         method: "POST",
         body: JSON.stringify(body),

@@ -35,7 +35,7 @@ function SignInInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { refresh } = useAuth();
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({ identifier: "", password: "" });
   const [showPw, setShowPw] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -119,7 +119,7 @@ function SignInInner() {
         next && next.startsWith("/") && !next.startsWith("//") ? next : null;
       router.push(safeNext ?? "/dashboard");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Invalid email or password.");
+      setError(err instanceof Error ? err.message : "Invalid username or password.");
     } finally {
       setLoading(false);
     }
@@ -289,15 +289,16 @@ function SignInInner() {
                 className="block mono text-[11px] mb-1.5"
                 style={{ color: "var(--fg-3)", letterSpacing: "0.08em", textTransform: "uppercase" }}
               >
-                Email
+                Username or email
               </label>
               <input
-                type="email"
+                type="text"
+                autoComplete="username"
                 required
                 autoFocus
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                placeholder="you@example.com"
+                value={form.identifier}
+                onChange={(e) => setForm({ ...form, identifier: e.target.value })}
+                placeholder="username or you@example.com"
                 style={inputStyle}
               />
             </div>

@@ -5,16 +5,42 @@ import { createSupabaseClient, createAdminClient } from "@/lib/supabase";
 import { REFRESH_COOKIE_NAME, REFRESH_COOKIE_OPTIONS } from "@/lib/auth-cookies";
 
 export async function POST(req: NextRequest) {
-  const { email, password } = await req.json();
+  const body = await req.json();
+  // Accept a username OR an email. `identifier` is the new field; `email` is
+  // kept for backward compatibility with older clients.
+  const rawIdentifier: string = (body.identifier ?? body.email ?? "").trim();
+  const password: string = body.password;
 
   const supabase = createSupabaseClient();
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  const admin = createAdminClient();
 
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 401 });
+  // Resolve a username to its login email. Anything containing "@" is treated
+  // as an email directly (usernames are alphanumeric slugs, never contain "@").
+  let loginEmail = rawIdentifier;
+  if (rawIdentifier && !rawIdentifier.includes("@")) {
+    const { data: prof } = await admin
+      .from("profiles")
+      .select("id")
+      .eq("username", rawIdentifier.toLowerCase())
+      .maybeSingle();
+    // Fall through to a generic 401 (below) rather than revealing whether the
+    // username exists — no user enumeration.
+    if (prof?.id) {
+      const { data: authUser } = await admin.auth.admin.getUserById(prof.id);
+      if (authUser?.user?.email) loginEmail = authUser.user.email;
+    }
   }
 
-  const admin = createAdminClient();
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: loginEmail,
+    password,
+  });
+
+  if (error) {
+    // Uniform message so a bad username and a bad password are indistinguishable.
+    return NextResponse.json({ error: "Invalid login credentials" }, { status: 401 });
+  }
+
   const { data: profile } = await admin
     .from("profiles")
     .select("*")
